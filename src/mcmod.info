@@ -1,0 +1,20 @@
+[
+{
+  "modid": "totem",
+  "name": "Totemic",
+  "description": "Gain powers using Totems?",
+  "version": "0.0.0",
+  "url": "www.",
+  "updateUrl": "",
+  "authorList": [
+    "Pokefenn"
+  ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]

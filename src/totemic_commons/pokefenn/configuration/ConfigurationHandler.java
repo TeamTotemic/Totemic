@@ -1,0 +1,75 @@
+package totemic_commons.pokefenn.configuration;
+
+import java.io.File;
+import java.util.logging.Level;
+
+import totemic_commons.pokefenn.configuration.ConfigurationSettings;
+import net.minecraftforge.common.Configuration;
+import totemic_commons.pokefenn.lib.BlockIds;
+import totemic_commons.pokefenn.lib.ItemIds;
+import totemic_commons.pokefenn.lib.Reference;
+import totemic_commons.pokefenn.lib.Strings;
+import cpw.mods.fml.common.FMLLog;
+
+public class ConfigurationHandler {
+
+
+
+	    public static Configuration configuration;
+	    public static final String CATEGORY_GAMEPLAY = "gameplay";
+
+	    
+	    
+	    public static void init(File configFile) {
+	        
+	        configuration = new Configuration(configFile);
+	        
+	        try {
+	            
+	            configuration.load();
+	            
+	            ConfigurationSettings.ENABLE_PARTICLE_FX = configuration.get(CATEGORY_GAMEPLAY, ConfigurationSettings.ENABLE_PARTICLE_FX_CONFIGNAME, ConfigurationSettings.ENABLE_PARTICLE_FX_DEFAULT).getBoolean(ConfigurationSettings.ENABLE_PARTICLE_FX_DEFAULT);
+	            
+	            //Blocks
+	           
+	            BlockIds.TOTEM_BASE = configuration.getBlock(Strings.TOTEM_BASE_NAME, BlockIds.TOTEM_BASE_DEFAULT).getInt(BlockIds.TOTEM_BASE_DEFAULT);
+	            
+	            
+	            //Items
+	            
+	            ItemIds.TOTEM_HEAD = configuration.getItem(Strings.TOTEM_HEAD_NAME, ItemIds.TOTEM_HEAD_DEFAULT).getInt(ItemIds.TOTEM_HEAD_DEFAULT);		
+	            ItemIds.TOTEM_CARVING_KNIFE = configuration.getItem(Strings.TOTEM_CARVING_KNIFE_NAME, ItemIds.TOTEM_CARVING_KNIFE_DEFAULT).getInt(ItemIds.TOTEM_CARVING_KNIFE_DEFAULT);
+	            
+	            
+	           }
+	        
+	        catch (Exception e) {
+	            
+	            FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration, go ask on the forums :p");
+	            
+	        }
+	        
+	        finally {
+	            configuration.save(); 
+	        }
+	    }
+	        
+	        public static void set(String categoryName, String propertyName, String newValue) {
+
+	            configuration.load();
+	            if (configuration.getCategoryNames().contains(categoryName)) {
+	                if (configuration.getCategory(categoryName).containsKey(propertyName)) {
+	                    configuration.getCategory(categoryName).get(propertyName).set(newValue);
+	                }
+	            }
+	            configuration.save();
+	        
+	        
+	    }
+	    
+	    
+	    
+	  
+	    
+	}
+

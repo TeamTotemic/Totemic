@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+    <comment>German (de_DE) Localization File</comment>
+
+    <entry key="itemGroup.Vineacraft">Vineacraft</entry>
+    
+    <entry key="item.vineaShears.name">Vineaschere</entry>
+    <entry key="item.vineParts.name">Weinrebenstück</entry>
+    <entry key="item.vineaWrench.name">Vinea-Schraubenschlüssel</entry>
+    <entry key="item.vinium.name">Vinium</entry>
+    <entry key="item.infestationVine.name">Seuchen-Wein</entry>
+    <entry key="item.vineaTankModule.name">Vinea-Tankmodul</entry>
+    <entry key="item.vineaGrating.name">Vinea-Gitter</entry>
+    <entry key="item.bucketVineSap.name">Eimer mit Weinrebensaft</entry>
+    <entry key="item.vineaBallInfuser.name">Vineaball-Infundierer</entry>
+    <entry key="item.vineapedia.name">Vineapedia</entry>
+    <entry key="item.vinium.name">Vinium</entry>
+    <entry key="item.infestationVine.name">Seuchen-Wein</entry>
+    <entry key="item.vineaTankModule.name">Vinea-Tankmodul</entry>
+    <entry key="item.vineaGrating.name">Vinea-Gitter</entry>
+    <entry key="item.bucketVineSap.name">Eimer mit Weinrebensaft</entry>
+    <entry key="item.vineaStick.name">Vineastock</entry>
+    <entry key="item.vineaBoots.name">Vineastiefel</entry>
+    <entry key="item.vineaLeggings.name">Vineahose</entry>
+    <entry key="item.vineaChestpiece.name">Vineabrustpanzer</entry>
+    <entry key="item.vineaHelmet.name">Vineahelm</entry>
+
+    <entry key="tile.vineaHopper.name">Vinea-Trichter</entry>
+    <entry key="tile.manualSqueezer.name">Manuelle Presse</entry>
+    <entry key="tile.glucoseSqueezer.name">Glukosepresse</entry>    
+    <entry key="tile.vineaInfuser.name">Vinea-Einflößer</entry>
+    <entry key="tile.advancedSqueezer.name">Fortgeschrittene Presse</entry>
+    <entry key="tile.vineaHatcher.name">Vinea-Brutplatz</entry>
+    <entry key="tile.advancedMachineBlock.name">Fortgeschrittener Vinea-Maschinenblock</entry>
+    <entry key="tile.basicMachineBlock.name">Basis-Vinea-Maschinenblock</entry>
+    <entry key="tile.vineaBrick.name">Vinea-Ziegel</entry>
+    <entry key="tile.vineaFurnace.name">Vinea-Ofen</entry>
+    <entry key="tile.vineaHarvester.name">Vinea-Erntemaschine</entry>
+    <entry key="tile.vineaFluidHopper.name">Vinea-Flüssigkeitstrichter</entry>
+    <entry key="tile.blockVinium.name">Viniumblock</entry>
+    <entry key="tile.brightVine.name">Strahlende Weinranken</entry>
+    
+    
+    <entry key="container.automaticSqueezer.name">Automatische Presse</entry>
+</properties>
