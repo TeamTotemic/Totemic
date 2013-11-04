@@ -101,6 +101,11 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 		return false;
 	}
 	
+	public void updateEntity(){
+		
+		
+		
+	}
 	
 	
 

@@ -6,6 +6,8 @@
     <entry key="itemGroup.Totemic">Totemic</entry>
 
     <entry key="item.totemHead.name">Totem Head</entry>
+    <entry key="item.totemicStaff.name">Totemic Staff</entry>
+    <entry key="item.totemWhittlingKnife.name">Totem Whittling Knife</entry>
     
 
     <entry key="tile.totemBase.name">Totem Base</entry>

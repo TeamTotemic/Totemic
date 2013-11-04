@@ -38,7 +38,9 @@ public class ConfigurationHandler {
 	            //Items
 	            
 	            ItemIds.TOTEM_HEAD = configuration.getItem(Strings.TOTEM_HEAD_NAME, ItemIds.TOTEM_HEAD_DEFAULT).getInt(ItemIds.TOTEM_HEAD_DEFAULT);		
-	            ItemIds.TOTEM_CARVING_KNIFE = configuration.getItem(Strings.TOTEM_CARVING_KNIFE_NAME, ItemIds.TOTEM_CARVING_KNIFE_DEFAULT).getInt(ItemIds.TOTEM_CARVING_KNIFE_DEFAULT);
+	            ItemIds.TOTEM_WHITTLING_KNIFE = configuration.getItem(Strings.TOTEM_WHITTLING_KNIFE_NAME, ItemIds.TOTEM_WHITTLING_KNIFE_DEFAULT).getInt(ItemIds.TOTEM_WHITTLING_KNIFE_DEFAULT);
+	            ItemIds.TOTEMIC_STAFF = configuration.getItem(Strings.TOTEMIC_STAFF_NAME, ItemIds.TOTEMIC_STAFF_DEFAULT).getInt(ItemIds.TOTEMIC_STAFF_DEFAULT);
+	            ItemIds.CHLOROPHYLL_CRYSTAL = configuration.getItem(Strings.CHLOROPHYLL_CRYSTAL_NAME, ItemIds.CHLOROPHYLL_CRYSTAL_DEFAULT).getInt(ItemIds.CHLOROPHYLL_CRYSTAL_DEFAULT);
 	            
 	            
 	           }

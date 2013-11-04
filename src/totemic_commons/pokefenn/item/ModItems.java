@@ -9,13 +9,17 @@ public class ModItems {
 	
 	public static Item totemHead;
 	public static Item totemCarvingKnife;
+	public static Item totemicStaff;
+	public static Item chlorophyllCrystal;
 	
 	
 	public static void init(){
 		
 		
 		totemHead = new ItemTotemHead(ItemIds.TOTEM_HEAD);
-		totemCarvingKnife = new ItemTotemCarvingKnife(ItemIds.TOTEM_CARVING_KNIFE);
+		totemCarvingKnife = new ItemTotemWhittlingKnife(ItemIds.TOTEM_WHITTLING_KNIFE);
+		totemicStaff = new ItemTotemicStaff(ItemIds.TOTEMIC_STAFF);
+		chlorophyllCrystal = new ItemChlorophyllCrystal(ItemIds.CHLOROPHYLL_CRYSTAL);
 		
 		
 		

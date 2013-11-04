@@ -13,7 +13,9 @@ public class Strings {
 	
 	//Items
 	public static final String TOTEM_HEAD_NAME = "totemHead";
-	public static final String TOTEM_CARVING_KNIFE_NAME = "totemCarvingKnife";
+	public static final String TOTEM_WHITTLING_KNIFE_NAME = "totemWhittlingKnife";
+	public static final String TOTEMIC_STAFF_NAME = "totemicStaff";
+	public static final String CHLOROPHYLL_CRYSTAL_NAME = "chlorophyllCrystal";
 	
 	
 	//TileEntites
