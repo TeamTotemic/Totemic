@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version="1.0">
-    <comment>German (de_DE) Localization File</comment>
+    <comment>German(de_DE) Localization File</comment>
+    
+    <entry key="itemGroup.Totemic">Totemic</entry>
 
+    <entry key="item.totemHead.name">Totemkopf</entry>
+    <entry key="item.totemicStaff.name">Totemstab</entry>
+    <entry key="item.totemWhittlingKnife.name">Totemschnitzmesser</entry>
     
+
+    <entry key="tile.totemBase.name">Totembasis</entry>
     
+
     
 </properties>
