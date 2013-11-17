@@ -1,11 +1,12 @@
 package buildcraft.api.gates;
 
-import buildcraft.api.transport.IPipe;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
+import buildcraft.api.transport.IPipe;
 
 public class ActionManager {
 

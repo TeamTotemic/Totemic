@@ -8,9 +8,10 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
 	private ItemStack[] inventory;
 
-    public static final int INVENTORY_SIZE = 0;
+    public static final int INVENTORY_SIZE = 1;
     
-    public static final int TOTEM_HEAD_INVENTORY_INDEX = 0;
+    public static final int TOTEM_HEAD_HEAD_INDEX = 0;
+    public static final int TOTEM_HEAD_CRYSTAL_INDEX = 1;
 
 	
 	

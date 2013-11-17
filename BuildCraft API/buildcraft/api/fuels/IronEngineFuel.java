@@ -9,6 +9,7 @@ package buildcraft.api.fuels;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 

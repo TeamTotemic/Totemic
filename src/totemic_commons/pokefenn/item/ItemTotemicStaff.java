@@ -17,7 +17,7 @@ public class ItemTotemicStaff extends ItemTotemic {
 		
 		super(id);
         this.setUnlocalizedName(Strings.TOTEMIC_STAFF_NAME);
-        setMaxStackSize(64);
+        this.setMaxStackSize(1);
         
 		
 		

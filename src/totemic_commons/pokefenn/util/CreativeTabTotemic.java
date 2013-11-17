@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.util;
 
+import totemic_commons.pokefenn.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.relauncher.Side;
@@ -17,7 +18,7 @@ public class CreativeTabTotemic extends CreativeTabs {
 	    @SideOnly(Side.CLIENT)
 	    public int getTabIconItemIndex() {
 	        
-	        return Block.wood.blockID;
+	        return ModItems.chlorophyllCrystal.itemID;
 	    }
 
 }

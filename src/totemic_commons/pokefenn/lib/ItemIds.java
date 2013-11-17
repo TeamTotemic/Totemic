@@ -8,12 +8,20 @@ public class ItemIds {
 	public static int TOTEM_HEAD;
 	public static int TOTEM_WHITTLING_KNIFE;
 	public static int TOTEMIC_STAFF;
+    public static int BUCKET_CHLOROPHYLL;
+	
+	//Totems
+	public static int TOTEM_BAT;
 	
 	
 	public static int TOTEM_HEAD_DEFAULT = 6000;
 	public static int TOTEM_WHITTLING_KNIFE_DEFAULT = 6001;
 	public static int TOTEMIC_STAFF_DEFAULT = 6002;
 	public static int CHLOROPHYLL_CRYSTAL_DEFAULT = 6003;
+    public static int BUCKET_CHLOROPHYLL_DEFAULT = 6004;
+	
+	//Totems
+	public static int TOTEM_BAT_DEFAULT = 6010;
 	
 	
 }

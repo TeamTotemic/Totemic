@@ -7,13 +7,14 @@
  */
 package buildcraft.api.fuels;
 
-import buildcraft.api.core.StackWrapper;
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import buildcraft.api.core.StackWrapper;
 
 public final class IronEngineCoolant {
 

@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import net.minecraft.creativetab.CreativeTabs;
 import totemic_commons.pokefenn.block.ModBlocks;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
+import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.handler.LocalizationHandler;
 import totemic_commons.pokefenn.item.ModItems;
 import totemic_commons.pokefenn.lib.Reference;
@@ -46,7 +47,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 	            CreativeTabs.getNextID(), Reference.MOD_NAME);
 
 	        
-	    public static final Logger logger = Logger.getLogger("Totemic");
+	    public static final Logger logger = Logger.getLogger(Reference.MOD_NAME);
 
 	    
 	    @EventHandler
@@ -59,13 +60,17 @@ import cpw.mods.fml.common.network.NetworkMod;
 	    	
 	    	
 	        proxy.registerRenderers();
-	    	
+
+
 	    	
 	        ConfigurationHandler.init(new File(event.getModConfigurationDirectory()
 	                .getAbsolutePath()
 	                + File.separator
 	                + Reference.CHANNEL_NAME
 	                + File.separator + Reference.MOD_NAME + ".cfg"));
+	        
+	        //Initiates fluids into the game
+	        ModFluids.init();
 	        
 	        
 	    	//Initiates totemic blocks into the game

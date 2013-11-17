@@ -7,11 +7,13 @@
  */
 package buildcraft.api.recipes;
 
-import com.google.common.base.Objects;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
 import net.minecraftforge.fluids.FluidStack;
+
+import com.google.common.base.Objects;
 
 public final class RefineryRecipes {
 

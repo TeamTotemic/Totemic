@@ -7,8 +7,8 @@
  */
 package buildcraft.api.transport;
 
-import buildcraft.api.transport.IPipeTile.PipeType;
 import net.minecraftforge.common.ForgeDirection;
+import buildcraft.api.transport.IPipeTile.PipeType;
 
 public interface IPipeConnection {
 

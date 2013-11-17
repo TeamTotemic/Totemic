@@ -17,7 +17,7 @@ public ItemChlorophyllCrystal(int id){
 		
 		super(id);
         this.setUnlocalizedName(Strings.CHLOROPHYLL_CRYSTAL_NAME);
-        setMaxStackSize(64);
+        setMaxStackSize(1);
         
 		
 		
