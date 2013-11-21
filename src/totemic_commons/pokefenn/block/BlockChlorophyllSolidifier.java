@@ -25,7 +25,7 @@ public class BlockChlorophyllSolidifier extends BlockTotemic {
 
     public BlockChlorophyllSolidifier(int id){
 
-        super(id, Material.wood);
+        super(id, Material.iron);
         this.setUnlocalizedName(Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
         this.setHardness(1F);
         this.setCreativeTab(Totemic.tabsTotem);
@@ -41,18 +41,16 @@ public class BlockChlorophyllSolidifier extends BlockTotemic {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
+    @SideOnly(Side.SERVER)
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ){
 
-        if (player.isSneaking())
-            return false;
 
-        else {
-            if (!world.isRemote) {
                 TileChlorophyllSolidifier tileChlorophyllSolidifier = (TileChlorophyllSolidifier) world.getBlockTileEntity(x, y, z);
 
+        //player.setInvisible();
 
-                if (/*tileChlorophyllSolidifier.getStackInSlot(TileChlorophyllSolidifier.INVENTORY_SLOT_INDEX) == null &&*/ tileChlorophyllSolidifier != null){
+
+                if (tileChlorophyllSolidifier.getStackInSlot(TileChlorophyllSolidifier.INVENTORY_SLOT_INDEX) == null && tileChlorophyllSolidifier != null){
 
 
 
@@ -60,20 +58,22 @@ public class BlockChlorophyllSolidifier extends BlockTotemic {
 
 
 
-                      player.clearItemInUse();
 
 
-                    }
 
                     }
 
+                    }
 
-                }
 
-            }
+
+
+
+
             return true;
-        }
+
     }
+}
 
 
 

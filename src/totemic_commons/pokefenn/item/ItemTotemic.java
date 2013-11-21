@@ -14,4 +14,6 @@ public class ItemTotemic extends Item {
 		
 	}
 
+
+
 }
