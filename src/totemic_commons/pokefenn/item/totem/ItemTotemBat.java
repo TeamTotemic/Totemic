@@ -1,16 +1,17 @@
 package totemic_commons.pokefenn.item.totem;
 
-import java.util.List;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 
-public class ItemTotemBat extends ItemTotem {
+import java.util.List;
+
+public class ItemTotemBat extends ItemTotemic {
 	
 	
 	public ItemTotemBat(int id){

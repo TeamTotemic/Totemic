@@ -11,7 +11,8 @@ public class ItemTotemHead extends ItemTotemic {
 		super(id);
         this.setUnlocalizedName(Strings.TOTEM_HEAD_NAME);
         setMaxStackSize(64);
-        
+
+
 		
 		
 	}

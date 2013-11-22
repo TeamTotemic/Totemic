@@ -1,18 +1,5 @@
 package totemic_commons.pokefenn;
 
-import java.io.File;
-import java.util.logging.Logger;
-
-import net.minecraft.creativetab.CreativeTabs;
-import totemic_commons.pokefenn.block.ModBlocks;
-import totemic_commons.pokefenn.configuration.ConfigurationHandler;
-import totemic_commons.pokefenn.fluid.ModFluids;
-import totemic_commons.pokefenn.handler.LocalizationHandler;
-import totemic_commons.pokefenn.item.ModItems;
-import totemic_commons.pokefenn.lib.Reference;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.proxy.CommonProxy;
-import totemic_commons.pokefenn.util.CreativeTabTotemic;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -23,6 +10,19 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import net.minecraft.creativetab.CreativeTabs;
+import totemic_commons.pokefenn.block.ModBlocks;
+import totemic_commons.pokefenn.configuration.ConfigurationHandler;
+import totemic_commons.pokefenn.fluid.ModFluids;
+import totemic_commons.pokefenn.handler.LocalizationHandler;
+import totemic_commons.pokefenn.item.ModItems;
+import totemic_commons.pokefenn.lib.Reference;
+import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.proxy.CommonProxy;
+import totemic_commons.pokefenn.util.CreativeTabTotemic;
+
+import java.io.File;
+import java.util.logging.Logger;
 
 
 	
@@ -54,6 +54,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 	    public void preInit(FMLPreInitializationEvent event) {
 	    	
 	    	logger.setParent(FMLCommonHandler.instance().getFMLLogger());
+
+            Totemic.logger.info("Totemic is Loading");
 	    	
 	    	
 	    	LocalizationHandler.loadLanguages();

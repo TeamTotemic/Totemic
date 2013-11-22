@@ -12,6 +12,8 @@ public class ModBlocks {
     public static Block bigBadTotemBase;
     public static Block bigBadTotemHead;
     public static Block chlorophyllSolidifier;
+    public static Block plantShredder;
+    public static Block venusFlyTrap;
 	
 	
 	
@@ -21,6 +23,9 @@ public class ModBlocks {
         bigBadTotemBase = new BlockBigBadTotemBase(BlockIds.BIG_BAD_TOTEM_BASE);
         bigBadTotemHead = new BlockBigBadTotemHead(BlockIds.BIG_BAD_TOTEM_HEAD);
         chlorophyllSolidifier = new BlockChlorophyllSolidifier(BlockIds.CHLOROPHYLL_SOLIDIFIER);
+        plantShredder = new BlockPlantShredder(BlockIds.PLANT_SHREDDER);
+        venusFlyTrap = new BlockVenusFlyTrap(BlockIds.VENUS_FLY_TRAP);
+
 
 		
 		
@@ -28,6 +33,8 @@ public class ModBlocks {
         GameRegistry.registerBlock(bigBadTotemBase, Strings.BIG_BAD_TOTEM_BASE_NAME);
         GameRegistry.registerBlock(bigBadTotemHead, Strings.BIG_BAD_TOTEM_HEAD_NAME);
         GameRegistry.registerBlock(chlorophyllSolidifier, Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
+        GameRegistry.registerBlock(plantShredder, Strings.PLANT_SHREDDER_NAME);
+        GameRegistry.registerBlock(venusFlyTrap, Strings.VENUS_FLY_TRAP_NAME);
 
 		
 	}

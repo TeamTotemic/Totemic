@@ -12,7 +12,7 @@ import totemic_commons.pokefenn.lib.Textures;
 
 /**
  * Created with IntelliJ IDEA.
- * User: ${Pokefenn}
+ * User: Pokefenn
  * Date: 13/11/13
  * Time: 14:21
  */

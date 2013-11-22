@@ -14,6 +14,7 @@ public class ModItems {
 	public static Item totemicStaff;
 	public static Item chlorophyllCrystal;
     public static Item bucketChlorophyll;
+    public static Item venusFlyTrapSeed;
 	
 	//Totems
 	
@@ -28,6 +29,7 @@ public class ModItems {
 		totemicStaff = new ItemTotemicStaff(ItemIds.TOTEMIC_STAFF);
 		chlorophyllCrystal = new ItemChlorophyllCrystal(ItemIds.CHLOROPHYLL_CRYSTAL);
         bucketChlorophyll = new ItemBucketChlorophyll(ItemIds.BUCKET_CHLOROPHYLL);
+        venusFlyTrapSeed = new ItemVenusFlyTrapSeed(ItemIds.VENUS_FLY_TRAP_SEED);
 		
 		
 		//These are specific totems, of mobs and minecraft objects

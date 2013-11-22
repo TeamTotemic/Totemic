@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.tileentity;
 
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -13,10 +14,11 @@ import net.minecraftforge.fluids.IFluidHandler;
 /**
  * Created with IntelliJ IDEA.
  * User: ${Pokefenn}
- * Date: 13/11/13
- * Time: 16:16
+ * Date: 17/11/13
+ * Time: 20:02
  */
-public class TileChlorophyllSolidifier extends TileTotemic implements IInventory, IFluidHandler {
+public class TilePlantShredder extends TileTotemic implements IInventory, IFluidHandler, ISidedInventory {
+
 
 
     private ItemStack[] inventory;
@@ -31,7 +33,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
 
 
-    public TileChlorophyllSolidifier() {
+    public TilePlantShredder() {
 
         inventory = new ItemStack[INVENTORY_SIZE];
 
@@ -49,8 +51,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     @Override
     public ItemStack getStackInSlot(int slotIndex) {
         return inventory[slotIndex];
-
-
     }
 
     @Override
@@ -90,8 +90,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
         if (itemStack != null && itemStack.stackSize > getInventoryStackLimit()) {
             itemStack.stackSize = getInventoryStackLimit();
         }
-
-
     }
 
     @Override
@@ -166,8 +164,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
         return 1000;
-
-
     }
 
     @Override
@@ -182,41 +178,35 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid) {
-        return true;
-
-
+        return false;
     }
 
     @Override
     public boolean canDrain(ForgeDirection from, Fluid fluid) {
-        return false;
+        return true;
     }
 
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
         return new FluidTankInfo[0];
-
-
     }
 
 
-
-    public void updateEntity(){
-
+    //ISidedInventory
 
 
-
-
-
-
-
-
+    @Override
+    public int[] getAccessibleSlotsFromSide(int var1) {
+        return new int[0];
     }
 
-    public boolean canUpdate() {
-        return true;
+    @Override
+    public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+        return false;
     }
 
-
-
+    @Override
+    public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+        return false;
+    }
 }
