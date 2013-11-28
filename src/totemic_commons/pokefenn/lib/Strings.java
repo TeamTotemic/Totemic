@@ -3,7 +3,10 @@ package totemic_commons.pokefenn.lib;
 public class Strings {
 
 	
-	
+
+    //Misc
+
+    public static final String RESOURCE_PREFIX = Reference.MOD_NAME.toLowerCase() + ":";
 	
 	
 	
@@ -23,6 +26,7 @@ public class Strings {
 	public static final String CHLOROPHYLL_CRYSTAL_NAME = "chlorophyllCrystal";
     public static final String BUCKET_CHLOROPHYLL_NAME = "bucketChlorophyll";
     public static final String VENUS_FLY_TRAP_SEED_NAME = "venusFlyTrapSeed";
+    public static final String TOTEMS_NAME = "totems";
 
 
     //TotemItems
@@ -38,9 +42,15 @@ public class Strings {
 
     public static final String TILE_CHLOROPHYLL_SOLIDIFIER = "tileChlorophyllSolidifier";
     public static final String TILE_PLANT_SHREDDER = "tilePlantShredder";
+    public static final String TILE_TOTEM_BASE = "tileTotemBase";
 	
 	
 	//Container
+
+    public static final String CONTAINER_CALCINATOR_NAME = "container.totemic:" + TOTEM_BASE_NAME;
+
+    public static final String CONTAINER_INVENTORY = "container.inventory";
+
 	
 	
 	//Gui

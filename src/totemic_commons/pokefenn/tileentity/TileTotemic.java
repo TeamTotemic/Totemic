@@ -114,4 +114,7 @@ public class TileTotemic extends TileEntity {
         return stringBuilder.toString();
     }
 
+
+
+
 }

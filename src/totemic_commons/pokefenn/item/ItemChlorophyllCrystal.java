@@ -14,10 +14,12 @@ public class ItemChlorophyllCrystal extends ItemTotemic {
 	
 	
 public ItemChlorophyllCrystal(int id){
-		
-		super(id);
-        this.setUnlocalizedName(Strings.CHLOROPHYLL_CRYSTAL_NAME);
-        setMaxStackSize(1);
+
+
+	super(id);
+    this.setUnlocalizedName(Strings.CHLOROPHYLL_CRYSTAL_NAME);
+    this.setMaxStackSize(1);
+    this.setMaxDamage(500);
         
 		
 		

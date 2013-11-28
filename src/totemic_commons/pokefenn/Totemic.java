@@ -10,6 +10,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import totemic_commons.pokefenn.block.ModBlocks;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
@@ -89,9 +90,10 @@ import java.util.logging.Logger;
 	    
 	    @EventHandler
 	    public void init(FMLInitializationEvent event){
-	     
+
+            NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 	    	
-	    	CommonProxy.registerTileEntities();
+	    	proxy.registerTileEntities();
 	    }
 	    
 	    @EventHandler

@@ -205,12 +205,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
 
 
-
-
-
-
-
-
     }
 
     public boolean canUpdate() {
