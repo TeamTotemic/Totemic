@@ -11,16 +11,18 @@ import totemic_commons.pokefenn.lib.Textures
 import java.util.List
 import net.minecraft.util.{Icon, MathHelper}
 
-class ItemTotems(id:Int) extends ItemTotemic(id:Int) {
+class ItemTotemsScalaNotUsed(id:Int) extends ItemTotemic(id:Int) {
+/*
+    this.setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_BAT_NAME)
+    this.setHasSubtypes(true)
 
-    this.setUnlocalizedName(Strings.TOTEM_BAT_NAME)
-    this.setHasSubtypes(true);
-
-  private final var TOTEM_NAMES: Array[String] = Array[String]("Cactus", "Quartz Block", "Horse", "Squid")
+   var TOTEM_NAMES = Array[String]("Cactus", "Quartz Block", "Horse", "Squid")
 
   @SideOnly(Side.CLIENT) private val icons: Array[Icon] = null
 
-  @SideOnly(Side.CLIENT) override def registerIcons(register: IconRegister) {
+  @SideOnly(Side.CLIENT) def registerIcons(iconRegister: IconRegister) {
+
+    icons = new Array[Icon](TOTEM_NAMES.length)
 
 
 
@@ -30,12 +32,15 @@ class ItemTotems(id:Int) extends ItemTotemic(id:Int) {
 
   }
 
+
+
   @SideOnly(Side.CLIENT) override def getIconFromDamage(meta: Int):Icon=  {
 
-    val j: Int = MathHelper.clamp_int(meta, 0, 5)
-    return icons(j)
+    var i: Int = MathHelper.clamp_int(meta, 0, 4)
+    return icons[i]
 
 
   }
+  */
 
 }

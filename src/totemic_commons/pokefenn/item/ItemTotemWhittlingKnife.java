@@ -16,7 +16,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic {
 	public ItemTotemWhittlingKnife(int id) {
 	
 	super(id);
-    this.setUnlocalizedName(Strings.TOTEM_WHITTLING_KNIFE_NAME);
+    this.setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_WHITTLING_KNIFE_NAME);
     this.setMaxStackSize(1);
 
 }

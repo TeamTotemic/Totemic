@@ -12,7 +12,7 @@ public class ItemIds {
     public static int VENUS_FLY_TRAP_SEED;
 	
 	//Totems
-	public static int TOTEM_BAT;
+	public static int TOTEMS;
 	
 	
 	public static int TOTEM_HEAD_DEFAULT = 6000;
@@ -23,7 +23,7 @@ public class ItemIds {
     public static int VENUS_FLY_TRAP_SEED_DEFAULT = 6005;
 	
 	//Totems
-	public static int TOTEM_BAT_DEFAULT = 6010;
+	public static int TOTEMS_DEFAULT = 6010;
 	
 	
 }

@@ -22,7 +22,7 @@ public class ItemVenusFlyTrapSeed extends ItemTotemic implements IPlantable {
     public ItemVenusFlyTrapSeed(int id){
 
         super(id);
-        this.setUnlocalizedName(Strings.VENUS_FLY_TRAP_SEED_NAME);
+        this.setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.VENUS_FLY_TRAP_SEED_NAME);
         this.setMaxStackSize(64);
 
 

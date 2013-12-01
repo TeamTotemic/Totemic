@@ -1,5 +1,11 @@
 package totemic_commons.pokefenn.util;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.util.Icon;
+import totemic_commons.pokefenn.lib.Strings;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -8,21 +14,5 @@ package totemic_commons.pokefenn.util;
  */
 public class JavaToScala {
 
-
-    /*//This is a class i use to translate Java code to Scala
-
-    @Override
-    public String getUnlocalizedName(ItemStack itemStack) {
-
-        StringBuilder unlocalizedName = new StringBuilder();
-        int meta = MathHelper.clamp_int(itemStack.getItemDamage(), 0, 5);
-
-        unlocalizedName.append("item.");
-        unlocalizedName.append("namethingy");
-        unlocalizedName.append(totems[meta]);
-
-        return unlocalizedName.toString();
-    }
-    */
 
 }

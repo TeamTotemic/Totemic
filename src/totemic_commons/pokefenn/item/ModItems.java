@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.totem.ItemTotems;
+import totemic_commons.pokefenn.item.totem.ItemTotemsScalaNotUsed;
 import totemic_commons.pokefenn.lib.ItemIds;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -19,6 +20,8 @@ public class ModItems {
     public static Item venusFlyTrapSeed;
 	
 	//Totems
+
+    public static Item totems;
 	
 	public static Item totemBat;
     public static Item totemSquid;
@@ -35,13 +38,14 @@ public class ModItems {
 		chlorophyllCrystal = new ItemChlorophyllCrystal(ItemIds.CHLOROPHYLL_CRYSTAL);
         bucketChlorophyll = new ItemBucketChlorophyll(ItemIds.BUCKET_CHLOROPHYLL);
         venusFlyTrapSeed = new ItemVenusFlyTrapSeed(ItemIds.VENUS_FLY_TRAP_SEED);
+        totems = new ItemTotems(ItemIds.TOTEMS);
 
 
 		
 		
 		//These are specific totems, of mobs and minecraft objects
 		
-		totemBat = new ItemTotems(ItemIds.TOTEM_BAT);
+		totemBat = new ItemTotemsScalaNotUsed(ItemIds.TOTEMS);
 
         //Registry for other items
         GameRegistry.registerItem(totemHead, Strings.TOTEM_HEAD_NAME);
@@ -52,7 +56,7 @@ public class ModItems {
         GameRegistry.registerItem(venusFlyTrapSeed, Strings.VENUS_FLY_TRAP_SEED_NAME);
 
         //Registry for Totem Items
-        GameRegistry.registerItem(totemBat, Strings.TOTEM_BAT_NAME);
+        GameRegistry.registerItem(totems, Strings.TOTEMS_NAME);
 
 
 		

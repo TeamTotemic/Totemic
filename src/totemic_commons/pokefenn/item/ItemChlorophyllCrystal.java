@@ -17,7 +17,7 @@ public ItemChlorophyllCrystal(int id){
 
 
 	super(id);
-    this.setUnlocalizedName(Strings.CHLOROPHYLL_CRYSTAL_NAME);
+    this.setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CHLOROPHYLL_CRYSTAL_NAME);
     this.setMaxStackSize(1);
     this.setMaxDamage(500);
         

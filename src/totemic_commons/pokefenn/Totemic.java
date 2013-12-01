@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -20,6 +19,7 @@ import totemic_commons.pokefenn.item.ModItems;
 import totemic_commons.pokefenn.lib.Reference;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.proxy.CommonProxy;
+import totemic_commons.pokefenn.util.CompatInit;
 import totemic_commons.pokefenn.util.CreativeTabTotemic;
 
 import java.io.File;
@@ -98,41 +98,15 @@ import java.util.logging.Logger;
 	    
 	    @EventHandler
 	    public void modsLoaded(FMLPostInitializationEvent event) {
-	    
+
+            CompatInit.init();
+
 
 	    	    Totemic.logger.info("Ooooh, what does this button do?");
 	    	    Totemic.logger.info("Please Dee-Dee don't click the button!");        
 	    	    Totemic.logger.info("BOOM!!!");
 
-	    	    if (Loader.isModLoaded("Thaumcraft")){
-	    	    	
-	    	    	Totemic.logger.info("Is that thaumcraft I see?");
-	    	    	Totemic.logger.info("What is this fake magic! ");
-	    	    	
-	    	    }
-	    	    
-	    	    
-	    	    if(Loader.isModLoaded("Blood Magic: Alchemical Wizardry")){
-	    	    	
-	    	    	Totemic.logger.info("Oh, is this that Blood Magic I see?");
-	    	    	Totemic.logger.info("I'll show you real sacrifice!");
-	    	    	
-	    	    }	
-	    	    	
-	    	    
-	    	    if(Loader.isModLoaded("Ars Magica 2")){
-	    	    	
-	    	    	Totemic.logger.info("Ars Magica?");
-	    	    	Totemic.logger.info("Those fancy textures? Who needs those!");	
-	    	    	
-	    	    }
-	    	    
-	    	    if(Loader.isModLoaded("Witchery")){
-	    	    	
-	    	    	Totemic.logger.info("Oh, so this is that witch craft mod?");
-	    	    	Totemic.logger.info("Poppets? Why not Puppets?");
-	    	    	
-	    	    }
+
 	    	    
 	    	    	
 	    	    	

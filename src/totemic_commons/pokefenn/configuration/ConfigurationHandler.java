@@ -50,7 +50,7 @@ public class ConfigurationHandler {
 
 	            //Totems
 	            
-	            ItemIds.TOTEM_BAT = configuration.getItem(Strings.TOTEM_BAT_NAME, ItemIds.TOTEM_BAT_DEFAULT).getInt(ItemIds.TOTEM_BAT_DEFAULT);
+	            ItemIds.TOTEMS = configuration.getItem(Strings.TOTEM_BAT_NAME, ItemIds.TOTEMS_DEFAULT).getInt(ItemIds.TOTEMS_DEFAULT);
 	            
 	           }
 	        
