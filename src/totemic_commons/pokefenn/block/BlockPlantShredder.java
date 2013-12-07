@@ -57,6 +57,7 @@ public class BlockPlantShredder extends BlockTotemic {
 
             }
 
+
             return true;
         }
 

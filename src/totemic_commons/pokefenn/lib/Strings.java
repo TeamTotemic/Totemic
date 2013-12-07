@@ -27,6 +27,7 @@ public class Strings {
     public static final String BUCKET_CHLOROPHYLL_NAME = "bucketChlorophyll";
     public static final String VENUS_FLY_TRAP_SEED_NAME = "venusFlyTrapSeed";
     public static final String TOTEMS_NAME = "totems";
+    public static final String PAINT_BRUSH_NAME = "paintBrush";
 
 
     //TotemItems
@@ -47,7 +48,10 @@ public class Strings {
 	
 	//Container
 
-    public static final String CONTAINER_CALCINATOR_NAME = "container.totemic:" + TOTEM_BASE_NAME;
+    public static final String CONTAINER_TOTEM_BASE_NAME = "container.totemic:" + TOTEM_BASE_NAME;
+
+
+    public static final String CONTAINER_PAINT_BRUSH_NAME = "container.totemic:" + PAINT_BRUSH_NAME;
 
     public static final String CONTAINER_INVENTORY = "container.inventory";
 
@@ -73,5 +77,14 @@ public class Strings {
     //Fluid
 
 	public static final String FLUID_CHLOROPHYLL_NAME = "fluidChlorophyll";
+
+    //NBT
+
+    public static final String NBT_ITEM_PAINT_BRUSH_GUI_OPEN = "itemPaintBrushGuiOpen";
+
+
+    //GuiRelatedStrings
+
+
 
 }

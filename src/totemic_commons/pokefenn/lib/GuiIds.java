@@ -9,6 +9,7 @@ package totemic_commons.pokefenn.lib;
 public class GuiIds {
 
     public static final int TOTEM_BASE = 0;
+    public static final int PAINT_BRUSH = 1;
 
 
 }

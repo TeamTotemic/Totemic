@@ -8,7 +8,11 @@
     <entry key="item.totemic:totemHead.name">Totem Head</entry>
     <entry key="item.totemic:totemicStaff.name">Totemic Staff</entry>
     <entry key="item.totemic:totemWhittlingKnife.name">Totem Whittling Knife</entry>
-    
+
+    <entry key="item.totemic:totemsBat.name">Bat Totem</entry>
+    <entry key="item.totemic:totemsCactus.name">Cactus Totem</entry>
+    <entry key="item.totemic:totemsQuartzBlock.name">Block of Quartz Totem</entry>
+    <entry key="item.totemic:totemsHorse.name">Horse Totem</entry>
 
     <entry key="tile.totemBase.name">Totem Base</entry>
     

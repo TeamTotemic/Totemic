@@ -66,8 +66,7 @@ import java.util.logging.Logger;
 
 
 	    	
-	        ConfigurationHandler.init(new File(event.getModConfigurationDirectory()
-	                .getAbsolutePath()
+	        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath()
 	                + File.separator
 	                + Reference.CHANNEL_NAME
 	                + File.separator + Reference.MOD_NAME + ".cfg"));
@@ -90,6 +89,8 @@ import java.util.logging.Logger;
 	    
 	    @EventHandler
 	    public void init(FMLInitializationEvent event){
+
+            Totemic.logger.info("Totemic is entering its Initlisasion stage");
 
             NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 	    	

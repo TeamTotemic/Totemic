@@ -59,7 +59,7 @@ public class BlockTotemBase extends BlockTotemic {
                 TileTotemBase tileTotemBase = (TileTotemBase) world.getBlockTileEntity(x, y, z);
 
                 if (tileTotemBase != null) {
-                    System.out.println("trying to open gui");
+
                     player.openGui(Totemic.instance, GuiIds.TOTEM_BASE, world, x, y, z);
                 }
             }

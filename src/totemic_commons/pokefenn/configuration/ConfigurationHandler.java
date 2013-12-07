@@ -47,6 +47,7 @@ public class ConfigurationHandler {
 	            ItemIds.CHLOROPHYLL_CRYSTAL = configuration.getItem(Strings.CHLOROPHYLL_CRYSTAL_NAME, ItemIds.CHLOROPHYLL_CRYSTAL_DEFAULT).getInt(ItemIds.CHLOROPHYLL_CRYSTAL_DEFAULT);
 	            ItemIds.BUCKET_CHLOROPHYLL = configuration.getItem(Strings.BUCKET_CHLOROPHYLL_NAME, ItemIds.BUCKET_CHLOROPHYLL_DEFAULT).getInt(ItemIds.BUCKET_CHLOROPHYLL_DEFAULT);
                 ItemIds.VENUS_FLY_TRAP_SEED = configuration.getItem(Strings.VENUS_FLY_TRAP_SEED_NAME, ItemIds.VENUS_FLY_TRAP_SEED_DEFAULT).getInt(ItemIds.VENUS_FLY_TRAP_SEED_DEFAULT);
+                ItemIds.PAINT_BRUSH = configuration.getItem(Strings.PAINT_BRUSH_NAME, ItemIds.PAINT_BRUSH_DEFAULT).getInt(ItemIds.PAINT_BRUSH_DEFAULT);
 
 	            //Totems
 	            

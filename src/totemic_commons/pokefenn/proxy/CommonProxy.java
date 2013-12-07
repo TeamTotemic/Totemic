@@ -5,7 +5,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import totemic_commons.pokefenn.gui.GuiPaintBrush;
 import totemic_commons.pokefenn.gui.GuiTotemBase;
+import totemic_commons.pokefenn.inventory.ContainerPaintBrush;
 import totemic_commons.pokefenn.inventory.ContainerTotemBase;
 import totemic_commons.pokefenn.lib.GuiIds;
 import totemic_commons.pokefenn.lib.Strings;
@@ -51,6 +53,11 @@ public class CommonProxy implements IGuiHandler {
             return new ContainerTotemBase(player.inventory, tileTotemBase);
         }
 
+        else if (ID == GuiIds.PAINT_BRUSH){
+
+            return new ContainerPaintBrush(player.inventory);
+        }
+
 
         return null;
     }
@@ -65,6 +72,9 @@ public class CommonProxy implements IGuiHandler {
 
         }
 
+        else if (ID == GuiIds.PAINT_BRUSH)
+
+            return new GuiPaintBrush(player.inventory);
 
         return null;
     }

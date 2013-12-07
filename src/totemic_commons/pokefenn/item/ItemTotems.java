@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.totem;
+package totemic_commons.pokefenn.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
-import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.List;
  */
 public class ItemTotems extends ItemTotemic {
 
-    private static final String[] TOTEM_NAMES = new String[] { "Cactus", "Horse", "Quartz Block", "Bat" };
+    private static final String[] TOTEM_NAMES = new String[] { "Cactus", "Horse", "QuartzBlock", "Bat" };
 
     @SideOnly(Side.CLIENT)
     private Icon[] icons;
@@ -30,14 +29,14 @@ public class ItemTotems extends ItemTotemic {
         super(id);
         this.setHasSubtypes(true);
         maxStackSize = 64;
-        this.setUnlocalizedName(Strings.TOTEMS_NAME);
+
     }
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
 
         StringBuilder unlocalizedName = new StringBuilder();
-        int meta = MathHelper.clamp_int(itemStack.getItemDamage(), 0, 4);
+        int meta = MathHelper.clamp_int(itemStack.getItemDamage(), 0, 3);
 
         unlocalizedName.append("item.");
         unlocalizedName.append(Strings.RESOURCE_PREFIX);
@@ -51,7 +50,7 @@ public class ItemTotems extends ItemTotemic {
     @SideOnly(Side.CLIENT)
     public Icon getIconFromDamage(int meta) {
 
-        int j = MathHelper.clamp_int(meta, 0, 4);
+        int j = MathHelper.clamp_int(meta, 0, 3);
         return icons[j];
     }
 
@@ -71,11 +70,10 @@ public class ItemTotems extends ItemTotemic {
 
 
     @Override
-    //@SuppressWarnings({ "rawtypes", "unchecked" })
     @SideOnly(Side.CLIENT)
     public void getSubItems(int id, CreativeTabs creativeTab, List list) {
 
-        for (int meta = 0; meta < 6; ++meta) {
+        for (int meta = 0; meta < 4; ++meta) {
             list.add(new ItemStack(id, 1, meta));
         }
 

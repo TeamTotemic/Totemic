@@ -27,6 +27,7 @@ public class Textures {
 	public static final String TOTEM_WHITTLING_KNIFE_ICON = "totemWhittlingKnife";
     public static final String BUCKET_CHLOROPHYLL_ICON = "bucketChlorophyll";
     public static final String VENUS_FLY_TRAP_SEED_ICON = "venusFlyTrapSeed";
+    public static final String PAINT_BRUSH_ICON = "paintBrush";
 
     //TotemItems
 
@@ -43,6 +44,8 @@ public class Textures {
 	//Guis
 
     public static final ResourceLocation GUI_TOTEM_BASE = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "totemBaseGui.png");
+
+    public static final ResourceLocation GUI_PAINT_BRUSH = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "paintBrushGui.png");
 
 
 
