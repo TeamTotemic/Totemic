@@ -23,14 +23,14 @@ public class CompatInit {
         if (Loader.isModLoaded("Thaumcraft")){
 
             Totemic.logger.info("Is that thaumcraft I see?");
-            Totemic.logger.info("What is this fake magic! ");
+            Totemic.logger.info("This is more like Tech! ");
 
         }
 
 
         if(Loader.isModLoaded("Blood Magic: Alchemical Wizardry")){
 
-            Totemic.logger.info("Oh, is this that Blood Magic I see?");
+            Totemic.logger.info("Oh, is this that Blood Magic I spy with my bloody eye?");
             Totemic.logger.info("I'll show you real sacrifice!");
 
         }
@@ -39,14 +39,14 @@ public class CompatInit {
         if(Loader.isModLoaded("Ars Magica 2")){
 
             Totemic.logger.info("Ars Magica?");
-            Totemic.logger.info("Those fancy textures? Who needs those!");
+            Totemic.logger.info("Stop doing cheap mobs and talk to me again ;)");
 
         }
 
         if(Loader.isModLoaded("Witchery")){
 
             Totemic.logger.info("Oh, so this is that witch craft mod?");
-            Totemic.logger.info("Poppets? Why not Puppets?");
+            Totemic.logger.info("Go using your VooDoo on me and see if it makes a difference.");
 
         }
 

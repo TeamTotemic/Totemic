@@ -149,6 +149,10 @@ public class TileTotemBase extends TileTotemic implements IInventory {
     public void updateEntity(){
 
 
+        //if (getStackInSlot(TOTEM_BASE_HEAD_INDEX)){
+
+        //}
+
 
 
     }

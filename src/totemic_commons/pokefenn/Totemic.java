@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 
 
 	
-	@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
+	@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, dependencies = "after:HinaLib;")
 	@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 	public class Totemic {
@@ -110,7 +110,7 @@ import java.util.logging.Logger;
 
 	    	    
 	    	    	
-	    	    	
+
 	    	    
 	
 

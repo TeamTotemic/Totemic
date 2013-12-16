@@ -11,6 +11,7 @@ public class ItemIds {
     public static int BUCKET_CHLOROPHYLL;
     public static int VENUS_FLY_TRAP_SEED;
     public static int PAINT_BRUSH;
+    public static int SUB_ITEMS;
 	
 	//Totems
 	public static int TOTEMS;
@@ -23,6 +24,7 @@ public class ItemIds {
     public static int BUCKET_CHLOROPHYLL_DEFAULT = 6004;
     public static int VENUS_FLY_TRAP_SEED_DEFAULT = 6005;
     public static int PAINT_BRUSH_DEFAULT = 6006;
+    public static int SUB_ITEMS_DEFAULT = 6007;
 	
 	//Totems
 	public static int TOTEMS_DEFAULT = 6010;

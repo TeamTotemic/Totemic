@@ -9,6 +9,7 @@ import net.minecraft.util.Icon
 import totemic_commons.pokefenn.Totemic
 import totemic_commons.pokefenn.lib.Strings
 import totemic_commons.pokefenn.lib.Textures
+import hinalib_commons.pokefenn.block.BlockNormal
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +17,7 @@ import totemic_commons.pokefenn.lib.Textures
  * Date: 13/11/13
  * Time: 08:07
  */
-class BlockBigBadTotemBase(id:Int) extends Block(id:Int, Material.wood) {
+class BlockBigBadTotemBase(id:Int) extends BlockNormal(id:Int, Material.wood) {
 
     this.setUnlocalizedName(Strings.BIG_BAD_TOTEM_BASE_NAME)
     this.setHardness(1F)

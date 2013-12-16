@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.block;
 
-import net.minecraft.block.Block;
+import hinalib_commons.pokefenn.block.BlockNormal;
 import net.minecraft.block.material.Material;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
@@ -11,7 +11,7 @@ import totemic_commons.pokefenn.lib.Strings;
  * Date: 19/11/13
  * Time: 14:58
  */
-public class BlockVenusFlyTrap extends Block {
+public class BlockVenusFlyTrap extends BlockNormal {
 
 
     public BlockVenusFlyTrap(int id){

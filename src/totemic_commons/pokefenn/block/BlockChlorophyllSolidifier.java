@@ -2,18 +2,19 @@ package totemic_commons.pokefenn.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import hinalib_commons.pokefenn.block.BlockTile;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.fluids.FluidStack;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.fluid.ItemBucketChlorophyll;
-import totemic_commons.pokefenn.item.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +22,7 @@ import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
  * Date: 13/11/13
  * Time: 16:10
  */
-public class BlockChlorophyllSolidifier extends BlockTotemic {
+public class BlockChlorophyllSolidifier extends BlockTile {
 
     public BlockChlorophyllSolidifier(int id){
 
@@ -45,34 +46,43 @@ public class BlockChlorophyllSolidifier extends BlockTotemic {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ){
 
 
+
                 TileChlorophyllSolidifier tileChlorophyllSolidifier = (TileChlorophyllSolidifier) world.getBlockTileEntity(x, y, z);
-
-        //player.setInvisible();
-
-
-                if (tileChlorophyllSolidifier.getStackInSlot(TileChlorophyllSolidifier.INVENTORY_SLOT_INDEX) == null && tileChlorophyllSolidifier != null){
-
-
-
-                    if(player.getHeldItem().itemID == ModItems.chlorophyllCrystal.itemID){
-
-
-
-
-
-
-                    }
-
-                    }
-
-
-
-
 
 
             return true;
 
     }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack) {
+
+        int direction = 0;
+        int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+
+        if (facing == 0) {
+            direction = ForgeDirection.NORTH.ordinal();
+        }
+        else if (facing == 1) {
+            direction = ForgeDirection.EAST.ordinal();
+        }
+        else if (facing == 2) {
+            direction = ForgeDirection.SOUTH.ordinal();
+        }
+        else if (facing == 3) {
+            direction = ForgeDirection.WEST.ordinal();
+        }
+
+        world.setBlockMetadataWithNotify(x, y, z, direction, 3);
+
+        if (itemStack.hasDisplayName()) {
+            ((TileTotemic) world.getBlockTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
+        }
+
+        ((TileTotemic) world.getBlockTileEntity(x, y, z)).setOrientation(direction);
+    }
+
+
 }
 
 

@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import hinalib_commons.pokefenn.item.ItemNormal;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,11 +19,12 @@ import totemic_commons.pokefenn.util.ItemStackNBTHelper;
  * Date: 04/12/13
  * Time: 17:45
  */
-public class ItemPaintBrush extends ItemTotemic {
+public class ItemPaintBrush extends ItemNormal {
 
     public ItemPaintBrush(int id){
         super(id);
         this.setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.PAINT_BRUSH_NAME);
+        this.setCreativeTab(Totemic.tabsTotem);
 
 
     }

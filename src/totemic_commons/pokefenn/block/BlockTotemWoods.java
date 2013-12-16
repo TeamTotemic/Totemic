@@ -13,38 +13,54 @@ import totemic_commons.pokefenn.lib.Textures;
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
- * Date: 13/11/13
- * Time: 14:21
+ * Date: 09/12/13
+ * Time: 14:35
  */
-public class BlockBigBadTotemHead extends BlockNormal {
+public class BlockTotemWoods extends BlockNormal {
 
 
 
-    public BlockBigBadTotemHead(int id){
+
+    public BlockTotemWoods(int id){
 
         super(id, Material.wood);
-        this.setUnlocalizedName(Strings.BIG_BAD_TOTEM_HEAD_NAME);
+        this.setUnlocalizedName(Strings.TOTEM_WOODS_NAME);
         this.setHardness(1F);
         this.setCreativeTab(Totemic.tabsTotem);
 
-
-
     }
 
+
     @SideOnly(Side.CLIENT)
-    private Icon allSidesIcon;
+    private Icon topAndBottomIcon;
+
+    @SideOnly(Side.CLIENT)
+    private Icon sideIcon;
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister register){
-        allSidesIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.BIG_BAD_TOTEM_HEAD_ICON_ALL);
+        topAndBottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_WOOD_TOP_ICON);
+        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_WOOD_SIDE_ICON);
 
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public Icon getIcon(int side, int meta) {
-        return allSidesIcon;
+
+        if (side == 1 || side == 2){
+
+            return topAndBottomIcon;
+
+        }
+
+        else return sideIcon;
+
+
+
+    }
+
 
     }
 
@@ -52,4 +68,6 @@ public class BlockBigBadTotemHead extends BlockNormal {
 
 
 
-}
+
+
+

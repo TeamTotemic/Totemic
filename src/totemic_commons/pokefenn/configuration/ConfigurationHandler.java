@@ -35,8 +35,8 @@ public class ConfigurationHandler {
 	            BlockIds.BIG_BAD_TOTEM_BASE = configuration.getBlock(Strings.BIG_BAD_TOTEM_BASE_NAME, BlockIds.BIG_BAD_TOTEM_BASE_DEFAULT).getInt(BlockIds.BIG_BAD_TOTEM_BASE_DEFAULT);
                 BlockIds.BIG_BAD_TOTEM_HEAD = configuration.getBlock(Strings.BIG_BAD_TOTEM_HEAD_NAME, BlockIds.BIG_BAD_TOTEM_HEAD_DEFAULT).getInt(BlockIds.BIG_BAD_TOTEM_HEAD_DEFAULT);
                 BlockIds.CHLOROPHYLL_SOLIDIFIER = configuration.getBlock(Strings.CHLOROPHYLL_CRYSTAL_NAME, BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT).getInt(BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT);
-                BlockIds.PLANT_SHREDDER = configuration.getBlock(Strings.PLANT_SHREDDER_NAME, BlockIds.PLANT_SHREDDER_DEFAULT).getInt(BlockIds.PLANT_SHREDDER_DEFAULT);
                 BlockIds.VENUS_FLY_TRAP = configuration.getBlock(Strings.VENUS_FLY_TRAP_NAME, BlockIds.VENUS_FLY_TRAP_DEFAULT).getInt(BlockIds.VENUS_FLY_TRAP_DEFAULT);
+                BlockIds.TOTEM_WOODS = configuration.getBlock(Strings.TOTEM_WOODS_NAME, BlockIds.TOTEM_WOODS_DEFAULT).getInt(BlockIds.TOTEM_WOODS_DEFAULT);
 
 	            
 	            //Items
@@ -48,6 +48,7 @@ public class ConfigurationHandler {
 	            ItemIds.BUCKET_CHLOROPHYLL = configuration.getItem(Strings.BUCKET_CHLOROPHYLL_NAME, ItemIds.BUCKET_CHLOROPHYLL_DEFAULT).getInt(ItemIds.BUCKET_CHLOROPHYLL_DEFAULT);
                 ItemIds.VENUS_FLY_TRAP_SEED = configuration.getItem(Strings.VENUS_FLY_TRAP_SEED_NAME, ItemIds.VENUS_FLY_TRAP_SEED_DEFAULT).getInt(ItemIds.VENUS_FLY_TRAP_SEED_DEFAULT);
                 ItemIds.PAINT_BRUSH = configuration.getItem(Strings.PAINT_BRUSH_NAME, ItemIds.PAINT_BRUSH_DEFAULT).getInt(ItemIds.PAINT_BRUSH_DEFAULT);
+                ItemIds.SUB_ITEMS = configuration.getItem(Strings.SUB_ITEMS_NAME, ItemIds.SUB_ITEMS_DEFAULT).getInt(ItemIds.SUB_ITEMS_DEFAULT);
 
 	            //Totems
 	            

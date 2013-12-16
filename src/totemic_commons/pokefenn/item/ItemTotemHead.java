@@ -1,17 +1,19 @@
 package totemic_commons.pokefenn.item;
 
+import hinalib_commons.pokefenn.item.ItemNormal;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 
-public class ItemTotemHead extends ItemTotemic {
+public class ItemTotemHead extends ItemNormal {
 	
 	
 	public ItemTotemHead(int id){
 		
 		super(id);
-        this.setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_HEAD_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_HEAD_NAME);
         setMaxStackSize(64);
-
+        setCreativeTab(Totemic.tabsTotem);
 
 		
 		

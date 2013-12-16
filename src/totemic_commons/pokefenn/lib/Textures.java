@@ -18,6 +18,9 @@ public class Textures {
 
     public static final String BIG_BAD_TOTEM_HEAD_ICON_ALL = "bigBadTotemHead";
     public static final String BIG_BAD_TOTEM_BASE_ICON_ALL = "bigBadTotemBase";
+
+    public static final String TOTEM_WOOD_TOP_ICON = "totemWoodTop";
+    public static final String TOTEM_WOOD_SIDE_ICON = "totemWoodSide";
 	
 	//Items
 
