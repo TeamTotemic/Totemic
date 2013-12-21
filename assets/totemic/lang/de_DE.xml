@@ -5,10 +5,14 @@
     
     <entry key="itemGroup.Totemic">Totemic</entry>
 
-    <entry key="item.totemHead.name">Totemkopf</entry>
-    <entry key="item.totemicStaff.name">Totemstab</entry>
-    <entry key="item.totemWhittlingKnife.name">Totemschnitzmesser</entry>
+    <entry key="item.totemic:totemHead.name">Totemkopf</entry>
+    <entry key="item.totemic:totemicStaff.name">Totemstab</entry>
+    <entry key="item.totemic:totemWhittlingKnife.name">Totemschnitzmesser</entry>
     
+    <entry key="item.totemic:totemsBat.name">Fledermaustotem</entry>
+    <entry key="item.totemic:totemsCactus.name">Kaktustotem</entry>
+    <entry key="item.totemic:totemsQuartzBlock.name">Quarzblocktotem</entry>
+    <entry key="item.totemic:totemsHorse.name">Pferdetotem</entry>
 
     <entry key="tile.totemBase.name">Totembasis</entry>
     
