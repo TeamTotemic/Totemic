@@ -1,15 +1,16 @@
 package totemic_commons.pokefenn.totem;
 
+import net.minecraft.item.ItemStack;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import net.minecraft.item.ItemStack;
 
 
 public class TotemArrayList {
 	
 	
 	public static List<TotemArrayList> recipes = new ArrayList<TotemArrayList>();
+
 	
 	
 	public static void addTotems(){

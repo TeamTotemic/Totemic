@@ -23,8 +23,8 @@ public class ItemPaintBrush extends ItemNormal {
 
     public ItemPaintBrush(int id){
         super(id);
-        this.setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.PAINT_BRUSH_NAME);
-        this.setCreativeTab(Totemic.tabsTotem);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.PAINT_BRUSH_NAME);
+        setCreativeTab(Totemic.tabsTotem);
 
 
     }

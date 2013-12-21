@@ -66,6 +66,9 @@ public class BlockTotemBase extends BlockTile {
 
                 if (tileTotemBase != null) {
 
+
+
+
                     player.openGui(Totemic.instance, GuiIds.TOTEM_BASE, world, x, y, z);
                 }
             }

@@ -4,6 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import totemic_commons.pokefenn.lib.Strings;
 
 public class TileTotemBase extends TileTotemic implements IInventory {
 
@@ -82,12 +83,12 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
     @Override
     public String getInvName() {
-        return null;
+        return Strings.CONTAINER_TOTEM_BASE_NAME;
     }
 
     @Override
     public boolean isInvNameLocalized() {
-        return false;
+        return true;
     }
 
     @Override
@@ -149,12 +150,8 @@ public class TileTotemBase extends TileTotemic implements IInventory {
     public void updateEntity(){
 
 
-        //if (getStackInSlot(TOTEM_BASE_HEAD_INDEX)){
 
-        //}
-
-
-
+        super.updateEntity();
     }
 
     public boolean canUpdate() {
