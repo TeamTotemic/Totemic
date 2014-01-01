@@ -50,7 +50,7 @@ public class Strings {
     //Container
 
     public static final String CONTAINER_TOTEM_BASE_NAME = "container.totemic:" + TOTEM_BASE_NAME;
-
+    public static final String CONTAINER_CHLOROPHYLL_SOLIDIFIER_NAME = "container.totemic:" + CHLOROPHYLL_SOLIDIFIER_NAME;
 
     public static final String CONTAINER_PAINT_BRUSH_NAME = "container.totemic:" + PAINT_BRUSH_NAME;
 

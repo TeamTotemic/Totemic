@@ -22,9 +22,9 @@ public class BlockTotemWoods extends BlockNormal {
     public BlockTotemWoods(int id) {
 
         super(id, Material.wood);
-        this.setUnlocalizedName(Strings.TOTEM_WOODS_NAME);
-        this.setHardness(1F);
-        this.setCreativeTab(Totemic.tabsTotem);
+        setUnlocalizedName(Strings.TOTEM_WOODS_NAME);
+        setHardness(1F);
+        setCreativeTab(Totemic.tabsTotem);
 
     }
 

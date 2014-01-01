@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class ItemSubItems extends ItemMetaData {
 
-    private static final String[] ITEMS_NAMES = new String[]{"ChlorophyllicIngot", "TotemicWood", "FreyjaVine"};
+    private static final String[] ITEMS_NAMES = new String[]{"chlorophyllicIngot", "totemicWood"};
 
     @SideOnly(Side.CLIENT)
     private Icon[] icons;
@@ -43,7 +43,6 @@ public class ItemSubItems extends ItemMetaData {
 
         unlocalizedName.append("item.");
         unlocalizedName.append(Strings.RESOURCE_PREFIX);
-        unlocalizedName.append(Strings.SUB_ITEMS_NAME);
         unlocalizedName.append(ITEMS_NAMES[meta]);
 
         return unlocalizedName.toString();
@@ -64,7 +63,7 @@ public class ItemSubItems extends ItemMetaData {
         icons = new Icon[ITEMS_NAMES.length];
 
         for (int i = 0; i < ITEMS_NAMES.length; ++i) {
-            icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + Strings.SUB_ITEMS_NAME + ITEMS_NAMES[i]);
+            icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + ITEMS_NAMES[i]);
         }
     }
 

@@ -5,7 +5,7 @@ import totemic_commons.pokefenn.lib.BlockIds;
 import totemic_commons.pokefenn.lib.Strings;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class ModBlocks {
+public final class ModBlocks {
 
 
     public static Block totemBase;

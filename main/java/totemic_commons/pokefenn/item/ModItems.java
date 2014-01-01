@@ -7,7 +7,7 @@ import totemic_commons.pokefenn.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.lib.ItemIds;
 
-public class ModItems {
+public final class ModItems {
 
 
     public static Item totemHead;

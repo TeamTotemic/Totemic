@@ -5,8 +5,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import totemic_commons.pokefenn.item.ItemPaintBrush;
-import totemic_commons.pokefenn.lib.Ints;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.ItemStackNBTHelper;
 
@@ -24,8 +22,8 @@ public class ContainerPaintBrush extends Container {
 
     public ContainerPaintBrush(InventoryPlayer inventoryPlayer) {
 
-        this.addSlotToContainer(new Slot(inventoryPlayer, Ints.PAINT_BRUSH_TOTEM_BEFORE_SLOT_INDEX, 76, 37));
-        this.addSlotToContainer(new Slot(inventoryPlayer, Ints.PAINT_BRUSH_TOTEM_AFTER_1_SLOT_INDEX, 18, 37));
+        //this.addSlotToContainer(new Slot(inventoryPlayer, Ints.PAINT_BRUSH_TOTEM_BEFORE_SLOT_INDEX, 76, 37));
+        //this.addSlotToContainer(new Slot(inventoryPlayer, Ints.PAINT_BRUSH_TOTEM_AFTER_1_SLOT_INDEX, 18, 37));
 
         // Add the player's inventory slots to the container
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex) {

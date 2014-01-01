@@ -3,7 +3,6 @@ package totemic_commons.pokefenn
 import totemic_commons.pokefenn.block.ModBlocks
 import totemic_commons.pokefenn.item.ModItems
 import cpw.mods.fml.common.FMLCommonHandler
-import totemic_commons.pokefenn.handler.LocalizationHandler
 import totemic_commons.pokefenn.configuration.ConfigurationHandler
 import java.io.File
 import totemic_commons.pokefenn.lib.Reference
@@ -29,10 +28,6 @@ object PreInit {
 
         Totemic.logger.info("Totemic is Loading")
 
-        //LocalizationHandler.loadLanguages
-
-        Totemic.proxy.registerRenderers
-
         //Initiates fluids into the game
         ModFluids.init
 
@@ -51,7 +46,7 @@ object Init {
 
     def init() {
 
-        Totemic.logger.info("Totemic is entering its Initlisasion stage")
+        Totemic.logger.info("Totemic is entering its Initlisation stage")
 
         OreDictionaryTotemic.init()
 

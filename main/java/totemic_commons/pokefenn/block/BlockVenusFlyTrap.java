@@ -17,10 +17,9 @@ public class BlockVenusFlyTrap extends BlockNormal {
     public BlockVenusFlyTrap(int id) {
 
         super(id, Material.wood);
-        this.setUnlocalizedName(Strings.VENUS_FLY_TRAP_NAME);
-        this.setHardness(1F);
-        this.setCreativeTab(Totemic.tabsTotem);
-
+        setUnlocalizedName(Strings.VENUS_FLY_TRAP_NAME);
+        setHardness(1F);
+        setCreativeTab(Totemic.tabsTotem);
 
     }
 }

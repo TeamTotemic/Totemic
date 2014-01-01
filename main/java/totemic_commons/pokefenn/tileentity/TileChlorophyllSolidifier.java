@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import totemic_commons.pokefenn.fluid.ModFluids;
+import totemic_commons.pokefenn.lib.Strings;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,6 +25,8 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     public static final int INVENTORY_SLOT_INDEX = 0;
 
     protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
+
+    protected int processTime;
 
 
     public TileChlorophyllSolidifier() {
@@ -87,12 +90,12 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
     @Override
     public String getInvName() {
-        return null;
+        return Strings.CONTAINER_CHLOROPHYLL_SOLIDIFIER_NAME;
     }
 
     @Override
     public boolean isInvNameLocalized() {
-        return false;
+        return true;
     }
 
     @Override

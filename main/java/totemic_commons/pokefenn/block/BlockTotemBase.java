@@ -80,14 +80,16 @@ public class BlockTotemBase extends BlockTile {
         int direction = 0;
         int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
-        if (facing == 0) {
-            direction = ForgeDirection.NORTH.ordinal();
-        } else if (facing == 1) {
-            direction = ForgeDirection.EAST.ordinal();
-        } else if (facing == 2) {
-            direction = ForgeDirection.SOUTH.ordinal();
-        } else if (facing == 3) {
-            direction = ForgeDirection.WEST.ordinal();
+        switch(facing){
+
+            case 0: direction = ForgeDirection.NORTH.ordinal(); break;
+
+            case 1: direction = ForgeDirection.EAST.ordinal(); break;
+
+            case 2: direction = ForgeDirection.SOUTH.ordinal(); break;
+
+            case 3: direction = ForgeDirection.WEST.ordinal(); break;
+
         }
 
         world.setBlockMetadataWithNotify(x, y, z, direction, 3);

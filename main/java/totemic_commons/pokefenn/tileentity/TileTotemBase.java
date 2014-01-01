@@ -149,6 +149,7 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
         if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems))) {
 
+            //System.out.println("TotemFound");
 
         } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 1))) {
 

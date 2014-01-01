@@ -17,11 +17,6 @@ import totemic_commons.pokefenn.tileentity.TileTotemBase;
 public class CommonProxy implements IGuiHandler {
 
 
-    public void registerRenderers() {
-
-
-    }
-
     public void registerTileEntities() {
 
 
@@ -49,11 +44,11 @@ public class CommonProxy implements IGuiHandler {
         if (ID == GuiIds.TOTEM_BASE) {
             TileTotemBase tileTotemBase = (TileTotemBase) world.getBlockTileEntity(x, y, z);
             return new ContainerTotemBase(player.inventory, tileTotemBase);
+
         } else if (ID == GuiIds.PAINT_BRUSH) {
 
             return new ContainerPaintBrush(player.inventory);
         }
-
 
         return null;
     }
