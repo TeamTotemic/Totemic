@@ -3,6 +3,9 @@ package totemic_commons.pokefenn.recipe;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.item.ModItems;
 
 import java.util.ArrayList;
@@ -10,23 +13,23 @@ import java.util.List;
 
 public class ChlorophyllSolidifierRecipes {
 
-    public static List<ChlorophyllSolidifierRecipes> recipe = new ArrayList<ChlorophyllSolidifierRecipes>();
+    public static List<ChlorophyllSolidifierRecipes> solidifierRecipe = new ArrayList();
 
     public static void addRecipes() {
 
-        recipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.ingotIron), new ItemStack(ModItems.subItems), 8000));
-        recipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.cobblestone), new ItemStack(Block.cobblestoneMossy, 1), 5000));
-        recipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.stoneBrick), new ItemStack(Block.stoneBrick, 1), 5000));
-        recipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.diamond), new ItemStack(ModItems.chlorophyllCrystal), 16000));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.ingotIron, 1), new ItemStack(ModItems.subItems, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.cobblestone, 1), new ItemStack(Block.cobblestoneMossy, 1, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.stoneBrick, 1), new ItemStack(Block.stoneBrick, 1, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.diamond, 1), new ItemStack(ModItems.chlorophyllCrystal, 1, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 16)));
 
 
     }
 
     private final ItemStack source;
     private final ItemStack result;
-    private final int fluid;
+    private final FluidStack fluid;
 
-    public ChlorophyllSolidifierRecipes(ItemStack input, ItemStack output, int fluidAmount) {
+    public ChlorophyllSolidifierRecipes(ItemStack input, ItemStack output, FluidStack fluidAmount) {
 
         this.source = input;
         this.result = output;
@@ -41,12 +44,14 @@ public class ChlorophyllSolidifierRecipes {
         return this.result;
     }
 
-    public int getFluidAmont() {
+    public FluidStack getFluidAmount() {
         return this.fluid;
     }
 
+    //public ItemStack get
+
     public static List<ChlorophyllSolidifierRecipes> getRecipes() {
-        return recipe;
+        return solidifierRecipe;
     }
 
 

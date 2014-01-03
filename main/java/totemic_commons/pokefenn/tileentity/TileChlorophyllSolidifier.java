@@ -100,7 +100,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
     @Override
     public int getInventoryStackLimit() {
-        return 1;
+        return 64;
     }
 
     @Override
@@ -205,6 +205,11 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     public void updateEntity() {
 
         super.updateEntity();
+
+        //if(ItemStack.areItemStackTagsEqual(getStackInSlot(INVENTORY_SLOT_INDEX), ChlorophyllSolidifierRecipes.getInput())){
+
+
+        //}
 
 
     }

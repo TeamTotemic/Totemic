@@ -4,6 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.DamageSource;
 import totemic_commons.pokefenn.item.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -15,6 +16,8 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
     public static final int TOTEM_BASE_HEAD_INDEX = 0;
     public static final int TOTEM_BASE_CRYSTAL_INDEX = 1;
+
+    protected int radiusOfPlayerEffect;
 
 
     public TileTotemBase() {
@@ -146,28 +149,96 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
     public void updateEntity() {
 
+        if(this.worldObj.getTotalWorldTime() % 40L == 0L){
 
-        if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems))) {
+        this.updateState();
 
-            //System.out.println("TotemFound");
-
-        } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 1))) {
-
-
-        } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 2))) {
-
-
-        } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 3))) {
-
+        super.updateEntity();
 
         }
 
+    }
 
-        super.updateEntity();
+    protected void updateState(){
+
+
+        if(!this.worldObj.isRemote){
+
+        //Checks to see what is in the current itemstack and runs code depending on what.
+        if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems))) {
+
+            //this.effectCactus();
+
+        } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 1, 1))) {
+
+            this.effectHorse();
+
+        } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 1, 2))) {
+
+            //this.effectQuartzBlock();
+
+        } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 1, 3))) {
+
+            //this.effectBat();
+
+    }
+
+    }
+
     }
 
     public boolean canUpdate() {
         return true;
+
+    }
+
+    protected void effectCactus(){
+
+        this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 5).attackEntityFrom(DamageSource.generic, 4);
+
+        this.chlorophyllCrystalHandler();
+
+    }
+
+    protected void effectQuartzBlock(){
+
+        this.chlorophyllCrystalHandler();
+        //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).moveEntity(this.xCoord, this.yCoord, this.zCoord);
+
+    }
+
+    protected void effectBat(){
+
+        this.chlorophyllCrystalHandler();
+
+        if(!this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).isDead){
+
+        //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).
+
+        }
+    }
+
+
+    protected void effectHorse(){
+
+        //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 2, 1));
+
+        this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).capabilities.setPlayerWalkSpeed(50);
+
+        this.chlorophyllCrystalHandler();
+
+    }
+
+    protected void chlorophyllCrystalHandler(){
+
+        this.chlorophyllCrystalDurability();
+
+    }
+
+    protected void chlorophyllCrystalDurability(){
+
+
+
     }
 
 
