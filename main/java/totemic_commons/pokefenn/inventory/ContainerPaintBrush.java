@@ -23,9 +23,6 @@ public class ContainerPaintBrush extends Container {
     public ContainerPaintBrush(InventoryPlayer inventoryPlayer)
     {
 
-        //this.addSlotToContainer(new Slot(inventoryPlayer, Ints.PAINT_BRUSH_TOTEM_BEFORE_SLOT_INDEX, 76, 37));
-        //this.addSlotToContainer(new Slot(inventoryPlayer, Ints.PAINT_BRUSH_TOTEM_AFTER_1_SLOT_INDEX, 18, 37));
-
         // Add the player's inventory slots to the container
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex)
         {

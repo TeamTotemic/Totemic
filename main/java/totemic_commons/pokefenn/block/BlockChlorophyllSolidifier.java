@@ -12,8 +12,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import rukalib_commons.pokefenn.block.BlockTile;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.item.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
@@ -58,7 +61,7 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
         ForgeDirection[] directions = new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.UP, ForgeDirection.DOWN};
 
-        if (tileChlorophyllSolidifier != null )
+        if (tileChlorophyllSolidifier != null)
         {
 
             if (heldItem != null && tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX) == null && !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)) && !world.isRemote)
@@ -70,51 +73,32 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
                 player.destroyCurrentEquippedItem();
 
-            } else if (tileChlorophyllSolidifier != null)
-            {
-
-
-              if (!world.isRemote)
+            } else if (ItemStack.areItemStacksEqual(new ItemStack(ModItems.bottleChlorophyll), tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX)) || ItemStack.areItemStacksEqual(new ItemStack(ModItems.bucketChlorophyll), tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX)))
             {
 
                 if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)))
                 {
 
-                    //for (ForgeDirection direction : directions) {
-
                     System.out.println("trying to fill");
 
-                    //tileChlorophyllSolidifier.fill(directions, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
+                    tileChlorophyllSolidifier.fill(ForgeDirection.DOWN, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
 
                     player.destroyCurrentEquippedItem();
-
-                    //}
 
                 } else if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)))
                 {
 
-                    // for (ForgeDirection direction : directions) {
-
                     System.out.println("trying to fill");
 
-                    //tileChlorophyllSolidifier.fill(direction, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
+                    tileChlorophyllSolidifier.fill(ForgeDirection.DOWN, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
 
                     player.destroyCurrentEquippedItem();
 
                     player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
 
-                    //}
 
                 }
-            }
-            }
-
-
-
-        } else
-        {
-
-            if (!world.isRemote && tileChlorophyllSolidifier != null)
+            } else if (heldItem == null && tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX) != null)
             {
 
                 /* This is what adds the inventory of the solidifier into your players*/
@@ -124,7 +108,9 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
                 tileChlorophyllSolidifier.decrStackSize(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX, tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX).stackSize);
 
+
             }
+
 
         }
 

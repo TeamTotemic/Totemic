@@ -174,7 +174,7 @@ public class TileTotemBase extends TileTotemic implements IInventory {
     public void updateEntity()
     {
 
-        if (this.worldObj.getTotalWorldTime() % 40L == 0L)
+        if (this.worldObj.getTotalWorldTime() % 80L == 0L)
         {
 
             this.updateState();
@@ -189,7 +189,7 @@ public class TileTotemBase extends TileTotemic implements IInventory {
     {
 
 
-        if (!this.worldObj.isRemote)
+        if (!this.worldObj.isRemote && this.blockType != null)
         {
 
             //Checks to see what is in the current itemstack and runs code depending on what.
@@ -211,7 +211,7 @@ public class TileTotemBase extends TileTotemic implements IInventory {
             } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 1, 3)))
             {
 
-                //this.effectBat();
+                this.effectBat();
 
             }
 
@@ -250,7 +250,7 @@ public class TileTotemBase extends TileTotemic implements IInventory {
         if (!this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).isDead)
         {
 
-            //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).
+            this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.allowFlying = true;
 
         }
     }
