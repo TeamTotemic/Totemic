@@ -17,7 +17,8 @@ import totemic_commons.pokefenn.util.ItemStackNBTHelper;
  */
 public class ItemPaintBrush extends ItemNormal {
 
-    public ItemPaintBrush(int id) {
+    public ItemPaintBrush(int id)
+    {
         super(id);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.PAINT_BRUSH_NAME);
         setCreativeTab(Totemic.tabsTotem);
@@ -26,10 +27,12 @@ public class ItemPaintBrush extends ItemNormal {
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer) {
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer entityPlayer)
+    {
 
 
-        if (!world.isRemote) {
+        if (!world.isRemote)
+        {
             ItemStackNBTHelper.setBoolean(itemStack, Strings.NBT_ITEM_PAINT_BRUSH_GUI_OPEN, true);
             entityPlayer.openGui(Totemic.instance, GuiIds.PAINT_BRUSH, entityPlayer.worldObj, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
         }

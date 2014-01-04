@@ -11,10 +11,12 @@ import totemic_commons.pokefenn.Totemic;
  */
 public class CompatInit {
 
-    public static void init() {
+    public static void init()
+    {
 
 
-        if (Loader.isModLoaded("Thaumcraft")) {
+        if (Loader.isModLoaded("Thaumcraft"))
+        {
 
             Totemic.logger.info("Is that thaumcraft I see?");
             Totemic.logger.info("This is more like Tech! ");
@@ -22,7 +24,8 @@ public class CompatInit {
         }
 
 
-        if (Loader.isModLoaded("Blood Magic: Alchemical Wizardry")) {
+        if (Loader.isModLoaded("Blood Magic: Alchemical Wizardry"))
+        {
 
             Totemic.logger.info("Oh, is this that Blood Magic I spy with my bloody eye?");
             Totemic.logger.info("I'll show you real sacrifice!");
@@ -30,28 +33,32 @@ public class CompatInit {
         }
 
 
-        if (Loader.isModLoaded("Ars Magica 2")) {
+        if (Loader.isModLoaded("Ars Magica 2"))
+        {
 
             Totemic.logger.info("Ars Magica?");
             Totemic.logger.info("Stop doing cheap mobs and talk to me again ;)");
 
         }
 
-        if (Loader.isModLoaded("Witchery")) {
+        if (Loader.isModLoaded("Witchery"))
+        {
 
             Totemic.logger.info("Oh, so this is that witch craft mod?");
             Totemic.logger.info("Go using your VooDoo on me and see if it makes a difference.");
 
         }
 
-        if (Loader.isModLoaded("gregtech_addon")) {
+        if (Loader.isModLoaded("gregtech_addon"))
+        {
 
             Totemic.logger.info("Gregtech is unsupported by Totemic and all of my mods.");
             Totemic.logger.info("If there are any problems, go cry to greg instead of me =3");
 
         }
 
-        if (Loader.isModLoaded("Optifine")) {
+        if (Loader.isModLoaded("Optifine"))
+        {
 
             Totemic.logger.info("Optifine is unsupported by Totemic and all of my mods.");
             Totemic.logger.info("It causes alot of problems, if there are any, try removing optifine.");

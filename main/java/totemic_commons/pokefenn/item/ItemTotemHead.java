@@ -8,7 +8,8 @@ import totemic_commons.pokefenn.lib.Strings;
 public class ItemTotemHead extends ItemNormal {
 
 
-    public ItemTotemHead(int id) {
+    public ItemTotemHead(int id)
+    {
 
         super(id);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_HEAD_NAME);

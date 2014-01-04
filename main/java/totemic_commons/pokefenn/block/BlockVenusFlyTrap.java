@@ -14,7 +14,8 @@ import totemic_commons.pokefenn.lib.Strings;
 public class BlockVenusFlyTrap extends BlockNormal {
 
 
-    public BlockVenusFlyTrap(int id) {
+    public BlockVenusFlyTrap(int id)
+    {
 
         super(id, Material.wood);
         setUnlocalizedName(Strings.VENUS_FLY_TRAP_NAME);
@@ -22,4 +23,9 @@ public class BlockVenusFlyTrap extends BlockNormal {
         setCreativeTab(Totemic.tabsTotem);
 
     }
+
+    /**
+     * This code actually doesnt do anything yet, it will be worked once Poopy gives me a model :)
+     */
+
 }

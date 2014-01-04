@@ -9,7 +9,8 @@ import totemic_commons.pokefenn.item.ModItems;
 
 public class TotemicRecipes {
 
-    public static void init() {
+    public static void init()
+    {
 
 
         GameRegistry.addRecipe(new ItemStack(ModItems.subItems, 1, 1), new Object[]{"vvv", "vsv", "vvv", ('v'), Block.vine, ('s'), Item.sugar});

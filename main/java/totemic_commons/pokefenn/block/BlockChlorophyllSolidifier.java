@@ -12,11 +12,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
 import rukalib_commons.pokefenn.block.BlockTile;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.item.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
@@ -32,7 +29,8 @@ import java.util.Random;
  */
 public class BlockChlorophyllSolidifier extends BlockTile {
 
-    public BlockChlorophyllSolidifier(int id) {
+    public BlockChlorophyllSolidifier(int id)
+    {
 
         super(id, Material.iron);
         setUnlocalizedName(Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
@@ -45,88 +43,99 @@ public class BlockChlorophyllSolidifier extends BlockTile {
     private Random rand = new Random();
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world)
+    {
         return new TileChlorophyllSolidifier();
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+    {
 
         TileChlorophyllSolidifier tileChlorophyllSolidifier = (TileChlorophyllSolidifier) world.getBlockTileEntity(x, y, z);
 
         ItemStack heldItem = player.inventory.getCurrentItem();
 
-        if (tileChlorophyllSolidifier != null && heldItem != null) {
+        ForgeDirection[] directions = new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.UP, ForgeDirection.DOWN};
 
-            if (tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX) == null && !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)) && !world.isRemote ) {
+        if (tileChlorophyllSolidifier != null )
+        {
 
-                    tileChlorophyllSolidifier.setInventorySlotContents(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX, heldItem);
+            if (heldItem != null && tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX) == null && !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)) && !world.isRemote)
+            {
 
-                    System.out.println("SettingInventoryOfSolidifier");
+                tileChlorophyllSolidifier.setInventorySlotContents(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX, heldItem);
+
+                System.out.println("SettingInventoryOfSolidifier");
+
+                player.destroyCurrentEquippedItem();
+
+            } else if (tileChlorophyllSolidifier != null)
+            {
+
+
+              if (!world.isRemote)
+            {
+
+                if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)))
+                {
+
+                    //for (ForgeDirection direction : directions) {
+
+                    System.out.println("trying to fill");
+
+                    //tileChlorophyllSolidifier.fill(directions, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
 
                     player.destroyCurrentEquippedItem();
 
-            }
+                    //}
 
-            else if(tileChlorophyllSolidifier != null){
+                } else if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)))
+                {
 
+                    // for (ForgeDirection direction : directions) {
 
+                    System.out.println("trying to fill");
 
+                    //tileChlorophyllSolidifier.fill(direction, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
 
-            }
+                    player.destroyCurrentEquippedItem();
 
+                    player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
 
-            else if(!world.isRemote) {
+                    //}
 
-                    if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll))) {
-
-
-                        System.out.println("trying to fill");
-
-                        tileChlorophyllSolidifier.fill(ForgeDirection.DOWN, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
-
-                        player.destroyCurrentEquippedItem();
-
-                    } else if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll))) {
-
-                        System.out.println("trying to fill");
-
-                        tileChlorophyllSolidifier.fill(ForgeDirection.DOWN, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
-
-                        player.destroyCurrentEquippedItem();
-
-                        player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
-
-
-                    }
                 }
-
-
+            }
             }
 
-         else {
-
-            if (world.isRemote && tileChlorophyllSolidifier != null) {
 
 
-                System.out.println("trying to take inventory");
+        } else
+        {
+
+            if (!world.isRemote && tileChlorophyllSolidifier != null)
+            {
+
+                /* This is what adds the inventory of the solidifier into your players*/
+                System.out.println("Trying to give the player the stack in the inventory");
 
                 player.inventory.addItemStackToInventory((tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX)));
 
-                tileChlorophyllSolidifier.decrStackSize(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX, 64);
+                tileChlorophyllSolidifier.decrStackSize(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX, tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX).stackSize);
 
             }
 
         }
 
-        if(player.isSneaking()){
+        if (player.isSneaking())
+        {
 
             return false;
-        }
+        } else
+        {
 
-        else{
-
-        return true;
+            return true;
 
         }
 
@@ -134,12 +143,14 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack) {
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+    {
 
         int direction = 0;
         int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
-        switch (facing) {
+        switch (facing)
+        {
 
             case 0:
                 direction = ForgeDirection.NORTH.ordinal();
@@ -161,7 +172,8 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
         world.setBlockMetadataWithNotify(x, y, z, direction, 3);
 
-        if (itemStack.hasDisplayName()) {
+        if (itemStack.hasDisplayName())
+        {
             ((TileTotemic) world.getBlockTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
         }
 
@@ -169,11 +181,13 @@ public class BlockChlorophyllSolidifier extends BlockTile {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int id, int meta) {
+    public void breakBlock(World world, int x, int y, int z, int id, int meta)
+    {
 
         dropInventory(world, x, y, z);
 
-        if (world.getBlockTileEntity(x, y + 1, z) instanceof TileChlorophyllSolidifier) {
+        if (world.getBlockTileEntity(x, y + 1, z) instanceof TileChlorophyllSolidifier)
+        {
             world.markBlockForUpdate(x, y + 1, z);
             world.updateAllLightTypes(x, y + 1, z);
         }
@@ -181,7 +195,8 @@ public class BlockChlorophyllSolidifier extends BlockTile {
         super.breakBlock(world, x, y, z, id, meta);
     }
 
-    private void dropInventory(World world, int x, int y, int z) {
+    private void dropInventory(World world, int x, int y, int z)
+    {
 
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 
@@ -190,18 +205,21 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
         IInventory inventory = (IInventory) tileEntity;
 
-        for (int i = 0; i < inventory.getSizeInventory(); i++) {
+        for (int i = 0; i < inventory.getSizeInventory(); i++)
+        {
 
             ItemStack itemStack = inventory.getStackInSlot(i);
 
-            if (itemStack != null && itemStack.stackSize > 0) {
+            if (itemStack != null && itemStack.stackSize > 0)
+            {
                 float dX = rand.nextFloat() * 0.8F + 0.1F;
                 float dY = rand.nextFloat() * 0.8F + 0.1F;
                 float dZ = rand.nextFloat() * 0.8F + 0.1F;
 
                 EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.itemID, itemStack.stackSize, itemStack.getItemDamage()));
 
-                if (itemStack.hasTagCompound()) {
+                if (itemStack.hasTagCompound())
+                {
                     entityItem.getEntityItem().setTagCompound((NBTTagCompound) itemStack.getTagCompound().copy());
                 }
 

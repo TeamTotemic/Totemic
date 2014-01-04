@@ -23,7 +23,8 @@ import totemic_commons.pokefenn.util.ItemStackNBTHelper;
 @SideOnly(Side.CLIENT)
 public class GuiPaintBrush extends GuiContainer {
 
-    public GuiPaintBrush(InventoryPlayer inventoryPlayer) {
+    public GuiPaintBrush(InventoryPlayer inventoryPlayer)
+    {
 
         super(new ContainerPaintBrush(inventoryPlayer));
         xSize = 176;
@@ -31,14 +32,16 @@ public class GuiPaintBrush extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int x, int y) {
+    protected void drawGuiContainerForegroundLayer(int x, int y)
+    {
 
         fontRenderer.drawString(StatCollector.translateToLocal(Strings.CONTAINER_PAINT_BRUSH_NAME), 8, 6, 4210752);
         fontRenderer.drawString(StatCollector.translateToLocal(Strings.CONTAINER_INVENTORY), 44, ySize - 96 + 2, 4210752);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float opacity, int x, int y) {
+    protected void drawGuiContainerBackgroundLayer(float opacity, int x, int y)
+    {
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
@@ -52,14 +55,19 @@ public class GuiPaintBrush extends GuiContainer {
     }
 
     @Override
-    public void onGuiClosed() {
+    public void onGuiClosed()
+    {
 
         super.onGuiClosed();
 
-        if (mc.thePlayer != null) {
-            for (ItemStack itemStack : mc.thePlayer.inventory.mainInventory) {
-                if (itemStack != null) {
-                    if (ItemStackNBTHelper.hasTag(itemStack, Strings.NBT_ITEM_PAINT_BRUSH_GUI_OPEN)) {
+        if (mc.thePlayer != null)
+        {
+            for (ItemStack itemStack : mc.thePlayer.inventory.mainInventory)
+            {
+                if (itemStack != null)
+                {
+                    if (ItemStackNBTHelper.hasTag(itemStack, Strings.NBT_ITEM_PAINT_BRUSH_GUI_OPEN))
+                    {
                         ItemStackNBTHelper.removeTag(itemStack, Strings.NBT_ITEM_PAINT_BRUSH_GUI_OPEN);
                     }
                 }

@@ -31,12 +31,13 @@ public final class Totemic {
 
     //Creative tab stuff
     public static CreativeTabs tabsTotem = new CreativeTabTotemic(
-    CreativeTabs.getNextID(), Reference.MOD_NAME);
+            CreativeTabs.getNextID(), Reference.MOD_NAME);
 
     public static final Logger logger = Logger.getLogger(Reference.MOD_NAME);
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event)
+    {
 
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "rukaLib/totemic.cfg"));
 
@@ -45,17 +46,20 @@ public final class Totemic {
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent event)
+    {
 
         Init.init();
 
     }
 
     @EventHandler
-    public void modsLoaded(FMLPostInitializationEvent event) {
+    public void modsLoaded(FMLPostInitializationEvent event)
+    {
 
         PostInit.init();
 
     }
+
 }
 

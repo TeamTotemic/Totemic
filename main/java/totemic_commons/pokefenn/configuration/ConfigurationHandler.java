@@ -17,11 +17,13 @@ public class ConfigurationHandler {
     public static final String CATEGORY_GAMEPLAY = "gameplay";
 
 
-    public static void init(File configFile) {
+    public static void init(File configFile)
+    {
 
         configuration = new Configuration(configFile);
 
-        try {
+        try
+        {
 
             configuration.load();
 
@@ -53,20 +55,25 @@ public class ConfigurationHandler {
 
             ItemIds.TOTEMS = configuration.getItem(Strings.TOTEM_BAT_NAME, ItemIds.TOTEMS_DEFAULT).getInt(ItemIds.TOTEMS_DEFAULT);
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
 
             FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration, go ask on the forums :p");
 
-        } finally {
+        } finally
+        {
             configuration.save();
         }
     }
 
-    public static void set(String categoryName, String propertyName, String newValue) {
+    public static void set(String categoryName, String propertyName, String newValue)
+    {
 
         configuration.load();
-        if (configuration.getCategoryNames().contains(categoryName)) {
-            if (configuration.getCategory(categoryName).containsKey(propertyName)) {
+        if (configuration.getCategoryNames().contains(categoryName))
+        {
+            if (configuration.getCategory(categoryName).containsKey(propertyName))
+            {
                 configuration.getCategory(categoryName).get(propertyName).set(newValue);
             }
         }

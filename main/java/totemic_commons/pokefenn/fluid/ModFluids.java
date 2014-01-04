@@ -8,7 +8,8 @@ public class ModFluids {
 
     public static Fluid fluidChlorophyll;
 
-    public static void init() {
+    public static void init()
+    {
 
         fluidChlorophyll = new FluidChlorophyll();
 

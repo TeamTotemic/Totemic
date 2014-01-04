@@ -9,13 +9,16 @@ public class RecipeHandler {
 
     private static List<IRecipeHandler> recipeHandlers = new ArrayList();
 
-    public static void registerRecipeHandler(IRecipeHandler handler) {
+    public static void registerRecipeHandler(IRecipeHandler handler)
+    {
         recipeHandlers.add(handler);
 
     }
 
-    public static void registerRecipes() {
-        for (IRecipeHandler recipeHandler : recipeHandlers) {
+    public static void registerRecipes()
+    {
+        for (IRecipeHandler recipeHandler : recipeHandlers)
+        {
             recipeHandler.addRecipes();
 
         }

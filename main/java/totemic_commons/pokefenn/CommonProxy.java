@@ -17,35 +17,37 @@ import totemic_commons.pokefenn.tileentity.TileTotemBase;
 public class CommonProxy implements IGuiHandler {
 
 
-    public void registerTileEntities() {
-
+    public void registerTileEntities()
+    {
 
         GameRegistry.registerTileEntity(TileChlorophyllSolidifier.class, Strings.TILE_CHLOROPHYLL_SOLIDIFIER);
         GameRegistry.registerTileEntity(TileTotemBase.class, Strings.TILE_TOTEM_BASE);
 
+    }
+
+
+    public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName)
+    {
 
     }
 
 
-    public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName) {
-
-
-    }
-
-
-    public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int color) {
-
+    public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int color)
+    {
 
     }
 
     @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
 
-        if (ID == GuiIds.TOTEM_BASE) {
+        if (ID == GuiIds.TOTEM_BASE)
+        {
             TileTotemBase tileTotemBase = (TileTotemBase) world.getBlockTileEntity(x, y, z);
             return new ContainerTotemBase(player.inventory, tileTotemBase);
 
-        } else if (ID == GuiIds.PAINT_BRUSH) {
+        } else if (ID == GuiIds.PAINT_BRUSH)
+        {
 
             return new ContainerPaintBrush(player.inventory);
         }
@@ -55,9 +57,11 @@ public class CommonProxy implements IGuiHandler {
 
 
     @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
 
-        if (ID == GuiIds.TOTEM_BASE) {
+        if (ID == GuiIds.TOTEM_BASE)
+        {
             TileTotemBase tileTotemBase = (TileTotemBase) world.getBlockTileEntity(x, y, z);
             return new GuiTotemBase(player.inventory, tileTotemBase);
 

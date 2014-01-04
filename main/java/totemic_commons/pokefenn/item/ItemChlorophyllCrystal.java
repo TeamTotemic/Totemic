@@ -13,7 +13,8 @@ import java.util.List;
 public class ItemChlorophyllCrystal extends ItemNormal {
 
 
-    public ItemChlorophyllCrystal(int id) {
+    public ItemChlorophyllCrystal(int id)
+    {
 
 
         super(id);
@@ -28,7 +29,8 @@ public class ItemChlorophyllCrystal extends ItemNormal {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
         list.add("A crystal holding plant essence");
     }
 

@@ -30,7 +30,8 @@ public final class ModItems {
     public static Item totemQuartzBlock;
 
 
-    public static void init() {
+    public static void init()
+    {
 
 
         //totemHead = new ItemTotemHead(ItemIds.TOTEM_HEAD);

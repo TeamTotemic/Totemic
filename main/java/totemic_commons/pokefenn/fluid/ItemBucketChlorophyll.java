@@ -11,7 +11,8 @@ import totemic_commons.pokefenn.lib.Textures;
 public class ItemBucketChlorophyll extends ItemFluidContainer {
 
 
-    public ItemBucketChlorophyll(int id) {
+    public ItemBucketChlorophyll(int id)
+    {
 
         super(id - 256);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BUCKET_CHLOROPHYLL_NAME);
@@ -32,7 +33,8 @@ public class ItemBucketChlorophyll extends ItemFluidContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister register) {
+    public void registerIcons(IconRegister register)
+    {
 
         itemIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.BUCKET_CHLOROPHYLL_ICON);
 

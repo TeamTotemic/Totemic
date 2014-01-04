@@ -19,7 +19,8 @@ import totemic_commons.pokefenn.lib.Textures;
 public class BlockBigBadTotemHead extends BlockNormal {
 
 
-    public BlockBigBadTotemHead(int id) {
+    public BlockBigBadTotemHead(int id)
+    {
 
         super(id, Material.wood);
         setUnlocalizedName(Strings.BIG_BAD_TOTEM_HEAD_NAME);
@@ -33,14 +34,16 @@ public class BlockBigBadTotemHead extends BlockNormal {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister register) {
+    public void registerIcons(IconRegister register)
+    {
         allSidesIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.BIG_BAD_TOTEM_HEAD_ICON_ALL);
 
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int side, int meta) {
+    public Icon getIcon(int side, int meta)
+    {
         return allSidesIcon;
 
     }

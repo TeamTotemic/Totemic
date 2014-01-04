@@ -19,7 +19,8 @@ import totemic_commons.pokefenn.lib.Textures;
 public class BlockTotemWoods extends BlockNormal {
 
 
-    public BlockTotemWoods(int id) {
+    public BlockTotemWoods(int id)
+    {
 
         super(id, Material.wood);
         setUnlocalizedName(Strings.TOTEM_WOODS_NAME);
@@ -37,7 +38,8 @@ public class BlockTotemWoods extends BlockNormal {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister register) {
+    public void registerIcons(IconRegister register)
+    {
         topAndBottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_WOOD_TOP_ICON);
         sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_WOOD_SIDE_ICON);
 
@@ -45,9 +47,11 @@ public class BlockTotemWoods extends BlockNormal {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int side, int meta) {
+    public Icon getIcon(int side, int meta)
+    {
 
-        if (side == 1 || side == 2) {
+        if (side == 1 || side == 2)
+        {
 
             return topAndBottomIcon;
 
@@ -55,6 +59,10 @@ public class BlockTotemWoods extends BlockNormal {
 
 
     }
+
+    /**
+     * This will turn into a metadata wood block thingy :)
+     */
 
 
 }

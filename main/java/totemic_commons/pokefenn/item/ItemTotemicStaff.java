@@ -13,7 +13,8 @@ import java.util.List;
 public class ItemTotemicStaff extends ItemNormal {
 
 
-    public ItemTotemicStaff(int id) {
+    public ItemTotemicStaff(int id)
+    {
 
         super(id);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEMIC_STAFF_NAME);
@@ -25,7 +26,8 @@ public class ItemTotemicStaff extends ItemNormal {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
 
 
         list.add("A staff for all your totemic needs!");

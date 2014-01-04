@@ -6,7 +6,8 @@ import totemic_commons.pokefenn.lib.Strings;
 
 public class FluidChlorophyll extends Fluid {
 
-    public FluidChlorophyll() {
+    public FluidChlorophyll()
+    {
 
         super(Strings.FLUID_CHLOROPHYLL_NAME);
         setDensity(100);

@@ -17,7 +17,8 @@ import totemic_commons.pokefenn.lib.Strings;
 public class ItemVenusFlyTrapSeed extends ItemNormal implements IPlantable {
 
 
-    public ItemVenusFlyTrapSeed(int id) {
+    public ItemVenusFlyTrapSeed(int id)
+    {
 
         super(id);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.VENUS_FLY_TRAP_SEED_NAME);
@@ -29,17 +30,20 @@ public class ItemVenusFlyTrapSeed extends ItemNormal implements IPlantable {
 
 
     @Override
-    public EnumPlantType getPlantType(World world, int x, int y, int z) {
+    public EnumPlantType getPlantType(World world, int x, int y, int z)
+    {
         return EnumPlantType.Crop;
     }
 
     @Override
-    public int getPlantID(World world, int x, int y, int z) {
+    public int getPlantID(World world, int x, int y, int z)
+    {
         return 0;
     }
 
     @Override
-    public int getPlantMetadata(World world, int x, int y, int z) {
+    public int getPlantMetadata(World world, int x, int y, int z)
+    {
         return ModBlocks.venusFlyTrap.blockID;
     }
 }

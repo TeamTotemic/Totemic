@@ -17,12 +17,14 @@ public class PacketTileUpdate extends PacketTotemic {
     public byte state;
     public String customName;
 
-    public PacketTileUpdate() {
+    public PacketTileUpdate()
+    {
 
         super(PacketTypeHandler.TILE, true);
     }
 
-    public PacketTileUpdate(int x, int y, int z, ForgeDirection orientation, byte state, String customName) {
+    public PacketTileUpdate(int x, int y, int z, ForgeDirection orientation, byte state, String customName)
+    {
 
         super(PacketTypeHandler.TILE, true);
         this.x = x;
@@ -34,7 +36,8 @@ public class PacketTileUpdate extends PacketTotemic {
     }
 
     @Override
-    public void writeData(DataOutputStream data) throws IOException {
+    public void writeData(DataOutputStream data) throws IOException
+    {
 
         data.writeInt(x);
         data.writeInt(y);
@@ -45,7 +48,8 @@ public class PacketTileUpdate extends PacketTotemic {
     }
 
     @Override
-    public void readData(DataInputStream data) throws IOException {
+    public void readData(DataInputStream data) throws IOException
+    {
 
         x = data.readInt();
         y = data.readInt();
@@ -56,7 +60,8 @@ public class PacketTileUpdate extends PacketTotemic {
     }
 
     @Override
-    public void execute(INetworkManager manager, Player player) {
+    public void execute(INetworkManager manager, Player player)
+    {
 
         Totemic.proxy.handleTileEntityPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName);
     }

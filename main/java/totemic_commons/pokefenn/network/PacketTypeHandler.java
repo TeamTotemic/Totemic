@@ -18,12 +18,14 @@ public enum PacketTypeHandler {
 
     private Class<? extends PacketTotemic> clazz;
 
-    PacketTypeHandler(Class<? extends PacketTotemic> clazz) {
+    PacketTypeHandler(Class<? extends PacketTotemic> clazz)
+    {
 
         this.clazz = clazz;
     }
 
-    public static PacketTotemic buildPacket(byte[] data) {
+    public static PacketTotemic buildPacket(byte[] data)
+    {
 
         ByteArrayInputStream bis = new ByteArrayInputStream(data);
         int selector = bis.read();
@@ -31,9 +33,11 @@ public enum PacketTypeHandler {
 
         PacketTotemic packet = null;
 
-        try {
+        try
+        {
             packet = values()[selector].clazz.newInstance();
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace(System.err);
         }
 
@@ -42,20 +46,24 @@ public enum PacketTypeHandler {
         return packet;
     }
 
-    public static PacketTotemic buildPacket(PacketTypeHandler type) {
+    public static PacketTotemic buildPacket(PacketTypeHandler type)
+    {
 
         PacketTotemic packet = null;
 
-        try {
+        try
+        {
             packet = values()[type.ordinal()].clazz.newInstance();
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace(System.err);
         }
 
         return packet;
     }
 
-    public static Packet populatePacket(PacketTotemic PacketTotemic) {
+    public static Packet populatePacket(PacketTotemic PacketTotemic)
+    {
 
         byte[] data = PacketTotemic.populate();
 

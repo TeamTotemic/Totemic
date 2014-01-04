@@ -17,7 +17,8 @@ public class ContainerChlorophyllSolidifier extends Container {
 
     private TileChlorophyllSolidifier chlorophyllSolidifier;
 
-    public ContainerChlorophyllSolidifier(InventoryPlayer inventoryPlayer, TileChlorophyllSolidifier tileChlorophyllSolidifier) {
+    public ContainerChlorophyllSolidifier(InventoryPlayer inventoryPlayer, TileChlorophyllSolidifier tileChlorophyllSolidifier)
+    {
 
 
         this.addSlotToContainer(new Slot(tileChlorophyllSolidifier, TileChlorophyllSolidifier.INVENTORY_SLOT_INDEX, 79, 17));
@@ -27,7 +28,8 @@ public class ContainerChlorophyllSolidifier extends Container {
 
 
     @Override
-    public boolean canInteractWith(EntityPlayer entityplayer) {
+    public boolean canInteractWith(EntityPlayer entityplayer)
+    {
         return true;
     }
 }

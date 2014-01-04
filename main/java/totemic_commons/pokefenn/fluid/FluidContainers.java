@@ -14,7 +14,8 @@ import totemic_commons.pokefenn.item.ModItems;
  */
 public class FluidContainers {
 
-    public static void init() {
+    public static void init()
+    {
 
         FluidContainerRegistry.registerFluidContainer(new FluidContainerRegistry.FluidContainerData(FluidRegistry.getFluidStack(ModFluids.fluidChlorophyll.getName(), FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.bucketChlorophyll), new ItemStack(Item.bucketEmpty)));
         FluidContainerRegistry.registerFluidContainer(new FluidContainerRegistry.FluidContainerData(FluidRegistry.getFluidStack(ModFluids.fluidChlorophyll.getName(), FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(Item.glassBottle)));

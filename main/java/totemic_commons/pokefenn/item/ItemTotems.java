@@ -26,7 +26,8 @@ public class ItemTotems extends ItemNormal {
     @SideOnly(Side.CLIENT)
     private Icon[] icons;
 
-    public ItemTotems(int id) {
+    public ItemTotems(int id)
+    {
 
         super(id);
         setHasSubtypes(true);
@@ -36,7 +37,8 @@ public class ItemTotems extends ItemNormal {
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemStack) {
+    public String getUnlocalizedName(ItemStack itemStack)
+    {
 
         StringBuilder unlocalizedName = new StringBuilder();
         int meta = MathHelper.clamp_int(itemStack.getItemDamage(), 0, TOTEM_NAMES.length - 1);
@@ -51,7 +53,8 @@ public class ItemTotems extends ItemNormal {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int meta) {
+    public Icon getIconFromDamage(int meta)
+    {
 
         int j = MathHelper.clamp_int(meta, 0, TOTEM_NAMES.length - 1);
         return icons[j];
@@ -59,11 +62,13 @@ public class ItemTotems extends ItemNormal {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerIcons(IconRegister iconRegister)
+    {
 
         icons = new Icon[TOTEM_NAMES.length];
 
-        for (int i = 0; i < TOTEM_NAMES.length; ++i) {
+        for (int i = 0; i < TOTEM_NAMES.length; ++i)
+        {
             icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + Strings.TOTEMS_NAME + TOTEM_NAMES[i]);
         }
     }
@@ -71,9 +76,11 @@ public class ItemTotems extends ItemNormal {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(int id, CreativeTabs creativeTab, List list) {
+    public void getSubItems(int id, CreativeTabs creativeTab, List list)
+    {
 
-        for (int meta = 0; meta < TOTEM_NAMES.length; ++meta) {
+        for (int meta = 0; meta < TOTEM_NAMES.length; ++meta)
+        {
             list.add(new ItemStack(id, 1, meta));
         }
 

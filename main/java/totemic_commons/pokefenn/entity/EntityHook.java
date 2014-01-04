@@ -6,26 +6,30 @@ import net.minecraft.world.World;
 
 public class EntityHook extends Entity {
 
-    public EntityHook(World par1World) {
-        super(par1World);
+    public EntityHook(World world)
+    {
+        super(world);
 
     }
 
     @Override
-    protected void entityInit() {
-        // TODO Auto-generated method stub
+    protected void entityInit()
+    {
+
 
     }
 
     @Override
-    protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
-        // TODO Auto-generated method stub
+    protected void readEntityFromNBT(NBTTagCompound nbttagcompound)
+    {
+
 
     }
 
     @Override
-    protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
-        // TODO Auto-generated method stub
+    protected void writeEntityToNBT(NBTTagCompound nbttagcompound)
+    {
+
 
     }
 

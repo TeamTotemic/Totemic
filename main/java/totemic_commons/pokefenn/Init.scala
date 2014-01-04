@@ -23,7 +23,6 @@ object PreInit {
 
     def init() {
 
-
         Totemic.logger.setParent(FMLCommonHandler.instance.getFMLLogger)
 
         Totemic.logger.info("Totemic is Loading")
@@ -41,7 +40,6 @@ object PreInit {
 
 }
 
-
 object Init {
 
     def init() {
@@ -58,7 +56,6 @@ object Init {
 
         ChlorophyllSolidifierRecipes.addRecipes()
 
-
     }
 
 
@@ -68,7 +65,6 @@ object Init {
 object PostInit {
 
     def init() {
-
 
     }
 

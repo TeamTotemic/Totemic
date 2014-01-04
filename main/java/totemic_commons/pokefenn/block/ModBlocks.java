@@ -17,7 +17,8 @@ public final class ModBlocks {
     public static Block totemWoods;
 
 
-    public static void init() {
+    public static void init()
+    {
 
         totemBase = new BlockTotemBase(BlockIds.TOTEM_BASE);
         //bigBadTotemBase = new BlockBigBadTotemBase(BlockIds.BIG_BAD_TOTEM_BASE);

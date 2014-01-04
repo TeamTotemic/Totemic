@@ -24,7 +24,8 @@ public class GuiTotemBase extends GuiContainer {
 
     private TileTotemBase tileTotemBase;
 
-    public GuiTotemBase(InventoryPlayer inventoryPlayer, TileTotemBase tileTotemBase) {
+    public GuiTotemBase(InventoryPlayer inventoryPlayer, TileTotemBase tileTotemBase)
+    {
 
         super(new ContainerTotemBase(inventoryPlayer, tileTotemBase));
         this.tileTotemBase = tileTotemBase;
@@ -33,7 +34,8 @@ public class GuiTotemBase extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int x, int y) {
+    protected void drawGuiContainerForegroundLayer(int x, int y)
+    {
 
         String containerName = tileTotemBase.isInvNameLocalized() ? tileTotemBase.getInvName() : StatCollector.translateToLocal(tileTotemBase.getInvName());
         fontRenderer.drawString(containerName, xSize / 2 - fontRenderer.getStringWidth(containerName) / 2, 6, 4210752);
@@ -41,7 +43,8 @@ public class GuiTotemBase extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
+    protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3)
+    {
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(Textures.GUI_TOTEM_BASE);

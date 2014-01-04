@@ -15,13 +15,13 @@ public class ChlorophyllSolidifierRecipes {
 
     public static List<ChlorophyllSolidifierRecipes> solidifierRecipe = new ArrayList();
 
-    public static void addRecipes() {
+    public static void addRecipes()
+    {
 
-        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.ingotIron, 1), new ItemStack(ModItems.subItems, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
-        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.cobblestone, 1), new ItemStack(Block.cobblestoneMossy, 1, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
-        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.stoneBrick, 1), new ItemStack(Block.stoneBrick, 1, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
-        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.diamond, 1), new ItemStack(ModItems.chlorophyllCrystal, 1, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 16)));
-
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.ingotIron), new ItemStack(ModItems.subItems), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.cobblestone), new ItemStack(Block.cobblestoneMossy), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.stoneBrick), new ItemStack(Block.stoneBrick), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.diamond), new ItemStack(ModItems.chlorophyllCrystal), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 16)));
 
     }
 
@@ -29,30 +29,34 @@ public class ChlorophyllSolidifierRecipes {
     private final ItemStack result;
     private final FluidStack fluid;
 
-    public ChlorophyllSolidifierRecipes(ItemStack input, ItemStack output, FluidStack fluidAmount) {
+    public ChlorophyllSolidifierRecipes(ItemStack input, ItemStack output, FluidStack fluidStack)
+    {
 
         this.source = input;
         this.result = output;
-        this.fluid = fluidAmount;
+        this.fluid = fluidStack;
     }
 
-    public ItemStack getInput() {
+    public ItemStack getInput()
+    {
         return this.source;
     }
 
-    public ItemStack getResult() {
+    public ItemStack getResult()
+    {
         return this.result;
     }
 
-    public FluidStack getFluidAmount() {
+    public FluidStack getFluidStack()
+    {
         return this.fluid;
     }
 
     //public ItemStack get
 
-    public static List<ChlorophyllSolidifierRecipes> getRecipes() {
+    public static List<ChlorophyllSolidifierRecipes> getRecipes()
+    {
         return solidifierRecipe;
     }
-
 
 }

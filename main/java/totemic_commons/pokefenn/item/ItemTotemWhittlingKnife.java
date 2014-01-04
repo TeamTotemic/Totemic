@@ -13,7 +13,8 @@ import java.util.List;
 public class ItemTotemWhittlingKnife extends ItemNormal {
 
 
-    public ItemTotemWhittlingKnife(int id) {
+    public ItemTotemWhittlingKnife(int id)
+    {
 
         super(id);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_WHITTLING_KNIFE_NAME);
@@ -25,7 +26,8 @@ public class ItemTotemWhittlingKnife extends ItemNormal {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
         list.add("A knife to whittl y'self a totem!");
     }
 

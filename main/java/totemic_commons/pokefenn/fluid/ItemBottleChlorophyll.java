@@ -16,7 +16,8 @@ import totemic_commons.pokefenn.lib.Textures;
  */
 public class ItemBottleChlorophyll extends ItemFluidContainer {
 
-    public ItemBottleChlorophyll(int id) {
+    public ItemBottleChlorophyll(int id)
+    {
 
         super(id - 256);
         setCreativeTab(Totemic.tabsTotem);
@@ -27,7 +28,8 @@ public class ItemBottleChlorophyll extends ItemFluidContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister register) {
+    public void registerIcons(IconRegister register)
+    {
 
         itemIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.BOTTLE_CHLOROPHYLL_ICON);
 

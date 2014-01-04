@@ -13,7 +13,8 @@ import net.minecraftforge.oredict.OreDictionary;
  */
 public class OreDictionaryTotemic {
 
-    public static void init() {
+    public static void init()
+    {
 
         OreDictionary.registerOre("plant", new ItemStack(Block.vine));
         OreDictionary.registerOre("plant", new ItemStack(Item.seeds));

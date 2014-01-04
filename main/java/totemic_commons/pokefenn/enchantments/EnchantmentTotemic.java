@@ -12,13 +12,15 @@ import net.minecraft.item.ItemStack;
  */
 public class EnchantmentTotemic extends Enchantment {
 
-    public EnchantmentTotemic(int par1, int par2, EnumEnchantmentType par3EnumEnchantmentType) {
+    public EnchantmentTotemic(int par1, int par2, EnumEnchantmentType par3EnumEnchantmentType)
+    {
         super(par1, par2, par3EnumEnchantmentType);
 
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+    public boolean canApplyAtEnchantingTable(ItemStack stack)
+    {
         return false;
     }
 

@@ -16,12 +16,14 @@ public class PacketRequestEvent extends PacketTotemic {
     public byte rangeX, rangeY, rangeZ;
     public String data;
 
-    public PacketRequestEvent() {
+    public PacketRequestEvent()
+    {
 
         super(PacketTypeHandler.REQUEST_EVENT, false);
     }
 
-    public PacketRequestEvent(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data) {
+    public PacketRequestEvent(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data)
+    {
 
         super(PacketTypeHandler.REQUEST_EVENT, false);
         this.eventType = eventType;
@@ -36,7 +38,8 @@ public class PacketRequestEvent extends PacketTotemic {
     }
 
     @Override
-    public void writeData(DataOutputStream data) throws IOException {
+    public void writeData(DataOutputStream data) throws IOException
+    {
 
         data.writeByte(eventType);
         data.writeInt(originX);
@@ -50,7 +53,8 @@ public class PacketRequestEvent extends PacketTotemic {
     }
 
     @Override
-    public void readData(DataInputStream data) throws IOException {
+    public void readData(DataInputStream data) throws IOException
+    {
 
         eventType = data.readByte();
         originX = data.readInt();
@@ -64,7 +68,8 @@ public class PacketRequestEvent extends PacketTotemic {
     }
 
     @Override
-    public void execute(INetworkManager manager, Player player) {
+    public void execute(INetworkManager manager, Player player)
+    {
 
         EntityPlayer thePlayer = (EntityPlayer) player;
 
