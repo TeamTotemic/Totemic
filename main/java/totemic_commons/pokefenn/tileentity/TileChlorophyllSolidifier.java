@@ -240,7 +240,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
         super.updateEntity();
 
-        //if(ItemStack.areItemStackTagsEqual(getStackInSlot(INVENTORY_SLOT_INDEX), ChlorophyllSolidifierRecipes.getInput())){
+        //if(ItemStack.areItemStacksEqual(ChlorophyllSolidifierRecipes.solidifierRecipe., this.getStackInSlot(SLOT_ONE))){
 
 
         //}

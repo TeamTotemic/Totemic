@@ -74,12 +74,12 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
                     player.destroyCurrentEquippedItem();
 
-                } else
+                } else if(tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE) == null)
                 {
 
                     tileChlorophyllSolidifier.setInventorySlotContents(tileChlorophyllSolidifier.SLOT_ONE, heldItem);
 
-                    System.out.println("SettingInventoryOfSolidifier");
+                    //System.out.println("SettingInventoryOfSolidifier");
 
                     player.destroyCurrentEquippedItem();
 
@@ -91,7 +91,7 @@ public class BlockChlorophyllSolidifier extends BlockTile {
                 if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)))
                 {
 
-                    System.out.println("trying to fill");
+                    //System.out.println("trying to fill");
 
                     tileChlorophyllSolidifier.fill(ForgeDirection.DOWN, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
 
@@ -100,7 +100,7 @@ public class BlockChlorophyllSolidifier extends BlockTile {
                 } else if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)))
                 {
 
-                    System.out.println("trying to fill");
+                    //System.out.println("trying to fill");
 
                     tileChlorophyllSolidifier.fill(ForgeDirection.DOWN, new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME), true);
 
@@ -129,6 +129,7 @@ public class BlockChlorophyllSolidifier extends BlockTile {
         if (player.isSneaking())
         {
             return false;
+
         } else
         {
 
@@ -183,10 +184,10 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
         dropInventory(world, x, y, z);
 
-        if (world.getBlockTileEntity(x, y + 1, z) instanceof TileChlorophyllSolidifier)
+        if (world.getBlockTileEntity(x, y, z) instanceof TileChlorophyllSolidifier)
         {
-            world.markBlockForUpdate(x, y + 1, z);
-            world.updateAllLightTypes(x, y + 1, z);
+            world.markBlockForUpdate(x, y, z);
+            world.updateAllLightTypes(x, y, z);
         }
 
         super.breakBlock(world, x, y, z, id, meta);

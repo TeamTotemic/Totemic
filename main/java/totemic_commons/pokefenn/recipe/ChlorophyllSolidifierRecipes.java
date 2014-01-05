@@ -13,15 +13,15 @@ import java.util.List;
 
 public class ChlorophyllSolidifierRecipes {
 
-    public static List<ChlorophyllSolidifierRecipes> solidifierRecipe = new ArrayList();
+    public static List<ChlorophyllSolidifierRecipes> solidifierRecipe = new ArrayList<ChlorophyllSolidifierRecipes>();
 
     public static void addRecipes()
     {
 
-        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.ingotIron), new ItemStack(ModItems.subItems), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
-        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.cobblestone), new ItemStack(Block.cobblestoneMossy), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
-        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.stoneBrick), new ItemStack(Block.stoneBrick), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
-        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.diamond), new ItemStack(ModItems.chlorophyllCrystal), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 16)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.ingotIron), new ItemStack(ModItems.subItems), new FluidStack(ModFluids.fluidChlorophyll.getID(), FluidContainerRegistry.BUCKET_VOLUME * 8)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.cobblestone), new ItemStack(Block.cobblestoneMossy), new FluidStack(ModFluids.fluidChlorophyll.getID(), FluidContainerRegistry.BUCKET_VOLUME * 4)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.stoneBrick), new ItemStack(Block.stoneBrick), new FluidStack(ModFluids.fluidChlorophyll.getID(), FluidContainerRegistry.BUCKET_VOLUME * 4)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.diamond), new ItemStack(ModItems.chlorophyllCrystal), new FluidStack(ModFluids.fluidChlorophyll.getID(), FluidContainerRegistry.BUCKET_VOLUME * 16)));
 
     }
 
