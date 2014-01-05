@@ -19,16 +19,7 @@ public final class ModItems {
     public static Item paintBrush;
     public static Item subItems;
     public static Item bottleChlorophyll;
-
-    //Totems
-
     public static Item totems;
-
-    public static Item totemBat;
-    public static Item totemSquid;
-    public static Item totemCactus;
-    public static Item totemQuartzBlock;
-
 
     public static void init()
     {

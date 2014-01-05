@@ -33,5 +33,4 @@ public class ItemTotemicStaff extends ItemNormal {
         list.add("A staff for all your totemic needs!");
     }
 
-
 }

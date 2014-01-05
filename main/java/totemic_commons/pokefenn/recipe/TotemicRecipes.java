@@ -12,7 +12,6 @@ public class TotemicRecipes {
     public static void init()
     {
 
-
         GameRegistry.addRecipe(new ItemStack(ModItems.subItems, 1, 1), new Object[]{"vvv", "vsv", "vvv", ('v'), Block.vine, ('s'), Item.sugar});
 
         GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.bottleChlorophyll, "plant", ModItems.totemWhittlingKnife, Item.glassBottle));
@@ -22,6 +21,7 @@ public class TotemicRecipes {
         GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.bucketChlorophyll, ModItems.bottleChlorophyll, Item.bucketEmpty));
 
         GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, Item.glassBottle));
+
     }
 
 

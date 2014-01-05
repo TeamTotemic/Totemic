@@ -64,16 +64,28 @@ public class BlockChlorophyllSolidifier extends BlockTile {
         if (tileChlorophyllSolidifier != null)
         {
 
-            if (heldItem != null && tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX) == null && !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)) && !world.isRemote)
+            if (heldItem != null && tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE) == null && !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)) && !world.isRemote)
             {
 
-                tileChlorophyllSolidifier.setInventorySlotContents(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX, heldItem);
+                if (ItemStack.areItemStacksEqual(heldItem, tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE)))
+                {
+                    /*This code will add the players current slot to the inventory +*/
+                    tileChlorophyllSolidifier.setInventorySlotContents(tileChlorophyllSolidifier.SLOT_ONE, new ItemStack(heldItem.getItem(), tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE).stackSize + heldItem.stackSize, heldItem.getItemDamage()));
 
-                System.out.println("SettingInventoryOfSolidifier");
+                    player.destroyCurrentEquippedItem();
 
-                player.destroyCurrentEquippedItem();
+                } else
+                {
 
-            } else if (ItemStack.areItemStacksEqual(new ItemStack(ModItems.bottleChlorophyll), tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX)) || ItemStack.areItemStacksEqual(new ItemStack(ModItems.bucketChlorophyll), tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX)))
+                    tileChlorophyllSolidifier.setInventorySlotContents(tileChlorophyllSolidifier.SLOT_ONE, heldItem);
+
+                    System.out.println("SettingInventoryOfSolidifier");
+
+                    player.destroyCurrentEquippedItem();
+
+                }
+
+            } else if (world.isRemote && ItemStack.areItemStacksEqual(new ItemStack(ModItems.bottleChlorophyll), tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE)) || ItemStack.areItemStacksEqual(new ItemStack(ModItems.bucketChlorophyll), tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE)))
             {
 
                 if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)))
@@ -98,15 +110,15 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
 
                 }
-            } else if (heldItem == null && tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX) != null)
+            } else if (heldItem == null && tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE) != null && world.isRemote)
             {
 
                 /* This is what adds the inventory of the solidifier into your players*/
                 System.out.println("Trying to give the player the stack in the inventory");
 
-                player.inventory.addItemStackToInventory((tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX)));
+                player.inventory.addItemStackToInventory((tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE)));
 
-                tileChlorophyllSolidifier.decrStackSize(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX, tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.INVENTORY_SLOT_INDEX).stackSize);
+                tileChlorophyllSolidifier.decrStackSize(tileChlorophyllSolidifier.SLOT_ONE, tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE).stackSize);
 
 
             }
@@ -116,7 +128,6 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
         if (player.isSneaking())
         {
-
             return false;
         } else
         {

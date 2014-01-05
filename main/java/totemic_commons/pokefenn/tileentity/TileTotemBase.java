@@ -14,8 +14,8 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
     public static final int INVENTORY_SIZE = 2;
 
-    public static final int TOTEM_BASE_HEAD_INDEX = 0;
-    public static final int TOTEM_BASE_CRYSTAL_INDEX = 1;
+    public static final int SLOT_ONE = 0;
+    public static final int SLOT_TWO = 1;
 
     protected int radiusOfPlayerEffect;
 
@@ -193,22 +193,22 @@ public class TileTotemBase extends TileTotemic implements IInventory {
         {
 
             //Checks to see what is in the current itemstack and runs code depending on what.
-            if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems)))
+            if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems)))
             {
 
                 //this.effectCactus();
 
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 1, 1)))
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 1)))
             {
 
                 //this.effectHorse();
 
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 1, 2)))
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 2)))
             {
 
                 //this.effectQuartzBlock();
 
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(TOTEM_BASE_HEAD_INDEX), new ItemStack(ModItems.totems, 1, 3)))
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)))
             {
 
                 this.effectBat();

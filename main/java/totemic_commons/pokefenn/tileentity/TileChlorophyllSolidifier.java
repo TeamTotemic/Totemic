@@ -22,7 +22,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
     public static final int INVENTORY_SIZE = 1;
 
-    public static final int INVENTORY_SLOT_INDEX = 0;
+    public static final int SLOT_ONE = 0;
 
     protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 

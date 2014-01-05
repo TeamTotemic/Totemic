@@ -15,8 +15,8 @@ public class ContainerTotemBase extends Container {
     public ContainerTotemBase(InventoryPlayer inventoryPlayer, TileTotemBase tileTotemBase)
     {
 
-        this.addSlotToContainer(new Slot(tileTotemBase, TileTotemBase.TOTEM_BASE_HEAD_INDEX, 79, 17));
-        this.addSlotToContainer(new Slot(tileTotemBase, TileTotemBase.TOTEM_BASE_CRYSTAL_INDEX, 79, 53));
+        this.addSlotToContainer(new Slot(tileTotemBase, TileTotemBase.SLOT_ONE, 79, 17));
+        this.addSlotToContainer(new Slot(tileTotemBase, TileTotemBase.SLOT_TWO, 79, 53));
 
         // Add the player's inventory slots to the container
         for (int inventoryRowIndex = 0; inventoryRowIndex < 3; ++inventoryRowIndex)
