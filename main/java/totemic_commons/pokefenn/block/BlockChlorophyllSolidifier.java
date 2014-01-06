@@ -59,7 +59,7 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
         ItemStack heldItem = player.inventory.getCurrentItem();
 
-        ForgeDirection[] directions = new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.UP, ForgeDirection.DOWN};
+        //ForgeDirection[] directions = new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.UP, ForgeDirection.DOWN};
 
         if (tileChlorophyllSolidifier != null)
         {
@@ -69,10 +69,34 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
                 if (ItemStack.areItemStacksEqual(heldItem, tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE)))
                 {
+                    
+                    if (tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE).stackSize <= 64))
+                    {
+                    
                     /*This code will add the players current slot to the inventory +*/
                     tileChlorophyllSolidifier.setInventorySlotContents(tileChlorophyllSolidifier.SLOT_ONE, new ItemStack(heldItem.getItem(), tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE).stackSize + heldItem.stackSize, heldItem.getItemDamage()));
 
                     player.destroyCurrentEquippedItem();
+                    
+                    } else if(tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE).stackSize + heldItem.stackSize => 64)
+                    {
+                        
+                        for(heldItem.stackSize; heldItem.stackSize <= 64;)
+                        {
+                            
+                            if(tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE).stackSize <= 64)
+                            {
+                                
+                                tileChlorophyllSolidifier.setStackInSlot(tileChlorophyllSolidifier.SLOT_ONE, new ItemStack(heldItem, tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.stackSize + 1, heldItem.getDamage);
+                                --heldItem;
+                                
+                                //Code done at school, make sure to fix this when i get home.
+                                
+                            }
+                            
+                        }
+                        
+                    }
 
                 } else if(tileChlorophyllSolidifier.getStackInSlot(tileChlorophyllSolidifier.SLOT_ONE) == null)
                 {
