@@ -1,9 +1,12 @@
-package totemic_commons.pokefenn.block;
+package totemic_commons.pokefenn;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import totemic_commons.pokefenn.block.BlockChlorophyllSolidifier;
+import totemic_commons.pokefenn.block.BlockTotemBase;
+import totemic_commons.pokefenn.block.BlockTotemWoods;
 import totemic_commons.pokefenn.lib.BlockIds;
 import totemic_commons.pokefenn.lib.Strings;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public final class ModBlocks {
 

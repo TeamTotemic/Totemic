@@ -1,13 +1,10 @@
 package totemic_commons.pokefenn.block
 
-import rukalib_commons.pokefenn.block.{BlockTile}
 import net.minecraft.block.material.Material
 import net.minecraft.world.World
 import net.minecraft.tileentity.TileEntity
 import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier
 import net.minecraft.block.Block
-import net.minecraft.item.ItemStack
-import net.minecraft.creativetab.CreativeTabs
 
 /**
  * Created with IntelliJ IDEA.

@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.inventory.ContainerPaintBrush;
-import totemic_commons.pokefenn.item.ItemPaintBrush;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.util.ItemStackNBTHelper;

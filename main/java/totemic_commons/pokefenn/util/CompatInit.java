@@ -14,7 +14,6 @@ public class CompatInit {
     public static void init()
     {
 
-
         if (Loader.isModLoaded("Thaumcraft"))
         {
 
@@ -23,7 +22,6 @@ public class CompatInit {
 
         }
 
-
         if (Loader.isModLoaded("Blood Magic: Alchemical Wizardry"))
         {
 
@@ -31,7 +29,6 @@ public class CompatInit {
             Totemic.logger.info("I'll show you real sacrifice!");
 
         }
-
 
         if (Loader.isModLoaded("Ars Magica 2"))
         {
@@ -45,7 +42,7 @@ public class CompatInit {
         {
 
             Totemic.logger.info("Oh, so this is that witch craft mod?");
-            Totemic.logger.info("Go using your VooDoo on me and see if it makes a difference.");
+            Totemic.logger.info("Try using your VooDoo on me and see if it makes a difference.");
 
         }
 
@@ -65,8 +62,6 @@ public class CompatInit {
 
         }
 
-
     }
-
 
 }

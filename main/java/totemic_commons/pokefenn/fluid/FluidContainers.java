@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
-import totemic_commons.pokefenn.item.ModItems;
+import totemic_commons.pokefenn.ModItems;
 
 /**
  * Created with IntelliJ IDEA.

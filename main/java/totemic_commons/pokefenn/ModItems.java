@@ -1,10 +1,11 @@
-package totemic_commons.pokefenn.item;
+package totemic_commons.pokefenn;
 
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.fluid.ItemBucketChlorophyll;
+import totemic_commons.pokefenn.item.*;
 import totemic_commons.pokefenn.lib.ItemIds;
 
 public final class ModItems {

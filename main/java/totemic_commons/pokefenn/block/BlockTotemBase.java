@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.block;
 
 
-import rukalib_commons.pokefenn.block.BlockTile;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import rukalib_commons.pokefenn.block.BlockTile;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.GuiIds;
 import totemic_commons.pokefenn.lib.Strings;

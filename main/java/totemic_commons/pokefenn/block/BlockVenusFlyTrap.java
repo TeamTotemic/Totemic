@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.block;
 
-import rukalib_commons.pokefenn.block.BlockNormal;
 import net.minecraft.block.material.Material;
+import rukalib_commons.pokefenn.block.BlockNormal;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 

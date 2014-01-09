@@ -1,11 +1,11 @@
 package totemic_commons.pokefenn.network;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import totemic_commons.pokefenn.lib.Reference;
+
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
 
 public enum PacketTypeHandler {
 

@@ -30,8 +30,7 @@ public final class Totemic {
     public static CommonProxy proxy;
 
     //Creative tab stuff
-    public static CreativeTabs tabsTotem = new CreativeTabTotemic(
-            CreativeTabs.getNextID(), Reference.MOD_NAME);
+    public static CreativeTabs tabsTotem = new CreativeTabTotemic(CreativeTabs.getNextID(), Reference.MOD_NAME);
 
     public static final Logger logger = Logger.getLogger(Reference.MOD_NAME);
 

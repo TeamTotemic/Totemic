@@ -28,6 +28,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
     protected int processTime;
 
+    protected int currentProcessingTime;
 
     public TileChlorophyllSolidifier()
     {

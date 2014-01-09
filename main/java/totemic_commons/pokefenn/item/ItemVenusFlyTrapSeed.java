@@ -5,7 +5,7 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import rukalib_commons.pokefenn.item.ItemNormal;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.block.ModBlocks;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**

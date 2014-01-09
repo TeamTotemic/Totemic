@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import totemic_commons.pokefenn.fluid.ModFluids;
-import totemic_commons.pokefenn.item.ModItems;
+import totemic_commons.pokefenn.ModItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +51,6 @@ public class ChlorophyllSolidifierRecipes {
     {
         return this.fluid;
     }
-
-    //public ItemStack get
 
     public static List<ChlorophyllSolidifierRecipes> getRecipes()
     {

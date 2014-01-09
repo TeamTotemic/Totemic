@@ -1,13 +1,13 @@
 package totemic_commons.pokefenn.network;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
+import cpw.mods.fml.common.network.Player;
 import net.minecraft.network.INetworkManager;
 import net.minecraftforge.common.ForgeDirection;
 import totemic_commons.pokefenn.Totemic;
-import cpw.mods.fml.common.network.Player;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class PacketTileWithItemUpdate extends PacketTotemic {
 

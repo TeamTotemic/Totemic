@@ -1,16 +1,11 @@
 package totemic_commons.pokefenn
 
-import totemic_commons.pokefenn.block.ModBlocks
-import totemic_commons.pokefenn.item.ModItems
 import cpw.mods.fml.common.FMLCommonHandler
-import totemic_commons.pokefenn.configuration.ConfigurationHandler
-import java.io.File
-import totemic_commons.pokefenn.lib.Reference
 import totemic_commons.pokefenn.fluid.ModFluids
 import cpw.mods.fml.common.network.NetworkRegistry
-import totemic_commons.pokefenn.CommonProxy
 import totemic_commons.pokefenn.recipe.{TotemicRecipes, ChlorophyllSolidifierRecipes}
 import totemic_commons.pokefenn.util.OreDictionaryTotemic
+import totemic_commons.pokefenn._
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,6 +18,7 @@ object PreInit {
 
     def init() {
 
+        //Creates the logger thingy :p
         Totemic.logger.setParent(FMLCommonHandler.instance.getFMLLogger)
 
         Totemic.logger.info("Totemic is Loading")
@@ -46,12 +42,16 @@ object Init {
 
         Totemic.logger.info("Totemic is entering its Initlisation stage")
 
+        //Starts ore dictionary code
         OreDictionaryTotemic.init()
 
+        //Vannila recipes
         TotemicRecipes.init()
 
+        //Gui handler code
         NetworkRegistry.instance.registerGuiHandler(Totemic.instance, Totemic.proxy)
 
+        //Init tile entities into the game
         Totemic.proxy.registerTileEntities()
 
         ChlorophyllSolidifierRecipes.addRecipes()

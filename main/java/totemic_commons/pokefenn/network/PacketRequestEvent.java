@@ -1,12 +1,12 @@
 package totemic_commons.pokefenn.network;
 
+import cpw.mods.fml.common.network.Player;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.INetworkManager;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.INetworkManager;
-import cpw.mods.fml.common.network.Player;
 
 public class PacketRequestEvent extends PacketTotemic {
 
