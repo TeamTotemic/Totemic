@@ -8,6 +8,9 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +19,6 @@ import totemic_commons.pokefenn.lib.Strings;
  * Time: 16:16
  */
 public class TileChlorophyllSolidifier extends TileTotemic implements IInventory, IFluidHandler {
-
 
     private ItemStack[] inventory;
 
@@ -32,7 +34,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
     public TileChlorophyllSolidifier()
     {
-
         inventory = new ItemStack[INVENTORY_SIZE];
 
     }
@@ -49,7 +50,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     public ItemStack getStackInSlot(int slotIndex)
     {
         return inventory[slotIndex];
-
     }
 
     @Override
@@ -211,11 +211,9 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     {
         if (fluid == ModFluids.fluidChlorophyll)
         {
-
             return true;
         } else
         {
-
             return false;
         }
 
@@ -241,10 +239,12 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
         super.updateEntity();
 
-        //if(ItemStack.areItemStacksEqual(ChlorophyllSolidifierRecipes.solidifierRecipe., this.getStackInSlot(SLOT_ONE))){
+        List<ChlorophyllSolidifierRecipes> recipes = ChlorophyllSolidifierRecipes.getRecipes();
 
+        if (ItemStack.areItemStacksEqual(this.getStackInSlot(SLOT_ONE), recipes.get(1).getInput()))
+        {
 
-        //}
+        }
 
 
     }
@@ -252,6 +252,22 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     public boolean canUpdate()
     {
         return true;
+    }
+
+    public int getProcessingTime()
+    {
+        List<ChlorophyllSolidifierRecipes> recipes = ChlorophyllSolidifierRecipes.getRecipes();
+
+        if (ItemStack.areItemStacksEqual(this.getStackInSlot(SLOT_ONE), recipes.get(1).getInput()))
+        {
+            return 60;
+        } else
+        {
+
+            return 0;
+        }
+
+
     }
 
 

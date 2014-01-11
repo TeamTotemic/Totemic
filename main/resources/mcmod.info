@@ -2,19 +2,19 @@
 {
   "modid": "totem",
   "name": "Totemic",
-  "description": "Gain Totemic Powers?",
+  "description": "Gain Totemic Powers? Yes please!",
   "version": "0.0.0",
   "url": "www.",
   "updateUrl": "",
   "authorList": [
     "Pokefenn"
   ],
-  "credits": "",
+  "credits": "WayofTime-Coding help",
   "logoFile": "/assets/totemic/textures/logo/totemicLogo.png",
   "screenshots": [
   ],
   "parent":"",
-  "dependencies": [
+  "dependencies": [rukaLib
   ]
 }
 ]

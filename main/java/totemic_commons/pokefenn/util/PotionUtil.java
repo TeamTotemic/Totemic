@@ -14,7 +14,7 @@ public class PotionUtil {
     public static PotionEffect potionSpeed(int potionID, int par2, int par3)
     {
 
-        return(new PotionEffect(potionID, par2, par3));
+        return (new PotionEffect(potionID, par2, par3));
     }
 
 

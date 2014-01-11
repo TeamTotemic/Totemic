@@ -42,7 +42,7 @@ public class ChlorophyllSolidifierRecipes {
         return this.source;
     }
 
-    public ItemStack getResult()
+    public ItemStack getOutput()
     {
         return this.result;
     }
