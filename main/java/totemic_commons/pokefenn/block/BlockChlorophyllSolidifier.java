@@ -68,23 +68,20 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
             if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null && !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)))
             {
-                if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)))
+                if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)) && !world.isRemote)
                 {
                     if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)))
                     {
-                        //Fill code, dont return itemstack
 
                         tileChlorophyllSolidifier.fill(ForgeDirection.UP, new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
                         player.destroyCurrentEquippedItem();
 
                     } else if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)))
                     {
-                        //Fill code, return itemstack
 
                         tileChlorophyllSolidifier.fill(ForgeDirection.UP, new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
                         player.destroyCurrentEquippedItem();
                         player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
-
 
                     }
 
@@ -96,17 +93,26 @@ public class BlockChlorophyllSolidifier extends BlockTile {
 
                 }
 
-            } else if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem == null)
-            {
-                //Run code which takes from the inventory. Simple.
-
-                player.inventory.addItemStackToInventory(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE));
-                tileChlorophyllSolidifier.decrStackSize(SLOT_ONE, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize);
 
             } else if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem != null && ItemStack.areItemStacksEqual(heldItem, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE)))
             {
+                if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize + heldItem.stackSize <= 64)
+                {
+                    tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).getItem(), tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize + heldItem.stackSize, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).getItemDamage()));
+                } else
+                {
 
-            }
+
+                }
+
+            } if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem == null)
+        {
+            //Run code which takes from the inventory. Simple.
+
+            player.inventory.addItemStackToInventory(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE));
+            tileChlorophyllSolidifier.decrStackSize(SLOT_ONE, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize);
+
+        }
 
 
         }

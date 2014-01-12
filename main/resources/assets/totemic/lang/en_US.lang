@@ -4,7 +4,11 @@
 # Item localizations
 item.totemic:totemHead.name=Totem Head
 item.totemic:totemicStaff.name=Totemic Staff
-item.totemic:totemWhittlingKnife.name=Totem Whittling Knife
+item.totemic:toolHandle.name=Totem Tool Handle
+item.totemic:whittlingWhole.name=Totem Tool: Whittling
+item.totemic:whittlingHead.name=Totem Tool Whittling Blade
+item.totemic:choppingHead.name=Totemic Tool Chopping Blade
+item.totemic:choppingWhole.name=Totem Tool: Chopping
 item.totemic:totemsBat.name=Bat Totem
 item.totemic:totemsCactus.name=Cactus Totem
 item.totemic:totemsQuartzBlock.name=Block of Quartz Totem
