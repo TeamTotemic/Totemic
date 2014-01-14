@@ -39,7 +39,6 @@ public class BlockChlorophyllSolidifier extends BlockTile {
         setHardness(1F);
         setCreativeTab(Totemic.tabsTotem);
 
-
     }
 
     private Random rand = new Random();
@@ -65,10 +64,9 @@ public class BlockChlorophyllSolidifier extends BlockTile {
         if (tileChlorophyllSolidifier != null)
         {
 
-
-            if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null && !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || !ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)))
+            if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID != ModItems.bottleChlorophyll.itemID || heldItem.itemID != ModItems.bucketChlorophyll.itemID)
             {
-                if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)) || ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bucketChlorophyll)) && !world.isRemote)
+                if (heldItem.itemID == ModItems.bottleChlorophyll.itemID || heldItem.itemID == ModItems.bucketChlorophyll.itemID && !world.isRemote)
                 {
                     if (ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.bottleChlorophyll)))
                     {
@@ -92,15 +90,15 @@ public class BlockChlorophyllSolidifier extends BlockTile {
                     player.destroyCurrentEquippedItem();
 
                 }
-
-
-            } else if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem != null && ItemStack.areItemStacksEqual(heldItem, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE)))
+            }
+            if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem != null && ItemStack.areItemStacksEqual(heldItem, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE)))
             {
                 if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize + heldItem.stackSize <= 64)
                 {
                     tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).getItem(), tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize + heldItem.stackSize, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).getItemDamage()));
                 } else
                 {
+                    //Tricky code which needs to be flexible >.> TODO get this working
 
 
                 }
@@ -110,10 +108,9 @@ public class BlockChlorophyllSolidifier extends BlockTile {
             //Run code which takes from the inventory. Simple.
 
             player.inventory.addItemStackToInventory(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE));
-            tileChlorophyllSolidifier.decrStackSize(SLOT_ONE, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize);
+            tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null);
 
         }
-
 
         }
 

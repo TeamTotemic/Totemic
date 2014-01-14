@@ -20,9 +20,7 @@ public class ContainerChlorophyllSolidifier extends Container {
     public ContainerChlorophyllSolidifier(InventoryPlayer inventoryPlayer, TileChlorophyllSolidifier tileChlorophyllSolidifier)
     {
 
-
         this.addSlotToContainer(new Slot(tileChlorophyllSolidifier, TileChlorophyllSolidifier.SLOT_ONE, 79, 17));
-
 
     }
 

@@ -17,7 +17,8 @@ class BlockMachines(id: Int) extends Block(id: Int, Material.rock) {
 
     val blockNames = Array("chlorophyllSolidifier", "test1")
 
-    override def createTileEntity(world: World, meta: Int): TileEntity = meta match {
+    override def createTileEntity(world: World, meta: Int): TileEntity = meta match
+    {
         case 0 => new TileChlorophyllSolidifier
         case _ => null
     }

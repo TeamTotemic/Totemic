@@ -16,6 +16,7 @@ public class Strings {
     public static final String PLANT_SHREDDER_NAME = "plantShredder";
     public static final String VENUS_FLY_TRAP_NAME = "venusFlyTrap";
     public static final String TOTEM_WOODS_NAME = "totemWoods";
+    public static final String TOTEM_DRAINING_NAME = "totemDraining";
 
 
     //Items
@@ -30,27 +31,17 @@ public class Strings {
     public static final String SUB_ITEMS_NAME = "subItems";
     public static final String BOTTLE_CHLOROPHYLL_NAME = "bottleChlorophyll";
 
-
-    //TotemItems
-
-    public static final String TOTEM_SQUID_NAME = "totemSquid";
-    public static final String TOTEM_CACTUS_NAME = "totemCactus";
-    public static final String TOTEM_BLOCK_QUARTZ_NAME = "totemBlockQuartz";
-    public static final String TOTEM_HORSE_NAME = "totemHorse";
-    public static final String TOTEM_BAT_NAME = "totemBat";
-
-
     //TileEntites
 
     public static final String TILE_CHLOROPHYLL_SOLIDIFIER = "tileChlorophyllSolidifier";
-    public static final String TILE_PLANT_SHREDDER = "tilePlantShredder";
     public static final String TILE_TOTEM_BASE = "tileTotemBase";
-
+    public static final String TILE_TOTEM_DRAINING = "tileTotemDraining";
 
     //Container
 
     public static final String CONTAINER_TOTEM_BASE_NAME = "container.totemic:" + TOTEM_BASE_NAME;
     public static final String CONTAINER_CHLOROPHYLL_SOLIDIFIER_NAME = "container.totemic:" + CHLOROPHYLL_SOLIDIFIER_NAME;
+    public static final String CONTAINER_TOTEM_DRAINING_NAME = "container.totemic:" + TOTEM_DRAINING_NAME;
 
     public static final String CONTAINER_PAINT_BRUSH_NAME = "container.totemic:" + PAINT_BRUSH_NAME;
 

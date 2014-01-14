@@ -4,23 +4,24 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.DamageSource;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 
-public class TileTotemBase extends TileTotemic implements IInventory {
+public class TileTotemDraining extends TileTotemic implements IInventory {
 
     private ItemStack[] inventory;
 
-    public static final int INVENTORY_SIZE = 2;
+    public static final int INVENTORY_SIZE = 1;
 
     public static final int SLOT_ONE = 0;
-    public static final int SLOT_TWO = 1;
 
-    protected int radiusOfPlayerEffect;
+    protected boolean hasDoneEffect;
 
+    protected float queryX;
+    protected float queryY;
+    protected float queryZ;
 
-    public TileTotemBase()
+    public TileTotemDraining()
     {
 
         inventory = new ItemStack[INVENTORY_SIZE];
@@ -94,7 +95,7 @@ public class TileTotemBase extends TileTotemic implements IInventory {
     @Override
     public String getInvName()
     {
-        return Strings.CONTAINER_TOTEM_BASE_NAME;
+        return Strings.CONTAINER_TOTEM_DRAINING_NAME;
     }
 
     @Override
@@ -172,51 +173,33 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
     public void updateEntity()
     {
-
-        if (this.worldObj.getTotalWorldTime() % 80L == 0L)
+        if (this.worldObj.getTotalWorldTime() % 120L == 0L)
         {
-
-            this.updateState();
-
+            this.drainEffect();
             super.updateEntity();
+        }
+
+    }
+
+    protected void handleChlorophyllCrystal()
+    {
+        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < 500)
+        {
+            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() + 1);
 
         }
 
     }
 
-    protected void updateState()
+    protected void drainEffect()
     {
 
-
-        if (!this.worldObj.isRemote && this.blockType != null)
+        if (this.hasDoneEffect)
         {
-
-            //Checks to see what is in the current itemstack and runs code depending on what.
-            if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems)))
-            {
-
-                //this.effectCactus();
-
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 1)))
-            {
-
-                //this.effectHorse();
-
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 2)))
-            {
-
-                //this.effectQuartzBlock();
-
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)))
-            {
-
-                this.effectBat();
-
-            }
-
+            this.handleChlorophyllCrystal();
         }
-
     }
+
 
     public boolean canUpdate()
     {
@@ -224,59 +207,5 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
     }
 
-    protected void effectCactus()
-    {
-
-        this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 5).attackEntityFrom(DamageSource.generic, 4);
-
-        this.chlorophyllCrystalHandler();
-
-    }
-
-    protected void effectQuartzBlock()
-    {
-
-        this.chlorophyllCrystalHandler();
-        //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).moveEntity(this.xCoord, this.yCoord, this.zCoord);
-
-    }
-
-    protected void effectBat()
-    {
-
-        this.chlorophyllCrystalHandler();
-
-        if (!this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).isDead)
-        {
-
-            this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.allowFlying = true;
-
-        }
-    }
-
-
-    protected void effectHorse()
-    {
-
-        //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 2, 1));
-
-        this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).capabilities.setPlayerWalkSpeed(50);
-
-        this.chlorophyllCrystalHandler();
-
-    }
-
-    protected void chlorophyllCrystalHandler()
-    {
-
-        this.chlorophyllCrystalDurability();
-
-    }
-
-    protected void chlorophyllCrystalDurability()
-    {
-
-
-    }
 
 }
