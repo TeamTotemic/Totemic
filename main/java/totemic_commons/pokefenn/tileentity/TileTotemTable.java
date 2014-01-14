@@ -1,15 +1,12 @@
 package totemic_commons.pokefenn.tileentity;
 
-import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.IPlantable;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 
-public class TileTotemDraining extends TileTotemic implements IInventory {
+public class TileTotemTable extends TileTotemic implements IInventory {
 
     private ItemStack[] inventory;
 
@@ -23,7 +20,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     protected int queryY;
     protected int queryZ;
 
-    public TileTotemDraining()
+    public TileTotemTable()
     {
 
         inventory = new ItemStack[INVENTORY_SIZE];
@@ -97,7 +94,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     @Override
     public String getInvName()
     {
-        return Strings.CONTAINER_TOTEM_DRAINING_NAME;
+        return Strings.CONTAINER_TOTEM_TABLE_NAME;
     }
 
     @Override
@@ -177,54 +174,17 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     {
         if (this.worldObj.getTotalWorldTime() % 120L == 0L)
         {
-            this.drainEffect();
             super.updateEntity();
         }
 
     }
 
-    protected void handleChlorophyllCrystal()
-    {
-        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < 500)
-        {
-            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() + 1);
-            this.hasDoneEffect = false;
 
-        }
-
-    }
-
-    protected void drainEffect()
-    {
-
-        if (this.hasDoneEffect)
-        {
-            this.handleChlorophyllCrystal();
-        }
-
-        this.hasDoneEffect = true;
-
-        //Todo For loops! To go through all the blocks in the query and make it work >.>
-        this.reducePlantMetadata(this.queryX, this.queryY, this.queryZ);
-
-    }
-
-    protected void reducePlantMetadata(int x, int y, int z)
-    {
-        //yCoords is there because the totem has to be on the same level as the IPlantable's
-        Block blockQuery = Block.blocksList[this.worldObj.getBlockId(this.queryX, this.yCoord, this.queryZ)];
-
-        if (this.worldObj.getBlockMetadata(this.queryX, this.queryY, this.queryZ) >= 1 && blockQuery != null && blockQuery instanceof IPlantable)
-        {
-
-            this.worldObj.setBlockMetadataWithNotify(x, y, z, this.worldObj.getBlockMetadata(x, y, z) - 1, 2);
-        }
-    }
 
 
     public boolean canUpdate()
     {
-        return true;
+        return false;
 
     }
 

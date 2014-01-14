@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.gui;
+package totemic_commons.pokefenn.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

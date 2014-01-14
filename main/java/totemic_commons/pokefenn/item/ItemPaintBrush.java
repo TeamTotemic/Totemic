@@ -5,9 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import rukalib_commons.pokefenn.item.ItemNormal;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.lib.GuiIds;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.util.ItemStackNBTHelper;
 
 /**
  * Created with IntelliJ IDEA.
@@ -33,8 +31,8 @@ public class ItemPaintBrush extends ItemNormal {
 
         if (!world.isRemote)
         {
-            ItemStackNBTHelper.setBoolean(itemStack, Strings.NBT_ITEM_PAINT_BRUSH_GUI_OPEN, true);
-            entityPlayer.openGui(Totemic.instance, GuiIds.PAINT_BRUSH, entityPlayer.worldObj, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
+            //ItemStackNBTHelper.setBoolean(itemStack, Strings.NBT_ITEM_PAINT_BRUSH_GUI_OPEN, true);
+            //entityPlayer.openGui(Totemic.instance, GuiIds.PAINT_BRUSH, entityPlayer.worldObj, (int) entityPlayer.posX, (int) entityPlayer.posY, (int) entityPlayer.posZ);
         }
 
         return itemStack;

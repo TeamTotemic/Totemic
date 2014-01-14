@@ -10,7 +10,7 @@ public class BlockIds {
     public static int VENUS_FLY_TRAP_DEFAULT = 2572;
     public static int TOTEM_WOODS_DEFAULT = 2573;
     public static int TOTEM_DRAINING_DEFAULT = 2574;
-
+    public static int TOTEM_TABLE_DEFAULT = 2575;
 
     public static int TOTEM_BASE;
     public static int BIG_BAD_TOTEM_BASE;
@@ -19,5 +19,6 @@ public class BlockIds {
     public static int VENUS_FLY_TRAP;
     public static int TOTEM_WOODS;
     public static int TOTEM_DRAINING;
+    public static int TOTEM_TABLE;
 
 }

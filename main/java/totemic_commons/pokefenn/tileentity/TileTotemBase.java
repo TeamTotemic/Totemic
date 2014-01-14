@@ -19,6 +19,8 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
     protected int radiusOfPlayerEffect;
 
+    private boolean hasDoneEffect;
+
 
     public TileTotemBase()
     {
@@ -210,7 +212,7 @@ public class TileTotemBase extends TileTotemic implements IInventory {
             } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)))
             {
 
-                this.effectBat();
+                //this.effectBat();
 
             }
 
@@ -276,7 +278,7 @@ public class TileTotemBase extends TileTotemic implements IInventory {
     protected void chlorophyllCrystalDurability()
     {
 
-
+        this.setInventorySlotContents(SLOT_TWO, new ItemStack(ModItems.chlorophyllCrystal, 1, this.getStackInSlot(SLOT_TWO).getItemDamage()));
     }
 
 }

@@ -22,14 +22,14 @@ import java.util.Random
  */
 class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
 
-    this.setUnlocalizedName(Strings.TOTEM_DRAINING_NAME)
-    this.setCreativeTab(Totemic.tabsTotem)
-    this.setHardness(1F)
+    setUnlocalizedName(Strings.TOTEM_DRAINING_NAME)
+    setCreativeTab(Totemic.tabsTotem)
+    setHardness(1F)
 
     var rand: Random = new Random
 
     def createNewTileEntity(world: World): TileEntity = {
-        return new TileTotemDraining
+        new TileTotemDraining
     }
 
     override def onBlockActivated(world: World, x: Int, y: Int, z: Int, player: EntityPlayer, side: Int, hitX: Float, hitY: Float, hitZ: Float): Boolean = {
@@ -39,6 +39,8 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
         val heldItem: ItemStack = player.inventory.getCurrentItem
 
         val SLOT_ONE: Int = TileTotemDraining.SLOT_ONE
+
+        player.openContainer
 
         if (tileTotemDraining != null)
         {
@@ -95,7 +97,7 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
                 }
             }
             {
-                i += 1;
+                i += 1
                 i - 1
             }
         }

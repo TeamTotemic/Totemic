@@ -17,7 +17,7 @@ public class Strings {
     public static final String VENUS_FLY_TRAP_NAME = "venusFlyTrap";
     public static final String TOTEM_WOODS_NAME = "totemWoods";
     public static final String TOTEM_DRAINING_NAME = "totemDraining";
-
+    public static final String TOTEM_TABLE_NAME = "totemTable";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";
@@ -42,6 +42,7 @@ public class Strings {
     public static final String CONTAINER_TOTEM_BASE_NAME = "container.totemic:" + TOTEM_BASE_NAME;
     public static final String CONTAINER_CHLOROPHYLL_SOLIDIFIER_NAME = "container.totemic:" + CHLOROPHYLL_SOLIDIFIER_NAME;
     public static final String CONTAINER_TOTEM_DRAINING_NAME = "container.totemic:" + TOTEM_DRAINING_NAME;
+    public static final String CONTAINER_TOTEM_TABLE_NAME = "container.totemic:" + TOTEM_TABLE_NAME;
 
     public static final String CONTAINER_PAINT_BRUSH_NAME = "container.totemic:" + PAINT_BRUSH_NAME;
 

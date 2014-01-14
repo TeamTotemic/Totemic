@@ -30,7 +30,6 @@ public class ConfigurationHandler {
             ConfigurationSettings.ENABLE_PARTICLE_FX = configuration.get(CATEGORY_GAMEPLAY, ConfigurationSettings.ENABLE_PARTICLE_FX_CONFIGNAME, ConfigurationSettings.ENABLE_PARTICLE_FX_DEFAULT).getBoolean(ConfigurationSettings.ENABLE_PARTICLE_FX_DEFAULT);
 
             //Blocks
-
             BlockIds.TOTEM_BASE = configuration.getBlock(Strings.TOTEM_BASE_NAME, BlockIds.TOTEM_BASE_DEFAULT).getInt(BlockIds.TOTEM_BASE_DEFAULT);
             BlockIds.BIG_BAD_TOTEM_BASE = configuration.getBlock(Strings.BIG_BAD_TOTEM_BASE_NAME, BlockIds.BIG_BAD_TOTEM_BASE_DEFAULT).getInt(BlockIds.BIG_BAD_TOTEM_BASE_DEFAULT);
             BlockIds.BIG_BAD_TOTEM_HEAD = configuration.getBlock(Strings.BIG_BAD_TOTEM_HEAD_NAME, BlockIds.BIG_BAD_TOTEM_HEAD_DEFAULT).getInt(BlockIds.BIG_BAD_TOTEM_HEAD_DEFAULT);
@@ -38,9 +37,9 @@ public class ConfigurationHandler {
             BlockIds.VENUS_FLY_TRAP = configuration.getBlock(Strings.VENUS_FLY_TRAP_NAME, BlockIds.VENUS_FLY_TRAP_DEFAULT).getInt(BlockIds.VENUS_FLY_TRAP_DEFAULT);
             BlockIds.TOTEM_WOODS = configuration.getBlock(Strings.TOTEM_WOODS_NAME, BlockIds.TOTEM_WOODS_DEFAULT).getInt(BlockIds.TOTEM_WOODS_DEFAULT);
             BlockIds.TOTEM_DRAINING = configuration.getBlock(Strings.TOTEM_DRAINING_NAME, BlockIds.TOTEM_DRAINING_DEFAULT).getInt(BlockIds.TOTEM_DRAINING_DEFAULT);
+            BlockIds.TOTEM_TABLE = configuration.getBlock(Strings.TOTEM_TABLE_NAME, BlockIds.TOTEM_TABLE_DEFAULT).getInt(BlockIds.TOTEM_TABLE_DEFAULT);
 
             //Items
-
             ItemIds.TOTEM_HEAD = configuration.getItem(Strings.TOTEM_HEAD_NAME, ItemIds.TOTEM_HEAD_DEFAULT).getInt(ItemIds.TOTEM_HEAD_DEFAULT);
             ItemIds.TOTEM_WHITTLING_KNIFE = configuration.getItem(Strings.TOTEM_WHITTLING_KNIFE_NAME, ItemIds.TOTEM_WHITTLING_KNIFE_DEFAULT).getInt(ItemIds.TOTEM_WHITTLING_KNIFE_DEFAULT);
             ItemIds.TOTEMIC_STAFF = configuration.getItem(Strings.TOTEMIC_STAFF_NAME, ItemIds.TOTEMIC_STAFF_DEFAULT).getInt(ItemIds.TOTEMIC_STAFF_DEFAULT);

@@ -2,10 +2,7 @@ package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
-import totemic_commons.pokefenn.block.BlockChlorophyllSolidifier;
-import totemic_commons.pokefenn.block.BlockTotemBase;
-import totemic_commons.pokefenn.block.BlockTotemDraining;
-import totemic_commons.pokefenn.block.BlockTotemWoods;
+import totemic_commons.pokefenn.block.*;
 import totemic_commons.pokefenn.lib.BlockIds;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -20,6 +17,7 @@ public final class ModBlocks {
     public static Block venusFlyTrap;
     public static Block totemWoods;
     public static Block totemDraining;
+    public static Block totemTable;
 
 
     public static void init()
@@ -32,6 +30,7 @@ public final class ModBlocks {
         //venusFlyTrap = new BlockVenusFlyTrap(BlockIds.VENUS_FLY_TRAP);
         totemWoods = new BlockTotemWoods(BlockIds.TOTEM_WOODS);
         totemDraining = new BlockTotemDraining(BlockIds.TOTEM_DRAINING);
+        totemTable = new BlockTotemTable(BlockIds.TOTEM_TABLE);
 
 
         GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
@@ -41,6 +40,7 @@ public final class ModBlocks {
         //GameRegistry.registerBlock(venusFlyTrap, Strings.VENUS_FLY_TRAP_NAME);
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
         GameRegistry.registerBlock(totemDraining, Strings.TOTEM_DRAINING_NAME);
+        GameRegistry.registerBlock(totemTable, Strings.TOTEM_TABLE_NAME);
 
 
     }
