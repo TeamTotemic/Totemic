@@ -9,6 +9,7 @@ public class Textures {
     public static final String ARMOR_SHEET_LOCATION = "textures/armor/";
     public static final String GUI_SHEET_LOCATION = "textures/gui/";
     public static final String EFFECTS_LOCATION = "textures/effects/";
+    public static final String BLOCK_LOCATION = "textures/blocks";
 
     public static final String TEXTURE_LOCATION = "totemic";
 
@@ -32,5 +33,7 @@ public class Textures {
 
     public static final ResourceLocation GUI_PAINT_BRUSH = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "paintBrushGui.png");
 
+    //Models
+    public static final ResourceLocation TEXTURE_TOTEM_TABLE = ResourceLocationHelper.getResourceLocation(BLOCK_LOCATION + "totemTable.png");
 
 }

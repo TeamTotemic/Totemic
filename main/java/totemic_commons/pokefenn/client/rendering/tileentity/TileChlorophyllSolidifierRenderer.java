@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.rendering.tileentity;
+package totemic_commons.pokefenn.client.rendering.tileentity;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -14,10 +14,10 @@ public class TileChlorophyllSolidifierRenderer extends TileEntitySpecialRenderer
 
 
     @Override
-    public void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float f)
+    public void renderTileEntityAt(TileEntity tileEntity, double d0, double d1, double d2, float f)
     {
 
-        TileChlorophyllSolidifier tileChlorophyllSolidifier = (TileChlorophyllSolidifier) tileentity.worldObj.getBlockTileEntity(tileentity.xCoord, tileentity.yCoord, tileentity.zCoord);
+        TileChlorophyllSolidifier tileChlorophyllSolidifier = (TileChlorophyllSolidifier) tileEntity.worldObj.getBlockTileEntity(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
 
     }
 

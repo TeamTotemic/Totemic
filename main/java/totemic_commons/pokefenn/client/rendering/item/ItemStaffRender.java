@@ -1,32 +1,25 @@
-package totemic_commons.pokefenn.rendering.item;
+package totemic_commons.pokefenn.client.rendering.item;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 03/01/14
- * Time: 18:02
- */
-public class ItemTotemsRenderer implements IItemRenderer {
+public class ItemStaffRender implements IItemRenderer {
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type)
     {
-        return false;
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
     {
-        return false;
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
-
-
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

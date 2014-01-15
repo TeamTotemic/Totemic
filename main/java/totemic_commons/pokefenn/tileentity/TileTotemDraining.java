@@ -207,6 +207,10 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
         //Todo For loops! To go through all the blocks in the query and make it work >.>
         this.reducePlantMetadata(this.queryX, this.queryY, this.queryZ);
 
+        this.queryX = this.xCoord;
+        this.queryY = this.yCoord;
+        this.queryZ = this.zCoord;
+
     }
 
     protected void reducePlantMetadata(int x, int y, int z)
@@ -219,6 +223,12 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
 
             this.worldObj.setBlockMetadataWithNotify(x, y, z, this.worldObj.getBlockMetadata(x, y, z) - 1, 2);
         }
+    }
+
+    protected void loopThroughArea(int x, int y, int z)
+    {
+
+
     }
 
 

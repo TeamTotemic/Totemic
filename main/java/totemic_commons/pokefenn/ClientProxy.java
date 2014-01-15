@@ -1,12 +1,15 @@
 package totemic_commons.pokefenn;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import totemic_commons.pokefenn.client.rendering.item.rendering.tileentity.TileTotemBaseRenderer;
 import totemic_commons.pokefenn.network.PacketRequestEvent;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
+import totemic_commons.pokefenn.tileentity.TileTotemTable;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 public class ClientProxy extends CommonProxy {
@@ -50,6 +53,12 @@ public class ClientProxy extends CommonProxy {
     {
 
         PacketDispatcher.sendPacketToServer(PacketTypeHandler.populatePacket(new PacketRequestEvent(eventType, originX, originY, originZ, sideHit, rangeX, rangeY, rangeZ, data)));
+    }
+
+    public static void initTERendering()
+    {
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTable.class, new TileTotemBaseRenderer());
     }
 
 

@@ -24,6 +24,8 @@ public class GuiTotemBase extends GuiContainer {
 
     private TileTotemBase tileTotemBase;
 
+    //TODO remove this GUI!
+
     public GuiTotemBase(InventoryPlayer inventoryPlayer, TileTotemBase tileTotemBase)
     {
 

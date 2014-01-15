@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.rendering.item.rendering.tileentity;
+package totemic_commons.pokefenn.client.rendering.item.rendering.tileentity;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;

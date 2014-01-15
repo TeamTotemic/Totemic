@@ -15,18 +15,29 @@ import totemic_commons.pokefenn.tileentity.TileTotemTable
  * Time: 20:50
 
  */
-class BlockTotemTable(id:Int) extends BlockTile(id, Material.wood) {
+class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
 
     setUnlocalizedName(Strings.TOTEM_TABLE_NAME)
     setHardness(1F)
     setCreativeTab(Totemic.tabsTotem)
 
-    def createNewTileEntity(world: World): TileEntity ={
+    def createNewTileEntity(world: World): TileEntity = {
 
         new TileTotemTable
     }
 
+    /*
+    override def isOpaqueCube() {
+        false
+    }
 
+    override def getRenderType() {
+        -1
+    }
 
+    override def renderAsNormalBlock() {
+        false
+    }
+    */
 
 }

@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.rendering.item.rendering.item;
+package totemic_commons.pokefenn.client.rendering.item.rendering.item;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
