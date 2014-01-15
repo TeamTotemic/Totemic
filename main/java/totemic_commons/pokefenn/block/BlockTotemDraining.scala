@@ -96,10 +96,10 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
                     itemStack.stackSize = 0
                 }
             }
-
+            {
                 i += 1
                 i - 1
-
+            }
         }
 
     }

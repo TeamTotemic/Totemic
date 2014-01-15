@@ -54,8 +54,6 @@ object Init {
         //Init tile entities into the game
         Totemic.proxy.registerTileEntities()
 
-        ClientProxy.initTERendering()
-
         ChlorophyllSolidifierRecipes.addRecipes()
 
     }

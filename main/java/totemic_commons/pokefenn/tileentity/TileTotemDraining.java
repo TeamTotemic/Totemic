@@ -19,9 +19,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
 
     protected boolean hasDoneEffect;
 
-    protected int queryX;
-    protected int queryY;
-    protected int queryZ;
+    protected int totemRadius = 8;
 
     public TileTotemDraining()
     {
@@ -148,7 +146,6 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
                 inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
         }
-
     }
 
     @Override
@@ -187,7 +184,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     {
         if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < 500)
         {
-            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() + 1);
+            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - 1);
             this.hasDoneEffect = false;
 
         }
@@ -205,30 +202,40 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
         this.hasDoneEffect = true;
 
         //Todo For loops! To go through all the blocks in the query and make it work >.>
-        this.reducePlantMetadata(this.queryX, this.queryY, this.queryZ);
-
-        this.queryX = this.xCoord;
-        this.queryY = this.yCoord;
-        this.queryZ = this.zCoord;
+        this.loopThroughArea();
 
     }
 
     protected void reducePlantMetadata(int x, int y, int z)
     {
         //yCoords is there because the totem has to be on the same level as the IPlantable's
-        Block blockQuery = Block.blocksList[this.worldObj.getBlockId(this.queryX, this.yCoord, this.queryZ)];
+        Block blockQuery = Block.blocksList[this.worldObj.getBlockId(x, y, z)];
 
-        if (this.worldObj.getBlockMetadata(this.queryX, this.queryY, this.queryZ) >= 1 && blockQuery != null && blockQuery instanceof IPlantable)
+        if (this.worldObj.getBlockMetadata(x, y, z) >= 3 && blockQuery instanceof IPlantable && this.getStackInSlot(SLOT_ONE) != null)
         {
+            if (this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
+            {
 
-            this.worldObj.setBlockMetadataWithNotify(x, y, z, this.worldObj.getBlockMetadata(x, y, z) - 1, 2);
+                this.worldObj.setBlockMetadataWithNotify(x, y, z, this.worldObj.getBlockMetadata(x, y, z) - 1, 2);
+            }
         }
     }
 
-    protected void loopThroughArea(int x, int y, int z)
+    protected void loopThroughArea()
     {
 
+        //this.queryX = this.xCoord - totemRadius;
+        //this.queryZ = this.zCoord - 4;
+        //this.queryY = this.yCoord;
 
+        //Todo for loop that does stuff, way done the basic
+        for (int i = -totemRadius; i <= totemRadius; i++)
+        {
+            for (int j = -totemRadius; j <= totemRadius; j++)
+            {
+                reducePlantMetadata(xCoord + i, yCoord, zCoord + j);
+            }
+        }
     }
 
 

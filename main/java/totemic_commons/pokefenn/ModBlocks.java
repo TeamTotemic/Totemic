@@ -30,7 +30,7 @@ public final class ModBlocks {
         //venusFlyTrap = new BlockVenusFlyTrap(BlockIds.VENUS_FLY_TRAP);
         totemWoods = new BlockTotemWoods(BlockIds.TOTEM_WOODS);
         totemDraining = new BlockTotemDraining(BlockIds.TOTEM_DRAINING);
-        totemTable = new BlockTotemTable(BlockIds.TOTEM_TABLE);
+        //totemTable = new BlockTotemTable(BlockIds.TOTEM_TABLE);
 
 
         GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
@@ -40,7 +40,7 @@ public final class ModBlocks {
         //GameRegistry.registerBlock(venusFlyTrap, Strings.VENUS_FLY_TRAP_NAME);
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
         GameRegistry.registerBlock(totemDraining, Strings.TOTEM_DRAINING_NAME);
-        GameRegistry.registerBlock(totemTable, Strings.TOTEM_TABLE_NAME);
+        //GameRegistry.registerBlock(totemTable, Strings.TOTEM_TABLE_NAME);
 
 
     }
