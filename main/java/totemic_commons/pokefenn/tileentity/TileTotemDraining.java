@@ -7,9 +7,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.configuration.ConfigurationSettings;
+import totemic_commons.pokefenn.lib.Particles;
 import totemic_commons.pokefenn.lib.Strings;
 
+import java.util.Random;
+
 public class TileTotemDraining extends TileTotemic implements IInventory {
+
+    private Random rand = new Random();
 
     private ItemStack[] inventory;
 
@@ -19,7 +25,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
 
     protected boolean hasDoneEffect;
 
-    protected int totemRadius = 8;
+    protected int totemRadius = ConfigurationSettings.TOTEM_DRAINING_RANGE;
 
     public TileTotemDraining()
     {
@@ -125,7 +131,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
-        return false;
+        return true;
     }
 
     @Override
@@ -172,7 +178,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
 
     public void updateEntity()
     {
-        if (this.worldObj.getTotalWorldTime() % 120L == 0L)
+        if (this.worldObj.getTotalWorldTime() % 100L == 0L)
         {
             this.drainEffect();
             super.updateEntity();
@@ -182,7 +188,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
 
     protected void handleChlorophyllCrystal()
     {
-        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < 500)
+        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < 500 && rand.nextBoolean())
         {
             this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - 1);
             this.hasDoneEffect = false;
@@ -194,12 +200,8 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     protected void drainEffect()
     {
 
-        if (this.hasDoneEffect)
-        {
-            this.handleChlorophyllCrystal();
-        }
 
-        this.hasDoneEffect = true;
+        this.handleChlorophyllCrystal();
 
         //Todo For loops! To go through all the blocks in the query and make it work >.>
         this.loopThroughArea();
@@ -211,11 +213,11 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
         //yCoords is there because the totem has to be on the same level as the IPlantable's
         Block blockQuery = Block.blocksList[this.worldObj.getBlockId(x, y, z)];
 
-        if (this.worldObj.getBlockMetadata(x, y, z) >= 3 && blockQuery instanceof IPlantable && this.getStackInSlot(SLOT_ONE) != null)
+        if (this.worldObj.getBlockMetadata(x, y, z) >= 6 && blockQuery instanceof IPlantable && this.getStackInSlot(SLOT_ONE) != null && rand.nextBoolean())
         {
             if (this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
             {
-
+                this.worldObj.spawnParticle(Particles.ESSENCE_DRAIN, x, y, z, 10, 10, 10);
                 this.worldObj.setBlockMetadataWithNotify(x, y, z, this.worldObj.getBlockMetadata(x, y, z) - 1, 2);
             }
         }
@@ -224,11 +226,6 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     protected void loopThroughArea()
     {
 
-        //this.queryX = this.xCoord - totemRadius;
-        //this.queryZ = this.zCoord - 4;
-        //this.queryY = this.yCoord;
-
-        //Todo for loop that does stuff, way done the basic
         for (int i = -totemRadius; i <= totemRadius; i++)
         {
             for (int j = -totemRadius; j <= totemRadius; j++)

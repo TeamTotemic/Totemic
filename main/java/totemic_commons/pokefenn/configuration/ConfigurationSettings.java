@@ -7,4 +7,8 @@ public class ConfigurationSettings {
     public static final String ENABLE_PARTICLE_FX_CONFIGNAME = "enableParticleFX";
     public static final boolean ENABLE_PARTICLE_FX_DEFAULT = true;
 
+    public static int TOTEM_DRAINING_RANGE;
+    public static final String TOTEM_DRAINING_CONFIGNAME = "totemOfDrainingRange(Unstable)";
+    public static final int TOTEM_DRAINING_DEFAULT = 8;
+
 }

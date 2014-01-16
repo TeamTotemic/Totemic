@@ -6,6 +6,7 @@ import cpw.mods.fml.common.network.NetworkRegistry
 import totemic_commons.pokefenn.recipe.{TotemicRecipes, ChlorophyllSolidifierRecipes}
 import totemic_commons.pokefenn.util.OreDictionaryTotemic
 import totemic_commons.pokefenn._
+import net.minecraft.creativetab.CreativeTabs
 
 /**
  * Created with IntelliJ IDEA.

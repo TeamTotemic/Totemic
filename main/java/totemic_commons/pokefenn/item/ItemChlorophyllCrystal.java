@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import rukalib_commons.pokefenn.item.ItemNormal;
@@ -32,6 +33,12 @@ public class ItemChlorophyllCrystal extends ItemNormal {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
         list.add("A crystal holding plant essence");
+    }
+
+    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List list)
+    {
+        list.add(new ItemStack(par1, 1, 1));
+        list.add(new ItemStack(par1, 1, 499));
     }
 
 }
