@@ -25,7 +25,6 @@ public class ItemVenusFlyTrapSeed extends ItemNormal implements IPlantable {
         setMaxStackSize(64);
         setCreativeTab(Totemic.tabsTotem);
 
-
     }
 
 

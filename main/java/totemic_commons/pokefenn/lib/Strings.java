@@ -5,7 +5,7 @@ public class Strings {
 
     //Misc
 
-    public static final String RESOURCE_PREFIX = Reference.MOD_NAME.toLowerCase() + ":";
+    public static final String RESOURCE_PREFIX = "totemic:";
 
 
     //Blocks
@@ -47,10 +47,6 @@ public class Strings {
 
     public static final String CONTAINER_INVENTORY = "container.inventory";
 
-
-    //Gui
-
-
     public static final String NBT_ITEM_MODE_KEY = "itemMode";
     public static final String NBT_ITEM_CRAFTING_GUI_OPEN = "itemCraftingGuiOpen";
     public static final String NBT_ITEM_DISPLAY = "display";
@@ -67,13 +63,6 @@ public class Strings {
     //Fluid
 
     public static final String FLUID_CHLOROPHYLL_NAME = "fluidChlorophyll";
-
-    //NBT
-
-    public static final String NBT_ITEM_PAINT_BRUSH_GUI_OPEN = "itemPaintBrushGuiOpen";
-
-
-    //GuiRelatedStrings
 
 
 }

@@ -5,7 +5,7 @@ import net.minecraft.block.material.Material
 import net.minecraft.world.World
 import net.minecraft.tileentity.TileEntity
 import totemic_commons.pokefenn.lib.Strings
-import totemic_commons.pokefenn.Totemic
+import totemic_commons.pokefenn.{ModBlocks, ModItems, Totemic}
 import totemic_commons.pokefenn.tileentity.{TileTotemic, TileChlorophyllSolidifier, TileTotemTable}
 import net.minecraft.item.ItemStack
 import net.minecraft.entity.player.EntityPlayer
@@ -57,7 +57,7 @@ class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
 
         val SLOT_ONE: Int = TileChlorophyllSolidifier.SLOT_ONE
 
-        if (tileTotemTable != null)
+        if (tileTotemTable != null && !world.isRemote)
         {
             if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
@@ -69,11 +69,16 @@ class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
                 tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem, 1, heldItem.getItemDamage))
                 heldItem.stackSize -= 1
 
-            } else if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem != null && heldItem.itemID == tileTotemTable.getStackInSlot(SLOT_ONE).itemID)
+            } else if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem != null && ItemStack.areItemStacksEqual(heldItem, tileTotemTable.getStackInSlot(SLOT_ONE)))
             {
                 heldItem.stackSize += 1
                 tileTotemTable.decrStackSize(SLOT_ONE, 1)
 
+            } else if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem != null)
+            {
+
+                handleRecipes(world, x, y, z, player, side, hitX, hitY, hitZ)
+                System.out.println("trying to enter handleRecipe")
             }
 
 
@@ -162,6 +167,46 @@ class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
     }
 
     var rand: Random = new Random
+
+    def handleRecipes(world: World, x: Int, y: Int, z: Int, player: EntityPlayer, side: Int, hitX: Float, hitY: Float, hitZ: Float) {
+
+        //Todo recipe handler that is good >.>
+
+        System.out.println("Entered handleRecipes")
+
+        val tileTotemTable: TileTotemTable = world.getBlockTileEntity(x, y, z).asInstanceOf[TileTotemTable]
+
+        val heldItem: ItemStack = player.inventory.getCurrentItem
+
+        val SLOT_ONE: Int = TileChlorophyllSolidifier.SLOT_ONE
+
+        if (ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 1)) && ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
+        {
+            System.out.println("if 1")
+            tileTotemTable.decrStackSize(SLOT_ONE, 1)
+            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 2))
+
+        } else if (ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 2)) && ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
+        {
+            System.out.println("if 2")
+            tileTotemTable.decrStackSize(SLOT_ONE, 1)
+            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 3))
+
+        } else if (ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)) && ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
+        {
+            System.out.println("if 3")
+            tileTotemTable.decrStackSize(SLOT_ONE, 1)
+            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 4))
+
+        } else if (ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), new ItemStack(ModBlocks.totemWoods, 1)) && ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
+        {
+            System.out.println("if 4")
+            tileTotemTable.decrStackSize(SLOT_ONE, 1)
+            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 1))
+
+        }
+
+    }
 
 
 }

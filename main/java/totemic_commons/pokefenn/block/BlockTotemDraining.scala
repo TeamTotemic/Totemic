@@ -42,7 +42,7 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
 
         player.openContainer
 
-        if (tileTotemDraining != null)
+        if (tileTotemDraining != null && !world.isRemote)
         {
 
             if (tileTotemDraining.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID)
