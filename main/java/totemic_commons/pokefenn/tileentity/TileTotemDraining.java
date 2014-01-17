@@ -191,7 +191,6 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
         if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < 500 && rand.nextBoolean())
         {
             this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - 1);
-            this.hasDoneEffect = false;
 
         }
 
@@ -200,10 +199,6 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     protected void drainEffect()
     {
 
-
-        this.handleChlorophyllCrystal();
-
-        //Todo For loops! To go through all the blocks in the query and make it work >.>
         this.loopThroughArea();
 
     }
@@ -217,8 +212,14 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
         {
             if (this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
             {
-                this.worldObj.spawnParticle(Particles.ESSENCE_DRAIN, x, y, z, 10, 10, 10);
+
+                if (ConfigurationSettings.ENABLE_PARTICLE_FX)
+                {
+                    this.worldObj.spawnParticle(Particles.ESSENCE_DRAIN, x, y, z, 8, 14, 8);
+
+                }
                 this.worldObj.setBlockMetadataWithNotify(x, y, z, this.worldObj.getBlockMetadata(x, y, z) - 1, 2);
+                this.handleChlorophyllCrystal();
             }
         }
     }

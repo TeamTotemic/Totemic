@@ -11,6 +11,8 @@ import totemic_commons.pokefenn.lib.GuiIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
 import totemic_commons.pokefenn.tileentity.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.TileTotemDraining;
+import totemic_commons.pokefenn.tileentity.TileTotemTable;
 
 public class CommonProxy implements IGuiHandler {
 
@@ -20,6 +22,8 @@ public class CommonProxy implements IGuiHandler {
 
         GameRegistry.registerTileEntity(TileChlorophyllSolidifier.class, Strings.TILE_CHLOROPHYLL_SOLIDIFIER);
         GameRegistry.registerTileEntity(TileTotemBase.class, Strings.TILE_TOTEM_BASE);
+        GameRegistry.registerTileEntity(TileTotemDraining.class, Strings.TILE_TOTEM_DRAINING);
+        GameRegistry.registerTileEntity(TileTotemTable.class, Strings.TILE_TOTEM_TABLE);
 
     }
 

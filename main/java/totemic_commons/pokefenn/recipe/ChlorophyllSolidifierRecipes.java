@@ -5,8 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.fluid.ModFluids;
 
 import java.util.ArrayList;
 import java.util.List;

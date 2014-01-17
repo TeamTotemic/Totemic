@@ -19,7 +19,6 @@ public class TileTotemBaseRenderer extends TileEntitySpecialRenderer {
         TileTotemBase tileTotemBase = (TileTotemBase) tileentity.worldObj.getBlockTileEntity(tileentity.xCoord, tileentity.yCoord, tileentity.zCoord);
 
 
-
     }
 
 }

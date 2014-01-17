@@ -14,12 +14,6 @@ public class TileTotemTable extends TileTotemic implements IInventory {
 
     public static final int SLOT_ONE = 0;
 
-    protected boolean hasDoneEffect;
-
-    protected int queryX;
-    protected int queryY;
-    protected int queryZ;
-
     public TileTotemTable()
     {
 
@@ -172,14 +166,10 @@ public class TileTotemTable extends TileTotemic implements IInventory {
 
     public void updateEntity()
     {
-        if (this.worldObj.getTotalWorldTime() % 120L == 0L)
-        {
-            super.updateEntity();
-        }
+
+        super.updateEntity();
 
     }
-
-
 
 
     public boolean canUpdate()

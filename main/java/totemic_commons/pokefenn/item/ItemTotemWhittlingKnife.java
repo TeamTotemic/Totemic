@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ItemTotemWhittlingKnife extends ItemMetaData {
 
-    private static final String[] ITEMS_NAMES = new String[]{"toolHandle", "whittlingHead", "whittlingWhole", "choppingHead", "choppingWhole"};
+    private static final String[] ITEMS_NAMES = new String[]{"toolHandle", "whittlingHead", "whittlingWhole", "choppingHead", "choppingWhole", "paintHead", "paintWhole",};
 
     @SideOnly(Side.CLIENT)
     private Icon[] icons;
@@ -24,7 +24,6 @@ public class ItemTotemWhittlingKnife extends ItemMetaData {
     {
 
         super(id);
-        //setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setMaxStackSize(1);
         setCreativeTab(Totemic.tabsTotem);
 

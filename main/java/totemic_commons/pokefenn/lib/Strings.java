@@ -36,6 +36,7 @@ public class Strings {
     public static final String TILE_CHLOROPHYLL_SOLIDIFIER = "tileChlorophyllSolidifier";
     public static final String TILE_TOTEM_BASE = "tileTotemBase";
     public static final String TILE_TOTEM_DRAINING = "tileTotemDraining";
+    public static final String TILE_TOTEM_TABLE = "tileTotemTable";
 
     //Container
 
@@ -43,8 +44,6 @@ public class Strings {
     public static final String CONTAINER_CHLOROPHYLL_SOLIDIFIER_NAME = "container.totemic:" + CHLOROPHYLL_SOLIDIFIER_NAME;
     public static final String CONTAINER_TOTEM_DRAINING_NAME = "container.totemic:" + TOTEM_DRAINING_NAME;
     public static final String CONTAINER_TOTEM_TABLE_NAME = "container.totemic:" + TOTEM_TABLE_NAME;
-
-    public static final String CONTAINER_PAINT_BRUSH_NAME = "container.totemic:" + PAINT_BRUSH_NAME;
 
     public static final String CONTAINER_INVENTORY = "container.inventory";
 

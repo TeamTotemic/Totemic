@@ -13,8 +13,6 @@ public class BlockIds {
     public static int TOTEM_TABLE_DEFAULT = 2575;
 
     public static int TOTEM_BASE;
-    public static int BIG_BAD_TOTEM_BASE;
-    public static int BIG_BAD_TOTEM_HEAD;
     public static int CHLOROPHYLL_SOLIDIFIER;
     public static int VENUS_FLY_TRAP;
     public static int TOTEM_WOODS;

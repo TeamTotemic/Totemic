@@ -4,8 +4,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import rukalib_commons.pokefenn.item.ItemNormal;
-import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -38,12 +38,12 @@ public class ItemVenusFlyTrapSeed extends ItemNormal implements IPlantable {
     @Override
     public int getPlantID(World world, int x, int y, int z)
     {
-        return 0;
+        return ModBlocks.venusFlyTrap.blockID;
     }
 
     @Override
     public int getPlantMetadata(World world, int x, int y, int z)
     {
-        return ModBlocks.venusFlyTrap.blockID;
+        return 0;
     }
 }

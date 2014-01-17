@@ -34,8 +34,11 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
     }
 
     override def onBlockActivated(world: World, x: Int, y: Int, z: Int, player: EntityPlayer, side: Int, hitX: Float, hitY: Float, hitZ: Float): Boolean = {
+
         val tileChlorophyllSolidifier: TileChlorophyllSolidifier = world.getBlockTileEntity(x, y, z).asInstanceOf[TileChlorophyllSolidifier]
+
         val heldItem: ItemStack = player.inventory.getCurrentItem
+
         val SLOT_ONE: Int = TileChlorophyllSolidifier.SLOT_ONE
 
         if (tileChlorophyllSolidifier != null)
@@ -46,7 +49,7 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
                 if (heldItem.itemID == ModItems.bottleChlorophyll.itemID)
                 {
                     tileChlorophyllSolidifier.fill(ForgeDirection.UP, new FluidStack(ModFluids.fluidChlorophyll, 1000), true)
-                    player.destroyCurrentEquippedItem()
+                    heldItem.stackSize -= 1
 
                 }
                 else if (heldItem.itemID == ModItems.bucketChlorophyll.itemID)
@@ -71,9 +74,8 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null)
 
             }
-            else if (ItemStack.areItemStacksEqual(heldItem, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE)) && heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize + heldItem.stackSize <= 64)
+            else if (ItemStack.areItemStacksEqual(heldItem, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE)) && heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize + heldItem.stackSize <= 64 && heldItem.getMaxStackSize > 1)
             {
-                //tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize += heldItem.stackSize
                 //Todo this annoying code, isnt needed, but would be nice.
 
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem, heldItem.stackSize + tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize, heldItem.getItemDamage))

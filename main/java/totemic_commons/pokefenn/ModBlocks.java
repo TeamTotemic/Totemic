@@ -10,8 +10,6 @@ public final class ModBlocks {
 
 
     public static Block totemBase;
-    public static Block bigBadTotemBase;
-    public static Block bigBadTotemHead;
     public static Block chlorophyllSolidifier;
     public static Block plantShredder;
     public static Block venusFlyTrap;
@@ -24,23 +22,19 @@ public final class ModBlocks {
     {
 
         totemBase = new BlockTotemBase(BlockIds.TOTEM_BASE);
-        //bigBadTotemBase = new BlockBigBadTotemBase(BlockIds.BIG_BAD_TOTEM_BASE);
-        //bigBadTotemHead = new BlockBigBadTotemHead(BlockIds.BIG_BAD_TOTEM_HEAD);
         chlorophyllSolidifier = new BlockChlorophyllSolidifier(BlockIds.CHLOROPHYLL_SOLIDIFIER);
         //venusFlyTrap = new BlockVenusFlyTrap(BlockIds.VENUS_FLY_TRAP);
         totemWoods = new BlockTotemWoods(BlockIds.TOTEM_WOODS);
         totemDraining = new BlockTotemDraining(BlockIds.TOTEM_DRAINING);
-        //totemTable = new BlockTotemTable(BlockIds.TOTEM_TABLE);
+        totemTable = new BlockTotemTable(BlockIds.TOTEM_TABLE);
 
 
         GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
-        //GameRegistry.registerBlock(bigBadTotemBase, Strings.BIG_BAD_TOTEM_BASE_NAME);
-        //GameRegistry.registerBlock(bigBadTotemHead, Strings.BIG_BAD_TOTEM_HEAD_NAME);
         GameRegistry.registerBlock(chlorophyllSolidifier, Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
         //GameRegistry.registerBlock(venusFlyTrap, Strings.VENUS_FLY_TRAP_NAME);
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
         GameRegistry.registerBlock(totemDraining, Strings.TOTEM_DRAINING_NAME);
-        //GameRegistry.registerBlock(totemTable, Strings.TOTEM_TABLE_NAME);
+        GameRegistry.registerBlock(totemTable, Strings.TOTEM_TABLE_NAME);
 
 
     }
