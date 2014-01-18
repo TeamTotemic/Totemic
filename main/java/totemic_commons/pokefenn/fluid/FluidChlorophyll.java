@@ -2,14 +2,13 @@ package totemic_commons.pokefenn.fluid;
 
 
 import net.minecraftforge.fluids.Fluid;
-import totemic_commons.pokefenn.lib.Strings;
 
 public class FluidChlorophyll extends Fluid {
 
-    public FluidChlorophyll()
+    public FluidChlorophyll(String fluidName)
     {
 
-        super(Strings.FLUID_CHLOROPHYLL_NAME);
+        super(fluidName);
         setDensity(100);
         setViscosity(100);
 

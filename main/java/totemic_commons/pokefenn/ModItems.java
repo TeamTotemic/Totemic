@@ -10,8 +10,6 @@ import totemic_commons.pokefenn.lib.ItemIds;
 
 public final class ModItems {
 
-
-    public static Item totemHead;
     public static Item totemWhittlingKnife;
     public static Item totemicStaff;
     public static Item chlorophyllCrystal;
@@ -45,9 +43,6 @@ public final class ModItems {
         //GameRegistry.registerItem(venusFlyTrapSeed, venusFlyTrapSeed.getUnlocalizedName());
         //GameRegistry.registerItem(subItems, subItems.getUnlocalizedName());
         GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
-
-        //Registry for Totem Items
-        //GameRegistry.registerItem(totems, totems.getUnlocalizedName());
 
         totemWhittlingKnife.setContainerItem(totemWhittlingKnife);
         bucketChlorophyll.setContainerItem(bucketChlorophyll);

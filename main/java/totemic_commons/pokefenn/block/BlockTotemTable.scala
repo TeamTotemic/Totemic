@@ -7,7 +7,7 @@ import net.minecraft.tileentity.TileEntity
 import totemic_commons.pokefenn.lib.Strings
 import totemic_commons.pokefenn.{ModBlocks, ModItems, Totemic}
 import totemic_commons.pokefenn.tileentity.{TileTotemic, TileChlorophyllSolidifier, TileTotemTable}
-import net.minecraft.item.ItemStack
+import net.minecraft.item.{Item, ItemStack}
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.util.MathHelper
@@ -83,6 +83,8 @@ class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
 
 
         }
+
+        world.markBlockForUpdate(x, y, z)
 
         if (player.isSneaking)
         {
@@ -180,7 +182,7 @@ class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
 
         val SLOT_ONE: Int = TileChlorophyllSolidifier.SLOT_ONE
 
-        if (ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 1)) && ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
+        if (tileTotemTable.getStackInSlot(SLOT_ONE).isItemEqual(new ItemStack(ModItems.totems, 1, 1)) && heldItem.isItemEqual(new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
         {
             System.out.println("if 1")
             tileTotemTable.decrStackSize(SLOT_ONE, 1)
@@ -207,6 +209,5 @@ class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
         }
 
     }
-
 
 }

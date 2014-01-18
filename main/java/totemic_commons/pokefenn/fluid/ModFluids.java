@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.fluid;
 
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import totemic_commons.pokefenn.lib.Strings;
 
 public class ModFluids {
 
@@ -11,7 +12,7 @@ public class ModFluids {
     public static void init()
     {
 
-        fluidChlorophyll = new FluidChlorophyll();
+        fluidChlorophyll = new FluidChlorophyll(Strings.FLUID_CHLOROPHYLL_NAME);
 
         FluidRegistry.registerFluid(fluidChlorophyll);
 

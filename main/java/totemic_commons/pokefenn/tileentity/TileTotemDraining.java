@@ -10,6 +10,7 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.Particles;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.client.ParticleUtil;
 
 import java.util.Random;
 
@@ -212,12 +213,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
         {
             if (this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
             {
-
-                if (ConfigurationSettings.ENABLE_PARTICLE_FX)
-                {
-                    this.worldObj.spawnParticle(Particles.ESSENCE_DRAIN, x, y, z, 8, 14, 8);
-
-                }
+                ParticleUtil.spawnParticle(this.worldObj, Particles.ESSENCE_DRAIN, x, y, z, 10, 10, 10);
                 this.worldObj.setBlockMetadataWithNotify(x, y, z, this.worldObj.getBlockMetadata(x, y, z) - 1, 2);
                 this.handleChlorophyllCrystal();
             }

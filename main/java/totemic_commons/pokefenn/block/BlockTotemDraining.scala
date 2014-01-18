@@ -40,8 +40,6 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
 
         val SLOT_ONE: Int = TileTotemDraining.SLOT_ONE
 
-        player.openContainer
-
         if (tileTotemDraining != null && !world.isRemote)
         {
 
@@ -58,6 +56,7 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
             }
 
         }
+        world.markBlockForUpdate(x, y, z)
 
         if (player.isSneaking)
         {
