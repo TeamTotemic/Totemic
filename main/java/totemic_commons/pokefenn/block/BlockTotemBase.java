@@ -26,7 +26,6 @@ public class BlockTotemBase extends BlockTile {
         this.setHardness(1F);
         this.setCreativeTab(Totemic.tabsTotem);
 
-
     }
 
     //TODO make this a guiless inventoy, gui is for development ONLY
@@ -72,7 +71,6 @@ public class BlockTotemBase extends BlockTile {
 
                 if (tileTotemBase != null)
                 {
-
 
                     player.openGui(Totemic.instance, GuiIds.TOTEM_BASE, world, x, y, z);
                 }

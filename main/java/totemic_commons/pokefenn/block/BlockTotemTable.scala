@@ -182,29 +182,29 @@ class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
 
         val SLOT_ONE: Int = TileChlorophyllSolidifier.SLOT_ONE
 
-        if (tileTotemTable.getStackInSlot(SLOT_ONE).isItemEqual(new ItemStack(ModItems.totems, 1, 1)) && heldItem.isItemEqual(new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
+        if (tileTotemTable.getStackInSlot(SLOT_ONE).isItemEqual(new ItemStack(ModItems.totems, 1)) && heldItem.isItemEqual(new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
         {
             System.out.println("if 1")
+            tileTotemTable.decrStackSize(SLOT_ONE, 1)
+            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 1))
+
+        } else if (ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 1)) && ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
+        {
+            System.out.println("if 2")
             tileTotemTable.decrStackSize(SLOT_ONE, 1)
             tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 2))
 
         } else if (ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 2)) && ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
         {
-            System.out.println("if 2")
-            tileTotemTable.decrStackSize(SLOT_ONE, 1)
-            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 3))
-
-        } else if (ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)) && ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
-        {
             System.out.println("if 3")
             tileTotemTable.decrStackSize(SLOT_ONE, 1)
-            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 4))
+            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 3))
 
         } else if (ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), new ItemStack(ModBlocks.totemWoods, 1)) && ItemStack.areItemStacksEqual(heldItem, new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
         {
             System.out.println("if 4")
             tileTotemTable.decrStackSize(SLOT_ONE, 1)
-            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, 1))
+            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1))
 
         }
 

@@ -4,11 +4,14 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 
-public class TileTotemBase extends TileTotemic implements IInventory {
+public class TileTotemBase extends TileTotemic implements IInventory
+{
 
     private ItemStack[] inventory;
 
@@ -17,10 +20,7 @@ public class TileTotemBase extends TileTotemic implements IInventory {
     public static final int SLOT_ONE = 0;
     public static final int SLOT_TWO = 1;
 
-    protected int radiusOfPlayerEffect;
-
-    private boolean hasDoneEffect;
-
+    //boolean isChlorophyll = this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID;
 
     public TileTotemBase()
     {
@@ -174,51 +174,45 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
     public void updateEntity()
     {
-
-        if (this.worldObj.getTotalWorldTime() % 80L == 0L)
-        {
-
-            this.updateState();
-
-            super.updateEntity();
-
-        }
-
-    }
-
-    protected void updateState()
-    {
-
-
         if (!this.worldObj.isRemote && this.blockType != null)
         {
+            //Each if needs to have a getWorldTime :)
 
             //Checks to see what is in the current itemstack and runs code depending on what.
-            if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems)))
+            if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems)) && this.worldObj.getTotalWorldTime() % 20L == 0L && this.getStackInSlot(SLOT_TWO) != null)
             {
 
-                //this.effectCactus();
+                this.effectCactus();
 
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 1)))
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 1)) && this.worldObj.getTotalWorldTime() % 80L == 0L && this.getStackInSlot(SLOT_TWO) != null)
             {
 
-                //this.effectHorse();
+                this.effectHorse();
 
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 2)))
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 2)) && this.worldObj.getTotalWorldTime() % 10L == 0L && this.getStackInSlot(SLOT_TWO) != null)
             {
 
                 //this.effectQuartzBlock();
 
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)))
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)) && this.worldObj.getTotalWorldTime() % 80L == 0L && this.getStackInSlot(SLOT_TWO) != null)
             {
 
-                //this.effectBat();
+                this.effectBat();
 
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 4)) && this.worldObj.getTotalWorldTime() % 200L == 0L && this.getStackInSlot(SLOT_TWO) != null)
+            {
+
+                this.effectSand();
             }
+
 
         }
 
+
+        super.updateEntity();
+
     }
+
 
     public boolean canUpdate()
     {
@@ -228,17 +222,21 @@ public class TileTotemBase extends TileTotemic implements IInventory {
 
     protected void effectCactus()
     {
+        if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 5) != null && this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        {
+            //Todo make this work with all entities
 
-        this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 5).attackEntityFrom(DamageSource.generic, 4);
+            this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 5).attackEntityFrom(DamageSource.generic, 4);
 
-        this.chlorophyllCrystalHandler();
+            this.chlorophyllCrystalHandler(1);
 
+        }
     }
 
     protected void effectQuartzBlock()
     {
 
-        this.chlorophyllCrystalHandler();
+        this.chlorophyllCrystalHandler(1);
         //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).moveEntity(this.xCoord, this.yCoord, this.zCoord);
 
     }
@@ -246,12 +244,12 @@ public class TileTotemBase extends TileTotemic implements IInventory {
     protected void effectBat()
     {
 
-        this.chlorophyllCrystalHandler();
 
-        if (!this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).isDead)
+        if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2) != null  && this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
 
             this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.allowFlying = true;
+            this.chlorophyllCrystalHandler(50);
 
         }
     }
@@ -260,25 +258,38 @@ public class TileTotemBase extends TileTotemic implements IInventory {
     protected void effectHorse()
     {
 
-        //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 2, 1));
+        if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 20) != null  && this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        {
 
-        this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).capabilities.setPlayerWalkSpeed(50);
+            this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 20).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 100, 0));
 
-        this.chlorophyllCrystalHandler();
+            //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).capabilities.setPlayerWalkSpeed(4F);
+            //Will move from potions once i get this code sorted :3
+
+            this.chlorophyllCrystalHandler(1);
+
+        }
+    }
+
+
+    protected void effectSand()
+    {
+        if (this.worldObj.isRaining() && this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        {
+
+            this.worldObj.toggleRain();
+
+            this.chlorophyllCrystalHandler(50);
+
+        }
 
     }
 
-    protected void chlorophyllCrystalHandler()
+    protected void chlorophyllCrystalHandler(int durabilityDecrease)
     {
 
-        this.chlorophyllCrystalDurability();
+            this.setInventorySlotContents(SLOT_TWO, new ItemStack(ModItems.chlorophyllCrystal, 1, this.getStackInSlot(SLOT_TWO).getItemDamage() + durabilityDecrease));
 
-    }
-
-    protected void chlorophyllCrystalDurability()
-    {
-
-        this.setInventorySlotContents(SLOT_TWO, new ItemStack(ModItems.chlorophyllCrystal, 1, this.getStackInSlot(SLOT_TWO).getItemDamage()));
     }
 
 }

@@ -9,7 +9,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class PacketTileUpdate extends PacketTotemic {
+public class PacketTileUpdate extends PacketTotemic
+{
 
 
     public int x, y, z;

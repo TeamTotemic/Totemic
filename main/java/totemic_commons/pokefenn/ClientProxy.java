@@ -40,6 +40,12 @@ public class ClientProxy extends CommonProxy {
 
         if (tileEntity != null)
         {
+            if (tileEntity instanceof TileTotemic)
+            {
+                ((TileTotemic) tileEntity).setOrientation(orientation);
+                ((TileTotemic) tileEntity).setState(state);
+                ((TileTotemic) tileEntity).setCustomName(customName);
+            }
 
 
         }
