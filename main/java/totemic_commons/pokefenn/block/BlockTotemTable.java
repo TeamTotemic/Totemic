@@ -65,9 +65,8 @@ public class BlockTotemTable extends BlockTile
 
                     }
                 }
-            }
 
-            if (heldItem == null && tileTotemTable.getStackInSlot(SLOT_ONE) != null)
+            } else if (heldItem == null && tileTotemTable.getStackInSlot(SLOT_ONE) != null)
             {
                 player.inventory.addItemStackToInventory(tileTotemTable.getStackInSlot(SLOT_ONE));
                 tileTotemTable.setInventorySlotContents(SLOT_ONE, null);
