@@ -5,22 +5,20 @@ import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.inventory.IInventory
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
+import net.minecraft.item.{Item, ItemStack}
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.util.MathHelper
 import net.minecraft.world.World
 import net.minecraftforge.common.ForgeDirection
-import net.minecraftforge.fluids.FluidStack
 import rukalib_commons.pokefenn.block.BlockTile
-import totemic_commons.pokefenn.ModItems
-import totemic_commons.pokefenn.Totemic
-import totemic_commons.pokefenn.fluid.ModFluids
+import totemic_commons.pokefenn.{ModItems, Totemic}
 import totemic_commons.pokefenn.lib.Strings
 import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier
 import totemic_commons.pokefenn.tileentity.TileTotemic
 import java.util.Random
+import net.minecraftforge.fluids.FluidStack
+import totemic_commons.pokefenn.fluid.ModFluids
 
 class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
 
@@ -43,9 +41,25 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
 
         if (tileChlorophyllSolidifier != null)
         {
+            //Todo make one slot inventory
 
-            if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null)
+            if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID != ModItems.bottleChlorophyll.itemID && heldItem.itemID != ModItems.bucketChlorophyll.itemID)
             {
+
+
+                tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null)
+                tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem, 1, heldItem.getItemDamage))
+                heldItem.stackSize -= 1
+
+            }
+            else if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem == null)
+            {
+                player.inventory.addItemStackToInventory(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE))
+                tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null)
+
+            } else if (heldItem != null)
+            {
+
                 if (heldItem.itemID == ModItems.bottleChlorophyll.itemID)
                 {
                     tileChlorophyllSolidifier.fill(ForgeDirection.UP, new FluidStack(ModFluids.fluidChlorophyll, 1000), true)
@@ -60,26 +74,6 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
 
                 }
 
-                else
-                {
-                    tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, heldItem)
-                    player.destroyCurrentEquippedItem()
-
-                }
-
-            }
-            else if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem == null)
-            {
-                player.inventory.addItemStackToInventory(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE))
-                tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null)
-
-            }
-            else if (ItemStack.areItemStacksEqual(heldItem, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE)) && heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize + heldItem.stackSize <= 64 && heldItem.getMaxStackSize > 1)
-            {
-                //Todo this annoying code, isnt needed, but would be nice.
-
-                tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem, heldItem.stackSize + tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).stackSize, heldItem.getItemDamage))
-                player.destroyCurrentEquippedItem()
             }
 
         }

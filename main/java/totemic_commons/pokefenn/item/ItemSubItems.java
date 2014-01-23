@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class ItemSubItems extends ItemMetaData {
 
-    private static final String[] ITEMS_NAMES = new String[]{"chlorophyllicIngot", "totemicWood"};
+    private static final String[] ITEMS_NAMES = new String[]{"chlorophyllicIngot"};
 
     @SideOnly(Side.CLIENT)
     private Icon[] icons;

@@ -12,7 +12,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.recipe.TotemRegistry;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 public class TileTotemBase extends TileTotemic implements IInventory
@@ -45,7 +44,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
         TileTotemBase totemBaseObject = new TileTotemBase();
 
         //Todo make this work T.T this is a temp thing
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), 10, totemBaseObject.effectBat()));
+        //TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), 10, totemBaseObject.effectBat()));
 
     }
 
@@ -317,7 +316,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
         }
     }
 
-    protected Object effectBat()
+    protected void effectBat()
     {
         if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
@@ -330,7 +329,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
 
             }
         }
-        return effectBat();
+
     }
 
 

@@ -3,7 +3,7 @@ package totemic_commons.pokefenn
 import cpw.mods.fml.common.FMLCommonHandler
 import totemic_commons.pokefenn.fluid.ModFluids
 import cpw.mods.fml.common.network.NetworkRegistry
-import totemic_commons.pokefenn.recipe.{TotemicRecipes, ChlorophyllSolidifierRecipes}
+import totemic_commons.pokefenn.recipe.{TotemTableHandler, TotemicRecipes, ChlorophyllSolidifierRecipes}
 import totemic_commons.pokefenn.util.{CompatInit, OreDictionaryTotemic}
 
 /**
@@ -53,7 +53,10 @@ object Init {
         //Init tile entities into the game
         Totemic.proxy.registerTileEntities()
 
+        //Makes the recipes of Chlorophyll enter the game
         ChlorophyllSolidifierRecipes.addRecipes()
+
+        TotemTableHandler.addRecipes()
 
     }
 
@@ -66,6 +69,5 @@ object PostInit {
         CompatInit.init();
 
     }
-
 
 }

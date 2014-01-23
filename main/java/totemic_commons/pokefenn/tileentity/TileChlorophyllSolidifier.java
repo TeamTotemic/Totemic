@@ -10,15 +10,14 @@ import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
 
-import java.util.List;
-
 /**
  * Created with IntelliJ IDEA.
  * User: ${Pokefenn}
  * Date: 13/11/13
  * Time: 16:16
  */
-public class TileChlorophyllSolidifier extends TileTotemic implements IInventory, IFluidHandler {
+public class TileChlorophyllSolidifier extends TileTotemic implements IInventory, IFluidHandler
+{
 
     private ItemStack[] inventory;
 
@@ -116,7 +115,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     @Override
     public int getInventoryStackLimit()
     {
-        return 64;
+        return 1;
     }
 
     @Override
@@ -209,7 +208,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid)
     {
-        if (fluid == ModFluids.fluidChlorophyll)
+        if (fluid == ModFluids.fluidChlorophyll && tank.getFluidAmount() < tank.getCapacity() && !(tank.getCapacity() + FluidContainerRegistry.BUCKET_VOLUME > tank.getCapacity()))
         {
             return true;
         } else
@@ -222,8 +221,13 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     @Override
     public boolean canDrain(ForgeDirection from, Fluid fluid)
     {
-        return true;
-
+        if (fluid == ModFluids.fluidChlorophyll && tank.getFluidAmount() > 0 && tank.getFluidAmount() - FluidContainerRegistry.BUCKET_VOLUME > 0)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 
     @Override
@@ -238,13 +242,30 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     {
 
         super.updateEntity();
-
-        List<ChlorophyllSolidifierRecipes> recipes = ChlorophyllSolidifierRecipes.getRecipes();
-
-        if (ItemStack.areItemStacksEqual(this.getStackInSlot(SLOT_ONE), recipes.get(1).getInput()))
+        if (this.worldObj.getTotalWorldTime() % 100L == 0L && !worldObj.isRemote)
         {
 
+            for (ChlorophyllSolidifierRecipes solidifier : ChlorophyllSolidifierRecipes.solidifierRecipe)
+            {
+                //System.out.println("forloop");
+                if (ItemStack.areItemStacksEqual(this.getStackInSlot(SLOT_ONE), solidifier.getInput()) && this.canDrain(ForgeDirection.UP, ModFluids.fluidChlorophyll))
+                {
+                    System.out.println("going into if");
+
+                    this.setInventorySlotContents(SLOT_ONE, solidifier.getOutput());
+                    this.drain(ForgeDirection.DOWN, solidifier.getFluidStack(), true);
+
+                }
+
+            }
+
         }
+
+        if (this.worldObj.getTotalWorldTime() % 40L == 0L && !worldObj.isRemote)
+        {
+            System.out.println(tank.getFluidAmount());
+        }
+        super.updateEntity();
 
 
     }
@@ -252,22 +273,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     public boolean canUpdate()
     {
         return true;
-    }
-
-    public int getProcessingTime()
-    {
-        List<ChlorophyllSolidifierRecipes> recipes = ChlorophyllSolidifierRecipes.getRecipes();
-
-        if (ItemStack.areItemStacksEqual(this.getStackInSlot(SLOT_ONE), recipes.get(1).getInput()))
-        {
-            return 60;
-        } else
-        {
-
-            return 0;
-        }
-
-
     }
 
 
