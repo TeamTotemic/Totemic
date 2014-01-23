@@ -7,14 +7,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.client.ParticleUtil;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.Particles;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.client.ParticleUtil;
+import totemic_commons.pokefenn.network.PacketSpawnParticle;
 
 import java.util.Random;
 
-public class TileTotemDraining extends TileTotemic implements IInventory {
+public class TileTotemDraining extends TileTotemic implements IInventory
+{
 
     private Random rand = new Random();
 
@@ -130,9 +132,18 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     }
 
     @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemstack)
+    public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
-        return true;
+        if (itemStack.itemID == ModItems.chlorophyllCrystal.itemID && i == SLOT_ONE && !this.worldObj.isRemote)
+        {
+            this.setInventorySlotContents(i, itemStack);
+
+            return true;
+        } else
+        {
+            return false;
+        }
+
     }
 
     @Override
@@ -214,6 +225,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
             if (this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
             {
                 ParticleUtil.spawnParticle(this.worldObj, Particles.ESSENCE_DRAIN, x, y, z, 10, 10, 10);
+                new PacketSpawnParticle(Particles.ESSENCE_DRAIN, (double) x, (double) y, (double) z, 8, 10, 8);
                 this.worldObj.setBlockMetadataWithNotify(x, y, z, this.worldObj.getBlockMetadata(x, y, z) - 1, 2);
                 this.handleChlorophyllCrystal();
             }
@@ -236,7 +248,6 @@ public class TileTotemDraining extends TileTotemic implements IInventory {
     public boolean canUpdate()
     {
         return true;
-
     }
 
 

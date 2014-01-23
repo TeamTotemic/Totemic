@@ -1,15 +1,14 @@
-/*
-
 package totemic_commons.pokefenn.network;
+
+import com.pahimar.ee3.lib.ItemUpdateTypes;
+import cpw.mods.fml.common.network.Player;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.INetworkManager;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.INetworkManager;
-import cpw.mods.fml.common.network.Player;
 
 public class PacketItemUpdate extends PacketTotemic {
 	
@@ -55,4 +54,3 @@ public class PacketItemUpdate extends PacketTotemic {
     }
 
 }
-*/

@@ -22,7 +22,7 @@ public class CompatInit {
 
         }
 
-        if (Loader.isModLoaded("Blood Magic: Alchemical Wizardry"))
+        if (Loader.isModLoaded("AWWayofTime"))
         {
 
             Totemic.logger.info("Oh, is this that Blood Magic I spy with my bloody eye?");

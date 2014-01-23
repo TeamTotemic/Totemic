@@ -1,6 +1,6 @@
 [
 {
-  "modid": "totem",
+  "modid": "totemic",
   "name": "Totemic",
   "description": "Gain Totemic Powers? Yes please!",
   "version": "0.0.0",
@@ -14,7 +14,7 @@
   "screenshots": [
   ],
   "parent":"",
-  "dependencies": [rukaLib
+  "dependencies": [
   ]
 }
 ]

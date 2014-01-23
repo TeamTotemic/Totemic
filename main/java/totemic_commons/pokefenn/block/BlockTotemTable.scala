@@ -57,7 +57,7 @@ class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
 
         val SLOT_ONE: Int = TileChlorophyllSolidifier.SLOT_ONE
 
-        if (tileTotemTable != null && !world.isRemote)
+        if (tileTotemTable != null && !world.isRemote && player != null)
         {
             if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
@@ -182,7 +182,7 @@ class BlockTotemTable(id: Int) extends BlockTile(id, Material.wood) {
 
         val SLOT_ONE: Int = TileChlorophyllSolidifier.SLOT_ONE
 
-        if (tileTotemTable.getStackInSlot(SLOT_ONE).isItemEqual(new ItemStack(ModItems.totems, 1)) && heldItem.isItemEqual(new ItemStack(ModItems.totemWhittlingKnife, 1, 3)))
+        if (tileTotemTable.getStackInSlot(SLOT_ONE).isItemEqual(new ItemStack(ModItems.totems, 1))/* && heldItem.isItemEqual(new ItemStack(ModItems.totemWhittlingKnife, 1, 3))*/)
         {
             System.out.println("if 1")
             tileTotemTable.decrStackSize(SLOT_ONE, 1)

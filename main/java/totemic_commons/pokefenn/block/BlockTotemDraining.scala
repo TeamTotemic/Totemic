@@ -29,7 +29,7 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
     var rand: Random = new Random
 
     def createNewTileEntity(world: World): TileEntity = {
-        new TileTotemDraining
+        new TileTotemDraining()
     }
 
     override def onBlockActivated(world: World, x: Int, y: Int, z: Int, player: EntityPlayer, side: Int, hitX: Float, hitY: Float, hitZ: Float): Boolean = {
@@ -40,31 +40,31 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
 
         val SLOT_ONE: Int = TileTotemDraining.SLOT_ONE
 
-        if (tileTotemDraining != null && !world.isRemote)
+        if (tileTotemDraining != null && !world.isRemote && player != null)
         {
 
-            if (tileTotemDraining.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID)
+            if (tileTotemDraining.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID && heldItem.getItemDamage() != 500)
             {
                 tileTotemDraining.setInventorySlotContents(SLOT_ONE, heldItem)
                 player.destroyCurrentEquippedItem()
 
-            } else if (tileTotemDraining.getStackInSlot(SLOT_ONE) != null && heldItem == null && tileTotemDraining.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
+            } else if (tileTotemDraining.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
+                if (tileTotemDraining.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
+                {
 
-                player.inventory.addItemStackToInventory(tileTotemDraining.getStackInSlot(SLOT_ONE))
-                tileTotemDraining.setInventorySlotContents(SLOT_ONE, null)
+                    player.inventory.addItemStackToInventory(new ItemStack(ModItems.chlorophyllCrystal, 1, tileTotemDraining.getStackInSlot(SLOT_ONE).getItemDamage))
+                    tileTotemDraining.setInventorySlotContents(SLOT_ONE, null)
+
+                }
+
             }
 
         }
         world.markBlockForUpdate(x, y, z)
 
-        if (player.isSneaking)
-        {
-            false
-        } else
-        {
-            true
-        }
+        true
+
     }
 
     def dropInventory(world: World, x: Int, y: Int, z: Int) {

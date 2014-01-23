@@ -13,14 +13,14 @@ public enum PacketTypeHandler {
     TILE(PacketTileUpdate.class),
     REQUEST_EVENT(PacketRequestEvent.class),
     SPAWN_PARTICLE(PacketSpawnParticle.class),
-    //ITEM_UPDATE(PacketItemUpdate.class),
-    TILE_WITH_ITEM(PacketTileWithItemUpdate.class);
+    ITEM_UPDATE(PacketItemUpdate.class),
+    TILE_WITH_ITEM(PacketTileWithItemUpdate.class),
+    TILE_CHLOROPHYLL_SOLIDIFIER(PacketTileChlorophyllSolidifier.class);
 
     private Class<? extends PacketTotemic> clazz;
 
     PacketTypeHandler(Class<? extends PacketTotemic> clazz)
     {
-
         this.clazz = clazz;
     }
 

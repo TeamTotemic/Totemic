@@ -22,6 +22,7 @@ public class ItemChlorophyllCrystal extends ItemNormal {
         setMaxStackSize(1);
         setMaxDamage(500);
         setCreativeTab(Totemic.tabsTotem);
+        isFull3D();
 
     }
 
@@ -35,8 +36,8 @@ public class ItemChlorophyllCrystal extends ItemNormal {
 
     public void getSubItems(int id, CreativeTabs par2CreativeTabs, List list)
     {
-        list.add(new ItemStack(id, 1, 1));
         list.add(new ItemStack(id, 1, 499));
+        list.add(new ItemStack(id, 1, 1));
     }
 
 }

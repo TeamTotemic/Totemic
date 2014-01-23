@@ -1,5 +1,8 @@
 package totemic_commons.pokefenn.tileentity;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,6 +12,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.recipe.TotemRegistry;
+import totemic_commons.pokefenn.util.EntityUtil;
 
 public class TileTotemBase extends TileTotemic implements IInventory
 {
@@ -20,12 +25,27 @@ public class TileTotemBase extends TileTotemic implements IInventory
     public static final int SLOT_ONE = 0;
     public static final int SLOT_TWO = 1;
 
+    public static int DECREASE_CACTUS = 1;
+    public static int DECREASE_SAND = 50;
+    public static int DECREASE_QUARTZ = 1;
+    public static int DECREASE_HORSE = 2;
+    public static int DECREASE_BAT = 50;
+
     //boolean isChlorophyll = this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID;
 
     public TileTotemBase()
     {
 
         inventory = new ItemStack[INVENTORY_SIZE];
+
+    }
+
+    public static void addTotems()
+    {
+        TileTotemBase totemBaseObject = new TileTotemBase();
+
+        //Todo make this work T.T this is a temp thing
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), 10, totemBaseObject.effectBat()));
 
     }
 
@@ -124,9 +144,16 @@ public class TileTotemBase extends TileTotemic implements IInventory
     }
 
     @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemstack)
+    public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
-        return false;
+        if (itemStack.itemID == ModItems.chlorophyllCrystal.itemID && i == SLOT_TWO || itemStack.itemID == ModItems.totems.itemID && i == SLOT_ONE)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+
     }
 
     @Override
@@ -170,16 +197,33 @@ public class TileTotemBase extends TileTotemic implements IInventory
         }
         nbtTagCompound.setTag("Items", tagList);
     }
+    /*
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        writeToNBT(tag);
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData packet) {
+        readFromNBT(packet.data);
+    }
+    */
 
 
     public void updateEntity()
     {
-        if (!this.worldObj.isRemote && this.blockType != null)
+        super.updateEntity();
+
+        if (!this.worldObj.isRemote && this.getStackInSlot(SLOT_ONE) != null)
         {
             //Each if needs to have a getWorldTime :)
 
+
             //Checks to see what is in the current itemstack and runs code depending on what.
-            if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems)) && this.worldObj.getTotalWorldTime() % 20L == 0L && this.getStackInSlot(SLOT_TWO) != null)
+            if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems)) && this.worldObj.getTotalWorldTime() % 20 == 0 && this.getStackInSlot(SLOT_TWO) != null)
             {
 
                 this.effectCactus();
@@ -192,7 +236,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
             } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 2)) && this.worldObj.getTotalWorldTime() % 10L == 0L && this.getStackInSlot(SLOT_TWO) != null)
             {
 
-                //this.effectQuartzBlock();
+                this.effectQuartzBlock();
 
             } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)) && this.worldObj.getTotalWorldTime() % 80L == 0L && this.getStackInSlot(SLOT_TWO) != null)
             {
@@ -205,11 +249,10 @@ public class TileTotemBase extends TileTotemic implements IInventory
                 this.effectSand();
             }
 
+            this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 
         }
 
-
-        super.updateEntity();
 
     }
 
@@ -222,64 +265,105 @@ public class TileTotemBase extends TileTotemic implements IInventory
 
     protected void effectCactus()
     {
-        if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 5) != null && this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
-            //Todo make this work with all entities
 
-            this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 5).attackEntityFrom(DamageSource.generic, 4);
+            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_CACTUS >= 0)
+            {
 
-            this.chlorophyllCrystalHandler(1);
+                for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                {
+                    if (!(entity instanceof EntityItem))
+                    {
+                        entity.attackEntityFrom(DamageSource.generic, 4);
+                        this.chlorophyllCrystalHandler(DECREASE_CACTUS);
+                    }
+                }
 
+            }
         }
+
     }
 
     protected void effectQuartzBlock()
     {
+        Block blockUnder = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord - 1, this.zCoord)];
 
-        this.chlorophyllCrystalHandler(1);
-        //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).moveEntity(this.xCoord, this.yCoord, this.zCoord);
-
-    }
-
-    protected void effectBat()
-    {
-
-
-        if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2) != null  && this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
 
-            this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.allowFlying = true;
-            this.chlorophyllCrystalHandler(50);
+            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_QUARTZ >= 0 )
+            {
+
+                for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                {
+                    if (entity instanceof EntityItem)
+                    {
+
+                        if (blockUnder instanceof IInventory)
+                        {
+                            //((IInventory) blockUnder).setInventorySlotContents((1 , ((EntityItem) entity).getEntityItem());
+                            entity.setDead();
+                            this.chlorophyllCrystalHandler(DECREASE_QUARTZ);
+
+                        }
+
+
+                    }
+                }
+
+            }
 
         }
+    }
+
+    protected Object effectBat()
+    {
+        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        {
+
+            if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10) != null && !this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.isFlying && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_BAT >= 0)
+            {
+
+                this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.allowFlying = true;
+                this.chlorophyllCrystalHandler(DECREASE_BAT);
+
+            }
+        }
+        return effectBat();
     }
 
 
     protected void effectHorse()
     {
-
-        if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 20) != null  && this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
 
-            this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 20).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 100, 0));
+            if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 20) != null && this.getStackInSlot(SLOT_TWO).getItemDamage() + DECREASE_HORSE > 0)
+            {
 
-            //this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 2).capabilities.setPlayerWalkSpeed(4F);
-            //Will move from potions once i get this code sorted :3
+                this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 20).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 100, 0));
 
-            this.chlorophyllCrystalHandler(1);
+                this.chlorophyllCrystalHandler(DECREASE_HORSE);
 
+            }
         }
     }
 
 
     protected void effectSand()
     {
-        if (this.worldObj.isRaining() && this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
 
-            this.worldObj.toggleRain();
+            if (this.worldObj.isRaining() && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_SAND >= 0)
+            {
 
-            this.chlorophyllCrystalHandler(50);
+                this.worldObj.toggleRain();
+
+                this.chlorophyllCrystalHandler(DECREASE_SAND);
+
+            }
 
         }
 
@@ -288,8 +372,9 @@ public class TileTotemBase extends TileTotemic implements IInventory
     protected void chlorophyllCrystalHandler(int durabilityDecrease)
     {
 
-            this.setInventorySlotContents(SLOT_TWO, new ItemStack(ModItems.chlorophyllCrystal, 1, this.getStackInSlot(SLOT_TWO).getItemDamage() + durabilityDecrease));
+        this.setInventorySlotContents(SLOT_TWO, new ItemStack(ModItems.chlorophyllCrystal, 1, this.getStackInSlot(SLOT_TWO).getItemDamage() + durabilityDecrease));
 
     }
+
 
 }

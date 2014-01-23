@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ItemTotemWhittlingKnife extends ItemMetaData {
 
-    private static final String[] ITEMS_NAMES = new String[]{"toolHandle", "whittlingHead", "whittlingWhole", "choppingHead", "choppingWhole", "paintHead", "paintWhite", "paintBlack"};
+    private static final String[] ITEMS_NAMES = new String[]{"toolHandle", "whittlingHead", "whittlingWhole", "choppingHead", "choppingWhole", "paintHead", "paintWhite", "paintBlack", "generalHead", "generalWhole"};
 
     @SideOnly(Side.CLIENT)
     private Icon[] icons;

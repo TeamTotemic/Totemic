@@ -4,7 +4,7 @@ import cpw.mods.fml.common.FMLCommonHandler
 import totemic_commons.pokefenn.fluid.ModFluids
 import cpw.mods.fml.common.network.NetworkRegistry
 import totemic_commons.pokefenn.recipe.{TotemicRecipes, ChlorophyllSolidifierRecipes}
-import totemic_commons.pokefenn.util.OreDictionaryTotemic
+import totemic_commons.pokefenn.util.{CompatInit, OreDictionaryTotemic}
 
 /**
  * Created with IntelliJ IDEA.
@@ -57,13 +57,13 @@ object Init {
 
     }
 
-
 }
-
 
 object PostInit {
 
     def init() {
+
+        CompatInit.init();
 
     }
 
