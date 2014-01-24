@@ -9,7 +9,8 @@ import totemic_commons.pokefenn.Totemic;
  * Date: 01/12/13
  * Time: 16:09
  */
-public class CompatInit {
+public class CompatInit
+{
 
     public static void init()
     {

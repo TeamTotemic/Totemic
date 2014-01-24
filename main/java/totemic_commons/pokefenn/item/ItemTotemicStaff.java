@@ -10,7 +10,8 @@ import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;
 
-public class ItemTotemicStaff extends ItemNormal {
+public class ItemTotemicStaff extends ItemNormal
+{
 
 
     public ItemTotemicStaff(int id)

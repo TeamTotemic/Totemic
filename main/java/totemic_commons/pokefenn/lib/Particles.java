@@ -6,7 +6,8 @@ package totemic_commons.pokefenn.lib;
  * Date: 15/01/14
  * Time: 22:15
  */
-public class Particles {
+public class Particles
+{
 
     public static String ESSENCE_DRAIN = "happyVillager";
 }

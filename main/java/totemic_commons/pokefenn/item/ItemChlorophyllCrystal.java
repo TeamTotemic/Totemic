@@ -11,7 +11,8 @@ import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;
 
-public class ItemChlorophyllCrystal extends ItemNormal {
+public class ItemChlorophyllCrystal extends ItemNormal
+{
 
 
     public ItemChlorophyllCrystal(int id)

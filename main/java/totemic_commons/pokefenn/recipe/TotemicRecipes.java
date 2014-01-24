@@ -5,7 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import totemic_commons.pokefenn.ModItems;
 
-public class TotemicRecipes {
+public class TotemicRecipes
+{
 
     public static void init()
     {

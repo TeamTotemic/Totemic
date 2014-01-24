@@ -3,7 +3,8 @@ package totemic_commons.pokefenn.client.rendering.item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 
-public class ItemStaffRender implements IItemRenderer {
+public class ItemStaffRender implements IItemRenderer
+{
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type)

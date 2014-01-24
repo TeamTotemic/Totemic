@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.lib;
 
-public class Strings {
+public class Strings
+{
 
 
     //Misc

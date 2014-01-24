@@ -4,7 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntityHook extends Entity {
+public class EntityHook extends Entity
+{
 
     public EntityHook(World world)
     {

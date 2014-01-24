@@ -11,7 +11,8 @@ import totemic_commons.pokefenn.lib.Strings;
  * Date: 19/11/13
  * Time: 14:58
  */
-public class BlockVenusFlyTrap extends BlockNormal {
+public class BlockVenusFlyTrap extends BlockNormal
+{
 
 
     public BlockVenusFlyTrap(int id)

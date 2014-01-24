@@ -9,7 +9,8 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketTileUpdate;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
 
-public class TileTotemic extends TileEntity {
+public class TileTotemic extends TileEntity
+{
 
     protected ForgeDirection orientation;
     protected byte state;

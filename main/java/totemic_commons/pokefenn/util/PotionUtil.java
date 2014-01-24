@@ -8,7 +8,8 @@ import net.minecraft.potion.PotionEffect;
  * Date: 08/01/14
  * Time: 22:19
  */
-public class PotionUtil {
+public class PotionUtil
+{
 
 
     public static PotionEffect potionSpeed(int potionID, int par2, int par3)

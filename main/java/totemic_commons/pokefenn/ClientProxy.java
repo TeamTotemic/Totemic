@@ -1,15 +1,18 @@
 package totemic_commons.pokefenn;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTableRenderer;
 import totemic_commons.pokefenn.network.PacketRequestEvent;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
-public class ClientProxy extends CommonProxy {
+public class ClientProxy extends CommonProxy
+{
 
 
     @Override
@@ -47,15 +50,21 @@ public class ClientProxy extends CommonProxy {
                 ((TileTotemic) tileEntity).setCustomName(customName);
             }
 
-
         }
     }
 
 
-    public void sendRequestEventPacket(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data)
+    public static void sendRequestEventPacket(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data)
     {
 
         PacketDispatcher.sendPacketToServer(PacketTypeHandler.populatePacket(new PacketRequestEvent(eventType, originX, originY, originZ, sideHit, rangeX, rangeY, rangeZ, data)));
+    }
+
+    public static void blockRendering()
+    {
+
+        RenderingRegistry.registerBlockHandler(new TileTotemTableRenderer());
+
     }
 
 

@@ -8,7 +8,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class PacketRequestEvent extends PacketTotemic {
+public class PacketRequestEvent extends PacketTotemic
+{
 
     public byte eventType;
     public int originX, originY, originZ;
@@ -72,6 +73,7 @@ public class PacketRequestEvent extends PacketTotemic {
     {
 
         EntityPlayer thePlayer = (EntityPlayer) player;
+        //Totemic.proxy.sendRequestEventPacket()
 
     }
 

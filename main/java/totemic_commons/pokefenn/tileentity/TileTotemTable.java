@@ -6,7 +6,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import totemic_commons.pokefenn.lib.Strings;
 
-public class TileTotemTable extends TileTotemic implements IInventory {
+public class TileTotemTable extends TileTotemic implements IInventory
+{
 
     private ItemStack[] inventory;
 

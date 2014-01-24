@@ -8,7 +8,8 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 
-public class ItemBucketChlorophyll extends ItemFluidContainer {
+public class ItemBucketChlorophyll extends ItemFluidContainer
+{
 
 
     public ItemBucketChlorophyll(int id)

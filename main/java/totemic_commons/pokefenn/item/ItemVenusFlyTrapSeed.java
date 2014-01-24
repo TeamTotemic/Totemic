@@ -14,7 +14,8 @@ import totemic_commons.pokefenn.lib.Strings;
  * Date: 19/11/13
  * Time: 12:30
  */
-public class ItemVenusFlyTrapSeed extends ItemNormal implements IPlantable {
+public class ItemVenusFlyTrapSeed extends ItemNormal implements IPlantable
+{
 
 
     public ItemVenusFlyTrapSeed(int id)

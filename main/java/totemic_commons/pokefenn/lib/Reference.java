@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.lib;
 
-public class Reference {
+public class Reference
+{
 
     public static final String MOD_ID = "totemic";
     public static final String MOD_NAME = "Totemic";

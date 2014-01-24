@@ -17,6 +17,7 @@ public class PacketTileUpdate extends PacketTotemic
     public byte orientation;
     public byte state;
     public String customName;
+    public byte inventoryContents;
 
     public PacketTileUpdate()
     {

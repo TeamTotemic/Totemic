@@ -19,7 +19,8 @@ import java.util.List;
  * Date: 08/12/13
  * Time: 19:19
  */
-public class ItemSubItems extends ItemMetaData {
+public class ItemSubItems extends ItemMetaData
+{
 
     private static final String[] ITEMS_NAMES = new String[]{"chlorophyllicIngot"};
 

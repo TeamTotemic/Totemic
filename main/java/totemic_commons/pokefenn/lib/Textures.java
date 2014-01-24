@@ -3,7 +3,8 @@ package totemic_commons.pokefenn.lib;
 import net.minecraft.util.ResourceLocation;
 import totemic_commons.pokefenn.util.ResourceLocationHelper;
 
-public class Textures {
+public class Textures
+{
 
     public static final String MODEL_SHEET_LOCATION = "textures/models/";
     public static final String ARMOR_SHEET_LOCATION = "textures/armor/";
@@ -21,6 +22,10 @@ public class Textures {
     public static final String TOTEM_WOOD_TOP_ICON = "totemWoodTop";
     public static final String TOTEM_WOOD_SIDE_ICON = "totemWoodSide";
 
+    public static final String TOTEM_TABLE_SIDE = "totemTableSide";
+    public static final String TOTEM_TABLE_BOTTOM = "totemTableBottom";
+    public static final String TOTEM_TABLE_TOP = "totemTableTop";
+
     //Items
     public static final String BUCKET_CHLOROPHYLL_ICON = "bucketChlorophyll";
     public static final String BOTTLE_CHLOROPHYLL_ICON = "bottleChlorophyll";
@@ -35,5 +40,6 @@ public class Textures {
 
     //Models
     public static final ResourceLocation TEXTURE_TOTEM_TABLE = ResourceLocationHelper.getResourceLocation(BLOCK_LOCATION + "totemTable.png");
+    public static final ResourceLocation TEXTURE_TOTEM_BASE = ResourceLocationHelper.getResourceLocation(BLOCK_LOCATION + "totemBase.png");
 
 }

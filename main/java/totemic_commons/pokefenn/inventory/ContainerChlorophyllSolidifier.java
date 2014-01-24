@@ -12,7 +12,8 @@ import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
  * Date: 13/11/13
  * Time: 19:23
  */
-public class ContainerChlorophyllSolidifier extends Container {
+public class ContainerChlorophyllSolidifier extends Container
+{
 
 
     private TileChlorophyllSolidifier chlorophyllSolidifier;

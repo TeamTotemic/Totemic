@@ -6,7 +6,8 @@ package totemic_commons.pokefenn.lib;
  * Date: 25/11/13
  * Time: 19:53
  */
-public class GuiIds {
+public class GuiIds
+{
 
     public static final int TOTEM_BASE = 0;
 

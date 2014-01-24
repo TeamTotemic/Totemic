@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.lib;
 
-public class ItemIds {
+public class ItemIds
+{
 
 
     public static int CHLOROPHYLL_CRYSTAL;

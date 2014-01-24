@@ -9,7 +9,8 @@ import net.minecraft.nbt.NBTTagCompound;
  * Date: 07/12/13
  * Time: 10:52
  */
-public class ItemStackNBTHelper {
+public class ItemStackNBTHelper
+{
 
     private static void initNBTTagCompound(ItemStack itemStack)
     {

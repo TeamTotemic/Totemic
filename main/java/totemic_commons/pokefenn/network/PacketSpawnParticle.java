@@ -9,7 +9,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class PacketSpawnParticle extends PacketTotemic {
+public class PacketSpawnParticle extends PacketTotemic
+{
 
 
     public String particleName;

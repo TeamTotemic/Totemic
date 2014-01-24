@@ -11,7 +11,8 @@ import net.minecraftforge.oredict.OreDictionary;
  * Date: 23/12/13
  * Time: 13:54
  */
-public class OreDictionaryTotemic {
+public class OreDictionaryTotemic
+{
 
     public static void init()
     {

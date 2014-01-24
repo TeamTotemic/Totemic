@@ -14,10 +14,10 @@ public class TotemEffectSun implements ITotemEffect
     @Override
     public void effect(TileTotemBase totemBase)
     {
-        if(!totemBase.worldObj.isRemote && totemBase.worldObj.getTotalWorldTime() % 200L == 0L)
+        if (!totemBase.worldObj.isRemote && totemBase.worldObj.getTotalWorldTime() % 200L == 0L)
         {
 
-            if(totemBase.worldObj.isRaining())
+            if (totemBase.worldObj.isRaining())
             {
                 totemBase.worldObj.toggleRain();
             }

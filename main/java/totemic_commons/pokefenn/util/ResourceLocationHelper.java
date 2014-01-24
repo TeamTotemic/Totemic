@@ -9,7 +9,8 @@ import totemic_commons.pokefenn.lib.Reference;
  * Date: 25/11/13
  * Time: 21:01
  */
-public class ResourceLocationHelper {
+public class ResourceLocationHelper
+{
 
     public static ResourceLocation getResourceLocation(String modId, String path)
     {

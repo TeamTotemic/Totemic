@@ -21,7 +21,8 @@ import java.util.logging.Logger;
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.0.0", dependencies = "required-after:rukaLib;")
 @NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
-public final class Totemic {
+public final class Totemic
+{
 
     @Instance(Reference.MOD_ID)
     public static Totemic instance;

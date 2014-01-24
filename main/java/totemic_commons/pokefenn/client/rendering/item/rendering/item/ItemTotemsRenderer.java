@@ -9,7 +9,8 @@ import net.minecraftforge.client.IItemRenderer;
  * Date: 03/01/14
  * Time: 18:02
  */
-public class ItemTotemsRenderer implements IItemRenderer {
+public class ItemTotemsRenderer implements IItemRenderer
+{
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type)

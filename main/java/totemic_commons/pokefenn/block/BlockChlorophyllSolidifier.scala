@@ -46,7 +46,6 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
             if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID != ModItems.bottleChlorophyll.itemID && heldItem.itemID != ModItems.bucketChlorophyll.itemID)
             {
 
-
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null)
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem, 1, heldItem.getItemDamage))
                 heldItem.stackSize -= 1
@@ -62,13 +61,13 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
 
                 if (heldItem.itemID == ModItems.bottleChlorophyll.itemID)
                 {
-                    tileChlorophyllSolidifier.fill(ForgeDirection.UP, new FluidStack(ModFluids.fluidChlorophyll, 1000), true)
+                    tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true)
                     heldItem.stackSize -= 1
 
                 }
                 else if (heldItem.itemID == ModItems.bucketChlorophyll.itemID)
                 {
-                    tileChlorophyllSolidifier.fill(ForgeDirection.UP, new FluidStack(ModFluids.fluidChlorophyll, 1000), true)
+                    tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true)
                     player.destroyCurrentEquippedItem()
                     player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty))
 

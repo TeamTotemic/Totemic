@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.configuration;
 
-public class ConfigurationSettings {
+public class ConfigurationSettings
+{
 
 
     public static boolean ENABLE_PARTICLE_FX;

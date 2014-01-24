@@ -14,7 +14,8 @@ import totemic_commons.pokefenn.tileentity.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.TileTotemDraining;
 import totemic_commons.pokefenn.tileentity.TileTotemTable;
 
-public class CommonProxy implements IGuiHandler {
+public class CommonProxy implements IGuiHandler
+{
 
 
     public void registerTileEntities()

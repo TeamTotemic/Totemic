@@ -20,7 +20,8 @@ import totemic_commons.pokefenn.tileentity.TileTotemBase;
 
 
 @SideOnly(Side.CLIENT)
-public class GuiTotemBase extends GuiContainer {
+public class GuiTotemBase extends GuiContainer
+{
 
     private TileTotemBase tileTotemBase;
 

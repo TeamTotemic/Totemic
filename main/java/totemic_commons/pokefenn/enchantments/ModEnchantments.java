@@ -6,5 +6,6 @@ package totemic_commons.pokefenn.enchantments;
  * Date: 04/12/13
  * Time: 17:18
  */
-public final class ModEnchantments {
+public final class ModEnchantments
+{
 }

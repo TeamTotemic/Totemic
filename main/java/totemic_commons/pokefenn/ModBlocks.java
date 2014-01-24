@@ -6,7 +6,8 @@ import totemic_commons.pokefenn.block.*;
 import totemic_commons.pokefenn.lib.BlockIds;
 import totemic_commons.pokefenn.lib.Strings;
 
-public final class ModBlocks {
+public final class ModBlocks
+{
 
 
     public static Block totemBase;

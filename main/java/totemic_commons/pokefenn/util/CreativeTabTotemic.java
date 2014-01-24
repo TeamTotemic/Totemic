@@ -5,7 +5,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import totemic_commons.pokefenn.ModItems;
 
-public class CreativeTabTotemic extends CreativeTabs {
+public class CreativeTabTotemic extends CreativeTabs
+{
 
 
     public CreativeTabTotemic(int par1, String par2Str)

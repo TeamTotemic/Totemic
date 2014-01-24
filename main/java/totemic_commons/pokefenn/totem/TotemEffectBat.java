@@ -14,6 +14,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class TotemEffectBat implements ITotemEffect
 {
+
     @Override
     public void effect(TileTotemBase totemBase)
     {

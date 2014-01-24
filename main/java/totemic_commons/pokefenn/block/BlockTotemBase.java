@@ -16,7 +16,8 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
-public class BlockTotemBase extends BlockTile {
+public class BlockTotemBase extends BlockTile
+{
 
     public BlockTotemBase(int id)
     {

@@ -8,7 +8,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class PacketTotemic {
+public class PacketTotemic
+{
 
 
     public PacketTypeHandler packetType;

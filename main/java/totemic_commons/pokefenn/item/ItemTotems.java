@@ -19,7 +19,8 @@ import java.util.List;
  * Date: 28/11/13
  * Time: 18:32
  */
-public class ItemTotems extends ItemNormal {
+public class ItemTotems extends ItemNormal
+{
 
     private static final String[] TOTEM_NAMES = new String[]{"Cactus", "Horse", "QuartzBlock", "Bat", "Sand"};
 

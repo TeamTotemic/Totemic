@@ -12,7 +12,8 @@ import totemic_commons.pokefenn.tileentity.TileTotemDraining;
  * Date: 14/01/14
  * Time: 11:30
  */
-public class ContainerTotemDraining extends Container {
+public class ContainerTotemDraining extends Container
+{
 
     private TileTotemDraining totemDraining;
 

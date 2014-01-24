@@ -9,7 +9,8 @@ import net.minecraft.tileentity.TileEntity;
  * Date: 03/01/14
  * Time: 17:58
  */
-public class TileChlorophyllSolidifierRenderer extends TileEntitySpecialRenderer {
+public class TileChlorophyllSolidifierRenderer extends TileEntitySpecialRenderer
+{
 
 
     @Override

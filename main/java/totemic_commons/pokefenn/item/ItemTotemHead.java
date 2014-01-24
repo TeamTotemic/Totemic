@@ -5,7 +5,8 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 
-public class ItemTotemHead extends ItemNormal {
+public class ItemTotemHead extends ItemNormal
+{
 
 
     public ItemTotemHead(int id)

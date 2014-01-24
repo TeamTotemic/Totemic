@@ -12,7 +12,8 @@ import totemic_commons.pokefenn.ModItems;
  * Date: 09/12/13
  * Time: 14:09
  */
-public class FluidContainers {
+public class FluidContainers
+{
 
     public static void init()
     {

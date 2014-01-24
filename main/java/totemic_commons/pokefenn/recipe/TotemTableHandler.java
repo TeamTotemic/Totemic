@@ -13,7 +13,8 @@ import java.util.List;
  * Date: 17/01/14
  * Time: 10:44
  */
-public class TotemTableHandler {
+public class TotemTableHandler
+{
 
     public static List<TotemTableHandler> totemTableRecipe = new ArrayList<TotemTableHandler>();
 
@@ -25,7 +26,7 @@ public class TotemTableHandler {
         totemTableRecipe.add(new TotemTableHandler(new ItemStack(ModItems.totemWhittlingKnife, 1, 2), new ItemStack(ModItems.totems, 1, 1), new ItemStack(ModItems.totems, 1, 2)));
         totemTableRecipe.add(new TotemTableHandler(new ItemStack(ModItems.totemWhittlingKnife, 1, 2), new ItemStack(ModItems.totems, 1, 2), new ItemStack(ModItems.totems, 1, 3)));
         totemTableRecipe.add(new TotemTableHandler(new ItemStack(ModItems.totemWhittlingKnife, 1, 2), new ItemStack(ModItems.totems, 1, 3), new ItemStack(ModItems.totems, 1, 4)));
-        totemTableRecipe.add(new TotemTableHandler(new ItemStack(ModItems.totemWhittlingKnife, 1, 2), new ItemStack(ModItems.totems, 1, 4), new ItemStack(ModItems.totems, 1, 5)));
+        //totemTableRecipe.add(new TotemTableHandler(new ItemStack(ModItems.totemWhittlingKnife, 1, 2), new ItemStack(ModItems.totems, 1, 4), new ItemStack(ModItems.totems, 1, 5)));
     }
 
     private final ItemStack heldItemSource;

@@ -11,7 +11,8 @@ import totemic_commons.pokefenn.fluid.ModFluids;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChlorophyllSolidifierRecipes {
+public class ChlorophyllSolidifierRecipes
+{
 
     public static List<ChlorophyllSolidifierRecipes> solidifierRecipe = new ArrayList<ChlorophyllSolidifierRecipes>();
 

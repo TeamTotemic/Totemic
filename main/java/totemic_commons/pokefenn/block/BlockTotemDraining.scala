@@ -13,6 +13,9 @@ import net.minecraft.inventory.IInventory
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.nbt.NBTTagCompound
 import java.util.Random
+import cpw.mods.fml.common.network.PacketDispatcher
+import totemic_commons.pokefenn.network.{PacketTileWithItemUpdate, PacketTileOneSlotNoGui, PacketTileUpdate, PacketTypeHandler}
+import net.minecraftforge.common.ForgeDirection
 
 /**
  * Created with IntelliJ IDEA.
@@ -40,6 +43,8 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
 
         val SLOT_ONE: Int = TileTotemDraining.SLOT_ONE
 
+        val confirmation: Byte = 1
+
         if (tileTotemDraining != null && !world.isRemote && player != null)
         {
 
@@ -63,7 +68,8 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
         }
         world.markBlockForUpdate(x, y, z)
 
-        true
+
+        !player.isSneaking
 
     }
 

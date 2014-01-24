@@ -13,17 +13,21 @@ import java.io.IOException;
  * Date: 21/01/14
  * Time: 21:57
  */
-public class PacketTileChlorophyllSolidifier extends PacketTotemic
+public class PacketTileOneSlotNoGui extends PacketTotemic
 {
-    public PacketTileChlorophyllSolidifier()
+    public boolean confirmation;
+
+    public PacketTileOneSlotNoGui(boolean confirmation)
     {
-        super(PacketTypeHandler.TILE_CHLOROPHYLL_SOLIDIFIER, false);
+        super(PacketTypeHandler.TILE_ONE_SLOT_NO_GUI, false);
+        this.confirmation = confirmation;
     }
 
     @Override
     public void writeData(DataOutputStream data) throws IOException
     {
         System.out.println("writing data");
+        data.writeBoolean(confirmation);
 
     }
 
@@ -31,6 +35,7 @@ public class PacketTileChlorophyllSolidifier extends PacketTotemic
     public void readData(DataInputStream data) throws IOException
     {
         System.out.println("reading data");
+        confirmation = data.readBoolean();
 
     }
 

@@ -10,7 +10,8 @@ import net.minecraft.item.ItemStack;
  * Date: 04/12/13
  * Time: 17:18
  */
-public class EnchantmentTotemic extends Enchantment {
+public class EnchantmentTotemic extends Enchantment
+{
 
     public EnchantmentTotemic(int par1, int par2, EnumEnchantmentType par3EnumEnchantmentType)
     {

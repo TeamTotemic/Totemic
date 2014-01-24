@@ -7,7 +7,8 @@ import totemic_commons.pokefenn.lib.Reference;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
-public enum PacketTypeHandler {
+public enum PacketTypeHandler
+{
 
 
     TILE(PacketTileUpdate.class),
@@ -15,7 +16,7 @@ public enum PacketTypeHandler {
     SPAWN_PARTICLE(PacketSpawnParticle.class),
     ITEM_UPDATE(PacketItemUpdate.class),
     TILE_WITH_ITEM(PacketTileWithItemUpdate.class),
-    TILE_CHLOROPHYLL_SOLIDIFIER(PacketTileChlorophyllSolidifier.class);
+    TILE_ONE_SLOT_NO_GUI(PacketTileOneSlotNoGui.class);
 
     private Class<? extends PacketTotemic> clazz;
 

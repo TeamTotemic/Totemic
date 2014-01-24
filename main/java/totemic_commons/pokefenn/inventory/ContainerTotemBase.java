@@ -7,7 +7,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.tileentity.TileTotemBase;
 
-public class ContainerTotemBase extends Container {
+public class ContainerTotemBase extends Container
+{
 
     private final int PLAYER_INVENTORY_ROWS = 3;
     private final int PLAYER_INVENTORY_COLUMNS = 9;

@@ -8,7 +8,8 @@ import net.minecraft.item.ItemStack;
  * Date: 03/01/14
  * Time: 20:37
  */
-public class ItemStackUtility {
+public class ItemStackUtility
+{
 
     public static int itemIDFromItemstack(ItemStack itemStack)
     {

@@ -53,6 +53,9 @@ object Init {
         //Init tile entities into the game
         Totemic.proxy.registerTileEntities()
 
+        //Init's the Tile entity and block renderers
+        ClientProxy.blockRendering()
+
         //Makes the recipes of Chlorophyll enter the game
         ChlorophyllSolidifierRecipes.addRecipes()
 

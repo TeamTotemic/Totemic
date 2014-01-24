@@ -5,7 +5,8 @@ import totemic_commons.pokefenn.api.IRecipeHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeHandler {
+public class RecipeHandler
+{
 
     private static List<IRecipeHandler> recipeHandlers = new ArrayList();
 

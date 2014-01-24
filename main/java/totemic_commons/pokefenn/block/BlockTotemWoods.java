@@ -16,7 +16,8 @@ import totemic_commons.pokefenn.lib.Textures;
  * Date: 09/12/13
  * Time: 14:35
  */
-public class BlockTotemWoods extends BlockNormal {
+public class BlockTotemWoods extends BlockNormal
+{
 
 
     public BlockTotemWoods(int id)

@@ -10,7 +10,8 @@ import totemic_commons.pokefenn.lib.Strings;
 import java.io.File;
 import java.util.logging.Level;
 
-public class ConfigurationHandler {
+public class ConfigurationHandler
+{
 
 
     public static Configuration configuration;

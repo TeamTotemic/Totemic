@@ -291,7 +291,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
         if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
 
-            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_QUARTZ >= 0 )
+            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_QUARTZ >= 0)
             {
 
                 for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
