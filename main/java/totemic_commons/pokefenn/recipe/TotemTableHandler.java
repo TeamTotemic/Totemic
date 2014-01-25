@@ -43,12 +43,12 @@ public class TotemTableHandler
 
     }
 
-    public ItemStack getInput()
+    public ItemStack getInputHeldItem()
     {
         return this.heldItemSource;
     }
 
-    public ItemStack getInput2()
+    public ItemStack getInputInventory()
     {
         return this.inventorySource;
     }

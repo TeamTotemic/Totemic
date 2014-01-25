@@ -10,6 +10,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import net.minecraft.creativetab.CreativeTabs;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
+import totemic_commons.pokefenn.lib.PacketStrings;
 import totemic_commons.pokefenn.lib.Reference;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.util.CreativeTabTotemic;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.0.0", dependencies = "required-after:rukaLib;")
-@NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
+@NetworkMod(channels = {Reference.CHANNEL_NAME, PacketStrings.CHANNEL_TOTEM_BASE, PacketStrings.CHANNEL_CHLOROPHYLL_SOLIDIFIER, PacketStrings.CHANNEL_TOTEM_DRAINING, PacketStrings.CHANNEL_TOTEM_TABLE}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 public final class Totemic
 {

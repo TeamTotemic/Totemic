@@ -13,9 +13,6 @@ import net.minecraft.inventory.IInventory
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.nbt.NBTTagCompound
 import java.util.Random
-import cpw.mods.fml.common.network.PacketDispatcher
-import totemic_commons.pokefenn.network.{PacketTileWithItemUpdate, PacketTileOneSlotNoGui, PacketTileUpdate, PacketTypeHandler}
-import net.minecraftforge.common.ForgeDirection
 
 /**
  * Created with IntelliJ IDEA.
@@ -43,8 +40,6 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
 
         val SLOT_ONE: Int = TileTotemDraining.SLOT_ONE
 
-        val confirmation: Byte = 1
-
         if (tileTotemDraining != null && !world.isRemote && player != null)
         {
 
@@ -52,6 +47,7 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
             {
                 tileTotemDraining.setInventorySlotContents(SLOT_ONE, heldItem)
                 player.destroyCurrentEquippedItem()
+
 
             } else if (tileTotemDraining.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
@@ -65,8 +61,10 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
 
             }
 
+            world.markBlockForUpdate(x, y, z)
+
         }
-        world.markBlockForUpdate(x, y, z)
+
 
 
         !player.isSneaking
@@ -110,7 +108,9 @@ class BlockTotemDraining(id: Int) extends BlockTile(id, Material.wood) {
     }
 
     override def breakBlock(world: World, x: Int, y: Int, z: Int, id: Int, meta: Int) {
+
         dropInventory(world, x, y, z)
+
         if (world.getBlockTileEntity(x, y, z).isInstanceOf[TileChlorophyllSolidifier])
         {
             world.markBlockForUpdate(x, y, z)

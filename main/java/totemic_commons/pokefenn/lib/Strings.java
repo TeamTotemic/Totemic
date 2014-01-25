@@ -14,7 +14,6 @@ public class Strings
     public static final String BIG_BAD_TOTEM_BASE_NAME = "bigBadTotemBase";
     public static final String BIG_BAD_TOTEM_HEAD_NAME = "bigBadTotemHead";
     public static final String CHLOROPHYLL_SOLIDIFIER_NAME = "chlorophyllSolidifier";
-    public static final String PLANT_SHREDDER_NAME = "plantShredder";
     public static final String VENUS_FLY_TRAP_NAME = "venusFlyTrap";
     public static final String TOTEM_WOODS_NAME = "totemWoods";
     public static final String TOTEM_DRAINING_NAME = "totemDraining";
@@ -28,7 +27,6 @@ public class Strings
     public static final String BUCKET_CHLOROPHYLL_NAME = "bucketChlorophyll";
     public static final String VENUS_FLY_TRAP_SEED_NAME = "venusFlyTrapSeed";
     public static final String TOTEMS_NAME = "totems";
-    public static final String PAINT_BRUSH_NAME = "paintBrush";
     public static final String SUB_ITEMS_NAME = "subItems";
     public static final String BOTTLE_CHLOROPHYLL_NAME = "bottleChlorophyll";
 

@@ -47,7 +47,7 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
             {
 
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null)
-                tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem, 1, heldItem.getItemDamage))
+                tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage))
                 heldItem.stackSize -= 1
 
             }
@@ -55,6 +55,7 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
             {
                 player.inventory.addItemStackToInventory(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE))
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null)
+
 
             } else if (heldItem != null)
             {
@@ -75,16 +76,11 @@ class BlockChlorophyllSolidifier(id: Int) extends BlockTile(id, Material.wood) {
 
             }
 
+            world.markBlockForUpdate(x, y, z)
+
         }
 
-        if (player.isSneaking)
-        {
-            false
-        }
-        else
-        {
-            true
-        }
+        !player.isSneaking()
     }
 
     override def onBlockPlacedBy(world: World, x: Int, y: Int, z: Int, entityLiving: EntityLivingBase, itemStack: ItemStack) {

@@ -4,10 +4,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
 
 /**
@@ -49,6 +51,12 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     public ItemStack getStackInSlot(int slotIndex)
     {
         return inventory[slotIndex];
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        return PacketHandler.getPacket(this);
     }
 
     @Override
@@ -208,26 +216,14 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid)
     {
-        if (fluid == ModFluids.fluidChlorophyll && tank.getFluidAmount() < tank.getCapacity() && !(tank.getCapacity() + FluidContainerRegistry.BUCKET_VOLUME > tank.getCapacity()))
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return tank.getFluidAmount() < tank.getCapacity() && !(tank.getFluidAmount() + FluidContainerRegistry.BUCKET_VOLUME < tank.getCapacity());
 
     }
 
     @Override
     public boolean canDrain(ForgeDirection from, Fluid fluid)
     {
-        if (fluid == ModFluids.fluidChlorophyll && tank.getFluidAmount() > 0 && tank.getFluidAmount() - FluidContainerRegistry.BUCKET_VOLUME > 0)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return fluid == ModFluids.fluidChlorophyll && tank.getFluidAmount() > 0 && tank.getFluidAmount() - FluidContainerRegistry.BUCKET_VOLUME > 0;
     }
 
     @Override

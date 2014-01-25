@@ -75,7 +75,7 @@ public class BlockTotemTable extends BlockTile
                 {
                     //System.out.println("entered for loop");
 
-                    if (ItemStack.areItemStackTagsEqual(totemTableHandler.getInput2(), tileTotemTable.getStackInSlot(SLOT_ONE)) && ItemStack.areItemStacksEqual(heldItem, totemTableHandler.getInput()) && tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem != null)
+                    if (ItemStack.areItemStackTagsEqual(totemTableHandler.getInputInventory(), tileTotemTable.getStackInSlot(SLOT_ONE)) && ItemStack.areItemStacksEqual(heldItem, totemTableHandler.getInputHeldItem()) && tileTotemTable.getStackInSlot(SLOT_ONE) != null)
                     {
 
                         //System.out.println("entered if for for loop");
@@ -95,8 +95,10 @@ public class BlockTotemTable extends BlockTile
                 heldItem.stackSize--;
                 tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
 
+
             }
 
+            world.markBlockForUpdate(x, y, z);
 
         }
 
@@ -133,7 +135,7 @@ public class BlockTotemTable extends BlockTile
     @SideOnly(Side.CLIENT)
     private Icon sideIcon;
     @SideOnly(Side.CLIENT)
-    private Icon frontIcon;
+    private Icon bottomIcon;
 
     @SideOnly(Side.CLIENT)
     @Override
@@ -141,7 +143,7 @@ public class BlockTotemTable extends BlockTile
     {
         topIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_TOP);
         sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_SIDE);
-        frontIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_BOTTOM);
+        bottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_BOTTOM);
 
     }
 
@@ -149,21 +151,16 @@ public class BlockTotemTable extends BlockTile
     @Override
     public Icon getIcon(int side, int meta)
     {
-        if (side == 0)
+        switch (side)
         {
-            return topIcon;
-        } else if (side == 1)
-        {
-            return topIcon;
-        } else if (side == 3)
-        {
-            return frontIcon;
-        } else
-        {
-            return sideIcon;
-
-
+            case 0:
+                return bottomIcon;
+            case 1:
+                return topIcon;
+            default:
+                return sideIcon;
         }
+
     }
 
     @Override
@@ -203,7 +200,7 @@ public class BlockTotemTable extends BlockTile
 
         dropInventory(world, x, y, z);
 
-        if (world.getBlockTileEntity(x, y, z) instanceof TileChlorophyllSolidifier)
+        if (world.getBlockTileEntity(x, y, z) instanceof TileTotemTable)
         {
             world.markBlockForUpdate(x, y, z);
             world.updateAllLightTypes(x, y, z);

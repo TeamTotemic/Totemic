@@ -7,11 +7,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 public class TileTotemBase extends TileTotemic implements IInventory
@@ -61,6 +63,12 @@ public class TileTotemBase extends TileTotemic implements IInventory
         return inventory[slotIndex];
 
 
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        return PacketHandler.getPacket(this);
     }
 
     @Override
@@ -196,20 +204,6 @@ public class TileTotemBase extends TileTotemic implements IInventory
         }
         nbtTagCompound.setTag("Items", tagList);
     }
-    /*
-
-    @Override
-    public Packet getDescriptionPacket() {
-        NBTTagCompound tag = new NBTTagCompound();
-        writeToNBT(tag);
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
-    }
-
-    @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData packet) {
-        readFromNBT(packet.data);
-    }
-    */
 
 
     public void updateEntity()
