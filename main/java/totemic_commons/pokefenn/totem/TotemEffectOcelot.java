@@ -20,6 +20,8 @@ public class TotemEffectOcelot implements ITotemEffect
     @Override
     public void effect(TileTotemBase totemBase)
     {
+
+
         int SLOT_TWO = TileTotemBase.SLOT_TWO;
 
         if (totemBase.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
@@ -32,10 +34,14 @@ public class TotemEffectOcelot implements ITotemEffect
                 {
                     if (entity instanceof EntityCreeper)
                     {
-                        ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d" , "bq");
+                        int i = (Integer) ReflectionHelper.getPrivateValue(EntityCreeper.class, (EntityCreeper) entity, "timeSinceIgnited", "field_70833_d", "bq");
 
-                        //((EntityCreeper) entity).timeSinceIgnited = 10;
+                        if (i > 24)
+                        {
 
+                            ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
+
+                        }
                     }
                 }
 

@@ -34,7 +34,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
     public static int DECREASE_HORSE = 2;
     public static int DECREASE_BAT = 50;
     public static int DECREASE_BLAZE = 4;
-    public static int DECREASE_OCELOT = 10;
+    public static int DECREASE_OCELOT = 5;
     public static int DECREASE_SQUID = 2;
 
     //boolean isChlorophyll = this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID;
@@ -230,7 +230,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
                 this.effectSun();
             } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 5)) && this.worldObj.getTotalWorldTime() % 80L == 0L)
             {
-
+                System.out.println("found itemstack of blaze");
                 this.effectBlaze();
             } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 6)) && this.worldObj.getTotalWorldTime() % 5L == 0L)
             {
@@ -388,20 +388,16 @@ public class TileTotemBase extends TileTotemic implements IInventory
     {
         if (this.getStackInSlot(SLOT_TWO) != null)
         {
-
             if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
-
                 if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
                 {
-
                     for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
                     {
-                        if (!(entity instanceof EntityItem) && entity instanceof EntityPlayer)
+                        if (entity instanceof EntityPlayer)
                         {
-                            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 100, 0));
+                            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 10, 10));
                             this.chlorophyllCrystalHandler(DECREASE_BLAZE);
-
                         }
                     }
                 }
@@ -424,10 +420,14 @@ public class TileTotemBase extends TileTotemic implements IInventory
                     {
                         if (entity instanceof EntityCreeper)
                         {
-                            ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
+                            int i = (Integer) ReflectionHelper.getPrivateValue(EntityCreeper.class, (EntityCreeper) entity, "timeSinceIgnited", "field_70833_d", "bq");
 
-                            this.chlorophyllCrystalHandler(DECREASE_OCELOT);
+                            if (i > 24)
+                            {
+                                ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
 
+                                this.chlorophyllCrystalHandler(DECREASE_OCELOT);
+                            }
                         }
                     }
                 }
@@ -448,6 +448,8 @@ public class TileTotemBase extends TileTotemic implements IInventory
                     if (entity instanceof EntityPlayer)
                     {
                         ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 100, 0));
+
+                        this.chlorophyllCrystalHandler(DECREASE_SQUID);
 
                     }
                 }

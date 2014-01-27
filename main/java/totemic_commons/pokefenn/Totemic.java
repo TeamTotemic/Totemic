@@ -18,8 +18,8 @@ import java.io.File;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.0.0", dependencies = "required-after:rukaLib;")
-@NetworkMod(channels = {Reference.CHANNEL_NAME/*, PacketStrings.CHANNEL_TOTEM_BASE, PacketStrings.CHANNEL_CHLOROPHYLL_SOLIDIFIER, PacketStrings.CHANNEL_TOTEM_DRAINING, PacketStrings.CHANNEL_TOTEM_TABLE*/}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.0.1", dependencies = "required-after:rukaLib;")
+@NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 public final class Totemic
 {
