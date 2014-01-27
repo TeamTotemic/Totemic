@@ -39,7 +39,6 @@ public class ItemBucketChlorophyll extends ItemFluidContainer
 
         itemIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.BUCKET_CHLOROPHYLL_ICON);
 
-
     }
 
 }

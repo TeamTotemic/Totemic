@@ -4,12 +4,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
 
 /**
@@ -29,10 +27,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
     protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 
-    protected int processTime;
-
-    protected int currentProcessingTime;
-
     public TileChlorophyllSolidifier()
     {
         inventory = new ItemStack[INVENTORY_SIZE];
@@ -51,12 +45,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     public ItemStack getStackInSlot(int slotIndex)
     {
         return inventory[slotIndex];
-    }
-
-    @Override
-    public Packet getDescriptionPacket()
-    {
-        return PacketHandler.getPacket(this);
     }
 
     @Override
@@ -223,7 +211,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     @Override
     public boolean canDrain(ForgeDirection from, Fluid fluid)
     {
-        return fluid == ModFluids.fluidChlorophyll && tank.getFluidAmount() > 0 && tank.getFluidAmount() - FluidContainerRegistry.BUCKET_VOLUME > 0;
+        return tank.getFluidAmount() > 0 && tank.getFluidAmount() - FluidContainerRegistry.BUCKET_VOLUME > 0;
     }
 
     @Override
@@ -238,7 +226,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     {
 
         super.updateEntity();
-        if (this.worldObj.getTotalWorldTime() % 100L == 0L && !worldObj.isRemote)
+        if (this.worldObj.getTotalWorldTime() % 200L == 0L && !worldObj.isRemote)
         {
 
             for (ChlorophyllSolidifierRecipes solidifier : ChlorophyllSolidifierRecipes.solidifierRecipe)
@@ -246,7 +234,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
                 //System.out.println("forloop");
                 if (ItemStack.areItemStacksEqual(this.getStackInSlot(SLOT_ONE), solidifier.getInput()) && this.canDrain(ForgeDirection.UP, ModFluids.fluidChlorophyll))
                 {
-                    System.out.println("going into if");
+                    //System.out.println("going into if");
 
                     this.setInventorySlotContents(SLOT_ONE, solidifier.getOutput());
                     this.drain(ForgeDirection.DOWN, solidifier.getFluidStack(), true);
@@ -257,10 +245,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
         }
 
-        if (this.worldObj.getTotalWorldTime() % 40L == 0L && !worldObj.isRemote)
-        {
-            System.out.println(tank.getFluidAmount());
-        }
         super.updateEntity();
 
 

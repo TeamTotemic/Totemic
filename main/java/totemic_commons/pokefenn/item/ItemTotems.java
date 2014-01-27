@@ -22,7 +22,7 @@ import java.util.List;
 public class ItemTotems extends ItemNormal
 {
 
-    private static final String[] TOTEM_NAMES = new String[]{"Cactus", "Horse", "QuartzBlock", "Bat", "Sand"};
+    public static final String[] TOTEM_NAMES = new String[]{"Cactus", "Horse", "Hopper", "Bat", "Sun", "Blaze", "Ocelot", "Squid"};
 
     @SideOnly(Side.CLIENT)
     private Icon[] icons;

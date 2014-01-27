@@ -2,9 +2,12 @@ package totemic_commons.pokefenn.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.PacketTileUpdate;
+import totemic_commons.pokefenn.network.PacketTypeHandler;
 
 public class TileTotemic extends TileEntity
 {
@@ -36,6 +39,12 @@ public class TileTotemic extends TileEntity
     public void setOrientation(int orientation)
     {
         this.orientation = ForgeDirection.getOrientation(orientation);
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        return PacketTypeHandler.populatePacket(new PacketTileUpdate(xCoord, yCoord, zCoord, orientation, state, customName));
     }
 
     public short getState()

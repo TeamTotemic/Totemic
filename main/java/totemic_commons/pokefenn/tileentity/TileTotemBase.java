@@ -1,19 +1,21 @@
 package totemic_commons.pokefenn.tileentity;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityFallingSand;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 public class TileTotemBase extends TileTotemic implements IInventory
@@ -27,10 +29,13 @@ public class TileTotemBase extends TileTotemic implements IInventory
     public static final int SLOT_TWO = 1;
 
     public static int DECREASE_CACTUS = 1;
-    public static int DECREASE_SAND = 50;
-    public static int DECREASE_QUARTZ = 1;
+    public static int DECREASE_SUN = 100;
+    public static int DECREASE_HOPPER = 1;
     public static int DECREASE_HORSE = 2;
     public static int DECREASE_BAT = 50;
+    public static int DECREASE_BLAZE = 4;
+    public static int DECREASE_OCELOT = 10;
+    public static int DECREASE_SQUID = 2;
 
     //boolean isChlorophyll = this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID;
 
@@ -63,12 +68,6 @@ public class TileTotemBase extends TileTotemic implements IInventory
         return inventory[slotIndex];
 
 
-    }
-
-    @Override
-    public Packet getDescriptionPacket()
-    {
-        return PacketHandler.getPacket(this);
     }
 
     @Override
@@ -153,13 +152,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
-        if (itemStack.itemID == ModItems.chlorophyllCrystal.itemID && i == SLOT_TWO || itemStack.itemID == ModItems.totems.itemID && i == SLOT_ONE)
-        {
-            return true;
-        } else
-        {
-            return false;
-        }
+        return itemStack.itemID == ModItems.chlorophyllCrystal.itemID && i == SLOT_TWO || itemStack.itemID == ModItems.totems.itemID && i == SLOT_ONE;
 
     }
 
@@ -214,32 +207,39 @@ public class TileTotemBase extends TileTotemic implements IInventory
         {
             //Each if needs to have a getWorldTime :)
 
-
             //Checks to see what is in the current itemstack and runs code depending on what.
-            if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems)) && this.worldObj.getTotalWorldTime() % 20 == 0 && this.getStackInSlot(SLOT_TWO) != null)
+            if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems)) && this.worldObj.getTotalWorldTime() % 20 == 0)
             {
 
                 this.effectCactus();
-
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 1)) && this.worldObj.getTotalWorldTime() % 80L == 0L && this.getStackInSlot(SLOT_TWO) != null)
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 1)) && this.worldObj.getTotalWorldTime() % 80L == 0L)
             {
 
                 this.effectHorse();
-
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 2)) && this.worldObj.getTotalWorldTime() % 10L == 0L && this.getStackInSlot(SLOT_TWO) != null)
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 2)) && this.worldObj.getTotalWorldTime() % 10L == 0L)
             {
 
-                this.effectQuartzBlock();
-
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)) && this.worldObj.getTotalWorldTime() % 80L == 0L && this.getStackInSlot(SLOT_TWO) != null)
+                this.effectHopper();
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 3)) && this.worldObj.getTotalWorldTime() % 80L == 0L)
             {
 
                 this.effectBat();
-
-            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 4)) && this.worldObj.getTotalWorldTime() % 200L == 0L && this.getStackInSlot(SLOT_TWO) != null)
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 4)) && this.worldObj.getTotalWorldTime() % 200L == 0L)
             {
 
-                this.effectSand();
+                this.effectSun();
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 5)) && this.worldObj.getTotalWorldTime() % 80L == 0L)
+            {
+
+                this.effectBlaze();
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 6)) && this.worldObj.getTotalWorldTime() % 5L == 0L)
+            {
+
+                this.effectOcelot();
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 7)) && this.worldObj.getTotalWorldTime() % 80L == 0L)
+            {
+
+                this.effectSquid();
             }
 
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -258,108 +258,202 @@ public class TileTotemBase extends TileTotemic implements IInventory
 
     protected void effectCactus()
     {
-        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        if (this.getStackInSlot(SLOT_TWO) != null)
         {
 
-            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_CACTUS >= 0)
+            if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
                 {
-                    if (!(entity instanceof EntityItem))
-                    {
-                        entity.attackEntityFrom(DamageSource.generic, 4);
-                        this.chlorophyllCrystalHandler(DECREASE_CACTUS);
-                    }
-                }
 
+                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                    {
+                        if (!(entity instanceof EntityItem))
+                        {
+                            if (!(entity instanceof EntityPlayer) && (!(entity instanceof EntityFallingSand)))
+                            {
+
+                                entity.attackEntityFrom(DamageSource.generic, 4);
+                                this.chlorophyllCrystalHandler(DECREASE_CACTUS);
+                            }
+
+                        }
+                    }
+
+                }
             }
+
         }
 
     }
 
-    protected void effectQuartzBlock()
+    protected void effectHopper()
     {
         Block blockUnder = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord - 1, this.zCoord)];
 
-        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        if (this.getStackInSlot(SLOT_TWO) != null)
         {
 
-            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_QUARTZ >= 0)
+            if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
                 {
-                    if (entity instanceof EntityItem)
+
+                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
                     {
-
-                        if (blockUnder instanceof IInventory)
+                        if (entity instanceof EntityItem)
                         {
-                            //((IInventory) blockUnder).setInventorySlotContents((1 , ((EntityItem) entity).getEntityItem());
-                            entity.setDead();
-                            this.chlorophyllCrystalHandler(DECREASE_QUARTZ);
 
+                            if (blockUnder instanceof IInventory)
+                            {
+                                //((IInventory) blockUnder).setInventorySlotContents((1 , ((EntityItem) entity).getEntityItem());
+                                entity.setDead();
+                                this.chlorophyllCrystalHandler(DECREASE_HOPPER);
+
+                            }
                         }
-
-
                     }
                 }
-
             }
-
         }
     }
 
     protected void effectBat()
     {
-        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        if (this.getStackInSlot(SLOT_TWO) != null)
         {
 
-            if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10) != null && !this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.isFlying && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_BAT >= 0)
+            if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.allowFlying = true;
-                this.chlorophyllCrystalHandler(DECREASE_BAT);
+                if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10) != null && !this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.isFlying)
+                {
 
+                    this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.allowFlying = true;
+                    this.chlorophyllCrystalHandler(DECREASE_BAT);
+
+                }
             }
         }
-
     }
-
 
     protected void effectHorse()
     {
-        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        if (this.getStackInSlot(SLOT_TWO) != null)
         {
 
-            if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 20) != null && this.getStackInSlot(SLOT_TWO).getItemDamage() + DECREASE_HORSE > 0)
+            if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 20).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 100, 0));
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
+                {
 
-                this.chlorophyllCrystalHandler(DECREASE_HORSE);
+                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                    {
+                        if (!(entity instanceof EntityItem) && entity instanceof EntityPlayer)
+                        {
+                            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 100, 0));
 
+                        }
+                    }
+                }
             }
         }
     }
 
 
-    protected void effectSand()
+    protected void effectSun()
+    {
+        if (this.getStackInSlot(SLOT_TWO) != null)
+        {
+
+            if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+            {
+
+                if (this.worldObj.isRaining())
+                {
+
+                    this.worldObj.toggleRain();
+
+                    this.chlorophyllCrystalHandler(DECREASE_SUN);
+
+                }
+            }
+        }
+    }
+
+    protected void effectBlaze()
+    {
+        if (this.getStackInSlot(SLOT_TWO) != null)
+        {
+
+            if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+            {
+
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
+                {
+
+                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                    {
+                        if (!(entity instanceof EntityItem) && entity instanceof EntityPlayer)
+                        {
+                            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 100, 0));
+                            this.chlorophyllCrystalHandler(DECREASE_BLAZE);
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    protected void effectOcelot()
+    {
+        if (this.getStackInSlot(SLOT_TWO) != null)
+        {
+
+            if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+            {
+
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
+                {
+
+                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                    {
+                        if (entity instanceof EntityCreeper)
+                        {
+                            ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
+
+                            this.chlorophyllCrystalHandler(DECREASE_OCELOT);
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    protected void effectSquid()
     {
         if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
 
-            if (this.worldObj.isRaining() && this.getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_SAND >= 0)
+            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
             {
 
-                this.worldObj.toggleRain();
+                for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                {
+                    if (entity instanceof EntityPlayer)
+                    {
+                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 100, 0));
 
-                this.chlorophyllCrystalHandler(DECREASE_SAND);
+                    }
+                }
 
             }
-
         }
-
     }
 
     protected void chlorophyllCrystalHandler(int durabilityDecrease)

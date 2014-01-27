@@ -5,14 +5,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.client.ParticleUtil;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.Particles;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
 
 import java.util.Random;
 
@@ -51,12 +49,6 @@ public class TileTotemDraining extends TileTotemic implements IInventory
         return inventory[slotIndex];
 
 
-    }
-
-    @Override
-    public Packet getDescriptionPacket()
-    {
-        return PacketHandler.getPacket(this);
     }
 
     @Override

@@ -4,9 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
 
 public class TileTotemTable extends TileTotemic implements IInventory
 {
@@ -36,12 +34,6 @@ public class TileTotemTable extends TileTotemic implements IInventory
     {
         return inventory[slotIndex];
 
-    }
-
-    @Override
-    public Packet getDescriptionPacket()
-    {
-        return PacketHandler.getPacket(this);
     }
 
     @Override

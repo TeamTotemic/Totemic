@@ -12,4 +12,6 @@ public class ConfigurationSettings
     public static final String TOTEM_DRAINING_CONFIGNAME = "totemOfDrainingRange(unstable)";
     public static final int TOTEM_DRAINING_DEFAULT = 8;
 
+    public static boolean ENABLE_TEMP_RECIPES;
+
 }

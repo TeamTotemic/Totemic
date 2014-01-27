@@ -45,8 +45,8 @@ public final class ModItems
         //GameRegistry.registerItem(subItems, subItems.getUnlocalizedName());
         GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
 
-        totemWhittlingKnife.setContainerItem(totemWhittlingKnife);
-        bucketChlorophyll.setContainerItem(bucketChlorophyll);
+        //totemWhittlingKnife.setContainerItem(totemWhittlingKnife);
+        //bucketChlorophyll.setContainerItem(bucketChlorophyll);
 
 
     }
