@@ -11,11 +11,14 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
+import totemic_commons.pokefenn.network.PacketTypeHandler;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 public class TileTotemBase extends TileTotemic implements IInventory
@@ -36,6 +39,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
     public static int DECREASE_BLAZE = 4;
     public static int DECREASE_OCELOT = 5;
     public static int DECREASE_SQUID = 2;
+    public static int DECREASE_FOOD = 20;
 
     //boolean isChlorophyll = this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID;
 
@@ -51,8 +55,21 @@ public class TileTotemBase extends TileTotemic implements IInventory
         TileTotemBase totemBaseObject = new TileTotemBase();
 
         //Todo make this work T.T this is a temp thing
-        //TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), 10, totemBaseObject.effectBat()));
 
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        ItemStack itemStack = getStackInSlot(SLOT_ONE);
+
+        if (itemStack != null && itemStack.stackSize > 0)
+        {
+            return PacketTypeHandler.populatePacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.itemID, itemStack.getItemDamage(), itemStack.stackSize));
+        } else
+        {
+            return super.getDescriptionPacket();
+        }
     }
 
 
@@ -152,7 +169,24 @@ public class TileTotemBase extends TileTotemic implements IInventory
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
-        return itemStack.itemID == ModItems.chlorophyllCrystal.itemID && i == SLOT_TWO || itemStack.itemID == ModItems.totems.itemID && i == SLOT_ONE;
+        if (!this.worldObj.isRemote)
+        {
+            if (i == SLOT_TWO && getStackInSlot(SLOT_TWO) == null && itemStack.itemID == ModItems.chlorophyllCrystal.itemID)
+            {
+                setInventorySlotContents(SLOT_TWO, itemStack);
+                this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                return true;
+
+            } else if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.totems.itemID)
+            {
+                setInventorySlotContents(SLOT_ONE, itemStack);
+                this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                return true;
+
+            } else
+                return false;
+        } else
+            return false;
 
     }
 
@@ -230,7 +264,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
                 this.effectSun();
             } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 5)) && this.worldObj.getTotalWorldTime() % 80L == 0L)
             {
-                System.out.println("found itemstack of blaze");
+
                 this.effectBlaze();
             } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 6)) && this.worldObj.getTotalWorldTime() % 5L == 0L)
             {
@@ -240,6 +274,10 @@ public class TileTotemBase extends TileTotemic implements IInventory
             {
 
                 this.effectSquid();
+            } else if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems, 1, 8)) && this.worldObj.getTotalWorldTime() % 120L == 0L)
+            {
+
+                this.effectFood();
             }
 
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -264,7 +302,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
             if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_CACTUS <= 0))
                 {
 
                     for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
@@ -298,7 +336,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
             if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_HOPPER <= 0))
                 {
 
                     for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
@@ -328,7 +366,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
             if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10) != null && !this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.isFlying)
+                if (this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10) != null && !this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.isFlying && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_BAT <= 0))
                 {
 
                     this.worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10).capabilities.allowFlying = true;
@@ -347,14 +385,14 @@ public class TileTotemBase extends TileTotemic implements IInventory
             if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_HORSE <= 0))
                 {
 
-                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 15, 15))
                     {
                         if (!(entity instanceof EntityItem) && entity instanceof EntityPlayer)
                         {
-                            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 100, 0));
+                            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 120, 1));
 
                         }
                     }
@@ -372,7 +410,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
             if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                if (this.worldObj.isRaining())
+                if (this.worldObj.isRaining() && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_SUN <= 0))
                 {
 
                     this.worldObj.toggleRain();
@@ -390,13 +428,13 @@ public class TileTotemBase extends TileTotemic implements IInventory
         {
             if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
-                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_BLAZE <= 0))
                 {
-                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 15, 15))
                     {
                         if (entity instanceof EntityPlayer)
                         {
-                            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 10, 10));
+                            ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 120, 1));
                             this.chlorophyllCrystalHandler(DECREASE_BLAZE);
                         }
                     }
@@ -413,10 +451,10 @@ public class TileTotemBase extends TileTotemic implements IInventory
             if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
             {
 
-                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
+                if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_OCELOT <= 0))
                 {
 
-                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                    for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 15, 15))
                     {
                         if (entity instanceof EntityCreeper)
                         {
@@ -440,14 +478,14 @@ public class TileTotemBase extends TileTotemic implements IInventory
         if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
 
-            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null)
+            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10) != null && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_SQUID <= 0))
             {
 
-                for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 10, 10))
+                for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 15, 15))
                 {
                     if (entity instanceof EntityPlayer)
                     {
-                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 100, 0));
+                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 120, 0));
 
                         this.chlorophyllCrystalHandler(DECREASE_SQUID);
 
@@ -456,6 +494,36 @@ public class TileTotemBase extends TileTotemic implements IInventory
 
             }
         }
+    }
+
+    protected void effectFood()
+    {
+
+        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        {
+
+            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 15, 15) != null && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_FOOD <= 0))
+            {
+
+                for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 15, 15))
+                {
+                    if (entity instanceof EntityPlayer)
+                    {
+                        if (((EntityPlayer) entity).getFoodStats().getFoodLevel() > 12)
+                        {
+
+                            ((EntityPlayer) entity).getFoodStats().setFoodLevel(20);
+
+                            this.chlorophyllCrystalHandler(DECREASE_FOOD);
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+
     }
 
     protected void chlorophyllCrystalHandler(int durabilityDecrease)

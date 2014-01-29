@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
-import rukalib_commons.pokefenn.item.ItemMetaData;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -19,7 +18,7 @@ import java.util.List;
  * Date: 08/12/13
  * Time: 19:19
  */
-public class ItemSubItems extends ItemMetaData
+public class ItemSubItems extends ItemNormal
 {
 
     private static final String[] ITEMS_NAMES = new String[]{"chlorophyllicIngot"};

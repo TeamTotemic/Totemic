@@ -7,13 +7,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
-import rukalib_commons.pokefenn.item.ItemMetaData;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;
 
-public class ItemTotemWhittlingKnife extends ItemMetaData
+public class ItemTotemWhittlingKnife extends ItemNormal
 {
 
     private static final String[] ITEMS_NAMES = new String[]{"toolHandle", "whittlingHead", "whittlingWhole", "choppingHead", "choppingWhole", "paintHead", "paintWhite", "paintBlack", "generalHead", "generalWhole"};

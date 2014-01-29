@@ -5,14 +5,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
 import totemic_commons.pokefenn.client.gui.GuiTotemBase;
 import totemic_commons.pokefenn.inventory.ContainerTotemBase;
 import totemic_commons.pokefenn.lib.GuiIds;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
-import totemic_commons.pokefenn.tileentity.TileTotemBase;
-import totemic_commons.pokefenn.tileentity.TileTotemDraining;
-import totemic_commons.pokefenn.tileentity.TileTotemTable;
+import totemic_commons.pokefenn.tileentity.*;
 
 public class CommonProxy implements IGuiHandler
 {
@@ -25,6 +23,7 @@ public class CommonProxy implements IGuiHandler
         GameRegistry.registerTileEntity(TileTotemBase.class, Strings.TILE_TOTEM_BASE);
         GameRegistry.registerTileEntity(TileTotemDraining.class, Strings.TILE_TOTEM_DRAINING);
         GameRegistry.registerTileEntity(TileTotemTable.class, Strings.TILE_TOTEM_TABLE);
+        GameRegistry.registerTileEntity(TileTotemSupport.class, Strings.TILE_TOTEM_SUPPORT);
 
     }
 
@@ -35,7 +34,12 @@ public class CommonProxy implements IGuiHandler
     }
 
 
-    public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int color)
+    public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize)
+    {
+
+    }
+
+    public void handleTileWithItemAndFluidPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int fluidAmount, Fluid fluidID)
     {
 
     }

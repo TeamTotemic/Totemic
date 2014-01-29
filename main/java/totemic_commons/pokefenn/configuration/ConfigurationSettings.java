@@ -14,4 +14,5 @@ public class ConfigurationSettings
 
     public static boolean ENABLE_TEMP_RECIPES;
 
+
 }

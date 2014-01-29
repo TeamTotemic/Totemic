@@ -17,7 +17,7 @@ public final class ModBlocks
     public static Block totemWoods;
     public static Block totemDraining;
     public static Block totemTable;
-
+    public static Block totemSupport;
 
     public static void init()
     {
@@ -28,6 +28,7 @@ public final class ModBlocks
         totemWoods = new BlockTotemWoods(BlockIds.TOTEM_WOODS);
         totemDraining = new BlockTotemDraining(BlockIds.TOTEM_DRAINING);
         totemTable = new BlockTotemTable(BlockIds.TOTEM_TABLE);
+        totemSupport = new BlockTotemSupport(BlockIds.TOTEM_SUPPORT);
 
 
         GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
@@ -36,6 +37,7 @@ public final class ModBlocks
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
         GameRegistry.registerBlock(totemDraining, Strings.TOTEM_DRAINING_NAME);
         GameRegistry.registerBlock(totemTable, Strings.TOTEM_TABLE_NAME);
+        GameRegistry.registerBlock(totemSupport, Strings.TOTEM_SUPPORT_NAME);
 
 
     }

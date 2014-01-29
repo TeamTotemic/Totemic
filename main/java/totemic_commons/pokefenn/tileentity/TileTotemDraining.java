@@ -5,12 +5,15 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.client.ParticleUtil;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.Particles;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
+import totemic_commons.pokefenn.network.PacketTypeHandler;
 
 import java.util.Random;
 
@@ -24,8 +27,6 @@ public class TileTotemDraining extends TileTotemic implements IInventory
     public static final int INVENTORY_SIZE = 1;
 
     public static final int SLOT_ONE = 0;
-
-    protected boolean hasDoneEffect;
 
     protected int totemRadius = ConfigurationSettings.TOTEM_DRAINING_RANGE;
 
@@ -72,6 +73,20 @@ public class TileTotemDraining extends TileTotemic implements IInventory
         }
 
         return itemStack;
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        ItemStack itemStack = getStackInSlot(SLOT_ONE);
+
+        if (itemStack != null && itemStack.stackSize > 0)
+        {
+            return PacketTypeHandler.populatePacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.itemID, itemStack.getItemDamage(), itemStack.stackSize));
+        } else
+        {
+            return super.getDescriptionPacket();
+        }
     }
 
 
@@ -133,15 +148,17 @@ public class TileTotemDraining extends TileTotemic implements IInventory
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
-        if (itemStack.itemID == ModItems.chlorophyllCrystal.itemID && i == SLOT_ONE && !this.worldObj.isRemote)
+        if (!this.worldObj.isRemote)
         {
-            this.setInventorySlotContents(i, itemStack);
+            if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.chlorophyllCrystal.itemID)
+            {
+                setInventorySlotContents(SLOT_ONE, itemStack);
+                this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                return true;
 
-            return true;
-        } else
-        {
-            return false;
-        }
+            } else
+                return false;
+        } else return false;
 
     }
 
@@ -189,7 +206,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory
 
     public void updateEntity()
     {
-        if (this.worldObj.getTotalWorldTime() % 100L == 0L)
+        if (this.worldObj.getTotalWorldTime() % 100L == 0L && !this.worldObj.isRemote)
         {
             this.drainEffect();
             super.updateEntity();
@@ -199,9 +216,9 @@ public class TileTotemDraining extends TileTotemic implements IInventory
 
     protected void handleChlorophyllCrystal()
     {
-        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < 500 && rand.nextBoolean())
+        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < 500 && rand.nextInt(3) != 3)
         {
-            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - 1);
+            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(3));
 
         }
 
@@ -210,7 +227,13 @@ public class TileTotemDraining extends TileTotemic implements IInventory
     protected void drainEffect()
     {
 
-        this.loopThroughArea();
+        for (int i = -totemRadius; i <= totemRadius; i++)
+        {
+            for (int j = -totemRadius; j <= totemRadius; j++)
+            {
+                reducePlantMetadata(xCoord + i, yCoord, zCoord + j);
+            }
+        }
 
     }
 
@@ -229,19 +252,6 @@ public class TileTotemDraining extends TileTotemic implements IInventory
             }
         }
     }
-
-    protected void loopThroughArea()
-    {
-
-        for (int i = -totemRadius; i <= totemRadius; i++)
-        {
-            for (int j = -totemRadius; j <= totemRadius; j++)
-            {
-                reducePlantMetadata(xCoord + i, yCoord, zCoord + j);
-            }
-        }
-    }
-
 
     public boolean canUpdate()
     {

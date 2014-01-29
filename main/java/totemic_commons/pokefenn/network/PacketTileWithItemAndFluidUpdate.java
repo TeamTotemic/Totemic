@@ -3,32 +3,37 @@ package totemic_commons.pokefenn.network;
 import cpw.mods.fml.common.network.Player;
 import net.minecraft.network.INetworkManager;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.fluids.FluidRegistry;
 import totemic_commons.pokefenn.Totemic;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class PacketTileWithItemUpdate extends PacketTotemic
+/**
+ * Created with IntelliJ IDEA.
+ * User: Pokefenn
+ * Date: 28/01/14
+ * Time: 10:39
+ */
+public class PacketTileWithItemAndFluidUpdate extends PacketTotemic
 {
-
-
     public int x, y, z;
     public byte orientation;
     public byte state;
     public String customName;
-    public int itemID, metaData, stackSize, color;
+    public int itemID, metaData, stackSize, color, fluidAmount, fluidID;
 
-    public PacketTileWithItemUpdate()
+    public PacketTileWithItemAndFluidUpdate()
     {
 
-        super(PacketTypeHandler.TILE_WITH_ITEM, true);
+        super(PacketTypeHandler.TILE_WITH_ITEM_AND_FLUID, true);
     }
 
-    public PacketTileWithItemUpdate(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize)
+    public PacketTileWithItemAndFluidUpdate(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int fluidAmount, int fluidID)
     {
 
-        super(PacketTypeHandler.TILE_WITH_ITEM, true);
+        super(PacketTypeHandler.TILE_WITH_ITEM_AND_FLUID, true);
         this.x = x;
         this.y = y;
         this.z = z;
@@ -38,6 +43,8 @@ public class PacketTileWithItemUpdate extends PacketTotemic
         this.itemID = itemID;
         this.metaData = metaData;
         this.stackSize = stackSize;
+        this.fluidAmount = fluidAmount;
+        this.fluidID = fluidID;
 
     }
 
@@ -54,6 +61,8 @@ public class PacketTileWithItemUpdate extends PacketTotemic
         data.writeInt(itemID);
         data.writeInt(metaData);
         data.writeInt(stackSize);
+        data.writeInt(fluidAmount);
+        data.writeInt(fluidID);
 
     }
 
@@ -70,6 +79,8 @@ public class PacketTileWithItemUpdate extends PacketTotemic
         itemID = data.readInt();
         metaData = data.readInt();
         stackSize = data.readInt();
+        fluidAmount = data.readInt();
+        fluidID = data.readInt();
 
     }
 
@@ -77,7 +88,7 @@ public class PacketTileWithItemUpdate extends PacketTotemic
     public void execute(INetworkManager manager, Player player)
     {
 
-        Totemic.proxy.handleTileWithItemPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName, itemID, metaData, stackSize);
+        Totemic.proxy.handleTileWithItemAndFluidPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName, itemID, metaData, stackSize, fluidAmount, FluidRegistry.getFluid(fluidID));
     }
 
 }

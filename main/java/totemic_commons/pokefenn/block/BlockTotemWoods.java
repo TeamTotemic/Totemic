@@ -2,10 +2,10 @@ package totemic_commons.pokefenn.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
-import rukalib_commons.pokefenn.block.BlockNormal;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
@@ -16,7 +16,7 @@ import totemic_commons.pokefenn.lib.Textures;
  * Date: 09/12/13
  * Time: 14:35
  */
-public class BlockTotemWoods extends BlockNormal
+public class BlockTotemWoods extends Block
 {
 
 
@@ -32,17 +32,19 @@ public class BlockTotemWoods extends BlockNormal
 
 
     @SideOnly(Side.CLIENT)
-    private Icon topAndBottomIcon;
-
+    private Icon topIcon;
     @SideOnly(Side.CLIENT)
     private Icon sideIcon;
+    @SideOnly(Side.CLIENT)
+    private Icon bottomIcon;
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister register)
     {
-        topAndBottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_WOOD_TOP_ICON);
-        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_WOOD_SIDE_ICON);
+        topIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_TOP);
+        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_SIDE);
+        bottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_BOTTOM);
 
     }
 
@@ -50,14 +52,15 @@ public class BlockTotemWoods extends BlockNormal
     @Override
     public Icon getIcon(int side, int meta)
     {
-
-        if (side == 1 || side == 2)
+        switch (side)
         {
-
-            return topAndBottomIcon;
-
-        } else return sideIcon;
-
+            case 0:
+                return bottomIcon;
+            case 1:
+                return topIcon;
+            default:
+                return sideIcon;
+        }
 
     }
 

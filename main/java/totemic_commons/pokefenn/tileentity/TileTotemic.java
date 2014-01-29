@@ -77,7 +77,6 @@ public class TileTotemic extends TileEntity
 
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-
         return true;
     }
 

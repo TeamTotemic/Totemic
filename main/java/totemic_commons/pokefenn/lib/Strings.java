@@ -18,6 +18,7 @@ public class Strings
     public static final String TOTEM_WOODS_NAME = "totemWoods";
     public static final String TOTEM_DRAINING_NAME = "totemDraining";
     public static final String TOTEM_TABLE_NAME = "totemTable";
+    public static final String TOTEM_SUPPORT_NAME = "totemSupport";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";
@@ -36,6 +37,7 @@ public class Strings
     public static final String TILE_TOTEM_BASE = "tileTotemBase";
     public static final String TILE_TOTEM_DRAINING = "tileTotemDraining";
     public static final String TILE_TOTEM_TABLE = "tileTotemTable";
+    public static final String TILE_TOTEM_SUPPORT = "tileTotemSupport";
 
     //Container
 
@@ -43,6 +45,7 @@ public class Strings
     public static final String CONTAINER_CHLOROPHYLL_SOLIDIFIER_NAME = "container.totemic:" + CHLOROPHYLL_SOLIDIFIER_NAME;
     public static final String CONTAINER_TOTEM_DRAINING_NAME = "container.totemic:" + TOTEM_DRAINING_NAME;
     public static final String CONTAINER_TOTEM_TABLE_NAME = "container.totemic:" + TOTEM_TABLE_NAME;
+    public static final String CONTAINER_TOTEM_SUPPORT_NAME = "container.totemic:" + TOTEM_SUPPORT_NAME;
 
     public static final String CONTAINER_INVENTORY = "container.inventory";
 

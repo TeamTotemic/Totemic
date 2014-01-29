@@ -41,40 +41,40 @@ public class TileTotemTableRenderer extends TileEntitySpecialRenderer implements
     }
 
     @Override
-    public void renderInventoryBlock (Block block, int metadata, int modelID, RenderBlocks renderer)
+    public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
     {
         if (modelID == totemTableModelID)
         {
 
-                renderer.setRenderBounds(0.0F, 0.75F, 0.0F, 1.0F, 1.0F, 1.0F);
-                renderStandardInvBlock(renderer, block, metadata);
-                renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 0.25F, 0.75F, 0.25F);
-                renderStandardInvBlock(renderer, block, metadata);
-                renderer.setRenderBounds(0.75F, 0.0F, 0.0F, 1.0F, 0.75F, 0.25F);
-                renderStandardInvBlock(renderer, block, metadata);
-                renderer.setRenderBounds(0.0F, 0.0F, 0.75F, 0.25F, 0.75F, 1.0F);
-                renderStandardInvBlock(renderer, block, metadata);
-                renderer.setRenderBounds(0.75F, 0.0F, 0.75F, 1.0F, 0.75F, 1.0F);
-                renderStandardInvBlock(renderer, block, metadata);
+            renderer.setRenderBounds(0.0F, 0.75F, 0.0F, 1.0F, 1.0F, 1.0F);
+            renderStandardInvBlock(renderer, block, metadata);
+            renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 0.25F, 0.75F, 0.25F);
+            renderStandardInvBlock(renderer, block, metadata);
+            renderer.setRenderBounds(0.75F, 0.0F, 0.0F, 1.0F, 0.75F, 0.25F);
+            renderStandardInvBlock(renderer, block, metadata);
+            renderer.setRenderBounds(0.0F, 0.0F, 0.75F, 0.25F, 0.75F, 1.0F);
+            renderStandardInvBlock(renderer, block, metadata);
+            renderer.setRenderBounds(0.75F, 0.0F, 0.75F, 1.0F, 0.75F, 1.0F);
+            renderStandardInvBlock(renderer, block, metadata);
 
         }
     }
 
     @Override
-    public boolean renderWorldBlock (IBlockAccess world, int x, int y, int z, Block block, int modelID, RenderBlocks renderer)
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelID, RenderBlocks renderer)
     {
         if (modelID == totemTableModelID)
         {
-                renderer.setRenderBounds(0.0F, 0.75F, 0.0F, 1.0F, 1.0F, 1.0F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 0.25F, 0.75F, 0.25F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.75F, 0.0F, 0.0F, 1.0F, 0.75F, 0.25F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.0F, 0.0F, 0.75F, 0.25F, 0.75F, 1.0F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.75F, 0.0F, 0.75F, 1.0F, 0.75F, 1.0F);
-                renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.0F, 0.75F, 0.0F, 1.0F, 1.0F, 1.0F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 0.25F, 0.75F, 0.25F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.75F, 0.0F, 0.0F, 1.0F, 0.75F, 0.25F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.0F, 0.0F, 0.75F, 0.25F, 0.75F, 1.0F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.75F, 0.0F, 0.75F, 1.0F, 0.75F, 1.0F);
+            renderer.renderStandardBlock(block, x, y, z);
 
         }
         return true;

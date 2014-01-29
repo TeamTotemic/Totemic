@@ -26,6 +26,9 @@ public class Textures
     public static final String TOTEM_TABLE_BOTTOM = "totemTableBottom";
     public static final String TOTEM_TABLE_TOP = "totemTableTop";
 
+    public static final String CHLOROPHYLL_SOLIDIFIER_TOP_AND_BOT = "chlorophyllSolidifierTopAndBot";
+    public static final String CHLOROPHYLL_SOLIDIFIER_SIDES = "chlorophyllSolidifierSide";
+
     //Items
     public static final String BUCKET_CHLOROPHYLL_ICON = "bucketChlorophyll";
     public static final String BOTTLE_CHLOROPHYLL_ICON = "bottleChlorophyll";

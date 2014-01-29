@@ -15,8 +15,8 @@ public enum PacketTypeHandler
     REQUEST_EVENT(PacketRequestEvent.class),
     SPAWN_PARTICLE(PacketSpawnParticle.class),
     ITEM_UPDATE(PacketItemUpdate.class),
-    TILE_WITH_ITEM(PacketTileWithItemUpdate.class)
-    ;
+    TILE_WITH_ITEM(PacketTileWithItemUpdate.class),
+    TILE_WITH_ITEM_AND_FLUID(PacketTileWithItemAndFluidUpdate.class);
     private Class<? extends PacketTotemic> clazz;
 
     PacketTypeHandler(Class<? extends PacketTotemic> clazz)

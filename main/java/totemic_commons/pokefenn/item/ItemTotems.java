@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
-import rukalib_commons.pokefenn.item.ItemNormal;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -22,7 +21,7 @@ import java.util.List;
 public class ItemTotems extends ItemNormal
 {
 
-    public static final String[] TOTEM_NAMES = new String[]{"Cactus", "Horse", "Hopper", "Bat", "Sun", "Blaze", "Ocelot", "Squid"};
+    public static final String[] TOTEM_NAMES = new String[]{"Cactus", "Horse", "Hopper", "Bat", "Sun", "Blaze", "Ocelot", "Squid", "Food"};
 
     @SideOnly(Side.CLIENT)
     private Icon[] icons;

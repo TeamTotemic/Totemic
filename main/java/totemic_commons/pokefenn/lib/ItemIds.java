@@ -11,10 +11,7 @@ public class ItemIds
     public static int VENUS_FLY_TRAP_SEED;
     public static int SUB_ITEMS;
     public static int BOTTLE_CHLOROPHYLL;
-
-    //Totems
     public static int TOTEMS;
-
 
     public static int TOTEM_WHITTLING_KNIFE_DEFAULT = 6001;
     public static int TOTEMIC_STAFF_DEFAULT = 6002;

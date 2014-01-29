@@ -4,7 +4,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
+import totemic_commons.pokefenn.network.PacketTypeHandler;
 
 public class TileTotemTable extends TileTotemic implements IInventory
 {
@@ -33,7 +36,20 @@ public class TileTotemTable extends TileTotemic implements IInventory
     public ItemStack getStackInSlot(int slotIndex)
     {
         return inventory[slotIndex];
+    }
 
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        ItemStack itemStack = getStackInSlot(SLOT_ONE);
+
+        if (itemStack != null && itemStack.stackSize > 0)
+        {
+            return PacketTypeHandler.populatePacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.itemID, itemStack.getItemDamage(), itemStack.stackSize));
+        } else
+        {
+            return super.getDescriptionPacket();
+        }
     }
 
     @Override
@@ -63,7 +79,6 @@ public class TileTotemTable extends TileTotemic implements IInventory
     @Override
     public ItemStack getStackInSlotOnClosing(int slotIndex)
     {
-
         ItemStack itemStack = getStackInSlot(slotIndex);
         if (itemStack != null)
         {
@@ -116,9 +131,16 @@ public class TileTotemTable extends TileTotemic implements IInventory
     }
 
     @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemstack)
+    public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
-        return false;
+        if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null)
+        {
+            setInventorySlotContents(SLOT_ONE, itemStack);
+            this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+            return true;
+
+        } else
+            return false;
     }
 
     @Override

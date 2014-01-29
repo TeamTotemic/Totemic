@@ -13,16 +13,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTableRenderer;
+import totemic_commons.pokefenn.api.ITotemBlock;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
-import totemic_commons.pokefenn.recipe.TotemTableHandler;
-import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
-import totemic_commons.pokefenn.tileentity.TileTotemTable;
+import totemic_commons.pokefenn.tileentity.TileTotemDraining;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 import java.util.Random;
@@ -30,136 +28,62 @@ import java.util.Random;
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
- * Date: 23/01/14
- * Time: 14:40
+ * Date: 28/01/14
+ * Time: 13:14
  */
-public class BlockTotemTable extends BlockTile
+public class BlockTotemDraining extends BlockTile implements ITotemBlock
 {
-
-    public BlockTotemTable(int id)
+    public BlockTotemDraining(int id)
     {
-        super(id, Material.wood);
-        setUnlocalizedName(Strings.TOTEM_TABLE_NAME);
+        super(id, Material.rock);
+        setUnlocalizedName(Strings.TOTEM_DRAINING_NAME);
         setCreativeTab(Totemic.tabsTotem);
-        setHardness(1F);
 
     }
-
-    private Random rand = new Random();
-
 
     @Override
     public TileEntity createNewTileEntity(World world)
     {
-        return new TileTotemTable();
+        return new TileTotemDraining();
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
 
-        TileTotemTable tileTotemTable = (TileTotemTable) world.getBlockTileEntity(x, y, z);
+        TileTotemDraining tileTotemDraining = (TileTotemDraining) world.getBlockTileEntity(x, y, z);
 
         ItemStack heldItem = player.inventory.getCurrentItem();
 
-        int SLOT_ONE = TileChlorophyllSolidifier.SLOT_ONE;
+        int SLOT_ONE = TileTotemDraining.SLOT_ONE;
 
-        if (tileTotemTable != null && !world.isRemote)
+        if (tileTotemDraining != null && !world.isRemote && player != null)
         {
-            if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem != null)
-            {
-                //System.out.println("entering if");
 
-                for (TotemTableHandler totemTableHandler : TotemTableHandler.totemTableRecipe)
+            if (tileTotemDraining.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID && heldItem.getItemDamage() != 500)
+            {
+                tileTotemDraining.setInventorySlotContents(SLOT_ONE, heldItem);
+                player.destroyCurrentEquippedItem();
+
+
+            } else if (tileTotemDraining.getStackInSlot(SLOT_ONE) != null && heldItem == null)
+            {
+                if (tileTotemDraining.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
                 {
-                    //System.out.println("entered for loop");
 
-                    if (ItemStack.areItemStackTagsEqual(totemTableHandler.getInputInventory(), tileTotemTable.getStackInSlot(SLOT_ONE)) && ItemStack.areItemStacksEqual(heldItem, totemTableHandler.getInputHeldItem()) && tileTotemTable.getStackInSlot(SLOT_ONE) != null)
-                    {
+                    player.inventory.addItemStackToInventory(new ItemStack(ModItems.chlorophyllCrystal, 1, tileTotemDraining.getStackInSlot(SLOT_ONE).getItemDamage()));
+                    tileTotemDraining.setInventorySlotContents(SLOT_ONE, null);
 
-                        //System.out.println("entered if for for loop");
-                        tileTotemTable.setInventorySlotContents(SLOT_ONE, totemTableHandler.getOutput());
-
-                    }
                 }
-
-            } else if (heldItem == null && tileTotemTable.getStackInSlot(SLOT_ONE) != null)
-            {
-                player.inventory.addItemStackToInventory(tileTotemTable.getStackInSlot(SLOT_ONE));
-                tileTotemTable.setInventorySlotContents(SLOT_ONE, null);
-
-            } else if (tileTotemTable.getStackInSlot(SLOT_ONE) == null && heldItem != null)
-            {
-
-                heldItem.stackSize--;
-                tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
-
 
             }
 
-            world.markBlockForRenderUpdate(x, y, z);
+            world.markBlockForUpdate(x, y, z);
 
         }
 
 
         return !player.isSneaking();
-    }
-
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    @Override
-    public int getRenderType()
-    {
-        return TileTotemTableRenderer.totemTableModelID;
-    }
-
-    @Override
-    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
-    {
-        return true;
-    }
-
-    @SideOnly(Side.CLIENT)
-    private Icon topIcon;
-    @SideOnly(Side.CLIENT)
-    private Icon sideIcon;
-    @SideOnly(Side.CLIENT)
-    private Icon bottomIcon;
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IconRegister register)
-    {
-        topIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_TOP);
-        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_SIDE);
-        bottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_BOTTOM);
-
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public Icon getIcon(int side, int meta)
-    {
-        switch (side)
-        {
-            case 0:
-                return bottomIcon;
-            case 1:
-                return topIcon;
-            default:
-                return sideIcon;
-        }
-
     }
 
     @Override
@@ -199,7 +123,7 @@ public class BlockTotemTable extends BlockTile
 
         dropInventory(world, x, y, z);
 
-        if (world.getBlockTileEntity(x, y, z) instanceof TileTotemTable)
+        if (world.getBlockTileEntity(x, y, z) instanceof TileTotemDraining)
         {
             world.markBlockForUpdate(x, y, z);
             world.updateAllLightTypes(x, y, z);
@@ -246,5 +170,29 @@ public class BlockTotemTable extends BlockTile
         }
 
     }
+
+    @SideOnly(Side.CLIENT)
+    private Icon topIcon;
+    @SideOnly(Side.CLIENT)
+    private Icon sideIcon;
+    @SideOnly(Side.CLIENT)
+    private Icon bottomIcon;
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IconRegister register)
+    {
+        topIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_TOP);
+        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_SIDE);
+        bottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_BOTTOM);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int meta)
+    {
+        return topIcon;
+    }
+
+    private Random rand = new Random();
 
 }

@@ -1,0 +1,34 @@
+package totemic_commons.pokefenn.item;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.Item;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: Pokefenn
+ * Date: 28/01/14
+ * Time: 12:35
+ */
+public class ItemNormal extends Item
+{
+
+    public ItemNormal(int id)
+    {
+
+        super(id - 256);
+        setMaxStackSize(64);
+        setNoRepair();
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister iconRegister)
+    {
+
+        itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
+
+    }
+}
