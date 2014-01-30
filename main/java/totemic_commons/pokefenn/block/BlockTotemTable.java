@@ -21,7 +21,6 @@ import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTableRender
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.recipe.TotemTableHandler;
-import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
 import totemic_commons.pokefenn.tileentity.TileTotemTable;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
@@ -62,7 +61,7 @@ public class BlockTotemTable extends BlockTile
 
         ItemStack heldItem = player.inventory.getCurrentItem();
 
-        int SLOT_ONE = TileChlorophyllSolidifier.SLOT_ONE;
+        int SLOT_ONE = TileTotemTable.SLOT_ONE;
 
         if (tileTotemTable != null && !world.isRemote)
         {
@@ -74,12 +73,10 @@ public class BlockTotemTable extends BlockTile
                 {
                     //System.out.println("entered for loop");
 
-                    if (ItemStack.areItemStackTagsEqual(totemTableHandler.getInputInventory(), tileTotemTable.getStackInSlot(SLOT_ONE)) && ItemStack.areItemStacksEqual(heldItem, totemTableHandler.getInputHeldItem()) && tileTotemTable.getStackInSlot(SLOT_ONE) != null)
+                    if (ItemStack.areItemStackTagsEqual(totemTableHandler.getInputInventory(), tileTotemTable.getStackInSlot(SLOT_ONE)) && ItemStack.areItemStacksEqual(heldItem, totemTableHandler.getInputHeldItem()) && tileTotemTable.getStackInSlot(SLOT_ONE) != null && totemTableHandler.getOutput() != null)
                     {
 
-                        //System.out.println("entered if for for loop");
                         tileTotemTable.setInventorySlotContents(SLOT_ONE, totemTableHandler.getOutput());
-
                     }
                 }
 
@@ -94,10 +91,14 @@ public class BlockTotemTable extends BlockTile
                 heldItem.stackSize--;
                 tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
 
+            } else if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem == null)
+            {
+                player.inventory.addItemStackToInventory(tileTotemTable.getStackInSlot(SLOT_ONE));
+                tileTotemTable.setInventorySlotContents(SLOT_ONE, null);
 
             }
 
-            world.markBlockForRenderUpdate(x, y, z);
+            world.markBlockForUpdate(x, y, z);
 
         }
 

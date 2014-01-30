@@ -49,10 +49,12 @@ public final class Totemic
 
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
 
-        //Creates the logger thingy :p
-        Totemic.logger.setParent(FMLCommonHandler.instance().getFMLLogger());
+        logger.info("Moma had a cow, Moma had a chicken... dad was proud, he didn't care how!");
 
-        Totemic.logger.info("Totemic is Loading");
+        //Creates the logger thingy :p
+        logger.setParent(FMLCommonHandler.instance().getFMLLogger());
+
+        logger.info("Totemic is Loading");
 
         //Initiates fluids into the game
         ModFluids.init();

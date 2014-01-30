@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityFallingSand;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -20,6 +21,8 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
 import totemic_commons.pokefenn.util.EntityUtil;
+
+import java.util.Random;
 
 public class TileTotemBase extends TileTotemic implements IInventory
 {
@@ -40,6 +43,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
     public static int DECREASE_OCELOT = 5;
     public static int DECREASE_SQUID = 2;
     public static int DECREASE_FOOD = 20;
+    public static int DECREASE_ENDERMAN = 4;
 
     //boolean isChlorophyll = this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID;
 
@@ -509,12 +513,14 @@ public class TileTotemBase extends TileTotemic implements IInventory
                 {
                     if (entity instanceof EntityPlayer)
                     {
-                        if (((EntityPlayer) entity).getFoodStats().getFoodLevel() > 12)
+                        if (((EntityPlayer) entity).getFoodStats().getFoodLevel() < 10)
                         {
 
-                            ((EntityPlayer) entity).getFoodStats().setFoodLevel(20);
+                            ((EntityPlayer) entity).getFoodStats().setFoodLevel(10 + rand.nextInt(5));
 
                             this.chlorophyllCrystalHandler(DECREASE_FOOD);
+
+                            ((EntityPlayer) entity).getFoodStats().setFoodSaturationLevel(rand.nextInt(4));
 
                         }
                     }
@@ -526,12 +532,37 @@ public class TileTotemBase extends TileTotemic implements IInventory
 
     }
 
+    protected void effectEnderman()
+    {
+
+        if (this.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        {
+
+            if (EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 15, 15) != null && !(getStackInSlot(SLOT_TWO).getMaxDamage() - getStackInSlot(SLOT_TWO).getItemDamage() - DECREASE_ENDERMAN <= 0))
+            {
+
+                for (Entity entity : EntityUtil.getEntitiesInRange(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 15, 15))
+                {
+                    if (entity instanceof EntityEnderman)
+                    {
+
+                        this.chlorophyllCrystalHandler(DECREASE_ENDERMAN);
+
+                    }
+                }
+
+            }
+        }
+    }
+
     protected void chlorophyllCrystalHandler(int durabilityDecrease)
     {
 
         this.setInventorySlotContents(SLOT_TWO, new ItemStack(ModItems.chlorophyllCrystal, 1, this.getStackInSlot(SLOT_TWO).getItemDamage() + durabilityDecrease));
 
     }
+
+    private Random rand = new Random();
 
 
 }
