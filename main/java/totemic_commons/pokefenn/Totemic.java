@@ -26,7 +26,7 @@ import java.io.File;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.0.3"/*, dependencies = "required-after:rukaLib;"*/)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.0.5"/*, dependencies = "required-after:rukaLib;"*/)
 @NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 public final class Totemic
@@ -47,12 +47,13 @@ public final class Totemic
     public void preInit(FMLPreInitializationEvent event)
     {
 
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
 
-        logger.info("Moma had a cow, Moma had a chicken... dad was proud, he didn't care how!");
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
 
         //Creates the logger thingy :p
         logger.setParent(FMLCommonHandler.instance().getFMLLogger());
+
+        logger.info("Moma had a cow, Moma had a chicken... dad was proud, he didn't care how!");
 
         logger.info("Totemic is Loading");
 
@@ -86,7 +87,7 @@ public final class Totemic
         Totemic.proxy.registerTileEntities();
 
         //Init's the Tile entity and block renderers
-        ClientProxy.blockRendering();
+        //ClientProxy.blockRendering();
 
         //Makes the recipes of Chlorophyll enter the game
         ChlorophyllSolidifierRecipes.addRecipes();

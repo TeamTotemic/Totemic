@@ -1,13 +1,11 @@
 package totemic_commons.pokefenn;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.IFluidHandler;
-import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTableRenderer;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 public class ClientProxy extends CommonProxy
@@ -81,14 +79,10 @@ public class ClientProxy extends CommonProxy
     public static void blockRendering()
     {
 
-        RenderingRegistry.registerBlockHandler(new TileTotemTableRenderer());
+        //RenderingRegistry.registerBlockHandler(new TileTotemTableRenderer());
 
     }
 
-    public World getClientWorld()
-    {
-        return FMLClientHandler.instance().getClient().theWorld;
-    }
 
 
 }

@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.totem;
 
 import net.minecraft.item.ItemStack;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ITotemEffect;
 
 import java.util.ArrayList;
@@ -15,12 +14,13 @@ import java.util.List;
  */
 public class TotemRegistry
 {
+
     //Todo get this working, this will allow for api/imc message totem effects
 
     public static void addTotems()
     {
 
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1), 2, 10, 10, new TotemEffectHorse()));
+        //totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1), 2, 10, 10, new TotemEffectHorse()));
 
     }
 

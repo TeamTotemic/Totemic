@@ -18,8 +18,8 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class TotemEffectBlaze implements ITotemEffect
 {
-    @Override
-    public void effect(TileTotemBase totemBase)
+
+    public static void effect(TileTotemBase totemBase)
     {
 
         int SLOT_TWO = TileTotemBase.SLOT_TWO;
@@ -27,7 +27,7 @@ public class TotemEffectBlaze implements ITotemEffect
         if (totemBase.getStackInSlot(SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
 
-            if (EntityUtil.getEntitiesInRange(totemBase.worldObj, totemBase.xCoord, totemBase.yCoord, totemBase.zCoord, 10, 10) != null && totemBase.getStackInSlot(SLOT_TWO).getItemDamage() - TileTotemBase.DECREASE_BLAZE >= 0)
+            if (EntityUtil.getEntitiesInRange(totemBase.worldObj, totemBase.xCoord, totemBase.yCoord, totemBase.zCoord, 10, 10) != null && !(totemBase.getStackInSlot(totemBase.SLOT_TWO).getMaxDamage() - totemBase.getStackInSlot(totemBase.SLOT_TWO).getItemDamage() - TileTotemBase.DECREASE_BLAZE <= 0))
             {
 
                 for (Entity entity : EntityUtil.getEntitiesInRange(totemBase.worldObj, totemBase.xCoord, totemBase.yCoord, totemBase.zCoord, 10, 10))
@@ -36,6 +36,7 @@ public class TotemEffectBlaze implements ITotemEffect
                     {
                         ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 100, 0));
 
+                        totemBase.chlorophyllCrystalHandler(totemBase.DECREASE_BLAZE);
                     }
                 }
 

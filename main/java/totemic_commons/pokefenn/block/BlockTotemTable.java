@@ -16,8 +16,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTableRenderer;
+import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.recipe.TotemTableHandler;
@@ -65,22 +67,7 @@ public class BlockTotemTable extends BlockTile
 
         if (tileTotemTable != null && !world.isRemote)
         {
-            if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem != null)
-            {
-                //System.out.println("entering if");
-
-                for (TotemTableHandler totemTableHandler : TotemTableHandler.totemTableRecipe)
-                {
-                    //System.out.println("entered for loop");
-
-                    if (ItemStack.areItemStackTagsEqual(totemTableHandler.getInputInventory(), tileTotemTable.getStackInSlot(SLOT_ONE)) && ItemStack.areItemStacksEqual(heldItem, totemTableHandler.getInputHeldItem()) && tileTotemTable.getStackInSlot(SLOT_ONE) != null && totemTableHandler.getOutput() != null)
-                    {
-
-                        tileTotemTable.setInventorySlotContents(SLOT_ONE, totemTableHandler.getOutput());
-                    }
-                }
-
-            } else if (heldItem == null && tileTotemTable.getStackInSlot(SLOT_ONE) != null)
+            if (heldItem == null && tileTotemTable.getStackInSlot(SLOT_ONE) != null)
             {
                 player.inventory.addItemStackToInventory(tileTotemTable.getStackInSlot(SLOT_ONE));
                 tileTotemTable.setInventorySlotContents(SLOT_ONE, null);
@@ -91,10 +78,25 @@ public class BlockTotemTable extends BlockTile
                 heldItem.stackSize--;
                 tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
 
-            } else if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem == null)
+            } else if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem != null)
             {
-                player.inventory.addItemStackToInventory(tileTotemTable.getStackInSlot(SLOT_ONE));
-                tileTotemTable.setInventorySlotContents(SLOT_ONE, null);
+                //Todo fix eating of slot 2 - 9
+
+                for (TotemTableHandler totemTableHandler : TotemTableHandler.getRecipes())
+                {
+                    //System.out.println("entered for loop");
+
+                    if (tileTotemTable.getStackInSlot(SLOT_ONE).getItem() instanceof ItemTotems)
+                    {
+                        if (ItemStack.areItemStacksEqual(heldItem, totemTableHandler.getInputHeldItem()) && ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), totemTableHandler.getInputInventory()))
+                        {
+
+                            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, totemTableHandler.getOutput().getItemDamage()));
+
+                        }
+
+                    }
+                }
 
             }
 

@@ -269,16 +269,13 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
                     //System.out.println("going into if");
 
                     this.setInventorySlotContents(SLOT_ONE, solidifier.getOutput());
-                    this.drain(ForgeDirection.DOWN, solidifier.getFluidStack(), true);
+                    this.drain(ForgeDirection.getOrientation(orientation.ordinal()), solidifier.getFluidStack(), true);
 
                 }
 
             }
 
         }
-
-        super.updateEntity();
-
 
     }
 

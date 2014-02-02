@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.tileentity;
 
-import net.minecraft.block.Block;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -13,9 +11,12 @@ public class TileTotemIntelligence extends TileTotemic
 
     public void onUpdate()
     {
+        super.updateEntity();
 
         if (!this.worldObj.isRemote)
         {
+
+            System.out.println("Scanned");
 
         }
 
@@ -28,21 +29,12 @@ public class TileTotemIntelligence extends TileTotemic
 
     protected boolean scanAbove()
     {
-        for (int i = this.yCoord; i <= 5; i++)
-        {
-            Block blockQuery = Block.blocksList[this.worldObj.getBlockId(this.xCoord, i, this.zCoord)];
-
-            return blockQuery != null;
-
-        }
-
-        return false;
+        return !worldObj.isAirBlock(this.xCoord, this.yCoord + 1, this.zCoord);
     }
 
-    public int amountTotemAbove()
+    protected boolean scanBelow()
     {
-
-        return 0;
+        return !worldObj.isAirBlock(this.xCoord, this.yCoord - 1, this.zCoord);
     }
 
 }

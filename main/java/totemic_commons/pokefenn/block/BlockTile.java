@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.block;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import totemic_commons.pokefenn.Totemic;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,6 +17,7 @@ public abstract class BlockTile extends BlockContainer
 
         super(id, material);
         setHardness(2);
+        setCreativeTab(Totemic.tabsTotem);
 
     }
 

@@ -15,10 +15,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectBat implements ITotemEffect
 {
 
-    @Override
-    public void effect(TileTotemBase totemBase)
+    public static void effect(TileTotemBase totemBase)
     {
-        if (totemBase.worldObj.getTotalWorldTime() % 100L == 0L && EntityUtil.getEntitiesInRange(totemBase.worldObj, totemBase.xCoord, totemBase.yCoord, totemBase.zCoord, 10, 10) != null)
+        if (totemBase.worldObj.getTotalWorldTime() % 100L == 0L && EntityUtil.getEntitiesInRange(totemBase.worldObj, totemBase.xCoord, totemBase.yCoord, totemBase.zCoord, 10, 10) != null  && !(totemBase.getStackInSlot(totemBase.SLOT_TWO).getMaxDamage() - totemBase.getStackInSlot(totemBase.SLOT_TWO).getItemDamage() - totemBase.DECREASE_BAT <= 0))
         {
             for (Entity entityArea : EntityUtil.getEntitiesInRange(totemBase.worldObj, totemBase.xCoord, totemBase.yCoord, totemBase.zCoord, 100, 10))
             {
@@ -26,6 +25,8 @@ public class TotemEffectBat implements ITotemEffect
                 if (entityArea instanceof EntityPlayer)
                 {
                     ((EntityPlayer) entityArea).capabilities.allowFlying = true;
+
+                    totemBase.chlorophyllCrystalHandler(totemBase.DECREASE_BAT);
 
                 }
 

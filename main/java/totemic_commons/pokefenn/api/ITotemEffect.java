@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.api;
 
-import totemic_commons.pokefenn.tileentity.TileTotemBase;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -10,8 +8,6 @@ import totemic_commons.pokefenn.tileentity.TileTotemBase;
  */
 public interface ITotemEffect
 {
-
-    public void effect(TileTotemBase totemBase);
 
 
 }

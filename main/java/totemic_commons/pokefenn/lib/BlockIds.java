@@ -13,6 +13,7 @@ public class BlockIds
     public static int TOTEM_DRAINING_DEFAULT = 2574;
     public static int TOTEM_TABLE_DEFAULT = 2575;
     public static int TOTEM_SUPPORT_DEFAULT = 2576;
+    public static int TOTEM_INTELLIGENCE_DEFAULT = 2577;
 
     public static int TOTEM_BASE;
     public static int CHLOROPHYLL_SOLIDIFIER;
@@ -21,5 +22,6 @@ public class BlockIds
     public static int TOTEM_DRAINING;
     public static int TOTEM_TABLE;
     public static int TOTEM_SUPPORT;
+    public static int TOTEM_INTELLIGENCE;
 
 }

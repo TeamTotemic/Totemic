@@ -22,7 +22,6 @@ public class ItemChlorophyllCrystal extends ItemNormal
         setMaxStackSize(1);
         setMaxDamage(500);
         setCreativeTab(Totemic.tabsTotem);
-        isFull3D();
 
     }
 

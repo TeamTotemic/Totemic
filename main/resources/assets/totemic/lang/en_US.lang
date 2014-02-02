@@ -13,6 +13,12 @@ item.totemic:totemsBat.name=Bat Totem
 item.totemic:totemsCactus.name=Cactus Totem
 item.totemic:totemsQuartzBlock.name=Block of Quartz Totem
 item.totemic:totemsHorse.name=Horse Totem
+item.totemic:totemsHopper.name=Hopper Totem
+item.totemic:totemsOcelot.name=Ocelot Totem
+item.totemic:totemsBlaze.name=Blaze Totem
+item.totemic:totemsSquid.name=Squid Totem
+item.totemic:totemsSun.name=Sun Totem
+item.totemic:totemsFood.name=Food Totem
 item.totemic:chlorophyllicIngot.name=Chlorophyllic Ingot
 item.totmeic:paintBrush.name=Totemic Paint Brush
 item.totemic:bucketChlorophyll.name=Bucket of Chlorophyll
@@ -23,9 +29,14 @@ item.totemic:bottleChlorophyll.name=Bottle of Chlorophyll
 tile.totemBase.name=Totem Base
 tile.chlorophyllSolidifier.name=Chlorophyll Solidifier
 tile.totemWoods.name=Totemic Wood
+tile.totemSupport.name=Totem Structure Support
+tile.totemIntelligence.name=Totem Structure Intelligence
+tile.totemTable.name=Totem Table
+tile.totemDraining.name=Totem of Draining
+
 
 # GUI localizations
-container.totemic:paintBrush=Paint Brush
+container.totemic:totemBase=Totem Base
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

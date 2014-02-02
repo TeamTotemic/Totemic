@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.totem;
 
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ITotemEffect;
 import totemic_commons.pokefenn.tileentity.TileTotemBase;
 
@@ -11,19 +12,26 @@ import totemic_commons.pokefenn.tileentity.TileTotemBase;
  */
 public class TotemEffectSun implements ITotemEffect
 {
-    @Override
-    public void effect(TileTotemBase totemBase)
+
+    public static void effect(TileTotemBase totemBase)
     {
-        if (!totemBase.worldObj.isRemote && totemBase.worldObj.getTotalWorldTime() % 200L == 0L)
+
+        if (totemBase.getStackInSlot(totemBase.SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
         {
-
-            if (totemBase.worldObj.isRaining())
+            if (!(totemBase.getStackInSlot(totemBase.SLOT_TWO).getMaxDamage() - totemBase.getStackInSlot(totemBase.SLOT_TWO).getItemDamage() - totemBase.DECREASE_SUN <= 0))
             {
-                totemBase.worldObj.toggleRain();
-            }
 
+                if (totemBase.worldObj.isRaining())
+                {
+                    totemBase.worldObj.toggleRain();
+
+                    totemBase.chlorophyllCrystalHandler(totemBase.DECREASE_SUN);
+                }
+
+            }
         }
 
     }
-
 }
+
+
