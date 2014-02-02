@@ -1,6 +1,5 @@
 # Key localizations
 
-
 # Item localizations
 item.totemic:totemHead.name=Totem Head
 item.totemic:totemicStaff.name=Totemic Staff
@@ -34,10 +33,8 @@ tile.totemIntelligence.name=Totem Structure Intelligence
 tile.totemTable.name=Totem Table
 tile.totemDraining.name=Totem of Draining
 
-
 # GUI localizations
 container.totemic:totemBase=Totem Base
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
-
