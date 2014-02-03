@@ -45,7 +45,7 @@ public class BlockTotemSupport extends BlockTile implements ITotemBlock
         if (tileTotemSupport != null && !world.isRemote && player != null)
         {
 
-            if (tileTotemSupport.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID && heldItem.getItemDamage() != 500)
+            if (tileTotemSupport.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID && heldItem.getItemDamage() != 0)
             {
                 tileTotemSupport.setInventorySlotContents(SLOT_ONE, heldItem);
                 player.destroyCurrentEquippedItem();

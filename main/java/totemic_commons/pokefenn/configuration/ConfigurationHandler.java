@@ -42,6 +42,7 @@ public class ConfigurationHandler
             BlockIds.TOTEM_TABLE = configuration.getBlock(Strings.TOTEM_TABLE_NAME, BlockIds.TOTEM_TABLE_DEFAULT).getInt(BlockIds.TOTEM_TABLE_DEFAULT);
             BlockIds.TOTEM_SUPPORT = configuration.getBlock(Strings.TOTEM_SUPPORT_NAME, BlockIds.TOTEM_SUPPORT_DEFAULT).getInt(BlockIds.TOTEM_SUPPORT_DEFAULT);
             BlockIds.TOTEM_INTELLIGENCE = configuration.getBlock(Strings.TOTEM_INTELLIGENCE_NAME, BlockIds.TOTEM_INTELLIGENCE_DEFAULT).getInt(BlockIds.TOTEM_INTELLIGENCE_DEFAULT);
+            BlockIds.TOTEM_SOCKET = configuration.getBlock(Strings.TOTEM_SOCKET_NAME, BlockIds.TOTEM_SOCKET_DEFAULT).getInt(BlockIds.TOTEM_SOCKET_DEFAULT);
 
             //Items
             ItemIds.TOTEMS = configuration.getItem(Strings.TOTEMS_NAME, ItemIds.TOTEMS_DEFAULT).getInt(ItemIds.TOTEMS_DEFAULT);

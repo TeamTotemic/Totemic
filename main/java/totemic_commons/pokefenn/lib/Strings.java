@@ -20,6 +20,7 @@ public class Strings
     public static final String TOTEM_TABLE_NAME = "totemTable";
     public static final String TOTEM_SUPPORT_NAME = "totemSupport";
     public static final String TOTEM_INTELLIGENCE_NAME = "totemIntelligence";
+    public static final String TOTEM_SOCKET_NAME = "totemSocket";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";
@@ -40,6 +41,7 @@ public class Strings
     public static final String TILE_TOTEM_TABLE = "tileTotemTable";
     public static final String TILE_TOTEM_SUPPORT = "tileTotemSupport";
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
+    public static final String TILE_TOTEM_SOCKET = "tileTotemSocket";
 
     //Container
 
@@ -48,6 +50,7 @@ public class Strings
     public static final String CONTAINER_TOTEM_DRAINING_NAME = "container.totemic:" + TOTEM_DRAINING_NAME;
     public static final String CONTAINER_TOTEM_TABLE_NAME = "container.totemic:" + TOTEM_TABLE_NAME;
     public static final String CONTAINER_TOTEM_SUPPORT_NAME = "container.totemic:" + TOTEM_SUPPORT_NAME;
+    public static final String CONTAINER_TOTEM_SOCKET_NAME = "container.totemic:" + TOTEM_SOCKET_NAME;
 
     public static final String CONTAINER_INVENTORY = "container.inventory";
 

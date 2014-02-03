@@ -34,7 +34,6 @@ public class TotemEffectHopper
                     {
                         if (entity instanceof EntityItem)
                         {
-
                             if (blockUnder instanceof IInventory)
                             {
                                 //((IInventory) blockUnder).setInventorySlotContents((1 , ((EntityItem) entity).getEntityItem());

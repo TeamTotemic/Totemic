@@ -63,6 +63,14 @@ public class CompatInit
 
         }
 
+        if (Loader.isModLoaded("Botania"))
+        {
+
+            Totemic.logger.info("Oh, hey Botania!");
+            Totemic.logger.info("Why can't we be friends... why can't we be friends... why can't we be friends! *runs away sobbing*");
+
+        }
+
     }
 
 }
