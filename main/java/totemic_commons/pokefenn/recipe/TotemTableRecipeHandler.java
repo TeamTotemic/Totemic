@@ -13,6 +13,4 @@ public class TotemTableRecipeHandler
 {
     public final HashMap<String,ArrayList<RecipeTotemTable>> recipes = new HashMap();
 
-
-
 }

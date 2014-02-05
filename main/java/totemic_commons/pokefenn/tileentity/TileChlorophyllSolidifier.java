@@ -266,7 +266,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
                 //System.out.println("forloop");
                 if (ItemStack.areItemStacksEqual(this.getStackInSlot(SLOT_ONE), solidifier.getInput()) && this.canDrain(ForgeDirection.UP, ModFluids.fluidChlorophyll))
                 {
-                    //System.out.println("going into if");
+                    System.out.println(tank.getFluidAmount());
 
                     this.setInventorySlotContents(SLOT_ONE, solidifier.getOutput());
                     this.drain(ForgeDirection.getOrientation(orientation.ordinal()), solidifier.getFluidStack(), true);

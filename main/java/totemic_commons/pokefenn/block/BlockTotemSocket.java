@@ -1,6 +1,9 @@
 package totemic_commons.pokefenn.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,6 +11,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -15,6 +19,7 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ITotemBlock;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.TileTotemSocket;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
@@ -66,7 +71,8 @@ public class BlockTotemSocket extends BlockTile implements ITotemBlock
                 if (tileTotemSocket.getStackInSlot(SLOT_ONE).itemID == ModItems.totems.itemID)
                 {
 
-                    player.inventory.addItemStackToInventory(tileTotemSocket.getStackInSlot(SLOT_ONE));
+                    EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemSocket.getStackInSlot(SLOT_ONE));
+                    player.worldObj.spawnEntityInWorld(entityitem);
                     tileTotemSocket.setInventorySlotContents(SLOT_ONE, null);
 
                 }
@@ -166,6 +172,30 @@ public class BlockTotemSocket extends BlockTile implements ITotemBlock
             }
         }
 
+    }
+
+    @SideOnly(Side.CLIENT)
+    private Icon topIcon;
+    @SideOnly(Side.CLIENT)
+    private Icon sideIcon;
+    @SideOnly(Side.CLIENT)
+    private Icon bottomIcon;
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IconRegister register)
+    {
+        topIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_TOP);
+        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_SIDE);
+        bottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_BOTTOM);
+
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public Icon getIcon(int side, int meta)
+    {
+        return sideIcon;
     }
 
 }

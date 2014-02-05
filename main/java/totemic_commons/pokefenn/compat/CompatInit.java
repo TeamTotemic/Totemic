@@ -1,7 +1,8 @@
-package totemic_commons.pokefenn.util;
+package totemic_commons.pokefenn.compat;
 
 import cpw.mods.fml.common.Loader;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.compat.thaumcraft.ThaumcraftCompat;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +21,8 @@ public class CompatInit
 
             Totemic.logger.info("Is that thaumcraft I see?");
             Totemic.logger.info("This is more like Tech! ");
+
+            ThaumcraftCompat.init();
 
         }
 

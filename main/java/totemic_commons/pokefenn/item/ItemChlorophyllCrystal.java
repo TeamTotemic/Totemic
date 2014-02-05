@@ -20,7 +20,7 @@ public class ItemChlorophyllCrystal extends ItemNormal
         super(id);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CHLOROPHYLL_CRYSTAL_NAME);
         setMaxStackSize(1);
-        setMaxDamage(500);
+        setMaxDamage(1000);
         setCreativeTab(Totemic.tabsTotem);
 
     }
@@ -35,7 +35,8 @@ public class ItemChlorophyllCrystal extends ItemNormal
 
     public void getSubItems(int id, CreativeTabs par2CreativeTabs, List list)
     {
-        list.add(new ItemStack(id, 1, 499));
+        list.add(new ItemStack(id, 1, 1000));
+        list.add(new ItemStack(id, 1, 500));
         list.add(new ItemStack(id, 1, 1));
     }
 

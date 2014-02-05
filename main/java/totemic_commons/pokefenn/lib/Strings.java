@@ -32,6 +32,10 @@ public class Strings
     public static final String TOTEMS_NAME = "totems";
     public static final String SUB_ITEMS_NAME = "subItems";
     public static final String BOTTLE_CHLOROPHYLL_NAME = "bottleChlorophyll";
+    public static final String TOTEM_BEADS_NAME = "totemBeads";
+
+    public static final String TOTEM_WOOD_WAND_CORE_NAME = "totemWoodWandCore";
+    public static final String CHLOROPHYLL_CRYSTAL_WAND_CAP = "chlorophyllCrystalWandCap";
 
     //TileEntites
 
@@ -51,6 +55,7 @@ public class Strings
     public static final String CONTAINER_TOTEM_TABLE_NAME = "container.totemic:" + TOTEM_TABLE_NAME;
     public static final String CONTAINER_TOTEM_SUPPORT_NAME = "container.totemic:" + TOTEM_SUPPORT_NAME;
     public static final String CONTAINER_TOTEM_SOCKET_NAME = "container.totemic:" + TOTEM_SOCKET_NAME;
+    public static final String CONTAINER_TOTEM_INTELLIGENCE_NAME = "container.totemic:" + TOTEM_INTELLIGENCE_NAME;
 
     public static final String CONTAINER_INVENTORY = "container.inventory";
 

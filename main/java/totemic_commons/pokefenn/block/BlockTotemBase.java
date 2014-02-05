@@ -40,8 +40,6 @@ public class BlockTotemBase extends BlockTile implements ITotemBlock
 
     }
 
-    //TODO make this a guiless inventoy, gui is for development ONLY
-
     @Override
     public TileEntity createNewTileEntity(World world)
     {

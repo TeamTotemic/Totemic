@@ -9,7 +9,6 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
-import totemic_commons.pokefenn.totem.*;
 
 public class TileTotemBase extends TileTotemic implements IInventory
 {
@@ -216,6 +215,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
 
         if (!this.worldObj.isRemote && this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_TWO) != null)
         {
+            /*
 
             //Checks to see what is in the current itemstack and runs code depending on what.
             if (ItemStack.areItemStacksEqual(getStackInSlot(SLOT_ONE), new ItemStack(ModItems.totems)) && this.worldObj.getTotalWorldTime() % 20 == 0)
@@ -258,6 +258,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
 
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 
+*/
         }
 
 
@@ -271,6 +272,7 @@ public class TileTotemBase extends TileTotemic implements IInventory
 
     public void chlorophyllCrystalHandler(int durabilityDecrease)
     {
+
         this.setInventorySlotContents(SLOT_TWO, new ItemStack(ModItems.chlorophyllCrystal, 1, this.getStackInSlot(SLOT_TWO).getItemDamage() + durabilityDecrease));
     }
 

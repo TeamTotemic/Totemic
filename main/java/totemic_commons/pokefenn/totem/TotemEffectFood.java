@@ -2,8 +2,7 @@ package totemic_commons.pokefenn.totem;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.tileentity.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.Random;
@@ -18,17 +17,17 @@ public class TotemEffectFood
 {
 
 
-    public static void effect(TileTotemBase tileTotemBase)
+    public static void effect(TileTotemIntelligence totem, int i)
     {
         Random rand = new Random();
 
-        if (tileTotemBase.getStackInSlot(tileTotemBase.SLOT_TWO).itemID == ModItems.chlorophyllCrystal.itemID)
+        if (totem.worldObj.getWorldTime() % 60L == 0)
         {
 
-            if (EntityUtil.getEntitiesInRange(tileTotemBase.worldObj, tileTotemBase.xCoord, tileTotemBase.yCoord, tileTotemBase.zCoord, 15, 15) != null && !(tileTotemBase.getStackInSlot(tileTotemBase.SLOT_TWO).getMaxDamage() - tileTotemBase.getStackInSlot(tileTotemBase.SLOT_TWO).getItemDamage() - tileTotemBase.DECREASE_FOOD <= 0))
+            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 15, 15) != null)
             {
 
-                for (Entity entity : EntityUtil.getEntitiesInRange(tileTotemBase.worldObj, tileTotemBase.xCoord, tileTotemBase.yCoord, tileTotemBase.zCoord, 15, 15))
+                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 15, 15))
                 {
                     if (entity instanceof EntityPlayer)
                     {
@@ -37,9 +36,9 @@ public class TotemEffectFood
 
                             ((EntityPlayer) entity).getFoodStats().setFoodLevel(10 + rand.nextInt(5));
 
-                            tileTotemBase.chlorophyllCrystalHandler(tileTotemBase.DECREASE_FOOD);
-
                             ((EntityPlayer) entity).getFoodStats().setFoodSaturationLevel(rand.nextInt(4));
+
+                            totem.decreaseChlorophyll(totem.decrementAmount(i));
 
                         }
                     }

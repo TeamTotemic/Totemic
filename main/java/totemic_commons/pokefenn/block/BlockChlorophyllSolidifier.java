@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -44,19 +45,20 @@ public class BlockChlorophyllSolidifier extends BlockTile
 
         int SLOT_ONE = TileChlorophyllSolidifier.SLOT_ONE;
 
-        if (tileChlorophyllSolidifier != null)
+        if (tileChlorophyllSolidifier != null && !world.isRemote)
         {
+
 
             if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID != ModItems.bottleChlorophyll.itemID && heldItem.itemID != ModItems.bucketChlorophyll.itemID && !heldItem.hasTagCompound())
             {
 
-                tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null);
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
                 heldItem.stackSize--;
 
             } else if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
-                player.inventory.addItemStackToInventory(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE));
+                EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE));
+                player.worldObj.spawnEntityInWorld(entityitem);
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null);
 
 
@@ -72,7 +74,8 @@ public class BlockChlorophyllSolidifier extends BlockTile
                 {
                     tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
                     player.destroyCurrentEquippedItem();
-                    player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
+                    EntityItem entityBucket = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(Item.bucketEmpty));
+                    player.worldObj.spawnEntityInWorld(entityBucket);
 
                 }
 

@@ -11,6 +11,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import totemic_commons.pokefenn.compat.CompatInit;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Reference;
@@ -18,7 +19,6 @@ import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
 import totemic_commons.pokefenn.recipe.TotemTableHandler;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
-import totemic_commons.pokefenn.util.CompatInit;
 import totemic_commons.pokefenn.util.CreativeTabTotemic;
 import totemic_commons.pokefenn.util.OreDictionaryTotemic;
 
@@ -26,7 +26,7 @@ import java.io.File;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.0.5"/*, dependencies = "required-after:rukaLib;"*/)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.0.6b"/*, dependencies = "required-after:rukaLib;"*/)
 @NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 public final class Totemic
@@ -46,7 +46,6 @@ public final class Totemic
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-
 
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
 
@@ -72,7 +71,7 @@ public final class Totemic
     public void init(FMLInitializationEvent event)
     {
 
-        Totemic.logger.info("Totemic is entering its Initlisation stage");
+        logger.info("Totemic is entering its Initlisation stage");
 
         //Starts ore dictionary code
         OreDictionaryTotemic.init();
@@ -84,7 +83,7 @@ public final class Totemic
         NetworkRegistry.instance().registerGuiHandler(Totemic.instance, Totemic.proxy);
 
         //Init tile entities into the game
-        Totemic.proxy.registerTileEntities();
+        proxy.registerTileEntities();
 
         //Init's the Tile entity and block renderers
         //ClientProxy.blockRendering();
@@ -99,9 +98,7 @@ public final class Totemic
     @EventHandler
     public void modsLoaded(FMLPostInitializationEvent event)
     {
-
         CompatInit.init();
-
     }
 
 }

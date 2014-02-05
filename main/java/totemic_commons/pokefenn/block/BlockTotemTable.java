@@ -69,7 +69,8 @@ public class BlockTotemTable extends BlockTile
         {
             if (heldItem == null && tileTotemTable.getStackInSlot(SLOT_ONE) != null)
             {
-                player.inventory.addItemStackToInventory(tileTotemTable.getStackInSlot(SLOT_ONE));
+                EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemTable.getStackInSlot(SLOT_ONE));
+                player.worldObj.spawnEntityInWorld(entityitem);
                 tileTotemTable.setInventorySlotContents(SLOT_ONE, null);
 
             } else if (tileTotemTable.getStackInSlot(SLOT_ONE) == null && heldItem != null)

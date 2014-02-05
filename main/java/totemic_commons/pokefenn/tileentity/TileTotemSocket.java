@@ -10,8 +10,6 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
 
-import java.util.Random;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -20,9 +18,6 @@ import java.util.Random;
  */
 public class TileTotemSocket extends TileTotemic implements IInventory
 {
-
-
-    private Random rand = new Random();
 
     private ItemStack[] inventory;
 
@@ -48,8 +43,6 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     public ItemStack getStackInSlot(int slotIndex)
     {
         return inventory[slotIndex];
-
-
     }
 
     @Override
@@ -93,7 +86,6 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     @Override
     public ItemStack getStackInSlotOnClosing(int slotIndex)
     {
-
         ItemStack itemStack = getStackInSlot(slotIndex);
         if (itemStack != null)
         {
@@ -105,14 +97,11 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     @Override
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack)
     {
-
         inventory[slotIndex] = itemStack;
         if (itemStack != null && itemStack.stackSize > getInventoryStackLimit())
         {
             itemStack.stackSize = getInventoryStackLimit();
         }
-
-
     }
 
     @Override
@@ -136,13 +125,11 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     @Override
     public void openChest()
     {
-
     }
 
     @Override
     public void closeChest()
     {
-
     }
 
     @Override
@@ -158,6 +145,7 @@ public class TileTotemSocket extends TileTotemic implements IInventory
 
             } else
                 return false;
+
         } else return false;
 
     }

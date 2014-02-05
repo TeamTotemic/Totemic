@@ -19,6 +19,7 @@ public final class ModItems
     public static Item subItems;
     public static Item bottleChlorophyll;
     public static Item totems;
+    public static Item totemBeads;
 
     public static void init()
     {
@@ -31,7 +32,7 @@ public final class ModItems
         totems = new ItemTotems(ItemIds.TOTEMS);
         subItems = new ItemSubItems(ItemIds.SUB_ITEMS);
         bottleChlorophyll = new ItemBottleChlorophyll(ItemIds.BOTTLE_CHLOROPHYLL);
-
+        //totemBeads = new ItemTotemBeads(ItemIds.TOTEM_BEADS);
 
         //These are specific totems, of mobs and minecraft objects
 
@@ -44,6 +45,7 @@ public final class ModItems
         //GameRegistry.registerItem(venusFlyTrapSeed, venusFlyTrapSeed.getUnlocalizedName());
         //GameRegistry.registerItem(subItems, subItems.getUnlocalizedName());
         GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
+        //GameRegistry.registerItem(totemBeads, totemBeads.getUnlocalizedName());
 
         //totemWhittlingKnife.setContainerItem(totemWhittlingKnife);
         //bucketChlorophyll.setContainerItem(bucketChlorophyll);

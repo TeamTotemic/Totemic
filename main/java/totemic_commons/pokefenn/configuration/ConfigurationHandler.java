@@ -16,6 +16,7 @@ public class ConfigurationHandler
 
     public static Configuration configuration;
     public static final String CATEGORY_GAMEPLAY = "gameplay";
+    public static final String CATEGORY_TOTEMS = "totem";
 
 
     public static void init(File configFile)
@@ -32,15 +33,23 @@ public class ConfigurationHandler
             ConfigurationSettings.TOTEM_DRAINING_RANGE = configuration.get(CATEGORY_GAMEPLAY, ConfigurationSettings.TOTEM_DRAINING_CONFIGNAME, ConfigurationSettings.TOTEM_DRAINING_DEFAULT).getInt(ConfigurationSettings.TOTEM_DRAINING_DEFAULT);
             ConfigurationSettings.ENABLE_TEMP_RECIPES = configuration.get(CATEGORY_GAMEPLAY, "enableTempRecipes", true).getBoolean(true);
 
+            ConfigurationSettings.DECREMENT_TOTEM_CACTUS = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementCactus", 1).getInt(1);
+            ConfigurationSettings.DECREMENT_TOTEM_BAT = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementBat", 25).getInt(25);
+            ConfigurationSettings.DECREMENT_TOTEM_HOPPER = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementHopper", 1).getInt(1);
+            ConfigurationSettings.DECREMENT_TOTEM_HORSE = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementHorse", 1).getInt(1);
+            ConfigurationSettings.DECREMENT_TOTEM_SUN = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSun", 100).getInt(100);
+            ConfigurationSettings.DECREMENT_TOTEM_BLAZE = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementBlaze", 3).getInt(3);
+            ConfigurationSettings.DECREMENT_TOTEM_OCELOT = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementOcelot", 4).getInt(4);
+            ConfigurationSettings.DECREMENT_TOTEM_SQUID = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSquid", 2).getInt(2);
+            ConfigurationSettings.DECREMENT_TOTEM_FOOD = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementFood", 20).getInt(20);
+            ConfigurationSettings.DECREMENT_TOTEM_SPIDER = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSpider", 10).getInt(10);
 
             //Blocks
-            BlockIds.TOTEM_BASE = configuration.getBlock(Strings.TOTEM_BASE_NAME, BlockIds.TOTEM_BASE_DEFAULT).getInt(BlockIds.TOTEM_BASE_DEFAULT);
             BlockIds.CHLOROPHYLL_SOLIDIFIER = configuration.getBlock(Strings.CHLOROPHYLL_CRYSTAL_NAME, BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT).getInt(BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT);
             BlockIds.VENUS_FLY_TRAP = configuration.getBlock(Strings.VENUS_FLY_TRAP_NAME, BlockIds.VENUS_FLY_TRAP_DEFAULT).getInt(BlockIds.VENUS_FLY_TRAP_DEFAULT);
             BlockIds.TOTEM_WOODS = configuration.getBlock(Strings.TOTEM_WOODS_NAME, BlockIds.TOTEM_WOODS_DEFAULT).getInt(BlockIds.TOTEM_WOODS_DEFAULT);
             BlockIds.TOTEM_DRAINING = configuration.getBlock(Strings.TOTEM_DRAINING_NAME, BlockIds.TOTEM_DRAINING_DEFAULT).getInt(BlockIds.TOTEM_DRAINING_DEFAULT);
             BlockIds.TOTEM_TABLE = configuration.getBlock(Strings.TOTEM_TABLE_NAME, BlockIds.TOTEM_TABLE_DEFAULT).getInt(BlockIds.TOTEM_TABLE_DEFAULT);
-            BlockIds.TOTEM_SUPPORT = configuration.getBlock(Strings.TOTEM_SUPPORT_NAME, BlockIds.TOTEM_SUPPORT_DEFAULT).getInt(BlockIds.TOTEM_SUPPORT_DEFAULT);
             BlockIds.TOTEM_INTELLIGENCE = configuration.getBlock(Strings.TOTEM_INTELLIGENCE_NAME, BlockIds.TOTEM_INTELLIGENCE_DEFAULT).getInt(BlockIds.TOTEM_INTELLIGENCE_DEFAULT);
             BlockIds.TOTEM_SOCKET = configuration.getBlock(Strings.TOTEM_SOCKET_NAME, BlockIds.TOTEM_SOCKET_DEFAULT).getInt(BlockIds.TOTEM_SOCKET_DEFAULT);
 
@@ -53,6 +62,10 @@ public class ConfigurationHandler
             ItemIds.VENUS_FLY_TRAP_SEED = configuration.getItem(Strings.VENUS_FLY_TRAP_SEED_NAME, ItemIds.VENUS_FLY_TRAP_SEED_DEFAULT).getInt(ItemIds.VENUS_FLY_TRAP_SEED_DEFAULT);
             ItemIds.SUB_ITEMS = configuration.getItem(Strings.SUB_ITEMS_NAME, ItemIds.SUB_ITEMS_DEFAULT).getInt(ItemIds.SUB_ITEMS_DEFAULT);
             ItemIds.BOTTLE_CHLOROPHYLL = configuration.getItem(Strings.BOTTLE_CHLOROPHYLL_NAME, ItemIds.BOTTLE_CHLOROPHYLL_DEFAULT).getInt(ItemIds.BOTTLE_CHLOROPHYLL_DEFAULT);
+            ItemIds.TOTEM_BEADS = configuration.getItem(Strings.TOTEM_BEADS_NAME, ItemIds.TOTEM_BEADS_DEFAULT).getInt(ItemIds.TOTEM_BEADS_DEFAULT);
+
+            ItemIds.TOTEM_WOOD_WAND_CORE = configuration.getItem(Strings.TOTEM_WOOD_WAND_CORE_NAME, ItemIds.TOTEM_WOOD_WAND_CORE_DEFAULT).getInt(ItemIds.TOTEM_WOOD_WAND_CORE_DEFAULT);
+            ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP = configuration.getItem(Strings.CHLOROPHYLL_CRYSTAL_WAND_CAP, ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP_DEFAULT).getInt(ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP_DEFAULT);
 
         } catch (Exception e)
         {

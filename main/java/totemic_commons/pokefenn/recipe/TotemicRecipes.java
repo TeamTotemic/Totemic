@@ -30,11 +30,15 @@ public class TotemicRecipes
         if (ConfigurationSettings.ENABLE_TEMP_RECIPES)
         {
 
-            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems), new Object[]{new ItemStack(ModItems.totems, 1, ItemTotems.TOTEM_NAMES.length)});
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 1), new Object[]{new ItemStack(ModItems.totems, 1, ItemTotems.TOTEM_NAMES.length)});
 
             for (int i = 0; i <= ItemTotems.TOTEM_NAMES.length; i++)
             {
-                GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, i + 1), new Object[]{new ItemStack(ModItems.totems, 1, i)});
+                if (i != 0)
+                {
+                    GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, i + 1), new Object[]{new ItemStack(ModItems.totems, 1, i)});
+
+                }
             }
 
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack((ModBlocks.totemWoods)), new Object[]{"ccc", "cwc", "ccc", ('c'), ModItems.bottleChlorophyll, ('w'), Block.wood}));
@@ -43,9 +47,10 @@ public class TotemicRecipes
             //GameRegistry.addRecipe(new ItemStack(ModItems.totemWhittlingKnife, 1, 1), new Object[]{"f ", "i ", ('f'), Item.flint, ('i'), Item.ingotIron});
             //GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totemWhittlingKnife), new Object[]{"  s", " s ", "s  ", ('s'), "stickWood"}));
             //GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totemWhittlingKnife, 1, 2), new Object[]{new ItemStack(ModItems.totemWhittlingKnife, 1, 1), new ItemStack(ModItems.totemWhittlingKnife, 1)});
-            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems), new Object[]{new ItemStack(ModBlocks.totemWoods)});
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemBase), new Object[]{"www", "w w", "www", ('w'), ModBlocks.totemWoods}));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 1), new Object[]{new ItemStack(ModBlocks.totemWoods)});
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemIntelligence), new Object[]{"www", "w w", "www", ('w'), ModBlocks.totemWoods}));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemDraining), new Object[]{"ww", "ww", ('w'), ModBlocks.totemWoods}));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemSocket), new Object[]{"www", "www", "   ", ('w'), ModBlocks.totemWoods}));
             //GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totemWhittlingKnife), new Object[]{"  s", " s ", "s  ", ('s'), "stickWood"}));
 
         }

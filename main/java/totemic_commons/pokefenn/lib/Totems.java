@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.lib;
 
+import totemic_commons.pokefenn.configuration.ConfigurationSettings;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -9,16 +11,16 @@ package totemic_commons.pokefenn.lib;
 public class Totems
 {
 
-    public static int DECREMENT_CACTUS = 1;
-    public static int DECREMENT_SUN = 100;
-    public static int DECREMENT_HOPPER = 1;
-    public static int DECREMENT_HORSE = 2;
-    public static int DECREMENT_BAT = 50;
-    public static int DECREMENT_BLAZE = 4;
-    public static int DECREMENT_OCELOT = 5;
-    public static int DECREMENT_SQUID = 2;
-    public static int DECREMENT_FOOD = 20;
-    public static int DECREMENT_ENDERMAN = 4;
+    public static int DECREMENT_CACTUS = ConfigurationSettings.DECREMENT_TOTEM_CACTUS;
+    public static int DECREMENT_SUN = ConfigurationSettings.DECREMENT_TOTEM_SUN;
+    public static int DECREMENT_HOPPER = ConfigurationSettings.DECREMENT_TOTEM_HOPPER;
+    public static int DECREMENT_HORSE = ConfigurationSettings.DECREMENT_TOTEM_HORSE;
+    public static int DECREMENT_BAT = ConfigurationSettings.DECREMENT_TOTEM_BAT;
+    public static int DECREMENT_BLAZE = ConfigurationSettings.DECREMENT_TOTEM_BLAZE;
+    public static int DECREMENT_OCELOT = ConfigurationSettings.DECREMENT_TOTEM_OCELOT;
+    public static int DECREMENT_SQUID = ConfigurationSettings.DECREMENT_TOTEM_SQUID;
+    public static int DECREMENT_FOOD = ConfigurationSettings.DECREMENT_TOTEM_FOOD;
+    public static int DECREMENT_SPIDER = ConfigurationSettings.DECREMENT_TOTEM_SPIDER;
 
 
 }

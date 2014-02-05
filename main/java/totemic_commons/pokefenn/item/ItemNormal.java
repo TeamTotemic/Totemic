@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
+import totemic_commons.pokefenn.Totemic;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +21,7 @@ public class ItemNormal extends Item
         super(id - 256);
         setMaxStackSize(64);
         setNoRepair();
+        setCreativeTab(Totemic.tabsTotem);
 
     }
 

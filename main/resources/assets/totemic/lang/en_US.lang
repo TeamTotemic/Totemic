@@ -18,6 +18,7 @@ item.totemic:totemsBlaze.name=Blaze Totem
 item.totemic:totemsSquid.name=Squid Totem
 item.totemic:totemsSun.name=Sun Totem
 item.totemic:totemsFood.name=Food Totem
+item.totemic:totemsNotATotem.name=Code only item do not use
 item.totemic:chlorophyllicIngot.name=Chlorophyllic Ingot
 item.totmeic:paintBrush.name=Totemic Paint Brush
 item.totemic:bucketChlorophyll.name=Bucket of Chlorophyll
@@ -29,9 +30,10 @@ tile.totemBase.name=Totem Base
 tile.chlorophyllSolidifier.name=Chlorophyll Solidifier
 tile.totemWoods.name=Totemic Wood
 tile.totemSupport.name=Totem Structure Support
-tile.totemIntelligence.name=Totem Structure Intelligence
+tile.totemIntelligence.name=Totem Structure: Intelligence
 tile.totemTable.name=Totem Table
 tile.totemDraining.name=Totem of Draining
+tile.totemSocket.name=Totem Structure: Socket
 
 # GUI localizations
 container.totemic:totemBase=Totem Base

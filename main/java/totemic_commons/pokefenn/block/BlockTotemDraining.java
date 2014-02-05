@@ -71,7 +71,8 @@ public class BlockTotemDraining extends BlockTile implements ITotemBlock
                 if (tileTotemDraining.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
                 {
 
-                    player.inventory.addItemStackToInventory(new ItemStack(ModItems.chlorophyllCrystal, 1, tileTotemDraining.getStackInSlot(SLOT_ONE).getItemDamage()));
+                    EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemDraining.getStackInSlot(SLOT_ONE));
+                    player.worldObj.spawnEntityInWorld(entityitem);
                     tileTotemDraining.setInventorySlotContents(SLOT_ONE, null);
 
                 }
