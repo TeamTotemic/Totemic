@@ -3,7 +3,10 @@ package totemic_commons.pokefenn.totem;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ITotemEffect;
+import totemic_commons.pokefenn.item.ItemTotemBeads;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -30,12 +33,42 @@ public class TotemEffectOcelot implements ITotemEffect
                     {
                         int ignited = (Integer) ReflectionHelper.getPrivateValue(EntityCreeper.class, (EntityCreeper) entity, "timeSinceIgnited", "field_70833_d", "bq");
 
-                        if (ignited > 24)
+                        if (ignited > 17)
                         {
 
                             ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
 
-                            totem.decreaseChlorophyll(totem.decrementAmount(i));
+                            totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+    }
+
+
+    public static void effectBead(EntityPlayer player, World world, ItemTotemBeads totemBeads, int i)
+    {
+        if(world.getWorldTime() % 10L == 0)
+        {
+            if (EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 10, 10) != null)
+            {
+
+                for (Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 10, 10))
+                {
+                    if (entity instanceof EntityCreeper)
+                    {
+                        int ignited = (Integer) ReflectionHelper.getPrivateValue(EntityCreeper.class, (EntityCreeper) entity, "timeSinceIgnited", "field_70833_d", "bq");
+
+                        if (ignited > 17)
+                        {
+
+                            ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
+
+                            ItemTotemBeads.decreaseChlorophyll(player, TotemUtil.decrementAmount(i));
 
                         }
                     }

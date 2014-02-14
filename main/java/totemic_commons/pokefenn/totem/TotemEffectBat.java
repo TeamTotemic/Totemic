@@ -17,20 +17,33 @@ public class TotemEffectBat implements ITotemEffect
 
     public static void effect(TileTotemIntelligence totem, int i)
     {
-        if (totem.worldObj.getTotalWorldTime() % 100L == 0L && EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10) != null/*  && !(totemBase.getStackInSlot(totemBase.SLOT_TWO).getMaxDamage() - totemBase.getStackInSlot(totemBase.SLOT_TWO).getItemDamage() - totemBase.DECREASE_BAT <= 0)*/)
+        if (totem.worldObj.getWorldTime() % 40L == 0L)
         {
-            for (Entity entityArea : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10))
+            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10) != null)
             {
-
-                if (entityArea instanceof EntityPlayer)
+                for (Entity entityArea : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10))
                 {
-                    ((EntityPlayer) entityArea).capabilities.allowFlying = true;
+                    if (entityArea instanceof EntityPlayer)
+                    {
+                        ((EntityPlayer) entityArea).posY += 20;
+                        ((EntityPlayer) entityArea).setPosition(totem.xCoord, totem.yCoord + 10, totem.zCoord);
 
-                    totem.decreaseChlorophyll(totem.decrementAmount(i));
+
+
+                        ((EntityPlayer) entityArea).capabilities.allowFlying = true;
+
+                        totem.worldObj.updateEntity(entityArea);
+
+                        //((EntityPlayer) entityArea).capabilities.setFlySpeed(10);
+
+                        //System.out.println(":P");
+
+                        totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
+                    }
+
                 }
 
             }
-
         }
 
 

@@ -30,7 +30,7 @@ public class TotemEffectCactus implements ITotemEffect
                     {
                         entity.attackEntityFrom(DamageSource.generic, 4);
 
-                        totem.decreaseChlorophyll(totem.decrementAmount(i));
+                        totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
 
                     }
                 }

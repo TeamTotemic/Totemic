@@ -9,29 +9,31 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import totemic_commons.pokefenn.compat.CompatInit;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
+import totemic_commons.pokefenn.fluid.FluidContainers;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Reference;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
 import totemic_commons.pokefenn.recipe.TotemTableHandler;
+import totemic_commons.pokefenn.recipe.TotemicCraftingHandler;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
 import totemic_commons.pokefenn.util.CreativeTabTotemic;
 import totemic_commons.pokefenn.util.OreDictionaryTotemic;
+import totemic_commons.pokefenn.util.TotemicFuelHandler;
 
 import java.io.File;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.0.6b"/*, dependencies = "required-after:rukaLib;"*/)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.1.0a")
 @NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 public final class Totemic
 {
-
     @Instance(Reference.MOD_ID)
     public static Totemic instance;
 
@@ -73,25 +75,29 @@ public final class Totemic
 
         logger.info("Totemic is entering its Initlisation stage");
 
+        GameRegistry.registerCraftingHandler(new TotemicCraftingHandler());
+
         //Starts ore dictionary code
         OreDictionaryTotemic.init();
 
         //Vannila recipes
         TotemicRecipes.init();
 
-        //Gui handler code
-        NetworkRegistry.instance().registerGuiHandler(Totemic.instance, Totemic.proxy);
+        FluidContainers.init();
+
+        //Initialises the fuel handler for the BlazingChlorophyllCrystal
+        GameRegistry.registerFuelHandler(new TotemicFuelHandler());
 
         //Init tile entities into the game
         proxy.registerTileEntities();
 
-        //Init's the Tile entity and block renderers
-        //ClientProxy.blockRendering();
+        proxy.initRendering();
 
         //Makes the recipes of Chlorophyll enter the game
         ChlorophyllSolidifierRecipes.addRecipes();
 
         TotemTableHandler.addRecipes();
+
 
     }
 

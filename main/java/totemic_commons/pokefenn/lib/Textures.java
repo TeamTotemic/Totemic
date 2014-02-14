@@ -33,7 +33,11 @@ public class Textures
     public static final String BUCKET_CHLOROPHYLL_ICON = "bucketChlorophyll";
     public static final String BOTTLE_CHLOROPHYLL_ICON = "bottleChlorophyll";
 
+
     //Fluids
+
+    public static final String FLUID_CHLOROPHYLL_STILL = "chlorophyllStill";
+    public static final String FLUID_CHLOROPHYLL_FLOWING = "chlorophyllFlowing";
 
     //Guis
 
@@ -44,5 +48,6 @@ public class Textures
     //Models
     public static final ResourceLocation TEXTURE_TOTEM_TABLE = ResourceLocationHelper.getResourceLocation(BLOCK_LOCATION + "totemTable.png");
     public static final ResourceLocation TEXTURE_TOTEM_BASE = ResourceLocationHelper.getResourceLocation(BLOCK_LOCATION + "totemBase.png");
-
+    public static final ResourceLocation TEXTURE_TOTEM_SOCKET = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemSocket.png");
+    public static final ResourceLocation TEXTURE_TOTEM_DRAINING = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemDraining.png");
 }

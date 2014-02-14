@@ -1,9 +1,6 @@
 package totemic_commons.pokefenn.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +8,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -19,9 +15,9 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ITotemBlock;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.TileTotemSocket;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
+import totemic_commons.pokefenn.lib.*;
 
 import java.util.Random;
 
@@ -39,6 +35,7 @@ public class BlockTotemSocket extends BlockTile implements ITotemBlock
         super(id, Material.wood);
         setUnlocalizedName(Strings.TOTEM_SOCKET_NAME);
         setCreativeTab(Totemic.tabsTotem);
+
     }
 
     @Override
@@ -173,6 +170,7 @@ public class BlockTotemSocket extends BlockTile implements ITotemBlock
         }
 
     }
+    /*
 
     @SideOnly(Side.CLIENT)
     private Icon topIcon;
@@ -196,6 +194,26 @@ public class BlockTotemSocket extends BlockTile implements ITotemBlock
     public Icon getIcon(int side, int meta)
     {
         return sideIcon;
+    }
+    */
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+
+        return RenderIds.RENDER_ID_TOTEM_POLE;
     }
 
 }

@@ -16,10 +16,8 @@ public class ParticleUtil
     {
         if (ConfigurationSettings.ENABLE_PARTICLE_FX)
         {
-
             world.spawnParticle(particleName, x, y, z, velX, velY, velZ);
-
-        }
+}
     }
 
 

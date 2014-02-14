@@ -43,15 +43,19 @@ public class ConfigurationHandler
             ConfigurationSettings.DECREMENT_TOTEM_SQUID = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSquid", 2).getInt(2);
             ConfigurationSettings.DECREMENT_TOTEM_FOOD = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementFood", 20).getInt(20);
             ConfigurationSettings.DECREMENT_TOTEM_SPIDER = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSpider", 10).getInt(10);
+            ConfigurationSettings.DECREMENT_TOTEM_LOVE = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementLove", 15).getInt(15);
+
+            ConfigurationSettings.DISABLE_TOTEM_BEADS = configuration.get(CATEGORY_GAMEPLAY, "disableTotemBeads(Overpowered)", false).getBoolean(false);
 
             //Blocks
-            BlockIds.CHLOROPHYLL_SOLIDIFIER = configuration.getBlock(Strings.CHLOROPHYLL_CRYSTAL_NAME, BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT).getInt(BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT);
+            BlockIds.CHLOROPHYLL_SOLIDIFIER = configuration.getBlock(Strings.CHLOROPHYLL_SOLIDIFIER_NAME, BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT).getInt(BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT);
             BlockIds.VENUS_FLY_TRAP = configuration.getBlock(Strings.VENUS_FLY_TRAP_NAME, BlockIds.VENUS_FLY_TRAP_DEFAULT).getInt(BlockIds.VENUS_FLY_TRAP_DEFAULT);
             BlockIds.TOTEM_WOODS = configuration.getBlock(Strings.TOTEM_WOODS_NAME, BlockIds.TOTEM_WOODS_DEFAULT).getInt(BlockIds.TOTEM_WOODS_DEFAULT);
             BlockIds.TOTEM_DRAINING = configuration.getBlock(Strings.TOTEM_DRAINING_NAME, BlockIds.TOTEM_DRAINING_DEFAULT).getInt(BlockIds.TOTEM_DRAINING_DEFAULT);
             BlockIds.TOTEM_TABLE = configuration.getBlock(Strings.TOTEM_TABLE_NAME, BlockIds.TOTEM_TABLE_DEFAULT).getInt(BlockIds.TOTEM_TABLE_DEFAULT);
             BlockIds.TOTEM_INTELLIGENCE = configuration.getBlock(Strings.TOTEM_INTELLIGENCE_NAME, BlockIds.TOTEM_INTELLIGENCE_DEFAULT).getInt(BlockIds.TOTEM_INTELLIGENCE_DEFAULT);
             BlockIds.TOTEM_SOCKET = configuration.getBlock(Strings.TOTEM_SOCKET_NAME, BlockIds.TOTEM_SOCKET_DEFAULT).getInt(BlockIds.TOTEM_SOCKET_DEFAULT);
+            BlockIds.CHLOROPHYLL = configuration.getBlock(Strings.FLUID_CHLOROPHYLL_NAME, BlockIds.CHLOROPHYLL_DEFAULT).getInt(BlockIds.CHLOROPHYLL_DEFAULT);
 
             //Items
             ItemIds.TOTEMS = configuration.getItem(Strings.TOTEMS_NAME, ItemIds.TOTEMS_DEFAULT).getInt(ItemIds.TOTEMS_DEFAULT);
@@ -63,6 +67,7 @@ public class ConfigurationHandler
             ItemIds.SUB_ITEMS = configuration.getItem(Strings.SUB_ITEMS_NAME, ItemIds.SUB_ITEMS_DEFAULT).getInt(ItemIds.SUB_ITEMS_DEFAULT);
             ItemIds.BOTTLE_CHLOROPHYLL = configuration.getItem(Strings.BOTTLE_CHLOROPHYLL_NAME, ItemIds.BOTTLE_CHLOROPHYLL_DEFAULT).getInt(ItemIds.BOTTLE_CHLOROPHYLL_DEFAULT);
             ItemIds.TOTEM_BEADS = configuration.getItem(Strings.TOTEM_BEADS_NAME, ItemIds.TOTEM_BEADS_DEFAULT).getInt(ItemIds.TOTEM_BEADS_DEFAULT);
+            ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL = configuration.getItem(Strings.BLAZING_CHLOROPHYLL_CRYSTAL_NAME, ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL_DEFAULT).getInt(ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL_DEFAULT);
 
             ItemIds.TOTEM_WOOD_WAND_CORE = configuration.getItem(Strings.TOTEM_WOOD_WAND_CORE_NAME, ItemIds.TOTEM_WOOD_WAND_CORE_DEFAULT).getInt(ItemIds.TOTEM_WOOD_WAND_CORE_DEFAULT);
             ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP = configuration.getItem(Strings.CHLOROPHYLL_CRYSTAL_WAND_CAP, ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP_DEFAULT).getInt(ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP_DEFAULT);
@@ -78,6 +83,7 @@ public class ConfigurationHandler
         }
     }
 
+    /*
     public static void set(String categoryName, String propertyName, String newValue)
     {
 
@@ -93,6 +99,7 @@ public class ConfigurationHandler
 
 
     }
+    */
 
 
 }

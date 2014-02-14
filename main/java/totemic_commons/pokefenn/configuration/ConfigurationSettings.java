@@ -24,6 +24,10 @@ public class ConfigurationSettings
     public static int DECREMENT_TOTEM_SQUID;
     public static int DECREMENT_TOTEM_FOOD;
     public static int DECREMENT_TOTEM_SPIDER;
+    public static int DECREMENT_TOTEM_LOVE;
+
+    public static boolean DISABLE_TOTEM_BEADS;
+
 
 
 

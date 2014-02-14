@@ -1,27 +1,19 @@
 package totemic_commons.pokefenn.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ITotemBlock;
+import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.TileTotemDraining;
-import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 import java.util.Random;
 
@@ -60,7 +52,7 @@ public class BlockTotemDraining extends BlockTile implements ITotemBlock
         if (tileTotemDraining != null && !world.isRemote && player != null)
         {
 
-            if (tileTotemDraining.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID && heldItem.getItemDamage() != 500)
+            if (tileTotemDraining.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID || tileTotemDraining.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.blazingChlorophyllCrystal.itemID)
             {
                 tileTotemDraining.setInventorySlotContents(SLOT_ONE, heldItem);
                 player.destroyCurrentEquippedItem();
@@ -68,13 +60,21 @@ public class BlockTotemDraining extends BlockTile implements ITotemBlock
 
             } else if (tileTotemDraining.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
-                if (tileTotemDraining.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
+                if (tileTotemDraining.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID || tileTotemDraining.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID)
                 {
+                    if (tileTotemDraining.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
+                    {
 
-                    EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemDraining.getStackInSlot(SLOT_ONE));
-                    player.worldObj.spawnEntityInWorld(entityitem);
-                    tileTotemDraining.setInventorySlotContents(SLOT_ONE, null);
+                        EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemDraining.getStackInSlot(SLOT_ONE));
+                        player.worldObj.spawnEntityInWorld(entityitem);
+                        tileTotemDraining.setInventorySlotContents(SLOT_ONE, null);
 
+                    } else
+                    {
+                        EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(ModItems.blazingChlorophyllCrystal, 1, tileTotemDraining.getStackInSlot(SLOT_ONE).getItemDamage()/* - 2*/));
+                        player.worldObj.spawnEntityInWorld(entityitem);
+                        tileTotemDraining.setInventorySlotContents(SLOT_ONE, null);
+                    }
                 }
 
             }
@@ -85,37 +85,6 @@ public class BlockTotemDraining extends BlockTile implements ITotemBlock
 
 
         return !player.isSneaking();
-    }
-
-    @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
-    {
-
-        int direction = 0;
-        int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-
-        if (facing == 0)
-        {
-            direction = ForgeDirection.NORTH.ordinal();
-        } else if (facing == 1)
-        {
-            direction = ForgeDirection.EAST.ordinal();
-        } else if (facing == 2)
-        {
-            direction = ForgeDirection.SOUTH.ordinal();
-        } else if (facing == 3)
-        {
-            direction = ForgeDirection.WEST.ordinal();
-        }
-
-        world.setBlockMetadataWithNotify(x, y, z, direction, 3);
-
-        if (itemStack.hasDisplayName())
-        {
-            ((TileTotemic) world.getBlockTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
-        }
-
-        ((TileTotemic) world.getBlockTileEntity(x, y, z)).setOrientation(direction);
     }
 
     @Override
@@ -171,6 +140,7 @@ public class BlockTotemDraining extends BlockTile implements ITotemBlock
         }
 
     }
+    /*
 
     @SideOnly(Side.CLIENT)
     private Icon topIcon;
@@ -192,6 +162,27 @@ public class BlockTotemDraining extends BlockTile implements ITotemBlock
     public Icon getIcon(int side, int meta)
     {
         return topIcon;
+    }
+
+    */
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+
+        return RenderIds.RENDER_ID_TOTEM_POLE;
     }
 
     private Random rand = new Random();

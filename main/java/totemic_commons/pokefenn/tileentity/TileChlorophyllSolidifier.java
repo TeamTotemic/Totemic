@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.tileentity;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,7 +10,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketTileWithItemAndFluidUpdate;
+import totemic_commons.pokefenn.network.PacketSpawnParticle;
 import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
 import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
@@ -29,7 +30,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
     public static final int SLOT_ONE = 0;
 
-    protected FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
+    public FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 16);
 
     public TileChlorophyllSolidifier()
     {
@@ -55,11 +56,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     {
         ItemStack itemStack = getStackInSlot(SLOT_ONE);
 
-        if (itemStack != null && itemStack.stackSize > 0 && tank.getFluidAmount() > 0)
-        {
-            return PacketTypeHandler.populatePacket(new PacketTileWithItemAndFluidUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.itemID, itemStack.getItemDamage(), itemStack.stackSize, tank.getFluidAmount(), tank.getFluid().fluidID));
-
-        } else if (itemStack != null)
+        if (itemStack != null)
         {
             return PacketTypeHandler.populatePacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.itemID, itemStack.getItemDamage(), itemStack.stackSize));
 
@@ -169,7 +166,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     {
 
         super.readFromNBT(nbtTagCompound);
-        tank.readFromNBT(nbtTagCompound);
+        tank.writeToNBT(nbtTagCompound);
 
         // Read in the ItemStacks in the inventory from NBT
         NBTTagList tagList = nbtTagCompound.getTagList("Items");
@@ -190,7 +187,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     {
 
         super.writeToNBT(nbtTagCompound);
-        tank.writeToNBT(nbtTagCompound);
+        tank.readFromNBT(nbtTagCompound);
 
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
@@ -203,6 +200,11 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
                 inventory[currentIndex].writeToNBT(tagCompound);
                 tagList.appendTag(tagCompound);
             }
+        }
+
+        if (tank.getCapacity() > 0)
+        {
+
         }
         nbtTagCompound.setTag("Items", tagList);
     }
@@ -258,26 +260,29 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     {
 
         super.updateEntity();
-        if (this.worldObj.getTotalWorldTime() % 200L == 0L && !worldObj.isRemote)
-        {
 
+        if (this.worldObj.getTotalWorldTime() % 100L == 0L && !worldObj.isRemote)
+        {
             for (ChlorophyllSolidifierRecipes solidifier : ChlorophyllSolidifierRecipes.solidifierRecipe)
             {
-                //System.out.println("forloop");
                 if (ItemStack.areItemStacksEqual(this.getStackInSlot(SLOT_ONE), solidifier.getInput()) && this.canDrain(ForgeDirection.UP, ModFluids.fluidChlorophyll))
                 {
-                    System.out.println(tank.getFluidAmount());
-
                     this.setInventorySlotContents(SLOT_ONE, solidifier.getOutput());
                     this.drain(ForgeDirection.getOrientation(orientation.ordinal()), solidifier.getFluidStack(), true);
+
+                    for (int i = 1; i <= 10; i++)
+                    {
+                        PacketDispatcher.sendPacketToAllAround(this.xCoord, this.yCoord, this.zCoord, 64D, this.worldObj.provider.dimensionId, PacketTypeHandler.populatePacket(new PacketSpawnParticle("slime", this.xCoord, this.yCoord + 1, this.zCoord, 8 + i, 8 + i, 8 + i)));
+                    }
+
+                    this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
                 }
 
             }
-
         }
-
     }
+
 
     public boolean canUpdate()
     {

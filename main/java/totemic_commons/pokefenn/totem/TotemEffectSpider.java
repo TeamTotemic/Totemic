@@ -33,7 +33,7 @@ public class TotemEffectSpider implements ITotemEffect
 
                             if (totem.worldObj.getWorldTime() % 20 == 0)
                             {
-                                totem.decreaseChlorophyll(totem.decrementAmount(i));
+                                totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
                             }
 
                         }

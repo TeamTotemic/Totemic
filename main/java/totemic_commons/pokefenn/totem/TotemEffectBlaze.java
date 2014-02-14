@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.totem;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -22,17 +21,20 @@ public class TotemEffectBlaze implements ITotemEffect
     {
         if (totem.worldObj.getWorldTime() % 80L == 0)
         {
-
-            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 , 10) != null)
+            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10) != null)
             {
-
                 for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10))
                 {
-                    if (!(entity instanceof EntityItem) && entity instanceof EntityPlayer)
+                    if (entity instanceof EntityPlayer)
                     {
+                        if (entity.isBurning())
+                        {
+                            ((EntityPlayer) entity).heal(5);
+                        }
+
                         ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 120, 0));
 
-                        totem.decreaseChlorophyll(totem.decrementAmount(i));
+                        totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
 
                     }
                 }

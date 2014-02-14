@@ -13,6 +13,7 @@ public class ItemIds
     public static int SUB_ITEMS;
     public static int BOTTLE_CHLOROPHYLL;
     public static int TOTEMS;
+    public static int BLAZING_CHLOROPHYLL_CRYSTAL;
 
     public static int TOTEM_WHITTLING_KNIFE_DEFAULT = 6001;
     public static int TOTEMIC_STAFF_DEFAULT = 6002;
@@ -22,7 +23,7 @@ public class ItemIds
     public static int TOTEM_BEADS_DEFAULT = 6006;
     public static int SUB_ITEMS_DEFAULT = 6007;
     public static int BOTTLE_CHLOROPHYLL_DEFAULT = 6008;
-    //Ids here also xD
+    public static int BLAZING_CHLOROPHYLL_CRYSTAL_DEFAULT = 6009;
     public static int TOTEMS_DEFAULT = 6010;
 
     public static int TOTEM_WOOD_WAND_CORE ;

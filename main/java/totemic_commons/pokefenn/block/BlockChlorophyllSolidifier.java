@@ -47,11 +47,8 @@ public class BlockChlorophyllSolidifier extends BlockTile
 
         if (tileChlorophyllSolidifier != null && !world.isRemote)
         {
-
-
             if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID != ModItems.bottleChlorophyll.itemID && heldItem.itemID != ModItems.bucketChlorophyll.itemID && !heldItem.hasTagCompound())
             {
-
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
                 heldItem.stackSize--;
 
@@ -62,23 +59,25 @@ public class BlockChlorophyllSolidifier extends BlockTile
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null);
 
 
-            } else if (heldItem != null)
+            } if (heldItem != null && heldItem.itemID == ModItems.bottleChlorophyll.itemID || heldItem != null && heldItem.itemID == ModItems.bucketChlorophyll.itemID)
             {
-
-                if (heldItem.itemID == ModItems.bottleChlorophyll.itemID)
+                if (tileChlorophyllSolidifier.tank.getFluidAmount() + 1000 <= 16000)
                 {
-                    tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
-                    heldItem.stackSize--;
+                    if (heldItem.itemID == ModItems.bottleChlorophyll.itemID)
+                    {
+                        tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
+                        heldItem.stackSize--;
 
-                } else if (heldItem.itemID == ModItems.bucketChlorophyll.itemID)
-                {
-                    tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
-                    player.destroyCurrentEquippedItem();
-                    EntityItem entityBucket = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(Item.bucketEmpty));
-                    player.worldObj.spawnEntityInWorld(entityBucket);
+                    } else if (heldItem.itemID == ModItems.bucketChlorophyll.itemID)
+                    {
+                        tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
+                        player.destroyCurrentEquippedItem();
+                        EntityItem entityBucket = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(Item.bucketEmpty));
+                        player.worldObj.spawnEntityInWorld(entityBucket);
+
+                    }
 
                 }
-
             }
 
             world.markBlockForUpdate(x, y, z);

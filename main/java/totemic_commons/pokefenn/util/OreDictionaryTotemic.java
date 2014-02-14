@@ -24,7 +24,10 @@ public class OreDictionaryTotemic
         OreDictionary.registerOre("plant", new ItemStack(Item.pumpkinSeeds));
         OreDictionary.registerOre("plant", new ItemStack(Item.potato));
         OreDictionary.registerOre("plant", new ItemStack(Item.poisonousPotato));
-
+        for (int i = 0; i <= 3; i++)
+        {
+            OreDictionary.registerOre("plant", new ItemStack(Block.sapling, i));
+        }
         //OreDictionary.registerOre("plant", new ItemStack(GameRegistry.findItem("XyCraft", "tomato")));
 
     }

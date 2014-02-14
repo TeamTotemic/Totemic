@@ -64,6 +64,8 @@ public class BlockTotemWoods extends Block
 
     }
 
+
+
     /**
      * This will turn into a metadata wood block thingy :)
      */

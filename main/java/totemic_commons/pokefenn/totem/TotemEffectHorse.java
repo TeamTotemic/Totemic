@@ -30,7 +30,7 @@ public class TotemEffectHorse
                     {
                         ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 120, 1));
 
-                        totem.decreaseChlorophyll(totem.decrementAmount(i));
+                        totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
 
                     }
                 }

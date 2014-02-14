@@ -5,7 +5,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.totem.TotemEffectOcelot;
+import totemic_commons.pokefenn.totem.TotemUtil;
 
 import java.util.List;
 
@@ -45,8 +48,7 @@ public class ItemTotemBeads extends ItemNormal
 
         if (!world.isRemote)
         {
-            tag.setString("horse", "horse");
-
+            tag.setName("horse");
         }
 
         return itemStack;
@@ -58,23 +60,57 @@ public class ItemTotemBeads extends ItemNormal
 
         if (entity != null)
         {
-
-            if (world.isRemote && entity instanceof EntityPlayer)
+            if (!world.isRemote && entity instanceof EntityPlayer)
             {
-            /*
-            if (tag.getString("horse").equals("horse"))
-            {
-                if (world.getWorldTime() % 80L == 0)
+                if (((EntityPlayer) entity).inventory.hasItem(ModItems.chlorophyllCrystal.itemID))
                 {
-                    ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 120, 1));
+                    if (getChlorophyll(((EntityPlayer) entity)) != null)
+                    {
+                        //Todo loop through totems and stuff
+                        if (TotemUtil.canDoEffect(getChlorophyll(((EntityPlayer) entity)), TotemUtil.decrementAmount(7)))
+                        {
+                            TotemEffectOcelot.effectBead(((EntityPlayer) entity), world, this, 7);
+                        }
+                    }
                 }
-
-            }
-            */
-
             }
         }
+    }
 
+    public static void decreaseChlorophyll(EntityPlayer player, int i)
+    {
+
+        for (int j = 1; j <= player.inventory.getSizeInventory(); j++)
+        {
+            if (player.inventory.getStackInSlot(j) != null)
+            {
+                if (player.inventory.getStackInSlot(j).itemID == ModItems.chlorophyllCrystal.itemID)
+                {
+                    if (player.inventory.getStackInSlot(j).getItemDamage() >= 1)
+                    {
+                        player.inventory.getStackInSlot(i).setItemDamage(ModItems.chlorophyllCrystal.getMaxDamage() - player.inventory.getStackInSlot(j).getItemDamage() - TotemUtil.decrementAmount(i));
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    public static ItemStack getChlorophyll(EntityPlayer player)
+    {
+        for (int j = 1; j <= player.inventory.getSizeInventory(); j++)
+        {
+            if (player.inventory.getStackInSlot(j) != null)
+            {
+                if (player.inventory.getStackInSlot(j).itemID == ModItems.chlorophyllCrystal.itemID)
+                {
+                    return player.inventory.getStackInSlot(j);
+                }
+
+            } else
+                return null;
+        }
+        return null;
     }
 
 }

@@ -42,6 +42,7 @@ public class TotemicRecipes
             }
 
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack((ModBlocks.totemWoods)), new Object[]{"ccc", "cwc", "ccc", ('c'), ModItems.bottleChlorophyll, ('w'), Block.wood}));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack((ModBlocks.totemWoods)), new Object[]{"ccc", "cwc", "ccc", ('c'), ModItems.bucketChlorophyll, ('w'), Block.wood}));
             //GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack((ModBlocks.totemWoods)), new Object[] { "ccc", "cwc", "ccc", ('c'), ModItems.bucketChlorophyll, ('w'), Block.wood}));
 
             //GameRegistry.addRecipe(new ItemStack(ModItems.totemWhittlingKnife, 1, 1), new Object[]{"f ", "i ", ('f'), Item.flint, ('i'), Item.ingotIron});
@@ -49,8 +50,13 @@ public class TotemicRecipes
             //GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totemWhittlingKnife, 1, 2), new Object[]{new ItemStack(ModItems.totemWhittlingKnife, 1, 1), new ItemStack(ModItems.totemWhittlingKnife, 1)});
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 1), new Object[]{new ItemStack(ModBlocks.totemWoods)});
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemIntelligence), new Object[]{"www", "w w", "www", ('w'), ModBlocks.totemWoods}));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.chlorophyllCrystal, 1, ModItems.chlorophyllCrystal.getMaxDamage() - 1), new Object[]{"ccc", "cdc", "ccc", ('c'), ModItems.bottleChlorophyll, ('d'), Item.diamond}));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.chlorophyllCrystal, 1, ModItems.chlorophyllCrystal.getMaxDamage() - 1), new Object[]{"ccc", "cdc", "ccc", ('c'), ModItems.bucketChlorophyll, ('d'), Item.diamond}));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemDraining), new Object[]{"ww", "ww", ('w'), ModBlocks.totemWoods}));
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemSocket), new Object[]{"www", "www", "   ", ('w'), ModBlocks.totemWoods}));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1), new ItemStack(ModItems.chlorophyllCrystal, 1), new ItemStack(Item.bucketLava));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1, 1), new ItemStack(ModItems.chlorophyllCrystal, 1, 1), new ItemStack(Item.bucketLava));
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1, 1000), new ItemStack(ModItems.chlorophyllCrystal, 1, 1000), new ItemStack(Item.bucketLava));
             //GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totemWhittlingKnife), new Object[]{"  s", " s ", "s  ", ('s'), "stickWood"}));
 
         }

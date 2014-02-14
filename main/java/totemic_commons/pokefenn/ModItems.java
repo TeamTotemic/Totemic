@@ -3,6 +3,7 @@ package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
@@ -20,6 +21,7 @@ public final class ModItems
     public static Item bottleChlorophyll;
     public static Item totems;
     public static Item totemBeads;
+    public static Item blazingChlorophyllCrystal;
 
     public static void init()
     {
@@ -32,7 +34,8 @@ public final class ModItems
         totems = new ItemTotems(ItemIds.TOTEMS);
         subItems = new ItemSubItems(ItemIds.SUB_ITEMS);
         bottleChlorophyll = new ItemBottleChlorophyll(ItemIds.BOTTLE_CHLOROPHYLL);
-        //totemBeads = new ItemTotemBeads(ItemIds.TOTEM_BEADS);
+        blazingChlorophyllCrystal = new ItemBlazingChlorophyllCrystal(ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL);
+
 
         //These are specific totems, of mobs and minecraft objects
 
@@ -45,10 +48,17 @@ public final class ModItems
         //GameRegistry.registerItem(venusFlyTrapSeed, venusFlyTrapSeed.getUnlocalizedName());
         //GameRegistry.registerItem(subItems, subItems.getUnlocalizedName());
         GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
-        //GameRegistry.registerItem(totemBeads, totemBeads.getUnlocalizedName());
+        GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
+
 
         //totemWhittlingKnife.setContainerItem(totemWhittlingKnife);
         //bucketChlorophyll.setContainerItem(bucketChlorophyll);
+
+        if (!ConfigurationSettings.DISABLE_TOTEM_BEADS)
+        {
+            //totemBeads = new ItemTotemBeads(ItemIds.TOTEM_BEADS);
+            //GameRegistry.registerItem(totemBeads, totemBeads.getUnlocalizedName());
+        }
 
 
     }

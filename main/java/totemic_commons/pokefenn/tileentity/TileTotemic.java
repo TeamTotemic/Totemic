@@ -80,10 +80,8 @@ public class TileTotemic extends TileEntity
         return true;
     }
 
-    @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
-
         super.readFromNBT(nbtTagCompound);
 
         if (nbtTagCompound.hasKey(Strings.NBT_TE_DIRECTION_KEY))
@@ -105,7 +103,6 @@ public class TileTotemic extends TileEntity
     @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
-
         super.writeToNBT(nbtTagCompound);
 
         nbtTagCompound.setByte(Strings.NBT_TE_DIRECTION_KEY, (byte) orientation.ordinal());

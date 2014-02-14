@@ -32,7 +32,7 @@ public class TotemEffectSquid implements ITotemEffect
                     {
                         ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 120, 0));
 
-                        totem.decreaseChlorophyll(totem.decrementAmount(i));
+                        totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
 
                     }
                 }

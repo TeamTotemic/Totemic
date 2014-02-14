@@ -38,7 +38,7 @@ public class TotemEffectFood
 
                             ((EntityPlayer) entity).getFoodStats().setFoodSaturationLevel(rand.nextInt(4));
 
-                            totem.decreaseChlorophyll(totem.decrementAmount(i));
+                            totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
 
                         }
                     }

@@ -188,7 +188,6 @@ public class TileTotemTable extends TileTotemic implements IInventory
 
     public void updateEntity()
     {
-
         super.updateEntity();
 
     }
@@ -197,7 +196,6 @@ public class TileTotemTable extends TileTotemic implements IInventory
     public boolean canUpdate()
     {
         return false;
-
     }
 
 

@@ -21,7 +21,7 @@ public class TotemEffectSun implements ITotemEffect
             {
                 totem.worldObj.toggleRain();
 
-                totem.decreaseChlorophyll(totem.decrementAmount(i));
+                totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
             }
 
         }

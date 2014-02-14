@@ -10,7 +10,6 @@ import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.block.BlockTotemSocket;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Totems;
 import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
 import totemic_commons.pokefenn.totem.*;
@@ -30,39 +29,91 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     public static final int SLOT_ONE = 0;
 
+    int[] SOCKETS;
+
+    public static int SOCKET_NUMBER;
 
     public TileTotemIntelligence()
     {
 
         inventory = new ItemStack[INVENTORY_SIZE];
+        SOCKETS = new int[6];
 
     }
+
+    //Todo finish cache system
 
     public void updateEntity()
     {
         super.updateEntity();
 
+        int currentInput = worldObj.getBlockPowerInput(xCoord, yCoord, zCoord);
+
         if (!this.worldObj.isRemote)
         {
-            if (this.getStackInSlot(SLOT_ONE) != null)
+            if (this.worldObj.getWorldTime() % 100L == 0)
             {
-                if (scanAbove(1))
+                setSocketAmounts();
+                scanArea();
+
+            }
+
+            if (!(currentInput >= 1))
+            {
+                if (SOCKET_NUMBER != 0)
                 {
-                    for (int i = 1; i <= getSocketAmounts(); i++)
+                    if (this.getStackInSlot(SLOT_ONE) != null)
                     {
-                        if (getSocketItemStack(i) != null)
+                        if (this.worldObj.getWorldTime() % 5L == 0)
                         {
-                            if (canDoEffect(decrementAmount(getTotemSocket(i))))
+                            for (int i = 1; i <= SOCKET_NUMBER; i++)
                             {
-                                doEffects(getTotemSocket(i));
+                                //if (getSocketItemStack(i) != null)
+                                //{
+                                    if (canDoEffect(TotemUtil.decrementAmount(SOCKETS[i])))
+                                    {
+                                        doEffects(SOCKETS[i]);
+                                    }
+                                //}
                             }
                         }
                     }
                 }
-            }
 
-            this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+            }
         }
+    }
+
+    protected void scanArea()
+    {
+
+        for (int i = 1; i <= getSocketAmounts(); i++)
+        {
+            if (getSocketAmounts() <= 5)
+            {
+                if (getSocketItemStack(i) != null)
+                {
+                    SOCKETS[i] = getSocketItemStack(i).getItemDamage();
+                } else
+                    SOCKETS[i] = 0;
+
+            }
+        }
+    }
+
+    protected void getThingy(int i)
+    {
+
+    }
+
+    protected void doEffectsAsUsual(int i)
+    {
+        for (int j = 1; i <= 5; i++)
+        {
+
+        }
+
     }
 
     protected void updateSockets(int par1)
@@ -95,8 +146,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         switch (metadata)
         {
             case 0:
-
-                System.out.println("Invalid totem, set the block to air :(");
+                //System.out.println("Invalid totem, set the block to air :(");
                 break;
 
             case 1:
@@ -136,7 +186,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                 break;
 
             case 10:
-                TotemEffectSpider.effect(this, metadata);
+                TotemEffectLove.effect(this, metadata);
                 break;
 
             default:
@@ -192,42 +242,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         return 0;
     }
 
-    public int decrementAmount(int par1)
-    {
-        if (par1 == 1)
-        {
-            return Totems.DECREMENT_CACTUS;
-        } else if (par1 == 2)
-        {
-            return Totems.DECREMENT_HORSE;
-        } else if (par1 == 3)
-        {
-            return Totems.DECREMENT_HOPPER;
-        } else if (par1 == 4)
-        {
-            return Totems.DECREMENT_BAT;
-        } else if (par1 == 5)
-        {
-            return Totems.DECREMENT_SUN;
-        } else if (par1 == 6)
-        {
-            return Totems.DECREMENT_BLAZE;
-        } else if (par1 == 7)
-        {
-            return Totems.DECREMENT_OCELOT;
-        } else if (par1 == 8)
-        {
-            return Totems.DECREMENT_SQUID;
-        } else if (par1 == 9)
-        {
-            return Totems.DECREMENT_FOOD;
-        } else if (par1 == 10)
-        {
-            return Totems.DECREMENT_SPIDER;
-        } else
-            return 0;
 
-    }
 
     protected int getSocketAmounts()
     {
@@ -254,6 +269,35 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
             return 5;
         } else
             return 0;
+
+    }
+
+    protected void setSocketAmounts()
+    {
+        Block block1 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 1, this.zCoord)];
+        Block block2 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 2, this.zCoord)];
+        Block block3 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 3, this.zCoord)];
+        Block block4 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 4, this.zCoord)];
+        Block block5 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 5, this.zCoord)];
+
+        if (block1 instanceof BlockTotemSocket && block2 == null)
+        {
+            SOCKET_NUMBER = 1;
+        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 == null)
+        {
+            SOCKET_NUMBER = 2;
+        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 == null)
+        {
+            SOCKET_NUMBER = 3;
+        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 == null)
+        {
+            SOCKET_NUMBER = 4;
+        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
+        {
+            SOCKET_NUMBER = 5;
+        } else
+            SOCKET_NUMBER = 0;
+
 
     }
 

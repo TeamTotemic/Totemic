@@ -150,7 +150,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory
     {
         if (!this.worldObj.isRemote)
         {
-            if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.chlorophyllCrystal.itemID)
+            if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.chlorophyllCrystal.itemID || i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.blazingChlorophyllCrystal.itemID)
             {
                 setInventorySlotContents(SLOT_ONE, itemStack);
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -216,10 +216,13 @@ public class TileTotemDraining extends TileTotemic implements IInventory
 
     protected void handleChlorophyllCrystal()
     {
-        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < this.getStackInSlot(SLOT_ONE).getMaxDamage() && rand.nextInt(3) != 3)
+        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID || this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < this.getStackInSlot(SLOT_ONE).getMaxDamage())
         {
-            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(4));
-
+            //if (rand.nextInt(3) != 3 )
+            {
+                //System.out.println("tsk tsk");
+                this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(2));
+            }
         }
 
     }
@@ -242,9 +245,9 @@ public class TileTotemDraining extends TileTotemic implements IInventory
         //yCoords is there because the totem has to be on the same level as the IPlantable's
         Block blockQuery = Block.blocksList[this.worldObj.getBlockId(x, y, z)];
 
-        if (this.worldObj.getBlockMetadata(x, y, z) >= 6 && blockQuery instanceof IPlantable && this.getStackInSlot(SLOT_ONE) != null && rand.nextBoolean())
+        if (this.worldObj.getBlockMetadata(x, y, z) >= 5 && blockQuery instanceof IPlantable && this.getStackInSlot(SLOT_ONE) != null)
         {
-            if (this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
+            if (this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID || this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID)
             {
                 ParticleUtil.spawnParticle(this.worldObj, Particles.ESSENCE_DRAIN, x, y, z, 10, 10, 10);
                 this.worldObj.setBlockMetadataWithNotify(x, y, z, this.worldObj.getBlockMetadata(x, y, z) - 1, 2);

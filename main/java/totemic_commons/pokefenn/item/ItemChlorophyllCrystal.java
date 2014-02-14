@@ -21,7 +21,6 @@ public class ItemChlorophyllCrystal extends ItemNormal
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CHLOROPHYLL_CRYSTAL_NAME);
         setMaxStackSize(1);
         setMaxDamage(1000);
-        setCreativeTab(Totemic.tabsTotem);
 
     }
 

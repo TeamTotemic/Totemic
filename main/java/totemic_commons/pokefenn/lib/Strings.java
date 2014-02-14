@@ -33,6 +33,7 @@ public class Strings
     public static final String SUB_ITEMS_NAME = "subItems";
     public static final String BOTTLE_CHLOROPHYLL_NAME = "bottleChlorophyll";
     public static final String TOTEM_BEADS_NAME = "totemBeads";
+    public static final String BLAZING_CHLOROPHYLL_CRYSTAL_NAME = "blazingChlorophyllCrystal";
 
     public static final String TOTEM_WOOD_WAND_CORE_NAME = "totemWoodWandCore";
     public static final String CHLOROPHYLL_CRYSTAL_WAND_CAP = "chlorophyllCrystalWandCap";

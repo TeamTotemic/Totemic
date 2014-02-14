@@ -1,11 +1,21 @@
 package totemic_commons.pokefenn;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.IFluidHandler;
+import totemic_commons.pokefenn.client.rendering.item.ItemTotemDrainingRenderer;
+import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
+import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemDrainingRenderer;
+import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketRenderer;
+import totemic_commons.pokefenn.lib.RenderIds;
+import totemic_commons.pokefenn.tileentity.TileTotemDraining;
+import totemic_commons.pokefenn.tileentity.TileTotemSocket;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 public class ClientProxy extends CommonProxy
@@ -15,7 +25,6 @@ public class ClientProxy extends CommonProxy
     @Override
     public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName)
     {
-
         TileEntity tileEntity = FMLClientHandler.instance().getClient().theWorld.getBlockTileEntity(x, y, z);
 
         if (tileEntity != null)
@@ -83,6 +92,21 @@ public class ClientProxy extends CommonProxy
 
     }
 
+    //@SideOnly(Side.CLIENT)
+    @Override
+    public void initRendering()
+    {
+        RenderIds.RENDER_ID_TOTEM_POLE = RenderingRegistry.getNextAvailableRenderId();
+        RenderIds.RENDER_ID_TOTEM_DRAINING = RenderingRegistry.getNextAvailableRenderId();
+
+        MinecraftForgeClient.registerItemRenderer(ModBlocks.totemSocket.blockID, new ItemTotemSocketRenderer());
+        MinecraftForgeClient.registerItemRenderer(ModBlocks.totemDraining.blockID, new ItemTotemDrainingRenderer());
+
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemSocket.class, new TileTotemSocketRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemDraining.class, new TileTotemDrainingRenderer());
+
+
+    }
 
 
 }

@@ -21,6 +21,7 @@ public class Totems
     public static int DECREMENT_SQUID = ConfigurationSettings.DECREMENT_TOTEM_SQUID;
     public static int DECREMENT_FOOD = ConfigurationSettings.DECREMENT_TOTEM_FOOD;
     public static int DECREMENT_SPIDER = ConfigurationSettings.DECREMENT_TOTEM_SPIDER;
+    public static int DECREMENT_LOVE = ConfigurationSettings.DECREMENT_TOTEM_LOVE;
 
 
 }

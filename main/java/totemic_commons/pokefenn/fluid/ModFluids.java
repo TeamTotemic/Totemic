@@ -4,7 +4,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import totemic_commons.pokefenn.lib.Strings;
 
-public class ModFluids
+public final class ModFluids
 {
 
 
