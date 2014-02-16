@@ -7,7 +7,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.IFluidHandler;
 import totemic_commons.pokefenn.client.rendering.item.ItemTotemDrainingRenderer;
 import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
@@ -60,7 +59,7 @@ public class ClientProxy extends CommonProxy
     }
 
     @Override
-    public void handleTileWithItemAndFluidPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int fluidAmount, Fluid fluidID)
+    public void handleTileWithItemAndFluidPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int fluidAmount, byte fluidID)
     {
         World world = FMLClientHandler.instance().getClient().theWorld;
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);

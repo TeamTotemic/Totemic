@@ -72,7 +72,7 @@ public class BlockTotemIntelligence extends BlockTile implements ITotemBlock
                 if (tileTotemIntelligence.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
                 {
                     EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemIntelligence.getStackInSlot(SLOT_ONE));
-                    player.worldObj.spawnEntityInWorld(entityitem);
+                    world.spawnEntityInWorld(entityitem);
                     tileTotemIntelligence.setInventorySlotContents(SLOT_ONE, null);
 
                 }

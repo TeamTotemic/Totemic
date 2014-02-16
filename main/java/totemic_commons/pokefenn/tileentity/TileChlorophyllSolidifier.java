@@ -152,7 +152,6 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
         {
             if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null)
             {
-                setInventorySlotContents(SLOT_ONE, itemStack);
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 return true;
 

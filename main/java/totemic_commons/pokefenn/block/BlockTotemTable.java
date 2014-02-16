@@ -16,10 +16,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTableRenderer;
-import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.recipe.TotemTableHandler;
@@ -58,12 +55,13 @@ public class BlockTotemTable extends BlockTile
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-
         TileTotemTable tileTotemTable = (TileTotemTable) world.getBlockTileEntity(x, y, z);
 
         ItemStack heldItem = player.inventory.getCurrentItem();
 
         int SLOT_ONE = TileTotemTable.SLOT_ONE;
+
+        ItemStack slotStack = tileTotemTable.getStackInSlot(SLOT_ONE);
 
         if (tileTotemTable != null && !world.isRemote)
         {
@@ -75,39 +73,29 @@ public class BlockTotemTable extends BlockTile
 
             } else if (tileTotemTable.getStackInSlot(SLOT_ONE) == null && heldItem != null)
             {
-
                 heldItem.stackSize--;
                 tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
 
             } else if (tileTotemTable.getStackInSlot(SLOT_ONE) != null && heldItem != null)
             {
-                //Todo fix eating of slot 2 - 9
-
                 for (TotemTableHandler totemTableHandler : TotemTableHandler.getRecipes())
                 {
-                    //System.out.println("entered for loop");
-
-                    if (tileTotemTable.getStackInSlot(SLOT_ONE).getItem() instanceof ItemTotems)
+                    if (ItemStack.areItemStacksEqual(heldItem, totemTableHandler.getInputHeldItem()) && ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), totemTableHandler.getInputInventory()))
                     {
-                        if (ItemStack.areItemStacksEqual(heldItem, totemTableHandler.getInputHeldItem()) && ItemStack.areItemStacksEqual(tileTotemTable.getStackInSlot(SLOT_ONE), totemTableHandler.getInputInventory()))
-                        {
-
-                            tileTotemTable.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.totems, 1, totemTableHandler.getOutput().getItemDamage()));
-
-                        }
-
+                        tileTotemTable.setInventorySlotContents(SLOT_ONE, totemTableHandler.getOutput());
                     }
+
                 }
 
             }
 
             world.markBlockForUpdate(x, y, z);
-
         }
-
 
         return !player.isSneaking();
     }
+
+    /*
 
     @Override
     public boolean renderAsNormalBlock()
@@ -126,6 +114,7 @@ public class BlockTotemTable extends BlockTile
     {
         return TileTotemTableRenderer.totemTableModelID;
     }
+    */
 
     @Override
     public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)

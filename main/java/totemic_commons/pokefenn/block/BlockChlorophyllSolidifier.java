@@ -55,11 +55,11 @@ public class BlockChlorophyllSolidifier extends BlockTile
             } else if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
                 EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE));
-                player.worldObj.spawnEntityInWorld(entityitem);
+                world.spawnEntityInWorld(entityitem);
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null);
 
 
-            } if (heldItem != null && heldItem.itemID == ModItems.bottleChlorophyll.itemID || heldItem != null && heldItem.itemID == ModItems.bucketChlorophyll.itemID)
+            } if (heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem.itemID == ModItems.bottleChlorophyll.itemID || heldItem != null && heldItem.itemID == ModItems.bucketChlorophyll.itemID)
             {
                 if (tileChlorophyllSolidifier.tank.getFluidAmount() + 1000 <= 16000)
                 {
@@ -68,12 +68,12 @@ public class BlockChlorophyllSolidifier extends BlockTile
                         tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
                         heldItem.stackSize--;
 
-                    } else if (heldItem.itemID == ModItems.bucketChlorophyll.itemID)
+                    } else
                     {
                         tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
                         player.destroyCurrentEquippedItem();
                         EntityItem entityBucket = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(Item.bucketEmpty));
-                        player.worldObj.spawnEntityInWorld(entityBucket);
+                        world.spawnEntityInWorld(entityBucket);
 
                     }
 

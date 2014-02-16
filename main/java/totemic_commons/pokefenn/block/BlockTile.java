@@ -58,6 +58,8 @@ public abstract class BlockTile extends BlockContainer
             }
 
             ((TileTotemic) world.getBlockTileEntity(x, y, z)).setOrientation(direction);
+
+            world.markBlockForUpdate(x, y, z);
         }
     }
 

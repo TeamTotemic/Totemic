@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.network;
 import cpw.mods.fml.common.network.Player;
 import net.minecraft.network.INetworkManager;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.fluids.FluidRegistry;
 import totemic_commons.pokefenn.Totemic;
 
 import java.io.DataInputStream;
@@ -88,7 +87,7 @@ public class PacketTileWithItemAndFluidUpdate extends PacketTotemic
     public void execute(INetworkManager manager, Player player)
     {
 
-        Totemic.proxy.handleTileWithItemAndFluidPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName, itemID, metaData, stackSize, fluidAmount, FluidRegistry.getFluid(fluidID));
+        Totemic.proxy.handleTileWithItemAndFluidPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName, itemID, metaData, stackSize, fluidAmount, (byte) fluidID);
     }
 
 }

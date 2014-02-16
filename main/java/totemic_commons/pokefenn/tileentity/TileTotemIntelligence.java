@@ -222,27 +222,6 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     }
 
 
-    protected int getTotemSocket(int par1)
-    {
-        Block socket = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + par1, this.zCoord)];
-
-        TileEntity tileEntity = this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
-
-        if (socket instanceof BlockTotemSocket)
-        {
-            if (tileEntity instanceof IInventory)
-            {
-                if (((IInventory) tileEntity).getStackInSlot(TileTotemSupport.SLOT_ONE) != null)
-                {
-                    return ((IInventory) tileEntity).getStackInSlot(TileTotemSocket.SLOT_ONE).getItemDamage();
-                }
-            }
-        }
-
-        return 0;
-    }
-
-
 
     protected int getSocketAmounts()
     {
@@ -415,7 +394,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         {
             if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.chlorophyllCrystal.itemID)
             {
-                setInventorySlotContents(SLOT_ONE, itemStack);
+
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 return true;
 

@@ -139,7 +139,6 @@ public class TileTotemSocket extends TileTotemic implements IInventory
         {
             if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.totems.itemID)
             {
-                setInventorySlotContents(SLOT_ONE, itemStack);
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 return true;
 

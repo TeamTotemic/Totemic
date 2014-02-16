@@ -152,7 +152,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory
         {
             if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.chlorophyllCrystal.itemID || i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.blazingChlorophyllCrystal.itemID)
             {
-                setInventorySlotContents(SLOT_ONE, itemStack);
+                //setInventorySlotContents(SLOT_ONE, itemStack);
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 return true;
 

@@ -23,6 +23,11 @@ public class TotemicCraftingHandler implements ICraftingHandler
             player.inventory.addItemStackToInventory(new ItemStack(Item.bucketEmpty));
         }
 
+        if(itemStack.itemID == ModItems.totemWhittlingKnife.itemID)
+        {
+            player.inventory.addItemStackToInventory(new ItemStack(itemStack.getItem(), 1, itemStack.getItemDamage()));
+        }
+
     }
 
     @Override

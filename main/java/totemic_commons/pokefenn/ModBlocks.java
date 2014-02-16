@@ -17,6 +17,7 @@ public final class ModBlocks
     public static Block totemIntelligence;
     public static Block totemSocket;
     public static Block chlorophyll;
+    public static Block totemSapling;
 
     public static void init()
     {
@@ -29,6 +30,7 @@ public final class ModBlocks
         totemIntelligence = new BlockTotemIntelligence(BlockIds.TOTEM_INTELLIGENCE);
         totemSocket = new BlockTotemSocket(BlockIds.TOTEM_SOCKET);
         chlorophyll = new BlockChlorophyll(BlockIds.CHLOROPHYLL);
+        //totemSapling = new BlockTotemSapling(BlockIds.TOTEM_SAPLING);
 
         GameRegistry.registerBlock(chlorophyllSolidifier, Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
         //GameRegistry.registerBlock(venusFlyTrap, Strings.VENUS_FLY_TRAP_NAME);
@@ -38,6 +40,7 @@ public final class ModBlocks
         GameRegistry.registerBlock(totemIntelligence, Strings.TOTEM_INTELLIGENCE_NAME);
         GameRegistry.registerBlock(totemSocket, Strings.TOTEM_SOCKET_NAME);
         GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
+        //GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);
 
 
     }
