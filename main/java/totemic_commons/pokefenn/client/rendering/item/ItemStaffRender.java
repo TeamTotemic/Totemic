@@ -39,22 +39,22 @@ public class ItemStaffRender implements IItemRenderer
         {
             case ENTITY:
             {
-                renderTotemicStaff(-0.5F, 0.0F, 0.5F);
+                renderTotemicStaff(0.3F, -0.3F, 0.3F);
                 return;
             }
             case EQUIPPED:
             {
-                renderTotemicStaff(0.0F, 0.0F, 1.0F);
+                renderTotemicStaff(0.7F, 0.8F, 1.0F);
                 return;
             }
             case EQUIPPED_FIRST_PERSON:
             {
-                renderTotemicStaff(0.0F, 0.0F, 1.0F);
+                renderTotemicStaff(0.5F, 0.2F, 1.0F);
                 return;
             }
             case INVENTORY:
             {
-                renderTotemicStaff(0.0F, -0.1F, 1.0F);
+                renderTotemicStaff(0.5F, -0.51F, 0.5F);
                 return;
             }
             default:
@@ -69,9 +69,10 @@ public class ItemStaffRender implements IItemRenderer
         GL11.glDisable(GL11.GL_LIGHTING);
 
         // Scale, Translate, Rotate
-        GL11.glTranslatef(x + 0.3F, y - 0.2F, z - 0.7F);
-        GL11.glScalef(0.07F, 0.07F, 0.07F);
-        //GL11.glRotatef(240F, 1.5F, 1.5F, 1.5F);
+        GL11.glRotatef(-18F, 0.1F, 0.2F, 0.1F);
+        GL11.glTranslatef(x + 0.1F, y + 0.75F, z);
+        GL11.glScalef(x + 0.3F, 1.25F + y, z + 0.3F);
+
 
 
         // Bind texture

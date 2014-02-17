@@ -68,13 +68,10 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                         {
                             for (int i = 1; i <= SOCKET_NUMBER; i++)
                             {
-                                //if (getSocketItemStack(i) != null)
-                                //{
-                                    if (canDoEffect(TotemUtil.decrementAmount(SOCKETS[i])))
-                                    {
-                                        doEffects(SOCKETS[i]);
-                                    }
-                                //}
+                                if (canDoEffect(TotemUtil.decrementAmount(SOCKETS[i])))
+                                {
+                                    doEffects(SOCKETS[i]);
+                                }
                             }
                         }
                     }
@@ -102,43 +99,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         }
     }
 
-    protected void getThingy(int i)
-    {
-
-    }
-
-    protected void doEffectsAsUsual(int i)
-    {
-        for (int j = 1; i <= 5; i++)
-        {
-
-        }
-
-    }
-
-    protected void updateSockets(int par1)
-    {
-        for (int i = par1; i <= 5; i++)
-        {
-            if (scanAbove(i))
-            {
-                this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord + i, this.zCoord);
-            }
-        }
-
-    }
-
     public boolean canUpdate()
     {
         return true;
-    }
-
-    protected boolean scanAbove(int i)
-    {
-
-        Block blockQuery = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + i, this.zCoord)];
-
-        return blockQuery instanceof BlockTotemSocket;
     }
 
     protected void doEffects(int metadata)
@@ -220,7 +183,6 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         return ((IInventory) tileEntity).getStackInSlot(TileTotemSocket.SLOT_ONE);
 
     }
-
 
 
     protected int getSocketAmounts()

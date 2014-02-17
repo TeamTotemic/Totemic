@@ -11,6 +11,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
@@ -42,7 +43,10 @@ public class BlockTotemLeaves extends BlockLeaves
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return ModBlocks.totemSapling.blockID;
+        if (par2Random.nextBoolean())
+            return ModBlocks.totemSapling.blockID;
+        else
+            return ModItems.subItems.itemID;
     }
 
     @Override
@@ -71,7 +75,6 @@ public class BlockTotemLeaves extends BlockLeaves
     }
 
 
-
     @Override
     public void getSubBlocks(int blockId, CreativeTabs creativeTab, List subTypes)
     {
@@ -97,8 +100,6 @@ public class BlockTotemLeaves extends BlockLeaves
         opaqueIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_LEAVES_OPAQUE);
         transparentIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_LEAVES_TRANSPARENT);
     }
-
-
 
 
 }

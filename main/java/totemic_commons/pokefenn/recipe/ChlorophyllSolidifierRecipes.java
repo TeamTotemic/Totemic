@@ -20,10 +20,15 @@ public class ChlorophyllSolidifierRecipes
     public static void addRecipes()
     {
 
-        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.ingotIron, 1), new ItemStack(ModItems.subItems, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.ingotIron, 1), new ItemStack(ModItems.subItems, 1, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
         solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.cobblestone, 1), new ItemStack(Block.cobblestoneMossy, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
         solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.stoneBrick, 1), new ItemStack(Block.stoneBrick, 1, 2), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
         solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Item.diamond, 1), new ItemStack(ModItems.chlorophyllCrystal, 1, ModItems.chlorophyllCrystal.getMaxDamage() - 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 16)));
+
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.sapling, 1, 0), new ItemStack(ModBlocks.totemSapling, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.sapling, 1, 1), new ItemStack(ModBlocks.totemSapling, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.sapling, 1, 2), new ItemStack(ModBlocks.totemSapling, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
+        solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.sapling, 1, 3), new ItemStack(ModBlocks.totemSapling, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 8)));
 
         solidifierRecipe.add(new ChlorophyllSolidifierRecipes(new ItemStack(Block.wood, 1), new ItemStack(ModBlocks.totemWoods, 1), new FluidStack(ModFluids.fluidChlorophyll, FluidContainerRegistry.BUCKET_VOLUME * 4)));
     }
@@ -32,12 +37,11 @@ public class ChlorophyllSolidifierRecipes
     private final ItemStack result;
     private final FluidStack fluid;
 
-    public ChlorophyllSolidifierRecipes(ItemStack input, ItemStack output, FluidStack fluidStack)
+    public ChlorophyllSolidifierRecipes(ItemStack input, ItemStack output, FluidStack fluid)
     {
-
         this.source = input;
         this.result = output;
-        this.fluid = fluidStack;
+        this.fluid = fluid;
     }
 
     public ItemStack getInput()

@@ -2,13 +2,18 @@ package totemic_commons.pokefenn.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
+
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,14 +21,14 @@ import totemic_commons.pokefenn.lib.Textures;
  * Date: 09/12/13
  * Time: 14:35
  */
-public class BlockTotemWoods extends Block
+public class BlockTotemWoods extends BlockLog
 {
 
 
     public BlockTotemWoods(int id)
     {
 
-        super(id, Material.wood);
+        super(id);
         setUnlocalizedName(Strings.TOTEM_WOODS_NAME);
         setHardness(1F);
         setCreativeTab(Totemic.tabsTotem);
@@ -48,6 +53,12 @@ public class BlockTotemWoods extends Block
 
     }
 
+    @Override
+    public int idDropped(int par1, Random par2Random, int par3)
+    {
+        return ModBlocks.totemWoods.blockID;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public Icon getIcon(int side, int meta)
@@ -62,6 +73,12 @@ public class BlockTotemWoods extends Block
                 return sideIcon;
         }
 
+    }
+
+    @Override
+    public void getSubBlocks(int blockId, CreativeTabs creativeTab, List subTypes)
+    {
+        subTypes.add(new ItemStack(blockId, 1, 0));
     }
 
 

@@ -27,7 +27,7 @@ public class BlockTotemDraining extends BlockTile implements ITotemBlock
 {
     public BlockTotemDraining(int id)
     {
-        super(id, Material.rock);
+        super(id, Material.wood);
         setUnlocalizedName(Strings.TOTEM_DRAINING_NAME);
         setCreativeTab(Totemic.tabsTotem);
 

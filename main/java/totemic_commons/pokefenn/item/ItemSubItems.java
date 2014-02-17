@@ -21,7 +21,7 @@ import java.util.List;
 public class ItemSubItems extends ItemNormal
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"chlorophyllicIngot"};
+    private static final String[] ITEMS_NAMES = new String[]{"leaf", "chlorophyllicIngot",};
 
     @SideOnly(Side.CLIENT)
     private Icon[] icons;
