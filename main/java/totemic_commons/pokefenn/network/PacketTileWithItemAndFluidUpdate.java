@@ -86,7 +86,6 @@ public class PacketTileWithItemAndFluidUpdate extends PacketTotemic
     @Override
     public void execute(INetworkManager manager, Player player)
     {
-
         Totemic.proxy.handleTileWithItemAndFluidPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName, itemID, metaData, stackSize, fluidAmount, (byte) fluidID);
     }
 

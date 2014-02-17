@@ -12,6 +12,7 @@ public class BlockIds
     public static int TOTEM_INTELLIGENCE_DEFAULT = 2577;
     public static int CHLOROPHYLL_DEFAULT = 2577;
     public static int TOTEM_SAPLING_DEFAULT = 2578;
+    public static int TOTEM_LEAVES_DEFAULT = 2579;
 
     public static int TOTEM_SOCKET;
     public static int CHLOROPHYLL_SOLIDIFIER;
@@ -22,5 +23,6 @@ public class BlockIds
     public static int TOTEM_INTELLIGENCE;
     public static int CHLOROPHYLL;
     public static int TOTEM_SAPLING;
+    public static int TOTEM_LEAVES;
 
 }

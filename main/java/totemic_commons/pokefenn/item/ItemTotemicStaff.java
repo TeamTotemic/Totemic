@@ -28,8 +28,6 @@ public class ItemTotemicStaff extends ItemNormal
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-
-
         list.add("A staff for all your totemic needs!");
     }
 

@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
+import totemic_commons.pokefenn.client.rendering.item.ItemStaffRender;
 import totemic_commons.pokefenn.client.rendering.item.ItemTotemDrainingRenderer;
 import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemDrainingRenderer;
@@ -97,9 +98,11 @@ public class ClientProxy extends CommonProxy
     {
         RenderIds.RENDER_ID_TOTEM_POLE = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.RENDER_ID_TOTEM_DRAINING = RenderingRegistry.getNextAvailableRenderId();
+        RenderIds.RENDER_ID_TOTEMIC_STAFF = RenderingRegistry.getNextAvailableRenderId();
 
         MinecraftForgeClient.registerItemRenderer(ModBlocks.totemSocket.blockID, new ItemTotemSocketRenderer());
         MinecraftForgeClient.registerItemRenderer(ModBlocks.totemDraining.blockID, new ItemTotemDrainingRenderer());
+        MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff.itemID, new ItemStaffRender());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemSocket.class, new TileTotemSocketRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemDraining.class, new TileTotemDrainingRenderer());

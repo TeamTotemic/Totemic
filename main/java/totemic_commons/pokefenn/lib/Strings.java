@@ -22,6 +22,7 @@ public class Strings
     public static final String TOTEM_INTELLIGENCE_NAME = "totemIntelligence";
     public static final String TOTEM_SOCKET_NAME = "totemSocket";
     public static final String TOTEM_SAPLING_NAME = "totemSapling";
+    public static final String TOTEM_LEAVES_NAME = "totemLeaves";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";

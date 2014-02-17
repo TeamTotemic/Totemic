@@ -11,4 +11,5 @@ public class RenderIds
 
     public static int RENDER_ID_TOTEM_POLE;
     public static int RENDER_ID_TOTEM_DRAINING;
+    public static int RENDER_ID_TOTEMIC_STAFF;
 }

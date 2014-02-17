@@ -29,6 +29,9 @@ public class Textures
     public static final String CHLOROPHYLL_SOLIDIFIER_TOP_AND_BOT = "chlorophyllSolidifierTopAndBot";
     public static final String CHLOROPHYLL_SOLIDIFIER_SIDES = "chlorophyllSolidifierSide";
 
+    public static final String TOTEM_LEAVES_OPAQUE = "totemLeavesOpaque";
+    public static final String TOTEM_LEAVES_TRANSPARENT = "totemLeavesTransparent";
+
     //Items
     public static final String BUCKET_CHLOROPHYLL_ICON = "bucketChlorophyll";
     public static final String BOTTLE_CHLOROPHYLL_ICON = "bottleChlorophyll";
@@ -50,4 +53,5 @@ public class Textures
     public static final ResourceLocation TEXTURE_TOTEM_BASE = ResourceLocationHelper.getResourceLocation(BLOCK_LOCATION + "totemBase.png");
     public static final ResourceLocation TEXTURE_TOTEM_SOCKET = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemSocket.png");
     public static final ResourceLocation TEXTURE_TOTEM_DRAINING = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemDraining.png");
+    public static final ResourceLocation TEXTURE_TOTEMIC_STAFF = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemicStaff.png");
 }

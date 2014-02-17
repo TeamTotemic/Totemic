@@ -45,7 +45,11 @@ public class ConfigurationHandler
             ConfigurationSettings.DECREMENT_TOTEM_SPIDER = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSpider", 10).getInt(10);
             ConfigurationSettings.DECREMENT_TOTEM_LOVE = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementLove", 15).getInt(15);
 
+            ConfigurationSettings.GENERATE_TOTEM_TREES = configuration.get(CATEGORY_GAMEPLAY, "generateTotemTrees(Not needed)", true).getBoolean(true);
+
             ConfigurationSettings.DISABLE_TOTEM_BEADS = configuration.get(CATEGORY_GAMEPLAY, "disableTotemBeads(Overpowered)", false).getBoolean(false);
+
+            ConfigurationSettings.TOTEM_TREE_GENERATION_BLACKLIST = configuration.get(CATEGORY_GAMEPLAY, "placesToBlacklistGenerationOfTotemTrees", "").getString();
 
             //Blocks
             BlockIds.CHLOROPHYLL_SOLIDIFIER = configuration.getBlock(Strings.CHLOROPHYLL_SOLIDIFIER_NAME, BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT).getInt(BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT);
@@ -56,6 +60,8 @@ public class ConfigurationHandler
             BlockIds.TOTEM_INTELLIGENCE = configuration.getBlock(Strings.TOTEM_INTELLIGENCE_NAME, BlockIds.TOTEM_INTELLIGENCE_DEFAULT).getInt(BlockIds.TOTEM_INTELLIGENCE_DEFAULT);
             BlockIds.TOTEM_SOCKET = configuration.getBlock(Strings.TOTEM_SOCKET_NAME, BlockIds.TOTEM_SOCKET_DEFAULT).getInt(BlockIds.TOTEM_SOCKET_DEFAULT);
             BlockIds.CHLOROPHYLL = configuration.getBlock(Strings.FLUID_CHLOROPHYLL_NAME, BlockIds.CHLOROPHYLL_DEFAULT).getInt(BlockIds.CHLOROPHYLL_DEFAULT);
+            BlockIds.TOTEM_SAPLING = configuration.getBlock(Strings.TOTEM_SAPLING_NAME, BlockIds.TOTEM_SAPLING_DEFAULT).getInt(BlockIds.TOTEM_SAPLING_DEFAULT);
+            BlockIds.TOTEM_LEAVES = configuration.getBlock(Strings.TOTEM_LEAVES_NAME, BlockIds.TOTEM_LEAVES_DEFAULT).getInt(BlockIds.TOTEM_LEAVES_DEFAULT);
 
             //Items
             ItemIds.TOTEMS = configuration.getItem(Strings.TOTEMS_NAME, ItemIds.TOTEMS_DEFAULT).getInt(ItemIds.TOTEMS_DEFAULT);
