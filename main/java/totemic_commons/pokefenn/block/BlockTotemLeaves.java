@@ -43,7 +43,7 @@ public class BlockTotemLeaves extends BlockLeaves
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        if (par2Random.nextBoolean())
+        if (par2Random.nextInt(4) == 1)
             return ModBlocks.totemSapling.blockID;
         else
             return ModItems.subItems.itemID;

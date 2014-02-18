@@ -31,7 +31,7 @@ public class ConfigurationHandler
 
             ConfigurationSettings.ENABLE_PARTICLE_FX = configuration.get(CATEGORY_GAMEPLAY, ConfigurationSettings.ENABLE_PARTICLE_FX_CONFIGNAME, ConfigurationSettings.ENABLE_PARTICLE_FX_DEFAULT).getBoolean(ConfigurationSettings.ENABLE_PARTICLE_FX_DEFAULT);
             ConfigurationSettings.TOTEM_DRAINING_RANGE = configuration.get(CATEGORY_GAMEPLAY, ConfigurationSettings.TOTEM_DRAINING_CONFIGNAME, ConfigurationSettings.TOTEM_DRAINING_DEFAULT).getInt(ConfigurationSettings.TOTEM_DRAINING_DEFAULT);
-            ConfigurationSettings.ENABLE_TEMP_RECIPES = configuration.get(CATEGORY_GAMEPLAY, "enableTempRecipes", true).getBoolean(true);
+            ConfigurationSettings.ENABLE_TEMP_RECIPES = configuration.get(CATEGORY_GAMEPLAY, "enableTempRecipes", false).getBoolean(false);
 
             ConfigurationSettings.DECREMENT_TOTEM_CACTUS = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementCactus", 1).getInt(1);
             ConfigurationSettings.DECREMENT_TOTEM_BAT = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementBat", 25).getInt(25);
@@ -45,7 +45,7 @@ public class ConfigurationHandler
             ConfigurationSettings.DECREMENT_TOTEM_SPIDER = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSpider", 10).getInt(10);
             ConfigurationSettings.DECREMENT_TOTEM_LOVE = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementLove", 15).getInt(15);
 
-            ConfigurationSettings.GENERATE_TOTEM_TREES = configuration.get(CATEGORY_GAMEPLAY, "generateTotemTrees(Not needed)", true).getBoolean(true);
+            ConfigurationSettings.GENERATE_TOTEM_TREES = configuration.get(CATEGORY_GAMEPLAY, "generateTotemTrees(Optional)", true).getBoolean(true);
 
             ConfigurationSettings.DISABLE_TOTEM_BEADS = configuration.get(CATEGORY_GAMEPLAY, "disableTotemBeads(Overpowered)", false).getBoolean(false);
 

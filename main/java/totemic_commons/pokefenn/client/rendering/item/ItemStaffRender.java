@@ -39,22 +39,22 @@ public class ItemStaffRender implements IItemRenderer
         {
             case ENTITY:
             {
-                renderTotemicStaff(0.3F, -0.3F, 0.3F);
+                renderTotemicStaff(0.4F, -0.3F, 0.3F, 0F, 0F);
                 return;
             }
             case EQUIPPED:
             {
-                renderTotemicStaff(0.7F, 0.8F, 1.0F);
+                renderTotemicStaff(0.1F, 0.8F, 1.0F, 1F, 0.5F);
                 return;
             }
             case EQUIPPED_FIRST_PERSON:
             {
-                renderTotemicStaff(0.5F, 0.2F, 1.0F);
+                renderTotemicStaff(0.6F, 0.2F, 1.0F, 0F, 0F);
                 return;
             }
             case INVENTORY:
             {
-                renderTotemicStaff(0.5F, -0.51F, 0.5F);
+                renderTotemicStaff(0.4F, -0.48F, 0.85F, 0F, 0F);
                 return;
             }
             default:
@@ -63,15 +63,15 @@ public class ItemStaffRender implements IItemRenderer
         }
     }
 
-    private void renderTotemicStaff(float x, float y, float z)
+    private void renderTotemicStaff(float x, float y, float z, float x2, float z2)
     {
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
 
         // Scale, Translate, Rotate
-        GL11.glRotatef(-18F, 0.1F, 0.2F, 0.1F);
-        GL11.glTranslatef(x + 0.1F, y + 0.75F, z);
-        GL11.glScalef(x + 0.3F, 1.25F + y, z + 0.3F);
+        GL11.glRotatef(-18F, 0.1F, -1.0F, 0.1F);
+        GL11.glTranslatef(x, y + 0.8F, z);
+        GL11.glScalef(x + 0.4F + x2, 1.24F + y, z + 0.4F + z2);
 
 
 

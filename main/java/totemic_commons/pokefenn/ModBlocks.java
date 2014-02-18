@@ -13,7 +13,7 @@ public final class ModBlocks
     public static Block venusFlyTrap;
     public static Block totemWoods;
     public static Block totemDraining;
-    //public static Block totemTable;
+    public static Block totemTable;
     public static Block totemIntelligence;
     public static Block totemSocket;
     public static Block chlorophyll;

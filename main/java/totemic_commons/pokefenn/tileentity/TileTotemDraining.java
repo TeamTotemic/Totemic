@@ -218,11 +218,7 @@ public class TileTotemDraining extends TileTotemic implements IInventory
     {
         if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID || this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < this.getStackInSlot(SLOT_ONE).getMaxDamage())
         {
-            //if (rand.nextInt(3) != 3 )
-            {
-                //System.out.println("tsk tsk");
-                this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(2));
-            }
+            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(2));
         }
 
     }

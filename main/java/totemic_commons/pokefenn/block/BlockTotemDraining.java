@@ -84,7 +84,7 @@ public class BlockTotemDraining extends BlockTile implements ITotemBlock
         }
 
 
-        return !player.isSneaking();
+        return !(heldItem != null && heldItem.itemID == ModItems.totemicStaff.itemID);
     }
 
     @Override

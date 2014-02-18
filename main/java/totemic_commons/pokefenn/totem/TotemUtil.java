@@ -44,7 +44,10 @@ public class TotemUtil
         } else if (par1 == 10)
         {
             return Totems.DECREMENT_LOVE;
-        } else
+        } else if (par1 == 11)
+
+            return 0;
+        else
             return 0;
 
     }

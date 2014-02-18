@@ -84,7 +84,8 @@ public class BlockTotemIntelligence extends BlockTile implements ITotemBlock
         }
 
 
-        return !player.isSneaking();
+        return !(heldItem != null && heldItem.itemID == ModItems.totemicStaff.itemID);
+
     }
 
 

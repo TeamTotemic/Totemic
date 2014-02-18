@@ -2,15 +2,17 @@ package totemic_commons.pokefenn.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.block.BlockTotemWoods;
 import totemic_commons.pokefenn.lib.Strings;
-
-import java.util.List;
+import totemic_commons.pokefenn.util.EntityUtil;
 
 public class ItemTotemWhittlingKnife extends ItemNormal
 {
@@ -22,12 +24,42 @@ public class ItemTotemWhittlingKnife extends ItemNormal
 
     public ItemTotemWhittlingKnife(int id)
     {
-
         super(id);
         setMaxStackSize(1);
         setCreativeTab(Totemic.tabsTotem);
-
+        setUnlocalizedName(Strings.TOTEM_WHITTLING_KNIFE_NAME);
+        setContainerItem(this);
+        setMaxDamage(3);
     }
+
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+    {
+        if (!world.isRemote)
+        {
+            MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
+
+            if (block != null)
+            {
+                Block blockQuery = Block.blocksList[world.getBlockId(block.blockX, block.blockY, block.blockZ)];
+
+                if (blockQuery != null)
+                {
+                    if(blockQuery instanceof BlockTotemWoods)
+                    {
+                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket.blockID);
+                        //player.getHeldItem().setItemDamage(player.getHeldItem().getItemDamage() + 1);
+                        player.getHeldItem().damageItem(1, player);
+                    }
+
+                }
+            }
+            //if(player.get)
+        }
+
+        return true;
+    }
+
+    /*
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
@@ -77,6 +109,7 @@ public class ItemTotemWhittlingKnife extends ItemNormal
         }
 
     }
+    */
 
 
 }

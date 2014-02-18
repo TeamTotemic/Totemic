@@ -19,6 +19,7 @@ import totemic_commons.pokefenn.lib.Reference;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
 import totemic_commons.pokefenn.recipe.TotemTableHandler;
+import totemic_commons.pokefenn.recipe.TotemicCraftingHandler;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
 import totemic_commons.pokefenn.util.CreativeTabTotemic;
 import totemic_commons.pokefenn.util.OreDictionaryTotemic;
@@ -75,7 +76,7 @@ public final class Totemic
 
         logger.info("Totemic is entering its Initlisation stage");
 
-        //GameRegistry.registerCraftingHandler(new TotemicCraftingHandler());
+        GameRegistry.registerCraftingHandler(new TotemicCraftingHandler());
 
         //Starts ore dictionary code
         OreDictionaryTotemic.init();

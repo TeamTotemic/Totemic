@@ -14,6 +14,8 @@ import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
 import totemic_commons.pokefenn.totem.*;
 
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -68,7 +70,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                         {
                             for (int i = 1; i <= SOCKET_NUMBER; i++)
                             {
-                                if (canDoEffect(TotemUtil.decrementAmount(SOCKETS[i])))
+                                if (canDoEffect(TotemUtil.decrementAmount(SOCKETS[i]), SOCKETS[i]))
                                 {
                                     doEffects(SOCKETS[i]);
                                 }
@@ -152,10 +154,25 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                 TotemEffectLove.effect(this, metadata);
                 break;
 
+            case 11:
+                TotemEffectDraining.effect(this, metadata);
+                break;
+
             default:
                 System.out.println("Broken totem? o.O");
                 this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
                 break;
+        }
+
+    }
+
+    public void increaseChlorophyll(int subtration)
+    {
+        Random rand = new Random();
+
+        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID || this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < this.getStackInSlot(SLOT_ONE).getMaxDamage())
+        {
+            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(2));
         }
 
     }
@@ -169,10 +186,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     }
 
-    protected boolean canDoEffect(int subtraction)
+    protected boolean canDoEffect(int subtraction, int metadata)
     {
-        return !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
-
+        return metadata == 11 || !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
     }
 
     protected ItemStack getSocketItemStack(int par1)
