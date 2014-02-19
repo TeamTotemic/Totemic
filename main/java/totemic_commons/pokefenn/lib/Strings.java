@@ -2,10 +2,7 @@ package totemic_commons.pokefenn.lib;
 
 public class Strings
 {
-
-
     //Misc
-
     public static final String RESOURCE_PREFIX = "totemic:";
 
 
@@ -23,6 +20,7 @@ public class Strings
     public static final String TOTEM_SOCKET_NAME = "totemSocket";
     public static final String TOTEM_SAPLING_NAME = "totemSapling";
     public static final String TOTEM_LEAVES_NAME = "totemLeaves";
+    public static final String TOTEM_CAULDRON_NAME = "totemCauldron";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";
@@ -36,6 +34,9 @@ public class Strings
     public static final String BOTTLE_CHLOROPHYLL_NAME = "bottleChlorophyll";
     public static final String TOTEM_BEADS_NAME = "totemBeads";
     public static final String BLAZING_CHLOROPHYLL_CRYSTAL_NAME = "blazingChlorophyllCrystal";
+    public static final String INFUSED_TOTEMIC_STAFF_NAME = "infusedTotemicStaff";
+    public static final String TOTEMPEDIA_NAME = "totempedia";
+
 
     public static final String TOTEM_WOOD_WAND_CORE_NAME = "totemWoodWandCore";
     public static final String CHLOROPHYLL_CRYSTAL_WAND_CAP = "chlorophyllCrystalWandCap";

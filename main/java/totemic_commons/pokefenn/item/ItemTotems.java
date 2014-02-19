@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
-import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;
@@ -28,12 +27,9 @@ public class ItemTotems extends ItemNormal
 
     public ItemTotems(int id)
     {
-
         super(id);
         setHasSubtypes(true);
         maxStackSize = 1;
-        setCreativeTab(Totemic.tabsTotem);
-
     }
 
     @Override

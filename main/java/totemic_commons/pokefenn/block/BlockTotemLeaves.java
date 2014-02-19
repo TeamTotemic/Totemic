@@ -43,7 +43,7 @@ public class BlockTotemLeaves extends BlockLeaves
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        if (par2Random.nextInt(4) == 1)
+        if (par2Random.nextInt(8) == 1)
             return ModBlocks.totemSapling.blockID;
         else
             return ModItems.subItems.itemID;
@@ -60,8 +60,7 @@ public class BlockTotemLeaves extends BlockLeaves
             {
                 if (par1World.rand.nextFloat() <= par6)
                 {
-                    if (par1World.rand.nextBoolean())
-                        this.dropBlockAsItem_do(par1World, par2, par3, par4, item);
+                    this.dropBlockAsItem_do(par1World, par2, par3, par4, item);
                 }
             }
         }
@@ -71,7 +70,8 @@ public class BlockTotemLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int side)
     {
-        return Block.leaves.graphicsLevel || super.shouldSideBeRendered(iba, x, y, z, side);
+        return/* Block.leaves.graphicsLevel || */super.shouldSideBeRendered(iba, x, y, z, side);
+        //return true;
     }
 
 
@@ -84,7 +84,8 @@ public class BlockTotemLeaves extends BlockLeaves
     @Override
     public boolean isOpaqueCube()
     {
-        return !Block.leaves.graphicsLevel;
+        //return !Block.leaves.graphicsLevel;
+        return false;
     }
 
     @Override

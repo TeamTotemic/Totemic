@@ -52,10 +52,7 @@ public class CompatInit
 
         if (Loader.isModLoaded("gregtech_addon"))
         {
-
             Totemic.logger.info("Gregtech is unsupported by Totemic and all of my mods.");
-            Totemic.logger.info("If there are any problems, go cry to greg instead of me =3");
-
         }
 
         if (Loader.isModLoaded("Optifine"))

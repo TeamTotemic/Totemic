@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn;
 
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
@@ -22,6 +21,7 @@ public final class ModItems
     public static Item totems;
     public static Item totemBeads;
     public static Item blazingChlorophyllCrystal;
+    public static Item infusedTotemicStaff;
 
     public static void init()
     {
@@ -35,10 +35,7 @@ public final class ModItems
         subItems = new ItemSubItems(ItemIds.SUB_ITEMS);
         bottleChlorophyll = new ItemBottleChlorophyll(ItemIds.BOTTLE_CHLOROPHYLL);
         blazingChlorophyllCrystal = new ItemBlazingChlorophyllCrystal(ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL);
-
-
-        //These are specific totems, of mobs and minecraft objects
-
+        infusedTotemicStaff = new ItemInfusedTotemicStaff(ItemIds.INFUSED_TOTEMIC_STAFF);
 
         //Registry for other items
         GameRegistry.registerItem(totemWhittlingKnife, totemWhittlingKnife.getUnlocalizedName());
@@ -49,6 +46,7 @@ public final class ModItems
         //GameRegistry.registerItem(subItems, subItems.getUnlocalizedName());
         GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
         GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
+        GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
 
 
         //totemWhittlingKnife.setContainerItem(totemWhittlingKnife);

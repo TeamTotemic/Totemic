@@ -59,7 +59,8 @@ public class BlockChlorophyllSolidifier extends BlockTile
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null);
 
 
-            } if (heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem.itemID == ModItems.bottleChlorophyll.itemID || heldItem != null && heldItem.itemID == ModItems.bucketChlorophyll.itemID)
+            }
+            if (heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem.itemID == ModItems.bottleChlorophyll.itemID || heldItem != null && heldItem.itemID == ModItems.bucketChlorophyll.itemID)
             {
                 if (tileChlorophyllSolidifier.tank.getFluidAmount() + 1000 <= 16000)
                 {

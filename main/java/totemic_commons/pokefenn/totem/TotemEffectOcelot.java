@@ -52,7 +52,7 @@ public class TotemEffectOcelot implements ITotemEffect
 
     public static void effectBead(EntityPlayer player, World world, ItemTotemBeads totemBeads, int i)
     {
-        if(world.getWorldTime() % 10L == 0)
+        if (world.getWorldTime() % 10L == 0)
         {
             if (EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 10, 10) != null)
             {

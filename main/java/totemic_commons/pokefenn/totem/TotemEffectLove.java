@@ -26,7 +26,7 @@ public class TotemEffectLove implements ITotemEffect
                 {
                     if (entity instanceof EntityAnimal)
                     {
-                        if (((EntityAnimal) entity).inLove == 0 && !((EntityAnimal) entity).isChild() )
+                        if (((EntityAnimal) entity).inLove == 0 && !((EntityAnimal) entity).isChild())
                         {
                             //((EntityAnimal) entity).resetInLove();
                             ((EntityAnimal) entity).func_110196_bT();

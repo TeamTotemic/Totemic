@@ -14,10 +14,10 @@ import net.minecraftforge.common.ForgeDirection;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ITotemBlock;
+import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemSocket;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
-import totemic_commons.pokefenn.lib.*;
 
 import java.util.Random;
 

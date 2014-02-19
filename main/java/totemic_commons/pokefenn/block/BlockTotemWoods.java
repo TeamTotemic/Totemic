@@ -37,19 +37,16 @@ public class BlockTotemWoods extends BlockLog
 
 
     @SideOnly(Side.CLIENT)
-    private Icon topIcon;
+    private Icon topAndBot;
     @SideOnly(Side.CLIENT)
     private Icon sideIcon;
-    @SideOnly(Side.CLIENT)
-    private Icon bottomIcon;
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister register)
     {
-        topIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_TOP);
-        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_SIDE);
-        bottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_BOTTOM);
+        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_WOOD_SIDE);
+        topAndBot = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_WOOD_TOP_AND_BOT);
 
     }
 
@@ -66,9 +63,9 @@ public class BlockTotemWoods extends BlockLog
         switch (side)
         {
             case 0:
-                return bottomIcon;
+                return topAndBot;
             case 1:
-                return topIcon;
+                return topAndBot;
             default:
                 return sideIcon;
         }
@@ -80,7 +77,6 @@ public class BlockTotemWoods extends BlockLog
     {
         subTypes.add(new ItemStack(blockId, 1, 0));
     }
-
 
 
     /**

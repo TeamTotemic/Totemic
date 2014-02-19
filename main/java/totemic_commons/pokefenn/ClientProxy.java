@@ -9,15 +9,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
-import totemic_commons.pokefenn.client.rendering.item.ItemStaffRender;
-import totemic_commons.pokefenn.client.rendering.item.ItemTotemDrainingRenderer;
+import totemic_commons.pokefenn.client.rendering.item.ItemInfusedTotemicStaff;
 import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
-import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemDrainingRenderer;
+import totemic_commons.pokefenn.client.rendering.item.ItemTotemicStaffRender;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketRenderer;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.network.PacketRequestEvent;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
-import totemic_commons.pokefenn.tileentity.TileTotemDraining;
 import totemic_commons.pokefenn.tileentity.TileTotemSocket;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
@@ -70,9 +68,9 @@ public class ClientProxy extends CommonProxy
 
         this.handleTileWithItemPacket(x, y, z, orientation, state, customName, itemID, metaData, stackSize);
 
-        if(tileEntity != null)
+        if (tileEntity != null)
         {
-            if(tileEntity instanceof TileTotemic && tileEntity instanceof IFluidHandler)
+            if (tileEntity instanceof TileTotemic && tileEntity instanceof IFluidHandler)
             {
 
             }
@@ -104,11 +102,12 @@ public class ClientProxy extends CommonProxy
         RenderIds.RENDER_ID_TOTEMIC_STAFF = RenderingRegistry.getNextAvailableRenderId();
 
         MinecraftForgeClient.registerItemRenderer(ModBlocks.totemSocket.blockID, new ItemTotemSocketRenderer());
-        MinecraftForgeClient.registerItemRenderer(ModBlocks.totemDraining.blockID, new ItemTotemDrainingRenderer());
-        MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff.itemID, new ItemStaffRender());
+        //MinecraftForgeClient.registerItemRenderer(ModBlocks.totemDraining.blockID, new ItemTotemDrainingRenderer());
+        MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff.itemID, new ItemTotemicStaffRender());
+        MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff.itemID, new ItemInfusedTotemicStaff());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemSocket.class, new TileTotemSocketRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemDraining.class, new TileTotemDrainingRenderer());
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileTotemDraining.class, new TileTotemDrainingRenderer());
 
 
     }

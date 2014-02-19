@@ -27,7 +27,8 @@ public class EntityUtil
     }
 
     //Stolen from Vazkii who stole it from mDiyo
-    public static MovingObjectPosition raytraceFromEntity(World world, Entity player, boolean par3, double range) {
+    public static MovingObjectPosition raytraceFromEntity(World world, Entity player, boolean par3, double range)
+    {
         float f = 1.0F;
         float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
         float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * f;
@@ -48,6 +49,7 @@ public class EntityUtil
             d3 = ((EntityPlayerMP) player).theItemInWorldManager.getBlockReachDistance();
         Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
         return world.rayTraceBlocks_do_do(vec3, vec31, par3, !par3);
+
     }
 
 }

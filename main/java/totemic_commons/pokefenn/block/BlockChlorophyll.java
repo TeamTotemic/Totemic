@@ -6,7 +6,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Strings;
@@ -34,7 +33,8 @@ public class BlockChlorophyll extends BlockFluidClassic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister register){
+    public void registerIcons(IconRegister register)
+    {
         chlorophyllFlowingIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.FLUID_CHLOROPHYLL_FLOWING);
         chlorophyllStillIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.FLUID_CHLOROPHYLL_STILL);
 
@@ -43,7 +43,8 @@ public class BlockChlorophyll extends BlockFluidClassic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int side, int meta) {
+    public Icon getIcon(int side, int meta)
+    {
 
         if (side <= 1)
             return chlorophyllStillIcon;

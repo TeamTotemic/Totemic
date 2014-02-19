@@ -29,7 +29,6 @@ public class TotemEffectBat implements ITotemEffect
                         ((EntityPlayer) entityArea).setPosition(totem.xCoord, totem.yCoord + 10, totem.zCoord);
 
 
-
                         ((EntityPlayer) entityArea).capabilities.allowFlying = true;
 
                         totem.worldObj.updateEntity(entityArea);

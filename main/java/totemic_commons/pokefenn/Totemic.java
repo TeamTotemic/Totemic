@@ -30,7 +30,7 @@ import java.io.File;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.1.0a")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.2.0")
 @NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 public final class Totemic

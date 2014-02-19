@@ -17,20 +17,18 @@ public class ItemNormal extends Item
 
     public ItemNormal(int id)
     {
-
         super(id - 256);
         setMaxStackSize(64);
         setNoRepair();
         setCreativeTab(Totemic.tabsTotem);
-
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
-
         itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
-
     }
+
+
 }

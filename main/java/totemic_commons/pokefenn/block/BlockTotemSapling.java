@@ -3,12 +3,15 @@ package totemic_commons.pokefenn.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.world.TotemTreeGeneration;
 
 import java.util.List;
@@ -58,6 +61,23 @@ public class BlockTotemSapling extends BlockSapling
     public int idDropped(int meta, Random rand, int fortune)
     {
         return ModBlocks.totemSapling.blockID;
+    }
+
+    @SideOnly(Side.CLIENT)
+    private Icon saplingIcon;
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IconRegister register)
+    {
+        saplingIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_SAPLING);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public Icon getIcon(int side, int meta)
+    {
+        return saplingIcon;
     }
 
 

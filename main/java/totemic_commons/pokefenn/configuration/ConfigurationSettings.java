@@ -33,6 +33,4 @@ public class ConfigurationSettings
     public static boolean DISABLE_TOTEM_BEADS;
 
 
-
-
 }

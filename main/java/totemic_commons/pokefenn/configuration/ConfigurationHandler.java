@@ -62,6 +62,7 @@ public class ConfigurationHandler
             BlockIds.CHLOROPHYLL = configuration.getBlock(Strings.FLUID_CHLOROPHYLL_NAME, BlockIds.CHLOROPHYLL_DEFAULT).getInt(BlockIds.CHLOROPHYLL_DEFAULT);
             BlockIds.TOTEM_SAPLING = configuration.getBlock(Strings.TOTEM_SAPLING_NAME, BlockIds.TOTEM_SAPLING_DEFAULT).getInt(BlockIds.TOTEM_SAPLING_DEFAULT);
             BlockIds.TOTEM_LEAVES = configuration.getBlock(Strings.TOTEM_LEAVES_NAME, BlockIds.TOTEM_LEAVES_DEFAULT).getInt(BlockIds.TOTEM_LEAVES_DEFAULT);
+            BlockIds.TOTEM_CAULDRON = configuration.getBlock(Strings.TOTEM_CAULDRON_NAME, BlockIds.TOTEM_CAULDRON_DEFAULT).getInt(BlockIds.TOTEM_CAULDRON_DEFAULT);
 
             //Items
             ItemIds.TOTEMS = configuration.getItem(Strings.TOTEMS_NAME, ItemIds.TOTEMS_DEFAULT).getInt(ItemIds.TOTEMS_DEFAULT);
@@ -74,6 +75,7 @@ public class ConfigurationHandler
             ItemIds.BOTTLE_CHLOROPHYLL = configuration.getItem(Strings.BOTTLE_CHLOROPHYLL_NAME, ItemIds.BOTTLE_CHLOROPHYLL_DEFAULT).getInt(ItemIds.BOTTLE_CHLOROPHYLL_DEFAULT);
             ItemIds.TOTEM_BEADS = configuration.getItem(Strings.TOTEM_BEADS_NAME, ItemIds.TOTEM_BEADS_DEFAULT).getInt(ItemIds.TOTEM_BEADS_DEFAULT);
             ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL = configuration.getItem(Strings.BLAZING_CHLOROPHYLL_CRYSTAL_NAME, ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL_DEFAULT).getInt(ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL_DEFAULT);
+            ItemIds.INFUSED_TOTEMIC_STAFF = configuration.getItem(Strings.INFUSED_TOTEMIC_STAFF_NAME, ItemIds.INFUSED_TOTEMIC_STAFF_DEFAULT).getInt(ItemIds.INFUSED_TOTEMIC_STAFF_DEFAULT);
 
             ItemIds.TOTEM_WOOD_WAND_CORE = configuration.getItem(Strings.TOTEM_WOOD_WAND_CORE_NAME, ItemIds.TOTEM_WOOD_WAND_CORE_DEFAULT).getInt(ItemIds.TOTEM_WOOD_WAND_CORE_DEFAULT);
             ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP = configuration.getItem(Strings.CHLOROPHYLL_CRYSTAL_WAND_CAP, ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP_DEFAULT).getInt(ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP_DEFAULT);

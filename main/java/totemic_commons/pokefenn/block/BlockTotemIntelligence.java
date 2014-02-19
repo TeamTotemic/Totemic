@@ -61,21 +61,16 @@ public class BlockTotemIntelligence extends BlockTile implements ITotemBlock
         if (tileTotemIntelligence != null && !world.isRemote)
         {
 
-            if (tileTotemIntelligence.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID)
+            if (tileTotemIntelligence.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID || tileTotemIntelligence.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.blazingChlorophyllCrystal.itemID)
             {
                 tileTotemIntelligence.setInventorySlotContents(SLOT_ONE, heldItem);
                 player.destroyCurrentEquippedItem();
 
-
             } else if (tileTotemIntelligence.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
-                if (tileTotemIntelligence.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID)
-                {
-                    EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemIntelligence.getStackInSlot(SLOT_ONE));
-                    world.spawnEntityInWorld(entityitem);
-                    tileTotemIntelligence.setInventorySlotContents(SLOT_ONE, null);
-
-                }
+                EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemIntelligence.getStackInSlot(SLOT_ONE));
+                world.spawnEntityInWorld(entityitem);
+                tileTotemIntelligence.setInventorySlotContents(SLOT_ONE, null);
 
             }
 
@@ -84,7 +79,7 @@ public class BlockTotemIntelligence extends BlockTile implements ITotemBlock
         }
 
 
-        return !(heldItem != null && heldItem.itemID == ModItems.totemicStaff.itemID);
+        return !(heldItem != null && heldItem.itemID == ModItems.totemicStaff.itemID || heldItem != null && heldItem.itemID == ModItems.infusedTotemicStaff.itemID);
 
     }
 

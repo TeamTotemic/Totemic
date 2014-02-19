@@ -3,11 +3,7 @@
 # Item localizations
 item.totemic:totemHead.name=Totem Head
 item.totemic:totemicStaff.name=Totemic Staff
-item.totemic:toolHandle.name=Totem Tool Handle
-item.totemic:whittlingWhole.name=Totem Tool: Whittling
-item.totemic:whittlingHead.name=Totem Tool Whittling Blade
-item.totemic:choppingHead.name=Totemic Tool Chopping Blade
-item.totemic:choppingWhole.name=Totem Tool: Chopping
+item.totemic:totemWhittlingKnife.name=Totem Whittling Knife
 item.totemic:totemsBat.name=Bat Totem
 item.totemic:totemsCactus.name=Cactus Totem
 item.totemic:totemsQuartzBlock.name=Block of Quartz Totem
@@ -19,6 +15,7 @@ item.totemic:totemsSquid.name=Squid Totem
 item.totemic:totemsSun.name=Sun Totem
 item.totemic:totemsFood.name=Food Totem
 item.totemic:totemsLove.name=Love Totem
+item.totemic:totemsDraining.name=Draining Totem
 item.totemic:totemsNotATotem.name=Code only item do not use
 item.totemic:chlorophyllicIngot.name=Chlorophyllic Ingot
 item.totmeic:paintBrush.name=Totemic Paint Brush
@@ -26,16 +23,21 @@ item.totemic:bucketChlorophyll.name=Bucket of Chlorophyll
 item.totemic:chlorophyllCrystal.name=Chlorophyll Crystal
 item.totemic:blazingChlorophyllCrystal.name=Blazing Chlorophyll Crystal
 item.totemic:bottleChlorophyll.name=Bottle of Chlorophyll
+item.totemic:infusedTotemicStaff.name=Infused Totemic Staff
+item.totemic:leaf.name=Infused Leaf
+item.totemic:infusedStick=Infused Stick
 
 # Block localizations
 tile.totemBase.name=Totem Base
 tile.chlorophyllSolidifier.name=Chlorophyll Solidifier [WIP]
-tile.totemWoods.name=Totemic Wood
+tile.totemWoods.name=Infused Wood
 tile.totemSupport.name=Totem Structure Support
 tile.totemIntelligence.name=Totem Structure: Intelligence
 tile.totemTable.name=Totem Table [WIP]
 tile.totemDraining.name=Totem of Draining
 tile.totemSocket.name=Totem Structure: Socket
+tile.totemSapling.name=Infused Sapling
+tile.totemLeaves.name=Infused Leaves
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

@@ -181,14 +181,15 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     {
         if (!(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0))
         {
-            this.setInventorySlotContents(SLOT_ONE, new ItemStack(ModItems.chlorophyllCrystal, 1, this.getStackInSlot(SLOT_ONE).getItemDamage() + subtraction));
+            this.setInventorySlotContents(SLOT_ONE, new ItemStack(this.getStackInSlot(SLOT_ONE).getItem(), 1, this.getStackInSlot(SLOT_ONE).getItemDamage() + subtraction));
         }
 
     }
 
     protected boolean canDoEffect(int subtraction, int metadata)
     {
-        return metadata == 11 || !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
+        return metadata == 11 && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID || metadata == 11 && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID || !(metadata != 11 && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID) && !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
+
     }
 
     protected ItemStack getSocketItemStack(int par1)

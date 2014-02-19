@@ -17,7 +17,6 @@ public final class ModFluids
 
         FluidRegistry.registerFluid(fluidChlorophyll);
 
-
     }
 
 }

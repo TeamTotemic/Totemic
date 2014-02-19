@@ -10,12 +10,12 @@ import totemic_commons.pokefenn.client.rendering.model.ModelTotemicStaff;
 import totemic_commons.pokefenn.lib.Textures;
 
 @SideOnly(Side.CLIENT)
-public class ItemStaffRender implements IItemRenderer
+public class ItemInfusedTotemicStaff implements IItemRenderer
 {
 
     private final ModelTotemicStaff modelTotemicStaff;
 
-    public ItemStaffRender()
+    public ItemInfusedTotemicStaff()
     {
         modelTotemicStaff = new ModelTotemicStaff();
     }
@@ -74,9 +74,8 @@ public class ItemStaffRender implements IItemRenderer
         GL11.glScalef(x + 0.4F + x2, 1.24F + y, z + 0.4F + z2);
 
 
-
         // Bind texture
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.TEXTURE_TOTEMIC_STAFF);
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.TEXTURE_INFUSED_TOTEMIC_STAFF);
 
         // Render
         modelTotemicStaff.render();
@@ -84,4 +83,5 @@ public class ItemStaffRender implements IItemRenderer
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
     }
+
 }

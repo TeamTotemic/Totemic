@@ -2,7 +2,6 @@ package totemic_commons.pokefenn.world;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 
@@ -35,8 +34,6 @@ public class TotemicWorldGeneration implements IWorldGenerator
 
         int x = chunkX * 16 + random.nextInt(16);
         int z = chunkZ * 16 + random.nextInt(16);
-
-        BiomeGenBase b = world.getBiomeGenForCoords(x, z);
 
         if (ConfigurationSettings.GENERATE_TOTEM_TREES)
         {
