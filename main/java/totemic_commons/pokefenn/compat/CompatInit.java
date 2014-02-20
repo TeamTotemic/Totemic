@@ -71,6 +71,14 @@ public class CompatInit
 
         }
 
+        if (Loader.isModLoaded("ForbiddenMagic"))
+        {
+
+            Totemic.logger.info("Hey there Forbidden magic!");
+            Totemic.logger.info("We are missing a few important wand cores :(");
+
+        }
+
     }
 
 }

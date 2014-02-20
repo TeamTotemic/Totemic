@@ -2,7 +2,6 @@ package totemic_commons.pokefenn.totem;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -15,18 +14,15 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectHopper
 {
 
-    public static void effect(TileTotemIntelligence totem, int i)
+    public static void effect(TileTotemIntelligence totem, int i, int upgrades)
     {
-
-        TileEntity tileEntity = totem.worldObj.getBlockTileEntity(totem.xCoord, totem.yCoord - 1, totem.zCoord);
-
         if (totem.worldObj.getWorldTime() % 80L == 0)
         {
 
-            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10) != null)
+            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)) != null)
             {
 
-                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10))
+                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)))
                 {
                     if (entity instanceof EntityItem)
                     {

@@ -25,8 +25,4 @@ public class BlockVenusFlyTrap extends Block
 
     }
 
-    /**
-     * This code actually doesnt do anything yet, it will be worked once Poopy gives me a model :)
-     */
-
 }

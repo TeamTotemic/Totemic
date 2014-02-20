@@ -7,6 +7,7 @@ import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
@@ -41,6 +42,12 @@ public class ItemInfusedTotemicStaff extends ItemTotemicStaff
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
         list.add("A staff for all Totemic needs!");
+    }
+
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.epic;
     }
 
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)

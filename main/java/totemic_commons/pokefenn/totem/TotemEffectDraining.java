@@ -25,7 +25,6 @@ public class TotemEffectDraining implements ITotemEffect
         if (tileTotemIntelligence.worldObj.getWorldTime() % 100L == 0)
         {
             drainEffect(tileTotemIntelligence, i);
-
         }
 
     }

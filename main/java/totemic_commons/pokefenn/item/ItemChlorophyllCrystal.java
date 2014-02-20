@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -35,6 +36,12 @@ public class ItemChlorophyllCrystal extends ItemNormal
         list.add(new ItemStack(id, 1, 1000));
         list.add(new ItemStack(id, 1, 500));
         list.add(new ItemStack(id, 1, 1));
+    }
+
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.rare;
     }
 
 }

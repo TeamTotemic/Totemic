@@ -34,7 +34,7 @@ public final class ModBlocks
         chlorophyll = new BlockChlorophyll(BlockIds.CHLOROPHYLL);
         totemSapling = new BlockTotemSapling(BlockIds.TOTEM_SAPLING);
         totemLeaves = new BlockTotemLeaves(BlockIds.TOTEM_LEAVES);
-        totemCauldron = new BlockTotemCauldron(BlockIds.TOTEM_CAULDRON);
+        //totemCauldron = new BlockTotemCauldron(BlockIds.TOTEM_CAULDRON);
 
         GameRegistry.registerBlock(chlorophyllSolidifier, Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
         //GameRegistry.registerBlock(venusFlyTrap, Strings.VENUS_FLY_TRAP_NAME);
@@ -46,7 +46,7 @@ public final class ModBlocks
         GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
         GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);
         GameRegistry.registerBlock(totemLeaves, Strings.TOTEM_LEAVES_NAME);
-        GameRegistry.registerBlock(totemCauldron, Strings.TOTEM_CAULDRON_NAME);
+        //GameRegistry.registerBlock(totemCauldron, Strings.TOTEM_CAULDRON_NAME);
 
 
     }

@@ -8,6 +8,8 @@ import totemic_commons.pokefenn.api.ITotemEffect;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.util.EntityUtil;
 
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -17,22 +19,23 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectBlaze implements ITotemEffect
 {
 
-    public static void effect(TileTotemIntelligence totem, int i)
+    public static void effect(TileTotemIntelligence totem, int i, int upgrades)
     {
         if (totem.worldObj.getWorldTime() % 80L == 0)
         {
-            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10) != null)
+            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)) != null)
             {
-                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10))
+                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)))
                 {
                     if (entity instanceof EntityPlayer)
                     {
                         if (entity.isBurning())
                         {
-                            ((EntityPlayer) entity).heal(5);
+                            Random rand = new Random();
+                            ((EntityPlayer) entity).heal(4 + rand.nextInt(4));
                         }
 
-                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 120, 0));
+                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 200, 0));
 
                         totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
 

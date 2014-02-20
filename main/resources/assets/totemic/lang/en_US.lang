@@ -39,5 +39,8 @@ tile.totemSocket.name=Totem Structure: Socket
 tile.totemSapling.name=Infused Sapling
 tile.totemLeaves.name=Infused Leaves
 
+# Fluid localizations
+fluid.fluidChlorophyll.name=Chlorophyll
+
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

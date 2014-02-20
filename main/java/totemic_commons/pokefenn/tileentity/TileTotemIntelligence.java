@@ -35,6 +35,10 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     public static int SOCKET_NUMBER;
 
+    public static int RANGE_UPGRADES;
+
+    //TODO correct global totems :/
+
     public TileTotemIntelligence()
     {
 
@@ -42,8 +46,6 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         SOCKETS = new int[6];
 
     }
-
-    //Todo finish cache system
 
     public void updateEntity()
     {
@@ -72,7 +74,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                             {
                                 if (canDoEffect(TotemUtil.decrementAmount(SOCKETS[i]), SOCKETS[i]))
                                 {
-                                    doEffects(SOCKETS[i]);
+                                    doEffects(SOCKETS[i], RANGE_UPGRADES);
                                 }
                             }
                         }
@@ -86,14 +88,27 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     protected void scanArea()
     {
-
         for (int i = 1; i <= getSocketAmounts(); i++)
         {
             if (getSocketAmounts() <= 5)
             {
                 if (getSocketItemStack(i) != null)
                 {
-                    SOCKETS[i] = getSocketItemStack(i).getItemDamage();
+                    //TODO correct range cache
+                    //RANGE_UPGRADES = 0;
+                    //System.out.println(RANGE_UPGRADES);
+                    if (getSocketItemStack(i).getItemDamage() == 12)
+                    {
+                        SOCKETS[i] = 12;
+                        if (RANGE_UPGRADES < 5)
+                            RANGE_UPGRADES++;
+
+                    } else
+                    {
+                        SOCKETS[i] = getSocketItemStack(i).getItemDamage();
+                        if (RANGE_UPGRADES > 0)
+                            RANGE_UPGRADES--;
+                    }
                 } else
                     SOCKETS[i] = 0;
 
@@ -106,7 +121,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         return true;
     }
 
-    protected void doEffects(int metadata)
+    protected void doEffects(int metadata, int upgrades)
     {
         switch (metadata)
         {
@@ -115,19 +130,19 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                 break;
 
             case 1:
-                TotemEffectCactus.effect(this, metadata);
+                TotemEffectCactus.effect(this, metadata, upgrades);
                 break;
 
             case 2:
-                TotemEffectHorse.effect(this, metadata);
+                TotemEffectHorse.effect(this, metadata, upgrades);
                 break;
 
             case 3:
-                TotemEffectHopper.effect(this, metadata);
+                TotemEffectHopper.effect(this, metadata, upgrades);
                 break;
 
             case 4:
-                TotemEffectBat.effect(this, metadata);
+                TotemEffectBat.effect(this, metadata, upgrades);
                 break;
 
             case 5:
@@ -135,27 +150,30 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                 break;
 
             case 6:
-                TotemEffectBlaze.effect(this, metadata);
+                TotemEffectBlaze.effect(this, metadata, upgrades);
                 break;
 
             case 7:
-                TotemEffectOcelot.effect(this, metadata);
+                TotemEffectOcelot.effect(this, metadata, upgrades);
                 break;
 
             case 8:
-                TotemEffectSquid.effect(this, metadata);
+                TotemEffectSquid.effect(this, metadata, upgrades);
                 break;
 
             case 9:
-                TotemEffectFood.effect(this, metadata);
+                TotemEffectFood.effect(this, metadata, upgrades);
                 break;
 
             case 10:
-                TotemEffectLove.effect(this, metadata);
+                TotemEffectLove.effect(this, metadata, upgrades);
                 break;
 
             case 11:
                 TotemEffectDraining.effect(this, metadata);
+                break;
+
+            case 12:
                 break;
 
             default:

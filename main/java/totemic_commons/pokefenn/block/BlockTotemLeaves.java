@@ -33,7 +33,7 @@ public class BlockTotemLeaves extends BlockLeaves
         super(id);
         setCreativeTab(Totemic.tabsTotem);
         setUnlocalizedName(Strings.TOTEM_LEAVES_NAME);
-        setLightOpacity(1);
+        setLightOpacity(0);
         setHardness(0.2F);
     }
 

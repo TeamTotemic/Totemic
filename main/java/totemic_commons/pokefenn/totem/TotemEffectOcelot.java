@@ -19,15 +19,14 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectOcelot implements ITotemEffect
 {
 
-    public static void effect(TileTotemIntelligence totem, int i)
+    public static void effect(TileTotemIntelligence totem, int i, int upgrades)
     {
-
         if (totem.worldObj.getWorldTime() % 5L == 0)
         {
-            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10) != null)
+            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)) != null)
             {
 
-                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10, 10))
+                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)))
                 {
                     if (entity instanceof EntityCreeper)
                     {

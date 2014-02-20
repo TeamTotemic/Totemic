@@ -7,6 +7,7 @@ import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -40,6 +41,12 @@ public class ItemTotemicStaff extends ItemNormal
     {
         list.add("A staff for your Totemic needs!");
         list.add("This staff is unstable");
+    }
+
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.uncommon;
     }
 
 

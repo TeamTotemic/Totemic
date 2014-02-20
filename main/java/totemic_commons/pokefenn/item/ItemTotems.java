@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
@@ -20,7 +21,7 @@ import java.util.List;
 public class ItemTotems extends ItemNormal
 {
 
-    public static final String[] TOTEM_NAMES = new String[]{"NotATotem", "Cactus", "Horse", "Hopper", "Bat", "Sun", "Blaze", "Ocelot", "Squid", "Food", "Love", "Draining"/*, "Spider"*/};
+    public static final String[] TOTEM_NAMES = new String[]{"NotATotem", "Cactus", "Horse", "Hopper", "Bat", "Sun", "Blaze", "Ocelot", "Squid", "Food", "Love", "Draining", "Range"/*, "Spider"*/};
 
     @SideOnly(Side.CLIENT)
     private Icon[] icons;
@@ -76,7 +77,12 @@ public class ItemTotems extends ItemNormal
         {
             list.add(new ItemStack(id, 1, meta));
         }
-
-
     }
+
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.uncommon;
+    }
+
 }

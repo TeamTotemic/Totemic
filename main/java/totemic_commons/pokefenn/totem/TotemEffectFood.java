@@ -17,17 +17,16 @@ public class TotemEffectFood
 {
 
 
-    public static void effect(TileTotemIntelligence totem, int i)
+    public static void effect(TileTotemIntelligence totem, int i, int upgrades)
     {
         Random rand = new Random();
 
         if (totem.worldObj.getWorldTime() % 60L == 0)
         {
-
-            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 15, 15) != null)
+            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)) != null)
             {
 
-                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 15, 15))
+                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)))
                 {
                     if (entity instanceof EntityPlayer)
                     {
