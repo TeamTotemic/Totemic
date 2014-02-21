@@ -20,10 +20,8 @@ public class TotemEffectHorse
     {
         if (totem.worldObj.getWorldTime() % 80L == 0)
         {
-
             if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)) != null)
             {
-
                 for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)))
                 {
                     if (entity instanceof EntityPlayer)
@@ -39,6 +37,7 @@ public class TotemEffectHorse
         }
 
     }
+
 
 }
 

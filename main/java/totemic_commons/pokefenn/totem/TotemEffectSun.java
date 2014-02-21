@@ -16,7 +16,6 @@ public class TotemEffectSun implements ITotemEffect
     {
         if (totem.worldObj.getWorldTime() % 200L == 0)
         {
-
             if (totem.worldObj.isRaining())
             {
                 totem.worldObj.toggleRain();
