@@ -16,7 +16,9 @@ public enum PacketTypeHandler
     SPAWN_PARTICLE(PacketSpawnParticle.class),
     ITEM_UPDATE(PacketItemUpdate.class),
     TILE_WITH_ITEM(PacketTileWithItemUpdate.class),
-    TILE_WITH_ITEM_AND_FLUID(PacketTileWithItemAndFluidUpdate.class);
+    TILE_WITH_ITEM_AND_FLUID(PacketTileWithItemAndFluidUpdate.class),
+    CHLOROPHYLL_SOLIDIFIER(PacketChlorophyllSolidifer.class);
+
     private Class<? extends PacketTotemic> clazz;
 
     PacketTypeHandler(Class<? extends PacketTotemic> clazz)

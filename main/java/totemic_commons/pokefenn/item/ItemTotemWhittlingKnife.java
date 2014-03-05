@@ -20,6 +20,12 @@ public class ItemTotemWhittlingKnife extends ItemNormal
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setContainerItem(this);
         setMaxDamage(2);
+
+    }
+
+    public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemStack)
+    {
+        return false;
     }
 
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)

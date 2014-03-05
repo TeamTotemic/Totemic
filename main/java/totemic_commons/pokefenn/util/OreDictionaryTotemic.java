@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import totemic_commons.pokefenn.ModItems;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,8 +27,14 @@ public class OreDictionaryTotemic
         OreDictionary.registerOre("plant", new ItemStack(Item.poisonousPotato));
         for (int i = 0; i <= 3; i++)
         {
-            OreDictionary.registerOre("plant", new ItemStack(Block.sapling, i));
+            OreDictionary.registerOre("plant", new ItemStack(Block.sapling, 1, i));
         }
+
+        for (int i = 0; i <= 4; i++)
+        {
+            OreDictionary.registerOre("knife", new ItemStack(ModItems.totemWhittlingKnife, 1, i));
+        }
+
         //OreDictionary.registerOre("plant", new ItemStack(GameRegistry.findItem("XyCraft", "tomato")));
 
     }

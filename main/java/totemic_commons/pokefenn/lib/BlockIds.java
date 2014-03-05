@@ -15,6 +15,8 @@ public class BlockIds
     public static int TOTEM_LEAVES_DEFAULT = 2579;
     public static int TOTEM_CAULDRON_DEFAULT = 2580;
 
+    public static int TOTEM_MANA_DEFAULT = 2590;
+
     public static int TOTEM_SOCKET;
     public static int CHLOROPHYLL_SOLIDIFIER;
     public static int VENUS_FLY_TRAP;
@@ -26,5 +28,7 @@ public class BlockIds
     public static int TOTEM_SAPLING;
     public static int TOTEM_LEAVES;
     public static int TOTEM_CAULDRON;
+
+    public static int TOTEM_MANA;
 
 }

@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import totemic_commons.pokefenn.api.ITotemEffect;
-import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
@@ -16,7 +16,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class TotemEffectSquid implements ITotemEffect
 {
-    public static void effect(TileTotemIntelligence totem, int i, int upgrades)
+    public static void effect(TileTotemic totem, int i, int upgrades)
     {
         if (totem.worldObj.getWorldTime() % 80L == 0)
         {
@@ -28,7 +28,6 @@ public class TotemEffectSquid implements ITotemEffect
                     {
                         ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 120, 0));
 
-                        totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
 
                     }
                 }

@@ -3,7 +3,7 @@ package totemic_commons.pokefenn.totem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import totemic_commons.pokefenn.api.ITotemEffect;
-import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
@@ -15,7 +15,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectSpider implements ITotemEffect
 {
 
-    public static void effect(TileTotemIntelligence totem, int i, int upgrades)
+    public static void effect(TileTotemic totem, int i, int upgrades)
     {
         if (totem.worldObj.getWorldTime() % 5L == 0)
         {
@@ -28,12 +28,6 @@ public class TotemEffectSpider implements ITotemEffect
                         //System.out.println("xD");
                         if (entity.isCollidedHorizontally && !((EntityPlayer) entity).isOnLadder())
                         {
-
-
-                            if (totem.worldObj.getWorldTime() % 20 == 0)
-                            {
-                                totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
-                            }
 
                         }
                     }

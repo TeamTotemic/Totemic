@@ -19,7 +19,7 @@ public class CreativeTabTotemic extends CreativeTabs
     @SideOnly(Side.CLIENT)
     public int getTabIconItemIndex()
     {
-        return ModItems.chlorophyllCrystal.itemID;
+        return ModItems.infusedTotemicStaff.itemID;
     }
 
 }

@@ -22,6 +22,7 @@ public final class ModItems
     public static Item totemBeads;
     public static Item blazingChlorophyllCrystal;
     public static Item infusedTotemicStaff;
+    public static Item totempedia;
 
     public static void init()
     {
@@ -36,6 +37,7 @@ public final class ModItems
         bottleChlorophyll = new ItemBottleChlorophyll(ItemIds.BOTTLE_CHLOROPHYLL);
         blazingChlorophyllCrystal = new ItemBlazingChlorophyllCrystal(ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL);
         infusedTotemicStaff = new ItemInfusedTotemicStaff(ItemIds.INFUSED_TOTEMIC_STAFF);
+        //totempedia = new ItemTotempedia(ItemIds.TOTEMPEDIA);
 
         //Registry for other items
         GameRegistry.registerItem(totemWhittlingKnife, totemWhittlingKnife.getUnlocalizedName());
@@ -47,6 +49,7 @@ public final class ModItems
         GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
         GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
         GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
+        //GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
 
 
         //totemWhittlingKnife.setContainerItem(totemWhittlingKnife);

@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.tileentity;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,14 +38,18 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     public static int RANGE_UPGRADES;
 
-    //TODO correct global totems :/
-
     public TileTotemIntelligence()
     {
 
         inventory = new ItemStack[INVENTORY_SIZE];
         SOCKETS = new int[6];
 
+    }
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer player)
+    {
+        return true;
     }
 
     public void updateEntity()
@@ -74,7 +79,8 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                             {
                                 if (canDoEffect(TotemUtil.decrementAmount(SOCKETS[i]), SOCKETS[i]))
                                 {
-                                    doEffects(SOCKETS[i], RANGE_UPGRADES);
+                                    doEffects(SOCKETS[i], RANGE_UPGRADES, this, true);
+                                    decreaseChlorophyll(TotemUtil.decrementAmount(i));
                                 }
                             }
                         }
@@ -94,9 +100,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
             {
                 if (getSocketItemStack(i) != null)
                 {
-                    //TODO correct range cache
-                    //RANGE_UPGRADES = 0;
-                    //System.out.println(RANGE_UPGRADES);
+
                     if (getSocketItemStack(i).getItemDamage() == 12)
                     {
                         SOCKETS[i] = 12;
@@ -121,7 +125,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         return true;
     }
 
-    protected void doEffects(int metadata, int upgrades)
+    protected static void doEffects(int metadata, int upgrades, TileEntity tileEntity, boolean hasChlorophyll)
     {
         switch (metadata)
         {
@@ -130,61 +134,66 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                 break;
 
             case 1:
-                TotemEffectCactus.effect(this, metadata, upgrades);
+                TotemEffectCactus.effect((TileTotemic) tileEntity, metadata, upgrades);
                 break;
 
             case 2:
-                TotemEffectHorse.effect(this, metadata, upgrades);
+                TotemEffectHorse.effect((TileTotemic) tileEntity, metadata, upgrades);
                 break;
 
             case 3:
-                TotemEffectHopper.effect(this, metadata, upgrades);
+                TotemEffectHopper.effect((TileTotemic) tileEntity, metadata, upgrades);
                 break;
 
             case 4:
-                TotemEffectBat.effect(this, metadata, upgrades);
+                TotemEffectBat.effect((TileTotemic) tileEntity, metadata, upgrades);
                 break;
 
             case 5:
-                TotemEffectSun.effect(this, metadata);
+                TotemEffectSun.effect((TileTotemic) tileEntity, metadata);
                 break;
 
             case 6:
-                TotemEffectBlaze.effect(this, metadata, upgrades);
+                TotemEffectBlaze.effect((TileTotemic) tileEntity, metadata, upgrades);
                 break;
 
             case 7:
-                TotemEffectOcelot.effect(this, metadata, upgrades);
+                TotemEffectOcelot.effect((TileTotemic) tileEntity, metadata, upgrades);
                 break;
 
             case 8:
-                TotemEffectSquid.effect(this, metadata, upgrades);
+                TotemEffectSquid.effect((TileTotemic) tileEntity, metadata, upgrades);
                 break;
 
             case 9:
-                TotemEffectFood.effect(this, metadata, upgrades);
+                TotemEffectFood.effect((TileTotemic) tileEntity, metadata, upgrades);
                 break;
 
             case 10:
-                TotemEffectLove.effect(this, metadata, upgrades);
+                TotemEffectLove.effect((TileTotemic) tileEntity, metadata, upgrades);
                 break;
 
             case 11:
-                TotemEffectDraining.effect(this, metadata);
+                if (hasChlorophyll)
+                    TotemEffectDraining.effect((TileTotemIntelligence) tileEntity, metadata, upgrades);
                 break;
 
             case 12:
                 break;
 
+            case 13:
+                //TotemEffectMining.effect(this, metadata, upgrades);
+                break;
+
             default:
                 System.out.println("Broken totem? o.O");
-                this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
+                tileEntity.worldObj.setBlockToAir(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
                 break;
         }
 
     }
 
-    public void increaseChlorophyll(int subtration)
+    public void increaseChlorophyll()
     {
         Random rand = new Random();
 
@@ -207,16 +216,13 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     protected boolean canDoEffect(int subtraction, int metadata)
     {
         return metadata == 11 && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID || metadata == 11 && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID || !(metadata != 11 && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID) && !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
-
     }
 
     protected ItemStack getSocketItemStack(int par1)
     {
-
         TileEntity tileEntity = this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
 
         return ((IInventory) tileEntity).getStackInSlot(TileTotemSocket.SLOT_ONE);
-
     }
 
 

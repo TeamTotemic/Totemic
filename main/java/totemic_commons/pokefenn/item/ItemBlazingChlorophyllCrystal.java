@@ -38,6 +38,12 @@ public class ItemBlazingChlorophyllCrystal extends ItemNormal
 
     }
 
+    @Override
+    public boolean hasContainerItem()
+    {
+        return true;
+    }
+
     @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack par1ItemStack)
     {

@@ -69,12 +69,12 @@ public class ItemTotemicStaff extends ItemNormal
 
                         if (blockQuery instanceof BlockTotemIntelligence && tileEntity instanceof IInventory && ((IInventory) tileEntity).getStackInSlot(0) != null)
                         {
-                            player.addChatMessage("Chlorophyll Cystal Essence = " + (((IInventory) tileEntity).getStackInSlot(0).getMaxDamage() - ((IInventory) tileEntity).getStackInSlot(0).getItemDamage() + rand.nextInt(20) - rand.nextInt(20)));
+                            player.addChatMessage("Chlorophyll Crystal Essence = " + (((IInventory) tileEntity).getStackInSlot(0).getMaxDamage() - ((IInventory) tileEntity).getStackInSlot(0).getItemDamage() + rand.nextInt(20) - rand.nextInt(20)));
                             player.attackEntityFrom(DamageSource.generic, 2 + rand.nextInt(4));
 
                         } else if (tileEntity instanceof IInventory && ((IInventory) tileEntity).getStackInSlot(0) != null)
                         {
-                            player.addChatMessage("Chlorophyll Cystal Essence = " + (((IInventory) tileEntity).getStackInSlot(0).getMaxDamage() - ((IInventory) tileEntity).getStackInSlot(0).getItemDamage() + rand.nextInt(5) - rand.nextInt(4)));
+                            player.addChatMessage("Chlorophyll Crystal Essence = " + (((IInventory) tileEntity).getStackInSlot(0).getMaxDamage() - ((IInventory) tileEntity).getStackInSlot(0).getItemDamage() + rand.nextInt(5) - rand.nextInt(4)));
                             player.attackEntityFrom(DamageSource.generic, 2 + rand.nextInt(4));
 
                         }

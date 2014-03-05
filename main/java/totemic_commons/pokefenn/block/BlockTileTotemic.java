@@ -16,15 +16,13 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 28/01/14
  * Time: 12:33
  */
-public abstract class BlockTile extends BlockContainer
+public abstract class BlockTileTotemic extends BlockContainer
 {
-    public BlockTile(int id, Material material)
+    public BlockTileTotemic(int id, Material material)
     {
-
         super(id, material);
         setHardness(2);
         setCreativeTab(Totemic.tabsTotem);
-
     }
 
     @Override

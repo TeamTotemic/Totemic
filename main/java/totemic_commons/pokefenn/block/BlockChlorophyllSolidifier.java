@@ -6,8 +6,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -20,13 +22,15 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
 
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
  * Date: 28/01/14
  * Time: 13:11
  */
-public class BlockChlorophyllSolidifier extends BlockTile
+public class BlockChlorophyllSolidifier extends BlockTileTotemic
 {
     public BlockChlorophyllSolidifier(int id)
     {
@@ -54,10 +58,11 @@ public class BlockChlorophyllSolidifier extends BlockTile
 
             } else if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
-                EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE));
+                EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).copy());
                 world.spawnEntityInWorld(entityitem);
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null);
 
+                //System.out.println("hrm");
 
             }
             if (heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem.itemID == ModItems.bottleChlorophyll.itemID || heldItem != null && heldItem.itemID == ModItems.bucketChlorophyll.itemID)
@@ -67,13 +72,15 @@ public class BlockChlorophyllSolidifier extends BlockTile
                     if (heldItem.itemID == ModItems.bottleChlorophyll.itemID)
                     {
                         tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
-                        heldItem.stackSize--;
+                        if (!player.capabilities.isCreativeMode)
+                            heldItem.stackSize--;
 
                     } else
                     {
                         tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
-                        player.destroyCurrentEquippedItem();
-                        EntityItem entityBucket = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(Item.bucketEmpty));
+                        if (!player.capabilities.isCreativeMode)
+                            player.destroyCurrentEquippedItem();
+                        EntityItem entityBucket = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(Item.bucketEmpty).copy());
                         world.spawnEntityInWorld(entityBucket);
 
                     }
@@ -114,6 +121,62 @@ public class BlockChlorophyllSolidifier extends BlockTile
         {
             return topAndBotIcon;
         } else return sideIcon;
+    }
+
+    Random rand = new Random();
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, int id, int meta)
+    {
+
+        dropInventory(world, x, y, z);
+
+        if (world.getBlockTileEntity(x, y, z) instanceof TileChlorophyllSolidifier)
+        {
+            world.markBlockForUpdate(x, y, z);
+            world.updateAllLightTypes(x, y, z);
+        }
+
+        super.breakBlock(world, x, y, z, id, meta);
+    }
+
+    private void dropInventory(World world, int x, int y, int z)
+    {
+
+        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+
+        if (!(tileEntity instanceof IInventory))
+            return;
+
+        IInventory inventory = (IInventory) tileEntity;
+
+        for (int i = 0; i < inventory.getSizeInventory(); i++)
+        {
+
+            ItemStack itemStack = inventory.getStackInSlot(i);
+
+            if (itemStack != null && itemStack.stackSize > 0)
+            {
+                float dX = rand.nextFloat() * 0.8F + 0.1F;
+                float dY = rand.nextFloat() * 0.8F + 0.1F;
+                float dZ = rand.nextFloat() * 0.8F + 0.1F;
+
+                EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.itemID, itemStack.stackSize, itemStack.getItemDamage()));
+
+                if (itemStack.hasTagCompound())
+                {
+                    entityItem.getEntityItem().setTagCompound((NBTTagCompound) itemStack.getTagCompound().copy());
+                }
+
+                float factor = 0.05F;
+                entityItem.motionX = rand.nextGaussian() * factor;
+                entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
+                entityItem.motionZ = rand.nextGaussian() * factor;
+                world.spawnEntityInWorld(entityItem);
+                itemStack.stackSize = 0;
+            }
+        }
+
     }
 
 

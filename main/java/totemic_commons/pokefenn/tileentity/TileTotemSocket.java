@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.tileentity;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,6 +31,12 @@ public class TileTotemSocket extends TileTotemic implements IInventory
 
         inventory = new ItemStack[INVENTORY_SIZE];
 
+    }
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer player)
+    {
+        return true;
     }
 
 

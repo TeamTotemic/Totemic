@@ -70,7 +70,7 @@ public class BlockTotemLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int side)
     {
-        return/* Block.leaves.graphicsLevel || */super.shouldSideBeRendered(iba, x, y, z, side);
+        return Block.leaves.graphicsLevel || super.shouldSideBeRendered(iba, x, y, z, side);
         //return true;
     }
 
@@ -84,8 +84,8 @@ public class BlockTotemLeaves extends BlockLeaves
     @Override
     public boolean isOpaqueCube()
     {
-        //return !Block.leaves.graphicsLevel;
-        return false;
+        return !Block.leaves.graphicsLevel;
+        //return false;
     }
 
     @Override

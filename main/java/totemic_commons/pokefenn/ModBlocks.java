@@ -21,6 +21,8 @@ public final class ModBlocks
     public static Block totemLeaves;
     public static Block totemCauldron;
 
+    public static Block totemMana;
+
     public static void init()
     {
 
@@ -47,6 +49,20 @@ public final class ModBlocks
         GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);
         GameRegistry.registerBlock(totemLeaves, Strings.TOTEM_LEAVES_NAME);
         //GameRegistry.registerBlock(totemCauldron, Strings.TOTEM_CAULDRON_NAME);
+
+
+    }
+
+    public static void initBotania()
+    {
+        Totemic.botaniaLoaded = true;
+
+        Totemic.logger.info("Totemic Botania Interaction Enabled");
+
+        totemMana = new BlockManaTotem(BlockIds.TOTEM_MANA);
+        GameRegistry.registerBlock(totemMana, Strings.TOTEM_MANA_NAME);
+
+        //GameRegistry.registerTileEntity(TileTotemMana.class, Strings.TILE_TOTEM_MANA);
 
 
     }

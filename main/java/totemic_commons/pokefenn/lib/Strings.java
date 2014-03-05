@@ -21,6 +21,7 @@ public class Strings
     public static final String TOTEM_SAPLING_NAME = "totemSapling";
     public static final String TOTEM_LEAVES_NAME = "totemLeaves";
     public static final String TOTEM_CAULDRON_NAME = "totemCauldron";
+    public static final String TOTEM_MANA_NAME = "totemMana";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";
@@ -50,6 +51,7 @@ public class Strings
     public static final String TILE_TOTEM_SUPPORT = "tileTotemSupport";
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
     public static final String TILE_TOTEM_SOCKET = "tileTotemSocket";
+    public static final String TILE_TOTEM_MANA = "tileTotemMana";
 
     //Container
 

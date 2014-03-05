@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.totem;
 
 import totemic_commons.pokefenn.api.ITotemEffect;
-import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +12,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 public class TotemEffectSun implements ITotemEffect
 {
 
-    public static void effect(TileTotemIntelligence totem, int i)
+    public static void effect(TileTotemic totem, int i)
     {
         if (totem.worldObj.getWorldTime() % 200L == 0)
         {
@@ -20,7 +20,7 @@ public class TotemEffectSun implements ITotemEffect
             {
                 totem.worldObj.toggleRain();
 
-                totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
+
             }
 
         }

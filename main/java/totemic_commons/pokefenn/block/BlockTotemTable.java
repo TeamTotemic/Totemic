@@ -31,7 +31,7 @@ import java.util.Random;
  * Date: 23/01/14
  * Time: 14:40
  */
-public class BlockTotemTable extends BlockTile
+public class BlockTotemTable extends BlockTileTotemic
 {
 
     public BlockTotemTable(int id)

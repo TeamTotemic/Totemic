@@ -16,6 +16,7 @@ item.totemic:totemsSun.name=Sun Totem
 item.totemic:totemsFood.name=Food Totem
 item.totemic:totemsLove.name=Love Totem
 item.totemic:totemsDraining.name=Draining Totem
+item.totemic:totemsRange.name=Range Totem
 item.totemic:totemsNotATotem.name=Code only item do not use
 item.totemic:chlorophyllicIngot.name=Chlorophyllic Ingot
 item.totmeic:paintBrush.name=Totemic Paint Brush
@@ -25,11 +26,11 @@ item.totemic:blazingChlorophyllCrystal.name=Blazing Chlorophyll Crystal
 item.totemic:bottleChlorophyll.name=Bottle of Chlorophyll
 item.totemic:infusedTotemicStaff.name=Infused Totemic Staff
 item.totemic:leaf.name=Infused Leaf
-item.totemic:infusedStick=Infused Stick
+item.totemic:infusedStick.name=Infused Stick
 
 # Block localizations
 tile.totemBase.name=Totem Base
-tile.chlorophyllSolidifier.name=Chlorophyll Solidifier [WIP]
+tile.chlorophyllSolidifier.name=Chlorophyll Solidifier
 tile.totemWoods.name=Infused Wood
 tile.totemSupport.name=Totem Structure Support
 tile.totemIntelligence.name=Totem Structure: Intelligence

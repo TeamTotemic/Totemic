@@ -44,12 +44,19 @@ public class ConfigurationHandler
             ConfigurationSettings.DECREMENT_TOTEM_FOOD = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementFood", 20).getInt(20);
             ConfigurationSettings.DECREMENT_TOTEM_SPIDER = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSpider", 10).getInt(10);
             ConfigurationSettings.DECREMENT_TOTEM_LOVE = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementLove", 15).getInt(15);
+            ConfigurationSettings.DECREMENT_TOTEM_MINING = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementMining", 40).getInt(40);
 
-            ConfigurationSettings.GENERATE_TOTEM_TREES = configuration.get(CATEGORY_GAMEPLAY, "generateTotemTrees(Optional)", true).getBoolean(true);
+            ConfigurationSettings.POTION_ID_BAT = configuration.get(CATEGORY_GAMEPLAY, "batPotionID", 22).getInt(22);
 
-            ConfigurationSettings.DISABLE_TOTEM_BEADS = configuration.get(CATEGORY_GAMEPLAY, "disableTotemBeads(Overpowered)", false).getBoolean(false);
+            ConfigurationSettings.GENERATE_TOTEM_TREES = configuration.get(CATEGORY_GAMEPLAY, "generateTotemTrees(Optional)", false).getBoolean(false);
+
+            //ConfigurationSettings.DISABLE_TOTEM_BEADS = configuration.get(CATEGORY_GAMEPLAY, "disableTotemBeads(Overpowered)", false).getBoolean(false);
 
             ConfigurationSettings.TOTEM_TREE_GENERATION_BLACKLIST = configuration.get(CATEGORY_GAMEPLAY, "placesToBlacklistGenerationOfTotemTrees", "").getString();
+
+            ConfigurationSettings.RELEVENT_TOTEM_RECIPES = configuration.get(CATEGORY_GAMEPLAY, "doUseReleventTotemRecipes", false).getBoolean(false);
+
+            ConfigurationSettings.CRYSTAL_RECIPE = configuration.get(CATEGORY_GAMEPLAY, "inEventOfBrokenChlorophyllCrystal", true).getBoolean(true);
 
             //Blocks
             BlockIds.CHLOROPHYLL_SOLIDIFIER = configuration.getBlock(Strings.CHLOROPHYLL_SOLIDIFIER_NAME, BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT).getInt(BlockIds.CHLOROPHYLL_SOLIDIFIER_DEFAULT);
@@ -63,6 +70,7 @@ public class ConfigurationHandler
             BlockIds.TOTEM_SAPLING = configuration.getBlock(Strings.TOTEM_SAPLING_NAME, BlockIds.TOTEM_SAPLING_DEFAULT).getInt(BlockIds.TOTEM_SAPLING_DEFAULT);
             BlockIds.TOTEM_LEAVES = configuration.getBlock(Strings.TOTEM_LEAVES_NAME, BlockIds.TOTEM_LEAVES_DEFAULT).getInt(BlockIds.TOTEM_LEAVES_DEFAULT);
             BlockIds.TOTEM_CAULDRON = configuration.getBlock(Strings.TOTEM_CAULDRON_NAME, BlockIds.TOTEM_CAULDRON_DEFAULT).getInt(BlockIds.TOTEM_CAULDRON_DEFAULT);
+            BlockIds.TOTEM_MANA = configuration.getBlock(Strings.TOTEM_MANA_NAME, BlockIds.TOTEM_MANA_DEFAULT).getInt(BlockIds.TOTEM_MANA_DEFAULT);
 
             //Items
             ItemIds.TOTEMS = configuration.getItem(Strings.TOTEMS_NAME, ItemIds.TOTEMS_DEFAULT).getInt(ItemIds.TOTEMS_DEFAULT);
@@ -76,6 +84,7 @@ public class ConfigurationHandler
             ItemIds.TOTEM_BEADS = configuration.getItem(Strings.TOTEM_BEADS_NAME, ItemIds.TOTEM_BEADS_DEFAULT).getInt(ItemIds.TOTEM_BEADS_DEFAULT);
             ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL = configuration.getItem(Strings.BLAZING_CHLOROPHYLL_CRYSTAL_NAME, ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL_DEFAULT).getInt(ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL_DEFAULT);
             ItemIds.INFUSED_TOTEMIC_STAFF = configuration.getItem(Strings.INFUSED_TOTEMIC_STAFF_NAME, ItemIds.INFUSED_TOTEMIC_STAFF_DEFAULT).getInt(ItemIds.INFUSED_TOTEMIC_STAFF_DEFAULT);
+            ItemIds.TOTEMPEDIA = configuration.getItem(Strings.TOTEMPEDIA_NAME, ItemIds.TOTEMPEDIA_DEFAULT).getInt(ItemIds.TOTEMPEDIA_DEFAULT);
 
             ItemIds.TOTEM_WOOD_WAND_CORE = configuration.getItem(Strings.TOTEM_WOOD_WAND_CORE_NAME, ItemIds.TOTEM_WOOD_WAND_CORE_DEFAULT).getInt(ItemIds.TOTEM_WOOD_WAND_CORE_DEFAULT);
             ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP = configuration.getItem(Strings.CHLOROPHYLL_CRYSTAL_WAND_CAP, ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP_DEFAULT).getInt(ItemIds.CHLOROPHYLL_CRYSTAL_WAND_CAP_DEFAULT);

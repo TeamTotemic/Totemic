@@ -27,7 +27,7 @@ import java.util.Random;
  * Date: 02/02/14
  * Time: 13:03
  */
-public class BlockTotemSocket extends BlockTile implements ITotemBlock
+public class BlockTotemSocket extends BlockTileTotemic implements ITotemBlock
 {
 
     public BlockTotemSocket(int id)

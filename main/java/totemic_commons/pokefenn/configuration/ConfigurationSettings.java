@@ -14,7 +14,11 @@ public class ConfigurationSettings
 
     public static boolean GENERATE_TOTEM_TREES;
 
+    public static int POTION_ID_BAT;
+
     public static String TOTEM_TREE_GENERATION_BLACKLIST;
+
+    public static boolean RELEVENT_TOTEM_RECIPES;
 
     public static boolean ENABLE_TEMP_RECIPES;
 
@@ -29,6 +33,9 @@ public class ConfigurationSettings
     public static int DECREMENT_TOTEM_FOOD;
     public static int DECREMENT_TOTEM_SPIDER;
     public static int DECREMENT_TOTEM_LOVE;
+    public static int DECREMENT_TOTEM_MINING;
+
+    public static boolean CRYSTAL_RECIPE;
 
     public static boolean DISABLE_TOTEM_BEADS;
 

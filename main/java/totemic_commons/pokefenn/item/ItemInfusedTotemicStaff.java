@@ -13,7 +13,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.block.BlockTotemDraining;
 import totemic_commons.pokefenn.block.BlockTotemIntelligence;
 import totemic_commons.pokefenn.block.BlockTotemSapling;
 import totemic_commons.pokefenn.block.BlockTotemWoods;
@@ -62,21 +61,15 @@ public class ItemInfusedTotemicStaff extends ItemTotemicStaff
 
                 if (blockQuery != null)
                 {
-                    if (blockQuery instanceof BlockTotemIntelligence || blockQuery instanceof BlockTotemDraining)
+                    if (blockQuery instanceof BlockTotemIntelligence)
                     {
                         TileEntity tileEntity = world.getBlockTileEntity(block.blockX, block.blockY, block.blockZ);
 
-                        if (blockQuery instanceof BlockTotemIntelligence && tileEntity instanceof IInventory && ((IInventory) tileEntity).getStackInSlot(0) != null)
+                        if (tileEntity instanceof IInventory && ((IInventory) tileEntity).getStackInSlot(0) != null)
                         {
-                            player.addChatMessage("Chlorophyll Cystal Essence = " + (((IInventory) tileEntity).getStackInSlot(0).getMaxDamage() - ((IInventory) tileEntity).getStackInSlot(0).getItemDamage()));
-
-
-                        } else if (tileEntity instanceof IInventory && ((IInventory) tileEntity).getStackInSlot(0) != null)
-                        {
-                            player.addChatMessage("Chlorophyll Cystal Essence = " + (((IInventory) tileEntity).getStackInSlot(0).getMaxDamage() - ((IInventory) tileEntity).getStackInSlot(0).getItemDamage()));
+                            player.addChatMessage("Chlorophyll Crystal Essence = " + (((IInventory) tileEntity).getStackInSlot(0).getMaxDamage() - ((IInventory) tileEntity).getStackInSlot(0).getItemDamage()));
 
                         }
-
 
                     } else if (blockQuery instanceof BlockTotemWoods)
                     {

@@ -27,7 +27,7 @@ import java.util.Random;
  * Date: 29/01/14
  * Time: 20:20
  */
-public class BlockTotemIntelligence extends BlockTile implements ITotemBlock
+public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemBlock
 {
 
     private Random rand = new Random();

@@ -13,6 +13,8 @@ import totemic_commons.pokefenn.compat.thaumcraft.ThaumcraftCompat;
 public class CompatInit
 {
 
+    public static boolean botaniaLoaded = false;
+
     public static void init()
     {
 
@@ -65,6 +67,9 @@ public class CompatInit
 
         if (Loader.isModLoaded("Botania"))
         {
+            botaniaLoaded = true;
+
+            //ModBlocks.initBotania();
 
             Totemic.logger.info("Oh, hey Botania!");
             Totemic.logger.info("Why can't we be friends... why can't we be friends... why can't we be friends! *runs away sobbing*");

@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.tileentity;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.tileentity.TileEntity;
@@ -73,11 +72,6 @@ public class TileTotemic extends TileEntity
     {
 
         this.customName = customName;
-    }
-
-    public boolean isUseableByPlayer(EntityPlayer player)
-    {
-        return true;
     }
 
     public void readFromNBT(NBTTagCompound nbtTagCompound)

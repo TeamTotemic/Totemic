@@ -112,14 +112,14 @@ public class TotemTreeGeneration extends WorldGenerator
                 block = Block.blocksList[blockId];
                 if (block == null)
                 {
-                    return false; // abort, something went weird
+                    return false;
                 }
                 block.onPlantGrow(world, x, y - 1, z, x, y, z);
 
                 for (yOffset = y - 3 + treeHeight; yOffset <= y + treeHeight; ++yOffset)
                 {
-                    int var12 = yOffset - (y + treeHeight),
-                            center = 1 - var12 / 2;
+                    int var12 = yOffset - (y + treeHeight);
+                    int center = 1 - var12 / 2;
 
                     for (xOffset = x - center; xOffset <= x + center; ++xOffset)
                     {
@@ -133,14 +133,9 @@ public class TotemTreeGeneration extends WorldGenerator
 
                             block = Block.blocksList[world.getBlockId(xOffset, yOffset, zOffset)];
 
-                            if (((xPos != center | zPos != center) ||
-                                    rand.nextInt(2) != 0 && var12 != 0) &&
-                                    (block == null || block.isLeaves(world, xOffset, yOffset, zOffset) ||
-                                            block.isAirBlock(world, xOffset, yOffset, zOffset) ||
-                                            block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
+                            if (((xPos != center | zPos != center) || rand.nextInt(2) != 0 && var12 != 0) && (block == null || block.isLeaves(world, xOffset, yOffset, zOffset) || block.isAirBlock(world, xOffset, yOffset, zOffset) || block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
                             {
-                                this.setBlockAndMetadata(world, xOffset, yOffset, zOffset,
-                                        ModBlocks.totemLeaves.blockID, 0);
+                                this.setBlock(world, xOffset, yOffset, zOffset, ModBlocks.totemLeaves.blockID);
                             }
                         }
                     }
@@ -152,11 +147,9 @@ public class TotemTreeGeneration extends WorldGenerator
 
                     block = Block.blocksList[blockId];
 
-                    if (block == null || block.isAirBlock(world, x, y + yOffset, z) ||
-                            block.isLeaves(world, x, y + yOffset, z) ||
-                            block.isBlockReplaceable(world, x, y + yOffset, z))
+                    if (block == null || block.isAirBlock(world, x, y + yOffset, z) || block.isLeaves(world, x, y + yOffset, z) || block.isBlockReplaceable(world, x, y + yOffset, z))
                     {
-                        this.setBlockAndMetadata(world, x, y + yOffset, z, ModBlocks.totemWoods.blockID, 1);
+                        this.setBlock(world, x, y + yOffset, z, ModBlocks.totemWoods.blockID);
                     }
                 }
 

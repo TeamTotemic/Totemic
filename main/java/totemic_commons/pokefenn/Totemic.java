@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -17,6 +18,7 @@ import totemic_commons.pokefenn.fluid.FluidContainers;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Reference;
 import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
 import totemic_commons.pokefenn.recipe.TotemTableHandler;
 import totemic_commons.pokefenn.recipe.TotemicCraftingHandler;
@@ -30,7 +32,7 @@ import java.io.File;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.2.0")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.2.2")
 @NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 public final class Totemic
@@ -46,10 +48,11 @@ public final class Totemic
 
     public static final Logger logger = Logger.getLogger(Reference.MOD_NAME);
 
+    public static boolean botaniaLoaded = false;
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
 
         //Creates the logger thingy :p
@@ -93,6 +96,13 @@ public final class Totemic
         proxy.registerTileEntities();
 
         proxy.initRendering();
+
+        if (Loader.isModLoaded("Botania"))
+            ModBlocks.initBotania();
+
+
+        //Init the potions into the game
+        ModPotions.init();
 
         //Makes the recipes of Chlorophyll enter the game
         ChlorophyllSolidifierRecipes.addRecipes();

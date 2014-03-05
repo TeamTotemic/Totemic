@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
@@ -16,7 +16,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectHorse
 {
 
-    public static void effect(TileTotemIntelligence totem, int i, int upgrades)
+    public static void effect(TileTotemic totem, int i, int upgrades)
     {
         if (totem.worldObj.getWorldTime() % 80L == 0)
         {
@@ -27,8 +27,6 @@ public class TotemEffectHorse
                     if (entity instanceof EntityPlayer)
                     {
                         ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200, 1));
-
-                        totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
 
                     }
                 }

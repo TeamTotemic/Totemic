@@ -30,6 +30,7 @@ public class ItemBucketChlorophyll extends ItemFluidContainer
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BUCKET_CHLOROPHYLL_NAME);
         setMaxStackSize(1);
         setCreativeTab(Totemic.tabsTotem);
+        setContainerItem(this);
 
     }
 

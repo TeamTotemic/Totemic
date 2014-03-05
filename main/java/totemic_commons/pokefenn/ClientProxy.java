@@ -4,11 +4,14 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.PacketDispatcher;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
+import totemic_commons.pokefenn.client.book.SmallFontRenderer;
+import totemic_commons.pokefenn.client.rendering.item.ItemChlorophyllCrystalRenderer;
 import totemic_commons.pokefenn.client.rendering.item.ItemInfusedTotemicStaff;
 import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
 import totemic_commons.pokefenn.client.rendering.item.ItemTotemicStaffRender;
@@ -16,16 +19,22 @@ import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketRende
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.network.PacketRequestEvent;
 import totemic_commons.pokefenn.network.PacketTypeHandler;
+import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
 import totemic_commons.pokefenn.tileentity.TileTotemSocket;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 public class ClientProxy extends CommonProxy
 {
 
+    public static SmallFontRenderer smallFontRenderer;
+
 
     @Override
     public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName)
     {
+
+        //System.out.println("packet");
+
         TileEntity tileEntity = FMLClientHandler.instance().getClient().theWorld.getBlockTileEntity(x, y, z);
 
         if (tileEntity != null)
@@ -48,17 +57,47 @@ public class ClientProxy extends CommonProxy
 
         this.handleTileEntityPacket(x, y, z, orientation, state, customName);
 
-        if (tileEntity != null)
+        if (tileEntity instanceof TileChlorophyllSolidifier)
         {
-            if (tileEntity instanceof TileTotemic)
+            ItemStack itemStack = null;
+
+            if (itemID != -1)
             {
-                ((TileTotemic) tileEntity).setOrientation(orientation);
-                ((TileTotemic) tileEntity).setState(state);
-                ((TileTotemic) tileEntity).setCustomName(customName);
+                itemStack = new ItemStack(itemID, stackSize, metaData);
+
             }
 
+            //((TileChlorophyllSolidifier) tileEntity).setInventorySlotContents(0, itemStack);
+            world.updateAllLightTypes(x, y, z);
         }
+
     }
+
+    @Override
+    public void handleChlorophyllSolidifierPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize)
+    {
+
+        World world = FMLClientHandler.instance().getClient().theWorld;
+        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+
+        this.handleTileEntityPacket(x, y, z, orientation, state, customName);
+
+        if (tileEntity instanceof TileChlorophyllSolidifier)
+        {
+            ItemStack itemStack = null;
+
+            if (itemID != -1)
+            {
+                itemStack = new ItemStack(itemID, stackSize, metaData);
+
+            }
+
+            //((TileChlorophyllSolidifier) tileEntity).setInventorySlotContents(0, itemStack);
+            world.updateAllLightTypes(x, y, z);
+        }
+
+    }
+
 
     @Override
     public void handleTileWithItemAndFluidPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int fluidAmount, byte fluidID)
@@ -105,6 +144,7 @@ public class ClientProxy extends CommonProxy
         //MinecraftForgeClient.registerItemRenderer(ModBlocks.totemDraining.blockID, new ItemTotemDrainingRenderer());
         MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff.itemID, new ItemTotemicStaffRender());
         MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff.itemID, new ItemInfusedTotemicStaff());
+        MinecraftForgeClient.registerItemRenderer(ModItems.chlorophyllCrystal.itemID, new ItemChlorophyllCrystalRenderer());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemSocket.class, new TileTotemSocketRenderer());
         //ClientRegistry.bindTileEntitySpecialRenderer(TileTotemDraining.class, new TileTotemDrainingRenderer());

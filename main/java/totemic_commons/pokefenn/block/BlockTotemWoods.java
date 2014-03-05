@@ -27,7 +27,6 @@ public class BlockTotemWoods extends BlockLog
 
     public BlockTotemWoods(int id)
     {
-
         super(id);
         setUnlocalizedName(Strings.TOTEM_WOODS_NAME);
         setHardness(1F);
@@ -60,15 +59,8 @@ public class BlockTotemWoods extends BlockLog
     @Override
     public Icon getIcon(int side, int meta)
     {
-        switch (side)
-        {
-            case 0:
-                return topAndBot;
-            case 1:
-                return topAndBot;
-            default:
-                return sideIcon;
-        }
+        int logDirection = meta & 12;
+        return logDirection == 0 && (side == 1 || side == 0) ? topAndBot : (logDirection == 4 && (side == 5 || side == 4) ? topAndBot : (logDirection == 8 && (side == 2 || side == 3) ? topAndBot : sideIcon));
 
     }
 
@@ -78,10 +70,6 @@ public class BlockTotemWoods extends BlockLog
         subTypes.add(new ItemStack(blockId, 1, 0));
     }
 
-
-    /**
-     * This will turn into a metadata wood block thingy :)
-     */
 
 
 }

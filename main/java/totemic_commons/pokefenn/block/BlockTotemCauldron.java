@@ -12,7 +12,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemCauldron;
  * Date: 19/02/14
  * Time: 19:45
  */
-public class BlockTotemCauldron extends BlockTile
+public class BlockTotemCauldron extends BlockTileTotemic
 {
     public BlockTotemCauldron(int id)
     {

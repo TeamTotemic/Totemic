@@ -78,6 +78,8 @@ public class PacketTileWithItemUpdate extends PacketTotemic
     {
 
         Totemic.proxy.handleTileWithItemPacket(x, y, z, ForgeDirection.getOrientation(orientation), state, customName, itemID, metaData, stackSize);
+
+        //System.out.println("Sent da packet");
     }
 
 }

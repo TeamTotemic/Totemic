@@ -3,7 +3,7 @@ package totemic_commons.pokefenn.totem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityAnimal;
 import totemic_commons.pokefenn.api.ITotemEffect;
-import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
@@ -15,7 +15,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectLove implements ITotemEffect
 {
 
-    public static void effect(TileTotemIntelligence totem, int i, int upgrades)
+    public static void effect(TileTotemic totem, int i, int upgrades)
     {
         if (totem.worldObj.getWorldTime() % 200L == 0)
         {
@@ -30,7 +30,7 @@ public class TotemEffectLove implements ITotemEffect
                         {
                             //((EntityAnimal) entity).resetInLove();
                             ((EntityAnimal) entity).func_110196_bT();
-                            totem.decreaseChlorophyll(TotemUtil.decrementAmount(i));
+
                         }
                     }
                 }

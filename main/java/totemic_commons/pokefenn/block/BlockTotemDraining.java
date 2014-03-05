@@ -23,7 +23,7 @@ import java.util.Random;
  * Date: 28/01/14
  * Time: 13:14
  */
-public class BlockTotemDraining extends BlockTile implements ITotemBlock
+public class BlockTotemDraining extends BlockTileTotemic implements ITotemBlock
 {
     public BlockTotemDraining(int id)
     {
