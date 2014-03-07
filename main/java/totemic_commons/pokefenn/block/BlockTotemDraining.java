@@ -10,7 +10,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.ITotemBlock;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemDraining;
@@ -23,7 +22,7 @@ import java.util.Random;
  * Date: 28/01/14
  * Time: 13:14
  */
-public class BlockTotemDraining extends BlockTileTotemic implements ITotemBlock
+public class BlockTotemDraining extends BlockTileTotemic
 {
     public BlockTotemDraining(int id)
     {

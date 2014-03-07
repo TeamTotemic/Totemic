@@ -38,6 +38,8 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     public static int RANGE_UPGRADES;
 
+    public static boolean hasDoneEffect = false;
+
     public TileTotemIntelligence()
     {
 
@@ -80,7 +82,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                                 if (canDoEffect(TotemUtil.decrementAmount(SOCKETS[i]), SOCKETS[i]))
                                 {
                                     doEffects(SOCKETS[i], RANGE_UPGRADES, this, true);
-                                    decreaseChlorophyll(TotemUtil.decrementAmount(i));
+
                                 }
                             }
                         }
@@ -134,43 +136,43 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                 break;
 
             case 1:
-                TotemEffectCactus.effect((TileTotemic) tileEntity, metadata, upgrades);
+                TotemEffectCactus.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
                 break;
 
             case 2:
-                TotemEffectHorse.effect((TileTotemic) tileEntity, metadata, upgrades);
+                TotemEffectHorse.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
                 break;
 
             case 3:
-                TotemEffectHopper.effect((TileTotemic) tileEntity, metadata, upgrades);
+                TotemEffectHopper.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
                 break;
 
             case 4:
-                TotemEffectBat.effect((TileTotemic) tileEntity, metadata, upgrades);
+                TotemEffectBat.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
                 break;
 
             case 5:
-                TotemEffectSun.effect((TileTotemic) tileEntity, metadata);
+                TotemEffectSun.effect((TileTotemic) tileEntity, metadata, hasChlorophyll);
                 break;
 
             case 6:
-                TotemEffectBlaze.effect((TileTotemic) tileEntity, metadata, upgrades);
+                TotemEffectBlaze.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
                 break;
 
             case 7:
-                TotemEffectOcelot.effect((TileTotemic) tileEntity, metadata, upgrades);
+                TotemEffectOcelot.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
                 break;
 
             case 8:
-                TotemEffectSquid.effect((TileTotemic) tileEntity, metadata, upgrades);
+                TotemEffectSquid.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
                 break;
 
             case 9:
-                TotemEffectFood.effect((TileTotemic) tileEntity, metadata, upgrades);
+                TotemEffectFood.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
                 break;
 
             case 10:
-                TotemEffectLove.effect((TileTotemic) tileEntity, metadata, upgrades);
+                TotemEffectLove.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
                 break;
 
             case 11:
@@ -197,9 +199,10 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     {
         Random rand = new Random();
 
-        if (this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID || this.getStackInSlot(SLOT_ONE) != null && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID && this.getStackInSlot(SLOT_ONE).getItemDamage() < this.getStackInSlot(SLOT_ONE).getMaxDamage())
+        if (this.getStackInSlot(SLOT_ONE) != null)
         {
             this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(2));
+            //System.out.println(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(2));
         }
 
     }
@@ -215,7 +218,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     protected boolean canDoEffect(int subtraction, int metadata)
     {
-        return metadata == 11 && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID || metadata == 11 && this.getStackInSlot(SLOT_ONE).itemID == ModItems.chlorophyllCrystal.itemID || !(metadata != 11 && this.getStackInSlot(SLOT_ONE).itemID == ModItems.blazingChlorophyllCrystal.itemID) && !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
+        return metadata == 11 || !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
     }
 
     protected ItemStack getSocketItemStack(int par1)

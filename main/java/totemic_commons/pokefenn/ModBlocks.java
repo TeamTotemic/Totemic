@@ -62,9 +62,6 @@ public final class ModBlocks
         totemMana = new BlockManaTotem(BlockIds.TOTEM_MANA);
         GameRegistry.registerBlock(totemMana, Strings.TOTEM_MANA_NAME);
 
-        //GameRegistry.registerTileEntity(TileTotemMana.class, Strings.TILE_TOTEM_MANA);
-
-
     }
 
 }

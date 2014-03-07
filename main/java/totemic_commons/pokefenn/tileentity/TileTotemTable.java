@@ -21,9 +21,7 @@ public class TileTotemTable extends TileTotemic implements IInventory
 
     public TileTotemTable()
     {
-
         inventory = new ItemStack[INVENTORY_SIZE];
-
     }
 
     @Override

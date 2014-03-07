@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ITotemEffect;
 import totemic_commons.pokefenn.item.ItemTotemBeads;
+import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -19,7 +20,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectOcelot implements ITotemEffect
 {
 
-    public static void effect(TileTotemic totem, int i, int upgrades)
+    public static void effect(TileTotemic totem, int i, int upgrades, boolean intelligence)
     {
         if (totem.worldObj.getWorldTime() % 5L == 0)
         {
@@ -37,6 +38,10 @@ public class TotemEffectOcelot implements ITotemEffect
 
                             ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
 
+                            if(intelligence)
+                            {
+                                ((TileTotemIntelligence)totem).decreaseChlorophyll(TotemUtil.decrementAmount(i));
+                            }
 
                         }
                     }

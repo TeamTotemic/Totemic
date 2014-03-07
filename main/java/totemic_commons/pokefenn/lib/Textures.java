@@ -26,6 +26,8 @@ public class Textures
     public static final String TOTEM_TABLE_BOTTOM = "totemTableBottom";
     public static final String TOTEM_TABLE_TOP = "totemTableTop";
 
+    public static final String MANA_TOTEM = "manaTotem";
+
     public static final String CHLOROPHYLL_SOLIDIFIER_TOP_AND_BOT = "chlorophyllSolidifierTopAndBot";
     public static final String CHLOROPHYLL_SOLIDIFIER_SIDES = "chlorophyllSolidifierSide";
 
@@ -52,6 +54,10 @@ public class Textures
     public static final ResourceLocation GUI_TOTEM_BASE = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "totemBaseGui.png");
 
     public static final ResourceLocation GUI_PAINT_BRUSH = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "paintBrushGui.png");
+
+    public static final ResourceLocation TOTEMPEDIA = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "totempedia");
+
+    public static final ResourceLocation TOTEMPEDIA_PAGE = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "totempedia");
 
     //Models
     public static final ResourceLocation TEXTURE_TOTEM_SOCKET = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemSocket.png");

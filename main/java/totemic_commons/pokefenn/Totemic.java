@@ -84,6 +84,9 @@ public final class Totemic
         //Starts ore dictionary code
         OreDictionaryTotemic.init();
 
+        if (Loader.isModLoaded("Botania"))
+            ModBlocks.initBotania();
+
         //Vannila recipes
         TotemicRecipes.init();
 
@@ -96,10 +99,6 @@ public final class Totemic
         proxy.registerTileEntities();
 
         proxy.initRendering();
-
-        if (Loader.isModLoaded("Botania"))
-            ModBlocks.initBotania();
-
 
         //Init the potions into the game
         ModPotions.init();

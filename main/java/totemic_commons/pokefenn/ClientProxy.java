@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
-import totemic_commons.pokefenn.client.book.SmallFontRenderer;
 import totemic_commons.pokefenn.client.rendering.item.ItemChlorophyllCrystalRenderer;
 import totemic_commons.pokefenn.client.rendering.item.ItemInfusedTotemicStaff;
 import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
@@ -25,10 +24,6 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 public class ClientProxy extends CommonProxy
 {
-
-    public static SmallFontRenderer smallFontRenderer;
-
-
     @Override
     public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName)
     {

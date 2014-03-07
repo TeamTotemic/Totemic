@@ -18,7 +18,7 @@ public class CommonProxy
         GameRegistry.registerTileEntity(TileTotemIntelligence.class, Strings.TILE_TOTEM_INTELLIGENCE);
         GameRegistry.registerTileEntity(TileTotemSocket.class, Strings.TILE_TOTEM_SOCKET);
 
-        if(Totemic.botaniaLoaded)
+        if (Totemic.botaniaLoaded)
             GameRegistry.registerTileEntity(TileTotemMana.class, Strings.TILE_TOTEM_MANA);
 
     }

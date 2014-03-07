@@ -25,7 +25,6 @@ public class ItemBucketChlorophyll extends ItemFluidContainer
 
     public ItemBucketChlorophyll(int id)
     {
-
         super(id - 256);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BUCKET_CHLOROPHYLL_NAME);
         setMaxStackSize(1);

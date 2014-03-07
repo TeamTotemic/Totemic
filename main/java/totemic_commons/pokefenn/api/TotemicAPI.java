@@ -3,9 +3,9 @@ package totemic_commons.pokefenn.api;
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
- * Date: 28/01/14
- * Time: 17:58
+ * Date: 05/03/14
+ * Time: 19:53
  */
-public interface ITotemBlock
+public class TotemicAPI
 {
 }

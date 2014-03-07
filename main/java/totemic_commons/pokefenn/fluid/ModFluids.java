@@ -12,11 +12,9 @@ public final class ModFluids
 
     public static void init()
     {
-
         fluidChlorophyll = new FluidChlorophyll(Strings.FLUID_CHLOROPHYLL_NAME);
 
         FluidRegistry.registerFluid(fluidChlorophyll);
-
     }
 
 }

@@ -33,12 +33,13 @@ tile.totemBase.name=Totem Base
 tile.chlorophyllSolidifier.name=Chlorophyll Solidifier
 tile.totemWoods.name=Infused Wood
 tile.totemSupport.name=Totem Structure Support
-tile.totemIntelligence.name=Totem Structure: Intelligence
+tile.totemIntelligence.name=Totem Intelligence
 tile.totemTable.name=Totem Table [WIP]
 tile.totemDraining.name=Totem of Draining
-tile.totemSocket.name=Totem Structure: Socket
+tile.totemSocket.name=Totem Socket
 tile.totemSapling.name=Infused Sapling
 tile.totemLeaves.name=Infused Leaves
+tile.totemMana.name=Mana Totem Intelligence
 
 # Fluid localizations
 fluid.fluidChlorophyll.name=Chlorophyll

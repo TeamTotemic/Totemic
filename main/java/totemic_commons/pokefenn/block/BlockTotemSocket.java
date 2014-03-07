@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.ITotemBlock;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemSocket;
@@ -27,7 +26,7 @@ import java.util.Random;
  * Date: 02/02/14
  * Time: 13:03
  */
-public class BlockTotemSocket extends BlockTileTotemic implements ITotemBlock
+public class BlockTotemSocket extends BlockTileTotemic
 {
 
     public BlockTotemSocket(int id)

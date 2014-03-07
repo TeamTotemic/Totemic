@@ -38,7 +38,7 @@ public class ItemTotems extends ItemNormal
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        switch(stack.getItemDamage())
+        switch (stack.getItemDamage())
         {
             case 1:
                 list.add("Damage mobs with the power of a Cactus");

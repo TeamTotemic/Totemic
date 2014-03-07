@@ -17,12 +17,10 @@ public class BlockVenusFlyTrap extends Block
 
     public BlockVenusFlyTrap(int id)
     {
-
         super(id, Material.wood);
         setUnlocalizedName(Strings.VENUS_FLY_TRAP_NAME);
         setHardness(1F);
         setCreativeTab(Totemic.tabsTotem);
-
     }
 
 }

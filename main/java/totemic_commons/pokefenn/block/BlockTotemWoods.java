@@ -71,7 +71,6 @@ public class BlockTotemWoods extends BlockLog
     }
 
 
-
 }
 
 

@@ -19,5 +19,4 @@ public class PotionBatFlying extends Potion
     }
 
 
-
 }

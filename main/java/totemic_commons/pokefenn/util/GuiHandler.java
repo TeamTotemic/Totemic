@@ -15,14 +15,14 @@ public class GuiHandler implements IGuiHandler
     @Override
     public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        switch(ID)
+        switch (ID)
         {
-        //    case 1:
+            //    case 1:
 
-        //        break;
+            //        break;
 
-        //    default:
-        //        return null;
+            //    default:
+            //        return null;
         }
 
         return null;
@@ -31,7 +31,7 @@ public class GuiHandler implements IGuiHandler
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        switch(ID)
+        switch (ID)
         {
             case 1:
                 //return new GuiTotempedia();

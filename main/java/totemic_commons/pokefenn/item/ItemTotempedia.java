@@ -27,7 +27,7 @@ public class ItemTotempedia extends ItemNormal
 
     public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
-        if(itemStack != null && world != null)
+        if (itemStack != null && world != null)
         {
             player.openGui(Totemic.instance, 0, world, par4, par5, par6);
 
@@ -35,7 +35,6 @@ public class ItemTotempedia extends ItemNormal
 
         return !player.isSneaking();
     }
-
 
 
     @Override

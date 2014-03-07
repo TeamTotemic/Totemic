@@ -14,7 +14,6 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.ITotemBlock;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
@@ -27,7 +26,7 @@ import java.util.Random;
  * Date: 29/01/14
  * Time: 20:20
  */
-public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemBlock
+public class BlockTotemIntelligence extends BlockTileTotemic
 {
 
     private Random rand = new Random();

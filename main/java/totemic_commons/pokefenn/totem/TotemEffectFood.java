@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.totem;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -17,7 +18,7 @@ public class TotemEffectFood
 {
 
 
-    public static void effect(TileTotemic totem, int i, int upgrades)
+    public static void effect(TileTotemic totem, int i, int upgrades, boolean intelligence)
     {
         Random rand = new Random();
 
@@ -33,9 +34,17 @@ public class TotemEffectFood
                         if (((EntityPlayer) entity).getFoodStats().getFoodLevel() < 10)
                         {
 
-                            ((EntityPlayer) entity).getFoodStats().setFoodLevel(10 + rand.nextInt(5));
+                            ((EntityPlayer) entity).getFoodStats().addStats(rand.nextInt(5), rand.nextInt(4));
 
-                            ((EntityPlayer) entity).getFoodStats().setFoodSaturationLevel(rand.nextInt(4));
+                            //((EntityPlayer) entity).getFoodStats().setFoodLevel(10 + rand.nextInt(5));
+
+                            //if (((EntityPlayer) entity).getFoodStats().getSaturationLevel() <= 1 + rand.nextInt(3))
+                            // ((EntityPlayer) entity).getFoodStats().setFoodSaturationLevel(rand.nextInt(4));
+
+                            if(intelligence)
+                            {
+                                ((TileTotemIntelligence)totem).decreaseChlorophyll(TotemUtil.decrementAmount(i));
+                            }
 
                         }
                     }

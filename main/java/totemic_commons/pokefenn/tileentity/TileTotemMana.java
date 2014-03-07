@@ -20,6 +20,12 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
 
     int[] SOCKETS;
 
+    public static String TAG_MANA = "mana";
+
+    public static String TAG_KNOWN_MANA = "knownMana";
+
+    int knownMana = -1;
+
     public static int SOCKET_NUMBER;
 
     public static int RANGE_UPGRADES;
@@ -59,7 +65,7 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
                             if (canDoEffect(getCurrentMana(), TotemUtil.decrementAmount(SOCKETS[i]) * 10))
                             {
                                 TileTotemIntelligence.doEffects(SOCKETS[i], RANGE_UPGRADES, this, false);
-                                decreaseMana(TotemUtil.decrementAmount(SOCKETS[i]) * 100);
+                                decreaseMana(TotemUtil.decrementAmount(SOCKETS[i]) * 40);
                             }
                         }
                     }
@@ -79,10 +85,10 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
 
         super.readFromNBT(nbtTagCompound);
 
-        // Read in the ItemStacks in the inventory from NBT
-        //NBTTagList tagList = nbtTagCompound.getTagList("Items");
+        mana = nbtTagCompound.getInteger(TAG_MANA);
 
-        mana = nbtTagCompound.getInteger("mana");
+        if(nbtTagCompound.hasKey(TAG_KNOWN_MANA))
+            knownMana = nbtTagCompound.getInteger(TAG_KNOWN_MANA);
 
     }
 
@@ -92,10 +98,7 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
 
         super.writeToNBT(nbtTagCompound);
 
-        // Write the ItemStacks in the inventory to NBT
-        //NBTTagList tagList = new NBTTagList();
-
-        nbtTagCompound.setInteger("mana", mana);
+        nbtTagCompound.setInteger(TAG_MANA, mana);
 
     }
 
@@ -193,7 +196,7 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
 
     public boolean canDoEffect(int currentMana, int manaDecrease)
     {
-        return mana - currentMana >= 0;
+        return currentMana - manaDecrease >= 0;
     }
 
     @Override

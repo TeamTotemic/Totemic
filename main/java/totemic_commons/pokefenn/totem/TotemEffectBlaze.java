@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import totemic_commons.pokefenn.api.ITotemEffect;
+import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -19,7 +20,7 @@ import java.util.Random;
 public class TotemEffectBlaze implements ITotemEffect
 {
 
-    public static void effect(TileTotemic totem, int i, int upgrades)
+    public static void effect(TileTotemic totem, int i, int upgrades, boolean intelligence)
     {
         if (totem.worldObj.getWorldTime() % 80L == 0)
         {
@@ -37,6 +38,10 @@ public class TotemEffectBlaze implements ITotemEffect
 
                         ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 200, 0));
 
+                        if(intelligence)
+                        {
+                            ((TileTotemIntelligence)totem).decreaseChlorophyll(TotemUtil.decrementAmount(i));
+                        }
 
                     }
                 }
