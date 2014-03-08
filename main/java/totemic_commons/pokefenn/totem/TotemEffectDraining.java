@@ -7,7 +7,6 @@ import totemic_commons.pokefenn.api.ITotemEffect;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
-import vazkii.botania.common.block.BlockSpecialFlower;
 
 /**
  * Created with IntelliJ IDEA.
@@ -49,7 +48,7 @@ public class TotemEffectDraining implements ITotemEffect
         //yCoords is there because the totem has to be on the same level as the IPlantable's
         Block blockQuery = Block.blocksList[tileTotemIntelligence.worldObj.getBlockId(x, y, z)];
 
-        if (tileTotemIntelligence.worldObj.getBlockMetadata(x, y, z) >= 5 && blockQuery instanceof IPlantable && tileTotemIntelligence.getStackInSlot(TileTotemIntelligence.SLOT_ONE) != null && !(blockQuery instanceof IBlacklistedDraining) && !(blockQuery instanceof BlockSpecialFlower))
+        if (tileTotemIntelligence.worldObj.getBlockMetadata(x, y, z) >= 5 && blockQuery instanceof IPlantable && tileTotemIntelligence.getStackInSlot(TileTotemIntelligence.SLOT_ONE) != null && !(blockQuery instanceof IBlacklistedDraining))
         {
             tileTotemIntelligence.worldObj.setBlockMetadataWithNotify(x, y, z, tileTotemIntelligence.worldObj.getBlockMetadata(x, y, z) - 1, 2);
             tileTotemIntelligence.increaseChlorophyll();

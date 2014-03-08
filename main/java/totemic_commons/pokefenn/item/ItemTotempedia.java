@@ -25,15 +25,12 @@ public class ItemTotempedia extends ItemNormal
         setMaxStackSize(1);
     }
 
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+    @Override
+    public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
     {
-        if (itemStack != null && world != null)
-        {
-            player.openGui(Totemic.instance, 0, world, par4, par5, par6);
+        player.openGui(Totemic.instance, Totemic.proxy.totempediaGuiID, world, 0, 0, 0);
 
-        }
-
-        return !player.isSneaking();
+        return stack;
     }
 
 

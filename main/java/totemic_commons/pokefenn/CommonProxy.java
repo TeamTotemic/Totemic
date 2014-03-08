@@ -1,13 +1,17 @@
 package totemic_commons.pokefenn;
 
+import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.*;
 
-public class CommonProxy
+public class CommonProxy implements IGuiHandler
 {
 
+    public static int totempediaGuiID = -1;
 
     public void registerTileEntities()
     {
@@ -52,4 +56,20 @@ public class CommonProxy
 
     }
 
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
+        return null;
+    }
+
+    public void readManuals()
+    {
+
+    }
+
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
+        return null;
+    }
 }

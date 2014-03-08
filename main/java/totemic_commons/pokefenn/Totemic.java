@@ -10,6 +10,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import totemic_commons.pokefenn.compat.CompatInit;
@@ -32,7 +33,7 @@ import java.io.File;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.2.2")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.2.3")
 @NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 public final class Totemic
@@ -71,6 +72,8 @@ public final class Totemic
         //Initiates the mod items into the game
         ModItems.init();
 
+        proxy.readManuals();
+
     }
 
     @EventHandler
@@ -99,6 +102,8 @@ public final class Totemic
         proxy.registerTileEntities();
 
         proxy.initRendering();
+
+        NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 
         //Init the potions into the game
         ModPotions.init();
