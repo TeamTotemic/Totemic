@@ -43,8 +43,6 @@ public class ItemTotemWhittlingKnife extends ItemNormal
                     if (blockQuery instanceof BlockTotemWoods)
                     {
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket.blockID);
-                        //player.getHeldItem().setItemDamage(player.getHeldItem().getItemDamage() + 1);
-                        player.getHeldItem().damageItem(1, player);
                     }
 
                 }

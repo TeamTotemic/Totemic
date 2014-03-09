@@ -21,7 +21,7 @@ public class ItemTotempedia extends ItemNormal
     public ItemTotempedia(int id)
     {
         super(id);
-        setUnlocalizedName(Strings.TOTEMPEDIA_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEMPEDIA_NAME);
         setMaxStackSize(1);
     }
 

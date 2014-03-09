@@ -45,7 +45,7 @@ public class BlockTotemSapling extends BlockSapling
             if (!treeGen.growTree(world, random, x, y, z))
             {
                 world.setBlock(x, y, z, blockID, 0, 4);
-                //new TotemTreeGeneration(true).growTree(world, random, x, y, z);
+                new TotemTreeGeneration(true).growTree(world, random, x, y, z);
             }
         }
     }

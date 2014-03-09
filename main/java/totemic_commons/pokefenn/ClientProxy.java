@@ -4,10 +4,13 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.PacketDispatcher;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.ForgeDirection;
@@ -16,10 +19,7 @@ import totemic_commons.pokefenn.client.book.GuiTotempedia;
 import totemic_commons.pokefenn.client.book.SmallFontRenderer;
 import totemic_commons.pokefenn.client.book.TotemicClientRegistry;
 import totemic_commons.pokefenn.client.book.pages.*;
-import totemic_commons.pokefenn.client.rendering.item.ItemChlorophyllCrystalRenderer;
-import totemic_commons.pokefenn.client.rendering.item.ItemInfusedTotemicStaff;
-import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
-import totemic_commons.pokefenn.client.rendering.item.ItemTotemicStaffRender;
+import totemic_commons.pokefenn.client.rendering.item.*;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketRenderer;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.network.PacketRequestEvent;
@@ -88,7 +88,7 @@ public class ClientProxy extends CommonProxy
         ClientProxy.registerManualPage("crafting", CraftingPage.class);
         ClientProxy.registerManualPage("picture", PicturePage.class);
         ClientProxy.registerManualPage("text", TextPage.class);
-        //ClientProxy.registerManualPage("intro", TextPage.class);
+        ClientProxy.registerManualPage("intro", TextPage.class);
         ClientProxy.registerManualPage("sectionpage", SectionPage.class);
         ClientProxy.registerManualPage("intro", TitlePage.class);
         ClientProxy.registerManualPage("contents", ContentsTablePage.class);
@@ -101,9 +101,20 @@ public class ClientProxy extends CommonProxy
     public void initManualRecipes()
     {
 
-        TotemicClientRegistry.registerManualLargeRecipe("chlorophyllBucket", new ItemStack(ModItems.bucketChlorophyll), new ItemStack(ModItems.totemWhittlingKnife), new ItemStack(Item.seeds), new ItemStack(Item.bucketEmpty), null, null, null, null, null, null);
-        TotemicClientRegistry.registerManualLargeRecipe("chlorophyllBottle", new ItemStack(ModItems.bucketChlorophyll), new ItemStack(ModItems.totemWhittlingKnife), new ItemStack(Item.seeds), new ItemStack(Item.glassBottle), null, null, null, null, null, null);
+        TotemicClientRegistry.registerManualSmallRecipe("chlorophyllBucket", new ItemStack(ModItems.bucketChlorophyll), new ItemStack(ModItems.totemWhittlingKnife), new ItemStack(Item.seeds), new ItemStack(Item.bucketEmpty), null);
+        TotemicClientRegistry.registerManualSmallRecipe("chlorophyllBottle", new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.totemWhittlingKnife), new ItemStack(Item.seeds), new ItemStack(Item.glassBottle), null);
 
+        TotemicClientRegistry.registerManualSmallRecipe("infusedStick", new ItemStack(ModItems.subItems, 1, 2), null, new ItemStack(ModBlocks.totemWoods), new ItemStack(ModBlocks.totemWoods), null);
+
+        TotemicClientRegistry.registerManualLargeRecipe("totemicStaff", new ItemStack(ModItems.totemicStaff), null, new ItemStack(Block.leaves), new ItemStack(Item.stick), null, new ItemStack(Item.stick),null, new ItemStack(Item.stick), null, new ItemStack(Block.leaves));
+
+        TotemicClientRegistry.registerManualLargeRecipe("chlorophyllCrystal", new ItemStack(ModItems.chlorophyllCrystal), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(Item.diamond), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll));
+
+        TotemicClientRegistry.registerManualLargeRecipe("blazingChlorophyllCrystal", new ItemStack(ModItems.blazingChlorophyllCrystal), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(ModItems.chlorophyllCrystal), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava));
+
+        TotemicClientRegistry.registerManualLargeRecipe("infusedTotemicStaff", new ItemStack(ModItems.infusedTotemicStaff), null, new ItemStack(ModItems.subItems, 1, 0), new ItemStack(ModItems.subItems, 1, 2), null, new ItemStack(ModItems.subItems, 1, 2),null, new ItemStack(Item.stick), null, new ItemStack(ModItems.subItems));
+
+        TotemicClientRegistry.registerManualLargeRecipe("whittlingKnife", new ItemStack(ModItems.totemWhittlingKnife), null, null, new ItemStack(Item.ingotIron), null, new ItemStack(Item.stick), new ItemStack(Item.flint), new ItemStack(Item.stick), null, null);
     }
 
     public static void registerManualPage(String type, Class<? extends BookPage> clazz)
@@ -197,6 +208,8 @@ public class ClientProxy extends CommonProxy
     @Override
     public void initRendering()
     {
+        Minecraft mc = Minecraft.getMinecraft();
+
         RenderIds.RENDER_ID_TOTEM_POLE = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.RENDER_ID_TOTEM_DRAINING = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.RENDER_ID_TOTEMIC_STAFF = RenderingRegistry.getNextAvailableRenderId();
@@ -205,8 +218,12 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff.itemID, new ItemTotemicStaffRender());
         MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff.itemID, new ItemInfusedTotemicStaff());
         MinecraftForgeClient.registerItemRenderer(ModItems.chlorophyllCrystal.itemID, new ItemChlorophyllCrystalRenderer());
+        MinecraftForgeClient.registerItemRenderer(ModItems.blazingChlorophyllCrystal.itemID, new ItemBlazingChlorophyllCrystalRenderer());
+
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemSocket.class, new TileTotemSocketRenderer());
+
+        smallFontRenderer = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("textures/font/ascii.png"), mc.renderEngine, false);
 
     }
 

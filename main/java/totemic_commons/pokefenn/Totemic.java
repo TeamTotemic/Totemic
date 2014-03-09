@@ -13,8 +13,11 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
 import totemic_commons.pokefenn.compat.CompatInit;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
+import totemic_commons.pokefenn.event.TotemicEventHooks;
+import totemic_commons.pokefenn.fluid.BucketHandler;
 import totemic_commons.pokefenn.fluid.FluidContainers;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Reference;
@@ -33,7 +36,7 @@ import java.io.File;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.2.3")
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.3.0a")
 @NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 
 public final class Totemic
@@ -63,6 +66,8 @@ public final class Totemic
 
         logger.info("Totemic is Loading");
 
+        MinecraftForge.EVENT_BUS.register(new BucketHandler());
+
         //Initiates fluids into the game
         ModFluids.init();
 
@@ -71,8 +76,6 @@ public final class Totemic
 
         //Initiates the mod items into the game
         ModItems.init();
-
-        proxy.readManuals();
 
     }
 
@@ -83,6 +86,10 @@ public final class Totemic
         logger.info("Totemic is entering its Initlisation stage");
 
         GameRegistry.registerCraftingHandler(new TotemicCraftingHandler());
+
+        proxy.initRendering();
+
+        proxy.readManuals();
 
         //Starts ore dictionary code
         OreDictionaryTotemic.init();
@@ -101,12 +108,13 @@ public final class Totemic
         //Init tile entities into the game
         proxy.registerTileEntities();
 
-        proxy.initRendering();
 
         NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 
         //Init the potions into the game
         ModPotions.init();
+
+        MinecraftForge.EVENT_BUS.register(new TotemicEventHooks());
 
         //Makes the recipes of Chlorophyll enter the game
         ChlorophyllSolidifierRecipes.addRecipes();

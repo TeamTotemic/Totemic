@@ -32,6 +32,9 @@ public class TotemicRecipes
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1, 1), new ItemStack(ModItems.chlorophyllCrystal, 1, 1), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1, 1000), new ItemStack(ModItems.chlorophyllCrystal, 1, 1000), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava));
 
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Item.book), new ItemStack(Block.vine));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Item.book), new ItemStack(Item.seeds));
+
         if(Totemic.botaniaLoaded)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemMana), new Object[]{ " l ", "ltl", " l ", ('l'), "livingwood", ('t'), ModBlocks.totemIntelligence}));
 
@@ -65,7 +68,7 @@ public class TotemicRecipes
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 2), new Object[]{new ItemStack(ModBlocks.totemWoods), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE), Item.horseArmorIron});
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 2), new Object[]{new ItemStack(ModBlocks.totemWoods), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE), Item.leather});
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 3), new Object[]{new ItemStack(ModBlocks.totemWoods), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE), Block.hopperBlock});
-            //GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 4), new Object[]{new ItemStack(ModBlocks.totemWoods), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 4), new Object[]{new ItemStack(ModBlocks.totemWoods), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE), Item.feather});
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 5), new Object[]{new ItemStack(ModBlocks.totemWoods), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE), Block.sand});
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 6), new Object[]{new ItemStack(ModBlocks.totemWoods), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE), Item.blazeRod});
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 7), new Object[]{new ItemStack(ModBlocks.totemWoods), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE), Item.gunpowder});

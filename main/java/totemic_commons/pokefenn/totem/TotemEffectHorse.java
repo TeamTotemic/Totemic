@@ -29,6 +29,8 @@ public class TotemEffectHorse
                     {
                         ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200, 1));
 
+                        //((EntityPlayer) entity).addPotionEffect(new PotionEffect(ModPotions.horsePotion.id, 200, 0));
+
                         if(intelligence)
                         {
                             ((TileTotemIntelligence)totem).decreaseChlorophyll(TotemUtil.decrementAmount(i));

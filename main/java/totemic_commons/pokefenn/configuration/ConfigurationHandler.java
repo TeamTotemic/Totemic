@@ -34,7 +34,7 @@ public class ConfigurationHandler
             ConfigurationSettings.ENABLE_TEMP_RECIPES = configuration.get(CATEGORY_GAMEPLAY, "enableTempRecipes", false).getBoolean(false);
 
             ConfigurationSettings.DECREMENT_TOTEM_CACTUS = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementCactus", 1).getInt(1);
-            ConfigurationSettings.DECREMENT_TOTEM_BAT = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementBat", 25).getInt(25);
+            ConfigurationSettings.DECREMENT_TOTEM_BAT = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementBat", 35).getInt(35);
             ConfigurationSettings.DECREMENT_TOTEM_HOPPER = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementHopper", 1).getInt(1);
             ConfigurationSettings.DECREMENT_TOTEM_HORSE = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementHorse", 1).getInt(1);
             ConfigurationSettings.DECREMENT_TOTEM_SUN = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSun", 100).getInt(100);
@@ -47,6 +47,7 @@ public class ConfigurationHandler
             ConfigurationSettings.DECREMENT_TOTEM_MINING = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementMining", 40).getInt(40);
 
             ConfigurationSettings.POTION_ID_BAT = configuration.get(CATEGORY_GAMEPLAY, "batPotionID", 22).getInt(22);
+            ConfigurationSettings.POTION_ID_HORSE = configuration.get(CATEGORY_GAMEPLAY, "horsePotionID", 23).getInt(23);
 
             ConfigurationSettings.GENERATE_TOTEM_TREES = configuration.get(CATEGORY_GAMEPLAY, "generateTotemTrees(Optional)", false).getBoolean(false);
 

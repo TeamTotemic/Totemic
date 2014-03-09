@@ -67,8 +67,7 @@ public class TotemTreeGeneration extends WorldGenerator
             blockId = world.getBlockId(x, y - 1, z);
             block = Block.blocksList[blockId];
 
-            if ((block != null && block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP,
-                    ((BlockSapling) ModBlocks.totemSapling))) && y < worldHeight - treeHeight - 1)
+            if ((block != null && block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, ((BlockSapling) ModBlocks.totemSapling))) && y < worldHeight - treeHeight - 1)
             {
                 for (yOffset = y; yOffset <= y + 1 + treeHeight; ++yOffset)
                 {
@@ -158,6 +157,7 @@ public class TotemTreeGeneration extends WorldGenerator
         }
         return false;
     }
+
 
     /*
 
@@ -257,7 +257,6 @@ public class TotemTreeGeneration extends WorldGenerator
         }
     }
 
-    */
-
+*/
 
 }
