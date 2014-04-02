@@ -13,10 +13,11 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Date: 11/02/14
  * Time: 14:02
  */
+/*
 public class TotemEffectLove implements ITotemEffect
 {
 
-    public static void effect(TileTotemic totem, int i, int upgrades, boolean intelligence)
+    public static void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry)
     {
         if (totem.getWorldObj().getWorldTime() % 200L == 0)
         {
@@ -48,3 +49,4 @@ public class TotemEffectLove implements ITotemEffect
     }
 
 }
+*/

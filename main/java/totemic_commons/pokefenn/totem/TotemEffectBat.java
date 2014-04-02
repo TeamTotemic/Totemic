@@ -18,7 +18,8 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectBat implements ITotemEffect
 {
 
-    public static void effect(TileTotemic totem, int i, int upgrades, boolean intelligence)
+    @Override
+    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry)
     {
         if (totem.getWorldObj().getWorldTime() % 60L * 20L == 0L)
         {
@@ -34,7 +35,7 @@ public class TotemEffectBat implements ITotemEffect
 
                         if(intelligence)
                         {
-                            ((TileTotemIntelligence)totem).decreaseChlorophyll(TotemUtil.decrementAmount(i));
+                            ((TileTotemIntelligence)totem).decreaseChlorophyll(TotemUtil.decrementAmount(totemRegistry.getChlorophyllDecrement()));
                         }
 
                     }
@@ -44,7 +45,5 @@ public class TotemEffectBat implements ITotemEffect
             }
         }
 
-
     }
-
 }

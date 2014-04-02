@@ -27,7 +27,7 @@ public class ItemBloodWart extends Item
         super();
         this.blockType = block1;
         setCreativeTab(Totemic.tabsTotem);
-        setUnlocalizedName(Strings.BLOODWART_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BLOODWART_NAME);
     }
 
     @Override

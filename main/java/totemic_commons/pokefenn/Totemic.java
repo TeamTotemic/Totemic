@@ -27,6 +27,7 @@ import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
 import totemic_commons.pokefenn.recipe.PotionItemRegistry;
 import totemic_commons.pokefenn.recipe.PotionRegistry;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
+import totemic_commons.pokefenn.totem.TotemRegistry;
 import totemic_commons.pokefenn.util.CreativeTabPotions;
 import totemic_commons.pokefenn.util.CreativeTabTotemic;
 import totemic_commons.pokefenn.util.OreDictionaryTotemic;
@@ -116,6 +117,8 @@ public final class Totemic
         ModPotions.init();
 
         MinecraftForge.EVENT_BUS.register(new TotemicEventHooks());
+
+        TotemRegistry.addTotems();
 
         //Makes the recipes of Chlorophyll enter the game
         ChlorophyllSolidifierRecipes.addRecipes();

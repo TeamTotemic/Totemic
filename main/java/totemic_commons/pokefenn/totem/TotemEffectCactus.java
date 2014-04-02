@@ -15,6 +15,8 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Date: 23/01/14
  * Time: 14:15
  */
+
+/*
 public class TotemEffectCactus implements ITotemEffect
 {
     public static void effect(TileTotemic totem, int i, int upgrades, boolean intelligence)
@@ -43,3 +45,4 @@ public class TotemEffectCactus implements ITotemEffect
 
     }
 }
+*/

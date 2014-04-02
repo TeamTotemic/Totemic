@@ -12,6 +12,8 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Date: 01/02/14
  * Time: 21:07
  */
+
+/*
 public class TotemEffectHopper
 {
 
@@ -46,6 +48,7 @@ public class TotemEffectHopper
     }
 
 }
+*/
 
 
 

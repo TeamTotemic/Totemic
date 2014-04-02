@@ -95,11 +95,38 @@ public class TileCeremonyIntelligence extends TileTotemic
                 {
                     if (effect != null)
                     {
-                        System.out.println(currentCeremony);
-                        effect.effect(this);
+                        preformCeremony(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1));
+
+                        //System.out.println(currentCeremony);
+                        //effect.effect(this);
                     }
                 } else
                     this.drainPlantsAtStart(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPercentage(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPlantForPercentage());
+            }
+        }
+
+    }
+
+    public void trackPlayersMovements()
+    {
+        if (worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 8) != null)
+        {
+            EntityPlayer playerDance = worldObj.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 8);
+            double oldPosX = playerDance.lastTickPosX;
+            double oldPosY = playerDance.lastTickPosY;
+            double oldPosZ = playerDance.lastTickPosZ;
+
+            if (worldObj.getWorldTime() % 40L == 0)
+            {
+                if (oldPosX <= playerDance.posX - 3 || oldPosX <= playerDance.posX + 3 || oldPosX >= playerDance.posX - 3 || oldPosX >= playerDance.posX + 3)
+                    if (oldPosZ <= playerDance.posZ - 3 || oldPosZ <= playerDance.posZ + 3 || oldPosZ >= playerDance.posZ - 3 || oldPosZ >= playerDance.posZ + 3)
+                        efficiency += 4;
+
+                //if(oldPosX != playerDance.posX && oldPosZ != playerDance.posZ)
+                //{
+                //    efficiency += 2;
+                //}
+
             }
         }
 
@@ -195,7 +222,7 @@ public class TileCeremonyIntelligence extends TileTotemic
         boolean possibility1 = plantID1 == getIdFromPlant(plant1) && plantID2 == getIdFromPlant(plant2) && plantID3 == getIdFromPlant(plant3) && plantID4 == getIdFromPlant(plant4);
         //boolean possibility2 = plantID1 == getIdFromPlant(plant1) && plantID2 == getIdFromPlant(plant2) && plantID3 == getIdFromPlant(plant3) && plantID4 == getIdFromPlant(plant4);
 
-        if (getIdFromPlant(world.getBlock(x + 3, y, z)) != 0 && getIdFromPlant(world.getBlock(x - 3, y, z)) != 0 && getIdFromPlant(world.getBlock(x, y, z + 3)) != 0 && getIdFromPlant(world.getBlock(x, y, z - 3)) != 0)
+        if (plant1 != null && plant2 != null && plant3 != null && plant4 != null && getIdFromPlant(world.getBlock(x + 3, y, z)) != 0 && getIdFromPlant(world.getBlock(x - 3, y, z)) != 0 && getIdFromPlant(world.getBlock(x, y, z + 3)) != 0 && getIdFromPlant(world.getBlock(x, y, z - 3)) != 0)
         {
             if (possibility1)
             {

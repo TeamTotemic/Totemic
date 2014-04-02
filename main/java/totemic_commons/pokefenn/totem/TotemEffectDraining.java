@@ -17,13 +17,13 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
 public class TotemEffectDraining implements ITotemEffect
 {
 
-    public static void effect(TileTotemic tileTotemIntelligence, int i, int upgrades)
+    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry)
     {
-        if (tileTotemIntelligence.getWorldObj().getWorldTime() % 100L == 0)
-            drainEffect((TileTotemIntelligence) tileTotemIntelligence, i, upgrades);
+        if (totem.getWorldObj().getWorldTime() % 100L == 0)
+            drainEffect((TileTotemIntelligence) totem, upgrades);
     }
 
-    protected static void drainEffect(TileTotemIntelligence tileTotemIntelligence, int k, int upgrades)
+    protected static void drainEffect(TileTotemIntelligence tileTotemIntelligence, int upgrades)
     {
         int totemRadius = ConfigurationSettings.TOTEM_DRAINING_RANGE + (upgrades * 3);
 

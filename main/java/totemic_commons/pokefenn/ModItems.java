@@ -69,11 +69,6 @@ public final class ModItems
         //totemWhittlingKnife.setContainerItem(totemWhittlingKnife);
         //bucketChlorophyll.setContainerItem(bucketChlorophyll);
 
-        if (!ConfigurationSettings.DISABLE_TOTEM_BEADS)
-        {
-            //totemBeads = new ItemTotemBeads(ItemIds.TOTEM_BEADS);
-            //GameRegistry.registerItem(totemBeads, totemBeads.getUnlocalizedName());
-        }
 
 
     }

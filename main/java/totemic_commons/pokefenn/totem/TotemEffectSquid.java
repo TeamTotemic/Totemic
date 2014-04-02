@@ -17,7 +17,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class TotemEffectSquid implements ITotemEffect
 {
-    public static void effect(TileTotemic totem, int i, int upgrades, boolean intelligence)
+    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry)
     {
         if (totem.getWorldObj().getWorldTime() % 80L == 0)
         {
@@ -31,7 +31,7 @@ public class TotemEffectSquid implements ITotemEffect
 
                         if(intelligence)
                         {
-                            ((TileTotemIntelligence)totem).decreaseChlorophyll(TotemUtil.decrementAmount(i));
+                            ((TileTotemIntelligence)totem).decreaseChlorophyll(TotemUtil.decrementAmount(totemRegistry.getChlorophyllDecrement()));
                         }
 
                     }

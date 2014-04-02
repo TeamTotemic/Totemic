@@ -20,7 +20,7 @@ public class ItemWaterLotusSeed extends ItemTotemic
 {
     public ItemWaterLotusSeed()
     {
-        setUnlocalizedName(Strings.LOTUS_SEED_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.LOTUS_SEED_NAME);
     }
 
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)

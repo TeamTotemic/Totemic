@@ -8,7 +8,7 @@ import totemic_commons.pokefenn.api.ITotemEffect;
  * Date: 21/02/14
  * Time: 16:52
  */
-public class TotemEffectMining implements ITotemEffect
+public class TotemEffectMining// implements ITotemEffect
 {
     /*
 

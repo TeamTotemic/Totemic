@@ -1,7 +1,9 @@
 package totemic_commons.pokefenn.totem;
 
 import net.minecraft.item.ItemStack;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ITotemEffect;
+import totemic_commons.pokefenn.lib.Totems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,8 @@ public class TotemRegistry
 
     public static void addTotems()
     {
-
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_HORSE, 10, 10, new TotemEffectHorse()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_BLAZE, 10, 10, new TotemEffectBlaze()));
     }
 
     public static List<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();

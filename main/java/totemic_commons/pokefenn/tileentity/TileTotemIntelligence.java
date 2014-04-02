@@ -34,16 +34,22 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     public static final int SLOT_ONE = 0;
 
-    int[] SOCKETS;
+    //int[] SOCKETS;
+
+    public int PLANT_ESSENCE;
 
     public static int SOCKET_NUMBER;
 
     public static int RANGE_UPGRADES;
 
+    ItemStack[] TOTEMS;
+
     public TileTotemIntelligence()
     {
         inventory = new ItemStack[INVENTORY_SIZE];
-        SOCKETS = new int[6];
+        //SOCKETS = new int[6];
+        TOTEMS = new ItemStack[6];
+        PLANT_ESSENCE = 0;
     }
 
     @Override
@@ -55,13 +61,11 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     @Override
     public void openInventory()
     {
-
     }
 
     @Override
     public void closeInventory()
     {
-
     }
 
     public void updateEntity()
@@ -82,16 +86,22 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
             {
                 if (SOCKET_NUMBER != 0)
                 {
-                    if (this.getStackInSlot(SLOT_ONE) != null)
+                    for (TotemRegistry totemRegistry : TotemRegistry.getRecipes())
                     {
-                        if (this.worldObj.getWorldTime() % 5L == 0)
+                        if (this.getStackInSlot(SLOT_ONE) != null)
                         {
                             for (int i = 1; i <= SOCKET_NUMBER; i++)
                             {
-                                if (canDoEffect(TotemUtil.decrementAmount(SOCKETS[i]), SOCKETS[i]))
+                                if (canDoEffect(totemRegistry.getChlorophyllDecrement()) && TOTEMS[i] != null)
                                 {
-                                    doEffects(SOCKETS[i], RANGE_UPGRADES, this, true);
-
+                                    System.out.println(TOTEMS[i].getItemDamage());
+                                    if(TOTEMS[i].getItem() == totemRegistry.getTotem().getItem() && TOTEMS[i].getItemDamage() == totemRegistry.getTotem().getItemDamage())
+                                    {
+                                        //System.out.println(totemRegistry.getTotem().getItemDamage());
+                                        //System.out.println("last step...");
+                                        totemRegistry.getEffect().effect(this, RANGE_UPGRADES, true, totemRegistry);
+                                        //doEffects(SOCKETS[i], RANGE_UPGRADES, this, true);
+                                    }
                                 }
                             }
                         }
@@ -103,6 +113,11 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         }
     }
 
+    public void deChargeCrystal()
+    {
+
+    }
+
     protected void scanArea()
     {
         for (int i = 1; i <= getSocketAmounts(); i++)
@@ -111,20 +126,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
             {
                 if (getSocketItemStack(i) != null)
                 {
-                    if (getSocketItemStack(i).getItemDamage() == 12)
-                    {
-                        SOCKETS[i] = 12;
-                        if (RANGE_UPGRADES < 5)
-                            RANGE_UPGRADES++;
-
-                    } else
-                    {
-                        SOCKETS[i] = getSocketItemStack(i).getItemDamage();
-                        if (RANGE_UPGRADES > 0)
-                            RANGE_UPGRADES--;
-                    }
+                    TOTEMS[i] = getSocketItemStack(i);
                 } else
-                    SOCKETS[i] = 0;
+                    TOTEMS[i] = null;
             }
         }
     }
@@ -132,74 +136,6 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     public boolean canUpdate()
     {
         return true;
-    }
-
-    protected static void doEffects(int metadata, int upgrades, TileEntity tileEntity, boolean hasChlorophyll)
-    {
-        switch (metadata)
-        {
-            case 0:
-                //System.out.println("Invalid totem, set the block to air :(");
-                break;
-
-            case 1:
-                TotemEffectCactus.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
-                break;
-
-            case 2:
-                TotemEffectHorse.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
-                break;
-
-            case 3:
-                TotemEffectHopper.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
-                break;
-
-            case 4:
-                TotemEffectBat.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
-                break;
-
-            case 5:
-                TotemEffectSun.effect((TileTotemic) tileEntity, metadata, hasChlorophyll);
-                break;
-
-            case 6:
-                TotemEffectBlaze.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
-                break;
-
-            case 7:
-                TotemEffectOcelot.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
-                break;
-
-            case 8:
-                TotemEffectSquid.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
-                break;
-
-            case 9:
-                TotemEffectFood.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
-                break;
-
-            case 10:
-                TotemEffectLove.effect((TileTotemic) tileEntity, metadata, upgrades, hasChlorophyll);
-                break;
-
-            case 11:
-                if (hasChlorophyll)
-                    TotemEffectDraining.effect((TileTotemIntelligence) tileEntity, metadata, upgrades);
-                break;
-
-            case 12:
-                break;
-
-            case 13:
-                //TotemEffectMining.effect(this, metadata, upgrades);
-                break;
-
-            default:
-                System.out.println("Broken totem? o.O");
-                tileEntity.getWorldObj().setBlockToAir(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
-                break;
-        }
-
     }
 
     public void increaseChlorophyll()
@@ -223,9 +159,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     }
 
-    protected boolean canDoEffect(int subtraction, int metadata)
+    protected boolean canDoEffect(int subtraction)
     {
-        return metadata == 11 || !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
+        return !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
     }
 
     protected ItemStack getSocketItemStack(int par1)
@@ -292,7 +228,6 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     }
 
-
     @Override
     public int getSizeInventory()
     {
@@ -329,22 +264,6 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
         return itemStack;
     }
-
-    /*
-    @Override
-    public IPacket getDescriptionPacket()
-    {
-        ItemStack itemStack = getStackInSlot(SLOT_ONE);
-
-        if (itemStack != null && itemStack.stackSize > 0)
-        {
-            return new PacketTileWithItemUpdate(this.xCoord, this.yCoord, this.zCoord, orientation, state, customName, itemStack.getUnlocalizedName(), itemStack.getItemDamage(), itemStack.stackSize);
-        } else
-        {
-            return super.getDescriptionPacket();
-        }
-    }
-    */
 
     @Override
     public Packet getDescriptionPacket()
@@ -423,6 +342,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     {
 
         super.readFromNBT(nbtTagCompound);
+
+        PLANT_ESSENCE = nbtTagCompound.getInteger("plantEssence");
+
         // Read in the ItemStacks in the inventory from NBT
         NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
         for (int i = 0; i < tagList.tagCount(); i++)
@@ -442,6 +364,8 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     {
 
         super.writeToNBT(nbtTagCompound);
+
+        nbtTagCompound.setInteger("plantEssence", PLANT_ESSENCE);
 
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();

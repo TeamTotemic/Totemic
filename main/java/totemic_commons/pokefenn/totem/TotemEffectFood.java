@@ -14,6 +14,8 @@ import java.util.Random;
  * Date: 01/02/14
  * Time: 21:09
  */
+
+/*
 public class TotemEffectFood
 {
 
@@ -49,3 +51,4 @@ public class TotemEffectFood
 
     }
 }
+*/

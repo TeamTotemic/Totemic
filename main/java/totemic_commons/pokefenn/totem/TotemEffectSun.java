@@ -12,6 +12,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 23/01/14
  * Time: 14:15
  */
+/*
 public class TotemEffectSun implements ITotemEffect
 {
 
@@ -34,5 +35,6 @@ public class TotemEffectSun implements ITotemEffect
         }
     }
 }
+*/
 
 

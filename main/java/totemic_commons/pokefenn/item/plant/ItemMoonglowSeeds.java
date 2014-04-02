@@ -24,7 +24,7 @@ public class ItemMoonglowSeeds extends ItemSeeds
     {
         super(block, block2);
         this.blockType = block;
-        setUnlocalizedName(Strings.MOONGLOW_SEEDS_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.MOONGLOW_SEEDS_NAME);
         setCreativeTab(Totemic.tabsTotem);
     }
 

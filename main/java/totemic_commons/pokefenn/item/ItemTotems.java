@@ -24,7 +24,7 @@ import java.util.List;
 public class ItemTotems extends ItemTotemic
 {
 
-    public static final String[] TOTEM_NAMES = new String[]{"NotATotem", "Cactus", "Horse", "Hopper", "Bat", "Sun", "Blaze", "Ocelot", "Squid", "Food", "Love", "Draining", "Range"/*, "Spider"*/};
+    public static final String[] TOTEM_NAMES = new String[]{"NotATotem", "Horse", "Bat", "Blaze", "Ocelot", "Squid", "Draining" /*, "Spider"*/};
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
