@@ -1,10 +1,11 @@
 package totemic_commons.pokefenn.fluid;
 
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
@@ -17,7 +18,7 @@ import totemic_commons.pokefenn.ModItems;
  */
 public class BucketHandler
 {
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onBucketFill(FillBucketEvent event)
     {
         ItemStack result = fillCustomBucket(event.world, event.target);
@@ -33,11 +34,11 @@ public class BucketHandler
 
     public ItemStack fillCustomBucket(World world, MovingObjectPosition pos)
     {
-        int blockID = world.getBlockId(pos.blockX, pos.blockY, pos.blockZ);
+        Block blockID = world.getBlock(pos.blockX, pos.blockY, pos.blockZ);
 
-        if ((blockID == ModBlocks.chlorophyll.blockID) && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0)
+        if ((blockID == ModBlocks.chlorophyll) && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0)
         {
-            world.setBlock(pos.blockX, pos.blockY, pos.blockZ, 0);
+            world.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);
             return new ItemStack(ModItems.bucketChlorophyll);
         } else
         {

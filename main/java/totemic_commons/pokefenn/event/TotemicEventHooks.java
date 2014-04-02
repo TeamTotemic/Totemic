@@ -1,8 +1,9 @@
 package totemic_commons.pokefenn.event;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import totemic_commons.pokefenn.potion.ModPotions;
 
@@ -15,7 +16,7 @@ import totemic_commons.pokefenn.potion.ModPotions;
 public class TotemicEventHooks
 {
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onEntityUpdate(LivingEvent.LivingUpdateEvent event)
     {
         EntityLivingBase entityLiving = event.entityLiving;
@@ -23,34 +24,42 @@ public class TotemicEventHooks
         double y = entityLiving.posY;
         double z = entityLiving.posZ;
 
-        if (entityLiving instanceof EntityPlayer && ((EntityPlayer) entityLiving).worldObj.isRemote)
-        {
-            if (event.entityLiving.isPotionActive(ModPotions.horsePotion))
-            {
-                ((EntityPlayer) entityLiving).capabilities.setPlayerWalkSpeed(((EntityPlayer) entityLiving).capabilities.getWalkSpeed() + 0.1F);
-                entityLiving.stepHeight = 0.25F;
-
-            }
-
-        }
 
         if (event.entityLiving.isPotionActive(ModPotions.batPotion))
         {
-
             ((EntityPlayer) entityLiving).capabilities.allowFlying = true;
         }
 
-        if (entityLiving instanceof EntityPlayer && !((EntityPlayer) entityLiving).worldObj.isRemote)
+        if (event.entityLiving.isPotionActive(ModPotions.antidotePotion))
         {
-            if (event.entityLiving.isPotionActive(ModPotions.horsePotion))
+            if (event.entityLiving.isPotionActive(Potion.blindness))
             {
-                //((EntityPlayer) entityLiving).capabilities.setPlayerWalkSpeed(((EntityPlayer) entityLiving).capabilities.getWalkSpeed() + 0.1F);
-                entityLiving.stepHeight = 0.25F;
+                event.entityLiving.removePotionEffect(Potion.blindness.id);
+            }
 
+            if (event.entityLiving.isPotionActive(Potion.poison))
+            {
+                event.entityLiving.removePotionEffect(Potion.poison.id);
+            }
+
+            if (event.entityLiving.isPotionActive(Potion.confusion))
+            {
+                event.entityLiving.removePotionEffect(Potion.confusion.id);
+            }
+
+            //if (event.entityLiving.isPotionActive(Potion.wither))
+            //{
+            //    event.entityLiving.removePotionEffect(Potion.wither.id);
+            //}
+
+            if (event.entityLiving.isPotionActive(Potion.moveSlowdown))
+            {
+                event.entityLiving.removePotionEffect(Potion.moveSlowdown.id);
             }
 
         }
 
+        //TODO remember to turn this back on
 
     }
 

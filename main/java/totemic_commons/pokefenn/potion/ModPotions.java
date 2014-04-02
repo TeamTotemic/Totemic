@@ -14,11 +14,13 @@ public class ModPotions
 
     public static Potion batPotion;
     public static Potion horsePotion;
+    public static Potion antidotePotion;
 
     public static void init()
     {
 
-        batPotion = new PotionBatFlying(ConfigurationSettings.POTION_ID_BAT, false, 0);
-        horsePotion = new PotionHorse(ConfigurationSettings.POTION_ID_HORSE, false, 0);
+        batPotion = new PotionBatFlying(ConfigurationSettings.POTION_ID_BAT, false, 0xF2F2F0);
+        horsePotion = new PotionHorse(ConfigurationSettings.POTION_ID_HORSE, false, 0x614C07);
+        antidotePotion = new PotionAntidote(ConfigurationSettings.POTION_ID_ANTIDOTE, false, 0xD6D454);
     }
 }

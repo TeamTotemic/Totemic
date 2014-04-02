@@ -27,7 +27,13 @@ item.totemic:bottleChlorophyll.name=Bottle of Chlorophyll
 item.totemic:infusedTotemicStaff.name=Infused Totemic Staff
 item.totemic:leaf.name=Infused Leaf
 item.totemic:infusedStick.name=Infused Stick
-item.totemic:totempedia.name-Totempedia
+item.totemic:totempedia.name=Totempedia
+item.totemic:potionResistance.name=Resistance Potion
+item.totemic:potionAntidote.name=Antidote Potion
+item.totemic:potionRegeneration.name=Regeneration Potion
+item.totemic:infusedPotion.name=Infused Potion
+item.totemic:blazingVerdantCrystal.name=Blazing Verdant Crystal
+item.totemic:verdantCrystal.name=Verdant Crystal
 
 # Block localizations
 tile.totemBase.name=Totem Base
@@ -41,9 +47,11 @@ tile.totemSocket.name=Totem Socket
 tile.totemSapling.name=Infused Sapling
 tile.totemLeaves.name=Infused Leaves
 tile.totemMana.name=Mana Totem Intelligence
+tile.totemCauldron.name=Totemic Cauldron
 
 # Fluid localizations
 fluid.fluidChlorophyll.name=Chlorophyll
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
+itemGroup.totemicPotions=Totemic Potions

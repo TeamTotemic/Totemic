@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
@@ -18,9 +18,9 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  */
 public abstract class BlockTileTotemic extends BlockContainer
 {
-    public BlockTileTotemic(int id, Material material)
+    public BlockTileTotemic(Material material)
     {
-        super(id, material);
+        super(material);
         setHardness(2);
         setCreativeTab(Totemic.tabsTotem);
     }
@@ -28,7 +28,7 @@ public abstract class BlockTileTotemic extends BlockContainer
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
     {
-        if (world.getBlockTileEntity(x, y, z) instanceof TileTotemic)
+        if (world.getTileEntity(x, y, z) instanceof TileTotemic)
         {
             int direction = 0;
             int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
@@ -49,10 +49,10 @@ public abstract class BlockTileTotemic extends BlockContainer
 
             if (itemStack.hasDisplayName())
             {
-                ((TileTotemic) world.getBlockTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
+                ((TileTotemic) world.getTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
             }
 
-            ((TileTotemic) world.getBlockTileEntity(x, y, z)).setOrientation(direction);
+            //((TileTotemic) world.getTileEntity(x, y, z)).setOrientation(direction);
 
             world.markBlockForUpdate(x, y, z);
         }

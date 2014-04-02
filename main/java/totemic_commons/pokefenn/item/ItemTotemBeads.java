@@ -18,11 +18,11 @@ import java.util.List;
  * Date: 04/02/14
  * Time: 18:03
  */
-public class ItemTotemBeads extends ItemNormal
+public class ItemTotemBeads extends ItemTotemic
 {
-    public ItemTotemBeads(int id)
+    public ItemTotemBeads()
     {
-        super(id);
+        super();
         setUnlocalizedName(Strings.TOTEM_BEADS_NAME);
         setMaxStackSize(1);
     }
@@ -48,7 +48,7 @@ public class ItemTotemBeads extends ItemNormal
 
         if (!world.isRemote)
         {
-            tag.setName("horse");
+            //tag.setName("horse");
         }
 
         return itemStack;
@@ -62,7 +62,7 @@ public class ItemTotemBeads extends ItemNormal
         {
             if (!world.isRemote && entity instanceof EntityPlayer)
             {
-                if (((EntityPlayer) entity).inventory.hasItem(ModItems.chlorophyllCrystal.itemID))
+                if (((EntityPlayer) entity).inventory.hasItem(ModItems.chlorophyllCrystal))
                 {
                     if (getChlorophyll(((EntityPlayer) entity)) != null)
                     {
@@ -84,7 +84,7 @@ public class ItemTotemBeads extends ItemNormal
         {
             if (player.inventory.getStackInSlot(j) != null)
             {
-                if (player.inventory.getStackInSlot(j).itemID == ModItems.chlorophyllCrystal.itemID)
+                if (player.inventory.getStackInSlot(j).getItem() == ModItems.chlorophyllCrystal)
                 {
                     if (player.inventory.getStackInSlot(j).getItemDamage() >= 1)
                     {
@@ -102,7 +102,7 @@ public class ItemTotemBeads extends ItemNormal
         {
             if (player.inventory.getStackInSlot(j) != null)
             {
-                if (player.inventory.getStackInSlot(j).itemID == ModItems.chlorophyllCrystal.itemID)
+                if (player.inventory.getStackInSlot(j).getItem() == ModItems.chlorophyllCrystal)
                 {
                     return player.inventory.getStackInSlot(j);
                 }

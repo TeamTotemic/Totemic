@@ -3,8 +3,8 @@ package totemic_commons.pokefenn.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.fluid.ModFluids;
@@ -19,21 +19,21 @@ import totemic_commons.pokefenn.lib.Textures;
  */
 public class BlockChlorophyll extends BlockFluidClassic
 {
-    public BlockChlorophyll(int id)
+    public BlockChlorophyll()
     {
-        super(id, ModFluids.fluidChlorophyll, Material.water);
-        setUnlocalizedName(Strings.FLUID_CHLOROPHYLL_NAME);
+        super(ModFluids.fluidChlorophyll, Material.water);
+        setBlockName(Strings.FLUID_CHLOROPHYLL_NAME);
         setCreativeTab(Totemic.tabsTotem);
 
     }
 
     @SideOnly(Side.CLIENT)
-    public static Icon chlorophyllStillIcon;
-    public static Icon chlorophyllFlowingIcon;
+    public static IIcon chlorophyllStillIcon;
+    public static IIcon chlorophyllFlowingIcon;
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister register)
+    public void registerBlockIcons(IIconRegister register)
     {
         chlorophyllFlowingIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.FLUID_CHLOROPHYLL_FLOWING);
         chlorophyllStillIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.FLUID_CHLOROPHYLL_STILL);
@@ -43,7 +43,7 @@ public class BlockChlorophyll extends BlockFluidClassic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
 
         if (side <= 1)

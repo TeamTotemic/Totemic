@@ -10,12 +10,12 @@ import totemic_commons.pokefenn.block.BlockTotemWoods;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
 
-public class ItemTotemWhittlingKnife extends ItemNormal
+public class ItemTotemWhittlingKnife extends ItemTotemic
 {
 
-    public ItemTotemWhittlingKnife(int id)
+    public ItemTotemWhittlingKnife()
     {
-        super(id);
+        super();
         setMaxStackSize(1);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setContainerItem(this);
@@ -36,13 +36,13 @@ public class ItemTotemWhittlingKnife extends ItemNormal
 
             if (block != null)
             {
-                Block blockQuery = Block.blocksList[world.getBlockId(block.blockX, block.blockY, block.blockZ)];
+                Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
                 if (blockQuery != null)
                 {
                     if (blockQuery instanceof BlockTotemWoods)
                     {
-                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket.blockID);
+                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket);
                     }
 
                 }

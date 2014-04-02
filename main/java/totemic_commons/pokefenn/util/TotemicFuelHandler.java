@@ -15,6 +15,6 @@ public class TotemicFuelHandler implements IFuelHandler
     @Override
     public int getBurnTime(ItemStack fuel)
     {
-        return fuel.itemID == ModItems.blazingChlorophyllCrystal.itemID && fuel.getItemDamage() < fuel.getMaxDamage() ? 120 : 0;
+        return fuel.getItem() == ModItems.blazingChlorophyllCrystal && fuel.getItemDamage() < fuel.getMaxDamage() ? 120 : 0;
     }
 }

@@ -20,15 +20,15 @@ public class TotemEffectBat implements ITotemEffect
 
     public static void effect(TileTotemic totem, int i, int upgrades, boolean intelligence)
     {
-        if (totem.worldObj.getWorldTime() % 25L * 20L == 0L)
+        if (totem.getWorldObj().getWorldTime() % 60L * 20L == 0L)
         {
-            if (EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)) != null)
+            if (EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)) != null)
             {
-                for (Entity entity : EntityUtil.getEntitiesInRange(totem.worldObj, totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)))
+                for (Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)))
                 {
                     if (entity instanceof EntityPlayer)
                     {
-                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(ModPotions.batPotion.getId(), 20 * 30, 1));
+                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(ModPotions.batPotion.getId(), 60 * 30, 1));
 
                         //TileTotemIntelligence.hasDoneEffect = true;
 

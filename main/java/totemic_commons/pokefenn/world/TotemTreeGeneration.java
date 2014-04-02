@@ -1,22 +1,14 @@
 package totemic_commons.pokefenn.world;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ForgeDirection;
 import totemic_commons.pokefenn.ModBlocks;
 
 import java.util.Random;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 16/02/14
- * Time: 16:07
- */
 public class TotemTreeGeneration extends WorldGenerator
 {
+
 
     public TotemTreeGeneration(boolean doNotify)
     {
@@ -52,6 +44,7 @@ public class TotemTreeGeneration extends WorldGenerator
         return true;
     }
 
+    /*
     public boolean growTree(World world, Random rand, int x, int y, int z)
     {
         int treeHeight = rand.nextInt(3) + 5, worldHeight = world.getHeight();
@@ -64,10 +57,11 @@ public class TotemTreeGeneration extends WorldGenerator
             int yOffset;
             int zOffset;
 
-            blockId = world.getBlockId(x, y - 1, z);
+            blockId = world.getBlock(x, y - 1, z);
             block = Block.blocksList[blockId];
 
-            if ((block != null && block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, ((BlockSapling) ModBlocks.totemSapling))) && y < worldHeight - treeHeight - 1)
+            if ((block != null && block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP,
+                    ((BlockSapling) ModBlocks.totemSapling))) && y < worldHeight - treeHeight - 1)
             {
                 for (yOffset = y; yOffset <= y + 1 + treeHeight; ++yOffset)
                 {
@@ -157,12 +151,7 @@ public class TotemTreeGeneration extends WorldGenerator
         }
         return false;
     }
-
-
-    /*
-
-    private static final int logID = ModBlocks.totemWoods.blockID, logMeta = 0, leavesID = ModBlocks.totemLeaves.blockID, leavesMeta = 0;
-
+*/
     public boolean growTree(World world, Random rand, int x, int y, int z)
     {
         if (y > world.getHeight() - 8) return false;
@@ -206,7 +195,7 @@ public class TotemTreeGeneration extends WorldGenerator
                 longBranchGenerated = true;
         }
 
-        for (int yy = y; yy < y + trunkHeight; yy++) world.setBlock(x, yy, z, logID, logMeta, 3);
+        for (int yy = y; yy < y + trunkHeight; yy++) world.setBlock(x, yy, z, ModBlocks.totemWoods, 0, 3);
 
         generateLeaves(world, x, y + trunkHeight, z, rand.nextInt(2) + 1);
 
@@ -217,7 +206,7 @@ public class TotemTreeGeneration extends WorldGenerator
             {
                 xx = a == 0 ? x + 1 + branch : a == 1 ? x - 1 - branch : x;
                 zz = a == 2 ? z + 1 + branch : a == 3 ? z - 1 - branch : z;
-                world.setBlock(xx, y + trunkHeight - (branchSizes[a] == 1 ? 1 : 2 - branch), zz, logID, logMeta + a <= 1 ? 4 : 8, 3);
+                world.setBlock(xx, y + trunkHeight - (branchSizes[a] == 1 ? 1 : 2 - branch), zz, ModBlocks.totemWoods, 0 + a <= 1 ? 4 : 8, 3);
                 if (branch == 0) generateLeaves(world, xx, y + trunkHeight, zz, rand.nextInt(2) + 1);
             }
         }
@@ -228,10 +217,9 @@ public class TotemTreeGeneration extends WorldGenerator
             {
                 for (int zz = z - 4; zz <= z + 4; zz++)
                 {
-                    if (world.getBlockId(xx - 1, yy - 1, zz) == leavesID && world.getBlockId(xx + 1, yy - 1, zz) == leavesID &&
-                            world.getBlockId(xx, yy - 1, zz - 1) == leavesID && world.getBlockId(xx, yy - 1, zz + 1) == leavesID)
+                    if (world.getBlock(xx - 1, yy - 1, zz) == ModBlocks.totemLeaves && world.getBlock(xx + 1, yy - 1, zz) == ModBlocks.totemLeaves && world.getBlock(xx, yy - 1, zz - 1) == ModBlocks.totemLeaves && world.getBlock(xx, yy - 1, zz + 1) == ModBlocks.totemLeaves)
                     {
-                        world.setBlock(xx, yy, zz, leavesID, leavesMeta, 3);
+                        world.setBlock(xx, yy, zz, ModBlocks.totemLeaves, 0, 3);
                     }
                 }
             }
@@ -251,12 +239,12 @@ public class TotemTreeGeneration extends WorldGenerator
 
                 if (((xDiff <= 1 && zDiff <= 1) || (xDiff == 2 && zDiff <= sideSize) || (xDiff <= sideSize && zDiff == 2)) && world.isAirBlock(xx, y, zz))
                 {
-                    world.setBlock(xx, y, zz, leavesID, leavesMeta, 3);
+                    world.setBlock(xx, y, zz, ModBlocks.totemLeaves, 0, 3);
                 }
             }
         }
     }
 
-*/
 
 }
+

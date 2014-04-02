@@ -9,35 +9,34 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import totemic_commons.pokefenn.compat.CompatInit;
+import totemic_commons.pokefenn.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.event.TotemicEventHooks;
 import totemic_commons.pokefenn.fluid.BucketHandler;
 import totemic_commons.pokefenn.fluid.FluidContainers;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Reference;
-import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.PacketPipeline;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
-import totemic_commons.pokefenn.recipe.TotemTableHandler;
-import totemic_commons.pokefenn.recipe.TotemicCraftingHandler;
+import totemic_commons.pokefenn.recipe.PotionItemRegistry;
+import totemic_commons.pokefenn.recipe.PotionRegistry;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
+import totemic_commons.pokefenn.util.CreativeTabPotions;
 import totemic_commons.pokefenn.util.CreativeTabTotemic;
 import totemic_commons.pokefenn.util.OreDictionaryTotemic;
 import totemic_commons.pokefenn.util.TotemicFuelHandler;
-import totemic_commons.pokefenn.world.TotemicWorldGeneration;
 
 import java.io.File;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.3.0a")
-@NetworkMod(channels = {Reference.CHANNEL_NAME}, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.4.0")
 
 public final class Totemic
 {
@@ -49,8 +48,11 @@ public final class Totemic
 
     //Creative tab stuff
     public static CreativeTabs tabsTotem = new CreativeTabTotemic(CreativeTabs.getNextID(), Reference.MOD_NAME);
+    public static CreativeTabs tabsPotionTotem = new CreativeTabPotions(CreativeTabs.getNextID(), "totemicPotions");
 
     public static final Logger logger = Logger.getLogger(Reference.MOD_NAME);
+
+    public static final PacketPipeline packetPipeline = new PacketPipeline();
 
     public static boolean botaniaLoaded = false;
 
@@ -60,7 +62,7 @@ public final class Totemic
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
 
         //Creates the logger thingy :p
-        logger.setParent(FMLCommonHandler.instance().getFMLLogger());
+        //logger.setParent(FMLCommonHandler.instance().getFMLLogger());
 
         logger.info("Moma had a cow, Moma had a chicken... dad was proud, he didn't care how!");
 
@@ -85,7 +87,9 @@ public final class Totemic
 
         logger.info("Totemic is entering its Initlisation stage");
 
-        GameRegistry.registerCraftingHandler(new TotemicCraftingHandler());
+        packetPipeline.initialise();
+
+        //GameRegistry.registerCraftingHandler(new TotemicCraftingHandler());
 
         proxy.initRendering();
 
@@ -108,9 +112,6 @@ public final class Totemic
         //Init tile entities into the game
         proxy.registerTileEntities();
 
-
-        NetworkRegistry.instance().registerGuiHandler(instance, proxy);
-
         //Init the potions into the game
         ModPotions.init();
 
@@ -119,9 +120,13 @@ public final class Totemic
         //Makes the recipes of Chlorophyll enter the game
         ChlorophyllSolidifierRecipes.addRecipes();
 
-        TotemTableHandler.addRecipes();
+        PotionItemRegistry.addRecipes();
 
-        GameRegistry.registerWorldGenerator(new TotemicWorldGeneration());
+        PotionRegistry.addRecipes();
+
+        CeremonyRegistry.addRecipes();
+
+        //GameRegistry.registerWorldGenerator(new TotemicWorldGeneration());
 
 
     }
@@ -129,7 +134,9 @@ public final class Totemic
     @EventHandler
     public void modsLoaded(FMLPostInitializationEvent event)
     {
-        CompatInit.init();
+        packetPipeline.postInitialise();
+
+       //.init();
     }
 
 }

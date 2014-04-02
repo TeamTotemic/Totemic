@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.totem;
 
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.storage.WorldInfo;
 import totemic_commons.pokefenn.api.ITotemEffect;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
@@ -15,11 +17,12 @@ public class TotemEffectSun implements ITotemEffect
 
     public static void effect(TileTotemic totem, int i, boolean intelligence)
     {
-        if (totem.worldObj.getWorldTime() % 200L == 0)
+        if (totem.getWorldObj().getWorldTime() % 200L == 0)
         {
-            if (totem.worldObj.isRaining())
+            if (totem.getWorldObj().isRaining())
             {
-                totem.worldObj.toggleRain();
+                WorldInfo worldinfo = MinecraftServer.getServer().worldServers[0].getWorldInfo();
+                worldinfo.setRaining(false);
 
                 if(intelligence)
                 {

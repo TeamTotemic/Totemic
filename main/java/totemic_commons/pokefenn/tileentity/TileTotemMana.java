@@ -104,11 +104,11 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
 
     protected void setSocketAmounts()
     {
-        Block block1 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 1, this.zCoord)];
-        Block block2 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 2, this.zCoord)];
-        Block block3 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 3, this.zCoord)];
-        Block block4 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 4, this.zCoord)];
-        Block block5 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 5, this.zCoord)];
+        Block block1 = worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
+        Block block2 = worldObj.getBlock(this.xCoord, this.yCoord + 2, this.zCoord);
+        Block block3 = worldObj.getBlock(this.xCoord, this.yCoord + 3, this.zCoord);
+        Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
+        Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
 
         if (block1 instanceof BlockTotemSocket && block2 == null)
         {
@@ -132,11 +132,11 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
 
     protected int getSocketAmounts()
     {
-        Block block1 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 1, this.zCoord)];
-        Block block2 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 2, this.zCoord)];
-        Block block3 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 3, this.zCoord)];
-        Block block4 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 4, this.zCoord)];
-        Block block5 = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 5, this.zCoord)];
+        Block block1 = worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
+        Block block2 = worldObj.getBlock(this.xCoord, this.yCoord + 2, this.zCoord);
+        Block block3 = worldObj.getBlock(this.xCoord, this.yCoord + 3, this.zCoord);
+        Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
+        Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
 
         if (block1 instanceof BlockTotemSocket && block2 == null)
         {
@@ -161,7 +161,7 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
     protected ItemStack getSocketItemStack(int par1)
     {
 
-        TileEntity tileEntity = this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
+        TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
 
         return ((IInventory) tileEntity).getStackInSlot(TileTotemSocket.SLOT_ONE);
 

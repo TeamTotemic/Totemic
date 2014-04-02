@@ -5,11 +5,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketTileWithItemUpdate;
-import totemic_commons.pokefenn.network.PacketTypeHandler;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,15 +27,7 @@ public class TileTotemSocket extends TileTotemic implements IInventory
 
     public TileTotemSocket()
     {
-
         inventory = new ItemStack[INVENTORY_SIZE];
-
-    }
-
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
-    {
-        return true;
     }
 
 
@@ -78,15 +69,15 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     @Override
     public Packet getDescriptionPacket()
     {
-        ItemStack itemStack = getStackInSlot(SLOT_ONE);
+        NBTTagCompound nbttagcompound = new NBTTagCompound();
+        this.writeToNBT(nbttagcompound);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, nbttagcompound);
+    }
 
-        if (itemStack != null && itemStack.stackSize > 0)
-        {
-            return PacketTypeHandler.populatePacket(new PacketTileWithItemUpdate(xCoord, yCoord, zCoord, orientation, state, customName, itemStack.itemID, itemStack.getItemDamage(), itemStack.stackSize));
-        } else
-        {
-            return super.getDescriptionPacket();
-        }
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    {
+        readFromNBT(pkt.func_148857_g());
     }
 
 
@@ -112,15 +103,15 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     }
 
     @Override
-    public String getInvName()
+    public String getInventoryName()
     {
-        return Strings.CONTAINER_TOTEM_SOCKET_NAME;
+        return null;
     }
 
     @Override
-    public boolean isInvNameLocalized()
+    public boolean hasCustomInventoryName()
     {
-        return true;
+        return false;
     }
 
     @Override
@@ -130,13 +121,21 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     }
 
     @Override
-    public void openChest()
+    public boolean isUseableByPlayer(EntityPlayer var1)
     {
+        return true;
     }
 
     @Override
-    public void closeChest()
+    public void openInventory()
     {
+
+    }
+
+    @Override
+    public void closeInventory()
+    {
+
     }
 
     @Override
@@ -144,7 +143,7 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     {
         if (!this.worldObj.isRemote)
         {
-            if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.itemID == ModItems.totems.itemID)
+            if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.getItem() == ModItems.totems)
             {
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 return true;
@@ -161,17 +160,15 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     {
 
         super.readFromNBT(nbtTagCompound);
-
         // Read in the ItemStacks in the inventory from NBT
-        NBTTagList tagList = nbtTagCompound.getTagList("Items");
-        inventory = new ItemStack[this.getSizeInventory()];
-        for (int i = 0; i < tagList.tagCount(); ++i)
+        NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
+        for (int i = 0; i < tagList.tagCount(); i++)
         {
-            NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
-            byte slotIndex = tagCompound.getByte("Slot");
-            if (slotIndex >= 0 && slotIndex < inventory.length)
+            NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+            byte slot = tag.getByte("Slot");
+            if (slot >= 0 && slot < inventory.length)
             {
-                inventory[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
+                inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
             }
         }
     }

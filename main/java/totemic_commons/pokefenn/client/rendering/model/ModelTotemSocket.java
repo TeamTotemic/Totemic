@@ -2,9 +2,9 @@ package totemic_commons.pokefenn.client.rendering.model;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
-import totemic_commons.pokefenn.lib.Models;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,7 +20,7 @@ public class ModelTotemSocket
 
     public ModelTotemSocket()
     {
-        modelTotemSupport = AdvancedModelLoader.loadModel(Models.TOTEM_SOCKET);
+        modelTotemSupport = AdvancedModelLoader.loadModel(new ResourceLocation("totemic:models/totemSocket.obj"));
     }
 
     public void render()

@@ -65,7 +65,7 @@ public class Textures
     public static final ResourceLocation TEXTURE_TOTEMIC_STAFF = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemicStaff.png");
     public static final ResourceLocation TEXTURE_INFUSED_TOTEMIC_STAFF = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "infusedTotemicStaff.png");
     public static final ResourceLocation TEXTURE_CHLOROPHYLL_CRYSTAL = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "chlorophyllCrystal.png");
-    public static final ResourceLocation TEXTURE_BLAZING_CHLOROPHYLL_CRYSTAL = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "blazingChlorophyllCrystal.png");
+    public static final ResourceLocation TEXTURE_TOTEM_TORCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemTorch.png");
 
     public static final ResourceLocation MANA_BAR = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "manaHud.png");
 

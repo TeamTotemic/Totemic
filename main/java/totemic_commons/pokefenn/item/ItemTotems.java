@@ -2,13 +2,15 @@ package totemic_commons.pokefenn.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;
@@ -19,19 +21,22 @@ import java.util.List;
  * Date: 28/11/13
  * Time: 18:32
  */
-public class ItemTotems extends ItemNormal
+public class ItemTotems extends ItemTotemic
 {
 
     public static final String[] TOTEM_NAMES = new String[]{"NotATotem", "Cactus", "Horse", "Hopper", "Bat", "Sun", "Blaze", "Ocelot", "Squid", "Food", "Love", "Draining", "Range"/*, "Spider"*/};
 
     @SideOnly(Side.CLIENT)
-    private Icon[] icons;
+    private IIcon[] icons;
 
-    public ItemTotems(int id)
+    public ItemTotems()
     {
-        super(id);
-        setHasSubtypes(true);
+        super();
+        this.setHasSubtypes(true);
         maxStackSize = 1;
+        setCreativeTab(Totemic.tabsTotem);
+        registerIcons = false;
+
     }
 
     @Override
@@ -53,7 +58,7 @@ public class ItemTotems extends ItemNormal
                 break;
 
             case 4:
-                list.add("Not implemented yet");
+                list.add("Fly like a Bat");
                 break;
 
             case 5:
@@ -87,10 +92,17 @@ public class ItemTotems extends ItemNormal
             case 12:
                 list.add("Increase the range of Totems");
                 break;
-
-
         }
     }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
+    {
+        for (int meta = 0; meta < TOTEM_NAMES.length; meta++)
+            list.add(new ItemStack(id, 1, meta));
+    }
+
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
@@ -108,38 +120,25 @@ public class ItemTotems extends ItemNormal
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int meta)
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        icons = new IIcon[TOTEM_NAMES.length];
+
+        for (int i = 0; i < TOTEM_NAMES.length; ++i)
+            icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + Strings.TOTEMS_NAME + TOTEM_NAMES[i]);
+
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int meta)
     {
         int j = MathHelper.clamp_int(meta, 0, TOTEM_NAMES.length - 1);
         return icons[j];
     }
 
-    @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
-    {
-        icons = new Icon[TOTEM_NAMES.length];
-
-        for (int i = 0; i < TOTEM_NAMES.length; ++i)
-        {
-            icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + Strings.TOTEMS_NAME + TOTEM_NAMES[i]);
-        }
-    }
-
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(int id, CreativeTabs creativeTab, List list)
-    {
-
-        for (int meta = 0; meta < TOTEM_NAMES.length; ++meta)
-        {
-            list.add(new ItemStack(id, 1, meta));
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack par1ItemStack)
+    public EnumRarity getRarity(ItemStack stack)
     {
         return EnumRarity.uncommon;
     }

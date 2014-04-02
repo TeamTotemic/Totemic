@@ -1,42 +1,40 @@
 package totemic_commons.pokefenn.fluid;
 
+import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
-import net.minecraftforge.fluids.ItemFluidContainer;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 
-public class ItemBucketChlorophyll extends ItemFluidContainer
+public class ItemBucketChlorophyll extends ItemTotemic
 {
 
 
-    public ItemBucketChlorophyll(int id)
+    public ItemBucketChlorophyll()
     {
-        super(id - 256);
+        super();
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BUCKET_CHLOROPHYLL_NAME);
         setMaxStackSize(1);
         setCreativeTab(Totemic.tabsTotem);
         setContainerItem(this);
-
     }
 
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister register)
+    public void registerIcons(IIconRegister register)
     {
 
         itemIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.BUCKET_CHLOROPHYLL_ICON);
@@ -73,13 +71,14 @@ public class ItemBucketChlorophyll extends ItemFluidContainer
 
                 if (!player.inventory.addItemStackToInventory(event.result))
                 {
-                    player.dropPlayerItem(event.result);
+                    player.dropPlayerItemWithRandomChoice(event.result, false);
+                    //player.dropPlayerItem(event.result);
                 }
 
                 return item;
             }
 
-            if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE)
+            if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
             {
                 int x = movingobjectposition.blockX;
                 int y = movingobjectposition.blockY;
@@ -128,7 +127,7 @@ public class ItemBucketChlorophyll extends ItemFluidContainer
 
                 if (this.tryPlaceContainedLiquid(world, x, y, z) && !player.capabilities.isCreativeMode)
                 {
-                    return new ItemStack(Item.bucketEmpty);
+                    return new ItemStack(Items.bucket);
                 }
 
             }
@@ -140,8 +139,7 @@ public class ItemBucketChlorophyll extends ItemFluidContainer
     public boolean tryPlaceContainedLiquid(World w, int x, int y, int z)
     {
 
-
-        Material material = w.getBlockMaterial(x, y, z);
+        Material material = w.getBlock(x, y, z).getMaterial();
         boolean isNotSolid = !material.isSolid();
 
         if (!w.isAirBlock(x, y, z) && !isNotSolid)
@@ -152,12 +150,13 @@ public class ItemBucketChlorophyll extends ItemFluidContainer
 
             if (!w.isRemote && isNotSolid && !material.isLiquid())
             {
-                w.destroyBlock(x, y, z, true);
+                //w.destroyBlockInWorldPartially(x, y, z, true);
             }
-            w.setBlock(x, y, z, ModBlocks.chlorophyll.blockID, 0, 3);
+            w.setBlock(x, y, z, ModBlocks.chlorophyll, 0, 3);
             return true;
         }
 
     }
+
 
 }

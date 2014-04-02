@@ -4,6 +4,7 @@ public class Strings
 {
     //Misc
     public static final String RESOURCE_PREFIX = "totemic:";
+    public static final String ITEM_PREFIX = RESOURCE_PREFIX + "textures:items";
 
 
     //Blocks
@@ -22,21 +23,30 @@ public class Strings
     public static final String TOTEM_LEAVES_NAME = "totemLeaves";
     public static final String TOTEM_CAULDRON_NAME = "totemCauldron";
     public static final String TOTEM_MANA_NAME = "totemMana";
+    public static final String MOONGLOW_NAME = "moonglow";
+    public static final String CEREMONY_INTELLIGENCE_NAME = "totemCeremonyIntelligence";
+    public static final String BLOODWART_BLOCK_NAME = "blockBloodwart";
+    public static final String TOTEM_TORCH_NAME = "totemTorch";
+    public static final String LOTUS_BLOCK_NAME = "lotusBlock";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";
     public static final String TOTEM_WHITTLING_KNIFE_NAME = "totemWhittlingKnife";
     public static final String TOTEMIC_STAFF_NAME = "totemicStaff";
-    public static final String CHLOROPHYLL_CRYSTAL_NAME = "chlorophyllCrystal";
+    public static final String VERDANT_CRYSTAL_NAME = "verdantCrystal";
     public static final String BUCKET_CHLOROPHYLL_NAME = "bucketChlorophyll";
     public static final String VENUS_FLY_TRAP_SEED_NAME = "venusFlyTrapSeed";
     public static final String TOTEMS_NAME = "totems";
     public static final String SUB_ITEMS_NAME = "subItems";
     public static final String BOTTLE_CHLOROPHYLL_NAME = "bottleChlorophyll";
     public static final String TOTEM_BEADS_NAME = "totemBeads";
-    public static final String BLAZING_CHLOROPHYLL_CRYSTAL_NAME = "blazingChlorophyllCrystal";
+    public static final String BLAZING_VERDANT_CRYSTAL_NAME = "blazingVerdantCrystal";
     public static final String INFUSED_TOTEMIC_STAFF_NAME = "infusedTotemicStaff";
     public static final String TOTEMPEDIA_NAME = "totempedia";
+    public static final String TOTEMIC_POTION_NAME = "infusedPotion";
+    public static final String MOONGLOW_SEEDS_NAME = "moonglowSeeds";
+    public static final String BLOODWART_NAME = "bloodwart";
+    public static final String LOTUS_SEED_NAME = "lotusSeed";
 
 
     public static final String TOTEM_WOOD_WAND_CORE_NAME = "totemWoodWandCore";

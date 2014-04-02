@@ -3,8 +3,7 @@ package totemic_commons.pokefenn;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import net.minecraft.block.Block;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -13,50 +12,26 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.ForgeDirection;
-import org.w3c.dom.Document;
-import totemic_commons.pokefenn.client.book.GuiTotempedia;
-import totemic_commons.pokefenn.client.book.SmallFontRenderer;
-import totemic_commons.pokefenn.client.book.TotemicClientRegistry;
-import totemic_commons.pokefenn.client.book.pages.*;
-import totemic_commons.pokefenn.client.rendering.item.*;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.IFluidHandler;
+import totemic_commons.pokefenn.client.rendering.item.ItemChlorophyllCrystalRenderer;
+import totemic_commons.pokefenn.client.rendering.item.ItemInfusedTotemicStaff;
+import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
+import totemic_commons.pokefenn.client.rendering.item.ItemTotemicStaffRender;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketRenderer;
+import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTorchRenderer;
 import totemic_commons.pokefenn.lib.RenderIds;
-import totemic_commons.pokefenn.network.PacketRequestEvent;
-import totemic_commons.pokefenn.network.PacketTypeHandler;
-import totemic_commons.pokefenn.tileentity.TileChlorophyllSolidifier;
+import totemic_commons.pokefenn.misc.villager.TotemicVillagerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTotemSocket;
+import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ClientProxy extends CommonProxy
 {
 
+    /*
+
     public static SmallFontRenderer smallFontRenderer;
-
-    @Override
-    public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName)
-    {
-
-        //System.out.println("packet");
-
-        TileEntity tileEntity = FMLClientHandler.instance().getClient().theWorld.getBlockTileEntity(x, y, z);
-
-        if (tileEntity != null)
-        {
-            if (tileEntity instanceof TileTotemic)
-            {
-                ((TileTotemic) tileEntity).setOrientation(orientation);
-                ((TileTotemic) tileEntity).setState(state);
-                ((TileTotemic) tileEntity).setCustomName(customName);
-            }
-        }
-    }
 
     public static Map<String,Class<? extends BookPage>> pageClasses = new HashMap<String,Class<? extends BookPage>>();
 
@@ -101,20 +76,20 @@ public class ClientProxy extends CommonProxy
     public void initManualRecipes()
     {
 
-        TotemicClientRegistry.registerManualSmallRecipe("chlorophyllBucket", new ItemStack(ModItems.bucketChlorophyll), new ItemStack(ModItems.totemWhittlingKnife), new ItemStack(Item.seeds), new ItemStack(Item.bucketEmpty), null);
-        TotemicClientRegistry.registerManualSmallRecipe("chlorophyllBottle", new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.totemWhittlingKnife), new ItemStack(Item.seeds), new ItemStack(Item.glassBottle), null);
+        TotemicClientRegistry.registerManualSmallRecipe("chlorophyllBucket", new ItemStack(ModItems.bucketChlorophyll), new ItemStack(ModItems.totemWhittlingKnife), new ItemStack(Items.wheat_seeds), new ItemStack(Items.bucket), null);
+        TotemicClientRegistry.registerManualSmallRecipe("chlorophyllBottle", new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.totemWhittlingKnife), new ItemStack(Items.wheat_seeds), new ItemStack(Items.glass_bottle), null);
 
         TotemicClientRegistry.registerManualSmallRecipe("infusedStick", new ItemStack(ModItems.subItems, 1, 2), null, new ItemStack(ModBlocks.totemWoods), new ItemStack(ModBlocks.totemWoods), null);
 
-        TotemicClientRegistry.registerManualLargeRecipe("totemicStaff", new ItemStack(ModItems.totemicStaff), null, new ItemStack(Block.leaves), new ItemStack(Item.stick), null, new ItemStack(Item.stick),null, new ItemStack(Item.stick), null, new ItemStack(Block.leaves));
+        TotemicClientRegistry.registerManualLargeRecipe("totemicStaff", new ItemStack(ModItems.totemicStaff), null, new ItemStack(Blocks.leaves), new ItemStack(Items.stick), null, new ItemStack(Items.stick), null, new ItemStack(Items.stick), null, new ItemStack(Blocks.leaves));
 
-        TotemicClientRegistry.registerManualLargeRecipe("chlorophyllCrystal", new ItemStack(ModItems.chlorophyllCrystal), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(Item.diamond), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll));
+        TotemicClientRegistry.registerManualLargeRecipe("chlorophyllCrystal", new ItemStack(ModItems.chlorophyllCrystal), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(Items.diamond), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll), new ItemStack(ModItems.bottleChlorophyll));
 
-        TotemicClientRegistry.registerManualLargeRecipe("blazingChlorophyllCrystal", new ItemStack(ModItems.blazingChlorophyllCrystal), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(ModItems.chlorophyllCrystal), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava), new ItemStack(Item.bucketLava));
+        TotemicClientRegistry.registerManualLargeRecipe("blazingChlorophyllCrystal", new ItemStack(ModItems.blazingChlorophyllCrystal), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(ModItems.chlorophyllCrystal), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket));
 
-        TotemicClientRegistry.registerManualLargeRecipe("infusedTotemicStaff", new ItemStack(ModItems.infusedTotemicStaff), null, new ItemStack(ModItems.subItems, 1, 0), new ItemStack(ModItems.subItems, 1, 2), null, new ItemStack(ModItems.subItems, 1, 2),null, new ItemStack(Item.stick), null, new ItemStack(ModItems.subItems));
+        TotemicClientRegistry.registerManualLargeRecipe("infusedTotemicStaff", new ItemStack(ModItems.infusedTotemicStaff), null, new ItemStack(ModItems.subItems, 1, 0), new ItemStack(ModItems.subItems, 1, 2), null, new ItemStack(ModItems.subItems, 1, 2), null, new ItemStack(Items.stick), null, new ItemStack(ModItems.subItems));
 
-        TotemicClientRegistry.registerManualLargeRecipe("whittlingKnife", new ItemStack(ModItems.totemWhittlingKnife), null, null, new ItemStack(Item.ingotIron), null, new ItemStack(Item.stick), new ItemStack(Item.flint), new ItemStack(Item.stick), null, null);
+        TotemicClientRegistry.registerManualLargeRecipe("whittlingKnife", new ItemStack(ModItems.totemWhittlingKnife), null, null, new ItemStack(Items.iron_ingot), null, new ItemStack(Items.stick), new ItemStack(Items.flint), new ItemStack(Items.stick), null, null);
     }
 
     public static void registerManualPage(String type, Class<? extends BookPage> clazz)
@@ -138,71 +113,7 @@ public class ClientProxy extends CommonProxy
         }
     }
 
-    @Override
-    public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize)
-    {
-
-        World world = FMLClientHandler.instance().getClient().theWorld;
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-
-        this.handleTileEntityPacket(x, y, z, orientation, state, customName);
-
-        if (tileEntity instanceof TileChlorophyllSolidifier)
-        {
-            ItemStack itemStack = null;
-
-            if (itemID != -1)
-            {
-                itemStack = new ItemStack(itemID, stackSize, metaData);
-
-            }
-
-            //((TileChlorophyllSolidifier) tileEntity).setInventorySlotContents(0, itemStack);
-            world.updateAllLightTypes(x, y, z);
-        }
-
-    }
-
-    @Override
-    public void handleChlorophyllSolidifierPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize)
-    {
-
-        World world = FMLClientHandler.instance().getClient().theWorld;
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-
-        this.handleTileEntityPacket(x, y, z, orientation, state, customName);
-
-        if (tileEntity instanceof TileChlorophyllSolidifier)
-        {
-            ItemStack itemStack = null;
-
-            if (itemID != -1)
-            {
-                itemStack = new ItemStack(itemID, stackSize, metaData);
-
-            }
-            world.updateAllLightTypes(x, y, z);
-        }
-
-    }
-
-
-    @Override
-    public void handleTileWithItemAndFluidPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize, int fluidAmount, byte fluidID)
-    {
-        World world = FMLClientHandler.instance().getClient().theWorld;
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-
-        this.handleTileWithItemPacket(x, y, z, orientation, state, customName, itemID, metaData, stackSize);
-
-    }
-
-
-    public static void sendRequestEventPacket(byte eventType, int originX, int originY, int originZ, byte sideHit, byte rangeX, byte rangeY, byte rangeZ, String data)
-    {
-
-        PacketDispatcher.sendPacketToServer(PacketTypeHandler.populatePacket(new PacketRequestEvent(eventType, originX, originY, originZ, sideHit, rangeX, rangeY, rangeZ, data)));
-    }
+    */
 
     //@SideOnly(Side.CLIENT)
     @Override
@@ -213,17 +124,20 @@ public class ClientProxy extends CommonProxy
         RenderIds.RENDER_ID_TOTEM_POLE = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.RENDER_ID_TOTEM_DRAINING = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.RENDER_ID_TOTEMIC_STAFF = RenderingRegistry.getNextAvailableRenderId();
+        RenderIds.RENDER_ID_TOTEM_TORCH = RenderingRegistry.getNextAvailableRenderId();
 
-        MinecraftForgeClient.registerItemRenderer(ModBlocks.totemSocket.blockID, new ItemTotemSocketRenderer());
-        MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff.itemID, new ItemTotemicStaffRender());
-        MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff.itemID, new ItemInfusedTotemicStaff());
-        MinecraftForgeClient.registerItemRenderer(ModItems.chlorophyllCrystal.itemID, new ItemChlorophyllCrystalRenderer());
-        MinecraftForgeClient.registerItemRenderer(ModItems.blazingChlorophyllCrystal.itemID, new ItemBlazingChlorophyllCrystalRenderer());
-
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemSocket), new ItemTotemSocketRenderer());
+        MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff, new ItemTotemicStaffRender());
+        MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff, new ItemInfusedTotemicStaff());
+        MinecraftForgeClient.registerItemRenderer(ModItems.chlorophyllCrystal, new ItemChlorophyllCrystalRenderer());
+        //MinecraftForgeClient.registerItemRenderer(ModBlocks.totemTorch, new ItemTotemTorchRenderer);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemSocket.class, new TileTotemSocketRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTorch.class, new TileTotemTorchRenderer());
 
-        smallFontRenderer = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("textures/font/ascii.png"), mc.renderEngine, false);
+        VillagerRegistry.instance().registerVillagerSkin(TotemicVillagerInitiation.SHAMAN_VILLAGER_ID, new ResourceLocation("totemic", "textures/entity/shamanVillager.png"));
+
+        //smallFontRenderer = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("textures/font/ascii.png"), mc.renderEngine, false);
 
     }
 
@@ -234,11 +148,68 @@ public class ClientProxy extends CommonProxy
         if (ID == totempediaGuiID)
         {
             ItemStack stack = player.getCurrentEquippedItem();
-            return new GuiTotempedia(stack, totempedia);
+            //return new GuiTotempedia(stack, totempedia);
         }
 
         return null;
     }
+
+    @Override
+    public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName)
+    {
+        TileEntity tileEntity = FMLClientHandler.instance().getClient().theWorld.getTileEntity(x, y, z);
+
+        if (tileEntity != null)
+        {
+            if (tileEntity instanceof TileTotemic)
+            {
+                //((TileTotemic) tileEntity).setOrientation(orientation);
+                ((TileTotemic) tileEntity).setState(state);
+                ((TileTotemic) tileEntity).setCustomName(customName);
+            }
+        }
+    }
+
+    @Override
+    public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, String itemName, int metaData, int stackSize)
+    {
+
+        World world = FMLClientHandler.instance().getClient().theWorld;
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+
+        this.handleTileEntityPacket(x, y, z, orientation, state, customName);
+
+        if (tileEntity != null)
+        {
+            if (tileEntity instanceof TileTotemic)
+            {
+                //((TileTotemic) tileEntity).setOrientation(orientation);
+                ((TileTotemic) tileEntity).setState(state);
+                ((TileTotemic) tileEntity).setCustomName(customName);
+            }
+
+        }
+    }
+
+    @Override
+    public void handleTileWithItemAndFluidPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, String itemName, int metaData, int stackSize, int fluidAmount, byte fluidID)
+    {
+        World world = FMLClientHandler.instance().getClient().theWorld;
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
+
+        this.handleTileWithItemPacket(x, y, z, orientation, state, customName, itemName, metaData, stackSize);
+
+        if (tileEntity != null)
+        {
+            if (tileEntity instanceof TileTotemic && tileEntity instanceof IFluidHandler)
+            {
+
+            }
+
+        }
+
+    }
+
 
 
 }

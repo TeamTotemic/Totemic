@@ -1,12 +1,15 @@
 package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
-import totemic_commons.pokefenn.lib.ItemIds;
+import totemic_commons.pokefenn.item.plant.ItemMoonglowSeeds;
+import totemic_commons.pokefenn.item.plant.ItemWaterLotusSeed;
+import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModItems
 {
@@ -23,21 +26,28 @@ public final class ModItems
     public static Item blazingChlorophyllCrystal;
     public static Item infusedTotemicStaff;
     public static Item totempedia;
+    public static Item potion;
+    public static Item moonglowSeeds;
+    public static Item bloodwart;
+    public static Item lotusSeed;
 
     public static void init()
     {
 
-        totemWhittlingKnife = new ItemTotemWhittlingKnife(ItemIds.TOTEM_WHITTLING_KNIFE);
-        totemicStaff = new ItemTotemicStaff(ItemIds.TOTEMIC_STAFF);
-        chlorophyllCrystal = new ItemChlorophyllCrystal(ItemIds.CHLOROPHYLL_CRYSTAL);
-        bucketChlorophyll = new ItemBucketChlorophyll(ItemIds.BUCKET_CHLOROPHYLL);
-        //venusFlyTrapSeed = new ItemVenusFlyTrapSeed(ItemIds.VENUS_FLY_TRAP_SEED);
-        totems = new ItemTotems(ItemIds.TOTEMS);
-        subItems = new ItemSubItems(ItemIds.SUB_ITEMS);
-        bottleChlorophyll = new ItemBottleChlorophyll(ItemIds.BOTTLE_CHLOROPHYLL);
-        blazingChlorophyllCrystal = new ItemBlazingChlorophyllCrystal(ItemIds.BLAZING_CHLOROPHYLL_CRYSTAL);
-        infusedTotemicStaff = new ItemInfusedTotemicStaff(ItemIds.INFUSED_TOTEMIC_STAFF);
-        totempedia = new ItemTotempedia(ItemIds.TOTEMPEDIA);
+        totemWhittlingKnife = new ItemTotemWhittlingKnife();
+        totemicStaff = new ItemTotemicStaff();
+        chlorophyllCrystal = new ItemVerdantCrystal();
+        bucketChlorophyll = new ItemBucketChlorophyll();
+        totems = new ItemTotems();
+        subItems = new ItemSubItems();
+        bottleChlorophyll = new ItemBottleChlorophyll();
+        blazingChlorophyllCrystal = new ItemBlazingVerdantCrystal();
+        infusedTotemicStaff = new ItemInfusedTotemicStaff();
+        //totempedia = new ItemTotempedia();
+        potion = new ItemPotions();
+        moonglowSeeds = new ItemMoonglowSeeds(ModBlocks.moonglow, Blocks.dirt);
+        bloodwart = new ItemBloodWart(ModBlocks.bloodwart, Blocks.soul_sand);
+        lotusSeed = new ItemWaterLotusSeed();
 
         //Registry for other items
         GameRegistry.registerItem(totemWhittlingKnife, totemWhittlingKnife.getUnlocalizedName());
@@ -45,12 +55,16 @@ public final class ModItems
         GameRegistry.registerItem(chlorophyllCrystal, chlorophyllCrystal.getUnlocalizedName());
         GameRegistry.registerItem(bucketChlorophyll, bucketChlorophyll.getUnlocalizedName());
         //GameRegistry.registerItem(venusFlyTrapSeed, venusFlyTrapSeed.getUnlocalizedName());
-        //GameRegistry.registerItem(subItems, subItems.getUnlocalizedName());
+        GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
         GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
         GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
         GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
-        GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
-
+        //GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
+        GameRegistry.registerItem(totems, Strings.TOTEMS_NAME);
+        GameRegistry.registerItem(potion, Strings.TOTEMIC_POTION_NAME);
+        GameRegistry.registerItem(moonglowSeeds, Strings.MOONGLOW_SEEDS_NAME);
+        GameRegistry.registerItem(bloodwart, Strings.BLOODWART_NAME);
+        GameRegistry.registerItem(lotusSeed, Strings.LOTUS_SEED_NAME);
 
         //totemWhittlingKnife.setContainerItem(totemWhittlingKnife);
         //bucketChlorophyll.setContainerItem(bucketChlorophyll);

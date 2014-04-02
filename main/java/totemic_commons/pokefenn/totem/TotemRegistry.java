@@ -20,8 +20,6 @@ public class TotemRegistry
     public static void addTotems()
     {
 
-        //totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1), 2, 10, 10, new TotemEffectHorse()));
-
     }
 
     public static List<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();

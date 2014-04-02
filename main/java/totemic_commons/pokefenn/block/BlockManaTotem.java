@@ -3,9 +3,9 @@ package totemic_commons.pokefenn.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
@@ -19,25 +19,19 @@ import totemic_commons.pokefenn.tileentity.TileTotemMana;
  */
 public class BlockManaTotem extends BlockTileTotemic
 {
-    public BlockManaTotem(int id)
+    public BlockManaTotem()
     {
-        super(id, Material.wood);
-        setUnlocalizedName(Strings.TOTEM_MANA_NAME);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World world)
-    {
-        return new TileTotemMana();
+        super(Material.wood);
+        setBlockName(Strings.TOTEM_MANA_NAME);
     }
 
     @SideOnly(Side.CLIENT)
-    private Icon icon;
+    private IIcon icon;
 
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister register)
+    public void registerBlockIcons(IIconRegister register)
     {
        icon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.MANA_TOTEM);
 
@@ -45,8 +39,14 @@ public class BlockManaTotem extends BlockTileTotemic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
         return icon;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World var1, int var2)
+    {
+        return new TileTotemMana();
     }
 }

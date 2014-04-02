@@ -17,15 +17,10 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
 public class TotemEffectDraining implements ITotemEffect
 {
 
-
     public static void effect(TileTotemic tileTotemIntelligence, int i, int upgrades)
     {
-        if (tileTotemIntelligence.worldObj.getWorldTime() % 100L == 0)
-        {
-            //System.out.println(":(");
+        if (tileTotemIntelligence.getWorldObj().getWorldTime() % 100L == 0)
             drainEffect((TileTotemIntelligence) tileTotemIntelligence, i, upgrades);
-        }
-
     }
 
     protected static void drainEffect(TileTotemIntelligence tileTotemIntelligence, int k, int upgrades)
@@ -33,24 +28,22 @@ public class TotemEffectDraining implements ITotemEffect
         int totemRadius = ConfigurationSettings.TOTEM_DRAINING_RANGE + (upgrades * 3);
 
         for (int i = -totemRadius; i <= totemRadius; i++)
-        {
             for (int j = -totemRadius; j <= totemRadius; j++)
-            {
-                //System.out.println("AH");
-                reducePlantMetadata(tileTotemIntelligence, k, tileTotemIntelligence.xCoord + i, tileTotemIntelligence.yCoord, tileTotemIntelligence.zCoord + j);
-            }
-        }
-
+                reducePlantMetadata(tileTotemIntelligence, tileTotemIntelligence.xCoord + i, tileTotemIntelligence.yCoord, tileTotemIntelligence.zCoord + j);
     }
 
-    protected static void reducePlantMetadata(TileTotemIntelligence tileTotemIntelligence, int i, int x, int y, int z)
+    protected static void reducePlantMetadata(TileTotemIntelligence tileTotemIntelligence, int x, int y, int z)
     {
         //yCoords is there because the totem has to be on the same level as the IPlantable's
-        Block blockQuery = Block.blocksList[tileTotemIntelligence.worldObj.getBlockId(x, y, z)];
+        Block blockQuery = tileTotemIntelligence.getWorldObj().getBlock(x, y, z);
+        boolean isNotFlower = !blockQuery.getUnlocalizedName().contains("flower");
+        boolean isNotBush = !blockQuery.getUnlocalizedName().contains("bush");
+        boolean isNotBerry = !blockQuery.getUnlocalizedName().contains("berry");
+        boolean isNotKelp = !blockQuery.getUnlocalizedName().contains("kelp");
 
-        if (tileTotemIntelligence.worldObj.getBlockMetadata(x, y, z) >= 5 && blockQuery instanceof IPlantable && tileTotemIntelligence.getStackInSlot(TileTotemIntelligence.SLOT_ONE) != null && !(blockQuery instanceof IBlacklistedDraining))
+        if (blockQuery instanceof IPlantable && tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) >= 4 && tileTotemIntelligence.getStackInSlot(TileTotemIntelligence.SLOT_ONE) != null && !(blockQuery instanceof IBlacklistedDraining) && isNotFlower && isNotBush && isNotBerry && isNotKelp)
         {
-            tileTotemIntelligence.worldObj.setBlockMetadataWithNotify(x, y, z, tileTotemIntelligence.worldObj.getBlockMetadata(x, y, z) - 1, 2);
+            tileTotemIntelligence.getWorldObj().setBlockMetadataWithNotify(x, y, z, tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) - 1, 2);
             tileTotemIntelligence.increaseChlorophyll();
         }
     }

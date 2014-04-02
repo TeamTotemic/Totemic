@@ -2,15 +2,16 @@ package totemic_commons.pokefenn.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
@@ -31,28 +32,20 @@ public class BlockTotemIntelligence extends BlockTileTotemic
 
     private Random rand = new Random();
 
-    public BlockTotemIntelligence(int id)
+    public BlockTotemIntelligence()
     {
-        super(id, Material.wood);
-        setUnlocalizedName(Strings.TOTEM_INTELLIGENCE_NAME);
+        super(Material.wood);
+        setBlockName(Strings.TOTEM_INTELLIGENCE_NAME);
         setCreativeTab(Totemic.tabsTotem);
 
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
-    {
-        return new TileTotemIntelligence();
-    }
-
-    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-
         int SLOT_ONE = TileTotemIntelligence.SLOT_ONE;
 
-        TileTotemIntelligence tileTotemIntelligence = (TileTotemIntelligence) world.getBlockTileEntity(x, y, z);
-
+        TileTotemIntelligence tileTotemIntelligence = (TileTotemIntelligence) world.getTileEntity(x, y, z);
 
         ItemStack heldItem = player.inventory.getCurrentItem();
 
@@ -60,7 +53,7 @@ public class BlockTotemIntelligence extends BlockTileTotemic
         if (tileTotemIntelligence != null && !world.isRemote)
         {
 
-            if (tileTotemIntelligence.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.chlorophyllCrystal.itemID || tileTotemIntelligence.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.itemID == ModItems.blazingChlorophyllCrystal.itemID)
+            if (tileTotemIntelligence.isItemValidForSlot(SLOT_ONE, heldItem))
             {
                 tileTotemIntelligence.setInventorySlotContents(SLOT_ONE, heldItem);
                 player.destroyCurrentEquippedItem();
@@ -78,30 +71,40 @@ public class BlockTotemIntelligence extends BlockTileTotemic
         }
 
 
-        return !(heldItem != null && heldItem.itemID == ModItems.totemicStaff.itemID || heldItem != null && heldItem.itemID == ModItems.infusedTotemicStaff.itemID);
+        return !(heldItem != null && heldItem.getItem() == ModItems.totemicStaff || heldItem != null && heldItem.getItem() == ModItems.infusedTotemicStaff);
+
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World world, int x, int y, int z, Random rand)
+    {
+        TileTotemIntelligence tileTotemIntelligence = (TileTotemIntelligence) world.getTileEntity(x, y, z);
+
+        if (tileTotemIntelligence.getStackInSlot(0) != null)
+            if (world.getWorldTime() % 160L == 0)
+                for (int i = 0; i < 16; i++)
+                    world.spawnParticle("happyVillager", x + rand.nextInt(2), y + rand.nextInt(2), z + rand.nextInt(2), i, i, i);
 
     }
 
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int id, int meta)
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta)
     {
-
         dropInventory(world, x, y, z);
 
-        if (world.getBlockTileEntity(x, y, z) instanceof TileTotemIntelligence)
+        if (world.getTileEntity(x, y, z) instanceof TileTotemIntelligence)
         {
             world.markBlockForUpdate(x, y, z);
-            world.updateAllLightTypes(x, y, z);
         }
 
-        super.breakBlock(world, x, y, z, id, meta);
+        super.breakBlock(world, x, y, z, block, meta);
     }
 
     private void dropInventory(World world, int x, int y, int z)
     {
 
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
 
         if (!(tileEntity instanceof IInventory))
             return;
@@ -119,7 +122,7 @@ public class BlockTotemIntelligence extends BlockTileTotemic
                 float dY = rand.nextFloat() * 0.8F + 0.1F;
                 float dZ = rand.nextFloat() * 0.8F + 0.1F;
 
-                EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.itemID, itemStack.stackSize, itemStack.getItemDamage()));
+                EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.getItem(), itemStack.stackSize, itemStack.getItemDamage()));
 
                 if (itemStack.hasTagCompound())
                 {
@@ -138,15 +141,15 @@ public class BlockTotemIntelligence extends BlockTileTotemic
     }
 
     @SideOnly(Side.CLIENT)
-    private Icon topIcon;
+    private IIcon topIcon;
     @SideOnly(Side.CLIENT)
-    private Icon sideIcon;
+    private IIcon sideIcon;
     @SideOnly(Side.CLIENT)
-    private Icon bottomIcon;
+    private IIcon bottomIcon;
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister register)
+    public void registerBlockIcons(IIconRegister register)
     {
         topIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_TOP);
         sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_SIDE);
@@ -156,8 +159,14 @@ public class BlockTotemIntelligence extends BlockTileTotemic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
         return topIcon;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World var1, int var2)
+    {
+        return new TileTotemIntelligence();
     }
 }

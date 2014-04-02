@@ -3,7 +3,7 @@ package totemic_commons.pokefenn.fluid;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
 import totemic_commons.pokefenn.block.BlockChlorophyll;
 
@@ -21,14 +21,14 @@ public class FluidChlorophyll extends Fluid
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getStillIcon()
+    public IIcon getStillIcon()
     {
         return BlockChlorophyll.chlorophyllStillIcon;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getFlowingIcon()
+    public IIcon getFlowingIcon()
     {
         return BlockChlorophyll.chlorophyllFlowingIcon;
     }

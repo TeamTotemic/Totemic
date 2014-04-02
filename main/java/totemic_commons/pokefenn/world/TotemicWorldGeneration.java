@@ -39,7 +39,7 @@ public class TotemicWorldGeneration implements IWorldGenerator
         {
             if (random.nextInt(1500) < 20)
             {
-                new TotemTreeGeneration().generate(world, random, x, random.nextInt(3) + 4, z);
+                //new TotemTreeGeneration().generate(world, random, x, random.nextInt(3) + 4, z);
             }
 
         }

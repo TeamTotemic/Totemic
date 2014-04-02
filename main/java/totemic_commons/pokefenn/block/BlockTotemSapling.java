@@ -3,10 +3,11 @@ package totemic_commons.pokefenn.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
@@ -27,16 +28,15 @@ public class BlockTotemSapling extends BlockSapling
 {
     private static TotemTreeGeneration treeGen = new TotemTreeGeneration(true);
 
-    public BlockTotemSapling(int id)
+    public BlockTotemSapling()
     {
-        super(id);
-        setUnlocalizedName(Strings.TOTEM_SAPLING_NAME);
+        super();
+        setBlockName(Strings.TOTEM_SAPLING_NAME);
         setBlockBounds(0.5F - 0.4F, 0.0F, 0.5F - 0.4F, 0.5F + 0.4F, 0.4F * 2.0F, 0.5F + 0.4F);
         setCreativeTab(Totemic.tabsTotem);
     }
 
-    @Override
-    public void growTree(World world, int x, int y, int z, Random random)
+    public void func_149878_d(World world, int x, int y, int z, Random random)
     {
         if (!world.isRemote)
         {
@@ -44,41 +44,44 @@ public class BlockTotemSapling extends BlockSapling
 
             if (!treeGen.growTree(world, random, x, y, z))
             {
-                world.setBlock(x, y, z, blockID, 0, 4);
+                world.setBlock(x, y, z, ModBlocks.totemWoods, 0, 4);
                 new TotemTreeGeneration(true).growTree(world, random, x, y, z);
             }
         }
     }
 
+
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int blockId, CreativeTabs tab, List subBlocks)
+    public void getSubBlocks(Item blockId, CreativeTabs tab, List subBlocks)
     {
         subBlocks.add(new ItemStack(blockId, 1, 0));
     }
 
     @Override
-    public int idDropped(int meta, Random rand, int fortune)
+    public Item getItemDropped(int p_149650_1_, Random random, int p_149650_3_)
     {
-        return ModBlocks.totemSapling.blockID;
+        return Item.getItemFromBlock(ModBlocks.totemSapling);
     }
 
+
     @SideOnly(Side.CLIENT)
-    private Icon saplingIcon;
+    private IIcon saplingIcon;
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister register)
+    public void registerBlockIcons(IIconRegister register)
     {
         saplingIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_SAPLING);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
         return saplingIcon;
     }
+
 
 
 }

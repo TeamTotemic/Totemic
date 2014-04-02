@@ -1,8 +1,5 @@
 package totemic_commons.pokefenn.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -15,12 +12,12 @@ import totemic_commons.pokefenn.lib.Strings;
  * Date: 19/02/14
  * Time: 12:49
  */
-public class ItemTotempedia extends ItemNormal
+public class ItemTotempedia extends ItemTotemic
 {
 
-    public ItemTotempedia(int id)
+    public ItemTotempedia()
     {
-        super(id);
+        super();
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEMPEDIA_NAME);
         setMaxStackSize(1);
     }
@@ -31,14 +28,6 @@ public class ItemTotempedia extends ItemNormal
         player.openGui(Totemic.instance, Totemic.proxy.totempediaGuiID, world, 0, 0, 0);
 
         return stack;
-    }
-
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
-    {
-        itemIcon = iconRegister.registerIcon("totemic:totempedia");
     }
 
 }

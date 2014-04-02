@@ -28,6 +28,5 @@ public class ItemTotemsRenderer implements IItemRenderer
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
 
-
     }
 }
