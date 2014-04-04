@@ -45,6 +45,7 @@ public class TileCeremonyIntelligence extends TileTotemic
     public int drainedMoonglow;
     public int drainedBloodwart;
     public int drainedLotus;
+    public int drainedFungus;
     public int efficiency;
 
     public TileCeremonyIntelligence()
@@ -54,7 +55,6 @@ public class TileCeremonyIntelligence extends TileTotemic
         hasValidPlants = false;
         currentCeremony = 0;
         socketAmount = 0;
-        shiftedCeremonyValue = currentCeremony + 1;
         player = "";
         currentTime = 0;
         drainedWheat = 0;
@@ -65,6 +65,7 @@ public class TileCeremonyIntelligence extends TileTotemic
         drainedMoonglow = 0;
         drainedBloodwart = 0;
         drainedLotus = 0;
+        drainedFungus = 0;
         overallDrained = 0;
         efficiency = 0;
     }
@@ -82,29 +83,78 @@ public class TileCeremonyIntelligence extends TileTotemic
         {
             if (this.worldObj.getWorldTime() % 60L == 0)
             {
-                this.isBurning = this.worldObj.getBlock(xCoord + 8, yCoord, zCoord) == ModBlocks.totemTorch && this.worldObj.getBlock(xCoord, yCoord, zCoord + 8) == ModBlocks.totemTorch && this.worldObj.getBlock(xCoord - 8, yCoord, zCoord) == ModBlocks.totemTorch && this.worldObj.getBlock(xCoord, yCoord, zCoord - 8) == ModBlocks.totemTorch;
+                //this.isBurning = this.worldObj.getBlock(xCoord + 8, yCoord, zCoord) == ModBlocks.totemTorch && this.worldObj.getBlock(xCoord, yCoord, zCoord + 8) == ModBlocks.totemTorch && this.worldObj.getBlock(xCoord - 8, yCoord, zCoord) == ModBlocks.totemTorch && this.worldObj.getBlock(xCoord, yCoord, zCoord - 8) == ModBlocks.totemTorch;
             }
 
-            //Note: All ceremonyRegistry ids have to be shifted down by one, so it gets the correct ritual. the 0 in currentCeremony means that there is a null effect more or less.
-
-            if (currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony != 0)
+            if (currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony > 0)
             {
+                if (isDoingEffect && !CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
+                    currentTime++;
+
                 ICeremonyEffect effect = CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect();
 
-                if (canStartCeremony(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getOverallDrain()))
-                {
-                    if (effect != null)
-                    {
-                        preformCeremony(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1));
+                //System.out.println("test");
 
-                        //System.out.println(currentCeremony);
-                        //effect.effect(this);
+                if (canStartCeremony(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getOverallDrain(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPlantForPercentage(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPercentage()))
+                {
+                    if (effect != null && !this.isDoingEffect)
+                    {
+                        //System.out.println("wanting to do ritual?");
+                        isDoingEffect = true;
+                        CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect().effect(this);
                     }
-                } else
+                } else if (worldObj.getWorldTime() % 10L == 0L)
+                {
+                    //System.out.println("wantign to drain");
                     this.drainPlantsAtStart(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPercentage(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPlantForPercentage());
+                }
+
+                if (!CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever() && currentTime >= CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMaximumTicks())
+                {
+                    resetEverything();
+                }
             }
         }
+    }
 
+    public void resetEverything()
+    {
+        currentCeremony = 0;
+        currentTime = 0;
+        efficiency = 0;
+        isDoingEffect = false;
+        overallDrained = 0;
+        drainedWheat = 0;
+        drainedCarrot = 0;
+        drainedPotato = 0;
+        drainedMelon = 0;
+        drainedPumpkin = 0;
+        drainedMoonglow = 0;
+        drainedBloodwart = 0;
+        drainedLotus = 0;
+        drainedFungus = 0;
+    }
+
+    public int getDrained(int i)
+    {
+        if (i == PlantIds.BLOODWART_ID)
+            return drainedBloodwart;
+        if (i == PlantIds.FUNGUS_ID)
+            return drainedFungus;
+        if (i == PlantIds.LOTUS_ID)
+            return drainedLotus;
+        if (i == PlantIds.MOONGLOW_ID)
+            return drainedMoonglow;
+        if (i == PlantIds.MELON_ID)
+            return drainedMelon;
+        if (i == PlantIds.WHEAT_ID)
+            return drainedWheat;
+        if (i == PlantIds.CARROT_ID)
+            return drainedCarrot;
+        if (i == PlantIds.POTATO_ID)
+            return drainedPotato;
+
+        return 0;
     }
 
     public void trackPlayersMovements()
@@ -116,23 +166,18 @@ public class TileCeremonyIntelligence extends TileTotemic
             double oldPosY = playerDance.lastTickPosY;
             double oldPosZ = playerDance.lastTickPosZ;
 
-            if (worldObj.getWorldTime() % 40L == 0)
+            if (worldObj.getWorldTime() % 40L == 0 && efficiency < 50)
             {
                 if (oldPosX <= playerDance.posX - 3 || oldPosX <= playerDance.posX + 3 || oldPosX >= playerDance.posX - 3 || oldPosX >= playerDance.posX + 3)
                     if (oldPosZ <= playerDance.posZ - 3 || oldPosZ <= playerDance.posZ + 3 || oldPosZ >= playerDance.posZ - 3 || oldPosZ >= playerDance.posZ + 3)
                         efficiency += 4;
-
-                //if(oldPosX != playerDance.posX && oldPosZ != playerDance.posZ)
-                //{
-                //    efficiency += 2;
-                //}
 
             }
         }
 
     }
 
-    public boolean tryCeremony(TileCeremonyIntelligence tileCeremonyIntelligence)
+    public void tryCeremony(TileCeremonyIntelligence tileCeremonyIntelligence)
     {
         int x = tileCeremonyIntelligence.xCoord;
         int y = tileCeremonyIntelligence.yCoord;
@@ -144,7 +189,7 @@ public class TileCeremonyIntelligence extends TileTotemic
         {
             for (CeremonyRegistry ceremonyRegistry : CeremonyRegistry.ceremonyRegistry)
             {
-                if (isBurning)
+                //if (isBurning)
                 {
                     if (ceremonyRegistry.getDoesNeedItems())
                     {
@@ -161,7 +206,8 @@ public class TileCeremonyIntelligence extends TileTotemic
                                             if (arePlantsValid(ceremonyRegistry))
                                             {
                                                 ((EntityItem) entity).setDead();
-                                                preformCeremony(ceremonyRegistry);
+                                                this.currentCeremony = ceremonyRegistry.getCeremonyID();
+                                                //preformCeremony(ceremonyRegistry);
                                             }
                                         }
                                     }
@@ -170,13 +216,14 @@ public class TileCeremonyIntelligence extends TileTotemic
                         }
                     } else if (arePlantsValid(ceremonyRegistry))
                     {
-                        this.preformCeremony(ceremonyRegistry);
+                        this.currentCeremony = ceremonyRegistry.getCeremonyID();
+                        System.out.println(currentCeremony);
+                        //this.preformCeremony(ceremonyRegistry);
                     }
                 }
             }
 
         }
-        return false;
     }
 
     public static int getIdFromPlant(Block block)
@@ -195,6 +242,8 @@ public class TileCeremonyIntelligence extends TileTotemic
                 return PlantIds.PUMPKIN_ID;
             if (block == ModBlocks.moonglow)
                 return PlantIds.MOONGLOW_ID;
+            if (block == ModBlocks.lotusBlock)
+                return PlantIds.LOTUS_ID;
         }
 
         return 0;
@@ -220,7 +269,6 @@ public class TileCeremonyIntelligence extends TileTotemic
         int plantID4 = ceremonyRegistry.getPlant4();
 
         boolean possibility1 = plantID1 == getIdFromPlant(plant1) && plantID2 == getIdFromPlant(plant2) && plantID3 == getIdFromPlant(plant3) && plantID4 == getIdFromPlant(plant4);
-        //boolean possibility2 = plantID1 == getIdFromPlant(plant1) && plantID2 == getIdFromPlant(plant2) && plantID3 == getIdFromPlant(plant3) && plantID4 == getIdFromPlant(plant4);
 
         if (plant1 != null && plant2 != null && plant3 != null && plant4 != null && getIdFromPlant(world.getBlock(x + 3, y, z)) != 0 && getIdFromPlant(world.getBlock(x - 3, y, z)) != 0 && getIdFromPlant(world.getBlock(x, y, z + 3)) != 0 && getIdFromPlant(world.getBlock(x, y, z - 3)) != 0)
         {
@@ -233,28 +281,15 @@ public class TileCeremonyIntelligence extends TileTotemic
         return false;
     }
 
-    public void preformCeremony(CeremonyRegistry ceremonyRegistry)
-    {
-        this.currentCeremony = ceremonyRegistry.getCeremonyID();
-
-        //while (!canStartCeremony(ceremonyRegistry.getOverallDrain()))
-        {
-            //    this.drainPlantsAtStart(ceremonyRegistry.getPercentage(), ceremonyRegistry.getPlantForPercentage());
-        }
-
-        if (canStartCeremony(ceremonyRegistry.getOverallDrain()))
-            ceremonyRegistry.getCeremonyEffect().effect(this);
-
-        this.efficiency = 0;
-
-    }
-
-    public boolean canStartCeremony(int overall)
+    public boolean canStartCeremony(int overall, int plant, int percentage)
     {
         if (overallDrained > overall)
         {
-            this.overallDrained = 0;
-            return true;
+            if (getDrained(plant) != 0 && overall % percentage >= getDrained(plant))
+            {
+                this.overallDrained = 0;
+                return true;
+            }
         }
 
         return false;
@@ -267,32 +302,34 @@ public class TileCeremonyIntelligence extends TileTotemic
         int radius = 8;
         int yAxis = 3;
 
+        trackPlayersMovements();
+
         for (int i = -radius; i <= radius; i++)
-            for (int j = -radius; j <= radius; j++)
-                for (int k = -yAxis; k <= yAxis; j++)
+            //for (int j = -radius; j <= radius; j++)
+            for (int k = -radius; k <= radius; k++)
+            {
+                Block plantSelected = world.getBlock(xCoord + i, yCoord, zCoord + k);
+                if (plantSelected != null)
                 {
-                    Block plantSelected = world.getBlock(xCoord + i, yCoord + j, zCoord + k);
-                    if (plantSelected != null)
+
+                    boolean isNotFlower = !plantSelected.getUnlocalizedName().contains("flower");
+                    boolean isNotBush = !plantSelected.getUnlocalizedName().contains("bush");
+                    boolean isNotBerry = !plantSelected.getUnlocalizedName().contains("berry");
+                    boolean isNotKelp = !plantSelected.getUnlocalizedName().contains("kelp");
+
+                    efficiency += getEffiencyFromBlock(plantSelected);
+
+                    if (plantSelected instanceof IPlantable && isNotFlower && isNotBerry && isNotBush && isNotKelp)
                     {
-
-                        boolean isNotFlower = !plantSelected.getUnlocalizedName().contains("flower");
-                        boolean isNotBush = !plantSelected.getUnlocalizedName().contains("bush");
-                        boolean isNotBerry = !plantSelected.getUnlocalizedName().contains("berry");
-                        boolean isNotKelp = !plantSelected.getUnlocalizedName().contains("kelp");
-
-                        efficiency += getEffiencyFromBlock(plantSelected);
-
-                        if (plantSelected instanceof IPlantable && isNotFlower && isNotBerry && isNotBush && isNotKelp)
+                        if (world.getBlockMetadata(xCoord + i, yCoord, zCoord + k) > 2)
                         {
-                            if (world.getBlockMetadata(xCoord + i, yCoord + j, zCoord + k) > 2)
-                            {
-                                world.setBlockMetadataWithNotify(xCoord + i, yCoord + j, zCoord + k, world.getBlockMetadata(xCoord + i, yCoord + j, zCoord + k) - 1, 2);
-                                getVariableForDrain(plantSelected, getPlantDrained(plantSelected));
-                                overallDrained = (drainedWheat + drainedCarrot + drainedPotato + drainedMelon + drainedPumpkin + drainedMoonglow + drainedBloodwart + drainedLotus);
-                            }
+                            world.setBlockMetadataWithNotify(xCoord + i, yCoord, zCoord + k, world.getBlockMetadata(xCoord + i, yCoord, zCoord + k) - 1, 2);
+                            getVariableForDrain(plantSelected, getPlantDrained(plantSelected));
+                            overallDrained = (drainedWheat + drainedCarrot + drainedPotato + drainedMelon + drainedPumpkin + drainedMoonglow + drainedBloodwart + drainedLotus);
                         }
                     }
                 }
+            }
     }
 
     public void getVariableForDrain(Block block, int i)
@@ -313,18 +350,25 @@ public class TileCeremonyIntelligence extends TileTotemic
             drainedBloodwart += i;
         if (block == ModBlocks.lotusBlock)
             drainedLotus += i;
+        if (block == ModBlocks.fungusBlock)
+            drainedFungus += i;
     }
 
     public int getEffiencyFromBlock(Block block)
     {
-        if (block == ModBlocks.totemTorch)
-            return 5;
-        if (block == ModBlocks.totemSocket)
-            return 3;
-        if (block == Blocks.torch)
-            return 1;
-        if (block == Blocks.fire)
-            return 2;
+        if (efficiency < 50)
+        {
+            if (block == ModBlocks.totemTorch)
+                return 5;
+            if (block == ModBlocks.totemSocket)
+                return 3;
+            if (block == Blocks.torch)
+                return 1;
+            if (block == Blocks.fire)
+                return 2;
+            if (block == ModBlocks.flameParticle)
+                return 4;
+        }
 
         return 0;
     }

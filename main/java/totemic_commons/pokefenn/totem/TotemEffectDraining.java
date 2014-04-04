@@ -44,7 +44,7 @@ public class TotemEffectDraining implements ITotemEffect
         if (blockQuery instanceof IPlantable && tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) >= 4 && tileTotemIntelligence.getStackInSlot(TileTotemIntelligence.SLOT_ONE) != null && !(blockQuery instanceof IBlacklistedDraining) && isNotFlower && isNotBush && isNotBerry && isNotKelp)
         {
             tileTotemIntelligence.getWorldObj().setBlockMetadataWithNotify(x, y, z, tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) - 1, 2);
-            tileTotemIntelligence.increaseChlorophyll();
+            tileTotemIntelligence.increaseChlorophyll(blockQuery);
         }
     }
 

@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import totemic_commons.pokefenn.block.*;
 import totemic_commons.pokefenn.block.plant.BlockBloodWart;
+import totemic_commons.pokefenn.block.plant.BlockFungalPlant;
 import totemic_commons.pokefenn.block.plant.BlockMoonglow;
 import totemic_commons.pokefenn.block.plant.BlockWaterLotus;
 import totemic_commons.pokefenn.lib.Strings;
@@ -27,6 +28,8 @@ public final class ModBlocks
     public static Block bloodwart;
     public static Block totemTorch;
     public static Block lotusBlock;
+    public static Block fungusBlock;
+    public static Block flameParticle;
 
     public static Block totemMana;
 
@@ -49,6 +52,8 @@ public final class ModBlocks
         bloodwart = new BlockBloodWart();
         totemTorch = new BlockTotemTorch();
         lotusBlock = new BlockWaterLotus();
+        fungusBlock = new BlockFungalPlant();
+        flameParticle = new BlockFlameParticle();
 
         GameRegistry.registerBlock(chlorophyllSolidifier, Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
         //GameRegistry.registerBlock(venusFlyTrap, Strings.VENUS_FLY_TRAP_NAME);
@@ -66,6 +71,8 @@ public final class ModBlocks
         GameRegistry.registerBlock(bloodwart, Strings.BLOODWART_NAME);
         GameRegistry.registerBlock(totemTorch, Strings.TOTEM_TORCH_NAME);
         GameRegistry.registerBlock(lotusBlock, Strings.LOTUS_BLOCK_NAME);
+        GameRegistry.registerBlock(fungusBlock, Strings.FUNGAL_PLANT_BLOCK_NAME);
+        GameRegistry.registerBlock(flameParticle, Strings.FLAME_PARTICLE_NAME);
 
 
     }

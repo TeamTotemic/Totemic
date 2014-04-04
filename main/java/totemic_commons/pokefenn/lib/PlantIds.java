@@ -14,4 +14,5 @@ public class PlantIds
     public static int MOONGLOW_ID = 6;
     public static int BLOODWART_ID = 7;
     public static int LOTUS_ID = 8;
+    public static int FUNGUS_ID = 9;
 }

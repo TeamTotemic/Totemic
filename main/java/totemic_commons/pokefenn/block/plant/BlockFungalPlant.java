@@ -4,48 +4,22 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class BlockMoonglow extends BlockBasePlant implements IPlantDrain
+public class BlockFungalPlant extends BlockBasePlant implements IPlantDrain
 {
-    public BlockMoonglow()
+    public BlockFungalPlant()
     {
-        setBlockName(Strings.MOONGLOW_NAME);
-        setHardness(0);
-        maximumStages = 4;
-    }
-
-    @Override
-    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
-    {
-        return EnumPlantType.Crop;
-    }
-
-    @Override
-    public int getPlantMetadata(IBlockAccess world, int x, int y, int z)
-    {
-        return world.getBlockMetadata(x, y, z);
-    }
-
-    protected Item func_149866_i()
-    {
-        return null;
+        setBlockName(Strings.FUNGAL_PLANT_BLOCK_NAME);
     }
 
     @Override
@@ -61,16 +35,28 @@ public class BlockMoonglow extends BlockBasePlant implements IPlantDrain
 
         for (int i = 0; i < count; i++)
         {
-            ret.add(new ItemStack(ModItems.moonglowSeeds));
+            ret.add(new ItemStack(ModItems.fungusSpore));
         }
-        ret.add(new ItemStack(ModItems.subItems, 1, 3));
 
         return ret;
     }
 
+
     @Override
     public int getPlantDrain(World world, int x, int y, int z)
     {
-        return !world.isDaytime() ? 5 : 2;
+        return world.getBlock(x, -y, z) == Blocks.mycelium && !world.isDaytime() ? 6 : 2;
     }
+
+    public int getRenderType()
+    {
+        return 1;
+    }
+
+    protected boolean canPlaceBlockOn(Block block)
+    {
+        return block == Blocks.mycelium;
+    }
+
+
 }

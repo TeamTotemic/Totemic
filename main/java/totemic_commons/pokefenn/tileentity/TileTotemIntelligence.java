@@ -14,6 +14,7 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.verdant.IVerdantCrystal;
 import totemic_commons.pokefenn.block.BlockTotemSocket;
+import totemic_commons.pokefenn.block.plant.IPlantDrain;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.totem.*;
 
@@ -92,16 +93,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
                         {
                             for (int i = 1; i <= SOCKET_NUMBER; i++)
                             {
-                                if (canDoEffect(totemRegistry.getChlorophyllDecrement()) && TOTEMS[i] != null)
+                                if (TOTEMS[i] != null && TOTEMS[i].getItem() == totemRegistry.getTotem().getItem() && TOTEMS[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement()))
                                 {
-                                    System.out.println(TOTEMS[i].getItemDamage());
-                                    if(TOTEMS[i].getItem() == totemRegistry.getTotem().getItem() && TOTEMS[i].getItemDamage() == totemRegistry.getTotem().getItemDamage())
-                                    {
-                                        //System.out.println(totemRegistry.getTotem().getItemDamage());
-                                        //System.out.println("last step...");
-                                        totemRegistry.getEffect().effect(this, RANGE_UPGRADES, true, totemRegistry);
-                                        //doEffects(SOCKETS[i], RANGE_UPGRADES, this, true);
-                                    }
+                                    totemRegistry.getEffect().effect(this, RANGE_UPGRADES, true, totemRegistry);
                                 }
                             }
                         }
@@ -138,16 +132,26 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         return true;
     }
 
-    public void increaseChlorophyll()
+    public void increaseChlorophyll(Block block)
     {
         Random rand = new Random();
 
         if (this.getStackInSlot(SLOT_ONE) != null)
         {
-            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(2));
+            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - getPlantDrained(block));
             //System.out.println(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(2));
         }
 
+    }
+
+    public int getPlantDrained(Block plant)
+    {
+        if (plant instanceof IPlantDrain)
+        {
+            ((IPlantDrain) plant).getPlantDrain(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+        }
+
+        return 2;
     }
 
     public void decreaseChlorophyll(int subtraction)

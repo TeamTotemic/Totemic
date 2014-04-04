@@ -4,8 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-import totemic_commons.pokefenn.client.rendering.block.ModelTotemTorch;
-import totemic_commons.pokefenn.client.rendering.model.ModelTotemicStaff;
+import totemic_commons.pokefenn.client.rendering.model.ModelTotemTorch;
 
 /**
  * Created by Pokefenn.

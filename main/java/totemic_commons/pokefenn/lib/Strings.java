@@ -28,6 +28,8 @@ public class Strings
     public static final String BLOODWART_BLOCK_NAME = "blockBloodwart";
     public static final String TOTEM_TORCH_NAME = "totemTorch";
     public static final String LOTUS_BLOCK_NAME = "lotusBlock";
+    public static final String FUNGAL_PLANT_BLOCK_NAME = "fungalPlantBlock";
+    public static final String FLAME_PARTICLE_NAME = "flameParticleBlock";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";
@@ -47,7 +49,7 @@ public class Strings
     public static final String MOONGLOW_SEEDS_NAME = "moonglowSeeds";
     public static final String BLOODWART_NAME = "bloodwart";
     public static final String LOTUS_SEED_NAME = "lotusSeed";
-
+    public static final String FUNGUS_PLANT_SPORE = "fungusSpore";
 
     public static final String TOTEM_WOOD_WAND_CORE_NAME = "totemWoodWandCore";
     public static final String CHLOROPHYLL_CRYSTAL_WAND_CAP = "chlorophyllCrystalWandCap";
@@ -87,10 +89,7 @@ public class Strings
     public static final String NBT_ENCODED_RECIPE_INPUT_PREFIX = "recipeInput_";
     public static final String NBT_ENCODED_ATTR_TYPE = "type";
 
-
     //Fluid
 
     public static final String FLUID_CHLOROPHYLL_NAME = "fluidChlorophyll";
-
-
 }

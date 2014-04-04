@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.ITotem;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
  * Date: 28/11/13
  * Time: 18:32
  */
-public class ItemTotems extends ItemTotemic
+public class ItemTotems extends ItemTotemic implements ITotem
 {
 
     public static final String[] TOTEM_NAMES = new String[]{"NotATotem", "Horse", "Bat", "Blaze", "Ocelot", "Squid", "Draining" /*, "Spider"*/};

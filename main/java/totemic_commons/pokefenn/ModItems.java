@@ -3,10 +3,11 @@ package totemic_commons.pokefenn;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
+import totemic_commons.pokefenn.item.plant.ItemBloodWart;
+import totemic_commons.pokefenn.item.plant.ItemFungusPlantSpore;
 import totemic_commons.pokefenn.item.plant.ItemMoonglowSeeds;
 import totemic_commons.pokefenn.item.plant.ItemWaterLotusSeed;
 import totemic_commons.pokefenn.lib.Strings;
@@ -30,6 +31,7 @@ public final class ModItems
     public static Item moonglowSeeds;
     public static Item bloodwart;
     public static Item lotusSeed;
+    public static Item fungusSpore;
 
     public static void init()
     {
@@ -48,6 +50,7 @@ public final class ModItems
         moonglowSeeds = new ItemMoonglowSeeds(ModBlocks.moonglow, Blocks.dirt);
         bloodwart = new ItemBloodWart(ModBlocks.bloodwart, Blocks.soul_sand);
         lotusSeed = new ItemWaterLotusSeed();
+        fungusSpore = new ItemFungusPlantSpore(ModBlocks.fungusBlock);
 
         //Registry for other items
         GameRegistry.registerItem(totemWhittlingKnife, totemWhittlingKnife.getUnlocalizedName());
@@ -65,6 +68,7 @@ public final class ModItems
         GameRegistry.registerItem(moonglowSeeds, Strings.MOONGLOW_SEEDS_NAME);
         GameRegistry.registerItem(bloodwart, Strings.BLOODWART_NAME);
         GameRegistry.registerItem(lotusSeed, Strings.LOTUS_SEED_NAME);
+        GameRegistry.registerItem(fungusSpore, Strings.FUNGUS_PLANT_SPORE);
 
         //totemWhittlingKnife.setContainerItem(totemWhittlingKnife);
         //bucketChlorophyll.setContainerItem(bucketChlorophyll);

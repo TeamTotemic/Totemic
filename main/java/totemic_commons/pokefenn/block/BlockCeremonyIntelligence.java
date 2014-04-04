@@ -38,12 +38,12 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic
         if (tileCeremonyIntelligence != null && !world.isRemote)
         {
             if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.infusedTotemicStaff)
-                if (tileCeremonyIntelligence.isBurning)
+                //if (tileCeremonyIntelligence.isBurning)
                     if (!tileCeremonyIntelligence.isDoingEffect)
                     {
                         tileCeremonyIntelligence.tryCeremony(tileCeremonyIntelligence);
                         tileCeremonyIntelligence.player = player.getCommandSenderName();
-                        System.out.println("Can do ritual");
+                        //System.out.println("Can do ritual");
                     }
 
         }

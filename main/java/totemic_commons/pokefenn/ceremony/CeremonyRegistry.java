@@ -20,9 +20,16 @@ public class CeremonyRegistry
     {
         int wheat = PlantIds.WHEAT_ID;
         int moonglow = PlantIds.MOONGLOW_ID;
+        int carrot = PlantIds.CARROT_ID;
+        int melon = PlantIds.MELON_ID;
+        int bloodwart = PlantIds.BLOODWART_ID;
+        int fungus = PlantIds.FUNGUS_ID;
+        int lotus = PlantIds.LOTUS_ID;
 
-        ceremonyRegistry.add(new CeremonyRegistry(false, null, wheat, wheat, wheat, wheat, 50, wheat, 0, new CeremonyTest(), 100, 20 * 30));
-        ceremonyRegistry.add(new CeremonyRegistry(false, null, moonglow, moonglow, moonglow, moonglow, 75, moonglow, 1, new CeremonyNight(), 100, 20 * 30));
+        ceremonyRegistry.add(new CeremonyRegistry(false, null, moonglow, moonglow, moonglow, moonglow, 75, moonglow, 1, new CeremonyNight(), 200, 20 * 30, false));
+        ceremonyRegistry.add(new CeremonyRegistry(false, null, lotus, lotus, lotus, lotus, 50, lotus, 2, new CeremonyRain(), 200, 20 * 30, false));
+        ceremonyRegistry.add(new CeremonyRegistry(false, null, wheat, wheat, wheat, wheat, 75, wheat, 3, new CeremonyHarvestFeast(), 150, 20 * 1000, true));
+        //ceremonyRegistry.add(new CeremonyRegistry(false, null, bloodwart, bloodwart, bloodwart, bloodwart, 40, new CeremonyDrought(), 200, 20 * 30));
     }
 
     private final ItemStack item;
@@ -37,8 +44,9 @@ public class CeremonyRegistry
     private final ICeremonyEffect ceremonyEffect;
     private final int overallDrain;
     private final int maximumTicks;
+    private final boolean lastsForever;
 
-    public CeremonyRegistry(boolean doesNeedItems, ItemStack item, int plant1, int plant2, int plant3, int plant4, int percentageNeeded, int plantForPercentage, int ceremonyID, ICeremonyEffect ceremonyEffect, int overallDrain, int maximumTicks)
+    public CeremonyRegistry(boolean doesNeedItems, ItemStack item, int plant1, int plant2, int plant3, int plant4, int percentageNeeded, int plantForPercentage, int ceremonyID, ICeremonyEffect ceremonyEffect, int overallDrain, int maximumTicks, boolean lastsForever)
     {
         this.item = item;
         this.doesNeedItems = doesNeedItems;
@@ -52,6 +60,7 @@ public class CeremonyRegistry
         this.ceremonyEffect = ceremonyEffect;
         this.overallDrain = overallDrain;
         this.maximumTicks = maximumTicks;
+        this.lastsForever = lastsForever;
     }
 
     public ItemStack getItem()
@@ -112,6 +121,11 @@ public class CeremonyRegistry
     public int getMaximumTicks()
     {
         return this.maximumTicks;
+    }
+
+    public boolean doesLastForever()
+    {
+        return this.lastsForever;
     }
 
 }
