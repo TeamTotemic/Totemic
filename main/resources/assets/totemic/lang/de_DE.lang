@@ -3,11 +3,7 @@
 # Item localizations
 item.totemic:totemHead.name=Totemkopf
 item.totemic:totemicStaff.name=Totemstab
-item.totemic:toolHandle.name=Totem-Werkzeuggriff
-item.totemic:whittlingWhole.name=Totemwerkzeug: Schnitzen
-item.totemic:whittlingHead.name=Totemwerkzeug-Schnitzmesserklinge
-item.totemic:choppingHead.name=Totemwerkzeug-Hackmesserklinge
-item.totemic:choppingWhole.name=Totemwerkzeug: Hacken
+item.totemic:totemWhittlingKnife.name=Totemschnitzmesser
 item.totemic:totemsBat.name=Fledermaustotem
 item.totemic:totemsCactus.name=Kaktustotem
 item.totemic:totemsQuartzBlock.name=Quarzblocktotem
@@ -18,11 +14,20 @@ item.totemic:totemsBlaze.name=Lohentotem
 item.totemic:totemsSquid.name=Tintenfischtotem
 item.totemic:totemsSun.name=Sonnentotem
 item.totemic:totemsFood.name=Nahrungstotem
+item.totemic:totemsLove.name=Liebestotem
+item.totemic:totemsDraining.name=Leerestotem
+item.totemic:totemsRange.name=Reichweitentotem
+item.totemic:totemsNotATotem.name=Code-Item: Nicht verwenden!
 item.totemic:chlorophyllicIngot.name=Chlorophyllbarren
 item.totmeic:paintBrush.name=Totem-Farbpinsel
 item.totemic:bucketChlorophyll.name=Chlorophylleimer
-item.totemic:chlorophyllCrystal.name=Chlorophyllkristall
+item.totemic:chlorophyllCrystal.name=Grünekristall
+item.totemic:blazingChlorophyllCrystal.name=Flammender Grünekristall
 item.totemic:bottleChlorophyll.name=Chlorophyllflasche
+item.totemic:infusedTotemicStaff.name=Infundierter Totemstab
+item.totemic:leaf.name=Totemblatt
+item.totemic:infusedStick.name=Totemstock
+item.totemic:totempedia.name=Totempedia
 
 # Block localizations
 tile.totemBase.name=Totembasis
@@ -30,11 +35,15 @@ tile.chlorophyllSolidifier.name=Chlorophyllverfestiger
 tile.totemWoods.name=Totemholz
 tile.totemSupport.name=Totemstrukturstütze
 tile.totemIntelligence.name=Totemstrukturkern
-tile.totemTable.name=Totemtisch
+tile.totemTable.name=Totemtisch [WIP]
 tile.totemDraining.name=Totem des Leerens
+tile.totemSocket.name=Totemsockel
+tile.totemSapling.name=Totemsetzling
+tile.totemLeaves.name=Totemblätter
+tile.totemMana.name=Manatotemkern
 
-# GUI localizations
-container.totemic:totemBase=Totembasis
+# Fluid localizations
+fluid.fluidChlorophyll.name=Chlorophyll
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
