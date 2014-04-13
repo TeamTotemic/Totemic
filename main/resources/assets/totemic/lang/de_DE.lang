@@ -21,13 +21,19 @@ item.totemic:totemsNotATotem.name=Code-Item: Nicht verwenden!
 item.totemic:chlorophyllicIngot.name=Chlorophyllbarren
 item.totmeic:paintBrush.name=Totem-Farbpinsel
 item.totemic:bucketChlorophyll.name=Chlorophylleimer
-item.totemic:chlorophyllCrystal.name=Grünekristall
-item.totemic:blazingChlorophyllCrystal.name=Flammender Grünekristall
+item.totemic:chlorophyllCrystal.name=Chlorophyllkristall
+item.totemic:blazingChlorophyllCrystal.name=Flammender Chlorophyllkristall
 item.totemic:bottleChlorophyll.name=Chlorophyllflasche
 item.totemic:infusedTotemicStaff.name=Infundierter Totemstab
 item.totemic:leaf.name=Totemblatt
 item.totemic:infusedStick.name=Totemstock
 item.totemic:totempedia.name=Totempedia
+item.totemic:potionResistance.name=Resistenztrank
+item.totemic:potionAntidote.name=Gegengifttrank
+item.totemic:potionRegeneration.name=Regenerationstrank
+item.totemic:infusedPotion.name=Infundierter Trank
+item.totemic:blazingVerdantCrystal.name=Flammender Grünekristall
+item.totemic:verdantCrystal.name=Grünekristall
 
 # Block localizations
 tile.totemBase.name=Totembasis
@@ -41,9 +47,11 @@ tile.totemSocket.name=Totemsockel
 tile.totemSapling.name=Totemsetzling
 tile.totemLeaves.name=Totemblätter
 tile.totemMana.name=Manatotemkern
+tile.totemCauldron.name=Totemkessel
 
 # Fluid localizations
 fluid.fluidChlorophyll.name=Chlorophyll
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
+itemGroup.totemicPotions=Totemic Tränke
