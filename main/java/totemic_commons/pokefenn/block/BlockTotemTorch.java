@@ -33,24 +33,21 @@ public class BlockTotemTorch extends BlockTileTotemic
         setBlockName(Strings.TOTEM_TORCH_NAME);
         setLightLevel(1F);
     }
+
     @SideOnly(Side.CLIENT)
-    public static IIcon iconThingy;
+    public IIcon iconThingy;
 
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random rand)
     {
-        double d0 = (double) ((float) y + 0.5F);
-        double d1 = (double) ((float) y + 0.7F);
-        double d2 = (double) ((float) y + 0.5F);
-
         TileTotemTorch tileEntity = (TileTotemTorch) world.getTileEntity(x, y, z);
 
         //if (tileEntity.isActive)
-            for (int i = 0; i < 32; i++)
-            {
-                world.spawnParticle("flame", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);
-                world.spawnParticle("smoke", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);
-            }
+        for(int i = 0; i < 32; i++)
+        {
+            world.spawnParticle("flame", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);
+            world.spawnParticle("smoke", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);
+        }
     }
 
     public void registerBlockIcons(IIconRegister register)
@@ -66,12 +63,6 @@ public class BlockTotemTorch extends BlockTileTotemic
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-        TileTotemTorch tileTotemTorch = (TileTotemTorch) world.getTileEntity(x, y, z);
-
-        //if (tileTotemTorch != null && !world.isRemote)
-        {
-            //tileTotemTorch.isActive = !tileTotemTorch.isActive;
-        }
         return true;
     }
 

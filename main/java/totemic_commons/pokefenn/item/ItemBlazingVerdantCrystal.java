@@ -25,7 +25,7 @@ public class ItemBlazingVerdantCrystal extends ItemTotemic implements IVerdantCr
     {
         super();
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BLAZING_VERDANT_CRYSTAL_NAME);
-        setMaxDamage(ModItems.chlorophyllCrystal.getMaxDamage());
+        setMaxDamage(ModItems.verdantCrystal.getMaxDamage());
         setMaxStackSize(1);
         //registerIcons = false;
     }

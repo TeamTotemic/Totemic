@@ -19,7 +19,7 @@ public class ItemTotemic extends Item
     public ItemTotemic()
     {
         super();
-        //setMaxStackSize(64);
+        setMaxStackSize(64);
         setNoRepair();
         setCreativeTab(Totemic.tabsTotem);
     }
@@ -28,7 +28,7 @@ public class ItemTotemic extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
-        if (registerIcons)
+        if(registerIcons)
             itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
     }
 

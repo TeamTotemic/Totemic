@@ -1,8 +1,10 @@
-package totemic_commons.pokefenn.ceremony;
+package totemic_commons.pokefenn.recipe.registry;
 
 import net.minecraft.item.ItemStack;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
+import totemic_commons.pokefenn.ceremony.CeremonyHarvestFeast;
+import totemic_commons.pokefenn.ceremony.CeremonyNight;
+import totemic_commons.pokefenn.ceremony.CeremonyRain;
 import totemic_commons.pokefenn.lib.PlantIds;
 
 import java.util.ArrayList;
@@ -25,12 +27,19 @@ public class CeremonyRegistry
         int bloodwart = PlantIds.BLOODWART_ID;
         int fungus = PlantIds.FUNGUS_ID;
         int lotus = PlantIds.LOTUS_ID;
+        int potato = PlantIds.POTATO_ID;
 
-        ceremonyRegistry.add(new CeremonyRegistry(false, null, moonglow, moonglow, moonglow, moonglow, 75, moonglow, 1, new CeremonyNight(), 200, 20 * 30, false));
-        ceremonyRegistry.add(new CeremonyRegistry(false, null, lotus, lotus, lotus, lotus, 50, lotus, 2, new CeremonyRain(), 200, 20 * 30, false));
-        ceremonyRegistry.add(new CeremonyRegistry(false, null, wheat, wheat, wheat, wheat, 75, wheat, 3, new CeremonyHarvestFeast(), 150, 20 * 1000, true));
+        ceremonyRegistry.add(new CeremonyRegistry(false, null, moonglow, moonglow, moonglow, moonglow, 75, moonglow, 1, new CeremonyNight(), 200, 20 * 30, false, 0));
+        ceremonyRegistry.add(new CeremonyRegistry(false, null, lotus, lotus, lotus, lotus, 50, lotus, 2, new CeremonyRain(), 200, 20 * 30, false, 0));
+        ceremonyRegistry.add(new CeremonyRegistry(false, null, wheat, carrot, wheat, potato, 75, wheat, 3, new CeremonyHarvestFeast(), 150, 20 * 1000, true, 50));
         //ceremonyRegistry.add(new CeremonyRegistry(false, null, bloodwart, bloodwart, bloodwart, bloodwart, 40, new CeremonyDrought(), 200, 20 * 30));
     }
+
+    /*
+     * Item is the Itemstack, that is optional to start, does need items referes to that itemstack, the 4 plants are the plants that have to be in the world for the effect. Percentage needed is how much of a certain plant is needed, and then ext one is which plant.
+     * Ceremony ID is the id of the ceremony, dont let it conflict. Next is the actual effect, it just needs to implement ICeremonyEffect, overallDrain is the total of plant essence it needs, and maximum ticks is how long it has to drain before it starts.
+     * Lasts forever is obvious, and costPer5Seconds is only needed if you use that, and its how much it drains, every 5 seconds.
+     */
 
     private final ItemStack item;
     private final boolean doesNeedItems;
@@ -45,8 +54,9 @@ public class CeremonyRegistry
     private final int overallDrain;
     private final int maximumTicks;
     private final boolean lastsForever;
+    private final int costPer5Seconds;
 
-    public CeremonyRegistry(boolean doesNeedItems, ItemStack item, int plant1, int plant2, int plant3, int plant4, int percentageNeeded, int plantForPercentage, int ceremonyID, ICeremonyEffect ceremonyEffect, int overallDrain, int maximumTicks, boolean lastsForever)
+    public CeremonyRegistry(boolean doesNeedItems, ItemStack item, int plant1, int plant2, int plant3, int plant4, int percentageNeeded, int plantForPercentage, int ceremonyID, ICeremonyEffect ceremonyEffect, int overallDrain, int maximumTicks, boolean lastsForever, int costPer5Seconds)
     {
         this.item = item;
         this.doesNeedItems = doesNeedItems;
@@ -61,6 +71,7 @@ public class CeremonyRegistry
         this.overallDrain = overallDrain;
         this.maximumTicks = maximumTicks;
         this.lastsForever = lastsForever;
+        this.costPer5Seconds = costPer5Seconds;
     }
 
     public ItemStack getItem()
@@ -126,6 +137,11 @@ public class CeremonyRegistry
     public boolean doesLastForever()
     {
         return this.lastsForever;
+    }
+
+    public int getCostPer5Seconds()
+    {
+        return this.costPer5Seconds;
     }
 
 }

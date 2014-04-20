@@ -14,10 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
-import totemic_commons.pokefenn.client.rendering.item.ItemChlorophyllCrystalRenderer;
-import totemic_commons.pokefenn.client.rendering.item.ItemInfusedTotemicStaff;
-import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
-import totemic_commons.pokefenn.client.rendering.item.ItemTotemicStaffRender;
+import totemic_commons.pokefenn.client.rendering.item.*;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTorchRenderer;
 import totemic_commons.pokefenn.lib.RenderIds;
@@ -129,7 +126,8 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemSocket), new ItemTotemSocketRenderer());
         MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff, new ItemTotemicStaffRender());
         MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff, new ItemInfusedTotemicStaff());
-        MinecraftForgeClient.registerItemRenderer(ModItems.chlorophyllCrystal, new ItemChlorophyllCrystalRenderer());
+        MinecraftForgeClient.registerItemRenderer(ModItems.verdantCrystal, new ItemChlorophyllCrystalRenderer());
+        //MinecraftForgeClient.registerItemRenderer(ModItems.halberd, new ItemHalberdRenderer());
         //MinecraftForgeClient.registerItemRenderer(ModBlocks.totemTorch, new ItemTotemTorchRenderer);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemSocket.class, new TileTotemSocketRenderer());
@@ -145,7 +143,7 @@ public class ClientProxy extends CommonProxy
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
 
-        if (ID == totempediaGuiID)
+        if(ID == totempediaGuiID)
         {
             ItemStack stack = player.getCurrentEquippedItem();
             //return new GuiTotempedia(stack, totempedia);
@@ -153,63 +151,5 @@ public class ClientProxy extends CommonProxy
 
         return null;
     }
-
-    @Override
-    public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName)
-    {
-        TileEntity tileEntity = FMLClientHandler.instance().getClient().theWorld.getTileEntity(x, y, z);
-
-        if (tileEntity != null)
-        {
-            if (tileEntity instanceof TileTotemic)
-            {
-                //((TileTotemic) tileEntity).setOrientation(orientation);
-                ((TileTotemic) tileEntity).setState(state);
-                ((TileTotemic) tileEntity).setCustomName(customName);
-            }
-        }
-    }
-
-    @Override
-    public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, String itemName, int metaData, int stackSize)
-    {
-
-        World world = FMLClientHandler.instance().getClient().theWorld;
-        TileEntity tileEntity = world.getTileEntity(x, y, z);
-
-        this.handleTileEntityPacket(x, y, z, orientation, state, customName);
-
-        if (tileEntity != null)
-        {
-            if (tileEntity instanceof TileTotemic)
-            {
-                //((TileTotemic) tileEntity).setOrientation(orientation);
-                ((TileTotemic) tileEntity).setState(state);
-                ((TileTotemic) tileEntity).setCustomName(customName);
-            }
-
-        }
-    }
-
-    @Override
-    public void handleTileWithItemAndFluidPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, String itemName, int metaData, int stackSize, int fluidAmount, byte fluidID)
-    {
-        World world = FMLClientHandler.instance().getClient().theWorld;
-        TileEntity tileEntity = world.getTileEntity(x, y, z);
-
-        this.handleTileWithItemPacket(x, y, z, orientation, state, customName, itemName, metaData, stackSize);
-
-        if (tileEntity != null)
-        {
-            if (tileEntity instanceof TileTotemic && tileEntity instanceof IFluidHandler)
-            {
-
-            }
-
-        }
-
-    }
-
-
 
 }

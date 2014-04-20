@@ -16,11 +16,11 @@ public class CeremonyNight implements ICeremonyEffect
     {
         World world = tileCeremonyIntelligence.getWorldObj();
 
-        if (tileCeremonyIntelligence != null)
+        if(tileCeremonyIntelligence != null)
         {
-            if (world.isDaytime())
+            if(world.isDaytime())
             {
-                for (int j = 0; j < MinecraftServer.getServer().worldServers.length; ++j)
+                for(int j = 0; j < MinecraftServer.getServer().worldServers.length; ++j)
                     MinecraftServer.getServer().worldServers[j].setWorldTime((13000));
                 tileCeremonyIntelligence.currentCeremony = 0;
             }

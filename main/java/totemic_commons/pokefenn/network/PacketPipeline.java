@@ -50,19 +50,19 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
      */
     public boolean registerPacket(Class<? extends AbstractPacket> clazz)
     {
-        if (this.packets.size() > 256)
+        if(this.packets.size() > 256)
         {
             // You should log here!!
             return false;
         }
 
-        if (this.packets.contains(clazz))
+        if(this.packets.contains(clazz))
         {
             // You should log here!!
             return false;
         }
 
-        if (this.isPostInitialised)
+        if(this.isPostInitialised)
         {
             // You should log here!!
             return false;
@@ -78,7 +78,7 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
     {
         ByteBuf buffer = Unpooled.buffer();
         Class<? extends AbstractPacket> clazz = msg.getClass();
-        if (!this.packets.contains(msg.getClass()))
+        if(!this.packets.contains(msg.getClass()))
         {
             throw new NullPointerException("No Packet Registered for: " + msg.getClass().getCanonicalName());
         }
@@ -97,7 +97,7 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
         ByteBuf payload = msg.payload();
         byte discriminator = payload.readByte();
         Class<? extends AbstractPacket> clazz = this.packets.get(discriminator);
-        if (clazz == null)
+        if(clazz == null)
         {
             throw new NullPointerException("No packet registered for discriminator: " + discriminator);
         }
@@ -106,7 +106,7 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
         pkt.decodeInto(ctx, payload.slice());
 
         EntityPlayer player;
-        switch (FMLCommonHandler.instance().getEffectiveSide())
+        switch(FMLCommonHandler.instance().getEffectiveSide())
         {
             case CLIENT:
                 player = this.getClientPlayer();
@@ -135,7 +135,7 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
     // Ensures that packet discriminators are common between server and client by using logical sorting
     public void postInitialise()
     {
-        if (this.isPostInitialised)
+        if(this.isPostInitialised)
         {
             return;
         }
@@ -148,7 +148,7 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
             public int compare(Class<? extends AbstractPacket> clazz1, Class<? extends AbstractPacket> clazz2)
             {
                 int com = String.CASE_INSENSITIVE_ORDER.compare(clazz1.getCanonicalName(), clazz2.getCanonicalName());
-                if (com == 0)
+                if(com == 0)
                 {
                     com = clazz1.getCanonicalName().compareTo(clazz2.getCanonicalName());
                 }

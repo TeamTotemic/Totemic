@@ -11,14 +11,12 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.totem.IPlantEssenceInput;
 import totemic_commons.pokefenn.api.verdant.IVerdantCrystal;
 import totemic_commons.pokefenn.block.BlockTotemSocket;
 import totemic_commons.pokefenn.block.plant.IPlantDrain;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.totem.*;
-
-import java.util.Random;
+import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,31 +24,26 @@ import java.util.Random;
  * Date: 29/01/14
  * Time: 20:22
  */
-public class TileTotemIntelligence extends TileTotemic implements IInventory
+public class TileTotemIntelligence extends TileTotemic implements IInventory, IPlantEssenceInput
 {
 
     private ItemStack[] inventory;
-
     public static final int INVENTORY_SIZE = 1;
-
     public static final int SLOT_ONE = 0;
+    public int plantEssence;
+    public int maxEssence;
+    public static int socket;
+    public static int rangeUpgrades;
 
-    //int[] SOCKETS;
-
-    public int PLANT_ESSENCE;
-
-    public static int SOCKET_NUMBER;
-
-    public static int RANGE_UPGRADES;
-
-    ItemStack[] TOTEMS;
+    ItemStack[] totems;
 
     public TileTotemIntelligence()
     {
         inventory = new ItemStack[INVENTORY_SIZE];
-        //SOCKETS = new int[6];
-        TOTEMS = new ItemStack[6];
-        PLANT_ESSENCE = 0;
+        totems = new ItemStack[6];
+        plantEssence = 0;
+        maxEssence = 1000;
+        rangeUpgrades = 0;
     }
 
     @Override
@@ -75,27 +68,28 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
         int currentInput = worldObj.getBlockPowerInput(xCoord, yCoord, zCoord);
 
-        if (!this.worldObj.isRemote)
+        if(!this.worldObj.isRemote)
         {
-            if (this.worldObj.getWorldTime() % 100L == 0)
+            if(this.worldObj.getWorldTime() % 100L == 0)
             {
                 setSocketAmounts();
                 scanArea();
             }
 
-            if (!(currentInput >= 1))
+            if(!(currentInput >= 1))
             {
-                if (SOCKET_NUMBER != 0)
+                if(socket > 0)
                 {
-                    for (TotemRegistry totemRegistry : TotemRegistry.getRecipes())
+                    for(int i = 1; i <= socket; i++)
                     {
-                        if (this.getStackInSlot(SLOT_ONE) != null)
+                        if(plantEssence > 0 || totems[i] != null && totems[i].getItemDamage() == 6)
                         {
-                            for (int i = 1; i <= SOCKET_NUMBER; i++)
+                            for(TotemRegistry totemRegistry : TotemRegistry.getRecipes())
                             {
-                                if (TOTEMS[i] != null && TOTEMS[i].getItem() == totemRegistry.getTotem().getItem() && TOTEMS[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement()))
+                                //System.out.println("foobar");
+                                if(totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement(), totems[i].getItemDamage()))
                                 {
-                                    totemRegistry.getEffect().effect(this, RANGE_UPGRADES, true, totemRegistry);
+                                    totemRegistry.getEffect().effect(this, rangeUpgrades, true, totemRegistry, totemRegistry.getHorizontal(), totemRegistry.getVerticalHight());
                                 }
                             }
                         }
@@ -107,22 +101,17 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         }
     }
 
-    public void deChargeCrystal()
-    {
-
-    }
-
     protected void scanArea()
     {
-        for (int i = 1; i <= getSocketAmounts(); i++)
+        for(int i = 1; i <= getSocketAmounts(); i++)
         {
-            if (getSocketAmounts() <= 5)
+            if(getSocketAmounts() <= 5)
             {
-                if (getSocketItemStack(i) != null)
+                if(getSocketItemStack(i) != null)
                 {
-                    TOTEMS[i] = getSocketItemStack(i);
+                    totems[i] = getSocketItemStack(i);
                 } else
-                    TOTEMS[i] = null;
+                    totems[i] = null;
             }
         }
     }
@@ -134,21 +123,35 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     public void increaseChlorophyll(Block block)
     {
-        Random rand = new Random();
 
-        if (this.getStackInSlot(SLOT_ONE) != null)
+        if(this.getStackInSlot(SLOT_ONE) != null)
         {
-            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - getPlantDrained(block));
-            //System.out.println(this.getStackInSlot(SLOT_ONE).getItemDamage() - rand.nextInt(2));
+            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - (getPlantDrained(block) + 1));
+        }
+
+    }
+
+    public void increasePlantEssence(Block block)
+    {
+
+        if(plantEssence < maxEssence)
+        {
+            if((plantEssence += getPlantDrained(block)) > maxEssence)
+            {
+                plantEssence = maxEssence;
+                return;
+            }
+
+            plantEssence += getPlantDrained(block) - 1;
         }
 
     }
 
     public int getPlantDrained(Block plant)
     {
-        if (plant instanceof IPlantDrain)
+        if(plant instanceof IPlantDrain)
         {
-            ((IPlantDrain) plant).getPlantDrain(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+            return ((IPlantDrain) plant).getPlantDrain(this.worldObj, this.xCoord, this.yCoord, this.zCoord) - 1;
         }
 
         return 2;
@@ -156,14 +159,16 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
     public void decreaseChlorophyll(int subtraction)
     {
-        if (!(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0))
-        {
-            this.setInventorySlotContents(SLOT_ONE, new ItemStack(this.getStackInSlot(SLOT_ONE).getItem(), 1, this.getStackInSlot(SLOT_ONE).getItemDamage() + subtraction));
-        }
-
+        if(plantEssence - subtraction > 0)
+            plantEssence -= subtraction;
     }
 
-    protected boolean canDoEffect(int subtraction)
+    protected boolean canDoEffect(int subtraction, int meta)
+    {
+        return plantEssence - subtraction > 0 || meta == 6;
+    }
+
+    protected boolean canDoEffectOld(int subtraction)
     {
         return !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
     }
@@ -184,19 +189,19 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
 
-        if (block1 instanceof BlockTotemSocket && block2 != ModBlocks.totemSocket)
+        if(block1 instanceof BlockTotemSocket && block2 != ModBlocks.totemSocket)
         {
             return 1;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 != ModBlocks.totemSocket)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 != ModBlocks.totemSocket)
         {
             return 2;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 != ModBlocks.totemSocket)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 != ModBlocks.totemSocket)
         {
             return 3;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 != ModBlocks.totemSocket)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 != ModBlocks.totemSocket)
         {
             return 4;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
         {
             return 5;
         } else
@@ -212,23 +217,23 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
 
-        if (block1 instanceof BlockTotemSocket && block2 != ModBlocks.totemSocket)
+        if(block1 instanceof BlockTotemSocket && block2 != ModBlocks.totemSocket)
         {
-            SOCKET_NUMBER = 1;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 != ModBlocks.totemSocket)
+            socket = 1;
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 != ModBlocks.totemSocket)
         {
-            SOCKET_NUMBER = 2;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 != ModBlocks.totemSocket)
+            socket = 2;
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 != ModBlocks.totemSocket)
         {
-            SOCKET_NUMBER = 3;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 != ModBlocks.totemSocket)
+            socket = 3;
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 != ModBlocks.totemSocket)
         {
-            SOCKET_NUMBER = 4;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
+            socket = 4;
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
         {
-            SOCKET_NUMBER = 5;
+            socket = 5;
         } else
-            SOCKET_NUMBER = 0;
+            socket = 0;
 
     }
 
@@ -251,15 +256,15 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     {
 
         ItemStack itemStack = getStackInSlot(slotIndex);
-        if (itemStack != null)
+        if(itemStack != null)
         {
-            if (itemStack.stackSize <= decrementAmount)
+            if(itemStack.stackSize <= decrementAmount)
             {
                 setInventorySlotContents(slotIndex, null);
             } else
             {
                 itemStack = itemStack.splitStack(decrementAmount);
-                if (itemStack.stackSize == 0)
+                if(itemStack.stackSize == 0)
                 {
                     setInventorySlotContents(slotIndex, null);
                 }
@@ -289,7 +294,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     {
 
         ItemStack itemStack = getStackInSlot(slotIndex);
-        if (itemStack != null)
+        if(itemStack != null)
         {
             setInventorySlotContents(slotIndex, null);
         }
@@ -300,7 +305,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack)
     {
         inventory[slotIndex] = itemStack;
-        if (itemStack != null && itemStack.stackSize > getInventoryStackLimit())
+        if(itemStack != null && itemStack.stackSize > getInventoryStackLimit())
         {
             itemStack.stackSize = getInventoryStackLimit();
         }
@@ -327,9 +332,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
-        if (!this.worldObj.isRemote)
+        if(!this.worldObj.isRemote)
         {
-            if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack != null && itemStack.getItem() instanceof IVerdantCrystal)
+            if(i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack != null && itemStack.getItem() instanceof IVerdantCrystal)
             {
 
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -347,15 +352,15 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
         super.readFromNBT(nbtTagCompound);
 
-        PLANT_ESSENCE = nbtTagCompound.getInteger("plantEssence");
+        plantEssence = nbtTagCompound.getInteger("plantEssence");
 
         // Read in the ItemStacks in the inventory from NBT
         NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
-        for (int i = 0; i < tagList.tagCount(); i++)
+        for(int i = 0; i < tagList.tagCount(); i++)
         {
             NBTTagCompound tag = tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
-            if (slot >= 0 && slot < inventory.length)
+            if(slot >= 0 && slot < inventory.length)
             {
                 inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
             }
@@ -369,13 +374,13 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
 
         super.writeToNBT(nbtTagCompound);
 
-        nbtTagCompound.setInteger("plantEssence", PLANT_ESSENCE);
+        nbtTagCompound.setInteger("plantEssence", plantEssence);
 
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
-        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        for(int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
         {
-            if (inventory[currentIndex] != null)
+            if(inventory[currentIndex] != null)
             {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) currentIndex);
@@ -386,4 +391,32 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory
         nbtTagCompound.setTag("Items", tagList);
 
     }
+
+    @Override
+    public int getCurrentPlantEssence()
+    {
+        return plantEssence;
+    }
+
+    @Override
+    public void receivePlantEssence(int plantEssence)
+    {
+        if(canReceivePlantEssence(plantEssence))
+        {
+            this.plantEssence += plantEssence;
+        }
+    }
+
+    @Override
+    public boolean canReceivePlantEssence(int plantEssence)
+    {
+        return this.plantEssence < this.maxEssence;
+    }
+
+    @Override
+    public int getMaxEssence()
+    {
+        return maxEssence;
+    }
+
 }

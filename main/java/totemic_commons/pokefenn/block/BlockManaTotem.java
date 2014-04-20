@@ -33,7 +33,7 @@ public class BlockManaTotem extends BlockTileTotemic
     @Override
     public void registerBlockIcons(IIconRegister register)
     {
-       icon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.MANA_TOTEM);
+        icon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.MANA_TOTEM);
 
     }
 

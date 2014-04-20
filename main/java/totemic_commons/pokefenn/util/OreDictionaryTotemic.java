@@ -26,19 +26,17 @@ public class OreDictionaryTotemic
         OreDictionary.registerOre("plant", new ItemStack(Items.potato));
         OreDictionary.registerOre("plant", new ItemStack(Items.poisonous_potato));
 
-        OreDictionary.registerOre("crystalChlorophyll", new ItemStack(ModItems.chlorophyllCrystal, 1, OreDictionary.WILDCARD_VALUE));
-        for (int i = 0; i <= 3; i++)
+        for(int i = 0; i <= 3; i++)
+        {
+            OreDictionary.registerOre("plant", new ItemStack(Blocks.leaves, 1, i));
+            OreDictionary.registerOre("plant", new ItemStack(Blocks.leaves2, 1, i));
+        }
+
+        OreDictionary.registerOre("crystalVerdant", new ItemStack(ModItems.verdantCrystal, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("blazingCrystalVerdant", new ItemStack(ModItems.blazingChlorophyllCrystal, 1, OreDictionary.WILDCARD_VALUE));
+        for(int i = 0; i <= 3; i++)
         {
             OreDictionary.registerOre("plant", new ItemStack(Blocks.sapling, 1, i));
         }
-
-        for (int i = 0; i <= 4; i++)
-        {
-            OreDictionary.registerOre("knife", new ItemStack(ModItems.totemWhittlingKnife, 1, i));
-        }
-
-        //OreDictionary.registerOre("plant", new ItemStack(GameRegistry.findItem("XyCraft", "tomato")));
-
     }
-
 }

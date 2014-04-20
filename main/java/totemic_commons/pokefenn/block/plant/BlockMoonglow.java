@@ -54,12 +54,12 @@ public class BlockMoonglow extends BlockBasePlant implements IPlantDrain
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
         int count = 1;
 
-        if (metadata >= 3)
+        if(metadata >= 3)
         {
             count = 2 + world.rand.nextInt(1) + (fortune > 0 ? world.rand.nextInt(fortune + 1) : 0);
         }
 
-        for (int i = 0; i < count; i++)
+        for(int i = 0; i < count; i++)
         {
             ret.add(new ItemStack(ModItems.moonglowSeeds));
         }

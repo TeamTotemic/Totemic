@@ -11,10 +11,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
@@ -27,7 +30,7 @@ import java.util.Random;
  * Date: 29/01/14
  * Time: 20:20
  */
-public class BlockTotemIntelligence extends BlockTileTotemic
+public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemicStaffUsage
 {
 
     private Random rand = new Random();
@@ -50,15 +53,15 @@ public class BlockTotemIntelligence extends BlockTileTotemic
         ItemStack heldItem = player.inventory.getCurrentItem();
 
 
-        if (tileTotemIntelligence != null && !world.isRemote)
+        if(tileTotemIntelligence != null && !world.isRemote)
         {
 
-            if (tileTotemIntelligence.isItemValidForSlot(SLOT_ONE, heldItem))
+            if(tileTotemIntelligence.isItemValidForSlot(SLOT_ONE, heldItem))
             {
                 tileTotemIntelligence.setInventorySlotContents(SLOT_ONE, heldItem);
                 player.destroyCurrentEquippedItem();
 
-            } else if (tileTotemIntelligence.getStackInSlot(SLOT_ONE) != null && heldItem == null)
+            } else if(tileTotemIntelligence.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
                 EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemIntelligence.getStackInSlot(SLOT_ONE));
                 world.spawnEntityInWorld(entityitem);
@@ -80,9 +83,9 @@ public class BlockTotemIntelligence extends BlockTileTotemic
     {
         TileTotemIntelligence tileTotemIntelligence = (TileTotemIntelligence) world.getTileEntity(x, y, z);
 
-        if (tileTotemIntelligence.getStackInSlot(0) != null)
-            if (world.getWorldTime() % 160L == 0)
-                for (int i = 0; i < 16; i++)
+        if(tileTotemIntelligence.getStackInSlot(0) != null)
+            if(world.getWorldTime() % 160L == 0)
+                for(int i = 0; i < 16; i++)
                     world.spawnParticle("happyVillager", x + rand.nextInt(2), y + rand.nextInt(2), z + rand.nextInt(2), i, i, i);
 
     }
@@ -93,7 +96,7 @@ public class BlockTotemIntelligence extends BlockTileTotemic
     {
         dropInventory(world, x, y, z);
 
-        if (world.getTileEntity(x, y, z) instanceof TileTotemIntelligence)
+        if(world.getTileEntity(x, y, z) instanceof TileTotemIntelligence)
         {
             world.markBlockForUpdate(x, y, z);
         }
@@ -106,17 +109,17 @@ public class BlockTotemIntelligence extends BlockTileTotemic
 
         TileEntity tileEntity = world.getTileEntity(x, y, z);
 
-        if (!(tileEntity instanceof IInventory))
+        if(!(tileEntity instanceof IInventory))
             return;
 
         IInventory inventory = (IInventory) tileEntity;
 
-        for (int i = 0; i < inventory.getSizeInventory(); i++)
+        for(int i = 0; i < inventory.getSizeInventory(); i++)
         {
 
             ItemStack itemStack = inventory.getStackInSlot(i);
 
-            if (itemStack != null && itemStack.stackSize > 0)
+            if(itemStack != null && itemStack.stackSize > 0)
             {
                 float dX = rand.nextFloat() * 0.8F + 0.1F;
                 float dY = rand.nextFloat() * 0.8F + 0.1F;
@@ -124,7 +127,7 @@ public class BlockTotemIntelligence extends BlockTileTotemic
 
                 EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.getItem(), itemStack.stackSize, itemStack.getItemDamage()));
 
-                if (itemStack.hasTagCompound())
+                if(itemStack.hasTagCompound())
                 {
                     entityItem.getEntityItem().setTagCompound((NBTTagCompound) itemStack.getTagCompound().copy());
                 }
@@ -168,5 +171,23 @@ public class BlockTotemIntelligence extends BlockTileTotemic
     public TileEntity createNewTileEntity(World var1, int var2)
     {
         return new TileTotemIntelligence();
+    }
+
+    @Override
+    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world)
+    {
+        Random rand = new Random();
+        TileTotemIntelligence tileEntity = (TileTotemIntelligence) world.getTileEntity(x, y, z);
+
+        player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
+        player.attackEntityFrom(DamageSource.generic, 2 + rand.nextInt(4));
+    }
+
+    @Override
+    public void onInfusedRightClick(int x, int y, int z, EntityPlayer player, World world)
+    {
+        TileTotemIntelligence tileEntity = (TileTotemIntelligence) world.getTileEntity(x, y, z);
+
+        player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
     }
 }

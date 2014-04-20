@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.ITotem;
+import totemic_commons.pokefenn.api.totem.ITotem;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;
@@ -30,6 +30,13 @@ public class ItemTotems extends ItemTotemic implements ITotem
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
+    public static int horse = 1;
+    public static int bat = 2;
+    public static int blaze = 3;
+    public static int ocelot = 4;
+    public static int squid = 5;
+    public static int draining = 6;
+
     public ItemTotems()
     {
         super();
@@ -44,64 +51,33 @@ public class ItemTotems extends ItemTotemic implements ITotem
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        switch (stack.getItemDamage())
-        {
-            case 1:
-                list.add("Damage mobs with the power of a Cactus");
-                break;
+        if(stack.getItemDamage() == horse)
+            list.add("Obtain the speed of a Horse");
 
-            case 2:
-                list.add("Obtain the speed of a Horse");
-                break;
+        if(stack.getItemDamage() == bat)
+            list.add("Fly like a Bat");
 
-            case 3:
-                list.add("Collect nearby items");
-                break;
+        if(stack.getItemDamage() == blaze)
+            list.add("Burn like a Blaze");
 
-            case 4:
-                list.add("Fly like a Bat");
-                break;
+        if(stack.getItemDamage() == ocelot)
+            list.add("Fear creepers like a Ocelot");
 
-            case 5:
-                list.add("Wish away the rain");
-                break;
+        if(stack.getItemDamage() == squid)
+            list.add("Breath underwater like a Squid");
 
-            case 6:
-                list.add("Burn like a Blaze");
-                break;
+        if(stack.getItemDamage() == draining)
+            list.add("Drain the essence of nearby plants");
 
-            case 7:
-                list.add("Fear creepers like a Ocelot");
-                break;
-
-            case 8:
-                list.add("Breath underwater like a Squid");
-                break;
-
-            case 9:
-                list.add("Feed nearby players");
-                break;
-
-            case 10:
-                list.add("Bring love to nearby animals");
-                break;
-
-            case 11:
-                list.add("Drain the essence of nearby plants");
-                break;
-
-            case 12:
-                list.add("Increase the range of Totems");
-                break;
-        }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-        for (int meta = 0; meta < TOTEM_NAMES.length; meta++)
-            list.add(new ItemStack(id, 1, meta));
+        for(int meta = 0; meta < TOTEM_NAMES.length; meta++)
+            if(meta != 0)
+                list.add(new ItemStack(id, 1, meta));
     }
 
 
@@ -125,7 +101,7 @@ public class ItemTotems extends ItemTotemic implements ITotem
     {
         icons = new IIcon[TOTEM_NAMES.length];
 
-        for (int i = 0; i < TOTEM_NAMES.length; ++i)
+        for(int i = 0; i < TOTEM_NAMES.length; ++i)
             icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + Strings.TOTEMS_NAME + TOTEM_NAMES[i]);
 
     }

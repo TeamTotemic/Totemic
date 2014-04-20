@@ -17,38 +17,16 @@ public class CommonProxy implements IGuiHandler
     {
 
         GameRegistry.registerTileEntity(TileChlorophyllSolidifier.class, Strings.TILE_CHLOROPHYLL_SOLIDIFIER);
-        //GameRegistry.registerTileEntity(TileTotemTable.class, Strings.TILE_TOTEM_TABLE);
         GameRegistry.registerTileEntity(TileTotemIntelligence.class, Strings.TILE_TOTEM_INTELLIGENCE);
         GameRegistry.registerTileEntity(TileTotemSocket.class, Strings.TILE_TOTEM_SOCKET);
-        GameRegistry.registerTileEntity(TileTotemCauldron.class, Strings.TOTEM_CAULDRON_NAME);
+        //GameRegistry.registerTileEntity(TileTotemCauldron.class, Strings.TOTEM_CAULDRON_NAME);
         GameRegistry.registerTileEntity(TileCeremonyIntelligence.class, Strings.CEREMONY_INTELLIGENCE_NAME);
         GameRegistry.registerTileEntity(TileTotemTorch.class, Strings.TOTEM_TORCH_NAME);
+        GameRegistry.registerTileEntity(TileSpiritualEnergyMover.class, Strings.SPIRITUAL_ENERGY_MOVER_NAME);
+        GameRegistry.registerTileEntity(TileSpiritualEnergyCollector.class, Strings.SPIRITUAL_ENERGY_COLLECTOR_NAME);
 
-        if (Totemic.botaniaLoaded)
+        if(Totemic.botaniaLoaded)
             GameRegistry.registerTileEntity(TileTotemMana.class, Strings.TILE_TOTEM_MANA);
-
-    }
-
-
-    public void handleTileEntityPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName)
-    {
-
-    }
-
-
-    public void handleTileWithItemPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, String itemName, int metaData, int stackSize)
-    {
-
-    }
-
-    public void handleChlorophyllSolidifierPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, int itemID, int metaData, int stackSize)
-    {
-        //System.out.println("packet");
-
-    }
-
-    public void handleTileWithItemAndFluidPacket(int x, int y, int z, ForgeDirection orientation, byte state, String customName, String itemName, int metaData, int stackSize, int fluidAmount, byte fluidID)
-    {
 
     }
 

@@ -16,14 +16,19 @@ public class TileTotemic extends TileEntity
     {
         state = 0;
         customName = "";
+        orientation = ForgeDirection.SOUTH;
     }
 
 
-    //@Override
-    //public Packet getDescriptionPacket()
-    //{
-    //    return new PacketTileUpdate(xCoord, yCoord, zCoord, orientation, state, customName);
-    //}
+    public void setOrientation(ForgeDirection orientation)
+    {
+        this.orientation = orientation;
+    }
+
+    public void setOrientation(int orientation)
+    {
+        this.orientation = ForgeDirection.getOrientation(orientation);
+    }
 
     public short getState()
     {
@@ -57,17 +62,17 @@ public class TileTotemic extends TileEntity
     {
         super.readFromNBT(nbtTagCompound);
 
-        if (nbtTagCompound.hasKey(Strings.NBT_TE_DIRECTION_KEY))
+        if(nbtTagCompound.hasKey(Strings.NBT_TE_DIRECTION_KEY))
         {
-            //orientation = ForgeDirection.getOrientation(nbtTagCompound.getByte(Strings.NBT_TE_DIRECTION_KEY));
+            orientation = ForgeDirection.getOrientation(nbtTagCompound.getByte(Strings.NBT_TE_DIRECTION_KEY));
         }
 
-        if (nbtTagCompound.hasKey(Strings.NBT_TE_STATE_KEY))
+        if(nbtTagCompound.hasKey(Strings.NBT_TE_STATE_KEY))
         {
             state = nbtTagCompound.getByte(Strings.NBT_TE_STATE_KEY);
         }
 
-        if (nbtTagCompound.hasKey(Strings.NBT_TE_CUSTOM_NAME))
+        if(nbtTagCompound.hasKey(Strings.NBT_TE_CUSTOM_NAME))
         {
             customName = nbtTagCompound.getString(Strings.NBT_TE_CUSTOM_NAME);
         }
@@ -78,10 +83,10 @@ public class TileTotemic extends TileEntity
     {
         super.writeToNBT(nbtTagCompound);
 
-        //nbtTagCompound.setByte(Strings.NBT_TE_DIRECTION_KEY, (byte) orientation.ordinal());
+        nbtTagCompound.setByte(Strings.NBT_TE_DIRECTION_KEY, (byte) orientation.ordinal());
         nbtTagCompound.setByte(Strings.NBT_TE_STATE_KEY, state);
 
-        if (this.hasCustomName())
+        if(this.hasCustomName())
         {
             nbtTagCompound.setString(Strings.NBT_TE_CUSTOM_NAME, customName);
         }
@@ -90,7 +95,6 @@ public class TileTotemic extends TileEntity
     @Override
     public String toString()
     {
-
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(String.format("TileTotemic Data - xCoord: %d, yCoord: %d, zCoord: %d, customName: '%s', orientation: %s, state: %d\n", xCoord, yCoord, zCoord, customName, state));

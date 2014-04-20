@@ -22,7 +22,7 @@ public class TileTotemSocketRenderer extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick)
     {
-        if (tileEntity instanceof TileTotemSocket)
+        if(tileEntity instanceof TileTotemSocket)
         {
 
             GL11.glDisable(GL11.GL_LIGHTING);

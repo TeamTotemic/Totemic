@@ -1,9 +1,10 @@
-package totemic_commons.pokefenn.totem;
+package totemic_commons.pokefenn.recipe.registry;
 
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.api.ITotemEffect;
+import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.lib.Totems;
+import totemic_commons.pokefenn.totem.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,11 @@ public class TotemRegistry
     public static void addTotems()
     {
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_HORSE, 10, 10, new TotemEffectHorse()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 5), Totems.DECREMENT_SQUID, 10, 10, new TotemEffectSquid()));
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_BLAZE, 10, 10, new TotemEffectBlaze()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 4), Totems.DECREMENT_OCELOT, 10, 10, new TotemEffectOcelot()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BAT, 15, 20, new TotemEffectBat()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 6), 0, 8, 8, new TotemEffectDraining()));
     }
 
     public static List<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();

@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.recipe;
+package totemic_commons.pokefenn.recipe.registry;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;

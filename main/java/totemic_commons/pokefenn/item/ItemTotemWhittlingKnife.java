@@ -30,17 +30,17 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
-        if (!world.isRemote)
+        if(!world.isRemote)
         {
             MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
 
-            if (block != null)
+            if(block != null)
             {
                 Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
-                if (blockQuery != null)
+                if(blockQuery != null)
                 {
-                    if (blockQuery instanceof BlockTotemWoods)
+                    if(blockQuery instanceof BlockTotemWoods)
                     {
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket);
                     }

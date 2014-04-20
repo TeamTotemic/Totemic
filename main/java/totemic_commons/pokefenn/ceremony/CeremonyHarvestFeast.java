@@ -21,14 +21,14 @@ public class CeremonyHarvestFeast implements ICeremonyEffect
     {
         Random rand = new Random();
 
-        if (EntityUtil.getEntitiesInRange(tileCeremonyIntelligence.getWorldObj(), tileCeremonyIntelligence.xCoord, tileCeremonyIntelligence.yCoord, tileCeremonyIntelligence.zCoord, 20, 20) != null)
+        if(EntityUtil.getEntitiesInRange(tileCeremonyIntelligence.getWorldObj(), tileCeremonyIntelligence.xCoord, tileCeremonyIntelligence.yCoord, tileCeremonyIntelligence.zCoord, 20, 20) != null)
         {
 
-            for (Entity entity : EntityUtil.getEntitiesInRange(tileCeremonyIntelligence.getWorldObj(), tileCeremonyIntelligence.xCoord, tileCeremonyIntelligence.yCoord, tileCeremonyIntelligence.zCoord, 20, 20))
+            for(Entity entity : EntityUtil.getEntitiesInRange(tileCeremonyIntelligence.getWorldObj(), tileCeremonyIntelligence.xCoord, tileCeremonyIntelligence.yCoord, tileCeremonyIntelligence.zCoord, 20, 20))
             {
-                if (entity instanceof EntityPlayer)
+                if(entity instanceof EntityPlayer)
                 {
-                    if (((EntityPlayer) entity).getFoodStats().getFoodLevel() < 10)
+                    if(((EntityPlayer) entity).getFoodStats().getFoodLevel() < 10)
                     {
                         ((EntityPlayer) entity).getFoodStats().addStats(rand.nextInt(5), rand.nextInt(4));
                     }

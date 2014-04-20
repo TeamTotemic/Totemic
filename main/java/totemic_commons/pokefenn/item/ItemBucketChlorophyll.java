@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.fluid;
+package totemic_commons.pokefenn.item;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
@@ -46,30 +46,30 @@ public class ItemBucketChlorophyll extends ItemTotemic
     {
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
 
-        if (movingobjectposition == null)
+        if(movingobjectposition == null)
         {
             return item;
         } else
         {
             FillBucketEvent event = new FillBucketEvent(player, item, world, movingobjectposition);
-            if (MinecraftForge.EVENT_BUS.post(event))
+            if(MinecraftForge.EVENT_BUS.post(event))
             {
                 return item;
             }
 
-            if (event.getResult() == Event.Result.ALLOW)
+            if(event.getResult() == Event.Result.ALLOW)
             {
-                if (player.capabilities.isCreativeMode)
+                if(player.capabilities.isCreativeMode)
                 {
                     return item;
                 }
 
-                if (--item.stackSize <= 0)
+                if(--item.stackSize <= 0)
                 {
                     return event.result;
                 }
 
-                if (!player.inventory.addItemStackToInventory(event.result))
+                if(!player.inventory.addItemStackToInventory(event.result))
                 {
                     player.dropPlayerItemWithRandomChoice(event.result, false);
                     //player.dropPlayerItem(event.result);
@@ -78,54 +78,54 @@ public class ItemBucketChlorophyll extends ItemTotemic
                 return item;
             }
 
-            if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
+            if(movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
             {
                 int x = movingobjectposition.blockX;
                 int y = movingobjectposition.blockY;
                 int z = movingobjectposition.blockZ;
 
-                if (!world.canMineBlock(player, x, y, z))
+                if(!world.canMineBlock(player, x, y, z))
                 {
                     return item;
                 }
 
 
-                if (movingobjectposition.sideHit == 0)
+                if(movingobjectposition.sideHit == 0)
                 {
                     --y;
                 }
 
-                if (movingobjectposition.sideHit == 1)
+                if(movingobjectposition.sideHit == 1)
                 {
                     ++y;
                 }
 
-                if (movingobjectposition.sideHit == 2)
+                if(movingobjectposition.sideHit == 2)
                 {
                     --z;
                 }
 
-                if (movingobjectposition.sideHit == 3)
+                if(movingobjectposition.sideHit == 3)
                 {
                     ++z;
                 }
 
-                if (movingobjectposition.sideHit == 4)
+                if(movingobjectposition.sideHit == 4)
                 {
                     --x;
                 }
 
-                if (movingobjectposition.sideHit == 5)
+                if(movingobjectposition.sideHit == 5)
                 {
                     ++x;
                 }
 
-                if (!player.canPlayerEdit(x, y, z, movingobjectposition.sideHit, item))
+                if(!player.canPlayerEdit(x, y, z, movingobjectposition.sideHit, item))
                 {
                     return item;
                 }
 
-                if (this.tryPlaceContainedLiquid(world, x, y, z) && !player.capabilities.isCreativeMode)
+                if(this.tryPlaceContainedLiquid(world, x, y, z) && !player.capabilities.isCreativeMode)
                 {
                     return new ItemStack(Items.bucket);
                 }
@@ -142,13 +142,13 @@ public class ItemBucketChlorophyll extends ItemTotemic
         Material material = w.getBlock(x, y, z).getMaterial();
         boolean isNotSolid = !material.isSolid();
 
-        if (!w.isAirBlock(x, y, z) && !isNotSolid)
+        if(!w.isAirBlock(x, y, z) && !isNotSolid)
         {
             return false;
         } else
         {
 
-            if (!w.isRemote && isNotSolid && !material.isLiquid())
+            if(!w.isRemote && isNotSolid && !material.isLiquid())
             {
                 //w.destroyBlockInWorldPartially(x, y, z, true);
             }

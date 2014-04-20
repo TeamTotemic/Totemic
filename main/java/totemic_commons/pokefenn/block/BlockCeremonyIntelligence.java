@@ -5,10 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileCeremonyIntelligence;
-import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
  * Created by Pokefenn.
@@ -35,16 +33,16 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic
     {
         TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) world.getTileEntity(x, y, z);
 
-        if (tileCeremonyIntelligence != null && !world.isRemote)
+        if(tileCeremonyIntelligence != null && !world.isRemote)
         {
-            if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.infusedTotemicStaff)
+            if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.infusedTotemicStaff)
                 //if (tileCeremonyIntelligence.isBurning)
-                    if (!tileCeremonyIntelligence.isDoingEffect)
-                    {
-                        tileCeremonyIntelligence.tryCeremony(tileCeremonyIntelligence);
-                        tileCeremonyIntelligence.player = player.getCommandSenderName();
-                        //System.out.println("Can do ritual");
-                    }
+                if(!tileCeremonyIntelligence.isDoingEffect)
+                {
+                    tileCeremonyIntelligence.tryCeremony(tileCeremonyIntelligence);
+                    tileCeremonyIntelligence.player = player.getCommandSenderName();
+                    //System.out.println("Can do ritual");
+                }
 
         }
 

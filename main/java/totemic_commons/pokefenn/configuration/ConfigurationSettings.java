@@ -22,6 +22,8 @@ public class ConfigurationSettings
 
     public static boolean RELEVENT_TOTEM_RECIPES;
 
+    public static int ENTITY_ID_EFREET;
+
     public static boolean ENABLE_TEMP_RECIPES;
 
     public static int DECREMENT_TOTEM_CACTUS;

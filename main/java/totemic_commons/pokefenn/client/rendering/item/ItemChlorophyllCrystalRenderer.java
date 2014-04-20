@@ -41,7 +41,7 @@ public class ItemChlorophyllCrystalRenderer implements IItemRenderer
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
-        switch (type)
+        switch(type)
         {
             case ENTITY:
             {

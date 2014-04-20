@@ -34,12 +34,12 @@ public class BlockWaterLotus extends BlockLilyPad implements IPlantDrain
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
         int count = 1;
 
-        if (metadata >= 3)
+        if(metadata >= 3)
         {
             count = 2 + world.rand.nextInt(3) + (fortune > 0 ? world.rand.nextInt(fortune + 1) : 0);
         }
 
-        for (int i = 0; i < count; i++)
+        for(int i = 0; i < count; i++)
         {
             ret.add(new ItemStack(ModItems.lotusSeed));
         }
@@ -50,7 +50,7 @@ public class BlockWaterLotus extends BlockLilyPad implements IPlantDrain
     public int maximumStages = 5;
 
     @Override
-    public void updateTick (World world, int x, int y, int z, Random random)
+    public void updateTick(World world, int x, int y, int z, Random random)
     {
         int metadata = world.getBlockMetadata(x, y, z);
 

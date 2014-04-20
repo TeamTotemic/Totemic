@@ -28,31 +28,33 @@ public abstract class BlockTileTotemic extends BlockContainer
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
     {
-        if (world.getTileEntity(x, y, z) instanceof TileTotemic)
+        if(world.getTileEntity(x, y, z) instanceof TileTotemic)
         {
             int direction = 0;
             int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
-            if (facing == 0)
+            if(facing == 0)
             {
                 direction = ForgeDirection.NORTH.ordinal();
-            } else if (facing == 1)
+            } else if(facing == 1)
             {
                 direction = ForgeDirection.EAST.ordinal();
-            } else if (facing == 2)
+            } else if(facing == 2)
             {
                 direction = ForgeDirection.SOUTH.ordinal();
-            } else if (facing == 3)
+            } else if(facing == 3)
             {
                 direction = ForgeDirection.WEST.ordinal();
             }
 
-            if (itemStack.hasDisplayName())
+            //System.out.println(facing + "   " + direction);
+
+            if(itemStack.hasDisplayName())
             {
                 ((TileTotemic) world.getTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
             }
 
-            //((TileTotemic) world.getTileEntity(x, y, z)).setOrientation(direction);
+            ((TileTotemic) world.getTileEntity(x, y, z)).setOrientation(direction);
 
             world.markBlockForUpdate(x, y, z);
         }

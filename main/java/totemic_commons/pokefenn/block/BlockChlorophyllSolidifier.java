@@ -49,14 +49,14 @@ public class BlockChlorophyllSolidifier extends BlockTileTotemic
 
         int SLOT_ONE = TileChlorophyllSolidifier.SLOT_ONE;
 
-        if (tileChlorophyllSolidifier != null && !world.isRemote)
+        if(tileChlorophyllSolidifier != null && !world.isRemote)
         {
-            if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.getItem() != ModItems.bottleChlorophyll && heldItem.getItem() != ModItems.bucketChlorophyll && !heldItem.hasTagCompound())
+            if(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.getItem() != ModItems.bottleChlorophyll && heldItem.getItem() != ModItems.bucketChlorophyll && !heldItem.hasTagCompound())
             {
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
                 heldItem.stackSize--;
 
-            } else if (tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem == null)
+            } else if(tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
                 EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).copy());
                 world.spawnEntityInWorld(entityitem);
@@ -65,20 +65,20 @@ public class BlockChlorophyllSolidifier extends BlockTileTotemic
                 //System.out.println("hrm");
 
             }
-            if (heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem.getItem() == ModItems.bottleChlorophyll || heldItem != null && heldItem.getItem() == ModItems.bucketChlorophyll)
+            if(heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem.getItem() == ModItems.bottleChlorophyll || heldItem != null && heldItem.getItem() == ModItems.bucketChlorophyll)
             {
-                if (tileChlorophyllSolidifier.tank.getFluidAmount() + 1000 <= 16000)
+                if(tileChlorophyllSolidifier.tank.getFluidAmount() + 1000 <= 16000)
                 {
-                    if (heldItem.getItem() == ModItems.bottleChlorophyll)
+                    if(heldItem.getItem() == ModItems.bottleChlorophyll)
                     {
                         tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
-                        if (!player.capabilities.isCreativeMode)
+                        if(!player.capabilities.isCreativeMode)
                             heldItem.stackSize--;
 
                     } else
                     {
                         tileChlorophyllSolidifier.fill(ForgeDirection.getOrientation(side), new FluidStack(ModFluids.fluidChlorophyll, 1000), true);
-                        if (!player.capabilities.isCreativeMode)
+                        if(!player.capabilities.isCreativeMode)
                             player.destroyCurrentEquippedItem();
                         EntityItem entityBucket = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(Items.bucket).copy());
                         world.spawnEntityInWorld(entityBucket);
@@ -111,7 +111,7 @@ public class BlockChlorophyllSolidifier extends BlockTileTotemic
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
-        if (side == 0 || side == 1)
+        if(side == 0 || side == 1)
         {
             return topAndBotIIcon;
         } else
@@ -126,7 +126,7 @@ public class BlockChlorophyllSolidifier extends BlockTileTotemic
 
         dropInventory(world, x, y, z);
 
-        if (world.getTileEntity(x, y, z) instanceof TileChlorophyllSolidifier)
+        if(world.getTileEntity(x, y, z) instanceof TileChlorophyllSolidifier)
         {
             world.markBlockForUpdate(x, y, z);
             //world.updateLi(x, y, z);
@@ -140,17 +140,17 @@ public class BlockChlorophyllSolidifier extends BlockTileTotemic
 
         TileEntity tileEntity = world.getTileEntity(x, y, z);
 
-        if (!(tileEntity instanceof IInventory))
+        if(!(tileEntity instanceof IInventory))
             return;
 
         IInventory inventory = (IInventory) tileEntity;
 
-        for (int i = 0; i < inventory.getSizeInventory(); i++)
+        for(int i = 0; i < inventory.getSizeInventory(); i++)
         {
 
             ItemStack itemStack = inventory.getStackInSlot(i);
 
-            if (itemStack != null && itemStack.stackSize > 0)
+            if(itemStack != null && itemStack.stackSize > 0)
             {
                 float dX = rand.nextFloat() * 0.8F + 0.1F;
                 float dY = rand.nextFloat() * 0.8F + 0.1F;
@@ -158,7 +158,7 @@ public class BlockChlorophyllSolidifier extends BlockTileTotemic
 
                 EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.getItem(), itemStack.stackSize, itemStack.getItemDamage()));
 
-                if (itemStack.hasTagCompound())
+                if(itemStack.hasTagCompound())
                 {
                     entityItem.getEntityItem().setTagCompound((NBTTagCompound) itemStack.getTagCompound().copy());
                 }

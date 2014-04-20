@@ -1,23 +1,15 @@
 # Key localizations
 
 # Item localizations
-item.totemic:totemHead.name=Totem Head
 item.totemic:totemicStaff.name=Totemic Staff
 item.totemic:totemWhittlingKnife.name=Totem Whittling Knife
 item.totemic:totemsBat.name=Bat Totem
-item.totemic:totemsCactus.name=Cactus Totem
-item.totemic:totemsQuartzBlock.name=Block of Quartz Totem
 item.totemic:totemsHorse.name=Horse Totem
-item.totemic:totemsHopper.name=Hopper Totem
 item.totemic:totemsOcelot.name=Ocelot Totem
 item.totemic:totemsBlaze.name=Blaze Totem
 item.totemic:totemsSquid.name=Squid Totem
-item.totemic:totemsSun.name=Sun Totem
-item.totemic:totemsFood.name=Food Totem
-item.totemic:totemsLove.name=Love Totem
 item.totemic:totemsDraining.name=Draining Totem
 item.totemic:totemsRange.name=Range Totem
-item.totemic:totemsNotATotem.name=Code only item do not use
 item.totemic:chlorophyllicIngot.name=Chlorophyllic Ingot
 item.totmeic:paintBrush.name=Totemic Paint Brush
 item.totemic:bucketChlorophyll.name=Bucket of Chlorophyll
@@ -34,9 +26,9 @@ item.totemic:potionRegeneration.name=Regeneration Potion
 item.totemic:infusedPotion.name=Infused Potion
 item.totemic:blazingVerdantCrystal.name=Blazing Verdant Crystal
 item.totemic:verdantCrystal.name=Verdant Crystal
+item.totemic:shamanFlute.name=Shamanic Flute
 
 # Block localizations
-tile.totemBase.name=Totem Base
 tile.chlorophyllSolidifier.name=Chlorophyll Solidifier
 tile.totemWoods.name=Infused Wood
 tile.totemSupport.name=Totem Structure Support

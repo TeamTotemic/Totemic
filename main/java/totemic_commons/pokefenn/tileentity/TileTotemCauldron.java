@@ -10,7 +10,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import totemic_commons.pokefenn.recipe.PotionItemRegistry;
+import totemic_commons.pokefenn.recipe.registry.PotionItemRegistry;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.List;
@@ -48,27 +48,28 @@ public class TileTotemCauldron extends TileTotemic implements IFluidHandler
     {
         super.updateEntity();
 
-        if (!this.worldObj.isRemote)
+        if(!this.worldObj.isRemote)
         {
 
-            if (this.worldObj.getWorldTime() % 40L == 0L)
+            if(this.worldObj.getWorldTime() % 40L == 0L)
                 isBurning = this.worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Blocks.lava || this.worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Blocks.fire;
 
             List<Entity> entity = EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 0, 1);
 
-            if (tank.getFluidAmount() > 0 && isBurning)
+            if(tank.getFluidAmount() > 0 && isBurning)
             {
-                for (Entity entities : entity)
+                for(Entity entities : entity)
                 {
-                    if (entities instanceof EntityItem)
+                    if(entities instanceof EntityItem)
                     {
-                        for (PotionItemRegistry potionItemRegistry : PotionItemRegistry.potionRegistry)
+                        for(PotionItemRegistry potionItemRegistry : PotionItemRegistry.potionRegistry)
                         {
-                            if (((EntityItem) entities).getEntityItem().getItem() == potionItemRegistry.getItem().getItem() && ((EntityItem) entities).getEntityItem().getItemDamage() == potionItemRegistry.getItem().getItemDamage())
+                            if(((EntityItem) entities).getEntityItem().getItem() == potionItemRegistry.getItem().getItem() && ((EntityItem) entities).getEntityItem().getItemDamage() == potionItemRegistry.getItem().getItemDamage())
                             {
-                                if ((canConsume(((EntityItem) entities).getEntityItem(), potionItemRegistry, isLengthIngredient(potionItemRegistry))));
+                                if((canConsume(((EntityItem) entities).getEntityItem(), potionItemRegistry, isLengthIngredient(potionItemRegistry))))
+                                    ;
                                 {
-                                    if (!potionItemRegistry.isCatalyst())
+                                    if(!potionItemRegistry.isCatalyst())
                                     {
                                         strengthAmount += potionItemRegistry.getStrength();
                                         lengthAmount += potionItemRegistry.getLength();
@@ -154,7 +155,7 @@ public class TileTotemCauldron extends TileTotemic implements IFluidHandler
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
     {
-        if (resource == null || !resource.isFluidEqual(tank.getFluid()))
+        if(resource == null || !resource.isFluidEqual(tank.getFluid()))
         {
             return null;
         }

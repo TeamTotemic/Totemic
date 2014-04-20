@@ -37,7 +37,7 @@ public class ItemPotions extends Item
     public ItemPotions()
     {
         super();
-        setCreativeTab(Totemic.tabsPotionTotem);
+        //setCreativeTab(Totemic.tabsPotionTotem);
         setUnlocalizedName(Strings.TOTEMIC_POTION_NAME);
     }
 
@@ -60,22 +60,22 @@ public class ItemPotions extends Item
         int potionLength = damage % 5;
         //int potionStrength = damage % 5;
 
-        if (!world.isRemote)
+        if(!world.isRemote)
         {
-            if (damage == 0 || damage == 1 || damage == 2)
+            if(damage == 0 || damage == 1 || damage == 2)
                 player.addPotionEffect(new PotionEffect(ModPotions.antidotePotion.getId(), LENGTHS[potionLength], STRENGTHS[0]));
-            if (damage == 3 || damage == 4 || damage == 5)
+            if(damage == 3 || damage == 4 || damage == 5)
                 player.addPotionEffect(new PotionEffect(POTION_EFFECTS[1].id, LENGTHS[potionLength], STRENGTHS[potionLength]));
-            if (damage == 6 || damage == 7 || damage == 8)
+            if(damage == 6 || damage == 7 || damage == 8)
                 player.addPotionEffect(new PotionEffect(POTION_EFFECTS[2].id, LENGTHS[potionLength], STRENGTHS[potionLength]));
-            if (damage == 9 || damage == 10 || damage == 11)
+            if(damage == 9 || damage == 10 || damage == 11)
                 player.addPotionEffect(new PotionEffect(POTION_EFFECTS[3].id, LENGTHS[potionLength], STRENGTHS[potionLength]));
-            if (damage == 12 || damage == 13 || damage == 14)
+            if(damage == 12 || damage == 13 || damage == 14)
                 player.addPotionEffect(new PotionEffect(POTION_EFFECTS[4].id, LENGTHS[potionLength], STRENGTHS[potionLength]));
 
             System.out.println("yes");
 
-            if (!player.capabilities.isCreativeMode)
+            if(!player.capabilities.isCreativeMode)
             {
                 player.getHeldItem().stackSize--;
 
@@ -99,21 +99,21 @@ public class ItemPotions extends Item
     {
         int damage = stack.getItemDamage();
 
-        if (damage == 0 || damage == 1 || damage == 2)
+        if(damage == 0 || damage == 1 || damage == 2)
             list.add(getName(damage % 3) + POTIONS[0]);
-        if (damage == 3 || damage == 4 || damage == 5)
+        if(damage == 3 || damage == 4 || damage == 5)
             list.add(getName(damage % 3) + POTIONS[1]);
-        if (damage == 6 || damage == 7 || damage == 8)
+        if(damage == 6 || damage == 7 || damage == 8)
             list.add(getName(damage % 3) + POTIONS[2]);
-        if (damage == 9 || damage == 10 || damage == 11)
+        if(damage == 9 || damage == 10 || damage == 11)
             list.add(getName(damage % 3) + POTIONS[3]);
-        if (damage == 12 || damage == 13 || damage == 14)
+        if(damage == 12 || damage == 13 || damage == 14)
             list.add(getName(damage % 3) + POTIONS[4]);
     }
 
     public String getName(int i)
     {
-        switch (i)
+        switch(i)
         {
             case 0:
                 return "90 Seconds of ";
@@ -161,7 +161,7 @@ public class ItemPotions extends Item
     {
         icons = new IIcon[POTIONS.length];
 
-        for (int i = 0; i < POTIONS.length; i++)
+        for(int i = 0; i < POTIONS.length; i++)
             icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + "potion" + POTIONS[i]);
     }
 
@@ -170,7 +170,7 @@ public class ItemPotions extends Item
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
 
-        for (int eachPotion = 0; eachPotion < (3 * POTIONS.length); eachPotion++)
+        for(int eachPotion = 0; eachPotion < (3 * POTIONS.length); eachPotion++)
         {
             list.add(new ItemStack(id, 1, eachPotion));
         }

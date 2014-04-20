@@ -4,7 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import totemic_commons.pokefenn.api.ITotemEffect;
+import totemic_commons.pokefenn.api.totem.ITotemEffect;
+import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -20,17 +21,17 @@ import java.util.Random;
 public class TotemEffectBlaze implements ITotemEffect
 {
 
-    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry)
+    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle)
     {
-        if (totem.getWorldObj().getWorldTime() % 80L == 0)
+        if(totem.getWorldObj().getWorldTime() % 80L == 0)
         {
-            if (EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)) != null)
+            if(EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal + (upgrades * 5), verticle + (upgrades * 5)) != null)
             {
-                for (Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, 10 + (upgrades * 5), 10 + (upgrades * 5)))
+                for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal + (upgrades * 5), verticle + (upgrades * 5)))
                 {
-                    if (entity instanceof EntityPlayer)
+                    if(entity instanceof EntityPlayer)
                     {
-                        if (entity.isBurning())
+                        if(entity.isBurning())
                         {
                             Random rand = new Random();
                             ((EntityPlayer) entity).heal(4 + rand.nextInt(4));
@@ -40,7 +41,7 @@ public class TotemEffectBlaze implements ITotemEffect
 
                         if(intelligence)
                         {
-                            ((TileTotemIntelligence)totem).decreaseChlorophyll(TotemUtil.decrementAmount(totemRegistry.getChlorophyllDecrement()));
+                            ((TileTotemIntelligence) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
                         }
 
                     }

@@ -22,7 +22,7 @@ import java.util.List;
 public class ItemSubItems extends ItemTotemic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"leaf", "chlorophyllicIngot", "infusedStick", "moonglowHead", "lotusFlower"};
+    private static final String[] ITEMS_NAMES = new String[]{"leaf", "infusedStick", "moonglowHead", "lotusFlower"};
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
@@ -65,7 +65,7 @@ public class ItemSubItems extends ItemTotemic
     {
         icons = new IIcon[ITEMS_NAMES.length];
 
-        for (int i = 0; i < ITEMS_NAMES.length; ++i)
+        for(int i = 0; i < ITEMS_NAMES.length; ++i)
             icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + ITEMS_NAMES[i]);
     }
 
@@ -74,7 +74,7 @@ public class ItemSubItems extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-        for (int meta = 0; meta < ITEMS_NAMES.length; ++meta)
+        for(int meta = 0; meta < ITEMS_NAMES.length; ++meta)
             list.add(new ItemStack(id, 1, meta));
     }
 

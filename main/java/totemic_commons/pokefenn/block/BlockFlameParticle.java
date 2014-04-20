@@ -30,11 +30,11 @@ public class BlockFlameParticle extends Block
     {
         int currentInput = world.getBlockPowerInput(x, y, z);
 
-        if (!(currentInput >= 1))
-            for (int i = 0; i < 5; i++)
+        if(!(currentInput >= 1))
+            for(int i = 0; i < 5; i++)
             {
                 float random = rand.nextFloat();
-                for (int k = 0; k <= 15; k++)
+                for(int k = 0; k <= 15; k++)
                 {
                     float maxYAxis = rand.nextFloat() * (0.8F - 0.1F) + 0.1F;
 
@@ -46,8 +46,8 @@ public class BlockFlameParticle extends Block
 
     public void onEntityWalking(World world, int x, int y, int Z, Entity entity)
     {
-        if (!entity.isImmuneToFire())
-            if (!entity.isBurning())
+        if(!entity.isImmuneToFire())
+            if(!entity.isBurning())
                 entity.setFire(20);
 
     }

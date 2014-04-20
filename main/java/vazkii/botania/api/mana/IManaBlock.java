@@ -16,7 +16,8 @@ package vazkii.botania.api.mana;
  * Just being a Mana Block doesn't mean much, look at the other IMana
  * interfaces.
  */
-public interface IManaBlock {
+public interface IManaBlock
+{
 
     /**
      * Gets the amount of mana currently in this block.

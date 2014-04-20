@@ -46,7 +46,7 @@ public class BlockChlorophyll extends BlockFluidClassic
     public IIcon getIcon(int side, int meta)
     {
 
-        if (side <= 1)
+        if(side <= 1)
             return chlorophyllStillIcon;
         else
             return chlorophyllFlowingIcon;

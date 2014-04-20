@@ -38,11 +38,11 @@ public class BlockTotemSapling extends BlockSapling
 
     public void func_149878_d(World world, int x, int y, int z, Random random)
     {
-        if (!world.isRemote)
+        if(!world.isRemote)
         {
             world.setBlockToAir(x, y, z);
 
-            if (!treeGen.growTree(world, random, x, y, z))
+            if(!treeGen.growTree(world, random, x, y, z))
             {
                 world.setBlock(x, y, z, ModBlocks.totemWoods, 0, 4);
                 new TotemTreeGeneration(true).growTree(world, random, x, y, z);
@@ -81,7 +81,6 @@ public class BlockTotemSapling extends BlockSapling
     {
         return saplingIcon;
     }
-
 
 
 }

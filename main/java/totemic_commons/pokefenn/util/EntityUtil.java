@@ -34,7 +34,7 @@ public class EntityUtil
         float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * f;
         double d0 = player.prevPosX + (player.posX - player.prevPosX) * f;
         double d1 = player.prevPosY + (player.posY - player.prevPosY) * f;
-        if (!world.isRemote && player instanceof EntityPlayer)
+        if(!world.isRemote && player instanceof EntityPlayer)
             d1 += 1.62D;
         double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * f;
         Vec3 vec3 = world.getWorldVec3Pool().getVecFromPool(d0, d1, d2);
@@ -45,7 +45,7 @@ public class EntityUtil
         float f7 = f4 * f5;
         float f8 = f3 * f5;
         double d3 = range;
-        if (player instanceof EntityPlayerMP)
+        if(player instanceof EntityPlayerMP)
             d3 = ((EntityPlayerMP) player).theItemInWorldManager.getBlockReachDistance();
         Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
         return world.rayTraceBlocks(vec3, vec31, par3);

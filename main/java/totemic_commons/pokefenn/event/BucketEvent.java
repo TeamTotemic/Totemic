@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.fluid;
+package totemic_commons.pokefenn.event;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -16,14 +16,14 @@ import totemic_commons.pokefenn.ModItems;
  * Date: 08/03/14
  * Time: 17:42
  */
-public class BucketHandler
+public class BucketEvent
 {
     @SubscribeEvent
     public void onBucketFill(FillBucketEvent event)
     {
         ItemStack result = fillCustomBucket(event.world, event.target);
 
-        if (result == null)
+        if(result == null)
         {
             return;
         }
@@ -36,7 +36,7 @@ public class BucketHandler
     {
         Block blockID = world.getBlock(pos.blockX, pos.blockY, pos.blockZ);
 
-        if ((blockID == ModBlocks.chlorophyll) && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0)
+        if((blockID == ModBlocks.chlorophyll) && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0)
         {
             world.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);
             return new ItemStack(ModItems.bucketChlorophyll);

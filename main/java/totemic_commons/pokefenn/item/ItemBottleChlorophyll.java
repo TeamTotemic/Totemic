@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.fluid;
+package totemic_commons.pokefenn.item;
 
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.ItemTotemic;
@@ -22,7 +22,6 @@ public class ItemBottleChlorophyll extends ItemTotemic
         setMaxStackSize(16);
 
     }
-
 
 
 }

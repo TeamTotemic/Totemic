@@ -15,7 +15,7 @@ public class CreativeTabTotemic extends CreativeTabs
     @Override
     public Item getTabIconItem()
     {
-        return ModItems.chlorophyllCrystal;
+        return ModItems.verdantCrystal;
     }
 
 

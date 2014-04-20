@@ -46,7 +46,6 @@ public class BlockTotemCauldron extends BlockTileTotemic
 
                 EntityItem entityBucket = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(Items.bucket).copy());
                 world.spawnEntityInWorld(entityBucket);
-
             }
 
             if(heldItem != null && heldItem.getItem() == Items.glass_bottle && tileTotemCauldron.hasPotionReady)

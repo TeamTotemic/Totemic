@@ -28,33 +28,33 @@ public class TotemicRecipes
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totemWhittlingKnife), new Object[]{"  i", " sf", "s  ", ('s'), Items.stick, ('i'), Items.iron_ingot, ('f'), Items.flint}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 4, 2), new Object[]{"w ", " w", ('w'), ModBlocks.totemWoods}));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1), new ItemStack(ModItems.chlorophyllCrystal, 1), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1, 1), new ItemStack(ModItems.chlorophyllCrystal, 1, 1), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1, 1000), new ItemStack(ModItems.chlorophyllCrystal, 1, 1000), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1), new ItemStack(ModItems.verdantCrystal, 1), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1, 1), new ItemStack(ModItems.verdantCrystal, 1, 1), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.blazingChlorophyllCrystal, 1, 1000), new ItemStack(ModItems.verdantCrystal, 1, 1000), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket), new ItemStack(Items.lava_bucket));
 
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Blocks.vine));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Items.wheat_seeds));
 
         if(Totemic.botaniaLoaded)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemMana), new Object[]{ " l ", "ltl", " l ", ('l'), "livingwood", ('t'), ModBlocks.totemIntelligence}));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemMana), new Object[]{" l ", "ltl", " l ", ('l'), "livingwood", ('t'), ModBlocks.totemIntelligence}));
 
-        if (ConfigurationSettings.CRYSTAL_RECIPE)
-            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.chlorophyllCrystal, 1, ModItems.chlorophyllCrystal.getMaxDamage() - 1), new Object[]{new ItemStack(Items.diamond), ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll});
+        if(ConfigurationSettings.CRYSTAL_RECIPE)
+            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.verdantCrystal, 1, ModItems.verdantCrystal.getMaxDamage() - 1), new Object[]{new ItemStack(Items.diamond), ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll});
 
 
-        if (!ConfigurationSettings.RELEVENT_TOTEM_RECIPES)
+        if(!ConfigurationSettings.RELEVENT_TOTEM_RECIPES)
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 1), new Object[]{ModBlocks.totemWoods, new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});
 
-        if (!ConfigurationSettings.RELEVENT_TOTEM_RECIPES)
-            for (int i = 0; i < 8; i++)
+        if(!ConfigurationSettings.RELEVENT_TOTEM_RECIPES)
+            for(int i = 0; i < 8; i++)
             {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 1), new Object[]{new ItemStack(ModBlocks.totemWoods, 1, i), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});
             }
 
 
-        if (!ConfigurationSettings.RELEVENT_TOTEM_RECIPES)
+        if(!ConfigurationSettings.RELEVENT_TOTEM_RECIPES)
         {
-            for (int i = 1; i < ItemTotems.TOTEM_NAMES.length; i++)
+            for(int i = 1; i < ItemTotems.TOTEM_NAMES.length; i++)
             {
                 GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, i + 1), new Object[]{new ItemStack(ModItems.totems, 1, i), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});
             }

@@ -5,16 +5,16 @@
         <text>Totemic
             The discovery of Totems
 
-On your Journey you have learned about the mystical arts of creating Totems.
-You learned that you must create a 'Totemic Staff' to create these Mythical Structures.
-You also have discovered that there is a connection between these Totems and the Life of Plants.
+            On your Journey you have learned about the mystical arts of creating Totems.
+            You learned that you must create a 'Totemic Staff' to create these Mythical Structures.
+            You also have discovered that there is a connection between these Totems and the Life of Plants.
 
         </text>
     </page>
 
 
     <page type="crafting">
-<text>Totemic Staff</text>
+        <text>Totemic Staff</text>
         <recipe>
             <name>totemicStaff</name>
             <size>three</size>
@@ -24,15 +24,19 @@ You also have discovered that there is a connection between these Totems and the
     <page type="text">
         <text>Creation of Infused Saplings
 
-When you were in the tavern, the old Totem-maker told you a secret, "To create the wood o' Totems, you must infuse a saplin' with some chloro'"
-He then explained to you "Make yeself a 3x3 area of dirt, then place ye Saplin' in the middle, and a flower to each side. And then break the dirt blocks at the four corners, and place ye'self some Chloro' in it. Then finally click your Saplin' with ye' Staff"
-"It may take a few times, but eventually you will get ya Infused Saplin'"
-When you asked about the creation of this "chloro'", he firmly told you "ye' boy, all ya need is ya trusty knife, a plant and a bucket in ya craftin' table".
+            When you were in the tavern, the old Totem-maker told you a secret, "To create the wood o' Totems, you must
+            infuse a saplin' with some chloro'"
+            He then explained to you "Make yeself a 3x3 area of dirt, then place ye Saplin' in the middle, and a flower
+            to each side. And then break the dirt blocks at the four corners, and place ye'self some Chloro' in it. Then
+            finally click your Saplin' with ye' Staff"
+            "It may take a few times, but eventually you will get ya Infused Saplin'"
+            When you asked about the creation of this "chloro'", he firmly told you "ye' boy, all ya need is ya trusty
+            knife, a plant and a bucket in ya craftin' table".
         </text>
     </page>
 
     <page type="crafting">
-<text>Totem Whittling Knife</text>
+        <text>Totem Whittling Knife</text>
         <recipe>
             <name>whittlingKnife</name>
             <size>three</size>
@@ -58,17 +62,25 @@ When you asked about the creation of this "chloro'", he firmly told you "ye' boy
     <page type="text">
         <text>What is this 'Infused Wood'
 
-After talking to the towns Arborist about Totems, he told you what he knew about these Totems, "There is something called a Infused Sapling, as i have heard. This sapling will grow into a Infused Tree over time..."
-"These Infused Trees are different from usual trees, they naturally have more Plant Essence in them, and they will sometimes from 'Infused Leaves', which i have heard can be used for creating better staffs than others".
+            After talking to the towns Arborist about Totems, he told you what he knew about these Totems, "There is
+            something called a Infused Sapling, as i have heard. This sapling will grow into a Infused Tree over
+            time..."
+            "These Infused Trees are different from usual trees, they naturally have more Plant Essence in them, and
+            they will sometimes from 'Infused Leaves', which i have heard can be used for creating better staffs than
+            others".
         </text>
     </page>
 
     <page type="text">
         <text>Upgrading your Staff
 
-Curious of what the Arborist said, you went in search of the towns Totemist, after searching for her for many days, she told you this "The wood and leaves you collected from those Trees can be used to create your self a stronger Staff, which can directly create Totems..."
-"You can then click on a block of that wood with the staff, and it will create the intelligence of a totem, you can then use your trusty knife on a piece of wood to create a socket to hold your Totems... and finally you need to create a crystal to store and power your Totem..."
-And she suddenly vanished...
+            Curious of what the Arborist said, you went in search of the towns Totemist, after searching for her for
+            many days, she told you this "The wood and leaves you collected from those Trees can be used to create your
+            self a stronger Staff, which can directly create Totems..."
+            "You can then click on a block of that wood with the staff, and it will create the intelligence of a totem,
+            you can then use your trusty knife on a piece of wood to create a socket to hold your Totems... and finally
+            you need to create a crystal to store and power your Totem..."
+            And she suddenly vanished...
         </text>
     </page>
 
@@ -91,19 +103,23 @@ And she suddenly vanished...
     <page type="text">
         <text>The Old Library
 
-Knowing that you are missing one piece of the puzzle, you decide to search for infomation in the library, you come across a book called "The Totempedia" which you decide to read.
-The book talks about how totems function, saying "The Totem Intelligence is the base of all Totems Structures, this then can have up to 5 totem sockets about to give desired effects..."
-"Totems Structures drain the life essence out of plants, to collect this you must use a Totem of Draining, this works by placing it in your Totem Sockets, and a Chlorophyll Crystal in the Intelligence..."
-"It will then drain the life essence of nearby plants on the same level as it, charging up the crystal..."
+            Knowing that you are missing one piece of the puzzle, you decide to search for infomation in the library,
+            you come across a book called "The Totempedia" which you decide to read.
+            The book talks about how totems function, saying "The Totem Intelligence is the base of all Totems
+            Structures, this then can have up to 5 totem sockets about to give desired effects..."
+            "Totems Structures drain the life essence out of plants, to collect this you must use a Totem of Draining,
+            this works by placing it in your Totem Sockets, and a Chlorophyll Crystal in the Intelligence..."
+            "It will then drain the life essence of nearby plants on the same level as it, charging up the crystal..."
         </text>
     </page>
 
     <page type="text">
         <text>More from the Totempedia
 
-"Other Totems can then go into the Totem Sockets, allowing additional effects to happen."
-"The creation of these totems are not static, and may change depending on how you play..."
-"The list of Known totems includes... Cactus, Horse, Hopper, Bat, Sun, Blaze, Ocelot, Squid, Food, Love, Draining, Range.
+            "Other Totems can then go into the Totem Sockets, allowing additional effects to happen."
+            "The creation of these totems are not static, and may change depending on how you play..."
+            "The list of Known totems includes... Cactus, Horse, Hopper, Bat, Sun, Blaze, Ocelot, Squid, Food, Love,
+            Draining, Range.
 
         </text>
     </page>
@@ -120,18 +136,18 @@ The book talks about how totems function, saying "The Totem Intelligence is the 
     <page type="text">
         <text>Cactus Totem
 
-This Totem will damage all nearby entities other than Players and Items.
-This damage is very high and will stack many times.
-They say this doesn't cost much Plant Essence though.
+            This Totem will damage all nearby entities other than Players and Items.
+            This damage is very high and will stack many times.
+            They say this doesn't cost much Plant Essence though.
         </text>
     </page>
 
     <page type="text">
         <text>Horse Totem
 
-This Totem gives all nearby Players the speed of a strong horse...
-Because of how the speed is given to you, this does not stack.
-This totem is not very costly for Plant Essence
+            This Totem gives all nearby Players the speed of a strong horse...
+            Because of how the speed is given to you, this does not stack.
+            This totem is not very costly for Plant Essence
 
         </text>
     </page>
@@ -139,17 +155,17 @@ This totem is not very costly for Plant Essence
     <page type="text">
         <text>Hopper Totem
 
-This Totem will collect all nearby Items and place them in the block under this Totem...
-This can then be used in combination with Hoppers to collect all items off the ground.
-Because of the large usage of this Totem, they say it is very cheap to run off Plant Essence...
+            This Totem will collect all nearby Items and place them in the block under this Totem...
+            This can then be used in combination with Hoppers to collect all items off the ground.
+            Because of the large usage of this Totem, they say it is very cheap to run off Plant Essence...
         </text>
     </page>
 
     <page type="text">
         <text>Bat Totem
 
-This Totem will give all neraby players the aspect of Flight...
-This Totem isn't implemented properly yet.
+            This Totem will give all neraby players the aspect of Flight...
+            This Totem isn't implemented properly yet.
 
         </text>
     </page>
@@ -157,8 +173,8 @@ This Totem isn't implemented properly yet.
     <page type="text">
         <text>Sun Totem
 
-The power of a early morning can remove the rain and cause Sun in the world.
-Because of the sheer power needed to dispell rain, this costs a large amount of Plant Essence.
+            The power of a early morning can remove the rain and cause Sun in the world.
+            Because of the sheer power needed to dispell rain, this costs a large amount of Plant Essence.
         </text>
     </page>
 
@@ -166,34 +182,37 @@ Because of the sheer power needed to dispell rain, this costs a large amount of 
     <page type="text">
         <text>Blaze Totem
 
-The strengths of a Blaze has been confined into a Totem, allowing players to gain the powers of Fire Resistance and heal under the pressure of Flames.
-Since Blazes are harder to confine than other Totems, this has a slight higher cost of Plant Essence than others such as Horse Totems.
+            The strengths of a Blaze has been confined into a Totem, allowing players to gain the powers of Fire
+            Resistance and heal under the pressure of Flames.
+            Since Blazes are harder to confine than other Totems, this has a slight higher cost of Plant Essence than
+            others such as Horse Totems.
         </text>
     </page>
 
     <page type="text">
         <text>Ocelot Totem
 
-The one thing Creepers fear the most, not even the King of Creepers could survive this...
-This will disallow the explosions of creepers, causing them to simply puff up, allowing for their death.
-Containing the enjoyment of creepers is not easy, and comes at a fairly strong cost of Plant Essence.
+            The one thing Creepers fear the most, not even the King of Creepers could survive this...
+            This will disallow the explosions of creepers, causing them to simply puff up, allowing for their death.
+            Containing the enjoyment of creepers is not easy, and comes at a fairly strong cost of Plant Essence.
         </text>
     </page>
 
     <page type="text">
         <text>Squid Totem
 
-Living 'Under the sea' is the Dream of many, this Totem will allow just that.
-Giving all nearby players water breathing, this Totem will allow for easy water exploration and living.
-Squids are not hard to contain and thus this Totem is not too costly.
+            Living 'Under the sea' is the Dream of many, this Totem will allow just that.
+            Giving all nearby players water breathing, this Totem will allow for easy water exploration and living.
+            Squids are not hard to contain and thus this Totem is not too costly.
         </text>
     </page>
 
     <page type="text">
         <text>Food Totem
 
-You can now be force fed though the power of Totems.
-Due to the conversion of Plant Essence and food being confusing, the Totem may not feed you until you are on lower hunger levels and it is not that efficient on the usage of Plant Essence.
+            You can now be force fed though the power of Totems.
+            Due to the conversion of Plant Essence and food being confusing, the Totem may not feed you until you are on
+            lower hunger levels and it is not that efficient on the usage of Plant Essence.
 
         </text>
     </page>
@@ -201,33 +220,38 @@ Due to the conversion of Plant Essence and food being confusing, the Totem may n
     <page type="text">
         <text>Love Totem
 
-In the celebration in the day of Love, this Totem will cause all nearby animals to breed.
-Due to the odd conversion of Wheat and Plant Essence, this will feed animals even when they can not breed at that time.
-Because of that you may need to use redstone control on the Totem Intelligence to make sure it only breeds animals when it needs to.
-This totem is inefficient at the usage of Chlorophyll.
+            In the celebration in the day of Love, this Totem will cause all nearby animals to breed.
+            Due to the odd conversion of Wheat and Plant Essence, this will feed animals even when they can not breed at
+            that time.
+            Because of that you may need to use redstone control on the Totem Intelligence to make sure it only breeds
+            animals when it needs to.
+            This totem is inefficient at the usage of Chlorophyll.
         </text>
     </page>
 
     <page type="text">
         <text>Draining Totem
 
-To charge a Chlorophyll Crystal with Plant Essence, this Totem is needed.
-All plants, such as wheat will have their Essence drained from them and will charge a Chlorophyll Crystal in the Totem Intelligence.
-This can also Charge a Blazing Chlorophyll Crystal.
+            To charge a Chlorophyll Crystal with Plant Essence, this Totem is needed.
+            All plants, such as wheat will have their Essence drained from them and will charge a Chlorophyll Crystal in
+            the Totem Intelligence.
+            This can also Charge a Blazing Chlorophyll Crystal.
         </text>
     </page>
 
     <page type="text">
         <text>Range Totem
 
-This Totem will increase the range of totems in the Totem pole, 3 blocks radius for the Draining totem and 5 for all other Totems.
+            This Totem will increase the range of totems in the Totem pole, 3 blocks radius for the Draining totem and 5
+            for all other Totems.
         </text>
     </page>
 
     <page type="text">
         <text>Blazing Chlorophyll Crystal
 
-This Crystal allows the burning of Plant Essence, just charge it like a normal Chlorophyll Crystal, then throw in a type of furnace.
+            This Crystal allows the burning of Plant Essence, just charge it like a normal Chlorophyll Crystal, then
+            throw in a type of furnace.
         </text>
     </page>
 

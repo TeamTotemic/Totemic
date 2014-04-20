@@ -45,24 +45,24 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
 
         int currentInput = worldObj.getBlockPowerInput(xCoord, yCoord, zCoord);
 
-        if (!this.worldObj.isRemote)
+        if(!this.worldObj.isRemote)
         {
-            if (this.worldObj.getWorldTime() % 100L == 0)
+            if(this.worldObj.getWorldTime() % 100L == 0)
             {
                 setSocketAmounts();
                 scanArea();
 
             }
 
-            if (!(currentInput >= 1))
+            if(!(currentInput >= 1))
             {
-                if (SOCKET_NUMBER != 0)
+                if(SOCKET_NUMBER != 0)
                 {
-                    if (this.worldObj.getWorldTime() % 5L == 0)
+                    if(this.worldObj.getWorldTime() % 5L == 0)
                     {
-                        for (int i = 1; i <= SOCKET_NUMBER; i++)
+                        for(int i = 1; i <= SOCKET_NUMBER; i++)
                         {
-                            if (canDoEffect(getCurrentMana(), TotemUtil.decrementAmount(SOCKETS[i]) * 10))
+                            if(canDoEffect(getCurrentMana(), TotemUtil.decrementAmount(SOCKETS[i]) * 10))
                             {
                                 //TileTotemIntelligence.doEffects(SOCKETS[i], RANGE_UPGRADES, this, false);
                                 decreaseMana(TotemUtil.decrementAmount(SOCKETS[i]) * 40);
@@ -82,14 +82,12 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
-
         super.readFromNBT(nbtTagCompound);
 
         mana = nbtTagCompound.getInteger(TAG_MANA);
 
         if(nbtTagCompound.hasKey(TAG_KNOWN_MANA))
             knownMana = nbtTagCompound.getInteger(TAG_KNOWN_MANA);
-
     }
 
     @Override
@@ -110,19 +108,19 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
 
-        if (block1 instanceof BlockTotemSocket && block2 == null)
+        if(block1 instanceof BlockTotemSocket && block2 == null)
         {
             SOCKET_NUMBER = 1;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 == null)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 == null)
         {
             SOCKET_NUMBER = 2;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 == null)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 == null)
         {
             SOCKET_NUMBER = 3;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 == null)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 == null)
         {
             SOCKET_NUMBER = 4;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
         {
             SOCKET_NUMBER = 5;
         } else
@@ -138,19 +136,19 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
 
-        if (block1 instanceof BlockTotemSocket && block2 == null)
+        if(block1 instanceof BlockTotemSocket && block2 == null)
         {
             return 1;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 == null)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 == null)
         {
             return 2;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 == null)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 == null)
         {
             return 3;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 == null)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 == null)
         {
             return 4;
-        } else if (block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
+        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
         {
             return 5;
         } else
@@ -169,22 +167,22 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
 
     protected void scanArea()
     {
-        for (int i = 1; i <= getSocketAmounts(); i++)
+        for(int i = 1; i <= getSocketAmounts(); i++)
         {
-            if (getSocketAmounts() <= 5)
+            if(getSocketAmounts() <= 5)
             {
-                if (getSocketItemStack(i) != null)
+                if(getSocketItemStack(i) != null)
                 {
-                    if (getSocketItemStack(i).getItemDamage() == 12)
+                    if(getSocketItemStack(i).getItemDamage() == 12)
                     {
                         SOCKETS[i] = 12;
-                        if (RANGE_UPGRADES < 5)
+                        if(RANGE_UPGRADES < 5)
                             RANGE_UPGRADES++;
 
                     } else
                     {
                         SOCKETS[i] = getSocketItemStack(i).getItemDamage();
-                        if (RANGE_UPGRADES > 0)
+                        if(RANGE_UPGRADES > 0)
                             RANGE_UPGRADES--;
                     }
                 } else
@@ -208,7 +206,7 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
     @Override
     public void recieveMana(int mana)
     {
-        if (this.mana + mana >= maxMana)
+        if(this.mana + mana >= maxMana)
             this.mana = maxMana;
 
         else

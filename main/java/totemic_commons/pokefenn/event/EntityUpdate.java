@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Date: 08/03/14
  * Time: 17:52
  */
-public class TotemicEventHooks
+public class EntityUpdate
 {
 
     @SubscribeEvent
@@ -30,24 +30,24 @@ public class TotemicEventHooks
         double z = entityLiving.posZ;
 
 
-        if (event.entityLiving.isPotionActive(ModPotions.batPotion))
-        {
-            ((EntityPlayer) entityLiving).capabilities.allowFlying = true;
-        }
+        //if (entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.batPotion))
+        //{
+        //    ((EntityPlayer) entityLiving).capabilities.allowFlying = true;
+        //}
 
-        if (event.entityLiving.isPotionActive(ModPotions.antidotePotion))
+        if(entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.antidotePotion))
         {
-            if (event.entityLiving.isPotionActive(Potion.blindness))
+            if(event.entityLiving.isPotionActive(Potion.blindness))
             {
                 event.entityLiving.removePotionEffect(Potion.blindness.id);
             }
 
-            if (event.entityLiving.isPotionActive(Potion.poison))
+            if(event.entityLiving.isPotionActive(Potion.poison))
             {
                 event.entityLiving.removePotionEffect(Potion.poison.id);
             }
 
-            if (event.entityLiving.isPotionActive(Potion.confusion))
+            if(event.entityLiving.isPotionActive(Potion.confusion))
             {
                 event.entityLiving.removePotionEffect(Potion.confusion.id);
             }
@@ -57,7 +57,7 @@ public class TotemicEventHooks
             //    event.entityLiving.removePotionEffect(Potion.wither.id);
             //}
 
-            if (event.entityLiving.isPotionActive(Potion.moveSlowdown))
+            if(event.entityLiving.isPotionActive(Potion.moveSlowdown))
             {
                 event.entityLiving.removePotionEffect(Potion.moveSlowdown.id);
             }
@@ -67,7 +67,6 @@ public class TotemicEventHooks
         //TODO remember to turn this back on
 
     }
-
 
 
 }

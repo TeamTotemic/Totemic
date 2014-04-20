@@ -20,7 +20,7 @@ public class BlockBasePlant extends BlockCrops
     }
 
     @Override
-    public void updateTick (World world, int x, int y, int z, Random random)
+    public void updateTick(World world, int x, int y, int z, Random random)
     {
         int metadata = world.getBlockMetadata(x, y, z);
 
@@ -38,7 +38,6 @@ public class BlockBasePlant extends BlockCrops
             }
         }
     }
-
 
 
 }

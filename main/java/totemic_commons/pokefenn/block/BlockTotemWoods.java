@@ -6,10 +6,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 
@@ -21,7 +25,7 @@ import java.util.List;
  * Date: 09/12/13
  * Time: 14:35
  */
-public class BlockTotemWoods extends Block
+public class BlockTotemWoods extends Block implements ITotemicStaffUsage
 {
 
 
@@ -73,7 +77,17 @@ public class BlockTotemWoods extends Block
     }
 
 
+    @Override
+    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world)
+    {
+        return;
+    }
 
+    @Override
+    public void onInfusedRightClick(int x, int y, int z, EntityPlayer player, World world)
+    {
+        world.setBlock(x, y, z, ModBlocks.totemIntelligence);
+    }
 }
 
 

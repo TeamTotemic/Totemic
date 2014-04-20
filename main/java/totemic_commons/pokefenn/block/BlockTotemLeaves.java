@@ -41,7 +41,7 @@ public class BlockTotemLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(int i, Random random, int j)
     {
-        if (random.nextInt(8) == 1)
+        if(random.nextInt(8) == 1)
             return Item.getItemFromBlock(ModBlocks.totemSapling);
         else
             return ModItems.subItems;
@@ -50,22 +50,20 @@ public class BlockTotemLeaves extends BlockLeaves
     @Override
     public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
     {
-        if (!par1World.isRemote)
+        if(!par1World.isRemote)
         {
             ArrayList<ItemStack> items = getDrops(par1World, par2, par3, par4, par5, par7);
 
-            for (ItemStack item : items)
+            for(ItemStack item : items)
             {
                 Random rand = new Random();
-                if (rand.nextInt(5) == 1)
+                if(rand.nextInt(5) == 1)
                 {
                     this.dropBlockAsItem(par1World, par2, par3, par4, item);
                 }
             }
         }
     }
-
-
 
 
     @Override
@@ -108,7 +106,6 @@ public class BlockTotemLeaves extends BlockLeaves
         opaqueIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_LEAVES_OPAQUE);
         transparentIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_LEAVES_TRANSPARENT);
     }
-
 
 
 }

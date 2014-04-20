@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.api;
+package totemic_commons.pokefenn.api.totem;
 
 /**
  * Created by Pokefenn.

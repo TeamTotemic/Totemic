@@ -23,7 +23,7 @@ public class ItemTotempedia extends ItemTotemic
     }
 
     @Override
-    public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
         player.openGui(Totemic.instance, Totemic.proxy.totempediaGuiID, world, 0, 0, 0);
 

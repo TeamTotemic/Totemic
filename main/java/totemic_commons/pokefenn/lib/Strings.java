@@ -30,6 +30,8 @@ public class Strings
     public static final String LOTUS_BLOCK_NAME = "lotusBlock";
     public static final String FUNGAL_PLANT_BLOCK_NAME = "fungalPlantBlock";
     public static final String FLAME_PARTICLE_NAME = "flameParticleBlock";
+    public static final String SPIRITUAL_ENERGY_MOVER_NAME = "spiritualEnergyMover";
+    public static final String SPIRITUAL_ENERGY_COLLECTOR_NAME = "spiritualEnergyCollector";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";
@@ -50,6 +52,9 @@ public class Strings
     public static final String BLOODWART_NAME = "bloodwart";
     public static final String LOTUS_SEED_NAME = "lotusSeed";
     public static final String FUNGUS_PLANT_SPORE = "fungusSpore";
+    public static final String SHAMAN_FLUTE_NAME = "shamanFlute";
+    public static final String HALBERD_NAME = "halberd";
+    public static final String WITHER_BOW_NAME = "witherBow";
 
     public static final String TOTEM_WOOD_WAND_CORE_NAME = "totemWoodWandCore";
     public static final String CHLOROPHYLL_CRYSTAL_WAND_CAP = "chlorophyllCrystalWandCap";

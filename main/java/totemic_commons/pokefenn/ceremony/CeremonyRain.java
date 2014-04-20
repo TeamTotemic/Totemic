@@ -14,10 +14,11 @@ public class CeremonyRain implements ICeremonyEffect
     @Override
     public void effect(TileCeremonyIntelligence tileCeremonyIntelligence)
     {
-        if (tileCeremonyIntelligence.getWorldObj().isRaining())
+        if(tileCeremonyIntelligence.getWorldObj().isRaining())
         {
             WorldInfo worldinfo = MinecraftServer.getServer().worldServers[0].getWorldInfo();
             worldinfo.setRaining(false);
+            tileCeremonyIntelligence.currentCeremony = 0;
         }
     }
 }

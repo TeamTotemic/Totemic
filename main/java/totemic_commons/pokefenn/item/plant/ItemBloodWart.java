@@ -34,13 +34,13 @@ public class ItemBloodWart extends ItemTotemic
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xPos, int yPos, int zPos, int side, float xClick, float yClick, float zClick)
     {
-        if (side != 1)
+        if(side != 1)
             return false;
-        else if (player.canPlayerEdit(xPos, yPos, zPos, side, stack) && player.canPlayerEdit(xPos, yPos + 1, zPos, side, stack))
+        else if(player.canPlayerEdit(xPos, yPos, zPos, side, stack) && player.canPlayerEdit(xPos, yPos + 1, zPos, side, stack))
         {
             Block soil = world.getBlock(xPos, yPos, zPos);
 
-            if (soil != null && soil.canSustainPlant(world, xPos, yPos, zPos, ForgeDirection.UP, ((IPlantable)ModBlocks.bloodwart)) && world.isAirBlock(xPos, yPos + 1, zPos))
+            if(soil != null && soil.canSustainPlant(world, xPos, yPos, zPos, ForgeDirection.UP, ((IPlantable) ModBlocks.bloodwart)) && world.isAirBlock(xPos, yPos + 1, zPos))
             {
                 world.setBlock(xPos, yPos + 1, zPos, this.blockType, stack.getItemDamage() * 4, 3);
                 --stack.stackSize;

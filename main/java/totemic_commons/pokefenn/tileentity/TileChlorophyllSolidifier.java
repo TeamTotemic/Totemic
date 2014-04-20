@@ -11,7 +11,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import totemic_commons.pokefenn.fluid.ModFluids;
-import totemic_commons.pokefenn.recipe.ChlorophyllSolidifierRecipes;
+import totemic_commons.pokefenn.recipe.registry.ChlorophyllSolidifierRecipes;
 
 /**
  * Created with IntelliJ IDEA.
@@ -83,15 +83,15 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     {
 
         ItemStack itemStack = getStackInSlot(slotIndex);
-        if (itemStack != null)
+        if(itemStack != null)
         {
-            if (itemStack.stackSize <= decrementAmount)
+            if(itemStack.stackSize <= decrementAmount)
             {
                 setInventorySlotContents(slotIndex, null);
             } else
             {
                 itemStack = itemStack.splitStack(decrementAmount);
-                if (itemStack.stackSize == 0)
+                if(itemStack.stackSize == 0)
                 {
                     setInventorySlotContents(slotIndex, null);
                 }
@@ -106,7 +106,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     {
 
         ItemStack itemStack = getStackInSlot(slotIndex);
-        if (itemStack != null)
+        if(itemStack != null)
         {
             setInventorySlotContents(slotIndex, null);
         }
@@ -119,7 +119,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
         this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
         inventory[slotIndex] = itemStack;
-        if (itemStack != null && itemStack.stackSize > getInventoryStackLimit())
+        if(itemStack != null && itemStack.stackSize > getInventoryStackLimit())
         {
             itemStack.stackSize = getInventoryStackLimit();
         }
@@ -148,9 +148,9 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
-        if (!this.worldObj.isRemote)
+        if(!this.worldObj.isRemote)
         {
-            if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null)
+            if(i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null)
             {
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 return true;
@@ -194,9 +194,9 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
-        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        for(int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
         {
-            if (inventory[currentIndex] != null)
+            if(inventory[currentIndex] != null)
             {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) currentIndex);
@@ -220,7 +220,7 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
     {
-        if (resource == null || !resource.isFluidEqual(tank.getFluid()))
+        if(resource == null || !resource.isFluidEqual(tank.getFluid()))
         {
             return null;
         }
@@ -258,15 +258,15 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
 
         super.updateEntity();
 
-        if (!worldObj.isRemote)
+        if(!worldObj.isRemote)
         {
-            if (this.worldObj.getWorldTime() % 5L == 0)
+            if(this.worldObj.getWorldTime() % 5L == 0)
             {
-                if (this.getStackInSlot(SLOT_ONE) != null && tank.getCapacity() >= 0)
+                if(this.getStackInSlot(SLOT_ONE) != null && tank.getCapacity() >= 0)
                 {
-                    for (ChlorophyllSolidifierRecipes solidifier : ChlorophyllSolidifierRecipes.solidifierRecipe)
+                    for(ChlorophyllSolidifierRecipes solidifier : ChlorophyllSolidifierRecipes.solidifierRecipe)
                     {
-                        if (solidifier.getInput().getItem() == this.getStackInSlot(SLOT_ONE).getItem() && solidifier.getInput().getItemDamage() == this.getStackInSlot(SLOT_ONE).getItemDamage() && this.canDrain(ForgeDirection.UP, ModFluids.fluidChlorophyll))
+                        if(solidifier.getInput().getItem() == this.getStackInSlot(SLOT_ONE).getItem() && solidifier.getInput().getItemDamage() == this.getStackInSlot(SLOT_ONE).getItemDamage() && this.canDrain(ForgeDirection.UP, ModFluids.fluidChlorophyll))
                         {
                             currentTime++;
 
@@ -274,10 +274,12 @@ public class TileChlorophyllSolidifier extends TileTotemic implements IInventory
                             {
                                 currentTime = 0;
 
+                                this.markDirty();
+
                                 this.setInventorySlotContents(SLOT_ONE, solidifier.getOutput());
                                 this.drain(ForgeDirection.getOrientation(orientation.ordinal()), solidifier.getFluidStack(), true);
 
-                                for (int i = 1; i <= 10; i++)
+                                for(int i = 1; i <= 10; i++)
                                 {
                                     //PacketDispatcher.sendPacketToAllAround(this.xCoord, this.yCoord, this.zCoord, 64D, this.worldObj.provider.dimensionId, PacketTypeHandler.populatePacket(new PacketSpawnParticle("slime", this.xCoord, this.yCoord + 1, this.zCoord, 8 + i, 8 + i, 8 + i)));
                                 }

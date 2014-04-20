@@ -8,8 +8,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.api.ITotem;
+import totemic_commons.pokefenn.api.totem.ITotem;
 
 /**
  * Created with IntelliJ IDEA.
@@ -49,15 +48,15 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     {
 
         ItemStack itemStack = getStackInSlot(slotIndex);
-        if (itemStack != null)
+        if(itemStack != null)
         {
-            if (itemStack.stackSize <= decrementAmount)
+            if(itemStack.stackSize <= decrementAmount)
             {
                 setInventorySlotContents(slotIndex, null);
             } else
             {
                 itemStack = itemStack.splitStack(decrementAmount);
-                if (itemStack.stackSize == 0)
+                if(itemStack.stackSize == 0)
                 {
                     setInventorySlotContents(slotIndex, null);
                 }
@@ -86,7 +85,7 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     public ItemStack getStackInSlotOnClosing(int slotIndex)
     {
         ItemStack itemStack = getStackInSlot(slotIndex);
-        if (itemStack != null)
+        if(itemStack != null)
         {
             setInventorySlotContents(slotIndex, null);
         }
@@ -97,7 +96,7 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack)
     {
         inventory[slotIndex] = itemStack;
-        if (itemStack != null && itemStack.stackSize > getInventoryStackLimit())
+        if(itemStack != null && itemStack.stackSize > getInventoryStackLimit())
         {
             itemStack.stackSize = getInventoryStackLimit();
         }
@@ -142,9 +141,9 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemStack)
     {
-        if (!this.worldObj.isRemote)
+        if(!this.worldObj.isRemote)
         {
-            if (i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.getItem() instanceof ITotem)
+            if(i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack.getItem() instanceof ITotem)
             {
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 return true;
@@ -163,11 +162,11 @@ public class TileTotemSocket extends TileTotemic implements IInventory
         super.readFromNBT(nbtTagCompound);
         // Read in the ItemStacks in the inventory from NBT
         NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
-        for (int i = 0; i < tagList.tagCount(); i++)
+        for(int i = 0; i < tagList.tagCount(); i++)
         {
             NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
-            if (slot >= 0 && slot < inventory.length)
+            if(slot >= 0 && slot < inventory.length)
             {
                 inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
             }
@@ -182,9 +181,9 @@ public class TileTotemSocket extends TileTotemic implements IInventory
 
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
-        for (int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
+        for(int currentIndex = 0; currentIndex < inventory.length; ++currentIndex)
         {
-            if (inventory[currentIndex] != null)
+            if(inventory[currentIndex] != null)
             {
                 NBTTagCompound tagCompound = new NBTTagCompound();
                 tagCompound.setByte("Slot", (byte) currentIndex);

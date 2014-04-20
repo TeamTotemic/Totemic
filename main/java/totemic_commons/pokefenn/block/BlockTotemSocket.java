@@ -6,9 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.ITotem;
+import totemic_commons.pokefenn.api.totem.ITotem;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemSocket;
@@ -42,18 +41,18 @@ public class BlockTotemSocket extends BlockTileTotemic
 
         int SLOT_ONE = TileTotemSocket.SLOT_ONE;
 
-        if (tileTotemSocket != null && !world.isRemote)
+        if(tileTotemSocket != null && !world.isRemote)
         {
 
-            if (tileTotemSocket.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.getItem() instanceof ITotem)
+            if(tileTotemSocket.getStackInSlot(SLOT_ONE) == null && heldItem != null && heldItem.getItem() instanceof ITotem)
             {
                 tileTotemSocket.setInventorySlotContents(SLOT_ONE, heldItem);
                 player.destroyCurrentEquippedItem();
 
 
-            } else if (tileTotemSocket.getStackInSlot(SLOT_ONE) != null && heldItem == null)
+            } else if(tileTotemSocket.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
-                if (tileTotemSocket.getStackInSlot(SLOT_ONE).getItem() instanceof ITotem)
+                if(tileTotemSocket.getStackInSlot(SLOT_ONE).getItem() instanceof ITotem)
                 {
 
                     EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemSocket.getStackInSlot(SLOT_ONE));

@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.recipe;
+package totemic_commons.pokefenn.recipe.registry;
 
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.ModItems;
