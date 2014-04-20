@@ -1,23 +1,15 @@
 # Key localizations
 
 # Item localizations
-item.totemic:totemHead.name=Totemkopf
 item.totemic:totemicStaff.name=Totemstab
 item.totemic:totemWhittlingKnife.name=Totemschnitzmesser
 item.totemic:totemsBat.name=Fledermaustotem
-item.totemic:totemsCactus.name=Kaktustotem
-item.totemic:totemsQuartzBlock.name=Quarzblocktotem
 item.totemic:totemsHorse.name=Pferdetotem
-item.totemic:totemsHopper.name=Trichtertotem
 item.totemic:totemsOcelot.name=Ozelot-Totem
 item.totemic:totemsBlaze.name=Lohentotem
 item.totemic:totemsSquid.name=Tintenfischtotem
-item.totemic:totemsSun.name=Sonnentotem
-item.totemic:totemsFood.name=Nahrungstotem
-item.totemic:totemsLove.name=Liebestotem
 item.totemic:totemsDraining.name=Leerestotem
 item.totemic:totemsRange.name=Reichweitentotem
-item.totemic:totemsNotATotem.name=Code-Item: Nicht verwenden!
 item.totemic:chlorophyllicIngot.name=Chlorophyllbarren
 item.totmeic:paintBrush.name=Totem-Farbpinsel
 item.totemic:bucketChlorophyll.name=Chlorophylleimer
@@ -34,9 +26,9 @@ item.totemic:potionRegeneration.name=Regenerationstrank
 item.totemic:infusedPotion.name=Infundierter Trank
 item.totemic:blazingVerdantCrystal.name=Flammender Grünekristall
 item.totemic:verdantCrystal.name=Grünekristall
+item.totemic:shamanFlute.name=Schamanenflöte
 
 # Block localizations
-tile.totemBase.name=Totembasis
 tile.chlorophyllSolidifier.name=Chlorophyllverfestiger
 tile.totemWoods.name=Totemholz
 tile.totemSupport.name=Totemstrukturstütze
