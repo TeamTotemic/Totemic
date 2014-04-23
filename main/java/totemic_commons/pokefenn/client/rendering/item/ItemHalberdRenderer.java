@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.client.rendering.item;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -8,8 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.client.rendering.model.ModelHalberd;
-import totemic_commons.pokefenn.item.ItemHalberd;
-import totemic_commons.pokefenn.lib.Textures;
 
 /**
  * Created by Pokefenn.

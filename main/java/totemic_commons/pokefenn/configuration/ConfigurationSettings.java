@@ -17,6 +17,7 @@ public class ConfigurationSettings
     public static int POTION_ID_BAT;
     public static int POTION_ID_HORSE;
     public static int POTION_ID_ANTIDOTE;
+    public static int POTION_ID_SPIDER;
 
     public static String TOTEM_TREE_GENERATION_BLACKLIST;
 

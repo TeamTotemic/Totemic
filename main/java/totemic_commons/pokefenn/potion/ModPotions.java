@@ -15,6 +15,7 @@ public class ModPotions
     public static Potion batPotion;
     public static Potion horsePotion;
     public static Potion antidotePotion;
+    public static Potion spiderPotion;
 
     public static void init()
     {
@@ -22,5 +23,6 @@ public class ModPotions
         batPotion = new PotionBatFlying(ConfigurationSettings.POTION_ID_BAT, false, 0xF2F2F0);
         horsePotion = new PotionHorse(ConfigurationSettings.POTION_ID_HORSE, false, 0x614C07);
         antidotePotion = new PotionAntidote(ConfigurationSettings.POTION_ID_ANTIDOTE, false, 0xD6D454);
+        spiderPotion = new PotionSpider(ConfigurationSettings.POTION_ID_SPIDER, false, 0x524354);
     }
 }

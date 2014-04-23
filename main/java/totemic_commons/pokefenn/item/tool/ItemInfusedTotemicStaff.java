@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item;
+package totemic_commons.pokefenn.item.tool;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -6,52 +6,46 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
-import totemic_commons.pokefenn.block.BlockTotemIntelligence;
 import totemic_commons.pokefenn.block.BlockTotemSapling;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.List;
 import java.util.Random;
 
-public class ItemTotemicStaff extends ItemTotemic
+/**
+ * Created with IntelliJ IDEA.
+ * User: Pokefenn
+ * Date: 18/02/14
+ * Time: 16:30
+ */
+public class ItemInfusedTotemicStaff extends ItemTotemicStaff
 {
-
-
-    public ItemTotemicStaff()
+    public ItemInfusedTotemicStaff()
     {
         super();
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEMIC_STAFF_NAME);
-        setMaxStackSize(1);
-        registerIcons = false;
-
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.INFUSED_TOTEMIC_STAFF_NAME);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("A staff for your Totemic needs!");
-        list.add("This staff is unstable");
+        list.add("A staff for all Totemic needs!");
     }
 
     @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack par1ItemStack)
     {
-        return EnumRarity.uncommon;
+        return EnumRarity.epic;
     }
-
 
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
@@ -61,19 +55,18 @@ public class ItemTotemicStaff extends ItemTotemic
 
             if(block != null)
             {
-                Block blockQuery = (world.getBlock(block.blockX, block.blockY, block.blockZ));
+                Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
                 if(blockQuery != null)
                 {
                     if(blockQuery instanceof ITotemicStaffUsage)
                     {
-                        ((ITotemicStaffUsage) blockQuery).onBasicRightClick(block.blockX, block.blockY, block.blockZ, player, world);
+                        ((ITotemicStaffUsage) blockQuery).onInfusedRightClick(block.blockX, block.blockY, block.blockZ, player, world);
                         return true;
                     }
 
                     if(blockQuery instanceof BlockSapling && !(blockQuery instanceof BlockTotemSapling))
                     {
-
                         if(world.getBlock(block.blockX + 1, block.blockY - 1, block.blockZ + 1) == ModBlocks.chlorophyll && world.getBlock(block.blockX - 1, block.blockY - 1, block.blockZ - 1) == ModBlocks.chlorophyll && world.getBlock(block.blockX + 1, block.blockY - 1, block.blockZ - 1) == ModBlocks.chlorophyll && world.getBlock(block.blockX - 1, block.blockY - 1, block.blockZ + 1) == ModBlocks.chlorophyll)
                         {
                             Block blockQuery1 = world.getBlock(block.blockX + 1, block.blockY, block.blockZ);
@@ -84,7 +77,7 @@ public class ItemTotemicStaff extends ItemTotemic
                             if(blockQuery1 != null && blockQuery2 != null && blockQuery3 != null && blockQuery4 != null && blockQuery1 instanceof BlockFlower && blockQuery2 instanceof BlockFlower && blockQuery3 instanceof BlockFlower && blockQuery4 instanceof BlockFlower)
                             {
                                 Random rand = new Random();
-                                if(rand.nextBoolean())
+                                if(rand.nextInt(4) != 1)
                                 {
                                     world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSapling);
 
@@ -92,9 +85,6 @@ public class ItemTotemicStaff extends ItemTotemic
                                     world.setBlockToAir(block.blockX - 1, block.blockY - 1, block.blockZ - 1);
                                     world.setBlockToAir(block.blockX + 1, block.blockY - 1, block.blockZ - 1);
                                     world.setBlockToAir(block.blockX - 1, block.blockY - 1, block.blockZ + 1);
-
-                                    player.attackEntityFrom(DamageSource.generic, 6 + rand.nextInt(4));
-
 
                                 } else
                                 {
@@ -104,8 +94,6 @@ public class ItemTotemicStaff extends ItemTotemic
                                     world.setBlockToAir(block.blockX - 1, block.blockY - 1, block.blockZ - 1);
                                     world.setBlockToAir(block.blockX + 1, block.blockY - 1, block.blockZ - 1);
                                     world.setBlockToAir(block.blockX - 1, block.blockY - 1, block.blockZ + 1);
-
-                                    player.attackEntityFrom(DamageSource.generic, 6 + rand.nextInt(4));
 
                                 }
                             }
@@ -121,6 +109,5 @@ public class ItemTotemicStaff extends ItemTotemic
 
         return true;
     }
-
 
 }

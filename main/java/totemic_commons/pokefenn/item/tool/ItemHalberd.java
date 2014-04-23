@@ -1,5 +1,6 @@
-package totemic_commons.pokefenn.item;
+package totemic_commons.pokefenn.item.tool;
 
+import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**

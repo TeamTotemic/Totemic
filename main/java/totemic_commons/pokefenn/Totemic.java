@@ -62,6 +62,7 @@ public final class Totemic
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
 
         Potion[] potionTypes = null;

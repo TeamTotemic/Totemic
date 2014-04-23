@@ -29,11 +29,48 @@ public class EntityUpdate
         double y = entityLiving.posY;
         double z = entityLiving.posZ;
 
+        if(entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.spiderPotion))
+        {
+            //Code from joshiejack :)
 
-        //if (entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.batPotion))
-        //{
-        //    ((EntityPlayer) entityLiving).capabilities.allowFlying = true;
-        //}
+            EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+            if(player.isCollidedHorizontally && !player.isOnLadder())
+            {
+                final float factor = 0.15F;
+
+                if(player.motionX < (-factor))
+                {
+                    player.motionX = -factor;
+                }
+
+                if(player.motionX > factor)
+                {
+                    player.motionX = factor;
+                }
+
+                if(player.motionZ < (-factor))
+                {
+                    player.motionZ = -factor;
+                }
+
+                if(player.motionZ > factor)
+                {
+                    player.motionZ = factor;
+                }
+
+                player.fallDistance = 0.0F;
+
+                if(player.motionY < -0.14999999999999999D)
+                {
+                    player.motionY = -0.14999999999999999D;
+                }
+
+                player.motionY = 0.20000000000000001D;
+
+            }
+        }
+
 
         if(entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.antidotePotion))
         {
