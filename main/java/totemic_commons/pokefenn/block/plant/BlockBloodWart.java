@@ -1,10 +1,10 @@
 package totemic_commons.pokefenn.block.plant;
 
 import net.minecraft.block.BlockNetherWart;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.ArrayList;

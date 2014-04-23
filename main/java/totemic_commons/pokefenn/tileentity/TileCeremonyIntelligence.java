@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.block.plant.IPlantDrain;
+import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
 import totemic_commons.pokefenn.lib.PlantIds;
 import totemic_commons.pokefenn.util.EntityUtil;

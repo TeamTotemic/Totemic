@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.block;
+package totemic_commons.pokefenn.block.totem;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
+import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;

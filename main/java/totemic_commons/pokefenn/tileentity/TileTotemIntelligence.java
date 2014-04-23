@@ -13,8 +13,8 @@ import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.totem.IPlantEssenceInput;
 import totemic_commons.pokefenn.api.verdant.IVerdantCrystal;
-import totemic_commons.pokefenn.block.BlockTotemSocket;
-import totemic_commons.pokefenn.block.plant.IPlantDrain;
+import totemic_commons.pokefenn.block.totem.BlockTotemSocket;
+import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 

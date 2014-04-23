@@ -3,10 +3,11 @@ package totemic_commons.pokefenn;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import totemic_commons.pokefenn.block.*;
-import totemic_commons.pokefenn.block.plant.BlockBloodWart;
-import totemic_commons.pokefenn.block.plant.BlockFungalPlant;
-import totemic_commons.pokefenn.block.plant.BlockMoonglow;
-import totemic_commons.pokefenn.block.plant.BlockWaterLotus;
+import totemic_commons.pokefenn.block.plant.*;
+import totemic_commons.pokefenn.block.totem.BlockCeremonyIntelligence;
+import totemic_commons.pokefenn.block.totem.BlockManaTotem;
+import totemic_commons.pokefenn.block.totem.BlockTotemIntelligence;
+import totemic_commons.pokefenn.block.totem.BlockTotemSocket;
 import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModBlocks

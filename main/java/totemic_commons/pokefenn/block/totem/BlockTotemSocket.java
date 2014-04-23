@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.block;
+package totemic_commons.pokefenn.block.totem;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.ITotem;
+import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemSocket;

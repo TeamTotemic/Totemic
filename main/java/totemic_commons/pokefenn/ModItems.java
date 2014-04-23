@@ -3,8 +3,8 @@ package totemic_commons.pokefenn;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import totemic_commons.pokefenn.item.ItemBottleChlorophyll;
-import totemic_commons.pokefenn.item.ItemBucketChlorophyll;
+import totemic_commons.pokefenn.item.fluid.ItemBottleChlorophyll;
+import totemic_commons.pokefenn.item.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
 import totemic_commons.pokefenn.item.plant.ItemBloodWart;
 import totemic_commons.pokefenn.item.plant.ItemFungusPlantSpore;
@@ -14,6 +14,8 @@ import totemic_commons.pokefenn.item.tool.ItemInfusedTotemicStaff;
 import totemic_commons.pokefenn.item.tool.ItemShamanFlute;
 import totemic_commons.pokefenn.item.tool.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.tool.ItemTotemicStaff;
+import totemic_commons.pokefenn.item.verdant.ItemBlazingVerdantCrystal;
+import totemic_commons.pokefenn.item.verdant.ItemVerdantCrystal;
 import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModItems

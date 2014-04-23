@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.block;
+package totemic_commons.pokefenn.block.plant;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

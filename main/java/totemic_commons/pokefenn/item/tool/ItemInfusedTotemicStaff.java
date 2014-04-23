@@ -13,7 +13,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
-import totemic_commons.pokefenn.block.BlockTotemSapling;
+import totemic_commons.pokefenn.block.plant.BlockTotemSapling;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
 

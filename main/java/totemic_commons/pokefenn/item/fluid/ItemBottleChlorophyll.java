@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item;
+package totemic_commons.pokefenn.item.fluid;
 
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.ItemTotemic;

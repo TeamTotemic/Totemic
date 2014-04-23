@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item;
+package totemic_commons.pokefenn.item.verdant;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -8,6 +8,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.verdant.IVerdantCrystal;
+import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;

@@ -6,6 +6,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.ArrayList;

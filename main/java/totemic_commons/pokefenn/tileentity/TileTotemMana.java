@@ -5,7 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.block.BlockTotemSocket;
+import totemic_commons.pokefenn.block.totem.BlockTotemSocket;
 import totemic_commons.pokefenn.totem.TotemUtil;
 import vazkii.botania.api.mana.IManaReceiver;
 

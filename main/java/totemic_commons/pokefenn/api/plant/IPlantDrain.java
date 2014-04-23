@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.block.plant;
+package totemic_commons.pokefenn.api.plant;
 
 import net.minecraft.world.World;
 

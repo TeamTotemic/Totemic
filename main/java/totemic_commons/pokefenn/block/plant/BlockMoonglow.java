@@ -1,22 +1,15 @@
 package totemic_commons.pokefenn.block.plant;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Pokefenn.

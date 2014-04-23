@@ -32,6 +32,10 @@ public class Strings
     public static final String FLAME_PARTICLE_NAME = "flameParticleBlock";
     public static final String SPIRITUAL_ENERGY_MOVER_NAME = "spiritualEnergyMover";
     public static final String SPIRITUAL_ENERGY_COLLECTOR_NAME = "spiritualEnergyCollector";
+    public static final String TOTEM_ARMOUR_LEG_NAME = "totemArmourLeg";
+    public static final String TOTEM_ARMOUR_HEAD_NAME = "totemArmourHead";
+    public static final String TOTEM_ARMOUR_CHEST_NAME = "totemArmourChest";
+    public static final String TOTEM_ARMOUR_FOOT_NAME = "totemArmourFoot";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";

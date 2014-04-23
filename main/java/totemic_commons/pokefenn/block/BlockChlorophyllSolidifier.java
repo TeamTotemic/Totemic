@@ -61,9 +61,6 @@ public class BlockChlorophyllSolidifier extends BlockTileTotemic
                 EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE).copy());
                 world.spawnEntityInWorld(entityitem);
                 tileChlorophyllSolidifier.setInventorySlotContents(SLOT_ONE, null);
-
-                //System.out.println("hrm");
-
             }
             if(heldItem != null && tileChlorophyllSolidifier.getStackInSlot(SLOT_ONE) == null && heldItem.getItem() == ModItems.bottleChlorophyll || heldItem != null && heldItem.getItem() == ModItems.bucketChlorophyll)
             {
