@@ -29,11 +29,6 @@ public class EntityUpdate
         double y = entityLiving.posY;
         double z = entityLiving.posZ;
 
-        if(entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.batPotion))
-        {
-            EntityPlayer player = (EntityPlayer) event.entityLiving;
-        }
-
         if(entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.spiderPotion))
         {
             //Code from joshiejack :)
@@ -44,11 +39,9 @@ public class EntityUpdate
             {
                 final float factor = 0.15F;
 
-                if(player.isSneaking())
+                if(player.isSneaking() && player.isCollidedHorizontally)
                 {
                     player.motionY = 0;
-                    //player.motionX = 0;
-                    //player.motionZ = 0;
                     return;
                 }
 

@@ -16,6 +16,7 @@ import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
 import totemic_commons.pokefenn.lib.PlantIds;
+import totemic_commons.pokefenn.totem.TotemUtil;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
@@ -77,11 +78,6 @@ public class TileCeremonyIntelligence extends TileTotemic
     {
         if(!this.worldObj.isRemote)
         {
-            if(this.worldObj.getWorldTime() % 60L == 0)
-            {
-                //this.isBurning = this.worldObj.getBlock(xCoord + 8, yCoord, zCoord) == ModBlocks.totemTorch && this.worldObj.getBlock(xCoord, yCoord, zCoord + 8) == ModBlocks.totemTorch && this.worldObj.getBlock(xCoord - 8, yCoord, zCoord) == ModBlocks.totemTorch && this.worldObj.getBlock(xCoord, yCoord, zCoord - 8) == ModBlocks.totemTorch;
-            }
-
             if(currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony != 0)
             {
                 if(!CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever() && currentTime >= CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMaximumTicks())
@@ -186,6 +182,20 @@ public class TileCeremonyIntelligence extends TileTotemic
 
     }
 
+    public void getPlayerArmour()
+    {
+        World world = worldObj;
+
+        EntityPlayer entity = world.getClosestPlayer(this.xCoord, this.yCoord, this.zCoord, 10);
+
+        if(entity != null)
+        {
+            int armour = TotemUtil.getArmourAmounts(entity);
+
+            efficiency += (armour * 5);
+        }
+    }
+
     public void tryCeremony(TileCeremonyIntelligence tileCeremonyIntelligence)
     {
         int x = tileCeremonyIntelligence.xCoord;
@@ -214,9 +224,10 @@ public class TileCeremonyIntelligence extends TileTotemic
                                         {
                                             if(arePlantsValid(ceremonyRegistry))
                                             {
-                                                ((EntityItem) entity).setDead();
+                                                entity.setDead();
                                                 this.currentCeremony = ceremonyRegistry.getCeremonyID();
                                                 //preformCeremony(ceremonyRegistry);
+                                                getPlayerArmour();
                                             }
                                         }
                                     }
@@ -227,6 +238,7 @@ public class TileCeremonyIntelligence extends TileTotemic
                     {
                         this.currentCeremony = ceremonyRegistry.getCeremonyID();
                         System.out.println(currentCeremony);
+                        getPlayerArmour();
                         //this.preformCeremony(ceremonyRegistry);
                     }
                 }

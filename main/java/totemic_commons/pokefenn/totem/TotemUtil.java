@@ -1,6 +1,9 @@
 package totemic_commons.pokefenn.totem;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.item.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.lib.Totems;
 
 /**
@@ -11,6 +14,23 @@ import totemic_commons.pokefenn.lib.Totems;
  */
 public class TotemUtil
 {
+
+
+    public static int getArmourAmounts(EntityPlayer player)
+    {
+        int j = 0;
+        for(int i = 0; i < 4; i++)
+            if(player.inventory.armorItemInSlot(i) != null)
+                if(player.inventory.armorItemInSlot(i).getItem() instanceof ItemTotemArmour)
+                    j++;
+
+        return j;
+    }
+
+    public static int getStrength(EntityPlayer player)
+    {
+        return getArmourAmounts(player) > 2 ? 1 : 0;
+    }
 
     public static int decrementAmount(int par1)
     {
@@ -40,6 +60,5 @@ public class TotemUtil
             return Totems.DECREMENT_MINING;
         else
             return 0;
-
     }
 }
