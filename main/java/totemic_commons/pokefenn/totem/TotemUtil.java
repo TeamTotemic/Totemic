@@ -1,8 +1,12 @@
 package totemic_commons.pokefenn.totem;
 
+import baubles.api.BaublesApi;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.tool.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.lib.Totems;
 
@@ -31,13 +35,38 @@ public class TotemUtil
     {
         int armourAmounts = getArmourAmounts(player);
 
-        player.addPotionEffect(new PotionEffect(potion.id, defaultTime + (armourAmounts * multiplicationAmount), getStrength(player, defaultStrength)));
-
+        if(Totemic.baublesLoaded)
+        {
+            player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrength(player, defaultStrength) + getTotemBaublesAmount(player)));
+        } else
+        {
+            player.addPotionEffect(new PotionEffect(potion.id, defaultTime + (armourAmounts * multiplicationAmount), getStrength(player, defaultStrength)));
+        }
     }
 
     public static int getStrength(EntityPlayer player, int defaultStrength)
     {
         return getArmourAmounts(player) > 2 ? defaultStrength + 1 : defaultStrength;
+    }
+
+    public static int getTotemBaublesAmount(EntityPlayer player)
+    {
+        int j = 0;
+
+        for(int i = 0; i <= 4; i++)
+        {
+            IInventory baubleInventory = BaublesApi.getBaubles(player);
+
+            if(baubleInventory.getStackInSlot(0) != null)
+            {
+                if(baubleInventory.getStackInSlot(0).getItem() == ModItems.herculeseBauble)
+                {
+                    j++;
+                }
+            }
+        }
+
+        return j;
     }
 
     public static int decrementAmount(int par1)
