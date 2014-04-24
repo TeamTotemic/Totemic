@@ -3,6 +3,7 @@ package totemic_commons.pokefenn;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import totemic_commons.pokefenn.item.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.item.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
@@ -42,6 +43,11 @@ public final class ModItems
     public static Item halberd;
     public static Item witherBow;
 
+    public static Item totemArmourHead;
+    public static Item totemArmourChest;
+    public static Item totemArmourLeg;
+    public static Item totemArmourFeet;
+
     public static void init()
     {
         totemWhittlingKnife = new ItemTotemWhittlingKnife();
@@ -63,6 +69,11 @@ public final class ModItems
         //halberd = new ItemHalberd();
         //witherBow = new ItemWitherBow();
 
+        totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
+        totemArmourFeet = new ItemTotemArmour(3, Strings.TOTEM_ARMOUR_FOOT_NAME);
+        totemArmourHead = new ItemTotemArmour(0, Strings.TOTEM_ARMOUR_HEAD_NAME);
+        totemArmourLeg = new ItemTotemArmour(2, Strings.TOTEM_ARMOUR_LEG_NAME);
+
         //Registry for other items
         GameRegistry.registerItem(totemWhittlingKnife, totemWhittlingKnife.getUnlocalizedName());
         GameRegistry.registerItem(totemicStaff, totemicStaff.getUnlocalizedName());
@@ -82,6 +93,10 @@ public final class ModItems
         GameRegistry.registerItem(shamanFlute, Strings.SHAMAN_FLUTE_NAME);
         //GameRegistry.registerItem(halberd, Strings.HALBERD_NAME);
         //GameRegistry.registerItem(witherBow, Strings.WITHER_BOW_NAME);
+        GameRegistry.registerItem(totemArmourChest, Strings.TOTEM_ARMOUR_CHEST_NAME);
+        GameRegistry.registerItem(totemArmourFeet, Strings.TOTEM_ARMOUR_FOOT_NAME);
+        GameRegistry.registerItem(totemArmourLeg, Strings.TOTEM_ARMOUR_LEG_NAME);
+        GameRegistry.registerItem(totemArmourHead, Strings.TOTEM_ARMOUR_HEAD_NAME);
     }
 
 
