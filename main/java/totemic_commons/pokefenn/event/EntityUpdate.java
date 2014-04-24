@@ -29,44 +29,62 @@ public class EntityUpdate
         double y = entityLiving.posY;
         double z = entityLiving.posZ;
 
+        if(entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.batPotion))
+        {
+            EntityPlayer player = (EntityPlayer) event.entityLiving;
+        }
+
         if(entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.spiderPotion))
         {
             //Code from joshiejack :)
 
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-            if(player.isCollidedHorizontally && !player.isOnLadder())
+            if(!player.isOnLadder())
             {
                 final float factor = 0.15F;
 
-                if(player.motionX < (-factor))
+                if(player.isSneaking())
                 {
-                    player.motionX = -factor;
+                    player.motionY = 0;
+                    //player.motionX = 0;
+                    //player.motionZ = 0;
+                    return;
                 }
 
-                if(player.motionX > factor)
+                if(player.isCollidedHorizontally)
                 {
-                    player.motionX = factor;
+
+                    if(player.motionX < (-factor))
+                    {
+                        player.motionX = -factor;
+                    }
+
+                    if(player.motionX > factor)
+                    {
+                        player.motionX = factor;
+                    }
+
+                    if(player.motionZ < (-factor))
+                    {
+                        player.motionZ = -factor;
+                    }
+
+                    if(player.motionZ > factor)
+                    {
+                        player.motionZ = factor;
+                    }
+
+                    player.fallDistance = 0.0F;
+
+                    if(player.motionY < -0.14999999999999999D)
+                    {
+                        player.motionY = -0.14999999999999999D;
+                    }
+
+                    player.motionY = 0.20000000000000001D;
+
                 }
-
-                if(player.motionZ < (-factor))
-                {
-                    player.motionZ = -factor;
-                }
-
-                if(player.motionZ > factor)
-                {
-                    player.motionZ = factor;
-                }
-
-                player.fallDistance = 0.0F;
-
-                if(player.motionY < -0.14999999999999999D)
-                {
-                    player.motionY = -0.14999999999999999D;
-                }
-
-                player.motionY = 0.20000000000000001D;
 
             }
         }

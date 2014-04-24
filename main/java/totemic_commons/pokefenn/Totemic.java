@@ -12,13 +12,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.MinecraftForge;
-import totemic_commons.pokefenn.event.BucketEvent;
-import totemic_commons.pokefenn.event.EntityFall;
+import totemic_commons.pokefenn.event.*;
 import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.entity.ModEntities;
-import totemic_commons.pokefenn.event.EntityHurt;
-import totemic_commons.pokefenn.event.EntityUpdate;
 import totemic_commons.pokefenn.fluid.FluidContainers;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Reference;
@@ -148,6 +145,8 @@ public final class Totemic
         MinecraftForge.EVENT_BUS.register(new BucketEvent());
 
         MinecraftForge.EVENT_BUS.register(new EntityFall());
+
+        MinecraftForge.EVENT_BUS.register(new EntityJump());
 
         TotemRegistry.addTotems();
 

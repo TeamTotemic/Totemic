@@ -36,9 +36,7 @@ public class ItemBucketChlorophyll extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register)
     {
-
         itemIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.BUCKET_CHLOROPHYLL_ICON);
-
     }
 
     @Override
