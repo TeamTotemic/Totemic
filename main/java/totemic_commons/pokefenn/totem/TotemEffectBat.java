@@ -32,7 +32,9 @@ public class TotemEffectBat implements ITotemEffect
                     {
                         int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
 
-                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(ModPotions.batPotion.getId(), 15 * 20 + (20 * j), 0));
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 200, 30, ModPotions.batPotion, 0);
+
+                        //((EntityPlayer) entity).addPotionEffect(new PotionEffect(ModPotions.batPotion.getId(), 15 * 20 + (20 * j), 0));
 
                         if(intelligence)
                         {

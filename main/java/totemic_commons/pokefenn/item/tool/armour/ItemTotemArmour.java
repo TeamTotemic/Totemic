@@ -1,9 +1,8 @@
-package totemic_commons.pokefenn.item.armour;
+package totemic_commons.pokefenn.item.tool.armour;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
@@ -11,8 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.client.rendering.armour.TotemArmourHead;
-import totemic_commons.pokefenn.lib.Strings;
 
 /**
  * Created by Pokefenn.

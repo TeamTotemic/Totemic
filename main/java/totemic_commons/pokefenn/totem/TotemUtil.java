@@ -1,9 +1,9 @@
 package totemic_commons.pokefenn.totem;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.item.armour.ItemTotemArmour;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import totemic_commons.pokefenn.item.tool.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.lib.Totems;
 
 /**
@@ -27,9 +27,17 @@ public class TotemUtil
         return j;
     }
 
-    public static int getStrength(EntityPlayer player)
+    public static void addPotionEffects(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength)
     {
-        return getArmourAmounts(player) > 2 ? 1 : 0;
+        int armourAmounts = getArmourAmounts(player);
+
+        player.addPotionEffect(new PotionEffect(potion.id, defaultTime + (armourAmounts * multiplicationAmount), getStrength(player, defaultStrength)));
+
+    }
+
+    public static int getStrength(EntityPlayer player, int defaultStrength)
+    {
+        return getArmourAmounts(player) > 2 ? defaultStrength + 1 : defaultStrength;
     }
 
     public static int decrementAmount(int par1)

@@ -30,7 +30,9 @@ public class TotemEffectSpider implements ITotemEffect
                     {
                         int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
 
-                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(ModPotions.spiderPotion.id, 200 + (j * 30), 0));
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 200, 30, ModPotions.spiderPotion, 0);
+
+                        //((EntityPlayer) entity).addPotionEffect(new PotionEffect(ModPotions.spiderPotion.id, 200 + (j * 30), 0));
 
                         if(intelligence)
                         {

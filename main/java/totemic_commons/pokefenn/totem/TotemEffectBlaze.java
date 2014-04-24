@@ -39,7 +39,9 @@ public class TotemEffectBlaze implements ITotemEffect
 
                         int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
 
-                        ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 200 + (j * 30), 0));
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 200, 30, Potion.fireResistance, 0);
+
+                        //((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 200 + (j * 30), 0));
 
                         if(intelligence)
                         {

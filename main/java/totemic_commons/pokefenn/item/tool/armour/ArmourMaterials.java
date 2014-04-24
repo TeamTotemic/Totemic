@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.armour;
+package totemic_commons.pokefenn.item.tool.armour;
 
 import net.minecraft.item.ItemArmor;
 import net.minecraftforge.common.util.EnumHelper;
