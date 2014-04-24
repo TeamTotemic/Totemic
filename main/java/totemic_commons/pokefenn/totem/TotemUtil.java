@@ -31,13 +31,13 @@ public class TotemUtil
         return j;
     }
 
-    public static void addPotionEffects(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength)
+    public static void addPotionEffects(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {
         int armourAmounts = getArmourAmounts(player);
 
         if(Totemic.baublesLoaded)
         {
-            player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrength(player, defaultStrength) + getTotemBaublesAmount(player)));
+            player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), baubleIncrease ? getStrength(player, defaultStrength) + getTotemBaublesAmount(player) : getStrength(player, defaultStrength)));
         } else
         {
             player.addPotionEffect(new PotionEffect(potion.id, defaultTime + (armourAmounts * multiplicationAmount), getStrength(player, defaultStrength)));
@@ -53,18 +53,19 @@ public class TotemUtil
     {
         int j = 0;
 
-        for(int i = 0; i <= 4; i++)
-        {
-            IInventory baubleInventory = BaublesApi.getBaubles(player);
-
-            if(baubleInventory.getStackInSlot(0) != null)
+        if(Totemic.baublesLoaded)
+            for(int i = 0; i <= 4; i++)
             {
-                if(baubleInventory.getStackInSlot(0).getItem() == ModItems.herculeseBauble)
+                IInventory baubleInventory = BaublesApi.getBaubles(player);
+
+                if(baubleInventory.getStackInSlot(0) != null)
                 {
-                    j++;
+                    if(baubleInventory.getStackInSlot(0).getItem() == ModItems.herculeseBauble)
+                    {
+                        j++;
+                    }
                 }
             }
-        }
 
         return j;
     }

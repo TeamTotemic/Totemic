@@ -30,7 +30,7 @@ public class TotemEffectSquid implements ITotemEffect
                     {
                         int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
 
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 200, 30, Potion.waterBreathing, 0);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 200, 30, Potion.waterBreathing, 0, false);
                         //((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 200 + (j * 30), 0));
 
                         if(intelligence)

@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.item.tool;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -35,6 +37,13 @@ public class ItemShamanFlute extends ItemTotemic
         setMaxStackSize(1);
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        list.add("Like the Pied Piper of old");
+    }
+
     public void onUpdate(ItemStack itemStack, World world, Entity player, int par4, boolean par5)
     {
         if(!world.isRemote)
@@ -44,9 +53,7 @@ public class ItemShamanFlute extends ItemTotemic
                 {
                     ((EntityPlayer) player).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 30, 1));
                 }
-
         }
-
     }
 
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)

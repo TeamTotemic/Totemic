@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.lib.Strings;
 
 /**
  * Created by Pokefenn.
@@ -22,7 +23,7 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor
     public ItemTotemArmour(int armourType, String name)
     {
         super(ArmourMaterials.totemArmour, 0, armourType);
-        setUnlocalizedName(name);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
         setCreativeTab(Totemic.tabsTotem);
         //setMaxDamage(ArmourMaterials.totemArmour.getDurability(armourType));
         this.armourType = armourType;
