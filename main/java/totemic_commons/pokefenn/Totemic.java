@@ -55,6 +55,7 @@ public final class Totemic
     public static final PacketPipeline packetPipeline = new PacketPipeline();
 
     public static boolean botaniaLoaded = false;
+    public static boolean baublesLoaded = false;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -123,6 +124,9 @@ public final class Totemic
 
         if(Loader.isModLoaded("Botania"))
             ModBlocks.initBotania();
+
+        if(Loader.isModLoaded("Baubles"))
+            ModItems.initBaubles();
 
         //Vannila recipes
         TotemicRecipes.init();

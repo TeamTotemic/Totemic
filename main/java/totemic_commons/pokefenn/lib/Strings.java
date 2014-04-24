@@ -36,6 +36,7 @@ public class Strings
     public static final String TOTEM_ARMOUR_HEAD_NAME = "totemArmourHead";
     public static final String TOTEM_ARMOUR_CHEST_NAME = "totemArmourChest";
     public static final String TOTEM_ARMOUR_FOOT_NAME = "totemArmourFoot";
+    public static final String HERCULESE_BAUBLES_NAME = "herculeseBauble";
 
     //Items
     public static final String TOTEM_HEAD_NAME = "totemHead";

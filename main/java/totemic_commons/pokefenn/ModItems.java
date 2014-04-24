@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.item.armour.ItemTotemArmour;
+import totemic_commons.pokefenn.item.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.item.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
@@ -47,6 +48,8 @@ public final class ModItems
     public static Item totemArmourChest;
     public static Item totemArmourLeg;
     public static Item totemArmourFeet;
+
+    public static Item herculeseBauble;
 
     public static void init()
     {
@@ -97,6 +100,16 @@ public final class ModItems
         GameRegistry.registerItem(totemArmourFeet, Strings.TOTEM_ARMOUR_FOOT_NAME);
         GameRegistry.registerItem(totemArmourLeg, Strings.TOTEM_ARMOUR_LEG_NAME);
         GameRegistry.registerItem(totemArmourHead, Strings.TOTEM_ARMOUR_HEAD_NAME);
+    }
+
+
+    public static void initBaubles()
+    {
+        Totemic.baublesLoaded = true;
+
+        herculeseBauble = new ItemHerculesBauble();
+
+        GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
     }
 
 
