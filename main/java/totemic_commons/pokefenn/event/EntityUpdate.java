@@ -9,8 +9,10 @@ import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import totemic_commons.pokefenn.potion.ModPotions;
+import totemic_commons.pokefenn.totem.TotemUtil;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,15 +27,40 @@ public class EntityUpdate
     public void onEntityUpdate(LivingEvent.LivingUpdateEvent event)
     {
         EntityLivingBase entityLiving = event.entityLiving;
-        double x = entityLiving.posX;
-        double y = entityLiving.posY;
-        double z = entityLiving.posZ;
+
+        EntityPlayer player = (EntityPlayer) event.entityLiving;
+
+        if(player.worldObj.getWorldTime() % 60L == 0)
+        {
+            if(player.isPotionActive(Potion.wither))
+            {
+                if(TotemUtil.getArmourAmounts(player) == 4)
+                {
+                    Random rand = new Random();
+
+                    if(rand.nextInt(10) == 1)
+                    {
+                        player.removePotionEffect(Potion.wither.id);
+                    }
+                }
+            } else if(player.isPotionActive(Potion.poison))
+            {
+                if(TotemUtil.getArmourAmounts(player) == 4)
+                {
+                    Random rand = new Random();
+
+                    if(rand.nextInt(8) == 1)
+                    {
+                        player.removePotionEffect(Potion.poison.id);
+                    }
+                }
+            }
+        }
 
         if(entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.spiderPotion))
         {
             //Code from joshiejack :)
 
-            EntityPlayer player = (EntityPlayer) event.entityLiving;
 
             if(!player.isOnLadder())
             {

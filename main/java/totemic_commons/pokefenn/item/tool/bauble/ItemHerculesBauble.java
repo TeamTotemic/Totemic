@@ -56,6 +56,7 @@ public class ItemHerculesBauble extends ItemTotemic implements IBauble
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
+        list.add("Bauble Slot: Amulet");
         list.add("A beetle to increase the length and strength of Totem Effects");
     }
 

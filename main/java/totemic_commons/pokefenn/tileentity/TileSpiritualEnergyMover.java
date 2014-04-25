@@ -45,16 +45,6 @@ public class TileSpiritualEnergyMover extends TileTotemic implements ISpiritualE
     {
         int direction = orientation.ordinal();
 
-        /*
-        * Where to shoot
-        * 5 == east
-        * 3 == south
-        * 4 == west
-        * 2 == north
-        */
-
-        //System.out.println(direction);
-
     }
 
     @Override
@@ -73,8 +63,6 @@ public class TileSpiritualEnergyMover extends TileTotemic implements ISpiritualE
         {
             currentEnergy += maximumEnergy;
         }
-
-
     }
 
     @Override

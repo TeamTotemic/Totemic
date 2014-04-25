@@ -29,6 +29,8 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor
         this.armourType = armourType;
     }
 
+
+
     @Override
     public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot)
     {
