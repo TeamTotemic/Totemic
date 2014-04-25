@@ -33,7 +33,7 @@ public class EntityUpdate
 
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
-            if(player.worldObj.getWorldTime() % 60L == 0)
+            if(!player.worldObj.isRemote && player.worldObj.getWorldTime() % 60L == 0)
             {
                 if(player.isPotionActive(Potion.wither))
                 {
@@ -60,10 +60,9 @@ public class EntityUpdate
                 }
             }
 
-            if(entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.spiderPotion))
+            if(event.entityLiving.isPotionActive(ModPotions.spiderPotion))
             {
                 //Code from joshiejack :)
-
 
                 if(!player.isOnLadder())
                 {
@@ -112,7 +111,6 @@ public class EntityUpdate
                 }
             }
 
-
             if(event.entityLiving.isPotionActive(ModPotions.antidotePotion))
             {
                 if(event.entityLiving.isPotionActive(Potion.blindness))
@@ -130,19 +128,12 @@ public class EntityUpdate
                     event.entityLiving.removePotionEffect(Potion.confusion.id);
                 }
 
-                //if (event.entityLiving.isPotionActive(Potion.wither))
-                //{
-                //    event.entityLiving.removePotionEffect(Potion.wither.id);
-                //}
-
                 if(event.entityLiving.isPotionActive(Potion.moveSlowdown))
                 {
                     event.entityLiving.removePotionEffect(Potion.moveSlowdown.id);
                 }
 
             }
-
-            //TODO remember to turn this back on
 
         }
     }

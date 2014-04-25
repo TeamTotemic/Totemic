@@ -31,7 +31,7 @@ public class TotemEffectHorse implements ITotemEffect
                     {
                         int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
 
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 200, 30, Potion.moveSpeed, 0, false);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 160, 35, Potion.moveSpeed, 0, false);
 
                         //((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200 + (30 * j), TotemUtil.getStrength((EntityPlayer) entity)));
 
