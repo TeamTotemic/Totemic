@@ -133,10 +133,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
 
     public void increasePlantEssence(Block block)
     {
-
         if(plantEssence < maxEssence)
         {
-            if((plantEssence += getPlantDrained(block)) > maxEssence)
+            if((plantEssence += (getPlantDrained(block)) - 1) > maxEssence)
             {
                 plantEssence = maxEssence;
                 return;
@@ -144,7 +143,6 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
 
             plantEssence += getPlantDrained(block) - 1;
         }
-
     }
 
     public int getPlantDrained(Block plant)

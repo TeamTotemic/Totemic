@@ -10,6 +10,8 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import totemic_commons.pokefenn.entity.spirit.EntitySpiritBase;
 import totemic_commons.pokefenn.totem.TotemUtil;
 
+import java.util.Random;
+
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
@@ -22,8 +24,11 @@ public class EntityHurt
     {
         Entity sourceDamageEntity = event.source.getSourceOfDamage();
 
+        Random random = new Random();
+
         if(event.entityLiving instanceof EntityPlayer && sourceDamageEntity != null)
         {
+            if(random.nextInt(3) == 1)
             if(TotemUtil.getArmourAmounts((EntityPlayer) event.entityLiving) == 4)
                 sourceDamageEntity.attackEntityFrom(DamageSource.generic, event.ammount % 2);
         }

@@ -44,7 +44,7 @@ public class BlockFungalPlant extends BlockBasePlant implements IPlantDrain
     @Override
     public int getPlantDrain(World world, int x, int y, int z)
     {
-        return world.getBlock(x, -y, z) == Blocks.mycelium && !world.isDaytime() ? 6 : 2;
+        return world.getBlock(x, -y, z) == Blocks.mycelium && !world.isDaytime() ? 5 : 2;
     }
 
     public int getRenderType()

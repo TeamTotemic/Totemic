@@ -62,10 +62,10 @@ public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWand
                     {
                         for(int i = 1; i <= SOCKET_NUMBER; i++)
                         {
-                            if(canDoEffect(getCurrentMana(), TotemUtil.decrementAmount(SOCKETS[i]) * 10))
+                            //if(canDoEffect(getCurrentMana(), TotemUtil.decrementAmount(SOCKETS[i]) * 10))
                             {
                                 //TileTotemIntelligence.doEffects(SOCKETS[i], RANGE_UPGRADES, this, false);
-                                decreaseMana(TotemUtil.decrementAmount(SOCKETS[i]) * 40);
+                              //  decreaseMana(TotemUtil.decrementAmount(SOCKETS[i]) * 40);
                             }
                         }
                     }

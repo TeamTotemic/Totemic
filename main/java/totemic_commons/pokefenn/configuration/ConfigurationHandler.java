@@ -34,19 +34,16 @@ public class ConfigurationHandler
             ConfigurationSettings.DECREMENT_TOTEM_OCELOT = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementOcelot", 7).getInt(7);
             ConfigurationSettings.DECREMENT_TOTEM_SQUID = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSquid", 8).getInt(8);
             ConfigurationSettings.DECREMENT_TOTEM_SPIDER = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementSpider", 12).getInt(12);
+            ConfigurationSettings.DECREMENT_TOTEM_COW = configuration.get(CATEGORY_TOTEMS, "chlorophyllDecrementCow", 13).getInt(13);
 
             ConfigurationSettings.POTION_ID_BAT = configuration.get(CATEGORY_POTION, "batPotionID", 32).getInt(32);
             ConfigurationSettings.POTION_ID_HORSE = configuration.get(CATEGORY_POTION, "horsePotionID", 33).getInt(33);
             ConfigurationSettings.POTION_ID_ANTIDOTE = configuration.get(CATEGORY_POTION, "antidotePotionID", 34).getInt(34);
             ConfigurationSettings.POTION_ID_SPIDER = configuration.get(CATEGORY_POTION, "spiderPotionID", 35).getInt(35);
 
-            ConfigurationSettings.GENERATE_TOTEM_TREES = configuration.get(CATEGORY_GAMEPLAY, "generateTotemTrees(Optional)", false).getBoolean(false);
-
             ConfigurationSettings.ENTITY_ID_EFREET = configuration.get(CATEGORY_ENTITY, "efreetEntityID", 22).getInt(22);
 
             ConfigurationSettings.RELEVENT_TOTEM_RECIPES = configuration.get(CATEGORY_GAMEPLAY, "doUseReleventTotemRecipes", false).getBoolean(false);
-
-            ConfigurationSettings.CRYSTAL_RECIPE = configuration.get(CATEGORY_GAMEPLAY, "inEventOfBrokenChlorophyllCrystal", true).getBoolean(true);
 
             //Blocks
 

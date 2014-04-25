@@ -44,6 +44,6 @@ public class BlockBloodWart extends BlockNetherWart implements IPlantDrain
     @Override
     public int getPlantDrain(World world, int x, int y, int z)
     {
-        return world.provider.dimensionId == -1 ? 8 : 2;
+        return world.provider.dimensionId == -1 ? 6 : 2;
     }
 }

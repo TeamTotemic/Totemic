@@ -64,6 +64,6 @@ public class BlockMoonglow extends BlockBasePlant implements IPlantDrain
     @Override
     public int getPlantDrain(World world, int x, int y, int z)
     {
-        return !world.isDaytime() ? 5 : 2;
+        return !world.isDaytime() ? 4 : 2;
     }
 }

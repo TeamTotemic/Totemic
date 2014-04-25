@@ -29,6 +29,7 @@ public class TotemRegistry
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat()));
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 6), 0, 8, 8, new TotemEffectDraining()));
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 7), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 8), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow()));
     }
 
     public static List<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();

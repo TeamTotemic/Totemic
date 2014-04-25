@@ -3,20 +3,19 @@ package totemic_commons.pokefenn.totem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
+import java.util.Random;
+
 /**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 27/01/14
- * Time: 19:01
+ * Created by Pokefenn.
+ * Licensed under MIT (If this is one of my Mods)
  */
-public class TotemEffectSquid implements ITotemEffect
+public class TotemEffectCow implements ITotemEffect
 {
     public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle)
     {
@@ -28,7 +27,17 @@ public class TotemEffectSquid implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 200, 33, Potion.waterBreathing, 0, false);
+                        if(entity.isBurning())
+                        {
+                            Random rand = new Random();
+                            ((EntityPlayer) entity).heal(4 + rand.nextInt(TotemUtil.getArmourAmounts((EntityPlayer) entity)));
+                        }
+
+                        int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
+
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 160, 25, Potion.resistance, 0, false);
+
+                        TotemUtil.addNegitivePotionEffect((EntityPlayer) entity, 100, 35, Potion.moveSlowdown, 1, true);
 
                         if(intelligence)
                         {
@@ -42,6 +51,4 @@ public class TotemEffectSquid implements ITotemEffect
         }
 
     }
-
-
 }

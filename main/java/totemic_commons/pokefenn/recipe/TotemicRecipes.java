@@ -38,10 +38,6 @@ public class TotemicRecipes
         if(Totemic.botaniaLoaded)
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemMana), new Object[]{" l ", "ltl", " l ", ('l'), "livingwood", ('t'), ModBlocks.totemIntelligence}));
 
-        if(ConfigurationSettings.CRYSTAL_RECIPE)
-            GameRegistry.addShapelessRecipe(new ItemStack(ModItems.verdantCrystal, 1, ModItems.verdantCrystal.getMaxDamage() - 1), new Object[]{new ItemStack(Items.diamond), ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll, ModItems.bottleChlorophyll});
-
-
         if(!ConfigurationSettings.RELEVENT_TOTEM_RECIPES)
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 1), new Object[]{ModBlocks.totemWoods, new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});
 
