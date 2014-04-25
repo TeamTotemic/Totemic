@@ -27,15 +27,7 @@ public class TotemEffectCow implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        if(entity.isBurning())
-                        {
-                            Random rand = new Random();
-                            ((EntityPlayer) entity).heal(4 + rand.nextInt(TotemUtil.getArmourAmounts((EntityPlayer) entity)));
-                        }
-
-                        int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
-
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 160, 25, Potion.resistance, 0, false);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 160, 30, Potion.resistance, 0, false);
 
                         TotemUtil.addNegitivePotionEffect((EntityPlayer) entity, 100, 35, Potion.moveSlowdown, 1, true);
 
