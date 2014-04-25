@@ -13,6 +13,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.totem.TotemUtil;
@@ -23,7 +24,7 @@ import java.util.List;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemHerculesBauble extends ItemTotemic implements IBauble
+public class ItemHerculesBauble extends ItemTotemic implements IBauble, ITotemBauble
 {
 
     public ItemHerculesBauble()
@@ -107,5 +108,11 @@ public class ItemHerculesBauble extends ItemTotemic implements IBauble
     public boolean canUnequip(ItemStack itemstack, EntityLivingBase player)
     {
         return true;
+    }
+
+    @Override
+    public int getTotemEfficiency(World world, ItemStack itemStack, EntityPlayer player)
+    {
+        return 2;
     }
 }

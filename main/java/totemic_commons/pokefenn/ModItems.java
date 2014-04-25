@@ -43,6 +43,8 @@ public final class ModItems
     public static Item shamanFlute;
     public static Item halberd;
     public static Item witherBow;
+    public static Item heiTiki;
+    public static Item tikiRing;
 
     public static Item totemArmourHead;
     public static Item totemArmourChest;

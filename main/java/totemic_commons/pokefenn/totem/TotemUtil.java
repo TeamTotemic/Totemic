@@ -3,10 +3,12 @@ package totemic_commons.pokefenn.totem;
 import baubles.api.BaublesApi;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.item.tool.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.lib.Totems;
 
@@ -30,6 +32,7 @@ public class TotemUtil
 
         return j;
     }
+
 
     public static void addPotionEffects(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {
@@ -79,17 +82,17 @@ public class TotemUtil
         {
             IInventory baubleInventory = BaublesApi.getBaubles(player);
 
-            if(baubleInventory.getStackInSlot(0) != null)
+            for(int i = 0; i < baubleInventory.getSizeInventory(); i++)
             {
-                if(baubleInventory.getStackInSlot(0).getItem() == ModItems.herculeseBauble)
+                if(baubleInventory.getStackInSlot(i) != null)
                 {
-                    j++;
+                    if(baubleInventory.getStackInSlot(i).getItem() instanceof ITotemBauble)
+                    {
+                        j++;
+                    }
                 }
             }
         }
-
-
-        System.out.println(j);
 
         return j;
     }
