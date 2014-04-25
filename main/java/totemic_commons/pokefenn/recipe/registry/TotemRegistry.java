@@ -22,13 +22,13 @@ public class TotemRegistry
 
     public static void addTotems()
     {
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_HORSE, 10, 10, new TotemEffectHorse()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 5), Totems.DECREMENT_SQUID, 10, 10, new TotemEffectSquid()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_BLAZE, 10, 10, new TotemEffectBlaze()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 4), Totems.DECREMENT_OCELOT, 10, 10, new TotemEffectOcelot()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BAT, 15, 20, new TotemEffectBat()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_HORSE, 20, 20, new TotemEffectHorse()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 5), Totems.DECREMENT_SQUID, 20, 20, new TotemEffectSquid()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 4), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat()));
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 6), 0, 8, 8, new TotemEffectDraining()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 7), Totems.DECREMENT_SPIDER, 8, 8, new TotemEffectSpider()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 7), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider()));
     }
 
     public static List<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();
