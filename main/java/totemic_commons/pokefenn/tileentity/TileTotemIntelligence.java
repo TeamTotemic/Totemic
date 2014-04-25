@@ -312,7 +312,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
     @Override
     public String getInventoryName()
     {
-        return Strings.CONTAINER_TOTEM_INTELLIGENCE_NAME;
+        return "container:totemIntelligence";
     }
 
     @Override
@@ -334,14 +334,12 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
         {
             if(i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && itemStack != null && itemStack.getItem() instanceof IVerdantCrystal)
             {
-
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                 return true;
+            }
+        }
 
-            } else
-                return false;
-        } else return false;
-
+        return false;
     }
 
     @Override

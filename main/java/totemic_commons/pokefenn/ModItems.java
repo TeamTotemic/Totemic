@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.item.tool.armour.ItemTotemArmour;
+import totemic_commons.pokefenn.item.tool.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.tool.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.item.fluid.ItemBucketChlorophyll;
@@ -16,6 +17,7 @@ import totemic_commons.pokefenn.item.tool.ItemInfusedTotemicStaff;
 import totemic_commons.pokefenn.item.tool.ItemShamanFlute;
 import totemic_commons.pokefenn.item.tool.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.tool.ItemTotemicStaff;
+import totemic_commons.pokefenn.item.tool.bauble.ItemTikiRing;
 import totemic_commons.pokefenn.item.verdant.ItemBlazingVerdantCrystal;
 import totemic_commons.pokefenn.item.verdant.ItemVerdantCrystal;
 import totemic_commons.pokefenn.lib.Strings;
@@ -43,8 +45,6 @@ public final class ModItems
     public static Item shamanFlute;
     public static Item halberd;
     public static Item witherBow;
-    public static Item heiTiki;
-    public static Item tikiRing;
 
     public static Item totemArmourHead;
     public static Item totemArmourChest;
@@ -52,6 +52,8 @@ public final class ModItems
     public static Item totemArmourFeet;
 
     public static Item herculeseBauble;
+    public static Item heiTiki;
+    public static Item tikiRing;
 
     public static void init()
     {
@@ -110,8 +112,12 @@ public final class ModItems
         Totemic.baublesLoaded = true;
 
         herculeseBauble = new ItemHerculesBauble();
+        tikiRing = new ItemTikiRing();
+        heiTiki = new ItemHeiTiki();
 
         GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
+        GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);
+        GameRegistry.registerItem(tikiRing, Strings.TIKI_RING_NAME);
     }
 
 

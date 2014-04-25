@@ -20,7 +20,7 @@ public class ItemHeiTiki extends ItemTotemic implements IBauble, ITotemBauble
     public ItemHeiTiki()
     {
         setMaxStackSize(1);
-        setUnlocalizedName(Strings.HEI_TIKI_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.HEI_TIKI_NAME);
     }
 
     @Override

@@ -88,7 +88,7 @@ public class TotemUtil
                 {
                     if(baubleInventory.getStackInSlot(i).getItem() instanceof ITotemBauble)
                     {
-                        j++;
+                        j+= ((ITotemBauble) baubleInventory.getStackInSlot(i).getItem()).getTotemEfficiency(player.worldObj, baubleInventory.getStackInSlot(i), player);
                     }
                 }
             }

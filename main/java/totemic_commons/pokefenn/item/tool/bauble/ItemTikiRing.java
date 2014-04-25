@@ -20,7 +20,7 @@ public class ItemTikiRing  extends ItemTotemic implements IBauble, ITotemBauble
     public ItemTikiRing()
     {
         setMaxStackSize(1);
-        setUnlocalizedName(Strings.TIKI_RING_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TIKI_RING_NAME);
     }
 
     @Override
@@ -50,18 +50,18 @@ public class ItemTikiRing  extends ItemTotemic implements IBauble, ITotemBauble
     @Override
     public boolean canEquip(ItemStack itemstack, EntityLivingBase player)
     {
-        return false;
+        return true;
     }
 
     @Override
     public boolean canUnequip(ItemStack itemstack, EntityLivingBase player)
     {
-        return false;
+        return true;
     }
 
     @Override
     public int getTotemEfficiency(World world, ItemStack itemStack, EntityPlayer player)
     {
-        return 0;
+        return 1;
     }
 }
