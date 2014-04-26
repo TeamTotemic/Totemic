@@ -38,10 +38,8 @@ public class Textures
 
     //Items
     public static final String BUCKET_CHLOROPHYLL_ICON = "bucketChlorophyll";
-    public static final String BOTTLE_CHLOROPHYLL_ICON = "bottleChlorophyll";
 
     //Fluids
-
     public static final String FLUID_CHLOROPHYLL_STILL = "chlorophyllStill";
     public static final String FLUID_CHLOROPHYLL_FLOWING = "chlorophyllFlowing";
 
@@ -50,7 +48,6 @@ public class Textures
 
     //Models
     public static final ResourceLocation TEXTURE_TOTEM_SOCKET = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemSocket.png");
-    public static final ResourceLocation TEXTURE_TOTEM_DRAINING = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemDraining.png");
     public static final ResourceLocation TEXTURE_TOTEMIC_STAFF = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemicStaff.png");
     public static final ResourceLocation TEXTURE_INFUSED_TOTEMIC_STAFF = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "infusedTotemicStaff.png");
     public static final ResourceLocation TEXTURE_CHLOROPHYLL_CRYSTAL = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "chlorophyllCrystal.png");

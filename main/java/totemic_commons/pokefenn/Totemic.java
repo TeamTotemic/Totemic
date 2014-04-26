@@ -18,7 +18,6 @@ import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.fluid.FluidContainers;
 import totemic_commons.pokefenn.fluid.ModFluids;
-import totemic_commons.pokefenn.lib.Reference;
 import totemic_commons.pokefenn.network.PacketPipeline;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.registry.PotionItemRegistry;
@@ -35,21 +34,23 @@ import java.lang.reflect.Modifier;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = "0.4.0")
-
+@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.0")
 public final class Totemic
 {
-    @Instance(Reference.MOD_ID)
+    public static final String MOD_ID = "totemic";
+    public static final String MOD_NAME = "Totemic";
+
+    @Instance(MOD_ID)
     public static Totemic instance;
 
     @SidedProxy(clientSide = "totemic_commons.pokefenn.ClientProxy", serverSide = "totemic_commons.pokefenn.CommonProxy")
     public static CommonProxy proxy;
 
     //Creative tab stuff
-    public static CreativeTabs tabsTotem = new CreativeTabTotemic(CreativeTabs.getNextID(), Reference.MOD_NAME);
+    public static CreativeTabs tabsTotem = new CreativeTabTotemic(CreativeTabs.getNextID(), MOD_NAME);
     //public static CreativeTabs tabsPotionTotem = new CreativeTabPotions(CreativeTabs.getNextID(), "totemicPotions");
 
-    public static final Logger logger = Logger.getLogger(Reference.MOD_NAME);
+    public static final Logger logger = Logger.getLogger(MOD_NAME);
 
     public static final PacketPipeline packetPipeline = new PacketPipeline();
 

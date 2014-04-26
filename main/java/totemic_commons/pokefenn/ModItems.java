@@ -14,7 +14,7 @@ import totemic_commons.pokefenn.item.plant.ItemFungusPlantSpore;
 import totemic_commons.pokefenn.item.plant.ItemMoonglowSeeds;
 import totemic_commons.pokefenn.item.plant.ItemWaterLotusSeed;
 import totemic_commons.pokefenn.item.tool.ItemInfusedTotemicStaff;
-import totemic_commons.pokefenn.item.tool.ItemShamanFlute;
+import totemic_commons.pokefenn.item.music.ItemShamanFlute;
 import totemic_commons.pokefenn.item.tool.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.tool.ItemTotemicStaff;
 import totemic_commons.pokefenn.item.tool.bauble.ItemTikiRing;

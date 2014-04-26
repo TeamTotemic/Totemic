@@ -9,8 +9,6 @@ public class ConfigurationSettings
     public static final boolean ENABLE_PARTICLE_FX_DEFAULT = true;
 
     public static int TOTEM_DRAINING_RANGE;
-    public static final String TOTEM_DRAINING_CONFIGNAME = "totemOfDrainingRange(unstable)";
-    public static final int TOTEM_DRAINING_DEFAULT = 8;
 
     public static boolean GENERATE_TOTEM_TREES;
 
@@ -32,7 +30,5 @@ public class ConfigurationSettings
     public static int DECREMENT_TOTEM_SQUID;
     public static int DECREMENT_TOTEM_SPIDER;
     public static int DECREMENT_TOTEM_COW;
-
-    //public static boolean CRYSTAL_RECIPE;
 
 }
