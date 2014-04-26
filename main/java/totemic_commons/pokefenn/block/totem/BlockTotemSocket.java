@@ -11,7 +11,7 @@ import totemic_commons.pokefenn.api.totem.ITotem;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.TileTotemSocket;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
 
 import java.util.Random;
 

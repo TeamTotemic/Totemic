@@ -6,7 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.client.rendering.model.ModelTotemSocket;
 import totemic_commons.pokefenn.lib.Textures;
-import totemic_commons.pokefenn.tileentity.TileTotemSocket;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
 
 /**
  * Created with IntelliJ IDEA.

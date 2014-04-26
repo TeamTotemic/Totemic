@@ -6,7 +6,7 @@ import totemic_commons.pokefenn.api.IBlacklistedDraining;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
-import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**

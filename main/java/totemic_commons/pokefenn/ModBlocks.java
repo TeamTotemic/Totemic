@@ -3,6 +3,8 @@ package totemic_commons.pokefenn;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import totemic_commons.pokefenn.block.*;
+import totemic_commons.pokefenn.block.music.BlockDrum;
+import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.block.plant.*;
 import totemic_commons.pokefenn.block.totem.BlockCeremonyIntelligence;
 import totemic_commons.pokefenn.block.totem.BlockManaTotem;
@@ -29,6 +31,8 @@ public final class ModBlocks
     public static Block lotusBlock;
     public static Block fungusBlock;
     public static Block flameParticle;
+    public static Block windChime;
+    public static Block drum;
 
     public static Block totemMana;
 
@@ -50,6 +54,8 @@ public final class ModBlocks
         lotusBlock = new BlockWaterLotus();
         fungusBlock = new BlockFungalPlant();
         flameParticle = new BlockFlameParticle();
+        drum = new BlockDrum();
+        windChime = new BlockWindChime();
 
         GameRegistry.registerBlock(chlorophyllSolidifier, Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
@@ -66,6 +72,8 @@ public final class ModBlocks
         GameRegistry.registerBlock(lotusBlock, Strings.LOTUS_BLOCK_NAME);
         GameRegistry.registerBlock(fungusBlock, Strings.FUNGAL_PLANT_BLOCK_NAME);
         GameRegistry.registerBlock(flameParticle, Strings.FLAME_PARTICLE_NAME);
+        GameRegistry.registerBlock(drum, Strings.DRUM_NAME);
+        GameRegistry.registerBlock(windChime, Strings.WIND_CHIME_NAME);
     }
 
     public static void initBotania()

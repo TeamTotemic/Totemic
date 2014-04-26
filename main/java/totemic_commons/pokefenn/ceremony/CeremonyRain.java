@@ -3,7 +3,7 @@ package totemic_commons.pokefenn.ceremony;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.storage.WorldInfo;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.TileCeremonyIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 
 /**
  * Created by Pokefenn.

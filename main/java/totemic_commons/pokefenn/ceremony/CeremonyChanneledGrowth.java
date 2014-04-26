@@ -1,13 +1,7 @@
 package totemic_commons.pokefenn.ceremony;
 
-import net.minecraft.block.BlockSapling;
-import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
-import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.TileCeremonyIntelligence;
-
-import java.util.Random;
+import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 
 /**
  * Created by Pokefenn.

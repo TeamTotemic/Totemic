@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.tileentity;
+package totemic_commons.pokefenn.tileentity.totem;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,8 +15,8 @@ import totemic_commons.pokefenn.api.totem.IPlantEssenceInput;
 import totemic_commons.pokefenn.api.verdant.IVerdantCrystal;
 import totemic_commons.pokefenn.block.totem.BlockTotemSocket;
 import totemic_commons.pokefenn.api.plant.IPlantDrain;
-import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
  * Created with IntelliJ IDEA.

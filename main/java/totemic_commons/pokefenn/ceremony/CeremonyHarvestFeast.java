@@ -3,9 +3,7 @@ package totemic_commons.pokefenn.ceremony;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.TileCeremonyIntelligence;
-import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
-import totemic_commons.pokefenn.totem.TotemUtil;
+import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.Random;

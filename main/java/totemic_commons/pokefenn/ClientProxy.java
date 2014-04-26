@@ -1,28 +1,22 @@
 package totemic_commons.pokefenn;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.IFluidHandler;
 import totemic_commons.pokefenn.client.rendering.item.*;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTorchRenderer;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.misc.villager.TotemicVillagerInitiation;
-import totemic_commons.pokefenn.tileentity.TileTotemSocket;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
-import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 public class ClientProxy extends CommonProxy
 {

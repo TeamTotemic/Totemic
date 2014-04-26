@@ -21,7 +21,7 @@ import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
-import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemIntelligence;
 
 import java.util.Random;
 

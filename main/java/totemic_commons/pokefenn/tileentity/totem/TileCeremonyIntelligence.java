@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.tileentity;
+package totemic_commons.pokefenn.tileentity.totem;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -16,6 +16,7 @@ import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
 import totemic_commons.pokefenn.lib.PlantIds;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.totem.TotemUtil;
 import totemic_commons.pokefenn.util.EntityUtil;
 

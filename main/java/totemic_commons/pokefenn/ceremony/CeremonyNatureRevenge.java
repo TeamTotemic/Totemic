@@ -9,7 +9,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.TileCeremonyIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.Random;
