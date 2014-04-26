@@ -22,8 +22,6 @@ public class CommonProxy implements IGuiHandler
         //GameRegistry.registerTileEntity(TileTotemCauldron.class, Strings.TOTEM_CAULDRON_NAME);
         GameRegistry.registerTileEntity(TileCeremonyIntelligence.class, Strings.CEREMONY_INTELLIGENCE_NAME);
         GameRegistry.registerTileEntity(TileTotemTorch.class, Strings.TOTEM_TORCH_NAME);
-        GameRegistry.registerTileEntity(TileSpiritualEnergyMover.class, Strings.SPIRITUAL_ENERGY_MOVER_NAME);
-        GameRegistry.registerTileEntity(TileSpiritualEnergyCollector.class, Strings.SPIRITUAL_ENERGY_COLLECTOR_NAME);
 
         if(Totemic.botaniaLoaded)
             GameRegistry.registerTileEntity(TileTotemMana.class, Strings.TILE_TOTEM_MANA);

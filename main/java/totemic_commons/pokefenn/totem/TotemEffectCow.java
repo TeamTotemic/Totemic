@@ -9,14 +9,13 @@ import totemic_commons.pokefenn.tileentity.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
-import java.util.Random;
-
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
 public class TotemEffectCow implements ITotemEffect
 {
+
     public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle)
     {
         if(totem.getWorldObj().getWorldTime() % 80L == 0)
@@ -35,12 +34,10 @@ public class TotemEffectCow implements ITotemEffect
                         {
                             ((TileTotemIntelligence) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
                         }
-
                     }
                 }
-
             }
         }
-
     }
+
 }

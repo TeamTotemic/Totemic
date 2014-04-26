@@ -4,8 +4,6 @@ public class Strings
 {
     //Misc
     public static final String RESOURCE_PREFIX = "totemic:";
-    public static final String ITEM_PREFIX = RESOURCE_PREFIX + "textures:items";
-
 
     //Blocks
     public static final String CHLOROPHYLL_SOLIDIFIER_NAME = "chlorophyllSolidifier";
@@ -24,13 +22,6 @@ public class Strings
     public static final String LOTUS_BLOCK_NAME = "lotusBlock";
     public static final String FUNGAL_PLANT_BLOCK_NAME = "fungalPlantBlock";
     public static final String FLAME_PARTICLE_NAME = "flameParticleBlock";
-    public static final String SPIRITUAL_ENERGY_MOVER_NAME = "spiritualEnergyMover";
-    public static final String SPIRITUAL_ENERGY_COLLECTOR_NAME = "spiritualEnergyCollector";
-    public static final String TOTEM_ARMOUR_LEG_NAME = "totemArmourLeg";
-    public static final String TOTEM_ARMOUR_HEAD_NAME = "totemArmourHead";
-    public static final String TOTEM_ARMOUR_CHEST_NAME = "totemArmourChest";
-    public static final String TOTEM_ARMOUR_FOOT_NAME = "totemArmourFoot";
-    public static final String HERCULESE_BAUBLES_NAME = "herculeseBauble";
 
     //Items
     public static final String TOTEM_WHITTLING_KNIFE_NAME = "totemWhittlingKnife";
@@ -52,26 +43,27 @@ public class Strings
     public static final String SHAMAN_FLUTE_NAME = "shamanFlute";
     public static final String HALBERD_NAME = "halberd";
     public static final String WITHER_BOW_NAME = "witherBow";
+    public static final String TOTEM_ARMOUR_LEG_NAME = "totemArmourLeg";
+    public static final String TOTEM_ARMOUR_HEAD_NAME = "totemArmourHead";
+    public static final String TOTEM_ARMOUR_CHEST_NAME = "totemArmourChest";
+    public static final String TOTEM_ARMOUR_FOOT_NAME = "totemArmourFoot";
     public static final String TIKI_RING_NAME = "tikiRing";
     public static final String HEI_TIKI_NAME = "heiTiki";
+    public static final String HERCULESE_BAUBLES_NAME = "herculeseBauble";
 
     public static final String TOTEM_WOOD_WAND_CORE_NAME = "totemWoodWandCore";
     public static final String CHLOROPHYLL_CRYSTAL_WAND_CAP = "chlorophyllCrystalWandCap";
 
     //TileEntites
-
     public static final String TILE_CHLOROPHYLL_SOLIDIFIER = "tileChlorophyllSolidifier";
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
     public static final String TILE_TOTEM_SOCKET = "tileTotemSocket";
     public static final String TILE_TOTEM_MANA = "tileTotemMana";
 
+    //Old NBT stuff
     public static final String NBT_TE_STATE_KEY = "teState";
     public static final String NBT_TE_CUSTOM_NAME = "CustomName";
     public static final String NBT_TE_DIRECTION_KEY = "teDirection";
-    public static final String NBT_ENCODED_RECIPE_OUTPUT = "recipeOutput";
-    public static final String NBT_ENCODED_RECIPE_INPUTS = "recipeInputs";
-    public static final String NBT_ENCODED_RECIPE_INPUT_PREFIX = "recipeInput_";
-    public static final String NBT_ENCODED_ATTR_TYPE = "type";
 
     //Fluid
 

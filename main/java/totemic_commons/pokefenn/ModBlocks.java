@@ -29,8 +29,6 @@ public final class ModBlocks
     public static Block lotusBlock;
     public static Block fungusBlock;
     public static Block flameParticle;
-    public static Block spiritualEnergyMover;
-    public static Block spiritualEnergyCollector;
 
     public static Block totemMana;
 
@@ -52,8 +50,6 @@ public final class ModBlocks
         lotusBlock = new BlockWaterLotus();
         fungusBlock = new BlockFungalPlant();
         flameParticle = new BlockFlameParticle();
-        spiritualEnergyMover = new BlockSpiritualEnergyMover();
-        spiritualEnergyCollector = new BlockSpiritualEnergyCollector();
 
         GameRegistry.registerBlock(chlorophyllSolidifier, Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
@@ -70,10 +66,6 @@ public final class ModBlocks
         GameRegistry.registerBlock(lotusBlock, Strings.LOTUS_BLOCK_NAME);
         GameRegistry.registerBlock(fungusBlock, Strings.FUNGAL_PLANT_BLOCK_NAME);
         GameRegistry.registerBlock(flameParticle, Strings.FLAME_PARTICLE_NAME);
-        GameRegistry.registerBlock(spiritualEnergyMover, Strings.SPIRITUAL_ENERGY_MOVER_NAME);
-        GameRegistry.registerBlock(spiritualEnergyCollector, Strings.SPIRITUAL_ENERGY_COLLECTOR_NAME);
-
-
     }
 
     public static void initBotania()
