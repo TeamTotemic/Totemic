@@ -76,11 +76,6 @@ public class TotemicRecipes
 
 
         }
-
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack((ModBlocks.chlorophyllSolidifier)), new Object[]{"ppp", "bfb", "rrr", ('p'), "plant", ('f'), Blocks.furnace, ('b'), Items.bucket, ('r'), Items.redstone}));
-
-
     }
 
 

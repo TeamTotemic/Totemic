@@ -21,7 +21,6 @@ public class CommonProxy implements IGuiHandler
     public void registerTileEntities()
     {
 
-        GameRegistry.registerTileEntity(TileChlorophyllSolidifier.class, Strings.TILE_CHLOROPHYLL_SOLIDIFIER);
         GameRegistry.registerTileEntity(TileTotemIntelligence.class, Strings.TILE_TOTEM_INTELLIGENCE);
         GameRegistry.registerTileEntity(TileTotemSocket.class, Strings.TILE_TOTEM_SOCKET);
         //GameRegistry.registerTileEntity(TileTotemCauldron.class, Strings.TOTEM_CAULDRON_NAME);

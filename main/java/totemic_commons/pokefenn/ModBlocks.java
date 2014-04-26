@@ -15,7 +15,6 @@ import totemic_commons.pokefenn.lib.Strings;
 public final class ModBlocks
 {
 
-    public static Block chlorophyllSolidifier;
     public static Block totemWoods;
     public static Block totemTable;
     public static Block totemIntelligence;
@@ -39,7 +38,6 @@ public final class ModBlocks
     public static void init()
     {
 
-        chlorophyllSolidifier = new BlockChlorophyllSolidifier();
         totemWoods = new BlockTotemWoods();
         totemIntelligence = new BlockTotemIntelligence();
         totemSocket = new BlockTotemSocket();
@@ -57,7 +55,6 @@ public final class ModBlocks
         drum = new BlockDrum();
         windChime = new BlockWindChime();
 
-        GameRegistry.registerBlock(chlorophyllSolidifier, Strings.CHLOROPHYLL_SOLIDIFIER_NAME);
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
         GameRegistry.registerBlock(totemIntelligence, Strings.TOTEM_INTELLIGENCE_NAME);
         GameRegistry.registerBlock(totemSocket, Strings.TOTEM_SOCKET_NAME);

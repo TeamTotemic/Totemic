@@ -28,9 +28,6 @@ public class Textures
 
     public static final String MANA_TOTEM = "manaTotem";
 
-    public static final String CHLOROPHYLL_SOLIDIFIER_TOP_AND_BOT = "chlorophyllSolidifierTopAndBot";
-    public static final String CHLOROPHYLL_SOLIDIFIER_SIDES = "chlorophyllSolidifierSide";
-
     public static final String TOTEM_LEAVES_OPAQUE = "totemLeavesOpaque";
     public static final String TOTEM_LEAVES_TRANSPARENT = "totemLeavesTransparent";
 
@@ -43,20 +40,12 @@ public class Textures
     public static final String BUCKET_CHLOROPHYLL_ICON = "bucketChlorophyll";
     public static final String BOTTLE_CHLOROPHYLL_ICON = "bottleChlorophyll";
 
-
     //Fluids
 
     public static final String FLUID_CHLOROPHYLL_STILL = "chlorophyllStill";
     public static final String FLUID_CHLOROPHYLL_FLOWING = "chlorophyllFlowing";
 
     //Guis
-
-    public static final ResourceLocation GUI_TOTEM_BASE = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "totemBaseGui.png");
-
-    public static final ResourceLocation GUI_PAINT_BRUSH = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "paintBrushGui.png");
-
-    public static final ResourceLocation TOTEMPEDIA = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "totempedia");
-
     public static final ResourceLocation TOTEMPEDIA_PAGE = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "totempedia");
 
     //Models
@@ -66,7 +55,5 @@ public class Textures
     public static final ResourceLocation TEXTURE_INFUSED_TOTEMIC_STAFF = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "infusedTotemicStaff.png");
     public static final ResourceLocation TEXTURE_CHLOROPHYLL_CRYSTAL = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "chlorophyllCrystal.png");
     public static final ResourceLocation TEXTURE_TOTEM_TORCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemTorch.png");
-
-    public static final ResourceLocation MANA_BAR = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "manaHud.png");
 
 }
