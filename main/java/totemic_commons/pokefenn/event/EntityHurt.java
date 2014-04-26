@@ -5,10 +5,9 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import totemic_commons.pokefenn.entity.spirit.EntitySpiritBase;
-import totemic_commons.pokefenn.totem.TotemUtil;
+import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.Random;
 

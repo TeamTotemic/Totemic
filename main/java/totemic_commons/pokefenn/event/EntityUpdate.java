@@ -1,17 +1,13 @@
 package totemic_commons.pokefenn.event;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import totemic_commons.pokefenn.potion.ModPotions;
-import totemic_commons.pokefenn.totem.TotemUtil;
+import totemic_commons.pokefenn.util.TotemUtil;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**

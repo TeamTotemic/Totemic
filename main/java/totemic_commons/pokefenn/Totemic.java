@@ -26,9 +26,9 @@ import totemic_commons.pokefenn.recipe.registry.PotionItemRegistry;
 import totemic_commons.pokefenn.recipe.registry.PotionRegistry;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
-import totemic_commons.pokefenn.util.CreativeTabTotemic;
-import totemic_commons.pokefenn.util.OreDictionaryTotemic;
-import totemic_commons.pokefenn.util.TotemicFuelHandler;
+import totemic_commons.pokefenn.misc.CreativeTabTotemic;
+import totemic_commons.pokefenn.misc.OreDictionaryTotemic;
+import totemic_commons.pokefenn.misc.TotemicFuelHandler;
 
 import java.io.File;
 import java.lang.reflect.Field;

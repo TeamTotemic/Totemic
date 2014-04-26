@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.totem;
+package totemic_commons.pokefenn.util;
 
 import baubles.api.BaublesApi;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,6 +11,7 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.item.tool.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.lib.Totems;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
  * Created with IntelliJ IDEA.
@@ -95,6 +96,11 @@ public class TotemUtil
         }
 
         return j;
+    }
+
+    public static void playMusic(TileTotemic tileTotemic)
+    {
+
     }
 
 

@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.util;
+package totemic_commons.pokefenn.misc;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

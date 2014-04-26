@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.util;
+package totemic_commons.pokefenn.misc;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

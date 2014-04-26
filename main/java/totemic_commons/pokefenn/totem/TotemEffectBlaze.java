@@ -8,6 +8,7 @@ import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
+import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.Random;
 

@@ -16,7 +16,7 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.totem.TotemUtil;
+import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.List;
 

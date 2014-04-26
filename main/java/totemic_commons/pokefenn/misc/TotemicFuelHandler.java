@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.util;
+package totemic_commons.pokefenn.misc;
 
 import cpw.mods.fml.common.IFuelHandler;
 import net.minecraft.item.ItemStack;
