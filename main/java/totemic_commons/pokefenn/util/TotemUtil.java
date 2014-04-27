@@ -128,10 +128,12 @@ public class TotemUtil
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
                                     musicArray[musicEnum.ordinal()] = musicMaximum;
+                                    return;
 
                                 } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
                                 {
                                     musicArray[musicEnum.ordinal()] += musicAmount;
+                                    return;
                                 }
                             }
                         }
@@ -140,9 +142,38 @@ public class TotemUtil
                 }
     }
 
-    public static void playMusicFromItem(World world, EntityPlayer player, int x, int y, int z, int radius)
+    public static void playMusicFromItem(World world, EntityPlayer player, MusicEnum musicEnum, int x, int y, int z, int radius, int musicMaximum, int musicAmount)
     {
 
+        for(int i = -radius; i <= radius; i++)
+            for(int j = -radius; j <= radius; j++)
+                for(int k = -radius; k <= radius; k++)
+                {
+                    if(world.getBlock(x + i, y + j, z + k) != null)
+                    {
+                        Block block = world.getBlock(x + i, y + j, z + k);
+
+                        if(block instanceof IMusicAcceptor)
+                        {
+                            int[] musicArray = ((IMusicAcceptor) block).getMusicArray();
+
+                            if(!(musicArray[musicEnum.ordinal()] > musicArray.length))
+                            {
+                                if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
+                                {
+                                    musicArray[musicEnum.ordinal()] = musicMaximum;
+                                    return;
+
+                                } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
+                                {
+                                    musicArray[musicEnum.ordinal()] += musicAmount;
+                                    return;
+                                }
+                            }
+                        }
+
+                    }
+                }
 
     }
 
