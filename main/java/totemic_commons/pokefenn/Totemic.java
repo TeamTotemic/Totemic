@@ -12,6 +12,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.MinecraftForge;
+import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.event.*;
 import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
@@ -43,7 +44,7 @@ public final class Totemic
     @Instance(MOD_ID)
     public static Totemic instance;
 
-    @SidedProxy(clientSide = "totemic_commons.pokefenn.ClientProxy", serverSide = "totemic_commons.pokefenn.CommonProxy")
+    @SidedProxy(clientSide = "totemic_commons.pokefenn.ClientProxy", serverSide = "totemic_commons.pokefenn.CommonProxy", modId = Totemic.MOD_ID)
     public static CommonProxy proxy;
 
     //Creative tab stuff
@@ -60,10 +61,14 @@ public final class Totemic
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
 
         Potion[] potionTypes = null;
+
+        for(int i = 1; i < 133330; i++)
+        {
+            System.out.println(MusicEnum.values().length);
+        }
 
         for(Field f : Potion.class.getDeclaredFields())
         {

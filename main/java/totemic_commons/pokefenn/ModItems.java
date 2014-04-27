@@ -112,12 +112,12 @@ public final class ModItems
         Totemic.baublesLoaded = true;
 
         herculeseBauble = new ItemHerculesBauble();
-        tikiRing = new ItemTikiRing();
+        //tikiRing = new ItemTikiRing();
         heiTiki = new ItemHeiTiki();
 
         GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
         GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);
-        GameRegistry.registerItem(tikiRing, Strings.TIKI_RING_NAME);
+        //GameRegistry.registerItem(tikiRing, Strings.TIKI_RING_NAME);
     }
 
 

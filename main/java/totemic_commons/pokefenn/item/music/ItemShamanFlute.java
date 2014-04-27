@@ -15,6 +15,8 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.music.IMusic;
+import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -27,7 +29,7 @@ import java.util.List;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemShamanFlute extends ItemTotemic
+public class ItemShamanFlute extends ItemTotemic implements IMusic
 {
 
     public ItemShamanFlute()
@@ -86,4 +88,9 @@ public class ItemShamanFlute extends ItemTotemic
         return stack;
     }
 
+    @Override
+    public MusicEnum musicEnum()
+    {
+        return MusicEnum.FLUTE_MUSIC;
+    }
 }

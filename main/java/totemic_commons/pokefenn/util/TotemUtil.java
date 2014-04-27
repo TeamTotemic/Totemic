@@ -1,17 +1,22 @@
 package totemic_commons.pokefenn.util;
 
 import baubles.api.BaublesApi;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.bauble.ITotemBauble;
+import totemic_commons.pokefenn.api.music.IMusicAcceptor;
+import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.tool.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.lib.Totems;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
+import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 
 /**
  * Created with IntelliJ IDEA.
@@ -89,7 +94,7 @@ public class TotemUtil
                 {
                     if(baubleInventory.getStackInSlot(i).getItem() instanceof ITotemBauble)
                     {
-                        j+= ((ITotemBauble) baubleInventory.getStackInSlot(i).getItem()).getTotemEfficiency(player.worldObj, baubleInventory.getStackInSlot(i), player);
+                        j += ((ITotemBauble) baubleInventory.getStackInSlot(i).getItem()).getTotemEfficiency(player.worldObj, baubleInventory.getStackInSlot(i), player);
                     }
                 }
             }
@@ -98,8 +103,46 @@ public class TotemUtil
         return j;
     }
 
-    public static void playMusic(TileTotemic tileTotemic)
+    public static void playMusicForCeremony(TileTotemic tileCeremony, MusicEnum musicEnum, int radius, int musicMaximum, int musicAmount)
     {
+        World world = tileCeremony.getWorldObj();
+
+        int x = tileCeremony.xCoord;
+        int y = tileCeremony.yCoord;
+        int z = tileCeremony.zCoord;
+
+        for(int i = -radius; i <= radius; i++)
+            for(int j = -radius; j <= radius; j++)
+                for(int k = -radius; k <= radius; k++)
+                {
+                    if(world.getBlock(x + i, y + j, z + k) != null)
+                    {
+                        Block block = world.getBlock(x + i, y + j, z + k);
+
+                        if(block instanceof IMusicAcceptor)
+                        {
+                            int[] musicArray = ((IMusicAcceptor) block).getMusicArray();
+
+                            if(!(musicArray[musicEnum.ordinal()] > musicArray.length))
+                            {
+                                if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
+                                {
+                                    musicArray[musicEnum.ordinal()] = musicMaximum;
+
+                                } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
+                                {
+                                    musicArray[musicEnum.ordinal()] += musicAmount;
+                                }
+                            }
+                        }
+
+                    }
+                }
+    }
+
+    public static void playMusicFromItem(World world, EntityPlayer player, int x, int y, int z, int radius)
+    {
+
 
     }
 

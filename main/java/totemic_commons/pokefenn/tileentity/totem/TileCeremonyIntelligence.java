@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
+import totemic_commons.pokefenn.api.music.IMusicAcceptor;
+import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
 import totemic_commons.pokefenn.lib.PlantIds;
@@ -24,7 +26,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class TileCeremonyIntelligence extends TileTotemic
+public class TileCeremonyIntelligence extends TileTotemic implements IMusicAcceptor
 {
     public boolean isBurning;
     public boolean isDoingEffect;
@@ -45,6 +47,7 @@ public class TileCeremonyIntelligence extends TileTotemic
     public int drainedLotus;
     public int drainedFungus;
     public int efficiency;
+    public int[] music;
 
     public TileCeremonyIntelligence()
     {
@@ -66,6 +69,7 @@ public class TileCeremonyIntelligence extends TileTotemic
         drainedFungus = 0;
         overallDrained = 0;
         efficiency = 0;
+        music = new int[MusicEnum.values().length];
     }
 
     @Override
@@ -465,5 +469,11 @@ public class TileCeremonyIntelligence extends TileTotemic
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
         readFromNBT(pkt.func_148857_g());
+    }
+
+    @Override
+    public int[] getMusicArray()
+    {
+        return this.music;
     }
 }

@@ -84,11 +84,6 @@ public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemic
     {
         TileTotemIntelligence tileTotemIntelligence = (TileTotemIntelligence) world.getTileEntity(x, y, z);
 
-        if(tileTotemIntelligence.getStackInSlot(0) != null)
-            if(world.getWorldTime() % 160L == 0)
-                for(int i = 0; i < 16; i++)
-                    world.spawnParticle("happyVillager", x + rand.nextInt(2), y + rand.nextInt(2), z + rand.nextInt(2), i, i, i);
-
     }
 
 
