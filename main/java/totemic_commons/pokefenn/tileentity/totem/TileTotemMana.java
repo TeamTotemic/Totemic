@@ -15,7 +15,7 @@ import vazkii.botania.api.mana.IManaReceiver;
  * Date: 28/02/14
  * Time: 19:51
  */
-public class TileTotemMana extends TileTotemic implements IManaReceiver//, IWandHUD
+public class TileTotemMana extends TileTotemic implements IManaReceiver
 {
 
     int[] SOCKETS;

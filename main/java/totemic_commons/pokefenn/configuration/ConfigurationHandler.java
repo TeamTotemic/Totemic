@@ -13,6 +13,7 @@ public class ConfigurationHandler
     public static final String CATEGORY_TOTEMS = "totem";
     public static final String CATEGORY_POTION = "potions";
     public static final String CATEGORY_ENTITY = "entity";
+    public static final String CATEGORY_CLIENT = "client";
 
 
     public static void init(File configFile)
@@ -43,6 +44,8 @@ public class ConfigurationHandler
             ConfigurationSettings.ENTITY_ID_EFREET = configuration.get(CATEGORY_ENTITY, "efreetEntityID", 22).getInt(22);
 
             ConfigurationSettings.RELEVENT_TOTEM_RECIPES = configuration.get(CATEGORY_GAMEPLAY, "doUseReleventTotemRecipes", false).getBoolean(false);
+
+            ConfigurationSettings.RENDER_CUBE_SOCKET = configuration.get(CATEGORY_CLIENT, "doRenderSocketAsCube", true).getBoolean(true);
 
             //Blocks
 

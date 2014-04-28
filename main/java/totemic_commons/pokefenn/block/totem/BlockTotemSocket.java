@@ -1,16 +1,24 @@
 package totemic_commons.pokefenn.block.totem;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.ITotem;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
+import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
 
 import java.util.Random;
@@ -29,7 +37,7 @@ public class BlockTotemSocket extends BlockTileTotemic
         super(Material.wood);
         setBlockName(Strings.TOTEM_SOCKET_NAME);
         setCreativeTab(Totemic.tabsTotem);
-
+        setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.95F, 0.8F);
     }
 
     @Override
@@ -50,31 +58,22 @@ public class BlockTotemSocket extends BlockTileTotemic
                 tileTotemSocket.setInventorySlotContents(SLOT_ONE, heldItem);
                 player.destroyCurrentEquippedItem();
 
-
             } else if(tileTotemSocket.getStackInSlot(SLOT_ONE) != null && heldItem == null)
             {
                 if(tileTotemSocket.getStackInSlot(SLOT_ONE).getItem() instanceof ITotem)
                 {
-
                     EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemSocket.getStackInSlot(SLOT_ONE));
                     player.worldObj.spawnEntityInWorld(entityitem);
                     tileTotemSocket.setInventorySlotContents(SLOT_ONE, null);
-
                 }
-
             }
-
             world.markBlockForUpdate(x, y, z);
-
         }
-
 
         return !player.isSneaking();
     }
 
     private Random rand = new Random();
-
-    /*
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
@@ -101,22 +100,22 @@ public class BlockTotemSocket extends BlockTileTotemic
 
         if (itemStack.hasDisplayName())
         {
-            ((TileTotemic) world.getBlockTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
+            ((TileTotemic) world.getTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
         }
 
-        ((TileTotemic) world.getBlockTileEntity(x, y, z)).setOrientation(direction);
+        ((TileTotemic) world.getTileEntity(x, y, z)).setOrientation(direction);
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int id, int meta)
+    public void breakBlock(World world, int x, int y, int z, Block id, int meta)
     {
 
         dropInventory(world, x, y, z);
 
-        if (world.getBlockTileEntity(x, y, z) instanceof TileTotemSocket)
+        if (world.getTileEntity(x, y, z) instanceof TileTotemSocket)
         {
             world.markBlockForUpdate(x, y, z);
-            world.updateAllLightTypes(x, y, z);
+            //world.updateAllLightTypes(x, y, z);
         }
 
         super.breakBlock(world, x, y, z, id, meta);
@@ -125,7 +124,7 @@ public class BlockTotemSocket extends BlockTileTotemic
     private void dropInventory(World world, int x, int y, int z)
     {
 
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
 
         if (!(tileEntity instanceof IInventory))
             return;
@@ -143,7 +142,7 @@ public class BlockTotemSocket extends BlockTileTotemic
                 float dY = rand.nextFloat() * 0.8F + 0.1F;
                 float dZ = rand.nextFloat() * 0.8F + 0.1F;
 
-                EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.itemID, itemStack.stackSize, itemStack.getItemDamage()));
+                EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.getItem(), itemStack.stackSize, itemStack.getItemDamage()));
 
                 if (itemStack.hasTagCompound())
                 {
@@ -202,8 +201,10 @@ public class BlockTotemSocket extends BlockTileTotemic
     @Override
     public int getRenderType()
     {
-
-        return RenderIds.RENDER_ID_TOTEM_POLE;
+        if(!ConfigurationSettings.RENDER_CUBE_SOCKET)
+            return RenderIds.RENDER_ID_TOTEM_POLE;
+        else
+            return RenderIds.RENDER_ID_TOTEM_SOCKET_CUBE;
     }
 
     @Override
