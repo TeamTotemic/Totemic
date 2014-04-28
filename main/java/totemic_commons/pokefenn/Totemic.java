@@ -65,11 +65,6 @@ public final class Totemic
 
         Potion[] potionTypes = null;
 
-        for(int i = 1; i < 133330; i++)
-        {
-            System.out.println(MusicEnum.values().length);
-        }
-
         for(Field f : Potion.class.getDeclaredFields())
         {
             f.setAccessible(true);
