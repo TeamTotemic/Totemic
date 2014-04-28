@@ -144,7 +144,6 @@ public class TotemUtil
 
     public static void playMusicFromItem(World world, EntityPlayer player, MusicEnum musicEnum, int x, int y, int z, int radius, int musicMaximum, int musicAmount)
     {
-
         for(int i = -radius; i <= radius; i++)
             for(int j = -radius; j <= radius; j++)
                 for(int k = -radius; k <= radius; k++)
@@ -174,7 +173,6 @@ public class TotemUtil
 
                     }
                 }
-
     }
 
 

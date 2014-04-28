@@ -20,6 +20,7 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
+import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,8 +62,10 @@ public class ItemShamanFlute extends ItemTotemic implements IMusic
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
         if(!world.isRemote)
+        {
             if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.shamanFlute)
             {
+                TotemUtil.playMusicFromItem(world, player, this.musicEnum(), (int)player.posX, (int)player.posY, (int)player.posZ, 10, 50, 10);
                 player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 30, 1));
                 if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)
                 {
@@ -79,6 +82,7 @@ public class ItemShamanFlute extends ItemTotemic implements IMusic
                     }
                 }
             }
+        }
 
         if(world.isRemote)
         {

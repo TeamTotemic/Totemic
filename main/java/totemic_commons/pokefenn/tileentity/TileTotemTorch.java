@@ -11,14 +11,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
  */
 public class TileTotemTorch extends TileTotemic
 {
-
-    public boolean isActive;
-
-    public TileTotemTorch()
-    {
-        this.isActive = true;
-    }
-
     @Override
     public Packet getDescriptionPacket()
     {
@@ -37,16 +29,12 @@ public class TileTotemTorch extends TileTotemic
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);
-
-        nbtTagCompound.setBoolean("isActive", isActive);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
-
-        isActive = nbtTagCompound.getBoolean("isActive");
     }
 
 

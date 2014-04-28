@@ -16,6 +16,7 @@ import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.plant.IPlantDrain;
+import totemic_commons.pokefenn.api.plant.PlantEnum;
 import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
 import totemic_commons.pokefenn.lib.PlantIds;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
@@ -37,17 +38,9 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public int shiftedCeremonyValue;
     public String player;
     public int currentTime;
-    public int drainedWheat;
-    public int drainedCarrot;
-    public int drainedPotato;
-    public int drainedMelon;
-    public int drainedPumpkin;
-    public int drainedMoonglow;
-    public int drainedBloodwart;
-    public int drainedLotus;
-    public int drainedFungus;
-    public int efficiency;
+    public int dancingEfficiency;
     public int[] music;
+    public int plantEfficiency;
 
     public TileCeremonyIntelligence()
     {
@@ -58,18 +51,10 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         socketAmount = 0;
         player = "";
         currentTime = 0;
-        drainedWheat = 0;
-        drainedCarrot = 0;
-        drainedPotato = 0;
-        drainedMelon = 0;
-        drainedPumpkin = 0;
-        drainedMoonglow = 0;
-        drainedBloodwart = 0;
-        drainedLotus = 0;
-        drainedFungus = 0;
         overallDrained = 0;
-        efficiency = 0;
+        dancingEfficiency = 0;
         music = new int[MusicEnum.values().length];
+        plantEfficiency = 0;
     }
 
     @Override
@@ -96,14 +81,15 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
                 ICeremonyEffect effect = CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect();
 
-                if(!isDoingEffect && canStartCeremony(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getOverallDrain(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPlantForPercentage(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPercentage()))
+                //if(!isDoingEffect && canStartCeremony(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getOverallDrain(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPlantForPercentage(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPercentage()))
                 {
                     if(effect != null)
                     {
                         isDoingEffect = true;
                         CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect().effect(this);
                     }
-                } else if(worldObj.getWorldTime() % 10L == 0L && !CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
+                } /*else*/
+                if(worldObj.getWorldTime() % 10L == 0L && !CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
                 {
                     this.drainPlant();
                 }
@@ -125,38 +111,13 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     {
         currentCeremony = 0;
         currentTime = 0;
-        efficiency = 0;
+        dancingEfficiency = 0;
         isDoingEffect = false;
         overallDrained = 0;
-        drainedWheat = 0;
-        drainedCarrot = 0;
-        drainedPotato = 0;
-        drainedMelon = 0;
-        drainedPumpkin = 0;
-        drainedMoonglow = 0;
-        drainedBloodwart = 0;
-        drainedLotus = 0;
-        drainedFungus = 0;
     }
 
     public int getDrained(int i)
     {
-        if(i == PlantIds.BLOODWART_ID)
-            return drainedBloodwart;
-        if(i == PlantIds.FUNGUS_ID)
-            return drainedFungus;
-        if(i == PlantIds.LOTUS_ID)
-            return drainedLotus;
-        if(i == PlantIds.MOONGLOW_ID)
-            return drainedMoonglow;
-        if(i == PlantIds.MELON_ID)
-            return drainedMelon;
-        if(i == PlantIds.WHEAT_ID)
-            return drainedWheat;
-        if(i == PlantIds.CARROT_ID)
-            return drainedCarrot;
-        if(i == PlantIds.POTATO_ID)
-            return drainedPotato;
 
         return 0;
     }
@@ -164,7 +125,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public void drainEssence(int i)
     {
         //Todo correct drained essence code
-        overallDrained = (drainedWheat + drainedCarrot + drainedPotato + drainedMelon + drainedPumpkin + drainedMoonglow + drainedBloodwart + drainedLotus);
+        //overallDrained = (drainedWheat + drainedCarrot + drainedPotato + drainedMelon + drainedPumpkin + drainedMoonglow + drainedBloodwart + drainedLotus);
     }
 
     public void trackPlayersMovements()
@@ -176,11 +137,15 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             double oldPosY = playerDance.lastTickPosY;
             double oldPosZ = playerDance.lastTickPosZ;
 
-            if(worldObj.getWorldTime() % 40L == 0 && efficiency < 50)
+            System.out.println(oldPosX);
+            System.out.println(oldPosZ);
+
+            if(worldObj.getWorldTime() % 40L == 0 && dancingEfficiency < 50)
             {
+                //TODO rewrite this, and make armour make a difference
                 if(oldPosX <= playerDance.posX - 3 || oldPosX <= playerDance.posX + 3 || oldPosX >= playerDance.posX - 3 || oldPosX >= playerDance.posX + 3)
                     if(oldPosZ <= playerDance.posZ - 3 || oldPosZ <= playerDance.posZ + 3 || oldPosZ >= playerDance.posZ - 3 || oldPosZ >= playerDance.posZ + 3)
-                        efficiency += 4;
+                        dancingEfficiency += 4;
 
             }
         }
@@ -197,7 +162,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         {
             int armour = TotemUtil.getArmourAmounts(entity);
 
-            efficiency += (armour * 5);
+            //efficiency += (armour * 5);
         }
     }
 
@@ -225,7 +190,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                                 {
                                     if(ceremonyRegistry.getItem() != null)
                                     {
-                                        if(((EntityItem) entity).getEntityItem().getItem() == ceremonyRegistry.getItem().getItem() && ((EntityItem) entity).getEntityItem().getItemDamage() == ceremonyRegistry.getItem().getItemDamage())
+                                        //if(((EntityItem) entity).getEntityItem().getItem() == ceremonyRegistry.getItem().getItem() && ((EntityItem) entity).getEntityItem().getItemDamage() == ceremonyRegistry.getItem().getItemDamage())
                                         {
                                             if(arePlantsValid(ceremonyRegistry))
                                             {
@@ -252,27 +217,49 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         }
     }
 
-    public static int getIdFromPlant(Block block)
+    public static PlantEnum getEnumFromPlant(Block block)
     {
         if(block != null)
         {
             if(block == Blocks.wheat)
-                return PlantIds.WHEAT_ID;
+                return PlantEnum.WHEAT;
             if(block == Blocks.potatoes)
-                return PlantIds.POTATO_ID;
+                return PlantEnum.POTATO;
             if(block == Blocks.carrots)
-                return PlantIds.CARROT_ID;
+                return PlantEnum.POTATO;
             if(block == Blocks.melon_stem)
-                return PlantIds.MELON_ID;
+                return PlantEnum.MELON;
             if(block == Blocks.pumpkin_stem)
-                return PlantIds.PUMPKIN_ID;
+                return PlantEnum.PUMPKIN;
             if(block == ModBlocks.moonglow)
-                return PlantIds.MOONGLOW_ID;
+                return PlantEnum.MOONGLOW;
             if(block == ModBlocks.lotusBlock)
-                return PlantIds.LOTUS_ID;
+                return PlantEnum.LOTUS;
         }
 
-        return 0;
+        return null;
+    }
+
+    public static Block getPlantFromEnum(PlantEnum plantEnum)
+    {
+        if(plantEnum == PlantEnum.WHEAT)
+            return Blocks.wheat;
+        if(plantEnum == PlantEnum.POTATO)
+            return Blocks.potatoes;
+        if(plantEnum == PlantEnum.CARROT)
+            return Blocks.carrots;
+        if(plantEnum == PlantEnum.MELON)
+            return Blocks.melon_stem;
+        if(plantEnum == PlantEnum.BLOODWART)
+            return ModBlocks.bloodwart;
+        if(plantEnum == PlantEnum.PUMPKIN)
+            return Blocks.pumpkin_stem;
+        if(plantEnum == PlantEnum.MOONGLOW)
+            return ModBlocks.moonglow;
+        if(plantEnum == PlantEnum.LOTUS)
+            return ModBlocks.lotusBlock;
+
+        return null;
     }
 
 
@@ -289,14 +276,14 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         Block plant3 = world.getBlock(x, y, z + 3);
         Block plant4 = world.getBlock(x, y, z - 3);
 
-        int plantID1 = ceremonyRegistry.getPlant1();
-        int plantID2 = ceremonyRegistry.getPlant2();
-        int plantID3 = ceremonyRegistry.getPlant3();
-        int plantID4 = ceremonyRegistry.getPlant4();
+        PlantEnum plantID1 = ceremonyRegistry.getPlant1();
+        PlantEnum plantID2 = ceremonyRegistry.getPlant2();
+        PlantEnum plantID3 = ceremonyRegistry.getPlant3();
+        PlantEnum plantID4 = ceremonyRegistry.getPlant4();
 
-        boolean possibility1 = plantID1 == getIdFromPlant(plant1) && plantID2 == getIdFromPlant(plant2) && plantID3 == getIdFromPlant(plant3) && plantID4 == getIdFromPlant(plant4);
+        boolean possibility1 = plantID1 == getEnumFromPlant(plant1) && plantID2 == getEnumFromPlant(plant2) && plantID3 == getEnumFromPlant(plant3) && plantID4 == getEnumFromPlant(plant4);
 
-        if(plant1 != null && plant2 != null && plant3 != null && plant4 != null && getIdFromPlant(world.getBlock(x + 3, y, z)) != 0 && getIdFromPlant(world.getBlock(x - 3, y, z)) != 0 && getIdFromPlant(world.getBlock(x, y, z + 3)) != 0 && getIdFromPlant(world.getBlock(x, y, z - 3)) != 0)
+        if(plant1 != null && plant2 != null && plant3 != null && plant4 != null && getEnumFromPlant(world.getBlock(x + 3, y, z)) != null && getEnumFromPlant(world.getBlock(x - 3, y, z)) != null && getEnumFromPlant(world.getBlock(x, y, z + 3)) != null && getEnumFromPlant(world.getBlock(x, y, z - 3)) != null)
         {
             if(possibility1)
             {
@@ -331,65 +318,47 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         trackPlayersMovements();
 
         for(int i = -radius; i <= radius; i++)
-            //for (int j = -radius; j <= radius; j++)
-            for(int k = -radius; k <= radius; k++)
-            {
-                Block plantSelected = world.getBlock(xCoord + i, yCoord, zCoord + k);
-                if(plantSelected != null)
+            for(int j = -yAxis; j <= yAxis; j++)
+                for(int k = -radius; k <= radius; k++)
                 {
-
-                    boolean isNotFlower = !plantSelected.getUnlocalizedName().contains("flower");
-                    boolean isNotBush = !plantSelected.getUnlocalizedName().contains("bush");
-                    boolean isNotBerry = !plantSelected.getUnlocalizedName().contains("berry");
-                    boolean isNotKelp = !plantSelected.getUnlocalizedName().contains("kelp");
-
-                    efficiency += getEffiencyFromBlock(plantSelected);
-
-                    if(plantSelected instanceof IPlantable && isNotFlower && isNotBerry && isNotBush && isNotKelp)
+                    Block plantSelected = world.getBlock(xCoord + i, yCoord + j, zCoord + k);
+                    if(plantSelected != null)
                     {
-                        if(world.getBlockMetadata(xCoord + i, yCoord, zCoord + k) > 2)
+
+                        boolean isNotFlower = !plantSelected.getUnlocalizedName().contains("flower");
+                        boolean isNotBush = !plantSelected.getUnlocalizedName().contains("bush");
+                        boolean isNotBerry = !plantSelected.getUnlocalizedName().contains("berry");
+                        boolean isNotKelp = !plantSelected.getUnlocalizedName().contains("kelp");
+
+                        if(plantSelected instanceof IPlantable && isNotFlower && isNotBerry && isNotBush && isNotKelp)
                         {
-                            world.setBlockMetadataWithNotify(xCoord + i, yCoord, zCoord + k, world.getBlockMetadata(xCoord + i, yCoord, zCoord + k) - 1, 2);
-                            getVariableForDrain(plantSelected, getPlantDrained(plantSelected));
-                            overallDrained = (drainedWheat + drainedCarrot + drainedPotato + drainedMelon + drainedPumpkin + drainedMoonglow + drainedBloodwart + drainedLotus);
+                            if(world.getBlockMetadata(xCoord + i, yCoord + j, zCoord + k) >= 3)
+                            {
+                                if(plantEfficiency < 100)
+                                {
+                                    if(plantEfficiency + getPlantDrained(plantSelected) > 100)
+                                    {
+                                        world.setBlockMetadataWithNotify(xCoord + i, yCoord + j, zCoord + k, world.getBlockMetadata(xCoord + i, yCoord + j, zCoord + k) - 1, 2);
+                                        plantEfficiency = 100;
+                                    } else
+                                    {
+                                        plantEfficiency += getPlantDrained(plantSelected);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            }
-    }
-
-    public void getVariableForDrain(Block block, int i)
-    {
-        if(block == Blocks.wheat)
-            drainedWheat += i;
-        if(block == Blocks.carrots)
-            drainedCarrot += i;
-        if(block == Blocks.potatoes)
-            drainedPotato += i;
-        if(block == Blocks.melon_stem)
-            drainedMelon += i;
-        if(block == Blocks.pumpkin_stem)
-            drainedPumpkin += i;
-        if(block == ModBlocks.moonglow)
-            drainedMoonglow += i;
-        if(block == ModBlocks.bloodwart)
-            drainedBloodwart += i;
-        if(block == ModBlocks.lotusBlock)
-            drainedLotus += i;
-        if(block == ModBlocks.fungusBlock)
-            drainedFungus += i;
     }
 
     public int getEffiencyFromBlock(Block block)
     {
-        if(efficiency < 50)
+        //if(efficiency < 50)
         {
             if(block == ModBlocks.totemTorch)
                 return 5;
             if(block == ModBlocks.totemSocket)
                 return 3;
-            if(block == Blocks.torch)
-                return 1;
             if(block == Blocks.fire)
                 return 2;
             if(block == ModBlocks.flameParticle)
@@ -422,15 +391,9 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         nbtTagCompound.setInteger("overallDrained", overallDrained);
         nbtTagCompound.setString("player", player);
         nbtTagCompound.setInteger("currentTime", currentTime);
-        nbtTagCompound.setInteger("drainedWheat", drainedWheat);
-        nbtTagCompound.setInteger("drainedCarrot", drainedCarrot);
-        nbtTagCompound.setInteger("drainedPotato", drainedPotato);
-        nbtTagCompound.setInteger("drainedMelon", drainedMelon);
-        nbtTagCompound.setInteger("drainedPumpkin", drainedPumpkin);
-        nbtTagCompound.setInteger("drainedMoonglow", drainedMoonglow);
-        nbtTagCompound.setInteger("drainedBloodwart", drainedBloodwart);
-        nbtTagCompound.setInteger("drainedLotus", drainedLotus);
-        nbtTagCompound.setInteger("efficiency", efficiency);
+        nbtTagCompound.setInteger("dancingEfficiency", dancingEfficiency);
+        nbtTagCompound.setIntArray("music", music);
+        nbtTagCompound.setInteger("plantEfficiency", plantEfficiency);
     }
 
     @Override
@@ -444,16 +407,10 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         currentCeremony = nbtTagCompound.getInteger("currentCeremony");
         overallDrained = nbtTagCompound.getInteger("overallDrained");
         player = nbtTagCompound.getString("player");
-        drainedWheat = nbtTagCompound.getInteger("drainedWheat");
-        drainedCarrot = nbtTagCompound.getInteger("drainedCarrot");
-        drainedPotato = nbtTagCompound.getInteger("drainedPotato");
-        drainedMelon = nbtTagCompound.getInteger("drainedMelon");
-        drainedPumpkin = nbtTagCompound.getInteger("drainedPumpkin");
-        drainedMoonglow = nbtTagCompound.getInteger("drainedMoonglow");
-        drainedBloodwart = nbtTagCompound.getInteger("drainedBloodwart");
-        drainedLotus = nbtTagCompound.getInteger("drainedLotus");
-        efficiency = nbtTagCompound.getInteger("efficiency");
+        dancingEfficiency = nbtTagCompound.getInteger("dancingEfficiency");
         currentTime = nbtTagCompound.getInteger("currentTime");
+        music = nbtTagCompound.getIntArray("music");
+        plantEfficiency = nbtTagCompound.getInteger("plantEfficiency");
     }
 
 

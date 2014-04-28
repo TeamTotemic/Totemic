@@ -15,13 +15,6 @@ public class Textures
     public static final String TEXTURE_LOCATION = "totemic";
 
     //Blocks
-
-    public static final String BIG_BAD_TOTEM_HEAD_ICON_ALL = "bigBadTotemHead";
-    public static final String BIG_BAD_TOTEM_BASE_ICON_ALL = "bigBadTotemBase";
-
-    public static final String TOTEM_WOOD_TOP_ICON = "totemWoodTop";
-    public static final String TOTEM_WOOD_SIDE_ICON = "totemWoodSide";
-
     public static final String TOTEM_TABLE_SIDE = "totemTableSide";
     public static final String TOTEM_TABLE_BOTTOM = "totemTableBottom";
     public static final String TOTEM_TABLE_TOP = "totemTableTop";
