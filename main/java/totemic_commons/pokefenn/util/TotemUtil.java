@@ -4,19 +4,15 @@ import baubles.api.BaublesApi;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.item.tool.armour.ItemTotemArmour;
-import totemic_commons.pokefenn.lib.Totems;
+import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 
 /**
  * Created with IntelliJ IDEA.

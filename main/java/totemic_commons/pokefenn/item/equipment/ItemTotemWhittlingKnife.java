@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.tool;
+package totemic_commons.pokefenn.item.equipment;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

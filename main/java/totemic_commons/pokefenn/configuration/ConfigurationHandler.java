@@ -14,6 +14,7 @@ public class ConfigurationHandler
     public static final String CATEGORY_POTION = "potions";
     public static final String CATEGORY_ENTITY = "entity";
     public static final String CATEGORY_CLIENT = "client";
+    public static final String CATEGORY_GENERAL = "general";
 
 
     public static void init(File configFile)
@@ -46,6 +47,8 @@ public class ConfigurationHandler
             ConfigurationSettings.RELEVENT_TOTEM_RECIPES = configuration.get(CATEGORY_GAMEPLAY, "doUseReleventTotemRecipes", false).getBoolean(false);
 
             ConfigurationSettings.RENDER_CUBE_SOCKET = configuration.get(CATEGORY_CLIENT, "doRenderSocketAsCube", true).getBoolean(true);
+
+            ConfigurationSettings.TEST_ITEM = configuration.get(CATEGORY_GENERAL, "doAllowTestItem", false).getBoolean(false);
 
             //Blocks
 

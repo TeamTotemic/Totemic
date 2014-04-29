@@ -3,9 +3,10 @@ package totemic_commons.pokefenn;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import totemic_commons.pokefenn.item.tool.armour.ItemTotemArmour;
-import totemic_commons.pokefenn.item.tool.bauble.ItemHeiTiki;
-import totemic_commons.pokefenn.item.tool.bauble.ItemHerculesBauble;
+import totemic_commons.pokefenn.configuration.ConfigurationSettings;
+import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
+import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
+import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.item.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
@@ -13,11 +14,10 @@ import totemic_commons.pokefenn.item.plant.ItemBloodWart;
 import totemic_commons.pokefenn.item.plant.ItemFungusPlantSpore;
 import totemic_commons.pokefenn.item.plant.ItemMoonglowSeeds;
 import totemic_commons.pokefenn.item.plant.ItemWaterLotusSeed;
-import totemic_commons.pokefenn.item.tool.ItemInfusedTotemicStaff;
+import totemic_commons.pokefenn.item.equipment.ItemInfusedTotemicStaff;
 import totemic_commons.pokefenn.item.music.ItemShamanFlute;
-import totemic_commons.pokefenn.item.tool.ItemTotemWhittlingKnife;
-import totemic_commons.pokefenn.item.tool.ItemTotemicStaff;
-import totemic_commons.pokefenn.item.tool.bauble.ItemTikiRing;
+import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
+import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
 import totemic_commons.pokefenn.item.verdant.ItemBlazingVerdantCrystal;
 import totemic_commons.pokefenn.item.verdant.ItemVerdantCrystal;
 import totemic_commons.pokefenn.lib.Strings;
@@ -44,7 +44,7 @@ public final class ModItems
     public static Item fungusSpore;
     public static Item shamanFlute;
     public static Item halberd;
-    public static Item witherBow;
+    public static Item test;
 
     public static Item totemArmourHead;
     public static Item totemArmourChest;
@@ -75,6 +75,8 @@ public final class ModItems
         shamanFlute = new ItemShamanFlute();
         //halberd = new ItemHalberd();
         //witherBow = new ItemWitherBow();
+        if(ConfigurationSettings.TEST_ITEM)
+            test = new ItemTest();
 
         totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
         totemArmourFeet = new ItemTotemArmour(3, Strings.TOTEM_ARMOUR_FOOT_NAME);
@@ -104,6 +106,8 @@ public final class ModItems
         GameRegistry.registerItem(totemArmourFeet, Strings.TOTEM_ARMOUR_FOOT_NAME);
         GameRegistry.registerItem(totemArmourLeg, Strings.TOTEM_ARMOUR_LEG_NAME);
         GameRegistry.registerItem(totemArmourHead, Strings.TOTEM_ARMOUR_HEAD_NAME);
+        if(ConfigurationSettings.TEST_ITEM)
+            GameRegistry.registerItem(test, "test");
     }
 
 

@@ -47,8 +47,6 @@ public abstract class BlockTileTotemic extends BlockContainer
                 direction = ForgeDirection.WEST.ordinal();
             }
 
-            //System.out.println(facing + "   " + direction);
-
             if(itemStack.hasDisplayName())
             {
                 ((TileTotemic) world.getTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());

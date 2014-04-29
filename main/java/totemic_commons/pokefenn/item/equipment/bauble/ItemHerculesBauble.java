@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.tool.bauble;
+package totemic_commons.pokefenn.item.equipment.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.BaublesApi;
@@ -29,7 +29,6 @@ public class ItemHerculesBauble extends ItemTotemic implements IBauble, ITotemBa
 
     public ItemHerculesBauble()
     {
-        super();
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.HERCULESE_BAUBLES_NAME);
         setMaxStackSize(1);
     }

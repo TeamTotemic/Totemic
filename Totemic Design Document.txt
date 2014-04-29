@@ -1,0 +1,63 @@
+Totemic Design Document
+
+
+
+Totemics design and ethics:
+
+Totemic does not have a specific design, apart from Totems. Instead, Totemic brings things from many different cultures.
+Guis are discouraged, and in-game creation/usage is tried to be used as much as possible.
+Game-play is the most important aspect, if its not fun, why bother?
+
+
+Music:
+
+Music is a important part of Totemics design, it is used to tier things in the mod, and allow things to be more efficient.
+Music comes in the form of instruments, there are two basic differentiating parts of them, Items and Blocks.
+All musical items and blocks have more than one use, for example the Flute will attract nearby Villagers and Animals.
+It is measured in "Musical Melody"
+
+
+Instruments:
+
+Drum: Will be able to do small amounts of damage, and will be automatable (but obviously, less efficient if automated).
+Harp: No details yet, but will more than likely be added, in the future.
+Synthesizer: Redstone Flux compatibility, works like the drum, but creates more "Musical Melody".
+Wind Chimes: Makes a large amount of musical melody, but does it randomly ONLY.
+Flute: Makes low amounts of melody, but can be used easily. Also attracts nearby villagers and animals.
+
+
+Totems:
+
+Totems are the main part of the mod.
+Totems are a multiblock vertical structure, of a Totem intelligence (This runs all the calls and code) and the Totem Sockets.
+Totems Heads are placed in the sockets, and these say the desired effects.
+They are powered by plant essence, which is made through the draining Totem, which reduces the plant stages of nearby plants to create the essence.
+The effects of Totems, on certain plays can be more efficient, if they have things that are marked as a Totem Item in the code.
+For example, the armour, baubles, and a few ohter things.
+Totems will needed to be awakened with a Ceremony, this decides how strong the Totem is, how efficient the Totem is, and what totem effects it can do.
+Nearby musical melody will make totems more efficient also.
+Totems are not efficient at all at the start.
+
+
+Plants:
+
+Plants are a integral part of Totemic, there is 4 new plants added.
+Certain plants drain better under certain circumstances. 
+
+Moonglow: A plant of the night, will make more essence at midnight.
+Lotus: Just like a Lily Pad, and it will drain better in the rain.
+Blood Wart: Bloody Nether Wart, it drains VERY well in the nether.
+Fungal plant (forgot the official name) Drains more efficiently under many circumstances, being near other mushrooms, rain, and mycelium under it.
+And more to come.
+
+
+Ceremonies: 
+
+A way to preform a desired effect in the world, through a ceremonial process.
+To say which effect you want to do, first you need to place Plants in all 4 directions, 3 blocks away from the Ceremony Intelligence.
+So if you have 4 Moonglows, then it will preform a ceremony that makes it become night (A very late game Ceremony)
+To preform a ceremony, you must do a few things. Playing music is integral, a certain amount of Musical Melody needs to be reached, for the Ceremony to go through.
+Dancing around the Ceremony (As in, running around it) also helps preform it, and is also important.
+Fireworks will also come towards it, but only a few can be used, and the rest will be useless.
+Having large fires will also help a lot, and bonfires also (When i code them, one day, they will cost fuel, but be very good for the ceremony)
+Some ceremonies may also take Items, but most don't.

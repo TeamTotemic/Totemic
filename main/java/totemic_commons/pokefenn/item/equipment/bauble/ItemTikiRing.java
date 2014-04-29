@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.tool.bauble;
+package totemic_commons.pokefenn.item.equipment.bauble;
 
 import baubles.api.BaubleType;
 import baubles.api.IBauble;

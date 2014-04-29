@@ -51,6 +51,7 @@ public class Strings
     public static final String TIKI_RING_NAME = "tikiRing";
     public static final String HEI_TIKI_NAME = "heiTiki";
     public static final String HERCULESE_BAUBLES_NAME = "herculeseBauble";
+    public static final String TOTEM_BEAD_BELT_NAME = "totemBeadBelt";
 
     public static final String TOTEM_WOOD_WAND_CORE_NAME = "totemWoodWandCore";
     public static final String CHLOROPHYLL_CRYSTAL_WAND_CAP = "chlorophyllCrystalWandCap";

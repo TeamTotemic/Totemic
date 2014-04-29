@@ -33,4 +33,6 @@ public class ConfigurationSettings
 
     public static boolean RENDER_CUBE_SOCKET;
 
+    public static boolean TEST_ITEM;
+
 }

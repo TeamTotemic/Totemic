@@ -46,17 +46,21 @@ public class BlockTotemTorch extends BlockTileTotemic
         }
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register)
     {
         iconThingy = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "totemsRange");
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess p_149673_1_, int p_149673_2_, int p_149673_3_, int p_149673_4_, int p_149673_5_)
     {
         return this.iconThingy;
     }
 
+    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
         return true;
@@ -75,6 +79,7 @@ public class BlockTotemTorch extends BlockTileTotemic
         return RenderIds.RENDER_ID_TOTEM_TORCH;
     }
 
+    @Override
     public boolean isOpaqueCube()
     {
         return false;
