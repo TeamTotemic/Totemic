@@ -40,30 +40,32 @@ public class TotemUtil
     {
         int armourAmounts = getArmourAmounts(player);
 
-        if(Totemic.baublesLoaded)
+        //if(Totemic.baublesLoaded)
         {
             player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), baubleIncrease ? getStrength(player, defaultStrength) + getTotemBaublesAmount(player) : getStrength(player, defaultStrength)));
-        } else
+        }/* else
         {
             player.addPotionEffect(new PotionEffect(potion.id, defaultTime + (armourAmounts * multiplicationAmount), getStrength(player, defaultStrength)));
         }
+        */
     }
 
     public static void addNegitivePotionEffect(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {
         int armourAmounts = getArmourAmounts(player);
 
-        if(Totemic.baublesLoaded)
+        //if(Totemic.baublesLoaded)
         {
             int totalDecrement = getArmourAmounts(player) + getTotemBaublesAmount(player);
 
             if(totalDecrement < 4)
                 player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegitive(player, defaultStrength)));
-        } else
+        }/* else
         {
             if(armourAmounts < 4)
                 player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (armourAmounts * multiplicationAmount), getStrengthForNegitive(player, defaultStrength)));
         }
+        */
     }
 
     public static int getStrength(EntityPlayer player, int defaultStrength)
@@ -80,7 +82,7 @@ public class TotemUtil
     {
         int j = 0;
 
-        if(Totemic.baublesLoaded)
+        //if(Totemic.baublesLoaded)
         {
             IInventory baubleInventory = BaublesApi.getBaubles(player);
 

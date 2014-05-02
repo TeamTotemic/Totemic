@@ -35,7 +35,7 @@ import java.lang.reflect.Modifier;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.0")
+@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.0", dependencies = "after:Baubles;")
 public final class Totemic
 {
     public static final String MOD_ID = "totemic";
@@ -124,9 +124,6 @@ public final class Totemic
 
         if(Loader.isModLoaded("Botania"))
             ModBlocks.initBotania();
-
-        if(Loader.isModLoaded("Baubles"))
-            ModItems.initBaubles();
 
         //Vannila recipes
         TotemicRecipes.init();

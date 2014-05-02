@@ -59,5 +59,5 @@ So if you have 4 Moonglows, then it will preform a ceremony that makes it become
 To preform a ceremony, you must do a few things. Playing music is integral, a certain amount of Musical Melody needs to be reached, for the Ceremony to go through.
 Dancing around the Ceremony (As in, running around it) also helps preform it, and is also important.
 Fireworks will also come towards it, but only a few can be used, and the rest will be useless.
-Having large fires will also help a lot, and bonfires also (When i code them, one day, they will cost fuel, but be very good for the ceremony)
+Having large fires will also help a lot, and bonfires also (When I code them, one day, they will cost fuel, but be very good for the ceremony)
 Some ceremonies may also take Items, but most don't.

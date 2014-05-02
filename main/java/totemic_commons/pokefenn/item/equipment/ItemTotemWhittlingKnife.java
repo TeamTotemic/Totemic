@@ -20,12 +20,10 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
     public ItemTotemWhittlingKnife()
     {
-        super();
         setMaxStackSize(1);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setContainerItem(this);
         setMaxDamage(2);
-
     }
 
     @Override
@@ -35,11 +33,13 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         list.add("A knife for all your whittlin' needs");
     }
 
+    @Override
     public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemStack)
     {
         return false;
     }
 
+    @Override
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
         if(!world.isRemote)

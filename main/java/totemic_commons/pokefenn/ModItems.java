@@ -93,21 +93,23 @@ public final class ModItems
         GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
         GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
         //GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
-        GameRegistry.registerItem(totems, Strings.TOTEMS_NAME);
+        GameRegistry.registerItem(totems, totems.getUnlocalizedName());
         //GameRegistry.registerItem(potion, Strings.TOTEMIC_POTION_NAME);
-        GameRegistry.registerItem(moonglowSeeds, Strings.MOONGLOW_SEEDS_NAME);
-        GameRegistry.registerItem(bloodwart, Strings.BLOODWART_NAME);
-        GameRegistry.registerItem(lotusSeed, Strings.LOTUS_SEED_NAME);
-        GameRegistry.registerItem(fungusSpore, Strings.FUNGUS_PLANT_SPORE);
-        GameRegistry.registerItem(shamanFlute, Strings.SHAMAN_FLUTE_NAME);
+        GameRegistry.registerItem(moonglowSeeds, moonglowSeeds.getUnlocalizedName());
+        GameRegistry.registerItem(bloodwart, bloodwart.getUnlocalizedName());
+        GameRegistry.registerItem(lotusSeed, lotusSeed.getUnlocalizedName());
+        GameRegistry.registerItem(fungusSpore, fungusSpore.getUnlocalizedName());
+        GameRegistry.registerItem(shamanFlute, shamanFlute.getUnlocalizedName());
         //GameRegistry.registerItem(halberd, Strings.HALBERD_NAME);
         //GameRegistry.registerItem(witherBow, Strings.WITHER_BOW_NAME);
-        GameRegistry.registerItem(totemArmourChest, Strings.TOTEM_ARMOUR_CHEST_NAME);
-        GameRegistry.registerItem(totemArmourFeet, Strings.TOTEM_ARMOUR_FOOT_NAME);
-        GameRegistry.registerItem(totemArmourLeg, Strings.TOTEM_ARMOUR_LEG_NAME);
-        GameRegistry.registerItem(totemArmourHead, Strings.TOTEM_ARMOUR_HEAD_NAME);
+        GameRegistry.registerItem(totemArmourChest, totemArmourChest.getUnlocalizedName());
+        GameRegistry.registerItem(totemArmourFeet, totemArmourFeet.getUnlocalizedName());
+        GameRegistry.registerItem(totemArmourLeg, totemArmourLeg.getUnlocalizedName());
+        GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
         if(ConfigurationSettings.TEST_ITEM)
             GameRegistry.registerItem(test, "test");
+
+        initBaubles();
     }
 
 

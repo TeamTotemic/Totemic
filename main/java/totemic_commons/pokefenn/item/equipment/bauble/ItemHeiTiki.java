@@ -5,6 +5,8 @@ import baubles.api.IBauble;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.item.ItemTotemic;
@@ -14,7 +16,7 @@ import totemic_commons.pokefenn.lib.Strings;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemHeiTiki extends ItemTotemic implements IBauble, ITotemBauble
+public class ItemHeiTiki extends ItemTotemic implements IBauble
 {
 
     public ItemHeiTiki()
@@ -32,7 +34,15 @@ public class ItemHeiTiki extends ItemTotemic implements IBauble, ITotemBauble
     @Override
     public void onWornTick(ItemStack itemstack, EntityLivingBase player)
     {
+        if(player instanceof EntityPlayer && player.isInWater())
+        {
 
+        }
+
+        if(!player.worldObj.isRemote && player.isInWater())
+        {
+            player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 20, 0));
+        }
     }
 
     @Override
@@ -59,9 +69,4 @@ public class ItemHeiTiki extends ItemTotemic implements IBauble, ITotemBauble
         return true;
     }
 
-    @Override
-    public int getTotemEfficiency(World world, ItemStack itemStack, EntityPlayer player)
-    {
-        return 1;
-    }
 }

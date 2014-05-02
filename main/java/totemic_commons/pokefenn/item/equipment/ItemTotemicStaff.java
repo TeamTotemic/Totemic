@@ -28,11 +28,9 @@ public class ItemTotemicStaff extends ItemTotemic
 
     public ItemTotemicStaff()
     {
-        super();
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEMIC_STAFF_NAME);
         setMaxStackSize(1);
         registerIcons = false;
-
     }
 
     @Override
@@ -49,7 +47,7 @@ public class ItemTotemicStaff extends ItemTotemic
         return EnumRarity.uncommon;
     }
 
-
+    @Override
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
         if(!world.isRemote)

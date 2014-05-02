@@ -26,7 +26,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import totemic_commons.pokefenn.lib.Reference;
+import totemic_commons.pokefenn.Totemic;
 
 /**
  * Packet pipeline class. Directs all registered packet data to be handled by the packets themselves.
@@ -128,7 +128,7 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
     // Method to call from FMLInitializationEvent
     public void initialise()
     {
-        this.channels = NetworkRegistry.INSTANCE.newChannel(Reference.MOD_ID, this);
+        this.channels = NetworkRegistry.INSTANCE.newChannel(Totemic.MOD_ID, this);
     }
 
     // Method to call from FMLPostInitializationEvent
