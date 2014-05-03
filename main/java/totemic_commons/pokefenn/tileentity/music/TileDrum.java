@@ -65,11 +65,15 @@ public class TileDrum extends TileTotemic
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);
+        nbtTagCompound.setInteger("currentTime", currentTime);
+        nbtTagCompound.setBoolean("canPlay", canPlay);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
+        currentTime = nbtTagCompound.getInteger("currentTime");
+        canPlay = nbtTagCompound.getBoolean("canPlay");
     }
 }

@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.play.server.S2APacketParticles;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
@@ -47,11 +48,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
                 TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(), 8, 100, 8);
 
                 tileDrum.canPlay = false;
-
                 world.spawnParticle("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, (double) 100 / 24.0D, 0.0D, 0.0D);
-                System.out.println(tileDrum.canPlay);
-                System.out.println(tileDrum.currentTime);
-                System.out.println("things!");
 
                 world.markBlockForUpdate(x, y, z);
             }
