@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.IMusic;
@@ -31,5 +32,23 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     public MusicEnum musicEnum()
     {
         return MusicEnum.WIND_CHIME_MUSIC;
+    }
+
+    @Override
+    public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    {
+        return 80;
+    }
+
+    @Override
+    public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    {
+        return 3;
+    }
+
+    @Override
+    public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    {
+        return 6;
     }
 }

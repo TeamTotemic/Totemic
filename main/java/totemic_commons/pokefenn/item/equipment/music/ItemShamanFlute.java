@@ -1,11 +1,9 @@
-package totemic_commons.pokefenn.item.music;
+package totemic_commons.pokefenn.item.equipment.music;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
@@ -22,8 +20,6 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -63,25 +59,24 @@ public class ItemShamanFlute extends ItemTotemic implements IMusic
     {
         if(!world.isRemote)
         {
-            if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.shamanFlute)
+            if(world.rand.nextInt(50) == 1)
+                TotemUtil.playMusicFromItem(world, player, this.musicEnum(), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int)player.posX, (int)player.posY, (int)player.posZ, true, player), this.getMaximumMusic(world, (int)player.posX, (int)player.posY, (int)player.posZ, true, player), this.getMusicOutput(world, (int)player.posX, (int)player.posY, (int)player.posZ, true, player));
+            player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 30, 1));
+            if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)
             {
-                TotemUtil.playMusicFromItem(world, player, this.musicEnum(), (int)player.posX, (int)player.posY, (int)player.posZ, 10, 50, 10);
-                player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 30, 1));
-                if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)
+                for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
                 {
-                    for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
+                    if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
                     {
-                        if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
-                        {
-                            if(entity instanceof EntityAnimal)
-                                ((EntityAnimal) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 1, ModItems.shamanFlute, false));
-                            if(entity instanceof EntityVillager)
-                                ((EntityVillager) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 0.5, ModItems.shamanFlute, false));
-                        }
-
+                        if(entity instanceof EntityAnimal)
+                            ((EntityAnimal) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 1, ModItems.shamanFlute, false));
+                        if(entity instanceof EntityVillager)
+                            ((EntityVillager) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 0.5, ModItems.shamanFlute, false));
                     }
+
                 }
             }
+
         }
 
         if(world.isRemote)
@@ -96,5 +91,23 @@ public class ItemShamanFlute extends ItemTotemic implements IMusic
     public MusicEnum musicEnum()
     {
         return MusicEnum.FLUTE_MUSIC;
+    }
+
+    @Override
+    public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    {
+        return 60;
+    }
+
+    @Override
+    public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    {
+        return 6;
+    }
+
+    @Override
+    public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    {
+        return 7;
     }
 }

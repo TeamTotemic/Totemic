@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.bauble.ITotemBauble;
@@ -115,7 +116,7 @@ public class TotemUtil
                 {
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
-                        Block block = world.getBlock(x + i, y + j, z + k);
+                        TileEntity block = world.getTileEntity(x + i, y + j, z + k);
 
                         if(block instanceof IMusicAcceptor)
                         {
@@ -125,11 +126,13 @@ public class TotemUtil
                             {
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
+                                    System.out.println("if 1");
                                     musicArray[musicEnum.ordinal()] = musicMaximum;
                                     return;
 
                                 } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
                                 {
+                                    System.out.println("if 2");
                                     musicArray[musicEnum.ordinal()] += musicAmount;
                                     return;
                                 }
@@ -148,7 +151,7 @@ public class TotemUtil
                 {
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
-                        Block block = world.getBlock(x + i, y + j, z + k);
+                        TileEntity block = world.getTileEntity(x + i, y + j, z + k);
 
                         if(block instanceof IMusicAcceptor)
                         {

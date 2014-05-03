@@ -9,6 +9,7 @@ public enum MusicEnum
     FLUTE_MUSIC,
     DRUM_MUSIC,
     WIND_CHIME_MUSIC,
-    SYNTHESIZER_MUSIC
+    SYNTHESIZER_MUSIC,
+    GONG_MUSIC
 }
 

@@ -45,10 +45,9 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
         {
             if(tileDrum.canPlay)
             {
-                TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(), 8, 100, 8);
-
                 tileDrum.canPlay = false;
-                world.spawnParticle("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, (double) 100 / 24.0D, 0.0D, 0.0D);
+                TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));
+                //world.spawnParticle("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, (double) 100 / 24.0D, 0.0D, 0.0D);
 
                 world.markBlockForUpdate(x, y, z);
             }
@@ -61,5 +60,23 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     public MusicEnum musicEnum()
     {
         return MusicEnum.DRUM_MUSIC;
+    }
+
+    @Override
+    public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    {
+        return 100;
+    }
+
+    @Override
+    public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    {
+        return 8;
+    }
+
+    @Override
+    public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    {
+        return 8;
     }
 }

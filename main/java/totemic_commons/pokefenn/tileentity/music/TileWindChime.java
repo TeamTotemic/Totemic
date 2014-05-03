@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.tileentity.music;
 
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -8,6 +10,7 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.music.BlockDrum;
+import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -43,7 +46,8 @@ public class TileWindChime extends TileTotemic
                 if(world.getWorldTime() % 40L == 0)
                     if(rand.nextInt(2) == 1)
                     {
-                        TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME_MUSIC, 6, 80, 3);
+                        BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
+                        TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME_MUSIC, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null));
                     }
             }
 

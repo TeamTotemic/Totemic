@@ -68,6 +68,12 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     {
         if(!this.worldObj.isRemote)
         {
+
+            for(int aMusic : music)
+            {
+                System.out.println(aMusic);
+            }
+
             if(currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony != 0)
             {
                 if(!CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever() && currentTime >= CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMaximumTicks())
