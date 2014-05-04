@@ -102,7 +102,7 @@ public class ItemShamanFlute extends ItemTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 6;
+        return 4;
     }
 
     @Override

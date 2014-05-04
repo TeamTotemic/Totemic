@@ -66,6 +66,8 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     @Override
     public void updateEntity()
     {
+        super.updateEntity();
+
         if(!this.worldObj.isRemote)
         {
 

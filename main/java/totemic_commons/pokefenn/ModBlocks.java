@@ -7,7 +7,6 @@ import totemic_commons.pokefenn.block.music.BlockDrum;
 import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.block.plant.*;
 import totemic_commons.pokefenn.block.totem.BlockCeremonyIntelligence;
-import totemic_commons.pokefenn.block.totem.BlockManaTotem;
 import totemic_commons.pokefenn.block.totem.BlockTotemIntelligence;
 import totemic_commons.pokefenn.block.totem.BlockTotemSocket;
 import totemic_commons.pokefenn.lib.Strings;
@@ -77,10 +76,10 @@ public final class ModBlocks
     {
         Totemic.botaniaLoaded = true;
 
-        Totemic.logger.info("Totemic Botania Interaction Enabled");
+        //Totemic.logger.info("Totemic Botania Interaction Enabled");
 
-        totemMana = new BlockManaTotem();
-        GameRegistry.registerBlock(totemMana, Strings.TOTEM_MANA_NAME);
+        //totemMana = new BlockManaTotem();
+        //GameRegistry.registerBlock(totemMana, Strings.TOTEM_MANA_NAME);
 
     }
 

@@ -10,7 +10,6 @@ import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemIntelligence;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemMana;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
 
 public class CommonProxy implements IGuiHandler
@@ -20,18 +19,12 @@ public class CommonProxy implements IGuiHandler
 
     public void registerTileEntities()
     {
-
         GameRegistry.registerTileEntity(TileTotemIntelligence.class, Strings.TILE_TOTEM_INTELLIGENCE);
         GameRegistry.registerTileEntity(TileTotemSocket.class, Strings.TILE_TOTEM_SOCKET);
-        //GameRegistry.registerTileEntity(TileTotemCauldron.class, Strings.TOTEM_CAULDRON_NAME);
         GameRegistry.registerTileEntity(TileCeremonyIntelligence.class, Strings.CEREMONY_INTELLIGENCE_NAME);
         GameRegistry.registerTileEntity(TileTotemTorch.class, Strings.TOTEM_TORCH_NAME);
         GameRegistry.registerTileEntity(TileDrum.class, Strings.DRUM_NAME);
         GameRegistry.registerTileEntity(TileWindChime.class, Strings.WIND_CHIME_NAME);
-
-        if(Totemic.botaniaLoaded)
-            GameRegistry.registerTileEntity(TileTotemMana.class, Strings.TILE_TOTEM_MANA);
-
     }
 
 

@@ -35,8 +35,8 @@ public class TotemicRecipes
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Blocks.vine));
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Items.wheat_seeds));
 
-        if(Totemic.botaniaLoaded)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemMana), new Object[]{" l ", "ltl", " l ", ('l'), "livingwood", ('t'), ModBlocks.totemIntelligence}));
+        //if(Totemic.botaniaLoaded)
+        //    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemMana), new Object[]{" l ", "ltl", " l ", ('l'), "livingwood", ('t'), ModBlocks.totemIntelligence}));
 
         if(!ConfigurationSettings.RELEVENT_TOTEM_RECIPES)
             GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totems, 1, 1), new Object[]{ModBlocks.totemWoods, new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});

@@ -30,6 +30,8 @@ public class TileDrum extends TileTotemic
 
     public void updateEntity()
     {
+        super.updateEntity();
+
         World world = worldObj;
 
         if(!world.isRemote)
@@ -39,7 +41,7 @@ public class TileDrum extends TileTotemic
                 currentTime++;
             }
 
-            if(currentTime >= 80)
+            if(currentTime >= 50)
             {
                 currentTime = 0;
                 canPlay = true;

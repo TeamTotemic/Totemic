@@ -33,6 +33,8 @@ public class TileWindChime extends TileTotemic
 
     public void updateEntity()
     {
+        super.updateEntity();
+
         World world = worldObj;
 
         if(!world.isRemote)
