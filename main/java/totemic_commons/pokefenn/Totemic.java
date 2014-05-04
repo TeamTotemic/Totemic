@@ -148,14 +148,6 @@ public final class Totemic
         MinecraftForge.EVENT_BUS.register(new EntityFall());
 
         MinecraftForge.EVENT_BUS.register(new EntityJump());
-
-        TotemRegistry.addTotems();
-
-        PotionItemRegistry.addRecipes();
-
-        PotionRegistry.addRecipes();
-
-        CeremonyRegistry.addRecipes();
     }
 
     @EventHandler
