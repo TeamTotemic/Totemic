@@ -1,12 +1,12 @@
 Totemic To do list:
 
-Finish off Musical Melody
+Finish off Musical Melody - Finished (Api wise)
 Add in Totems for every mob
 Bead Satchel (Totem Beads)
 Implement Musical Melody with Totems
 Finish off Ceremonies
 Shadow Puppets (Use Vazkiis corruption thingy, if i remember)
-Implement more instruments
+Implement more instruments - Done, for now
 More baubles
 Tools (Eventually)
 Do armour model stuff

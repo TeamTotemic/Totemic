@@ -129,8 +129,6 @@ public class ItemPotions extends Item
         }
 
     }
-
-    //TODO correct names
 /*
     @Override
     public String getUnlocalizedName(ItemStack itemStack)

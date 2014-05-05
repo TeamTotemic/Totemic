@@ -7,6 +7,7 @@ import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
+import totemic_commons.pokefenn.item.equipment.music.ItemInfusedFlute;
 import totemic_commons.pokefenn.item.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.item.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
@@ -15,7 +16,6 @@ import totemic_commons.pokefenn.item.plant.ItemFungusPlantSpore;
 import totemic_commons.pokefenn.item.plant.ItemMoonglowSeeds;
 import totemic_commons.pokefenn.item.plant.ItemWaterLotusSeed;
 import totemic_commons.pokefenn.item.equipment.ItemInfusedTotemicStaff;
-import totemic_commons.pokefenn.item.equipment.music.ItemShamanFlute;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
 import totemic_commons.pokefenn.item.verdant.ItemBlazingVerdantCrystal;
@@ -72,7 +72,7 @@ public final class ModItems
         bloodwart = new ItemBloodWart(ModBlocks.bloodwart, Blocks.soul_sand);
         lotusSeed = new ItemWaterLotusSeed();
         fungusSpore = new ItemFungusPlantSpore(ModBlocks.fungusBlock);
-        shamanFlute = new ItemShamanFlute();
+        shamanFlute = new ItemInfusedFlute();
         //halberd = new ItemHalberd();
         //witherBow = new ItemWitherBow();
         if(ConfigurationSettings.TEST_ITEM)

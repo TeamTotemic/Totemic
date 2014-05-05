@@ -17,7 +17,8 @@ import totemic_commons.pokefenn.util.TotemUtil;
 public class TotemEffectCow implements ITotemEffect
 {
 
-    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle)
+    @Override
+    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle, int melody)
     {
         if(totem.getWorldObj().getWorldTime() % 80L == 0)
         {
@@ -33,7 +34,7 @@ public class TotemEffectCow implements ITotemEffect
 
                         if(intelligence)
                         {
-                            ((TileTotemIntelligence) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
+                            ((TileTotemIntelligence) totem).decreaseChlorophyll((totemRegistry.getChlorophyllDecrement() - melody > 50 ? 4 : 0));
                         }
                     }
                 }

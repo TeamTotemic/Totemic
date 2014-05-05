@@ -157,7 +157,10 @@ public class TotemUtil
                         {
                             int[] musicArray = ((IMusicAcceptor) block).getMusicArray();
 
-                            if(!(musicArray[musicEnum.ordinal()] > musicArray.length))
+                            System.out.println(musicArray.length);
+
+                            /*
+                            if(musicArray[musicEnum.ordinal()] <= musicArray.length)
                             {
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
@@ -170,6 +173,7 @@ public class TotemUtil
                                     return;
                                 }
                             }
+                            */
                         }
 
                     }

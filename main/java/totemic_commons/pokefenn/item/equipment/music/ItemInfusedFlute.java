@@ -26,10 +26,10 @@ import java.util.List;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemShamanFlute extends ItemTotemic implements IMusic
+public class ItemInfusedFlute extends ItemTotemic implements IMusic
 {
 
-    public ItemShamanFlute()
+    public ItemInfusedFlute()
     {
         super();
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.SHAMAN_FLUTE_NAME);

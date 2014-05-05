@@ -11,6 +11,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.api.music.IMusicAcceptor;
+import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.totem.IPlantEssenceInput;
 import totemic_commons.pokefenn.api.verdant.IVerdantCrystal;
 import totemic_commons.pokefenn.block.totem.BlockTotemSocket;
@@ -24,7 +26,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 29/01/14
  * Time: 20:22
  */
-public class TileTotemIntelligence extends TileTotemic implements IInventory, IPlantEssenceInput
+public class TileTotemIntelligence extends TileTotemic implements IInventory, IPlantEssenceInput, IMusicAcceptor
 {
 
     private ItemStack[] inventory;
@@ -34,6 +36,8 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
     public int maxEssence;
     public static int socket;
     public static int rangeUpgrades;
+    public int[] music;
+    public int musicalMelody;
 
     ItemStack[] totems;
 
@@ -44,6 +48,8 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
         plantEssence = 0;
         maxEssence = 1000;
         rangeUpgrades = 0;
+        music = new int[MusicEnum.values().length];
+        musicalMelody = 0;
     }
 
     @Override
@@ -72,8 +78,11 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
         {
             if(this.worldObj.getWorldTime() % 100L == 0)
             {
+                //System.out.println(musicalMelody);
                 setSocketAmounts();
                 scanArea();
+                increaseMelody();
+                //System.out.println(musicalMelody);
             }
 
             if(!(currentInput >= 1))
@@ -89,7 +98,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
                                 //System.out.println("foobar");
                                 if(totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement(), totems[i].getItemDamage()))
                                 {
-                                    totemRegistry.getEffect().effect(this, rangeUpgrades, true, totemRegistry, totemRegistry.getHorizontal(), totemRegistry.getVerticalHight());
+                                    totemRegistry.getEffect().effect(this, rangeUpgrades, true, totemRegistry, totemRegistry.getHorizontal(), totemRegistry.getVerticalHight(), musicalMelody);
                                 }
                             }
                         }
@@ -99,6 +108,19 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
                 this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
             }
         }
+    }
+
+    public void increaseMelody()
+    {
+        musicalMelody = 0;
+
+        int j = 0;
+
+        for(int i = 0; i < music.length; i++)
+        {
+            j += (music[i] % 4);
+        }
+        musicalMelody = j;
     }
 
     protected void scanArea()
@@ -135,13 +157,14 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
     {
         if(plantEssence < maxEssence)
         {
-            if((plantEssence += (getPlantDrained(block)) - 1) > maxEssence)
+            if((plantEssence + (getPlantDrained(block)) - 1) > maxEssence)
             {
                 plantEssence = maxEssence;
                 return;
             }
 
-            plantEssence += getPlantDrained(block) - 1;
+            //TODO flesh out number
+            plantEssence += getPlantDrained(block) - 1 + musicalMelody % 20;
         }
     }
 
@@ -349,6 +372,8 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
         super.readFromNBT(nbtTagCompound);
 
         plantEssence = nbtTagCompound.getInteger("plantEssence");
+        music = nbtTagCompound.getIntArray("music");
+        musicalMelody = nbtTagCompound.getInteger("musicalMelody");
 
         // Read in the ItemStacks in the inventory from NBT
         NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
@@ -371,6 +396,8 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
         super.writeToNBT(nbtTagCompound);
 
         nbtTagCompound.setInteger("plantEssence", plantEssence);
+        nbtTagCompound.setIntArray("music", music);
+        nbtTagCompound.setInteger("musicalMelody", musicalMelody);
 
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
@@ -415,4 +442,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
         return maxEssence;
     }
 
+    @Override
+    public int[] getMusicArray()
+    {
+        return music;
+    }
 }

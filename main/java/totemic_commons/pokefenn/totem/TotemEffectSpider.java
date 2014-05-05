@@ -17,7 +17,7 @@ import totemic_commons.pokefenn.util.TotemUtil;
 public class TotemEffectSpider implements ITotemEffect
 {
     @Override
-    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle)
+    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle, int melody)
     {
         if(totem.getWorldObj().getWorldTime() % 80L == 0)
         {

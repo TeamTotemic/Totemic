@@ -20,7 +20,7 @@ public class TotemEffectBat implements ITotemEffect
 {
 
     @Override
-    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle)
+    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle, int melody)
     {
         if(totem.getWorldObj().getWorldTime() % (12L * 20L) == 0L)
         {
@@ -38,7 +38,8 @@ public class TotemEffectBat implements ITotemEffect
 
                         if(intelligence)
                         {
-                            ((TileTotemIntelligence) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
+                            //TODO flesh out numbers for melody
+                            ((TileTotemIntelligence) totem).decreaseChlorophyll((totemRegistry.getChlorophyllDecrement() - melody > 50 ? 4 : 0));
                         }
 
                     }

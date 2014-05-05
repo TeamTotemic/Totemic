@@ -18,22 +18,22 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
 public class TotemEffectDraining implements ITotemEffect
 {
 
-    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle)
+    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle, int melody)
     {
         if(totem.getWorldObj().getWorldTime() % 100L == 0)
-            drainEffect((TileTotemIntelligence) totem, upgrades);
+            drainEffect((TileTotemIntelligence) totem, upgrades, melody);
     }
 
-    protected static void drainEffect(TileTotemIntelligence tileTotemIntelligence, int upgrades)
+    protected static void drainEffect(TileTotemIntelligence tileTotemIntelligence, int upgrades, int melody)
     {
         int totemRadius = ConfigurationSettings.TOTEM_DRAINING_RANGE + (upgrades * 3);
 
         for(int i = -totemRadius; i <= totemRadius; i++)
             for(int j = -totemRadius; j <= totemRadius; j++)
-                reducePlantMetadata(tileTotemIntelligence, tileTotemIntelligence.xCoord + i, tileTotemIntelligence.yCoord, tileTotemIntelligence.zCoord + j);
+                reducePlantMetadata(tileTotemIntelligence, tileTotemIntelligence.xCoord + i, tileTotemIntelligence.yCoord, tileTotemIntelligence.zCoord + j, melody);
     }
 
-    protected static void reducePlantMetadata(TileTotemIntelligence tileTotemIntelligence, int x, int y, int z)
+    protected static void reducePlantMetadata(TileTotemIntelligence tileTotemIntelligence, int x, int y, int z, int melody)
     {
         //yCoords is there because the totem has to be on the same level as the IPlantable's
         Block blockQuery = tileTotemIntelligence.getWorldObj().getBlock(x, y, z);

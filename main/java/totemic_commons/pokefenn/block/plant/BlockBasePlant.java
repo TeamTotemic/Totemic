@@ -30,7 +30,7 @@ public class BlockBasePlant extends BlockCrops
             {
                 if(random.nextInt(10) == 1)
                 {
-                    if(!world.isDaytime())
+                    if(world.isDaytime())
                     {
                         world.setBlockMetadataWithNotify(x, y, z, +metadata, 2);
                     }

@@ -18,8 +18,6 @@ import java.util.List;
 public class TotemRegistry
 {
 
-    //Todo get this working, this will allow for api/imc message totem effects
-
     public static void addTotems()
     {
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_HORSE, 20, 20, new TotemEffectHorse()));

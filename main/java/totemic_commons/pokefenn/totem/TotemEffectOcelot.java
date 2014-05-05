@@ -18,7 +18,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectOcelot implements ITotemEffect
 {
 
-    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle)
+    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle, int melody)
     {
         if(totem.getWorldObj().getWorldTime() % 5L == 0)
         {

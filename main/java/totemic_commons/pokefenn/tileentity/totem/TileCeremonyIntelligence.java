@@ -73,7 +73,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
             for(int aMusic : music)
             {
-                System.out.println(aMusic);
+            //    System.out.println(aMusic);
             }
 
             if(currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony != 0)
