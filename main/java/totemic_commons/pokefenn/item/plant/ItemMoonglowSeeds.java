@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.item.plant;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
@@ -9,6 +10,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
+import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -18,12 +21,11 @@ import totemic_commons.pokefenn.lib.Strings;
  */
 public class ItemMoonglowSeeds extends ItemSeeds
 {
-    public Block blockType;
+    public Block blockType = ModBlocks.moonglow;
 
-    public ItemMoonglowSeeds(Block block, Block block2)
+    public ItemMoonglowSeeds()
     {
-        super(block, block2);
-        this.blockType = block;
+        super(ModBlocks.moonglow, Blocks.dirt);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.MOONGLOW_SEEDS_NAME);
         setCreativeTab(Totemic.tabsTotem);
     }

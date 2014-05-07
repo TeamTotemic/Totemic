@@ -72,15 +72,4 @@ public final class ModBlocks
         GameRegistry.registerBlock(windChime, Strings.WIND_CHIME_NAME);
     }
 
-    public static void initBotania()
-    {
-        Totemic.botaniaLoaded = true;
-
-        //Totemic.logger.info("Totemic Botania Interaction Enabled");
-
-        //totemMana = new BlockManaTotem();
-        //GameRegistry.registerBlock(totemMana, Strings.TOTEM_MANA_NAME);
-
-    }
-
 }

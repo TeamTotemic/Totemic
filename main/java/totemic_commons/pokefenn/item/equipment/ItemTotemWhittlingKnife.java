@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.item.equipment;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -79,25 +80,21 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             {
                 Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
-                /**
-                 * TODO
-                 * Make this instead right click on a wood block, and then place a block with the Totem in it
-                 */
-
-                if(blockQuery == ModBlocks.totemSocket)
+                if(blockQuery instanceof BlockLog)
                 {
-                    TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
-                    System.out.println("yes");
+                    //System.out.println("yes");
                     if(par1ItemStack.getItemDamage() != 0)
-                        if(tileTotemSocket.getStackInSlot(0) != null)
+                    {
+                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket);
+                        TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
+
+                        if(tileTotemSocket.getStackInSlot(0) == null)
                         {
-                            if(tileTotemSocket.getStackInSlot(0).getItem() == ModItems.subItems && tileTotemSocket.getStackInSlot(0).getItemDamage() == 4)
-                            {
-                                tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, par1ItemStack.getItemDamage()));
-                                world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
-                                tileTotemSocket.markDirty();
-                            }
+                            tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, par1ItemStack.getItemDamage()));
+                            world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
+                            tileTotemSocket.markDirty();
                         }
+                    }
                 }
             }
         }

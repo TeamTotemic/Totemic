@@ -27,7 +27,6 @@ public class CommonProxy implements IGuiHandler
         GameRegistry.registerTileEntity(TileWindChime.class, Strings.WIND_CHIME_NAME);
     }
 
-
     public void initRendering()
     {
 

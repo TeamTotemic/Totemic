@@ -122,9 +122,6 @@ public final class Totemic
         //Starts ore dictionary code
         OreDictionaryTotemic.init();
 
-        if(Loader.isModLoaded("Botania"))
-            ModBlocks.initBotania();
-
         //Vannila recipes
         TotemicRecipes.init();
 

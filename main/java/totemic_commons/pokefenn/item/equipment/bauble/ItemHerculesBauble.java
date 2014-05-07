@@ -77,7 +77,7 @@ public class ItemHerculesBauble extends ItemTotemic implements IBauble, ITotemBa
                 IInventory baubleInventory = BaublesApi.getBaubles(entityPlayer);
                 if(baubleInventory.getStackInSlot(0) != null)
                 {
-                    EntityItem bauble = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(ModItems.herculeseBauble));
+                    EntityItem bauble = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, new ItemStack(this, 1, 0));
                     entityPlayer.worldObj.spawnEntityInWorld(bauble);
                     baubleInventory.setInventorySlotContents(0, null);
                 }

@@ -68,10 +68,10 @@ public final class ModItems
         infusedTotemicStaff = new ItemInfusedTotemicStaff();
         //totempedia = new ItemTotempedia();
         //potion = new ItemPotions();
-        moonglowSeeds = new ItemMoonglowSeeds(ModBlocks.moonglow, Blocks.dirt);
-        bloodwart = new ItemBloodWart(ModBlocks.bloodwart, Blocks.soul_sand);
+        moonglowSeeds = new ItemMoonglowSeeds();
+        bloodwart = new ItemBloodWart();
         lotusSeed = new ItemWaterLotusSeed();
-        fungusSpore = new ItemFungusPlantSpore(ModBlocks.fungusBlock);
+        fungusSpore = new ItemFungusPlantSpore();
         shamanFlute = new ItemInfusedFlute();
         //halberd = new ItemHalberd();
         //witherBow = new ItemWitherBow();
@@ -111,7 +111,6 @@ public final class ModItems
 
         initBaubles();
     }
-
 
     public static void initBaubles()
     {

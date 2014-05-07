@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.item.plant;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
@@ -21,12 +22,11 @@ import totemic_commons.pokefenn.lib.Strings;
  */
 public class ItemBloodWart extends ItemTotemic
 {
-    public Block blockType;
+    public Block blockType = ModBlocks.bloodwart;
 
-    public ItemBloodWart(Block block1, Block block2)
+    public ItemBloodWart()
     {
         super();
-        this.blockType = block1;
         setCreativeTab(Totemic.tabsTotem);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BLOODWART_NAME);
     }

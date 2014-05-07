@@ -20,9 +20,9 @@ public class ItemFungusPlantSpore extends ItemTotemic
 {
     public Block blockType;
 
-    public ItemFungusPlantSpore(Block blockType)
+    public ItemFungusPlantSpore()
     {
-        this.blockType = blockType;
+        this.blockType = ModBlocks.fungusBlock;
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.FUNGUS_PLANT_SPORE);
     }
 

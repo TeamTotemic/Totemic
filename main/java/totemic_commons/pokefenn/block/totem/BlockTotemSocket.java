@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.ITotem;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
@@ -68,7 +69,7 @@ public class BlockTotemSocket extends BlockTileTotemic
             world.markBlockForUpdate(x, y, z);
         }
 
-        return !player.isSneaking();
+        return true;
     }
 
     private Random rand = new Random();
