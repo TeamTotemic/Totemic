@@ -145,6 +145,8 @@ public final class Totemic
         MinecraftForge.EVENT_BUS.register(new EntityFall());
 
         MinecraftForge.EVENT_BUS.register(new EntityJump());
+
+        MinecraftForge.EVENT_BUS.register(new EntityDeath());
     }
 
     @EventHandler

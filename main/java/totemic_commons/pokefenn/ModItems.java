@@ -8,6 +8,7 @@ import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.equipment.music.ItemInfusedFlute;
+import totemic_commons.pokefenn.item.equipment.weapon.ItemHuntingKnife;
 import totemic_commons.pokefenn.item.fluid.ItemBottleChlorophyll;
 import totemic_commons.pokefenn.item.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
@@ -45,6 +46,7 @@ public final class ModItems
     public static Item shamanFlute;
     public static Item halberd;
     public static Item test;
+    public static Item huntingKnife;
 
     public static Item totemArmourHead;
     public static Item totemArmourChest;
@@ -77,6 +79,7 @@ public final class ModItems
         //witherBow = new ItemWitherBow();
         if(ConfigurationSettings.TEST_ITEM)
             test = new ItemTest();
+        //huntingKnife = new ItemHuntingKnife();
 
         totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
         totemArmourFeet = new ItemTotemArmour(3, Strings.TOTEM_ARMOUR_FOOT_NAME);
@@ -108,6 +111,7 @@ public final class ModItems
         GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
         if(ConfigurationSettings.TEST_ITEM)
             GameRegistry.registerItem(test, "test");
+        //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
 
         initBaubles();
     }

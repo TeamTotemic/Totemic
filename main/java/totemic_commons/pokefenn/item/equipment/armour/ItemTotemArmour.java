@@ -12,6 +12,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.client.rendering.armour.TotemArmourHead;
+import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -24,7 +25,7 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor
 
     public ItemTotemArmour(int armourType, String name)
     {
-        super(ArmourMaterials.totemArmour, 0, armourType);
+        super(EquipmentMaterials.totemArmour, 0, armourType);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
         setCreativeTab(Totemic.tabsTotem);
         //setMaxDamage(ArmourMaterials.totemArmour.getDurability(armourType));

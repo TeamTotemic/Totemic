@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,13 +26,13 @@ import java.util.List;
  * Date: 09/12/13
  * Time: 14:35
  */
-public class BlockTotemWoods extends Block implements ITotemicStaffUsage
+public class BlockTotemWoods extends BlockLog implements ITotemicStaffUsage
 {
 
 
     public BlockTotemWoods()
     {
-        super(Material.wood);
+        super();
         setBlockName(Strings.TOTEM_WOODS_NAME);
         setHardness(1F);
         setCreativeTab(Totemic.tabsTotem);

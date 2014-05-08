@@ -5,10 +5,10 @@ Add in Totems for every mob
 Bead Satchel (Totem Beads)
 Implement Musical Melody with Totems
 Finish off Ceremonies
-Shadow Puppets (Use Vazkiis corruption thingy, if i remember)
+Shadow Puppets (Could use Vazkiis corruption thingy, if i remember)
 Implement more instruments - Done, for now
 More baubles
 Tools (Eventually)
 Do armour model stuff
 Elfreet boss fight (Including the Hammer)
-
+Pandora's Box (Spawns mobs, needs to be sealed with a ceremony once opened, gives great strengths?)

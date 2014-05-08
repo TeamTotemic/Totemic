@@ -43,6 +43,7 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
         list.add("Like the Pied Piper of old");
     }
 
+    @Override
     public void onUpdate(ItemStack itemStack, World world, Entity player, int par4, boolean par5)
     {
         if(!world.isRemote)
@@ -55,6 +56,7 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
         }
     }
 
+    @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
         if(!world.isRemote)

@@ -38,7 +38,8 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
         list.add("A knife for all your whittlin' needs");
-        list.add("Currently Carving: " + ItemTotems.TOTEM_NAMES[stack.getItemDamage()]);
+        if(stack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
+            list.add("Currently Carving: " + ItemTotems.TOTEM_NAMES[stack.getItemDamage()]);
     }
 
     @Override
@@ -48,55 +49,55 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-        if(!world.isRemote)
-        {
-            if(player.isSneaking())
-            {
-                System.out.println("foobar");
-                if(itemStack.getItemDamage() <= ItemTotems.TOTEM_NAMES.length)
-                {
-                    itemStack.setItemDamage(+itemStack.getItemDamage());
-                } else
-                {
-                    itemStack.setItemDamage(0);
-                }
-            }
-        }
-
-        return itemStack;
+        for(int meta = 0; meta < ItemTotems.TOTEM_NAMES.length; meta++)
+            list.add(new ItemStack(id, 1, meta));
     }
 
     @Override
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    {
+        if(player.isSneaking() && itemStack.getItemDamage() + 2 > ItemTotems.TOTEM_NAMES.length)
+            return new ItemStack(this, 1, 0);
+
+        return player.isSneaking() ? new ItemStack(this, 1, 1 + itemStack.getItemDamage()) : itemStack;
+    }
+
+    @Override
+    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
         if(!world.isRemote)
         {
-            System.out.println("yes?");
-            MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
-
-            if(block != null)
+            //if(!player.isSneaking())
             {
-                Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
+                MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
 
-                if(blockQuery instanceof BlockLog)
+                if(block != null)
                 {
-                    //System.out.println("yes");
-                    if(par1ItemStack.getItemDamage() != 0)
-                    {
-                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket);
-                        TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
+                    Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
-                        if(tileTotemSocket.getStackInSlot(0) == null)
+                    if(blockQuery instanceof BlockLog)
+                    {
+                        if(itemStack.getItemDamage() != 0)
                         {
-                            tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, par1ItemStack.getItemDamage()));
-                            world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
-                            tileTotemSocket.markDirty();
+                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket);
+                            TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
+
+                            if(tileTotemSocket.getStackInSlot(0) == null)
+                            {
+                                if(itemStack.getItemDamage() != 0)
+                                    tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, itemStack.getItemDamage()));
+                                world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
+                                tileTotemSocket.markDirty();
+                            }
                         }
                     }
                 }
             }
+
+
         }
 
         return true;

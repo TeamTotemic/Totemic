@@ -167,7 +167,6 @@ public class ItemPotions extends Item
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-
         for(int eachPotion = 0; eachPotion < (3 * POTIONS.length); eachPotion++)
         {
             list.add(new ItemStack(id, 1, eachPotion));

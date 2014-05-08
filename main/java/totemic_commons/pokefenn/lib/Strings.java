@@ -29,7 +29,6 @@ public class Strings
     public static final String TOTEMIC_STAFF_NAME = "totemicStaff";
     public static final String VERDANT_CRYSTAL_NAME = "verdantCrystal";
     public static final String BUCKET_CHLOROPHYLL_NAME = "bucketChlorophyll";
-    public static final String VENUS_FLY_TRAP_SEED_NAME = "venusFlyTrapSeed";
     public static final String TOTEMS_NAME = "totems";
     public static final String SUB_ITEMS_NAME = "subItems";
     public static final String BOTTLE_CHLOROPHYLL_NAME = "bottleChlorophyll";
@@ -43,7 +42,6 @@ public class Strings
     public static final String FUNGUS_PLANT_SPORE = "fungusSpore";
     public static final String SHAMAN_FLUTE_NAME = "shamanFlute";
     public static final String HALBERD_NAME = "halberd";
-    public static final String WITHER_BOW_NAME = "witherBow";
     public static final String TOTEM_ARMOUR_LEG_NAME = "totemArmourLeg";
     public static final String TOTEM_ARMOUR_HEAD_NAME = "totemArmourHead";
     public static final String TOTEM_ARMOUR_CHEST_NAME = "totemArmourChest";
@@ -52,12 +50,9 @@ public class Strings
     public static final String HEI_TIKI_NAME = "heiTiki";
     public static final String HERCULESE_BAUBLES_NAME = "herculeseBauble";
     public static final String TOTEM_BEAD_BELT_NAME = "totemBeadBelt";
-
-    public static final String TOTEM_WOOD_WAND_CORE_NAME = "totemWoodWandCore";
-    public static final String CHLOROPHYLL_CRYSTAL_WAND_CAP = "chlorophyllCrystalWandCap";
+    public static final String HUNTING_KNIFE_NAME = "huntingKnife";
 
     //TileEntites
-    public static final String TILE_CHLOROPHYLL_SOLIDIFIER = "tileChlorophyllSolidifier";
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
     public static final String TILE_TOTEM_SOCKET = "tileTotemSocket";
     public static final String TILE_TOTEM_MANA = "tileTotemMana";

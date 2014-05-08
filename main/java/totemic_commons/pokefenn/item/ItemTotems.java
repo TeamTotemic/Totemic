@@ -25,17 +25,19 @@ import java.util.List;
 public class ItemTotems extends ItemTotemic implements ITotem
 {
 
-    public static final String[] TOTEM_NAMES = new String[]{"NotATotem", "Horse", "Bat", "Blaze", "Ocelot", "Squid", "Draining", "Spider", "Cow"};
+    public static final String[] TOTEM_NAMES = new String[]{"Horse", "Bat", "Blaze", "Ocelot", "Squid", "Draining", "Spider", "Cow"};
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
-    public static int horse = 1;
-    public static int bat = 2;
-    public static int blaze = 3;
-    public static int ocelot = 4;
-    public static int squid = 5;
-    public static int draining = 6;
+    public static int horse = 0;
+    public static int bat = 1;
+    public static int blaze = 2;
+    public static int ocelot = 3;
+    public static int squid = 4;
+    public static int draining = 5;
+    public static int spider = 6;
+    public static int cow = 7;
 
     public ItemTotems()
     {
@@ -44,7 +46,6 @@ public class ItemTotems extends ItemTotemic implements ITotem
         maxStackSize = 1;
         setCreativeTab(Totemic.tabsTotem);
         registerIcons = false;
-
     }
 
     @Override
@@ -53,22 +54,20 @@ public class ItemTotems extends ItemTotemic implements ITotem
     {
         if(stack.getItemDamage() == horse)
             list.add("Obtain the speed of a Horse");
-
         if(stack.getItemDamage() == bat)
             list.add("Fly like a Bat");
-
         if(stack.getItemDamage() == blaze)
             list.add("Burn like a Blaze");
-
         if(stack.getItemDamage() == ocelot)
             list.add("Fear creepers like a Ocelot");
-
         if(stack.getItemDamage() == squid)
             list.add("Breath underwater like a Squid");
-
         if(stack.getItemDamage() == draining)
             list.add("Drain the essence of nearby plants");
-
+        if(stack.getItemDamage() == spider)
+            list.add("Climb walls with the agility of a Spider");
+        if(stack.getItemDamage() == cow)
+            list.add("Become as sturdy and slow as a Cow");
     }
 
     @Override
@@ -76,8 +75,7 @@ public class ItemTotems extends ItemTotemic implements ITotem
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
         for(int meta = 0; meta < TOTEM_NAMES.length; meta++)
-            if(meta != 0)
-                list.add(new ItemStack(id, 1, meta));
+            list.add(new ItemStack(id, 1, meta));
     }
 
 
