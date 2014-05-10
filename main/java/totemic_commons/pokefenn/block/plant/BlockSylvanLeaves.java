@@ -24,9 +24,9 @@ import java.util.Random;
  * Date: 16/02/14
  * Time: 17:48
  */
-public class BlockTotemLeaves extends BlockLeaves
+public class BlockSylvanLeaves extends BlockLeaves
 {
-    public BlockTotemLeaves()
+    public BlockSylvanLeaves()
     {
         super();
         setCreativeTab(Totemic.tabsTotem);

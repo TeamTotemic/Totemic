@@ -7,7 +7,7 @@ public class Strings
 
     //Blocks
     public static final String VENUS_FLY_TRAP_NAME = "venusFlyTrap";
-    public static final String TOTEM_WOODS_NAME = "totemWoods";
+    public static final String TOTEM_WOODS_NAME = "sylvanLog";
     public static final String TOTEM_INTELLIGENCE_NAME = "totemIntelligence";
     public static final String TOTEM_SOCKET_NAME = "totemSocket";
     public static final String TOTEM_SAPLING_NAME = "totemSapling";

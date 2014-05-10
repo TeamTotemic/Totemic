@@ -28,7 +28,6 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor
         super(EquipmentMaterials.totemArmour, 0, armourType);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
         setCreativeTab(Totemic.tabsTotem);
-        //setMaxDamage(ArmourMaterials.totemArmour.getDurability(armourType));
         this.armourType = armourType;
     }
 
@@ -43,7 +42,7 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase par1EntityLiving, ItemStack itemStack, int armorSlot)
     {
-        if(par1EntityLiving.isPotionActive(Potion.invisibility))
+        if(!par1EntityLiving.isPotionActive(Potion.invisibility))
         {
 
             if(armorSlot == 0)
@@ -70,19 +69,12 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
     {
-        if(slot == 0)
-            return 2;
-        else if(slot == 1)
-            return 4;
-        else if(slot == 2)
-            return 3;
-        else
-            return 1;
+        return EquipmentMaterials.totemArmour.getDamageReductionAmount(slot);
     }
 
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
     {
-        stack.damageItem(damage % 2, entity);
+        //stack.damageItem(damage % 2, entity);
     }
 }

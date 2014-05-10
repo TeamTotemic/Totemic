@@ -10,11 +10,6 @@ import io.netty.channel.ChannelHandlerContext;
 
 import net.minecraft.entity.player.EntityPlayer;
 
-/**
- * AbstractPacket class. Should be the parent of all packets wishing to use the PacketPipeline.
- *
- * @author sirgingalot
- */
 public abstract class AbstractPacket
 {
 

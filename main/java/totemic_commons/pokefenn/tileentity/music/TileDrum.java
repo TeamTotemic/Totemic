@@ -5,6 +5,8 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.network.block.music.DrumPacket;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
@@ -13,7 +15,6 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  */
 public class TileDrum extends TileTotemic
 {
-
     public int currentTime;
     public boolean canPlay;
 
@@ -45,6 +46,7 @@ public class TileDrum extends TileTotemic
             {
                 currentTime = 0;
                 canPlay = true;
+                //Totemic.packetPipeline.sendToDimension(new DrumPacket(xCoord, yCoord, zCoord, canPlay), worldObj.provider.dimensionId);
             }
         }
     }

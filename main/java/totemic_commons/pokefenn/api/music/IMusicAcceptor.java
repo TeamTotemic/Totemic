@@ -6,7 +6,5 @@ package totemic_commons.pokefenn.api.music;
  */
 public interface IMusicAcceptor
 {
-
     public int[] getMusicArray();
-
 }

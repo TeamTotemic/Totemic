@@ -27,6 +27,7 @@ import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.network.block.music.DrumPacket;
 
 /**
  * Packet pipeline class. Directs all registered packet data to be handled by the packets themselves.
@@ -52,19 +53,16 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
     {
         if(this.packets.size() > 256)
         {
-            // You should log here!!
             return false;
         }
 
         if(this.packets.contains(clazz))
         {
-            // You should log here!!
             return false;
         }
 
         if(this.isPostInitialised)
         {
-            // You should log here!!
             return false;
         }
 
@@ -72,7 +70,6 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
         return true;
     }
 
-    // In line encoding of the packet, including discriminator setting
     @Override
     protected void encode(ChannelHandlerContext ctx, AbstractPacket msg, List<Object> out) throws Exception
     {
@@ -90,7 +87,6 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
         out.add(proxyPacket);
     }
 
-    // In line decoding and handling of the packet
     @Override
     protected void decode(ChannelHandlerContext ctx, FMLProxyPacket msg, List<Object> out) throws Exception
     {
@@ -129,10 +125,15 @@ public class PacketPipeline extends MessageToMessageCodec<FMLProxyPacket, Abstra
     public void initialise()
     {
         this.channels = NetworkRegistry.INSTANCE.newChannel(Totemic.MOD_ID, this);
+        registerPackets();
     }
 
-    // Method to call from FMLPostInitializationEvent
-    // Ensures that packet discriminators are common between server and client by using logical sorting
+    public void registerPackets()
+    {
+        registerPacket(DrumPacket.class);
+    }
+
+
     public void postInitialise()
     {
         if(this.isPostInitialised)

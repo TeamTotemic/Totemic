@@ -12,11 +12,9 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.block.BlockTotemWoods;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.TileTotem;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
 import totemic_commons.pokefenn.util.EntityUtil;
 

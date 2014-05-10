@@ -26,11 +26,11 @@ import java.util.List;
  * Date: 09/12/13
  * Time: 14:35
  */
-public class BlockTotemWoods extends BlockLog implements ITotemicStaffUsage
+public class BlockSylvanLog extends BlockLog implements ITotemicStaffUsage
 {
 
 
-    public BlockTotemWoods()
+    public BlockSylvanLog()
     {
         super();
         setBlockName(Strings.TOTEM_WOODS_NAME);

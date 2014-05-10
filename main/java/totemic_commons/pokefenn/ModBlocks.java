@@ -37,12 +37,12 @@ public final class ModBlocks
     public static void init()
     {
 
-        totemWoods = new BlockTotemWoods();
+        totemWoods = new BlockSylvanLog();
         totemIntelligence = new BlockTotemIntelligence();
         totemSocket = new BlockTotemSocket();
         chlorophyll = new BlockChlorophyll();
-        totemSapling = new BlockTotemSapling();
-        totemLeaves = new BlockTotemLeaves();
+        totemSapling = new BlockSylvanSapling();
+        totemLeaves = new BlockSylvanLeaves();
         //totemCauldron = new BlockTotemCauldron();
         moonglow = new BlockMoonglow();
         totemCeremonyIntelligence = new BlockCeremonyIntelligence();

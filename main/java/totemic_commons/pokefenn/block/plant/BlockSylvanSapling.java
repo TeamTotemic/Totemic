@@ -24,11 +24,11 @@ import java.util.Random;
  * Date: 12/02/14
  * Time: 12:55
  */
-public class BlockTotemSapling extends BlockSapling
+public class BlockSylvanSapling extends BlockSapling
 {
     private static TotemTreeGeneration treeGen = new TotemTreeGeneration(true);
 
-    public BlockTotemSapling()
+    public BlockSylvanSapling()
     {
         super();
         setBlockName(Strings.TOTEM_SAPLING_NAME);
