@@ -45,10 +45,8 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
 
         if(!world.isRemote)
         {
-            System.out.println("yes?");
             if(tileDrum.canPlay)
             {
-                System.out.println("this far");
                 tileDrum.canPlay = false;
                 TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));
                 //world.spawnParticle("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, (double) 100 / 24.0D, 0.0D, 0.0D);

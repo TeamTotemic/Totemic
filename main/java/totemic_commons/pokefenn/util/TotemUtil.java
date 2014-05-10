@@ -41,32 +41,17 @@ public class TotemUtil
     {
         int armourAmounts = getArmourAmounts(player);
 
-        //if(Totemic.baublesLoaded)
-        {
-            player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), baubleIncrease ? getStrength(player, defaultStrength) + getTotemBaublesAmount(player) : getStrength(player, defaultStrength)));
-        }/* else
-        {
-            player.addPotionEffect(new PotionEffect(potion.id, defaultTime + (armourAmounts * multiplicationAmount), getStrength(player, defaultStrength)));
-        }
-        */
+        player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), baubleIncrease ? getStrength(player, defaultStrength) + getTotemBaublesAmount(player) : getStrength(player, defaultStrength)));
     }
 
     public static void addNegitivePotionEffect(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {
         int armourAmounts = getArmourAmounts(player);
 
-        //if(Totemic.baublesLoaded)
-        {
-            int totalDecrement = getArmourAmounts(player) + getTotemBaublesAmount(player);
+        int totalDecrement = armourAmounts + getTotemBaublesAmount(player);
 
-            if(totalDecrement < 4)
-                player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegitive(player, defaultStrength)));
-        }/* else
-        {
-            if(armourAmounts < 4)
-                player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (armourAmounts * multiplicationAmount), getStrengthForNegitive(player, defaultStrength)));
-        }
-        */
+        if(totalDecrement < 4)
+            player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegitive(player, defaultStrength)));
     }
 
     public static int getStrength(EntityPlayer player, int defaultStrength)
@@ -83,20 +68,18 @@ public class TotemUtil
     {
         int j = 0;
 
-        //if(Totemic.baublesLoaded)
-        {
-            IInventory baubleInventory = BaublesApi.getBaubles(player);
+        IInventory baubleInventory = BaublesApi.getBaubles(player);
 
-            for(int i = 0; i < baubleInventory.getSizeInventory(); i++)
+        for(int i = 0; i < baubleInventory.getSizeInventory(); i++)
+        {
+            if(baubleInventory.getStackInSlot(i) != null)
             {
-                if(baubleInventory.getStackInSlot(i) != null)
+                if(baubleInventory.getStackInSlot(i).getItem() instanceof ITotemBauble)
                 {
-                    if(baubleInventory.getStackInSlot(i).getItem() instanceof ITotemBauble)
-                    {
-                        j += ((ITotemBauble) baubleInventory.getStackInSlot(i).getItem()).getTotemEfficiency(player.worldObj, baubleInventory.getStackInSlot(i), player);
-                    }
+                    j += ((ITotemBauble) baubleInventory.getStackInSlot(i).getItem()).getTotemEfficiency(player.worldObj, baubleInventory.getStackInSlot(i), player);
                 }
             }
+
         }
 
         return j;
@@ -122,17 +105,15 @@ public class TotemUtil
                         {
                             int[] musicArray = ((IMusicAcceptor) block).getMusicArray();
 
-                            if(!(musicArray[musicEnum.ordinal()] > musicArray.length))
+                            if(musicArray[musicEnum.ordinal()] < musicArray.length + 1)
                             {
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
-                                    System.out.println("if 1");
                                     musicArray[musicEnum.ordinal()] = musicMaximum;
                                     return;
 
                                 } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
                                 {
-                                    System.out.println("if 2");
                                     musicArray[musicEnum.ordinal()] += musicAmount;
                                     return;
                                 }
@@ -157,10 +138,7 @@ public class TotemUtil
                         {
                             int[] musicArray = ((IMusicAcceptor) block).getMusicArray();
 
-                            System.out.println(musicArray.length);
-
-                            /*
-                            if(musicArray[musicEnum.ordinal()] <= musicArray.length)
+                            if(musicArray[musicEnum.ordinal()] < musicArray.length + 1)
                             {
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
@@ -173,7 +151,6 @@ public class TotemUtil
                                     return;
                                 }
                             }
-                            */
                         }
 
                     }
