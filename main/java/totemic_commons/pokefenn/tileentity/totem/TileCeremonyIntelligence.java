@@ -16,7 +16,6 @@ import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.plant.IPlantDrain;
-import totemic_commons.pokefenn.api.plant.PlantEnum;
 import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
 import totemic_commons.pokefenn.lib.PlantIds;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
@@ -180,7 +179,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                                     {
                                         //if(((EntityItem) entity).getEntityItem().getItem() == ceremonyRegistry.getItem().getItem() && ((EntityItem) entity).getEntityItem().getItemDamage() == ceremonyRegistry.getItem().getItemDamage())
                                         {
-                                            if(arePlantsValid(ceremonyRegistry))
+                                            //if(arePlantsValid(ceremonyRegistry))
                                             {
                                                 entity.setDead();
                                                 this.currentCeremony = ceremonyRegistry.getCeremonyID();
@@ -192,7 +191,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                                 }
                             }
                         }
-                    } else if(arePlantsValid(ceremonyRegistry))
+                    } //else if(arePlantsValid(ceremonyRegistry))
                     {
                         this.currentCeremony = ceremonyRegistry.getCeremonyID();
                         System.out.println(currentCeremony);
@@ -205,6 +204,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         }
     }
 
+    /*
     public static PlantEnum getEnumFromPlant(Block block)
     {
         if(block != null)
@@ -253,7 +253,6 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public boolean arePlantsValid(CeremonyRegistry ceremonyRegistry)
     {
-        /*
         World world = this.worldObj;
 
         int x = this.xCoord;
@@ -279,10 +278,11 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                 return true;
             }
         }
-        */
 
         return false;
     }
+
+    */
 
     public void drainPlant()
     {

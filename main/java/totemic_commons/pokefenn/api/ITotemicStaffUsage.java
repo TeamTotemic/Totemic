@@ -10,8 +10,22 @@ import net.minecraft.world.World;
 public interface ITotemicStaffUsage
 {
 
+    /**
+     * @param x
+     * @param y
+     * @param z
+     * @param player
+     * @param world
+     */
     public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world);
 
+    /**
+     * @param x
+     * @param y
+     * @param z
+     * @param player
+     * @param world
+     */
     public void onInfusedRightClick(int x, int y, int z, EntityPlayer player, World world);
 
 }

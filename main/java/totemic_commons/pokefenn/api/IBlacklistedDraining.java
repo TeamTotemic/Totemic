@@ -8,4 +8,7 @@ package totemic_commons.pokefenn.api;
  */
 public interface IBlacklistedDraining
 {
+    /**
+     * Implement this interface to say "HEY DONT DRAIN ME"
+     */
 }
