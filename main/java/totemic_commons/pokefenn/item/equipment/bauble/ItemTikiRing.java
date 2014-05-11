@@ -14,7 +14,7 @@ import totemic_commons.pokefenn.lib.Strings;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemTikiRing  extends ItemTotemic implements IBauble, ITotemBauble
+public class ItemTikiRing extends ItemTotemic implements IBauble, ITotemBauble
 {
 
     public ItemTikiRing()

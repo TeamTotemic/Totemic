@@ -10,5 +10,5 @@ Implement more instruments - Done, for now
 More baubles
 Tools (Eventually)
 Do armour model stuff
-Elfreet boss fight (Including the Hammer)
+Elfreet boss fight (Including the Halberd)
 Pandora's Box (Spawns mobs, needs to be sealed with a ceremony once opened, gives great strengths?)

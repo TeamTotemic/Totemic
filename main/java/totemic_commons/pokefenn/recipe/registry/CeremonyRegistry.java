@@ -17,33 +17,28 @@ public class CeremonyRegistry
 
     public static void addRecipes()
     {
+        //ceremonyRegistry.add(new CeremonyRegistry(false));
     }
 
     private final ItemStack[] item;
     private final boolean doesNeedItems;
-    private final MusicEnum instrument1;
-    private final MusicEnum instrument2;
-    private final MusicEnum instrument3;
-    private final MusicEnum instrument4;
+    private final MusicEnum[] instruments;
     private final int ceremonyID;
     private final ICeremonyEffect ceremonyEffect;
     private final int maximumTicks;
-    private final boolean lastsForever;
     private final MusicEnum preferedMusic;
+    private final boolean isInstant;
 
-    public CeremonyRegistry(boolean doesNeedItems, MusicEnum instrument1, MusicEnum instrument2, MusicEnum instrument3, MusicEnum instrument4, int ceremonyID, ICeremonyEffect ceremonyEffect, int maximumTicks, boolean lastsForever, MusicEnum preferedMusic, ItemStack... item)
+    public CeremonyRegistry(boolean doesNeedItems, MusicEnum[] instruments, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, boolean lastsForever, MusicEnum preferedMusic, ItemStack... item)
     {
         this.item = item;
         this.doesNeedItems = doesNeedItems;
-        this.instrument1 = instrument1;
-        this.instrument2 = instrument2;
-        this.instrument3 = instrument3;
-        this.instrument4 = instrument4;
+        this.instruments = instruments;
         this.ceremonyID = ceremonyID;
         this.ceremonyEffect = ceremonyEffect;
         this.maximumTicks = maximumTicks;
-        this.lastsForever = lastsForever;
         this.preferedMusic = preferedMusic;
+        this.isInstant = isInstant;
     }
 
     public ItemStack[] getItem()
@@ -56,24 +51,9 @@ public class CeremonyRegistry
         return this.doesNeedItems;
     }
 
-    public MusicEnum getInstrument1()
+    public MusicEnum[] getInstruments()
     {
-        return this.instrument1;
-    }
-
-    public MusicEnum getInstrument2()
-    {
-        return this.instrument2;
-    }
-
-    public MusicEnum getInstrument3()
-    {
-        return this.instrument3;
-    }
-
-    public MusicEnum getInstrument4()
-    {
-        return this.instrument4;
+        return this.instruments;
     }
 
     public int getCeremonyID()
@@ -91,9 +71,9 @@ public class CeremonyRegistry
         return this.maximumTicks;
     }
 
-    public boolean doesLastForever()
+    public boolean getIsInstant()
     {
-        return this.lastsForever;
+        return this.isInstant;
     }
 
     public MusicEnum getPreferedMusic()

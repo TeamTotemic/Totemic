@@ -12,10 +12,11 @@ public interface ITotemBauble
 {
 
     /**
-     *A way to say how much Totem Efficiency a Bauble will give
-     *@param player The player with the bauble
-     *@param itemStack The Itemstack of the item
-     *@param world The world that the player is in
+     * A way to say how much Totem Efficiency a Bauble will give
+     *
+     * @param player    The player with the bauble
+     * @param itemStack The Itemstack of the item
+     * @param world     The world that the player is in
      */
     public int getTotemEfficiency(World world, ItemStack itemStack, EntityPlayer player);
 }

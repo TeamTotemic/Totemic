@@ -26,8 +26,6 @@ public class TotemicRecipes
         shapedRecipes();
 
         TotemRegistry.addTotems();
-        //PotionItemRegistry.addRecipes();
-        //PotionRegistry.addRecipes();
         CeremonyRegistry.addRecipes();
     }
 

@@ -70,7 +70,7 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
             }
             if(world.rand.nextInt(40) == 1 && player.isSneaking())
             {
-                TotemUtil.playMusicFromItemForCeremonySelector(stack, player, (int)player.posX, (int)player.posY, (int)player.posZ, musicEnum(), 6);
+                TotemUtil.playMusicFromItemForCeremonySelector(stack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(), 6);
                 MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) player.posX + 0.5D, (double) player.posY + 1.2D, (double) player.posZ + 0.5D, 8, 0.0D, 0.0D, 0.0D, 0.0D);
             }
             if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)

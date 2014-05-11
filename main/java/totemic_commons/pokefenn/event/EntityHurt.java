@@ -27,8 +27,8 @@ public class EntityHurt
         if(event.entityLiving instanceof EntityPlayer && sourceDamageEntity != null)
         {
             if(random.nextInt(3) == 1)
-            if(TotemUtil.getArmourAmounts((EntityPlayer) event.entityLiving) == 4)
-                sourceDamageEntity.attackEntityFrom(DamageSource.generic, event.ammount % 2);
+                if(TotemUtil.getArmourAmounts((EntityPlayer) event.entityLiving) == 4)
+                    sourceDamageEntity.attackEntityFrom(DamageSource.generic, event.ammount % 2);
         }
     }
 

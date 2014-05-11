@@ -18,7 +18,7 @@ public class EntityJump
     {
         if(event.entityLiving instanceof EntityPlayer && event.entityLiving.isPotionActive(ModPotions.batPotion))
         {
-           // event.entityLiving.motionY += 0.2;
+            // event.entityLiving.motionY += 0.2;
         }
     }
 }
