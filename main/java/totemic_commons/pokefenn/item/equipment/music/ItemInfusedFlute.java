@@ -65,13 +65,13 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
             if(world.rand.nextInt(50) == 1 && !player.isSneaking())
             {
                 TotemUtil.playMusicFromItem(world, player, this.musicEnum(), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
-                MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) player.posX + 0.5D, (double) player.posY + 1.2D, (double) player.posZ + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+                MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) player.posX + 0.5D, (double) player.posY + 1.2D, (double) player.posZ + 0.5D, 8, 0.0D, 0.0D, 0.0D, 0.0D);
                 return stack;
             }
             if(world.rand.nextInt(40) == 1 && player.isSneaking())
             {
                 TotemUtil.playMusicFromItemForCeremonySelector(stack, player, (int)player.posX, (int)player.posY, (int)player.posZ, musicEnum(), 6);
-                MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) player.posX + 0.5D, (double) player.posY + 1.2D, (double) player.posZ + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+                MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) player.posX + 0.5D, (double) player.posY + 1.2D, (double) player.posZ + 0.5D, 8, 0.0D, 0.0D, 0.0D, 0.0D);
             }
             if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)
             {
