@@ -33,7 +33,6 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public boolean isDoingEffect;
     public boolean hasValidPlants;
     public int currentCeremony;
-    public int overallDrained;
     public int socketAmount;
     public int shiftedCeremonyValue;
     public String player;
@@ -52,7 +51,6 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         socketAmount = 0;
         player = "";
         currentTime = 0;
-        overallDrained = 0;
         dancingEfficiency = 0;
         music = new int[MusicEnum.values().length];
         plantEfficiency = 0;
@@ -72,11 +70,6 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
         if(!this.worldObj.isRemote)
         {
-
-            for(int aMusic : music)
-            {
-                //    System.out.println(aMusic);
-            }
 
             if(currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony != 0)
             {
@@ -98,21 +91,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                         isDoingEffect = true;
                         CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect().effect(this);
                     }
-                } /*else*/
-                if(worldObj.getWorldTime() % 10L == 0L && !CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
-                {
-                    this.drainPlant();
                 }
-
-                if(worldObj.getWorldTime() % 100 == 0)
-                    if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
-                        this.drainPlant();
-
-                //if(worldObj.getWorldTime() % 100 == 0)
-                   // if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
-                   //     if(overallDrained < CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCostPer5Seconds())
-                   //         resetEverything();
-
             }
         }
     }
@@ -123,7 +102,6 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         currentTime = 0;
         dancingEfficiency = 0;
         isDoingEffect = false;
-        overallDrained = 0;
     }
 
     public int getDrained(int i)
@@ -306,20 +284,6 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         return false;
     }
 
-    public boolean canStartCeremony(int overall, int plant, int percentage)
-    {
-        if(overallDrained > overall)
-        {
-            if(getDrained(plant) != 0 && overall % percentage >= getDrained(plant))
-            {
-                this.overallDrained = 0;
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     public void drainPlant()
     {
         World world = this.worldObj;
@@ -400,12 +364,12 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         nbtTagCompound.setBoolean("isDoingEffect", isDoingEffect);
         nbtTagCompound.setBoolean("hasValidPlants", hasValidPlants);
         nbtTagCompound.setInteger("currentCeremony", currentCeremony);
-        nbtTagCompound.setInteger("overallDrained", overallDrained);
         nbtTagCompound.setString("player", player);
         nbtTagCompound.setInteger("currentTime", currentTime);
         nbtTagCompound.setInteger("dancingEfficiency", dancingEfficiency);
         nbtTagCompound.setIntArray("music", music);
         nbtTagCompound.setInteger("plantEfficiency", plantEfficiency);
+        nbtTagCompound.setIntArray("musicSelector", musicSelector);
     }
 
     @Override
@@ -417,12 +381,12 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         isDoingEffect = nbtTagCompound.getBoolean("isDoingEffect");
         hasValidPlants = nbtTagCompound.getBoolean("hasValidPlants");
         currentCeremony = nbtTagCompound.getInteger("currentCeremony");
-        overallDrained = nbtTagCompound.getInteger("overallDrained");
         player = nbtTagCompound.getString("player");
         dancingEfficiency = nbtTagCompound.getInteger("dancingEfficiency");
         currentTime = nbtTagCompound.getInteger("currentTime");
         music = nbtTagCompound.getIntArray("music");
         plantEfficiency = nbtTagCompound.getInteger("plantEfficiency");
+        musicSelector = nbtTagCompound.getIntArray("musicSelector");
     }
 
 
@@ -450,5 +414,11 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public int[] getMusicSelector()
     {
         return musicSelector;
+    }
+
+    @Override
+    public boolean doesMusicSelect()
+    {
+        return true;
     }
 }

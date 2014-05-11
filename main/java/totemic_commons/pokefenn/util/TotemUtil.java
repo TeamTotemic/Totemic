@@ -97,7 +97,7 @@ public class TotemUtil
                 {
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
-                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor)
+                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect())
                         {
                             int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
 
@@ -131,7 +131,7 @@ public class TotemUtil
                 {
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
-                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor)
+                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect())
                         {
                             int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
 

@@ -9,4 +9,6 @@ public interface IMusicAcceptor
     public int[] getMusicArray();
 
     public int[] getMusicSelector();
+
+    public boolean doesMusicSelect();
 }

@@ -447,4 +447,16 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
     {
         return music;
     }
+
+    @Override
+    public int[] getMusicSelector()
+    {
+        return new int[0];
+    }
+
+    @Override
+    public boolean doesMusicSelect()
+    {
+        return false;
+    }
 }
