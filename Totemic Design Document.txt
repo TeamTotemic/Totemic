@@ -61,3 +61,10 @@ Dancing around the Ceremony (As in, running around it) also helps preform it, an
 Fireworks will also come towards it, but only a few can be used, and the rest will be useless.
 Having large fires will also help a lot, and bonfires also (When I code them, one day, they will cost fuel, but be very good for the ceremony)
 Some ceremonies may also take Items, but most don't.
+
+Crafting Ceremony:
+
+It has one central block, the intelligence, this can hold the main item which is being crafted with.
+Around it you place 4 Braziers, these are how you place the items to craft it, also, you can throw in other blocks to do things like improve efficiency.
+Once you have it all ready, you start the ceremony, and throw the items you want to imbue into the main item into the braziers, then set them alight.
+You do the normal ceremony things, play music, dancing around it, wearing ITotemEfficiency armour/baubles, having giant flames and other things.

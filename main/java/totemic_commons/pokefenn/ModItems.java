@@ -7,6 +7,7 @@ import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
+import totemic_commons.pokefenn.item.equipment.bauble.ItemTotemBeadBelt;
 import totemic_commons.pokefenn.item.equipment.music.ItemInfusedFlute;
 import totemic_commons.pokefenn.item.equipment.weapon.ItemHuntingKnife;
 import totemic_commons.pokefenn.item.fluid.ItemBottleChlorophyll;
@@ -34,7 +35,6 @@ public final class ModItems
     public static Item subItems;
     public static Item bottleChlorophyll;
     public static Item totems;
-    public static Item totemBeads;
     public static Item blazingChlorophyllCrystal;
     public static Item infusedTotemicStaff;
     public static Item totempedia;
@@ -56,6 +56,7 @@ public final class ModItems
     public static Item herculeseBauble;
     public static Item heiTiki;
     public static Item tikiRing;
+    public static Item totemBeadSatchel;
 
     public static void init()
     {
@@ -123,9 +124,11 @@ public final class ModItems
         herculeseBauble = new ItemHerculesBauble();
         //tikiRing = new ItemTikiRing();
         heiTiki = new ItemHeiTiki();
+        totemBeadSatchel = new ItemTotemBeadBelt();
 
         GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
         GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);
+        GameRegistry.registerItem(totemBeadSatchel, Strings.TOTEM_BEAD_BELT_NAME);
         //GameRegistry.registerItem(tikiRing, Strings.TIKI_RING_NAME);
     }
 
