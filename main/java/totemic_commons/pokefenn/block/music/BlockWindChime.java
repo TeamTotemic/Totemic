@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.IMusic;
@@ -29,6 +30,7 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
         if(!world.isRemote && player.isSneaking())
         {
             TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(), 6);
+            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
         }
         return true;
     }

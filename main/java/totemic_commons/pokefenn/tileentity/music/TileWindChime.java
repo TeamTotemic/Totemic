@@ -6,6 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.music.MusicEnum;
@@ -50,9 +51,11 @@ public class TileWindChime extends TileTotemic
                     {
                         BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
                         TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME_MUSIC, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null));
+                        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
                     }
             }
 
+            //TODO make sure this is right, im tired
             if(currentTime >= 0)
             {
                 isPlaying = false;

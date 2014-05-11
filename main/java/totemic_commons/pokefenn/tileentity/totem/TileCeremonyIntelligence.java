@@ -28,12 +28,8 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class TileCeremonyIntelligence extends TileTotemic implements IMusicAcceptor
 {
-    public boolean isBurning;
     public boolean isDoingEffect;
-    public boolean hasValidPlants;
     public int currentCeremony;
-    public int socketAmount;
-    public int shiftedCeremonyValue;
     public String player;
     public int currentTime;
     public int dancingEfficiency;
@@ -43,11 +39,8 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public TileCeremonyIntelligence()
     {
-        isBurning = false;
         isDoingEffect = false;
-        hasValidPlants = false;
         currentCeremony = 0;
-        socketAmount = 0;
         player = "";
         currentTime = 0;
         dancingEfficiency = 0;
@@ -284,55 +277,12 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     */
 
-    public void drainPlant()
-    {
-        World world = this.worldObj;
-
-        int radius = 8;
-        int yAxis = 3;
-
-        trackPlayersMovements();
-
-        for(int i = -radius; i <= radius; i++)
-            for(int j = -yAxis; j <= yAxis; j++)
-                for(int k = -radius; k <= radius; k++)
-                {
-                    Block plantSelected = world.getBlock(xCoord + i, yCoord + j, zCoord + k);
-                    if(plantSelected != null)
-                    {
-
-                        boolean isNotFlower = !plantSelected.getUnlocalizedName().contains("flower");
-                        boolean isNotBush = !plantSelected.getUnlocalizedName().contains("bush");
-                        boolean isNotBerry = !plantSelected.getUnlocalizedName().contains("berry");
-                        boolean isNotKelp = !plantSelected.getUnlocalizedName().contains("kelp");
-
-                        if(plantSelected instanceof IPlantable && isNotFlower && isNotBerry && isNotBush && isNotKelp)
-                        {
-                            if(world.getBlockMetadata(xCoord + i, yCoord + j, zCoord + k) >= 3)
-                            {
-                                if(plantEfficiency < 100)
-                                {
-                                    if(plantEfficiency + getPlantDrained(plantSelected) > 100)
-                                    {
-                                        world.setBlockMetadataWithNotify(xCoord + i, yCoord + j, zCoord + k, world.getBlockMetadata(xCoord + i, yCoord + j, zCoord + k) - 1, 2);
-                                        plantEfficiency = 100;
-                                    } else
-                                    {
-                                        plantEfficiency += getPlantDrained(plantSelected);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-    }
-
     public int getEffiencyFromBlock(Block block)
     {
         //if(efficiency < 50)
         {
             if(block == ModBlocks.totemTorch)
-                return 5;
+                return 4;
             if(block == ModBlocks.totemSocket)
                 return 3;
             if(block == Blocks.fire)
@@ -360,9 +310,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     {
         super.writeToNBT(nbtTagCompound);
 
-        nbtTagCompound.setBoolean("isBurning", isBurning);
         nbtTagCompound.setBoolean("isDoingEffect", isDoingEffect);
-        nbtTagCompound.setBoolean("hasValidPlants", hasValidPlants);
         nbtTagCompound.setInteger("currentCeremony", currentCeremony);
         nbtTagCompound.setString("player", player);
         nbtTagCompound.setInteger("currentTime", currentTime);
@@ -377,9 +325,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     {
         super.readFromNBT(nbtTagCompound);
 
-        isBurning = nbtTagCompound.getBoolean("isBurning");
         isDoingEffect = nbtTagCompound.getBoolean("isDoingEffect");
-        hasValidPlants = nbtTagCompound.getBoolean("hasValidPlants");
         currentCeremony = nbtTagCompound.getInteger("currentCeremony");
         player = nbtTagCompound.getString("player");
         dancingEfficiency = nbtTagCompound.getInteger("dancingEfficiency");
