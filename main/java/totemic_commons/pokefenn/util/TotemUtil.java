@@ -101,19 +101,19 @@ public class TotemUtil
                         {
                             int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
 
-                            if(musicSelectorArray[0] != 0)
+                            if(musicSelectorArray[0] == 0)
                             {
                                 musicSelectorArray[0] = musicEnum.ordinal();
                                 return;
-                            } else if(musicSelectorArray[1] != 0)
+                            } else if(musicSelectorArray[1] == 0)
                             {
                                 musicSelectorArray[1] = musicEnum.ordinal();
                                 return;
-                            } else if(musicSelectorArray[2] != 0)
+                            } else if(musicSelectorArray[2] == 0)
                             {
                                 musicSelectorArray[2] = musicEnum.ordinal();
                                 return;
-                            } else if(musicSelectorArray[3] != 0)
+                            } else if(musicSelectorArray[3] == 0)
                             {
                                 musicSelectorArray[3] = musicEnum.ordinal();
                                 return;

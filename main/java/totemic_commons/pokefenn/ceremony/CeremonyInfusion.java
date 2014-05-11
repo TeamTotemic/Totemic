@@ -21,6 +21,7 @@ public class CeremonyInfusion implements ICeremonyEffect
         int z = tileCeremonyIntelligence.zCoord;
 
         int neededDrained = 100;
+        /*
 
         if(world.blockExists(x - 3, y, z + 3) && world.getBlock(x + 3, y, z + 3) instanceof BlockSapling)
         {
@@ -53,6 +54,7 @@ public class CeremonyInfusion implements ICeremonyEffect
                 world.setBlock(x + 3, y, z - 3, ModBlocks.totemSapling);
             }
         }
+        */
 
 
     }
