@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.util;
 
 import net.minecraft.util.ResourceLocation;
-import totemic_commons.pokefenn.lib.Reference;
+import totemic_commons.pokefenn.Totemic;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,7 +21,7 @@ public class ResourceLocationHelper
     public static ResourceLocation getResourceLocation(String path)
     {
 
-        return getResourceLocation(Reference.MOD_NAME.toLowerCase(), path);
+        return getResourceLocation(Totemic.MOD_NAME.toLowerCase(), path);
     }
 
 }

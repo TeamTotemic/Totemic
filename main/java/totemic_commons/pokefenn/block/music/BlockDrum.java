@@ -38,14 +38,14 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     {
         TileDrum tileDrum = (TileDrum) world.getTileEntity(x, y, z);
 
-        if(world.isRemote)
-        {
-        //    Totemic.packetPipeline.sendToDimension(new DrumPacket(x, y, z, tileDrum.canPlay), player.worldObj.provider.dimensionId);
-        }
-
         if(!world.isRemote)
         {
-            if(tileDrum.canPlay)
+            if(player.isSneaking())
+            {
+                TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(), 6);
+                return true;
+            }
+            if(tileDrum.canPlay && !player.isSneaking())
             {
                 tileDrum.canPlay = false;
                 TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));

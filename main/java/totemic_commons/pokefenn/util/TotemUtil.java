@@ -4,6 +4,7 @@ import baubles.api.BaublesApi;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
@@ -14,6 +15,7 @@ import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
+import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 
 /**
  * Created with IntelliJ IDEA.
@@ -83,6 +85,76 @@ public class TotemUtil
         }
 
         return j;
+    }
+
+    public static void playMusicFromItemForCeremonySelector(ItemStack itemStack, EntityPlayer player, int x, int y, int z, MusicEnum musicEnum, int radius)
+    {
+        World world = player.worldObj;
+
+        for(int i = -radius; i <= radius; i++)
+            for(int j = -radius; j <= radius; j++)
+                for(int k = -radius; k <= radius; k++)
+                {
+                    if(world.getBlock(x + i, y + j, z + k) != null)
+                    {
+                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor)
+                        {
+                            int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
+
+                            if(musicSelectorArray[0] != 0)
+                            {
+                                musicSelectorArray[0] = musicEnum.ordinal();
+                                return;
+                            } else if(musicSelectorArray[1] != 0)
+                            {
+                                musicSelectorArray[1] = musicEnum.ordinal();
+                                return;
+                            } else if(musicSelectorArray[2] != 0)
+                            {
+                                musicSelectorArray[2] = musicEnum.ordinal();
+                                return;
+                            } else if(musicSelectorArray[3] != 0)
+                            {
+                                musicSelectorArray[3] = musicEnum.ordinal();
+                                return;
+                            }
+                        }
+                    }
+                }
+    }
+
+    public static void playMusicFromBlockForCeremonySelector(World world, EntityPlayer player, int x, int y, int z, MusicEnum musicEnum, int radius)
+    {
+        for(int i = -radius; i <= radius; i++)
+            for(int j = -radius; j <= radius; j++)
+                for(int k = -radius; k <= radius; k++)
+                {
+                    if(world.getBlock(x + i, y + j, z + k) != null)
+                    {
+                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor)
+                        {
+                            int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
+
+                            if(musicSelectorArray[0] != 0)
+                            {
+                                musicSelectorArray[0] = musicEnum.ordinal();
+                                return;
+                            } else if(musicSelectorArray[1] != 0)
+                            {
+                                musicSelectorArray[1] = musicEnum.ordinal();
+                                return;
+                            } else if(musicSelectorArray[2] != 0)
+                            {
+                                musicSelectorArray[2] = musicEnum.ordinal();
+                                return;
+                            } else if(musicSelectorArray[3] != 0)
+                            {
+                                musicSelectorArray[3] = musicEnum.ordinal();
+                                return;
+                            }
+                        }
+                    }
+                }
     }
 
     public static void playMusicForCeremony(TileTotemic tileCeremony, MusicEnum musicEnum, int radius, int musicMaximum, int musicAmount)

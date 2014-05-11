@@ -41,6 +41,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public int dancingEfficiency;
     public int[] music;
     public int plantEfficiency;
+    public int[] musicSelector;
 
     public TileCeremonyIntelligence()
     {
@@ -55,6 +56,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         dancingEfficiency = 0;
         music = new int[MusicEnum.values().length];
         plantEfficiency = 0;
+        musicSelector = new int[4];
     }
 
     @Override
@@ -73,7 +75,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
             for(int aMusic : music)
             {
-            //    System.out.println(aMusic);
+                //    System.out.println(aMusic);
             }
 
             if(currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony != 0)
@@ -106,10 +108,10 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                     if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
                         this.drainPlant();
 
-                if(worldObj.getWorldTime() % 100 == 0)
-                    if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
-                        if(overallDrained < CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCostPer5Seconds())
-                            resetEverything();
+                //if(worldObj.getWorldTime() % 100 == 0)
+                   // if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
+                   //     if(overallDrained < CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCostPer5Seconds())
+                   //         resetEverything();
 
             }
         }
@@ -273,6 +275,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public boolean arePlantsValid(CeremonyRegistry ceremonyRegistry)
     {
+        /*
         World world = this.worldObj;
 
         int x = this.xCoord;
@@ -298,6 +301,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                 return true;
             }
         }
+        */
 
         return false;
     }
@@ -440,5 +444,11 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public int[] getMusicArray()
     {
         return this.music;
+    }
+
+    @Override
+    public int[] getMusicSelector()
+    {
+        return musicSelector;
     }
 }

@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.recipe.registry;
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.api.plant.PlantEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,30 +21,28 @@ public class CeremonyRegistry
 
     private final ItemStack[] item;
     private final boolean doesNeedItems;
-    private final PlantEnum plant1;
-    private final PlantEnum plant2;
-    private final PlantEnum plant3;
-    private final PlantEnum plant4;
+    private final MusicEnum instrument1;
+    private final MusicEnum instrument2;
+    private final MusicEnum instrument3;
+    private final MusicEnum instrument4;
     private final int ceremonyID;
     private final ICeremonyEffect ceremonyEffect;
     private final int maximumTicks;
     private final boolean lastsForever;
-    private final int costPer5Seconds;
     private final MusicEnum preferedMusic;
 
-    public CeremonyRegistry(boolean doesNeedItems, PlantEnum plant1, PlantEnum plant2, PlantEnum plant3, PlantEnum plant4, int ceremonyID, ICeremonyEffect ceremonyEffect, int maximumTicks, boolean lastsForever, int costPer5Seconds, MusicEnum preferedMusic, ItemStack... item)
+    public CeremonyRegistry(boolean doesNeedItems, MusicEnum instrument1, MusicEnum instrument2, MusicEnum instrument3, MusicEnum instrument4, int ceremonyID, ICeremonyEffect ceremonyEffect, int maximumTicks, boolean lastsForever, MusicEnum preferedMusic, ItemStack... item)
     {
         this.item = item;
         this.doesNeedItems = doesNeedItems;
-        this.plant1 = plant1;
-        this.plant2 = plant2;
-        this.plant3 = plant3;
-        this.plant4 = plant4;
+        this.instrument1 = instrument1;
+        this.instrument2 = instrument2;
+        this.instrument3 = instrument3;
+        this.instrument4 = instrument4;
         this.ceremonyID = ceremonyID;
         this.ceremonyEffect = ceremonyEffect;
         this.maximumTicks = maximumTicks;
         this.lastsForever = lastsForever;
-        this.costPer5Seconds = costPer5Seconds;
         this.preferedMusic = preferedMusic;
     }
 
@@ -59,24 +56,24 @@ public class CeremonyRegistry
         return this.doesNeedItems;
     }
 
-    public PlantEnum getPlant1()
+    public MusicEnum getInstrument1()
     {
-        return this.plant1;
+        return this.instrument1;
     }
 
-    public PlantEnum getPlant2()
+    public MusicEnum getInstrument2()
     {
-        return this.plant2;
+        return this.instrument2;
     }
 
-    public PlantEnum getPlant3()
+    public MusicEnum getInstrument3()
     {
-        return this.plant3;
+        return this.instrument3;
     }
 
-    public PlantEnum getPlant4()
+    public MusicEnum getInstrument4()
     {
-        return this.plant4;
+        return this.instrument4;
     }
 
     public int getCeremonyID()
@@ -99,14 +96,9 @@ public class CeremonyRegistry
         return this.lastsForever;
     }
 
-    public int getCostPer5Seconds()
-    {
-        return this.costPer5Seconds;
-    }
-
     public MusicEnum getPreferedMusic()
     {
-        return  this.preferedMusic;
+        return this.preferedMusic;
     }
 
 

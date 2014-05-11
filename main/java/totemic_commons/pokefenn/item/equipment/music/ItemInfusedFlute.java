@@ -61,9 +61,15 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
     {
         if(!world.isRemote)
         {
-            if(world.rand.nextInt(50) == 1)
-                TotemUtil.playMusicFromItem(world, player, this.musicEnum(), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int)player.posX, (int)player.posY, (int)player.posZ, true, player), this.getMaximumMusic(world, (int)player.posX, (int)player.posY, (int)player.posZ, true, player), this.getMusicOutput(world, (int)player.posX, (int)player.posY, (int)player.posZ, true, player));
-            player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 30, 1));
+            if(world.rand.nextInt(50) == 1 && !player.isSneaking())
+            {
+                TotemUtil.playMusicFromItem(world, player, this.musicEnum(), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
+                return stack;
+            }
+            if(world.rand.nextInt(40) == 1 && player.isSneaking())
+            {
+                TotemUtil.playMusicFromItemForCeremonySelector(stack, player, (int)player.posX, (int)player.posY, (int)player.posZ, musicEnum(), 6);
+            }
             if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)
             {
                 for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
