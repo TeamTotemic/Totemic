@@ -65,25 +65,27 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
             if(currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony != 0)
             {
-                if(!CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever() && currentTime >= CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMaximumTicks())
+                //if(!CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever() && currentTime >= CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMaximumTicks())
                 {
-                    resetEverything();
+                //    resetEverything();
                     return;
                 }
+                /*
 
-                if(isDoingEffect && !CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
-                    currentTime++;
+                //if(isDoingEffect && !CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).doesLastForever())
+                //    currentTime++;
 
-                ICeremonyEffect effect = CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect();
+                //ICeremonyEffect effect = CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect();
 
                 //if(!isDoingEffect && canStartCeremony(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getOverallDrain(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPlantForPercentage(), CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getPercentage()))
                 {
-                    if(effect != null)
+                    //if(effect != null)
                     {
-                        isDoingEffect = true;
-                        CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect().effect(this);
+                       // isDoingEffect = true;
+                        //CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect().effect(this);
                     }
                 }
+                */
             }
         }
     }

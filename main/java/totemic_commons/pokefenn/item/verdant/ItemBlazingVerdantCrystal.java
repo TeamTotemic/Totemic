@@ -39,7 +39,6 @@ public class ItemBlazingVerdantCrystal extends ItemTotemic implements IVerdantCr
         copiedStack.stackSize = 1;
         copiedStack.setItemDamage(itemStack.getItemDamage() + 1);
         return copiedStack;
-
     }
 
     @Override
