@@ -20,7 +20,7 @@ public class CeremonyRegistry
         //ceremonyRegistry.add(new CeremonyRegistry(false));
     }
 
-    private final ItemStack[] item;
+    private final ItemStack item;
     private final boolean doesNeedItems;
     private final MusicEnum[] instruments;
     private final int ceremonyID;
@@ -29,7 +29,7 @@ public class CeremonyRegistry
     private final MusicEnum preferedMusic;
     private final boolean isInstant;
 
-    public CeremonyRegistry(boolean doesNeedItems, MusicEnum[] instruments, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, boolean lastsForever, MusicEnum preferedMusic, ItemStack... item)
+    public CeremonyRegistry(boolean doesNeedItems, MusicEnum[] instruments, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, boolean lastsForever, MusicEnum preferedMusic, ItemStack item)
     {
         this.item = item;
         this.doesNeedItems = doesNeedItems;
@@ -41,7 +41,7 @@ public class CeremonyRegistry
         this.isInstant = isInstant;
     }
 
-    public ItemStack[] getItem()
+    public ItemStack getItem()
     {
         return this.item;
     }
