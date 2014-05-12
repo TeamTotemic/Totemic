@@ -12,15 +12,10 @@ public class ModEvents
     public static void init()
     {
         MinecraftForge.EVENT_BUS.register(new EntityUpdate());
-
         MinecraftForge.EVENT_BUS.register(new EntityHurt());
-
-        MinecraftForge.EVENT_BUS.register(new BucketEvent());
-
+        //MinecraftForge.EVENT_BUS.register(new BucketEvent());
         MinecraftForge.EVENT_BUS.register(new EntityFall());
-
         MinecraftForge.EVENT_BUS.register(new EntityJump());
-
         MinecraftForge.EVENT_BUS.register(new EntityDeath());
     }
 }

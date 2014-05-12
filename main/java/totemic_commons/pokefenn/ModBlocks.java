@@ -40,7 +40,7 @@ public final class ModBlocks
         totemWoods = new BlockSylvanLog();
         totemIntelligence = new BlockTotemIntelligence();
         totemSocket = new BlockTotemSocket();
-        chlorophyll = new BlockChlorophyll();
+        //chlorophyll = new BlockChlorophyll();
         totemSapling = new BlockSylvanSapling();
         totemLeaves = new BlockSylvanLeaves();
         //totemCauldron = new BlockTotemCauldron();
@@ -57,7 +57,7 @@ public final class ModBlocks
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
         GameRegistry.registerBlock(totemIntelligence, Strings.TOTEM_INTELLIGENCE_NAME);
         GameRegistry.registerBlock(totemSocket, Strings.TOTEM_SOCKET_NAME);
-        GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
+        //GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
         GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);
         GameRegistry.registerBlock(totemLeaves, Strings.TOTEM_LEAVES_NAME);
         //GameRegistry.registerBlock(totemCauldron, Strings.TOTEM_CAULDRON_NAME);

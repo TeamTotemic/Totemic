@@ -39,11 +39,12 @@ public class BucketEvent
         if((blockID == ModBlocks.chlorophyll) && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0)
         {
             world.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);
-            return new ItemStack(ModItems.bucketChlorophyll);
+            //return new ItemStack(ModItems.bucketChlorophyll);
         } else
         {
             return null;
         }
+        return null;
     }
 
 

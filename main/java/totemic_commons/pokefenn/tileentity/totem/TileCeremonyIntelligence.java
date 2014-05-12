@@ -68,12 +68,11 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         {
             if(!isDoingStartup)
                 for(CeremonyRegistry ceremonyRegistry : CeremonyRegistry.ceremonyRegistry)
-                {
                     if(ceremonyRegistry.getInstruments()[0].ordinal() == musicSelector[0] && ceremonyRegistry.getInstruments()[1].ordinal() == musicSelector[1] && ceremonyRegistry.getInstruments()[2].ordinal() == musicSelector[2] && ceremonyRegistry.getInstruments()[3].ordinal() == musicSelector[3])
                     {
+                        currentCeremony = ceremonyRegistry.getCeremonyID();
                         isDoingStartup = true;
                     }
-                }
 
             if(isDoingStartup)
             {
@@ -89,6 +88,14 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
                 if(effect != null && !isDoingEffect)
                 {
+                    if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getIsInstant())
+                    {
+                        effect.effect(this);
+                        currentCeremony = 0;
+                    } else
+                    {
+
+                    }
                     //TODO this is where i will do the actual effect
                 }
             }
@@ -100,7 +107,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         if(worldObj.getWorldTime() % 80L == 0)
         {
             //TODO Check for plants, rarely drain, not always.
-            drainPlantsForEfficieny();
+            findBlocksForEfficiency();
         }
 
         if(worldObj.getWorldTime() % 60L == 0)
@@ -117,6 +124,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public void getPlayersArmour()
     {
+        int p = 0;
 
         if(EntityUtil.getEntitiesInRange(this.worldObj, xCoord, yCoord, zCoord, 8, 8) != null)
         {
@@ -124,9 +132,12 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             {
                 if(entity instanceof EntityPlayer)
                 {
-                    int armourAndBaubles = TotemUtil.getArmourAmounts((EntityPlayer) entity) + TotemUtil.getTotemBaublesAmount((EntityPlayer) entity);
-
-                    armourEfficiency += armourAndBaubles;
+                    p++;
+                    if(p <= 3)
+                    {
+                        int armourAndBaubles = TotemUtil.getArmourAmounts((EntityPlayer) entity) + TotemUtil.getTotemBaublesAmount((EntityPlayer) entity);
+                        armourEfficiency += armourAndBaubles;
+                    }
                 }
             }
         }
@@ -139,7 +150,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     }
 
-    public void drainPlantsForEfficieny()
+    public void findBlocksForEfficiency()
     {
 
     }
@@ -169,86 +180,6 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             //this.preformCeremony(ceremonyRegistry);
         }
     }
-
-    /*
-    public static PlantEnum getEnumFromPlant(Block block)
-    {
-        if(block != null)
-        {
-            if(block == Blocks.wheat)
-                return PlantEnum.WHEAT;
-            if(block == Blocks.potatoes)
-                return PlantEnum.POTATO;
-            if(block == Blocks.carrots)
-                return PlantEnum.POTATO;
-            if(block == Blocks.melon_stem)
-                return PlantEnum.MELON;
-            if(block == Blocks.pumpkin_stem)
-                return PlantEnum.PUMPKIN;
-            if(block == ModBlocks.moonglow)
-                return PlantEnum.MOONGLOW;
-            if(block == ModBlocks.lotusBlock)
-                return PlantEnum.LOTUS;
-        }
-
-        return null;
-    }
-
-    public static Block getPlantFromEnum(PlantEnum plantEnum)
-    {
-        if(plantEnum == PlantEnum.WHEAT)
-            return Blocks.wheat;
-        if(plantEnum == PlantEnum.POTATO)
-            return Blocks.potatoes;
-        if(plantEnum == PlantEnum.CARROT)
-            return Blocks.carrots;
-        if(plantEnum == PlantEnum.MELON)
-            return Blocks.melon_stem;
-        if(plantEnum == PlantEnum.BLOODWART)
-            return ModBlocks.bloodwart;
-        if(plantEnum == PlantEnum.PUMPKIN)
-            return Blocks.pumpkin_stem;
-        if(plantEnum == PlantEnum.MOONGLOW)
-            return ModBlocks.moonglow;
-        if(plantEnum == PlantEnum.LOTUS)
-            return ModBlocks.lotusBlock;
-
-        return null;
-    }
-
-
-    public boolean arePlantsValid(CeremonyRegistry ceremonyRegistry)
-    {
-        World world = this.worldObj;
-
-        int x = this.xCoord;
-        int y = this.yCoord;
-        int z = this.zCoord;
-
-        Block plant1 = world.getBlock(x + 3, y, z);
-        Block plant2 = world.getBlock(x - 3, y, z);
-        Block plant3 = world.getBlock(x, y, z + 3);
-        Block plant4 = world.getBlock(x, y, z - 3);
-
-        PlantEnum plantID1 = ceremonyRegistry.getPlant1();
-        PlantEnum plantID2 = ceremonyRegistry.getPlant2();
-        PlantEnum plantID3 = ceremonyRegistry.getPlant3();
-        PlantEnum plantID4 = ceremonyRegistry.getPlant4();
-
-        boolean possibility1 = plantID1 == getEnumFromPlant(plant1) && plantID2 == getEnumFromPlant(plant2) && plantID3 == getEnumFromPlant(plant3) && plantID4 == getEnumFromPlant(plant4);
-
-        if(plant1 != null && plant2 != null && plant3 != null && plant4 != null && getEnumFromPlant(world.getBlock(x + 3, y, z)) != null && getEnumFromPlant(world.getBlock(x - 3, y, z)) != null && getEnumFromPlant(world.getBlock(x, y, z + 3)) != null && getEnumFromPlant(world.getBlock(x, y, z - 3)) != null)
-        {
-            if(possibility1)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    */
 
     public int getEffiencyFromBlock(Block block)
     {

@@ -30,10 +30,10 @@ public final class ModItems
     public static Item totemWhittlingKnife;
     public static Item totemicStaff;
     public static Item verdantCrystal;
-    public static Item bucketChlorophyll;
-    public static Item venusFlyTrapSeed;
+    //public static Item bucketChlorophyll;
+    //public static Item venusFlyTrapSeed;
     public static Item subItems;
-    public static Item bottleChlorophyll;
+    //public static Item bottleChlorophyll;
     public static Item totems;
     public static Item blazingChlorophyllCrystal;
     public static Item infusedTotemicStaff;
@@ -63,10 +63,10 @@ public final class ModItems
         totemWhittlingKnife = new ItemTotemWhittlingKnife();
         totemicStaff = new ItemTotemicStaff();
         verdantCrystal = new ItemVerdantCrystal();
-        bucketChlorophyll = new ItemBucketChlorophyll();
+        //bucketChlorophyll = new ItemBucketChlorophyll();
         totems = new ItemTotems();
         subItems = new ItemSubItems();
-        bottleChlorophyll = new ItemBottleChlorophyll();
+        //bottleChlorophyll = new ItemBottleChlorophyll();
         blazingChlorophyllCrystal = new ItemBlazingVerdantCrystal();
         infusedTotemicStaff = new ItemInfusedTotemicStaff();
         //totempedia = new ItemTotempedia();
@@ -91,9 +91,9 @@ public final class ModItems
         GameRegistry.registerItem(totemWhittlingKnife, totemWhittlingKnife.getUnlocalizedName());
         GameRegistry.registerItem(totemicStaff, totemicStaff.getUnlocalizedName());
         GameRegistry.registerItem(verdantCrystal, verdantCrystal.getUnlocalizedName());
-        GameRegistry.registerItem(bucketChlorophyll, bucketChlorophyll.getUnlocalizedName());
+        //GameRegistry.registerItem(bucketChlorophyll, bucketChlorophyll.getUnlocalizedName());
         GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
-        GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
+        //GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
         GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
         GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
         //GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
