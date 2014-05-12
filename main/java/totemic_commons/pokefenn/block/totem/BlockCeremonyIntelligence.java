@@ -3,8 +3,12 @@ package totemic_commons.pokefenn.block.totem;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.ITotemicStaffUsage;
+import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
@@ -36,15 +40,20 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic
 
         if(tileCeremonyIntelligence != null && !world.isRemote)
         {
-            if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.infusedTotemicStaff)
-                //if (tileCeremonyIntelligence.isBurning)
+            if(player.getHeldItem() != null && (player.getHeldItem().getItem() == ModItems.infusedTotemicStaff || player.getHeldItem().getItem() == ModItems.totemicStaff))
+            {
                 if(!tileCeremonyIntelligence.isDoingEffect)
                 {
-                    tileCeremonyIntelligence.tryCeremony(tileCeremonyIntelligence);
-                    tileCeremonyIntelligence.player = player.getCommandSenderName();
-                    //System.out.println("Can do ritual");
-                }
+                    if(tileCeremonyIntelligence.isDoingStartup)
+                    {
+                        for(int i = 0; i < 4; i++)
+                        {
+                            player.addChatComponentMessage(new ChatComponentText("Musical Selection " + i + " =" + MusicEnum.values()[i].name()));
+                        }
+                    }
 
+                }
+            }
         }
 
         return true;

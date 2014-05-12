@@ -97,7 +97,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public void startupMain()
     {
-        if(worldObj.getWorldTime() % 40L == 0)
+        if(worldObj.getWorldTime() % 80L == 0)
         {
             //TODO Check for plants, rarely drain, not always.
             drainPlantsForEfficieny();

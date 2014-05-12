@@ -35,7 +35,6 @@ public class TotemUtil
         return j;
     }
 
-
     public static void addPotionEffects(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {
         int armourAmounts = getArmourAmounts(player);
