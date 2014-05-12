@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.totem;
 
 import net.minecraft.block.Block;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.api.IBlacklistedDraining;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
@@ -8,6 +9,8 @@ import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemIntelligence;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
+
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,8 +47,13 @@ public class TotemEffectDraining implements ITotemEffect
 
         if(blockQuery != null && blockQuery instanceof IPlantable && tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) >= 4 && !(blockQuery instanceof IBlacklistedDraining) && isNotFlower && isNotBush && isNotBerry && isNotKelp)
         {
-            tileTotemIntelligence.getWorldObj().setBlockMetadataWithNotify(x, y, z, tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) - 1, 2);
+            Random rand = new Random();
+
+            if(rand.nextBoolean())
+                tileTotemIntelligence.getWorldObj().setBlockMetadataWithNotify(x, y, z, tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) - 1, 2);
             tileTotemIntelligence.increasePlantEssence(blockQuery);
+            MinecraftServer.getServer().worldServerForDimension(tileTotemIntelligence.getWorldObj().provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 4, 0.0D, 0.0D, 0.0D, 0.0D);
+
         }
     }
 

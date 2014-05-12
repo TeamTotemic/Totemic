@@ -28,8 +28,9 @@ public class CeremonyRegistry
     private final int maximumTicks;
     private final MusicEnum preferedMusic;
     private final boolean isInstant;
+    private final int musicNeeded;
 
-    public CeremonyRegistry(boolean doesNeedItems, MusicEnum[] instruments, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, boolean lastsForever, MusicEnum preferedMusic, ItemStack item)
+    public CeremonyRegistry(boolean doesNeedItems, MusicEnum[] instruments, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, boolean lastsForever, MusicEnum preferedMusic, ItemStack item, int musicNeeded)
     {
         this.item = item;
         this.doesNeedItems = doesNeedItems;
@@ -39,6 +40,7 @@ public class CeremonyRegistry
         this.maximumTicks = maximumTicks;
         this.preferedMusic = preferedMusic;
         this.isInstant = isInstant;
+        this.musicNeeded = musicNeeded;
     }
 
     public ItemStack getItem()
@@ -81,5 +83,9 @@ public class CeremonyRegistry
         return this.preferedMusic;
     }
 
+    public int getMusicNeeded()
+    {
+        return this.musicNeeded;
+    }
 
 }

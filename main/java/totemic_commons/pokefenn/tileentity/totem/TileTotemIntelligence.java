@@ -20,6 +20,8 @@ import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -155,16 +157,20 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
 
     public void increasePlantEssence(Block block)
     {
+        Random rand = new Random();
+
+        int randomNumber = rand.nextInt(2);
+
         if(plantEssence < maxEssence)
         {
-            if((plantEssence + (getPlantDrained(block)) - 1) > maxEssence)
+            if((plantEssence + (getPlantDrained(block)) - randomNumber) + (musicalMelody % 20) > maxEssence)
             {
                 plantEssence = maxEssence;
                 return;
             }
 
             //TODO flesh out number
-            plantEssence += getPlantDrained(block) - 1 + musicalMelody % 20;
+            plantEssence += (getPlantDrained(block) - randomNumber) + musicalMelody % 20;
         }
     }
 
