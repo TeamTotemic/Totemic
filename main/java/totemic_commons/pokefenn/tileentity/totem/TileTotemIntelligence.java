@@ -17,6 +17,7 @@ import totemic_commons.pokefenn.api.totem.IPlantEssenceInput;
 import totemic_commons.pokefenn.api.verdant.IVerdantCrystal;
 import totemic_commons.pokefenn.block.totem.BlockTotemSocket;
 import totemic_commons.pokefenn.api.plant.IPlantDrain;
+import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
@@ -80,11 +81,9 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
         {
             if(this.worldObj.getWorldTime() % 100L == 0)
             {
-                //System.out.println(musicalMelody);
                 setSocketAmounts();
                 scanArea();
                 increaseMelody();
-                //System.out.println(musicalMelody);
             }
 
             if(!(currentInput >= 1))
@@ -93,11 +92,10 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
                 {
                     for(int i = 1; i <= socket; i++)
                     {
-                        if(plantEssence > 0 || totems[i] != null && totems[i].getItemDamage() == 6)
+                        if(totems[i] != null || (totems[i] != null && totems[i].getItemDamage() == ItemTotems.draining))
                         {
                             for(TotemRegistry totemRegistry : TotemRegistry.getRecipes())
                             {
-                                //System.out.println("foobar");
                                 if(totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement(), totems[i].getItemDamage()))
                                 {
                                     totemRegistry.getEffect().effect(this, rangeUpgrades, true, totemRegistry, totemRegistry.getHorizontal(), totemRegistry.getVerticalHight(), musicalMelody);
@@ -106,8 +104,6 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
                         }
                     }
                 }
-
-                this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
             }
         }
     }
@@ -145,32 +141,18 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
         return true;
     }
 
-    public void increaseChlorophyll(Block block)
-    {
-
-        if(this.getStackInSlot(SLOT_ONE) != null)
-        {
-            this.getStackInSlot(SLOT_ONE).setItemDamage(this.getStackInSlot(SLOT_ONE).getItemDamage() - (getPlantDrained(block) + 1));
-        }
-
-    }
-
     public void increasePlantEssence(Block block)
     {
-        Random rand = new Random();
-
-        int randomNumber = rand.nextInt(2);
-
         if(plantEssence < maxEssence)
         {
-            if((plantEssence + (getPlantDrained(block)) - randomNumber) + (musicalMelody % 20) > maxEssence)
+            if((plantEssence + (getPlantDrained(block)) - 1) + (musicalMelody % 20) > maxEssence)
             {
                 plantEssence = maxEssence;
                 return;
             }
 
             //TODO flesh out number
-            plantEssence += (getPlantDrained(block) - randomNumber) + musicalMelody % 20;
+            plantEssence += (getPlantDrained(block) - 1) + (musicalMelody % 20);
         }
     }
 
@@ -192,7 +174,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
 
     protected boolean canDoEffect(int subtraction, int meta)
     {
-        return plantEssence - subtraction > 0 || meta == 6;
+        return plantEssence - subtraction > 0 || meta == ItemTotems.draining;
     }
 
     protected boolean canDoEffectOld(int subtraction)

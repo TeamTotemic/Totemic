@@ -23,17 +23,19 @@ public class TotemEffectDraining implements ITotemEffect
 
     public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle, int melody)
     {
-        if(totem.getWorldObj().getWorldTime() % 100L == 0)
+        if(totem.getWorldObj().getWorldTime() % 80L == 0)
             drainEffect((TileTotemIntelligence) totem, upgrades, melody);
     }
 
     protected static void drainEffect(TileTotemIntelligence tileTotemIntelligence, int upgrades, int melody)
     {
-        int totemRadius = ConfigurationSettings.TOTEM_DRAINING_RANGE + (upgrades * 3);
+        int totemRadius = 8 + (upgrades * 3);
 
         for(int i = -totemRadius; i <= totemRadius; i++)
             for(int j = -totemRadius; j <= totemRadius; j++)
+            {
                 reducePlantMetadata(tileTotemIntelligence, tileTotemIntelligence.xCoord + i, tileTotemIntelligence.yCoord, tileTotemIntelligence.zCoord + j, melody);
+            }
     }
 
     protected static void reducePlantMetadata(TileTotemIntelligence tileTotemIntelligence, int x, int y, int z, int melody)
@@ -45,15 +47,18 @@ public class TotemEffectDraining implements ITotemEffect
         boolean isNotBerry = !blockQuery.getUnlocalizedName().contains("berry");
         boolean isNotKelp = !blockQuery.getUnlocalizedName().contains("kelp");
 
-        if(blockQuery != null && blockQuery instanceof IPlantable && tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) >= 4 && !(blockQuery instanceof IBlacklistedDraining) && isNotFlower && isNotBush && isNotBerry && isNotKelp)
+        if(blockQuery != null && blockQuery instanceof IPlantable)
         {
-            Random rand = new Random();
+            if(tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) >= 3 && !(blockQuery instanceof IBlacklistedDraining) && isNotFlower && isNotBush && isNotBerry && isNotKelp)
+            {
 
-            if(rand.nextBoolean())
-                tileTotemIntelligence.getWorldObj().setBlockMetadataWithNotify(x, y, z, tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) - 1, 2);
-            tileTotemIntelligence.increasePlantEssence(blockQuery);
-            MinecraftServer.getServer().worldServerForDimension(tileTotemIntelligence.getWorldObj().provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 4, 0.0D, 0.0D, 0.0D, 0.0D);
+                Random rand = new Random();
 
+                if(rand.nextInt(4) == 1)
+                    tileTotemIntelligence.getWorldObj().setBlockMetadataWithNotify(x, y, z, tileTotemIntelligence.getWorldObj().getBlockMetadata(x, y, z) - 1, 2);
+                tileTotemIntelligence.increasePlantEssence(blockQuery);
+                MinecraftServer.getServer().worldServerForDimension(tileTotemIntelligence.getWorldObj().provider.dimensionId).func_147487_a("happyVillager", (double) x + 0.5D, (double) y + 0.9D, (double) z + 0.5D, 4, 0.0D, 0.0D, 0.0D, 0.0D);
+            }
         }
     }
 
