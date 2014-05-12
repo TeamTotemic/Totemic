@@ -8,6 +8,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.api.armour.ITotemArmour;
 import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
@@ -29,8 +30,8 @@ public class TotemUtil
         int j = 0;
         for(int i = 0; i < 4; i++)
             if(player.inventory.armorItemInSlot(i) != null)
-                if(player.inventory.armorItemInSlot(i).getItem() instanceof ItemTotemArmour)
-                    j++;
+                if(player.inventory.armorItemInSlot(i).getItem() instanceof ITotemArmour)
+                    j += ((ITotemArmour) player.inventory.armorItemInSlot(i).getItem()).getEfficiency(player.inventory.armorItemInSlot(i));
 
         return j;
     }
