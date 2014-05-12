@@ -44,8 +44,6 @@ public class ConfigurationHandler
 
             ConfigurationSettings.ENTITY_ID_EFREET = configuration.get(CATEGORY_ENTITY, "efreetEntityID", 22).getInt(22);
 
-            ConfigurationSettings.RELEVENT_TOTEM_RECIPES = configuration.get(CATEGORY_GAMEPLAY, "doUseReleventTotemRecipes", false).getBoolean(false);
-
             ConfigurationSettings.RENDER_CUBE_SOCKET = configuration.get(CATEGORY_CLIENT, "doRenderSocketAsCube", true).getBoolean(true);
 
             ConfigurationSettings.TEST_ITEM = configuration.get(CATEGORY_GENERAL, "doAllowTestItem", false).getBoolean(false);

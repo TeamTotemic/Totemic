@@ -8,8 +8,6 @@ public class ConfigurationSettings
     public static final String ENABLE_PARTICLE_FX_CONFIGNAME = "enableParticleFX";
     public static final boolean ENABLE_PARTICLE_FX_DEFAULT = true;
 
-    public static int TOTEM_DRAINING_RANGE;
-
     public static boolean GENERATE_TOTEM_TREES;
 
     public static int POTION_ID_BAT;
@@ -18,8 +16,6 @@ public class ConfigurationSettings
     public static int POTION_ID_SPIDER;
 
     public static String TOTEM_TREE_GENERATION_BLACKLIST;
-
-    public static boolean RELEVENT_TOTEM_RECIPES;
 
     public static int ENTITY_ID_EFREET;
 
