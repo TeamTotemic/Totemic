@@ -106,7 +106,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     {
         if(worldObj.getWorldTime() % 80L == 0)
         {
-            //TODO Check for plants, rarely drain, not always.
+            plantEfficiency = 0;
             findBlocksForEfficiency();
         }
 
@@ -118,6 +118,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
         if(worldObj.getWorldTime() % 10L == 0)
         {
+            dancingEfficiency = 0;
             danceLikeAMonkey();
         }
     }
@@ -152,7 +153,29 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public void findBlocksForEfficiency()
     {
+        int radius = 6;
+        int m = 0;
 
+        for(int i = -radius; i <= radius; i++)
+            for(int j = -3; j <= 3; j++)
+                for(int k = radius; k <= radius; k++)
+                {
+                    if(worldObj.getBlock(xCoord + i, yCoord + j, zCoord + k) != null)
+                    {
+                        Block block = worldObj.getBlock(xCoord + i, yCoord + j, zCoord + k);
+
+                        if(block instanceof IPlantable)
+                        {
+                            m++;
+                        }
+
+                        if(getEffiencyFromBlock(block) != 0)
+                        {
+                            m+= getEffiencyFromBlock(block);
+                        }
+                    }
+                }
+        plantEfficiency += m;
     }
 
     public void resetEverything()
