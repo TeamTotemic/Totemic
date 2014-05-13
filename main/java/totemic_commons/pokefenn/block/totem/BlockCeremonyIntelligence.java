@@ -42,9 +42,17 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic
         {
             if(player.getHeldItem() != null && (player.getHeldItem().getItem() == ModItems.infusedTotemicStaff || player.getHeldItem().getItem() == ModItems.totemicStaff))
             {
+                if(player.isSneaking() && tileCeremonyIntelligence.isDoingStartup)
+                {
+                    for(int i = 0; i < tileCeremonyIntelligence.musicSelector.length; i++)
+                    {
+                        tileCeremonyIntelligence.musicSelector[i] = 0;
+                    }
+                }
+
                 if(!tileCeremonyIntelligence.isDoingEffect)
                 {
-                    if(tileCeremonyIntelligence.isDoingStartup)
+                    if(tileCeremonyIntelligence.isMusicSelecting)
                     {
                         for(int i = 0; i < 4; i++)
                         {

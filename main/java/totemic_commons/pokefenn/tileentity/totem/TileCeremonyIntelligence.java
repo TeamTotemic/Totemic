@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModBlocks;
@@ -38,6 +39,9 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public int[] musicSelector;
     public boolean isDoingStartup;
     public int armourEfficiency;
+    public int tryingCeremonyID;
+    public int totalMelody;
+    public boolean isMusicSelecting;
 
     public TileCeremonyIntelligence()
     {
@@ -48,9 +52,12 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         dancingEfficiency = 0;
         music = new int[MusicEnum.values().length];
         plantEfficiency = 0;
-        musicSelector = new int[4];
+        musicSelector = new int[6];
         isDoingStartup = false;
         armourEfficiency = 0;
+        tryingCeremonyID = 0;
+        totalMelody = 0;
+        isMusingSelecting = false;
     }
 
     @Override
@@ -66,17 +73,35 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
         if(!this.worldObj.isRemote)
         {
+            if(worldObj.getWorldTime() % 20L == 0)
+            {
+                for(int aMusicSelector : musicSelector)
+                {
+                    System.out.println(aMusicSelector);
+                }
+            }
+
             if(!isDoingStartup)
                 for(CeremonyRegistry ceremonyRegistry : CeremonyRegistry.ceremonyRegistry)
-                    if(ceremonyRegistry.getInstruments()[0].ordinal() == musicSelector[0] && ceremonyRegistry.getInstruments()[1].ordinal() == musicSelector[1] && ceremonyRegistry.getInstruments()[2].ordinal() == musicSelector[2] && ceremonyRegistry.getInstruments()[3].ordinal() == musicSelector[3])
+                    if(ceremonyRegistry.getInstruments(1).ordinal() == musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() == musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() == musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() == musicSelector[3])
                     {
-                        currentCeremony = ceremonyRegistry.getCeremonyID();
+                        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("enchantmenttable", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 16, 0.0D, 0.0D, 0.0D, 0.0D);
+                        tryingCeremonyID = ceremonyRegistry.getCeremonyID();
                         isDoingStartup = true;
                     }
 
             if(isDoingStartup)
             {
                 startupMain();
+            }
+
+            if(tryingCeremonyID != 0 && isDoingStartup)
+            {
+                if(canStartCeremony())
+                {
+                    currentCeremony = tryingCeremonyID;
+                    tryingCeremonyID = 0;
+                }
             }
 
             if(currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony != 0)
@@ -92,14 +117,27 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                     {
                         effect.effect(this);
                         currentCeremony = 0;
-                    } else
+                        tryingCeremonyID = 0;
+                    } else if(canContinueCeremony())
                     {
-
+                        effect.effect(this);
                     }
-                    //TODO this is where i will do the actual effect
                 }
             }
         }
+    }
+
+    public boolean canContinueCeremony()
+    {
+        //TODO
+        return false;
+    }
+
+
+    public boolean canStartCeremony()
+    {
+        //TODO
+        return false;
     }
 
     public void startupMain()
@@ -148,7 +186,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public void danceLikeAMonkey()
     {
-
+        //TODO
     }
 
     public void findBlocksForEfficiency()
@@ -171,7 +209,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
                         if(getEffiencyFromBlock(block) != 0)
                         {
-                            m+= getEffiencyFromBlock(block);
+                            m += getEffiencyFromBlock(block);
                         }
                     }
                 }
@@ -184,24 +222,6 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         currentTime = 0;
         dancingEfficiency = 0;
         isDoingEffect = false;
-    }
-
-    public void tryCeremony(TileCeremonyIntelligence tileCeremonyIntelligence)
-    {
-        int x = tileCeremonyIntelligence.xCoord;
-        int y = tileCeremonyIntelligence.yCoord;
-        int z = tileCeremonyIntelligence.zCoord;
-
-        World world = tileCeremonyIntelligence.getWorldObj();
-
-        //else if(arePlantsValid(ceremonyRegistry))
-        {
-            //TODO
-            //this.currentCeremony = ceremonyRegistry.getCeremonyID();
-            //System.out.println(currentCeremony);
-            //getPlayerArmour();
-            //this.preformCeremony(ceremonyRegistry);
-        }
     }
 
     public int getEffiencyFromBlock(Block block)
@@ -236,6 +256,9 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         nbtTagCompound.setIntArray("musicSelector", musicSelector);
         nbtTagCompound.setBoolean("isDoingStartup", isDoingStartup);
         nbtTagCompound.setInteger("armourEfficiency", armourEfficiency);
+        nbtTagCompound.setInteger("tryingCeremonyID", tryingCeremonyID);
+        nbtTagCompound.setInteger("totalMelody", totalMelody);
+        nbtTagCompound.setBoolean("isMusicSelecting", isMusicSelecting);
     }
 
     @Override
@@ -253,6 +276,9 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         musicSelector = nbtTagCompound.getIntArray("musicSelector");
         isDoingStartup = nbtTagCompound.getBoolean("isDoingStartup");
         armourEfficiency = nbtTagCompound.getInteger("armourEfficiency");
+        tryingCeremonyID = nbtTagCompound.getInteger("tryingCeremonyID");
+        totalMelody = nbtTagCompound.getInteger("totalMelody");
+        isMusicSelecting = nbtTagCompound.getBoolean("isMusicSelecting");
     }
 
 

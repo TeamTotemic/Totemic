@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.recipe.registry;
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.MusicEnum;
+import totemic_commons.pokefenn.ceremony.CeremonyChanneledGrowth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +18,16 @@ public class CeremonyRegistry
 
     public static void addRecipes()
     {
-        //ceremonyRegistry.add(new CeremonyRegistry(false));
+        //TODO real ceremonies, these are just examples
+        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 1, new CeremonyChanneledGrowth(), true, 0, MusicEnum.DRUM_MUSIC, null, 100));
     }
 
     private final ItemStack item;
     private final boolean doesNeedItems;
-    private final MusicEnum[] instruments;
+    private final MusicEnum instrument1;
+    private final MusicEnum instrument2;
+    private final MusicEnum instrument3;
+    private final MusicEnum instrument4;
     private final int ceremonyID;
     private final ICeremonyEffect ceremonyEffect;
     private final int maximumTicks;
@@ -30,11 +35,14 @@ public class CeremonyRegistry
     private final boolean isInstant;
     private final int musicNeeded;
 
-    public CeremonyRegistry(boolean doesNeedItems, MusicEnum[] instruments, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, boolean lastsForever, MusicEnum preferedMusic, ItemStack item, int musicNeeded)
+    public CeremonyRegistry(boolean doesNeedItems, MusicEnum instrument1, MusicEnum instrument2, MusicEnum instrument3, MusicEnum instrument4, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, MusicEnum preferedMusic, ItemStack item, int musicNeeded)
     {
         this.item = item;
         this.doesNeedItems = doesNeedItems;
-        this.instruments = instruments;
+        this.instrument1 = instrument1;
+        this.instrument2 = instrument2;
+        this.instrument3 = instrument3;
+        this.instrument4 = instrument4;
         this.ceremonyID = ceremonyID;
         this.ceremonyEffect = ceremonyEffect;
         this.maximumTicks = maximumTicks;
@@ -53,9 +61,18 @@ public class CeremonyRegistry
         return this.doesNeedItems;
     }
 
-    public MusicEnum[] getInstruments()
+    public MusicEnum getInstruments(int i)
     {
-        return this.instruments;
+        if(i == 1)
+            return instrument1;
+        if(i == 2)
+            return instrument2;
+        if(i == 3)
+            return instrument3;
+        if(i == 4)
+            return instrument4;
+
+        return null;
     }
 
     public int getCeremonyID()

@@ -10,7 +10,6 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import totemic_commons.pokefenn.recipe.registry.PotionItemRegistry;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.List;
@@ -50,6 +49,7 @@ public class TileTotemCauldron extends TileTotemic implements IFluidHandler
 
         if(!this.worldObj.isRemote)
         {
+            /*
 
             if(this.worldObj.getWorldTime() % 40L == 0L)
                 isBurning = this.worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Blocks.lava || this.worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Blocks.fire;
@@ -89,19 +89,10 @@ public class TileTotemCauldron extends TileTotemic implements IFluidHandler
                         }
                     }
                 }
+
             }
+            */
         }
-    }
-
-    public boolean isLengthIngredient(PotionItemRegistry potionItemRegistry)
-    {
-        return potionItemRegistry.getLength() > 0;
-
-    }
-
-    public boolean canConsume(ItemStack itemStack, PotionItemRegistry potionItemRegistry, boolean isLength)
-    {
-        return true;
     }
 
     @Override
