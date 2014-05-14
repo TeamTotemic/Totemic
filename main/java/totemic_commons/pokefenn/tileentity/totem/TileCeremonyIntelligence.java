@@ -73,7 +73,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
         if(!this.worldObj.isRemote)
         {
-            if(worldObj.getWorldTime() % 20L == 0)
+            if(worldObj.getWorldTime() % 60L == 0)
             {
                 for(int aMusicSelector : musicSelector)
                 {
