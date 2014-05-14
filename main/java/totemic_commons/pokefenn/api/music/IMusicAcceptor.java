@@ -20,4 +20,9 @@ public interface IMusicAcceptor
      * @return Is this a tile entity which needs to do different effects depending on how instruments were played? If so, true, else, false.
      */
     public boolean doesMusicSelect();
+
+    /**
+     * @return The variable which says "Are you music selecting currently".
+     */
+    public boolean isMusicSelecting();
 }

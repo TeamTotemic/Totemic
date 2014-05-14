@@ -142,6 +142,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         currentCeremony = 0;
         tryingCeremonyID = 0;
         isMusicSelecting = true;
+        isDoingEffect = false;
 
         for(int i = 0; i < music.length; i++)
         {
@@ -347,5 +348,11 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public boolean doesMusicSelect()
     {
         return true;
+    }
+
+    @Override
+    public boolean isMusicSelecting()
+    {
+        return isMusicSelecting;
     }
 }

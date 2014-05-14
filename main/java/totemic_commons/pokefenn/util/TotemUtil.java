@@ -94,25 +94,25 @@ public class TotemUtil
                 {
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
-                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect())
+                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect() && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).isMusicSelecting())
                         {
                             int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
 
                             if(musicSelectorArray[0] == 0)
                             {
-                                musicSelectorArray[0]= musicEnum.ordinal() + 1;
+                                musicSelectorArray[0] = musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[1] == 0)
                             {
-                                musicSelectorArray[1]= musicEnum.ordinal() + 1;
+                                musicSelectorArray[1] = musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[2] == 0)
                             {
-                                musicSelectorArray[2]= musicEnum.ordinal() + 1;
+                                musicSelectorArray[2] = musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[3] == 0)
                             {
-                                musicSelectorArray[3]= musicEnum.ordinal() + 1;
+                                musicSelectorArray[3] = musicEnum.ordinal() + 1;
                                 return;
                             }
                             world.markBlockForUpdate(x, y, z);
@@ -129,25 +129,25 @@ public class TotemUtil
                 {
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
-                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect())
+                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect() && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).isMusicSelecting())
                         {
                             int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
 
                             if(musicSelectorArray[0] == 0)
                             {
-                                musicSelectorArray[0]= musicEnum.ordinal() + 1;
+                                musicSelectorArray[0] = musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[1] == 0)
                             {
-                                musicSelectorArray[1]= musicEnum.ordinal() + 1;
+                                musicSelectorArray[1] = musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[2] == 0)
                             {
-                                musicSelectorArray[2]= musicEnum.ordinal() + 1;
+                                musicSelectorArray[2] = musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[3] == 0)
                             {
-                                musicSelectorArray[3]= musicEnum.ordinal() + 1;
+                                musicSelectorArray[3] = musicEnum.ordinal() + 1;
                                 return;
                             }
                             world.markBlockForUpdate(x, y, z);
