@@ -11,6 +11,7 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
+import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.block.music.DrumPacket;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
@@ -26,6 +27,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     {
         super(Material.wood);
         setBlockName(Strings.DRUM_NAME);
+        setBlockBounds(0.4F, 0.0F, 0.4F, 0.6F, 0.8F, 0.6F);
     }
 
     @Override
@@ -84,6 +86,25 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
         return 8;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+
+        return RenderIds.RENDER_ID_DRUM;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
     }
 
 }

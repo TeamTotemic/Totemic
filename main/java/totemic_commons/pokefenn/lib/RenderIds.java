@@ -14,4 +14,5 @@ public class RenderIds
     public static int RENDER_ID_TOTEMIC_STAFF;
     public static int RENDER_ID_TOTEM_TORCH;
     public static int RENDER_ID_TOTEM_SOCKET_CUBE;
+    public static int RENDER_ID_DRUM;
 }

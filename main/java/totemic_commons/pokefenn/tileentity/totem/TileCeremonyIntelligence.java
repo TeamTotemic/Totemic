@@ -82,6 +82,11 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                 //System.out.println(isDoingStartup + "IS DOING STARTUP");
             }
 
+            if(worldObj.getWorldTime() % 30L == 0)
+            {
+                resetMelody();
+            }
+
             if(!isDoingStartup)
                 for(CeremonyRegistry ceremonyRegistry : CeremonyRegistry.ceremonyRegistry)
                 {
@@ -137,6 +142,18 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         }
     }
 
+    public void resetMelody()
+    {
+        totalMelody = 0;
+        int m = 0;
+
+        for(int musicu : music)
+        {
+            m += musicu;
+        }
+        totalMelody = m;
+    }
+
     public void resetAfterCeremony(boolean doResetMusicSelector)
     {
         currentCeremony = 0;
@@ -165,6 +182,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public boolean canContinueCeremony()
     {
+
         //TODO
         return false;
     }
