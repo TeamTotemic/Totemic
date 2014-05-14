@@ -57,7 +57,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         armourEfficiency = 0;
         tryingCeremonyID = 0;
         totalMelody = 0;
-        isMusicSelecting = false;
+        isMusicSelecting = true;
     }
 
     @Override
@@ -85,7 +85,6 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             if(!isDoingStartup)
                 for(CeremonyRegistry ceremonyRegistry : CeremonyRegistry.ceremonyRegistry)
                 {
-                    isMusicSelecting = true;
                     if(ceremonyRegistry.getInstruments(1).ordinal() == musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() == musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() == musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() == musicSelector[3])
                     {
                         MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("enchantmenttable", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 16, 0.0D, 0.0D, 0.0D, 0.0D);
@@ -122,14 +121,44 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                     if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getIsInstant())
                     {
                         effect.effect(this);
-                        currentCeremony = 0;
-                        tryingCeremonyID = 0;
-                    } else if(canContinueCeremony())
+                        resetAfterCeremony(true);
+                    } else
                     {
-                        effect.effect(this);
+                        if(canContinueCeremony())
+                        {
+                            effect.effect(this);
+                        } else
+                        {
+                            resetAfterCeremony(true);
+                        }
                     }
                 }
             }
+        }
+    }
+
+    public void resetAfterCeremony(boolean doResetMusicSelector)
+    {
+        currentCeremony = 0;
+        tryingCeremonyID = 0;
+        isMusicSelecting = true;
+
+        for(int i = 0; i < music.length; i++)
+        {
+            music[i] = 0;
+        }
+        if(doResetMusicSelector)
+            for(int i = 0; i < musicSelector.length; i++)
+            {
+                musicSelector[i] = 0;
+            }
+    }
+
+    public void resetSelector()
+    {
+        for(int i = 0; i < musicSelector.length; i++)
+        {
+            musicSelector[i] = 0;
         }
     }
 

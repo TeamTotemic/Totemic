@@ -159,7 +159,6 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
-
         super.readFromNBT(nbtTagCompound);
         // Read in the ItemStacks in the inventory from NBT
         NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
@@ -177,7 +176,6 @@ public class TileTotemSocket extends TileTotemic implements IInventory
     @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
-
         super.writeToNBT(nbtTagCompound);
 
         // Write the ItemStacks in the inventory to NBT
