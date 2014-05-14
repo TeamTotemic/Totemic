@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.api.ceremony;
 
+import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 
 /**
@@ -9,7 +10,8 @@ import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 public interface ICeremonyEffect
 {
     /**
-     * @param tileCeremonyIntelligence This is the tile entity of the Ceremony Intelligence, this is what you do all your crazy effects from!
+     * @param tileEntity This is the tile entity of the Ceremony Intelligence, this is what you do all your crazy effects from!
+     *                   Remember to cast it into TileCeremonyIntelligence if you are going to interact with the tile entity ;)
      */
-    public void effect(TileCeremonyIntelligence tileCeremonyIntelligence);
+    public void effect(TileEntity tileEntity);
 }
