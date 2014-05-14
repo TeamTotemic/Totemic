@@ -17,7 +17,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class BlockCeremonyIntelligence extends BlockTileTotemic
+public class BlockCeremonyIntelligence extends BlockTileTotemic implements ITotemicStaffUsage
 {
 
     public BlockCeremonyIntelligence()
@@ -40,12 +40,15 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic
 
         if(tileCeremonyIntelligence != null && !world.isRemote)
         {
-            if(player.getHeldItem() != null && (player.getHeldItem().getItem() == ModItems.infusedTotemicStaff || player.getHeldItem().getItem() == ModItems.totemicStaff))
+            if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.infusedTotemicStaff)
             {
-                if(player.isSneaking() && tileCeremonyIntelligence.isDoingStartup)
+                /*
+                //TODO make this work
+                if(player.isSneaking()/* && tileCeremonyIntelligence.isDoingStartup)
                 {
                     for(int i = 0; i < tileCeremonyIntelligence.musicSelector.length; i++)
                     {
+                        System.out.println("seriously...");
                         tileCeremonyIntelligence.musicSelector[i] = 0;
                     }
                 }
@@ -60,10 +63,63 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic
                         }
                     }
 
-                }
+                }*/
             }
         }
 
         return true;
+    }
+
+    @Override
+    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world)
+    {
+        TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) world.getTileEntity(x, y, z);
+
+        if(!tileCeremonyIntelligence.isDoingEffect)
+        {
+            if(tileCeremonyIntelligence.isMusicSelecting)
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    player.addChatComponentMessage(new ChatComponentText("Musical Selection " + i + " =" + MusicEnum.values()[i].name()));
+                }
+            }
+
+        }
+
+        if(player.isSneaking() && tileCeremonyIntelligence.isDoingStartup)
+        {
+            for(int i = 0; i < tileCeremonyIntelligence.musicSelector.length; i++)
+            {
+                tileCeremonyIntelligence.musicSelector[i] = 0;
+            }
+        }
+    }
+
+    @Override
+    public void onInfusedRightClick(int x, int y, int z, EntityPlayer player, World world)
+    {
+        TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) world.getTileEntity(x, y, z);
+
+        if(player.isSneaking() && tileCeremonyIntelligence.isDoingStartup)
+        {
+            for(int i = 0; i < tileCeremonyIntelligence.musicSelector.length; i++)
+            {
+                tileCeremonyIntelligence.musicSelector[i] = 0;
+            }
+        }
+
+        if(!tileCeremonyIntelligence.isDoingEffect)
+        {
+            if(tileCeremonyIntelligence.isMusicSelecting)
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    player.addChatComponentMessage(new ChatComponentText("Musical Selection " + i + " =" + MusicEnum.values()[i].name()));
+                }
+            }
+
+        }
+
     }
 }

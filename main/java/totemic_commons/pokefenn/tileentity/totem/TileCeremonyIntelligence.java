@@ -57,7 +57,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         armourEfficiency = 0;
         tryingCeremonyID = 0;
         totalMelody = 0;
-        isMusingSelecting = false;
+        isMusicSelecting = false;
     }
 
     @Override
@@ -79,16 +79,21 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                 {
                     System.out.println(aMusicSelector);
                 }
+                //System.out.println(isDoingStartup + "IS DOING STARTUP");
             }
 
             if(!isDoingStartup)
                 for(CeremonyRegistry ceremonyRegistry : CeremonyRegistry.ceremonyRegistry)
+                {
+                    isMusicSelecting = true;
                     if(ceremonyRegistry.getInstruments(1).ordinal() == musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() == musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() == musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() == musicSelector[3])
                     {
                         MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("enchantmenttable", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 16, 0.0D, 0.0D, 0.0D, 0.0D);
                         tryingCeremonyID = ceremonyRegistry.getCeremonyID();
                         isDoingStartup = true;
+                        isMusicSelecting = false;
                     }
+                }
 
             if(isDoingStartup)
             {
@@ -101,6 +106,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                 {
                     currentCeremony = tryingCeremonyID;
                     tryingCeremonyID = 0;
+                    isDoingStartup = false;
                 }
             }
 

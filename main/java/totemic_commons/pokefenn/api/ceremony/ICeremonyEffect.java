@@ -10,7 +10,6 @@ public interface ICeremonyEffect
 {
     /**
      * @param tileCeremonyIntelligence This is the tile entity of the Ceremony Intelligence, this is what you do all your crazy effects from!
-     * @author Pokefenn
      */
     public void effect(TileCeremonyIntelligence tileCeremonyIntelligence);
 }

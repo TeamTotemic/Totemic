@@ -44,6 +44,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
             if(player.isSneaking())
             {
                 TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(), 6);
+                //particlesAllAround(world, x, y, z);
                 MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
                 return true;
             }
@@ -51,6 +52,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
             {
                 tileDrum.canPlay = false;
                 TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));
+                //particlesAllAround(world, x, y, z);
                 MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
                 //world.spawnParticle("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, (double) 100 / 24.0D, 0.0D, 0.0D);
                 world.markBlockForUpdate(x, y, z);

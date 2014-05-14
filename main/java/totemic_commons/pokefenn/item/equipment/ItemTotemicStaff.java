@@ -65,50 +65,6 @@ public class ItemTotemicStaff extends ItemTotemic
                         ((ITotemicStaffUsage) blockQuery).onBasicRightClick(block.blockX, block.blockY, block.blockZ, player, world);
                         return true;
                     }
-
-                    if(blockQuery instanceof BlockSapling && !(blockQuery instanceof BlockSylvanSapling))
-                    {
-
-                        if(world.getBlock(block.blockX + 1, block.blockY - 1, block.blockZ + 1) == ModBlocks.chlorophyll && world.getBlock(block.blockX - 1, block.blockY - 1, block.blockZ - 1) == ModBlocks.chlorophyll && world.getBlock(block.blockX + 1, block.blockY - 1, block.blockZ - 1) == ModBlocks.chlorophyll && world.getBlock(block.blockX - 1, block.blockY - 1, block.blockZ + 1) == ModBlocks.chlorophyll)
-                        {
-                            Block blockQuery1 = world.getBlock(block.blockX + 1, block.blockY, block.blockZ);
-                            Block blockQuery2 = world.getBlock(block.blockX - 1, block.blockY, block.blockZ);
-                            Block blockQuery3 = world.getBlock(block.blockX, block.blockY, block.blockZ - 1);
-                            Block blockQuery4 = world.getBlock(block.blockX, block.blockY, block.blockZ + 1);
-
-                            if(blockQuery1 != null && blockQuery2 != null && blockQuery3 != null && blockQuery4 != null && blockQuery1 instanceof BlockFlower && blockQuery2 instanceof BlockFlower && blockQuery3 instanceof BlockFlower && blockQuery4 instanceof BlockFlower)
-                            {
-                                Random rand = new Random();
-                                if(rand.nextBoolean())
-                                {
-                                    world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSapling);
-
-                                    world.setBlockToAir(block.blockX + 1, block.blockY - 1, block.blockZ + 1);
-                                    world.setBlockToAir(block.blockX - 1, block.blockY - 1, block.blockZ - 1);
-                                    world.setBlockToAir(block.blockX + 1, block.blockY - 1, block.blockZ - 1);
-                                    world.setBlockToAir(block.blockX - 1, block.blockY - 1, block.blockZ + 1);
-
-                                    player.attackEntityFrom(DamageSource.generic, 6 + rand.nextInt(4));
-
-
-                                } else
-                                {
-                                    player.addChatMessage(new ChatComponentText("The Infused Sapling Creation Failed!"));
-
-                                    world.setBlockToAir(block.blockX + 1, block.blockY - 1, block.blockZ + 1);
-                                    world.setBlockToAir(block.blockX - 1, block.blockY - 1, block.blockZ - 1);
-                                    world.setBlockToAir(block.blockX + 1, block.blockY - 1, block.blockZ - 1);
-                                    world.setBlockToAir(block.blockX - 1, block.blockY - 1, block.blockZ + 1);
-
-                                    player.attackEntityFrom(DamageSource.generic, 6 + rand.nextInt(4));
-
-                                }
-                            }
-
-                        }
-                    }
-
-
                 }
             }
 

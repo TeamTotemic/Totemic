@@ -1,14 +1,18 @@
 package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.util.TotemUtil;
 

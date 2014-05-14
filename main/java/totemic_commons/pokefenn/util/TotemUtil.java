@@ -100,19 +100,19 @@ public class TotemUtil
 
                             if(musicSelectorArray[0] == 0)
                             {
-                                musicSelectorArray[0] = musicEnum.ordinal();
+                                musicSelectorArray[0]= musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[1] == 0)
                             {
-                                musicSelectorArray[1] = musicEnum.ordinal();
+                                musicSelectorArray[1]= musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[2] == 0)
                             {
-                                musicSelectorArray[2] = musicEnum.ordinal();
+                                musicSelectorArray[2]= musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[3] == 0)
                             {
-                                musicSelectorArray[3] = musicEnum.ordinal();
+                                musicSelectorArray[3]= musicEnum.ordinal() + 1;
                                 return;
                             }
                             world.markBlockForUpdate(x, y, z);
@@ -135,19 +135,19 @@ public class TotemUtil
 
                             if(musicSelectorArray[0] == 0)
                             {
-                                musicSelectorArray[0] = musicEnum.ordinal();
+                                musicSelectorArray[0]= musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[1] == 0)
                             {
-                                musicSelectorArray[1] = musicEnum.ordinal();
+                                musicSelectorArray[1]= musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[2] == 0)
                             {
-                                musicSelectorArray[2] = musicEnum.ordinal();
+                                musicSelectorArray[2]= musicEnum.ordinal() + 1;
                                 return;
                             } else if(musicSelectorArray[3] == 0)
                             {
-                                musicSelectorArray[3] = musicEnum.ordinal();
+                                musicSelectorArray[3]= musicEnum.ordinal() + 1;
                                 return;
                             }
                             world.markBlockForUpdate(x, y, z);
