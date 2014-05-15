@@ -28,7 +28,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         setMaxStackSize(1);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setContainerItem(this);
-        //setMaxDamage(2);
     }
 
     @Override
@@ -36,6 +35,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
         list.add("A knife for all your whittlin' needs");
+        list.add("Shift and right click to change carving");
         if(stack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
             list.add("Currently Carving: " + ItemTotems.TOTEM_NAMES[stack.getItemDamage()]);
     }
@@ -50,8 +50,8 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-        for(int meta = 0; meta < ItemTotems.TOTEM_NAMES.length; meta++)
-            list.add(new ItemStack(id, 1, meta));
+        //for(int meta = 0; meta < ItemTotems.TOTEM_NAMES.length; meta++)
+        //    list.add(new ItemStack(id, 1, meta));
     }
 
     @Override
@@ -68,30 +68,28 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         if(!world.isRemote)
         {
-            //if(!player.isSneaking())
+            MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
+
+            if(block != null)
             {
-                MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
+                Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
-                if(block != null)
+                if(blockQuery instanceof BlockLog)
                 {
-                    Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
-
-                    if(blockQuery instanceof BlockLog)
+                    if(itemStack.getItemDamage() != 0)
                     {
-                        if(itemStack.getItemDamage() != 0)
-                        {
-                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket);
-                            TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
+                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket);
+                        TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
 
-                            if(tileTotemSocket.getStackInSlot(0) == null)
-                            {
-                                if(itemStack.getItemDamage() != 0)
-                                    tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, itemStack.getItemDamage()));
-                                world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
-                                tileTotemSocket.markDirty();
-                            }
+                        if(tileTotemSocket.getStackInSlot(0) == null)
+                        {
+                            if(itemStack.getItemDamage() != 0)
+                                tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, itemStack.getItemDamage()));
+                            world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
+                            tileTotemSocket.markDirty();
                         }
                     }
+
                 }
             }
 

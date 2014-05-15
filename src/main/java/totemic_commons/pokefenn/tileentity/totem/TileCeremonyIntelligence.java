@@ -77,7 +77,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             {
                 for(int aMusicSelector : musicSelector)
                 {
-                    System.out.println(aMusicSelector);
+                 //   System.out.println(aMusicSelector);
                 }
                 //System.out.println(isDoingStartup + "IS DOING STARTUP");
             }
@@ -96,6 +96,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                         tryingCeremonyID = ceremonyRegistry.getCeremonyID();
                         isDoingStartup = true;
                         isMusicSelecting = false;
+                        resetSelector();
                     }
                 }
 
@@ -174,7 +175,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public void resetSelector()
     {
-        for(int i = 0; i < musicSelector.length; i++)
+        for(int i = 0; i < 4; i++)
         {
             musicSelector[i] = 0;
         }

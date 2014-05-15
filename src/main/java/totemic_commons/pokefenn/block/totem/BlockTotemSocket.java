@@ -9,6 +9,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -17,6 +18,7 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.ITotem;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
+import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
@@ -44,7 +46,6 @@ public class BlockTotemSocket extends BlockTileTotemic
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-
         TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(x, y, z);
 
         ItemStack heldItem = player.inventory.getCurrentItem();
@@ -53,6 +54,10 @@ public class BlockTotemSocket extends BlockTileTotemic
 
         if(tileTotemSocket != null && !world.isRemote)
         {
+            if(player.getHeldItem() != null && tileTotemSocket.getStackInSlot(0) != null && (player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem().getItem() == ModItems.infusedTotemicStaff))
+            {
+                player.addChatComponentMessage(new ChatComponentText("Totem:" + ItemTotems.TOTEM_NAMES[tileTotemSocket.getStackInSlot(0).getItemDamage()]));
+            }
 
             if(tileTotemSocket.getStackInSlot(SLOT_ONE) == null && heldItem != null && tileTotemSocket.isItemValidForSlot(0, heldItem))
             {

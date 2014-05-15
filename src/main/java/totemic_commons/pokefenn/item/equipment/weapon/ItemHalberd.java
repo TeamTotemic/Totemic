@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.equipment;
+package totemic_commons.pokefenn.item.equipment.weapon;
 
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
