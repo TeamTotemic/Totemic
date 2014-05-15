@@ -5,7 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -37,7 +37,7 @@ public class TotemEffectOcelot implements ITotemEffect
 
                             if(intelligence)
                             {
-                                ((TileTotemIntelligence) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
+                                ((TileTotemBase) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
                             }
 
                         }

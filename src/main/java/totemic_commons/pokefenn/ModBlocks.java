@@ -7,7 +7,7 @@ import totemic_commons.pokefenn.block.music.BlockDrum;
 import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.block.plant.*;
 import totemic_commons.pokefenn.block.totem.BlockCeremonyIntelligence;
-import totemic_commons.pokefenn.block.totem.BlockTotemIntelligence;
+import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemSocket;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -16,7 +16,7 @@ public final class ModBlocks
 
     public static Block totemWoods;
     public static Block totemTable;
-    public static Block totemIntelligence;
+    public static Block totemBase;
     public static Block totemSocket;
     public static Block chlorophyll;
     public static Block totemSapling;
@@ -38,7 +38,7 @@ public final class ModBlocks
     {
 
         totemWoods = new BlockSylvanLog();
-        totemIntelligence = new BlockTotemIntelligence();
+        totemBase = new BlockTotemBase();
         totemSocket = new BlockTotemSocket();
         //chlorophyll = new BlockChlorophyll();
         totemSapling = new BlockSylvanSapling();
@@ -55,7 +55,7 @@ public final class ModBlocks
         windChime = new BlockWindChime();
 
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
-        GameRegistry.registerBlock(totemIntelligence, Strings.TOTEM_INTELLIGENCE_NAME);
+        GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
         GameRegistry.registerBlock(totemSocket, Strings.TOTEM_SOCKET_NAME);
         //GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
         GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);

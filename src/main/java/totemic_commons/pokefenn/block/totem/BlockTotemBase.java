@@ -21,7 +21,7 @@ import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 import java.util.Random;
 
@@ -31,15 +31,15 @@ import java.util.Random;
  * Date: 29/01/14
  * Time: 20:20
  */
-public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemicStaffUsage
+public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsage
 {
 
     private Random rand = new Random();
 
-    public BlockTotemIntelligence()
+    public BlockTotemBase()
     {
         super(Material.wood);
-        setBlockName(Strings.TOTEM_INTELLIGENCE_NAME);
+        setBlockName(Strings.TOTEM_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
 
     }
@@ -47,9 +47,9 @@ public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemic
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-        int SLOT_ONE = TileTotemIntelligence.SLOT_ONE;
+        int SLOT_ONE = TileTotemBase.SLOT_ONE;
 
-        TileTotemIntelligence tileTotemIntelligence = (TileTotemIntelligence) world.getTileEntity(x, y, z);
+        TileTotemBase tileTotemIntelligence = (TileTotemBase) world.getTileEntity(x, y, z);
 
         ItemStack heldItem = player.inventory.getCurrentItem();
 
@@ -82,7 +82,7 @@ public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemic
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random rand)
     {
-        TileTotemIntelligence tileTotemIntelligence = (TileTotemIntelligence) world.getTileEntity(x, y, z);
+        TileTotemBase tileTotemIntelligence = (TileTotemBase) world.getTileEntity(x, y, z);
 
     }
 
@@ -92,7 +92,7 @@ public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemic
     {
         dropInventory(world, x, y, z);
 
-        if(world.getTileEntity(x, y, z) instanceof TileTotemIntelligence)
+        if(world.getTileEntity(x, y, z) instanceof TileTotemBase)
         {
             world.markBlockForUpdate(x, y, z);
         }
@@ -166,14 +166,14 @@ public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemic
     @Override
     public TileEntity createNewTileEntity(World var1, int var2)
     {
-        return new TileTotemIntelligence();
+        return new TileTotemBase();
     }
 
     @Override
     public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world)
     {
         Random rand = new Random();
-        TileTotemIntelligence tileEntity = (TileTotemIntelligence) world.getTileEntity(x, y, z);
+        TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
 
         player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
         player.attackEntityFrom(DamageSource.generic, 2 + rand.nextInt(4));
@@ -182,7 +182,7 @@ public class BlockTotemIntelligence extends BlockTileTotemic implements ITotemic
     @Override
     public void onInfusedRightClick(int x, int y, int z, EntityPlayer player, World world)
     {
-        TileTotemIntelligence tileEntity = (TileTotemIntelligence) world.getTileEntity(x, y, z);
+        TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
 
         player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
     }

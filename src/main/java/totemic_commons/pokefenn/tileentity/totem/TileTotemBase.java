@@ -29,7 +29,7 @@ import java.util.Random;
  * Date: 29/01/14
  * Time: 20:22
  */
-public class TileTotemIntelligence extends TileTotemic implements IInventory, IPlantEssenceInput, IMusicAcceptor
+public class TileTotemBase extends TileTotemic implements IInventory, IPlantEssenceInput, IMusicAcceptor
 {
 
     private ItemStack[] inventory;
@@ -44,7 +44,7 @@ public class TileTotemIntelligence extends TileTotemic implements IInventory, IP
 
     ItemStack[] totems;
 
-    public TileTotemIntelligence()
+    public TileTotemBase()
     {
         inventory = new ItemStack[INVENTORY_SIZE];
         totems = new ItemStack[6];

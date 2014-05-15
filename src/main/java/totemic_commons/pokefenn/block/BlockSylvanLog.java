@@ -87,7 +87,7 @@ public class BlockSylvanLog extends BlockLog implements ITotemicStaffUsage
     @Override
     public void onInfusedRightClick(int x, int y, int z, EntityPlayer player, World world)
     {
-        world.setBlock(x, y, z, ModBlocks.totemIntelligence);
+        world.setBlock(x, y, z, ModBlocks.totemBase);
     }
 }
 

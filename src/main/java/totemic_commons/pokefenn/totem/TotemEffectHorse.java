@@ -5,7 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -38,7 +38,7 @@ public class TotemEffectHorse implements ITotemEffect
 
                         if(intelligence)
                         {
-                            ((TileTotemIntelligence) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
+                            ((TileTotemBase) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
                         }
 
                     }

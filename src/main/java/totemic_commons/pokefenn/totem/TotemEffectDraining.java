@@ -5,9 +5,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.api.IBlacklistedDraining;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
-import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 import java.util.Random;
@@ -24,10 +23,10 @@ public class TotemEffectDraining implements ITotemEffect
     public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle, int melody)
     {
         if(totem.getWorldObj().getWorldTime() % 80L == 0)
-            drainEffect((TileTotemIntelligence) totem, upgrades, melody);
+            drainEffect((TileTotemBase) totem, upgrades, melody);
     }
 
-    protected static void drainEffect(TileTotemIntelligence tileTotemIntelligence, int upgrades, int melody)
+    protected static void drainEffect(TileTotemBase tileTotemIntelligence, int upgrades, int melody)
     {
         int totemRadius = 8 + (upgrades * 3);
 
@@ -38,7 +37,7 @@ public class TotemEffectDraining implements ITotemEffect
             }
     }
 
-    protected static void reducePlantMetadata(TileTotemIntelligence tileTotemIntelligence, int x, int y, int z, int melody)
+    protected static void reducePlantMetadata(TileTotemBase tileTotemIntelligence, int x, int y, int z, int melody)
     {
         //yCoords is there because the totem has to be on the same level as the IPlantable's
         Block blockQuery = tileTotemIntelligence.getWorldObj().getBlock(x, y, z);
