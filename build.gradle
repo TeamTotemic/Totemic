@@ -18,20 +18,16 @@ buildscript {
 apply plugin: 'forge'
 
 version = "1.7.2-0.4.1"
-group= "totemic_commons.pokefenn" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group= "totemic_commons.pokefenn" 
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.7.2-10.12.0.1060"
+    version = "1.7.2-10.12.0.1056"
     assetDir = "eclipse/assets"
 }
 
 processResources
 {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
@@ -44,4 +40,30 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+    
 }
+
+// Create deobf dev jars
+task deobfJar(type: Jar) {
+    from(sourceSets.main.output) {
+        appendix = 'deobf' 
+    }
+} 
+
+// Create API library zip
+task apiZip(type: Zip) {   
+    from(sourceSets.main.java) {        
+        
+     }    
+     classifier = 'api'
+}
+
+apiZip.mustRunAfter deobfJar
+
+
+artifacts { 
+    archives deobfJar 
+    archives apiZip
+}
+
+
