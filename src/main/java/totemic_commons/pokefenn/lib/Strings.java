@@ -21,7 +21,7 @@ public class Strings
     public static final String LOTUS_BLOCK_NAME = "lotusBlock";
     public static final String FUNGAL_PLANT_BLOCK_NAME = "fungalPlantBlock";
     public static final String FLAME_PARTICLE_NAME = "flameParticleBlock";
-    public static final String DRUM_NAME = "drum";
+    public static final String DRUM_NAME = "totemDrum";
     public static final String WIND_CHIME_NAME = "windChime";
 
     //Items
