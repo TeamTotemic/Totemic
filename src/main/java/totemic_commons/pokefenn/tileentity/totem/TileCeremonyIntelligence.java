@@ -191,6 +191,10 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public boolean canStartCeremony()
     {
+        int totalEfficiency = 0;
+
+        totalEfficiency = armourEfficiency + dancingEfficiency + plantEfficiency;
+
         //TODO
         return false;
     }

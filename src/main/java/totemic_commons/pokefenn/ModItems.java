@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
@@ -9,19 +8,10 @@ import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemTotemBeadBelt;
 import totemic_commons.pokefenn.item.equipment.music.ItemInfusedFlute;
-import totemic_commons.pokefenn.item.equipment.weapon.ItemHuntingKnife;
-import totemic_commons.pokefenn.item.fluid.ItemBottleChlorophyll;
-import totemic_commons.pokefenn.item.fluid.ItemBucketChlorophyll;
 import totemic_commons.pokefenn.item.*;
-import totemic_commons.pokefenn.item.plant.ItemBloodWart;
-import totemic_commons.pokefenn.item.plant.ItemFungusPlantSpore;
-import totemic_commons.pokefenn.item.plant.ItemMoonglowSeeds;
-import totemic_commons.pokefenn.item.plant.ItemWaterLotusSeed;
 import totemic_commons.pokefenn.item.equipment.ItemInfusedTotemicStaff;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
-import totemic_commons.pokefenn.item.verdant.ItemBlazingVerdantCrystal;
-import totemic_commons.pokefenn.item.verdant.ItemVerdantCrystal;
 import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModItems
@@ -65,15 +55,14 @@ public final class ModItems
         //verdantCrystal = new ItemVerdantCrystal();
         //bucketChlorophyll = new ItemBucketChlorophyll();
         totems = new ItemTotems();
-        subItems = new ItemSubItems();
+        subItems = new ItemTotemicItems();
         //bottleChlorophyll = new ItemBottleChlorophyll();
         //blazingChlorophyllCrystal = new ItemBlazingVerdantCrystal();
         infusedTotemicStaff = new ItemInfusedTotemicStaff();
         //totempedia = new ItemTotempedia();
-        //potion = new ItemPotions();
-        moonglowSeeds = new ItemMoonglowSeeds();
-        bloodwart = new ItemBloodWart();
-        lotusSeed = new ItemWaterLotusSeed();
+        //moonglowSeeds = new ItemMoonglowSeeds();
+        //bloodwart = new ItemBloodWart();
+        //lotusSeed = new ItemWaterLotusSeed();
         //fungusSpore = new ItemFungusPlantSpore();
         shamanFlute = new ItemInfusedFlute();
         //halberd = new ItemHalberd();
@@ -98,10 +87,9 @@ public final class ModItems
         GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
         //GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
         GameRegistry.registerItem(totems, totems.getUnlocalizedName());
-        //GameRegistry.registerItem(potion, Strings.TOTEMIC_POTION_NAME);
-        GameRegistry.registerItem(moonglowSeeds, moonglowSeeds.getUnlocalizedName());
-        GameRegistry.registerItem(bloodwart, bloodwart.getUnlocalizedName());
-        GameRegistry.registerItem(lotusSeed, lotusSeed.getUnlocalizedName());
+        //GameRegistry.registerItem(moonglowSeeds, moonglowSeeds.getUnlocalizedName());
+        //GameRegistry.registerItem(bloodwart, bloodwart.getUnlocalizedName());
+        //GameRegistry.registerItem(lotusSeed, lotusSeed.getUnlocalizedName());
         //GameRegistry.registerItem(fungusSpore, fungusSpore.getUnlocalizedName());
         GameRegistry.registerItem(shamanFlute, shamanFlute.getUnlocalizedName());
         //GameRegistry.registerItem(halberd, Strings.HALBERD_NAME);

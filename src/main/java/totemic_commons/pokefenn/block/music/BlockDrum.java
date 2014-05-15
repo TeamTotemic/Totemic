@@ -29,7 +29,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     {
         super(Material.wood);
         setBlockName(Strings.DRUM_NAME);
-        setBlockBounds(0.4F, 0.0F, 0.4F, 0.6F, 0.8F, 0.6F);
+        setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.8F, 0.8F);
     }
 
     @Override

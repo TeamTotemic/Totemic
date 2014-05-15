@@ -19,22 +19,20 @@ import java.util.List;
  * Date: 08/12/13
  * Time: 19:19
  */
-public class ItemSubItems extends ItemTotemic
+public class ItemTotemicItems extends ItemTotemic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"leaf", "infusedStick", "moonglowHead", "lotusFlower"};
+    private static final String[] ITEMS_NAMES = new String[]{"leaf", "infusedStick"/*, "moonglowHead", "lotusFlower"*/};
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
-    public ItemSubItems()
+    public ItemTotemicItems()
     {
-
         super();
         setHasSubtypes(true);
         maxStackSize = 64;
         setCreativeTab(Totemic.tabsTotem);
-
     }
 
     @Override

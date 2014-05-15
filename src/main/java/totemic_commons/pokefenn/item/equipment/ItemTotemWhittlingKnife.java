@@ -46,13 +46,13 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         return false;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
-    {
+    //@Override
+    //@SideOnly(Side.CLIENT)
+    //public void getSubItems(Item id, CreativeTabs creativeTab, List list)
+    //{
         //for(int meta = 0; meta < ItemTotems.TOTEM_NAMES.length; meta++)
         //    list.add(new ItemStack(id, 1, meta));
-    }
+    //}
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
@@ -70,7 +70,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         {
             MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
 
-            if(block != null)
+            if(block != null && !player.isSneaking())
             {
                 Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
@@ -81,13 +81,9 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket);
                         TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
 
-                        if(tileTotemSocket.getStackInSlot(0) == null)
-                        {
-                            if(itemStack.getItemDamage() != 0)
-                                tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, itemStack.getItemDamage()));
-                            world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
-                            tileTotemSocket.markDirty();
-                        }
+                        tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, 1, itemStack.getItemDamage()));
+                        world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
+                        tileTotemSocket.markDirty();
                     }
 
                 }

@@ -10,6 +10,8 @@ item.totemic:totemsBlaze.name=Blaze Totem
 item.totemic:totemsSquid.name=Squid Totem
 item.totemic:totemsDraining.name=Draining Totem
 item.totemic:totemsRange.name=Range Totem
+item.totemic:totemsSpider.name=Spider Totem
+item.totemic:totemsCow.name=Cow Totem
 item.totemic:chlorophyllicIngot.name=Chlorophyllic Ingot
 item.totemic:paintBrush.name=Totemic Paint Brush
 item.totemic:bucketChlorophyll.name=Bucket of Chlorophyll
@@ -20,13 +22,16 @@ item.totemic:infusedTotemicStaff.name=Infused Totemic Staff
 item.totemic:leaf.name=Infused Leaf
 item.totemic:infusedStick.name=Infused Stick
 item.totemic:totempedia.name=Totempedia
-item.totemic:potionResistance.name=Resistance Potion
-item.totemic:potionAntidote.name=Antidote Potion
-item.totemic:potionRegeneration.name=Regeneration Potion
 item.totemic:infusedPotion.name=Infused Potion
 item.totemic:blazingVerdantCrystal.name=Blazing Verdant Crystal
 item.totemic:verdantCrystal.name=Verdant Crystal
-item.totemic:shamanFlute.name=Shamanic Flute
+item.totemic:shamanFlute.name=Totem Flute
+item.totemic:heiTiki.name=Hei-Tiki
+item.totemic:herculeseBeetle.name=Hercules Beetle
+item.totemic:totemArmourHead.name=Totem Armour Helmet
+item.totemic:totemArmourFeet.name=Totem Armour Boots
+item.totemic:totemArmourChest.name=Totem Armour Chestplate
+item.totemic:totemArmourLeg.name=Totem Armour Leggings
 
 # Block localizations
 tile.chlorophyllSolidifier.name=Chlorophyll Solidifier
@@ -34,12 +39,10 @@ tile.totemWoods.name=Infused Wood
 tile.totemSupport.name=Totem Structure Support
 tile.totemIntelligence.name=Totem Intelligence
 tile.totemTable.name=Totem Table [WIP]
-tile.totemDraining.name=Totem of Draining
 tile.totemSocket.name=Totem Socket
 tile.totemSapling.name=Infused Sapling
 tile.totemLeaves.name=Infused Leaves
-tile.totemMana.name=Mana Totem Intelligence
-tile.totemCauldron.name=Totemic Cauldron
+tile.totemDrum.name=Drum
 
 # Fluid localizations
 fluid.fluidChlorophyll.name=Chlorophyll
