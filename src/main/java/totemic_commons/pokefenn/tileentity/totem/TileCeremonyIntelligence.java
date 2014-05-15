@@ -77,7 +77,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             {
                 for(int aMusicSelector : musicSelector)
                 {
-                 //   System.out.println(aMusicSelector);
+                    //   System.out.println(aMusicSelector);
                 }
                 //System.out.println(isDoingStartup + "IS DOING STARTUP");
             }
@@ -98,7 +98,13 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                         isMusicSelecting = false;
                         resetSelector();
                     }
+                    //This may break, pay attention to it
+                    if(musicSelector[0] != 0 && musicSelector[1] != 0 && musicSelector[2] != 0 && musicSelector[3] != 0 && ceremonyRegistry.getInstruments(1).ordinal() != musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() != musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() != musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() != musicSelector[3])
+                    {
+                        resetSelector();
+                    }
                 }
+
 
             if(isDoingStartup)
             {
@@ -119,6 +125,10 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             {
                 if(isDoingEffect && !CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getIsInstant())
                     currentTime++;
+
+                if(currentTime > CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMaximumTicks())
+                    resetEverything();
+
 
                 ICeremonyEffect effect = CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect();
 
@@ -280,6 +290,8 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         currentCeremony = 0;
         currentTime = 0;
         dancingEfficiency = 0;
+        armourEfficiency = 0;
+        plantEfficiency = 0;
         isDoingEffect = false;
     }
 

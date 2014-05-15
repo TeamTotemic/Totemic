@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.client.rendering.model.ModelTotemSocketCube;
 import totemic_commons.pokefenn.lib.Textures;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
 /**
  * Created by Pokefenn.
@@ -27,13 +27,13 @@ public class TileTotemSocketCubeRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
 
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
-        TileTotemSocket tile = (TileTotemSocket) tileEntity;
+        TileTotemPole tile = (TileTotemPole) tileEntity;
 
         renderTotemSocket(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.totemSocket);
         GL11.glPopMatrix();
     }
 
-    public void renderTotemSocket(TileTotemSocket totemSocket, World world, int i, int j, int k, Block block)
+    public void renderTotemSocket(TileTotemPole totemSocket, World world, int i, int j, int k, Block block)
     {
         Tessellator tessellator = Tessellator.instance;
         float f = block.getMixedBrightnessForBlock(world, i, j, k);

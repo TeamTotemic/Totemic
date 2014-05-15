@@ -18,7 +18,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 02/02/14
  * Time: 13:04
  */
-public class TileTotemSocket extends TileTotemic implements IInventory
+public class TileTotemPole extends TileTotemic implements IInventory
 {
 
     private ItemStack[] inventory;
@@ -27,7 +27,7 @@ public class TileTotemSocket extends TileTotemic implements IInventory
 
     public static final int SLOT_ONE = 0;
 
-    public TileTotemSocket()
+    public TileTotemPole()
     {
         inventory = new ItemStack[INVENTORY_SIZE];
     }

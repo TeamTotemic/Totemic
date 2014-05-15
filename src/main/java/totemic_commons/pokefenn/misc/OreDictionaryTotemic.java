@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.item.ItemTotemicItems;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,26 +18,10 @@ public class OreDictionaryTotemic
 
     public static void init()
     {
+        OreDictionary.registerOre("cropVine", new ItemStack(Blocks.vine));
+        OreDictionary.registerOre("infusedLeaf", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.leaf));
+        //OreDictionary.registerOre("crystalVerdant", new ItemStack(ModItems.verdantCrystal, 1, OreDictionary.WILDCARD_VALUE));
+        //OreDictionary.registerOre("blazingCrystalVerdant", new ItemStack(ModItems.blazingChlorophyllCrystal, 1, OreDictionary.WILDCARD_VALUE));
 
-        OreDictionary.registerOre("plant", new ItemStack(Blocks.vine));
-        OreDictionary.registerOre("plant", new ItemStack(Items.wheat_seeds));
-        OreDictionary.registerOre("plant", new ItemStack(Items.carrot));
-        OreDictionary.registerOre("plant", new ItemStack(Items.melon_seeds));
-        OreDictionary.registerOre("plant", new ItemStack(Items.pumpkin_seeds));
-        OreDictionary.registerOre("plant", new ItemStack(Items.potato));
-        OreDictionary.registerOre("plant", new ItemStack(Items.poisonous_potato));
-
-        for(int i = 0; i <= 3; i++)
-        {
-            OreDictionary.registerOre("plant", new ItemStack(Blocks.leaves, 1, i));
-            OreDictionary.registerOre("plant", new ItemStack(Blocks.leaves2, 1, i));
-        }
-
-        OreDictionary.registerOre("crystalVerdant", new ItemStack(ModItems.verdantCrystal, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("blazingCrystalVerdant", new ItemStack(ModItems.blazingChlorophyllCrystal, 1, OreDictionary.WILDCARD_VALUE));
-        for(int i = 0; i <= 3; i++)
-        {
-            OreDictionary.registerOre("plant", new ItemStack(Blocks.sapling, 1, i));
-        }
     }
 }

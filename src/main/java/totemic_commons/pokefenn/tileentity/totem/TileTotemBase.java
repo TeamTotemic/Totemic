@@ -15,13 +15,11 @@ import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.totem.IPlantEssenceInput;
 import totemic_commons.pokefenn.api.verdant.IVerdantCrystal;
-import totemic_commons.pokefenn.block.totem.BlockTotemSocket;
+import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
-
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -186,7 +184,7 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
     {
         TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
 
-        return ((IInventory) tileEntity).getStackInSlot(TileTotemSocket.SLOT_ONE);
+        return ((IInventory) tileEntity).getStackInSlot(TileTotemPole.SLOT_ONE);
     }
 
 
@@ -198,19 +196,19 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
 
-        if(block1 instanceof BlockTotemSocket && block2 != ModBlocks.totemSocket)
+        if(block1 instanceof BlockTotemPole && block2 != ModBlocks.totemSocket)
         {
             return 1;
-        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 != ModBlocks.totemSocket)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 != ModBlocks.totemSocket)
         {
             return 2;
-        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 != ModBlocks.totemSocket)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 != ModBlocks.totemSocket)
         {
             return 3;
-        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 != ModBlocks.totemSocket)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 != ModBlocks.totemSocket)
         {
             return 4;
-        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole)
         {
             return 5;
         } else
@@ -226,19 +224,19 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
 
-        if(block1 instanceof BlockTotemSocket && block2 != ModBlocks.totemSocket)
+        if(block1 instanceof BlockTotemPole && block2 != ModBlocks.totemSocket)
         {
             socket = 1;
-        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 != ModBlocks.totemSocket)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 != ModBlocks.totemSocket)
         {
             socket = 2;
-        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 != ModBlocks.totemSocket)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 != ModBlocks.totemSocket)
         {
             socket = 3;
-        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 != ModBlocks.totemSocket)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 != ModBlocks.totemSocket)
         {
             socket = 4;
-        } else if(block1 instanceof BlockTotemSocket && block2 instanceof BlockTotemSocket && block3 instanceof BlockTotemSocket && block4 instanceof BlockTotemSocket && block5 instanceof BlockTotemSocket)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole)
         {
             socket = 5;
         } else

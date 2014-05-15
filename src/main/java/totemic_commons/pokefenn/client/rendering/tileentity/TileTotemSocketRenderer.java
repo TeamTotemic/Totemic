@@ -6,7 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.client.rendering.model.ModelTotemSocket;
 import totemic_commons.pokefenn.lib.Textures;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +22,7 @@ public class TileTotemSocketRenderer extends TileEntitySpecialRenderer
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick)
     {
-        if(tileEntity instanceof TileTotemSocket)
+        if(tileEntity instanceof TileTotemPole)
         {
 
             GL11.glDisable(GL11.GL_LIGHTING);

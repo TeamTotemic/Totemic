@@ -2,7 +2,6 @@ package totemic_commons.pokefenn.block.totem;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -10,19 +9,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.totem.ITotem;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.TileTotemic;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
 import java.util.Random;
 
@@ -32,10 +27,10 @@ import java.util.Random;
  * Date: 02/02/14
  * Time: 13:03
  */
-public class BlockTotemSocket extends BlockTileTotemic
+public class BlockTotemPole extends BlockTileTotemic
 {
 
-    public BlockTotemSocket()
+    public BlockTotemPole()
     {
         super(Material.wood);
         setBlockName(Strings.TOTEM_SOCKET_NAME);
@@ -46,11 +41,11 @@ public class BlockTotemSocket extends BlockTileTotemic
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-        TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(x, y, z);
+        TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(x, y, z);
 
         ItemStack heldItem = player.inventory.getCurrentItem();
 
-        int SLOT_ONE = TileTotemSocket.SLOT_ONE;
+        int SLOT_ONE = TileTotemPole.SLOT_ONE;
 
         if(tileTotemSocket != null && !world.isRemote)
         {
@@ -85,7 +80,7 @@ public class BlockTotemSocket extends BlockTileTotemic
 
         dropInventory(world, x, y, z);
 
-        if(world.getTileEntity(x, y, z) instanceof TileTotemSocket)
+        if(world.getTileEntity(x, y, z) instanceof TileTotemPole)
         {
             world.markBlockForUpdate(x, y, z);
             //world.updateAllLightTypes(x, y, z);
@@ -183,6 +178,6 @@ public class BlockTotemSocket extends BlockTileTotemic
     @Override
     public TileEntity createNewTileEntity(World var1, int var2)
     {
-        return new TileTotemSocket();
+        return new TileTotemPole();
     }
 }

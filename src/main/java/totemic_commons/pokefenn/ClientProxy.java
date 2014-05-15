@@ -19,7 +19,7 @@ import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.misc.villager.TotemicVillagerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 
 public class ClientProxy extends CommonProxy
@@ -133,9 +133,9 @@ public class ClientProxy extends CommonProxy
         //MinecraftForgeClient.registerItemRenderer(ModBlocks.totemTorch, new ItemTotemTorchRenderer);
 
         if(!ConfigurationSettings.RENDER_CUBE_SOCKET)
-            ClientRegistry.bindTileEntitySpecialRenderer(TileTotemSocket.class, new TileTotemSocketRenderer());
+            ClientRegistry.bindTileEntitySpecialRenderer(TileTotemPole.class, new TileTotemSocketRenderer());
         else
-            ClientRegistry.bindTileEntitySpecialRenderer(TileTotemSocket.class, new TileTotemSocketCubeRenderer());
+            ClientRegistry.bindTileEntitySpecialRenderer(TileTotemPole.class, new TileTotemSocketCubeRenderer());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileDrum.class, new TileDrumRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTorch.class, new TileTotemTorchRenderer());

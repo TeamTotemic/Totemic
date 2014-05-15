@@ -29,6 +29,11 @@ public class EntityUpdate
 
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
+            if(player.isPotionActive(ModPotions.batPotion.id) && player.isSneaking() && !player.onGround)
+            {
+                player.moveFlying(0.0F, 1.0F, 0.1F);
+            }
+
             if(!player.worldObj.isRemote && player.worldObj.getWorldTime() % 60L == 0)
             {
                 if(player.isPotionActive(Potion.wither))

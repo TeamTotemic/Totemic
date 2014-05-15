@@ -36,7 +36,6 @@ public class BlockSylvanLog extends BlockLog implements ITotemicStaffUsage
         setBlockName(Strings.TOTEM_WOODS_NAME);
         setHardness(1F);
         setCreativeTab(Totemic.tabsTotem);
-
     }
 
 

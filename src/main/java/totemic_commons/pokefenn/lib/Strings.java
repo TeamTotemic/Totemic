@@ -9,7 +9,7 @@ public class Strings
     public static final String VENUS_FLY_TRAP_NAME = "venusFlyTrap";
     public static final String TOTEM_WOODS_NAME = "sylvanLog";
     public static final String TOTEM_BASE_NAME = "totemBase";
-    public static final String TOTEM_SOCKET_NAME = "totemSocket";
+    public static final String TOTEM_POLE_NAME = "totemPole";
     public static final String TOTEM_SAPLING_NAME = "totemSapling";
     public static final String TOTEM_LEAVES_NAME = "totemLeaves";
     public static final String TOTEM_CAULDRON_NAME = "totemCauldron";

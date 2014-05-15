@@ -49,7 +49,6 @@ public class ItemPotions extends Item
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
         player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
-
         return stack;
     }
 

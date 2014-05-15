@@ -4,9 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -15,7 +13,7 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemSocket;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.List;
@@ -79,7 +77,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                     if(itemStack.getItemDamage() != 0)
                     {
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSocket);
-                        TileTotemSocket tileTotemSocket = (TileTotemSocket) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
+                        TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
 
                         tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, 1, itemStack.getItemDamage()));
                         world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);

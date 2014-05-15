@@ -22,7 +22,11 @@ import java.util.List;
 public class ItemTotemicItems extends ItemTotemic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"leaf", "infusedStick"/*, "moonglowHead", "lotusFlower"*/};
+    private static final String[] ITEMS_NAMES = new String[]{"leaf", "infusedStick", "verdantExtract"/*, "moonglowHead", "lotusFlower"*/};
+
+    public static int leaf = 0;
+    public static int infusedStick = 1;
+    public static int verdantExtract = 2;
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;

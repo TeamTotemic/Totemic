@@ -58,7 +58,7 @@ public final class ModItems
         subItems = new ItemTotemicItems();
         //bottleChlorophyll = new ItemBottleChlorophyll();
         //blazingChlorophyllCrystal = new ItemBlazingVerdantCrystal();
-        infusedTotemicStaff = new ItemInfusedTotemicStaff();
+        //infusedTotemicStaff = new ItemInfusedTotemicStaff();
         //totempedia = new ItemTotempedia();
         //moonglowSeeds = new ItemMoonglowSeeds();
         //bloodwart = new ItemBloodWart();
@@ -84,7 +84,7 @@ public final class ModItems
         GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
         //GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
         //GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
-        GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
+        //GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
         //GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
         GameRegistry.registerItem(totems, totems.getUnlocalizedName());
         //GameRegistry.registerItem(moonglowSeeds, moonglowSeeds.getUnlocalizedName());
