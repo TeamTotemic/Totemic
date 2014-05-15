@@ -34,7 +34,7 @@ public class TotemicRecipes
 
         //Music
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0), new Object[] {"eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE)}));
-        //GameRegistry.addRecipe(new ShapelessRecipes(new ItemStack(ModItems.shamanFlute, 1, 0), new Object[] { }));
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.shamanFlute, 1, 0), new Object[]{new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});
     }
 
     public static void shapelessRecipes()

@@ -2,12 +2,14 @@ package totemic_commons.pokefenn.item.equipment.music;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -43,6 +45,7 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
         list.add("Like the Pied Piper of old");
+        list.add("Is Imbued: " + (stack.getItemDamage() == 0 ? "False" : "True"));
     }
 
     @Override
@@ -59,6 +62,14 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
+    {
+        for(int meta = 0; meta < 2; ++meta)
+            list.add(new ItemStack(id, 1, meta));
+    }
+
+    @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
         if(!world.isRemote)
@@ -69,7 +80,6 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
                 time = 0;
                 TotemUtil.playMusicFromItem(world, player, this.musicEnum(), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
                 particlesAllAround(world, player.posX, player.posY, player.posZ);
-                //MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) player.posX + 0.5D, (double) player.posY + 1.2D, (double) player.posZ + 0.5D, 8, 0.0D, 0.0D, 0.0D, 0.0D);
                 return stack;
             }
             if(time >= 15 && player.isSneaking())
@@ -77,22 +87,22 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
                 time = 0;
                 TotemUtil.playMusicFromItemForCeremonySelector(stack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(), 6);
                 particlesAllAround(world, player.posX, player.posY, player.posZ);
-                //MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) player.posX + 0.5D, (double) player.posY + 1.2D, (double) player.posZ + 0.5D, 8, 0.0D, 0.0D, 0.0D, 0.0D);
             }
-            if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)
-            {
-                for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
+            if(stack.getItemDamage() == 1)
+                if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)
                 {
-                    if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
+                    for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
                     {
-                        if(entity instanceof EntityAnimal)
-                            ((EntityAnimal) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 1, ModItems.shamanFlute, false));
-                        if(entity instanceof EntityVillager)
-                            ((EntityVillager) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 0.5, ModItems.shamanFlute, false));
-                    }
+                        if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
+                        {
+                            if(entity instanceof EntityAnimal)
+                                ((EntityAnimal) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 1, ModItems.shamanFlute, false));
+                            if(entity instanceof EntityVillager)
+                                ((EntityVillager) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 0.5, ModItems.shamanFlute, false));
+                        }
 
+                    }
                 }
-            }
 
         }
         return stack;
@@ -121,7 +131,7 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 4;
+        return player.getHeldItem() != null && player.getHeldItem().getItemDamage() == 0 ? 3 : 6;
     }
 
     @Override

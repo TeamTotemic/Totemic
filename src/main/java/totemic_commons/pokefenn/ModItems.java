@@ -62,19 +62,19 @@ public final class ModItems
     {
         totemWhittlingKnife = new ItemTotemWhittlingKnife();
         totemicStaff = new ItemTotemicStaff();
-        verdantCrystal = new ItemVerdantCrystal();
+        //verdantCrystal = new ItemVerdantCrystal();
         //bucketChlorophyll = new ItemBucketChlorophyll();
         totems = new ItemTotems();
         subItems = new ItemSubItems();
         //bottleChlorophyll = new ItemBottleChlorophyll();
-        blazingChlorophyllCrystal = new ItemBlazingVerdantCrystal();
+        //blazingChlorophyllCrystal = new ItemBlazingVerdantCrystal();
         infusedTotemicStaff = new ItemInfusedTotemicStaff();
         //totempedia = new ItemTotempedia();
         //potion = new ItemPotions();
         moonglowSeeds = new ItemMoonglowSeeds();
         bloodwart = new ItemBloodWart();
         lotusSeed = new ItemWaterLotusSeed();
-        fungusSpore = new ItemFungusPlantSpore();
+        //fungusSpore = new ItemFungusPlantSpore();
         shamanFlute = new ItemInfusedFlute();
         //halberd = new ItemHalberd();
         //witherBow = new ItemWitherBow();
@@ -90,11 +90,11 @@ public final class ModItems
         //Registry for other items
         GameRegistry.registerItem(totemWhittlingKnife, totemWhittlingKnife.getUnlocalizedName());
         GameRegistry.registerItem(totemicStaff, totemicStaff.getUnlocalizedName());
-        GameRegistry.registerItem(verdantCrystal, verdantCrystal.getUnlocalizedName());
+        //GameRegistry.registerItem(verdantCrystal, verdantCrystal.getUnlocalizedName());
         //GameRegistry.registerItem(bucketChlorophyll, bucketChlorophyll.getUnlocalizedName());
         GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
         //GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
-        GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
+        //GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
         GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
         //GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
         GameRegistry.registerItem(totems, totems.getUnlocalizedName());
@@ -102,7 +102,7 @@ public final class ModItems
         GameRegistry.registerItem(moonglowSeeds, moonglowSeeds.getUnlocalizedName());
         GameRegistry.registerItem(bloodwart, bloodwart.getUnlocalizedName());
         GameRegistry.registerItem(lotusSeed, lotusSeed.getUnlocalizedName());
-        GameRegistry.registerItem(fungusSpore, fungusSpore.getUnlocalizedName());
+        //GameRegistry.registerItem(fungusSpore, fungusSpore.getUnlocalizedName());
         GameRegistry.registerItem(shamanFlute, shamanFlute.getUnlocalizedName());
         //GameRegistry.registerItem(halberd, Strings.HALBERD_NAME);
         //GameRegistry.registerItem(witherBow, Strings.WITHER_BOW_NAME);

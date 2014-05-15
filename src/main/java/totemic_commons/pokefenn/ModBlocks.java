@@ -49,7 +49,7 @@ public final class ModBlocks
         bloodwart = new BlockBloodWart();
         totemTorch = new BlockTotemTorch();
         lotusBlock = new BlockWaterLotus();
-        fungusBlock = new BlockFungalPlant();
+        //fungusBlock = new BlockFungalPlant();
         flameParticle = new BlockFlameParticle();
         drum = new BlockDrum();
         windChime = new BlockWindChime();
@@ -66,7 +66,7 @@ public final class ModBlocks
         GameRegistry.registerBlock(bloodwart, Strings.BLOODWART_BLOCK_NAME);
         GameRegistry.registerBlock(totemTorch, Strings.TOTEM_TORCH_NAME);
         GameRegistry.registerBlock(lotusBlock, Strings.LOTUS_BLOCK_NAME);
-        GameRegistry.registerBlock(fungusBlock, Strings.FUNGAL_PLANT_BLOCK_NAME);
+        //GameRegistry.registerBlock(fungusBlock, Strings.FUNGAL_PLANT_BLOCK_NAME);
         GameRegistry.registerBlock(flameParticle, Strings.FLAME_PARTICLE_NAME);
         GameRegistry.registerBlock(drum, Strings.DRUM_NAME);
         GameRegistry.registerBlock(windChime, Strings.WIND_CHIME_NAME);

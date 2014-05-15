@@ -24,11 +24,13 @@ public class TileDrum extends TileTotemic
         canPlay = true;
     }
 
+    @Override
     public boolean canUpdate()
     {
         return true;
     }
 
+    @Override
     public void updateEntity()
     {
         super.updateEntity();
