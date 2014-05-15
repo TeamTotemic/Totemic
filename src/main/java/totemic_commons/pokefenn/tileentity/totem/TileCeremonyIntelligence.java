@@ -301,7 +301,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         {
             if(block == ModBlocks.totemTorch)
                 return 4;
-            if(block == ModBlocks.totemSocket)
+            if(block == ModBlocks.totemPole)
                 return 3;
             if(block == Blocks.fire)
                 return 2;

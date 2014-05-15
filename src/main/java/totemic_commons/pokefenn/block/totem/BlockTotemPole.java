@@ -33,7 +33,7 @@ public class BlockTotemPole extends BlockTileTotemic
     public BlockTotemPole()
     {
         super(Material.wood);
-        setBlockName(Strings.TOTEM_SOCKET_NAME);
+        setBlockName(Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.95F, 0.8F);
     }

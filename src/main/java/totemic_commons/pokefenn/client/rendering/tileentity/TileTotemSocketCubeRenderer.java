@@ -29,7 +29,7 @@ public class TileTotemSocketCubeRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         TileTotemPole tile = (TileTotemPole) tileEntity;
 
-        renderTotemSocket(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.totemSocket);
+        renderTotemSocket(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.totemPole);
         GL11.glPopMatrix();
     }
 

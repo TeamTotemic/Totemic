@@ -125,7 +125,7 @@ public class ClientProxy extends CommonProxy
         RenderIds.RENDER_ID_DRUM = RenderingRegistry.getNextAvailableRenderId();
 
         if(!ConfigurationSettings.RENDER_CUBE_SOCKET)
-            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemSocket), new ItemTotemSocketRenderer());
+            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemPole), new ItemTotemSocketRenderer());
         MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff, new ItemTotemicStaffRender());
         MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff, new ItemInfusedTotemicStaff());
         MinecraftForgeClient.registerItemRenderer(ModItems.verdantCrystal, new ItemChlorophyllCrystalRenderer());
