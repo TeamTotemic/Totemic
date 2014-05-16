@@ -19,8 +19,8 @@ public class CeremonyRegistry
 
     public static void addRecipes()
     {
-        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 1, new CeremonyPlantGrowth(), false, 20 * 60, MusicEnum.FLUTE_MUSIC, null, 100));
-        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyCrafting(), false, (20 * 60) * 5, MusicEnum.FLUTE_MUSIC, null, 100));
+        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 1, new CeremonyPlantGrowth(), false, 20 * 60, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20));
+        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyCrafting(), false, (20 * 60) * 5, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20));
     }
 
     private final ItemStack item;
@@ -35,8 +35,9 @@ public class CeremonyRegistry
     private final MusicEnum preferedMusic;
     private final boolean isInstant;
     private final int musicNeeded;
+    private final int maximumStartupTime;
 
-    public CeremonyRegistry(boolean doesNeedItems, MusicEnum instrument1, MusicEnum instrument2, MusicEnum instrument3, MusicEnum instrument4, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, MusicEnum preferedMusic, ItemStack item, int musicNeeded)
+    public CeremonyRegistry(boolean doesNeedItems, MusicEnum instrument1, MusicEnum instrument2, MusicEnum instrument3, MusicEnum instrument4, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, MusicEnum preferedMusic, ItemStack item, int musicNeeded, int maximumStartupTime)
     {
         this.item = item;
         this.doesNeedItems = doesNeedItems;
@@ -50,6 +51,7 @@ public class CeremonyRegistry
         this.preferedMusic = preferedMusic;
         this.isInstant = isInstant;
         this.musicNeeded = musicNeeded;
+        this.maximumStartupTime = maximumStartupTime;
     }
 
     public ItemStack getItem()
@@ -104,6 +106,11 @@ public class CeremonyRegistry
     public int getMusicNeeded()
     {
         return this.musicNeeded;
+    }
+
+    public int getMaximumStartupTime()
+    {
+        return this.maximumStartupTime;
     }
 
 }

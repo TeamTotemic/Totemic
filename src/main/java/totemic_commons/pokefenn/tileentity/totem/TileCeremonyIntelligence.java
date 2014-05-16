@@ -42,6 +42,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public int tryingCeremonyID;
     public int totalMelody;
     public boolean isMusicSelecting;
+    public int startupTime;
 
     public TileCeremonyIntelligence()
     {
@@ -58,6 +59,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         tryingCeremonyID = 0;
         totalMelody = 0;
         isMusicSelecting = true;
+        startupTime = 0;
     }
 
     @Override
@@ -108,6 +110,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
             if(isDoingStartup)
             {
+                startupTime++;
                 startupMain();
             }
 
@@ -211,6 +214,11 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public void startupMain()
     {
+        if(startupTime > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getMaximumStartupTime())
+        {
+            resetAfterCeremony(true);
+        }
+
         if(worldObj.getWorldTime() % 80L == 0)
         {
             plantEfficiency = 0;
@@ -330,6 +338,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         nbtTagCompound.setInteger("tryingCeremonyID", tryingCeremonyID);
         nbtTagCompound.setInteger("totalMelody", totalMelody);
         nbtTagCompound.setBoolean("isMusicSelecting", isMusicSelecting);
+        nbtTagCompound.setInteger("startupTime", startupTime);
     }
 
     @Override
@@ -350,6 +359,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         tryingCeremonyID = nbtTagCompound.getInteger("tryingCeremonyID");
         totalMelody = nbtTagCompound.getInteger("totalMelody");
         isMusicSelecting = nbtTagCompound.getBoolean("isMusicSelecting");
+        startupTime = nbtTagCompound.getInteger("startupTime");
     }
 
 
