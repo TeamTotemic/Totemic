@@ -36,6 +36,8 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         list.add("Shift and right click to change carving");
         if(stack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
             list.add("Currently Carving: " + ItemTotems.TOTEM_NAMES[stack.getItemDamage()]);
+        if(stack.getItemDamage() >= ItemTotems.TOTEM_NAMES.length)
+            list.add("Currently Carving: Totem Base");
     }
 
     @Override
@@ -48,14 +50,14 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     //@SideOnly(Side.CLIENT)
     //public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     //{
-        //for(int meta = 0; meta < ItemTotems.TOTEM_NAMES.length; meta++)
-        //    list.add(new ItemStack(id, 1, meta));
+    //for(int meta = 0; meta < ItemTotems.TOTEM_NAMES.length; meta++)
+    //    list.add(new ItemStack(id, 1, meta));
     //}
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-        if(player.isSneaking() && itemStack.getItemDamage() + 2 > ItemTotems.TOTEM_NAMES.length)
+        if(player.isSneaking() && itemStack.getItemDamage() + 1 > ItemTotems.TOTEM_NAMES.length)
             return new ItemStack(this, 1, 0);
 
         return player.isSneaking() ? new ItemStack(this, 1, 1 + itemStack.getItemDamage()) : itemStack;
@@ -74,7 +76,11 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
                 if(blockQuery instanceof BlockLog)
                 {
-                    if(itemStack.getItemDamage() != 0)
+                    if(itemStack.getItemDamage() >= ItemTotems.TOTEM_NAMES.length)
+                    {
+                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemBase);
+                        return true;
+                    } else
                     {
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);
                         TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);

@@ -56,6 +56,7 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
 
         if(tileTotemIntelligence != null && !world.isRemote)
         {
+            /*
 
             if(tileTotemIntelligence.isItemValidForSlot(SLOT_ONE, heldItem))
             {
@@ -71,6 +72,7 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
             }
 
             world.markBlockForUpdate(x, y, z);
+            */
 
         }
 

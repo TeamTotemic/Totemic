@@ -207,7 +207,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     {
         int totalEfficiency = 0;
 
-        if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getDoesNeedItems())
+        if(CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getDoesNeedItems())
         {
             if(EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6) != null)
             {
@@ -215,9 +215,9 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                 {
                     if(entity instanceof EntityItem)
                     {
-                        if(((EntityItem) entity).getEntityItem().getItem() == CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getItem().getItem() && ((EntityItem) entity).getEntityItem().getItemDamage() == CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getItem().getItemDamage() && ((EntityItem) entity).getEntityItem().stackSize >= CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getItem().stackSize)
+                        if(((EntityItem) entity).getEntityItem().getItem() == CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getItem().getItem() && ((EntityItem) entity).getEntityItem().getItemDamage() == CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getItem().getItemDamage() && ((EntityItem) entity).getEntityItem().stackSize >= CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getItem().stackSize)
                         {
-                            ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getItem().stackSize, ((EntityItem) entity).getEntityItem().getItemDamage()));
+                            ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getItem().stackSize, ((EntityItem) entity).getEntityItem().getItemDamage()));
                             break;
                         }
                     }

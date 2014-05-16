@@ -27,7 +27,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 29/01/14
  * Time: 20:22
  */
-public class TileTotemBase extends TileTotemic implements IInventory, IPlantEssenceInput, IMusicAcceptor
+public class TileTotemBase extends TileTotemic implements/* IInventory, */IPlantEssenceInput, IMusicAcceptor
 {
 
     private ItemStack[] inventory;
@@ -53,6 +53,7 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
         musicalMelody = 0;
     }
 
+    /*
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
@@ -68,6 +69,7 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
     public void closeInventory()
     {
     }
+    */
 
     public void updateEntity()
     {
@@ -175,11 +177,6 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
         return plantEssence - subtraction > 0 || meta == ItemTotems.draining;
     }
 
-    protected boolean canDoEffectOld(int subtraction)
-    {
-        return !(this.getStackInSlot(SLOT_ONE).getMaxDamage() - this.getStackInSlot(SLOT_ONE).getItemDamage() - subtraction <= 0);
-    }
-
     protected ItemStack getSocketItemStack(int par1)
     {
         TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
@@ -244,6 +241,7 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
 
     }
 
+    /*
     @Override
     public int getSizeInventory()
     {
@@ -281,6 +279,7 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
         return itemStack;
     }
 
+*/
     @Override
     public Packet getDescriptionPacket()
     {
@@ -296,6 +295,7 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
     }
 
 
+    /*
     @Override
     public ItemStack getStackInSlotOnClosing(int slotIndex)
     {
@@ -350,6 +350,7 @@ public class TileTotemBase extends TileTotemic implements IInventory, IPlantEsse
 
         return false;
     }
+    */
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
