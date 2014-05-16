@@ -30,7 +30,7 @@ public class ItemTotemicStaff extends ItemTotemic
     {
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEMIC_STAFF_NAME);
         setMaxStackSize(1);
-        registerIcons = false;
+        //registerIcons = false;
     }
 
     @Override

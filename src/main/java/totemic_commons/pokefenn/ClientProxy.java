@@ -125,9 +125,9 @@ public class ClientProxy extends CommonProxy
 
         if(!ConfigurationSettings.RENDER_CUBE_SOCKET)
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemPole), new ItemTotemSocketRenderer());
-        MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff, new ItemTotemicStaffRender());
-        MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff, new ItemInfusedTotemicStaff());
-        MinecraftForgeClient.registerItemRenderer(ModItems.verdantCrystal, new ItemChlorophyllCrystalRenderer());
+        //MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff, new ItemTotemicStaffRender());
+        //MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff, new ItemInfusedTotemicStaff());
+        //MinecraftForgeClient.registerItemRenderer(ModItems.verdantCrystal, new ItemChlorophyllCrystalRenderer());
         //MinecraftForgeClient.registerItemRenderer(ModItems.halberd, new ItemHalberdRenderer());
         //MinecraftForgeClient.registerItemRenderer(ModBlocks.totemTorch, new ItemTotemTorchRenderer);
 

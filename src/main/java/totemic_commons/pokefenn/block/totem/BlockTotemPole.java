@@ -51,9 +51,10 @@ public class BlockTotemPole extends BlockTileTotemic
         {
             if(player.getHeldItem() != null && tileTotemSocket.getStackInSlot(0) != null && (player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem().getItem() == ModItems.infusedTotemicStaff))
             {
-                player.addChatComponentMessage(new ChatComponentText("Totem:" + ItemTotems.TOTEM_NAMES[tileTotemSocket.getStackInSlot(0).getItemDamage()]));
+                player.addChatComponentMessage(new ChatComponentText("Active Totem: " + ItemTotems.TOTEM_NAMES[tileTotemSocket.getStackInSlot(0).getItemDamage()]));
             }
 
+            /*
             if(tileTotemSocket.getStackInSlot(SLOT_ONE) == null && heldItem != null && tileTotemSocket.isItemValidForSlot(0, heldItem))
             {
                 tileTotemSocket.setInventorySlotContents(SLOT_ONE, heldItem);
@@ -66,6 +67,7 @@ public class BlockTotemPole extends BlockTileTotemic
                 tileTotemSocket.setInventorySlotContents(SLOT_ONE, null);
 
             }
+            */
             world.markBlockForUpdate(x, y, z);
         }
 
@@ -74,6 +76,7 @@ public class BlockTotemPole extends BlockTileTotemic
 
     private Random rand = new Random();
 
+    /*
     @Override
     public void breakBlock(World world, int x, int y, int z, Block id, int meta)
     {
@@ -127,6 +130,7 @@ public class BlockTotemPole extends BlockTileTotemic
         }
 
     }
+    */
     /*
 
     @SideOnly(Side.CLIENT)
@@ -173,6 +177,12 @@ public class BlockTotemPole extends BlockTileTotemic
             return RenderIds.RENDER_ID_TOTEM_POLE;
         else
             return RenderIds.RENDER_ID_TOTEM_SOCKET_CUBE;
+    }
+
+    @Override
+    public int quantityDropped(Random rand)
+    {
+        return 0;
     }
 
     @Override
