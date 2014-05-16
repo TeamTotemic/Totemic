@@ -10,6 +10,8 @@ item.totemic:totemsBlaze.name=Ифрит (Тотем)
 item.totemic:totemsSquid.name=Спрут (Тотем)
 item.totemic:totemsDraining.name=Осушение (Тотем)
 item.totemic:totemsRange.name=Дальность (Тотем)
+item.totemic:totemsSpider.name=Паук (Тотем)
+item.totemic:totemsCow.name=Корова (Тотем)
 item.totemic:chlorophyllicIngot.name=Хлорофилловый слиток
 item.totemic:paintBrush.name=Тотемная кисточка
 item.totemic:bucketChlorophyll.name=Ведро хлорофилла
@@ -20,30 +22,26 @@ item.totemic:infusedTotemicStaff.name=Заряженный тотемный по
 item.totemic:leaf.name=Заряженный листик
 item.totemic:infusedStick.name=Заряженная палка
 item.totemic:totempedia.name=Тотемпедия
-item.totemic:potionResistance.name=Зелье сопротивления
-item.totemic:potionAntidote.name=Зелье противоядия
-item.totemic:potionRegeneration.name=Зелье регенерации
-item.totemic:infusedPotion.name=Заряженное зелье
 item.totemic:blazingVerdantCrystal.name=Пылающий зелёный кристалл
 item.totemic:verdantCrystal.name=Зелёный кристалл
-item.totemic:shamanFlute.name=Шаманская флейта
+item.totemic:shamanFlute.name=Флейта тотема
+item.totemic:heiTiki.name=Хей-Тики
+item.totemic:herculeseBeetle.name=Жук-геркулес
+item.totemic:totemArmourHead.name=Шлем тотема
+item.totemic:totemArmourFeet.name=Ботинки тотема
+item.totemic:totemArmourChest.name=Кираса тотема
+item.totemic:totemArmourLeg.name=Поножи тотема
 
 # Block localizations
-tile.chlorophyllSolidifier.name=Отвердитель хлорофилла
-tile.totemWoods.name=Заряженная древесина
+tile.sylvanLog.name=Лесная древесина
 tile.totemSupport.name=Структурная поддержка тотема
-tile.totemIntelligence.name=Интеллект тотема
-tile.totemTable.name=Стол тотема [WIP]
-tile.totemDraining.name=Тотем осушения
-tile.totemSocket.name=Основание тотема
+tile.totemBase.name=Основание тотема
+tile.totemPole.name=Столб тотема
 tile.totemSapling.name=Заряженный саженец
 tile.totemLeaves.name=Заряженная листва
-tile.totemMana.name=Мановый интеллект тотема
-tile.totemCauldron.name=Тотемный котёл
+tile.totemDrum.name=Барабан
 
-# Fluid localizations
-fluid.fluidChlorophyll.name=Хлорофилл
+tile.windChime.name=Музыкальная подвеска
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
-itemGroup.totemicPotions=Totemic: Зелья
