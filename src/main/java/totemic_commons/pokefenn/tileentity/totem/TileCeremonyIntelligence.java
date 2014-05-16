@@ -243,7 +243,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
 
         //TODO
-        return totalMelody > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getMusicNeeded() - j;
+        return totalMelody > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getMusicNeeded() - plantEfficiency % 4 - armourEfficiency % 2 - dancingEfficiency;
     }
 
     public void workOutEfficiency()

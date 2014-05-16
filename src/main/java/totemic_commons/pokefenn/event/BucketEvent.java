@@ -21,6 +21,7 @@ public class BucketEvent
     @SubscribeEvent
     public void onBucketFill(FillBucketEvent event)
     {
+        /*
         ItemStack result = fillCustomBucket(event.world, event.target);
 
         if(result == null)
@@ -30,21 +31,22 @@ public class BucketEvent
 
         event.result = result;
         event.setResult(Event.Result.ALLOW);
+        */
     }
 
     public ItemStack fillCustomBucket(World world, MovingObjectPosition pos)
     {
         Block blockID = world.getBlock(pos.blockX, pos.blockY, pos.blockZ);
 
-        if((blockID == ModBlocks.chlorophyll) && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0)
+        //if((blockID == ModBlocks.chlorophyll) && world.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ) == 0)
         {
             world.setBlockToAir(pos.blockX, pos.blockY, pos.blockZ);
             //return new ItemStack(ModItems.bucketChlorophyll);
-        } else
+        } //else
         {
             return null;
         }
-        return null;
+        //return null;
     }
 
 
