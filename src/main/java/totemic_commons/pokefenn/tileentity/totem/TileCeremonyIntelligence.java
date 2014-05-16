@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -206,10 +207,33 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     {
         int totalEfficiency = 0;
 
+        if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getDoesNeedItems())
+        {
+            if(EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6) != null)
+            {
+                for(Entity entity : EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6))
+                {
+                    if(entity instanceof EntityItem)
+                    {
+                        if(((EntityItem) entity).getEntityItem().getItem() == CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getItem().getItem() && ((EntityItem) entity).getEntityItem().getItemDamage() == CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getItem().getItemDamage() && ((EntityItem) entity).getEntityItem().stackSize >= CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getItem().stackSize)
+                        {
+                            ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getItem().stackSize, ((EntityItem) entity).getEntityItem().getItemDamage()));
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         totalEfficiency = armourEfficiency + dancingEfficiency + plantEfficiency;
 
         //TODO
         return false;
+    }
+
+    public void workOutEfficiency()
+    {
+
     }
 
     public void startupMain()
