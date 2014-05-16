@@ -51,7 +51,7 @@ public class BlockTotemPole extends BlockTileTotemic
         {
             if(player.getHeldItem() != null && tileTotemSocket.getStackInSlot(0) != null && (player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem().getItem() == ModItems.infusedTotemicStaff))
             {
-                player.addChatComponentMessage(new ChatComponentText("Active Totem: " + ItemTotems.TOTEM_NAMES[tileTotemSocket.getStackInSlot(0).getItemDamage()]));
+                player.addChatComponentMessage(new ChatComponentText("Active Totem Effect: " + ItemTotems.TOTEM_NAMES[tileTotemSocket.getStackInSlot(0).getItemDamage()]));
             }
 
             /*

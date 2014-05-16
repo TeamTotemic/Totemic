@@ -197,15 +197,28 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
     public boolean canContinueCeremony()
     {
+        int totalEfficiency = armourEfficiency + dancingEfficiency + plantEfficiency;
 
-        //TODO
-        return false;
+        if(worldObj.getWorldTime() % 20 * 5 == 0)
+        {
+            if(totalMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getMelodyPer5After() < 0)
+                totalMelody = 0;
+            else
+                totalMelody -= CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getMelodyPer5After();
+
+            if(totalMelody < CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getMelodyPer5After())
+            {
+                resetAfterCeremony(true);
+            }
+        }
+
+        return totalMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getMelodyPer5After() >= 0;
     }
 
 
     public boolean canStartCeremony()
     {
-        int totalEfficiency = 0;
+        int totalEfficiency = armourEfficiency + dancingEfficiency + plantEfficiency;
 
         if(CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getDoesNeedItems())
         {
@@ -224,11 +237,13 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                 }
             }
         }
+        resetMelody();
+        workOutEfficiency();
+        int j = totalEfficiency % 4;
 
-        totalEfficiency = armourEfficiency + dancingEfficiency + plantEfficiency;
 
         //TODO
-        return false;
+        return totalMelody > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getMusicNeeded() - j;
     }
 
     public void workOutEfficiency()
