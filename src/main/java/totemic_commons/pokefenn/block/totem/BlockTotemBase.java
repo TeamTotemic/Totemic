@@ -19,6 +19,8 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
+import totemic_commons.pokefenn.configuration.ConfigurationSettings;
+import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
@@ -81,90 +83,6 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
 
     }
 
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random rand)
-    {
-        TileTotemBase tileTotemIntelligence = (TileTotemBase) world.getTileEntity(x, y, z);
-
-    }
-
-
-    @Override
-    public void breakBlock(World world, int x, int y, int z, Block block, int meta)
-    {
-        dropInventory(world, x, y, z);
-
-        if(world.getTileEntity(x, y, z) instanceof TileTotemBase)
-        {
-            world.markBlockForUpdate(x, y, z);
-        }
-
-        super.breakBlock(world, x, y, z, block, meta);
-    }
-
-    private void dropInventory(World world, int x, int y, int z)
-    {
-
-        TileEntity tileEntity = world.getTileEntity(x, y, z);
-
-        if(!(tileEntity instanceof IInventory))
-            return;
-
-        IInventory inventory = (IInventory) tileEntity;
-
-        for(int i = 0; i < inventory.getSizeInventory(); i++)
-        {
-
-            ItemStack itemStack = inventory.getStackInSlot(i);
-
-            if(itemStack != null && itemStack.stackSize > 0)
-            {
-                float dX = rand.nextFloat() * 0.8F + 0.1F;
-                float dY = rand.nextFloat() * 0.8F + 0.1F;
-                float dZ = rand.nextFloat() * 0.8F + 0.1F;
-
-                EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.getItem(), itemStack.stackSize, itemStack.getItemDamage()));
-
-                if(itemStack.hasTagCompound())
-                {
-                    entityItem.getEntityItem().setTagCompound((NBTTagCompound) itemStack.getTagCompound().copy());
-                }
-
-                float factor = 0.05F;
-                entityItem.motionX = rand.nextGaussian() * factor;
-                entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
-                entityItem.motionZ = rand.nextGaussian() * factor;
-                world.spawnEntityInWorld(entityItem);
-                itemStack.stackSize = 0;
-            }
-        }
-
-    }
-
-    @SideOnly(Side.CLIENT)
-    private IIcon topIcon;
-    @SideOnly(Side.CLIENT)
-    private IIcon sideIcon;
-    @SideOnly(Side.CLIENT)
-    private IIcon bottomIcon;
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerBlockIcons(IIconRegister register)
-    {
-        topIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_TOP);
-        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_SIDE);
-        bottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_BOTTOM);
-
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIcon(int side, int meta)
-    {
-        return topIcon;
-    }
-
     @Override
     public TileEntity createNewTileEntity(World var1, int var2)
     {
@@ -187,5 +105,23 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
         TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
 
         player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+        return RenderIds.RENDER_ID_TOTEM_BASE;
     }
 }

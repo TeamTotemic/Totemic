@@ -11,14 +11,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import totemic_commons.pokefenn.client.rendering.item.*;
-import totemic_commons.pokefenn.client.rendering.tileentity.TileDrumRenderer;
-import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketCubeRenderer;
-import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketRenderer;
-import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTorchRenderer;
+import totemic_commons.pokefenn.client.rendering.tileentity.*;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.misc.villager.TotemicVillagerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 
@@ -123,6 +121,7 @@ public class ClientProxy extends CommonProxy
         RenderIds.RENDER_ID_TOTEM_TORCH = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.RENDER_ID_TOTEM_SOCKET_CUBE = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.RENDER_ID_DRUM = RenderingRegistry.getNextAvailableRenderId();
+        RenderIds.RENDER_ID_TOTEM_BASE = RenderingRegistry.getNextAvailableRenderId();
 
         if(!ConfigurationSettings.RENDER_CUBE_SOCKET)
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemPole), new ItemTotemSocketRenderer());
@@ -139,6 +138,7 @@ public class ClientProxy extends CommonProxy
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileDrum.class, new TileDrumRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTorch.class, new TileTotemTorchRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemBase.class, new TileTotemBaseRenderer());
 
         VillagerRegistry.instance().registerVillagerSkin(TotemicVillagerInitiation.SHAMAN_VILLAGER_ID, new ResourceLocation("totemic", "textures/entity/shamanVillager.png"));
 
