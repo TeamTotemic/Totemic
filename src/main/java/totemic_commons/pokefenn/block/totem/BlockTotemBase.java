@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
+import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.RenderIds;
@@ -51,35 +52,54 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
     {
         int SLOT_ONE = TileTotemBase.SLOT_ONE;
 
-        TileTotemBase tileTotemIntelligence = (TileTotemBase) world.getTileEntity(x, y, z);
+        TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(x, y, z);
 
         ItemStack heldItem = player.inventory.getCurrentItem();
 
 
-        if(tileTotemIntelligence != null && !world.isRemote)
+        if(tileTotemBase != null && !world.isRemote)
         {
-            /*
-
-            if(tileTotemIntelligence.isItemValidForSlot(SLOT_ONE, heldItem))
+            if(!tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
             {
-                tileTotemIntelligence.setInventorySlotContents(SLOT_ONE, heldItem);
-                player.destroyCurrentEquippedItem();
+                TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
 
-            } else if(tileTotemIntelligence.getStackInSlot(SLOT_ONE) != null && heldItem == null)
-            {
-                EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemIntelligence.getStackInSlot(SLOT_ONE));
-                world.spawnEntityInWorld(entityitem);
-                tileTotemIntelligence.setInventorySlotContents(SLOT_ONE, null);
-
+                player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
             }
 
-            world.markBlockForUpdate(x, y, z);
-            */
+            if(tileTotemBase.isCeremony)
+            {
+                if(player.isSneaking())
+                {
+                    System.out.println("foobar");
+                    tileTotemBase.resetSelector();
+                }
+
+                if(!tileTotemBase.isDoingEffect && !player.isSneaking())
+                {
+                    if(tileTotemBase.isMusicSelecting)
+                    {
+                        if(tileTotemBase.musicSelector[0] == 0 && tileTotemBase.musicSelector[1] == 0 && tileTotemBase.musicSelector[2] == 0 && tileTotemBase.musicSelector[3] == 0)
+                        {
+                            player.addChatComponentMessage(new ChatComponentText("No Music for seclector."));
+                            return true;
+                        }
+
+                        for(int i = 0; i < 4; i++)
+                        {
+                            if(tileTotemBase.musicSelector[i] == 0)
+                                player.addChatComponentMessage(new ChatComponentText("No Music for selection on " + (i + 1)));
+                            else if(tileTotemBase.musicSelector[i] != 0)
+                                player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileTotemBase.musicSelector[i] - 1].name()));
+                        }
+                    }
+
+                }
+            }
 
         }
 
 
-        return !(heldItem != null && heldItem.getItem() == ModItems.totemicStaff || heldItem != null && heldItem.getItem() == ModItems.infusedTotemicStaff);
+        return !(heldItem != null && heldItem.getItem() == ModItems.totemicStaff);
 
     }
 
@@ -110,8 +130,6 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
     @Override
     public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world, ItemStack itemStack)
     {
-        TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
 
-        player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
     }
 }
