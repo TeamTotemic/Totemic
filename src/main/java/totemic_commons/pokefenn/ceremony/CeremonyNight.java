@@ -25,7 +25,6 @@ public class CeremonyNight implements ICeremonyEffect
             {
                 for(int j = 0; j < MinecraftServer.getServer().worldServers.length; ++j)
                     MinecraftServer.getServer().worldServers[j].setWorldTime((13000));
-                tileCeremonyIntelligence.currentCeremony = 0;
             }
         }
     }

@@ -24,14 +24,14 @@ public class TotemRegistry
 
     public static void addTotems()
     {
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 0), Totems.DECREMENT_HORSE, 20, 20, new TotemEffectHorse()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 4), Totems.DECREMENT_SQUID, 20, 20, new TotemEffectSquid()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 5), 0, 8, 8, new TotemEffectDraining()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 6), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider()));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 7), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow()));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 0), Totems.DECREMENT_HORSE, 20, 20, new TotemEffectHorse(), 1));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 4), Totems.DECREMENT_SQUID, 20, 20, new TotemEffectSquid(), 1));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze(), 2));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot(), 2));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat(), 2));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 5), 0, 8, 8, new TotemEffectDraining(), 1));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 6), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider(), 2));
+        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 7), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow(), 1));
     }
 
     public static List<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();
@@ -41,14 +41,16 @@ public class TotemRegistry
     private final int verticalHight;
     private final int horizontal;
     private final ITotemEffect effect;
+    private final int tier;
 
-    public TotemRegistry(ItemStack totem, int chlorophyllDecrement, int verticalHight, int horizontal, ITotemEffect effect)
+    public TotemRegistry(ItemStack totem, int chlorophyllDecrement, int verticalHight, int horizontal, ITotemEffect effect, int tier)
     {
         this.totem = totem;
         this.chlorophyllDecrement = chlorophyllDecrement;
         this.verticalHight = verticalHight;
         this.horizontal = horizontal;
         this.effect = effect;
+        this.tier = tier;
     }
 
     public ItemStack getTotem()
@@ -79,6 +81,11 @@ public class TotemRegistry
     public static List<TotemRegistry> getRecipes()
     {
         return totemEffect;
+    }
+
+    public int getTier()
+    {
+        return this.tier;
     }
 
 }

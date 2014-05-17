@@ -8,7 +8,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyTotemTier implements ICeremonyEffect
+public class CeremonyTotemAwakening implements ICeremonyEffect
 {
     @Override
     public void effect(TileEntity tileEntity)

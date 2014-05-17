@@ -44,6 +44,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
     public int totalMelody;
     public boolean isMusicSelecting;
     public int startupTime;
+    public int musicFromCeremony;
 
     public TileCeremonyIntelligence()
     {
@@ -61,6 +62,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         totalMelody = 0;
         isMusicSelecting = true;
         startupTime = 0;
+        musicFromCeremony = 0;
     }
 
     @Override
@@ -379,6 +381,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         nbtTagCompound.setInteger("totalMelody", totalMelody);
         nbtTagCompound.setBoolean("isMusicSelecting", isMusicSelecting);
         nbtTagCompound.setInteger("startupTime", startupTime);
+        nbtTagCompound.setInteger("musicFromCeremony", musicFromCeremony);
     }
 
     @Override
@@ -400,6 +403,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
         totalMelody = nbtTagCompound.getInteger("totalMelody");
         isMusicSelecting = nbtTagCompound.getBoolean("isMusicSelecting");
         startupTime = nbtTagCompound.getInteger("startupTime");
+        musicFromCeremony = nbtTagCompound.getInteger("musicFromCeremony");
     }
 
 

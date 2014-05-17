@@ -19,7 +19,6 @@ public class CeremonyRain implements ICeremonyEffect
         {
             WorldInfo worldinfo = MinecraftServer.getServer().worldServers[0].getWorldInfo();
             worldinfo.setRaining(false);
-            ((TileCeremonyIntelligence) tileCeremonyIntelligence).currentCeremony = 0;
         }
     }
 }

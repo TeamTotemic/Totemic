@@ -35,14 +35,11 @@ public class TotemEffectBlaze implements ITotemEffect
                         if(entity.isBurning())
                         {
                             Random rand = new Random();
-                            ((EntityPlayer) entity).heal(4 + rand.nextInt(TotemUtil.getArmourAmounts((EntityPlayer) entity)));
+                            if(rand.nextBoolean())
+                                ((EntityPlayer) entity).heal(2 + rand.nextInt(TotemUtil.getArmourAmounts((EntityPlayer) entity)));
                         }
 
-                        int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
-
                         TotemUtil.addPotionEffects((EntityPlayer) entity, 100, 40, Potion.fireResistance, 0, false);
-
-                        //((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.fireResistance.id, 200 + (j * 30), 0));
 
                         if(intelligence)
                         {

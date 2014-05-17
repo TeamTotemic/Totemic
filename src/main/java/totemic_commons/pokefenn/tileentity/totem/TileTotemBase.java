@@ -39,6 +39,8 @@ public class TileTotemBase extends TileTotemic implements/* IInventory, */IPlant
     public static int rangeUpgrades;
     public int[] music;
     public int musicalMelody;
+    public int tier;
+    public int efficiencyFromCeremony;
 
     ItemStack[] totems;
 
@@ -51,6 +53,8 @@ public class TileTotemBase extends TileTotemic implements/* IInventory, */IPlant
         rangeUpgrades = 0;
         music = new int[MusicEnum.values().length];
         musicalMelody = 0;
+        tier = 0;
+        efficiencyFromCeremony = 0;
     }
 
     /*
@@ -96,7 +100,7 @@ public class TileTotemBase extends TileTotemic implements/* IInventory, */IPlant
                         {
                             for(TotemRegistry totemRegistry : TotemRegistry.getRecipes())
                             {
-                                if(totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement(), totems[i].getItemDamage()))
+                                if(tier >= totemRegistry.getTier() && totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement(), totems[i].getItemDamage()))
                                 {
                                     totemRegistry.getEffect().effect(this, rangeUpgrades, true, totemRegistry, totemRegistry.getHorizontal(), totemRegistry.getVerticalHight(), musicalMelody);
                                 }
@@ -361,6 +365,8 @@ public class TileTotemBase extends TileTotemic implements/* IInventory, */IPlant
         plantEssence = nbtTagCompound.getInteger("plantEssence");
         music = nbtTagCompound.getIntArray("music");
         musicalMelody = nbtTagCompound.getInteger("musicalMelody");
+        tier = nbtTagCompound.getInteger("tier");
+        efficiencyFromCeremony = nbtTagCompound.getInteger("efficiencyFromCeremony");
 
         // Read in the ItemStacks in the inventory from NBT
         NBTTagList tagList = nbtTagCompound.getTagList("Items", 10);
@@ -385,6 +391,8 @@ public class TileTotemBase extends TileTotemic implements/* IInventory, */IPlant
         nbtTagCompound.setInteger("plantEssence", plantEssence);
         nbtTagCompound.setIntArray("music", music);
         nbtTagCompound.setInteger("musicalMelody", musicalMelody);
+        nbtTagCompound.setInteger("tier", tier);
+        nbtTagCompound.setInteger("efficiencyFromCeremony", efficiencyFromCeremony);
 
         // Write the ItemStacks in the inventory to NBT
         NBTTagList tagList = new NBTTagList();
