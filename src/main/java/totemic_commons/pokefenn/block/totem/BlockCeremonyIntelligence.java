@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.block.totem;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
@@ -42,36 +43,15 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic implements ITote
         {
             if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.infusedTotemicStaff)
             {
-                /*
-                //TODO make this work
-                if(player.isSneaking()/* && tileCeremonyIntelligence.isDoingStartup)
-                {
-                    for(int i = 0; i < tileCeremonyIntelligence.musicSelector.length; i++)
-                    {
-                        System.out.println("seriously...");
-                        tileCeremonyIntelligence.musicSelector[i] = 0;
-                    }
-                }
-
-                if(!tileCeremonyIntelligence.isDoingEffect)
-                {
-                    if(tileCeremonyIntelligence.isMusicSelecting)
-                    {
-                        for(int i = 0; i < 4; i++)
-                        {
-                            player.addChatComponentMessage(new ChatComponentText("Musical Selection " + i + " =" + MusicEnum.values()[i].name()));
-                        }
-                    }
-
-                }*/
             }
         }
 
         return true;
     }
 
+
     @Override
-    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world)
+    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world, ItemStack itemStack)
     {
         TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) world.getTileEntity(x, y, z);
 
@@ -96,30 +76,4 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic implements ITote
         }
     }
 
-    @Override
-    public void onInfusedRightClick(int x, int y, int z, EntityPlayer player, World world)
-    {
-        TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) world.getTileEntity(x, y, z);
-
-        if(player.isSneaking() && tileCeremonyIntelligence.isDoingStartup)
-        {
-            for(int i = 0; i < tileCeremonyIntelligence.musicSelector.length; i++)
-            {
-                tileCeremonyIntelligence.musicSelector[i] = 0;
-            }
-        }
-
-        if(!tileCeremonyIntelligence.isDoingEffect)
-        {
-            if(tileCeremonyIntelligence.isMusicSelecting)
-            {
-                for(int i = 0; i < 4; i++)
-                {
-                    player.addChatComponentMessage(new ChatComponentText("Musical Selection " + i + " =" + MusicEnum.values()[i].name()));
-                }
-            }
-
-        }
-
-    }
 }

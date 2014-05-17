@@ -62,7 +62,7 @@ public class ItemTotemicStaff extends ItemTotemic
                 {
                     if(blockQuery instanceof ITotemicStaffUsage)
                     {
-                        ((ITotemicStaffUsage) blockQuery).onBasicRightClick(block.blockX, block.blockY, block.blockZ, player, world);
+                        ((ITotemicStaffUsage) blockQuery).onBasicRightClick(block.blockX, block.blockY, block.blockZ, player, world, par1ItemStack);
                         return true;
                     }
                 }

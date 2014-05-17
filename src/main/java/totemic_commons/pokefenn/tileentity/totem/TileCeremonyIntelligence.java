@@ -93,7 +93,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             if(!isDoingStartup)
                 for(CeremonyRegistry ceremonyRegistry : CeremonyRegistry.ceremonyRegistry)
                 {
-                    if(ceremonyRegistry.getInstruments(1).ordinal() == musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() == musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() == musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() == musicSelector[3])
+                    if(musicSelector[0] != 0 && musicSelector[1] != 0 && musicSelector[2] != 0 && musicSelector[3] != 0 && ceremonyRegistry.getInstruments(1).ordinal() == musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() == musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() == musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() == musicSelector[3])
                     {
                         MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("enchantmenttable", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 16, 0.0D, 0.0D, 0.0D, 0.0D);
                         tryingCeremonyID = ceremonyRegistry.getCeremonyID();
@@ -104,7 +104,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
                     //This may break, pay attention to it
                     if(musicSelector[0] != 0 && musicSelector[1] != 0 && musicSelector[2] != 0 && musicSelector[3] != 0 && ceremonyRegistry.getInstruments(1).ordinal() != musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() != musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() != musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() != musicSelector[3])
                     {
-                        resetSelector();
+                        //resetSelector();
                     }
                 }
 

@@ -90,24 +90,6 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
     }
 
     @Override
-    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world)
-    {
-        Random rand = new Random();
-        TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
-
-        player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
-        player.attackEntityFrom(DamageSource.generic, 2 + rand.nextInt(4));
-    }
-
-    @Override
-    public void onInfusedRightClick(int x, int y, int z, EntityPlayer player, World world)
-    {
-        TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
-
-        player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
-    }
-
-    @Override
     public boolean renderAsNormalBlock()
     {
         return false;
@@ -123,5 +105,13 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
     public int getRenderType()
     {
         return RenderIds.RENDER_ID_TOTEM_BASE;
+    }
+
+    @Override
+    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world, ItemStack itemStack)
+    {
+        TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
+
+        player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
     }
 }

@@ -61,7 +61,7 @@ public class ItemInfusedTotemicStaff extends ItemTotemicStaff
                 {
                     if(blockQuery instanceof ITotemicStaffUsage)
                     {
-                        ((ITotemicStaffUsage) blockQuery).onInfusedRightClick(block.blockX, block.blockY, block.blockZ, player, world);
+                        //((ITotemicStaffUsage) blockQuery).onInfusedRightClick(block.blockX, block.blockY, block.blockZ, player, world);
                         return true;
                     }
 

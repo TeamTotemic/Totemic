@@ -71,22 +71,16 @@ public class BlockSylvanLog extends BlockLog implements ITotemicStaffUsage
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item blockId, CreativeTabs creativeTab, List subTypes)
     {
         subTypes.add(new ItemStack(blockId, 1, 0));
     }
 
-
     @Override
-    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world)
+    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world, ItemStack itemStack)
     {
-        return;
-    }
 
-    @Override
-    public void onInfusedRightClick(int x, int y, int z, EntityPlayer player, World world)
-    {
-        world.setBlock(x, y, z, ModBlocks.totemBase);
     }
 }
 

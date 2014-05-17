@@ -36,8 +36,10 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         list.add("Shift and right click to change carving");
         if(stack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
             list.add("Currently Carving: " + ItemTotems.TOTEM_NAMES[stack.getItemDamage()]);
-        if(stack.getItemDamage() >= ItemTotems.TOTEM_NAMES.length)
+        if(stack.getItemDamage() == ItemTotems.TOTEM_NAMES.length)
             list.add("Currently Carving: Totem Base");
+        if(stack.getItemDamage() == ItemTotems.TOTEM_NAMES.length + 1)
+            list.add("Currently Carving: Ceremony Altar");
     }
 
     @Override
@@ -57,7 +59,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-        if(player.isSneaking() && itemStack.getItemDamage() + 1 > ItemTotems.TOTEM_NAMES.length)
+        if(player.isSneaking() && itemStack.getItemDamage() > ItemTotems.TOTEM_NAMES.length)
             return new ItemStack(this, 1, 0);
 
         return player.isSneaking() ? new ItemStack(this, 1, 1 + itemStack.getItemDamage()) : itemStack;
@@ -76,18 +78,27 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
                 if(blockQuery instanceof BlockLog)
                 {
-                    if(itemStack.getItemDamage() >= ItemTotems.TOTEM_NAMES.length)
+                    if(itemStack.getItemDamage() == ItemTotems.TOTEM_NAMES.length)
                     {
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemBase);
                         return true;
                     } else
                     {
-                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);
-                        TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
+                        if(itemStack.getItemDamage() == ItemTotems.TOTEM_NAMES.length + 1)
+                        {
+                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemCeremonyIntelligence);
+                            return true;
+                        }
+                        if(itemStack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
+                        {
+                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);
+                            TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
 
-                        tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, 1, itemStack.getItemDamage()));
-                        world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
-                        tileTotemSocket.markDirty();
+                            tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, 1, itemStack.getItemDamage()));
+                            world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
+                            tileTotemSocket.markDirty();
+                            return true;
+                        }
                     }
 
                 }
@@ -96,7 +107,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
         }
 
-        return true;
+        return false;
     }
 
 
