@@ -45,7 +45,7 @@ public final class ModBlocks
         totemLeaves = new BlockSylvanLeaves();
         //totemCauldron = new BlockTotemCauldron();
         //moonglow = new BlockMoonglow();
-        totemCeremonyIntelligence = new BlockCeremonyIntelligence();
+        //totemCeremonyIntelligence = new BlockCeremonyIntelligence();
         //bloodwart = new BlockBloodWart();
         totemTorch = new BlockTotemTorch();
         //lotusBlock = new BlockWaterLotus();
@@ -62,7 +62,7 @@ public final class ModBlocks
         GameRegistry.registerBlock(totemLeaves, Strings.TOTEM_LEAVES_NAME);
         //GameRegistry.registerBlock(totemCauldron, Strings.TOTEM_CAULDRON_NAME);
         //GameRegistry.registerBlock(moonglow, Strings.MOONGLOW_NAME);
-        GameRegistry.registerBlock(totemCeremonyIntelligence, Strings.CEREMONY_INTELLIGENCE_NAME);
+        //GameRegistry.registerBlock(totemCeremonyIntelligence, Strings.CEREMONY_INTELLIGENCE_NAME);
         //GameRegistry.registerBlock(bloodwart, Strings.BLOODWART_BLOCK_NAME);
         GameRegistry.registerBlock(totemTorch, Strings.TOTEM_TORCH_NAME);
         //GameRegistry.registerBlock(lotusBlock, Strings.LOTUS_BLOCK_NAME);

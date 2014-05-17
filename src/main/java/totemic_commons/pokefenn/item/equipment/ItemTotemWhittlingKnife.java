@@ -38,8 +38,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             list.add("Currently Carving: " + ItemTotems.TOTEM_NAMES[stack.getItemDamage()]);
         if(stack.getItemDamage() == ItemTotems.TOTEM_NAMES.length)
             list.add("Currently Carving: Totem Base");
-        if(stack.getItemDamage() == ItemTotems.TOTEM_NAMES.length + 1)
-            list.add("Currently Carving: Ceremony Altar");
     }
 
     @Override
@@ -84,11 +82,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                         return true;
                     } else
                     {
-                        if(itemStack.getItemDamage() == ItemTotems.TOTEM_NAMES.length + 1)
-                        {
-                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemCeremonyIntelligence);
-                            return true;
-                        }
                         if(itemStack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
                         {
                             world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);

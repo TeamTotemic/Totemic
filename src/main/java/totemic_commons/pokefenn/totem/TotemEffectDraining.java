@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.totem;
 
 import net.minecraft.block.Block;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.api.IBlacklistedDraining;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
@@ -20,24 +21,25 @@ import java.util.Random;
 public class TotemEffectDraining implements ITotemEffect
 {
 
-    public void effect(TileTotemic totem, int upgrades, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle, int melody)
+    @Override
+    public void effect(TileEntity totem, int socketAmount, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle)
     {
         if(totem.getWorldObj().getWorldTime() % 80L == 0)
-            drainEffect((TileTotemBase) totem, upgrades, melody);
+            drainEffect((TileTotemBase) totem);
     }
 
-    protected static void drainEffect(TileTotemBase tileTotemIntelligence, int upgrades, int melody)
+    protected static void drainEffect(TileTotemBase tileTotemIntelligence)
     {
-        int totemRadius = 8 + (upgrades * 3);
+        int totemRadius = 8;
 
         for(int i = -totemRadius; i <= totemRadius; i++)
             for(int j = -totemRadius; j <= totemRadius; j++)
             {
-                reducePlantMetadata(tileTotemIntelligence, tileTotemIntelligence.xCoord + i, tileTotemIntelligence.yCoord, tileTotemIntelligence.zCoord + j, melody);
+                reducePlantMetadata(tileTotemIntelligence, tileTotemIntelligence.xCoord + i, tileTotemIntelligence.yCoord, tileTotemIntelligence.zCoord + j);
             }
     }
 
-    protected static void reducePlantMetadata(TileTotemBase tileTotemIntelligence, int x, int y, int z, int melody)
+    protected static void reducePlantMetadata(TileTotemBase tileTotemIntelligence, int x, int y, int z)
     {
         //yCoords is there because the totem has to be on the same level as the IPlantable's
         Block blockQuery = tileTotemIntelligence.getWorldObj().getBlock(x, y, z);

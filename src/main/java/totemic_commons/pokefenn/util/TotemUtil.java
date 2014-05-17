@@ -14,6 +14,7 @@ import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 /**
  * Created with IntelliJ IDEA.
@@ -78,9 +79,7 @@ public class TotemUtil
                     j += ((ITotemBauble) baubleInventory.getStackInSlot(i).getItem()).getTotemEfficiency(player.worldObj, baubleInventory.getStackInSlot(i), player);
                 }
             }
-
         }
-
         return j;
     }
 
@@ -96,6 +95,9 @@ public class TotemUtil
                     {
                         if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect() && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).isMusicSelecting())
                         {
+                            if(world.getTileEntity(x + i, y + j, z + k) instanceof TileTotemBase)
+                                ((TileTotemBase) world.getTileEntity(x + i, y + j, z + k)).isCeremony = true;
+
                             int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
 
                             if(musicSelectorArray[0] == 0)
@@ -131,6 +133,9 @@ public class TotemUtil
                     {
                         if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect() && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).isMusicSelecting())
                         {
+                            if(world.getTileEntity(x + i, y + j, z + k) instanceof TileTotemBase)
+                                ((TileTotemBase) world.getTileEntity(x + i, y + j, z + k)).isCeremony = true;
+
                             int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
 
                             if(musicSelectorArray[0] == 0)
