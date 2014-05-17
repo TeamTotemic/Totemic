@@ -68,13 +68,13 @@ public class CeremonyRegistry
 
     public MusicEnum getInstruments(int i)
     {
-        if(i == 1)
+        if(i == 0)
             return instrument1;
-        if(i == 2)
+        if(i == 1)
             return instrument2;
-        if(i == 3)
+        if(i == 2)
             return instrument3;
-        if(i == 4)
+        if(i == 3)
             return instrument4;
 
         return null;

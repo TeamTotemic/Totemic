@@ -93,14 +93,15 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             if(!isDoingStartup)
                 for(CeremonyRegistry ceremonyRegistry : CeremonyRegistry.ceremonyRegistry)
                 {
-                    if(musicSelector[0] != 0 && musicSelector[1] != 0 && musicSelector[2] != 0 && musicSelector[3] != 0 && ceremonyRegistry.getInstruments(1).ordinal() == musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() == musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() == musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() == musicSelector[3])
-                    {
-                        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("enchantmenttable", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 16, 0.0D, 0.0D, 0.0D, 0.0D);
-                        tryingCeremonyID = ceremonyRegistry.getCeremonyID();
-                        isDoingStartup = true;
-                        isMusicSelecting = false;
-                        resetSelector();
-                    }
+                    if(musicSelector[0] != 0 && musicSelector[1] != 0 && musicSelector[2] != 0 && musicSelector[3] != 0)
+                        if(ceremonyRegistry.getInstruments(0).ordinal() + 1 == musicSelector[0] && ceremonyRegistry.getInstruments(1).ordinal() + 1 == musicSelector[1] && ceremonyRegistry.getInstruments(2).ordinal() + 1 == musicSelector[2] && ceremonyRegistry.getInstruments(3).ordinal() + 1 == musicSelector[3])
+                        {
+                            MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("enchantmenttable", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 16, 0.0D, 0.0D, 0.0D, 0.0D);
+                            tryingCeremonyID = ceremonyRegistry.getCeremonyID();
+                            isDoingStartup = true;
+                            isMusicSelecting = false;
+                            resetSelector();
+                        }
                     //This may break, pay attention to it
                     if(musicSelector[0] != 0 && musicSelector[1] != 0 && musicSelector[2] != 0 && musicSelector[3] != 0 && ceremonyRegistry.getInstruments(1).ordinal() != musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() != musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() != musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() != musicSelector[3])
                     {
@@ -138,7 +139,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
                 if(effect != null && !isDoingEffect)
                 {
-                    if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getIsInstant())
+                    if(CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getIsInstant())
                     {
                         effect.effect(this);
                         resetAfterCeremony(true);
@@ -181,7 +182,7 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
             music[i] = 0;
         }
         if(doResetMusicSelector)
-            for(int i = 0; i < musicSelector.length; i++)
+            for(int i = 0; i < 4; i++)
             {
                 musicSelector[i] = 0;
             }
@@ -201,18 +202,18 @@ public class TileCeremonyIntelligence extends TileTotemic implements IMusicAccep
 
         if(worldObj.getWorldTime() % 20 * 5 == 0)
         {
-            if(totalMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getMelodyPer5After() < 0)
+            if(totalMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMelodyPer5After() < 0)
                 totalMelody = 0;
             else
-                totalMelody -= CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getMelodyPer5After();
+                totalMelody -= CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMelodyPer5After();
 
-            if(totalMelody < CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getMelodyPer5After())
+            if(totalMelody < CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMelodyPer5After())
             {
                 resetAfterCeremony(true);
             }
         }
 
-        return totalMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony).getMelodyPer5After() >= 0;
+        return totalMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMelodyPer5After() >= 0;
     }
 
 

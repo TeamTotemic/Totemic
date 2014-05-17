@@ -12,16 +12,16 @@ public enum MusicEnum
     SYNTHESIZER_MUSIC("Synthesizer"),
     GONG_MUSIC("Gong");
 
-    private final String name;
+    private final String musicName;
 
-    MusicEnum(String name)
+    MusicEnum(String musicName)
     {
-        this.name = name;
+        this.musicName = musicName;
     }
 
-    String getName()
+    String getMusicName()
     {
-        return this.name;
+        return this.musicName;
     }
 }
 

@@ -39,13 +39,41 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic implements ITote
     {
         TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) world.getTileEntity(x, y, z);
 
-        if(tileCeremonyIntelligence != null && !world.isRemote)
+        if(tileCeremonyIntelligence != null && !world.isRemote && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
         {
-            if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.infusedTotemicStaff)
+            if(player.isSneaking() && tileCeremonyIntelligence.isMusicSelecting)
             {
+                for(int i = 0; i < tileCeremonyIntelligence.musicSelector.length; i++)
+                {
+                    tileCeremonyIntelligence.musicSelector[i] = 0;
+                }
             }
-        }
 
+            if(!tileCeremonyIntelligence.isDoingEffect && !player.isSneaking())
+            {
+                if(tileCeremonyIntelligence.isMusicSelecting)
+                {
+                    if(tileCeremonyIntelligence.musicSelector[0] == 0 && tileCeremonyIntelligence.musicSelector[1] == 0 && tileCeremonyIntelligence.musicSelector[2] == 0 && tileCeremonyIntelligence.musicSelector[3] == 0)
+                    {
+                        player.addChatComponentMessage(new ChatComponentText("No Music for seclector."));
+                        return true;
+                    }
+
+                    for(int i = 0; i < 4; i++)
+                    {
+                        if(tileCeremonyIntelligence.musicSelector[i] == 0)
+                        {
+                            player.addChatComponentMessage(new ChatComponentText("No Music for selection on " + (i + 1)));
+                        } else
+                            player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[i]]));
+                    }
+                    //    if(tileCeremonyIntelligence.musicSelector[0] != 0 || tileCeremonyIntelligence.musicSelector[1] != 0 || tileCeremonyIntelligence.musicSelector[2] != 0 || tileCeremonyIntelligence.musicSelector[3] != 0)
+                    //        player.addChatComponentMessage(new ChatComponentText("Musical Selections are: " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[0] + 1].name() + ", " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[1] + 1].name() + ", " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[2] + 1].name() + " and " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[3] + 1].name()));
+                }
+
+            }
+
+        }
         return true;
     }
 
@@ -54,26 +82,6 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic implements ITote
     public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world, ItemStack itemStack)
     {
         TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) world.getTileEntity(x, y, z);
-
-        if(!tileCeremonyIntelligence.isDoingEffect)
-        {
-            if(tileCeremonyIntelligence.isMusicSelecting)
-            {
-                for(int i = 0; i < 4; i++)
-                {
-                    player.addChatComponentMessage(new ChatComponentText("Musical Selection " + i + " =" + MusicEnum.values()[i].name()));
-                }
-            }
-
-        }
-
-        if(player.isSneaking() && tileCeremonyIntelligence.isDoingStartup)
-        {
-            for(int i = 0; i < tileCeremonyIntelligence.musicSelector.length; i++)
-            {
-                tileCeremonyIntelligence.musicSelector[i] = 0;
-            }
-        }
     }
 
 }
