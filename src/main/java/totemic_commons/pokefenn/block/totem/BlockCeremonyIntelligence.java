@@ -41,12 +41,10 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic implements ITote
 
         if(tileCeremonyIntelligence != null && !world.isRemote && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
         {
-            if(player.isSneaking() && tileCeremonyIntelligence.isMusicSelecting)
+            if(player.isSneaking())
             {
-                for(int i = 0; i < tileCeremonyIntelligence.musicSelector.length; i++)
-                {
-                    tileCeremonyIntelligence.musicSelector[i] = 0;
-                }
+                System.out.println("foobar");
+                tileCeremonyIntelligence.resetSelector();
             }
 
             if(!tileCeremonyIntelligence.isDoingEffect && !player.isSneaking())
@@ -62,10 +60,9 @@ public class BlockCeremonyIntelligence extends BlockTileTotemic implements ITote
                     for(int i = 0; i < 4; i++)
                     {
                         if(tileCeremonyIntelligence.musicSelector[i] == 0)
-                        {
                             player.addChatComponentMessage(new ChatComponentText("No Music for selection on " + (i + 1)));
-                        } else
-                            player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[i]]));
+                        else if(tileCeremonyIntelligence.musicSelector[i] != 0)
+                            player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[i] - 1].name()));
                     }
                     //    if(tileCeremonyIntelligence.musicSelector[0] != 0 || tileCeremonyIntelligence.musicSelector[1] != 0 || tileCeremonyIntelligence.musicSelector[2] != 0 || tileCeremonyIntelligence.musicSelector[3] != 0)
                     //        player.addChatComponentMessage(new ChatComponentText("Musical Selections are: " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[0] + 1].name() + ", " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[1] + 1].name() + ", " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[2] + 1].name() + " and " + MusicEnum.values()[tileCeremonyIntelligence.musicSelector[3] + 1].name()));
