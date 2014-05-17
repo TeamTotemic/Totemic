@@ -154,11 +154,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                         isMusicSelecting = false;
                         resetSelector();
                     }
-                //This may break, pay attention to it
-                if(musicSelector[0] != 0 && musicSelector[1] != 0 && musicSelector[2] != 0 && musicSelector[3] != 0 && ceremonyRegistry.getInstruments(1).ordinal() != musicSelector[0] && ceremonyRegistry.getInstruments(2).ordinal() != musicSelector[1] && ceremonyRegistry.getInstruments(3).ordinal() != musicSelector[2] && ceremonyRegistry.getInstruments(4).ordinal() != musicSelector[3])
-                {
-                    //resetSelector();
-                }
+
             }
 
 

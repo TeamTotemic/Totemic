@@ -70,7 +70,7 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
             {
                 if(player.isSneaking())
                 {
-                    System.out.println("foobar");
+                    //TODO WHY YOU NO WORK
                     tileTotemBase.resetSelector();
                 }
 
