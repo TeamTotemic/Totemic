@@ -78,6 +78,7 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
                 {
                     if(tileTotemBase.isMusicSelecting)
                     {
+                        System.out.println("ln");
                         if(tileTotemBase.musicSelector[0] == 0 && tileTotemBase.musicSelector[1] == 0 && tileTotemBase.musicSelector[2] == 0 && tileTotemBase.musicSelector[3] == 0)
                         {
                             player.addChatComponentMessage(new ChatComponentText("No Music for seclector."));

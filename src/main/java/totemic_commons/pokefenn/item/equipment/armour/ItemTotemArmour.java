@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
@@ -15,7 +16,7 @@ import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.armour.ITotemArmour;
-import totemic_commons.pokefenn.client.rendering.armour.TotemArmourHead;
+import totemic_commons.pokefenn.client.rendering.armour.TotemArmourRendering;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
@@ -74,30 +75,8 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public ModelBiped getArmorModel(EntityLivingBase par1EntityLiving, ItemStack itemStack, int armorSlot)
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
     {
-        if(!par1EntityLiving.isPotionActive(Potion.invisibility))
-        {
-
-            if(armorSlot == 0)
-            {
-                return new TotemArmourHead();
-            }
-            if(armorSlot == 1)
-            {
-
-            }
-            if(armorSlot == 2)
-            {
-
-            }
-            if(armorSlot == 3)
-            {
-
-            }
-        }
-
         return null;
     }
 

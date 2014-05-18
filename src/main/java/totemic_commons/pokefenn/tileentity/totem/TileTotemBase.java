@@ -128,15 +128,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     public void doCeremonyCode()
     {
-        if(worldObj.getWorldTime() % 60L == 0)
-        {
-            for(int aMusicSelector : musicSelector)
-            {
-                //   System.out.println(aMusicSelector);
-            }
-            //System.out.println(isDoingStartup + "IS DOING STARTUP");
-        }
-
         if(worldObj.getWorldTime() % 30L == 0)
         {
             resetMelody();
@@ -154,9 +145,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                         isMusicSelecting = false;
                         resetSelector();
                     }
-
             }
-
 
         if(isDoingStartup)
         {
@@ -180,7 +169,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 currentTime++;
 
             if(currentTime > CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMaximumTicks())
-                resetEverything();
+                resetAfterCeremony(true);
 
 
             ICeremonyEffect effect = CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect();
@@ -207,6 +196,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         if(worldObj.getWorldTime() % (20 * 60) == 0)
         {
             isCeremony = false;
+            resetAfterCeremony(true);
         }
     }
 
@@ -228,6 +218,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         tryingCeremonyID = 0;
         isMusicSelecting = true;
         isDoingEffect = false;
+        startupTime = 0;
 
         for(int i = 0; i < music.length; i++)
         {
@@ -385,16 +376,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         plantEfficiency += m;
     }
 
-    public void resetEverything()
-    {
-        currentCeremony = 0;
-        currentTime = 0;
-        dancingEfficiency = 0;
-        armourEfficiency = 0;
-        plantEfficiency = 0;
-        isDoingEffect = false;
-    }
-
     public int getEffiencyFromBlock(Block block)
     {
         //if(efficiency < 50)
@@ -532,45 +513,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     }
 
-    /*
-    @Override
-    public int getSizeInventory()
-    {
-        return inventory.length;
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int slotIndex)
-    {
-        return inventory[slotIndex];
-
-
-    }
-
-    @Override
-    public ItemStack decrStackSize(int slotIndex, int decrementAmount)
-    {
-
-        ItemStack itemStack = getStackInSlot(slotIndex);
-        if(itemStack != null)
-        {
-            if(itemStack.stackSize <= decrementAmount)
-            {
-                setInventorySlotContents(slotIndex, null);
-            } else
-            {
-                itemStack = itemStack.splitStack(decrementAmount);
-                if(itemStack.stackSize == 0)
-                {
-                    setInventorySlotContents(slotIndex, null);
-                }
-            }
-        }
-
-        return itemStack;
-    }
-
-*/
     @Override
     public Packet getDescriptionPacket()
     {

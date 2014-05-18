@@ -2,6 +2,7 @@ package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.lib.Strings;
