@@ -9,4 +9,6 @@ import net.minecraft.util.DamageSource;
 public class TotemicDamageSource
 {
     public static DamageSource huntingKnife = new DamageSource("huntingKnife");
+
+    public static DamageSource vigor = new DamageSource("Satchel of Fragile Vigor");
 }

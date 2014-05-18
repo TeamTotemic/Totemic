@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
+import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleDamageArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemTotemBeadBelt;
@@ -47,6 +48,7 @@ public final class ModItems
     public static Item heiTiki;
     public static Item tikiRing;
     public static Item totemBeadSatchel;
+    public static Item baubleArmourDamage;
 
     public static void init()
     {
@@ -113,11 +115,13 @@ public final class ModItems
         //tikiRing = new ItemTikiRing();
         heiTiki = new ItemHeiTiki();
         totemBeadSatchel = new ItemTotemBeadBelt();
+        baubleArmourDamage = new ItemBaubleDamageArmour();
 
         GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
         GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);
         GameRegistry.registerItem(totemBeadSatchel, Strings.TOTEM_BEAD_BELT_NAME);
         //GameRegistry.registerItem(tikiRing, Strings.TIKI_RING_NAME);
+        GameRegistry.registerItem(baubleArmourDamage, Strings.BAUBLE_ARMOUR_DAMAGE_NAME);
     }
 
 
