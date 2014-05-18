@@ -4,12 +4,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
+import totemic_commons.pokefenn.recipe.registry.ceremony.CeremonyPotionRegistry;
+import totemic_commons.pokefenn.recipe.registry.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 
 public class TotemicRecipes
@@ -22,6 +22,7 @@ public class TotemicRecipes
 
         TotemRegistry.addTotems();
         CeremonyRegistry.addRecipes();
+        CeremonyPotionRegistry.addRecipes();
     }
 
     public static void shapedRecipes()

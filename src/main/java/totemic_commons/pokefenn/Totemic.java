@@ -87,12 +87,10 @@ public final class Totemic
         //logger.setParent(FMLCommonHandler.instance().getFMLLogger());
 
         logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
-
         logger.info("Totemic is Loading");
 
         //Initiates fluids into the game
         ModFluids.init();
-
         //Initiates totemic blocks into the game
         ModBlocks.init();
 
@@ -110,7 +108,7 @@ public final class Totemic
 
         proxy.initRendering();
 
-        proxy.readManuals();
+        //proxy.readManuals();
 
         ModEntities.init(this);
 

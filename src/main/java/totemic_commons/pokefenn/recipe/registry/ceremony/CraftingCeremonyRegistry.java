@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.recipe.registry;
+package totemic_commons.pokefenn.recipe.registry.ceremony;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

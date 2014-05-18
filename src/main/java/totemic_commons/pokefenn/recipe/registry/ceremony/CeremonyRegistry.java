@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.recipe.registry;
+package totemic_commons.pokefenn.recipe.registry.ceremony;
 
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;

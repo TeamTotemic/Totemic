@@ -21,7 +21,7 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.api.plant.IPlantDrain;
 import totemic_commons.pokefenn.item.ItemTotems;
-import totemic_commons.pokefenn.recipe.registry.CeremonyRegistry;
+import totemic_commons.pokefenn.recipe.registry.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
