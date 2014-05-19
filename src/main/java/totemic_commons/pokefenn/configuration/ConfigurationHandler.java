@@ -43,6 +43,7 @@ public class ConfigurationHandler
             ConfigurationSettings.POTION_ID_SPIDER = configuration.get(CATEGORY_POTION, "spiderPotionID", 35).getInt(35);
 
             ConfigurationSettings.ENTITY_ID_EFREET = configuration.get(CATEGORY_ENTITY, "efreetEntityID", 22).getInt(22);
+            ConfigurationSettings.ENTITY_ID_DART = configuration.get(CATEGORY_ENTITY, "dartEntityID", 23).getInt(23);
 
             ConfigurationSettings.RENDER_CUBE_SOCKET = configuration.get(CATEGORY_CLIENT, "doRenderSocketAsCube", true).getBoolean(true);
 

@@ -35,6 +35,7 @@ public class ItemDarts extends ItemTotemic
     {
         super();
         setMaxStackSize(16);
+        setHasSubtypes(true);
     }
 
     @Override

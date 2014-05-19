@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
 import totemic_commons.pokefenn.misc.TotemicDamageSource;
+import totemic_commons.pokefenn.potion.ModPotions;
 
 import java.util.List;
 
@@ -268,17 +269,21 @@ public class EntityBaseDart extends Entity implements IProjectile
                         {
                             EntityLivingBase entitylivingbase = (EntityLivingBase) movingobjectposition.entityHit;
 
-                            if(metadata == ItemDarts.poisonDart)
-                                entitylivingbase.addPotionEffect(new PotionEffect(Potion.poison.id, 40, 0));
-                            if(metadata == ItemDarts.witherDart)
-                                entitylivingbase.addPotionEffect(new PotionEffect(Potion.wither.id, 60, 0));
-                            if(metadata == ItemDarts.blazeDart)
-                                entitylivingbase.setFire(10);
-                            if(metadata == ItemDarts.blindingDart)
-                                entitylivingbase.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
-                            if(metadata == ItemDarts.slowingDart)
-                                entitylivingbase.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
-
+                            if(!worldObj.isRemote)
+                            {
+                                if(metadata == ItemDarts.poisonDart)
+                                    entitylivingbase.addPotionEffect(new PotionEffect(Potion.poison.id, 40, 0));
+                                if(metadata == ItemDarts.witherDart)
+                                    entitylivingbase.addPotionEffect(new PotionEffect(Potion.wither.id, 60, 0));
+                                if(metadata == ItemDarts.blazeDart)
+                                    entitylivingbase.setFire(10);
+                                if(metadata == ItemDarts.blindingDart)
+                                    entitylivingbase.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
+                                if(metadata == ItemDarts.slowingDart)
+                                    entitylivingbase.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
+                                if(metadata == ItemDarts.antidoteDart)
+                                    entitylivingbase.addPotionEffect(new PotionEffect(ModPotions.antidotePotion.id, 100, 0));
+                            }
                             f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
                             if(f4 > 0.0F)

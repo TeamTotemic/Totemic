@@ -18,6 +18,7 @@ public class ConfigurationSettings
     public static String TOTEM_TREE_GENERATION_BLACKLIST;
 
     public static int ENTITY_ID_EFREET;
+    public static int ENTITY_ID_DART;
 
     public static int DECREMENT_TOTEM_HORSE;
     public static int DECREMENT_TOTEM_BAT;
