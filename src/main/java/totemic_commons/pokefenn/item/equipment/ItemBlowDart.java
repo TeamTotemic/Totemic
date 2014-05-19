@@ -1,9 +1,13 @@
 package totemic_commons.pokefenn.item.equipment;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -22,25 +26,74 @@ public class ItemBlowDart extends ItemTotemic
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
+    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4)
     {
+        int charge = this.getMaxItemUseDuration(itemStack) - par4;
 
+        if(player.inventory.hasItem(ModItems.darts))
+        {
+            float moveSpeedThingy = (float) charge / 20.0F;
+            moveSpeedThingy = (moveSpeedThingy * moveSpeedThingy + moveSpeedThingy * 2.0F) / 3.0F;
+
+            if((double) moveSpeedThingy < 0.1D)
+                return;
+
+            if(moveSpeedThingy > 1.0F)
+                moveSpeedThingy = 1.0F;
+
+            int metadata = 0;
+
+            if(!world.isRemote)
+            {
+                for(int i = 0; i < player.inventory.getSizeInventory(); i++)
+                {
+                    if(player.inventory.getStackInSlot(i) != null)
+                    {
+                        ItemStack playerStack = player.inventory.getStackInSlot(i);
+
+                        if(playerStack.getItem() == ModItems.darts)
+                        {
+                            metadata = playerStack.getItemDamage();
+                            playerStack.stackSize--;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            EntityBaseDart entity = new EntityBaseDart(world, player, moveSpeedThingy * 2.0F, metadata);
+            if(!world.isRemote)
+            {
+                world.spawnEntityInWorld(entity);
+            }
+
+        }
+    }
+
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    {
+        if(player.inventory.hasItem(ModItems.darts))
+        {
+            player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
+        }
+
+        return itemStack;
     }
 
     @Override
-    public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player)
     {
-        return par1ItemStack;
+        return itemStack;
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack par1ItemStack)
+    public int getMaxItemUseDuration(ItemStack itemStack)
     {
         return 36000;
     }
 
     @Override
-    public EnumAction getItemUseAction(ItemStack par1ItemStack)
+    public EnumAction getItemUseAction(ItemStack itemStack)
     {
         return EnumAction.bow;
     }

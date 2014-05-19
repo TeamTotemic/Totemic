@@ -32,24 +32,15 @@ public final class ModBlocks
     public static Block windChime;
     public static Block drum;
 
-    public static Block totemMana;
-
     public static void init()
     {
 
         totemWoods = new BlockSylvanLog();
         totemBase = new BlockTotemBase();
         totemPole = new BlockTotemPole();
-        //chlorophyll = new BlockChlorophyll();
         totemSapling = new BlockSylvanSapling();
         totemLeaves = new BlockSylvanLeaves();
-        //totemCauldron = new BlockTotemCauldron();
-        //moonglow = new BlockMoonglow();
-        //totemCeremonyIntelligence = new BlockCeremonyIntelligence();
-        //bloodwart = new BlockBloodWart();
         totemTorch = new BlockTotemTorch();
-        //lotusBlock = new BlockWaterLotus();
-        //fungusBlock = new BlockFungalPlant();
         flameParticle = new BlockFlameParticle();
         drum = new BlockDrum();
         windChime = new BlockWindChime();
@@ -57,19 +48,27 @@ public final class ModBlocks
         GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
         GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
         GameRegistry.registerBlock(totemPole, Strings.TOTEM_POLE_NAME);
-        //GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
         GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);
         GameRegistry.registerBlock(totemLeaves, Strings.TOTEM_LEAVES_NAME);
+        GameRegistry.registerBlock(totemTorch, Strings.TOTEM_TORCH_NAME);
+        GameRegistry.registerBlock(flameParticle, Strings.FLAME_PARTICLE_NAME);
+        GameRegistry.registerBlock(drum, Strings.DRUM_NAME);
+        GameRegistry.registerBlock(windChime, Strings.WIND_CHIME_NAME);
+
+        //GameRegistry.registerBlock(lotusBlock, Strings.LOTUS_BLOCK_NAME);
+        //GameRegistry.registerBlock(fungusBlock, Strings.FUNGAL_PLANT_BLOCK_NAME);
+        //GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
         //GameRegistry.registerBlock(totemCauldron, Strings.TOTEM_CAULDRON_NAME);
         //GameRegistry.registerBlock(moonglow, Strings.MOONGLOW_NAME);
         //GameRegistry.registerBlock(totemCeremonyIntelligence, Strings.CEREMONY_INTELLIGENCE_NAME);
         //GameRegistry.registerBlock(bloodwart, Strings.BLOODWART_BLOCK_NAME);
-        GameRegistry.registerBlock(totemTorch, Strings.TOTEM_TORCH_NAME);
-        //GameRegistry.registerBlock(lotusBlock, Strings.LOTUS_BLOCK_NAME);
-        //GameRegistry.registerBlock(fungusBlock, Strings.FUNGAL_PLANT_BLOCK_NAME);
-        GameRegistry.registerBlock(flameParticle, Strings.FLAME_PARTICLE_NAME);
-        GameRegistry.registerBlock(drum, Strings.DRUM_NAME);
-        GameRegistry.registerBlock(windChime, Strings.WIND_CHIME_NAME);
+        //chlorophyll = new BlockChlorophyll();
+        //totemCauldron = new BlockTotemCauldron();
+        //moonglow = new BlockMoonglow();
+        //totemCeremonyIntelligence = new BlockCeremonyIntelligence();
+        //bloodwart = new BlockBloodWart();
+        //lotusBlock = new BlockWaterLotus();
+        //fungusBlock = new BlockFungalPlant();
     }
 
 }

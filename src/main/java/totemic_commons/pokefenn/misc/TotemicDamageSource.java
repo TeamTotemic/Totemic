@@ -11,4 +11,6 @@ public class TotemicDamageSource
     public static DamageSource huntingKnife = new DamageSource("huntingKnife");
 
     public static DamageSource vigor = new DamageSource("Satchel of Fragile Vigor");
+
+    public static DamageSource baseDart = new DamageSource("Blowdart");
 }

@@ -82,7 +82,7 @@ public class EntityHurt
                             totalDamage += 1;
                         }
                         event.setResult(Event.Result.DENY);
-                        
+
                         event.entity.attackEntityFrom(TotemicDamageSource.vigor, totalDamage);
                     }
                 }
