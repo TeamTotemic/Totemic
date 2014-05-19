@@ -77,18 +77,12 @@ public class EntityHurt
                         {
                             totalDamage += 1;
                         }
-                        if(armour > 0 && armour < 5 && totemArmour == 0)
-                        {
-                            damage += (armour % 4);
-                        }
                         if(damage <= 4)
                         {
                             totalDamage += 1;
                         }
                         event.setResult(Event.Result.DENY);
-
-                        System.out.println(totalDamage);
-
+                        
                         event.entity.attackEntityFrom(TotemicDamageSource.vigor, totalDamage);
                     }
                 }
