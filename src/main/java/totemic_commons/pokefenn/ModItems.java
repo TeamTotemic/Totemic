@@ -4,13 +4,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
-import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleDamageArmour;
+import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemTotemBeadBelt;
 import totemic_commons.pokefenn.item.equipment.music.ItemInfusedFlute;
 import totemic_commons.pokefenn.item.*;
-import totemic_commons.pokefenn.item.equipment.ItemInfusedTotemicStaff;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
 import totemic_commons.pokefenn.lib.Strings;
@@ -115,7 +114,7 @@ public final class ModItems
         //tikiRing = new ItemTikiRing();
         heiTiki = new ItemHeiTiki();
         totemBeadSatchel = new ItemTotemBeadBelt();
-        baubleArmourDamage = new ItemBaubleDamageArmour();
+        baubleArmourDamage = new ItemBaubleFragileVigor();
 
         GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
         GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);

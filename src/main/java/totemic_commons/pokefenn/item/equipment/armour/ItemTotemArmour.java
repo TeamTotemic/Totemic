@@ -77,6 +77,16 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
     {
+        if (this == ModItems.totemArmourHead || this == ModItems.totemArmourChest || this == ModItems.totemArmourFeet)
+        {
+            return "totemic:models/armour/totemArmourLayer1.png";
+        }
+
+        if (this == ModItems.totemArmourLeg)
+        {
+            return "totemic:models/armour/totemArmourLayer2.png";
+        }
+
         return null;
     }
 

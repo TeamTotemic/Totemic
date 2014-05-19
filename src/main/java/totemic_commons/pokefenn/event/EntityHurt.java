@@ -42,9 +42,9 @@ public class EntityHurt
         {
             IInventory baubleInventory = BaublesApi.getBaubles((EntityPlayer) sourceDamageEntity);
 
-            if(baubleInventory.getStackInSlot(3) != null)
+            if(baubleInventory.getStackInSlot(0) != null)
             {
-                if(baubleInventory.getStackInSlot(3).getItem() == ModItems.baubleArmourDamage)
+                if(baubleInventory.getStackInSlot(0).getItem() == ModItems.baubleArmourDamage)
                 {
                     EntityPlayer player = (EntityPlayer) sourceDamageEntity;
 
@@ -56,7 +56,7 @@ public class EntityHurt
                         int totemArmour = TotemUtil.getArmourAmounts(player);
 
                         if(totemArmour == 0 && armour > 5)
-                            totalDamage -= 1;
+                            totalDamage -= 2;
                         if(totemArmour > 0)
                             totalDamage += (totemArmour % 2);
                         if(damage > 6)

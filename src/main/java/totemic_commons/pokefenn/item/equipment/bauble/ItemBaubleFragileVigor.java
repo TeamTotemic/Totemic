@@ -11,9 +11,9 @@ import totemic_commons.pokefenn.lib.Strings;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemBaubleDamageArmour extends ItemTotemic implements IBauble
+public class ItemBaubleFragileVigor extends ItemTotemic implements IBauble
 {
-    public ItemBaubleDamageArmour()
+    public ItemBaubleFragileVigor()
     {
         super();
         setUnlocalizedName(Strings.BAUBLE_ARMOUR_DAMAGE_NAME);
@@ -23,7 +23,7 @@ public class ItemBaubleDamageArmour extends ItemTotemic implements IBauble
     @Override
     public BaubleType getBaubleType(ItemStack itemstack)
     {
-        return BaubleType.BELT;
+        return BaubleType.AMULET;
     }
 
     @Override
