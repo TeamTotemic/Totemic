@@ -27,10 +27,10 @@ item.totemic:verdantCrystal.name=Verdant Crystal
 item.totemic:shamanFlute.name=Totem Flute
 item.totemic:heiTiki.name=Hei-Tiki
 item.totemic:herculeseBeetle.name=Hercules Beetle
-item.totemic:totemArmourHead.name=Totem Armour Helmet
-item.totemic:totemArmourFeet.name=Totem Armour Boots
-item.totemic:totemArmourChest.name=Totem Armour Chestplate
-item.totemic:totemArmourLeg.name=Totem Armour Leggings
+item.totemic:totemArmourHead.name=Totem Armour Mask
+item.totemic:totemArmourFoot.name=Totem Armour Boots
+item.totemic:totemArmourChest.name=Totem Armour Breastplate
+item.totemic:totemArmourLeg.name=Totem Armour Skirt
 
 # Block localizations
 tile.sylvanLog.name=Sylvan Log

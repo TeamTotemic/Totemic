@@ -43,6 +43,13 @@ public class ItemHeiTiki extends ItemTotemic implements IBauble
         {
             player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 20, 0));
             player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 30, 0));
+
+
+        }
+
+        if(player.isInWater() && player.isSneaking())
+        {
+            player.moveFlying(0F, 1F, 0.1F);
         }
     }
 

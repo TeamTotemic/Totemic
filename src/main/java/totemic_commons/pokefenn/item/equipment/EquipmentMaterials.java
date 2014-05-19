@@ -11,7 +11,9 @@ import net.minecraftforge.common.util.EnumHelper;
  */
 public class EquipmentMaterials
 {
-    public static ItemArmor.ArmorMaterial totemArmour = EnumHelper.addArmorMaterial("totemArmour", 100, new int[]{2, 4, 3, 1}, 18);
+    public static ItemArmor.ArmorMaterial totemArmour = EnumHelper.addArmorMaterial("totemArmour", 100, new int[]{1, 4, 3, 1}, 18);
 
     public static ItemTool.ToolMaterial huntingKnife = EnumHelper.addToolMaterial("huntingKnife", 0, 126, 0, -2, 0);
+
+    public static ItemTool.ToolMaterial totemSword = EnumHelper.addToolMaterial("totemSword", 0, 125, 0, 4, 20);
 }

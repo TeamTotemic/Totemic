@@ -38,7 +38,7 @@ public class EntityHurt
                     sourceDamageEntity.attackEntityFrom(DamageSource.generic, event.ammount % 2);
         }
 
-        if(event.entity != null && event.source!= TotemicDamageSource.vigor && event.entityLiving != null && sourceDamageEntity != null && sourceDamageEntity instanceof EntityPlayer && Totemic.baublesLoaded)
+        if(event.entity != null && event.source != TotemicDamageSource.vigor && event.entityLiving != null && sourceDamageEntity != null && sourceDamageEntity instanceof EntityPlayer && Totemic.baublesLoaded)
         {
             IInventory baubleInventory = BaublesApi.getBaubles((EntityPlayer) sourceDamageEntity);
 
@@ -50,23 +50,44 @@ public class EntityHurt
 
                     if(player.getHeldItem().getItem() instanceof ItemSword)
                     {
+                        ItemSword item = (ItemSword) player.getHeldItem().getItem();
+
                         int armour = player.getTotalArmorValue();
-                        int damage = player.getHeldItem().getItemDamage();
+                        float damage = item.func_150931_i();
                         float totalDamage = event.ammount;
                         int totemArmour = TotemUtil.getArmourAmounts(player);
 
                         if(totemArmour == 0 && armour > 5)
+                        {
                             totalDamage -= 2;
-                        if(totemArmour > 0)
-                            totalDamage += (totemArmour % 2);
-                        if(damage > 6)
+                        }
+                        if(totemArmour == 0)
+                        {
                             totalDamage -= 1;
+                        }
+                        if(totemArmour > 0)
+                        {
+                            totalDamage += totemArmour == 4 ? 2 : 1;
+                        }
+                        if(damage > 4)
+                        {
+                            totalDamage -= 2;
+                        }
                         if(armour == 0)
-                            totalDamage += 3;
-                        if(damage < 6 && damage > 0)
-                            totalDamage += 2;
-
+                        {
+                            totalDamage += 1;
+                        }
+                        if(armour > 0 && armour < 5 && totemArmour == 0)
+                        {
+                            damage += (armour % 4);
+                        }
+                        if(damage <= 4)
+                        {
+                            totalDamage += 1;
+                        }
                         event.setResult(Event.Result.DENY);
+
+                        System.out.println(totalDamage);
 
                         event.entity.attackEntityFrom(TotemicDamageSource.vigor, totalDamage);
                     }
