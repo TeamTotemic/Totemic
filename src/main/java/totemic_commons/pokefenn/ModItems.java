@@ -62,8 +62,9 @@ public final class ModItems
         shamanFlute = new ItemInfusedFlute();
         if(ConfigurationSettings.TEST_ITEM)
             test = new ItemTest();
-        darts = new ItemDarts();
-        blowDart = new ItemBlowDart();
+        //darts = new ItemDarts();
+        //blowDart = new ItemBlowDart();
+        //TODO darts, properly
 
         //huntingKnife = new ItemHuntingKnife();
         //verdantCrystal = new ItemVerdantCrystal();
