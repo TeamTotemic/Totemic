@@ -78,8 +78,8 @@ public class TileWindChime extends TileTotemic
                 currentTime = 0;
             }
 
-            if(world.getWorldTime() % 80L == 0)
-                if(rand.nextInt(12 * 8) == 1)
+            if(world.getWorldTime() % 30L == 0)
+                if(rand.nextInt(30) == 1)
                 {
                     //this makes all nearby chimes play
                     isPlaying = true;
