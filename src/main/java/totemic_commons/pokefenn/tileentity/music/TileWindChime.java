@@ -46,17 +46,16 @@ public class TileWindChime extends TileTotemic
 
             if(world.getWorldTime() % 40L == 0)
             {
-                if(!world.isRemote)
-                    if(world.getTileEntity(xCoord, yCoord, zCoord) instanceof TileWindChime)
+                if(world.getTileEntity(xCoord, yCoord, zCoord) instanceof TileWindChime)
+                {
+                    if(world.isAirBlock(xCoord, yCoord + 1, zCoord))
                     {
-                        if(!world.isAirBlock(xCoord, yCoord - 1, zCoord) && world.isAirBlock(xCoord, yCoord + 1, zCoord))
-                        {
-                            world.setBlockToAir(xCoord, yCoord, zCoord);
-                            EntityItem entityItem = new EntityItem(world, xCoord, yCoord, zCoord, new ItemStack(ModBlocks.windChime, 1, 0));
+                        world.setBlockToAir(xCoord, yCoord, zCoord);
+                        EntityItem entityItem = new EntityItem(world, xCoord, yCoord, zCoord, new ItemStack(ModBlocks.windChime, 1, 0));
 
-                            world.spawnEntityInWorld(entityItem);
-                        }
+                        world.spawnEntityInWorld(entityItem);
                     }
+                }
             }
 
             if(isPlaying)
@@ -65,9 +64,12 @@ public class TileWindChime extends TileTotemic
                 if(world.getWorldTime() % 40L == 0)
                     if(rand.nextInt(2) == 1)
                     {
-                        BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
-                        TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME_MUSIC, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null));
-                        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+                        if(world.getBlock(xCoord, yCoord, zCoord) == ModBlocks.windChime)
+                        {
+                            BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
+                            TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME_MUSIC, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null));
+                            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+                        }
                     }
             }
 
