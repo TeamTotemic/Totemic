@@ -220,6 +220,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         isDoingEffect = false;
         startupTime = 0;
 
+        dancingEfficiency = 0;
+        armourEfficiency = 0;
+        plantEfficiency = 0;
+
         for(int i = 0; i < music.length; i++)
         {
             music[i] = 0;
@@ -283,16 +287,13 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         }
         resetMelody();
         workOutEfficiency();
-        int j = totalEfficiency % 4;
-
 
         //TODO
-        return totalMelody > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getMusicNeeded() - plantEfficiency % 4 - armourEfficiency % 2 - dancingEfficiency;
+        return totalMelody > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID).getMusicNeeded() - (plantEfficiency % 8) - (armourEfficiency) - (dancingEfficiency % 50);
     }
 
     public void workOutEfficiency()
     {
-
     }
 
     public void startupMain()
@@ -314,9 +315,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             getPlayersArmour();
         }
 
-        if(worldObj.getWorldTime() % 10L == 0)
+        if(worldObj.getWorldTime() % 5L == 0)
         {
-            dancingEfficiency = 0;
             danceLikeAMonkey();
         }
     }
@@ -347,6 +347,17 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public void danceLikeAMonkey()
     {
         //TODO
+
+        if(worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 8) != null)
+        {
+
+            EntityPlayer player = worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 8);
+
+            if((int) player.posX != (int) player.prevPosX && (int) player.posY != (int) player.prevPosY)
+            {
+                dancingEfficiency++;
+            }
+        }
     }
 
     public void findBlocksForEfficiency()
