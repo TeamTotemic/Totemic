@@ -46,6 +46,7 @@ public class ItemTotems extends ItemTotemic implements ITotem
         maxStackSize = 1;
         setCreativeTab(Totemic.tabsTotem);
         registerIcons = false;
+        setCreativeTab(null);
     }
 
     @Override

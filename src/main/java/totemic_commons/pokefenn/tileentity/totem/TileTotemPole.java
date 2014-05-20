@@ -147,9 +147,9 @@ public class TileTotemPole extends TileTotemic implements IInventory
         {
             if(i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && (itemStack.getItem() instanceof ITotem || (itemStack.getItem() == ModItems.subItems && itemStack.getItemDamage() == 4)))
             {
-                this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-                markDirty();
-                return true;
+                //this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+                //markDirty();
+                //return true;
             }
 
         }

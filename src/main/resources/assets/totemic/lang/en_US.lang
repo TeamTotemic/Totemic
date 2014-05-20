@@ -24,13 +24,13 @@ item.totemic:infusedStick.name=Infused Stick
 item.totemic:totempedia.name=Totempedia
 item.totemic:blazingVerdantCrystal.name=Blazing Verdant Crystal
 item.totemic:verdantCrystal.name=Verdant Crystal
-item.totemic:shamanFlute.name=Totem Flute
+item.totemic:shamanFlute.name=Totemist's Flute
 item.totemic:heiTiki.name=Hei-Tiki
 item.totemic:herculeseBeetle.name=Hercules Beetle
-item.totemic:totemArmourHead.name=Totem Armour Mask
-item.totemic:totemArmourFoot.name=Totem Armour Boots
-item.totemic:totemArmourChest.name=Totem Armour Breastplate
-item.totemic:totemArmourLeg.name=Totem Armour Skirt
+item.totemic:totemArmourHead.name=Totemist's Mask
+item.totemic:totemArmourFoot.name=Totemist's Boots
+item.totemic:totemArmourChest.name=Totemist's Breastplate
+item.totemic:totemArmourLeg.name=Totemist's Skirt
 
 # Block localizations
 tile.sylvanLog.name=Sylvan Log

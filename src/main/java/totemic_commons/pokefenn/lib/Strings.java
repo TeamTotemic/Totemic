@@ -51,7 +51,7 @@ public class Strings
     public static final String HERCULESE_BAUBLES_NAME = "herculeseBauble";
     public static final String TOTEM_BEAD_BELT_NAME = "totemBeadBelt";
     public static final String HUNTING_KNIFE_NAME = "huntingKnife";
-    public static final String BAUBLE_ARMOUR_DAMAGE_NAME = "baubleFragileVigor";
+    public static final String BAUBLE_ARMOUR_DAMAGE_NAME = "pendantVigor";
     public static final String BLOW_DART_NAME = "blowDart";
 
     //TileEntites

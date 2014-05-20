@@ -49,49 +49,6 @@ public class TileTotemCauldron extends TileTotemic implements IFluidHandler
 
         if(!this.worldObj.isRemote)
         {
-            /*
-
-            if(this.worldObj.getWorldTime() % 40L == 0L)
-                isBurning = this.worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Blocks.lava || this.worldObj.getBlock(xCoord, yCoord - 1, zCoord) == Blocks.fire;
-
-            List<Entity> entity = EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 0, 1);
-
-            if(tank.getFluidAmount() > 0 && isBurning)
-            {
-                for(Entity entities : entity)
-                {
-                    if(entities instanceof EntityItem)
-                    {
-                        for(PotionItemRegistry potionItemRegistry : PotionItemRegistry.potionRegistry)
-                        {
-                            if(((EntityItem) entities).getEntityItem().getItem() == potionItemRegistry.getItem().getItem() && ((EntityItem) entities).getEntityItem().getItemDamage() == potionItemRegistry.getItem().getItemDamage())
-                            {
-                                if((canConsume(((EntityItem) entities).getEntityItem(), potionItemRegistry, isLengthIngredient(potionItemRegistry))))
-                                    ;
-                                {
-                                    if(!potionItemRegistry.isCatalyst())
-                                    {
-                                        strengthAmount += potionItemRegistry.getStrength();
-                                        lengthAmount += potionItemRegistry.getLength();
-
-                                        entities.setDead();
-
-                                        //System.out.println(negativeAmount);
-                                        //System.out.println(lengthAmount);
-
-                                    } else
-                                    {
-
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-            }
-            */
         }
     }
 
