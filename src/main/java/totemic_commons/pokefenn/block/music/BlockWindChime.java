@@ -1,17 +1,25 @@
 package totemic_commons.pokefenn.block.music;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -24,8 +32,35 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
 {
     public BlockWindChime()
     {
-        super(Material.wood);
+        super(Material.grass);
         setBlockName(Strings.WIND_CHIME_NAME);
+    }
+
+    @Override
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor)
+    {
+        breakStuffs(x, y, z, world);
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+    {
+        breakStuffs(x, y, z, world);
+    }
+
+    public static void breakStuffs(int x, int y, int z, World world)
+    {
+        if(!world.isRemote)
+            if(world.getTileEntity(x, y, z) instanceof TileWindChime)
+            {
+                if(!world.isAirBlock(x, y - 1, z) && world.isAirBlock(x, y + 1, z))
+                {
+                    world.setBlockToAir(x, y, z);
+                    EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ModBlocks.windChime, 1, 0));
+
+                    world.spawnEntityInWorld(entityItem);
+                }
+            }
     }
 
     @Override
@@ -37,6 +72,47 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
         }
         return true;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+        return 1;
+    }
+
+    @SideOnly(Side.CLIENT)
+    private IIcon windChimeIcon;
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerBlockIcons(IIconRegister register)
+    {
+        windChimeIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "windChime");
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    {
+        return null;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IIcon getIcon(int side, int meta)
+    {
+        return windChimeIcon;
     }
 
     @Override

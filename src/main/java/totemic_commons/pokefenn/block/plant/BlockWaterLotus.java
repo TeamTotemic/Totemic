@@ -24,6 +24,7 @@ public class BlockWaterLotus extends BlockLilyPad implements IPlantDrain
         setHardness(0);
     }
 
+    @Override
     public int getRenderType()
     {
         return 6;

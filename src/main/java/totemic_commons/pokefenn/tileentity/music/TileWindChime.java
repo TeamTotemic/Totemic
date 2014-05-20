@@ -1,7 +1,9 @@
 package totemic_commons.pokefenn.tileentity.music;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -42,10 +44,24 @@ public class TileWindChime extends TileTotemic
         {
             Random rand = new Random();
 
+            if(world.getWorldTime() % 40L == 0)
+            {
+                if(!world.isRemote)
+                    if(world.getTileEntity(xCoord, yCoord, zCoord) instanceof TileWindChime)
+                    {
+                        if(!world.isAirBlock(xCoord, yCoord - 1, zCoord) && world.isAirBlock(xCoord, yCoord + 1, zCoord))
+                        {
+                            world.setBlockToAir(xCoord, yCoord, zCoord);
+                            EntityItem entityItem = new EntityItem(world, xCoord, yCoord, zCoord, new ItemStack(ModBlocks.windChime, 1, 0));
+
+                            world.spawnEntityInWorld(entityItem);
+                        }
+                    }
+            }
+
             if(isPlaying)
             {
                 currentTime++;
-
                 if(world.getWorldTime() % 40L == 0)
                     if(rand.nextInt(2) == 1)
                     {
@@ -55,19 +71,20 @@ public class TileWindChime extends TileTotemic
                     }
             }
 
-            //TODO make sure this is right, im tired
-            if(currentTime >= 0)
+            //This is for how long it can play
+            if(currentTime >= 20 * 12)
             {
                 isPlaying = false;
                 currentTime = 0;
             }
 
-            if(world.getWorldTime() % 100L == 0)
+            if(world.getWorldTime() % 80L == 0)
                 if(rand.nextInt(12 * 8) == 1)
                 {
+                    //this makes all nearby chimes play
                     isPlaying = true;
 
-                    int radius = 6;
+                    int radius = 4;
 
                     for(int i = -radius; i <= radius; i++)
                         for(int j = -radius; j <= radius; j++)
