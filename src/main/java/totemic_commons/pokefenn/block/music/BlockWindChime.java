@@ -68,8 +68,8 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     {
         if(!world.isRemote && player.isSneaking())
         {
-            TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(), 6);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+            TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(), this.getRange(world, x, y, z, true, player));
+            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y - 0.5D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
         }
         return true;
     }
@@ -136,12 +136,12 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 3;
+        return 4;
     }
 
     @Override
     public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 6;
+        return 7;
     }
 }

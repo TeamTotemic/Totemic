@@ -136,6 +136,8 @@ public class TotemUtil
                             if(world.getTileEntity(x + i, y + j, z + k) instanceof TileTotemBase)
                                 ((TileTotemBase) world.getTileEntity(x + i, y + j, z + k)).isCeremony = true;
 
+                            //System.out.println("get here? :<");
+
                             int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
 
                             if(musicSelectorArray[0] == 0)

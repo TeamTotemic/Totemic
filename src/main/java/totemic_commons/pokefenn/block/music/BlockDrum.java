@@ -91,7 +91,8 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 6;
+        //TODO remember
+        return 50;
     }
 
     @Override

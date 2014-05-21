@@ -85,7 +85,7 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
             if(time >= 15 && player.isSneaking())
             {
                 time = 0;
-                TotemUtil.playMusicFromItemForCeremonySelector(stack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(), 6);
+                TotemUtil.playMusicFromItemForCeremonySelector(stack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
                 particlesAllAround(world, player.posX, player.posY, player.posZ);
             }
             if(stack.getItemDamage() == 1)
@@ -131,7 +131,7 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return player.getHeldItem() != null && player.getHeldItem().getItemDamage() == 0 ? 3 : 6;
+        return player.getHeldItem() != null && player.getHeldItem().getItemDamage() == 0 ? 3 : 7;
     }
 
     @Override
