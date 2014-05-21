@@ -15,13 +15,15 @@ import totemic_commons.pokefenn.Totemic;
 public class ItemTotemic extends Item
 {
     public boolean registerIcons = true;
+    public boolean creativeTab = true;
 
     public ItemTotemic()
     {
         super();
         setMaxStackSize(64);
         setNoRepair();
-        setCreativeTab(Totemic.tabsTotem);
+        if(creativeTab)
+            setCreativeTab(Totemic.tabsTotem);
     }
 
     @Override

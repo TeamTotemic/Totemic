@@ -29,7 +29,7 @@ public class TotemRegistry
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze(), 2));
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot(), 2));
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat(), 2));
-        totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 5), 0, 8, 8, new TotemEffectDraining(), 1));
+        //totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 5), 0, 8, 8, new TotemEffectDraining(), 1));
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 6), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider(), 2));
         totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 7), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow(), 1));
     }

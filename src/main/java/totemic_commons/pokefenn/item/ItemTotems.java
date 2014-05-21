@@ -25,7 +25,7 @@ import java.util.List;
 public class ItemTotems extends ItemTotemic implements ITotem
 {
 
-    public static final String[] TOTEM_NAMES = new String[]{"Horse", "Bat", "Blaze", "Ocelot", "Squid", "Draining", "Spider", "Cow"};
+    public static final String[] TOTEM_NAMES = new String[]{"Horse", "Bat", "Blaze", "Ocelot", "Squid", "Spider", "Cow"};
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
@@ -35,18 +35,17 @@ public class ItemTotems extends ItemTotemic implements ITotem
     public static int blaze = 2;
     public static int ocelot = 3;
     public static int squid = 4;
-    public static int draining = 5;
-    public static int spider = 6;
-    public static int cow = 7;
+    //public static int draining = 5;
+    public static int spider = 5;
+    public static int cow = 6;
 
     public ItemTotems()
     {
         super();
-        this.setHasSubtypes(true);
+        setHasSubtypes(true);
         maxStackSize = 1;
-        setCreativeTab(Totemic.tabsTotem);
         registerIcons = false;
-        setCreativeTab(null);
+        creativeTab = false;
     }
 
     @Override
@@ -63,8 +62,8 @@ public class ItemTotems extends ItemTotemic implements ITotem
             list.add("Fear creepers like a Ocelot");
         if(stack.getItemDamage() == squid)
             list.add("Breath underwater like a Squid");
-        if(stack.getItemDamage() == draining)
-            list.add("Drain the essence of nearby plants");
+        //if(stack.getItemDamage() == draining)
+        //    list.add("Drain the essence of nearby plants");
         if(stack.getItemDamage() == spider)
             list.add("Climb walls with the agility of a Spider");
         if(stack.getItemDamage() == cow)

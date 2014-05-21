@@ -57,7 +57,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-        if(player.isSneaking() && itemStack.getItemDamage() > ItemTotems.TOTEM_NAMES.length)
+        if(player.isSneaking() && itemStack.getItemDamage() >= ItemTotems.TOTEM_NAMES.length)
             return new ItemStack(this, 1, 0);
 
         return player.isSneaking() ? new ItemStack(this, 1, 1 + itemStack.getItemDamage()) : itemStack;

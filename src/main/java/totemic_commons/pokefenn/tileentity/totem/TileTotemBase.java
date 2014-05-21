@@ -1,6 +1,9 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockSapling;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +18,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.api.IBlacklistedDraining;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
@@ -26,6 +30,8 @@ import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
+
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -102,6 +108,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
             if(!(currentInput >= 1))
             {
+                if(worldObj.getWorldTime() % 80L == 0)
+                    drainEffect();
+
                 if(isCeremony)
                     doCeremonyCode();
 
@@ -109,7 +118,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 {
                     for(int i = 1; i <= socket; i++)
                     {
-                        if(totems[i] != null || (totems[i] != null && totems[i].getItemDamage() == ItemTotems.draining))
+                        if(totems[i] != null)
                         {
                             for(TotemRegistry totemRegistry : TotemRegistry.getRecipes())
                             {
@@ -360,6 +369,52 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         }
     }
 
+    public void drainEffect()
+    {
+        int totemRadius = 12;
+
+        for(int i = -totemRadius; i <= totemRadius; i++)
+            for(int k = -totemRadius; k <= totemRadius; k++)
+                for(int j = -totemRadius; j <= totemRadius; j++)
+                {
+                    reducePlantMetadata(xCoord + i, yCoord + k, zCoord + j);
+                }
+    }
+
+    public void reducePlantMetadata(int x, int y, int z)
+    {
+        Block blockQuery = worldObj.getBlock(x, y, z);
+        boolean isNotFlower = !blockQuery.getUnlocalizedName().contains("flower");
+        boolean isNotBush = !blockQuery.getUnlocalizedName().contains("bush");
+        boolean isNotBerry = !blockQuery.getUnlocalizedName().contains("berry");
+        boolean isNotKelp = !blockQuery.getUnlocalizedName().contains("kelp");
+
+        if(blockQuery != null)
+        {
+            if(blockQuery instanceof BlockSapling || blockQuery instanceof BlockLeaves || blockQuery instanceof BlockLog)
+            {
+                Random rand = new Random();
+                if(rand.nextInt(10) == 1)
+                    increasePlantEssence(blockQuery);
+            }
+
+            if(blockQuery instanceof IPlantable)
+            {
+                if(worldObj.getBlockMetadata(x, y, z) >= 4 && !(blockQuery instanceof IBlacklistedDraining) && isNotFlower && isNotBush && isNotBerry && isNotKelp)
+                {
+                    Random rand = new Random();
+
+                    if(rand.nextInt(4) == 1)
+                        worldObj.setBlockMetadataWithNotify(x, y, z, worldObj.getBlockMetadata(x, y, z) - 1, 2);
+                    if(rand.nextBoolean())
+                        increasePlantEssence(blockQuery);
+                    MinecraftServer.getServer().worldServerForDimension(getWorldObj().provider.dimensionId).func_147487_a("happyVillager", (double) x + 0.5D, (double) y + 0.9D, (double) z + 0.5D, 4, 0.0D, 0.0D, 0.0D, 0.0D);
+                }
+            }
+        }
+    }
+
+
     public void findBlocksForEfficiency()
     {
         int radius = 6;
@@ -428,25 +483,29 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         if(plantEssence < maxEssence)
         {
-            if((plantEssence + (getPlantDrained(block)) - 1) > maxEssence)
+            if((plantEssence + getPlantDrained(block) > maxEssence))
             {
                 plantEssence = maxEssence;
                 return;
             }
 
-            //TODO flesh out number
-            plantEssence += (getPlantDrained(block) - 1);
+            plantEssence += getPlantDrained(block);
         }
     }
 
     public int getPlantDrained(Block plant)
     {
-        if(plant instanceof IPlantDrain)
+        if(plant instanceof BlockLog || plant instanceof BlockLeaves)
         {
-            return ((IPlantDrain) plant).getPlantDrain(this.worldObj, this.xCoord, this.yCoord, this.zCoord) - 1;
+            return 1;
         }
 
-        return 2;
+        if(plant instanceof BlockSapling)
+        {
+            return 2;
+        }
+
+        return 3;
     }
 
     public void decreaseChlorophyll(int subtraction)
@@ -457,7 +516,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     protected boolean canDoEffect(int subtraction, int meta)
     {
-        return plantEssence - subtraction > 0 || meta == ItemTotems.draining;
+        return plantEssence - subtraction > 0;
     }
 
     protected ItemStack getSocketItemStack(int par1)

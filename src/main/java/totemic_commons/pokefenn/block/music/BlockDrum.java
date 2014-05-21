@@ -45,7 +45,6 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
 
     public void playDaMusicu(World world, int x, int y, int z, EntityPlayer player, TileDrum tileDrum, boolean isSneaking)
     {
-        //TODO Y U PLAY DA MUSIC
         if(isSneaking)
         {
             player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 0));
