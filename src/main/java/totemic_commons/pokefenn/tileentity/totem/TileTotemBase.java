@@ -388,6 +388,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         boolean isNotBush = !blockQuery.getUnlocalizedName().contains("bush");
         boolean isNotBerry = !blockQuery.getUnlocalizedName().contains("berry");
         boolean isNotKelp = !blockQuery.getUnlocalizedName().contains("kelp");
+        boolean isNotLeaves = !blockQuery.getUnlocalizedName().contains("leaves");
 
         if(blockQuery != null)
         {
@@ -400,7 +401,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
             if(blockQuery instanceof IPlantable)
             {
-                if(worldObj.getBlockMetadata(x, y, z) >= 4 && !(blockQuery instanceof IBlacklistedDraining) && isNotFlower && isNotBush && isNotBerry && isNotKelp)
+                if(worldObj.getBlockMetadata(x, y, z) >= 4 && !(blockQuery instanceof IBlacklistedDraining) && isNotFlower && isNotBush && isNotBerry && isNotKelp && isNotLeaves)
                 {
                     Random rand = new Random();
 

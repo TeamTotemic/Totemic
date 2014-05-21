@@ -48,6 +48,22 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
     }
 
     @Override
+    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
+    {
+        TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(x, y, z);
+
+        if(tileTotemBase != null)
+            if(!world.isRemote)
+            {
+                if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff && tileTotemBase.isCeremony)
+                {
+                    tileTotemBase.resetSelector();
+                    tileTotemBase.isCeremony = false;
+                }
+            }
+    }
+
+    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
         int SLOT_ONE = TileTotemBase.SLOT_ONE;
@@ -68,17 +84,17 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
 
             if(tileTotemBase.isCeremony)
             {
-                if(player.isSneaking())
-                {
+                //if(player.isSneaking())
+                //{
                     //TODO WHY YOU NO WORK
-                    tileTotemBase.resetSelector();
-                }
+                //    tileTotemBase.resetSelector();
+                //}
 
                 if(!tileTotemBase.isDoingEffect && !player.isSneaking())
                 {
-                    if(tileTotemBase.isMusicSelecting)
+                    //if(tileTotemBase.isMusicSelecting)
                     {
-                        System.out.println("ln");
+                        //System.out.println("ln");
                         if(tileTotemBase.musicSelector[0] == 0 && tileTotemBase.musicSelector[1] == 0 && tileTotemBase.musicSelector[2] == 0 && tileTotemBase.musicSelector[3] == 0)
                         {
                             player.addChatComponentMessage(new ChatComponentText("No Music for seclector."));

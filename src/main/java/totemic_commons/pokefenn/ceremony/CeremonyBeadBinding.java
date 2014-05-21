@@ -6,7 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
@@ -18,15 +18,15 @@ public class CeremonyBeadBinding implements ICeremonyEffect
     @Override
     public void effect(TileEntity tileEntity)
     {
-        TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) tileEntity;
+        TileTotemBase tileTotemBase = (TileTotemBase) tileEntity;
 
-        int x = tileCeremonyIntelligence.xCoord;
-        int y = tileCeremonyIntelligence.yCoord;
-        int z = tileCeremonyIntelligence.zCoord;
+        int x = tileTotemBase.xCoord;
+        int y = tileTotemBase.yCoord;
+        int z = tileTotemBase.zCoord;
 
-        World world = tileCeremonyIntelligence.getWorldObj();
+        World world = tileTotemBase.getWorldObj();
 
-        if(tileCeremonyIntelligence != null)
+        if(tileTotemBase != null)
         {
             if(EntityUtil.getEntitiesInRange(world, x, y, z, 4, 4) != null)
             {

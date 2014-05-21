@@ -4,7 +4,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.storage.WorldInfo;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 
 /**
  * Created by Pokefenn.
@@ -13,9 +12,9 @@ import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 public class CeremonyRain implements ICeremonyEffect
 {
     @Override
-    public void effect(TileEntity tileCeremonyIntelligence)
+    public void effect(TileEntity tiletotemBase)
     {
-        if(tileCeremonyIntelligence.getWorldObj().isRaining())
+        if(tiletotemBase.getWorldObj().isRaining())
         {
             WorldInfo worldinfo = MinecraftServer.getServer().worldServers[0].getWorldInfo();
             worldinfo.setRaining(false);

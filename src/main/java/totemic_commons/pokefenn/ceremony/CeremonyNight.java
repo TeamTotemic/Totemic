@@ -4,7 +4,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 /**
  * Created by Pokefenn.
@@ -15,11 +15,11 @@ public class CeremonyNight implements ICeremonyEffect
     @Override
     public void effect(TileEntity tileEntity)
     {
-        TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) tileEntity.getWorldObj().getTileEntity(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+        TileTotemBase tileTotemBase = (TileTotemBase) tileEntity.getWorldObj().getTileEntity(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
 
-        World world = tileCeremonyIntelligence.getWorldObj();
+        World world = tileTotemBase.getWorldObj();
 
-        if(tileCeremonyIntelligence != null)
+        if(tileTotemBase != null)
         {
             if(world.isDaytime())
             {

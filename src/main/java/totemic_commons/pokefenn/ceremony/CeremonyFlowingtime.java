@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.Random;
@@ -19,23 +19,23 @@ import java.util.Random;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyFlowingtime implements ICeremonyEffect
+public class CeremonyFlowingTime implements ICeremonyEffect
 {
     @Override
     public void effect(TileEntity tileEntity)
     {
-        TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) tileEntity;
+        TileTotemBase tileTotemBase = (TileTotemBase) tileEntity;
 
-        World world = tileCeremonyIntelligence.getWorldObj();
+        World world = tileTotemBase.getWorldObj();
 
-        if(tileCeremonyIntelligence != null)
+        if(tileTotemBase != null)
         {
             int radius = 12;
             int yRadius = 5;
 
-            int x = tileCeremonyIntelligence.xCoord;
-            int y = tileCeremonyIntelligence.yCoord;
-            int z = tileCeremonyIntelligence.zCoord;
+            int x = tileTotemBase.xCoord;
+            int y = tileTotemBase.yCoord;
+            int z = tileTotemBase.zCoord;
 
             if(EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8) != null)
             {

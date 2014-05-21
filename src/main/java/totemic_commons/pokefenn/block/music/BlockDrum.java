@@ -45,7 +45,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
 
     public void playDaMusicu(World world, int x, int y, int z, EntityPlayer player, TileDrum tileDrum, boolean isSneaking)
     {
-        if(isSneaking)
+        if(!isSneaking)
         {
             player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 0));
             tileDrum.canPlay = false;
@@ -56,7 +56,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
         {
             player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 0));
             tileDrum.canPlay = false;
-            TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(), 6);
+            TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(), this.getRange(world, x, y, z, true, player));
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
         }

@@ -8,7 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.recipe.registry.ceremony.CeremonyPotionRegistry;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -21,14 +21,14 @@ public class CeremonyPotion implements ICeremonyEffect
     @Override
     public void effect(TileEntity tileEntity)
     {
-        TileCeremonyIntelligence tileCeremonyIntelligence = (TileCeremonyIntelligence) tileEntity;
+        TileTotemBase tiletotemBase = (TileTotemBase) tileEntity;
 
         int xCoord = tileEntity.xCoord;
         int yCoord = tileEntity.yCoord;
         int zCoord = tileEntity.zCoord;
-        World worldObj = tileCeremonyIntelligence.getWorldObj();
+        World worldObj = tiletotemBase.getWorldObj();
 
-        if(tileCeremonyIntelligence != null)
+        if(tiletotemBase != null)
         {
             if(EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6) != null)
             {

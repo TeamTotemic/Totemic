@@ -2,7 +2,7 @@ package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 /**
  * Created by Pokefenn.
@@ -13,7 +13,7 @@ public class CeremonyCrafting implements ICeremonyEffect
     @Override
     public void effect(TileEntity tileEntity)
     {
-        TileCeremonyIntelligence tileCeremony = (TileCeremonyIntelligence) tileEntity;
+        TileTotemBase tileCeremony = (TileTotemBase) tileEntity;
 
         if(tileCeremony != null)
         {

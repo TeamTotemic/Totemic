@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.ceremony.CeremonyCrafting;
-import totemic_commons.pokefenn.ceremony.CeremonyFlowingtime;
+import totemic_commons.pokefenn.ceremony.CeremonyFlowingTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class CeremonyRegistry
 
     public static void addRecipes()
     {
-        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 1, new CeremonyFlowingtime(), false, 20 * 30, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20, 0));
+        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20, 0));
         ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyCrafting(), false, (20 * 60) * 5, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20, 0));
     }
 
