@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
+import totemic_commons.pokefenn.item.equipment.ItemDarts;
 import totemic_commons.pokefenn.util.ResourceLocationHelper;
 
 /**
@@ -19,8 +20,6 @@ public class DartRendering extends Render
     @Override
     public void doRender(Entity entity, double var2, double var4, double var6, float var8, float var9)
     {
-        //TODO
-
         if(entity instanceof EntityBaseDart)
         {
             this.bindEntityTexture(entity);
@@ -89,9 +88,9 @@ public class DartRendering extends Render
     {
         if(var1 instanceof EntityBaseDart)
         {
-            return new ResourceLocation("totemic:textures/models/dart_" + ((EntityBaseDart) var1).metadata);
+            return new ResourceLocation("totemic:textures/models/" + ItemDarts.DART_NAMES[((EntityBaseDart) var1).metadata] + ".png");
         }
 
-        return new ResourceLocation("null");
+        return new ResourceLocation("totemic:textures/models/basicDart");
     }
 }

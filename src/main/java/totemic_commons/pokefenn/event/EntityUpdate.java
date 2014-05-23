@@ -25,8 +25,6 @@ public class EntityUpdate
 
         if(event.entityLiving instanceof EntityPlayer)
         {
-            EntityLivingBase entityLiving = event.entityLiving;
-
             EntityPlayer player = (EntityPlayer) event.entityLiving;
 
             if(player.isPotionActive(ModPotions.batPotion.id) && player.isSneaking() && !player.onGround)
@@ -111,7 +109,9 @@ public class EntityUpdate
 
                 }
             }
+        }
 
+        if(!event.entity.worldObj.isRemote)
             if(event.entityLiving.isPotionActive(ModPotions.antidotePotion))
             {
                 if(event.entityLiving.isPotionActive(Potion.blindness))
@@ -136,7 +136,7 @@ public class EntityUpdate
 
             }
 
-        }
+
     }
 
 }

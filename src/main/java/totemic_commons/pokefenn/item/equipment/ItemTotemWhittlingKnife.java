@@ -10,6 +10,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.Strings;
@@ -74,7 +75,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             {
                 Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
-                if(blockQuery instanceof BlockLog)
+                if(blockQuery instanceof BlockLog || blockQuery instanceof BlockTotemPole)
                 {
                     if(itemStack.getItemDamage() == ItemTotems.TOTEM_NAMES.length)
                     {

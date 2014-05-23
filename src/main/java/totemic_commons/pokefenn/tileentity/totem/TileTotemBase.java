@@ -248,6 +248,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         isMusicSelecting = true;
         isDoingEffect = false;
         startupTime = 0;
+        musicFromCeremony = 0;
 
         dancingEfficiency = 0;
         armourEfficiency = 0;

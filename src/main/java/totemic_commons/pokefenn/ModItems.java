@@ -62,8 +62,8 @@ public final class ModItems
         shamanFlute = new ItemInfusedFlute();
         if(ConfigurationSettings.TEST_ITEM)
             test = new ItemTest();
-        //darts = new ItemDarts();
-        //blowDart = new ItemBlowDart();
+        darts = new ItemDarts();
+        blowDart = new ItemBlowDart();
         //TODO darts, properly
 
         //huntingKnife = new ItemHuntingKnife();
@@ -97,8 +97,8 @@ public final class ModItems
         GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
         if(ConfigurationSettings.TEST_ITEM)
             GameRegistry.registerItem(test, "test");
-        //GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
-        //GameRegistry.registerItem(darts, "darts");
+        GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
+        GameRegistry.registerItem(darts, "darts");
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
         //GameRegistry.registerItem(moonglowSeeds, moonglowSeeds.getUnlocalizedName());

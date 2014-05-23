@@ -11,7 +11,7 @@ public interface ICeremonyEffect
 {
     /**
      * @param tileEntity This is the tile entity of the Ceremony Intelligence, this is what you do all your crazy effects from!
-     *                   Remember to cast it into TileCeremonyIntelligence if you are going to interact with the tile entity ;)
+     *                   Remember to cast it into TileTotemBase if you are going to interact with the tile entity ;)
      */
     public void effect(TileEntity tileEntity);
 }
