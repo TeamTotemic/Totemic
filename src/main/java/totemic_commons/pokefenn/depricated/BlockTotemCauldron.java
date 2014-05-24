@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.block;
+package totemic_commons.pokefenn.depricated;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
@@ -12,6 +12,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemCauldron;
 

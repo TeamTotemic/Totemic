@@ -19,6 +19,7 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,11 +27,10 @@ import java.util.List;
  * Date: 09/12/13
  * Time: 14:35
  */
-public class BlockSylvanLog extends BlockLog implements ITotemicStaffUsage
+public class BlockCedarLog extends BlockLog implements ITotemicStaffUsage
 {
 
-
-    public BlockSylvanLog()
+    public BlockCedarLog()
     {
         super();
         setBlockName(Strings.TOTEM_WOODS_NAME);
@@ -52,14 +52,6 @@ public class BlockSylvanLog extends BlockLog implements ITotemicStaffUsage
         topAndBot = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_WOOD_TOP_AND_BOT);
 
     }
-
-    /*
-    @Override
-    public int idDropped(Item par1, Random par2Random, int par3)
-    {
-        return ModBlocks.totemWoods;
-    }
-    */
 
     @SideOnly(Side.CLIENT)
     @Override

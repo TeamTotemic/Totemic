@@ -9,7 +9,6 @@ import java.util.Random;
 public class TotemTreeGeneration extends WorldGenerator
 {
 
-
     public TotemTreeGeneration(boolean doNotify)
     {
         super(doNotify);
@@ -195,7 +194,8 @@ public class TotemTreeGeneration extends WorldGenerator
                 longBranchGenerated = true;
         }
 
-        for(int yy = y; yy < y + trunkHeight; yy++) world.setBlock(x, yy, z, ModBlocks.totemWoods, 0, 3);
+        for(int yy = y; yy < y + trunkHeight; yy++)
+            world.setBlock(x, yy, z, ModBlocks.totemWoods, 0, 3);
 
         generateLeaves(world, x, y + trunkHeight, z, rand.nextInt(2) + 1);
 
@@ -206,8 +206,9 @@ public class TotemTreeGeneration extends WorldGenerator
             {
                 xx = a == 0 ? x + 1 + branch : a == 1 ? x - 1 - branch : x;
                 zz = a == 2 ? z + 1 + branch : a == 3 ? z - 1 - branch : z;
-                world.setBlock(xx, y + trunkHeight - (branchSizes[a] == 1 ? 1 : 2 - branch), zz, ModBlocks.totemWoods, 0 + a <= 1 ? 4 : 8, 3);
-                if(branch == 0) generateLeaves(world, xx, y + trunkHeight, zz, rand.nextInt(2) + 1);
+                world.setBlock(xx, y + trunkHeight - (branchSizes[a] == 1 ? 1 : 2 - branch), zz, ModBlocks.totemWoods, a <= 1 ? 4 : 8, 3);
+                if(branch == 0)
+                    generateLeaves(world, xx, y + trunkHeight, zz, rand.nextInt(2) + 1);
             }
         }
 

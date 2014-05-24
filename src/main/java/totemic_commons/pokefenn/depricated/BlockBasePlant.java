@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.block.plant;
+package totemic_commons.pokefenn.depricated;
 
 import net.minecraft.block.BlockCrops;
 import net.minecraft.world.World;

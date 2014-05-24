@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.fluid;
+package totemic_commons.pokefenn.depricated.fluid;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;

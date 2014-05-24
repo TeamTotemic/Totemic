@@ -1,11 +1,11 @@
-package totemic_commons.pokefenn.fluid;
+package totemic_commons.pokefenn.depricated;
 
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
-import totemic_commons.pokefenn.block.BlockChlorophyll;
+import totemic_commons.pokefenn.depricated.BlockChlorophyll;
 
 public class FluidChlorophyll extends Fluid
 {

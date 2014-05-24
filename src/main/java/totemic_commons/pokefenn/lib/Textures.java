@@ -24,8 +24,8 @@ public class Textures
     public static final String TOTEM_LEAVES_OPAQUE = "totemLeavesOpaque";
     public static final String TOTEM_LEAVES_TRANSPARENT = "totemLeavesTransparent";
 
-    public static final String INFUSED_WOOD_TOP_AND_BOT = "infusedWoodTopAndBot";
-    public static final String INFUSED_WOOD_SIDE = "infusedWoodSide";
+    public static final String INFUSED_WOOD_TOP_AND_BOT = "cedarWoodTopAndBot";
+    public static final String INFUSED_WOOD_SIDE = "cedarWoodSide";
 
     public static final String INFUSED_SAPLING = "infusedSapling";
 

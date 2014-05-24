@@ -3,24 +3,17 @@ package totemic_commons.pokefenn.item.equipment;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
-import totemic_commons.pokefenn.block.plant.BlockSylvanSapling;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.List;
-import java.util.Random;
 
 public class ItemTotemicStaff extends ItemTotemic
 {

@@ -6,7 +6,6 @@ import totemic_commons.pokefenn.block.*;
 import totemic_commons.pokefenn.block.music.BlockDrum;
 import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.block.plant.*;
-import totemic_commons.pokefenn.block.totem.BlockCeremonyIntelligence;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.lib.Strings;
@@ -35,11 +34,11 @@ public final class ModBlocks
     public static void init()
     {
 
-        totemWoods = new BlockSylvanLog();
+        totemWoods = new BlockCedarLog();
         totemBase = new BlockTotemBase();
         totemPole = new BlockTotemPole();
-        totemSapling = new BlockSylvanSapling();
-        totemLeaves = new BlockSylvanLeaves();
+        totemSapling = new BlocCedarSapling();
+        totemLeaves = new BlockCedarLeaves();
         totemTorch = new BlockTotemTorch();
         flameParticle = new BlockFlameParticle();
         drum = new BlockDrum();
