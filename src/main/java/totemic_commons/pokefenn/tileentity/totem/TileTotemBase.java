@@ -64,6 +64,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public int startupTime;
     public int musicFromCeremony;
     public boolean isCeremony;
+    public int continueTimer;
 
     ItemStack[] totems;
 
@@ -90,6 +91,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         startupTime = 0;
         musicFromCeremony = 0;
         isCeremony = false;
+        continueTimer = 0;
     }
 
     public void updateEntity()
@@ -283,8 +285,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     public boolean canContinueCeremony()
     {
-        if(worldObj.getWorldTime() % 20 * 5 == 0)
+        continueTimer++;
+        if(continueTimer > 20 * 5)
         {
+            continueTimer = 0;
             if(totalMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getMelodyPer5After() < 0)
                 totalMelody = 0;
             else
@@ -650,6 +654,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         startupTime = nbtTagCompound.getInteger("startupTime");
         musicFromCeremony = nbtTagCompound.getInteger("musicFromCeremony");
         isCeremony = nbtTagCompound.getBoolean("isCeremony");
+        continueTimer = nbtTagCompound.getInteger("continueTimer");
     }
 
     @Override
@@ -677,6 +682,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         nbtTagCompound.setInteger("startupTime", startupTime);
         nbtTagCompound.setInteger("musicFromCeremony", musicFromCeremony);
         nbtTagCompound.setBoolean("isCeremony", isCeremony);
+        nbtTagCompound.setInteger("continueTimer", continueTimer);
     }
 
     @Override
