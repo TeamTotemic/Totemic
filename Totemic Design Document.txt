@@ -33,29 +33,14 @@ Totems are a multiblock vertical structure, of a Totem intelligence (This runs a
 Totems Heads are placed in the sockets, and these say the desired effects.
 They are powered by plant essence, which is made through the draining Totem, which reduces the plant stages of nearby plants to create the essence.
 The effects of Totems, on certain plays can be more efficient, if they have things that are marked as a Totem Item in the code.
-For example, the armour, baubles, and a few ohter things.
+For example, the armour, baubles, and a few other things.
 Totems will needed to be awakened with a Ceremony, this decides how strong the Totem is, how efficient the Totem is, and what totem effects it can do.
-Nearby musical melody will make totems more efficient also.
 Totems are not efficient at all at the start.
-
-
-Plants:
-
-Plants are a integral part of Totemic, there is 4 new plants added.
-Certain plants drain better under certain circumstances. 
-
-Moonglow: A plant of the night, will make more essence at midnight.
-Lotus: Just like a Lily Pad, and it will drain better in the rain.
-Blood Wart: Bloody Nether Wart, it drains VERY well in the nether.
-Fungal plant (forgot the official name) Drains more efficiently under many circumstances, being near other mushrooms, rain, and mycelium under it.
-And more to come.
-
 
 Ceremonies: 
 
 A way to preform a desired effect in the world, through a ceremonial process.
-To say which effect you want to do, first you need to place Plants in all 4 directions, 3 blocks away from the Ceremony Intelligence.
-So if you have 4 Moonglows, then it will preform a ceremony that makes it become night (A very late game Ceremony)
+To decide the effect, you need to play instruments near it, so lets say you play drums 4 times around the ceremony, it would do a specific ceremony.
 To preform a ceremony, you must do a few things. Playing music is integral, a certain amount of Musical Melody needs to be reached, for the Ceremony to go through.
 Dancing around the Ceremony (As in, running around it) also helps preform it, and is also important.
 Fireworks will also come towards it, but only a few can be used, and the rest will be useless.
@@ -64,7 +49,4 @@ Some ceremonies may also take Items, but most don't.
 
 Crafting Ceremony:
 
-It has one central block, the intelligence, this can hold the main item which is being crafted with.
-Around it you place 4 Braziers, these are how you place the items to craft it, also, you can throw in other blocks to do things like improve efficiency.
-Once you have it all ready, you start the ceremony, and throw the items you want to imbue into the main item into the braziers, then set them alight.
-You do the normal ceremony things, play music, dancing around it, wearing ITotemEfficiency armour/baubles, having giant flames and other things.
+Place items around the ceremony, and also the main Item, it will infuse the items once you do the ceremony.
