@@ -56,6 +56,6 @@ public class TotemicRecipes
 
 
         //Music
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.shamanFlute, 1, 0), new Object[]{new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});
+        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.subItems, 1, ItemTotemicItems.flute), new Object[]{new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});
     }
 }

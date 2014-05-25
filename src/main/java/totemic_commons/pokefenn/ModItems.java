@@ -10,7 +10,6 @@ import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemTotemBeadBelt;
-import totemic_commons.pokefenn.item.equipment.music.ItemInfusedFlute;
 import totemic_commons.pokefenn.item.*;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
@@ -35,7 +34,7 @@ public final class ModItems
     public static Item bloodwart;
     public static Item lotusSeed;
     public static Item fungusSpore;
-    public static Item shamanFlute;
+    //public static Item shamanFlute;
     public static Item halberd;
     public static Item test;
     public static Item huntingKnife;
@@ -59,7 +58,7 @@ public final class ModItems
         totemicStaff = new ItemTotemicStaff();
         totems = new ItemTotems();
         subItems = new ItemTotemicItems();
-        shamanFlute = new ItemInfusedFlute();
+        //shamanFlute = new ItemInfusedFlute();
         if(ConfigurationSettings.TEST_ITEM)
             test = new ItemTest();
         darts = new ItemDarts();
@@ -90,7 +89,6 @@ public final class ModItems
         GameRegistry.registerItem(totemicStaff, totemicStaff.getUnlocalizedName());
         GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
         GameRegistry.registerItem(totems, totems.getUnlocalizedName());
-        GameRegistry.registerItem(shamanFlute, shamanFlute.getUnlocalizedName());
         GameRegistry.registerItem(totemArmourChest, totemArmourChest.getUnlocalizedName());
         GameRegistry.registerItem(totemArmourFeet, totemArmourFeet.getUnlocalizedName());
         GameRegistry.registerItem(totemArmourLeg, totemArmourLeg.getUnlocalizedName());

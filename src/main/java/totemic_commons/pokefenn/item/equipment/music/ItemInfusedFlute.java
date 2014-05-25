@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.equipment.music;
+/*package totemic_commons.pokefenn.item.equipment.music;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,10 +25,6 @@ import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.List;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class ItemInfusedFlute extends ItemTotemic implements IMusic
 {
     public int time = 0;
@@ -116,11 +112,6 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
         MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x, (double) y + 1.2D, (double) z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
     }
 
-    @Override
-    public MusicEnum musicEnum()
-    {
-        return MusicEnum.FLUTE_MUSIC;
-    }
 
     @Override
     public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
@@ -140,3 +131,4 @@ public class ItemInfusedFlute extends ItemTotemic implements IMusic
         return 7;
     }
 }
+*/

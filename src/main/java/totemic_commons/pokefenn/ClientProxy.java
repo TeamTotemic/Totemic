@@ -142,7 +142,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTorch.class, new TileTotemTorchRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemBase.class, new TileTotemBaseRenderer());
 
-        VillagerRegistry.instance().registerVillagerSkin(TotemicVillagerInitiation.SHAMAN_VILLAGER_ID, new ResourceLocation("totemic", "textures/entity/shamanVillager.png"));
+        VillagerRegistry.instance().registerVillagerSkin(TotemicVillagerInitiation.TOTEMIST_VILLAGER_ID, new ResourceLocation("totemic", "textures/entity/totemistVillager.png"));
 
         //smallFontRenderer = new SmallFontRenderer(mc.gameSettings, new ResourceLocation("textures/font/ascii.png"), mc.renderEngine, false);
 

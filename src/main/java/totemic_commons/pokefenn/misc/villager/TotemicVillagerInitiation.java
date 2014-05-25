@@ -8,13 +8,13 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
  */
 public class TotemicVillagerInitiation
 {
-    public static int SHAMAN_VILLAGER_ID = 40000;
+    public static int TOTEMIST_VILLAGER_ID = 40000;
 
     public static void init()
     {
-        VillagerRegistry.instance().registerVillagerId(SHAMAN_VILLAGER_ID);
+        VillagerRegistry.instance().registerVillagerId(TOTEMIST_VILLAGER_ID);
 
-        VillagerRegistry.instance().registerVillageTradeHandler(SHAMAN_VILLAGER_ID, new TotemicVillagerTrading());
+        VillagerRegistry.instance().registerVillageTradeHandler(TOTEMIST_VILLAGER_ID, new TotemicVillagerTrading());
 
     }
 }

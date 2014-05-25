@@ -35,7 +35,6 @@ public class ItemTotems extends ItemTotemic implements ITotem
     public static int blaze = 2;
     public static int ocelot = 3;
     public static int squid = 4;
-    //public static int draining = 5;
     public static int spider = 5;
     public static int cow = 6;
 

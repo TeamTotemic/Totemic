@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
@@ -49,14 +50,14 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
         {
             player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 0));
             tileDrum.canPlay = false;
-            TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));
+            TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(new ItemStack(this, 1, 0), world, x, y, z, true, player), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
         } else
         {
             player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 0));
             tileDrum.canPlay = false;
-            TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(), this.getRange(world, x, y, z, true, player));
+            TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(new ItemStack(this, 1, 0), world, x, y, z, true, player), this.getRange(world, x, y, z, true, player));
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
         }
@@ -77,7 +78,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     }
 
     @Override
-    public MusicEnum musicEnum()
+    public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
         return MusicEnum.DRUM_MUSIC;
     }

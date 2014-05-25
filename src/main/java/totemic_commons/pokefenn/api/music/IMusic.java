@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.api.music;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 /**
@@ -12,7 +13,7 @@ public interface IMusic
     /**
      * @return Returns the musicEnum that the item or block uses
      */
-    public MusicEnum musicEnum();
+    public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player);
 
     /**
      * @param world        The world the block or player resides in
