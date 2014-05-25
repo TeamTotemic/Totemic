@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -11,18 +10,16 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
-import net.minecraftforge.common.MinecraftForge;
-import totemic_commons.pokefenn.event.*;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.entity.ModEntities;
+import totemic_commons.pokefenn.event.ModEvents;
 import totemic_commons.pokefenn.fluid.FluidContainers;
 import totemic_commons.pokefenn.fluid.ModFluids;
+import totemic_commons.pokefenn.misc.CreativeTabTotemic;
+import totemic_commons.pokefenn.misc.TotemicFuelHandler;
 import totemic_commons.pokefenn.network.PacketPipeline;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
-import totemic_commons.pokefenn.misc.CreativeTabTotemic;
-import totemic_commons.pokefenn.misc.OreDictionaryTotemic;
-import totemic_commons.pokefenn.misc.TotemicFuelHandler;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -91,6 +88,7 @@ public final class Totemic
 
         //Initiates fluids into the game
         ModFluids.init();
+        
         //Initiates totemic blocks into the game
         ModBlocks.init();
 

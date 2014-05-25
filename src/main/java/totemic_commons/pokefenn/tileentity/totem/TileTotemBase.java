@@ -392,7 +392,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
             if((int) player.posX != (int) player.prevPosX && (int) player.posY != (int) player.prevPosY)
             {
-                if(player.getCurrentArmor(2) != null && player.getCurrentArmor(2).getItem() == ModItems.totemArmourLeg)
+                if(player.getCurrentArmor(1) != null && player.getCurrentArmor(1).getItem() == ModItems.totemArmourLeg)
                     dancingEfficiency += 2;
 
                 dancingEfficiency++;
