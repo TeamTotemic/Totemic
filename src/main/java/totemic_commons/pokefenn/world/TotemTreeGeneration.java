@@ -1,7 +1,10 @@
 package totemic_commons.pokefenn.world;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockSapling;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.ModBlocks;
 
 import java.util.Random;
@@ -43,24 +46,20 @@ public class TotemTreeGeneration extends WorldGenerator
         return true;
     }
 
-    /*
     public boolean growTree(World world, Random rand, int x, int y, int z)
     {
-        int treeHeight = rand.nextInt(3) + 5, worldHeight = world.getHeight();
+        int treeHeight = rand.nextInt(3) + 7, worldHeight = world.getHeight();
         Block block;
 
         if (y >= 1 && y + treeHeight + 1 <= worldHeight)
         {
-            int blockId;
             int xOffset;
             int yOffset;
             int zOffset;
 
-            blockId = world.getBlock(x, y - 1, z);
-            block = Block.blocksList[blockId];
+            block = world.getBlock(x, y - 1, z);
 
-            if ((block != null && block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP,
-                    ((BlockSapling) ModBlocks.totemSapling))) && y < worldHeight - treeHeight - 1)
+            if ((block != null && block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, ((BlockSapling) ModBlocks.totemSapling))) && y < worldHeight - treeHeight - 1)
             {
                 for (yOffset = y; yOffset <= y + 1 + treeHeight; ++yOffset)
                 {
@@ -82,13 +81,9 @@ public class TotemTreeGeneration extends WorldGenerator
                         {
                             for (zOffset = z - radius; zOffset <= z + radius; ++zOffset)
                             {
-                                blockId = world.getBlockId(xOffset, yOffset, zOffset);
+                                block = world.getBlock(xOffset, yOffset, zOffset);
 
-                                block = Block.blocksList[blockId];
-
-                                if (block != null && !(block.isLeaves(world, xOffset, yOffset, zOffset) ||
-                                        block.isAirBlock(world, xOffset, yOffset, zOffset) ||
-                                        block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
+                                if (block != null && !(block.isLeaves(world, xOffset, yOffset, zOffset) || block.isAir(world, xOffset, yOffset, zOffset) || block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
                                 {
                                     return false;
                                 }
@@ -100,18 +95,17 @@ public class TotemTreeGeneration extends WorldGenerator
                     }
                 }
 
-                blockId = world.getBlockId(x, y - 1, z);
-                block = Block.blocksList[blockId];
+                block = world.getBlock(x, y - 1, z);
                 if (block == null)
                 {
                     return false;
                 }
                 block.onPlantGrow(world, x, y - 1, z, x, y, z);
 
-                for (yOffset = y - 3 + treeHeight; yOffset <= y + treeHeight; ++yOffset)
+                for (yOffset = y - 7 + treeHeight; yOffset <= y + treeHeight; ++yOffset)
                 {
                     int var12 = yOffset - (y + treeHeight);
-                    int center = 1 - var12 / 2;
+                    int center = 1 - var12 / 3;
 
                     for (xOffset = x - center; xOffset <= x + center; ++xOffset)
                     {
@@ -123,11 +117,11 @@ public class TotemTreeGeneration extends WorldGenerator
                             int zPos = zOffset - z;
                             zPos = (zPos + (t = zPos >> 31)) ^ t;
 
-                            block = Block.blocksList[world.getBlockId(xOffset, yOffset, zOffset)];
+                            block = world.getBlock(xOffset, yOffset, zOffset);
 
-                            if (((xPos != center | zPos != center) || rand.nextInt(2) != 0 && var12 != 0) && (block == null || block.isLeaves(world, xOffset, yOffset, zOffset) || block.isAirBlock(world, xOffset, yOffset, zOffset) || block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
+                            if (((xPos != center | zPos != center) || rand.nextInt(2) != 0 && var12 != 0) && (block == null || block.isLeaves(world, xOffset, yOffset, zOffset) || block.isAir(world, xOffset, yOffset, zOffset) || block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
                             {
-                                this.setBlock(world, xOffset, yOffset, zOffset, ModBlocks.totemLeaves.blockID);
+                                this.setBlockAndNotifyAdequately(world, xOffset, yOffset, zOffset, ModBlocks.totemLeaves, 2);
                             }
                         }
                     }
@@ -135,13 +129,11 @@ public class TotemTreeGeneration extends WorldGenerator
 
                 for (yOffset = 0; yOffset < treeHeight; ++yOffset)
                 {
-                    blockId = world.getBlockId(x, y + yOffset, z);
+                    block = world.getBlock(x, y + yOffset, z);
 
-                    block = Block.blocksList[blockId];
-
-                    if (block == null || block.isAirBlock(world, x, y + yOffset, z) || block.isLeaves(world, x, y + yOffset, z) || block.isBlockReplaceable(world, x, y + yOffset, z))
+                    if (block == null || block.isAir(world, x, y + yOffset, z) || block.isLeaves(world, x, y + yOffset, z) || block.isReplaceable(world, x, y + yOffset, z))
                     {
-                        this.setBlock(world, x, y + yOffset, z, ModBlocks.totemWoods.blockID);
+                        this.setBlockAndNotifyAdequately(world, x, y + yOffset, z, ModBlocks.totemWoods, 2);
                     }
                 }
 
@@ -150,7 +142,8 @@ public class TotemTreeGeneration extends WorldGenerator
         }
         return false;
     }
-*/
+
+    /*
     public boolean growTree(World world, Random rand, int x, int y, int z)
     {
         if(y > world.getHeight() - 8) return false;
@@ -245,6 +238,7 @@ public class TotemTreeGeneration extends WorldGenerator
             }
         }
     }
+    */
 
 
 }

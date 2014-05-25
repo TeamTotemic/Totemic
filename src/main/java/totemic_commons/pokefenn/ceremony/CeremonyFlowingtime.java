@@ -31,7 +31,7 @@ public class CeremonyFlowingTime implements ICeremonyEffect
         if(tileTotemBase != null)
         {
             int radius = 12;
-            int yRadius = 5;
+            int yRadius = 6;
 
             int x = tileTotemBase.xCoord;
             int y = tileTotemBase.yCoord;
@@ -51,7 +51,7 @@ public class CeremonyFlowingTime implements ICeremonyEffect
                                 if(random.nextInt(4) == 1)
                                 {
                                     EntityChicken chicken = new EntityChicken(world);
-                                    chicken.setPosition(x, y, z);
+                                    chicken.setPosition(entity.posX, entity.posY, entity.posZ);
                                     world.spawnEntityInWorld(chicken);
                                     ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - 1, 0));
                                 }
@@ -71,7 +71,7 @@ public class CeremonyFlowingTime implements ICeremonyEffect
                             if(block instanceof IPlantable)
                             {
                                 Random rand = new Random();
-                                if(world.getWorldTime() % 20L == 0)
+                                if(rand.nextInt(30) == 1)
                                     block.updateTick(world, x + i, y + j, z + k, rand);
                             }
                         }

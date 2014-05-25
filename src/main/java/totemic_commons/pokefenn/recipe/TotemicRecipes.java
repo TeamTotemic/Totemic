@@ -35,7 +35,7 @@ public class TotemicRecipes
 
         //Generic
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemTorch, 1, 0), new Object[]{"sfs", "sws", " s ", ('s'), "stickWood", ('w'), "logWood", ('f'), new ItemStack(Blocks.torch, 1, OreDictionary.WILDCARD_VALUE)}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blowDart, 1, 0), new Object[]{" ls", " s ", "s  ", ('s'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.infusedStick), ('l'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.leaf)}));
+        //GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blowDart, 1, 0), new Object[]{" ls", " s ", "s  ", ('s'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.infusedStick), ('l'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.leaf)}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darts, 1, 0), new Object[]{"  f", " s ", "lll", ('l'), "treeLeaves", ('s'), "stickWood", ('f'), Items.flint}));
 
         //Music

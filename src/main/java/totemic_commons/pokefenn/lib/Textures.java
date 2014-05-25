@@ -21,8 +21,8 @@ public class Textures
 
     public static final String MANA_TOTEM = "manaTotem";
 
-    public static final String TOTEM_LEAVES_OPAQUE = "totemLeavesOpaque";
-    public static final String TOTEM_LEAVES_TRANSPARENT = "totemLeavesTransparent";
+    public static final String TOTEM_LEAVES_OPAQUE = "cedarLeavesOpaque";
+    public static final String TOTEM_LEAVES_TRANSPARENT = "cedarLeavesTransparent";
 
     public static final String INFUSED_WOOD_TOP_AND_BOT = "cedarWoodTopAndBot";
     public static final String INFUSED_WOOD_SIDE = "cedarWoodSide";

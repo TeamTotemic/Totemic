@@ -41,10 +41,7 @@ public class BlockCedarLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(int i, Random random, int j)
     {
-        if(random.nextInt(8) == 1)
-            return Item.getItemFromBlock(ModBlocks.totemSapling);
-        else
-            return ModItems.subItems;
+        return Item.getItemFromBlock(ModBlocks.totemSapling);
     }
 
     @Override
@@ -71,7 +68,6 @@ public class BlockCedarLeaves extends BlockLeaves
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int side)
     {
         return this.field_150121_P || super.shouldSideBeRendered(iba, x, y, z, side);
-        //return true;
     }
 
 
@@ -79,8 +75,6 @@ public class BlockCedarLeaves extends BlockLeaves
     public boolean isOpaqueCube()
     {
         return !this.field_150121_P;
-        //return false;
-        //return true;
     }
 
 
@@ -88,7 +82,6 @@ public class BlockCedarLeaves extends BlockLeaves
     public IIcon getIcon(int side, int meta)
     {
         return this.field_150121_P ? transparentIcon : opaqueIcon;
-        //return null;
     }
 
 

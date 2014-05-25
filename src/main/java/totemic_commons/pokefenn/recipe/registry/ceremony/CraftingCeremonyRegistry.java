@@ -17,7 +17,7 @@ public class CraftingCeremonyRegistry
 
     public static void addRecipes()
     {
-        ceremonyRegistry.add(new CraftingCeremonyRegistry(new ItemStack(Items.glass_bottle), new String[]{"cropVine", "infusedLeaf", "cropSeed", "cropSapling"}, new ItemStack(ModItems.subItems, 1, ItemTotemicItems.verdantExtract)));
+        //ceremonyRegistry.add(new CraftingCeremonyRegistry(new ItemStack(Items.glass_bottle), new String[]{"cropVine", "infusedLeaf", "cropSeed", "cropSapling"}, new ItemStack(ModItems.subItems, 1, ItemTotemicItems.verdantExtract)));
 
     }
 

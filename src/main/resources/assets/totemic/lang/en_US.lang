@@ -14,7 +14,7 @@ item.totemic:totemsCow.name=Cow Totem
 item.totemic:paintBrush.name=Totemist Paint Brush
 item.totemic:infusedTotemicStaff.name=Infused Totemic Staff
 item.totemic:leaf.name=Sylvan Leaf
-item.totemic:infusedStick.name=Infused Stick
+item.totemic:infusedStick.name=Cedar Stick
 item.totemic:totempedia.name=Totempedia
 item.totemic:blazingVerdantCrystal.name=Blazing Verdant Crystal
 item.totemic:verdantCrystal.name=Verdant Crystal
@@ -27,11 +27,11 @@ item.totemic:totemArmourChest.name=Totemist Breastplate
 item.totemic:totemArmourLeg.name=Totemist Skirt
 
 # Block localizations
-tile.sylvanLog.name=Sylvan Log
+tile.cedarLog.name=Red Cedar Log
 tile.totemBase.name=Totem Base
 tile.totemPole.name=Totem Pole
-tile.totemSapling.name=Infused Sapling
-tile.totemLeaves.name=Infused Leaves
+tile.totemSapling.name=Red Cedar Sapling
+tile.totemLeaves.name=Red Cedar Leaves
 tile.totemDrum.name=Totemist Drum
 tile.windChime.name=Wind Chime
 
