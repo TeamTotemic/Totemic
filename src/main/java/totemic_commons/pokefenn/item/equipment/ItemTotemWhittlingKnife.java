@@ -10,6 +10,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.block.BlockCedarLog;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.item.ItemTotems;
@@ -47,14 +48,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         return false;
     }
 
-    //@Override
-    //@SideOnly(Side.CLIENT)
-    //public void getSubItems(Item id, CreativeTabs creativeTab, List list)
-    //{
-    //for(int meta = 0; meta < ItemTotems.TOTEM_NAMES.length; meta++)
-    //    list.add(new ItemStack(id, 1, meta));
-    //}
-
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
@@ -75,7 +68,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             {
                 Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
-                if(blockQuery instanceof BlockLog || blockQuery instanceof BlockTotemPole)
+                if(blockQuery instanceof BlockCedarLog || blockQuery instanceof BlockTotemPole)
                 {
                     if(itemStack.getItemDamage() == ItemTotems.TOTEM_NAMES.length)
                     {

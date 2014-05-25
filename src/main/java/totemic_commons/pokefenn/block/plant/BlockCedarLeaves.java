@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -54,7 +55,7 @@ public class BlockCedarLeaves extends BlockLeaves
             for(ItemStack item : items)
             {
                 Random rand = new Random();
-                if(rand.nextInt(5) == 1)
+                if(rand.nextInt(12) == 1)
                 {
                     this.dropBlockAsItem(par1World, par2, par3, par4, item);
                 }
@@ -67,21 +68,19 @@ public class BlockCedarLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int side)
     {
-        return this.field_150121_P || super.shouldSideBeRendered(iba, x, y, z, side);
+        return !Blocks.leaves.isOpaqueCube() || super.shouldSideBeRendered(iba, x, y, z, side);
     }
-
 
     @Override
     public boolean isOpaqueCube()
     {
-        return !this.field_150121_P;
+        return Blocks.leaves.isOpaqueCube();
     }
-
 
     @Override
     public IIcon getIcon(int side, int meta)
     {
-        return this.field_150121_P ? transparentIcon : opaqueIcon;
+        return !Blocks.leaves.isOpaqueCube() ? transparentIcon : opaqueIcon;
     }
 
 
