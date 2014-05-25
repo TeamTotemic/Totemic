@@ -10,6 +10,7 @@ public enum MusicEnum
     DRUM_MUSIC("Drum"),
     WIND_CHIME_MUSIC("Wind Chime"),
     SYNTHESIZER_MUSIC("Synthesizer"),
+    BELL_SHOE_MUSIC("Bell Shoes"),
     GONG_MUSIC("Gong");
 
     private final String musicName;

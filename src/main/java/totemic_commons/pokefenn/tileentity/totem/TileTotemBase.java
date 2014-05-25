@@ -18,15 +18,14 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.IBlacklistedDraining;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
-import totemic_commons.pokefenn.api.plant.IPlantDrain;
-import totemic_commons.pokefenn.item.ItemTotems;
-import totemic_commons.pokefenn.recipe.registry.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
+import totemic_commons.pokefenn.recipe.registry.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -336,7 +335,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     public void startupMain()
     {
-        System.out.println("startup");
         if(startupTime > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getMaximumStartupTime())
         {
             resetAfterCeremony(true);
@@ -394,6 +392,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
             if((int) player.posX != (int) player.prevPosX && (int) player.posY != (int) player.prevPosY)
             {
+                if(player.getCurrentArmor(2) != null && player.getCurrentArmor(2).getItem() == ModItems.totemArmourLeg)
+                    dancingEfficiency += 2;
+
                 dancingEfficiency++;
             }
         }

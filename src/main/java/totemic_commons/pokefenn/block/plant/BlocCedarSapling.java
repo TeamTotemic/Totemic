@@ -36,6 +36,7 @@ public class BlocCedarSapling extends BlockSapling
         setCreativeTab(Totemic.tabsTotem);
     }
 
+    @Override
     public void func_149878_d(World world, int x, int y, int z, Random random)
     {
         if(!world.isRemote)

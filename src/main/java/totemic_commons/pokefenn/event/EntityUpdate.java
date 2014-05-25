@@ -1,12 +1,11 @@
 package totemic_commons.pokefenn.event;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.potion.ModPotions;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.Random;
 
@@ -32,30 +31,24 @@ public class EntityUpdate
                 player.moveFlying(0.0F, 1.0F, 0.1F);
             }
 
-            if(!player.worldObj.isRemote && player.worldObj.getWorldTime() % 60L == 0)
+            if(!player.worldObj.isRemote && player.worldObj.getWorldTime() % 60L == 0 && player.getCurrentArmor(0) != null && player.getCurrentArmor(0).getItem() == ModItems.totemArmourHead)
             {
+                Random rand = new Random();
+
                 if(player.isPotionActive(Potion.wither))
                 {
-                    if(TotemUtil.getArmourAmounts(player) == 4)
+                    if(rand.nextInt(10) == 1)
                     {
-                        Random rand = new Random();
-
-                        if(rand.nextInt(10) == 1)
-                        {
-                            player.removePotionEffect(Potion.wither.id);
-                        }
+                        player.removePotionEffect(Potion.wither.id);
                     }
+
                 } else if(player.isPotionActive(Potion.poison))
                 {
-                    if(TotemUtil.getArmourAmounts(player) == 4)
+                    if(rand.nextInt(8) == 1)
                     {
-                        Random rand = new Random();
-
-                        if(rand.nextInt(8) == 1)
-                        {
-                            player.removePotionEffect(Potion.poison.id);
-                        }
+                        player.removePotionEffect(Potion.poison.id);
                     }
+
                 }
             }
 

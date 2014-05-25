@@ -15,20 +15,21 @@ import totemic_commons.pokefenn.lib.Strings;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemBlowDart extends ItemTotemic
+public class ItemBlowGun extends ItemTotemic
 {
 
-    public ItemBlowDart()
+    public ItemBlowGun()
     {
         super();
         setUnlocalizedName(Strings.BLOW_DART_NAME);
         setMaxStackSize(1);
+        setMaxDamage(256);
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int par4)
+    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int iDunnoWhatThisDoes)
     {
-        int charge = this.getMaxItemUseDuration(itemStack) - par4;
+        int charge = this.getMaxItemUseDuration(itemStack) - iDunnoWhatThisDoes;
 
         if(player.inventory.hasItem(ModItems.darts))
         {
@@ -64,6 +65,7 @@ public class ItemBlowDart extends ItemTotemic
             EntityBaseDart entity = new EntityBaseDart(world, player, moveSpeedThingy * 2.0F, metadata);
             if(!world.isRemote)
             {
+                itemStack.damageItem(1, player);
                 world.spawnEntityInWorld(entity);
             }
 
@@ -89,7 +91,7 @@ public class ItemBlowDart extends ItemTotemic
     @Override
     public int getMaxItemUseDuration(ItemStack itemStack)
     {
-        return 36000;
+        return 56000;
     }
 
     @Override

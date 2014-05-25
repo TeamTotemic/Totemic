@@ -3,7 +3,7 @@ package totemic_commons.pokefenn.item.equipment;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
@@ -13,6 +13,7 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.block.BlockCedarLog;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTotemic;
+import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
@@ -76,6 +77,13 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                         return true;
                     } else
                     {
+                        if(blockQuery instanceof BlockCedarLog && itemStack.getItemDamage() == ItemTotems.TOTEM_NAMES.length + 1)
+                        {
+                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.redCedarPlank);
+                            EntityItem cedarBark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 2, ItemTotemicItems.cedarBark));
+                            world.spawnEntityInWorld(cedarBark);
+                        }
+
                         if(itemStack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
                         {
                             world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);

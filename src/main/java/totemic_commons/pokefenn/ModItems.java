@@ -3,16 +3,19 @@ package totemic_commons.pokefenn;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
-import totemic_commons.pokefenn.item.equipment.ItemBlowDart;
+import totemic_commons.pokefenn.item.ItemTest;
+import totemic_commons.pokefenn.item.ItemTotemicItems;
+import totemic_commons.pokefenn.item.ItemTotems;
+import totemic_commons.pokefenn.item.equipment.ItemBlowGun;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
+import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
+import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
+import totemic_commons.pokefenn.item.equipment.armour.ItemBellShoe;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemTotemBeadBelt;
-import totemic_commons.pokefenn.item.*;
-import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
-import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
 import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModItems
@@ -40,6 +43,7 @@ public final class ModItems
     public static Item huntingKnife;
     public static Item blowDart;
     public static Item darts;
+    public static Item bellShoes;
 
     public static Item totemArmourHead;
     public static Item totemArmourChest;
@@ -62,8 +66,9 @@ public final class ModItems
         if(ConfigurationSettings.TEST_ITEM)
             test = new ItemTest();
         darts = new ItemDarts();
-        blowDart = new ItemBlowDart();
+        blowDart = new ItemBlowGun();
         //TODO darts, properly
+        bellShoes = new ItemBellShoe();
 
         //huntingKnife = new ItemHuntingKnife();
         //verdantCrystal = new ItemVerdantCrystal();
@@ -97,6 +102,7 @@ public final class ModItems
             GameRegistry.registerItem(test, "test");
         GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
         GameRegistry.registerItem(darts, "darts");
+        GameRegistry.registerItem(bellShoes, Strings.BELL_SHOE_NAME);
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
         //GameRegistry.registerItem(moonglowSeeds, moonglowSeeds.getUnlocalizedName());

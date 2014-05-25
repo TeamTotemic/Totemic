@@ -22,7 +22,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
@@ -41,7 +40,7 @@ import java.util.List;
 public class ItemTotemicItems extends ItemTotemic implements IMusic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"leaf", "cedarStick", "cedarMaker", "flute", "fluteInfused"};
+    private static final String[] ITEMS_NAMES = new String[]{"leaf", "cedarStick", "cedarMaker", "flute", "fluteInfused", "cedarBark"};
 
     public int time = 0;
 
@@ -50,6 +49,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
     public static int cedarMaker = 2;
     public static int flute = 3;
     public static int fluteInfused = 4;
+    public static int cedarBark = 5;
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
@@ -69,6 +69,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
         {
             if(player instanceof EntityPlayer)
             {
+                if(((EntityPlayer) player).getHeldItem() != null && ((EntityPlayer) player).getHeldItem().getItem() == this)
                 if(itemStack.getItemDamage() == flute || itemStack.getItemDamage() == fluteInfused)
                 {
                     fluteUpdate((EntityPlayer) player);
@@ -111,7 +112,6 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
 
     public void fluteEffect(ItemStack stack, EntityPlayer player, World world)
     {
-        System.out.println("here?");
         time++;
         if(time >= 15 && !player.isSneaking())
         {

@@ -23,7 +23,6 @@ public class ItemTotemicStaff extends ItemTotemic
     {
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEMIC_STAFF_NAME);
         setMaxStackSize(1);
-        //registerIcons = false;
     }
 
     @Override
@@ -31,7 +30,6 @@ public class ItemTotemicStaff extends ItemTotemic
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
         list.add("A staff for your Totemic needs!");
-        list.add("This staff is unstable");
     }
 
     @SideOnly(Side.CLIENT)

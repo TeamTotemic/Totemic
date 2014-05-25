@@ -112,9 +112,6 @@ public final class Totemic
 
         ModEntities.init(this);
 
-        //Starts ore dictionary code
-        OreDictionaryTotemic.init();
-
         //Vannila recipes
         TotemicRecipes.init();
 

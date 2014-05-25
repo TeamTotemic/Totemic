@@ -2,24 +2,23 @@ package totemic_commons.pokefenn.item.equipment.armour;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.armour.ITotemArmour;
-import totemic_commons.pokefenn.client.rendering.armour.TotemArmourRendering;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
+
+import java.util.List;
 
 /**
  * Created by Pokefenn.
@@ -35,6 +34,16 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
         setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
         setCreativeTab(Totemic.tabsTotem);
         this.armourType = armourType;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        if(this == ModItems.totemArmourHead)
+            list.add("Handle potions with the prowess of a Witch Doctor");
+        if(this == ModItems.totemArmourLeg)
+            list.add("Dance like a Diva");
     }
 
 

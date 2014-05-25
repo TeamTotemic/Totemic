@@ -6,14 +6,12 @@ public class Strings
     public static final String RESOURCE_PREFIX = "totemic:";
 
     //Blocks
-    public static final String VENUS_FLY_TRAP_NAME = "venusFlyTrap";
     public static final String TOTEM_WOODS_NAME = "cedarLog";
     public static final String TOTEM_BASE_NAME = "totemBase";
     public static final String TOTEM_POLE_NAME = "totemPole";
     public static final String TOTEM_SAPLING_NAME = "totemSapling";
     public static final String TOTEM_LEAVES_NAME = "totemLeaves";
     public static final String TOTEM_CAULDRON_NAME = "totemCauldron";
-    public static final String TOTEM_MANA_NAME = "totemMana";
     public static final String MOONGLOW_NAME = "moonglow";
     public static final String CEREMONY_INTELLIGENCE_NAME = "totemCeremonyIntelligence";
     public static final String BLOODWART_BLOCK_NAME = "blockBloodwart";
@@ -23,6 +21,7 @@ public class Strings
     public static final String FLAME_PARTICLE_NAME = "flameParticleBlock";
     public static final String DRUM_NAME = "totemDrum";
     public static final String WIND_CHIME_NAME = "windChime";
+    public static final String RED_CEDAR_PLANK_NAME = "redCedarPlank";
 
     //Items
     public static final String TOTEM_WHITTLING_KNIFE_NAME = "totemWhittlingKnife";
@@ -40,7 +39,6 @@ public class Strings
     public static final String BLOODWART_NAME = "bloodwart";
     public static final String LOTUS_SEED_NAME = "lotusSeed";
     public static final String FUNGUS_PLANT_SPORE = "fungusSpore";
-    public static final String SHAMAN_FLUTE_NAME = "shamanFlute";
     public static final String HALBERD_NAME = "halberd";
     public static final String TOTEM_ARMOUR_LEG_NAME = "totemArmourLeg";
     public static final String TOTEM_ARMOUR_HEAD_NAME = "totemArmourHead";
@@ -53,11 +51,11 @@ public class Strings
     public static final String HUNTING_KNIFE_NAME = "huntingKnife";
     public static final String BAUBLE_ARMOUR_DAMAGE_NAME = "pendantVigor";
     public static final String BLOW_DART_NAME = "blowDart";
+    public static final String BELL_SHOE_NAME = "bellShoe";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
     public static final String TILE_TOTEM_SOCKET = "tileTotemSocket";
-    public static final String TILE_TOTEM_MANA = "tileTotemMana";
 
     //Old NBT stuff
     public static final String NBT_TE_STATE_KEY = "teState";

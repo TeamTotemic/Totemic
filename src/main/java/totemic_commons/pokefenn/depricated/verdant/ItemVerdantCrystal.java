@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.verdant;
+package totemic_commons.pokefenn.depricated.verdant;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
