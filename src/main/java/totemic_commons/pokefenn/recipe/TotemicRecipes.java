@@ -10,17 +10,16 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.music.MusicEnum;
+import totemic_commons.pokefenn.api.recipe.CeremonyPotionRegistry;
+import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
+import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.ceremony.CeremonyCrafting;
 import totemic_commons.pokefenn.ceremony.CeremonyFlowingTime;
 import totemic_commons.pokefenn.ceremony.CeremonyPotion;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
 import totemic_commons.pokefenn.lib.Totems;
-import totemic_commons.pokefenn.misc.OreDictionaryTotemic;
 import totemic_commons.pokefenn.potion.ModPotions;
-import totemic_commons.pokefenn.api.recipe.TotemRegistry;
-import totemic_commons.pokefenn.api.recipe.CeremonyPotionRegistry;
-import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.totem.*;
 
 public class TotemicRecipes
@@ -31,7 +30,7 @@ public class TotemicRecipes
         shapelessRecipes();
         shapedRecipes();
 
-        OreDictionaryTotemic.init();
+        oreDictionary();
         totemRegistry();
         ceremonyHandler();
         ceremonyPotionHandler();
@@ -101,6 +100,20 @@ public class TotemicRecipes
 
     public static void ceremonyCraftingHandler()
     {
+
+    }
+
+    public static void oreDictionary()
+    {
+
+        OreDictionary.registerOre("cropVine", new ItemStack(Blocks.vine));
+        OreDictionary.registerOre("cedarLeaf", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.leaf));
+        OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.totemLeaves, 1));
+        OreDictionary.registerOre("cedarLog", new ItemStack(ModBlocks.totemWoods, 1, 0));
+        OreDictionary.registerOre("ingotIron", new ItemStack(Items.iron_ingot, 1, 0));
+
+        //OreDictionary.registerOre("crystalVerdant", new ItemStack(ModItems.verdantCrystal, 1, OreDictionary.WILDCARD_VALUE));
+        //OreDictionary.registerOre("blazingCrystalVerdant", new ItemStack(ModItems.blazingChlorophyllCrystal, 1, OreDictionary.WILDCARD_VALUE));
 
     }
 }

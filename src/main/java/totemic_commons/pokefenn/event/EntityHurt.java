@@ -55,25 +55,23 @@ public class EntityHurt
                         int armour = player.getTotalArmorValue();
                         float damage = item.func_150931_i();
                         float totalDamage = event.ammount;
-                        int totemArmour = TotemUtil.getArmourAmounts(player);
 
-                        if(totemArmour == 0 && armour > 5)
+                        if(armour > 5 && TotemUtil.getArmourAmounts(player) == 0)
                         {
                             totalDamage -= 2;
                         }
-                        if(totemArmour == 0)
+                        if(player.getCurrentArmor(2) != null && player.getCurrentArmor(2).getItem() == ModItems.totemArmourChest)
                         {
-                            totalDamage -= 1;
-                        }
-                        if(totemArmour > 0)
-                        {
-                            totalDamage += totemArmour == 4 ? 2 : 1;
+                            totalDamage += 3;
                         }
                         if(damage > 4)
                         {
                             totalDamage -= 2;
                         }
                         if(armour == 0)
+                        {
+                            totalDamage += 1;
+                        } else if(armour < 5)
                         {
                             totalDamage += 1;
                         }
