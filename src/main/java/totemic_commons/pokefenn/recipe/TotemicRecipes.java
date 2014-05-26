@@ -18,7 +18,7 @@ import totemic_commons.pokefenn.item.equipment.ItemDarts;
 import totemic_commons.pokefenn.lib.Totems;
 import totemic_commons.pokefenn.misc.OreDictionaryTotemic;
 import totemic_commons.pokefenn.potion.ModPotions;
-import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
+import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.api.recipe.CeremonyPotionRegistry;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.totem.*;
@@ -32,7 +32,7 @@ public class TotemicRecipes
         shapedRecipes();
 
         OreDictionaryTotemic.init();
-        TotemRegistry.addTotems();
+        totemRegistry();
         ceremonyHandler();
         ceremonyPotionHandler();
     }
