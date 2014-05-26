@@ -20,6 +20,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.List;
+import java.util.Random;
 
 public class ItemTotemWhittlingKnife extends ItemTotemic
 {
@@ -41,6 +42,8 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             list.add("Currently Carving: " + ItemTotems.TOTEM_NAMES[stack.getItemDamage()]);
         if(stack.getItemDamage() == ItemTotems.TOTEM_NAMES.length)
             list.add("Currently Carving: Totem Base");
+        if(stack.getItemDamage() == ItemTotems.TOTEM_NAMES.length + 1)
+            list.add("Currently Carving: Bark Stripping");
     }
 
     @Override
@@ -52,7 +55,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-        if(player.isSneaking() && itemStack.getItemDamage() >= ItemTotems.TOTEM_NAMES.length)
+        if(player.isSneaking() && itemStack.getItemDamage() >= ItemTotems.TOTEM_NAMES.length + 1)
             return new ItemStack(this, 1, 0);
 
         return player.isSneaking() ? new ItemStack(this, 1, 1 + itemStack.getItemDamage()) : itemStack;
@@ -75,15 +78,18 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                     {
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemBase);
                         return true;
+                    } else if(itemStack.getItemDamage() == ItemTotems.TOTEM_NAMES.length + 1)
+                    {
+                        if(blockQuery instanceof BlockCedarLog)
+                        {
+                            Random random = new Random();
+
+                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.redCedarPlank);
+                            EntityItem bark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 1 + random.nextInt(3), ItemTotemicItems.cedarBark));
+                            world.spawnEntityInWorld(bark);
+                        }
                     } else
                     {
-                        if(blockQuery instanceof BlockCedarLog && itemStack.getItemDamage() == ItemTotems.TOTEM_NAMES.length + 1)
-                        {
-                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.redCedarPlank);
-                            EntityItem cedarBark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 2, ItemTotemicItems.cedarBark));
-                            world.spawnEntityInWorld(cedarBark);
-                        }
-
                         if(itemStack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
                         {
                             world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);

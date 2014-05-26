@@ -40,7 +40,7 @@ import java.util.List;
 public class ItemTotemicItems extends ItemTotemic implements IMusic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"leaf", "cedarStick", "cedarMaker", "flute", "fluteInfused", "cedarBark"};
+    private static final String[] ITEMS_NAMES = new String[]{"leaf", "cedarStick", "cedarMaker", "flute", "fluteInfused", "cedarBark", "barkStickCedar"};
 
     public int time = 0;
 
@@ -50,6 +50,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
     public static int flute = 3;
     public static int fluteInfused = 4;
     public static int cedarBark = 5;
+    public static int barkStickCedar = 6;
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
@@ -159,7 +160,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
         {
             Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
-            if(blockQuery instanceof BlockSapling)
+            if(blockQuery instanceof BlockSapling && blockQuery != ModBlocks.totemSapling)
             {
                 world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSapling);
                 itemStack.stackSize--;

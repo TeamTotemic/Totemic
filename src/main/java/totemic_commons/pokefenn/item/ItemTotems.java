@@ -3,18 +3,13 @@ package totemic_commons.pokefenn.item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.ITotem;
 import totemic_commons.pokefenn.lib.Strings;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +17,7 @@ import java.util.List;
  * Date: 28/11/13
  * Time: 18:32
  */
-public class ItemTotems extends ItemTotemic implements ITotem
+public class ItemTotems extends Item implements ITotem
 {
 
     public static final String[] TOTEM_NAMES = new String[]{"Horse", "Bat", "Blaze", "Ocelot", "Squid", "Spider", "Cow"};
@@ -43,39 +38,16 @@ public class ItemTotems extends ItemTotemic implements ITotem
         super();
         setHasSubtypes(true);
         maxStackSize = 1;
-        registerIcons = false;
-        creativeTab = false;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
-    {
-        if(stack.getItemDamage() == horse)
-            list.add("Obtain the speed of a Horse");
-        if(stack.getItemDamage() == bat)
-            list.add("Fly like a Bat");
-        if(stack.getItemDamage() == blaze)
-            list.add("Burn like a Blaze");
-        if(stack.getItemDamage() == ocelot)
-            list.add("Fear creepers like a Ocelot");
-        if(stack.getItemDamage() == squid)
-            list.add("Breath underwater like a Squid");
-        //if(stack.getItemDamage() == draining)
-        //    list.add("Drain the essence of nearby plants");
-        if(stack.getItemDamage() == spider)
-            list.add("Climb walls with the agility of a Spider");
-        if(stack.getItemDamage() == cow)
-            list.add("Become as sturdy and slow as a Cow");
-    }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
-    {
-        for(int meta = 0; meta < TOTEM_NAMES.length; meta++)
-            list.add(new ItemStack(id, 1, meta));
-    }
+    //@Override
+    //@SideOnly(Side.CLIENT)
+    //public void getSubItems(Item id, CreativeTabs creativeTab, List list)
+    //{
+    //    for(int meta = 0; meta < TOTEM_NAMES.length; meta++)
+    //        list.add(new ItemStack(id, 1, meta));
+    //}
 
 
     @Override
