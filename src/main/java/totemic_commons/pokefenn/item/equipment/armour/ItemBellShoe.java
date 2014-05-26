@@ -57,8 +57,6 @@ public class ItemBellShoe extends ItemArmor implements ISpecialArmor, IMusic
 
         if(!world.isRemote)
         {
-            System.out.println(time);
-
             if(world.getWorldTime() % 20L == 0)
             {
                 if(player.isPotionActive(Potion.moveSpeed))

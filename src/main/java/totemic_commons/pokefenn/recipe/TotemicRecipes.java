@@ -4,16 +4,24 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.music.MusicEnum;
+import totemic_commons.pokefenn.ceremony.CeremonyCrafting;
+import totemic_commons.pokefenn.ceremony.CeremonyFlowingTime;
+import totemic_commons.pokefenn.ceremony.CeremonyPotion;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
+import totemic_commons.pokefenn.lib.Totems;
 import totemic_commons.pokefenn.misc.OreDictionaryTotemic;
-import totemic_commons.pokefenn.recipe.registry.ceremony.CeremonyPotionRegistry;
-import totemic_commons.pokefenn.recipe.registry.ceremony.CeremonyRegistry;
+import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.registry.TotemRegistry;
+import totemic_commons.pokefenn.api.recipe.CeremonyPotionRegistry;
+import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
+import totemic_commons.pokefenn.totem.*;
 
 public class TotemicRecipes
 {
@@ -25,8 +33,8 @@ public class TotemicRecipes
 
         OreDictionaryTotemic.init();
         TotemRegistry.addTotems();
-        CeremonyRegistry.addRecipes();
-        CeremonyPotionRegistry.addRecipes();
+        ceremonyHandler();
+        ceremonyPotionHandler();
     }
 
     public static void shapedRecipes()
@@ -41,8 +49,8 @@ public class TotemicRecipes
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darts, 4, 0), new Object[]{"  f", " s ", "lll", ('l'), "treeLeaves", ('s'), "stickWood", ('f'), Items.flint}));
 
         //Music
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0), new Object[] {"eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE)}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.windChime, 1, 0), new Object[] {" s ", "ibi", "i i", ('i'), "ingotIron", ('s'), Items.string, ('b'), Blocks.iron_block }));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0), new Object[]{"eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE)}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.windChime, 1, 0), new Object[]{" s ", "ibi", "i i", ('i'), "ingotIron", ('s'), Items.string, ('b'), Blocks.iron_block}));
 
     }
 
@@ -58,5 +66,41 @@ public class TotemicRecipes
 
         //Music
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.subItems, 1, ItemTotemicItems.flute), new Object[]{new ItemStack(Blocks.planks, 1, OreDictionary.WILDCARD_VALUE), new ItemStack(ModItems.totemWhittlingKnife, 1, OreDictionary.WILDCARD_VALUE)});
+    }
+
+    public static void ceremonyHandler()
+    {
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20, 0));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyPotion(), false, 20 * 30, MusicEnum.DRUM_MUSIC, null, 150, 60 * 20, 2));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, 3, new CeremonyCrafting(), false, 20 * 60, MusicEnum.FLUTE_MUSIC, null, 125, 60 * 20, 2));
+        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.WIND_CHIME_MUSIC, 4, new CeremonyRain(), true, 0, MusicEnum.WIND_CHIME_MUSIC, null, 150, 20 * 30, 0));
+        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyCrafting(), false, (20 * 60) * 5, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20, 0));
+    }
+
+    public static void totemRegistry()
+    {
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 0), Totems.DECREMENT_HORSE, 20, 20, new TotemEffectHorse(), 1));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 4), Totems.DECREMENT_SQUID, 20, 20, new TotemEffectSquid(), 1));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze(), 2));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot(), 2));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat(), 2));
+        //totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 5), 0, 8, 8, new TotemEffectDraining(), 1));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 6), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider(), 2));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 7), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow(), 1));
+    }
+
+    public static void ceremonyPotionHandler()
+    {
+        CeremonyPotionRegistry.ceremonyRegistry.add(new CeremonyPotionRegistry(new ItemStack(Items.string, 8, 0), ModPotions.spiderPotion, 0, 60 * 20));
+        CeremonyPotionRegistry.ceremonyRegistry.add(new CeremonyPotionRegistry(new ItemStack(Items.ghast_tear, 8, 0), Potion.regeneration, 0, 40 * 20));
+        CeremonyPotionRegistry.ceremonyRegistry.add(new CeremonyPotionRegistry(new ItemStack(Items.blaze_powder, 4, 0), Potion.fireResistance, 0, 60 * 20));
+        CeremonyPotionRegistry.ceremonyRegistry.add(new CeremonyPotionRegistry(new ItemStack(Items.golden_carrot, 8, 0), Potion.invisibility, 0, 60 * 20));
+        CeremonyPotionRegistry.ceremonyRegistry.add(new CeremonyPotionRegistry(new ItemStack(Items.milk_bucket, 1, 0), ModPotions.antidotePotion, 0, 60 * 20));
+        CeremonyPotionRegistry.ceremonyRegistry.add(new CeremonyPotionRegistry(new ItemStack(Items.spider_eye, 8, 0), Potion.wither, 0, 30 * 20));
+    }
+
+    public static void ceremonyCraftingHandler()
+    {
+
     }
 }

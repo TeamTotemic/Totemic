@@ -43,7 +43,7 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
         if(this == ModItems.totemArmourHead)
             list.add("Handle potions with the prowess of a Witch Doctor");
         if(this == ModItems.totemArmourLeg)
-            list.add("Dance like a Diva");
+            list.add("Dance like the Diva");
     }
 
 

@@ -16,7 +16,7 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.recipe.registry.ceremony.CeremonyRegistry;
+import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
 import totemic_commons.pokefenn.util.EntityUtil;

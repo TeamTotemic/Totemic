@@ -1,12 +1,8 @@
-package totemic_commons.pokefenn.recipe.registry.ceremony;
+package totemic_commons.pokefenn.api.recipe;
 
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.ceremony.CeremonyCrafting;
-import totemic_commons.pokefenn.ceremony.CeremonyFlowingTime;
-import totemic_commons.pokefenn.ceremony.CeremonyPotion;
-import totemic_commons.pokefenn.ceremony.CeremonyRain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +14,6 @@ import java.util.List;
 public class CeremonyRegistry
 {
     public static List<CeremonyRegistry> ceremonyRegistry = new ArrayList<CeremonyRegistry>();
-
-    public static void addRecipes()
-    {
-        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20, 0));
-        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyPotion(), false, 20 * 30, MusicEnum.DRUM_MUSIC, null, 150, 60 * 20, 2));
-        ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, 3, new CeremonyCrafting(), false, 20 * 60, MusicEnum.FLUTE_MUSIC, null, 125, 60 * 20, 2));
-        //ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.WIND_CHIME_MUSIC, 4, new CeremonyRain(), true, 0, MusicEnum.WIND_CHIME_MUSIC, null, 150, 20 * 30, 0));
-        //ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyCrafting(), false, (20 * 60) * 5, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20, 0));
-    }
 
     private final ItemStack item;
     private final boolean doesNeedItems;

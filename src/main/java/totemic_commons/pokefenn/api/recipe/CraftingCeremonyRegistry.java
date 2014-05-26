@@ -1,9 +1,6 @@
-package totemic_commons.pokefenn.recipe.registry.ceremony;
+package totemic_commons.pokefenn.api.recipe;
 
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.item.ItemTotemicItems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +11,6 @@ import java.util.List;
  */
 public class CraftingCeremonyRegistry
 {
-
-    public static void addRecipes()
-    {
-        //ceremonyRegistry.add(new CraftingCeremonyRegistry(new ItemStack(Items.glass_bottle), new String[]{"cropVine", "infusedLeaf", "cropSeed", "cropSapling"}, new ItemStack(ModItems.subItems, 1, ItemTotemicItems.verdantExtract)));
-
-    }
-
     public static List<CraftingCeremonyRegistry> ceremonyRegistry = new ArrayList<CraftingCeremonyRegistry>();
 
     private final String[] items;

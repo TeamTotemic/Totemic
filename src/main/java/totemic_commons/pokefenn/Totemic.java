@@ -88,7 +88,7 @@ public final class Totemic
 
         //Initiates fluids into the game
         ModFluids.init();
-        
+
         //Initiates totemic blocks into the game
         ModBlocks.init();
 
