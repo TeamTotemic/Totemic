@@ -14,6 +14,7 @@ import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.armour.ITotemArmour;
+import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
@@ -41,11 +42,17 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
         if(this == ModItems.totemArmourHead)
-            list.add("Handle potions with the prowess of a Witch Doctor");
+            list.add("Handle potions with the prowess of a Medicine Man");
         if(this == ModItems.totemArmourLeg)
             list.add("Dance like the Diva");
-        if(this == ModItems.totemArmourChest)
-            list.add("");
+        //if(this == ModItems.totemArmourChest)
+        //    list.add("");
+    }
+
+    @Override
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return par2ItemStack.getItem() == ModItems.subItems && par2ItemStack.getItemDamage() == ItemTotemicItems.cedarBark;
     }
 
 
@@ -88,17 +95,13 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
     {
-        if(this == ModItems.totemArmourHead || this == ModItems.totemArmourChest || this == ModItems.totemArmourFeet)
-        {
-            return "totemic:models/armour/totemArmourLayer1.png";
-        }
+        //if(this == ModItems.totemArmourHead || this == ModItems.totemArmourChest || this == ModItems.totemArmourFeet)
+        //{
+        //} else
+        //    return "totemic:models/armour/totemArmourLayer2.png";
 
-        if(this == ModItems.totemArmourLeg)
-        {
-            return "totemic:models/armour/totemArmourLayer2.png";
-        }
+        return this == ModItems.totemArmourHead || this == ModItems.totemArmourChest || this == ModItems.totemArmourFeet ? "totemic:models/armour/totemArmourLayer1.png" : "totemic:models/armour/totemArmourLayer2.png";
 
-        return null;
     }
 
     @Override
@@ -110,7 +113,7 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
     {
-        //stack.damageItem(damage % 2, entity);
+        stack.damageItem(damage % 2, entity);
     }
 
     @Override

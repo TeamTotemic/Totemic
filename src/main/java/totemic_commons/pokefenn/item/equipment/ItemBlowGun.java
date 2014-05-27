@@ -1,11 +1,9 @@
 package totemic_commons.pokefenn.item.equipment;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
 import totemic_commons.pokefenn.item.ItemTotemic;
@@ -21,9 +19,9 @@ public class ItemBlowGun extends ItemTotemic
     public ItemBlowGun()
     {
         super();
-        setUnlocalizedName(Strings.BLOW_DART_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BLOW_DART_NAME);
         setMaxStackSize(1);
-        setMaxDamage(256);
+        setMaxDamage(152);
     }
 
     @Override
@@ -91,7 +89,7 @@ public class ItemBlowGun extends ItemTotemic
     @Override
     public int getMaxItemUseDuration(ItemStack itemStack)
     {
-        return 56000;
+        return 96000;
     }
 
     @Override

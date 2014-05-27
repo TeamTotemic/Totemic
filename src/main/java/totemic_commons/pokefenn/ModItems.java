@@ -24,10 +24,7 @@ public final class ModItems
     public static Item totemWhittlingKnife;
     public static Item totemicStaff;
     public static Item verdantCrystal;
-    //public static Item bucketChlorophyll;
-    //public static Item venusFlyTrapSeed;
     public static Item subItems;
-    //public static Item bottleChlorophyll;
     public static Item totems;
     public static Item blazingChlorophyllCrystal;
     public static Item infusedTotemicStaff;
@@ -37,7 +34,6 @@ public final class ModItems
     public static Item bloodwart;
     public static Item lotusSeed;
     public static Item fungusSpore;
-    //public static Item shamanFlute;
     public static Item halberd;
     public static Item test;
     public static Item huntingKnife;
@@ -52,7 +48,6 @@ public final class ModItems
 
     public static Item herculeseBauble;
     public static Item heiTiki;
-    public static Item tikiRing;
     public static Item totemBeadSatchel;
     public static Item baubleArmourDamage;
 
@@ -126,7 +121,6 @@ public final class ModItems
         Totemic.baublesLoaded = true;
 
         herculeseBauble = new ItemHerculesBauble();
-        //tikiRing = new ItemTikiRing();
         heiTiki = new ItemHeiTiki();
         totemBeadSatchel = new ItemTotemBeadBelt();
         baubleArmourDamage = new ItemBaubleFragileVigor();
@@ -134,7 +128,6 @@ public final class ModItems
         GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
         GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);
         GameRegistry.registerItem(totemBeadSatchel, Strings.TOTEM_BEAD_BELT_NAME);
-        //GameRegistry.registerItem(tikiRing, Strings.TIKI_RING_NAME);
         GameRegistry.registerItem(baubleArmourDamage, Strings.BAUBLE_ARMOUR_DAMAGE_NAME);
     }
 

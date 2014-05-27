@@ -50,7 +50,7 @@ public class Strings
     public static final String TOTEM_BEAD_BELT_NAME = "totemBeadBelt";
     public static final String HUNTING_KNIFE_NAME = "huntingKnife";
     public static final String BAUBLE_ARMOUR_DAMAGE_NAME = "pendantVigor";
-    public static final String BLOW_DART_NAME = "blowDart";
+    public static final String BLOW_DART_NAME = "blowGun";
     public static final String BELL_SHOE_NAME = "bellShoe";
 
     //TileEntites

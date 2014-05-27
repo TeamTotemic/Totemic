@@ -41,7 +41,7 @@ public class EntityBaseDart extends Entity implements IProjectile
     public Entity shootingEntity;
     public int ticksInGround;
     public int ticksInAir;
-    public double damage = 2.0D;
+    public double damage = 1.5D;
     public int metadata = 0;
 
     public EntityBaseDart(World par1World)
@@ -67,14 +67,14 @@ public class EntityBaseDart extends Entity implements IProjectile
         this.shootingEntity = par2EntityLivingBase;
         this.metadata = metadata;
         if(metadata == ItemDarts.basicDart)
-            damage += 2;
+            damage += 0.5;
 
         if(par2EntityLivingBase instanceof EntityPlayer)
         {
             this.canBePickedUp = 1;
         }
 
-        this.setSize(0.5F, 0.5F);
+        this.setSize(0.8F, 0.8F);
         this.setLocationAndAngles(par2EntityLivingBase.posX, par2EntityLivingBase.posY + (double) par2EntityLivingBase.getEyeHeight(), par2EntityLivingBase.posZ, par2EntityLivingBase.rotationYaw, par2EntityLivingBase.rotationPitch);
         this.posX -= (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F);
         this.posY -= 0.10000000149011612D;
@@ -270,9 +270,9 @@ public class EntityBaseDart extends Entity implements IProjectile
                             if(!worldObj.isRemote)
                             {
                                 if(metadata == ItemDarts.poisonDart)
-                                    entitylivingbase.addPotionEffect(new PotionEffect(Potion.poison.id, 20 * 16, 1));
+                                    entitylivingbase.addPotionEffect(new PotionEffect(Potion.poison.id, 20 * 6, 1));
                                 if(metadata == ItemDarts.blazeDart)
-                                    entitylivingbase.setFire(10);
+                                    entitylivingbase.setFire(6);
                                 if(metadata == ItemDarts.blindingDart)
                                     entitylivingbase.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
                                 if(metadata == ItemDarts.slowingDart)

@@ -42,7 +42,7 @@ public class ItemBellShoe extends ItemArmor implements ISpecialArmor, IMusic
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
     {
-
+        stack.damageItem(damage % 2, entity);
     }
 
     @Override
