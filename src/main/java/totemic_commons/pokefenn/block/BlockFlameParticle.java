@@ -8,7 +8,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 
 import java.util.Random;
 
@@ -30,26 +29,25 @@ public class BlockFlameParticle extends Block
     {
         int currentInput = world.getBlockPowerInput(x, y, z);
 
-        if(!(currentInput >= 1))
+        if(currentInput == 0)
             for(int i = 0; i < 5; i++)
             {
                 float random = rand.nextFloat();
                 for(int k = 0; k <= 15; k++)
                 {
-                    float maxYAxis = rand.nextFloat() * (0.8F - 0.1F) + 0.1F;
-
                     world.spawnParticle("flame", x + random, y + (rand.nextFloat() * k), z + random, 0, 0.15, 0);
                     world.spawnParticle("smoke", x + random, y + (rand.nextFloat() * k), z + random, 0, 0.15, 0);
                 }
             }
     }
 
+    @Override
     public void onEntityWalking(World world, int x, int y, int Z, Entity entity)
     {
-        if(!entity.isImmuneToFire())
-            if(!entity.isBurning())
-                entity.setFire(20);
-
+        if(!world.isRemote)
+            if(!entity.isImmuneToFire())
+                if(!entity.isBurning())
+                    entity.setFire(20);
     }
 
 }

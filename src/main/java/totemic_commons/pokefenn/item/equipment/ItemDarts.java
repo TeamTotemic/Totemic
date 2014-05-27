@@ -19,17 +19,16 @@ import java.util.List;
  */
 public class ItemDarts extends ItemTotemic
 {
-    public static String[] DART_NAMES = {"basicDart", "poisonDart", "witherDart", "blazeDart", "antidoteDart", "blindingDart", "slowingDart"};
+    public static String[] DART_NAMES = {"basicDart", "poisonDart", "blazeDart", "antidoteDart"/*, "blindingDart", "slowingDart"*/};
     @SideOnly(Side.CLIENT)
     public static IIcon[] icons;
 
     public static int basicDart = 0;
     public static int poisonDart = 1;
-    public static int witherDart = 2;
-    public static int blazeDart = 3;
-    public static int antidoteDart = 4;
-    public static int blindingDart = 5;
-    public static int slowingDart = 6;
+    public static int blazeDart = 2;
+    public static int antidoteDart = 3;
+    public static int blindingDart = 4;
+    public static int slowingDart = 5;
 
     public ItemDarts()
     {

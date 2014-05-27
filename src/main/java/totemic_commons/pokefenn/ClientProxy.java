@@ -4,23 +4,23 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.common.MinecraftForge;
-import totemic_commons.pokefenn.client.rendering.item.*;
+import totemic_commons.pokefenn.client.rendering.entity.DartRendering;
+import totemic_commons.pokefenn.client.rendering.item.ItemTotemSocketRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.*;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
+import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.misc.villager.TotemicVillagerInitiation;
+import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
-import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 
 public class ClientProxy extends CommonProxy
 {
@@ -124,6 +124,8 @@ public class ClientProxy extends CommonProxy
         RenderIds.RENDER_ID_TOTEM_SOCKET_CUBE = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.RENDER_ID_DRUM = RenderingRegistry.getNextAvailableRenderId();
         RenderIds.RENDER_ID_TOTEM_BASE = RenderingRegistry.getNextAvailableRenderId();
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityBaseDart.class, new DartRendering());
 
         if(!ConfigurationSettings.RENDER_CUBE_SOCKET)
             MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemPole), new ItemTotemSocketRenderer());

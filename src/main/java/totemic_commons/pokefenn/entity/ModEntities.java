@@ -16,7 +16,7 @@ public class ModEntities
     public static void init(Object totemic)
     {
         EntityRegistry.registerModEntity(EntityEfreet.class, "efreet", ConfigurationSettings.ENTITY_ID_EFREET, totemic, 100, 5, true);
-        EntityRegistry.registerModEntity(EntityBaseDart.class, "totemDart", ConfigurationSettings.ENTITY_ID_DART, totemic, 80, 5, true);
+        EntityRegistry.registerModEntity(EntityBaseDart.class, "totemDart", ConfigurationSettings.ENTITY_ID_DART, totemic, 80, 3, true);
         //TODO in the future, meh
         EntityRegistry.registerModEntity(EntityAkuAku.class, "akuAku", 50, totemic, 80, 5, true);
     }

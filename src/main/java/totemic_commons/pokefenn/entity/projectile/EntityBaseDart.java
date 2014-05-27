@@ -10,8 +10,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
@@ -273,8 +271,6 @@ public class EntityBaseDart extends Entity implements IProjectile
                             {
                                 if(metadata == ItemDarts.poisonDart)
                                     entitylivingbase.addPotionEffect(new PotionEffect(Potion.poison.id, 20 * 16, 1));
-                                if(metadata == ItemDarts.witherDart)
-                                    entitylivingbase.addPotionEffect(new PotionEffect(Potion.wither.id, 60, 0));
                                 if(metadata == ItemDarts.blazeDart)
                                     entitylivingbase.setFire(10);
                                 if(metadata == ItemDarts.blindingDart)

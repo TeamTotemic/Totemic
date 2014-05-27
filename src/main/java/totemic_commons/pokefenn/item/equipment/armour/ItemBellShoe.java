@@ -59,8 +59,7 @@ public class ItemBellShoe extends ItemArmor implements ISpecialArmor, IMusic
         {
             if(world.getWorldTime() % 20L == 0)
             {
-                if(player.isPotionActive(Potion.moveSpeed))
-                    hasSpeed = true;
+                hasSpeed = player.isPotionActive(Potion.moveSpeed);
             }
 
             if(time > 2 || (hasSpeed && time > 1))
@@ -79,7 +78,6 @@ public class ItemBellShoe extends ItemArmor implements ISpecialArmor, IMusic
             particlesAllAround(world, player.posX, player.posY, player.posZ);
         } else
         {
-            //TODO fix not working in the ceremony selector
             TotemUtil.playMusicFromItemForCeremonySelector(itemStack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(new ItemStack(this, 1, 0), world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
             particlesAllAround(world, player.posX, player.posY, player.posZ);
         }

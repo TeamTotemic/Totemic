@@ -44,11 +44,11 @@ public class TotemicRecipes
 
         //Generic
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemTorch, 1, 0), new Object[]{"sfs", "sws", " s ", ('s'), "stickWood", ('w'), "logWood", ('f'), new ItemStack(Blocks.torch, 1, OreDictionary.WILDCARD_VALUE)}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blowDart, 1, 0), new Object[]{" b ", "bsb", "sb ", ('s'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick), ('l'), new ItemStack(Items.reeds), ('b'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarBark)}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blowDart, 1, 0), new Object[]{" b ", "bsb", "sb ", ('s'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick), ('l'), new ItemStack(Items.reeds), ('b'), "barkCedar"}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darts, 4, 0), new Object[]{"  f", " s ", "lll", ('l'), "treeLeaves", ('s'), "stickWood", ('f'), Items.flint}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarMaker), new Object[]{"brb", "rsr", "brb", ('b'), new ItemStack(Items.dye, 1, 15), ('r'), "dyeRed", ('s'), "treeSapling"}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 4, ItemTotemicItems.cedarStick), new Object[]{"w","w", ('w'), ModBlocks.totemWoods}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 2, ItemTotemicItems.barkStickCedar), new Object[]{" b ", "bsb", " b ", ('b'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarBark), ('s'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick)}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 2, ItemTotemicItems.barkStickCedar), new Object[]{" b ", "bsb", " b ", ('b'), "barkCedar", ('s'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick)}));
 
         //Music
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0), new Object[]{"eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE)}));
@@ -114,6 +114,8 @@ public class TotemicRecipes
         OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.totemLeaves, 1));
         OreDictionary.registerOre("cedarLog", new ItemStack(ModBlocks.totemWoods, 1, 0));
         OreDictionary.registerOre("ingotIron", new ItemStack(Items.iron_ingot, 1, 0));
+        OreDictionary.registerOre("stickWood", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick));
+        OreDictionary.registerOre("barkCedar", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarBark));
 
         //OreDictionary.registerOre("crystalVerdant", new ItemStack(ModItems.verdantCrystal, 1, OreDictionary.WILDCARD_VALUE));
         //OreDictionary.registerOre("blazingCrystalVerdant", new ItemStack(ModItems.blazingChlorophyllCrystal, 1, OreDictionary.WILDCARD_VALUE));
