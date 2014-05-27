@@ -1,29 +1,18 @@
 package totemic_commons.pokefenn.block.totem;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
-import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 import java.util.Random;
@@ -84,12 +73,6 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
 
             if(tileTotemBase.isCeremony)
             {
-                //if(player.isSneaking())
-                //{
-                    //TODO WHY YOU NO WORK
-                //    tileTotemBase.resetSelector();
-                //}
-
                 if(!tileTotemBase.isDoingEffect && !player.isSneaking())
                 {
                     //if(tileTotemBase.isMusicSelecting)

@@ -6,15 +6,11 @@ import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.item.ItemTest;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotems;
-import totemic_commons.pokefenn.item.equipment.ItemBlowGun;
-import totemic_commons.pokefenn.item.equipment.ItemDarts;
-import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
-import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
+import totemic_commons.pokefenn.item.equipment.*;
 import totemic_commons.pokefenn.item.equipment.armour.ItemBellShoe;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
-import totemic_commons.pokefenn.item.equipment.bauble.ItemHerculesBauble;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemTotemBeadBelt;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -40,6 +36,7 @@ public final class ModItems
     public static Item blowDart;
     public static Item darts;
     public static Item bellShoes;
+    public static Item barkStripper;
 
     public static Item totemArmourHead;
     public static Item totemArmourChest;
@@ -62,8 +59,8 @@ public final class ModItems
             test = new ItemTest();
         darts = new ItemDarts();
         blowDart = new ItemBlowGun();
-        //TODO darts, properly
         bellShoes = new ItemBellShoe();
+        barkStripper = new ItemBarkStripper();
 
         //huntingKnife = new ItemHuntingKnife();
         //verdantCrystal = new ItemVerdantCrystal();
@@ -98,6 +95,7 @@ public final class ModItems
         GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
         GameRegistry.registerItem(darts, "darts");
         GameRegistry.registerItem(bellShoes, Strings.BELL_SHOE_NAME);
+        GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
         //GameRegistry.registerItem(moonglowSeeds, moonglowSeeds.getUnlocalizedName());
@@ -120,12 +118,12 @@ public final class ModItems
     {
         Totemic.baublesLoaded = true;
 
-        herculeseBauble = new ItemHerculesBauble();
+        //herculeseBauble = new ItemHerculesBauble();
         heiTiki = new ItemHeiTiki();
         totemBeadSatchel = new ItemTotemBeadBelt();
         baubleArmourDamage = new ItemBaubleFragileVigor();
 
-        GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
+        //GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
         GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);
         GameRegistry.registerItem(totemBeadSatchel, Strings.TOTEM_BEAD_BELT_NAME);
         GameRegistry.registerItem(baubleArmourDamage, Strings.BAUBLE_ARMOUR_DAMAGE_NAME);

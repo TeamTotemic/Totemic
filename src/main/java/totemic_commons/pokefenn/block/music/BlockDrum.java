@@ -48,14 +48,14 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     {
         if(!isSneaking)
         {
-            player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 0));
+            player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20, 0));
             tileDrum.canPlay = false;
             TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(new ItemStack(this, 1, 0), world, x, y, z, true, player), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
         } else
         {
-            player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 40, 0));
+            player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20, 0));
             tileDrum.canPlay = false;
             TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(new ItemStack(this, 1, 0), world, x, y, z, true, player), this.getRange(world, x, y, z, true, player));
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
@@ -92,7 +92,6 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        //TODO remember
         return world.getBlockMetadata(x, y, z) == 0 ? 8 : 12;
     }
 

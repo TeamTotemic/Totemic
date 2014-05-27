@@ -22,6 +22,7 @@ public class Strings
     public static final String DRUM_NAME = "totemDrum";
     public static final String WIND_CHIME_NAME = "windChime";
     public static final String RED_CEDAR_PLANK_NAME = "redCedarPlank";
+    public static final String RED_CEDAR_STRIPPED_NAME = "redCedarStripped";
 
     //Items
     public static final String TOTEM_WHITTLING_KNIFE_NAME = "totemWhittlingKnife";
@@ -52,6 +53,7 @@ public class Strings
     public static final String BAUBLE_ARMOUR_DAMAGE_NAME = "pendantVigor";
     public static final String BLOW_DART_NAME = "blowGun";
     public static final String BELL_SHOE_NAME = "bellShoe";
+    public static final String BARK_STRIPPER_NAME = "barkStripper";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";

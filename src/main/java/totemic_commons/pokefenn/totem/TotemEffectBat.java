@@ -34,7 +34,6 @@ public class TotemEffectBat implements ITotemEffect
 
                         if(intelligence)
                         {
-                            //TODO flesh out numbers for melody
                             ((TileTotemBase) totem).decreaseChlorophyll((totemRegistry.getChlorophyllDecrement()));
                         }
 

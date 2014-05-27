@@ -25,6 +25,17 @@ item.totemic:totemArmourHead.name=Totemist Mask
 item.totemic:totemArmourFoot.name=Totemist Boots
 item.totemic:totemArmourChest.name=Totemist Breastplate
 item.totemic:totemArmourLeg.name=Totemist Skirt
+item.totemic:cedarStick.name=Red Cedar Stick
+item.totemic:flute.name=Totemist Flute
+item.totemic:fluteInfused.name=Infused Totemist Flute
+item.totemic:cedarBark.name=Red Cedar Bark
+item.totemic:barkStickCedar.name=Bark Reinforced Red Cedar Stick
+item.totemic:basicDart.name=Blow Dart
+item.totemic:poisonDart.name=Poison Blow Dart
+item.totemic:blazeDart.name=Blaze Blow Dart
+item.totemic:antidoteDart.name=Antidote Blow Dart
+item.totemic:barkStripper.name=Bark Stripper
+item.totemic:blowGun.name=Blow Gun
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log
@@ -34,6 +45,9 @@ tile.totemSapling.name=Red Cedar Sapling
 tile.totemLeaves.name=Red Cedar Leaves
 tile.totemDrum.name=Totemist Drum
 tile.windChime.name=Wind Chime
+tile.totemTorch.name=Totem Torch
+tile.redCedarPlank.name=Red Cedar Plank
+tile.redCedarStripped.name=Red Cedar Stripped Log
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

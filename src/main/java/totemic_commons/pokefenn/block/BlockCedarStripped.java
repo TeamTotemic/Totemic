@@ -15,18 +15,15 @@ import totemic_commons.pokefenn.lib.Textures;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 09/12/13
- * Time: 14:35
+ * Created by Pokefenn.
+ * Licensed under MIT (If this is one of my Mods)
  */
-public class BlockCedarLog extends BlockLog
+public class BlockCedarStripped extends BlockLog
 {
-
-    public BlockCedarLog()
+    public BlockCedarStripped()
     {
         super();
-        setBlockName(Strings.TOTEM_WOODS_NAME);
+        setBlockName(Strings.RED_CEDAR_STRIPPED_NAME);
         setHardness(2F);
         setCreativeTab(Totemic.tabsTotem);
     }
@@ -41,8 +38,8 @@ public class BlockCedarLog extends BlockLog
     @Override
     public void registerBlockIcons(IIconRegister register)
     {
-        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_WOOD_SIDE);
-        topAndBot = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_WOOD_TOP_AND_BOT);
+        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "cedarLogStrippedSide");
+        topAndBot = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "cedarLogStrippedTop");
 
     }
 
@@ -61,12 +58,5 @@ public class BlockCedarLog extends BlockLog
     {
         subTypes.add(new ItemStack(blockId, 1, 0));
     }
+
 }
-
-
-
-
-
-
-
-
