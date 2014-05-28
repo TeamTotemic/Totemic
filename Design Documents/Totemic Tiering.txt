@@ -41,3 +41,4 @@ You will get special armour, that will kill nearby plants, but give you incredib
 Shame Poles will be able to be created, these are a way to 'curse' players, and their totem poles in a sense, you can cause their totems to go insane, or cause problems for the players.
 Withered Puppets will be able to be created, they will mimic the players movements, attacking monsters and block breaking/placing, allowing for massive tasks to be done.
 This is FAR from a replacement for normal Totemist things, normal Totemist things are still cheaper to create, and also do not have a running cost.
+This is the incredibly late game part of the mod, Kami level more or less.

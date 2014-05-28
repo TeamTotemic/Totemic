@@ -11,7 +11,6 @@ import totemic_commons.pokefenn.item.equipment.armour.ItemBellShoe;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
-import totemic_commons.pokefenn.item.equipment.bauble.ItemTotemBeadBelt;
 import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModItems
@@ -120,12 +119,12 @@ public final class ModItems
 
         //herculeseBauble = new ItemHerculesBauble();
         heiTiki = new ItemHeiTiki();
-        totemBeadSatchel = new ItemTotemBeadBelt();
+        //totemBeadSatchel = new ItemTotemBeadBelt();
         baubleArmourDamage = new ItemBaubleFragileVigor();
 
         //GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
         GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);
-        GameRegistry.registerItem(totemBeadSatchel, Strings.TOTEM_BEAD_BELT_NAME);
+        //GameRegistry.registerItem(totemBeadSatchel, Strings.TOTEM_BEAD_BELT_NAME);
         GameRegistry.registerItem(baubleArmourDamage, Strings.BAUBLE_ARMOUR_DAMAGE_NAME);
     }
 

@@ -1,0 +1,15 @@
+Totemic Entities:
+
+Buffaloes:
+
+A 'advanced' version of cows, they have greater health.
+You need to keep them alive, either by leaving them on a pasture (plains) or by feeding them.
+The point of these are to provide major crafting components in Totemic.
+The teeth can be used to create rattles, after you kill them you can take the teeth from them.
+It drops a very large amount of meat, which obviously can be eaten.
+It periodically drops dung, which can be used to fertilize crops.
+You can turn the hooves into glue, which will then be used to create paint (A way to modify totem effects)
+They will aid you in ceremonies.
+It's horns will be made into a instrument, a horn which you blow into.
+You can shear them for their fur.
+The skin (leather) from then can be made into teepees (or tipi's, however you spell it)
