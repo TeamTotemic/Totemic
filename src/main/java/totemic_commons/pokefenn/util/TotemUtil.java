@@ -12,7 +12,6 @@ import totemic_commons.pokefenn.api.armour.ITotemArmour;
 import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
@@ -179,11 +178,11 @@ public class TotemUtil
                     {
                         TileEntity block = world.getTileEntity(x + i, y + j, z + k);
 
-                        if(block instanceof IMusicAcceptor)
+                        if(block instanceof IMusicAcceptor && ((TileTotemBase) block).isCeremony)
                         {
                             int[] musicArray = ((IMusicAcceptor) block).getMusicArray();
 
-                            if(musicArray[musicEnum.ordinal()] < musicArray.length + 1)
+                            //if(musicArray[musicEnum.ordinal()] < musicArray.length + 1)
                             {
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
@@ -192,6 +191,8 @@ public class TotemUtil
 
                                 } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
                                 {
+                                    System.out.println(world.getBlock(x, y, z).getUnlocalizedName());
+                                    System.out.println("musicu stuffs");
                                     musicArray[musicEnum.ordinal()] += musicAmount;
                                     return;
                                 }

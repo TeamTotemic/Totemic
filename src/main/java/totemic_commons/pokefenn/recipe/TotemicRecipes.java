@@ -14,8 +14,7 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.recipe.CeremonyPotionRegistry;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
-import totemic_commons.pokefenn.ceremony.CeremonyFlowingTime;
-import totemic_commons.pokefenn.ceremony.CeremonyPotion;
+import totemic_commons.pokefenn.ceremony.*;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
 import totemic_commons.pokefenn.lib.Totems;
@@ -48,7 +47,7 @@ public class TotemicRecipes
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blowDart, 1, 0), new Object[]{"slb", " sf", "  s", ('s'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick), ('l'), new ItemStack(Items.reeds), ('b'), "barkCedar", ('f'), Items.feather}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darts, 4, 0), new Object[]{"  f", " s ", "lll", ('l'), "treeLeaves", ('s'), "stickWood", ('f'), Items.flint}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarMaker), new Object[]{"brb", "rsr", "brb", ('b'), new ItemStack(Items.dye, 1, 15), ('r'), "dyeRed", ('s'), "treeSapling"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 4, ItemTotemicItems.cedarStick), new Object[]{"w","w", ('w'), ModBlocks.redCedarPlank}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 4, ItemTotemicItems.cedarStick), new Object[]{"w", "w", ('w'), ModBlocks.redCedarPlank}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 2, ItemTotemicItems.barkStickCedar), new Object[]{" b ", "bsb", " b ", ('b'), "barkCedar", ('s'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick)}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.barkStripper, 1, 0), new Object[]{"iii", "s s", "s s", ('i'), "ingotIron", ('s'), "stickWood"}));
 
@@ -77,10 +76,12 @@ public class TotemicRecipes
 
     public static void ceremonyHandler()
     {
-        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20, 0));
-        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyPotion(), false, 20 * 30, MusicEnum.DRUM_MUSIC, null, 150, 60 * 20, 2));
-        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.WIND_CHIME_MUSIC, 4, new CeremonyRain(), true, 0, MusicEnum.WIND_CHIME_MUSIC, null, 150, 20 * 30, 0));
-        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyCrafting(), false, (20 * 60) * 5, MusicEnum.FLUTE_MUSIC, null, 100, 60 * 20, 0));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE_MUSIC, null, 100, 30 * 20, 0));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyPotion(), false, 20 * 30, MusicEnum.DRUM_MUSIC, null, 150, 30 * 20, 2));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 3, new CeremonyFluteInfusion(), true, 20 * 30, MusicEnum.FLUTE_MUSIC, null, 110, 40 * 20, 0));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 4, new CeremonyRain(), true, 20 * 30, MusicEnum.DRUM_MUSIC, null, 110, 40 * 20, 0));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, 5, new CeremonyRainRemoval(), true, 20 * 30, MusicEnum.DRUM_MUSIC, null, 110, 40 * 20, 0));
+        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, 4, new CeremonyTotemAwakening(), true, 20 * 30, MusicEnum.DRUM_MUSIC, null, 0, 30 * 20, 0));
     }
 
     public static void totemRegistry()
@@ -90,7 +91,6 @@ public class TotemicRecipes
         TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze(), 2));
         TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot(), 2));
         TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat(), 2));
-        //totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 5), 0, 8, 8, new TotemEffectDraining(), 1));
         TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 6), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider(), 2));
         TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 7), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow(), 1));
     }

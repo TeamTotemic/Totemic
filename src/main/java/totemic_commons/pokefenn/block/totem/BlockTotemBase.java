@@ -71,25 +71,32 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
                 player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
             }
 
-            if(tileTotemBase.isCeremony)
+            if(tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
             {
+                if(tileTotemBase.isDoingStartup)
+                    player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing startup"));
+                if(tileTotemBase.isDoingEffect)
+                    player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing it's effect"));
+
                 if(!tileTotemBase.isDoingEffect && !player.isSneaking())
                 {
                     //if(tileTotemBase.isMusicSelecting)
                     {
-                        //System.out.println("ln");
-                        if(tileTotemBase.musicSelector[0] == 0 && tileTotemBase.musicSelector[1] == 0 && tileTotemBase.musicSelector[2] == 0 && tileTotemBase.musicSelector[3] == 0)
+                        if(tileTotemBase.isMusicSelecting && tileTotemBase.musicSelector[0] == 0 && tileTotemBase.musicSelector[1] == 0 && tileTotemBase.musicSelector[2] == 0 && tileTotemBase.musicSelector[3] == 0 && !tileTotemBase.isDoingEffect && !tileTotemBase.isDoingStartup)
                         {
-                            player.addChatComponentMessage(new ChatComponentText("No Music for seclector."));
+                            player.addChatComponentMessage(new ChatComponentText("No Music for selector."));
                             return true;
                         }
 
                         for(int i = 0; i < 4; i++)
                         {
-                            if(tileTotemBase.musicSelector[i] == 0)
-                                player.addChatComponentMessage(new ChatComponentText("No Music for selection on " + (i + 1)));
-                            else if(tileTotemBase.musicSelector[i] != 0)
-                                player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileTotemBase.musicSelector[i] - 1].name()));
+                            if(tileTotemBase.isMusicSelecting)
+                            {
+                                if(tileTotemBase.musicSelector[i] == 0)
+                                    player.addChatComponentMessage(new ChatComponentText("No Music for selection on " + (i + 1)));
+                                else if(tileTotemBase.musicSelector[i] != 0)
+                                    player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileTotemBase.musicSelector[i] - 1].name()));
+                            }
                         }
                     }
 

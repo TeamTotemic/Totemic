@@ -1,8 +1,10 @@
 package totemic_commons.pokefenn.util;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -24,6 +26,12 @@ public class EntityUtil
     public static List<Entity> getEntitiesInRange(World world, double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
     {
         return world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius));
+    }
+
+    public static void spawnEntityInWorld(World world, double xPos, double yPos, double zPos, ItemStack itemStack)
+    {
+        EntityItem item = new EntityItem(world, xPos, yPos, zPos, itemStack);
+        world.spawnEntityInWorld(item);
     }
 
     //Code from Vazkii who borrowed it from mDiyo
