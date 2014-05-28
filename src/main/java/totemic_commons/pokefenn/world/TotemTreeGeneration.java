@@ -121,7 +121,7 @@ public class TotemTreeGeneration extends WorldGenerator
 
                             if (((xPos != center | zPos != center) || rand.nextInt(2) != 0 && var12 != 0) && (block == null || block.isLeaves(world, xOffset, yOffset, zOffset) || block.isAir(world, xOffset, yOffset, zOffset) || block.canBeReplacedByLeaves(world, xOffset, yOffset, zOffset)))
                             {
-                                this.setBlockAndNotifyAdequately(world, xOffset, yOffset, zOffset, ModBlocks.totemLeaves, 2);
+                                this.setBlockAndNotifyAdequately(world, xOffset, yOffset, zOffset, ModBlocks.totemLeaves, 0);
                             }
                         }
                     }
@@ -133,7 +133,7 @@ public class TotemTreeGeneration extends WorldGenerator
 
                     if (block == null || block.isAir(world, x, y + yOffset, z) || block.isLeaves(world, x, y + yOffset, z) || block.isReplaceable(world, x, y + yOffset, z))
                     {
-                        this.setBlockAndNotifyAdequately(world, x, y + yOffset, z, ModBlocks.totemWoods, 2);
+                        this.setBlockAndNotifyAdequately(world, x, y + yOffset, z, ModBlocks.cedarLog, 0);
                     }
                 }
 

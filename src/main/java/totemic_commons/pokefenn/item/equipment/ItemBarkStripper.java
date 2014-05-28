@@ -28,6 +28,7 @@ public class ItemBarkStripper extends ItemTotemic
     {
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BARK_STRIPPER_NAME);
         setMaxStackSize(1);
+        setMaxDamage(126);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ItemBarkStripper extends ItemTotemic
                 if(blockQuery instanceof BlockCedarLog)
                 {
                     time++;
-                    if(time > 5)
+                    if(time > 4)
                     {
                         time = 0;
                         Random random = new Random();
@@ -52,6 +53,7 @@ public class ItemBarkStripper extends ItemTotemic
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.redCedarStripped);
                         EntityItem bark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 1 + random.nextInt(3), ItemTotemicItems.cedarBark));
                         world.spawnEntityInWorld(bark);
+                        itemStack.damageItem(1, player);
                     }
                 }
 

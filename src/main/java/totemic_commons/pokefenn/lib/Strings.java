@@ -6,7 +6,7 @@ public class Strings
     public static final String RESOURCE_PREFIX = "totemic:";
 
     //Blocks
-    public static final String TOTEM_WOODS_NAME = "cedarLog";
+    public static final String CEDAR_LOG_NAME = "cedarLog";
     public static final String TOTEM_BASE_NAME = "totemBase";
     public static final String TOTEM_POLE_NAME = "totemPole";
     public static final String TOTEM_SAPLING_NAME = "totemSapling";

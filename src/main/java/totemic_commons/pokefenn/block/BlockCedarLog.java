@@ -26,9 +26,15 @@ public class BlockCedarLog extends BlockLog
     public BlockCedarLog()
     {
         super();
-        setBlockName(Strings.TOTEM_WOODS_NAME);
+        setBlockName(Strings.CEDAR_LOG_NAME);
         setHardness(2F);
         setCreativeTab(Totemic.tabsTotem);
+    }
+
+    @Override
+    public int damageDropped(int p_149692_1_)
+    {
+        return 0;
     }
 
 

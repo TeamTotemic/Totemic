@@ -45,7 +45,7 @@ public class BlocCedarSapling extends BlockSapling
 
             if(!treeGen.growTree(world, random, x, y, z))
             {
-                world.setBlock(x, y, z, ModBlocks.totemWoods, 0, 4);
+                world.setBlock(x, y, z, ModBlocks.cedarLog, 0, 4);
                 new TotemTreeGeneration(true).growTree(world, random, x, y, z);
             }
         }

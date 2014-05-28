@@ -13,7 +13,7 @@ import totemic_commons.pokefenn.lib.Strings;
 public final class ModBlocks
 {
 
-    public static Block totemWoods;
+    public static Block cedarLog;
     public static Block totemTable;
     public static Block totemBase;
     public static Block totemPole;
@@ -36,7 +36,7 @@ public final class ModBlocks
     public static void init()
     {
 
-        totemWoods = new BlockCedarLog();
+        cedarLog = new BlockCedarLog();
         totemBase = new BlockTotemBase();
         totemPole = new BlockTotemPole();
         totemSapling = new BlocCedarSapling();
@@ -48,7 +48,7 @@ public final class ModBlocks
         redCedarPlank = new BlockCedarPlank();
         redCedarStripped = new BlockCedarStripped();
 
-        GameRegistry.registerBlock(totemWoods, Strings.TOTEM_WOODS_NAME);
+        GameRegistry.registerBlock(cedarLog, Strings.CEDAR_LOG_NAME);
         GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
         GameRegistry.registerBlock(totemPole, Strings.TOTEM_POLE_NAME);
         GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);

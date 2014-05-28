@@ -65,7 +65,7 @@ public class TotemicRecipes
         //GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Blocks.vine));
         //GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Items.wheat_seeds));
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 4, 0), ModBlocks.redCedarStripped);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 2, 0), ModBlocks.totemWoods);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 2, 0), ModBlocks.cedarLog);
 
         //Darts
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.darts, 4, ItemDarts.blazeDart), ModItems.darts, ModItems.darts, ModItems.darts, ModItems.darts, Items.blaze_powder, Items.blaze_powder);
@@ -116,7 +116,7 @@ public class TotemicRecipes
         OreDictionary.registerOre("cropVine", new ItemStack(Blocks.vine));
         OreDictionary.registerOre("cedarLeaf", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.leaf));
         OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.totemLeaves, 1));
-        OreDictionary.registerOre("cedarLog", new ItemStack(ModBlocks.totemWoods, 1, 0));
+        OreDictionary.registerOre("cedarLog", new ItemStack(ModBlocks.cedarLog, 1, 0));
         OreDictionary.registerOre("ingotIron", new ItemStack(Items.iron_ingot, 1, 0));
         OreDictionary.registerOre("stickWood", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick));
         OreDictionary.registerOre("barkCedar", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarBark));
@@ -128,5 +128,6 @@ public class TotemicRecipes
     public static void furnaceRecipes()
     {
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.redCedarStripped), new ItemStack(Items.coal, 1, 1), 0.5F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.cedarLog), new ItemStack(Items.coal, 1, 1), 0.5F);
     }
 }
