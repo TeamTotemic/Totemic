@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.ceremony;
+/*package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -15,10 +15,6 @@ import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.Random;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class CeremonyFlowingTime implements ICeremonyEffect
 {
     @Override
@@ -81,3 +77,4 @@ public class CeremonyFlowingTime implements ICeremonyEffect
         }
     }
 }
+*/
