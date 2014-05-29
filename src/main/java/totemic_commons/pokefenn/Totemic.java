@@ -41,7 +41,6 @@ public final class Totemic
 
     //Creative tab stuff
     public static CreativeTabs tabsTotem = new CreativeTabTotemic(CreativeTabs.getNextID(), MOD_NAME);
-    //public static CreativeTabs tabsPotionTotem = new CreativeTabPotions(CreativeTabs.getNextID(), "totemicPotions");
 
     public static final Logger logger = Logger.getLogger(MOD_NAME);
 
