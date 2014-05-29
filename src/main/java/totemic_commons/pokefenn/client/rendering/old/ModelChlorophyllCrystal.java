@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.client.rendering.model;
+package totemic_commons.pokefenn.client.rendering.old;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

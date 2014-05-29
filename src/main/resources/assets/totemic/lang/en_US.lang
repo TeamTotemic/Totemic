@@ -36,6 +36,7 @@ item.totemic:blazeDart.name=Blaze Blow Dart
 item.totemic:antidoteDart.name=Antidote Blow Dart
 item.totemic:barkStripper.name=Bark Stripper
 item.totemic:blowGun.name=Blow Gun
+item.totemic:cedarMaker.name=Cedar Metamorphosiser
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log

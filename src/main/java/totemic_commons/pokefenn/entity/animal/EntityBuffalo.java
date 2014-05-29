@@ -13,10 +13,6 @@ import net.minecraft.world.World;
  */
 public class EntityBuffalo extends EntityAnimal
 {
-    public int x;
-    public int y;
-    public int z;
-
     public EntityBuffalo(World world)
     {
         super(world);
@@ -36,5 +32,11 @@ public class EntityBuffalo extends EntityAnimal
     public EntityAgeable createChild(EntityAgeable var1)
     {
         return new EntityBuffalo(this.worldObj);
+    }
+
+    @Override
+    protected int getExperiencePoints(EntityPlayer par1EntityPlayer)
+    {
+        return 4 + this.worldObj.rand.nextInt(6);
     }
 }

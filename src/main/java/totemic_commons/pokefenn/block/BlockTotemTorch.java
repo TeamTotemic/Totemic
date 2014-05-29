@@ -38,7 +38,6 @@ public class BlockTotemTorch extends BlockTileTotemic
     {
         TileTotemTorch tileEntity = (TileTotemTorch) world.getTileEntity(x, y, z);
 
-        //if (tileEntity.isActive)
         for(int i = 0; i < 32; i++)
         {
             world.spawnParticle("flame", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);

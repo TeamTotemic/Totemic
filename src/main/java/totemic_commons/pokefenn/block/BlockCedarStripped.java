@@ -24,7 +24,7 @@ public class BlockCedarStripped extends BlockLog
     {
         super();
         setBlockName(Strings.RED_CEDAR_STRIPPED_NAME);
-        setHardness(2F);
+        setHardness(1F);
         setCreativeTab(Totemic.tabsTotem);
     }
 

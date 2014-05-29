@@ -27,7 +27,7 @@ import java.lang.reflect.Modifier;
 import java.util.logging.Logger;
 
 
-@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.0", dependencies = "after:Baubles;")
+@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.1", dependencies = "after:Baubles;")
 public final class Totemic
 {
     public static final String MOD_ID = "totemic";

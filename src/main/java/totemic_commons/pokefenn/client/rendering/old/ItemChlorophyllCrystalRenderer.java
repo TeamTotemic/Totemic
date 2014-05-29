@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.client.rendering.item;
+package totemic_commons.pokefenn.client.rendering.old;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import totemic_commons.pokefenn.client.rendering.model.ModelChlorophyllCrystal;
+import totemic_commons.pokefenn.client.rendering.old.ModelChlorophyllCrystal;
 import totemic_commons.pokefenn.lib.Textures;
 
 /**

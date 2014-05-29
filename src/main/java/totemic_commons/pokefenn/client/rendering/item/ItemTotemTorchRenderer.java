@@ -38,6 +38,6 @@ public class ItemTotemTorchRenderer implements IItemRenderer
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
-        //modelTotemTorch.render();
+        //modelTotemTorch.re
     }
 }

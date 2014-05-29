@@ -1,10 +1,9 @@
-package totemic_commons.pokefenn.client.rendering.tileentity;
+package totemic_commons.pokefenn.client.rendering.old;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
-import totemic_commons.pokefenn.client.rendering.model.ModelTotemSocket;
 import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
