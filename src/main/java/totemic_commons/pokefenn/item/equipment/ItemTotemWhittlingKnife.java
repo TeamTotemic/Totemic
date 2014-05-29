@@ -75,18 +75,18 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                     {
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemBase);
                         return true;
-                    }
-                } else
-                {
-                    if(itemStack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
+                    } else
                     {
-                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);
-                        TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
+                        if(itemStack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
+                        {
+                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);
+                            TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
 
-                        tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, 1, itemStack.getItemDamage()));
-                        world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
-                        tileTotemSocket.markDirty();
-                        return true;
+                            tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, 1, itemStack.getItemDamage()));
+                            world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
+                            tileTotemSocket.markDirty();
+                            return true;
+                        }
                     }
                 }
 
