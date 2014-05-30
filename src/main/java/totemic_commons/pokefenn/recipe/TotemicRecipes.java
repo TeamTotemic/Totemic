@@ -14,8 +14,12 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.recipe.CeremonyPotionRegistry;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
-import totemic_commons.pokefenn.ceremony.*;
+import totemic_commons.pokefenn.ceremony.CeremonyFluteInfusion;
+import totemic_commons.pokefenn.ceremony.CeremonyPotion;
+import totemic_commons.pokefenn.ceremony.CeremonyRain;
+import totemic_commons.pokefenn.ceremony.CeremonyRainRemoval;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
+import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
 import totemic_commons.pokefenn.lib.Totems;
 import totemic_commons.pokefenn.potion.ModPotions;
@@ -63,8 +67,8 @@ public class TotemicRecipes
     {
         //GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Blocks.vine));
         //GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Items.wheat_seeds));
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 4, 0), ModBlocks.redCedarStripped);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 2, 0), ModBlocks.cedarLog);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 5, 0), ModBlocks.redCedarStripped);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 3, 0), ModBlocks.cedarLog);
 
         //Darts
         GameRegistry.addShapelessRecipe(new ItemStack(ModItems.darts, 4, ItemDarts.blazeDart), ModItems.darts, ModItems.darts, ModItems.darts, ModItems.darts, Items.blaze_powder, Items.blaze_powder);
@@ -86,13 +90,14 @@ public class TotemicRecipes
 
     public static void totemRegistry()
     {
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 0), Totems.DECREMENT_HORSE, 20, 20, new TotemEffectHorse(), 1));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 4), Totems.DECREMENT_SQUID, 20, 20, new TotemEffectSquid(), 1));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 2), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze(), 2));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 3), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot(), 2));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 1), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat(), 2));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 6), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider(), 2));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, 7), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow(), 1));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.horse), Totems.DECREMENT_HORSE, 20, 20, new TotemEffectHorse(), 1));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.squid), Totems.DECREMENT_SQUID, 20, 20, new TotemEffectSquid(), 1));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.blaze), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze(), 2));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.ocelot), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot(), 2));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.bat), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat(), 2));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.spider), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider(), 2));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.cow), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow(), 1));
+
     }
 
     public static void ceremonyPotionHandler()
@@ -103,11 +108,6 @@ public class TotemicRecipes
         CeremonyPotionRegistry.ceremonyRegistry.add(new CeremonyPotionRegistry(new ItemStack(Items.golden_carrot, 8, 0), Potion.invisibility, 0, 60 * 20));
         CeremonyPotionRegistry.ceremonyRegistry.add(new CeremonyPotionRegistry(new ItemStack(Items.milk_bucket, 1, 0), ModPotions.antidotePotion, 0, 60 * 20));
         CeremonyPotionRegistry.ceremonyRegistry.add(new CeremonyPotionRegistry(new ItemStack(Items.spider_eye, 8, 0), Potion.wither, 0, 30 * 20));
-    }
-
-    public static void ceremonyCraftingHandler()
-    {
-
     }
 
     public static void oreDictionary()

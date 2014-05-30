@@ -5,6 +5,8 @@ import net.minecraft.item.Item;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.item.equipment.*;
+import totemic_commons.pokefenn.item.equipment.armour.ItemBellShoe;
+import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.lib.Strings;
@@ -51,7 +53,7 @@ public final class ModItems
         subItems = new ItemTotemicItems();
         darts = new ItemDarts();
         blowDart = new ItemBlowGun();
-        //bellShoes = new ItemBellShoe();
+        bellShoes = new ItemBellShoe();
         barkStripper = new ItemBarkStripper();
 
         //TODO Remember to uncomment out some of the items
@@ -70,23 +72,23 @@ public final class ModItems
         //halberd = new ItemHalberd();
         //witherBow = new ItemWitherBow();
 
-        //totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
+        totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
         //totemArmourFeet = new ItemTotemArmour(3, Strings.TOTEM_ARMOUR_FOOT_NAME);
-        //totemArmourHead = new ItemTotemArmour(0, Strings.TOTEM_ARMOUR_HEAD_NAME);
-        //totemArmourLeg = new ItemTotemArmour(2, Strings.TOTEM_ARMOUR_LEG_NAME);
+        totemArmourHead = new ItemTotemArmour(0, Strings.TOTEM_ARMOUR_HEAD_NAME);
+        totemArmourLeg = new ItemTotemArmour(2, Strings.TOTEM_ARMOUR_LEG_NAME);
 
         //Registry for other items
         GameRegistry.registerItem(totemWhittlingKnife, totemWhittlingKnife.getUnlocalizedName());
         GameRegistry.registerItem(totemicStaff, totemicStaff.getUnlocalizedName());
         GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
         GameRegistry.registerItem(totems, totems.getUnlocalizedName());
-        //GameRegistry.registerItem(totemArmourChest, totemArmourChest.getUnlocalizedName());
+        GameRegistry.registerItem(totemArmourChest, totemArmourChest.getUnlocalizedName());
         //GameRegistry.registerItem(totemArmourFeet, totemArmourFeet.getUnlocalizedName());
-        //GameRegistry.registerItem(totemArmourLeg, totemArmourLeg.getUnlocalizedName());
-        //GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
+        GameRegistry.registerItem(totemArmourLeg, totemArmourLeg.getUnlocalizedName());
+        GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
         GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
         GameRegistry.registerItem(darts, "darts");
-        //GameRegistry.registerItem(bellShoes, Strings.BELL_SHOE_NAME);
+        GameRegistry.registerItem(bellShoes, Strings.BELL_SHOE_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());

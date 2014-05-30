@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.api.ceremony;
 
 import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 
 /**
  * Created by Pokefenn.

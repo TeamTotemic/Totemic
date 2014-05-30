@@ -7,13 +7,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import totemic_commons.pokefenn.api.verdant.IVerdantCrystal;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.List;
 
-public class ItemVerdantCrystal extends ItemTotemic implements IVerdantCrystal
+public class ItemVerdantCrystal extends ItemTotemic
 {
 
 

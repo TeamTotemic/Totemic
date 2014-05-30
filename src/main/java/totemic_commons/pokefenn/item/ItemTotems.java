@@ -25,13 +25,13 @@ public class ItemTotems extends Item implements ITotem
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
-    public static int horse = 0;
-    public static int bat = 1;
-    public static int blaze = 2;
-    public static int ocelot = 3;
-    public static int squid = 4;
-    public static int spider = 5;
-    public static int cow = 6;
+    public static final int horse = 0;
+    public static final int bat = 1;
+    public static final int blaze = 2;
+    public static final int ocelot = 3;
+    public static final int squid = 4;
+    public static final int spider = 5;
+    public static final int cow = 6;
 
     public ItemTotems()
     {
