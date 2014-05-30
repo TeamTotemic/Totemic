@@ -6,12 +6,10 @@ package totemic_commons.pokefenn.api.music;
  */
 public enum MusicEnum
 {
-    FLUTE_MUSIC("Flute"),
-    DRUM_MUSIC("Drum"),
-    WIND_CHIME_MUSIC("Wind Chime"),
-    SYNTHESIZER_MUSIC("Synthesizer"),
-    BELL_SHOE_MUSIC("Bell Shoes"),
-    GONG_MUSIC("Gong");
+    FLUTE("Flute"),
+    DRUM("Drum"),
+    WIND_CHIME("Wind Chime"),
+    BELL_SHOE_MUSIC("Bell Shoes");
 
     private final String musicName;
 

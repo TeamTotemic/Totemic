@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.tileentity.music;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,7 +11,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.block.music.BlockDrum;
 import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -67,7 +65,7 @@ public class TileWindChime extends TileTotemic
                         if(world.getBlock(xCoord, yCoord, zCoord) == ModBlocks.windChime)
                         {
                             BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
-                            TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME_MUSIC, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null));
+                            TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null));
                             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
                         }
                     }

@@ -80,7 +80,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     @Override
     public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return MusicEnum.DRUM_MUSIC;
+        return MusicEnum.DRUM;
     }
 
     @Override

@@ -80,12 +80,12 @@ public class TotemicRecipes
 
     public static void ceremonyHandler()
     {
-        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE_MUSIC, null, 100, 30 * 20, 0));
-        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, 2, new CeremonyPotion(), false, 20 * 30, null, 150, 30 * 20, 2));
-        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 3, new CeremonyFluteInfusion(), true, 20 * 30, null, 110, 40 * 20, 0));
-        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, 4, new CeremonyRain(), true, 20 * 30, null, 110, 40 * 20, 0));
-        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, 5, new CeremonyRainRemoval(), true, 20 * 30, null, 110, 40 * 20, 0));
-        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.WIND_CHIME_MUSIC, MusicEnum.FLUTE_MUSIC, MusicEnum.DRUM_MUSIC, MusicEnum.DRUM_MUSIC, 4, new CeremonyTotemAwakening(), true, 20 * 30, MusicEnum.DRUM_MUSIC, null, 0, 30 * 20, 0));
+        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE, null, 100, 30 * 20, 0));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.FLUTE, 2, new CeremonyPotion(), false, 20 * 30, null, 150, 30 * 20, 2));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, 3, new CeremonyFluteInfusion(), true, 20 * 30, null, 110, 40 * 20, 0));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.FLUTE, 4, new CeremonyRain(), true, 20 * 30, null, 110, 40 * 20, 0));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, 5, new CeremonyRainRemoval(), true, 20 * 30, null, 110, 40 * 20, 0));
+        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.WIND_CHIME, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, 4, new CeremonyTotemAwakening(), true, 20 * 30, MusicEnum.DRUM, null, 0, 30 * 20, 0));
     }
 
     public static void totemRegistry()

@@ -20,7 +20,6 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.Textures;
-import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -124,7 +123,7 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     @Override
     public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return MusicEnum.WIND_CHIME_MUSIC;
+        return MusicEnum.WIND_CHIME;
     }
 
     @Override

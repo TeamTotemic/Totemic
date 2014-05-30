@@ -2,14 +2,12 @@ package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.*;
+import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 

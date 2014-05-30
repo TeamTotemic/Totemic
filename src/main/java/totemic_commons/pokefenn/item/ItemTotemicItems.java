@@ -212,7 +212,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
     @Override
     public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return itemStack != null && (itemStack.getItemDamage() == flute || itemStack.getItemDamage() == fluteInfused) ? MusicEnum.FLUTE_MUSIC : null;
+        return itemStack != null && (itemStack.getItemDamage() == flute || itemStack.getItemDamage() == fluteInfused) ? MusicEnum.FLUTE : null;
     }
 
     @Override
