@@ -1,13 +1,14 @@
-package totemic_commons.pokefenn.entity.spirit.boss;
+package totemic_commons.pokefenn.entity.boss;
 
 import net.minecraft.command.IEntitySelector;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
-import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 

@@ -4,7 +4,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
 
-public class ConfigurationHandler
+public final class ConfigurationHandler
 {
 
 
@@ -44,6 +44,7 @@ public class ConfigurationHandler
 
             ConfigurationSettings.ENTITY_ID_EFREET = configuration.get(CATEGORY_ENTITY, "efreetEntityID", 22).getInt(22);
             ConfigurationSettings.ENTITY_ID_DART = configuration.get(CATEGORY_ENTITY, "dartEntityID", 23).getInt(23);
+            ConfigurationSettings.ENTITY_ID_BUFFALO = configuration.get(CATEGORY_ENTITY, "buffaloEntityID", 22).getInt(22);
 
             ConfigurationSettings.RENDER_CUBE_SOCKET = configuration.get(CATEGORY_CLIENT, "doRenderSocketAsCube", true).getBoolean(true);
 

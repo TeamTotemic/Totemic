@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.configuration;
 
-public class ConfigurationSettings
+public final class ConfigurationSettings
 {
 
 
@@ -19,6 +19,7 @@ public class ConfigurationSettings
 
     public static int ENTITY_ID_EFREET;
     public static int ENTITY_ID_DART;
+    public static int ENTITY_ID_BUFFALO;
 
     public static int DECREMENT_TOTEM_HORSE;
     public static int DECREMENT_TOTEM_BAT;

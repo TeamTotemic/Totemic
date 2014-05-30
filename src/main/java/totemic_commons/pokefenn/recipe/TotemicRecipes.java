@@ -97,7 +97,6 @@ public class TotemicRecipes
         TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.bat), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat(), 2));
         TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.spider), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider(), 2));
         TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.cow), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow(), 1));
-
     }
 
     public static void ceremonyPotionHandler()
@@ -120,9 +119,6 @@ public class TotemicRecipes
         OreDictionary.registerOre("ingotIron", new ItemStack(Items.iron_ingot, 1, 0));
         OreDictionary.registerOre("stickWood", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick));
         OreDictionary.registerOre("barkCedar", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarBark));
-
-        //OreDictionary.registerOre("crystalVerdant", new ItemStack(ModItems.verdantCrystal, 1, OreDictionary.WILDCARD_VALUE));
-        //OreDictionary.registerOre("blazingCrystalVerdant", new ItemStack(ModItems.blazingChlorophyllCrystal, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     public static void furnaceRecipes()

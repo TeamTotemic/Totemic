@@ -9,7 +9,6 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,8 +34,8 @@ public class BlockChlorophyll extends BlockFluidClassic
     @Override
     public void registerBlockIcons(IIconRegister register)
     {
-        chlorophyllFlowingIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.FLUID_CHLOROPHYLL_FLOWING);
-        chlorophyllStillIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.FLUID_CHLOROPHYLL_STILL);
+        //chlorophyllFlowingIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.FLUID_CHLOROPHYLL_FLOWING);
+        //chlorophyllStillIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.FLUID_CHLOROPHYLL_STILL);
 
         stack.getFluid().setIcons(chlorophyllStillIcon, chlorophyllFlowingIcon);
     }

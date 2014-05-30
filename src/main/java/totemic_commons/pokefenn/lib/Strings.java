@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.lib;
 
-public class Strings
+public final class Strings
 {
     //Misc
     public static final String RESOURCE_PREFIX = "totemic:";

@@ -15,11 +15,6 @@ public class Textures
     public static final String TEXTURE_LOCATION = "totemic";
 
     //Blocks
-    public static final String TOTEM_TABLE_SIDE = "totemTableSide";
-    public static final String TOTEM_TABLE_BOTTOM = "totemTableBottom";
-    public static final String TOTEM_TABLE_TOP = "totemTableTop";
-
-    public static final String MANA_TOTEM = "manaTotem";
 
     public static final String TOTEM_LEAVES_OPAQUE = "cedarLeavesOpaque";
     public static final String TOTEM_LEAVES_TRANSPARENT = "cedarLeavesTransparent";
@@ -31,10 +26,6 @@ public class Textures
 
     //Items
     public static final String BUCKET_CHLOROPHYLL_ICON = "bucketChlorophyll";
-
-    //Fluids
-    public static final String FLUID_CHLOROPHYLL_STILL = "chlorophyllStill";
-    public static final String FLUID_CHLOROPHYLL_FLOWING = "chlorophyllFlowing";
 
     //Guis
     public static final ResourceLocation TOTEMPEDIA_PAGE = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "totempedia");
