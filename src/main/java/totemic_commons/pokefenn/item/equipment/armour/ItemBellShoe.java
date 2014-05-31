@@ -100,7 +100,7 @@ public class ItemBellShoe extends ItemArmor implements ISpecialArmor, IMusic
     @Override
     public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return MusicEnum.BELL_SHOE_MUSIC;
+        return MusicEnum.BELL_SHOE;
     }
 
     @Override

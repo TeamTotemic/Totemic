@@ -17,7 +17,7 @@ import totemic_commons.pokefenn.fluid.FluidContainers;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.misc.CreativeTabTotemic;
 import totemic_commons.pokefenn.misc.TotemicFuelHandler;
-import totemic_commons.pokefenn.network.PacketPipeline;
+//import totemic_commons.pokefenn.network.PacketPipeline;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
 
@@ -44,7 +44,7 @@ public final class Totemic
 
     public static final Logger logger = Logger.getLogger(MOD_NAME);
 
-    public static final PacketPipeline packetPipeline = new PacketPipeline();
+    //public static final PacketPipeline packetPipeline = new PacketPipeline();
 
     public static boolean botaniaLoaded = false;
     public static boolean baublesLoaded = false;
@@ -101,7 +101,7 @@ public final class Totemic
     {
         logger.info("Totemic is entering its Initlisation stage");
 
-        packetPipeline.initialise();
+        //packetPipeline.initialise();
 
         proxy.initRendering();
 
@@ -129,7 +129,7 @@ public final class Totemic
     @EventHandler
     public void modsLoaded(FMLPostInitializationEvent event)
     {
-        packetPipeline.postInitialise();
+        //packetPipeline.postInitialise();
     }
 
 }

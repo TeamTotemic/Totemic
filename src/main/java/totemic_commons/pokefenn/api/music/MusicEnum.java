@@ -9,7 +9,7 @@ public enum MusicEnum
     FLUTE("Flute"),
     DRUM("Drum"),
     WIND_CHIME("Wind Chime"),
-    BELL_SHOE_MUSIC("Bell Shoes");
+    BELL_SHOE("Bell Shoes");
 
     private final String musicName;
 
