@@ -10,12 +10,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketShoes;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
@@ -50,9 +48,9 @@ public class ItemBellShoe extends ItemArmor implements ISpecialArmor, IMusic
     {
         if(world.isRemote)
         {
-            if(world.getWorldTime() % 20L == 0)
-                if(player.motionX != 0 || player.motionZ != 0)
-                    Totemic.packetPipeline.sendToServer(new PacketShoes(player.motionX, player.motionZ));
+            //if(world.getWorldTime() % 20L == 0)
+            //    if(player.motionX != 0 || player.motionZ != 0)
+                    //Totemic.packetPipeline.sendToServer(new PacketShoes(player.motionX, player.motionZ));
         }
 
         if(!world.isRemote)

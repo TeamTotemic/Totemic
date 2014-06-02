@@ -31,8 +31,6 @@ public class TotemEffectSpider implements ITotemEffect
 
                         TotemUtil.addPotionEffects((EntityPlayer) entity, 150, 33, ModPotions.spiderPotion, 0, false);
 
-                        //((EntityPlayer) entity).addPotionEffect(new PotionEffect(ModPotions.spiderPotion.id, 200 + (j * 30), 0));
-
                         if(intelligence)
                         {
                             ((TileTotemBase) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());

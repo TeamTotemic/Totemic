@@ -13,11 +13,9 @@ import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.event.ModEvents;
-import totemic_commons.pokefenn.fluid.FluidContainers;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.misc.CreativeTabTotemic;
 import totemic_commons.pokefenn.misc.TotemicFuelHandler;
-//import totemic_commons.pokefenn.network.PacketPipeline;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
 
@@ -25,6 +23,8 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.logging.Logger;
+
+//import totemic_commons.pokefenn.network.PacketPipeline;
 
 
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.1", dependencies = "after:Baubles;")
@@ -44,9 +44,6 @@ public final class Totemic
 
     public static final Logger logger = Logger.getLogger(MOD_NAME);
 
-    //public static final PacketPipeline packetPipeline = new PacketPipeline();
-
-    public static boolean botaniaLoaded = false;
     public static boolean baublesLoaded = false;
 
     @EventHandler
@@ -79,9 +76,6 @@ public final class Totemic
             }
         }
 
-        //Creates the logger thingy :p
-        //logger.setParent(FMLCommonHandler.instance().getFMLLogger());
-
         logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
         logger.info("Totemic is Loading");
 
@@ -101,18 +95,14 @@ public final class Totemic
     {
         logger.info("Totemic is entering its Initlisation stage");
 
-        //packetPipeline.initialise();
-
+        //Initiates all the block/entity/item and other stuff rendering
         proxy.initRendering();
 
-        //proxy.readManuals();
-
+        //Initiates the mod entities to the game
         ModEntities.init(this);
 
-        //Vannila recipes
+        //Intiate all the recipes!
         TotemicRecipes.init();
-
-        FluidContainers.init();
 
         //Initialises the fuel handler for the BlazingChlorophyllCrystal
         GameRegistry.registerFuelHandler(new TotemicFuelHandler());
@@ -123,6 +113,7 @@ public final class Totemic
         //Init the potions into the game
         ModPotions.init();
 
+        //Registers the events into forge
         ModEvents.init();
     }
 

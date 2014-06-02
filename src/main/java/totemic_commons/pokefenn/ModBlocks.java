@@ -32,6 +32,7 @@ public final class ModBlocks
     public static Block drum;
     public static Block redCedarPlank;
     public static Block redCedarStripped;
+    public static Block tipi;
 
     public static void init()
     {
@@ -47,6 +48,7 @@ public final class ModBlocks
         windChime = new BlockWindChime();
         redCedarPlank = new BlockCedarPlank();
         redCedarStripped = new BlockCedarStripped();
+        tipi = new BlockTipi();
 
         GameRegistry.registerBlock(cedarLog, Strings.CEDAR_LOG_NAME);
         GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
@@ -59,6 +61,7 @@ public final class ModBlocks
         GameRegistry.registerBlock(windChime, Strings.WIND_CHIME_NAME);
         GameRegistry.registerBlock(redCedarPlank, Strings.RED_CEDAR_PLANK_NAME);
         GameRegistry.registerBlock(redCedarStripped, Strings.RED_CEDAR_STRIPPED_NAME);
+        GameRegistry.registerBlock(tipi, Strings.TIPI_NAME);
 
         //GameRegistry.registerBlock(lotusBlock, Strings.LOTUS_BLOCK_NAME);
         //GameRegistry.registerBlock(fungusBlock, Strings.FUNGAL_PLANT_BLOCK_NAME);

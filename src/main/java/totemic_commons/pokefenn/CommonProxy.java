@@ -5,6 +5,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
@@ -23,6 +24,7 @@ public class CommonProxy implements IGuiHandler
         GameRegistry.registerTileEntity(TileTotemTorch.class, Strings.TOTEM_TORCH_NAME);
         GameRegistry.registerTileEntity(TileDrum.class, Strings.DRUM_NAME);
         GameRegistry.registerTileEntity(TileWindChime.class, Strings.WIND_CHIME_NAME);
+        GameRegistry.registerTileEntity(TileTipi.class, Strings.TIPI_NAME);
     }
 
     public void initRendering()

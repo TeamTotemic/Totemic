@@ -15,8 +15,6 @@ public final class ConfigurationSettings
     public static int POTION_ID_ANTIDOTE;
     public static int POTION_ID_SPIDER;
 
-    public static String TOTEM_TREE_GENERATION_BLACKLIST;
-
     public static int ENTITY_ID_EFREET;
     public static int ENTITY_ID_DART;
     public static int ENTITY_ID_BUFFALO;
@@ -30,7 +28,5 @@ public final class ConfigurationSettings
     public static int DECREMENT_TOTEM_COW;
 
     public static boolean RENDER_CUBE_SOCKET;
-
-    public static boolean TEST_ITEM;
 
 }

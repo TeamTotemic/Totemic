@@ -44,13 +44,9 @@ public final class ConfigurationHandler
 
             ConfigurationSettings.ENTITY_ID_EFREET = configuration.get(CATEGORY_ENTITY, "efreetEntityID", 22).getInt(22);
             ConfigurationSettings.ENTITY_ID_DART = configuration.get(CATEGORY_ENTITY, "dartEntityID", 23).getInt(23);
-            ConfigurationSettings.ENTITY_ID_BUFFALO = configuration.get(CATEGORY_ENTITY, "buffaloEntityID", 22).getInt(22);
+            ConfigurationSettings.ENTITY_ID_BUFFALO = configuration.get(CATEGORY_ENTITY, "buffaloEntityID", 24).getInt(24);
 
             ConfigurationSettings.RENDER_CUBE_SOCKET = configuration.get(CATEGORY_CLIENT, "doRenderSocketAsCube", true).getBoolean(true);
-
-            ConfigurationSettings.TEST_ITEM = configuration.get(CATEGORY_GENERAL, "doAllowTestItem", false).getBoolean(false);
-
-            //Blocks
 
         } catch(Exception e)
         {

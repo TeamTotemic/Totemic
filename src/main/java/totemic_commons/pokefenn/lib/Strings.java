@@ -23,6 +23,7 @@ public final class Strings
     public static final String WIND_CHIME_NAME = "windChime";
     public static final String RED_CEDAR_PLANK_NAME = "redCedarPlank";
     public static final String RED_CEDAR_STRIPPED_NAME = "redCedarStripped";
+    public static final String TIPI_NAME = "totemicTipi";
 
     //Items
     public static final String TOTEM_WHITTLING_KNIFE_NAME = "totemWhittlingKnife";

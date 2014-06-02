@@ -29,7 +29,6 @@ public class TotemEffectCow implements ITotemEffect
                     if(entity instanceof EntityPlayer)
                     {
                         TotemUtil.addPotionEffects((EntityPlayer) entity, 160, 30, Potion.resistance, 0, false);
-
                         TotemUtil.addNegitivePotionEffect((EntityPlayer) entity, 100, 35, Potion.moveSlowdown, 1, true);
 
                         if(intelligence)
