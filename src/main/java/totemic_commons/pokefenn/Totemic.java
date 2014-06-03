@@ -16,6 +16,7 @@ import totemic_commons.pokefenn.event.ModEvents;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.misc.CreativeTabTotemic;
 import totemic_commons.pokefenn.misc.TotemicFuelHandler;
+import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
 
@@ -94,6 +95,8 @@ public final class Totemic
     public void init(FMLInitializationEvent event)
     {
         logger.info("Totemic is entering its Initlisation stage");
+
+        PacketHandler.init();
 
         //Initiates all the block/entity/item and other stuff rendering
         proxy.initRendering();
