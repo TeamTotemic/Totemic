@@ -30,6 +30,7 @@ public final class ModItems
     public static Item darts;
     public static Item jingleDress;
     public static Item barkStripper;
+    public static Item buffaloItems;
 
     public static Item totemArmourHead;
     public static Item totemArmourChest;
@@ -51,8 +52,7 @@ public final class ModItems
         blowDart = new ItemBlowGun();
         jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
-
-        //TODO Remember to uncomment out some of the items
+        //buffaloItems = new ItemBuffaloDrops();
 
         //huntingKnife = new ItemHuntingKnife();
         //verdantCrystal = new ItemVerdantCrystal();
@@ -79,6 +79,7 @@ public final class ModItems
         GameRegistry.registerItem(darts, "darts");
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
+        //GameRegistry.registerItem(buffaloItems, "buffaloItems");
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
         //GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
