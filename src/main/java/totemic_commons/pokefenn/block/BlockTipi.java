@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -37,9 +38,14 @@ public class BlockTipi extends BlockTileTotemic
     {
         TileTipi tileTipi = (TileTipi) world.getTileEntity(x, y, z);
 
-        if(player.getHeldItem() != null && player.getHeldItem().getItem() == Items.dye)
+        if(player.getHeldItem() != null && player.getHeldItem().getItem() == Items.dye && player.getHeldItem().getItemDamage() != tileTipi.colour)
         {
             tileTipi.colour = player.getHeldItem().getItemDamage();
+
+            if(!world.isRemote)
+            {
+                player.getHeldItem().stackSize--;
+            }
         }
 
         if(!world.isRemote)
@@ -49,7 +55,7 @@ public class BlockTipi extends BlockTileTotemic
                 world.setBlockToAir(x, y, z);
                 EntityItem tipiItem = new EntityItem(world, x, y, z, new ItemStack(this, 1, 0));
                 world.spawnEntityInWorld(tipiItem);
-            } else if(canSleepTipi(x, y, z, world, player) || true && (world.getBlock(x, y - 1, z) != null && world.getBlock(x, y - 1, z).getMaterial() == Material.grass))
+            } else if(/*canSleepTipi(x, y, z, world, player) && */world.canBlockSeeTheSky(x, y + 1, z) && world.getBlock(x, y - 1, z) != null && (world.getBlock(x, y - 1, z).getMaterial() == Material.grass || world.getBlock(x, y - 1, z).getMaterial() == Material.ground))
             {
                 if(world.provider.canRespawnHere() && world.getBiomeGenForCoords(x, z) != BiomeGenBase.hell)
                 {
@@ -111,20 +117,28 @@ public class BlockTipi extends BlockTileTotemic
     public static boolean canSleepTipi(int x, int y, int z, World world, EntityPlayer player)
     {
         //Todo
-        int radius = 4;
+        int blocks = 0;
+        int radius = 5;
         for(int i = -radius; i <= radius; i++)
+        {
             for(int j = -radius; j <= radius; j++)
+            {
                 for(int k = -radius; k <= radius; k++)
                 {
-                    System.out.println(world.getBlock(x + i, y + k + 5, z + j));
-                    if(world.getBlock(x + i, y + k + 5, z + j) != null)
+                    if(world.getBlock(x + i, y + j + 5, z + k) != null)
                     {
-                        if(world.getBlock(x + i, y + k + 5, z + j).getMaterial() != Material.leaves || world.getBlock(x + i, y + k + 5, z + j).getMaterial() != Material.wood || world.getBlock(x + i, y + k + 5, z + j).getMaterial() != Material.air)
+                        Block block = world.getBlock(x + i, y + j + 5, z + j);
+
+                        if(block.getMaterial() != Material.leaves && block.getMaterial() != Material.wood && block.getMaterial() != Material.air)
                         {
-                            return false;
+                            blocks++;
+                            if(blocks > 6)
+                                return false;
                         }
                     }
                 }
+            }
+        }
 
         return true;
     }

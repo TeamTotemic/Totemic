@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.item.equipment.*;
-import totemic_commons.pokefenn.item.equipment.armour.ItemBellShoe;
+import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
@@ -32,7 +32,7 @@ public final class ModItems
     public static Item huntingKnife;
     public static Item blowDart;
     public static Item darts;
-    public static Item bellShoes;
+    public static Item jingleDress;
     public static Item barkStripper;
 
     public static Item totemArmourHead;
@@ -53,7 +53,7 @@ public final class ModItems
         subItems = new ItemTotemicItems();
         darts = new ItemDarts();
         blowDart = new ItemBlowGun();
-        bellShoes = new ItemBellShoe();
+        jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
 
         //TODO Remember to uncomment out some of the items
@@ -88,7 +88,7 @@ public final class ModItems
         GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
         GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
         GameRegistry.registerItem(darts, "darts");
-        GameRegistry.registerItem(bellShoes, Strings.BELL_SHOE_NAME);
+        GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());

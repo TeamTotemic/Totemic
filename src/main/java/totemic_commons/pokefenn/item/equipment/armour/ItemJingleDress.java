@@ -22,15 +22,17 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemBellShoe extends ItemArmor implements ISpecialArmor, IMusic
+public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
 {
     public int time = 0;
     public boolean hasSpeed = false;
 
-    public ItemBellShoe()
+    //TODO Make this become a jingle dress!
+
+    public ItemJingleDress()
     {
-        super(EquipmentMaterials.bellShoe, 0, 3);
-        setUnlocalizedName(Strings.BELL_SHOE_NAME);
+        super(EquipmentMaterials.bellShoe, 0, 2);
+        setUnlocalizedName(Strings.JINGLE_DRESS_NAME);
     }
 
     @Override
@@ -100,7 +102,7 @@ public class ItemBellShoe extends ItemArmor implements ISpecialArmor, IMusic
     @Override
     public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return MusicEnum.BELL_SHOE;
+        return MusicEnum.JINGLE_DRESS;
     }
 
     @Override

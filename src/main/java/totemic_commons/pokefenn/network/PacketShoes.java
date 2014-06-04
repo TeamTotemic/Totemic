@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.item.equipment.armour.ItemBellShoe;
+import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
 
 /**
  * Created by Pokefenn.
@@ -99,12 +99,12 @@ public class PacketShoes implements IMessage, IMessageHandler<PacketShoes, IMess
             {
                 if(motionX > 0.08 || motionZ > 0.08)
                 {
-                    ((ItemBellShoe) player.getCurrentArmor(0).getItem()).time += motionX > 0.17 ? 2 : 1;
+                    ((ItemJingleDress) player.getCurrentArmor(0).getItem()).time += motionX > 0.17 ? 2 : 1;
                 }
             }
             if(player.isSneaking() && (motionX > 0 || motionZ > 0))
             {
-                ((ItemBellShoe) player.getCurrentArmor(0).getItem()).time += 1;
+                ((ItemJingleDress) player.getCurrentArmor(0).getItem()).time += 1;
             }
         }
 
