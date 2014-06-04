@@ -15,7 +15,7 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.PacketShoes;
+import totemic_commons.pokefenn.network.PacketJingle;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
@@ -53,8 +53,8 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
         if(world.isRemote)
         {
             if(world.getWorldTime() % 20L == 0)
-                if(player.motionX != 0 || player.motionZ != 0)
-                    PacketHandler.sendToServer(new PacketShoes(player.motionX, player.motionZ));
+                if(player.motionX > 0 || player.motionZ > 0)
+                    PacketHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
         }
 
         if(!world.isRemote)

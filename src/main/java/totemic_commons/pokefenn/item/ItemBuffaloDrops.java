@@ -49,6 +49,7 @@ public class ItemBuffaloDrops extends ItemTotemic
 
         unlocalizedName.append("item.");
         unlocalizedName.append(Strings.RESOURCE_PREFIX);
+        unlocalizedName.append("buffalo");
         unlocalizedName.append(BUFFALO_ITEM_NAMES[meta]);
 
         return unlocalizedName.toString();

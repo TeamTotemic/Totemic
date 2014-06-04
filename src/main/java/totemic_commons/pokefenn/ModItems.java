@@ -61,9 +61,9 @@ public final class ModItems
         //totempedia = new ItemTotempedia();
         //halberd = new ItemHalberd();
 
-        totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
+        //totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
         //totemArmourFeet = new ItemTotemArmour(3, Strings.TOTEM_ARMOUR_FOOT_NAME);
-        totemArmourHead = new ItemTotemArmour(0, Strings.TOTEM_ARMOUR_HEAD_NAME);
+        //totemArmourHead = new ItemTotemArmour(0, Strings.TOTEM_ARMOUR_HEAD_NAME);
         totemArmourLeg = new ItemTotemArmour(2, Strings.TOTEM_ARMOUR_LEG_NAME);
 
         //Registry for other items
@@ -71,10 +71,10 @@ public final class ModItems
         GameRegistry.registerItem(totemicStaff, totemicStaff.getUnlocalizedName());
         GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
         GameRegistry.registerItem(totems, totems.getUnlocalizedName());
-        GameRegistry.registerItem(totemArmourChest, totemArmourChest.getUnlocalizedName());
+        //GameRegistry.registerItem(totemArmourChest, totemArmourChest.getUnlocalizedName());
         //GameRegistry.registerItem(totemArmourFeet, totemArmourFeet.getUnlocalizedName());
         GameRegistry.registerItem(totemArmourLeg, totemArmourLeg.getUnlocalizedName());
-        GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
+        //GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
         GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
         GameRegistry.registerItem(darts, "darts");
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);

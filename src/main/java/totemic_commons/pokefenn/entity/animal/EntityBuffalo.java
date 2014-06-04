@@ -11,6 +11,7 @@ import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.item.ItemBuffaloDrops;
 
 import java.util.Random;
 
@@ -90,7 +91,7 @@ public class EntityBuffalo extends EntityAnimal
             if(!isSheared && itemstack.getItem() instanceof ItemShears)
             {
                 itemstack.damageItem(1, par1EntityPlayer);
-                EntityItem entityItem = new EntityItem(worldObj, posX, posY, posZ, new ItemStack(ModItems.buffaloItems, 2 + rand.nextInt(3)));
+                EntityItem entityItem = new EntityItem(worldObj, posX, posY, posZ, new ItemStack(ModItems.buffaloItems, 2 + rand.nextInt(3), ItemBuffaloDrops.hair));
                 worldObj.spawnEntityInWorld(entityItem);
             }
         }

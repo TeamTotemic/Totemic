@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -30,7 +29,6 @@ public class BlockTipi extends BlockTileTotemic
     {
         super(Material.cloth);
         setBlockName(Strings.TIPI_NAME);
-        //this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5625F, 1.0F);
     }
 
     @Override
@@ -83,13 +81,13 @@ public class BlockTipi extends BlockTileTotemic
                         return true;
                     }
 
-                    BlockBed.func_149979_a(world, x, y, z, false);
+                    //BlockBed.func_149979_a(world, x, y, z, false);
 
                     EntityPlayer.EnumStatus enumstatus = player.sleepInBedAt(x, y, z);
 
                     if(enumstatus == EntityPlayer.EnumStatus.OK)
                     {
-                        BlockBed.func_149979_a(world, x, y, z, true);
+                        //BlockBed.func_149979_a(world, x, y, z, true);
                         return true;
                     } else
                     {

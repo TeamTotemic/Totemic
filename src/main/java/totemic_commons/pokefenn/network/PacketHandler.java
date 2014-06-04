@@ -25,7 +25,7 @@ public class PacketHandler
 
     public static void init()
     {
-        registerPacket(PacketShoes.class, Side.CLIENT);
+        registerPacket(PacketJingle.class, Side.SERVER);
     }
 
     public static void sendToClient(IMessage packet, EntityPlayerMP player)
