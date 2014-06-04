@@ -7,17 +7,17 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.*;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.potion.ModPotions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,7 +38,7 @@ public class ItemPotions extends Item
     {
         super();
         //setCreativeTab(Totemic.tabsPotionTotem);
-        setUnlocalizedName(Strings.TOTEMIC_POTION_NAME);
+        //setUnlocalizedName(Strings.TOTEMIC_POTION_NAME);
     }
 
     public EnumAction getItemUseAction(ItemStack par1ItemStack)

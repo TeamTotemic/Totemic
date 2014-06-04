@@ -23,10 +23,6 @@ public final class ModItems
     public static Item infusedTotemicStaff;
     public static Item totempedia;
     public static Item potion;
-    public static Item moonglowSeeds;
-    public static Item bloodwart;
-    public static Item lotusSeed;
-    public static Item fungusSpore;
     public static Item halberd;
     public static Item test;
     public static Item huntingKnife;
@@ -60,17 +56,10 @@ public final class ModItems
 
         //huntingKnife = new ItemHuntingKnife();
         //verdantCrystal = new ItemVerdantCrystal();
-        //bucketChlorophyll = new ItemBucketChlorophyll();
-        //bottleChlorophyll = new ItemBottleChlorophyll();
         //blazingChlorophyllCrystal = new ItemBlazingVerdantCrystal();
         //infusedTotemicStaff = new ItemInfusedTotemicStaff();
         //totempedia = new ItemTotempedia();
-        //moonglowSeeds = new ItemMoonglowSeeds();
-        //bloodwart = new ItemBloodWart();
-        //lotusSeed = new ItemWaterLotusSeed();
-        //fungusSpore = new ItemFungusPlantSpore();
         //halberd = new ItemHalberd();
-        //witherBow = new ItemWitherBow();
 
         totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
         //totemArmourFeet = new ItemTotemArmour(3, Strings.TOTEM_ARMOUR_FOOT_NAME);
@@ -92,18 +81,10 @@ public final class ModItems
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
-        //GameRegistry.registerItem(moonglowSeeds, moonglowSeeds.getUnlocalizedName());
-        //GameRegistry.registerItem(bloodwart, bloodwart.getUnlocalizedName());
-        //GameRegistry.registerItem(lotusSeed, lotusSeed.getUnlocalizedName());
-        //GameRegistry.registerItem(fungusSpore, fungusSpore.getUnlocalizedName());
-        //GameRegistry.registerItem(bottleChlorophyll, bottleChlorophyll.getUnlocalizedName());
         //GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
-        //GameRegistry.registerItem(infusedTotemicStaff, infusedTotemicStaff.getUnlocalizedName());
         //GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
         //GameRegistry.registerItem(verdantCrystal, verdantCrystal.getUnlocalizedName());
-        //GameRegistry.registerItem(bucketChlorophyll, bucketChlorophyll.getUnlocalizedName());
         //GameRegistry.registerItem(halberd, Strings.HALBERD_NAME);
-        //GameRegistry.registerItem(witherBow, Strings.WITHER_BOW_NAME);
 
         initBaubles();
     }

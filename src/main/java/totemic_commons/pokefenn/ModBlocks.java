@@ -63,20 +63,8 @@ public final class ModBlocks
         GameRegistry.registerBlock(redCedarStripped, Strings.RED_CEDAR_STRIPPED_NAME);
         GameRegistry.registerBlock(tipi, Strings.TIPI_NAME);
 
-        //GameRegistry.registerBlock(lotusBlock, Strings.LOTUS_BLOCK_NAME);
-        //GameRegistry.registerBlock(fungusBlock, Strings.FUNGAL_PLANT_BLOCK_NAME);
         //GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
-        //GameRegistry.registerBlock(totemCauldron, Strings.TOTEM_CAULDRON_NAME);
-        //GameRegistry.registerBlock(moonglow, Strings.MOONGLOW_NAME);
-        //GameRegistry.registerBlock(totemCeremonyIntelligence, Strings.CEREMONY_INTELLIGENCE_NAME);
-        //GameRegistry.registerBlock(bloodwart, Strings.BLOODWART_BLOCK_NAME);
         //chlorophyll = new BlockChlorophyll();
-        //totemCauldron = new BlockTotemCauldron();
-        //moonglow = new BlockMoonglow();
-        //totemCeremonyIntelligence = new BlockCeremonyIntelligence();
-        //bloodwart = new BlockBloodWart();
-        //lotusBlock = new BlockWaterLotus();
-        //fungusBlock = new BlockFungalPlant();
     }
 
 }

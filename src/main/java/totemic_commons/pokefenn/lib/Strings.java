@@ -36,11 +36,6 @@ public final class Strings
     public static final String BLAZING_VERDANT_CRYSTAL_NAME = "blazingVerdantCrystal";
     public static final String INFUSED_TOTEMIC_STAFF_NAME = "infusedTotemicStaff";
     public static final String TOTEMPEDIA_NAME = "totempedia";
-    public static final String TOTEMIC_POTION_NAME = "infusedPotion";
-    public static final String MOONGLOW_SEEDS_NAME = "moonglowSeeds";
-    public static final String BLOODWART_NAME = "bloodwart";
-    public static final String LOTUS_SEED_NAME = "lotusSeed";
-    public static final String FUNGUS_PLANT_SPORE = "fungusSpore";
     public static final String HALBERD_NAME = "halberd";
     public static final String TOTEM_ARMOUR_LEG_NAME = "totemArmourLeg";
     public static final String TOTEM_ARMOUR_HEAD_NAME = "totemArmourHead";
