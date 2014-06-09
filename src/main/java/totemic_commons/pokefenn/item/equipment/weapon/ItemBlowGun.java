@@ -89,7 +89,7 @@ public class ItemBlowGun extends ItemTotemic
     @Override
     public int getMaxItemUseDuration(ItemStack itemStack)
     {
-        return 96000;
+        return 72000;
     }
 
     @Override
