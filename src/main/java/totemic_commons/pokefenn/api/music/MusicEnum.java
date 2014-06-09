@@ -18,7 +18,7 @@ public enum MusicEnum
         this.musicName = musicName;
     }
 
-    String getMusicName()
+    public String getMusicName()
     {
         return this.musicName;
     }

@@ -140,6 +140,16 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         }
     }
 
+    public static String getPlantEssence(int plantEssence)
+    {
+        if(plantEssence == 0)
+            return "totemic:noPlantEssence";
+        else if(plantEssence > 0 && plantEssence < 20)
+            return "totemic:lowPlantEssence";
+
+        return "";
+    }
+
     public void doCeremonyCode()
     {
         if(!isDoingStartup)

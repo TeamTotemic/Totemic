@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
@@ -44,6 +45,20 @@ public class EntityBuffalo extends EntityAnimal
         return "mob.cow.say";
     }
 
+
+    //@Override
+    //protected void entityInit()
+    //{
+    //    super.entityInit();
+    //    this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
+    //}
+
+    @Override
+    protected void updateAITasks()
+    {
+        super.updateAITasks();
+    }
+
     @Override
     protected String getHurtSound()
     {
@@ -68,21 +83,36 @@ public class EntityBuffalo extends EntityAnimal
         return 0.4F;
     }
 
-    public boolean interact(EntityPlayer par1EntityPlayer)
+    @Override
+    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
-        ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
+        super.writeEntityToNBT(par1NBTTagCompound);
+        par1NBTTagCompound.setBoolean("isSheared", isSheared);
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
+    {
+        super.readEntityFromNBT(par1NBTTagCompound);
+        isSheared = par1NBTTagCompound.getBoolean("isSheared");
+    }
+
+    @Override
+    public boolean interact(EntityPlayer player)
+    {
+        ItemStack itemstack = player.inventory.getCurrentItem();
         Random rand = new Random();
 
         if(itemstack != null)
         {
-            if(itemstack.getItem() == Items.bucket && !par1EntityPlayer.capabilities.isCreativeMode)
+            if(itemstack.getItem() == Items.bucket && !player.capabilities.isCreativeMode)
             {
                 if(itemstack.stackSize-- == 1)
                 {
-                    par1EntityPlayer.inventory.setInventorySlotContents(par1EntityPlayer.inventory.currentItem, new ItemStack(Items.milk_bucket));
-                } else if(!par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket)))
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.milk_bucket));
+                } else if(!player.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket)))
                 {
-                    par1EntityPlayer.dropPlayerItemWithRandomChoice(new ItemStack(Items.milk_bucket, 1, 0), false);
+                    player.dropPlayerItemWithRandomChoice(new ItemStack(Items.milk_bucket, 1, 0), false);
                 }
 
                 return true;
@@ -90,13 +120,13 @@ public class EntityBuffalo extends EntityAnimal
 
             if(!isSheared && itemstack.getItem() instanceof ItemShears)
             {
-                itemstack.damageItem(1, par1EntityPlayer);
+                itemstack.damageItem(1, player);
                 EntityItem entityItem = new EntityItem(worldObj, posX, posY, posZ, new ItemStack(ModItems.buffaloItems, 2 + rand.nextInt(3), ItemBuffaloDrops.hair));
                 worldObj.spawnEntityInWorld(entityItem);
             }
         }
 
-        return super.interact(par1EntityPlayer);
+        return super.interact(player);
 
     }
 
@@ -107,7 +137,7 @@ public class EntityBuffalo extends EntityAnimal
     }
 
     @Override
-    protected int getExperiencePoints(EntityPlayer par1EntityPlayer)
+    protected int getExperiencePoints(EntityPlayer player)
     {
         return 4 + worldObj.rand.nextInt(6);
     }

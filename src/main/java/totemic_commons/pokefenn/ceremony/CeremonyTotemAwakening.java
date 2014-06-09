@@ -2,7 +2,6 @@ package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileCeremonyIntelligence;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 /**

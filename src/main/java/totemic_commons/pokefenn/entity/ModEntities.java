@@ -1,6 +1,9 @@
 package totemic_commons.pokefenn.entity;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
@@ -13,13 +16,16 @@ public final class ModEntities
 {
 
 
-    public static void init(Object totemic)
+    public static void init()
     {
-        //EntityRegistry.registerModEntity(EntityEfreet.class, "efreet", ConfigurationSettings.ENTITY_ID_EFREET, totemic, 100, 5, true);
-        EntityRegistry.registerModEntity(EntityBaseDart.class, "totemDart", ConfigurationSettings.ENTITY_ID_DART, totemic, 80, 3, true);
-        //TODO in the future, meh
-        //EntityRegistry.registerModEntity(EntityAkuAku.class, "akuAku", 50, totemic, 80, 5, true);
-        EntityRegistry.registerModEntity(EntityBuffalo.class, "Buffalo", ConfigurationSettings.ENTITY_ID_BUFFALO, totemic, 80, 5, true);
+        //EntityRegistry.registerModEntity(EntityEfreet.class, "efreet", ConfigurationSettings.ENTITY_ID_EFREET, Totemic.instance, 100, 5, true);
+        EntityRegistry.registerModEntity(EntityBaseDart.class, "totemDart", ConfigurationSettings.ENTITY_ID_DART, Totemic.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityBuffalo.class, "Buffalo", ConfigurationSettings.ENTITY_ID_BUFFALO, Totemic.instance, 80, 5, true);
+
+        EntityRegistry.addSpawn(EntityBuffalo.class, 10, 2, 4, EnumCreatureType.creature);
+
+        EntityList.IDtoClassMapping.put(ConfigurationSettings.ENTITY_ID_BUFFALO, EntityBuffalo.class);
+        EntityList.entityEggs.put(EntityBuffalo.class, new EntityList.EntityEggInfo(ConfigurationSettings.ENTITY_ID_BUFFALO, 0x1330, 0x1323122));
     }
 
 }

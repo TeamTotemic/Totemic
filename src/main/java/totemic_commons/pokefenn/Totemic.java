@@ -7,15 +7,14 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
+import totemic_commons.pokefenn.compat.Compatibility;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.event.ModEvents;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.misc.CreativeTabTotemic;
-import totemic_commons.pokefenn.misc.TotemicFuelHandler;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
@@ -28,7 +27,7 @@ import java.util.logging.Logger;
 //import totemic_commons.pokefenn.network.PacketPipeline;
 
 
-@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.1", dependencies = "after:Baubles;")
+@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.1", dependencies = "after:Baubles;after:Waila;")
 public final class Totemic
 {
     public static final String MOD_ID = "totemic";
@@ -37,7 +36,7 @@ public final class Totemic
     @Instance(MOD_ID)
     public static Totemic instance;
 
-    @SidedProxy(clientSide = "totemic_commons.pokefenn.ClientProxy", serverSide = "totemic_commons.pokefenn.CommonProxy", modId = Totemic.MOD_ID)
+    @SidedProxy(clientSide = "totemic_commons.pokefenn.ClientProxy", serverSide = "totemic_commons.pokefenn.CommonProxy", modId = MOD_ID)
     public static CommonProxy proxy;
 
     //Creative tab stuff
@@ -96,19 +95,17 @@ public final class Totemic
     {
         logger.info("Totemic is entering its Initlisation stage");
 
+        //Registers the packets with FML
         PacketHandler.init();
 
         //Initiates all the block/entity/item and other stuff rendering
         proxy.initRendering();
 
         //Initiates the mod entities to the game
-        ModEntities.init(this);
+        ModEntities.init();
 
         //Intiate all the recipes!
         TotemicRecipes.init();
-
-        //Initialises the fuel handler for the BlazingChlorophyllCrystal
-        GameRegistry.registerFuelHandler(new TotemicFuelHandler());
 
         //Init tile entities into the game
         proxy.registerTileEntities();
@@ -118,6 +115,8 @@ public final class Totemic
 
         //Registers the events into forge
         ModEvents.init();
+
+        Compatibility.sendIMCMessages();
     }
 
     @EventHandler

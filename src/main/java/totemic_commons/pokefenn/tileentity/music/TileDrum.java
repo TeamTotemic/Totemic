@@ -5,8 +5,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.network.block.music.DrumPacket;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**

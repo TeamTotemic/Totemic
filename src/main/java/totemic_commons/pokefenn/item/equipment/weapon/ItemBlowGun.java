@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.equipment;
+package totemic_commons.pokefenn.item.equipment.weapon;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;

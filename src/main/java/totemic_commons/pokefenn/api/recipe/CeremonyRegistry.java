@@ -28,9 +28,11 @@ public class CeremonyRegistry
     private final int musicNeeded;
     private final int maximumStartupTime;
     private final int melodyPer5After;
+    private final String name;
 
-    public CeremonyRegistry(boolean doesNeedItems, MusicEnum instrument1, MusicEnum instrument2, MusicEnum instrument3, MusicEnum instrument4, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, ItemStack item, int musicNeeded, int maximumStartupTime, int melodyPer5After)
+    public CeremonyRegistry(String name, boolean doesNeedItems, MusicEnum instrument1, MusicEnum instrument2, MusicEnum instrument3, MusicEnum instrument4, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, ItemStack item, int musicNeeded, int maximumStartupTime, int melodyPer5After)
     {
+        this.name = name;
         this.item = item;
         this.doesNeedItems = doesNeedItems;
         this.instrument1 = instrument1;
@@ -103,6 +105,11 @@ public class CeremonyRegistry
     public int getMaximumStartupTime()
     {
         return this.maximumStartupTime;
+    }
+
+    public String getName()
+    {
+        return this.name;
     }
 
 }

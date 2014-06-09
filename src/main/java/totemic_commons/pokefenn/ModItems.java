@@ -9,6 +9,7 @@ import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
+import totemic_commons.pokefenn.item.equipment.weapon.ItemBlowGun;
 import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModItems
