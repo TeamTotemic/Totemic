@@ -9,39 +9,49 @@ item.totemic:totemsOcelot.name=Оцелот (Тотем)
 item.totemic:totemsBlaze.name=Ифрит (Тотем)
 item.totemic:totemsSquid.name=Спрут (Тотем)
 item.totemic:totemsDraining.name=Осушение (Тотем)
-item.totemic:totemsRange.name=Дальность (Тотем)
 item.totemic:totemsSpider.name=Паук (Тотем)
 item.totemic:totemsCow.name=Корова (Тотем)
-item.totemic:chlorophyllicIngot.name=Хлорофилловый слиток
-item.totemic:paintBrush.name=Тотемная кисточка
-item.totemic:bucketChlorophyll.name=Ведро хлорофилла
-item.totemic:chlorophyllCrystal.name=Хлорофилловый кристалл
-item.totemic:blazingChlorophyllCrystal.name=Пылающий хлорофилловый кристалл
-item.totemic:bottleChlorophyll.name=Бутылка хлорофилла
+item.totemic:paintBrush.name=Кисточка тотемиста
 item.totemic:infusedTotemicStaff.name=Заряженный тотемный посох
-item.totemic:leaf.name=Заряженный листик
-item.totemic:infusedStick.name=Заряженная палка
+item.totemic:leaf.name=Лесной лист
+item.totemic:infusedStick.name=Кедровая палка
 item.totemic:totempedia.name=Тотемпедия
 item.totemic:blazingVerdantCrystal.name=Пылающий зелёный кристалл
 item.totemic:verdantCrystal.name=Зелёный кристалл
 item.totemic:shamanFlute.name=Флейта тотема
 item.totemic:heiTiki.name=Хей-Тики
 item.totemic:herculeseBeetle.name=Жук-геркулес
-item.totemic:totemArmourHead.name=Шлем тотема
-item.totemic:totemArmourFeet.name=Ботинки тотема
-item.totemic:totemArmourChest.name=Кираса тотема
-item.totemic:totemArmourLeg.name=Поножи тотема
+item.totemic:totemArmourHead.name=Маска тотемиста
+item.totemic:totemArmourFeet.name=Ботинки тотемиста
+item.totemic:totemArmourChest.name=Нагрудник тотемиста
+item.totemic:totemArmourLeg.name=Юбка тотемиста
+item.totemic:cedarStick.name=Палка из красного кедра
+item.totemic:flute.name=Флейта тотемиста
+item.totemic:fluteInfused.name=Заряженная флейта тотемиста
+item.totemic:cedarBark.name=Кора красного кедра
+item.totemic:barkStickCedar.name=Палка из красного кедра, усиленная корой
+item.totemic:basicDart.name=Дротик
+item.totemic:poisonDart.name=Ядовитый дротик
+item.totemic:blazeDart.name=Пламенный дротик
+item.totemic:antidoteDart.name=Дротик с противоядием
+item.totemic:barkStripper.name=Чистильщик коры
+item.totemic:blowGun.name=Духовая трубка
+item.totemic:cedarMaker.name=Cedar Metamorphosiser
 
 # Block localizations
-tile.sylvanLog.name=Лесная древесина
-tile.totemSupport.name=Структурная поддержка тотема
+tile.cedarLog.name=Древесина красного кедра
 tile.totemBase.name=Основание тотема
 tile.totemPole.name=Столб тотема
-tile.totemSapling.name=Заряженный саженец
-tile.totemLeaves.name=Заряженная листва
-tile.totemDrum.name=Барабан
-
+tile.totemSapling.name=Саженец красного кедра
+tile.totemLeaves.name=Листва красного кедра
+tile.totemDrum.name=Барабан тотемиста
 tile.windChime.name=Музыкальная подвеска
+tile.totemTorch.name=Факел для тотема
+tile.redCedarPlank.name=Доски из красного кедра
+tile.redCedarStripped.name=Очищенная древесина красного кедра
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
+
+# Waila Localizations
+totemic:plantEssence=Эссенция растения:
