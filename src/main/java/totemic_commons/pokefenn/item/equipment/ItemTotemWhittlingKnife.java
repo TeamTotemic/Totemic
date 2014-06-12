@@ -8,11 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.block.BlockCedarLog;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTotemic;
-import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -37,10 +36,11 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         list.add("A knife for all your whittlin' needs");
         list.add("Shift and right click to change carving");
-        if(stack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
-            list.add("Currently Carving: " + ItemTotems.TOTEM_NAMES[stack.getItemDamage()]);
-        if(stack.getItemDamage() == ItemTotems.TOTEM_NAMES.length)
+        if(stack.getItemDamage() < TotemRegistry.totemEffect.size())
+            list.add("Currently Carving: " + TotemRegistry.totemEffect.get(stack.getItemDamage()).getName());
+        if(stack.getItemDamage() == TotemRegistry.totemEffect.size())
             list.add("Currently Carving: Totem Base");
+        
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-        if(player.isSneaking() && itemStack.getItemDamage() >= ItemTotems.TOTEM_NAMES.length)
+        if(player.isSneaking() && itemStack.getItemDamage() >= TotemRegistry.totemEffect.size())
             return new ItemStack(this, 1, 0);
 
         return player.isSneaking() ? new ItemStack(this, 1, 1 + itemStack.getItemDamage()) : itemStack;
@@ -61,6 +61,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @Override
     public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
+        //TODO make sure that this works
         if(!world.isRemote)
         {
             MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
@@ -71,18 +72,18 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
                 if(blockQuery instanceof BlockCedarLog || blockQuery instanceof BlockTotemPole)
                 {
-                    if(itemStack.getItemDamage() == ItemTotems.TOTEM_NAMES.length)
+                    if(itemStack.getItemDamage() == TotemRegistry.totemEffect.size())
                     {
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemBase);
                         return true;
                     } else
                     {
-                        if(itemStack.getItemDamage() < ItemTotems.TOTEM_NAMES.length)
+                        if(itemStack.getItemDamage() < TotemRegistry.totemEffect.size())
                         {
                             world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);
                             TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
 
-                            tileTotemSocket.setInventorySlotContents(0, new ItemStack(ModItems.totems, 1, itemStack.getItemDamage()));
+                            tileTotemSocket.setInventorySlotContents(0, TotemRegistry.getRecipes().get(itemStack.getItemDamage()).getTotem());
                             world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
                             tileTotemSocket.markDirty();
                             return true;

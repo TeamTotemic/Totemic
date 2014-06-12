@@ -23,8 +23,9 @@ public class TotemRegistry
     private final int horizontal;
     private final ITotemEffect effect;
     private final int tier;
+    private final String name;
 
-    public TotemRegistry(ItemStack totem, int chlorophyllDecrement, int verticalHight, int horizontal, ITotemEffect effect, int tier)
+    public TotemRegistry(ItemStack totem, int chlorophyllDecrement, int verticalHight, int horizontal, ITotemEffect effect, int tier, String name)
     {
         this.totem = totem;
         this.chlorophyllDecrement = chlorophyllDecrement;
@@ -32,6 +33,7 @@ public class TotemRegistry
         this.horizontal = horizontal;
         this.effect = effect;
         this.tier = tier;
+        this.name = name;
     }
 
     public ItemStack getTotem()
@@ -67,6 +69,11 @@ public class TotemRegistry
     public int getTier()
     {
         return this.tier;
+    }
+
+    public String getName()
+    {
+        return this.name;
     }
 
 }

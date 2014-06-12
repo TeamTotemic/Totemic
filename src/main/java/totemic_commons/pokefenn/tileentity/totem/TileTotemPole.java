@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -16,7 +15,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 02/02/14
  * Time: 13:04
  */
-public class TileTotemPole extends TileTotemic implements IInventory
+public class TileTotemPole extends TileTotemic// implements IInventory
 {
 
     private ItemStack[] inventory;
@@ -30,23 +29,19 @@ public class TileTotemPole extends TileTotemic implements IInventory
         inventory = new ItemStack[INVENTORY_SIZE];
     }
 
-
-    @Override
     public int getSizeInventory()
     {
         return inventory.length;
     }
-
-    @Override
+    
     public ItemStack getStackInSlot(int slotIndex)
     {
         return inventory[slotIndex];
     }
 
-    @Override
+    
     public ItemStack decrStackSize(int slotIndex, int decrementAmount)
     {
-
         ItemStack itemStack = getStackInSlot(slotIndex);
         if(itemStack != null)
         {
@@ -79,20 +74,7 @@ public class TileTotemPole extends TileTotemic implements IInventory
     {
         readFromNBT(pkt.func_148857_g());
     }
-
-
-    @Override
-    public ItemStack getStackInSlotOnClosing(int slotIndex)
-    {
-        ItemStack itemStack = getStackInSlot(slotIndex);
-        if(itemStack != null)
-        {
-            setInventorySlotContents(slotIndex, null);
-        }
-        return itemStack;
-    }
-
-    @Override
+    
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack)
     {
         inventory[slotIndex] = itemStack;
@@ -102,57 +84,18 @@ public class TileTotemPole extends TileTotemic implements IInventory
         }
     }
 
-    @Override
-    public String getInventoryName()
-    {
-        return null;
-    }
 
-    @Override
-    public boolean hasCustomInventoryName()
-    {
-        return false;
-    }
-
-    @Override
     public int getInventoryStackLimit()
     {
         return 1;
     }
 
-    @Override
+    
     public boolean isUseableByPlayer(EntityPlayer var1)
     {
         return true;
     }
 
-    @Override
-    public void openInventory()
-    {
-
-    }
-
-    @Override
-    public void closeInventory()
-    {
-
-    }
-
-    @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemStack)
-    {
-        if(!this.worldObj.isRemote)
-        {
-            //if(i == SLOT_ONE && getStackInSlot(SLOT_ONE) == null && ((itemStack.getItem() == ModItems.subItems && itemStack.getItemDamage() == 4)))
-            {
-                //this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-                //markDirty();
-                //return true;
-            }
-
-        }
-        return false;
-    }
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)

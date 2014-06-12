@@ -72,7 +72,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         totems = new ItemStack[6];
         plantEssence = 0;
-        maxEssence = 1000;
+        maxEssence = 500;
         rangeUpgrades = 0;
         music = new int[MusicEnum.values().length];
         tier = 1;
@@ -128,7 +128,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                             for(TotemRegistry totemRegistry : TotemRegistry.getRecipes())
                             {
                                 //TODO remember tier
-                                if(/*tier >= totemRegistry.getTier() && */totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement(), totems[i].getItemDamage()))
+                                if(/*tier >= totemRegistry.getTier() && */totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement()))
                                 {
                                     totemRegistry.getEffect().effect(this, socket, true, totemRegistry, totemRegistry.getHorizontal(), totemRegistry.getVerticalHight());
                                 }
@@ -561,10 +561,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
         if(plant instanceof BlockSapling)
         {
-            return 2;
+            return 1;
         }
 
-        return 3;
+        return 2;
     }
 
     public void decreaseChlorophyll(int subtraction)
@@ -573,7 +573,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             plantEssence -= subtraction;
     }
 
-    protected boolean canDoEffect(int subtraction, int meta)
+    protected boolean canDoEffect(int subtraction)
     {
         return plantEssence - subtraction > 0;
     }

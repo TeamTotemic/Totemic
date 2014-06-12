@@ -1,12 +1,8 @@
 package totemic_commons.pokefenn.block.totem;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
@@ -53,21 +49,6 @@ public class BlockTotemPole extends BlockTileTotemic
             {
                 player.addChatComponentMessage(new ChatComponentText("Active Totem Effect: " + ItemTotems.TOTEM_NAMES[tileTotemSocket.getStackInSlot(0).getItemDamage()]));
             }
-
-            /*
-            if(tileTotemSocket.getStackInSlot(SLOT_ONE) == null && heldItem != null && tileTotemSocket.isItemValidForSlot(0, heldItem))
-            {
-                tileTotemSocket.setInventorySlotContents(SLOT_ONE, heldItem);
-                player.destroyCurrentEquippedItem();
-
-            } else if(tileTotemSocket.getStackInSlot(SLOT_ONE) != null && heldItem == null)
-            {
-                EntityItem entityitem = new EntityItem(player.worldObj, player.posX + 0.5D, player.posY + 0.5D, player.posZ + 0.5D, tileTotemSocket.getStackInSlot(SLOT_ONE));
-                player.worldObj.spawnEntityInWorld(entityitem);
-                tileTotemSocket.setInventorySlotContents(SLOT_ONE, null);
-
-            }
-            */
             world.markBlockForUpdate(x, y, z);
         }
 

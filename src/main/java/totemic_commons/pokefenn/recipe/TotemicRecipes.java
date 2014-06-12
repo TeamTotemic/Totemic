@@ -89,13 +89,13 @@ public class TotemicRecipes
 
     public static void totemRegistry()
     {
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.horse), Totems.DECREMENT_HORSE, 20, 20, new TotemEffectHorse(), 1));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.squid), Totems.DECREMENT_SQUID, 20, 20, new TotemEffectSquid(), 1));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.blaze), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze(), 2));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.ocelot), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot(), 2));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.bat), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat(), 2));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.spider), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider(), 2));
-        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.cow), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow(), 1));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.horse), Totems.DECREMENT_HORSE, 20, 20, new TotemEffectHorse(), 1, ItemTotems.TOTEM_NAMES[ItemTotems.horse]));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.squid), Totems.DECREMENT_SQUID, 20, 20, new TotemEffectSquid(), 1, ItemTotems.TOTEM_NAMES[ItemTotems.squid]));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.blaze), Totems.DECREMENT_BLAZE, 20, 20, new TotemEffectBlaze(), 2, ItemTotems.TOTEM_NAMES[ItemTotems.blaze]));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.ocelot), Totems.DECREMENT_OCELOT, 20, 20, new TotemEffectOcelot(), 2, ItemTotems.TOTEM_NAMES[ItemTotems.ocelot]));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.bat), Totems.DECREMENT_BAT, 20, 32, new TotemEffectBat(), 2, ItemTotems.TOTEM_NAMES[ItemTotems.bat]));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.spider), Totems.DECREMENT_SPIDER, 20, 20, new TotemEffectSpider(), 2, ItemTotems.TOTEM_NAMES[ItemTotems.spider]));
+        TotemRegistry.totemEffect.add(new TotemRegistry(new ItemStack(ModItems.totems, 1, ItemTotems.cow), Totems.DECREMENT_COW, 18, 18, new TotemEffectCow(), 1, ItemTotems.TOTEM_NAMES[ItemTotems.cow]));
     }
 
     public static void ceremonyPotionHandler()

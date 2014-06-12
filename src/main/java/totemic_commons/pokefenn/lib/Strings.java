@@ -50,6 +50,7 @@ public final class Strings
     public static final String BLOW_DART_NAME = "blowGun";
     public static final String JINGLE_DRESS_NAME = "jingleDress";
     public static final String BARK_STRIPPER_NAME = "barkStripper";
+    public static final String TOMAHAWK_NAME = "tomahawk";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
