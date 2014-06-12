@@ -1,7 +1,10 @@
 package totemic_commons.pokefenn.item.equipment.weapon;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
@@ -42,7 +45,7 @@ public class ItemBlowGun extends ItemTotemic
 
             int metadata = 0;
 
-            if(!world.isRemote)
+            if(world.isRemote)
             {
                 for(int i = 0; i < player.inventory.getSizeInventory(); i++)
                 {
@@ -53,7 +56,8 @@ public class ItemBlowGun extends ItemTotemic
                         if(playerStack.getItem() == ModItems.darts)
                         {
                             metadata = playerStack.getItemDamage();
-                            playerStack.stackSize--;
+                            if(!world.isRemote)
+                                playerStack.stackSize--;
                             break;
                         }
                     }
@@ -70,6 +74,14 @@ public class ItemBlowGun extends ItemTotemic
         }
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.uncommon;
+    }
+
+    @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
         if(player.inventory.hasItem(ModItems.darts))

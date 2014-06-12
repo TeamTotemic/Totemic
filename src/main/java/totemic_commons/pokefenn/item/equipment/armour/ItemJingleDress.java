@@ -1,7 +1,10 @@
 package totemic_commons.pokefenn.item.equipment.armour;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -45,6 +48,13 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
     {
         stack.damageItem(damage % 2, entity);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack par1ItemStack)
+    {
+        return EnumRarity.uncommon;
     }
 
     @Override

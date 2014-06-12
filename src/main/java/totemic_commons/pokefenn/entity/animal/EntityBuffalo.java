@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.entity.animal;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -45,13 +46,19 @@ public class EntityBuffalo extends EntityAnimal
         return "mob.cow.say";
     }
 
+    @Override
+    public boolean isAIEnabled()
+    {
+        return true;
+    }
 
-    //@Override
-    //protected void entityInit()
-    //{
-    //    super.entityInit();
-    //    this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
-    //}
+    @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
+    }
 
     @Override
     protected void updateAITasks()
@@ -95,6 +102,31 @@ public class EntityBuffalo extends EntityAnimal
     {
         super.readEntityFromNBT(par1NBTTagCompound);
         isSheared = par1NBTTagCompound.getBoolean("isSheared");
+    }
+
+    @Override
+    protected void dropFewItems(boolean par1, int par2)
+    {
+        int j = this.rand.nextInt(3) + this.rand.nextInt(1 + par2);
+
+        for (int k = 0; k < j; ++k)
+        {
+            this.dropItem(Items.leather, 1);
+        }
+
+        j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + par2);
+
+        for (int k = 0; k < j; ++k)
+        {
+            if (this.isBurning())
+            {
+                this.dropItem(Items.cooked_beef, 1);
+            }
+            else
+            {
+                this.dropItem(Items.beef, 1);
+            }
+        }
     }
 
     @Override

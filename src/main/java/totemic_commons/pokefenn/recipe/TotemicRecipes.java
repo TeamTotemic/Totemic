@@ -80,7 +80,7 @@ public class TotemicRecipes
     public static void ceremonyHandler()
     {
         //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE, null, 100, 30 * 20, 0));
-        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Dance of Elixers", false, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.FLUTE, 2, new CeremonyPotion(), false, 20 * 30, null, 150, 30 * 20, 2));
+        CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Dance of Divine Elixers", false, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.FLUTE, 2, new CeremonyPotion(), false, 20 * 30, null, 150, 30 * 20, 2));
         CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Ceremony of Flute Imbuation", false, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, 3, new CeremonyFluteInfusion(), true, 20 * 30, null, 110, 40 * 20, 0));
         CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Rain Dance", false, MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.FLUTE, 4, new CeremonyRain(), true, 20 * 30, null, 110, 40 * 20, 0));
         CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Drought Ceremony", false, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, 5, new CeremonyRainRemoval(), true, 20 * 30, null, 110, 40 * 20, 0));
