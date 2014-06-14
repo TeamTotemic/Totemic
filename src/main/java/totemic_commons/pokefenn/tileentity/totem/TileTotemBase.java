@@ -15,6 +15,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
@@ -25,7 +26,6 @@ import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created with IntelliJ IDEA.
@@ -58,7 +58,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public int continueTimer;
     public boolean isCeremonyAwakening;
     public int musicForEffect;
-    public int maximumMusic = 1000;
+    public static int maximumMusic = 128;
 
     ItemStack[] totems;
 
@@ -117,10 +117,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                         {
                             for(TotemRegistry totemRegistry : TotemRegistry.getRecipes())
                             {
-                                //TODO remember tier
                                 if(/*tier >= totemRegistry.getTier() && */totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage())
                                 {
-                                    totemRegistry.getEffect().effect(this, socket, true, totemRegistry, totemRegistry.getHorizontal(), totemRegistry.getVerticalHight());
+                                    //TODO
+                                    totemRegistry.getEffect().effect(this, socket, totemRegistry, getRanges(totemRegistry)[0], getRanges(totemRegistry)[1], musicForEffect);
                                 }
                             }
                         }
@@ -186,7 +186,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             {
                 //if(isCeremonyAwakening)
                 //{
-                    musicFromCeremony += getMusicFromCeremony();
+                musicFromCeremony += getMusicFromCeremony();
                 //    effect.effect(this);
                 //}
                 resetAfterCeremony(true);
@@ -219,6 +219,71 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             isCeremony = false;
             resetAfterCeremony(true);
         }
+    }
+
+    public void depricateMelody()
+    {
+        if(musicForEffect != 0)
+        {
+
+        }
+    }
+
+    public static String getMusicName(int i)
+    {
+        //TODO stat collector
+        if(i < 10)
+        {
+        } else if(i > 10 && i < 32)
+        {
+            return StatCollector.translateToLocal("totemic:weak");
+        } else if(i > 32 && i < 64)
+        {
+            return StatCollector.translateToLocal("totemic:sufficient");
+        } else if(i > 64 && i < 96)
+        {
+        } else if(i > 96 && i < 115)
+        {
+        } else if(i > 115)
+        {
+        }
+        return "";
+    }
+
+    public int[] getRanges(TotemRegistry totemRegistry)
+    {
+        int[] array = new int[2];
+
+        array[0] = totemRegistry.getHorizontal();
+        array[1] = totemRegistry.getVerticalHight();
+
+        if(musicForEffect > 10 && musicForEffect < 32)
+        {
+            array[0] += 1;
+            array[1] += 1;
+        } else if(musicForEffect > 32 && musicForEffect < 64)
+        {
+            array[0] += 2;
+            array[1] += 2;
+        } else if(musicForEffect > 64 && musicForEffect < 96)
+        {
+            array[0] += 3;
+            array[1] += 3;
+        } else if(musicForEffect > 96 && musicForEffect < 115)
+        {
+            array[0] += 4;
+            array[1] += 4;
+        } else if(musicForEffect > 115)
+        {
+            array[0] += 6;
+            array[1] += 6;
+        }
+        array[0] += socket % 2;
+        array[1] += socket % 2;
+
+        //TODO this method will say the vertical/horizontal range of Totem Poles
+
+        return array;
     }
 
     public void particleAfterStartup()
@@ -341,7 +406,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public void startupMain()
     {
         System.out.println("main?");
-        if(ceremonyStartupTimer > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getMaximumStartupTime());
+        if(ceremonyStartupTimer > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getMaximumStartupTime()) ;
         {
             resetAfterCeremony(true);
         }
@@ -371,8 +436,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                     p++;
                     if(p <= 3)
                     {
-                        int armourAndBaubles = TotemUtil.getArmourAmounts((EntityPlayer) entity) + TotemUtil.getTotemBaublesAmount((EntityPlayer) entity);
-                        armourEfficiency += armourAndBaubles;
+                        //int armourAndBaubles = TotemUtil.getArmourAmounts((EntityPlayer) entity) + TotemUtil.getTotemBaublesAmount((EntityPlayer) entity);
+                        //armourEfficiency += armourAndBaubles;
                     }
                 }
             }
@@ -467,6 +532,12 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         Block block3 = worldObj.getBlock(this.xCoord, this.yCoord + 3, this.zCoord);
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
+        Block block6 = worldObj.getBlock(this.xCoord, this.yCoord + 6, this.zCoord);
+        Block block7 = worldObj.getBlock(this.xCoord, this.yCoord + 7, this.zCoord);
+        Block block8 = worldObj.getBlock(this.xCoord, this.yCoord + 8, this.zCoord);
+        Block block9 = worldObj.getBlock(this.xCoord, this.yCoord + 9, this.zCoord);
+        Block block10 = worldObj.getBlock(this.xCoord, this.yCoord + 10, this.zCoord);
+
 
         if(block1 instanceof BlockTotemPole && block2 != ModBlocks.totemPole)
         {
@@ -480,9 +551,21 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 != ModBlocks.totemPole)
         {
             return 4;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 != ModBlocks.totemPole)
         {
-            return 5;
+            return 6;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 != ModBlocks.totemPole)
+        {
+            return 7;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 != ModBlocks.totemPole)
+        {
+            return 8;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 instanceof BlockTotemPole && block9 != ModBlocks.totemPole)
+        {
+            return 9;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 != ModBlocks.totemPole && block9 == ModBlocks.totemPole && block10 != ModBlocks.totemPole)
+        {
+            return 10;
         } else
             return 0;
 

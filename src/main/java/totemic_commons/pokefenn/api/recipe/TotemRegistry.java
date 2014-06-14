@@ -18,17 +18,15 @@ public class TotemRegistry
     public static List<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();
 
     private final ItemStack totem;
-    private final int chlorophyllDecrement;
     private final int verticalHight;
     private final int horizontal;
     private final ITotemEffect effect;
     private final int tier;
     private final String name;
 
-    public TotemRegistry(ItemStack totem, int chlorophyllDecrement, int verticalHight, int horizontal, ITotemEffect effect, int tier, String name)
+    public TotemRegistry(ItemStack totem, int verticalHight, int horizontal, ITotemEffect effect, int tier, String name)
     {
         this.totem = totem;
-        this.chlorophyllDecrement = chlorophyllDecrement;
         this.verticalHight = verticalHight;
         this.horizontal = horizontal;
         this.effect = effect;
@@ -39,11 +37,6 @@ public class TotemRegistry
     public ItemStack getTotem()
     {
         return this.totem;
-    }
-
-    public int getChlorophyllDecrement()
-    {
-        return this.chlorophyllDecrement;
     }
 
     public int getVerticalHight()

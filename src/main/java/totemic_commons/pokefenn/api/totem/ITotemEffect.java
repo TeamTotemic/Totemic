@@ -13,11 +13,11 @@ public interface ITotemEffect
 {
     /**
      * @param totem         The tile entity of the Totem.
-     * @param intelligence  Does it run off plant essence?
      * @param socketAmount  The amount of sockets the Totem has above it.
      * @param totemRegistry The TotemRegistry, use it to gather information about the Totem.
      * @param horizontal    The Horizontal radius.
-     * @param verticle      The Vertical radius.
+     * @param vertical      The Vertical radius.
+     * @param melodyAmount  The amount of musical melody the totem pole has, this is used to determine how strong a effect is.
      */
-    public void effect(TileEntity totem, int socketAmount, boolean intelligence, TotemRegistry totemRegistry, int horizontal, int verticle);
+    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount);
 }

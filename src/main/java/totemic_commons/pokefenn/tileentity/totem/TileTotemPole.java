@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -29,36 +28,9 @@ public class TileTotemPole extends TileTotemic// implements IInventory
         inventory = new ItemStack[INVENTORY_SIZE];
     }
 
-    public int getSizeInventory()
-    {
-        return inventory.length;
-    }
-    
     public ItemStack getStackInSlot(int slotIndex)
     {
         return inventory[slotIndex];
-    }
-
-    
-    public ItemStack decrStackSize(int slotIndex, int decrementAmount)
-    {
-        ItemStack itemStack = getStackInSlot(slotIndex);
-        if(itemStack != null)
-        {
-            if(itemStack.stackSize <= decrementAmount)
-            {
-                setInventorySlotContents(slotIndex, null);
-            } else
-            {
-                itemStack = itemStack.splitStack(decrementAmount);
-                if(itemStack.stackSize == 0)
-                {
-                    setInventorySlotContents(slotIndex, null);
-                }
-            }
-        }
-
-        return itemStack;
     }
 
     @Override
@@ -89,13 +61,6 @@ public class TileTotemPole extends TileTotemic// implements IInventory
     {
         return 1;
     }
-
-    
-    public boolean isUseableByPlayer(EntityPlayer var1)
-    {
-        return true;
-    }
-
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)

@@ -1,15 +1,11 @@
 package totemic_commons.pokefenn.util;
 
-import baubles.api.BaublesApi;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.armour.ITotemArmour;
-import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
@@ -40,17 +36,17 @@ public class TotemUtil
     {
         int armourAmounts = getArmourAmounts(player);
 
-        player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), baubleIncrease ? getStrength(player, defaultStrength) + getTotemBaublesAmount(player) : getStrength(player, defaultStrength)));
+        //player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), baubleIncrease ? getStrength(player, defaultStrength) + getTotemBaublesAmount(player) : getStrength(player, defaultStrength)));
     }
 
     public static void addNegitivePotionEffect(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {
         int armourAmounts = getArmourAmounts(player);
 
-        int totalDecrement = armourAmounts + getTotemBaublesAmount(player);
+        //int totalDecrement = armourAmounts + getTotemBaublesAmount(player);
 
-        if(totalDecrement < 4)
-            player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegitive(player, defaultStrength)));
+        //if(totalDecrement < 4)
+        //    player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegative(player, defaultStrength)));
     }
 
     public static int getStrength(EntityPlayer player, int defaultStrength)
@@ -58,11 +54,12 @@ public class TotemUtil
         return getArmourAmounts(player) > 2 ? defaultStrength + 1 : defaultStrength;
     }
 
-    public static int getStrengthForNegitive(EntityPlayer player, int defaultStrength)
+    public static int getStrengthForNegative(EntityPlayer player, int defaultStrength)
     {
         return getArmourAmounts(player) > 2 ? defaultStrength - 1 : defaultStrength;
     }
 
+    /*
     public static int getTotemBaublesAmount(EntityPlayer player)
     {
         int j = 0;
@@ -81,6 +78,7 @@ public class TotemUtil
         }
         return j;
     }
+    */
 
     public static void playMusicFromItemForCeremonySelector(ItemStack itemStack, EntityPlayer player, int x, int y, int z, MusicEnum musicEnum, int radius)
     {
@@ -199,8 +197,8 @@ public class TotemUtil
                             {
                                 if(block instanceof TileTotemBase)
                                 {
-                                    if(((TileTotemBase) block).musicForEffect + musicAmount > ((TileTotemBase) block).maximumMusic)
-                                        ((TileTotemBase) block).musicForEffect = ((TileTotemBase) block).maximumMusic;
+                                    if(((TileTotemBase) block).musicForEffect + musicAmount > TileTotemBase.maximumMusic)
+                                        ((TileTotemBase) block).musicForEffect = TileTotemBase.maximumMusic;
                                     else
                                         ((TileTotemBase) block).musicForEffect += musicAmount;
                                 }
@@ -241,8 +239,8 @@ public class TotemUtil
                                 {
                                     if(block instanceof TileTotemBase)
                                     {
-                                        if(((TileTotemBase) block).musicForEffect + musicAmount > ((TileTotemBase) block).maximumMusic)
-                                            ((TileTotemBase) block).musicForEffect = ((TileTotemBase) block).maximumMusic;
+                                        if(((TileTotemBase) block).musicForEffect + musicAmount > TileTotemBase.maximumMusic)
+                                            ((TileTotemBase) block).musicForEffect = TileTotemBase.maximumMusic;
                                         else
                                             ((TileTotemBase) block).musicForEffect += musicAmount;
                                     }
