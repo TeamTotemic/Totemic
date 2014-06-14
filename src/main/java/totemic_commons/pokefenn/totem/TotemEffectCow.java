@@ -6,7 +6,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -30,11 +29,6 @@ public class TotemEffectCow implements ITotemEffect
                     {
                         TotemUtil.addPotionEffects((EntityPlayer) entity, 160, 30, Potion.resistance, 0, false);
                         TotemUtil.addNegitivePotionEffect((EntityPlayer) entity, 100, 35, Potion.moveSlowdown, 1, true);
-
-                        if(intelligence)
-                        {
-                            ((TileTotemBase) totem).decreaseChlorophyll((totemRegistry.getChlorophyllDecrement()));
-                        }
                     }
                 }
             }

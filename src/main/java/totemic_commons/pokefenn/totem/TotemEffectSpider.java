@@ -6,7 +6,6 @@ import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.potion.ModPotions;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -27,15 +26,7 @@ public class TotemEffectSpider implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
-
                         TotemUtil.addPotionEffects((EntityPlayer) entity, 150, 33, ModPotions.spiderPotion, 0, false);
-
-                        if(intelligence)
-                        {
-                            ((TileTotemBase) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
-                        }
-
                     }
                 }
 

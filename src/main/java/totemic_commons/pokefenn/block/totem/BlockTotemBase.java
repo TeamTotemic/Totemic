@@ -55,8 +55,6 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-        int SLOT_ONE = TileTotemBase.SLOT_ONE;
-
         TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(x, y, z);
 
         ItemStack heldItem = player.inventory.getCurrentItem();
@@ -67,8 +65,6 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
             if(!tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
             {
                 TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
-
-                player.addChatMessage(new ChatComponentText("Chlorophyll Crystal Essence = " + tileEntity.plantEssence));
             }
 
             if(tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)

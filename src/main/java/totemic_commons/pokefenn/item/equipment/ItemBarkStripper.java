@@ -40,7 +40,7 @@ public class ItemBarkStripper extends ItemTotemic
 
             if(block != null && !player.isSneaking())
             {
-                Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
+                Block blockQuery = EntityUtil.getBlockFromPosition(block, player.worldObj);
 
                 if(blockQuery instanceof BlockCedarLog)
                 {

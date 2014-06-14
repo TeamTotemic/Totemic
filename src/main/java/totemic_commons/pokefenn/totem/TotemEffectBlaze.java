@@ -6,7 +6,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -40,12 +39,6 @@ public class TotemEffectBlaze implements ITotemEffect
                         }
 
                         TotemUtil.addPotionEffects((EntityPlayer) entity, 100, 40, Potion.fireResistance, 0, false);
-
-                        if(intelligence)
-                        {
-                            ((TileTotemBase) totem).decreaseChlorophyll((totemRegistry.getChlorophyllDecrement()));
-                        }
-
                     }
                 }
 

@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,6 +59,11 @@ public class EntityUtil
         Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
         return world.rayTraceBlocks(vec3, vec31, par3);
 
+    }
+
+    public static Block getBlockFromPosition(MovingObjectPosition movingObjectPosition, World world)
+    {
+        return world.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
     }
 
 }

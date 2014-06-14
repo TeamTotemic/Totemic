@@ -6,7 +6,6 @@ import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
@@ -35,11 +34,6 @@ public class TotemEffectOcelot implements ITotemEffect
                         if(ignited > 17)
                         {
                             ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
-
-                            if(intelligence)
-                            {
-                                ((TileTotemBase) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
-                            }
 
                         }
                     }

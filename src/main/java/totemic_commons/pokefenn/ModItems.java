@@ -2,9 +2,13 @@ package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import totemic_commons.pokefenn.item.ItemBuffaloDrops;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotems;
-import totemic_commons.pokefenn.item.equipment.*;
+import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
+import totemic_commons.pokefenn.item.equipment.ItemDarts;
+import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
+import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
 import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
@@ -53,7 +57,7 @@ public final class ModItems
         blowDart = new ItemBlowGun();
         jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
-        //buffaloItems = new ItemBuffaloDrops();
+        buffaloItems = new ItemBuffaloDrops();
 
         //huntingKnife = new ItemHuntingKnife();
         //verdantCrystal = new ItemVerdantCrystal();
@@ -80,7 +84,7 @@ public final class ModItems
         GameRegistry.registerItem(darts, "darts");
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
-        //GameRegistry.registerItem(buffaloItems, "buffaloItems");
+        GameRegistry.registerItem(buffaloItems, "buffaloItems");
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
         //GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());

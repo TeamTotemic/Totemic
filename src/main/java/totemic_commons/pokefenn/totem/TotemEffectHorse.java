@@ -6,7 +6,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -33,14 +32,6 @@ public class TotemEffectHorse implements ITotemEffect
                         int j = TotemUtil.getArmourAmounts((EntityPlayer) entity);
 
                         TotemUtil.addPotionEffects((EntityPlayer) entity, 160, 35, Potion.moveSpeed, 0, false);
-
-                        //((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200 + (30 * j), TotemUtil.getStrength((EntityPlayer) entity)));
-
-                        if(intelligence)
-                        {
-                            ((TileTotemBase) totem).decreaseChlorophyll(totemRegistry.getChlorophyllDecrement());
-                        }
-
                     }
                 }
 

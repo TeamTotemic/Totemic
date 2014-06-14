@@ -25,4 +25,11 @@ public interface IMusicAcceptor
      * @return The variable which says "Are you music selecting currently".
      */
     public boolean isMusicSelecting();
+
+    /**
+     * @return A variable that will increased when playing music out of a array enviroment.
+     */
+    public int getMusicForEffect();
+
+    public boolean getEffectMusic();
 }

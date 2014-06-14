@@ -8,7 +8,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -16,10 +15,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.api.IBlacklistedDraining;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
@@ -30,8 +27,6 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
-import java.util.Random;
-
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -40,8 +35,6 @@ import java.util.Random;
  */
 public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 {
-    public static final int SLOT_ONE = 0;
-    public int plantEssence;
     public int maxEssence;
     public static int socket;
     public static int rangeUpgrades;
@@ -52,8 +45,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public int currentCeremony;
     public int ceremonyEffectTimer;
     public int dancingEfficiency;
-    public int[] music;
-    public int plantEfficiency;
+    public int[] musicCeremony;
     public int[] musicSelector;
     public boolean isDoingStartup;
     public int armourEfficiency;
@@ -65,23 +57,23 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public boolean isCeremony;
     public int continueTimer;
     public boolean isCeremonyAwakening;
+    public int musicForEffect;
+    public int maximumMusic = 1000;
 
     ItemStack[] totems;
 
     public TileTotemBase()
     {
         totems = new ItemStack[6];
-        plantEssence = 0;
         maxEssence = 500;
         rangeUpgrades = 0;
-        music = new int[MusicEnum.values().length];
+        musicCeremony = new int[MusicEnum.values().length];
         tier = 1;
         efficiencyFromCeremony = 0;
         isDoingEffect = false;
         currentCeremony = 0;
         ceremonyEffectTimer = 0;
         dancingEfficiency = 0;
-        plantEfficiency = 0;
         musicSelector = new int[6];
         isDoingStartup = false;
         armourEfficiency = 0;
@@ -93,6 +85,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         isCeremony = false;
         continueTimer = 0;
         isCeremonyAwakening = false;
+        musicForEffect = 0;
     }
 
     public void updateEntity()
@@ -116,9 +109,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
             if(!(currentInput >= 1))
             {
-                if(worldObj.getWorldTime() % 80L == 0)
-                    drainEffect();
-
                 if(socket > 0)
                 {
                     for(int i = 1; i <= socket; i++)
@@ -128,7 +118,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                             for(TotemRegistry totemRegistry : TotemRegistry.getRecipes())
                             {
                                 //TODO remember tier
-                                if(/*tier >= totemRegistry.getTier() && */totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage() && canDoEffect(totemRegistry.getChlorophyllDecrement()))
+                                if(/*tier >= totemRegistry.getTier() && */totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage())
                                 {
                                     totemRegistry.getEffect().effect(this, socket, true, totemRegistry, totemRegistry.getHorizontal(), totemRegistry.getVerticalHight());
                                 }
@@ -138,16 +128,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 }
             }
         }
-    }
-
-    public static String getPlantEssence(int plantEssence)
-    {
-        if(plantEssence == 0)
-            return "totemic:noPlantEssence";
-        else if(plantEssence > 0 && plantEssence < 20)
-            return "totemic:lowPlantEssence";
-
-        return "";
     }
 
     public void doCeremonyCode()
@@ -254,9 +234,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         int j = 0;
 
-        for(int i = 0; i < music.length; i++)
+        for(int i = 0; i < musicCeremony.length; i++)
         {
-            j += music[i];
+            j += musicCeremony[i];
         }
         return j;
     }
@@ -266,7 +246,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         totalMelody = 0;
         int m = 0;
 
-        for(int musicu : music)
+        for(int musicu : musicCeremony)
         {
             m += musicu;
         }
@@ -286,11 +266,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
         dancingEfficiency = 0;
         armourEfficiency = 0;
-        plantEfficiency = 0;
 
-        for(int i = 0; i < music.length; i++)
+        for(int i = 0; i < musicCeremony.length; i++)
         {
-            music[i] = 0;
+            musicCeremony[i] = 0;
         }
         if(doResetMusicSelector)
             for(int i = 0; i < 4; i++)
@@ -367,12 +346,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             resetAfterCeremony(true);
         }
 
-        if(worldObj.getWorldTime() % 80L == 0)
-        {
-            plantEfficiency = 0;
-            findBlocksForEfficiency();
-        }
-
         if(worldObj.getWorldTime() % 60L == 0)
         {
             armourEfficiency = 0;
@@ -427,80 +400,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         }
     }
 
-    public void drainEffect()
-    {
-        int totemRadius = 12;
-
-        for(int i = -totemRadius; i <= totemRadius; i++)
-            for(int k = -totemRadius; k <= totemRadius; k++)
-                for(int j = -totemRadius; j <= totemRadius; j++)
-                {
-                    reducePlantMetadata(xCoord + i, yCoord + k, zCoord + j);
-                }
-    }
-
-    public void reducePlantMetadata(int x, int y, int z)
-    {
-        Block blockQuery = worldObj.getBlock(x, y, z);
-        boolean isNotFlower = !blockQuery.getUnlocalizedName().contains("flower");
-        boolean isNotBush = !blockQuery.getUnlocalizedName().contains("bush");
-        boolean isNotBerry = !blockQuery.getUnlocalizedName().contains("berry");
-        boolean isNotKelp = !blockQuery.getUnlocalizedName().contains("kelp");
-        boolean isNotLeaves = !blockQuery.getUnlocalizedName().contains("leaves");
-
-        if(blockQuery != null)
-        {
-            if(blockQuery instanceof BlockSapling || blockQuery instanceof BlockLeaves || blockQuery instanceof BlockLog)
-            {
-                Random rand = new Random();
-                if(rand.nextInt(10) == 1)
-                    increasePlantEssence(blockQuery);
-            }
-
-            if(blockQuery instanceof IPlantable)
-            {
-                if(worldObj.getBlockMetadata(x, y, z) >= 4 && !(blockQuery instanceof IBlacklistedDraining) && isNotFlower && isNotBush && isNotBerry && isNotKelp && isNotLeaves)
-                {
-                    Random rand = new Random();
-
-                    if(rand.nextInt(4) == 1)
-                        worldObj.setBlockMetadataWithNotify(x, y, z, worldObj.getBlockMetadata(x, y, z) - 1, 2);
-                    if(rand.nextBoolean())
-                        increasePlantEssence(blockQuery);
-                    MinecraftServer.getServer().worldServerForDimension(getWorldObj().provider.dimensionId).func_147487_a("happyVillager", (double) x + 0.5D, (double) y + 0.9D, (double) z + 0.5D, 4, 0.0D, 0.0D, 0.0D, 0.0D);
-                }
-            }
-        }
-    }
-
-
-    public void findBlocksForEfficiency()
-    {
-        int radius = 6;
-        int m = 0;
-
-        for(int i = -radius; i <= radius; i++)
-            for(int j = -3; j <= 3; j++)
-                for(int k = radius; k <= radius; k++)
-                {
-                    if(worldObj.getBlock(xCoord + i, yCoord + j, zCoord + k) != null)
-                    {
-                        Block block = worldObj.getBlock(xCoord + i, yCoord + j, zCoord + k);
-
-                        if(block instanceof IPlantable)
-                        {
-                            m++;
-                        }
-
-                        if(getEffiencyFromBlock(block) != 0)
-                        {
-                            m += getEffiencyFromBlock(block);
-                        }
-                    }
-                }
-        plantEfficiency += m;
-    }
-
     public int getEffiencyFromBlock(Block block)
     {
         //if(efficiency < 50)
@@ -538,20 +437,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         return true;
     }
 
-    public void increasePlantEssence(Block block)
-    {
-        if(plantEssence < maxEssence)
-        {
-            if((plantEssence + getPlantDrained(block) > maxEssence))
-            {
-                plantEssence = maxEssence;
-                return;
-            }
-
-            plantEssence += getPlantDrained(block);
-        }
-    }
-
     public int getPlantDrained(Block plant)
     {
         if(plant instanceof BlockLog || plant instanceof BlockLeaves)
@@ -567,22 +452,11 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         return 2;
     }
 
-    public void decreaseChlorophyll(int subtraction)
-    {
-        if(plantEssence - subtraction > 0)
-            plantEssence -= subtraction;
-    }
-
-    protected boolean canDoEffect(int subtraction)
-    {
-        return plantEssence - subtraction > 0;
-    }
-
     protected ItemStack getSocketItemStack(int par1)
     {
         TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
 
-        return ((IInventory) tileEntity).getStackInSlot(TileTotemPole.SLOT_ONE);
+        return ((TileTotemPole) tileEntity).getStackInSlot(TileTotemPole.SLOT_ONE);
     }
 
 
@@ -663,7 +537,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
         super.readFromNBT(nbtTagCompound);
 
-        plantEssence = nbtTagCompound.getInteger("plantEssence");
         musicalMelody = nbtTagCompound.getInteger("musicalMelody");
         tier = nbtTagCompound.getInteger("tier");
         efficiencyFromCeremony = nbtTagCompound.getInteger("efficiencyFromCeremony");
@@ -671,8 +544,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         currentCeremony = nbtTagCompound.getInteger("currentCeremony");
         dancingEfficiency = nbtTagCompound.getInteger("dancingEfficiency");
         ceremonyEffectTimer = nbtTagCompound.getInteger("ceremonyEffectTimer");
-        music = nbtTagCompound.getIntArray("music");
-        plantEfficiency = nbtTagCompound.getInteger("plantEfficiency");
+        musicCeremony = nbtTagCompound.getIntArray("musicCeremony");
         musicSelector = nbtTagCompound.getIntArray("musicSelector");
         isDoingStartup = nbtTagCompound.getBoolean("isDoingStartup");
         armourEfficiency = nbtTagCompound.getInteger("armourEfficiency");
@@ -684,6 +556,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         isCeremony = nbtTagCompound.getBoolean("isCeremony");
         continueTimer = nbtTagCompound.getInteger("continueTimer");
         isCeremonyAwakening = nbtTagCompound.getBoolean("isCeremonyAwakening");
+        musicForEffect = nbtTagCompound.getInteger("musicForEffect");
     }
 
     @Override
@@ -692,8 +565,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
         super.writeToNBT(nbtTagCompound);
 
-        nbtTagCompound.setInteger("plantEssence", plantEssence);
-        nbtTagCompound.setIntArray("music", music);
+        nbtTagCompound.setIntArray("musicCeremony", musicCeremony);
         nbtTagCompound.setInteger("musicalMelody", musicalMelody);
         nbtTagCompound.setInteger("tier", tier);
         nbtTagCompound.setInteger("efficiencyFromCeremony", efficiencyFromCeremony);
@@ -701,7 +573,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         nbtTagCompound.setInteger("currentCeremony", currentCeremony);
         nbtTagCompound.setInteger("ceremonyEffectTimer", ceremonyEffectTimer);
         nbtTagCompound.setInteger("dancingEfficiency", dancingEfficiency);
-        nbtTagCompound.setInteger("plantEfficiency", plantEfficiency);
         nbtTagCompound.setIntArray("musicSelector", musicSelector);
         nbtTagCompound.setBoolean("isDoingStartup", isDoingStartup);
         nbtTagCompound.setInteger("armourEfficiency", armourEfficiency);
@@ -713,12 +584,13 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         nbtTagCompound.setBoolean("isCeremony", isCeremony);
         nbtTagCompound.setInteger("continueTimer", continueTimer);
         nbtTagCompound.setBoolean("isCeremonyAwakening", isCeremonyAwakening);
+        nbtTagCompound.setInteger("musicForEffect", musicForEffect);
     }
 
     @Override
     public int[] getMusicArray()
     {
-        return music;
+        return musicCeremony;
     }
 
     @Override
@@ -737,5 +609,17 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public boolean isMusicSelecting()
     {
         return isMusicSelecting;
+    }
+
+    @Override
+    public int getMusicForEffect()
+    {
+        return musicForEffect;
+    }
+
+    @Override
+    public boolean getEffectMusic()
+    {
+        return !isCeremony;
     }
 }

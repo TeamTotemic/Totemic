@@ -1,22 +1,15 @@
 package totemic_commons.pokefenn.item.equipment.weapon;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.misc.TotemicDamageSource;
-import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
  * Created by Pokefenn.
@@ -34,8 +27,6 @@ public class ItemHuntingKnife extends ItemSword
     @Override
     public boolean hitEntity(ItemStack itemStack, EntityLivingBase entity1, EntityLivingBase entity2)
     {
-        //entity1.attackEntityFrom(TotemicDamageSource.huntingKnife, 5);
-
         if(entity1 instanceof EntityAnimal)
             ((EntityAnimal) entity1).tasks.addTask(0, new EntityAIAvoidEntity((EntityCreature) entity1, EntityPlayer.class, 16.0F, 3D, 1.6D));
 

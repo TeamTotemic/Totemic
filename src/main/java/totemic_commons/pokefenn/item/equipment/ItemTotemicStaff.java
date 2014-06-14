@@ -43,6 +43,10 @@ public class ItemTotemicStaff extends ItemTotemic
     {
         if(!world.isRemote)
         {
+            //EntityBuffalo buffalo = new EntityBuffalo(world);
+            //buffalo.setPosition(player.posX, player.posY, player.posZ);
+            //world.spawnEntityInWorld(buffalo);
+
             MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
 
             if(block != null)

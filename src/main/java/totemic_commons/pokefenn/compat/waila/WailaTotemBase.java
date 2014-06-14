@@ -4,7 +4,6 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
@@ -41,8 +40,6 @@ public class WailaTotemBase implements IWailaDataProvider
                 currenttip.add(CeremonyRegistry.ceremonyRegistry.get(totemBase.currentCeremony).getName());
             else if(totemBase.isDoingStartup)
                 currenttip.add(CeremonyRegistry.ceremonyRegistry.get(totemBase.tryingCeremonyID).getName());
-
-            currenttip.add(StatCollector.translateToLocal(TileTotemBase.getPlantEssence(totemBase.plantEssence)));
 
             if(totemBase.isMusicSelecting)
                 for(int i = 0; i < 4; i++)

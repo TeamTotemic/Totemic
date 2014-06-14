@@ -22,7 +22,7 @@ group= "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.7.2-10.12.0.1056"
+    version = "1.7.2-10.12.2.1124"
     assetDir = "eclipse/assets"
 }
 

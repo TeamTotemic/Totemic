@@ -178,11 +178,11 @@ public class TotemUtil
                     {
                         TileEntity block = world.getTileEntity(x + i, y + j, z + k);
 
-                        if(block instanceof IMusicAcceptor && ((TileTotemBase) block).isCeremony)
+                        if(block instanceof IMusicAcceptor)
                         {
-                            int[] musicArray = ((IMusicAcceptor) block).getMusicArray();
-
-                            //if(musicArray[musicEnum.ordinal()] < musicArray.length + 1)
+                            IMusicAcceptor musicAcceptor = (IMusicAcceptor) block;
+                            int[] musicArray = musicAcceptor.getMusicArray();
+                            if(!musicAcceptor.getEffectMusic())
                             {
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
@@ -191,18 +191,26 @@ public class TotemUtil
 
                                 } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
                                 {
-                                    System.out.println(world.getBlock(x, y, z).getUnlocalizedName());
-                                    System.out.println("musicu stuffs");
                                     musicArray[musicEnum.ordinal()] += musicAmount;
                                     return;
                                 }
                                 world.markBlockForUpdate(x, y, z);
+                            } else
+                            {
+                                if(block instanceof TileTotemBase)
+                                {
+                                    if(((TileTotemBase) block).musicForEffect + musicAmount > ((TileTotemBase) block).maximumMusic)
+                                        ((TileTotemBase) block).musicForEffect = ((TileTotemBase) block).maximumMusic;
+                                    else
+                                        ((TileTotemBase) block).musicForEffect += musicAmount;
+                                }
                             }
                         }
-
                     }
+
                 }
     }
+
 
     public static void playMusicFromItem(World world, EntityPlayer player, MusicEnum musicEnum, int x, int y, int z, int radius, int musicMaximum, int musicAmount)
     {
@@ -218,7 +226,7 @@ public class TotemUtil
                         {
                             int[] musicArray = ((IMusicAcceptor) block).getMusicArray();
 
-                            if(musicArray[musicEnum.ordinal()] < musicArray.length + 1)
+                            if(!((IMusicAcceptor) block).getEffectMusic())
                             {
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
@@ -229,12 +237,21 @@ public class TotemUtil
                                 {
                                     musicArray[musicEnum.ordinal()] += musicAmount;
                                     return;
+                                } else
+                                {
+                                    if(block instanceof TileTotemBase)
+                                    {
+                                        if(((TileTotemBase) block).musicForEffect + musicAmount > ((TileTotemBase) block).maximumMusic)
+                                            ((TileTotemBase) block).musicForEffect = ((TileTotemBase) block).maximumMusic;
+                                        else
+                                            ((TileTotemBase) block).musicForEffect += musicAmount;
+                                    }
                                 }
-                                world.markBlockForUpdate(x, y, z);
                             }
+                            world.markBlockForUpdate(x, y, z);
                         }
-
                     }
+
                 }
     }
 
