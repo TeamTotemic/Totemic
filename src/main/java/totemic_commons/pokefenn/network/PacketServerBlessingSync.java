@@ -24,26 +24,21 @@ public class PacketServerBlessingSync implements IMessage, IMessageHandler<Packe
 
     }
 
-    public PacketServerBlessingSync(/*String player, */int blessing)
+    public PacketServerBlessingSync(int blessing)
     {
         this.blessing = blessing;
-        //this.player = player;
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
         blessing = buf.readInt();
-        //byte[] data = new byte[buf.readableBytes()];
-        //buf.readBytes(data);
-        //player = new String(data);
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
         buf.writeInt(blessing);
-        //buf.writeBytes(player.getBytes());
     }
 
     @Override

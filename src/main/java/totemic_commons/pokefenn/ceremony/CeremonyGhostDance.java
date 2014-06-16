@@ -19,7 +19,7 @@ public class CeremonyGhostDance extends CeremonyBase
             for(Entity entity : EntityUtil.getEntitiesInRange(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 8, 8))
                 if(entity instanceof EntityPlayer)
                 {
-                    BlessingHandler.increaseBlessing(2, ((EntityPlayer) entity).getDisplayName());
+                    BlessingHandler.increaseBlessing(2, ((EntityPlayer) entity).getDisplayName(), tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
                 }
 
     }

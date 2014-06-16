@@ -19,6 +19,7 @@ import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
+import totemic_commons.pokefenn.blessing.BlessingHandler;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -196,6 +197,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                     System.out.println("got to instant effect");
                     musicFromCeremony += getMusicFromCeremony();
                     effect.effect(this);
+                    BlessingHandler.increaseBlessingNearby(1, worldObj, xCoord, yCoord, zCoord, 12);
                     resetAfterCeremony(true);
                 } else
                 {

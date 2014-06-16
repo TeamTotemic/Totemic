@@ -26,6 +26,8 @@ public class PacketHandler
     public static void init()
     {
         registerPacket(PacketJingle.class, Side.SERVER);
+        registerPacket(PacketServerBlessingSync.class, Side.SERVER);
+        registerPacket(PacketClientBlessingSync.class, Side.CLIENT);
     }
 
     public static void sendToClient(IMessage packet, EntityPlayerMP player)
