@@ -45,8 +45,6 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
             list.add("Handle potions with the prowess of a Medicine Man");
         if(this == ModItems.totemArmourLeg)
             list.add("Dance like the Diva");
-        //if(this == ModItems.totemArmourChest)
-        //    list.add("");
     }
 
     @Override

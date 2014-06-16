@@ -1,9 +1,6 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,7 +35,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public int maxEssence;
     public static int socket;
     public static int rangeUpgrades;
-    public int musicalMelody;
+    //public int musicalMelody;
     public int tier;
     public int efficiencyFromCeremony;
     public boolean isDoingEffect;
@@ -98,7 +95,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         {
             if(this.worldObj.getWorldTime() % 100L == 0)
             {
-                setSocketAmounts();
+                socket = setSocketAmounts();
                 scanArea();
             }
 
@@ -234,18 +231,22 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         //TODO stat collector
         if(i < 10)
         {
+            return StatCollector.translateToLocal("totemic:incrediblyLow");
         } else if(i > 10 && i < 32)
         {
             return StatCollector.translateToLocal("totemic:weak");
         } else if(i > 32 && i < 64)
         {
-            return StatCollector.translateToLocal("totemic:sufficient");
+            return StatCollector.translateToLocal("totemic:low");
         } else if(i > 64 && i < 96)
         {
+            return StatCollector.translateToLocal("totemic:sufficient");
         } else if(i > 96 && i < 115)
         {
+            return StatCollector.translateToLocal("totemic:high");
         } else if(i > 115)
         {
+            return StatCollector.translateToLocal("totemic:maximum");
         }
         return "";
     }
@@ -278,8 +279,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             array[0] += 6;
             array[1] += 6;
         }
-        array[0] += socket % 2;
-        array[1] += socket % 2;
+        array[0] += socket % 3;
+        array[1] += socket % 3;
 
         //TODO this method will say the vertical/horizontal range of Totem Poles
 
@@ -484,9 +485,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     protected void scanArea()
     {
-        for(int i = 1; i <= getSocketAmounts(); i++)
+        for(int i = 1; i <= socket; i++)
         {
-            if(getSocketAmounts() <= 5)
+            if(socket <= 10)
             {
                 if(getSocketItemStack(i) != null)
                 {
@@ -500,21 +501,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public boolean canUpdate()
     {
         return true;
-    }
-
-    public int getPlantDrained(Block plant)
-    {
-        if(plant instanceof BlockLog || plant instanceof BlockLeaves)
-        {
-            return 1;
-        }
-
-        if(plant instanceof BlockSapling)
-        {
-            return 1;
-        }
-
-        return 2;
     }
 
     protected ItemStack getSocketItemStack(int par1)
@@ -571,32 +557,53 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     }
 
-    protected void setSocketAmounts()
+    protected int setSocketAmounts()
     {
         Block block1 = worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
         Block block2 = worldObj.getBlock(this.xCoord, this.yCoord + 2, this.zCoord);
         Block block3 = worldObj.getBlock(this.xCoord, this.yCoord + 3, this.zCoord);
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
+        Block block6 = worldObj.getBlock(this.xCoord, this.yCoord + 6, this.zCoord);
+        Block block7 = worldObj.getBlock(this.xCoord, this.yCoord + 7, this.zCoord);
+        Block block8 = worldObj.getBlock(this.xCoord, this.yCoord + 8, this.zCoord);
+        Block block9 = worldObj.getBlock(this.xCoord, this.yCoord + 9, this.zCoord);
+        Block block10 = worldObj.getBlock(this.xCoord, this.yCoord + 10, this.zCoord);
+
 
         if(block1 instanceof BlockTotemPole && block2 != ModBlocks.totemPole)
         {
-            socket = 1;
+            return 1;
         } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 != ModBlocks.totemPole)
         {
-            socket = 2;
+            return 2;
         } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 != ModBlocks.totemPole)
         {
-            socket = 3;
+            return 3;
         } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 != ModBlocks.totemPole)
         {
-            socket = 4;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole)
+            return 4;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 != ModBlocks.totemPole)
         {
-            socket = 5;
-        } else
-            socket = 0;
+            return 5;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 != ModBlocks.totemPole)
+        {
+            return 6;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 != ModBlocks.totemPole)
+        {
+            return 7;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 instanceof BlockTotemPole && block9 != ModBlocks.totemPole)
+        {
+            return 8;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 instanceof BlockTotemPole && block9 instanceof BlockTotemPole && block10 != ModBlocks.totemPole)
+        {
+            return 9;
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 instanceof BlockTotemPole && block9 instanceof BlockTotemPole && block10 instanceof BlockTotemPole)
+        {
+            return 10;
+        }
 
+        return 0;
     }
 
     @Override
@@ -613,14 +620,12 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         readFromNBT(pkt.func_148857_g());
     }
 
-
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
-
         super.readFromNBT(nbtTagCompound);
 
-        musicalMelody = nbtTagCompound.getInteger("musicalMelody");
+        //musicalMelody = nbtTagCompound.getInteger("musicalMelody");
         tier = nbtTagCompound.getInteger("tier");
         efficiencyFromCeremony = nbtTagCompound.getInteger("efficiencyFromCeremony");
         isDoingEffect = nbtTagCompound.getBoolean("isDoingEffect");
@@ -645,11 +650,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
-
         super.writeToNBT(nbtTagCompound);
 
         nbtTagCompound.setIntArray("musicCeremony", musicCeremony);
-        nbtTagCompound.setInteger("musicalMelody", musicalMelody);
+        //nbtTagCompound.setInteger("musicalMelody", musicalMelody);
         nbtTagCompound.setInteger("tier", tier);
         nbtTagCompound.setInteger("efficiencyFromCeremony", efficiencyFromCeremony);
         nbtTagCompound.setBoolean("isDoingEffect", isDoingEffect);

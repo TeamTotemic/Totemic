@@ -37,6 +37,7 @@ Everything needs to have a counterpart, right?
 Withered Totemists are the counterparts, and the way for you to beat normal Totemists.
 Withered Totemists are designed around the fact of everything has a cost, if you are a withered Totemist, you will wither around nearby plants to gain effects.
 Crafting this stuff needs ceremonies that create Withered Wood, which can be used to create the withered tools.
+Withered wood is created by burning cedar logs with a withered flame.
 You will get special armour, that will kill nearby plants, but give you incredible powers, and also they will be able to nullify and remove some of the powers of normal Totemists.
 Shame Poles will be able to be created, these are a way to 'curse' players, and their totem poles in a sense, you can cause their totems to go insane, or cause problems for the players.
 Withered Puppets will be able to be created, they will mimic the players movements, attacking monsters and block breaking/placing, allowing for massive tasks to be done.
