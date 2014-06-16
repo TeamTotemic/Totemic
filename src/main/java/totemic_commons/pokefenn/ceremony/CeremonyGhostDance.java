@@ -1,7 +1,10 @@
 package totemic_commons.pokefenn.ceremony;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.blessing.BlessingHandler;
+import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
  * Created by Pokefenn.
@@ -12,6 +15,12 @@ public class CeremonyGhostDance extends CeremonyBase
     @Override
     public void effect(TileEntity tileEntity)
     {
-        BlessingHandler.increaseBlessing(1, tileEntity.getWorldObj().getClosestPlayer(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 8).getDisplayName());
+        if(EntityUtil.getEntitiesInRange(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 8, 8) != null)
+            for(Entity entity : EntityUtil.getEntitiesInRange(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 8, 8))
+                if(entity instanceof EntityPlayer)
+                {
+                    BlessingHandler.increaseBlessing(2, ((EntityPlayer) entity).getDisplayName());
+                }
+
     }
 }

@@ -33,7 +33,7 @@ public class ItemTotemic extends Item
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
-        if(registerIcons)
+        if(registerIcons && !hasSubtypes)
             itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
     }
 
