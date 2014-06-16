@@ -18,8 +18,7 @@ public class ItemVerdantCrystal extends ItemTotemic
 
     public ItemVerdantCrystal()
     {
-        super();
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.VERDANT_CRYSTAL_NAME);
+        super(Strings.VERDANT_CRYSTAL_NAME);
         setMaxStackSize(1);
         setMaxDamage(1000);
         registerIcons = false;

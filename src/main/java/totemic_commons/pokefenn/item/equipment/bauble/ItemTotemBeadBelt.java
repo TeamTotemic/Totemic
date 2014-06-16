@@ -25,8 +25,8 @@ public class ItemTotemBeadBelt extends ItemTotemic implements IBauble, ITotemBau
 
     public ItemTotemBeadBelt()
     {
+        super(Strings.TOTEM_BEAD_BELT_NAME);
         setMaxStackSize(1);
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_BEAD_BELT_NAME);
     }
 
     @Override

@@ -57,7 +57,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
 
     public ItemTotemicItems()
     {
-        super();
+        super("");
         setHasSubtypes(true);
         maxStackSize = 64;
         setCreativeTab(Totemic.tabsTotem);

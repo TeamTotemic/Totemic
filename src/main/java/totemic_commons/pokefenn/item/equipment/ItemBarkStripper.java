@@ -26,7 +26,7 @@ public class ItemBarkStripper extends ItemTotemic
 
     public ItemBarkStripper()
     {
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BARK_STRIPPER_NAME);
+        super(Strings.BARK_STRIPPER_NAME);
         setMaxStackSize(1);
         setMaxDamage(126);
     }

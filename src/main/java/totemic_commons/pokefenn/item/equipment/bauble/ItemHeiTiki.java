@@ -7,8 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.World;
-import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -21,8 +19,8 @@ public class ItemHeiTiki extends ItemTotemic implements IBauble
 
     public ItemHeiTiki()
     {
+        super(Strings.HEI_TIKI_NAME);
         setMaxStackSize(1);
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.HEI_TIKI_NAME);
     }
 
     @Override

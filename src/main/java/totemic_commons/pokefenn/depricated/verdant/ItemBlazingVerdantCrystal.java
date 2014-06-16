@@ -23,8 +23,7 @@ public class ItemBlazingVerdantCrystal extends ItemTotemic
 {
     public ItemBlazingVerdantCrystal()
     {
-        super();
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BLAZING_VERDANT_CRYSTAL_NAME);
+        super(Strings.BLAZING_VERDANT_CRYSTAL_NAME);
         setMaxDamage(ModItems.verdantCrystal.getMaxDamage());
         setMaxStackSize(1);
         //registerIcons = false;

@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -15,7 +14,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyFluteInfusion implements ICeremonyEffect
+public class CeremonyFluteInfusion extends CeremonyBase
 {
     @Override
     public void effect(TileEntity tileEntity)

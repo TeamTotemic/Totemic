@@ -15,8 +15,7 @@ public class ItemBaubleFragileVigor extends ItemTotemic implements IBauble
 {
     public ItemBaubleFragileVigor()
     {
-        super();
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BAUBLE_ARMOUR_DAMAGE_NAME);
+        super(Strings.BAUBLE_ARMOUR_DAMAGE_NAME);
         setMaxStackSize(1);
     }
 

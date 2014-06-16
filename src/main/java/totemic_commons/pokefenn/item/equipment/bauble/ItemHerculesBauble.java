@@ -12,7 +12,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
@@ -29,7 +28,7 @@ public class ItemHerculesBauble extends ItemTotemic implements IBauble, ITotemBa
 
     public ItemHerculesBauble()
     {
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.HERCULESE_BAUBLES_NAME);
+        super(Strings.HERCULESE_BAUBLES_NAME);
         setMaxStackSize(1);
     }
 

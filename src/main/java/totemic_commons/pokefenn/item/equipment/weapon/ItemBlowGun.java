@@ -21,8 +21,7 @@ public class ItemBlowGun extends ItemTotemic
 
     public ItemBlowGun()
     {
-        super();
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BLOW_DART_NAME);
+        super(Strings.BLOW_DART_NAME);
         setMaxStackSize(1);
         setMaxDamage(152);
     }

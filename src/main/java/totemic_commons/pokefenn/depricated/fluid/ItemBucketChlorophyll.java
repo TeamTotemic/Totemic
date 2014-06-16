@@ -24,8 +24,7 @@ public class ItemBucketChlorophyll extends ItemTotemic
 
     public ItemBucketChlorophyll()
     {
-        super();
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BUCKET_CHLOROPHYLL_NAME);
+        super(Strings.BUCKET_CHLOROPHYLL_NAME);
         setMaxStackSize(1);
         setCreativeTab(Totemic.tabsTotem);
         setContainerItem(this);

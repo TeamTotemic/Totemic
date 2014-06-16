@@ -16,7 +16,7 @@ public class ItemBottleChlorophyll extends ItemTotemic
     public ItemBottleChlorophyll()
     {
 
-        super();
+        super(Strings.HERCULESE_BAUBLES_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BOTTLE_CHLOROPHYLL_NAME);
         setMaxStackSize(16);

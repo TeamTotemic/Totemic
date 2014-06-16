@@ -21,7 +21,7 @@ public class ItemTotemicStaff extends ItemTotemic
 
     public ItemTotemicStaff()
     {
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEMIC_STAFF_NAME);
+        super(Strings.TOTEMIC_STAFF_NAME);
         setMaxStackSize(1);
     }
 

@@ -83,6 +83,7 @@ public class TotemicRecipes
         CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Ceremony of Flute Imbuation", false, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, 3, new CeremonyFluteInfusion(), true, 20 * 30, null, 110, 40 * 20, 0));
         CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Rain Dance", false, MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.FLUTE, 4, new CeremonyRain(), true, 20 * 30, null, 110, 40 * 20, 0));
         CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Drought Ceremony", false, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, 5, new CeremonyRainRemoval(), true, 20 * 30, null, 110, 40 * 20, 0));
+        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Ghost Dance", false, null, null, null, null, 6, new CeremonyGhostDance(), true, 20 * 30, null, 130, 40 * 20, 0));
         //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.WIND_CHIME, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, 4, new CeremonyTotemAwakening(), true, 20 * 30, MusicEnum.DRUM, null, 0, 30 * 20, 0));
     }
 

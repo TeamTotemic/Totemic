@@ -5,7 +5,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -13,7 +12,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyBeadBinding implements ICeremonyEffect
+public class CeremonyBeadBinding extends CeremonyBase
 {
     @Override
     public void effect(TileEntity tileEntity)

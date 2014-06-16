@@ -17,8 +17,7 @@ public class ItemTotempedia extends ItemTotemic
 
     public ItemTotempedia()
     {
-        super();
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEMPEDIA_NAME);
+        super(Strings.TOTEMPEDIA_NAME);
         setMaxStackSize(1);
     }
 

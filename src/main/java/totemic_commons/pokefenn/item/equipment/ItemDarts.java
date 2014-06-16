@@ -32,7 +32,7 @@ public class ItemDarts extends ItemTotemic
 
     public ItemDarts()
     {
-        super();
+        super("");
         setMaxStackSize(16);
         setHasSubtypes(true);
     }

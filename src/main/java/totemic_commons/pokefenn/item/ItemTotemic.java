@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.lib.Strings;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,11 +18,13 @@ public class ItemTotemic extends Item
     public boolean registerIcons = true;
     public boolean creativeTab = true;
 
-    public ItemTotemic()
+    public ItemTotemic(String name)
     {
         super();
         setMaxStackSize(64);
         setNoRepair();
+        if(!hasSubtypes)
+            setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
         if(creativeTab)
             setCreativeTab(Totemic.tabsTotem);
     }

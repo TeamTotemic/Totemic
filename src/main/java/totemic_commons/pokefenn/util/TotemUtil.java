@@ -35,7 +35,7 @@ public class TotemUtil
     public static void addPotionEffects(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {
         int armourAmounts = getArmourAmounts(player);
-
+        //TODO
         //player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), baubleIncrease ? getStrength(player, defaultStrength) + getTotemBaublesAmount(player) : getStrength(player, defaultStrength)));
     }
 
@@ -44,7 +44,7 @@ public class TotemUtil
         int armourAmounts = getArmourAmounts(player);
 
         //int totalDecrement = armourAmounts + getTotemBaublesAmount(player);
-
+        //TODO
         //if(totalDecrement < 4)
         //    player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegative(player, defaultStrength)));
     }

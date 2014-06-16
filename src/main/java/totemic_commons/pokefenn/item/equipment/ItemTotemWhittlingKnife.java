@@ -25,8 +25,8 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
     public ItemTotemWhittlingKnife()
     {
+        super(Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setMaxStackSize(1);
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setContainerItem(this);
     }
 
@@ -40,7 +40,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             list.add("Currently Carving: " + TotemRegistry.totemEffect.get(stack.getItemDamage()).getName());
         if(stack.getItemDamage() == TotemRegistry.totemEffect.size())
             list.add("Currently Carving: Totem Base");
-        
+
     }
 
     @Override

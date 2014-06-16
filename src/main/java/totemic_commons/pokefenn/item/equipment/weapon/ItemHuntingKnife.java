@@ -21,7 +21,7 @@ public class ItemHuntingKnife extends ItemSword
     {
         super(EquipmentMaterials.huntingKnife);
         setCreativeTab(Totemic.tabsTotem);
-        setUnlocalizedName(Strings.HUNTING_KNIFE_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.HUNTING_KNIFE_NAME);
     }
 
     @Override
