@@ -33,7 +33,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 {
     public int maxEssence;
-    public static int socket;
+    public static int totemPoleSize;
     public static int rangeUpgrades;
     //public int musicalMelody;
     public int tier;
@@ -83,6 +83,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         continueTimer = 0;
         isCeremonyAwakening = false;
         musicForEffect = 0;
+        totemPoleSize = 0;
     }
 
     public void updateEntity()
@@ -95,7 +96,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         {
             if(this.worldObj.getWorldTime() % 100L == 0)
             {
-                socket = setSocketAmounts();
+                totemPoleSize = setTotemPoleAmounts();
                 scanArea();
             }
 
@@ -106,9 +107,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
             if(!(currentInput >= 1))
             {
-                if(socket > 0)
+                if(totemPoleSize > 0)
                 {
-                    for(int i = 1; i <= socket; i++)
+                    for(int i = 1; i <= totemPoleSize; i++)
                     {
                         if(totems[i] != null)
                         {
@@ -117,7 +118,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                                 if(/*tier >= totemRegistry.getTier() && */totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage())
                                 {
                                     //TODO
-                                    totemRegistry.getEffect().effect(this, socket, totemRegistry, getRanges(totemRegistry)[0], getRanges(totemRegistry)[1], musicForEffect);
+                                    totemRegistry.getEffect().effect(this, totemPoleSize, totemRegistry, getRanges(totemRegistry)[0], getRanges(totemRegistry)[1], musicForEffect);
                                 }
                             }
                         }
@@ -279,8 +280,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             array[0] += 6;
             array[1] += 6;
         }
-        array[0] += socket % 3;
-        array[1] += socket % 3;
+        array[0] += totemPoleSize % 3;
+        array[1] += totemPoleSize % 3;
 
         //TODO this method will say the vertical/horizontal range of Totem Poles
 
@@ -485,13 +486,13 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     protected void scanArea()
     {
-        for(int i = 1; i <= socket; i++)
+        for(int i = 1; i <= totemPoleSize; i++)
         {
-            if(socket <= 10)
+            if(totemPoleSize <= 10)
             {
-                if(getSocketItemStack(i) != null)
+                if(getTotemPoleItemStack(i) != null)
                 {
-                    totems[i] = getSocketItemStack(i);
+                    totems[i] = getTotemPoleItemStack(i);
                 } else
                     totems[i] = null;
             }
@@ -503,7 +504,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         return true;
     }
 
-    protected ItemStack getSocketItemStack(int par1)
+    protected ItemStack getTotemPoleItemStack(int par1)
     {
         TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
 
@@ -511,7 +512,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     }
 
 
-    protected int getSocketAmounts()
+    protected int gettotemPoleAmounts()
     {
         Block block1 = worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
         Block block2 = worldObj.getBlock(this.xCoord, this.yCoord + 2, this.zCoord);
@@ -557,7 +558,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     }
 
-    protected int setSocketAmounts()
+    protected int setTotemPoleAmounts()
     {
         Block block1 = worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
         Block block2 = worldObj.getBlock(this.xCoord, this.yCoord + 2, this.zCoord);
@@ -626,6 +627,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         super.readFromNBT(nbtTagCompound);
 
         //musicalMelody = nbtTagCompound.getInteger("musicalMelody");
+        totemPoleSize = nbtTagCompound.getInteger("totemPoleSize");
         tier = nbtTagCompound.getInteger("tier");
         efficiencyFromCeremony = nbtTagCompound.getInteger("efficiencyFromCeremony");
         isDoingEffect = nbtTagCompound.getBoolean("isDoingEffect");
@@ -653,6 +655,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         super.writeToNBT(nbtTagCompound);
 
         nbtTagCompound.setIntArray("musicCeremony", musicCeremony);
+        nbtTagCompound.setInteger("totemPoleSize", totemPoleSize);
         //nbtTagCompound.setInteger("musicalMelody", musicalMelody);
         nbtTagCompound.setInteger("tier", tier);
         nbtTagCompound.setInteger("efficiencyFromCeremony", efficiencyFromCeremony);
