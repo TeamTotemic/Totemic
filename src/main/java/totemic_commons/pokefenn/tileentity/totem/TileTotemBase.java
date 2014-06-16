@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -467,23 +466,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         }
     }
 
-    public int getEffiencyFromBlock(Block block)
-    {
-        //if(efficiency < 50)
-        {
-            if(block == ModBlocks.totemTorch)
-                return 4;
-            if(block == ModBlocks.totemPole)
-                return 3;
-            if(block == Blocks.fire)
-                return 2;
-            if(block == ModBlocks.flameParticle)
-                return 4;
-        }
-
-        return 0;
-    }
-
     protected void scanArea()
     {
         for(int i = 1; i <= totemPoleSize; i++)
@@ -509,53 +491,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
 
         return ((TileTotemPole) tileEntity).getStackInSlot(TileTotemPole.SLOT_ONE);
-    }
-
-
-    protected int gettotemPoleAmounts()
-    {
-        Block block1 = worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
-        Block block2 = worldObj.getBlock(this.xCoord, this.yCoord + 2, this.zCoord);
-        Block block3 = worldObj.getBlock(this.xCoord, this.yCoord + 3, this.zCoord);
-        Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
-        Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
-        Block block6 = worldObj.getBlock(this.xCoord, this.yCoord + 6, this.zCoord);
-        Block block7 = worldObj.getBlock(this.xCoord, this.yCoord + 7, this.zCoord);
-        Block block8 = worldObj.getBlock(this.xCoord, this.yCoord + 8, this.zCoord);
-        Block block9 = worldObj.getBlock(this.xCoord, this.yCoord + 9, this.zCoord);
-        Block block10 = worldObj.getBlock(this.xCoord, this.yCoord + 10, this.zCoord);
-
-
-        if(block1 instanceof BlockTotemPole && block2 != ModBlocks.totemPole)
-        {
-            return 1;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 != ModBlocks.totemPole)
-        {
-            return 2;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 != ModBlocks.totemPole)
-        {
-            return 3;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 != ModBlocks.totemPole)
-        {
-            return 4;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 != ModBlocks.totemPole)
-        {
-            return 6;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 != ModBlocks.totemPole)
-        {
-            return 7;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 != ModBlocks.totemPole)
-        {
-            return 8;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 instanceof BlockTotemPole && block9 != ModBlocks.totemPole)
-        {
-            return 9;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 != ModBlocks.totemPole && block9 == ModBlocks.totemPole && block10 != ModBlocks.totemPole)
-        {
-            return 10;
-        } else
-            return 0;
-
     }
 
     protected int setTotemPoleAmounts()
