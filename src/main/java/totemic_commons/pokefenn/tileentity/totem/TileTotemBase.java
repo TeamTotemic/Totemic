@@ -34,7 +34,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public int maxEssence;
     public static int totemPoleSize;
     public static int rangeUpgrades;
-    //public int musicalMelody;
     public int tier;
     public int efficiencyFromCeremony;
     public boolean isDoingEffect;
@@ -561,7 +560,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         super.readFromNBT(nbtTagCompound);
 
-        //musicalMelody = nbtTagCompound.getInteger("musicalMelody");
         totemPoleSize = nbtTagCompound.getInteger("totemPoleSize");
         tier = nbtTagCompound.getInteger("tier");
         efficiencyFromCeremony = nbtTagCompound.getInteger("efficiencyFromCeremony");
@@ -591,7 +589,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
         nbtTagCompound.setIntArray("musicCeremony", musicCeremony);
         nbtTagCompound.setInteger("totemPoleSize", totemPoleSize);
-        //nbtTagCompound.setInteger("musicalMelody", musicalMelody);
         nbtTagCompound.setInteger("tier", tier);
         nbtTagCompound.setInteger("efficiencyFromCeremony", efficiencyFromCeremony);
         nbtTagCompound.setBoolean("isDoingEffect", isDoingEffect);
