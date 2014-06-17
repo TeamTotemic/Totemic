@@ -5,14 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.TotemicAPI;
-import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.recipe.CeremonyPotionRegistry;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
-import totemic_commons.pokefenn.ceremony.CeremonyFluteInfusion;
-import totemic_commons.pokefenn.ceremony.CeremonyPotion;
-import totemic_commons.pokefenn.ceremony.CeremonyRain;
-import totemic_commons.pokefenn.ceremony.CeremonyRainRemoval;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.totem.*;
@@ -47,10 +42,11 @@ public class TotemicHandlerInitiation
     public static void ceremonyHandler()
     {
         //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE, null, 100, 30 * 20, 0));
-        elixer = TotemicAPI.addCeremony("Dance of Divine Elixirs", false, null, new MusicEnum[]{MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.FLUTE}, 2, new CeremonyPotion(), false, 20 * 30, 150, 30 * 20, 2);
-        flute = TotemicAPI.addCeremony("Ceremony of Flute Imbuation", false, null, new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE}, 3, new CeremonyFluteInfusion(), true, 20 * 30, 110, 40 * 20, 0);
-        rainDance = TotemicAPI.addCeremony("Rain Dance", false, null, new MusicEnum[]{MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.FLUTE}, 4, new CeremonyRain(), true, 20 * 30, 110, 40 * 20, 0);
-        drought = TotemicAPI.addCeremony("Drought Ceremony", false, null, new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM}, 5, new CeremonyRainRemoval(), true, 20 * 30, 110, 40 * 20, 0);
+        //TODO
+        //elixer = TotemicAPI.addCeremony("Dance of Divine Elixirs", false, null, new MusicEnum[]{MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.FLUTE}, 2, new CeremonyPotion(), false, 20 * 30, 150, 30 * 20, 2);
+        //flute = TotemicAPI.addCeremony("Ceremony of Flute Imbuation", false, null, new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE}, 3, new CeremonyFluteInfusion(), true, 20 * 30, 110, 40 * 20, 0);
+        //rainDance = TotemicAPI.addCeremony("Rain Dance", false, null, new MusicEnum[]{MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.FLUTE}, 4, new CeremonyRain(), true, 20 * 30, 110, 40 * 20, 0);
+        //drought = TotemicAPI.addCeremony("Drought Ceremony", false, null, new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM}, 5, new CeremonyRainRemoval(), true, 20 * 30, 110, 40 * 20, 0);
         //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Ghost Dance", false, null, null, null, null, 6, new CeremonyGhostDance(), true, 20 * 30, null, 130, 40 * 20, 0));
         //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.WIND_CHIME, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, 4, new CeremonyTotemAwakening(), true, 20 * 30, MusicEnum.DRUM, null, 0, 30 * 20, 0))
     }

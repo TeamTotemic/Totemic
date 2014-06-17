@@ -24,10 +24,10 @@ public class TotemRegistry
     private final int tier;
     private final String name;
 
-    public TotemRegistry(ItemStack totem, int verticalHight, int horizontal, ITotemEffect effect, int tier, String name)
+    public TotemRegistry(ItemStack totem, int verticalHeight, int horizontal, ITotemEffect effect, int tier, String name)
     {
         this.totem = totem;
-        this.verticalHight = verticalHight;
+        this.verticalHight = verticalHeight;
         this.horizontal = horizontal;
         this.effect = effect;
         this.tier = tier;
