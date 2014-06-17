@@ -410,7 +410,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public void startupMain()
     {
         System.out.println("main?");
-        if(ceremonyStartupTimer > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMaximumStartupTime());
+        if(ceremonyStartupTimer > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMaximumStartupTime())
+            ;
         {
             resetAfterCeremony(true);
         }

@@ -7,6 +7,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.compat.Compatibility;
@@ -15,6 +16,7 @@ import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.event.ModEvents;
 import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.misc.CreativeTabTotemic;
+import totemic_commons.pokefenn.network.GuiHandler;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.TotemicRecipes;
@@ -94,6 +96,8 @@ public final class Totemic
     public void init(FMLInitializationEvent event)
     {
         logger.info("Totemic is entering its Initlisation stage");
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
 
         //Registers the packets with FML
         PacketHandler.init();

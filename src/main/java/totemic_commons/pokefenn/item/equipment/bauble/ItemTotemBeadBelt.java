@@ -1,26 +1,13 @@
 package totemic_commons.pokefenn.item.equipment.bauble;
 
-import baubles.api.BaubleType;
-import baubles.api.BaublesApi;
-import baubles.api.IBauble;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemTotemBeadBelt extends ItemTotemic implements IBauble, ITotemBauble
+public class ItemTotemBeadBelt extends ItemTotemic// implements IBauble, ITotemBauble
 {
 
     public ItemTotemBeadBelt()
@@ -29,6 +16,7 @@ public class ItemTotemBeadBelt extends ItemTotemic implements IBauble, ITotemBau
         setMaxStackSize(1);
     }
 
+    /*
     @Override
     public int getTotemEfficiency(World world, ItemStack itemStack, EntityPlayer player)
     {
@@ -90,4 +78,5 @@ public class ItemTotemBeadBelt extends ItemTotemic implements IBauble, ITotemBau
     {
         return true;
     }
+    */
 }

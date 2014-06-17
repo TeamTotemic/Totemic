@@ -46,7 +46,7 @@ public class TileTotemPole extends TileTotemic// implements IInventory
     {
         readFromNBT(pkt.func_148857_g());
     }
-    
+
     public void setInventorySlotContents(int slotIndex, ItemStack itemStack)
     {
         inventory[slotIndex] = itemStack;

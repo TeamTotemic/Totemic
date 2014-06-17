@@ -15,19 +15,32 @@ import net.minecraftforge.common.util.ForgeDirection;
  * It will also return things that are unmodified by the overriding systems (like getWailaStack).
  */
 
-public interface IWailaDataAccessor {
-		
-	World        		 getWorld();
-	EntityPlayer 		 getPlayer();
-	Block        		 getBlock();
-	int          		 getBlockID();
-	int          		 getMetadata();
-	TileEntity           getTileEntity();
-	MovingObjectPosition getPosition();
-	Vec3                 getRenderingPosition();
-	NBTTagCompound       getNBTData();
-	int                  getNBTInteger(NBTTagCompound tag, String keyname);
-	double               getPartialFrame();
-	ForgeDirection       getSide();
-	ItemStack            getStack();
+public interface IWailaDataAccessor
+{
+
+    World getWorld();
+
+    EntityPlayer getPlayer();
+
+    Block getBlock();
+
+    int getBlockID();
+
+    int getMetadata();
+
+    TileEntity getTileEntity();
+
+    MovingObjectPosition getPosition();
+
+    Vec3 getRenderingPosition();
+
+    NBTTagCompound getNBTData();
+
+    int getNBTInteger(NBTTagCompound tag, String keyname);
+
+    double getPartialFrame();
+
+    ForgeDirection getSide();
+
+    ItemStack getStack();
 }

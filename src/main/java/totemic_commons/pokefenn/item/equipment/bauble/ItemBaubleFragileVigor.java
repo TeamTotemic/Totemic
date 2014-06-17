@@ -1,9 +1,5 @@
 package totemic_commons.pokefenn.item.equipment.bauble;
 
-import baubles.api.BaubleType;
-import baubles.api.IBauble;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -11,7 +7,7 @@ import totemic_commons.pokefenn.lib.Strings;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemBaubleFragileVigor extends ItemTotemic implements IBauble
+public class ItemBaubleFragileVigor extends ItemTotemic// implements IBauble
 {
     public ItemBaubleFragileVigor()
     {
@@ -19,6 +15,7 @@ public class ItemBaubleFragileVigor extends ItemTotemic implements IBauble
         setMaxStackSize(1);
     }
 
+    /*
     @Override
     public BaubleType getBaubleType(ItemStack itemstack)
     {
@@ -54,4 +51,5 @@ public class ItemBaubleFragileVigor extends ItemTotemic implements IBauble
     {
         return true;
     }
+    */
 }

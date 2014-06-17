@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
+import vazkii.botania.totemic_custom.api.lexicon.ILexicon;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +13,7 @@ import totemic_commons.pokefenn.lib.Strings;
  * Date: 19/02/14
  * Time: 12:49
  */
-public class ItemTotempedia extends ItemTotemic
+public class ItemTotempedia extends ItemTotemic implements ILexicon
 {
 
     public ItemTotempedia()
@@ -22,11 +23,11 @@ public class ItemTotempedia extends ItemTotemic
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-        player.openGui(Totemic.instance, Totemic.proxy.totempediaGuiID, world, 0, 0, 0);
+        player.openGui(Totemic.instance, 0, world, 0, 0, 0);
 
-        return stack;
+        return itemStack;
     }
 
 }

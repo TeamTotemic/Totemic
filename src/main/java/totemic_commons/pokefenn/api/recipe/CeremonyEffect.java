@@ -18,7 +18,7 @@ public class CeremonyEffect
     private final ICeremonyEffect ceremonyEffect;
 
     /**
-     * @param musicEnums An array holding the music enums for the musical selector, has to hold 4 instruments, no more, no less.
+     * @param musicEnums     An array holding the music enums for the musical selector, has to hold 4 instruments, no more, no less.
      * @param ceremonyEffect The effect the ceremony does.
      */
 

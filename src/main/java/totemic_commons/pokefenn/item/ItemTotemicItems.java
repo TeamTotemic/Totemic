@@ -71,10 +71,10 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
             if(player instanceof EntityPlayer)
             {
                 if(((EntityPlayer) player).getHeldItem() != null && ((EntityPlayer) player).getHeldItem().getItem() == this)
-                if(itemStack.getItemDamage() == flute || itemStack.getItemDamage() == fluteInfused)
-                {
-                    fluteUpdate((EntityPlayer) player);
-                }
+                    if(itemStack.getItemDamage() == flute || itemStack.getItemDamage() == fluteInfused)
+                    {
+                        fluteUpdate((EntityPlayer) player);
+                    }
             }
         }
     }
