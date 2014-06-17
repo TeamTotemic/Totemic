@@ -19,6 +19,8 @@ public class PacketServerBlessingSync implements IMessage, IMessageHandler<Packe
     public String player;
     public int blessing;
 
+    //REMEMBER THIS GOES CLIENT > SERVER
+
     public PacketServerBlessingSync()
     {
 

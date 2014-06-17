@@ -23,13 +23,11 @@ public class BlessingWorldData extends WorldSavedData
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         blessing = nbtTagCompound.getInteger("blessing");
-        //name = nbtTagCompound.getString("name");
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         nbtTagCompound.setInteger("blessing", blessing);
-        //nbtTagCompound.setString("name", name);
     }
 }

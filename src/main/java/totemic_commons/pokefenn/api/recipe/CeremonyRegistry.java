@@ -23,14 +23,14 @@ public class CeremonyRegistry
     private final MusicEnum instrument4;
     private final int ceremonyID;
     private final ICeremonyEffect ceremonyEffect;
-    private final int maximumTicks;
+    private final int maximumTicksForEffect;
     private final boolean isInstant;
     private final int musicNeeded;
     private final int maximumStartupTime;
     private final int melodyPer5After;
     private final String name;
 
-    public CeremonyRegistry(String name, boolean doesNeedItems, MusicEnum instrument1, MusicEnum instrument2, MusicEnum instrument3, MusicEnum instrument4, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicks, ItemStack item, int musicNeeded, int maximumStartupTime, int melodyPer5After)
+    public CeremonyRegistry(String name, boolean doesNeedItems, MusicEnum instrument1, MusicEnum instrument2, MusicEnum instrument3, MusicEnum instrument4, int ceremonyID, ICeremonyEffect ceremonyEffect, boolean isInstant, int maximumTicksForEffect, ItemStack item, int musicNeeded, int maximumStartupTime, int melodyPer5After)
     {
         this.name = name;
         this.item = item;
@@ -41,7 +41,7 @@ public class CeremonyRegistry
         this.instrument4 = instrument4;
         this.ceremonyID = ceremonyID;
         this.ceremonyEffect = ceremonyEffect;
-        this.maximumTicks = maximumTicks;
+        this.maximumTicksForEffect = maximumTicksForEffect;
         this.isInstant = isInstant;
         this.musicNeeded = musicNeeded;
         this.maximumStartupTime = maximumStartupTime;
@@ -87,9 +87,9 @@ public class CeremonyRegistry
         return this.ceremonyEffect;
     }
 
-    public int getMaximumTicksOnEffect()
+    public int getmaximumTicksForEffectOnEffect()
     {
-        return this.maximumTicks;
+        return this.maximumTicksForEffect;
     }
 
     public boolean getIsInstant()

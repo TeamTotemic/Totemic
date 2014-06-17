@@ -24,33 +24,30 @@ public class PacketClientBlessingSync implements IMessage, IMessageHandler<Packe
 
     }
 
-    public PacketClientBlessingSync(/*String player, */int blessing)
+    //REMEMBER THIS GOES SERVER > CLIENT
+
+    public PacketClientBlessingSync(int blessing)
     {
         this.blessing = blessing;
-        //this.player = player;
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
         blessing = buf.readInt();
-        //byte[] data = new byte[buf.readableBytes()];
-        //buf.readBytes(data);
-        //player = new String(data);
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
         buf.writeInt(blessing);
-        //buf.writeBytes(player.getBytes());
     }
 
     @Override
     public IMessage onMessage(PacketClientBlessingSync message, MessageContext ctx)
     {
         Side side = FMLCommonHandler.instance().getEffectiveSide();
-        EntityPlayer player = side == Side.CLIENT ? FMLClientHandler.instance().getClient().thePlayer : ctx.getServerHandler().playerEntity;
+        EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
 
         BlessingHandler.setBlessing(message.blessing, player.getDisplayName(), player.worldObj);
 

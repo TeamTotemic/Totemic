@@ -15,6 +15,7 @@ public class BlessingHandler
 {
     public static void increaseBlessing(int amount, String player, World world, int x, int y, int z)
     {
+        //Only send this method from server > client
         BlessingWorldData blessing = (BlessingWorldData) world.loadItemData(BlessingWorldData.class, player);
 
         if(blessing == null)
