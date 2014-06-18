@@ -40,7 +40,7 @@ public final class ModBlocks
         cedarLog = new BlockCedarLog();
         totemBase = new BlockTotemBase();
         totemPole = new BlockTotemPole();
-        totemSapling = new BlocCedarSapling();
+        totemSapling = new BlockCedarSapling();
         totemLeaves = new BlockCedarLeaves();
         totemTorch = new BlockTotemTorch();
         flameParticle = new BlockFlameParticle();

@@ -181,7 +181,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
             ICeremonyEffect effect = CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyEffect().getCeremonyEffect();
 
-            if(ceremonyEffectTimer > CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMaximumTicksForEffect())
+            if(ceremonyEffectTimer > CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMaximumTicksForEffect().getTime())
             {
                 //if(isCeremonyAwakening)
                 //{
@@ -410,8 +410,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public void startupMain()
     {
         System.out.println("main?");
-        if(ceremonyStartupTimer > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMaximumStartupTime())
-            ;
+        if(ceremonyStartupTimer > CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMaximumStartupTime().getTime())
         {
             resetAfterCeremony(true);
         }

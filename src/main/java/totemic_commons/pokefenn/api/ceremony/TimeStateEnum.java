@@ -9,3 +9,4 @@ public enum TimeStateEnum
     INSTANT,
     OVER_TIME
 }
+
