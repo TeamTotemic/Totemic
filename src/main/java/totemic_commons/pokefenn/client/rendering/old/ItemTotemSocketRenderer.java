@@ -6,8 +6,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import totemic_commons.pokefenn.client.rendering.old.ModelTotemSocket;
-import totemic_commons.pokefenn.lib.Textures;
+import totemic_commons.pokefenn.lib.Resources;
 
 /**
  * Created with IntelliJ IDEA.
@@ -80,7 +79,7 @@ public class ItemTotemSocketRenderer implements IItemRenderer
 
 
         // Bind texture
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.TEXTURE_TOTEM_SOCKET);
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TOTEM_SOCKET);
 
         // Render
         modelTotemSocket.render();

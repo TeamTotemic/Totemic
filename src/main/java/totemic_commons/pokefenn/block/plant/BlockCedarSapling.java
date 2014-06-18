@@ -11,8 +11,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.world.TotemTreeGeneration;
 
 import java.util.List;
@@ -24,11 +24,11 @@ import java.util.Random;
  * Date: 12/02/14
  * Time: 12:55
  */
-public class BlocCedarSapling extends BlockSapling
+public class BlockCedarSapling extends BlockSapling
 {
     private static TotemTreeGeneration treeGen = new TotemTreeGeneration(true);
 
-    public BlocCedarSapling()
+    public BlockCedarSapling()
     {
         super();
         setBlockName(Strings.TOTEM_SAPLING_NAME);
@@ -73,7 +73,7 @@ public class BlocCedarSapling extends BlockSapling
     @Override
     public void registerBlockIcons(IIconRegister register)
     {
-        saplingIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_SAPLING);
+        saplingIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.INFUSED_SAPLING);
     }
 
     @SideOnly(Side.CLIENT)

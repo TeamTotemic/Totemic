@@ -18,8 +18,8 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -86,7 +86,7 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     @Override
     public void registerBlockIcons(IIconRegister register)
     {
-        windChimeIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "windChime");
+        windChimeIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "windChime");
     }
 
     @Override

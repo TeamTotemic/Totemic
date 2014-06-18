@@ -12,6 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.compat.Compatibility;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
+import totemic_commons.pokefenn.crafting.TotemicCraftingRecipes;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.event.ModEvents;
 import totemic_commons.pokefenn.fluid.ModFluids;
@@ -19,7 +20,7 @@ import totemic_commons.pokefenn.misc.CreativeTabTotemic;
 import totemic_commons.pokefenn.network.GuiHandler;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.potion.ModPotions;
-import totemic_commons.pokefenn.recipe.TotemicRecipes;
+import totemic_commons.pokefenn.totempedia.LexiconData;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -90,6 +91,8 @@ public final class Totemic
         //Initiates the mod items into the game
         ModItems.init();
 
+        LexiconData.init();
+
     }
 
     @EventHandler
@@ -109,7 +112,7 @@ public final class Totemic
         ModEntities.init();
 
         //Intiate all the recipes!
-        TotemicRecipes.init();
+        TotemicCraftingRecipes.init();
 
         //Init tile entities into the game
         proxy.registerTileEntities();

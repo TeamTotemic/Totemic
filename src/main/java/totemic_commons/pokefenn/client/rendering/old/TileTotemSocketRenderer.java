@@ -4,7 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
-import totemic_commons.pokefenn.lib.Textures;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
 /**
@@ -33,7 +33,7 @@ public class TileTotemSocketRenderer extends TileEntitySpecialRenderer
             GL11.glRotatef(240F, 1F, 1F, 1F);
 
             // Bind texture
-            FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.TEXTURE_TOTEM_SOCKET);
+            FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TOTEM_SOCKET);
 
             // Render
             modelTotemSocket.render();

@@ -3,8 +3,14 @@ package totemic_commons.pokefenn.lib;
 import net.minecraft.util.ResourceLocation;
 import totemic_commons.pokefenn.util.ResourceLocationHelper;
 
-public class Textures
+public class Resources
 {
+
+    public static final String PREFIX_MOD = "totemic:";
+    public static final String PREFIX_GUI = PREFIX_MOD + "textures/gui/";
+    public static final String PREFIX_ENTRIES = PREFIX_GUI + "entries/";
+
+    public static final String GUI_CRAFTING_OVERLAY = PREFIX_GUI + "craftingOverlay.png";
 
     public static final String MODEL_SHEET_LOCATION = "textures/models/";
     public static final String ARMOR_SHEET_LOCATION = "textures/armor/";
@@ -23,12 +29,6 @@ public class Textures
     public static final String INFUSED_WOOD_SIDE = "cedarWoodSide";
 
     public static final String INFUSED_SAPLING = "infusedSapling";
-
-    //Items
-    public static final String BUCKET_CHLOROPHYLL_ICON = "bucketChlorophyll";
-
-    //Guis
-    public static final ResourceLocation TOTEMPEDIA_PAGE = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "totempedia");
 
     //Models
     public static final ResourceLocation TEXTURE_TOTEM_SOCKET = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemSocket.png");

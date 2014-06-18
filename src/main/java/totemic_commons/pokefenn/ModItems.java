@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
+import totemic_commons.pokefenn.item.ItemTotempedia;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
@@ -63,7 +64,7 @@ public final class ModItems
         //verdantCrystal = new ItemVerdantCrystal();
         //blazingChlorophyllCrystal = new ItemBlazingVerdantCrystal();
         //infusedTotemicStaff = new ItemInfusedTotemicStaff();
-        //totempedia = new ItemTotempedia();
+        totempedia = new ItemTotempedia();
         //halberd = new ItemHalberd();
 
         //totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
@@ -88,7 +89,7 @@ public final class ModItems
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
         //GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
-        //GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
+        GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
         //GameRegistry.registerItem(verdantCrystal, verdantCrystal.getUnlocalizedName());
         //GameRegistry.registerItem(halberd, Strings.HALBERD_NAME);
 

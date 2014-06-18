@@ -39,6 +39,7 @@ public class RenderHelper
         renderTooltip(x, y, tooltipData, color, color2);
     }
 
+
     public static void renderTooltip(int x, int y, List<String> tooltipData, int color, int color2)
     {
         boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);

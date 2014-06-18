@@ -6,8 +6,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import totemic_commons.pokefenn.client.rendering.old.ModelTotemicStaff;
-import totemic_commons.pokefenn.lib.Textures;
+import totemic_commons.pokefenn.lib.Resources;
 
 @SideOnly(Side.CLIENT)
 public class ItemInfusedTotemicStaff implements IItemRenderer
@@ -75,7 +74,7 @@ public class ItemInfusedTotemicStaff implements IItemRenderer
 
 
         // Bind texture
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.TEXTURE_INFUSED_TOTEMIC_STAFF);
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_INFUSED_TOTEMIC_STAFF);
 
         // Render
         modelTotemicStaff.render();

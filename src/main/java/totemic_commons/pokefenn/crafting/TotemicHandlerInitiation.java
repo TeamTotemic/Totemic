@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.recipe;
+package totemic_commons.pokefenn.crafting;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

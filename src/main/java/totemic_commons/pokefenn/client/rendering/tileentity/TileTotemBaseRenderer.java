@@ -11,8 +11,7 @@ import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.client.rendering.model.ModelTotemBase;
-import totemic_commons.pokefenn.client.rendering.model.ModelTotemSocketCube;
-import totemic_commons.pokefenn.lib.Textures;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 /**
@@ -46,7 +45,7 @@ public class TileTotemBaseRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, 1.47F, 0.5F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Textures.TEXTURE_TOTEM_BASE);
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TOTEM_BASE);
 
         this.modelTotemBase.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 

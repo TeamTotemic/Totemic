@@ -11,10 +11,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -95,8 +94,8 @@ public class BlockCedarLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register)
     {
-        opaqueIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_LEAVES_OPAQUE);
-        transparentIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_LEAVES_TRANSPARENT);
+        opaqueIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.TOTEM_LEAVES_OPAQUE);
+        transparentIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.TOTEM_LEAVES_TRANSPARENT);
     }
 
 

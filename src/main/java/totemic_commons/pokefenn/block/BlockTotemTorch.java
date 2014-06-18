@@ -10,8 +10,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.lib.RenderIds;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 
 import java.util.Random;
@@ -49,7 +49,7 @@ public class BlockTotemTorch extends BlockTileTotemic
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register)
     {
-        iconThingy = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "totemsRange");
+        iconThingy = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "totemsRange");
     }
 
     @Override

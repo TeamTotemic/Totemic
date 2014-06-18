@@ -16,8 +16,8 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.armour.ITotemArmour;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 
 import java.util.List;
 
@@ -69,10 +69,10 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register)
     {
-        helmetIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "totemArmourHelmet");
-        plateIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "totemArmourChest");
-        bootsIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "totemArmourBoots");
-        leggingsIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "totemArmourLeggings");
+        helmetIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "totemArmourHelmet");
+        plateIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "totemArmourChest");
+        bootsIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "totemArmourBoots");
+        leggingsIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "totemArmourLeggings");
     }
 
     @SideOnly(Side.CLIENT)

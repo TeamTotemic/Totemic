@@ -9,8 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 
 import java.util.List;
 
@@ -47,8 +47,8 @@ public class BlockCedarLog extends BlockLog
     @Override
     public void registerBlockIcons(IIconRegister register)
     {
-        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_WOOD_SIDE);
-        topAndBot = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.INFUSED_WOOD_TOP_AND_BOT);
+        sideIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.INFUSED_WOOD_SIDE);
+        topAndBot = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.INFUSED_WOOD_TOP_AND_BOT);
 
     }
 

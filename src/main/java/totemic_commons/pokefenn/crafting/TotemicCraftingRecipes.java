@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.recipe;
+package totemic_commons.pokefenn.crafting;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
@@ -12,7 +12,7 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
 
-public class TotemicRecipes
+public class TotemicCraftingRecipes
 {
 
     public static void init()

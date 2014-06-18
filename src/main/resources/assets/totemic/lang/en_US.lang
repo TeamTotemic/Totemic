@@ -3,14 +3,6 @@
 # Item localizations
 item.totemic:totemicStaff.name=Totemic Staff
 item.totemic:totemWhittlingKnife.name=Totem Whittling Knife
-item.totemic:totemsBat.name=Bat Totem
-item.totemic:totemsHorse.name=Horse Totem
-item.totemic:totemsOcelot.name=Ocelot Totem
-item.totemic:totemsBlaze.name=Blaze Totem
-item.totemic:totemsSquid.name=Squid Totem
-item.totemic:totemsDraining.name=Draining Totem
-item.totemic:totemsSpider.name=Spider Totem
-item.totemic:totemsCow.name=Cow Totem
 item.totemic:paintBrush.name=Totemist Paint Brush
 item.totemic:infusedTotemicStaff.name=Infused Totemic Staff
 item.totemic:leaf.name=Sylvan Leaf
@@ -54,3 +46,16 @@ itemGroup.Totemic=Totemic
 
 # Waila Localizations
 totemic:plantEssence=Plant Essence:
+
+#Totempedia Localisations
+totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.
+
+totemic.category.basics=Totemic Basics
+totemic.category.devices=Devices
+totemic.category.tools=Tools
+totemic.category.misc=Miscellaneous
+totemic.category.lore=Lore
+
+totemic.entry.cedarTree=The Red Cedar tree
+totemic.page.cedarTree0=The mighty Red Cedar Tree, one of the strongest, and most powerful trees in existence. It's wood is the base of most Totemic practice, and has properties that many other trees do not. To create the sapling of this tree, you need to just use the Cedar Metamorphesiser on a sapling in the world.
+totemic.page.cedarTree1=The height of the Red Cedar tree is usually from 6 to 9 blocks, but of course that can vary. The tree drops saplings like normal trees, and preforms all other normal sapling behaviour.

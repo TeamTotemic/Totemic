@@ -6,8 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.lib.Textures;
 
 /**
  * Created by Pokefenn.
@@ -29,7 +29,7 @@ public class BlockCedarPlank extends Block
     @Override
     public void registerBlockIcons(IIconRegister register)
     {
-        cedarPlank = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + "cedarPlank");
+        cedarPlank = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "cedarPlank");
     }
 
     @SideOnly(Side.CLIENT)
