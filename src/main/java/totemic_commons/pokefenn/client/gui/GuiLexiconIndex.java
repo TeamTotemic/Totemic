@@ -13,6 +13,7 @@ package totemic_commons.pokefenn.client.gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import org.lwjgl.input.Mouse;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBack;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonInvisible;
@@ -32,7 +33,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
     String title;
     int page = 0;
 
-    GuiButton leftButton, rightButton;
+    GuiButton leftButton, rightButton, backButton;
     GuiLexicon parent;
 
     List<LexiconEntry> entriesToDisplay = new ArrayList();
@@ -134,5 +135,87 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
     public void setParent(GuiLexicon gui)
     {
         parent = gui;
+    }
+
+    int fx = 0;
+    boolean swiped = false;
+
+    @Override
+    protected void mouseClickMove(int x, int y, int button, long time)
+    {
+        if(button == 0 && Math.abs(x - fx) > 100 && mc.gameSettings.touchscreen && !swiped)
+        {
+            double swipe = (double) (x - fx) / Math.max(1, (double) time);
+            if(swipe < 0.5)
+            {
+                nextPage();
+                swiped = true;
+            } else if(swipe > 0.5)
+            {
+                prevPage();
+                swiped = true;
+            }
+        }
+    }
+
+    @Override
+    protected void mouseClicked(int par1, int par2, int par3)
+    {
+        super.mouseClicked(par1, par2, par3);
+
+        fx = par1;
+        if(par3 == 1)
+            back();
+    }
+
+    @Override
+    public void handleMouseInput()
+    {
+        super.handleMouseInput();
+
+        if(Mouse.getEventButton() == 0)
+            swiped = false;
+
+        int w = Mouse.getEventDWheel();
+        if(w < 0)
+            nextPage();
+        else if(w > 0)
+            prevPage();
+    }
+
+    @Override
+    protected void keyTyped(char par1, int par2)
+    {
+        if(par2 == 203 || par2 == 200 || par2 == 201) // Left, Up, Page Up
+            prevPage();
+        else if(par2 == 205 || par2 == 208 || par2 == 209) // Right, Down Page Down
+            nextPage();
+        else if(par2 == 14) // Backspace
+            back();
+        else if(par2 == 199)
+        { // Home
+            mc.displayGuiScreen(new GuiLexicon());
+            ClientTickHandler.notifyPageChange();
+        }
+
+        super.keyTyped(par1, par2);
+    }
+
+    void back()
+    {
+        if(backButton.enabled)
+            actionPerformed(backButton);
+    }
+
+    void nextPage()
+    {
+        if(rightButton.enabled)
+            actionPerformed(rightButton);
+    }
+
+    void prevPage()
+    {
+        if(leftButton.enabled)
+            actionPerformed(leftButton);
     }
 }

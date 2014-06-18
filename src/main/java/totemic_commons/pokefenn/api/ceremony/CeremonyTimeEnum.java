@@ -12,6 +12,7 @@ public enum CeremonyTimeEnum
     MEDIUM(30 * 20),
     LONG(45 * 20),
     EXTRA_LONG(60 * 20),
+    MEDIUM_STUPID_LONG(90 * 20),
     STUPIDLY_LONG(120 * 20);
 
     private final int time;
