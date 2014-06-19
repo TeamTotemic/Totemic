@@ -78,11 +78,19 @@ totemic.category.totems=Totems
 totemic.category.ceremonies=Ceremonies
 
 totemic.entry.cedarTree=The Red Cedar tree
-totemic.page.cedarTree0=The mighty Red Cedar Tree, one of the strongest, and most powerful trees in existence. It's wood is the base of most Totemic practice, and has properties that many other trees do not. To create the sapling of this tree, you need to just use the Cedar Metamorphesiser on a sapling in the world.
+totemic.page.cedarTree0=The great Red Cedar Tree, one of the strongest, and most powerful trees in existence. It's wood is the base of most Totemic practice, and has properties that many other trees do not. To create the sapling of this tree, you need to just use the Cedar Metamorphesiser on a sapling in the world.
 totemic.page.cedarTree1=The height of the Red Cedar tree is usually from 6 to 9 blocks, but of course that can vary. The tree drops saplings like normal trees, and preforms all other normal sapling behaviour.
 
 totemic.entry.buffaloBasic=Buffaloes
-totemic.page.buffaloBasic0=The mighty buffalo, an animal which is known across the lands for the resources it can grant, and the powers it wields. Buffaloes can be found in the world, or later created through a Ceremony.
+totemic.page.buffaloBasic0=The mighty buffalo, an animal which is known across the lands for the resources it can grant, and the powers it wields. Buffaloes can be found in the world, or later 'created' through a Ceremony.
 
 totemic.entry.performingCeremonies=Performing Ceremonies
-totemic.page.performingCeremonies0=Ceremonies
+totemic.page.performingCeremonies0=Ceremonies are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The centre of a Ceremony is a Totem Pole, all music and other things are centered to the Totem Pole and it is where the effects are released from.
+totemic.page.performingCeremonies1=To perform a Ceremony, there are a few things you must do. To select and initiate your Ceremony, you must play 4 instruments in their selector mode to a Totem Pole. To play most instruments in a selector mode, just play them normally while shifting. When you have played 4 corresponding instruments for a Ceremony, the startup will initiate.
+totemic.page.performingCeremonies2=While it is in this startup mode, the Totem Pole will accept all nearby music and store it. This is called 'Musical Melody' and it is what is needed for the Ceremonies effect to activate. When the total Melody hits the threshold of the Ceremonies Melody requirement, it will activate the effect.
+
+totemic.entry.rainDance=Rain Dance Ceremony
+totemic.page.rainDance0=The Rain Dance Ceremony is a way for you to bring a torrent of rain into the world. If the rain becomes too much to bare, the Drought Ceremony is always available, which will remove all rain. Because the effects of this Ceremony are so potent, it may be hard to perform.
+
+totemic.entry.drought=Drought Ceremony
+totemic.page.drought0=
