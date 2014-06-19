@@ -56,14 +56,13 @@ public final class LexiconData
         buffaloBasic.setLexiconPages(new PageText("0"), new PageText("1"));
 
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
-        performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));
+        performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));
 
         instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryCeremony);
         instruments.setLexiconPages(new PageText(("0")), new PageText("1"));
 
         rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony);
         rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", TotemicHandlerInitiation.rainDance.getCeremonyID()));
-
 
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
         barkStripper.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));

@@ -91,7 +91,7 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
                                 if(tileTotemBase.musicSelector[i] == 0)
                                     player.addChatComponentMessage(new ChatComponentText("No Music for selection on " + (i + 1)));
                                 else if(tileTotemBase.musicSelector[i] != 0)
-                                    player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileTotemBase.musicSelector[i] - 1].name()));
+                                    player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileTotemBase.musicSelector[i] - 1].getMusicName()));
                             }
                         }
                     }

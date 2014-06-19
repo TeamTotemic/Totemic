@@ -34,8 +34,8 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 {
     public int maxEssence;
-    public static int totemPoleSize;
-    public static int rangeUpgrades;
+    public int totemPoleSize;
+    public int rangeUpgrades;
     public int tier;
     public int efficiencyFromCeremony;
     public boolean isDoingEffect;
