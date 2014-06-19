@@ -54,10 +54,10 @@ public class TotemUtil
             return new ItemStack(ModItems.subItems, 1, ItemTotemicItems.flute);
         else if(musicEnum == MusicEnum.JINGLE_DRESS)
             return new ItemStack(ModItems.jingleDress);
-        else if(musicEnum == MusicEnum.RATTLE)
-            return null; //TODO
         else if(musicEnum == MusicEnum.WIND_CHIME)
             return new ItemStack(ModBlocks.windChime);
+        else if(musicEnum == MusicEnum.RATTLE)
+            return new ItemStack(ModItems.ceremonialRattle);
 
 
         return null;

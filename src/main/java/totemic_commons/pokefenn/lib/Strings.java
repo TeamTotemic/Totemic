@@ -28,15 +28,9 @@ public final class Strings
     //Items
     public static final String TOTEM_WHITTLING_KNIFE_NAME = "totemWhittlingKnife";
     public static final String TOTEMIC_STAFF_NAME = "totemicStaff";
-    public static final String VERDANT_CRYSTAL_NAME = "verdantCrystal";
-    public static final String BUCKET_CHLOROPHYLL_NAME = "bucketChlorophyll";
     public static final String TOTEMS_NAME = "totems";
     public static final String SUB_ITEMS_NAME = "subItems";
-    public static final String BOTTLE_CHLOROPHYLL_NAME = "bottleChlorophyll";
-    public static final String BLAZING_VERDANT_CRYSTAL_NAME = "blazingVerdantCrystal";
-    public static final String INFUSED_TOTEMIC_STAFF_NAME = "infusedTotemicStaff";
     public static final String TOTEMPEDIA_NAME = "totempedia";
-    public static final String HALBERD_NAME = "halberd";
     public static final String TOTEM_ARMOUR_LEG_NAME = "totemArmourLeg";
     public static final String TOTEM_ARMOUR_HEAD_NAME = "totemArmourHead";
     public static final String TOTEM_ARMOUR_CHEST_NAME = "totemArmourChest";
@@ -51,6 +45,7 @@ public final class Strings
     public static final String JINGLE_DRESS_NAME = "jingleDress";
     public static final String BARK_STRIPPER_NAME = "barkStripper";
     public static final String TOMAHAWK_NAME = "tomahawk";
+    public static final String CEREMONY_RATTLE_NAME = "ceremonialRattle";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";

@@ -14,6 +14,7 @@ import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
+import totemic_commons.pokefenn.item.equipment.music.ItemRattle;
 import totemic_commons.pokefenn.item.equipment.weapon.ItemBlowGun;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -37,6 +38,7 @@ public final class ModItems
     public static Item jingleDress;
     public static Item barkStripper;
     public static Item buffaloItems;
+    public static Item ceremonialRattle;
 
     public static Item totemArmourHead;
     public static Item totemArmourChest;
@@ -59,6 +61,8 @@ public final class ModItems
         jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
         buffaloItems = new ItemBuffaloDrops();
+        ceremonialRattle = new ItemRattle();
+
 
         //huntingKnife = new ItemHuntingKnife();
         //verdantCrystal = new ItemVerdantCrystal();
@@ -86,6 +90,7 @@ public final class ModItems
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
         GameRegistry.registerItem(buffaloItems, "buffaloItems");
+        GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
         //GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
