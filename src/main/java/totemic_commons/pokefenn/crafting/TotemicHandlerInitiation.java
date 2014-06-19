@@ -3,11 +3,14 @@ package totemic_commons.pokefenn.crafting;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.TotemicAPI;
-import totemic_commons.pokefenn.api.recipe.CeremonyPotionRegistry;
-import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
-import totemic_commons.pokefenn.api.recipe.TotemRegistry;
+import totemic_commons.pokefenn.api.ceremony.CeremonyTimeEnum;
+import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
+import totemic_commons.pokefenn.api.music.MusicEnum;
+import totemic_commons.pokefenn.api.recipe.*;
+import totemic_commons.pokefenn.ceremony.*;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.totem.*;
@@ -42,13 +45,11 @@ public class TotemicHandlerInitiation
     public static void ceremonyHandler()
     {
         //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, 1, new CeremonyFlowingTime(), false, 20 * 30, MusicEnum.FLUTE, null, 100, 30 * 20, 0));
-        //TODO
-        //elixer = TotemicAPI.addCeremony("Dance of Divine Elixirs", false, null, new MusicEnum[]{MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.FLUTE}, 2, new CeremonyPotion(), false, 20 * 30, 150, 30 * 20, 2);
-        //flute = TotemicAPI.addCeremony("Ceremony of Flute Imbuation", false, null, new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE}, 3, new CeremonyFluteInfusion(), true, 20 * 30, 110, 40 * 20, 0);
-        //rainDance = TotemicAPI.addCeremony("Rain Dance", false, null, new MusicEnum[]{MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.FLUTE}, 4, new CeremonyRain(), true, 20 * 30, 110, 40 * 20, 0);
-        //drought = TotemicAPI.addCeremony("Drought Ceremony", false, null, new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM}, 5, new CeremonyRainRemoval(), true, 20 * 30, 110, 40 * 20, 0);
-        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry("Ghost Dance", false, null, null, null, null, 6, new CeremonyGhostDance(), true, 20 * 30, null, 130, 40 * 20, 0));
-        //CeremonyRegistry.ceremonyRegistry.add(new CeremonyRegistry(false, MusicEnum.WIND_CHIME, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, 4, new CeremonyTotemAwakening(), true, 20 * 30, MusicEnum.DRUM, null, 0, 30 * 20, 0))
+        elixer = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.potion"), 1, new CeremonyEffect(new CeremonyPotion(), new MusicEnum[]{MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.FLUTE}), new CeremonyActivation(TimeStateEnum.INSTANT, 120, CeremonyTimeEnum.MEDIUM));
+        flute = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.flute"), 2, new CeremonyEffect(new CeremonyFluteInfusion(), new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE}), new CeremonyActivation(TimeStateEnum.INSTANT, 140, CeremonyTimeEnum.MEDIUM));
+        rainDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.rainDance"), 3, new CeremonyEffect(new CeremonyRain(), new MusicEnum[]{MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.FLUTE}), new CeremonyActivation(TimeStateEnum.INSTANT, 130, CeremonyTimeEnum.MEDIUM));
+        drought = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.drought"), 4, new CeremonyEffect(new CeremonyRainRemoval(), new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM}), new CeremonyActivation(TimeStateEnum.INSTANT, 130, CeremonyTimeEnum.MEDIUM));
+        ghostDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.ghostDance"), 5, new CeremonyEffect(new CeremonyGhostDance(), new MusicEnum[]{MusicEnum.RATTLE, MusicEnum.RATTLE, MusicEnum.RATTLE, MusicEnum.RATTLE}), new CeremonyActivation(TimeStateEnum.INSTANT, 160, CeremonyTimeEnum.SHORT_MEDIUM));
     }
 
     public static void totemRegistry()

@@ -14,10 +14,14 @@ public class Totempedia
     public static final String CATEGORY_TOOLS = CATEGORY_PREFIX + "tools";
     public static final String CATEGORY_MISC = CATEGORY_PREFIX + "misc";
     public static final String CATEGORY_LORE = CATEGORY_PREFIX + "lore";
+    public static final String CATEGORY_TOTEMS = CATEGORY_PREFIX + "totems";
+    public static final String CATEGORY_CEREMONY = CATEGORY_PREFIX + "ceremonies";
 
     public static final String CEDAR_TREE = "cedarTree";
+    public static final String BUFFALO_BASIC = "buffaloBasic";
+
+    public static final String PERFORMING_CEREMONIES = "performingCeremonies";
+    public static final String RAIN_DANCE = "rainDance";
 
     public static final String TOOL_BARK_STRIPPER = "barkStripper";
-
-
 }

@@ -91,8 +91,6 @@ public final class Totemic
         //Initiates the mod items into the game
         ModItems.init();
 
-        LexiconData.init();
-
     }
 
     @EventHandler
@@ -113,6 +111,8 @@ public final class Totemic
 
         //Intiate all the recipes!
         TotemicCraftingRecipes.init();
+
+        LexiconData.init();
 
         //Init tile entities into the game
         proxy.registerTileEntities();

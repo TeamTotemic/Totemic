@@ -9,7 +9,8 @@ public enum MusicEnum
     FLUTE("Flute"),
     DRUM("Drum"),
     WIND_CHIME("Wind Chime"),
-    JINGLE_DRESS("Jingle Dress");
+    JINGLE_DRESS("Jingle Dress"),
+    RATTLE("Rattle");
 
     private final String musicName;
 

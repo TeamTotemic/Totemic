@@ -9,6 +9,7 @@ public enum CeremonyTimeEnum
     NO_TIME(0),
     VERY_SHORT(5 * 20),
     SHORT(15 * 20),
+    SHORT_MEDIUM(22 * 20),
     MEDIUM(30 * 20),
     LONG(45 * 20),
     EXTRA_LONG(60 * 20),

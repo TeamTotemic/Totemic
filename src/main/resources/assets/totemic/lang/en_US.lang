@@ -44,18 +44,45 @@ tile.redCedarStripped.name=Red Cedar Stripped Log
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 
-# Waila Localizations
-totemic:plantEssence=Plant Essence:
+totemic.timeState.instant=Instant
+totemic.timeState.overTime=Over time
+
+#Ceremony names
+totemic.ceremony.flute=Ceremony of Flute Imbuation
+totemic.ceremony.ghostDance=Ghost Dance
+totemic.ceremony.rainDance=Rain Dance
+totemic.ceremony.drought=Drought Ceremony
+totemic.ceremony.potion=Ceremony of Divine Elixirs
+
+totemicmisc.timeForCeremony=Startup time:
+totemicmisc.seconds= Seconds
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.
+
+totemicmisc.clickToAdd=Click to Add
+totemicmisc.back=Back
+totemicmisc.clickToSee=Click to go to
+totemicmisc.shiftToRemove=Shift click to Remove
+totemicmisc.nextPage=Next page
+totemicmisc.prevPage=Previous page
+totemicmisc.bookmark=Bookmark
+totemicmisc.clickToIndex=Click to return to index
 
 totemic.category.basics=Totemic Basics
 totemic.category.devices=Devices
 totemic.category.tools=Tools
 totemic.category.misc=Miscellaneous
 totemic.category.lore=Lore
+totemic.category.totems=Totems
+totemic.category.ceremonies=Ceremonies
 
 totemic.entry.cedarTree=The Red Cedar tree
 totemic.page.cedarTree0=The mighty Red Cedar Tree, one of the strongest, and most powerful trees in existence. It's wood is the base of most Totemic practice, and has properties that many other trees do not. To create the sapling of this tree, you need to just use the Cedar Metamorphesiser on a sapling in the world.
 totemic.page.cedarTree1=The height of the Red Cedar tree is usually from 6 to 9 blocks, but of course that can vary. The tree drops saplings like normal trees, and preforms all other normal sapling behaviour.
+
+totemic.entry.buffaloBasic=Buffaloes
+totemic.page.buffaloBasic0=The mighty buffalo, an animal which is known across the lands for the resources it can grant, and the powers it wields. Buffaloes can be found in the world, or later created through a Ceremony.
+
+totemic.entry.performingCeremonies=Performing Ceremonies
+totemic.page.performingCeremonies0=Ceremonies

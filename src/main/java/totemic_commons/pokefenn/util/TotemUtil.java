@@ -5,9 +5,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.armour.ITotemArmour;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
+import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
@@ -20,6 +23,45 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 public class TotemUtil
 {
 
+    public static String getMusicNeeded(int music)
+    {
+        String welp = "totemic.musicNeeded.";
+        String unlocalized = "";
+
+        if(music == 0)
+            unlocalized = "none";
+        else if(music > 0 && music < 50)
+            unlocalized = "little";
+        else if(music > 50 && music < 75)
+            unlocalized = "littleMedium";
+        else if(music > 75 && music < 100)
+            unlocalized = "medium";
+        else if(music > 100 && music < 125)
+            unlocalized = "mediumLarge";
+        else if(music > 125 && music < 150)
+            unlocalized = "large";
+        else if(music > 150)
+            unlocalized = "crazyLarge";
+
+        return welp + unlocalized;
+    }
+
+    public static ItemStack getItemStackFromEnum(MusicEnum musicEnum)
+    {
+        if(musicEnum == MusicEnum.DRUM)
+            return new ItemStack(ModBlocks.drum);
+        else if(musicEnum == MusicEnum.FLUTE)
+            return new ItemStack(ModItems.subItems, 1, ItemTotemicItems.flute);
+        else if(musicEnum == MusicEnum.JINGLE_DRESS)
+            return new ItemStack(ModItems.jingleDress);
+        else if(musicEnum == MusicEnum.RATTLE)
+            return null; //TODO
+        else if(musicEnum == MusicEnum.WIND_CHIME)
+            return new ItemStack(ModBlocks.windChime);
+
+
+        return null;
+    }
 
     public static int getArmourAmounts(EntityPlayer player)
     {
