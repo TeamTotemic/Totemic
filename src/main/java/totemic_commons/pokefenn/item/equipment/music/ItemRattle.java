@@ -4,11 +4,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
@@ -34,20 +36,25 @@ public class ItemRattle extends ItemTotemic implements IMusic
         {
             if(entityLiving instanceof EntityPlayer)
             {
+
                 EntityPlayer player = (EntityPlayer) entityLiving;
-                time++;
-                if(time >= 8 && !player.isSneaking())
+                MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
+                if(block == null)
                 {
-                    time = 0;
-                    TotemUtil.playMusicFromItem(world, player, this.musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
-                    particlesAllAround(world, player.posX, player.posY, player.posZ);
-                    return false;
-                }
-                if(time >= 8 && player.isSneaking())
-                {
-                    time = 0;
-                    TotemUtil.playMusicFromItemForCeremonySelector(itemStack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
-                    particlesAllAround(world, player.posX, player.posY, player.posZ);
+                    time++;
+                    if(time >= 8 && !player.isSneaking())
+                    {
+                        time = 0;
+                        TotemUtil.playMusicFromItem(world, player, this.musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
+                        particlesAllAround(world, player.posX, player.posY, player.posZ);
+                        return false;
+                    }
+                    if(time >= 8 && player.isSneaking())
+                    {
+                        time = 0;
+                        TotemUtil.playMusicFromItemForCeremonySelector(itemStack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
+                        particlesAllAround(world, player.posX, player.posY, player.posZ);
+                    }
                 }
             }
         }

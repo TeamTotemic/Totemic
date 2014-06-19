@@ -33,6 +33,7 @@ public final class LexiconData
     public static LexiconEntry cedarTree;
     public static LexiconEntry buffaloBasic;
 
+    public static LexiconEntry instruments;
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry rainDance;
 
@@ -56,6 +57,9 @@ public final class LexiconData
 
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
         performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));
+
+        instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryCeremony);
+        instruments.setLexiconPages(new PageText(("0")), new PageText("1"));
 
         rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony);
         rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", TotemicHandlerInitiation.rainDance.getCeremonyID()));

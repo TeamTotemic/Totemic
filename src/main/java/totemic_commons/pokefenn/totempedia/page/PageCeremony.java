@@ -2,7 +2,9 @@ package totemic_commons.pokefenn.totempedia.page;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.api.music.MusicEnum;
@@ -16,6 +18,8 @@ import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
  */
 public class PageCeremony extends PageRecipe
 {
+    public ResourceLocation ceremonyOverlay = new ResourceLocation("totemic:textures/gui/ceremonyOverlay.png");
+
     public int ceremonyId;
 
     public PageCeremony(String unlocalizedName, int ceremonyId)
@@ -50,12 +54,12 @@ public class PageCeremony extends PageRecipe
 
             GL11.glDisable(GL11.GL_BLEND);
 
-            //render.bindTexture(manaInfusionOverlay);
+            render.bindTexture(ceremonyOverlay);
 
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glColor4f(1F, 1F, 1F, 1F);
-            //((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
+            ((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
             GL11.glDisable(GL11.GL_BLEND);
 
         }
