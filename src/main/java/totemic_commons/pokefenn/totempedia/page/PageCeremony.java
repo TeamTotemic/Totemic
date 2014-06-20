@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
+import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -21,11 +22,13 @@ public class PageCeremony extends PageRecipe
     public ResourceLocation ceremonyOverlay = new ResourceLocation("totemic:textures/gui/ceremonyOverlay.png");
 
     public int ceremonyId;
+    public String reference;
 
-    public PageCeremony(String unlocalizedName, int ceremonyId)
+    public PageCeremony(String unlocalizedName, int ceremonyId, String reference)
     {
         super(unlocalizedName);
         this.ceremonyId = ceremonyId;
+        this.reference = reference;
     }
 
     @Override
@@ -49,8 +52,10 @@ public class PageCeremony extends PageRecipe
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             //String musicNeeded = StatCollector.translateToLocal("totemicmisc.musicNeeded");
-            font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 135, 0x66000000);
-            font.drawString(StatCollector.translateToLocal("totemicmisc.timeForCeremony")+ " " + time + StatCollector.translateToLocal("totemicmisc.seconds"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + " " + time + StatCollector.translateToLocal("totemicmisc.seconds")) / 2, gui.getTop() + 145, 0x66000000);
+            font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 130, 0x66000000);
+            font.drawString(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + " " + time + StatCollector.translateToLocal("totemicmisc.seconds"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + " " + time + StatCollector.translateToLocal("totemicmisc.seconds")) / 2, gui.getTop() + 140, 0x66000000);
+            font.drawString(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME ? StatCollector.translateToLocal("totemicmisc.capitalTrue") : StatCollector.translateToLocal("totemicmisc.capitalFalse")), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME)) / 2, gui.getTop() + 150, 0x66000000);
+            font.drawString(StatCollector.translateToLocal(reference), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(reference)) / 2, gui.getTop() + 160, 0x66000000);
 
             GL11.glDisable(GL11.GL_BLEND);
 

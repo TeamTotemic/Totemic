@@ -56,6 +56,9 @@ totemic.ceremony.potion=Ceremony of Divine Elixirs
 
 totemicmisc.timeForCeremony=Startup time:
 totemicmisc.seconds= Seconds
+totemicmisc.overTime=Over Time:
+totemicmisc.capitalFalse=False
+totemicmisc.capitalTrue=True
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.
@@ -77,6 +80,8 @@ totemic.category.lore=Lore
 totemic.category.totems=Totems
 totemic.category.ceremonies=Ceremonies
 
+totemic.reference.rainDance=Like a Politoed
+
 totemic.entry.cedarTree=The Red Cedar tree
 totemic.page.cedarTree0=The great Red Cedar Tree, one of the strongest, and most powerful trees in existence. It's wood is the base of most Totemic practice, and has properties that many other trees do not. To create the sapling of this tree, you need to just use the &1Cedar Metamorphesiser&0 on a sapling in the world.
 totemic.page.cedarTree1=The height of the Red Cedar tree is usually from 6 to 9 blocks, but of course that can vary. The tree drops saplings like normal trees, and performs all other normal sapling behaviour.
@@ -84,8 +89,8 @@ totemic.page.cedarTree1=The height of the Red Cedar tree is usually from 6 to 9 
 totemic.entry.buffaloBasic=Buffaloes
 totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for the resources it can grant, and the powers it wields. Buffaloes can be found in the world, or later 'created' through a Ceremony. They are incredibly sturdy and have a very large amount of health.
 
-totemic.entry.creatingTotems=Creating Totems
-totemic.page.creatingTotems0=
+totemic.entry.creatingTotems=Totem Poles
+totemic.page.creatingTotems0=Creating a Totem Pole is a very simple thing to do. First you must create a &1Totem Whittling Knife&0, this will be what you use to carve out your Totem Poles.
 
 totemic.entry.performingCeremonies=Performing Ceremonies
 totemic.page.performingCeremonies0=Ceremonies are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The centre of a Ceremony is a Totem Pole, all music and other things are centered to the Totem Pole and it is where the effects are released from.

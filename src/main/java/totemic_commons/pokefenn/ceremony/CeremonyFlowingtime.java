@@ -1,4 +1,4 @@
-/*package totemic_commons.pokefenn.ceremony;
+package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -77,4 +77,3 @@ public class CeremonyFlowingTime implements ICeremonyEffect
         }
     }
 }
-*/
