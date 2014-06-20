@@ -44,24 +44,22 @@ public class ItemBlowGun extends ItemTotemic
 
             int metadata = 0;
 
-            if(world.isRemote)
+            for(int i = 0; i < player.inventory.getSizeInventory(); i++)
             {
-                for(int i = 0; i < player.inventory.getSizeInventory(); i++)
+                if(player.inventory.getStackInSlot(i) != null)
                 {
-                    if(player.inventory.getStackInSlot(i) != null)
-                    {
-                        ItemStack playerStack = player.inventory.getStackInSlot(i);
+                    ItemStack playerStack = player.inventory.getStackInSlot(i);
 
-                        if(playerStack.getItem() == ModItems.darts)
-                        {
-                            metadata = playerStack.getItemDamage();
-                            if(!world.isRemote)
-                                playerStack.stackSize--;
-                            break;
-                        }
+                    if(playerStack.getItem() == ModItems.darts)
+                    {
+                        metadata = playerStack.getItemDamage();
+                        if(!world.isRemote)
+                            playerStack.stackSize--;
+                        break;
                     }
                 }
             }
+
 
             EntityBaseDart entity = new EntityBaseDart(world, player, moveSpeedThingy * 2.0F, metadata);
             if(!world.isRemote)

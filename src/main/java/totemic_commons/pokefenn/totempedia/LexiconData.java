@@ -37,7 +37,10 @@ public final class LexiconData
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry rainDance;
 
+    public static LexiconEntry creatingTotems;
+
     public static LexiconEntry barkStripper;
+    public static LexiconEntry blowDart;
 
     public static void init()
     {
@@ -55,6 +58,9 @@ public final class LexiconData
         buffaloBasic = new BLexiconEntry(Totempedia.BUFFALO_BASIC, categoryBasics);
         buffaloBasic.setLexiconPages(new PageText("0"), new PageText("1"));
 
+        creatingTotems = new BLexiconEntry(Totempedia.CREATING_TOTEMS, categoryTotems);
+        creatingTotems.setLexiconPages(new PageText("0"), new PageText("1"));
+
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
         performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));
 
@@ -66,6 +72,9 @@ public final class LexiconData
 
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
         barkStripper.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));
+
+        blowDart = new BLexiconEntry(Totempedia.BLOW_DART, categoryTools);
+        blowDart.setLexiconPages(new PageText("0"), new PageText("1"));
 
     }
 }

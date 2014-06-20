@@ -84,6 +84,9 @@ totemic.page.cedarTree1=The height of the Red Cedar tree is usually from 6 to 9 
 totemic.entry.buffaloBasic=Buffaloes
 totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for the resources it can grant, and the powers it wields. Buffaloes can be found in the world, or later 'created' through a Ceremony. They are incredibly sturdy and have a very large amount of health.
 
+totemic.entry.creatingTotems=Creating Totems
+totemic.page.creatingTotems0=
+
 totemic.entry.performingCeremonies=Performing Ceremonies
 totemic.page.performingCeremonies0=Ceremonies are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The centre of a Ceremony is a Totem Pole, all music and other things are centered to the Totem Pole and it is where the effects are released from.
 totemic.page.performingCeremonies1=To perform a Ceremony, there are a few things you must do. To select and initiate your Ceremony, you must play 4 instruments in their selector mode to a Totem Pole. To play most instruments in a selector mode, just play them normally while shifting. When you have played 4 corresponding instruments for a Ceremony, the startup will initiate.
@@ -98,4 +101,8 @@ totemic.page.drought0=
 
 totemic.entry.barkStripper=Bark Stripper
 totemic.page.barkStripper0=The Bark Stripper is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
-totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal. While the bark is a crafting component for many items.
+totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal. While the bark is a crafting component for many blocks and items, usually to reinforce items.
+
+totemic.entry.blowDart=Blow Dart
+totemic.page.blowDart0=The Blow Dart is a ranged weapon, akin to a &1Bow&0, but unlike the &1Bow&0, this weapons projectiles can be coated for certain effects on impact. It functions the same as the bow with everything but the projectiles. The projectiles that the &1Blow Gun&0 use are called Blow &1Darts&0.
+totemic.page.blowDart1=The list of different &1Blow Darts&0 you can get are the following. &1Poison darts&0, they will poison the target on impact for a few seconds. The &1Blaze Dart&0 will scorch and burn the target for a few seconds. And finally, the &1Antidote Dart&0 unlike other darts which usually try to harm will instead cure any poison the target has for a few seconds.
