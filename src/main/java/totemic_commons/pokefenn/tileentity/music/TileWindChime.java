@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.tileentity.music;
 
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -46,7 +45,7 @@ public class TileWindChime extends TileTotemic
             {
                 if(world.getTileEntity(xCoord, yCoord, zCoord) instanceof TileWindChime)
                 {
-                    if(world.isAirBlock(xCoord, yCoord + 1, zCoord))
+                    if(world.isAirBlock(xCoord, yCoord + 1, zCoord) || !world.isAirBlock(xCoord, yCoord - 1, zCoord))
                     {
                         world.setBlockToAir(xCoord, yCoord, zCoord);
                         EntityItem entityItem = new EntityItem(world, xCoord, yCoord, zCoord, new ItemStack(ModBlocks.windChime, 1, 0));
@@ -65,7 +64,7 @@ public class TileWindChime extends TileTotemic
                         if(world.getBlock(xCoord, yCoord, zCoord) == ModBlocks.windChime)
                         {
                             BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
-                            TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, (EntityPlayer) null));
+                            TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false,null));
                             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
                         }
                     }

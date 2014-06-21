@@ -44,18 +44,19 @@ public class PageCeremony extends PageRecipe
             String musicNeeded = TotemUtil.getMusicNeeded(ceremony.getCeremonyActivation().getMusicNeeded());
             String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
 
-            renderItemAtGridPos(gui, 2, 0, TotemUtil.getItemStackFromEnum(musicEnums[0]), false);
-            renderItemAtGridPos(gui, 2, 1, TotemUtil.getItemStackFromEnum(musicEnums[1]), false);
-            renderItemAtGridPos(gui, 2, 2, TotemUtil.getItemStackFromEnum(musicEnums[2]), false);
-            renderItemAtGridPos(gui, 2, 3, TotemUtil.getItemStackFromEnum(musicEnums[3]), false);
+            renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 40, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[0]), false);
+            renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[1]), false);
+            renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[2]), false);
+            renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -20, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[3]), false);
 
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             //String musicNeeded = StatCollector.translateToLocal("totemicmisc.musicNeeded");
-            font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 130, 0x66000000);
-            font.drawString(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + " " + time + StatCollector.translateToLocal("totemicmisc.seconds"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + " " + time + StatCollector.translateToLocal("totemicmisc.seconds")) / 2, gui.getTop() + 140, 0x66000000);
-            font.drawString(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME ? StatCollector.translateToLocal("totemicmisc.capitalTrue") : StatCollector.translateToLocal("totemicmisc.capitalFalse")), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME)) / 2, gui.getTop() + 150, 0x66000000);
-            font.drawString(StatCollector.translateToLocal(reference), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(reference)) / 2, gui.getTop() + 160, 0x66000000);
+            font.drawString(StatCollector.translateToLocal("totemicmisc.musicSelector"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.musicSelector")) / 2, gui.getTop() + 14, 0x66000000);
+            font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 100, 0x66000000);
+            font.drawString(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds")) / 2, gui.getTop() + 110, 0x66000000);
+            font.drawString(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME ? StatCollector.translateToLocal("totemicmisc.capitalTrue") : StatCollector.translateToLocal("totemicmisc.capitalFalse")), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME)) / 2, gui.getTop() + 120, 0x66000000);
+            font.drawString(StatCollector.translateToLocal(reference), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(reference)) / 2, gui.getTop() + 162, 0x66000000);
 
             GL11.glDisable(GL11.GL_BLEND);
 

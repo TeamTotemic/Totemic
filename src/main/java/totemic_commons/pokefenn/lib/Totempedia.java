@@ -16,6 +16,7 @@ public class Totempedia
     public static final String CATEGORY_LORE = CATEGORY_PREFIX + "lore";
     public static final String CATEGORY_TOTEMS = CATEGORY_PREFIX + "totems";
     public static final String CATEGORY_CEREMONY = CATEGORY_PREFIX + "ceremonies";
+    public static final String CATEGORY_INSTRUMENTS = CATEGORY_PREFIX + "instruments";
 
     public static final String CEDAR_TREE = "cedarTree";
     public static final String BUFFALO_BASIC = "buffaloBasic";

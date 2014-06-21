@@ -203,8 +203,8 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
 
     void back()
     {
-        if(backButton.enabled)
-            actionPerformed(backButton);
+        //if(backButton.enabled)
+        //    actionPerformed(backButton);
     }
 
     void nextPage()
