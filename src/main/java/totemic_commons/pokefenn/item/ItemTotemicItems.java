@@ -40,7 +40,7 @@ import java.util.List;
 public class ItemTotemicItems extends ItemTotemic implements IMusic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"leaf", "cedarStick", "cedarMaker", "flute", "fluteInfused", "cedarBark", "barkStickCedar"};
+    private static final String[] ITEMS_NAMES = new String[]{"leaf", "cedarStick", "cedarMaker", "flute", "fluteInfused", "cedarBark"};
 
     public int time = 0;
 
@@ -50,7 +50,6 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
     public static int flute = 3;
     public static int fluteInfused = 4;
     public static int cedarBark = 5;
-    public static int barkStickCedar = 6;
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;

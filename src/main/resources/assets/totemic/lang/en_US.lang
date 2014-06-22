@@ -105,10 +105,11 @@ totemic.page.performingCeremonies3=Not all &4Ceremonies&0 end instantly after th
 
 totemic.entry.rainDance=Rain Dance Ceremony
 totemic.page.rainDance0=The &4Rain Dance Ceremony&0 is a way for you to bring a torrent of rain into the world. If the rain becomes too much to bare, the &4Drought Ceremony&0 is always available, which will remove all rain. Because the effects of this &4Ceremony&0 are so potent, it may be hard to perform.
-totemic.page.rainDance1=Like a Politoed
+totemic.page.rainDance1=&oLike a Politoed&r.
 
 totemic.entry.drought=Drought Ceremony
 totemic.page.drought0=
+totemic.page.drought1=&oNot Kurama!&r
 
 totemic.entry.barkStripper=Bark Stripper
 totemic.page.barkStripper0=The Bark Stripper is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
