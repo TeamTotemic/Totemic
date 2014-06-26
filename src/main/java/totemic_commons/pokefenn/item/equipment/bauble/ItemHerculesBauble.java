@@ -1,29 +1,13 @@
 package totemic_commons.pokefenn.item.equipment.bauble;
 
-import baubles.api.BaubleType;
-import baubles.api.BaublesApi;
-import baubles.api.IBauble;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import totemic_commons.pokefenn.api.bauble.ITotemBauble;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.util.TotemUtil;
-
-import java.util.List;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemHerculesBauble extends ItemTotemic implements IBauble, ITotemBauble
+public class ItemHerculesBauble extends ItemTotemic// implements IBauble, ITotemBauble
 {
 
     public ItemHerculesBauble()
@@ -31,6 +15,8 @@ public class ItemHerculesBauble extends ItemTotemic implements IBauble, ITotemBa
         super(Strings.HERCULESE_BAUBLES_NAME);
         setMaxStackSize(1);
     }
+
+    /*
 
     @Override
     public BaubleType getBaubleType(ItemStack itemstack)
@@ -113,4 +99,5 @@ public class ItemHerculesBauble extends ItemTotemic implements IBauble, ITotemBa
     {
         return 2;
     }
+    */
 }

@@ -1,16 +1,11 @@
 package totemic_commons.pokefenn.event;
 
-import baubles.api.BaublesApi;
-import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemSword;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.misc.TotemicDamageSource;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -40,7 +35,8 @@ public class EntityHurt
 
         if(event.entity != null && event.source != TotemicDamageSource.vigor && event.entityLiving != null && sourceDamageEntity != null && sourceDamageEntity instanceof EntityPlayer && Totemic.baublesLoaded)
         {
-            IInventory baubleInventory = BaublesApi.getBaubles((EntityPlayer) sourceDamageEntity);
+            //IInventory baubleInventory = BaublesApi.getBaubles((EntityPlayer) sourceDamageEntity);
+            /*
 
             if(baubleInventory.getStackInSlot(0) != null)
             {
@@ -83,9 +79,11 @@ public class EntityHurt
 
                         event.entity.attackEntityFrom(TotemicDamageSource.vigor, totalDamage);
                     }
+
                 }
-            }
+                */
         }
     }
-
 }
+
+

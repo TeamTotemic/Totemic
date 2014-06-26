@@ -74,7 +74,7 @@ public final class LexiconData
         rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", TotemicHandlerInitiation.rainDance.getCeremonyID()));
 
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
-        barkStripper.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));
+        barkStripper.setLexiconPages(new PageText("0"), new PageText("1"));
 
         blowDart = new BLexiconEntry(Totempedia.BLOW_DART, categoryTools);
         blowDart.setLexiconPages(new PageText("0"), new PageText("1"));
