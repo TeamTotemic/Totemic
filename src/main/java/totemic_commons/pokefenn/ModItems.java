@@ -87,7 +87,7 @@ public final class ModItems
         //GameRegistry.registerItem(darts, "darts");
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
-        GameRegistry.registerItem(buffaloItems, "buffaloItems");
+        GameRegistry.registerItem(buffaloItems, Strings.BUFFALO_ITEMS_NAME);
         GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
 
         //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());

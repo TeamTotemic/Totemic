@@ -10,14 +10,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
 import totemic_commons.pokefenn.misc.TotemicDamageSource;
 import totemic_commons.pokefenn.potion.ModPotions;
@@ -439,7 +437,7 @@ public class EntityBaseDart extends Entity implements IProjectile
         {
             boolean flag = this.canBePickedUp == 1 || this.canBePickedUp == 2 && par1EntityPlayer.capabilities.isCreativeMode;
 
-            if(this.canBePickedUp == 1 && !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(ModItems.darts, 1, metadata)))
+            //if(this.canBePickedUp == 1 && !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(ModItems.darts, 1, metadata)))
             {
                 flag = false;
             }

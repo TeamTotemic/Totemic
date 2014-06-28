@@ -93,7 +93,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         {
             deprecateMelody();
 
-            if(this.worldObj.getWorldTime() % 100L == 0)
+            if(this.worldObj.getWorldTime() % 80L == 0)
             {
                 totemPoleSize = setTotemPoleAmounts();
                 scanArea();
@@ -237,7 +237,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         {
             return StatCollector.translateToLocal("totemic.melodyName.maximum");
         }
-        return "";
+        return "lolbroked";
     }
 
     public int[] getRanges(TotemRegistry totemRegistry)

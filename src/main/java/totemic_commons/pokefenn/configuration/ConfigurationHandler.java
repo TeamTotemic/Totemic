@@ -47,8 +47,6 @@ public final class ConfigurationHandler
             ConfigurationSettings.ENTITY_ID_BUFFALO = configuration.get(CATEGORY_ENTITY, "buffaloEntityID", 24).getInt(29);
             ConfigurationSettings.SPAWN_EGGS = configuration.get(CATEGORY_ENTITY, "addSpawnEggs", true).getBoolean(true);
 
-            ConfigurationSettings.RENDER_CUBE_SOCKET = configuration.get(CATEGORY_CLIENT, "doRenderSocketAsCube", true).getBoolean(true);
-
         } catch(Exception e)
         {
             e.printStackTrace();

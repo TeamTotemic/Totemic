@@ -5,21 +5,16 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.MinecraftForgeClient;
 import totemic_commons.pokefenn.client.rendering.entity.BuffaloRendering;
 import totemic_commons.pokefenn.client.rendering.entity.DartRendering;
 import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
-import totemic_commons.pokefenn.client.rendering.old.ItemTotemSocketRenderer;
-import totemic_commons.pokefenn.client.rendering.old.TileTotemSocketRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileDrumRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemBaseRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemSocketCubeRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTotemTorchRenderer;
-import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
 import totemic_commons.pokefenn.lib.RenderIds;
@@ -135,17 +130,12 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityBaseDart.class, new DartRendering());
         RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, new BuffaloRendering(new ModelBuffalo(), 0.5F));
 
-        if(!ConfigurationSettings.RENDER_CUBE_SOCKET)
-            MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemPole), new ItemTotemSocketRenderer());
         //MinecraftForgeClient.registerItemRenderer(ModItems.totemicStaff, new ItemTotemicStaffRender());
         //MinecraftForgeClient.registerItemRenderer(ModItems.infusedTotemicStaff, new ItemInfusedTotemicStaff());
         //MinecraftForgeClient.registerItemRenderer(ModItems.verdantCrystal, new ItemChlorophyllCrystalRenderer());
         //MinecraftForgeClient.registerItemRenderer(ModBlocks.totemTorch, new ItemTotemTorchRenderer);
 
-        if(!ConfigurationSettings.RENDER_CUBE_SOCKET)
-            ClientRegistry.bindTileEntitySpecialRenderer(TileTotemPole.class, new TileTotemSocketRenderer());
-        else
-            ClientRegistry.bindTileEntitySpecialRenderer(TileTotemPole.class, new TileTotemSocketCubeRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemPole.class, new TileTotemSocketCubeRenderer());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileDrum.class, new TileDrumRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTorch.class, new TileTotemTorchRenderer());

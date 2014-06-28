@@ -19,6 +19,6 @@ public class BuffaloRendering extends RenderLiving
     @Override
     protected ResourceLocation getEntityTexture(Entity var1)
     {
-        return new ResourceLocation("totemic", "textures/models/buffalo.png");
+        return new ResourceLocation("totemic:textures/models/buffalo.png");
     }
 }

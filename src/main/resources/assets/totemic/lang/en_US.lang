@@ -47,6 +47,13 @@ itemGroup.Totemic=Totemic
 totemic.timeState.instant=Instant
 totemic.timeState.overTime=Over time
 
+totemic.melodyName.incrediblyLow=
+totemic.melodyName.weak=
+totemic.melodyName.low=
+totemic.melodyName.sufficient=Plentiful Melody
+totemic.melodyName.high=Highly Melodic
+totemic.melodyName.maximum=Bursting with Melody
+
 #Ceremony names
 totemic.ceremony.flute=Ceremony of Flute Imbuation
 totemic.ceremony.ghostDance=Ghost Dance

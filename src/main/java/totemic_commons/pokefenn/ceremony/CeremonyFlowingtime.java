@@ -15,8 +15,13 @@ import totemic_commons.pokefenn.util.EntityUtil;
 
 import java.util.Random;
 
+/**
+ * Created by Pokefenn.
+ * Licensed under MIT (If this is one of my Mods)
+ */
 public class CeremonyFlowingTime implements ICeremonyEffect
 {
+
     @Override
     public void effect(TileEntity tileEntity)
     {

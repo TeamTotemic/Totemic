@@ -27,7 +27,4 @@ public final class ConfigurationSettings
     public static int DECREMENT_TOTEM_SQUID;
     public static int DECREMENT_TOTEM_SPIDER;
     public static int DECREMENT_TOTEM_COW;
-
-    public static boolean RENDER_CUBE_SOCKET;
-
 }

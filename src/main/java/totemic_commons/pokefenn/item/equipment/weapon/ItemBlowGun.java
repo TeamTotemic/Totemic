@@ -7,7 +7,6 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
@@ -31,7 +30,7 @@ public class ItemBlowGun extends ItemTotemic
     {
         int charge = this.getMaxItemUseDuration(itemStack) - iDunnoWhatThisDoes;
 
-        if(player.inventory.hasItem(ModItems.darts))
+        //if(player.inventory.hasItem(ModItems.darts))
         {
             float moveSpeedThingy = (float) charge / 20.0F;
             moveSpeedThingy = (moveSpeedThingy * moveSpeedThingy + moveSpeedThingy * 2.0F) / 3.0F;
@@ -50,7 +49,7 @@ public class ItemBlowGun extends ItemTotemic
                 {
                     ItemStack playerStack = player.inventory.getStackInSlot(i);
 
-                    if(playerStack.getItem() == ModItems.darts)
+                    //if(playerStack.getItem() == ModItems.darts)
                     {
                         metadata = playerStack.getItemDamage();
                         if(!world.isRemote)
@@ -81,7 +80,7 @@ public class ItemBlowGun extends ItemTotemic
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-        if(player.inventory.hasItem(ModItems.darts))
+        //if(player.inventory.hasItem(ModItems.darts))
         {
             player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
         }

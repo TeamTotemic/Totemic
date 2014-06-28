@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
-import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
@@ -55,90 +54,6 @@ public class BlockTotemPole extends BlockTileTotemic
         return true;
     }
 
-    private Random rand = new Random();
-
-    /*
-    @Override
-    public void breakBlock(World world, int x, int y, int z, Block id, int meta)
-    {
-
-        dropInventory(world, x, y, z);
-
-        if(world.getTileEntity(x, y, z) instanceof TileTotemPole)
-        {
-            world.markBlockForUpdate(x, y, z);
-            //world.updateAllLightTypes(x, y, z);
-        }
-
-        super.breakBlock(world, x, y, z, id, meta);
-    }
-
-    private void dropInventory(World world, int x, int y, int z)
-    {
-
-        TileEntity tileEntity = world.getTileEntity(x, y, z);
-
-        if(!(tileEntity instanceof IInventory))
-            return;
-
-        IInventory inventory = (IInventory) tileEntity;
-
-        for(int i = 0; i < inventory.getSizeInventory(); i++)
-        {
-
-            ItemStack itemStack = inventory.getStackInSlot(i);
-
-            if(itemStack != null && itemStack.stackSize > 0)
-            {
-                float dX = rand.nextFloat() * 0.8F + 0.1F;
-                float dY = rand.nextFloat() * 0.8F + 0.1F;
-                float dZ = rand.nextFloat() * 0.8F + 0.1F;
-
-                EntityItem entityItem = new EntityItem(world, x + dX, y + dY, z + dZ, new ItemStack(itemStack.getItem(), itemStack.stackSize, itemStack.getItemDamage()));
-
-                if(itemStack.hasTagCompound())
-                {
-                    entityItem.getEntityItem().setTagCompound((NBTTagCompound) itemStack.getTagCompound().copy());
-                }
-
-                float factor = 0.05F;
-                entityItem.motionX = rand.nextGaussian() * factor;
-                entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
-                entityItem.motionZ = rand.nextGaussian() * factor;
-                world.spawnEntityInWorld(entityItem);
-                itemStack.stackSize = 0;
-            }
-        }
-
-    }
-    */
-    /*
-
-    @SideOnly(Side.CLIENT)
-    private Icon topIcon;
-    @SideOnly(Side.CLIENT)
-    private Icon sideIcon;
-    @SideOnly(Side.CLIENT)
-    private Icon bottomIcon;
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IconRegister register)
-    {
-        topIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_TOP);
-        sideIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_SIDE);
-        bottomIcon = register.registerIcon(Textures.TEXTURE_LOCATION + ":" + Textures.TOTEM_TABLE_BOTTOM);
-
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public Icon getIcon(int side, int meta)
-    {
-        return sideIcon;
-    }
-    */
-
     @Override
     public boolean renderAsNormalBlock()
     {
@@ -154,10 +69,7 @@ public class BlockTotemPole extends BlockTileTotemic
     @Override
     public int getRenderType()
     {
-        if(!ConfigurationSettings.RENDER_CUBE_SOCKET)
-            return RenderIds.RENDER_ID_TOTEM_POLE;
-        else
-            return RenderIds.RENDER_ID_TOTEM_SOCKET_CUBE;
+        return RenderIds.RENDER_ID_TOTEM_SOCKET_CUBE;
     }
 
     @Override
