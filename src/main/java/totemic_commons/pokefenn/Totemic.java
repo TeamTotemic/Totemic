@@ -27,9 +27,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.logging.Logger;
 
-//import totemic_commons.pokefenn.network.PacketPipeline;
-
-
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.1", dependencies = "after:Baubles;after:Waila;")
 public final class Totemic
 {

@@ -7,7 +7,6 @@ import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotempedia;
 import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
-import totemic_commons.pokefenn.item.equipment.ItemDarts;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
 import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
@@ -15,7 +14,6 @@ import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.music.ItemRattle;
-import totemic_commons.pokefenn.item.equipment.weapon.ItemBlowGun;
 import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModItems
@@ -33,8 +31,8 @@ public final class ModItems
     public static Item halberd;
     public static Item test;
     public static Item huntingKnife;
-    public static Item blowDart;
-    public static Item darts;
+    //public static Item blowDart;
+    //public static Item darts;
     public static Item jingleDress;
     public static Item barkStripper;
     public static Item buffaloItems;
@@ -56,8 +54,8 @@ public final class ModItems
         totemicStaff = new ItemTotemicStaff();
         totems = new ItemTotems();
         subItems = new ItemTotemicItems();
-        darts = new ItemDarts();
-        blowDart = new ItemBlowGun();
+        //darts = new ItemDarts();
+        //blowDart = new ItemBlowGun();
         jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
         buffaloItems = new ItemBuffaloDrops();
@@ -85,8 +83,8 @@ public final class ModItems
         //GameRegistry.registerItem(totemArmourFeet, totemArmourFeet.getUnlocalizedName());
         GameRegistry.registerItem(totemArmourLeg, totemArmourLeg.getUnlocalizedName());
         //GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
-        GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
-        GameRegistry.registerItem(darts, "darts");
+        //GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
+        //GameRegistry.registerItem(darts, "darts");
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
         GameRegistry.registerItem(buffaloItems, "buffaloItems");

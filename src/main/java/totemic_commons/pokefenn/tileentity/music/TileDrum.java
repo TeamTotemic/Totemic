@@ -46,7 +46,6 @@ public class TileDrum extends TileTotemic
             {
                 currentTime = 0;
                 canPlay = true;
-                //Totemic.packetPipeline.sendToDimension(new DrumPacket(xCoord, yCoord, zCoord, canPlay), worldObj.provider.dimensionId);
             }
         }
     }
