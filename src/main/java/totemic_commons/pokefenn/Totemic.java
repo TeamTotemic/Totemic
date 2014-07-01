@@ -71,7 +71,6 @@ public final class Totemic
                 }
             } catch(Exception e)
             {
-                System.err.println("Severe error, please report this to the mod author:");
                 System.err.println(e);
             }
         }

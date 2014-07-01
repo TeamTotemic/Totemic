@@ -47,9 +47,9 @@ itemGroup.Totemic=Totemic
 totemic.timeState.instant=Instant
 totemic.timeState.overTime=Over time
 
-totemic.melodyName.incrediblyLow=
-totemic.melodyName.weak=
-totemic.melodyName.low=
+totemic.melodyName.incrediblyLow=Insufficient Melody
+totemic.melodyName.weak=Insignificant Melody
+totemic.melodyName.low=Meager Melody
 totemic.melodyName.sufficient=Plentiful Melody
 totemic.melodyName.high=Highly Melodic
 totemic.melodyName.maximum=Bursting with Melody
@@ -105,7 +105,7 @@ totemic.page.instruments0=Instruments are a way to create &4Musical Melody&0, wh
 totemic.entry.performingCeremonies=Performing Ceremonies
 totemic.page.performingCeremonies0=&4Ceremonies&0 are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The centre of a &4Ceremony&0 is a &1Totem Base&0, all music and other things are centered to the &1Totem Pole&0 and it is where the effects are released from.
 totemic.page.performingCeremonies1=To perform a &4Ceremony&0, there are a few things you must do. To select and initiate your &4Ceremony&0, you must play 4 Instruments in their selector mode to a &1Totem Pole&0. To play most Instruments in a selector mode, just play them normally while shifting. When you have played 4 corresponding instruments for a &4Ceremony&0, the startup will initiate.
-totemic.page.performingCeremonies2=While it is in this startup mode, the &1Totem Pole&0 will accept all nearby music and store it. This is called &4Musical Melody&0 and it is what is needed for the &4Ceremonies&0 effect to activate. When the total &4Musical Melody&0 hits the threshold of the &4Ceremonies&0 Melody requirement, it will activate the effect.
+totemic.page.performingCeremonies2=While it is in this startup mode, the &1Totem Pole&0 will accept all nearby music and store it. This is called &4Musical Melody&0 and it is what is needed for the &4Ceremonies&0 effect to activate. When the total &4Musical Melody&0 hits the threshold of the &4Ceremonies&0 Melody requirement, it will activate the effect. Each instrument can only be played up to a certain point, so a whole ceremony could not be played with just one instrument.
 totemic.page.performingCeremonies3=Not all &4Ceremonies&0 end instantly after the startup, though. Instead the effects will last over a certain amount of time after the effect initially starts. Doing the effects will drain the &4Musical Melody&0 though, and the effects can only go for a certain amount of time and will stop after that time has elapsed.
 
 totemic.entry.rainDance=Rain Dance Ceremony

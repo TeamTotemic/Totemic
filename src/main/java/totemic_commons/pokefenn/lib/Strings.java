@@ -11,13 +11,7 @@ public final class Strings
     public static final String TOTEM_POLE_NAME = "totemPole";
     public static final String TOTEM_SAPLING_NAME = "totemSapling";
     public static final String TOTEM_LEAVES_NAME = "totemLeaves";
-    public static final String TOTEM_CAULDRON_NAME = "totemCauldron";
-    public static final String MOONGLOW_NAME = "moonglow";
-    public static final String CEREMONY_INTELLIGENCE_NAME = "totemCeremonyIntelligence";
-    public static final String BLOODWART_BLOCK_NAME = "blockBloodwart";
     public static final String TOTEM_TORCH_NAME = "totemTorch";
-    public static final String LOTUS_BLOCK_NAME = "lotusBlock";
-    public static final String FUNGAL_PLANT_BLOCK_NAME = "fungalPlantBlock";
     public static final String FLAME_PARTICLE_NAME = "flameParticleBlock";
     public static final String DRUM_NAME = "totemDrum";
     public static final String WIND_CHIME_NAME = "windChime";
@@ -56,8 +50,4 @@ public final class Strings
     public static final String NBT_TE_STATE_KEY = "teState";
     public static final String NBT_TE_CUSTOM_NAME = "CustomName";
     public static final String NBT_TE_DIRECTION_KEY = "teDirection";
-
-    //Fluid
-
-    public static final String FLUID_CHLOROPHYLL_NAME = "fluidChlorophyll";
 }
