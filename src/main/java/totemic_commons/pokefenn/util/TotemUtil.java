@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.util;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
@@ -142,18 +143,22 @@ public class TotemUtil
                             if(musicSelectorArray[0] == 0)
                             {
                                 musicSelectorArray[0] = musicEnum.ordinal() + 1;
+                                musicParticleAtBlocks(world, x + i, y + j, z + k);
                                 return;
                             } else if(musicSelectorArray[1] == 0)
                             {
                                 musicSelectorArray[1] = musicEnum.ordinal() + 1;
+                                musicParticleAtBlocks(world, x + i, y + j, z + k);
                                 return;
                             } else if(musicSelectorArray[2] == 0)
                             {
                                 musicSelectorArray[2] = musicEnum.ordinal() + 1;
+                                musicParticleAtBlocks(world, x + i, y + j, z + k);
                                 return;
                             } else if(musicSelectorArray[3] == 0)
                             {
                                 musicSelectorArray[3] = musicEnum.ordinal() + 1;
+                                musicParticleAtBlocks(world, x + i, y + j, z + k);
                                 return;
                             }
                             world.markBlockForUpdate(x, y, z);
@@ -182,18 +187,22 @@ public class TotemUtil
                             if(musicSelectorArray[0] == 0)
                             {
                                 musicSelectorArray[0] = musicEnum.ordinal() + 1;
+                                musicParticleAtBlocks(world, x + i, y + j, z + k);
                                 return;
                             } else if(musicSelectorArray[1] == 0)
                             {
                                 musicSelectorArray[1] = musicEnum.ordinal() + 1;
+                                musicParticleAtBlocks(world, x + i, y + j, z + k);
                                 return;
                             } else if(musicSelectorArray[2] == 0)
                             {
                                 musicSelectorArray[2] = musicEnum.ordinal() + 1;
+                                musicParticleAtBlocks(world, x + i, y + j, z + k);
                                 return;
                             } else if(musicSelectorArray[3] == 0)
                             {
                                 musicSelectorArray[3] = musicEnum.ordinal() + 1;
+                                musicParticleAtBlocks(world, x + i, y + j, z + k);
                                 return;
                             }
                             world.markBlockForUpdate(x, y, z);
@@ -227,11 +236,13 @@ public class TotemUtil
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
                                     musicArray[musicEnum.ordinal()] = musicMaximum;
+                                    musicParticleAtBlocks(world, x + i, y + j, z + k);
                                     return;
 
                                 } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
                                 {
                                     musicArray[musicEnum.ordinal()] += musicAmount;
+                                    musicParticleAtBlocks(world, x + i, y + j, z + k);
                                     return;
                                 }
                                 world.markBlockForUpdate(x, y, z);
@@ -243,12 +254,22 @@ public class TotemUtil
                                         ((TileTotemBase) block).musicForEffect = TileTotemBase.maximumMusic;
                                     else
                                         ((TileTotemBase) block).musicForEffect += musicAmount;
+                                    musicParticleAtBlocks(world, x + i, y + j, z + k);
                                 }
                             }
                         }
                     }
 
                 }
+    }
+    
+    public static void musicParticleAtBlocks(World world, int xCoord, int yCoord, int zCoord)
+    {
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 1, (double) yCoord, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord - 1, (double) yCoord, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord, (double) yCoord + 1, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord, (double) yCoord - 1, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
+
     }
 
 
@@ -271,11 +292,13 @@ public class TotemUtil
                                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                                 {
                                     musicArray[musicEnum.ordinal()] = musicMaximum;
+                                    musicParticleAtBlocks(world, x + i, y + j, z + k);
                                     return;
 
                                 } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
                                 {
                                     musicArray[musicEnum.ordinal()] += musicAmount;
+                                    musicParticleAtBlocks(world, x + i, y + j, z + k);
                                     return;
                                 } else
                                 {
@@ -285,6 +308,7 @@ public class TotemUtil
                                             ((TileTotemBase) block).musicForEffect = TileTotemBase.maximumMusic;
                                         else
                                             ((TileTotemBase) block).musicForEffect += musicAmount;
+                                        musicParticleAtBlocks(world, x + i, y + j, z + k);
                                     }
                                 }
                             }

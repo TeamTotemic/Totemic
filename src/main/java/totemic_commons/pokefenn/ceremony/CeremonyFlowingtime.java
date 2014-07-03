@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -19,7 +18,7 @@ import java.util.Random;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyFlowingTime implements ICeremonyEffect
+public class CeremonyFlowingTime extends CeremonyBase
 {
 
     @Override
