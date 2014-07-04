@@ -1,0 +1,20 @@
+Totemic models and art:
+
+Models:
+
+Wind Chime: Wind chimes are a instrument, they are made out of iron (for the bars) string connecting it with a bit of wood at the top. 4 metal bars is preferable to make it fit in.
+http://ecx.images-amazon.com/images/I/51UL2G-QT2L._SL1000_.jpg
+
+War Bonnet: A helmet piece of armour thingy, it has the feathers and everything (Really low priority)
+http://media-cache-ak0.pinimg.com/236x/4c/5e/09/4c5e0948e6ee03656ad9d5569d497302.jpg
+
+Tipi: A basic white tipi (by default) with the twigs at the top and everything, needs to be taller than one block.
+http://media-cdn.tripadvisor.com/media/photo-s/01/3d/24/45/our-tipi.jpg
+
+Flute: A really basic flute, will only render in hand, preferable to have a little twig for detail, made out of wood (Oak).
+
+Bow Holder: A armour thingy,it will let you hold the bow on your back for easy grabbing and holding of it (Really low priority aswell)
+
+
+Textures:
+
