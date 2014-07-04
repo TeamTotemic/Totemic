@@ -1,15 +1,8 @@
 package totemic_commons.pokefenn.ceremony;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.api.recipe.CeremonyPotionRegistry;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
-import totemic_commons.pokefenn.util.EntityUtil;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created by Pokefenn.
@@ -27,7 +20,7 @@ public class CeremonyPotion extends CeremonyBase
         int zCoord = tileEntity.zCoord;
         World worldObj = tiletotemBase.getWorldObj();
 
-        if(tiletotemBase != null)
+        /*if(tiletotemBase != null)
         {
             if(EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6) != null)
             {
@@ -53,5 +46,6 @@ public class CeremonyPotion extends CeremonyBase
                 }
             }
         }
+        */
     }
 }

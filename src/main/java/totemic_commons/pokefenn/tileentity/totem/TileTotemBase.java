@@ -618,4 +618,11 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         return !isCeremony;
     }
+
+    @Override
+    public boolean canAcceptMusic()
+    {
+        //TODO
+        return true;
+    }
 }

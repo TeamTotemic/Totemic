@@ -41,12 +41,11 @@ public class BlockCedarSapling extends BlockSapling
     {
         if(!world.isRemote)
         {
-            world.setBlockToAir(x, y, z);
-
-            if(!treeGen.growTree(world, random, x, y, z))
+            if(treeGen.growTree(world, random, x, y, z))
             {
+                world.setBlockToAir(x, y, z);
                 world.setBlock(x, y, z, ModBlocks.cedarLog, 0, 4);
-                new TotemTreeGeneration(true).growTree(world, random, x, y, z);
+                //new TotemTreeGeneration(true).growTree(world, random, x, y, z);
             }
         }
     }
