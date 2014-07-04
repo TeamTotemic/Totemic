@@ -47,7 +47,7 @@ public class BlockFlameParticle extends Block
         if(!world.isRemote)
             if(!entity.isImmuneToFire())
                 if(!entity.isBurning())
-                    entity.setFire(20);
+                    entity.setFire(15);
     }
 
 }

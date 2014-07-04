@@ -53,6 +53,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public boolean isCeremonyAwakening;
     public int musicForEffect;
     public static int maximumMusic = 128;
+    public int[] repetitionBonus;
+    public boolean isDoingEndingEffect;
 
     ItemStack[] totems;
 
@@ -79,6 +81,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         isCeremonyAwakening = false;
         musicForEffect = 0;
         totemPoleSize = 0;
+        repetitionBonus = new int[TotemRegistry.getRecipes().size() + 1];
+        isDoingEndingEffect = false;
     }
 
     public void updateEntity()
@@ -117,15 +121,24 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             {
                 if(totems[i] != null)
                 {
+                    //resetRepetition();
                     for(TotemRegistry totemRegistry : TotemRegistry.getRecipes())
                     {
-                        if(/*tier >= totemRegistry.getTier() && */totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage())
+                        if(totems[i] != null && totems[i].getItem() == totemRegistry.getTotem().getItem() && totems[i].getItemDamage() == totemRegistry.getTotem().getItemDamage())
                         {
                             totemRegistry.getEffect().effect(this, totemPoleSize, totemRegistry, getRanges(totemRegistry)[0], getRanges(totemRegistry)[1], musicForEffect);
                         }
                     }
                 }
             }
+        }
+    }
+
+    public void resetRepetition()
+    {
+        for(int i = 0; i < repetitionBonus.length; i++)
+        {
+            repetitionBonus[i] = 0;
         }
     }
 
@@ -435,6 +448,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 if(getTotemPoleItemStack(i) != null)
                 {
                     totems[i] = getTotemPoleItemStack(i);
+
                 } else
                     totems[i] = null;
             }
@@ -450,7 +464,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
 
-        return ((TileTotemPole) tileEntity).getStackInSlot(TileTotemPole.SLOT_ONE);
+        return tileEntity instanceof TileTotemPole ? ((TileTotemPole) tileEntity).getStackInSlot(TileTotemPole.SLOT_ONE) : null;
     }
 
     protected int setTotemPoleAmounts()
@@ -540,6 +554,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         continueTimer = nbtTagCompound.getInteger("continueTimer");
         isCeremonyAwakening = nbtTagCompound.getBoolean("isCeremonyAwakening");
         musicForEffect = nbtTagCompound.getInteger("musicForEffect");
+        isDoingEndingEffect = nbtTagCompound.getBoolean("isDoingEndingEffect");
     }
 
     @Override
@@ -565,6 +580,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         nbtTagCompound.setInteger("continueTimer", continueTimer);
         nbtTagCompound.setBoolean("isCeremonyAwakening", isCeremonyAwakening);
         nbtTagCompound.setInteger("musicForEffect", musicForEffect);
+        nbtTagCompound.setBoolean("isDoingEndingEffect", isDoingEffect);
     }
 
     @Override

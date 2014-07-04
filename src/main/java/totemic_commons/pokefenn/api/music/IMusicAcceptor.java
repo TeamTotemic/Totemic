@@ -31,5 +31,14 @@ public interface IMusicAcceptor
      */
     public int getMusicForEffect();
 
+    /**
+     * @return The amount of music the effect part of it has.
+     */
     public boolean getEffectMusic();
+
+
+    /**
+     * @return On demand thing to say if it can accept music and stuff.
+     */
+    public boolean canAcceptMusic();
 }

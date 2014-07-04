@@ -1,13 +1,6 @@
 package totemic_commons.pokefenn.totem;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.api.recipe.TotemRegistry;
-import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.potion.ModPotions;
-import totemic_commons.pokefenn.util.EntityUtil;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,9 +8,15 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Date: 23/01/14
  * Time: 13:54
  */
-public class TotemEffectBat implements ITotemEffect
+public class TotemEffectBat extends TotemEffectPotion
 {
 
+    public TotemEffectBat()
+    {
+        super(ModPotions.batPotion, 12 * 20, 120, 20);
+    }
+
+    /*
     @Override
     public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount)
     {
@@ -38,5 +37,6 @@ public class TotemEffectBat implements ITotemEffect
         }
 
     }
+    */
 
 }
