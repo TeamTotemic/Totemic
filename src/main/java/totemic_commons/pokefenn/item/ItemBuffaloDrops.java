@@ -36,7 +36,7 @@ public class ItemBuffaloDrops extends ItemTotemic
     {
         super("");
         setHasSubtypes(true);
-        maxStackSize = 64;
+        setMaxStackSize(64);
         setCreativeTab(Totemic.tabsTotem);
     }
 

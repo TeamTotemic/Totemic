@@ -58,7 +58,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
     {
         super("");
         setHasSubtypes(true);
-        maxStackSize = 64;
+        setMaxStackSize(64);
         setCreativeTab(Totemic.tabsTotem);
     }
 
@@ -70,7 +70,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
             if(player instanceof EntityPlayer)
             {
                 if(((EntityPlayer) player).getHeldItem() != null && ((EntityPlayer) player).getHeldItem().getItem() == this)
-                    if(itemStack.getItemDamage() == flute || itemStack.getItemDamage() == fluteInfused)
+                    if(itemStack.getItemDamage() == fluteInfused)
                     {
                         fluteUpdate((EntityPlayer) player);
                     }
@@ -93,7 +93,6 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
         {
             if(itemStack.getItemDamage() == cedarMaker)
                 cedarCreatorEffect(itemStack, player, world);
-
         }
         return true;
     }

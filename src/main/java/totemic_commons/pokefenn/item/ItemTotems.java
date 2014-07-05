@@ -36,7 +36,7 @@ public class ItemTotems extends Item
     {
         super();
         setHasSubtypes(true);
-        maxStackSize = 1;
+        setMaxStackSize(1);
     }
 
 
