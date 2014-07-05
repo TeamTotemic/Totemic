@@ -24,6 +24,7 @@ public class Totempedia
     public static final String INSTRUMENTS = "instruments";
     public static final String PERFORMING_CEREMONIES = "performingCeremonies";
     public static final String RAIN_DANCE = "rainDance";
+    public static final String WAR_DANCE = "warDance";
 
     public static final String CREATING_TOTEMS = "creatingTotems";
 

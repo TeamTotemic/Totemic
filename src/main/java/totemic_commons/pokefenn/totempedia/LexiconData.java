@@ -38,6 +38,7 @@ public final class LexiconData
 
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry rainDance;
+    public static LexiconEntry warDance;
 
     public static LexiconEntry creatingTotems;
 
@@ -71,7 +72,10 @@ public final class LexiconData
         performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));
 
         rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony);
-        rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", TotemicHandlerInitiation.rainDance.getCeremonyID()));
+        rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", TotemicHandlerInitiation.rainDance));
+
+        warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony);
+        warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", TotemicHandlerInitiation.warDance));
 
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
         barkStripper.setLexiconPages(new PageText("0"), new PageText("1"));

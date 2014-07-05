@@ -7,6 +7,11 @@ package totemic_commons.pokefenn.api.music;
 public interface IMusicAcceptor
 {
     /**
+     * A interface for blocks that accept music and stuff.
+     * Currently this will only really interface with the TotemBase, but you may be able to get it working with other stuff.
+     */
+
+    /**
      * @return An array holding the values of how much Musical Melody you have in a tile entity
      */
     public int[] getMusicArray();
@@ -32,13 +37,13 @@ public interface IMusicAcceptor
     public int getMusicForEffect();
 
     /**
-     * @return The amount of music the effect part of it has.
+     * @return If the block is doing a ceremony currently.
      */
-    public boolean getEffectMusic();
+    public boolean getIsCeremony();
 
 
     /**
-     * @return On demand thing to say if it can accept music and stuff.
+     * @return If its doing a ending effect and stuff.
      */
-    public boolean canAcceptMusic();
+    public boolean isDoingEndingEffect();
 }

@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -21,39 +20,44 @@ public class PageCeremony extends PageRecipe
 {
     public ResourceLocation ceremonyOverlay = new ResourceLocation("totemic:textures/gui/ceremonyOverlay.png");
 
-    public int ceremonyId;
+    public CeremonyRegistry ceremony;
 
-    public PageCeremony(String unlocalizedName, int ceremonyId)
+    public PageCeremony(String unlocalizedName, CeremonyRegistry ceremony)
     {
         super(unlocalizedName);
-        this.ceremonyId = ceremonyId;
+        this.ceremony = ceremony;
     }
 
     @Override
     public void renderScreen(IGuiLexiconEntry gui, int mx, int my)
     {
-        if(ceremonyId >= 0)
+        if(ceremony.getCeremonyID() >= 0)
         {
-            CeremonyRegistry ceremony = CeremonyRegistry.ceremonyRegistry.get(ceremonyId);
-
             TextureManager render = Minecraft.getMinecraft().renderEngine;
             FontRenderer font = Minecraft.getMinecraft().fontRenderer;
             MusicEnum[] musicEnums = ceremony.getCeremonyEffect().getMusicEnums();
             String musicNeeded = TotemUtil.getMusicNeeded(ceremony.getCeremonyActivation().getMusicNeeded());
             String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
 
-            renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 40, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[0]), false);
-            renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[1]), false);
-            renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[2]), false);
-            renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -20, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[3]), false);
+            if(TotemUtil.getItemStackFromEnum(musicEnums[0]) != null && TotemUtil.getItemStackFromEnum(musicEnums[1]) != null && TotemUtil.getItemStackFromEnum(musicEnums[2]) != null && TotemUtil.getItemStackFromEnum(musicEnums[3]) != null)
+            {
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 40, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[0]), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[1]), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[2]), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -21, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[3]), false);
+            }
 
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+            PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 90, font.getStringWidth(musicNeeded) / 2, 150, musicNeeded);
+
             font.drawString(StatCollector.translateToLocal("totemicmisc.musicSelector"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.musicSelector")) / 2, gui.getTop() + 14, 0x66000000);
-            font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 90, 0x66000000);
+            /*font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 90, 0x66000000);
             font.drawString(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds")) / 2, gui.getTop() + 105, 0x66000000);
             font.drawString(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME ? StatCollector.translateToLocal("totemicmisc.capitalTrue") : StatCollector.translateToLocal("totemicmisc.capitalFalse")), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME)) / 2, gui.getTop() + 120, 0x66000000);
             //font.drawString(StatCollector.translateToLocal(reference), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(reference)) / 2, gui.getTop() + 161, 0x66000000);
+            */
 
             PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(getUnlocalizedName())) / 3, gui.getTop() + 150, 150, 150, StatCollector.translateToLocal(getUnlocalizedName()));
 

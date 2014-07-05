@@ -60,7 +60,6 @@ public class TotemUtil
         else if(musicEnum == MusicEnum.RATTLE)
             return new ItemStack(ModItems.ceremonialRattle);
 
-
         return null;
     }
 
@@ -187,29 +186,32 @@ public class TotemUtil
 
         int[] musicArray = ((IMusicAcceptor) tileEntity).getMusicArray();
 
-        if(!((IMusicAcceptor) tileEntity).getEffectMusic())
+        if(((IMusicAcceptor) tileEntity).getIsCeremony())
         {
-            if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
+            if(!((IMusicAcceptor) tileEntity).isDoingEndingEffect())
             {
-                musicArray[musicEnum.ordinal()] = musicMaximum;
-                musicParticleAtBlocks(world, x + i, y + j, z + k);
-                return;
-
-            } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
-            {
-                musicArray[musicEnum.ordinal()] += musicAmount;
-                musicParticleAtBlocks(world, x + i, y + j, z + k);
-                return;
-            } else
-            {
-                if(tileEntity instanceof TileTotemBase)
+                if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                 {
-                    if(((TileTotemBase) tileEntity).musicForEffect + musicAmount > TileTotemBase.maximumMusic)
-                        ((TileTotemBase) tileEntity).musicForEffect = TileTotemBase.maximumMusic;
-                    else
-                        ((TileTotemBase) tileEntity).musicForEffect += musicAmount;
+                    musicArray[musicEnum.ordinal()] = musicMaximum;
                     musicParticleAtBlocks(world, x + i, y + j, z + k);
+                    return;
+
+                } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
+                {
+                    musicArray[musicEnum.ordinal()] += musicAmount;
+                    musicParticleAtBlocks(world, x + i, y + j, z + k);
+                    return;
                 }
+            }
+        } else
+        {
+            if(tileEntity instanceof TileTotemBase)
+            {
+                if(((TileTotemBase) tileEntity).musicForEffect + musicAmount > TileTotemBase.maximumMusic)
+                    ((TileTotemBase) tileEntity).musicForEffect = TileTotemBase.maximumMusic;
+                else
+                    ((TileTotemBase) tileEntity).musicForEffect += musicAmount;
+                musicParticleAtBlocks(world, x + i, y + j, z + k);
             }
         }
         world.markBlockForUpdate(x, y, z);

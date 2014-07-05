@@ -10,9 +10,11 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.block.BlockCedarLog;
+import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -75,6 +77,11 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                     if(itemStack.getItemDamage() == TotemRegistry.totemEffect.size())
                     {
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemBase);
+                        if(world.getBlock(block.blockX, block.blockY, block.blockZ) instanceof BlockTotemBase)
+                        {
+                            TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
+                            tileTotemBase.bindedPlayer = player.getDisplayName();
+                        }
                         return true;
                     } else
                     {

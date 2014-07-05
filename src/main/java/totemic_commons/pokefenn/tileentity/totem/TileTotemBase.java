@@ -55,6 +55,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public static int maximumMusic = 128;
     public int[] repetitionBonus;
     public boolean isDoingEndingEffect;
+    public String bindedPlayer;
 
     ItemStack[] totems;
 
@@ -83,6 +84,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         totemPoleSize = 0;
         repetitionBonus = new int[TotemRegistry.getRecipes().size() + 1];
         isDoingEndingEffect = false;
+        bindedPlayer = "";
     }
 
     public void updateEntity()
@@ -196,6 +198,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 resetAfterCeremony(true);
             } else
             {
+                isDoingEndingEffect = true;
                 if(canContinueCeremony())
                 {
                     effect.effect(this);
@@ -337,6 +340,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         ceremonyStartupTimer = 0;
         isDoingStartup = false;
         isCeremonyAwakening = false;
+        isDoingEndingEffect = false;
 
         dancingEfficiency = 0;
 
@@ -555,6 +559,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         isCeremonyAwakening = nbtTagCompound.getBoolean("isCeremonyAwakening");
         musicForEffect = nbtTagCompound.getInteger("musicForEffect");
         isDoingEndingEffect = nbtTagCompound.getBoolean("isDoingEndingEffect");
+        bindedPlayer = nbtTagCompound.getString("bindedPlayer");
     }
 
     @Override
@@ -581,6 +586,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         nbtTagCompound.setBoolean("isCeremonyAwakening", isCeremonyAwakening);
         nbtTagCompound.setInteger("musicForEffect", musicForEffect);
         nbtTagCompound.setBoolean("isDoingEndingEffect", isDoingEffect);
+        nbtTagCompound.setString("bindedPlayer", bindedPlayer);
     }
 
     @Override
@@ -614,15 +620,15 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     }
 
     @Override
-    public boolean getEffectMusic()
+    public boolean getIsCeremony()
     {
-        return !isCeremony;
+        return isCeremony;
     }
 
     @Override
-    public boolean canAcceptMusic()
+    public boolean isDoingEndingEffect()
     {
         //TODO
-        return true;
+        return isDoingEndingEffect;
     }
 }
