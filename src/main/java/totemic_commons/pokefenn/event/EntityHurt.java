@@ -6,8 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.misc.TotemicDamageSource;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.Random;
@@ -33,7 +31,7 @@ public class EntityHurt
                     sourceDamageEntity.attackEntityFrom(DamageSource.generic, event.ammount % 2);
         }
 
-        if(event.entity != null && event.source != TotemicDamageSource.vigor && event.entityLiving != null && sourceDamageEntity != null && sourceDamageEntity instanceof EntityPlayer && Totemic.baublesLoaded)
+        //if(event.entity != null && event.source != TotemicDamageSource.vigor && event.entityLiving != null && sourceDamageEntity != null && sourceDamageEntity instanceof EntityPlayer && Totemic.baublesLoaded)
         {
             //IInventory baubleInventory = BaublesApi.getBaubles((EntityPlayer) sourceDamageEntity);
             /*

@@ -17,6 +17,8 @@ Go over all major changes or content PR's with me before submitting it, don't wa
 Try to place comments in anything that is not obvious, it can be confusion to understand others code!
 Totemic is under the MIT license
 
+License:
+=======
 The MIT License (MIT)
 
 Copyright (c) 2014 Pokefenn

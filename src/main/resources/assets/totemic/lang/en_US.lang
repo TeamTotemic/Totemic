@@ -60,6 +60,7 @@ totemic.ceremony.ghostDance=Ghost Dance
 totemic.ceremony.rainDance=Rain Dance
 totemic.ceremony.drought=Drought Ceremony
 totemic.ceremony.potion=Ceremony of Divine Elixirs
+totemic.ceremony.buffaloDance=Mandan Buffalo Dance
 
 totemicmisc.timeForCeremony=Startup time:
 totemicmisc.seconds= Seconds
@@ -67,6 +68,8 @@ totemicmisc.overTime=Over Time:
 totemicmisc.capitalFalse=False
 totemicmisc.capitalTrue=True
 totemicmisc.musicSelector=Musical Selectors
+totemicmisc.tipi.cantSleep=You can not sleep in a tipi without being in the open fields
+totemicmisc.tipi.nether=You can not sleep in the nether
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.
@@ -115,6 +118,8 @@ totemic.page.rainDance1=&oLike a Politoed&r.
 totemic.entry.drought=Drought Ceremony
 totemic.page.drought0=
 totemic.page.drought1=&oNinetails, Not Kurama!&r
+
+totemic.entry.buffaloDance=Mandan Buffalo Dance
 
 totemic.entry.barkStripper=Bark Stripper
 totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.

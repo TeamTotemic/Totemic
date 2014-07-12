@@ -222,7 +222,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return player.getHeldItem() != null && player.getHeldItem().getItemDamage() == 0 ? 3 : 7;
+        return player.getHeldItem() != null && (player.getHeldItem().getItemDamage() == flute || player.getHeldItem().getItemDamage() == fluteInfused) ? player.getHeldItem().getItemDamage() == flute ? 3 : 7 : 0;
     }
 
     @Override

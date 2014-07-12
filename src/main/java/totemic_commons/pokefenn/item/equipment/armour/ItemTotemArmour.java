@@ -98,7 +98,7 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
         //} else
         //    return "totemic:models/armour/totemArmourLayer2.png";
 
-        return this == ModItems.totemArmourHead || this == ModItems.totemArmourChest || this == ModItems.totemArmourFeet ? "totemic:models/armour/totemArmourLayer1.png" : "totemic:models/armour/totemArmourLayer2.png";
+        return this == ModItems.totemArmourHead || this == ModItems.totemArmourChest || this == ModItems.totemArmourFeet ? "totemic:textures/armour/totemArmourLayer1.png" : "totemic:textures/armour/totemArmourLayer2.png";
 
     }
 

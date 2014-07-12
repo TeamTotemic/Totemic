@@ -105,7 +105,7 @@ public final class Totemic
         //Initiates the mod entities to the game
         ModEntities.init();
 
-        //Intiate all the recipes!
+        //Initiate all the recipes!
         TotemicCraftingRecipes.init();
 
         LexiconData.init();

@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemShears;
@@ -21,7 +21,7 @@ import java.util.Random;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class EntityBuffalo extends EntityAnimal
+public class EntityBuffalo extends EntityCow
 {
     public static boolean isSheared = false;
 
@@ -41,12 +41,6 @@ public class EntityBuffalo extends EntityAnimal
     }
 
     @Override
-    protected String getLivingSound()
-    {
-        return "mob.cow.say";
-    }
-
-    @Override
     public boolean isAIEnabled()
     {
         return true;
@@ -56,7 +50,7 @@ public class EntityBuffalo extends EntityAnimal
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
     }
 
@@ -111,7 +105,8 @@ public class EntityBuffalo extends EntityAnimal
 
         for(int k = 0; k < j; ++k)
         {
-            this.dropItem(Items.leather, 1);
+            EntityItem hide = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.hide));
+            worldObj.spawnEntityInWorld(hide);
         }
 
         j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + par2);
@@ -120,10 +115,10 @@ public class EntityBuffalo extends EntityAnimal
         {
             if(this.isBurning())
             {
-                this.dropItem(Items.cooked_beef, 1);
+                this.dropItem(Items.cooked_beef, 2);
             } else
             {
-                this.dropItem(Items.beef, 1);
+                this.dropItem(Items.beef, 2);
             }
         }
     }
@@ -136,7 +131,7 @@ public class EntityBuffalo extends EntityAnimal
 
         if(itemstack != null)
         {
-            if(itemstack.getItem() == Items.bucket && !player.capabilities.isCreativeMode)
+            if(itemstack.getItem() == Items.bucket)
             {
                 if(itemstack.stackSize-- == 1)
                 {
@@ -154,6 +149,8 @@ public class EntityBuffalo extends EntityAnimal
                 itemstack.damageItem(1, player);
                 EntityItem entityItem = new EntityItem(worldObj, posX, posY, posZ, new ItemStack(ModItems.buffaloItems, 2 + rand.nextInt(3), ItemBuffaloDrops.hair));
                 worldObj.spawnEntityInWorld(entityItem);
+
+                return true;
             }
         }
 
@@ -162,7 +159,7 @@ public class EntityBuffalo extends EntityAnimal
     }
 
     @Override
-    public EntityAgeable createChild(EntityAgeable var1)
+    public EntityBuffalo createChild(EntityAgeable var1)
     {
         return new EntityBuffalo(worldObj);
     }
@@ -170,6 +167,6 @@ public class EntityBuffalo extends EntityAnimal
     @Override
     protected int getExperiencePoints(EntityPlayer player)
     {
-        return 4 + worldObj.rand.nextInt(6);
+        return 5 + worldObj.rand.nextInt(6);
     }
 }

@@ -11,13 +11,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
-
-import java.util.Iterator;
 
 /**
  * Created by Pokefenn.
@@ -43,6 +42,7 @@ public class BlockTipi extends BlockTileTotemic
             if(!world.isRemote)
             {
                 player.getHeldItem().stackSize--;
+                return true;
             }
         }
 
@@ -55,58 +55,60 @@ public class BlockTipi extends BlockTileTotemic
                 world.spawnEntityInWorld(tipiItem);
             } else if(/*canSleepTipi(x, y, z, world, player) && */world.canBlockSeeTheSky(x, y + 1, z) && world.getBlock(x, y - 1, z) != null && (world.getBlock(x, y - 1, z).getMaterial() == Material.grass || world.getBlock(x, y - 1, z).getMaterial() == Material.ground))
             {
-                if(world.provider.canRespawnHere() && world.getBiomeGenForCoords(x, z) != BiomeGenBase.hell)
+                if(world.getBiomeGenForCoords(x, z) != BiomeGenBase.hell)
                 {
-                    EntityPlayer entityplayer1 = null;
-                    Iterator iterator = world.playerEntities.iterator();
-
-                    while(iterator.hasNext())
+                    if(world.provider.canRespawnHere())
                     {
-                        EntityPlayer entityplayer2 = (EntityPlayer) iterator.next();
+                        EntityPlayer entityplayer1 = null;
 
-                        if(entityplayer2.isPlayerSleeping())
+                        for(Object playerEntity : world.playerEntities)
                         {
-                            ChunkCoordinates chunkcoordinates = entityplayer2.playerLocation;
+                            EntityPlayer entityplayer2 = (EntityPlayer) playerEntity;
 
-                            if(chunkcoordinates.posX == x && chunkcoordinates.posY == y && chunkcoordinates.posZ == z)
+                            if(entityplayer2.isPlayerSleeping())
                             {
-                                entityplayer1 = entityplayer2;
+                                ChunkCoordinates chunkcoordinates = entityplayer2.playerLocation;
+
+                                if(chunkcoordinates.posX == x && chunkcoordinates.posY == y && chunkcoordinates.posZ == z)
+                                {
+                                    entityplayer1 = entityplayer2;
+                                }
                             }
                         }
-                    }
 
-                    if(entityplayer1 != null)
-                    {
-                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
-                        return true;
-                    }
-
-                    //BlockBed.func_149979_a(world, x, y, z, false);
-
-                    EntityPlayer.EnumStatus enumstatus = player.sleepInBedAt(x, y, z);
-
-                    if(enumstatus == EntityPlayer.EnumStatus.OK)
-                    {
-                        //BlockBed.func_149979_a(world, x, y, z, true);
-                        return true;
-                    } else
-                    {
-                        if(enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
+                        if(entityplayer1 != null)
                         {
-                            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
-                        } else if(enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
-                        {
-                            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+                            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
+                            return true;
                         }
 
-                        return true;
+                        //BlockBed.func_149979_a(world, x, y, z, false);
+
+                        EntityPlayer.EnumStatus enumstatus = player.sleepInBedAt(x, y, z);
+
+                        if(enumstatus == EntityPlayer.EnumStatus.OK)
+                        {
+                            //BlockBed.func_149979_a(world, x, y, z, true);
+                            return true;
+                        } else
+                        {
+                            if(enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
+                            {
+                                player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
+                            } else if(enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
+                            {
+                                player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+                            }
+
+                            return true;
+                        }
+                    } else
+                    {
+                        player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("totemicmisc.tipi.nether")));
                     }
-                } else
-                {
-                    player.addChatComponentMessage(new ChatComponentText("You can not sleep in the nether!"));
                 }
             } else
-                player.addChatComponentMessage(new ChatComponentText("You can not sleep in a tipi without being in the open fields"));
+                player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("totemicmisc.tipi.cantSleep")));
 
         }
         return true;

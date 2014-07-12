@@ -2,6 +2,8 @@ Totemic models and art:
 
 Models:
 
+Preferably all models are cube-y (and fit into minecraft), and same goes for the textures, and preferably stick to 16x.
+
 Wind Chime: Wind chimes are a instrument, they are made out of iron (for the bars) string connecting it with a bit of wood at the top. 4 metal bars is preferable to make it fit in.
 http://ecx.images-amazon.com/images/I/51UL2G-QT2L._SL1000_.jpg
 
@@ -15,6 +17,21 @@ Flute: A really basic flute, will only render in hand, preferable to have a litt
 
 Bow Holder: A armour thingy,it will let you hold the bow on your back for easy grabbing and holding of it (Really low priority aswell)
 
+Buffalo Skull: A skull of a buffalo, with the horns and everything
+http://www.black-bear-haversack.com/media/catalog/category/Buffalo_skull.jpg
+
+Campfire: Just a few logs overcrossing each other, no flames needed since they will be handled in the code
 
 Textures:
+
+Items:
+
+Buffalo Hide: Sorta like leather, just a darker shade.
+Buffalo Hair: Brown coloured hair, just a small bunch of it together (sorta like how wheat looks)
+Buffalo Horns: The horns... :p
+Buffalo Teeth: Just a few teeth, white with a tiny bit of "decay".
+Buffalo Hoove: The Hoove of a buffalo, another 'basic' thing :p
+
+
+Blocks:
 

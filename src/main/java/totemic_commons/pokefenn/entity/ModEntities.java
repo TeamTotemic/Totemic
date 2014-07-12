@@ -18,7 +18,6 @@ public final class ModEntities
 
     public static void init()
     {
-        //EntityRegistry.registerModEntity(EntityEfreet.class, "efreet", ConfigurationSettings.ENTITY_ID_EFREET, Totemic.instance, 100, 5, true);
         EntityRegistry.registerModEntity(EntityBaseDart.class, "totemDart", ConfigurationSettings.ENTITY_ID_DART, Totemic.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityBuffalo.class, "totemicBuffalo", ConfigurationSettings.ENTITY_ID_BUFFALO, Totemic.instance, 80, 5, true);
 
