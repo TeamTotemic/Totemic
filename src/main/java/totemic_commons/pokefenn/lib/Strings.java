@@ -26,10 +26,6 @@ public final class Strings
     public static final String SUB_ITEMS_NAME = "subItems";
     public static final String TOTEMPEDIA_NAME = "totempedia";
     public static final String TOTEM_ARMOUR_LEG_NAME = "totemArmourLeg";
-    public static final String TOTEM_ARMOUR_HEAD_NAME = "totemArmourHead";
-    public static final String TOTEM_ARMOUR_CHEST_NAME = "totemArmourChest";
-    public static final String TOTEM_ARMOUR_FOOT_NAME = "totemArmourFoot";
-    public static final String TIKI_RING_NAME = "tikiRing";
     public static final String HEI_TIKI_NAME = "heiTiki";
     public static final String HERCULESE_BAUBLES_NAME = "herculeseBauble";
     public static final String TOTEM_BEAD_BELT_NAME = "totemBeadBelt";
@@ -41,6 +37,10 @@ public final class Strings
     public static final String TOMAHAWK_NAME = "tomahawk";
     public static final String CEREMONY_RATTLE_NAME = "ceremonialRattle";
     public static final String BUFFALO_ITEMS_NAME = "buffaloItems";
+    public static final String BUFFALO_HELMET = "buffaloHelmet";
+    public static final String BUFFALO_CHESTPLATE = "buffaloChestplate";
+    public static final String BUFFALO_LEGGINGS = "buffaloLeggings";
+    public static final String BUFFALO_BOOTS = "buffaloBoots";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";

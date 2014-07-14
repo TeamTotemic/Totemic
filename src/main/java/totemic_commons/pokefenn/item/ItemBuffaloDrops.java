@@ -20,14 +20,14 @@ import java.util.List;
 public class ItemBuffaloDrops extends ItemTotemic
 {
 
-    private static final String[] BUFFALO_ITEM_NAMES = new String[]{"Teeth", "Hide", "Horns", "Hair", "Hoove", "Dung"};
+    private static final String[] BUFFALO_ITEM_NAMES = new String[]{"Teeth", "Hide", "Horn", "Hair", "Hoove"/*, "Dung"*/};
 
     public static final int teeth = 0;
     public static final int hide = 1;
     public static final int horn = 2;
     public static final int hair = 3;
     public static final int hoove = 4;
-    public static final int dung = 5;
+    //public static final int dung = 5;
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;

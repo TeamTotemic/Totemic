@@ -24,7 +24,7 @@ public class ItemTotemic extends Item
         setMaxStackSize(64);
         setNoRepair();
         unlocalisedNameStuffs(name);
-        if(!hasSubtypes)
+        if(!name.equals(""))
             setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
         if(creativeTab)
             setCreativeTab(Totemic.tabsTotem);

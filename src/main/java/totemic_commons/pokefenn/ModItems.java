@@ -9,6 +9,7 @@ import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
+import totemic_commons.pokefenn.item.equipment.armour.ItemBuffaloArmour;
 import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
 import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
@@ -42,6 +43,10 @@ public final class ModItems
     public static Item totemArmourChest;
     public static Item totemArmourLeg;
     public static Item totemArmourFeet;
+    public static Item buffaloHelmet;
+    public static Item buffaloChest;
+    public static Item buffaloLeggings;
+    public static Item buffaloBoots;
 
     public static Item herculeseBauble;
     public static Item heiTiki;
@@ -54,47 +59,35 @@ public final class ModItems
         totemicStaff = new ItemTotemicStaff();
         totems = new ItemTotems();
         subItems = new ItemTotemicItems();
-        //darts = new ItemDarts();
-        //blowDart = new ItemBlowGun();
         jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
         buffaloItems = new ItemBuffaloDrops();
         ceremonialRattle = new ItemRattle();
 
-
-        //huntingKnife = new ItemHuntingKnife();
-        //verdantCrystal = new ItemVerdantCrystal();
-        //blazingChlorophyllCrystal = new ItemBlazingVerdantCrystal();
-        //infusedTotemicStaff = new ItemInfusedTotemicStaff();
         totempedia = new ItemTotempedia();
-        //halberd = new ItemHalberd();
 
-        //totemArmourChest = new ItemTotemArmour(1, Strings.TOTEM_ARMOUR_CHEST_NAME);
-        //totemArmourFeet = new ItemTotemArmour(3, Strings.TOTEM_ARMOUR_FOOT_NAME);
-        //totemArmourHead = new ItemTotemArmour(0, Strings.TOTEM_ARMOUR_HEAD_NAME);
         totemArmourLeg = new ItemTotemArmour(2, Strings.TOTEM_ARMOUR_LEG_NAME);
 
+        buffaloHelmet = new ItemBuffaloArmour(0, Strings.BUFFALO_HELMET);
+        buffaloChest = new ItemBuffaloArmour(1, Strings.BUFFALO_CHESTPLATE);
+        buffaloLeggings = new ItemBuffaloArmour(2, Strings.BUFFALO_LEGGINGS);
+        buffaloBoots = new ItemBuffaloArmour(3, Strings.BUFFALO_BOOTS);
+
         //Registry for other items
-        GameRegistry.registerItem(totemWhittlingKnife, totemWhittlingKnife.getUnlocalizedName());
-        GameRegistry.registerItem(totemicStaff, totemicStaff.getUnlocalizedName());
+        GameRegistry.registerItem(totemWhittlingKnife, Strings.TOTEM_WHITTLING_KNIFE_NAME);
+        GameRegistry.registerItem(totemicStaff, Strings.TOTEMIC_STAFF_NAME);
         GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
-        GameRegistry.registerItem(totems, totems.getUnlocalizedName());
-        //GameRegistry.registerItem(totemArmourChest, totemArmourChest.getUnlocalizedName());
-        //GameRegistry.registerItem(totemArmourFeet, totemArmourFeet.getUnlocalizedName());
-        GameRegistry.registerItem(totemArmourLeg, totemArmourLeg.getUnlocalizedName());
-        //GameRegistry.registerItem(totemArmourHead, totemArmourHead.getUnlocalizedName());
-        //GameRegistry.registerItem(blowDart, Strings.BLOW_DART_NAME);
-        //GameRegistry.registerItem(darts, "darts");
+        GameRegistry.registerItem(totems, Strings.TOTEMS_NAME);
+        GameRegistry.registerItem(totemArmourLeg, Strings.TOTEM_ARMOUR_LEG_NAME);
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
         GameRegistry.registerItem(buffaloItems, Strings.BUFFALO_ITEMS_NAME);
         GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
-
-        //GameRegistry.registerItem(huntingKnife, huntingKnife.getUnlocalizedName());
-        //GameRegistry.registerItem(blazingChlorophyllCrystal, blazingChlorophyllCrystal.getUnlocalizedName());
-        GameRegistry.registerItem(totempedia, totempedia.getUnlocalizedName());
-        //GameRegistry.registerItem(verdantCrystal, verdantCrystal.getUnlocalizedName());
-        //GameRegistry.registerItem(halberd, Strings.HALBERD_NAME);
+        GameRegistry.registerItem(totempedia, Strings.TOTEMPEDIA_NAME);
+        GameRegistry.registerItem(buffaloHelmet, Strings.BUFFALO_HELMET);
+        GameRegistry.registerItem(buffaloChest, Strings.BUFFALO_CHESTPLATE);
+        GameRegistry.registerItem(buffaloLeggings, Strings.BUFFALO_LEGGINGS);
+        GameRegistry.registerItem(buffaloBoots, Strings.BUFFALO_BOOTS);
 
         initBaubles();
     }

@@ -3,8 +3,6 @@ package totemic_commons.pokefenn.blessing;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.network.PacketClientBlessingSync;
-import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
@@ -25,7 +23,7 @@ public class BlessingHandler
         }
 
         blessing.blessing += amount;
-        PacketHandler.sendAround(new PacketClientBlessingSync(getBlessing(player, world)), world.provider.dimensionId, x, y, z);
+       // PacketHandler.sendAround(new PacketClientBlessingSync(getBlessing(player, world)), world.provider.dimensionId, x, y, z);
     }
 
     public static void increaseBlessingNearby(int amount, World world, int x, int y, int z, int range)

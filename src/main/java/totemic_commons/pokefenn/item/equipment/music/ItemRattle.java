@@ -21,6 +21,9 @@ public class ItemRattle extends ItemTotemic implements IMusic
 {
     public int time;
 
+    //This int will hold the amount of nearby poles, which are sticks and buffalo heads. Each pole will increase the music made.
+    public int headPoles;
+
     public ItemRattle()
     {
         super(Strings.CEREMONY_RATTLE_NAME);
@@ -36,7 +39,6 @@ public class ItemRattle extends ItemTotemic implements IMusic
         {
             if(entityLiving instanceof EntityPlayer)
             {
-
                 EntityPlayer player = (EntityPlayer) entityLiving;
                 MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
                 if(block == null)
@@ -92,7 +94,7 @@ public class ItemRattle extends ItemTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 4;
+        return 4 + (headPoles * 2);
     }
 
     @Override
