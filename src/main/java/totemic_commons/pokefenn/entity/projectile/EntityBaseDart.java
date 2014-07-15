@@ -17,7 +17,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.item.equipment.ItemDarts;
-import totemic_commons.pokefenn.misc.TotemicDamageSource;
+import totemic_commons.pokefenn.misc.DamageSources;
 import totemic_commons.pokefenn.potion.ModPotions;
 
 import java.util.List;
@@ -257,7 +257,7 @@ public class EntityBaseDart extends Entity implements IProjectile
                     f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     int damageCeiling = MathHelper.ceiling_double_int((double) f2 * this.damage);
 
-                    DamageSource damagesource = TotemicDamageSource.baseDart;
+                    DamageSource damagesource = DamageSources.baseDart;
 
                     if(movingobjectposition.entityHit.attackEntityFrom(damagesource, (float) damageCeiling))
                     {

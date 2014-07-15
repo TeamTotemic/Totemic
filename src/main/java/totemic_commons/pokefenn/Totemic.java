@@ -12,7 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.compat.Compatibility;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
-import totemic_commons.pokefenn.crafting.TotemicCraftingRecipes;
+import totemic_commons.pokefenn.recipe.CraftingRecipes;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.event.ModEvents;
 import totemic_commons.pokefenn.fluid.ModFluids;
@@ -50,13 +50,44 @@ public final class Totemic
     public void preInit(FMLPreInitializationEvent event)
     {
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
+        potionIncrease();
+        logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
+        logger.info("Totemic is Loading");
+        ModFluids.init();
+        ModBlocks.init();
+        ModItems.init();
+    }
 
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        logger.info("Totemic is entering its initialisation stage");
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
+        PacketHandler.init();
+        proxy.initRendering();
+        ModEntities.init();
+        CraftingRecipes.init();
+        LexiconData.init();
+        proxy.registerTileEntities();
+        ModPotions.init();
+        ModEvents.init();
+        Compatibility.sendIMCMessages();
+    }
+
+    @EventHandler
+    public void modsLoaded(FMLPostInitializationEvent event)
+    {
+
+    }
+
+    void potionIncrease()
+    {
         Potion[] potionTypes = null;
 
         for(Field f : Potion.class.getDeclaredFields())
         {
             f.setAccessible(true);
-
             try
             {
                 if(f.getName().equals("potionTypes") || f.getName().equals("field_76425_a"))
@@ -74,58 +105,6 @@ public final class Totemic
                 System.err.println(e);
             }
         }
-
-        logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
-        logger.info("Totemic is Loading");
-
-        //Initiates fluids into the game
-        ModFluids.init();
-
-        //Initiates totemic blocks into the game
-        ModBlocks.init();
-
-        //Initiates the mod items into the game
-        ModItems.init();
-
-    }
-
-    @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-        logger.info("Totemic is entering its Initlisation stage");
-
-        NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
-
-        //Registers the packets with FML
-        PacketHandler.init();
-
-        //Initiates all the block/entity/item and other stuff rendering
-        proxy.initRendering();
-
-        //Initiates the mod entities to the game
-        ModEntities.init();
-
-        //Initiate all the recipes!
-        TotemicCraftingRecipes.init();
-
-        LexiconData.init();
-
-        //Init tile entities into the game
-        proxy.registerTileEntities();
-
-        //Init the potions into the game
-        ModPotions.init();
-
-        //Registers the events into forge
-        ModEvents.init();
-
-        Compatibility.sendIMCMessages();
-    }
-
-    @EventHandler
-    public void modsLoaded(FMLPostInitializationEvent event)
-    {
-        //packetPipeline.postInitialise();
     }
 
 }

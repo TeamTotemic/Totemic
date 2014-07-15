@@ -6,7 +6,7 @@ import net.minecraft.util.DamageSource;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class TotemicDamageSource
+public class DamageSources
 {
     public static DamageSource huntingKnife = new DamageSource("huntingKnife");
 

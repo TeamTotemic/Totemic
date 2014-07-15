@@ -12,7 +12,7 @@
 package totemic_commons.pokefenn.totempedia;
 
 import totemic_commons.pokefenn.api.TotemicAPI;
-import totemic_commons.pokefenn.crafting.TotemicHandlerInitiation;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.lib.Totempedia;
 import totemic_commons.pokefenn.totempedia.page.PageCeremony;
 import totemic_commons.pokefenn.totempedia.page.PageText;
@@ -73,13 +73,13 @@ public final class LexiconData
         performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));
 
         rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony);
-        rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", TotemicHandlerInitiation.rainDance));
+        rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.rainDance));
 
         warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony);
-        warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", TotemicHandlerInitiation.warDance));
+        warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.warDance));
 
         buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony);
-        buffaloDance.setLexiconPages(new PageText("0"), new PageCeremony("1", TotemicHandlerInitiation.buffaloDance));
+        buffaloDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.buffaloDance));
 
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
         barkStripper.setLexiconPages(new PageText("0"), new PageText("1"));

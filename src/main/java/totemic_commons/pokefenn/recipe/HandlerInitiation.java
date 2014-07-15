@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.crafting;
+package totemic_commons.pokefenn.recipe;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
@@ -19,7 +19,7 @@ import totemic_commons.pokefenn.totem.*;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class TotemicHandlerInitiation
+public class HandlerInitiation
 {
     public static CeremonyRegistry ghostDance;
     public static CeremonyRegistry elixer;

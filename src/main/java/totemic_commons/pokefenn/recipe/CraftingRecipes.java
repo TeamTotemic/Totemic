@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.crafting;
+package totemic_commons.pokefenn.recipe;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
@@ -11,7 +11,7 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 
-public class TotemicCraftingRecipes
+public class CraftingRecipes
 {
 
     public static void init()
@@ -21,7 +21,7 @@ public class TotemicCraftingRecipes
         oreDictionary();
         furnaceRecipes();
 
-        TotemicHandlerInitiation.init();
+        HandlerInitiation.init();
     }
 
     public static void shapedRecipes()
