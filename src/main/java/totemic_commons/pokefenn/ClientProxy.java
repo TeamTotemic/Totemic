@@ -9,6 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.MinecraftForgeClient;
 import totemic_commons.pokefenn.client.rendering.entity.BuffaloRendering;
 import totemic_commons.pokefenn.client.rendering.entity.DartRendering;
+import totemic_commons.pokefenn.client.rendering.item.ItemTotemBaseRenderer;
+import totemic_commons.pokefenn.client.rendering.item.ItemTotemPoleRenderer;
 import totemic_commons.pokefenn.client.rendering.item.ItemTotemTorchRenderer;
 import totemic_commons.pokefenn.client.rendering.item.ItemWindChimeRenderer;
 import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
@@ -42,6 +44,9 @@ public class ClientProxy extends CommonProxy
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemTorch), new ItemTotemTorchRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.windChime), new ItemWindChimeRenderer());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemBase), new ItemTotemBaseRenderer());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemPole), new ItemTotemPoleRenderer());
+
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemPole.class, new TileTotemSocketCubeRenderer());
 
