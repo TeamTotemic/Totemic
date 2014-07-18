@@ -22,7 +22,6 @@ import totemic_commons.pokefenn.totem.*;
 public class HandlerInitiation
 {
     public static CeremonyRegistry ghostDance;
-    public static CeremonyRegistry elixer;
     public static CeremonyRegistry rainDance;
     public static CeremonyRegistry drought;
     public static CeremonyRegistry flute;
@@ -44,9 +43,8 @@ public class HandlerInitiation
         ceremonyHandler();
     }
 
-    public static void ceremonyHandler()
+    static void ceremonyHandler()
     {
-        elixer = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.potion"), 1, new CeremonyEffect(new CeremonyPotion(), new MusicEnum[]{MusicEnum.DRUM, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.FLUTE}), new CeremonyActivation(TimeStateEnum.INSTANT, 120, CeremonyTimeEnum.MEDIUM));
         flute = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.flute"), 2, new CeremonyEffect(new CeremonyFluteInfusion(), new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE}), new CeremonyActivation(TimeStateEnum.INSTANT, 140, CeremonyTimeEnum.MEDIUM));
         rainDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.rainDance"), 3, new CeremonyEffect(new CeremonyRain(), new MusicEnum[]{MusicEnum.RATTLE, MusicEnum.RATTLE, MusicEnum.FLUTE, MusicEnum.FLUTE}), new CeremonyActivation(TimeStateEnum.INSTANT, 130, CeremonyTimeEnum.MEDIUM));
         drought = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.drought"), 4, new CeremonyEffect(new CeremonyRainRemoval(), new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.RATTLE, MusicEnum.RATTLE}), new CeremonyActivation(TimeStateEnum.INSTANT, 130, CeremonyTimeEnum.MEDIUM));
@@ -56,7 +54,7 @@ public class HandlerInitiation
         buffaloDance = TotemicAPI.addCeremony("totemic.ceremony.buffaloDance", 8, new CeremonyEffect(new CeremonyBuffaloDance(), new MusicEnum[]{MusicEnum.JINGLE_DRESS, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.WIND_CHIME}), new CeremonyActivation(TimeStateEnum.INSTANT, 150, CeremonyTimeEnum.MEDIUM));
     }
 
-    public static void totemRegistry()
+    static void totemRegistry()
     {
         horseTotem = TotemicAPI.addTotem(0, new ItemStack(ModItems.totems, 1, ItemTotems.horse), 4, 4, new TotemEffectHorse(), 1, ItemTotems.TOTEM_NAMES[ItemTotems.horse]);
         squidTotem = TotemicAPI.addTotem(1, new ItemStack(ModItems.totems, 1, ItemTotems.squid), 4, 4, new TotemEffectSquid(), 1, ItemTotems.TOTEM_NAMES[ItemTotems.squid]);

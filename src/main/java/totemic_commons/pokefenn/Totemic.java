@@ -12,14 +12,13 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.compat.Compatibility;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
-import totemic_commons.pokefenn.recipe.CraftingRecipes;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.event.ModEvents;
-import totemic_commons.pokefenn.fluid.ModFluids;
 import totemic_commons.pokefenn.misc.CreativeTabTotemic;
 import totemic_commons.pokefenn.network.GuiHandler;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.potion.ModPotions;
+import totemic_commons.pokefenn.recipe.CraftingRecipes;
 import totemic_commons.pokefenn.totempedia.LexiconData;
 
 import java.io.File;
@@ -53,7 +52,6 @@ public final class Totemic
         potionIncrease();
         logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
         logger.info("Totemic is Loading");
-        ModFluids.init();
         ModBlocks.init();
         ModItems.init();
     }

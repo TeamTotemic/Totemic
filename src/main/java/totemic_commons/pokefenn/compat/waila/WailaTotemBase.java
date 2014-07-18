@@ -40,7 +40,7 @@ public class WailaTotemBase implements IWailaDataProvider
                 currenttip.add(CeremonyRegistry.ceremonyRegistry.get(totemBase.currentCeremony).getName());
             else if(totemBase.isDoingStartup)
                 currenttip.add(CeremonyRegistry.ceremonyRegistry.get(totemBase.tryingCeremonyID).getName());
-            currenttip.add(TileTotemBase.getMusicName(totemBase.musicForEffect));
+            currenttip.add(TileTotemBase.getMusicName(totemBase.musicForTotemEffect));
 
             if(totemBase.isMusicSelecting)
                 for(int i = 0; i < 4; i++)

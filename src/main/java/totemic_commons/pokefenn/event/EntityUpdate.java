@@ -104,30 +104,7 @@ public class EntityUpdate
             }
         }
 
-        if(!event.entity.worldObj.isRemote)
-            if(event.entityLiving.isPotionActive(ModPotions.antidotePotion))
-            {
-                if(event.entityLiving.isPotionActive(Potion.blindness))
-                {
-                    event.entityLiving.removePotionEffect(Potion.blindness.id);
-                }
 
-                if(event.entityLiving.isPotionActive(Potion.poison))
-                {
-                    event.entityLiving.removePotionEffect(Potion.poison.id);
-                }
-
-                if(event.entityLiving.isPotionActive(Potion.confusion))
-                {
-                    event.entityLiving.removePotionEffect(Potion.confusion.id);
-                }
-
-                if(event.entityLiving.isPotionActive(Potion.moveSlowdown))
-                {
-                    event.entityLiving.removePotionEffect(Potion.moveSlowdown.id);
-                }
-
-            }
 
 
     }

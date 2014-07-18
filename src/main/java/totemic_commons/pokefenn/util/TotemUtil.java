@@ -207,10 +207,10 @@ public class TotemUtil
         {
             if(tileEntity instanceof TileTotemBase)
             {
-                if(((TileTotemBase) tileEntity).musicForEffect + musicAmount > TileTotemBase.maximumMusic)
-                    ((TileTotemBase) tileEntity).musicForEffect = TileTotemBase.maximumMusic;
+                if(((TileTotemBase) tileEntity).musicForTotemEffect + musicAmount > TileTotemBase.maximumMusic)
+                    ((TileTotemBase) tileEntity).musicForTotemEffect = TileTotemBase.maximumMusic;
                 else
-                    ((TileTotemBase) tileEntity).musicForEffect += musicAmount;
+                    ((TileTotemBase) tileEntity).musicForTotemEffect += musicAmount;
                 musicParticleAtBlocks(world, x + i, y + j, z + k);
             }
         }

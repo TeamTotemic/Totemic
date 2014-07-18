@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -131,19 +132,6 @@ public class EntityBuffalo extends EntityCow
 
         if(itemstack != null)
         {
-            if(itemstack.getItem() == Items.bucket)
-            {
-                if(itemstack.stackSize-- == 1)
-                {
-                    player.inventory.setInventorySlotContents(player.inventory.currentItem, new ItemStack(Items.milk_bucket));
-                } else if(!player.inventory.addItemStackToInventory(new ItemStack(Items.milk_bucket)))
-                {
-                    player.dropPlayerItemWithRandomChoice(new ItemStack(Items.milk_bucket, 1, 0), false);
-                }
-
-                return true;
-            }
-
             if(!isSheared && itemstack.getItem() instanceof ItemShears)
             {
                 itemstack.damageItem(1, player);
@@ -168,5 +156,11 @@ public class EntityBuffalo extends EntityCow
     protected int getExperiencePoints(EntityPlayer player)
     {
         return 5 + worldObj.rand.nextInt(6);
+    }
+    
+    @Override
+    public boolean canMateWith(EntityAnimal animal)
+    {
+        return animal != this && (animal.getClass() == this.getClass() && this.isInLove() && animal.isInLove());
     }
 }

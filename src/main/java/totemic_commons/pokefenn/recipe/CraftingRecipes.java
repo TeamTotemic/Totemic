@@ -24,7 +24,7 @@ public class CraftingRecipes
         HandlerInitiation.init();
     }
 
-    public static void shapedRecipes()
+    static void shapedRecipes()
     {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totemicStaff), new Object[]{" ls", " s ", "s l", ('s'), "stickWood", ('l'), new ItemStack(Blocks.leaves)}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totemWhittlingKnife, 1, 0), new Object[]{"  i", " sf", "s  ", ('s'), "stickWood", ('i'), Items.iron_ingot, ('f'), Items.flint}));
@@ -45,7 +45,7 @@ public class CraftingRecipes
 
     }
 
-    public static void shapelessRecipes()
+    static void shapelessRecipes()
     {
         //GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Blocks.vine));
         //GameRegistry.addShapelessRecipe(new ItemStack(ModItems.totempedia), new ItemStack(Items.book), new ItemStack(Items.wheat_seeds));
@@ -60,7 +60,7 @@ public class CraftingRecipes
         //Music
     }
 
-    public static void oreDictionary()
+    static void oreDictionary()
     {
         OreDictionary.registerOre("cropVine", new ItemStack(Blocks.vine));
         OreDictionary.registerOre("cedarLeaf", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.leaf));
@@ -71,7 +71,7 @@ public class CraftingRecipes
         OreDictionary.registerOre("barkCedar", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarBark));
     }
 
-    public static void furnaceRecipes()
+    static void furnaceRecipes()
     {
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.redCedarStripped), new ItemStack(Items.coal, 1, 1), 0.5F);
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.cedarLog), new ItemStack(Items.coal, 1, 1), 0.5F);

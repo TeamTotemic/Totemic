@@ -31,9 +31,9 @@ public class Resources
     public static final String INFUSED_SAPLING = "infusedSapling";
 
     //Models
-    public static final ResourceLocation TEXTURE_TOTEMIC_STAFF = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemicStaff.png");
     public static final ResourceLocation TEXTURE_TOTEM_TORCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemTorch.png");
     public static final ResourceLocation TEXTURE_TOTEM_SOCKET_CUBE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemSocketCube.png");
     public static final ResourceLocation TEXTURE_DRUM = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "drum.png");
     public static final ResourceLocation TEXTURE_TOTEM_BASE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBase.png");
+    public static final ResourceLocation TEXTURE_WIND_CHIME = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "windChime.png");
 }

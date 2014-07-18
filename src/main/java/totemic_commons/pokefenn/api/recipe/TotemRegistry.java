@@ -15,7 +15,7 @@ import java.util.List;
 public class TotemRegistry
 {
 
-    public static List<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();
+    public static ArrayList<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();
 
     private final ItemStack totem;
     private final int verticalHight;
