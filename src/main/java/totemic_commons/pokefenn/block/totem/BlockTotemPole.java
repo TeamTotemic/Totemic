@@ -8,8 +8,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
-import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
@@ -44,9 +44,9 @@ public class BlockTotemPole extends BlockTileTotemic
 
         if(tileTotemSocket != null && !world.isRemote)
         {
-            if(player.getHeldItem() != null && tileTotemSocket.getStackInSlot(0) != null && (player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem().getItem() == ModItems.infusedTotemicStaff))
+            if(player.getHeldItem() != null && tileTotemSocket.getTotemId() != 0 && (player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem().getItem() == ModItems.infusedTotemicStaff))
             {
-                player.addChatComponentMessage(new ChatComponentText("Active Totem Effect: " + ItemTotems.TOTEM_NAMES[tileTotemSocket.getStackInSlot(0).getItemDamage()]));
+                player.addChatComponentMessage(new ChatComponentText("Active Totem Effect: " + TotemRegistry.getRecipes().get(tileTotemSocket.getTotemId())));
             }
             world.markBlockForUpdate(x, y, z);
         }

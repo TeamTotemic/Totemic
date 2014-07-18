@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.api;
 
-import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.recipe.CeremonyActivation;
 import totemic_commons.pokefenn.api.recipe.CeremonyEffect;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
@@ -25,8 +24,7 @@ public class TotemicAPI
     private static List<LexiconEntry> allEntries = new ArrayList<LexiconEntry>();
 
     /**
-     * @param id         A identification for your Totem
-     * @param totem      The ItemStack of the Totem
+     * @param id         A identification for your Totem, used for repetition and is how the information of the Totem is stored.
      * @param vertical   The vertical radius of the Totem, this is the base
      * @param horizontal The horizontal radius of the Totem, this is the base
      * @param effect     The TotemEffect
@@ -34,9 +32,9 @@ public class TotemicAPI
      * @param name       The name of the Totem
      * @return The TotemRegistry, you will then be able to store this to use it for later information
      */
-    public static TotemRegistry addTotem(int id, ItemStack totem, int vertical, int horizontal, ITotemEffect effect, int tier, String name)
+    public static TotemRegistry addTotem(int id, int vertical, int horizontal, ITotemEffect effect, int tier, String name)
     {
-        TotemRegistry totemRegistry = new TotemRegistry(totem, vertical, horizontal, effect, tier, name);
+        TotemRegistry totemRegistry = new TotemRegistry(id, vertical, horizontal, effect, tier, name);
         TotemRegistry.getRecipes().add(totemRegistry);
         return totemRegistry;
     }

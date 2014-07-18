@@ -12,8 +12,6 @@ import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
 import totemic_commons.pokefenn.item.equipment.armour.ItemBuffaloArmour;
 import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
 import totemic_commons.pokefenn.item.equipment.armour.ItemTotemArmour;
-import totemic_commons.pokefenn.item.equipment.bauble.ItemBaubleFragileVigor;
-import totemic_commons.pokefenn.item.equipment.bauble.ItemHeiTiki;
 import totemic_commons.pokefenn.item.equipment.music.ItemRattle;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -97,14 +95,14 @@ public final class ModItems
         Totemic.baublesLoaded = true;
 
         //herculeseBauble = new ItemHerculesBauble();
-        heiTiki = new ItemHeiTiki();
+        //heiTiki = new ItemHeiTiki();
         //totemBeadSatchel = new ItemTotemBeadBelt();
-        baubleArmourDamage = new ItemBaubleFragileVigor();
+        //baubleArmourDamage = new ItemBaubleFragileVigor();
 
         //GameRegistry.registerItem(herculeseBauble, Strings.HERCULESE_BAUBLES_NAME);
-        GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);
+        //GameRegistry.registerItem(heiTiki, Strings.HEI_TIKI_NAME);
         //GameRegistry.registerItem(totemBeadSatchel, Strings.TOTEM_BEAD_BELT_NAME);
-        GameRegistry.registerItem(baubleArmourDamage, Strings.BAUBLE_ARMOUR_DAMAGE_NAME);
+        //GameRegistry.registerItem(baubleArmourDamage, Strings.BAUBLE_ARMOUR_DAMAGE_NAME);
     }
 
 

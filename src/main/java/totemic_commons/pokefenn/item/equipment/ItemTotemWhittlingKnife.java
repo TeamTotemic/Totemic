@@ -90,7 +90,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                             world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);
                             TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
 
-                            tileTotemSocket.setInventorySlotContents(0, TotemRegistry.getRecipes().get(itemStack.getItemDamage()).getTotem());
+                            tileTotemSocket.totemId = TotemRegistry.getRecipes().get(itemStack.getItemDamage()).getTotemId();
                             world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
                             tileTotemSocket.markDirty();
                             return true;

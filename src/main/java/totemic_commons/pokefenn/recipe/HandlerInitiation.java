@@ -1,8 +1,6 @@
 package totemic_commons.pokefenn.recipe;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.api.ceremony.CeremonyTimeEnum;
 import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
@@ -12,7 +10,6 @@ import totemic_commons.pokefenn.api.recipe.CeremonyEffect;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.ceremony.*;
-import totemic_commons.pokefenn.item.ItemTotems;
 import totemic_commons.pokefenn.totem.*;
 
 /**
@@ -56,13 +53,13 @@ public class HandlerInitiation
 
     static void totemRegistry()
     {
-        horseTotem = TotemicAPI.addTotem(0, new ItemStack(ModItems.totems, 1, ItemTotems.horse), 4, 4, new TotemEffectHorse(), 1, ItemTotems.TOTEM_NAMES[ItemTotems.horse]);
-        squidTotem = TotemicAPI.addTotem(1, new ItemStack(ModItems.totems, 1, ItemTotems.squid), 4, 4, new TotemEffectSquid(), 1, ItemTotems.TOTEM_NAMES[ItemTotems.squid]);
-        blazeTotem = TotemicAPI.addTotem(2, new ItemStack(ModItems.totems, 1, ItemTotems.blaze), 4, 4, new TotemEffectBlaze(), 2, ItemTotems.TOTEM_NAMES[ItemTotems.blaze]);
-        ocelotTotem = TotemicAPI.addTotem(3, new ItemStack(ModItems.totems, 1, ItemTotems.ocelot), 4, 4, new TotemEffectOcelot(), 2, ItemTotems.TOTEM_NAMES[ItemTotems.ocelot]);
-        batTotem = TotemicAPI.addTotem(4, new ItemStack(ModItems.totems, 1, ItemTotems.bat), 4, 8, new TotemEffectBat(), 2, ItemTotems.TOTEM_NAMES[ItemTotems.bat]);
-        spiderTotem = TotemicAPI.addTotem(5, new ItemStack(ModItems.totems, 1, ItemTotems.spider), 4, 4, new TotemEffectSpider(), 2, ItemTotems.TOTEM_NAMES[ItemTotems.spider]);
-        cowTotem = TotemicAPI.addTotem(6, new ItemStack(ModItems.totems, 1, ItemTotems.cow), 4, 4, new TotemEffectCow(), 1, ItemTotems.TOTEM_NAMES[ItemTotems.cow]);
+        horseTotem = TotemicAPI.addTotem(1, 4, 4, new TotemEffectHorse(), 1, "totemic.totem.horse");
+        squidTotem = TotemicAPI.addTotem(2, 4, 4, new TotemEffectSquid(), 1, "totemic.totem.squid");
+        blazeTotem = TotemicAPI.addTotem(3, 4, 4, new TotemEffectBlaze(), 2, "totemic.totem.blaze");
+        ocelotTotem = TotemicAPI.addTotem(4, 4, 4, new TotemEffectOcelot(), 2, "totemic.totem.ocelot");
+        batTotem = TotemicAPI.addTotem(5, 4, 8, new TotemEffectBat(), 2, "totemic.totem.bat");
+        spiderTotem = TotemicAPI.addTotem(6, 4, 4, new TotemEffectSpider(), 2, "totemic.totem.spider");
+        cowTotem = TotemicAPI.addTotem(7, 4, 4, new TotemEffectCow(), 1, "totemic.totem.cow");
     }
 
 }

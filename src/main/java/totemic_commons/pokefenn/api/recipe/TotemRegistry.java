@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.api.recipe;
 
-import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
 
 import java.util.ArrayList;
@@ -17,31 +16,31 @@ public class TotemRegistry
 
     public static ArrayList<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();
 
-    private final ItemStack totem;
-    private final int verticalHight;
+    private final int id;
+    private final int verticalHeight;
     private final int horizontal;
     private final ITotemEffect effect;
     private final int tier;
     private final String name;
 
-    public TotemRegistry(ItemStack totem, int verticalHeight, int horizontal, ITotemEffect effect, int tier, String name)
+    public TotemRegistry(int id, int verticalHeight, int horizontal, ITotemEffect effect, int tier, String name)
     {
-        this.totem = totem;
-        this.verticalHight = verticalHeight;
+        this.id = id;
+        this.verticalHeight = verticalHeight;
         this.horizontal = horizontal;
         this.effect = effect;
         this.tier = tier;
         this.name = name;
     }
 
-    public ItemStack getTotem()
+    public int getTotemId()
     {
-        return this.totem;
+        return this.id;
     }
 
-    public int getVerticalHight()
+    public int getVerticalHeight()
     {
-        return this.verticalHight;
+        return this.verticalHeight;
     }
 
     public int getHorizontal()
