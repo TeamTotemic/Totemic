@@ -11,6 +11,8 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.music.BlockWindChime;
+import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.PacketWindChime;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -37,6 +39,18 @@ public class TileWindChime extends TileTotemic
 
         World world = worldObj;
 
+        if(isPlaying)
+        {
+            currentTime++;
+        }
+
+        //This is for how long it can play
+        if(currentTime >= 20 * 12)
+        {
+            isPlaying = false;
+            currentTime = 0;
+        }
+
         if(!world.isRemote)
         {
             Random rand = new Random();
@@ -56,32 +70,23 @@ public class TileWindChime extends TileTotemic
             }
 
             if(isPlaying)
-            {
-                currentTime++;
                 if(world.getWorldTime() % 40L == 0)
                     if(rand.nextInt(2) == 1)
                     {
                         if(world.getBlock(xCoord, yCoord, zCoord) == ModBlocks.windChime)
                         {
                             BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
-                            TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false,null));
+                            TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, null));
                             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
                         }
                     }
-            }
-
-            //This is for how long it can play
-            if(currentTime >= 20 * 12)
-            {
-                isPlaying = false;
-                currentTime = 0;
-            }
 
             if(world.getWorldTime() % 30L == 0)
                 if(rand.nextInt(30) == 1)
                 {
                     //this makes all nearby chimes play
                     isPlaying = true;
+                    PacketHandler.sendAround(new PacketWindChime(xCoord, yCoord, zCoord, isPlaying), this);
 
                     int radius = 4;
 
