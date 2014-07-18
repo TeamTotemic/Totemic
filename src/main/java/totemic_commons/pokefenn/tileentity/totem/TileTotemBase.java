@@ -105,7 +105,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 doCeremonyCode();
             }
 
-            if(!(currentInput >= 1))
+            if(!isCeremony && !(currentInput >= 1))
             {
                 totemEffect();
             }
@@ -116,7 +116,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         if(totemPoleSize > 0)
         {
-            for(int i = 1; i <= totemPoleSize; i++)
+            for(int i = 0; i < totemPoleSize; i++)
             {
                 if(totemIds[i] != 0)
                 {
@@ -401,6 +401,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 }
             }
         }
+        
         resetMelody();
         workOutEfficiency();
         return totalMelody >= CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMusicNeeded() - (dancingEfficiency % 50);
@@ -443,26 +444,24 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     protected void scanArea()
     {
-        for(int i = 1; i <= totemPoleSize; i++)
+        for(int i = 0; i < totemPoleSize; i++)
         {
-            if(totemPoleSize <= 6)
+            if(getTotemId(i + 1) != 0)
             {
-                if(getTotemPoleItemStack(i) != 0)
-                {
-                    totemIds[i] = getTotemPoleItemStack(i);
+                totemIds[i] = getTotemId(i + 1);
 
-                } else
-                    totemIds[i] = 0;
-            }
+            } else
+                totemIds[i] = 0;
         }
     }
 
+    @Override
     public boolean canUpdate()
     {
         return true;
     }
 
-    protected int getTotemPoleItemStack(int par1)
+    protected int getTotemId(int par1)
     {
         TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
 
@@ -498,23 +497,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 != ModBlocks.totemPole)
         {
             return 5;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 != ModBlocks.totemPole)
-        {
-            return 6;
-        } /*else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 != ModBlocks.totemPole)
-        {
-            return 7;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 instanceof BlockTotemPole && block9 != ModBlocks.totemPole)
-        {
-            return 8;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 instanceof BlockTotemPole && block9 instanceof BlockTotemPole && block10 != ModBlocks.totemPole)
-        {
-            return 9;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 instanceof BlockTotemPole && block7 instanceof BlockTotemPole && block8 instanceof BlockTotemPole && block9 instanceof BlockTotemPole && block10 instanceof BlockTotemPole)
-        {
-            return 10;
         }
-        */
 
         return 0;
     }
