@@ -42,7 +42,7 @@ public class TileDrum extends TileTotemic
                 currentTime++;
             }
 
-            if(currentTime >= 20)
+            if(currentTime > 20)
             {
                 currentTime = 0;
                 canPlay = true;

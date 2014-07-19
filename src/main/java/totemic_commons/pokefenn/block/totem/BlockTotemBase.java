@@ -11,7 +11,6 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
-import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
@@ -127,7 +126,7 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
     @Override
     public int getRenderType()
     {
-        return RenderIds.RENDER_ID_TOTEM_BASE;
+        return -1;
     }
 
     @Override

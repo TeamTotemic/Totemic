@@ -14,7 +14,6 @@ import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
 import totemic_commons.pokefenn.client.rendering.tileentity.*;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
-import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.misc.villager.TotemicVillagerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
@@ -28,13 +27,6 @@ public class ClientProxy extends CommonProxy
     public void initRendering()
     {
         Minecraft mc = Minecraft.getMinecraft();
-
-        RenderIds.RENDER_ID_TOTEM_POLE = RenderingRegistry.getNextAvailableRenderId();
-        RenderIds.RENDER_ID_TOTEM_TORCH = RenderingRegistry.getNextAvailableRenderId();
-        RenderIds.RENDER_ID_TOTEM_SOCKET_CUBE = RenderingRegistry.getNextAvailableRenderId();
-        RenderIds.RENDER_ID_DRUM = RenderingRegistry.getNextAvailableRenderId();
-        RenderIds.RENDER_ID_TOTEM_BASE = RenderingRegistry.getNextAvailableRenderId();
-        RenderIds.RENDER_ID_WIND_CHIME = RenderingRegistry.getNextAvailableRenderId();
 
         RenderingRegistry.registerEntityRenderingHandler(EntityBaseDart.class, new DartRendering());
         RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, new BuffaloRendering(new ModelBuffalo(), 0.5F));

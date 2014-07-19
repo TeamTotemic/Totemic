@@ -1,0 +1,4 @@
+{
+	"windChime": {"category": "block", "sounds": ["windChime"]},
+	"drum": {"category": "block", "sounds": ["drum"]}
+}

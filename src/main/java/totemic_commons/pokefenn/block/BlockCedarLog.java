@@ -37,7 +37,6 @@ public class BlockCedarLog extends BlockLog
         return 0;
     }
 
-
     @SideOnly(Side.CLIENT)
     private IIcon topAndBot;
     @SideOnly(Side.CLIENT)

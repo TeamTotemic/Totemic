@@ -9,7 +9,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
@@ -74,8 +73,7 @@ public class BlockTotemTorch extends BlockTileTotemic
     @Override
     public int getRenderType()
     {
-
-        return RenderIds.RENDER_ID_TOTEM_TORCH;
+        return -1;
     }
 
     @Override

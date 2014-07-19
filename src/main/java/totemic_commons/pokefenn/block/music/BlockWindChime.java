@@ -13,8 +13,9 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
-import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.PacketWindChimeSound;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -28,6 +29,7 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     {
         super(Material.grass);
         setBlockName(Strings.WIND_CHIME_NAME);
+        setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
     }
 
     @Override
@@ -60,8 +62,11 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-        if(!world.isRemote && player.isSneaking())
+        TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(x, y, z);
+
+        if(!world.isRemote && player.isSneaking() && !tileWindChime.isPlaying)
         {
+            PacketHandler.sendAround(new PacketWindChimeSound(x, y, z), world.getTileEntity(x, y, z));
             TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(new ItemStack(this, 1, 0), world, x, y, z, true, player), this.getRange(world, x, y, z, true, player));
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y - 0.5D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
         }
@@ -71,7 +76,7 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     @Override
     public int getRenderType()
     {
-        return RenderIds.RENDER_ID_WIND_CHIME;
+        return -1;
     }
 
     @Override

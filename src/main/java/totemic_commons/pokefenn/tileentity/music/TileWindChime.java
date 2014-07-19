@@ -38,13 +38,20 @@ public class TileWindChime extends TileTotemic
         super.updateEntity();
         World world = worldObj;
 
+        if(worldObj.isRemote)
+        {
+            if(worldObj.getWorldTime() % 40L == 0)
+                if(isPlaying)
+                    world.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 1.0F, 1.0F, false);
+        }
+
         if(isPlaying)
         {
             currentTime++;
         }
 
         //This is for how long it can play
-        if(currentTime >= 20 * 12)
+        if(currentTime > 20 * 12)
         {
             isPlaying = false;
             currentTime = 0;

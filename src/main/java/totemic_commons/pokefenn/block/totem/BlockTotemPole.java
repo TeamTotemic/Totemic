@@ -10,7 +10,6 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
-import totemic_commons.pokefenn.lib.RenderIds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
@@ -69,7 +68,7 @@ public class BlockTotemPole extends BlockTileTotemic
     @Override
     public int getRenderType()
     {
-        return RenderIds.RENDER_ID_TOTEM_SOCKET_CUBE;
+        return -1;
     }
 
     @Override
