@@ -13,16 +13,16 @@ import net.minecraft.entity.player.EntityPlayer;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketDrumSound implements IMessage, IMessageHandler<PacketDrumSound, IMessage>
+public class PacketRattleSound implements IMessage, IMessageHandler<PacketRattleSound, IMessage>
 {
     public int x, y, z;
 
-    public PacketDrumSound()
+    public PacketRattleSound()
     {
 
     }
 
-    public PacketDrumSound(int x, int y, int z)
+    public PacketRattleSound(int x, int y, int z)
     {
         this.x = x;
         this.y = y;
@@ -46,12 +46,13 @@ public class PacketDrumSound implements IMessage, IMessageHandler<PacketDrumSoun
     }
 
     @Override
-    public IMessage onMessage(PacketDrumSound message, MessageContext ctx)
+    public IMessage onMessage(PacketRattleSound message, MessageContext ctx)
     {
+        //TODO
         Side side = FMLCommonHandler.instance().getEffectiveSide();
         EntityPlayer player = side == Side.CLIENT ? FMLClientHandler.instance().getClient().thePlayer : ctx.getServerHandler().playerEntity;
 
-        player.worldObj.playSound(message.x, message.y, message.z, "totemic:drum", 1.0F, 1.0F, false);
+        player.worldObj.playSound(message.x, message.y, message.z, "totemic:rattle", 0.8F, 1.0F, false);
 
         return null;
     }

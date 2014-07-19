@@ -31,6 +31,7 @@ public class PacketHandler
         registerPacket(PacketWindChime.class, Side.CLIENT);
         registerPacket(PacketWindChimeSound.class, Side.CLIENT);
         registerPacket(PacketDrumSound.class, Side.CLIENT);
+        registerPacket(PacketRattleSound.class, Side.CLIENT);
     }
 
     public static void sendToClient(IMessage packet, EntityPlayerMP player)

@@ -58,6 +58,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
         }
+        PacketHandler.sendAround(new PacketDrumSound(x, y, z), world.getTileEntity(x, y, z));
     }
 
     @Override
@@ -70,7 +71,6 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
             if(tileDrum.canPlay)
             {
                 playDaMusicu(world, x, y, z, player, tileDrum, player.isSneaking());
-                PacketHandler.sendAround(new PacketDrumSound(x, y, z), world.getTileEntity(x, y, z));
             }
         }
 

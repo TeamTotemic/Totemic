@@ -1,4 +1,6 @@
 {
 	"windChime": {"category": "block", "sounds": ["windChime"]},
+	"rattle": {"category": "block", "sounds": ["rattle"]},
+	"flute": {"category": "block", "sounds": ["flute"]},
 	"drum": {"category": "block", "sounds": ["drum"]}
 }
