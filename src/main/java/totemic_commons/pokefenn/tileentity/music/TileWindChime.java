@@ -36,7 +36,6 @@ public class TileWindChime extends TileTotemic
     public void updateEntity()
     {
         super.updateEntity();
-
         World world = worldObj;
 
         if(isPlaying)
@@ -70,8 +69,8 @@ public class TileWindChime extends TileTotemic
             }
 
             if(isPlaying)
-                if(world.getWorldTime() % 40L == 0)
-                    if(rand.nextInt(2) == 1)
+                if(world.getWorldTime() % 50L == 0)
+                    if(rand.nextBoolean())
                     {
                         if(world.getBlock(xCoord, yCoord, zCoord) == ModBlocks.windChime)
                         {
@@ -81,14 +80,13 @@ public class TileWindChime extends TileTotemic
                         }
                     }
 
-            if(world.getWorldTime() % 30L == 0)
-                if(rand.nextInt(30) == 1)
+            if(world.getWorldTime() % 20L == 0)
+            {
+                if(rand.nextInt(25) == 1)
                 {
-                    //this makes all nearby chimes play
                     isPlaying = true;
                     PacketHandler.sendAround(new PacketWindChime(xCoord, yCoord, zCoord, isPlaying), this);
-
-                    int radius = 4;
+                    int radius = 5;
 
                     for(int i = -radius; i <= radius; i++)
                         for(int j = -radius; j <= radius; j++)
@@ -103,6 +101,7 @@ public class TileWindChime extends TileTotemic
                                     }
                                 }
                 }
+            }
         }
     }
 
