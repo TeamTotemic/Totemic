@@ -12,8 +12,6 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 public class CommonProxy
 {
 
-    public static int totempediaGuiID = -1;
-
     public void registerTileEntities()
     {
         GameRegistry.registerTileEntity(TileTotemBase.class, Strings.TILE_TOTEM_INTELLIGENCE);

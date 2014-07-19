@@ -14,13 +14,11 @@ public class ResourceLocationHelper
 
     public static ResourceLocation getResourceLocation(String modId, String path)
     {
-
         return new ResourceLocation(modId, path);
     }
 
     public static ResourceLocation getResourceLocation(String path)
     {
-
         return getResourceLocation(Totemic.MOD_NAME.toLowerCase(), path);
     }
 

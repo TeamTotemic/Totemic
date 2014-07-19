@@ -12,7 +12,7 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.PacketWindChime;
+import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
 

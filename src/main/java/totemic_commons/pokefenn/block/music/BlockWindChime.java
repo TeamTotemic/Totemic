@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.block.music;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -15,8 +14,9 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.PacketWindChimeSound;
+import totemic_commons.pokefenn.network.client.PacketWindChimeSound;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
+import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
@@ -27,7 +27,7 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
 {
     public BlockWindChime()
     {
-        super(Material.grass);
+        super(Material.iron);
         setBlockName(Strings.WIND_CHIME_NAME);
         setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
     }
@@ -47,16 +47,16 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     public static void breakStuffs(int x, int y, int z, World world)
     {
         if(!world.isRemote)
+        {
             if(world.getTileEntity(x, y, z) instanceof TileWindChime)
             {
-                if(!world.isAirBlock(x, y - 1, z) && world.isAirBlock(x, y + 1, z))
+                if(!world.isAirBlock(x, y - 1, z) || world.isAirBlock(x, y + 1, z))
                 {
                     world.setBlockToAir(x, y, z);
-                    EntityItem entityItem = new EntityItem(world, x, y, z, new ItemStack(ModBlocks.windChime, 1, 0));
-
-                    world.spawnEntityInWorld(entityItem);
+                    EntityUtil.spawnEntityInWorld(world, x, y, z, new ItemStack(ModBlocks.windChime, 1 , 0));
                 }
             }
+        }
     }
 
     @Override
@@ -112,7 +112,7 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 4;
+        return world.getBlock(x, y + 1, z) != null && world.getBlock(x, y, z).getMaterial() == Material.leaves ? 5 : 4;
     }
 
     @Override

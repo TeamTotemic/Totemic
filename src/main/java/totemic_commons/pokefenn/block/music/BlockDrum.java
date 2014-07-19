@@ -10,7 +10,7 @@ import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketDrumSound;
+import totemic_commons.pokefenn.network.client.PacketDrumSound;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.util.TotemUtil;

@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.network;
+package totemic_commons.pokefenn.network.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -8,28 +8,25 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketWindChime implements IMessage, IMessageHandler<PacketWindChime, IMessage>
+public class PacketDrumSound implements IMessage, IMessageHandler<PacketDrumSound, IMessage>
 {
     public int x, y, z;
-    public boolean isPlaying;
 
-    public PacketWindChime()
+    public PacketDrumSound()
     {
 
     }
 
-    public PacketWindChime(int x, int y, int z, boolean isPlaying)
+    public PacketDrumSound(int x, int y, int z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.isPlaying = isPlaying;
     }
 
     @Override
@@ -38,7 +35,6 @@ public class PacketWindChime implements IMessage, IMessageHandler<PacketWindChim
         this.x = buf.readInt();
         this.y = buf.readInt();
         this.z = buf.readInt();
-        this.isPlaying = buf.readBoolean();
     }
 
     @Override
@@ -47,22 +43,15 @@ public class PacketWindChime implements IMessage, IMessageHandler<PacketWindChim
         buf.writeInt(x);
         buf.writeInt(y);
         buf.writeInt(z);
-        buf.writeBoolean(isPlaying);
     }
 
     @Override
-    public IMessage onMessage(PacketWindChime message, MessageContext ctx)
+    public IMessage onMessage(PacketDrumSound message, MessageContext ctx)
     {
-        //TODO
         Side side = FMLCommonHandler.instance().getEffectiveSide();
         EntityPlayer player = side == Side.CLIENT ? FMLClientHandler.instance().getClient().thePlayer : ctx.getServerHandler().playerEntity;
 
-        if(player.worldObj.getTileEntity(message.x, message.y, message.z) instanceof TileWindChime)
-        {
-            TileWindChime tileWindChime = (TileWindChime) player.worldObj.getTileEntity(message.x, message.y, message.z);
-
-            tileWindChime.isPlaying = message.isPlaying;
-        }
+        player.worldObj.playSound(message.x, message.y, message.z, "totemic:drum", 1.0F, 1.0F, false);
 
         return null;
     }

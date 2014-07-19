@@ -8,7 +8,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.api.armour.ITotemArmour;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
@@ -63,6 +62,7 @@ public class TotemUtil
         return null;
     }
 
+    /*
     public static int getArmourAmounts(EntityPlayer player)
     {
         int j = 0;
@@ -73,6 +73,7 @@ public class TotemUtil
 
         return j;
     }
+    */
 
     public static void addPotionEffects(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {

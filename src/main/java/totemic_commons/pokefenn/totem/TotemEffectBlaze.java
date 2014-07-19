@@ -35,7 +35,7 @@ public class TotemEffectBlaze implements ITotemEffect
                         {
                             Random rand = new Random();
                             if(rand.nextBoolean())
-                                ((EntityPlayer) entity).heal(2 + rand.nextInt(TotemUtil.getArmourAmounts((EntityPlayer) entity)));
+                                ((EntityPlayer) entity).heal(2);
                         }
 
                         TotemUtil.addPotionEffects((EntityPlayer) entity, 100, 40, Potion.fireResistance, 0, false);

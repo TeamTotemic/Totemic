@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.network;
+package totemic_commons.pokefenn.network.server;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -14,19 +14,19 @@ import totemic_commons.pokefenn.blessing.BlessingHandler;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketClientBlessingSync implements IMessage, IMessageHandler<PacketClientBlessingSync, IMessage>
+public class PacketServerBlessingSync implements IMessage, IMessageHandler<PacketServerBlessingSync, IMessage>
 {
     public String player;
     public int blessing;
 
-    public PacketClientBlessingSync()
+    //REMEMBER THIS GOES CLIENT > SERVER
+
+    public PacketServerBlessingSync()
     {
 
     }
 
-    //REMEMBER THIS GOES SERVER > CLIENT
-
-    public PacketClientBlessingSync(int blessing)
+    public PacketServerBlessingSync(int blessing)
     {
         this.blessing = blessing;
     }
@@ -44,10 +44,10 @@ public class PacketClientBlessingSync implements IMessage, IMessageHandler<Packe
     }
 
     @Override
-    public IMessage onMessage(PacketClientBlessingSync message, MessageContext ctx)
+    public IMessage onMessage(PacketServerBlessingSync message, MessageContext ctx)
     {
         Side side = FMLCommonHandler.instance().getEffectiveSide();
-        EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
+        EntityPlayer player = side == Side.CLIENT ? FMLClientHandler.instance().getClient().thePlayer : ctx.getServerHandler().playerEntity;
 
         BlessingHandler.setBlessing(message.blessing, player.getDisplayName(), player.worldObj);
 

@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.network;
+package totemic_commons.pokefenn.network.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;

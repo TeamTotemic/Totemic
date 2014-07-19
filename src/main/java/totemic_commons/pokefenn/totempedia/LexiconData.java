@@ -35,6 +35,7 @@ public final class LexiconData
     public static LexiconEntry buffaloBasic;
 
     public static LexiconEntry instruments;
+    public static LexiconEntry windChime;
 
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry rainDance;
@@ -68,6 +69,9 @@ public final class LexiconData
 
         instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryInstruments);
         instruments.setLexiconPages(new PageText("0"), new PageText("1"));
+
+        windChime = new BLexiconEntry(Totempedia.WIND_CHIME, categoryInstruments);
+        windChime.setLexiconPages(new PageText("0"), new PageText("1"));
 
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
         performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));

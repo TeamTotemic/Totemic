@@ -3,10 +3,7 @@ package totemic_commons.pokefenn.event;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.Random;
 
@@ -24,12 +21,14 @@ public class EntityHurt
 
         Random random = new Random();
 
+        /*
         if(event.entityLiving instanceof EntityPlayer && sourceDamageEntity != null)
         {
             if(random.nextInt(3) == 1)
                 if(TotemUtil.getArmourAmounts((EntityPlayer) event.entityLiving) == 4)
                     sourceDamageEntity.attackEntityFrom(DamageSource.generic, event.ammount % 2);
         }
+        */
 
         //if(event.entity != null && event.source != TotemicDamageSource.vigor && event.entityLiving != null && sourceDamageEntity != null && sourceDamageEntity instanceof EntityPlayer && Totemic.baublesLoaded)
         {

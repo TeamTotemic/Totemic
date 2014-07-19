@@ -18,7 +18,7 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.PacketJingle;
+import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 /**

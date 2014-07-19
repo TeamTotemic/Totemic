@@ -11,7 +11,7 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.PacketRattleSound;
+import totemic_commons.pokefenn.network.client.PacketRattleSound;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -49,7 +49,7 @@ public class ItemRattle extends ItemTotemic implements IMusic
                 if(block == null)
                 {
                     time++;
-                    if(time >= 8 && !player.isSneaking())
+                    if(time >= 4 && !player.isSneaking())
                     {
                         time = 0;
                         TotemUtil.playMusicFromItem(world, player, this.musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
@@ -57,7 +57,7 @@ public class ItemRattle extends ItemTotemic implements IMusic
                         PacketHandler.sendAround(new PacketRattleSound(x, y, z), ((EntityPlayer) entityLiving).worldObj.provider.dimensionId, x, y, z);
                         return false;
                     }
-                    if(time >= 8 && player.isSneaking())
+                    if(time >= 4 && player.isSneaking())
                     {
                         time = 0;
                         TotemUtil.playMusicFromItemForCeremonySelector(itemStack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
@@ -101,7 +101,7 @@ public class ItemRattle extends ItemTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 4 + (headPoles * 2);
+        return 3 + (headPoles * 2);
     }
 
     @Override
