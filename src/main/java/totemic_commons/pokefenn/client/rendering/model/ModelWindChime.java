@@ -15,16 +15,16 @@ public class ModelWindChime extends ModelBase
      * Thanks to CyanideX for the model! :D
      */
 
-    ModelRenderer connector1;
-    ModelRenderer base;
-    ModelRenderer hook;
-    ModelRenderer chime1;
-    ModelRenderer connector2;
-    ModelRenderer connector3;
-    ModelRenderer connector4;
-    ModelRenderer chime2;
-    ModelRenderer chime3;
-    ModelRenderer chime4;
+    public ModelRenderer connector1;
+    public ModelRenderer base;
+    public ModelRenderer hook;
+    public ModelRenderer chime1;
+    public ModelRenderer connector2;
+    public ModelRenderer connector3;
+    public ModelRenderer connector4;
+    public ModelRenderer chime2;
+    public ModelRenderer chime3;
+    public ModelRenderer chime4;
 
     public ModelWindChime()
     {
