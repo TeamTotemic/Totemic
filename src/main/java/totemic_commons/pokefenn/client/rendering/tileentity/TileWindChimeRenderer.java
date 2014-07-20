@@ -54,17 +54,20 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         {
             if(tileEntity.getWorldObj().getWorldTime() % 2L == 0)
             {
-                modelWindChime.chime1.rotateAngleX = getRotationThingy();
-                modelWindChime.chime1.rotateAngleZ = getRotationThingy();
+                //for(int s = 0; i < 10; i++)
+                {
+                    modelWindChime.chime1.rotateAngleX = getRotationThingy(modelWindChime.chime1.rotateAngleX);
+                    modelWindChime.chime1.rotateAngleZ = getRotationThingy(modelWindChime.chime1.rotateAngleZ);
 
-                modelWindChime.chime2.rotateAngleX = getRotationThingy();
-                modelWindChime.chime2.rotateAngleZ = getRotationThingy();
+                    modelWindChime.chime2.rotateAngleX = getRotationThingy(modelWindChime.chime2.rotateAngleX);
+                    modelWindChime.chime2.rotateAngleZ = getRotationThingy(modelWindChime.chime2.rotateAngleZ);
 
-                modelWindChime.chime3.rotateAngleX = getRotationThingy();
-                modelWindChime.chime3.rotateAngleZ = getRotationThingy();
+                    modelWindChime.chime3.rotateAngleX = getRotationThingy(modelWindChime.chime3.rotateAngleX);
+                    modelWindChime.chime3.rotateAngleZ = getRotationThingy(modelWindChime.chime3.rotateAngleZ);
 
-                modelWindChime.chime4.rotateAngleX = getRotationThingy();
-                modelWindChime.chime4.rotateAngleZ = getRotationThingy();
+                    modelWindChime.chime4.rotateAngleX = getRotationThingy(modelWindChime.chime4.rotateAngleX);
+                    modelWindChime.chime4.rotateAngleZ = getRotationThingy(modelWindChime.chime4.rotateAngleZ);
+                }
             }
         } else
         {
@@ -91,7 +94,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         modelWindChime.chime4.rotateAngleZ = 0.0F;
     }
 
-    public float getRotationThingy()
+    public float getRotationThingy(float i)
     {
         Random random = new Random();
         int multiplier;

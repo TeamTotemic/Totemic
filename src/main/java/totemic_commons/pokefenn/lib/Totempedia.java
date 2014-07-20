@@ -23,6 +23,10 @@ public class Totempedia
 
     public static final String INSTRUMENTS = "instruments";
     public static final String WIND_CHIME = "windChime";
+    public static final String DRUM = "drum";
+    public static final String FLUTE = "flute";
+    public static final String RATTLE = "rattle";
+    public static final String JINGLE_DRESS = "jingleDress";
 
     public static final String PERFORMING_CEREMONIES = "performingCeremonies";
     public static final String RAIN_DANCE = "rainDance";

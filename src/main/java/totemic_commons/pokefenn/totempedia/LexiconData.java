@@ -36,6 +36,10 @@ public final class LexiconData
 
     public static LexiconEntry instruments;
     public static LexiconEntry windChime;
+    public static LexiconEntry drum;
+    public static LexiconEntry flute;
+    public static LexiconEntry rattle;
+    public static LexiconEntry jingleDress;
 
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry rainDance;
@@ -51,8 +55,8 @@ public final class LexiconData
     {
         TotemicAPI.addCategory(categoryBasics = new LexiconCategory(Totempedia.CATEGORY_BASICS));
         TotemicAPI.addCategory(categoryDevices = new LexiconCategory(Totempedia.CATEGORY_DEVICES));
-        TotemicAPI.addCategory(categoryTotems = new LexiconCategory(Totempedia.CATEGORY_TOTEMS));
         TotemicAPI.addCategory(categoryInstruments = new LexiconCategory(Totempedia.CATEGORY_INSTRUMENTS));
+        TotemicAPI.addCategory(categoryTotems = new LexiconCategory(Totempedia.CATEGORY_TOTEMS));
         TotemicAPI.addCategory(categoryCeremony = new LexiconCategory(Totempedia.CATEGORY_CEREMONY));
         TotemicAPI.addCategory(categoryTools = new LexiconCategory(Totempedia.CATEGORY_TOOLS));
         TotemicAPI.addCategory(categoryMisc = new LexiconCategory(Totempedia.CATEGORY_MISC));
@@ -72,6 +76,18 @@ public final class LexiconData
 
         windChime = new BLexiconEntry(Totempedia.WIND_CHIME, categoryInstruments);
         windChime.setLexiconPages(new PageText("0"), new PageText("1"));
+
+        drum = new BLexiconEntry(Totempedia.DRUM, categoryInstruments);
+        drum.setLexiconPages(new PageText("0"), new PageText("1"));
+
+        flute = new BLexiconEntry(Totempedia.FLUTE, categoryInstruments);
+        flute.setLexiconPages(new PageText("0"), new PageText("1"));
+
+        rattle = new BLexiconEntry(Totempedia.RATTLE, categoryInstruments);
+        rattle.setLexiconPages(new PageText("0"), new PageText("1"));
+
+        jingleDress = new BLexiconEntry(Totempedia.JINGLE_DRESS, categoryInstruments);
+        jingleDress.setLexiconPages(new PageText("0"), new PageText("1"));
 
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
         performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));

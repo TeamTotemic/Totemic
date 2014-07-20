@@ -40,16 +40,14 @@ import java.util.List;
 public class ItemTotemicItems extends ItemTotemic implements IMusic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"leaf", "cedarStick", "cedarMaker", "flute", "fluteInfused", "cedarBark"};
+    private static final String[] ITEMS_NAMES = new String[]{"cedarMaker", "flute", "fluteInfused", "cedarBark"};
 
     public int time = 0;
 
-    public static int leaf = 0;
-    public static int cedarStick = 1;
-    public static int cedarMaker = 2;
-    public static int flute = 3;
-    public static int fluteInfused = 4;
-    public static int cedarBark = 5;
+    public static int cedarMaker = 0;
+    public static int flute = 1;
+    public static int fluteInfused = 2;
+    public static int cedarBark = 3;
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
