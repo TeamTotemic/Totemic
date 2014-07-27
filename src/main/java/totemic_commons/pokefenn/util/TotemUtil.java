@@ -192,6 +192,7 @@ public class TotemUtil
                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                 {
                     musicArray[musicEnum.ordinal()] = musicMaximum;
+                    musicParticleAtBlocks(world, x + i, y + j, z + k, "cloud");
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
                     return;
 
