@@ -3,15 +3,14 @@ package totemic_commons.pokefenn.item.equipment;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
-import totemic_commons.pokefenn.block.BlockCedarLog;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
-import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
@@ -72,22 +71,26 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             {
                 Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
 
-                if(blockQuery instanceof BlockCedarLog || blockQuery instanceof BlockTotemPole)
+                if(blockQuery instanceof BlockLog && ((blockQuery.getClass().toString().contains("net.minecraft")) || blockQuery == ModBlocks.cedarLog))
                 {
+                    int blockMetadata = world.getBlockMetadata(block.blockX, block.blockY, block.blockZ);
+
                     if(itemStack.getItemDamage() == TotemRegistry.totemEffect.size())
                     {
-                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemBase);
+
+                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole, blockMetadata < 4 ? blockMetadata : 5, 2);
                         if(world.getBlock(block.blockX, block.blockY, block.blockZ) instanceof BlockTotemBase)
                         {
                             TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
-                            tileTotemBase.bindedPlayer = player.getDisplayName();
+                            //tileTotemBase.bindedPlayer = player.getDisplayName();
                         }
                         return true;
                     } else
                     {
                         if(itemStack.getItemDamage() < TotemRegistry.totemEffect.size())
                         {
-                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole);
+
+                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole, blockMetadata < 4 ? blockMetadata : 5, 2);
                             TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
 
                             tileTotemSocket.totemId = TotemRegistry.getRecipes().get(itemStack.getItemDamage()).getTotemId();
@@ -103,7 +106,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
         return true;
     }
-
 
 }
 

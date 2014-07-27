@@ -13,7 +13,6 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.armour.ITotemArmour;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Resources;
@@ -25,7 +24,7 @@ import java.util.List;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemArmour
+public class ItemTotemArmour extends ItemArmor implements ISpecialArmor
 {
     public int armourType;
 
@@ -112,11 +111,5 @@ public class ItemTotemArmour extends ItemArmor implements ISpecialArmor, ITotemA
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
     {
         stack.damageItem(damage % 2, entity);
-    }
-
-    @Override
-    public int getEfficiency(ItemStack itemStack)
-    {
-        return 1;
     }
 }

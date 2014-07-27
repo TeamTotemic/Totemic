@@ -1,6 +1,10 @@
 package totemic_commons.pokefenn.recipe;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.StatCollector;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.api.ceremony.CeremonyTimeEnum;
 import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
@@ -38,6 +42,8 @@ public class HandlerInitiation
     {
         totemRegistry();
         ceremonyHandler();
+
+        furnaceRecipes();
     }
 
     static void ceremonyHandler()
@@ -60,6 +66,12 @@ public class HandlerInitiation
         batTotem = TotemicAPI.addTotem(5, 4, 8, new TotemEffectBat(), 2, "totemic.totem.bat");
         spiderTotem = TotemicAPI.addTotem(6, 4, 4, new TotemEffectSpider(), 2, "totemic.totem.spider");
         cowTotem = TotemicAPI.addTotem(7, 4, 4, new TotemEffectCow(), 1, "totemic.totem.cow");
+    }
+
+    static void furnaceRecipes()
+    {
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.redCedarStripped), new ItemStack(Items.coal, 1, 1), 0.5F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.cedarLog), new ItemStack(Items.coal, 1, 1), 0.5F);
     }
 
 }

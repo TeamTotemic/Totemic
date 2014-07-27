@@ -1,7 +1,12 @@
 package totemic_commons.pokefenn.block.totem;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
@@ -13,6 +18,7 @@ import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -30,6 +36,31 @@ public class BlockTotemPole extends BlockTileTotemic
         setBlockName(Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.95F, 0.8F);
+    }
+
+    @Override
+    public Item getItemDropped(int par1, Random random, int par2)
+    {
+        return Item.getItemFromBlock(this);
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+    {
+        world.setBlockMetadataWithNotify(x, y, z, itemStack.getItemDamage(), 1);
+    }
+
+    @Override
+    public int damageDropped(int meta)
+    {
+        return meta;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    {
+        for(int i = 0; i < 5; i++)
+            list.add(new ItemStack(item, 1, i));
     }
 
     @Override

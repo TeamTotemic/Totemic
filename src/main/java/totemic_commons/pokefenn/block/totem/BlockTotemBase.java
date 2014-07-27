@@ -1,19 +1,24 @@
 package totemic_commons.pokefenn.block.totem;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -22,7 +27,7 @@ import java.util.Random;
  * Date: 29/01/14
  * Time: 20:20
  */
-public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsage
+public class BlockTotemBase extends BlockTileTotemic
 {
 
     private Random rand = new Random();
@@ -32,7 +37,31 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
         super(Material.wood);
         setBlockName(Strings.TOTEM_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
+    }
 
+    @Override
+    public Item getItemDropped(int par1, Random random, int par2)
+    {
+        return Item.getItemFromBlock(this);
+    }
+
+    @Override
+    public int damageDropped(int meta)
+    {
+        return meta;
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+    {
+        world.setBlockMetadataWithNotify(x, y, z, itemStack.getItemDamage(), 2);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    {
+        for(int i = 0; i < 5; i++)
+            list.add(new ItemStack(item, 1, i));
     }
 
     @Override
@@ -49,6 +78,12 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
                     tileTotemBase.isCeremony = false;
                 }
             }
+    }
+
+    @Override
+    public int quantityDropped(Random rand)
+    {
+        return 0;
     }
 
     @Override
@@ -127,11 +162,5 @@ public class BlockTotemBase extends BlockTileTotemic implements ITotemicStaffUsa
     public int getRenderType()
     {
         return -1;
-    }
-
-    @Override
-    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world, ItemStack itemStack)
-    {
-
     }
 }

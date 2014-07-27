@@ -12,6 +12,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.biome.BiomeGenBase;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
@@ -56,6 +57,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public boolean isDoingEndingEffect;
     public String bindedPlayer;
     public int[] totemIds;
+    public int totemWoodBonus;
 
     public TileTotemBase()
     {
@@ -82,6 +84,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         isDoingEndingEffect = false;
         bindedPlayer = "";
         totemIds = new int[5];
+        totemWoodBonus = 0;
     }
 
     public void updateEntity()
@@ -93,6 +96,11 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         if(!worldObj.isRemote)
         {
             deprecateMelody();
+            if(worldObj.getWorldTime() % 20L == 0)
+            {
+                getTotemWoodBonus();
+                resetRepetition();
+            }
 
             if(worldObj.getWorldTime() % 80L == 0)
             {
@@ -105,7 +113,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 doCeremonyCode();
             }
 
-            if(!isCeremony && !(currentInput >= 1))
+            if(!isCeremony && currentInput == 0)
             {
                 totemEffect();
             }
@@ -120,14 +128,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             {
                 if(totemIds[i] != 0)
                 {
-                    //resetRepetition();
-                    for(TotemRegistry totemRegistry : TotemRegistry.getRecipes())
-                    {
-                        if(totemIds[i] == totemRegistry.getTotemId())
-                        {
-                            totemRegistry.getEffect().effect(this, totemPoleSize, totemRegistry, getRanges(totemRegistry)[0], getRanges(totemRegistry)[1], musicForTotemEffect);
-                        }
-                    }
+                    TotemRegistry totemRegistry = TotemRegistry.getRecipes().get(totemIds[i]);
+                    totemRegistry.getEffect().effect(this, totemPoleSize, totemRegistry, getRanges(totemRegistry)[0], getRanges(totemRegistry)[1], musicForTotemEffect, totemWoodBonus, repetitionBonus);
                 }
             }
         }
@@ -139,6 +141,56 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         {
             repetitionBonus[i] = 0;
 
+            for(int totemId : totemIds)
+            {
+                repetitionBonus[totemId]++;
+            }
+
+        }
+    }
+
+    public void getTotemWoodBonus()
+    {
+        int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+        BiomeGenBase biomeGenBase = worldObj.getBiomeGenForCoords(xCoord, zCoord);
+
+        totemWoodBonus = 0;
+
+        if(metadata == 0)
+        {
+            //oak effect
+            totemWoodBonus += 2;
+        } else if(metadata == 1)
+        {
+            //birch effect
+        } else if(metadata == 2)
+        {
+            //TODO better numbers, just temp for now.
+            //spruce effect
+            if(biomeGenBase != null && biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.COLD)
+            {
+                if(biomeGenBase.getEnableSnow())
+                {
+                    totemWoodBonus += 3;
+                }
+                if(biomeGenBase.temperature < 0.4F)
+                {
+                    totemWoodBonus += 2;
+                }
+            }
+        } else if(metadata == 3)
+        {
+            //jungle effect
+            if(biomeGenBase != null && biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.WARM && !biomeGenBase.getEnableSnow())
+            {
+                if(biomeGenBase.temperature > 1.0F)
+                {
+                    totemWoodBonus += 4;
+                }
+            }
+        } else if(metadata == 4)
+        {
+            //cedar effect
         }
     }
 
@@ -233,7 +285,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         {
             if(worldObj.getWorldTime() % 47L == 0)
             {
-                if(musicForTotemEffect - 1 >= 0)
+                if(musicForTotemEffect - 1 != 0)
                     musicForTotemEffect--;
             }
         }
@@ -291,19 +343,28 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             array[0] += 6;
             array[1] += 6;
         }
-        array[0] += totemPoleSize % 3;
-        array[1] += totemPoleSize % 3;
+
+        array[0] += totemWoodBonus / 5;
+        array[0] += totemWoodBonus / 5;
+
+        if(totemPoleSize == 5)
+        {
+            array[0] += 2;
+            array[1] += 2;
+        }
+
+        array[0] += totemPoleSize / 8;
+        array[1] += totemPoleSize / 8;
 
         return array;
     }
 
     public void particleAroundTotemUpwards(String particle)
     {
-        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, (double) xCoord + 1, (double) yCoord, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, (double) xCoord - 1, (double) yCoord, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, (double) xCoord, (double) yCoord + 1, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, (double) xCoord, (double) yCoord - 1, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
-
+        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, (double) xCoord + 1D, (double) yCoord, (double) zCoord + 0.5D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, (double) xCoord - 1D, (double) yCoord, (double) zCoord + 0.5D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, (double) xCoord, (double) yCoord, (double) zCoord + 1D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, (double) xCoord, (double) yCoord, (double) zCoord - 1D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
     }
 
     public int getMusicFromCeremony()
@@ -401,7 +462,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 }
             }
         }
-        
+
         resetMelody();
         workOutEfficiency();
         return totalMelody >= CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMusicNeeded() - (dancingEfficiency % 50);
@@ -446,9 +507,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         for(int i = 0; i < totemPoleSize; i++)
         {
-            if(getTotemId(i + 1) != 0)
+            if(getTotemId(i) != 0)
             {
-                totemIds[i] = getTotemId(i + 1);
+                totemIds[i] = getTotemId(i);
 
             } else
                 totemIds[i] = 0;
@@ -463,7 +524,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     protected int getTotemId(int par1)
     {
-        TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + par1, this.zCoord);
+        TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + 1 + par1, this.zCoord);
 
         return tileEntity instanceof TileTotemPole ? (((TileTotemPole) tileEntity).getTotemId()) : 0;
     }
@@ -475,12 +536,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         Block block3 = worldObj.getBlock(this.xCoord, this.yCoord + 3, this.zCoord);
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
-        Block block6 = worldObj.getBlock(this.xCoord, this.yCoord + 6, this.zCoord);
-        Block block7 = worldObj.getBlock(this.xCoord, this.yCoord + 7, this.zCoord);
-        Block block8 = worldObj.getBlock(this.xCoord, this.yCoord + 8, this.zCoord);
-        Block block9 = worldObj.getBlock(this.xCoord, this.yCoord + 9, this.zCoord);
-        Block block10 = worldObj.getBlock(this.xCoord, this.yCoord + 10, this.zCoord);
-
 
         if(block1 instanceof BlockTotemPole && block2 != ModBlocks.totemPole)
         {
@@ -494,7 +549,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 != ModBlocks.totemPole)
         {
             return 4;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole && block6 != ModBlocks.totemPole)
+        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole)
         {
             return 5;
         }
@@ -542,6 +597,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         isDoingEndingEffect = nbtTagCompound.getBoolean("isDoingEndingEffect");
         bindedPlayer = nbtTagCompound.getString("bindedPlayer");
         totemIds = nbtTagCompound.getIntArray("totemIds");
+        totemWoodBonus = nbtTagCompound.getInteger("totemWoodBonus");
     }
 
     @Override
@@ -570,6 +626,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         nbtTagCompound.setBoolean("isDoingEndingEffect", isDoingEffect);
         nbtTagCompound.setString("bindedPlayer", bindedPlayer);
         nbtTagCompound.setIntArray("totemIds", totemIds);
+        nbtTagCompound.setInteger("totemWoodBonus", totemWoodBonus);
     }
 
     @Override

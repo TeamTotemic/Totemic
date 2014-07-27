@@ -32,8 +32,52 @@ public class Resources
 
     //Models
     public static final ResourceLocation TEXTURE_TOTEM_TORCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemTorch.png");
-    public static final ResourceLocation TEXTURE_TOTEM_SOCKET_CUBE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemSocketCube.png");
+    public static final ResourceLocation TEXTURE_TOTEM_POLE_OAK = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleOak.png");
+    public static final ResourceLocation TEXTURE_TOTEM_POLE_BIRCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleBirch.png");
+    public static final ResourceLocation TEXTURE_TOTEM_POLE_SPRUCE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleSpruce.png");
+    public static final ResourceLocation TEXTURE_TOTEM_POLE_JUNGLE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleJungle.png");
+    public static final ResourceLocation TEXTURE_TOTEM_POLE_CEDAR = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleCedar.png");
     public static final ResourceLocation TEXTURE_DRUM = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "drum.png");
-    public static final ResourceLocation TEXTURE_TOTEM_BASE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBase.png");
+    public static final ResourceLocation TEXTURE_TOTEM_BASE_OAK = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseOak.png");
+    public static final ResourceLocation TEXTURE_TOTEM_BASE_BIRCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseBirch.png");
+    public static final ResourceLocation TEXTURE_TOTEM_BASE_SPRUCE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseSpruce.png");
+    public static final ResourceLocation TEXTURE_TOTEM_BASE_JUNGLE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseJungle.png");
+    public static final ResourceLocation TEXTURE_TOTEM_BASE_CEDAR = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseCedar.png");
     public static final ResourceLocation TEXTURE_WIND_CHIME = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "windChime.png");
+
+    public static ResourceLocation getTotemPole(int i)
+    {
+        switch(i)
+        {
+            case 0:
+                return TEXTURE_TOTEM_POLE_OAK;
+            case 1:
+                return TEXTURE_TOTEM_POLE_BIRCH;
+            case 2:
+                return TEXTURE_TOTEM_POLE_SPRUCE;
+            case 3:
+                return TEXTURE_TOTEM_POLE_JUNGLE;
+
+            default:
+                return TEXTURE_TOTEM_POLE_CEDAR;
+        }
+    }
+
+    public static ResourceLocation getTotemBase(int i)
+    {
+        switch(i)
+        {
+            case 0:
+                return TEXTURE_TOTEM_BASE_OAK;
+            case 1:
+                return TEXTURE_TOTEM_BASE_BIRCH;
+            case 2:
+                return TEXTURE_TOTEM_BASE_SPRUCE;
+            case 3:
+                return TEXTURE_TOTEM_BASE_JUNGLE;
+
+            default:
+                return TEXTURE_TOTEM_BASE_CEDAR;
+        }
+    }
 }

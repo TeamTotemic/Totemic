@@ -16,7 +16,7 @@ import totemic_commons.pokefenn.util.TotemUtil;
 public class TotemEffectSpider implements ITotemEffect
 {
     @Override
-    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount)
+    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int[] repetitionBonus)
     {
         if(totem.getWorldObj().getWorldTime() % 80L == 0)
         {
@@ -26,7 +26,7 @@ public class TotemEffectSpider implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 150, 33, ModPotions.spiderPotion, 0, false);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 150, ModPotions.spiderPotion, 0, totemWoodBonus, repetitionBonus);
                     }
                 }
 

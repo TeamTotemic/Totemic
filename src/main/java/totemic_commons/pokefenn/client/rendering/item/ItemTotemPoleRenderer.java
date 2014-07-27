@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import totemic_commons.pokefenn.client.rendering.model.ModelTotemSocketCube;
+import totemic_commons.pokefenn.client.rendering.model.ModelTotemPole;
 import totemic_commons.pokefenn.lib.Resources;
 
 /**
@@ -17,11 +17,11 @@ import totemic_commons.pokefenn.lib.Resources;
 @SideOnly(Side.CLIENT)
 public class ItemTotemPoleRenderer implements IItemRenderer
 {
-    private final ModelTotemSocketCube modelTotemPole;
+    private final ModelTotemPole modelTotemPole;
 
     public ItemTotemPoleRenderer()
     {
-        modelTotemPole = new ModelTotemSocketCube();
+        modelTotemPole = new ModelTotemPole();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ItemTotemPoleRenderer implements IItemRenderer
         GL11.glTranslatef(0.4F, 1.4F, 0.3F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         GL11.glScalef(0.07F, 0.07F, 0.07F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TOTEM_SOCKET_CUBE);
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.getTotemPole(item.getItemDamage()));
 
         this.modelTotemPole.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 1);
 

@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.util;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -75,18 +76,18 @@ public class TotemUtil
     }
     */
 
-    public static void addPotionEffects(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
+    public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int[] repetitionBonus)
     {
         //TODO
-        //player.addPotionEffect(new PotionEffect(potion.id, defaultTime + ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), baubleIncrease ? getStrength(player, defaultStrength) + getTotemBaublesAmount(player) : getStrength(player, defaultStrength)));
+
+        //Loop through repetition bonus, use the place to get the potion id from teh arraylist and compare it to the one here. use this to tell if the repetition has happened and if you should increase the potion effect, and by how much.
+
+        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime, defaultStrength));
     }
 
     public static void addNegitivePotionEffect(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {
-        //int totalDecrement = armourAmounts + getTotemBaublesAmount(player);
-        //TODO
-        //if(totalDecrement < 4)
-        //    player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegative(player, defaultStrength)));
+        //player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegative(player, defaultStrength)));
     }
 
     public static void playMusicFromItemForCeremonySelector(ItemStack itemStack, EntityPlayer player, int x, int y, int z, MusicEnum musicEnum, int radius)
@@ -102,6 +103,7 @@ public class TotemUtil
                         if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect() && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).isMusicSelecting())
                         {
                             setSelectors(x, y, z, world.getTileEntity(x + i, y + j, z + k), musicEnum, i, j, k);
+                            return;
                         }
                     }
                 }
@@ -120,22 +122,18 @@ public class TotemUtil
         {
             musicSelectorArray[0] = musicEnum.ordinal() + 1;
             musicParticleAtBlocks(world, x + i, y + j, z + k);
-            return;
         } else if(musicSelectorArray[1] == 0)
         {
             musicSelectorArray[1] = musicEnum.ordinal() + 1;
             musicParticleAtBlocks(world, x + i, y + j, z + k);
-            return;
         } else if(musicSelectorArray[2] == 0)
         {
             musicSelectorArray[2] = musicEnum.ordinal() + 1;
             musicParticleAtBlocks(world, x + i, y + j, z + k);
-            return;
         } else if(musicSelectorArray[3] == 0)
         {
             musicSelectorArray[3] = musicEnum.ordinal() + 1;
             musicParticleAtBlocks(world, x + i, y + j, z + k);
-            return;
         }
         world.markBlockForUpdate(x, y, z);
     }
@@ -209,10 +207,15 @@ public class TotemUtil
             if(tileEntity instanceof TileTotemBase)
             {
                 if(((TileTotemBase) tileEntity).musicForTotemEffect + musicAmount > TileTotemBase.maximumMusic)
+                {
                     ((TileTotemBase) tileEntity).musicForTotemEffect = TileTotemBase.maximumMusic;
-                else
+                    return;
+                } else
+                {
                     ((TileTotemBase) tileEntity).musicForTotemEffect += musicAmount;
-                musicParticleAtBlocks(world, x + i, y + j, z + k);
+                    musicParticleAtBlocks(world, x + i, y + j, z + k);
+                    return;
+                }
             }
         }
         world.markBlockForUpdate(x, y, z);
@@ -231,6 +234,7 @@ public class TotemUtil
                         if(block instanceof IMusicAcceptor)
                         {
                             playMusic(x, y, z, block, musicEnum, i, j, k, musicAmount, musicMaximum);
+                            return;
                         }
                     }
 
@@ -239,10 +243,10 @@ public class TotemUtil
 
     public static void musicParticleAtBlocks(World world, int xCoord, int yCoord, int zCoord)
     {
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 1, (double) yCoord, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord - 1, (double) yCoord, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord, (double) yCoord + 1, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord, (double) yCoord - 1, (double) zCoord + 0.5D, 16, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 1, (double) yCoord, (double) zCoord, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord - 1, (double) yCoord, (double) zCoord, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord, (double) yCoord, (double) zCoord + 1, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord, (double) yCoord, (double) zCoord - 1, 4, 0.0D, 0.5D, 0.0D, 0.0D);
     }
 
 

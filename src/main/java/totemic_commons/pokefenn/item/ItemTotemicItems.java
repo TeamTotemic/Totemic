@@ -2,8 +2,6 @@ package totemic_commons.pokefenn.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -19,9 +17,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
@@ -40,14 +36,13 @@ import java.util.List;
 public class ItemTotemicItems extends ItemTotemic implements IMusic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"cedarMaker", "flute", "fluteInfused", "cedarBark"};
+    private static final String[] ITEMS_NAMES = new String[]{"flute", "fluteInfused", "cedarBark"};
 
     public int time = 0;
 
-    public static int cedarMaker = 0;
-    public static int flute = 1;
-    public static int fluteInfused = 2;
-    public static int cedarBark = 3;
+    public static int flute = 0;
+    public static int fluteInfused = 1;
+    public static int cedarBark = 2;
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
@@ -89,8 +84,7 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
     {
         if(!world.isRemote)
         {
-            if(itemStack.getItemDamage() == cedarMaker)
-                cedarCreatorEffect(itemStack, player, world);
+
         }
         return true;
     }
@@ -146,22 +140,6 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
         MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x, (double) y + 1.2D, (double) z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
         MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
         MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x, (double) y + 1.2D, (double) z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-    }
-
-    public void cedarCreatorEffect(ItemStack itemStack, EntityPlayer player, World world)
-    {
-        MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
-
-        if(block != null && !player.isSneaking())
-        {
-            Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
-
-            if(blockQuery instanceof BlockSapling && blockQuery != ModBlocks.totemSapling)
-            {
-                world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemSapling);
-                itemStack.stackSize--;
-            }
-        }
     }
 
     @Override

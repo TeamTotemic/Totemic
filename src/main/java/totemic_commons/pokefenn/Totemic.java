@@ -60,7 +60,6 @@ public final class Totemic
     public void init(FMLInitializationEvent event)
     {
         logger.info("Totemic is entering its initialisation stage");
-
         NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
         PacketHandler.init();
         proxy.initRendering();

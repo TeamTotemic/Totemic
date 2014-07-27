@@ -7,7 +7,6 @@ import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created by Pokefenn.
@@ -29,7 +28,7 @@ public class TotemEffectPotion implements ITotemEffect
     }
 
     @Override
-    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount)
+    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int[] repetitionBonus)
     {
         if(totem.getWorldObj().getWorldTime() % timeTill == 0)
         {
@@ -39,7 +38,7 @@ public class TotemEffectPotion implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, defaultTime, multiplication, effect, 0, false);
+                        //TotemUtil.addPotionEffects((EntityPlayer) entity, defaultTime, multiplication, effect, 0, totemWoodBonus, repetitionBonus);
                     }
                 }
 

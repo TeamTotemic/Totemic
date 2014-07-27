@@ -19,5 +19,5 @@ public interface ITotemEffect
      * @param vertical      The Vertical radius.
      * @param melodyAmount  The amount of musical melody the totem pole has, this is used to determine how strong a effect is.
      */
-    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount);
+    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int[] repetitionBonus);
 }

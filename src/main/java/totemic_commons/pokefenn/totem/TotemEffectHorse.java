@@ -19,7 +19,7 @@ public class TotemEffectHorse implements ITotemEffect
 {
 
     @Override
-    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount)
+    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int[] repetitionBonus)
     {
         if(totem.getWorldObj().getWorldTime() % 80L == 0)
         {
@@ -29,7 +29,7 @@ public class TotemEffectHorse implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 160, 35, Potion.moveSpeed, 0, false);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 160, Potion.moveSpeed, 0, totemWoodBonus, repetitionBonus);
                     }
                 }
 

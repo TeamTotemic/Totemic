@@ -18,7 +18,7 @@ public class TotemEffectOcelot implements ITotemEffect
 {
 
     @Override
-    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount)
+    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int[] repetitionBonus)
     {
         if(totem.getWorldObj().getWorldTime() % 5L == 0)
         {
@@ -34,7 +34,6 @@ public class TotemEffectOcelot implements ITotemEffect
                         if(ignited > 17)
                         {
                             ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
-
                         }
                     }
                 }

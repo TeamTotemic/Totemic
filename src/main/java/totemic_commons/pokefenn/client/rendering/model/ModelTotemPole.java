@@ -4,11 +4,11 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelTotemSocketCube extends ModelBase
+public class ModelTotemPole extends ModelBase
 {
     ModelRenderer Shape1;
 
-    public ModelTotemSocketCube()
+    public ModelTotemPole()
     {
         textureWidth = 64;
         textureHeight = 32;

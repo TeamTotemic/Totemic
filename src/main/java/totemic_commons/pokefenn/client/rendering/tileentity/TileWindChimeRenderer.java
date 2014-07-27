@@ -13,6 +13,7 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.client.rendering.model.ModelWindChime;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
+import totemic_commons.pokefenn.util.MathsUtil;
 
 import java.util.Random;
 
@@ -54,20 +55,37 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         {
             if(tileEntity.getWorldObj().getWorldTime() % 2L == 0)
             {
-                //for(int s = 0; i < 10; i++)
-                {
-                    modelWindChime.chime1.rotateAngleX = getRotationThingy(modelWindChime.chime1.rotateAngleX);
-                    modelWindChime.chime1.rotateAngleZ = getRotationThingy(modelWindChime.chime1.rotateAngleZ);
+                float percent = tileEntity.currentRotation / 90F;
+                float sinerp = MathsUtil.sinerp(0, 0.5F, percent);
 
-                    modelWindChime.chime2.rotateAngleX = getRotationThingy(modelWindChime.chime2.rotateAngleX);
-                    modelWindChime.chime2.rotateAngleZ = getRotationThingy(modelWindChime.chime2.rotateAngleZ);
+                modelWindChime.chime1.rotateAngleX = getRotationThingy();
+                modelWindChime.chime1.rotateAngleZ = getRotationThingy();
 
-                    modelWindChime.chime3.rotateAngleX = getRotationThingy(modelWindChime.chime3.rotateAngleX);
-                    modelWindChime.chime3.rotateAngleZ = getRotationThingy(modelWindChime.chime3.rotateAngleZ);
+                modelWindChime.chime2.rotateAngleX = getRotationThingy();
+                modelWindChime.chime2.rotateAngleZ = getRotationThingy();
 
-                    modelWindChime.chime4.rotateAngleX = getRotationThingy(modelWindChime.chime4.rotateAngleX);
-                    modelWindChime.chime4.rotateAngleZ = getRotationThingy(modelWindChime.chime4.rotateAngleZ);
-                }
+                modelWindChime.chime3.rotateAngleX = getRotationThingy();
+                modelWindChime.chime3.rotateAngleZ = getRotationThingy();
+
+                modelWindChime.chime4.rotateAngleX = getRotationThingy();
+                modelWindChime.chime4.rotateAngleZ = getRotationThingy();
+
+                //TODO
+
+                /*
+                modelWindChime.chime1.rotateAngleX = (-sinerp) * 90F;
+                modelWindChime.chime1.rotateAngleZ = (-sinerp) * 90F;
+
+                modelWindChime.chime2.rotateAngleX = (-sinerp) * 90F;
+                modelWindChime.chime2.rotateAngleZ = (-sinerp) * 90F;
+
+                modelWindChime.chime3.rotateAngleX = (-sinerp) * 90F;
+                modelWindChime.chime3.rotateAngleZ = (-sinerp) * 90F;
+
+                modelWindChime.chime4.rotateAngleX = (-sinerp) * 90F;
+                modelWindChime.chime4.rotateAngleZ = (-sinerp) * 90F;
+                */
+
             }
         } else
         {
@@ -94,7 +112,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         modelWindChime.chime4.rotateAngleZ = 0.0F;
     }
 
-    public float getRotationThingy(float i)
+    public float getRotationThingy()
     {
         Random random = new Random();
         int multiplier;

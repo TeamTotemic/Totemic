@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.client.rendering.model.ModelTotemSocketCube;
+import totemic_commons.pokefenn.client.rendering.model.ModelTotemPole;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
@@ -20,7 +20,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
  */
 public class TileTotemSocketCubeRenderer extends TileEntitySpecialRenderer
 {
-    private final ModelTotemSocketCube modelTotemSocket = new ModelTotemSocketCube();
+    private final ModelTotemPole modelTotemSocket = new ModelTotemPole();
 
     public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f)
     {
@@ -45,7 +45,8 @@ public class TileTotemSocketCubeRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, 1.47F, 0.5F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TOTEM_SOCKET_CUBE);
+
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.getTotemPole(world.getBlockMetadata(i, j, k)));
 
         this.modelTotemSocket.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 

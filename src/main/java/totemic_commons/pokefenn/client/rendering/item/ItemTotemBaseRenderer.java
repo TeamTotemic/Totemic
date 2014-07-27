@@ -43,7 +43,7 @@ public class ItemTotemBaseRenderer implements IItemRenderer
         GL11.glTranslatef(0.4F, 1.4F, 0.3F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         GL11.glScalef(0.07F, 0.07F, 0.07F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TOTEM_BASE);
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.getTotemBase(item.getItemDamage()));
 
         this.modelTotemBase.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 1);
 

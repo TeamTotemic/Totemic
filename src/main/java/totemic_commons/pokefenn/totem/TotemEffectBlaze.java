@@ -21,7 +21,7 @@ public class TotemEffectBlaze implements ITotemEffect
 {
 
     @Override
-    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount)
+    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int[] repetitionBonus)
     {
         if(totem.getWorldObj().getWorldTime() % 80L == 0)
         {
@@ -38,7 +38,7 @@ public class TotemEffectBlaze implements ITotemEffect
                                 ((EntityPlayer) entity).heal(2);
                         }
 
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 100, 40, Potion.fireResistance, 0, false);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 100, Potion.fireResistance, 0, totemWoodBonus, repetitionBonus);
                     }
                 }
 

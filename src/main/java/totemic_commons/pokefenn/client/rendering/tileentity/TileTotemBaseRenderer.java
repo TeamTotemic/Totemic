@@ -45,7 +45,8 @@ public class TileTotemBaseRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, 1.47F, 0.5F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TOTEM_BASE);
+
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.getTotemBase(world.getBlockMetadata(i, j, k)));
 
         this.modelTotemBase.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 

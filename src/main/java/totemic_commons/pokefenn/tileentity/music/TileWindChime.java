@@ -26,11 +26,13 @@ public class TileWindChime extends TileTotemic
 {
     public boolean isPlaying;
     public int currentTime;
+    public float currentRotation;
 
     public TileWindChime()
     {
         isPlaying = false;
         currentTime = 0;
+        currentRotation = 0;
     }
 
     public void updateEntity()
@@ -40,6 +42,16 @@ public class TileWindChime extends TileTotemic
 
         if(worldObj.isRemote)
         {
+
+            if(isPlaying)
+                currentRotation += 0.03F;
+            else
+                currentRotation = 0F;
+            if(currentRotation <= 0F)
+                currentRotation = 0F;
+            else if(currentRotation >= 4F)
+                currentRotation = 4F;
+
             if(worldObj.getWorldTime() % 40L == 0)
                 if(isPlaying)
                     world.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 1.0F, 1.0F, false);
@@ -75,21 +87,9 @@ public class TileWindChime extends TileTotemic
                 }
             }
 
-            if(isPlaying)
-                if(world.getWorldTime() % 50L == 0)
-                    if(rand.nextBoolean())
-                    {
-                        if(world.getBlock(xCoord, yCoord, zCoord) == ModBlocks.windChime)
-                        {
-                            BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
-                            TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, null));
-                            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-                        }
-                    }
-
             if(world.getWorldTime() % 20L == 0)
             {
-                if(rand.nextInt(25) == 1)
+                if(rand.nextInt(60) == 1)
                 {
                     isPlaying = true;
                     PacketHandler.sendAround(new PacketWindChime(xCoord, yCoord, zCoord, isPlaying), this);
@@ -109,6 +109,20 @@ public class TileWindChime extends TileTotemic
                                 }
                 }
             }
+
+            if(isPlaying)
+                if(world.getWorldTime() % 50L == 0)
+                    if(rand.nextBoolean())
+                    {
+                        if(world.getBlock(xCoord, yCoord, zCoord) == ModBlocks.windChime)
+                        {
+                            BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
+                            TotemUtil.playMusicForCeremony(this, MusicEnum.WIND_CHIME, thisBlock.getRange(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMaximumMusic(world, xCoord, yCoord, zCoord, false, null), thisBlock.getMusicOutput(world, xCoord, yCoord, zCoord, false, null));
+                            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+                        }
+                    }
+
+
         }
     }
 
@@ -132,6 +146,7 @@ public class TileWindChime extends TileTotemic
         super.writeToNBT(nbtTagCompound);
         nbtTagCompound.setInteger("currentTime", currentTime);
         nbtTagCompound.setBoolean("isPlaying", isPlaying);
+        nbtTagCompound.setFloat("currentRotation", currentRotation);
     }
 
     @Override
@@ -140,5 +155,6 @@ public class TileWindChime extends TileTotemic
         super.readFromNBT(nbtTagCompound);
         currentTime = nbtTagCompound.getInteger("currentTime");
         isPlaying = nbtTagCompound.getBoolean("isPlaying");
+        currentRotation = nbtTagCompound.getFloat("currentRotation");
     }
 }
