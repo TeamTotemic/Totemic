@@ -121,19 +121,19 @@ public class TotemUtil
         if(musicSelectorArray[0] == 0)
         {
             musicSelectorArray[0] = musicEnum.ordinal() + 1;
-            musicParticleAtBlocks(world, x + i, y + j, z + k);
+            musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
         } else if(musicSelectorArray[1] == 0)
         {
             musicSelectorArray[1] = musicEnum.ordinal() + 1;
-            musicParticleAtBlocks(world, x + i, y + j, z + k);
+            musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
         } else if(musicSelectorArray[2] == 0)
         {
             musicSelectorArray[2] = musicEnum.ordinal() + 1;
-            musicParticleAtBlocks(world, x + i, y + j, z + k);
+            musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
         } else if(musicSelectorArray[3] == 0)
         {
             musicSelectorArray[3] = musicEnum.ordinal() + 1;
-            musicParticleAtBlocks(world, x + i, y + j, z + k);
+            musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
         }
         world.markBlockForUpdate(x, y, z);
     }
@@ -192,13 +192,13 @@ public class TotemUtil
                 if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
                 {
                     musicArray[musicEnum.ordinal()] = musicMaximum;
-                    musicParticleAtBlocks(world, x + i, y + j, z + k);
+                    musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
                     return;
 
                 } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
                 {
                     musicArray[musicEnum.ordinal()] += musicAmount;
-                    musicParticleAtBlocks(world, x + i, y + j, z + k);
+                    musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
                     return;
                 }
             }
@@ -209,11 +209,12 @@ public class TotemUtil
                 if(((TileTotemBase) tileEntity).musicForTotemEffect + musicAmount > TileTotemBase.maximumMusic)
                 {
                     ((TileTotemBase) tileEntity).musicForTotemEffect = TileTotemBase.maximumMusic;
+                    musicParticleAtBlocks(world, x + i, y + j, z + k, "cloud");
                     return;
                 } else
                 {
                     ((TileTotemBase) tileEntity).musicForTotemEffect += musicAmount;
-                    musicParticleAtBlocks(world, x + i, y + j, z + k);
+                    musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
                     return;
                 }
             }
@@ -241,12 +242,12 @@ public class TotemUtil
                 }
     }
 
-    public static void musicParticleAtBlocks(World world, int xCoord, int yCoord, int zCoord)
+    public static void musicParticleAtBlocks(World world, int xCoord, int yCoord, int zCoord, String particle)
     {
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 1, (double) yCoord, (double) zCoord, 4, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord - 1, (double) yCoord, (double) zCoord, 4, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord, (double) yCoord, (double) zCoord + 1, 4, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord, (double) yCoord, (double) zCoord - 1, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord + 1, (double) yCoord, (double) zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord - 1, (double) yCoord, (double) zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord, (double) yCoord, (double) zCoord + 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord, (double) yCoord, (double) zCoord - 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
     }
 
 
