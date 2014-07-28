@@ -2,12 +2,8 @@ package totemic_commons.pokefenn.event;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.potion.ModPotions;
-
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,28 +24,7 @@ public class EntityUpdate
 
             if(player.isPotionActive(ModPotions.batPotion.id) && player.isSneaking() && !player.onGround)
             {
-                player.moveFlying(0.0F, 1.0F, 0.1F);
-            }
-
-            if(!player.worldObj.isRemote && player.worldObj.getWorldTime() % 60L == 0 && player.getCurrentArmor(0) != null && player.getCurrentArmor(0).getItem() == ModItems.totemArmourHead)
-            {
-                Random rand = new Random();
-
-                if(player.isPotionActive(Potion.wither))
-                {
-                    if(rand.nextInt(10) == 1)
-                    {
-                        player.removePotionEffect(Potion.wither.id);
-                    }
-
-                } else if(player.isPotionActive(Potion.poison))
-                {
-                    if(rand.nextInt(8) == 1)
-                    {
-                        player.removePotionEffect(Potion.poison.id);
-                    }
-
-                }
+                player.moveFlying(0.0F, 0.5F, 0.1F);
             }
 
             if(event.entityLiving.isPotionActive(ModPotions.spiderPotion))

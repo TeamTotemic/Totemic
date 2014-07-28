@@ -14,7 +14,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.biome.BiomeGenBase;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
@@ -465,7 +464,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
         resetMelody();
         workOutEfficiency();
-        return totalMelody >= CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMusicNeeded() - (dancingEfficiency % 50);
+        return totalMelody >= CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMusicNeeded() - (dancingEfficiency / 50);
     }
 
     public void workOutEfficiency()
@@ -495,9 +494,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
             if((int) player.posX != (int) player.prevPosX && (int) player.posY != (int) player.prevPosY)
             {
-                if(player.getCurrentArmor(1) != null && player.getCurrentArmor(1).getItem() == ModItems.totemArmourLeg)
-                    dancingEfficiency += 2;
-
                 dancingEfficiency++;
             }
         }

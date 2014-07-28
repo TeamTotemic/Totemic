@@ -33,7 +33,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
 
     public ItemJingleDress()
     {
-        super(EquipmentMaterials.bellShoe, 0, 2);
+        super(EquipmentMaterials.jingleDress, 0, 2);
         setUnlocalizedName(Strings.JINGLE_DRESS_NAME);
     }
 
@@ -52,7 +52,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
     {
-        stack.damageItem(damage % 2, entity);
+        stack.damageItem(damage / 2, entity);
     }
 
     @Override

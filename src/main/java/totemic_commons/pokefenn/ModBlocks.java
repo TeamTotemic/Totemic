@@ -15,19 +15,11 @@ public final class ModBlocks
 {
 
     public static Block cedarLog;
-    public static Block totemTable;
     public static Block totemBase;
     public static Block totemPole;
-    public static Block chlorophyll;
     public static Block totemSapling;
     public static Block totemLeaves;
-    public static Block totemCauldron;
-    public static Block moonglow;
-    public static Block totemCeremonyIntelligence;
-    public static Block bloodwart;
     public static Block totemTorch;
-    public static Block lotusBlock;
-    public static Block fungusBlock;
     public static Block flameParticle;
     public static Block windChime;
     public static Block drum;

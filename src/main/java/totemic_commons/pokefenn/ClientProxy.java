@@ -38,7 +38,5 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTorch.class, new TileTotemTorchRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemBase.class, new TileTotemBaseRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileWindChime.class, new TileWindChimeRenderer());
-
-        //VillagerRegistry.instance().registerVillagerSkin(TotemicVillagerInitiation.TOTEMIST_VILLAGER_ID, new ResourceLocation("totemic", "textures/entity/totemistVillager.png"));
     }
 }

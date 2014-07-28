@@ -14,7 +14,7 @@ public class EquipmentMaterials
 
     public static ItemTool.ToolMaterial huntingKnife = EnumHelper.addToolMaterial("huntingKnife", 0, 126, 0, -2, 0);
 
-    public static ItemArmor.ArmorMaterial bellShoe = EnumHelper.addArmorMaterial("bellShoe", 126, new int[]{0, 0, 2, 0}, 15);
+    public static ItemArmor.ArmorMaterial jingleDress = EnumHelper.addArmorMaterial("bellShoe", 126, new int[]{2, 2, 2, 2}, 15);
 
     public static ItemArmor.ArmorMaterial warBonnet = EnumHelper.addArmorMaterial("warBonnet", 256, new int[]{3, 0, 0, 0}, 18);
 
