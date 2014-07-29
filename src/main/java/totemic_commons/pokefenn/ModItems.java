@@ -56,10 +56,6 @@ public final class ModItems
         GameRegistry.registerItem(buffaloItems, Strings.BUFFALO_ITEMS_NAME);
         GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
         GameRegistry.registerItem(totempedia, Strings.TOTEMPEDIA_NAME);
-        GameRegistry.registerItem(buffaloHelmet, Strings.BUFFALO_HELMET);
-        GameRegistry.registerItem(buffaloChest, Strings.BUFFALO_CHESTPLATE);
-        GameRegistry.registerItem(buffaloLeggings, Strings.BUFFALO_LEGGINGS);
-        GameRegistry.registerItem(buffaloBoots, Strings.BUFFALO_BOOTS);
 
         initBaubles();
     }

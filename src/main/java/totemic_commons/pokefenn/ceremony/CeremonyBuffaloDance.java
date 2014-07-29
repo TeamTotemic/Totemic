@@ -1,6 +1,10 @@
 package totemic_commons.pokefenn.ceremony;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.tileentity.TileEntity;
+import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
+import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
  * Created by Pokefenn.
@@ -13,11 +17,27 @@ public class CeremonyBuffaloDance extends CeremonyBase
     {
         if(tileEntity != null)
         {
-            int x = tileEntity.xCoord;
-            int y = tileEntity.yCoord;
-            int z = tileEntity.zCoord;
+            int i = 0;
 
+            if(EntityUtil.getEntitiesInRange(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 8, 8) != null)
+            {
+                for(Entity entity : EntityUtil.getEntitiesInRange(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 8, 8))
+                {
+                    if(i < 2)
+                    {
+                        if(entity != null)
+                        {
+                            if(entity instanceof EntityCow && !(entity instanceof EntityBuffalo))
+                            {
+                                i++;
+                                EntityUtil.spawnEntityInWorld(tileEntity.getWorldObj(), entity.posX, entity.posY, entity.posZ, new EntityBuffalo(tileEntity.getWorldObj()));
+                                entity.setDead();
 
+                            }
+                        }
+                    }
+                }
+            }
 
         }
     }

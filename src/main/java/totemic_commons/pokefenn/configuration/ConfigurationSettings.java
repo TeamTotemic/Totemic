@@ -19,12 +19,4 @@ public final class ConfigurationSettings
     public static int ENTITY_ID_EFREET;
     public static int ENTITY_ID_DART;
     public static int ENTITY_ID_BUFFALO;
-
-    public static int DECREMENT_TOTEM_HORSE;
-    public static int DECREMENT_TOTEM_BAT;
-    public static int DECREMENT_TOTEM_BLAZE;
-    public static int DECREMENT_TOTEM_OCELOT;
-    public static int DECREMENT_TOTEM_SQUID;
-    public static int DECREMENT_TOTEM_SPIDER;
-    public static int DECREMENT_TOTEM_COW;
 }

@@ -14,12 +14,12 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  */
 public class TileTotemPole extends TileTotemic// implements IInventory
 {
-
-    public static final int INVENTORY_SIZE = 1;
-
-    public static final int SLOT_ONE = 0;
-
     public int totemId;
+
+    public TileTotemPole()
+    {
+        totemId = 0;
+    }
 
     public int getTotemId()
     {

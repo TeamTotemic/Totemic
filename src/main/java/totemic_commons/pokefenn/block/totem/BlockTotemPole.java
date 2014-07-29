@@ -68,10 +68,6 @@ public class BlockTotemPole extends BlockTileTotemic
     {
         TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(x, y, z);
 
-        ItemStack heldItem = player.inventory.getCurrentItem();
-
-        int SLOT_ONE = TileTotemPole.SLOT_ONE;
-
         if(tileTotemSocket != null && !world.isRemote)
         {
             if(player.getHeldItem() != null && tileTotemSocket.getTotemId() != 0 && (player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem().getItem() == ModItems.infusedTotemicStaff))

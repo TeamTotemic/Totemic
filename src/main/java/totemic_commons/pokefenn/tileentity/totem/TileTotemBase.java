@@ -20,7 +20,6 @@ import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
 import totemic_commons.pokefenn.api.recipe.TotemRegistry;
-import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -79,7 +78,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         isCeremonyAwakening = false;
         musicForTotemEffect = 0;
         totemPoleSize = 0;
-        repetitionBonus = new int[TotemRegistry.getRecipes().size() + 1];
+        repetitionBonus = new int[TotemRegistry.getRecipes().size()];
         isDoingEndingEffect = false;
         bindedPlayer = "";
         totemIds = new int[5];
@@ -366,17 +365,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, (double) xCoord, (double) yCoord, (double) zCoord - 1D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
     }
 
-    public int getMusicFromCeremony()
-    {
-        int j = 0;
-
-        for(int i = 0; i < musicCeremony.length; i++)
-        {
-            j += musicCeremony[i];
-        }
-        return j;
-    }
-
     public void resetMelody()
     {
         totalMelody = 0;
@@ -489,7 +477,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         //TODO
         if(worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 8) != null)
         {
-
             EntityPlayer player = worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 8);
 
             if((int) player.posX != (int) player.prevPosX && (int) player.posY != (int) player.prevPosY)
@@ -518,9 +505,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         return true;
     }
 
-    protected int getTotemId(int par1)
+    protected int getTotemId(int yOffset)
     {
-        TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + 1 + par1, this.zCoord);
+        TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + 1 + yOffset, this.zCoord);
 
         return tileEntity instanceof TileTotemPole ? (((TileTotemPole) tileEntity).getTotemId()) : 0;
     }
@@ -533,19 +520,19 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
         Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
 
-        if(block1 instanceof BlockTotemPole && block2 != ModBlocks.totemPole)
+        if(block1 == ModBlocks.totemPole && block2 != ModBlocks.totemPole)
         {
             return 1;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 != ModBlocks.totemPole)
+        } else if(block1 == ModBlocks.totemPole && block2 == ModBlocks.totemPole && block3 != ModBlocks.totemPole)
         {
             return 2;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 != ModBlocks.totemPole)
+        } else if(block1 == ModBlocks.totemPole && block2 == ModBlocks.totemPole && block3 == ModBlocks.totemPole && block4 != ModBlocks.totemPole)
         {
             return 3;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 != ModBlocks.totemPole)
+        } else if(block1 == ModBlocks.totemPole && block2 == ModBlocks.totemPole && block3 == ModBlocks.totemPole && block4 == ModBlocks.totemPole && block5 != ModBlocks.totemPole)
         {
             return 4;
-        } else if(block1 instanceof BlockTotemPole && block2 instanceof BlockTotemPole && block3 instanceof BlockTotemPole && block4 instanceof BlockTotemPole && block5 instanceof BlockTotemPole)
+        } else if(block1 == ModBlocks.totemPole && block2 == ModBlocks.totemPole && block3 == ModBlocks.totemPole && block4 == ModBlocks.totemPole && block5 == ModBlocks.totemPole)
         {
             return 5;
         }
