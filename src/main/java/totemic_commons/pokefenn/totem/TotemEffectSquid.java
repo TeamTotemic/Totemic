@@ -29,7 +29,7 @@ public class TotemEffectSquid implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 200, Potion.waterBreathing, 0, totemWoodBonus, repetitionBonus, melodyAmount);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 40, Potion.waterBreathing, 0, totemWoodBonus, repetitionBonus, melodyAmount);
                     }
                 }
 

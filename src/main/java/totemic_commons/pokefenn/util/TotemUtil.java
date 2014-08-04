@@ -11,7 +11,6 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
@@ -52,7 +51,7 @@ public class TotemUtil
         if(musicEnum == MusicEnum.DRUM)
             return new ItemStack(ModBlocks.drum);
         else if(musicEnum == MusicEnum.FLUTE)
-            return new ItemStack(ModItems.subItems, 1, ItemTotemicItems.flute);
+            return new ItemStack(ModItems.flute);
         else if(musicEnum == MusicEnum.JINGLE_DRESS)
             return new ItemStack(ModItems.jingleDress);
         else if(musicEnum == MusicEnum.WIND_CHIME)
@@ -78,12 +77,12 @@ public class TotemUtil
 
     public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
-        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 20) + melodyAmount, defaultStrength + (repetitionBonus == 5 || melodyAmount > 112 ? 1 : 0)));
+        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 15) + melodyAmount + (totemWoodBonus * 20), defaultStrength + (repetitionBonus == 5 || melodyAmount > 112 ? 1 : 0)));
     }
 
-    public static void addNegativePotionEffect(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
+    public static void addNegativePotionEffect(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
-        //player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegative(player, defaultStrength)));
+        player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (totemWoodBonus * 10) - (repetitionBonus * 10) - (melodyAmount / 32), defaultStrength));
     }
 
     public static void playMusicFromItemForCeremonySelector(ItemStack itemStack, EntityPlayer player, int x, int y, int z, MusicEnum musicEnum, int radius)

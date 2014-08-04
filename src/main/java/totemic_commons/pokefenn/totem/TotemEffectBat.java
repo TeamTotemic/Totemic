@@ -29,7 +29,7 @@ public class TotemEffectBat implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 120, ModPotions.batPotion, 0, totemWoodBonus, repetitionBonus, melodyAmount);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 40, ModPotions.batPotion, 0, totemWoodBonus, repetitionBonus, melodyAmount);
                     }
 
                 }
