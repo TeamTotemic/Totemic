@@ -30,8 +30,7 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
 
         if(tileTotemBase != null)
         {
-            int radius = 12;
-            int yRadius = 6;
+            int radius = 6;
 
             int x = tileTotemBase.xCoord;
             int y = tileTotemBase.yCoord;
@@ -60,24 +59,28 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
                 }
             }
 
-            for(int i = -radius; i <= radius; i++)
-                for(int j = -yRadius; j <= yRadius; j++)
-                    for(int k = -radius; k <= radius; k++)
-                    {
-                        if(world.getBlock(x + i, y + j, z + k) != null)
+            if(tileTotemBase.getWorldObj().getWorldTime() % 10L == 0)
+            {
+                for(int i = -radius; i <= radius; i++)
+                    for(int j = -radius; j <= radius; j++)
+                        for(int k = -radius; k <= radius; k++)
                         {
-                            Block block = world.getBlock(x + i, y + j, z + k);
-
-                            if(block instanceof IPlantable)
+                            if(world.getBlock(x + i, y + j, z + k) != null)
                             {
-                                Random rand = new Random();
-                                if(rand.nextInt(30) == 1)
-                                    block.updateTick(world, x + i, y + j, z + k, rand);
+                                Block block = world.getBlock(x + i, y + j, z + k);
+
+                                if(block instanceof IPlantable)
+                                {
+                                    Random rand = new Random();
+                                    if(rand.nextInt(30) == 1)
+                                    {
+                                        block.updateTick(world, x + i, y + j, z + k, rand);
+                                        break;
+                                    }
+                                }
                             }
                         }
-                    }
-
-
+            }
         }
     }
 }

@@ -11,9 +11,9 @@ import net.minecraft.world.storage.WorldInfo;
 public class CeremonyRain extends CeremonyBase
 {
     @Override
-    public void effect(TileEntity tiletotemBase)
+    public void effect(TileEntity tileTotemBase)
     {
-        if(tiletotemBase.getWorldObj().isRaining())
+        if(!tileTotemBase.getWorldObj().isRaining())
         {
             WorldInfo worldinfo = MinecraftServer.getServer().worldServers[0].getWorldInfo();
             worldinfo.setRaining(true);

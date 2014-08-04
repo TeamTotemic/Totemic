@@ -32,7 +32,6 @@ public class CeremonyBuffaloDance extends CeremonyBase
                                 i++;
                                 EntityUtil.spawnEntityInWorld(tileEntity.getWorldObj(), entity.posX, entity.posY, entity.posZ, new EntityBuffalo(tileEntity.getWorldObj()));
                                 entity.setDead();
-
                             }
                         }
                     }
