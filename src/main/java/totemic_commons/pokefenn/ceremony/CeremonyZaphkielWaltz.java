@@ -18,7 +18,7 @@ import java.util.Random;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyFlowingTime extends CeremonyBase
+public class CeremonyZaphkielWaltz extends CeremonyBase
 {
 
     @Override
