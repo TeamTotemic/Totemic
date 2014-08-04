@@ -98,7 +98,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             {
                 getTotemWoodBonus();
                 resetRepetition();
-                spawnParticles();
+                if(!isCeremony)
+                    spawnParticles();
+                else
+                    spawnParticlesCeremony();
             }
 
             if(worldObj.getWorldTime() % 80L == 0)
@@ -156,9 +159,28 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 Random random = new Random();
                 int negitiveOrNot1 = random.nextBoolean() ? 1 : -1;
                 int negitiveOrNot2 = random.nextBoolean() ? 1 : -1;
-                MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("note", (double) xCoord + (random.nextFloat() * negitiveOrNot1), (double) yCoord, (double) zCoord +(random.nextFloat() * negitiveOrNot2), 4, 0.0D, 0.5D, 0.0D, 0.0D);
+                MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("note", (double) xCoord + (random.nextFloat() * negitiveOrNot1), (double) yCoord, (double) zCoord + (random.nextFloat() * negitiveOrNot2), 4, 0.0D, 0.5D, 0.0D, 0.0D);
             }
         }
+    }
+
+    public void spawnParticlesCeremony()
+    {
+        int j = 0;
+
+        for(int aMusicCeremony : musicCeremony)
+        {
+            j += aMusicCeremony;
+        }
+
+        for(int i = 0; i < j / 16; i++)
+        {
+            Random random = new Random();
+            int negitiveOrNot1 = random.nextBoolean() ? 1 : -1;
+            int negitiveOrNot2 = random.nextBoolean() ? 1 : -1;
+            MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("note", (double) xCoord + (random.nextFloat() * negitiveOrNot1), (double) yCoord, (double) zCoord + (random.nextFloat() * negitiveOrNot2), 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        }
+
     }
 
     public void getTotemWoodBonus()

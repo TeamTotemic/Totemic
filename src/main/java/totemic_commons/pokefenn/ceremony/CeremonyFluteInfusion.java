@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -34,10 +33,10 @@ public class CeremonyFluteInfusion extends CeremonyBase
                 {
                     if(entity instanceof EntityItem)
                     {
-                        if(((EntityItem) entity).getEntityItem().getItem() == ModItems.subItems && ((EntityItem) entity).getEntityItem().getItemDamage() == ItemTotemicItems.flute)
+                        if(((EntityItem) entity).getEntityItem().getItem() == ModItems.flute)
                         {
+                            EntityUtil.spawnEntityInWorld(world, entity.posX, entity.posY, entity.posZ, new ItemStack(ModItems.flute, 1, 1));
                             entity.setDead();
-                            EntityUtil.spawnEntityInWorld(world, x, y, z, new ItemStack(ModItems.subItems, 1, ItemTotemicItems.fluteInfused));
                         }
                     }
                 }

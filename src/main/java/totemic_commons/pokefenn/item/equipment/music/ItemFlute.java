@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.ItemTotemic;
+import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -25,7 +26,8 @@ public class ItemFlute extends ItemTotemic implements IMusic
 
     public ItemFlute()
     {
-        super("");
+        super(Strings.FLUTE_NAME);
+        setMaxStackSize(1);
         time = 0;
     }
 

@@ -78,10 +78,10 @@ public final class LexiconData
         windChime.setLexiconPages(new PageText("0"), new PageText("1"));
 
         drum = new BLexiconEntry(Totempedia.DRUM, categoryInstruments);
-        drum.setLexiconPages(new PageText("0"), new PageText("1"));
+        drum.setLexiconPages(new PageText("0"));
 
         flute = new BLexiconEntry(Totempedia.FLUTE, categoryInstruments);
-        flute.setLexiconPages(new PageText("0"), new PageText("1"));
+        flute.setLexiconPages(new PageText("0"));
 
         rattle = new BLexiconEntry(Totempedia.RATTLE, categoryInstruments);
         rattle.setLexiconPages(new PageText("0"), new PageText("1"));
@@ -98,10 +98,10 @@ public final class LexiconData
         warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony);
         warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.warDance));
 
-        buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony);
-        buffaloDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.buffaloDance));
+        //buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony);
+        //buffaloDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.buffaloDance));
 
-        barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
-        barkStripper.setLexiconPages(new PageText("0"), new PageText("1"));
+        //Stripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
+        //barkStripper.setLexiconPages(new PageText("0"), new PageText("1"));
     }
 }
