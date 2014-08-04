@@ -76,13 +76,9 @@ public class TotemUtil
     }
     */
 
-    public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int[] repetitionBonus)
+    public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus)
     {
-        //TODO
-
-        //Loop through repetition bonus, use the place to get the potion id from teh arraylist and compare it to the one here. use this to tell if the repetition has happened and if you should increase the potion effect, and by how much.
-
-        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime, defaultStrength));
+        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus), defaultStrength + (repetitionBonus == 5 ? 1 : 0)));
     }
 
     public static void addNegitivePotionEffect(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)

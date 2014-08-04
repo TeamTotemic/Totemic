@@ -23,6 +23,8 @@ import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -96,6 +98,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             {
                 getTotemWoodBonus();
                 resetRepetition();
+                spawnParticles();
             }
 
             if(worldObj.getWorldTime() % 80L == 0)
@@ -125,7 +128,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 if(totemIds[i] != 0)
                 {
                     TotemRegistry totemRegistry = TotemRegistry.getRecipes().get(totemIds[i]);
-                    totemRegistry.getEffect().effect(this, totemPoleSize, totemRegistry, getRanges(totemRegistry)[0], getRanges(totemRegistry)[1], musicForTotemEffect, totemWoodBonus, repetitionBonus);
+                    totemRegistry.getEffect().effect(this, totemPoleSize, totemRegistry, getRanges(totemRegistry)[0], getRanges(totemRegistry)[1], musicForTotemEffect, totemWoodBonus, repetitionBonus[i]);
                 }
             }
         }
@@ -141,6 +144,20 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         for(int totemId : totemIds)
         {
             repetitionBonus[totemId]++;
+        }
+    }
+
+    public void spawnParticles()
+    {
+        if(musicForTotemEffect != 0)
+        {
+            for(int i = 0; i < musicForTotemEffect / 16; i++)
+            {
+                Random random = new Random();
+                int negitiveOrNot1 = random.nextBoolean() ? 1 : -1;
+                int negitiveOrNot2 = random.nextBoolean() ? 1 : -1;
+                MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("note", (double) xCoord + (random.nextFloat() * negitiveOrNot1), (double) yCoord, (double) zCoord +(random.nextFloat() * negitiveOrNot2), 4, 0.0D, 0.5D, 0.0D, 0.0D);
+            }
         }
     }
 
