@@ -23,26 +23,10 @@ public class ItemTotemic extends Item
         super();
         setMaxStackSize(64);
         setNoRepair();
-        unlocalisedNameStuffs(name);
         if(!name.equals(""))
             setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
         if(creativeTab)
             setCreativeTab(Totemic.tabsTotem);
-    }
-
-    public void unlocalisedNameStuffs(String name)
-    {
-        //String substringed = name.substring(5);
-
-        /*
-        if(substringed.contains("totem") || substringed.contains("totemic"))
-            if(substringed.contains("totem"))
-                GameRegistry.registerItem(this, name.substring(5));
-            else
-                GameRegistry.registerItem(this, name.substring(8));
-        else
-            GameRegistry.registerItem(this, name);
-            */
     }
 
     @Override

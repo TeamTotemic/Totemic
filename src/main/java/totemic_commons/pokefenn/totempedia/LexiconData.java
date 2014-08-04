@@ -62,11 +62,11 @@ public final class LexiconData
         TotemicAPI.addCategory(categoryMisc = new LexiconCategory(Totempedia.CATEGORY_MISC));
         TotemicAPI.addCategory(categoryLore = new LexiconCategory(Totempedia.CATEGORY_LORE));
 
-        cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics);
-        cedarTree.setLexiconPages(new PageText("0"), new PageText("1"));
+        //cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics);
+        //cedarTree.setLexiconPages(new PageText("0"), new PageText("1"));
 
-        buffaloBasic = new BLexiconEntry(Totempedia.BUFFALO_BASIC, categoryBasics);
-        buffaloBasic.setLexiconPages(new PageText("0"), new PageText("1"));
+        //buffaloBasic = new BLexiconEntry(Totempedia.BUFFALO_BASIC, categoryBasics);
+        //buffaloBasic.setLexiconPages(new PageText("0"), new PageText("1"));
 
         creatingTotems = new BLexiconEntry(Totempedia.CREATING_TOTEMS, categoryTotems);
         creatingTotems.setLexiconPages(new PageText("0"), new PageText("1"));
@@ -103,9 +103,5 @@ public final class LexiconData
 
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
         barkStripper.setLexiconPages(new PageText("0"), new PageText("1"));
-
-        blowDart = new BLexiconEntry(Totempedia.BLOW_DART, categoryTools);
-        blowDart.setLexiconPages(new PageText("0"), new PageText("1"));
-
     }
 }

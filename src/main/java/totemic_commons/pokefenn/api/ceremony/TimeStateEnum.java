@@ -9,7 +9,7 @@ import net.minecraft.util.StatCollector;
 public enum TimeStateEnum
 {
     INSTANT("totemic.timeState.instant"),
-    OVER_TIME("totemic.timeState.overTime");
+    ENDING_EFFECT("totemic.timeState.endingEffect");
 
     private final String name;
 

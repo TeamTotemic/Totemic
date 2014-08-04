@@ -1,11 +1,9 @@
 package totemic_commons.pokefenn.network.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -49,9 +47,7 @@ public class PacketWindChimeSound implements IMessage, IMessageHandler<PacketWin
     public IMessage onMessage(PacketWindChimeSound message, MessageContext ctx)
     {
         //TODO
-        Side side = FMLCommonHandler.instance().getEffectiveSide();
-        EntityPlayer player = side == Side.CLIENT ? FMLClientHandler.instance().getClient().thePlayer : ctx.getServerHandler().playerEntity;
-
+        EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
         player.worldObj.playSound(message.x, message.y, message.z, "totemic:windChime", 1.0F, 1.0F, false);
 
         return null;

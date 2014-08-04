@@ -1,11 +1,8 @@
 package totemic_commons.pokefenn.network.server;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
@@ -48,8 +45,7 @@ public class PacketJingle implements IMessage, IMessageHandler<PacketJingle, IMe
     public IMessage onMessage(PacketJingle message, MessageContext ctx)
     {
         //TODO
-        Side side = FMLCommonHandler.instance().getEffectiveSide();
-        EntityPlayer player = side == Side.CLIENT ? FMLClientHandler.instance().getClient().thePlayer : ctx.getServerHandler().playerEntity;
+        EntityPlayer player = ctx.getServerHandler().playerEntity;
 
         if(player.getCurrentArmor(1) != null)
         {
