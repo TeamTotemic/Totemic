@@ -37,7 +37,7 @@ public class CraftingRecipes
         //Music
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0), new Object[]{"eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE)}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.windChime, 1, 0), new Object[]{"iwi", "tst", "  t", ('i'), "ingotIron", ('s'), Items.string, ('w'), "logWood", ('t'), "stickWood"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 1, ItemTotemicItems.flute), new Object[]{" sc", " c ", "c  ", ('c'), "stickWood", ('s'), "treeLeaves"}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.flute, 1), new Object[]{" sc", " c ", "c  ", ('c'), "stickWood", ('s'), "treeLeaves"}));
 
     }
 
