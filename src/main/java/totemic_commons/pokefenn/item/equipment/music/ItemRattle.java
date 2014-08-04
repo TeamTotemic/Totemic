@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.ItemTotemic;
@@ -42,7 +43,7 @@ public class ItemRattle extends ItemTotemic implements IMusic
 
         if(!world.isRemote)
         {
-            if(entityLiving instanceof EntityPlayer)
+            if(entityLiving instanceof EntityPlayer && !(entityLiving instanceof FakePlayer))
             {
                 EntityPlayer player = (EntityPlayer) entityLiving;
                 MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);

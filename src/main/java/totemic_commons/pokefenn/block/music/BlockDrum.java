@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
@@ -47,10 +48,13 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     {
         if(!isSneaking)
         {
-            tileDrum.canPlay = false;
-            TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(new ItemStack(this, 1, 0), world, x, y, z, true, player), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
-            world.markBlockForUpdate(x, y, z);
+            if(!(player instanceof FakePlayer))
+            {
+                tileDrum.canPlay = false;
+                TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(new ItemStack(this, 1, 0), world, x, y, z, true, player), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));
+                MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+                world.markBlockForUpdate(x, y, z);
+            }
         } else
         {
             tileDrum.canPlay = false;
@@ -59,6 +63,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
         }
+
         PacketHandler.sendAround(new PacketDrumSound(x, y, z), world.getTileEntity(x, y, z));
     }
 

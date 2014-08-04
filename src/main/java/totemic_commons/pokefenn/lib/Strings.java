@@ -35,6 +35,7 @@ public final class Strings
     public static final String TOMAHAWK_NAME = "tomahawk";
     public static final String CEREMONY_RATTLE_NAME = "ceremonialRattle";
     public static final String BUFFALO_ITEMS_NAME = "buffaloItems";
+    public static final String FLUTE_NAME = "flute";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";

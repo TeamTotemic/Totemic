@@ -10,6 +10,7 @@ import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
 import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
+import totemic_commons.pokefenn.item.equipment.music.ItemFlute;
 import totemic_commons.pokefenn.item.equipment.music.ItemRattle;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -29,11 +30,7 @@ public final class ModItems
     public static Item barkStripper;
     public static Item buffaloItems;
     public static Item ceremonialRattle;
-
-    public static Item buffaloHelmet;
-    public static Item buffaloChest;
-    public static Item buffaloLeggings;
-    public static Item buffaloBoots;
+    public static Item flute;
 
     public static void init()
     {
@@ -46,6 +43,7 @@ public final class ModItems
         buffaloItems = new ItemBuffaloDrops();
         ceremonialRattle = new ItemRattle();
         totempedia = new ItemTotempedia();
+        flute = new ItemFlute();
 
         GameRegistry.registerItem(totemWhittlingKnife, Strings.TOTEM_WHITTLING_KNIFE_NAME);
         GameRegistry.registerItem(totemicStaff, Strings.TOTEMIC_STAFF_NAME);
@@ -56,6 +54,7 @@ public final class ModItems
         GameRegistry.registerItem(buffaloItems, Strings.BUFFALO_ITEMS_NAME);
         GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
         GameRegistry.registerItem(totempedia, Strings.TOTEMPEDIA_NAME);
+        GameRegistry.registerItem(flute, Strings.FLUTE_NAME);
 
         initBaubles();
     }

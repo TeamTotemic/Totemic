@@ -5,25 +5,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.music.IMusic;
-import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.util.EntityUtil;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.List;
 
@@ -33,16 +24,14 @@ import java.util.List;
  * Date: 08/12/13
  * Time: 19:19
  */
-public class ItemTotemicItems extends ItemTotemic implements IMusic
+public class ItemTotemicItems extends ItemTotemic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"flute", "fluteInfused", "cedarBark"};
+    private static final String[] ITEMS_NAMES = new String[]{"cedarBark"};
 
     public int time = 0;
 
-    public static int flute = 0;
-    public static int fluteInfused = 1;
-    public static int cedarBark = 2;
+    public static int cedarBark = 0;
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
@@ -62,11 +51,6 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
         {
             if(player instanceof EntityPlayer)
             {
-                if(((EntityPlayer) player).getHeldItem() != null && ((EntityPlayer) player).getHeldItem().getItem() == this)
-                    if(itemStack.getItemDamage() == fluteInfused)
-                    {
-                        fluteUpdate((EntityPlayer) player);
-                    }
             }
         }
     }
@@ -76,67 +60,6 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
         if(player.getHeldItem() != null && player.getHeldItem().getItem() == this)
         {
             player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 30, 1));
-        }
-    }
-
-    @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
-    {
-        if(!world.isRemote)
-        {
-            if(itemStack.getItemDamage() == fluteInfused || itemStack.getItemDamage() == flute)
-                fluteEffect(itemStack, player, world);
-        }
-        return itemStack;
-    }
-
-
-    public void fluteEffect(ItemStack stack, EntityPlayer player, World world)
-    {
-        time++;
-        if(time >= 15 && !player.isSneaking())
-        {
-            time = 0;
-            TotemUtil.playMusicFromItem(world, player, this.musicEnum(stack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
-            particlesAllAround(world, player.posX, player.posY, player.posZ, false);
-            return;
-        }
-        if(time >= 15 && player.isSneaking())
-        {
-            time = 0;
-            TotemUtil.playMusicFromItemForCeremonySelector(stack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(stack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
-            particlesAllAround(world, player.posX, player.posY, player.posZ, true);
-        }
-        if(stack.getItemDamage() == 1)
-            if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)
-            {
-                for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
-                {
-                    if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
-                    {
-                        if(entity instanceof EntityAnimal)
-                            ((EntityAnimal) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 1, this, false));
-                        if(entity instanceof EntityVillager)
-                            ((EntityVillager) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 0.5, this, false));
-                    }
-
-                }
-            }
-    }
-
-    public void particlesAllAround(World world, double x, double y, double z, boolean firework)
-    {
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 2, 0.5D, 0.0D, 0.5D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x, (double) y + 1.2D, (double) z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x, (double) y + 1.2D, (double) z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-
-        if(firework)
-        {
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.5D, 0.0D, 0.5D, 0.0D);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
         }
     }
 
@@ -181,27 +104,5 @@ public class ItemTotemicItems extends ItemTotemic implements IMusic
             list.add(new ItemStack(id, 1, meta));
     }
 
-    @Override
-    public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return itemStack != null && (itemStack.getItemDamage() == flute || itemStack.getItemDamage() == fluteInfused) ? MusicEnum.FLUTE : null;
-    }
 
-    @Override
-    public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 60;
-    }
-
-    @Override
-    public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return player.getHeldItem() != null && (player.getHeldItem().getItemDamage() == flute || player.getHeldItem().getItemDamage() == fluteInfused) ? player.getHeldItem().getItemDamage() == flute ? 3 : 7 : 0;
-    }
-
-    @Override
-    public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 7;
-    }
 }
