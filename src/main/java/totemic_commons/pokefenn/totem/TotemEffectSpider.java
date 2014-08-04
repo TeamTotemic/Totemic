@@ -26,7 +26,7 @@ public class TotemEffectSpider implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 150, ModPotions.spiderPotion, 0, totemWoodBonus, repetitionBonus);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 150, ModPotions.spiderPotion, 0, totemWoodBonus, repetitionBonus, melodyAmount);
                     }
                 }
 

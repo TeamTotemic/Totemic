@@ -38,7 +38,7 @@ public class TotemEffectBlaze implements ITotemEffect
                                 ((EntityPlayer) entity).heal(2);
                         }
 
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 100, Potion.fireResistance, 0, totemWoodBonus, repetitionBonus);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 100, Potion.fireResistance, 0, totemWoodBonus, repetitionBonus, melodyAmount);
                     }
                 }
 

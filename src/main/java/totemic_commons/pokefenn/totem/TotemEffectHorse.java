@@ -29,7 +29,7 @@ public class TotemEffectHorse implements ITotemEffect
                 {
                     if(entity instanceof EntityPlayer)
                     {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 160, Potion.moveSpeed, 0, totemWoodBonus, repetitionBonus);
+                        TotemUtil.addPotionEffects((EntityPlayer) entity, 160, Potion.moveSpeed, 0, totemWoodBonus, repetitionBonus, melodyAmount);
                     }
                 }
 

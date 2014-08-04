@@ -76,12 +76,12 @@ public class TotemUtil
     }
     */
 
-    public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus)
+    public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
-        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus), defaultStrength + (repetitionBonus == 5 ? 1 : 0)));
+        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 20) + melodyAmount, defaultStrength + (repetitionBonus == 5 || melodyAmount > 112 ? 1 : 0)));
     }
 
-    public static void addNegitivePotionEffect(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
+    public static void addNegativePotionEffect(EntityPlayer player, int defaultTime, int multiplicationAmount, Potion potion, int defaultStrength, boolean baubleIncrease)
     {
         //player.addPotionEffect(new PotionEffect(potion.id, defaultTime - ((armourAmounts + getTotemBaublesAmount(player)) * multiplicationAmount), getStrengthForNegative(player, defaultStrength)));
     }
