@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.item.equipment.armour;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +35,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
     public ItemJingleDress()
     {
         super(EquipmentMaterials.jingleDress, 0, 2);
-        setUnlocalizedName(Strings.JINGLE_DRESS_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.JINGLE_DRESS_NAME);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
     {
-        stack.damageItem(damage / 2, entity);
+        stack.damageItem(entity.worldObj.rand.nextInt(4), entity);
     }
 
     @Override
@@ -134,5 +135,12 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
     public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
         return 8;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister iconRegister)
+    {
+        itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
     }
 }

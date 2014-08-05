@@ -14,6 +14,8 @@ import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
+import java.util.Random;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -62,27 +64,16 @@ public class TotemUtil
         return null;
     }
 
-    /*
-    public static int getArmourAmounts(EntityPlayer player)
-    {
-        int j = 0;
-        for(int i = 0; i < 4; i++)
-            if(player.inventory.armorItemInSlot(i) != null)
-                if(player.inventory.armorItemInSlot(i).getItem() instanceof ITotemArmour)
-                    j += ((ITotemArmour) player.inventory.armorItemInSlot(i).getItem()).getEfficiency(player.inventory.armorItemInSlot(i));
-
-        return j;
-    }
-    */
-
     public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
-        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 15) + melodyAmount + (totemWoodBonus * 20), defaultStrength + (repetitionBonus == 5 || melodyAmount > 112 ? 1 : 0)));
+        Random random = new Random();
+
+        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 10) + (random.nextInt(6) * 8) + melodyAmount + (totemWoodBonus * 10), defaultStrength + (repetitionBonus == 5 || melodyAmount > 112 ? 1 : 0)));
     }
 
     public static void addNegativePotionEffect(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
-        player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (totemWoodBonus * 10) - (repetitionBonus * 10) - (melodyAmount / 32), defaultStrength));
+        player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32), defaultStrength - (melodyAmount > 112 ? 1 : 0)));
     }
 
     public static void playMusicFromItemForCeremonySelector(ItemStack itemStack, EntityPlayer player, int x, int y, int z, MusicEnum musicEnum, int radius)
@@ -202,14 +193,14 @@ public class TotemUtil
         {
             if(tileEntity instanceof TileTotemBase)
             {
-                if(((TileTotemBase) tileEntity).musicForTotemEffect + musicAmount > TileTotemBase.maximumMusic)
+                if(((TileTotemBase) tileEntity).musicForTotemEffect + (musicAmount / 2) > TileTotemBase.maximumMusic)
                 {
                     ((TileTotemBase) tileEntity).musicForTotemEffect = TileTotemBase.maximumMusic;
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "cloud");
                     return;
                 } else
                 {
-                    ((TileTotemBase) tileEntity).musicForTotemEffect += musicAmount;
+                    ((TileTotemBase) tileEntity).musicForTotemEffect += (musicAmount / 2);
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
                     return;
                 }
