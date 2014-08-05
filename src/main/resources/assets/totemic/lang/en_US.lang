@@ -4,30 +4,17 @@
 item.totemic:totemicStaff.name=Totemic Staff
 item.totemic:totemWhittlingKnife.name=Totem Whittling Knife
 item.totemic:paintBrush.name=Totemist Paint Brush
-item.totemic:infusedTotemicStaff.name=Infused Totemic Staff
-item.totemic:leaf.name=Sylvan Leaf
 item.totemic:infusedStick.name=Cedar Stick
 item.totemic:totempedia.name=Totempedia
-item.totemic:blazingVerdantCrystal.name=Blazing Verdant Crystal
-item.totemic:verdantCrystal.name=Verdant Crystal
 item.totemic:heiTiki.name=Hei-Tiki
 item.totemic:herculeseBeetle.name=Hercules Beetle
-item.totemic:totemArmourHead.name=Totemist Mask
-item.totemic:totemArmourFoot.name=Totemist Boots
-item.totemic:totemArmourChest.name=Totemist Breastplate
-item.totemic:totemArmourLeg.name=Totemist Skirt
-item.totemic:cedarStick.name=Red Cedar Stick
-item.totemic:flute.name=Totemist Flute
-item.totemic:fluteInfused.name=Infused Totemist Flute
+item.totemic:flute.name=Flute
+item.totemic:fluteInfused.name=Flute
 item.totemic:cedarBark.name=Red Cedar Bark
-item.totemic:barkStickCedar.name=Bark Reinforced Red Cedar Stick
-item.totemic:basicDart.name=Blow Dart
-item.totemic:poisonDart.name=Poison Blow Dart
-item.totemic:blazeDart.name=Blaze Blow Dart
-item.totemic:antidoteDart.name=Antidote Blow Dart
 item.totemic:barkStripper.name=Bark Stripper
-item.totemic:blowGun.name=Blow Gun
-item.totemic:cedarMaker.name=Cedar Metamorphosiser
+item.totemic:jingleDress.name=Jingle Dress
+item.totemic:ceremonialRattle.name=Rattle
+
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log

@@ -8,7 +8,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.item.ItemTotemicItems;
 
 public class CraftingRecipes
 {
@@ -29,8 +28,6 @@ public class CraftingRecipes
 
         //Generic
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemTorch, 1, 0), new Object[]{"sfs", "sws", " s ", ('s'), "stickWood", ('w'), "logWood", ('f'), new ItemStack(Blocks.torch, 1, OreDictionary.WILDCARD_VALUE)}));
-        //GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.blowDart, 1, 0), new Object[]{"slb", " sf", "  s", ('s'), new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarStick), ('l'), new ItemStack(Items.reeds), ('b'), "barkCedar", ('f'), Items.feather}));
-        //GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.darts, 4, 0), new Object[]{"  f", " s ", "lll", ('l'), "treeLeaves", ('s'), "stickWood", ('f'), Items.flint}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.barkStripper, 1, 0), new Object[]{"iii", "s s", "s s", ('i'), "ingotIron", ('s'), "stickWood"}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totempedia, 1), new Object[]{"bpb", "bpb", "bpb", ('b'), "logWood", ('p'), Items.paper}));
 
@@ -61,8 +58,6 @@ public class CraftingRecipes
         OreDictionary.registerOre("cropVine", new ItemStack(Blocks.vine));
         OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.totemLeaves, 1));
         OreDictionary.registerOre("cedarLog", new ItemStack(ModBlocks.cedarLog, 1, 0));
-        OreDictionary.registerOre("ingotIron", new ItemStack(Items.iron_ingot, 1, 0));
-        OreDictionary.registerOre("barkCedar", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.cedarBark));
     }
 
 }
