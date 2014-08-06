@@ -92,7 +92,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     @Override
     public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 100;
+        return 75;
     }
 
     @Override

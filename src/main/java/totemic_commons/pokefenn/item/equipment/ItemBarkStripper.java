@@ -1,16 +1,13 @@
 package totemic_commons.pokefenn.item.equipment;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.block.BlockCedarLog;
 import totemic_commons.pokefenn.item.ItemTotemic;
-import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -51,8 +48,8 @@ public class ItemBarkStripper extends ItemTotemic
                         Random random = new Random();
 
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.redCedarStripped);
-                        EntityItem bark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 1 + random.nextInt(3), ItemTotemicItems.cedarBark));
-                        world.spawnEntityInWorld(bark);
+                        //EntityItem bark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 1 + random.nextInt(3), ItemTotemicItems.cedarBark));
+                        //world.spawnEntityInWorld(bark);
                         itemStack.damageItem(1, player);
                     }
                 }

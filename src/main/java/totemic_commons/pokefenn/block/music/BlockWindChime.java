@@ -108,7 +108,7 @@ public class BlockWindChime extends BlockTileTotemic implements IMusic
     @Override
     public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 80;
+        return 60;
     }
 
     @Override

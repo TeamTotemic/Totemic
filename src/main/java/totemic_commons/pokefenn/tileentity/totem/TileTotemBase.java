@@ -57,6 +57,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public String bindedPlayer;
     public int[] totemIds;
     public int totemWoodBonus;
+    public int[] musicPlayed;
 
     public TileTotemBase()
     {
@@ -79,6 +80,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         musicForTotemEffect = 0;
         totemPoleSize = 0;
         repetitionBonus = new int[TotemRegistry.getRecipes().size()];
+        musicPlayed = new int[MusicEnum.values().length];
         isDoingEndingEffect = false;
         bindedPlayer = "";
         totemIds = new int[5];
@@ -102,6 +104,14 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                     spawnParticles();
                 else
                     spawnParticlesCeremony();
+            }
+
+            if(worldObj.getWorldTime() % (20L * 30) == 0)
+            {
+                for(int aMusicPlayed : musicPlayed)
+                {
+                    musicPlayed[aMusicPlayed] = 0;
+                }
             }
 
             if(worldObj.getWorldTime() % 80L == 0)

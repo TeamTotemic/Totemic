@@ -4,15 +4,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -27,11 +22,11 @@ import java.util.List;
 public class ItemTotemicItems extends ItemTotemic
 {
 
-    private static final String[] ITEMS_NAMES = new String[]{"cedarBark"};
+    private static final String[] ITEMS_NAMES = new String[]{"nuggetIron", "bellsIron"};
 
-    public int time = 0;
+    public static final int nuggetIron = 0;
+    public static final int bellsIron = 1;
 
-    public static int cedarBark = 0;
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
@@ -44,24 +39,6 @@ public class ItemTotemicItems extends ItemTotemic
         setCreativeTab(Totemic.tabsTotem);
     }
 
-    @Override
-    public void onUpdate(ItemStack itemStack, World world, Entity player, int par4, boolean par5)
-    {
-        if(!world.isRemote)
-        {
-            if(player instanceof EntityPlayer)
-            {
-            }
-        }
-    }
-
-    public void fluteUpdate(EntityPlayer player)
-    {
-        if(player.getHeldItem() != null && player.getHeldItem().getItem() == this)
-        {
-            player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 30, 1));
-        }
-    }
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack)

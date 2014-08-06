@@ -156,9 +156,13 @@ public class TotemUtil
                     {
                         TileEntity block = world.getTileEntity(x + i, y + j, z + k);
 
-                        if(block instanceof IMusicAcceptor)
+                        if(block instanceof IMusicAcceptor && block instanceof TileTotemBase)
                         {
-                            playMusic(x, y, z, block, musicEnum, i, j, k, musicAmount, musicMaximum);
+                            addMusicPlayed((TileTotemBase) block, musicEnum);
+                            int shiftedMusic = getShiftedMusic(musicAmount, (TileTotemBase) block, musicEnum);
+
+                            playMusic(x, y, z, block, musicEnum, i, j, k, shiftedMusic, musicMaximum);
+                            return;
                         }
 
                     }
@@ -219,14 +223,39 @@ public class TotemUtil
                     {
                         TileEntity block = world.getTileEntity(x + i, y + j, z + k);
 
-                        if(block instanceof IMusicAcceptor)
+                        if(block instanceof IMusicAcceptor && block instanceof TileTotemBase)
                         {
-                            playMusic(x, y, z, block, musicEnum, i, j, k, musicAmount, musicMaximum);
+                            addMusicPlayed((TileTotemBase) block, musicEnum);
+                            int shiftedMusic = getShiftedMusic(musicAmount, (TileTotemBase) block, musicEnum);
+
+                            playMusic(x, y, z, block, musicEnum, i, j, k, shiftedMusic, musicMaximum);
                             return;
                         }
                     }
 
                 }
+    }
+
+    public static void addMusicPlayed(TileTotemBase tileTotemBase, MusicEnum musicEnum)
+    {
+        if(tileTotemBase != null)
+        {
+            tileTotemBase.musicPlayed[musicEnum.ordinal()]++;
+        }
+    }
+
+    public static int getShiftedMusic(int defaultMusic, TileTotemBase tileTotemBase, MusicEnum musicEnum)
+    {
+        int newMusic = defaultMusic;
+
+        //This is a variable that is the shifted amount of musical melody produced, this is shifted because the music has been played too many times
+
+        if(tileTotemBase.musicPlayed[musicEnum.ordinal()] > defaultMusic * 1.5)
+        {
+            newMusic = (newMusic / 4) * 3;
+        }
+
+        return newMusic;
     }
 
     public static void musicParticleAtBlocks(World world, int xCoord, int yCoord, int zCoord, String particle)

@@ -31,6 +31,7 @@ public class ItemRattle extends ItemTotemic implements IMusic
     {
         super(Strings.CEREMONY_RATTLE_NAME);
         time = 0;
+        headPoles = 0;
     }
 
     @Override
@@ -72,13 +73,6 @@ public class ItemRattle extends ItemTotemic implements IMusic
         return false;
     }
 
-    @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
-    {
-
-        return itemStack;
-    }
-
     public void particlesAllAround(World world, double x, double y, double z, boolean firework)
     {
         MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.5D, 0.0D, 0.5D, 0.0D);
@@ -110,7 +104,7 @@ public class ItemRattle extends ItemTotemic implements IMusic
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 3 + (headPoles * 2);
+        return 9 + (headPoles * 2);
     }
 
     @Override

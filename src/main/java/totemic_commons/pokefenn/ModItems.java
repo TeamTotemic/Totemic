@@ -2,6 +2,7 @@ package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotempedia;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
@@ -34,7 +35,7 @@ public final class ModItems
         totemWhittlingKnife = new ItemTotemWhittlingKnife();
         totemicStaff = new ItemTotemicStaff();
         //totems = new ItemTotems();
-        //subItems = new ItemTotemicItems();
+        subItems = new ItemTotemicItems();
         jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
         //buffaloItems = new ItemBuffaloDrops();
@@ -44,7 +45,7 @@ public final class ModItems
 
         GameRegistry.registerItem(totemWhittlingKnife, Strings.TOTEM_WHITTLING_KNIFE_NAME);
         GameRegistry.registerItem(totemicStaff, Strings.TOTEMIC_STAFF_NAME);
-        //GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
+        GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
         //GameRegistry.registerItem(totems, Strings.TOTEMS_NAME);
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);

@@ -37,14 +37,14 @@ public class ItemFlute extends ItemTotemic implements IMusic
         if(!world.isRemote)
         {
             time++;
-            if(time >= 15 && !player.isSneaking())
+            if(time >= 9 && !player.isSneaking())
             {
                 time = 0;
                 TotemUtil.playMusicFromItem(world, player, this.musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
                 particlesAllAround(world, player.posX, player.posY, player.posZ, false);
                 return itemStack;
             }
-            if(time >= 15 && player.isSneaking())
+            if(time >= 9 && player.isSneaking())
             {
                 time = 0;
                 TotemUtil.playMusicFromItemForCeremonySelector(itemStack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
@@ -78,13 +78,13 @@ public class ItemFlute extends ItemTotemic implements IMusic
     @Override
     public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 60;
+        return 90;
     }
 
     @Override
     public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
-        return 5;
+        return 8;
     }
 
     @Override
