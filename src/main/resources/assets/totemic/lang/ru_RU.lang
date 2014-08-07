@@ -3,40 +3,18 @@
 # Item localizations
 item.totemic:totemicStaff.name=Тотемный посох
 item.totemic:totemWhittlingKnife.name=Нож для строгания тотема
-item.totemic:totemsBat.name=Летучая мышь (Тотем)
-item.totemic:totemsHorse.name=Лошадь (Тотем)
-item.totemic:totemsOcelot.name=Оцелот (Тотем)
-item.totemic:totemsBlaze.name=Ифрит (Тотем)
-item.totemic:totemsSquid.name=Спрут (Тотем)
-item.totemic:totemsDraining.name=Осушение (Тотем)
-item.totemic:totemsSpider.name=Паук (Тотем)
-item.totemic:totemsCow.name=Корова (Тотем)
 item.totemic:paintBrush.name=Кисточка тотемиста
-item.totemic:infusedTotemicStaff.name=Заряженный тотемный посох
-item.totemic:leaf.name=Лесной лист
 item.totemic:infusedStick.name=Кедровая палка
 item.totemic:totempedia.name=Тотемпедия
-item.totemic:blazingVerdantCrystal.name=Пылающий зелёный кристалл
-item.totemic:verdantCrystal.name=Зелёный кристалл
-item.totemic:shamanFlute.name=Флейта тотема
 item.totemic:heiTiki.name=Хей-Тики
 item.totemic:herculeseBeetle.name=Жук-геркулес
-item.totemic:totemArmourHead.name=Маска тотемиста
-item.totemic:totemArmourFeet.name=Ботинки тотемиста
-item.totemic:totemArmourChest.name=Нагрудник тотемиста
-item.totemic:totemArmourLeg.name=Юбка тотемиста
-item.totemic:cedarStick.name=Палка из красного кедра
-item.totemic:flute.name=Флейта тотемиста
-item.totemic:fluteInfused.name=Заряженная флейта тотемиста
+item.totemic:flute.name=Флейта
+item.totemic:fluteInfused.name=Флейта
 item.totemic:cedarBark.name=Кора красного кедра
-item.totemic:barkStickCedar.name=Палка из красного кедра, усиленная корой
-item.totemic:basicDart.name=Дротик
-item.totemic:poisonDart.name=Ядовитый дротик
-item.totemic:blazeDart.name=Пламенный дротик
-item.totemic:antidoteDart.name=Дротик с противоядием
-item.totemic:barkStripper.name=Чистильщик коры
-item.totemic:blowGun.name=Духовая трубка
-item.totemic:cedarMaker.name=Cedar Metamorphosiser
+item.totemic:barkStripper.name=Собиратель коры
+item.totemic:jingleDress.name=Звонкое платье
+item.totemic:ceremonialRattle.name=Трещотка
+
 
 # Block localizations
 tile.cedarLog.name=Древесина красного кедра
@@ -53,5 +31,104 @@ tile.redCedarStripped.name=Очищенная древесина красног�
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 
-# Waila Localizations
-totemic:plantEssence=Эссенция растения:
+totemic.timeState.instant=Мгновенное
+totemic.timeState.overTime=Со временем
+
+totemic.melodyName.incrediblyLow=Неполная мелодия
+totemic.melodyName.weak=Незначительная мелодия
+totemic.melodyName.low=Скудная мелодия
+totemic.melodyName.sufficient=Обильная мелодия
+totemic.melodyName.high=Очень обильная мелодия
+totemic.melodyName.maximum=Разрывная мелодия
+
+#Ceremony names
+totemic.ceremony.flute=Ceremony of Flute Imbuation
+totemic.ceremony.ghostDance=Призрачный танец
+totemic.ceremony.rainDance=Дождевой танец
+totemic.ceremony.drought=Церемония засухи
+totemic.ceremony.potion=Церемония божественных элексиров
+totemic.ceremony.buffaloDance=Танец буйволов Манданов
+
+totemicmisc.timeForCeremony=Время начала:
+totemicmisc.seconds= секунд
+totemicmisc.overTime=В течении времени:
+totemicmisc.capitalFalse=False
+totemicmisc.capitalTrue=True
+totemicmisc.musicSelector=Musical Selectors
+totemicmisc.tipi.cantSleep=You can not sleep in a tipi without being in the open fields
+totemicmisc.tipi.nether=Вы не можете спать в Нижнем мире
+
+#Totempedia Localisations
+totemic.gui.lexicon.header=Тотемпедия, руководство для всех Ваших тотемических потребностей.
+
+totemicmisc.clickToAdd=Нажмите, чтобы добавить
+totemicmisc.back=Назад
+totemicmisc.clickToSee=Нажмите, чтобы перейти на
+totemicmisc.shiftToRemove=Shift-клик, чтобы удалить
+totemicmisc.nextPage=След. страница
+totemicmisc.prevPage=Пред. страница
+totemicmisc.bookmark=Закладка
+totemicmisc.clickToIndex=Нажмите, чтобы вернуться в оглавление
+
+totemic.category.basics=Тотемические основы
+totemic.category.devices=Устройства
+totemic.category.tools=Инструменты
+totemic.category.misc=Разное
+totemic.category.lore=Знания
+totemic.category.totems=Тотемы
+totemic.category.ceremonies=Церемонии
+totemic.category.instruments=Музыкальные инструменты
+
+totemic.entry.cedarTree=Красный кедр
+totemic.page.cedarTree0=The great Red Cedar Tree, one of the strongest, and most powerful trees in existence. It's wood is the base of most Totemic practice, and has properties that many other trees do not. To create the sapling of this tree, you need to just use the &1Cedar Metamorphesiser&0 on a sapling in the world.
+totemic.page.cedarTree1=The height of the Red Cedar tree is usually from 6 to 9 blocks, but of course that can vary. The tree drops saplings like normal trees, and performs all other normal sapling behaviour.
+
+totemic.entry.buffaloBasic=Буйволы
+totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for the resources it can grant, and the powers it wields. Buffaloes can be found in the world, or later 'created' through a Ceremony. They are incredibly sturdy and have a very large amount of health.
+
+totemic.entry.creatingTotems=Столбы тотема
+totemic.page.creatingTotems0=Creating a Totem Pole is a very simple thing to do. First you must create a &1Totem Whittling Knife&0, this will be what you use to carve out your Totem Poles.
+
+totemic.entry.instruments=Инструменты
+totemic.page.instruments0=Instruments are a way to create &4Musical Melody&0, which is a type of power that many blocks and systems require, such as the &1Totem Base&0 and even &4Ceremonies&0. When played, all instruments will output their music to the first available nearby block that can accept it. Each instrument will produce &4Musical Melody&0 in very many different ways, with different outputs and ranges.
+
+totemic.entry.windChime=Музыкальная подвеска
+totemic.page.windChime0=The &1Wind Chime&0 is a instrument that will wave in the wind and periodically produce &4Musical Melody&0 when the wind blows, including all other nearby &1Wind Chimes&0. The &1Wind Chime&0 can not have any blocks below it, and must have a block above it to support it or else it will merely fall off. While the &1Wind Chime&0 does not create a large amount of &4Musical Melody&0, it does not require any intervention by players.
+totemic.page.windChime1=It is not rare to see &1Wind Chimes&0 hanging from the branches of leaves, there have even been rumours that it could make them create more melodic music. When the &1Wind Chime&0 is playing, it will shake vigorously and create music. Because the music from the &1Wind Chime&0 is so easy to come by, it does not take much of it before the maximum amount of &4Musical Melody&0 is reached.
+
+totemic.entry.drum=Барабан
+totemic.page.drum0=The &1Drum&0 is a instrumental block that can be played by simply bashing it with either fist. Because it takes time for the skin on the Drum to reflect back, it can take a second for it to be playable again. Drum beats are usually constant, and a vital part of any Ceremony, because of that the music is quite melodic. Of course playing it while sneaking to select a &4Ceremony&0 works the same as usual.
+
+totemic.entry.jingleDress=Звонкое платье
+totemic.page.jingleDress0=The &1Jingle Dress&0. One of the most prestigious pieces of clothing available for &4Totemists&0. It is a Dress made out of leaves that has been adorned with bells. Running around will cause it to play music to all nearby Totem Poles. They say the faster you run the more music it creates, and a speed potion increases it ten fold! Sneaking around while wearing the dress is also possible.
+totemic.page.jingleDress1=The sound of this instrument is highly melodic, meaning that it produces a large amount if played correctly, and &1Totem's&0 can also accept a high amount of the &4Musical Melody&0 from it.
+
+totemic.entry.flute=Флейта
+totemic.page.flute0=The &1Flute&0, one of the simplest yet most effective instruments known to the lands. It fulfills a very simple role of playing music without any complication. Because of its simplistic, it is not known to be the most melodic instrument, including with how much &4Totems&0 can accept, and how much a blow of the &1Flute&0 will give. As per usual, it can be played while sneaking to allow a nearby &4Totem&0 to try to perform a Ceremony.
+
+totemic.entry.rattle=Трещотка
+totemic.page.rattle0=The &1Ceremonial Rattle&0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The &1Rattle&0 produces &4Musical Melody&0 whenever it has been shook with a left hand. It is currently unknown if it has any other bonuses, but it believed to one day. And like all instruments, it can be played while sneaking around.
+
+totemic.entry.performingCeremonies=Исполнение церемоний
+totemic.page.performingCeremonies0=&4Ceremonies&0 are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The centre of a &4Ceremony&0 is a &1Totem Base&0, all music and other things are centered to the &1Totem Pole&0 and it is where the effects are released from.
+totemic.page.performingCeremonies1=To perform a &4Ceremony&0, there are a few things you must do. To select and initiate your &4Ceremony&0, you must play 4 Instruments in their selector mode to a &1Totem Pole&0. To play most Instruments in a selector mode, just play them normally while shifting. When you have played 4 corresponding instruments for a &4Ceremony&0, the startup will initiate.
+totemic.page.performingCeremonies2=While it is in this startup mode, the &1Totem Pole&0 will accept all nearby music and store it. This is called &4Musical Melody&0 and it is what is needed for the &4Ceremonies&0 effect to activate. When the total &4Musical Melody&0 hits the threshold of the &4Ceremonies&0 Melody requirement, it will activate the effect. Each instrument can only be played up to a certain point, so a whole ceremony could not be played with just one instrument.
+totemic.page.performingCeremonies3=Not all &4Ceremonies&0 end instantly after the startup is finished. Instead the effects will last over a certain amount of time after the effect initially starts. Doing the effects will drain the &4Musical Melody&0 over that time. It should be noted that the effects can only go for a certain amount of time and will stop after that time has elapsed.
+
+totemic.entry.rainDance=Церемония дождевого танца
+totemic.page.rainDance0=The &4Rain Dance Ceremony&0 is a way for you to bring a torrent of rain into the world. If the rain becomes too much to bare, the &4Drought Ceremony&0 is always available, which will remove all rain. Because the effects of this &4Ceremony&0 are so potent, it may be hard to perform.
+totemic.page.rainDance1=&oLike a Politoed&r.
+
+totemic.entry.drought=Церемония засухи
+totemic.page.drought0=
+totemic.page.drought1=&oNinetails, Not Kurama!&r
+
+totemic.entry.warDance=Танец войны
+totemic.page.warDance0=The &4War Dance Ceremony&0 is a Ceremony that will heighten your senses for a incoming war and bring the adrenalin to your entire body. After performing it the &4Ceremony&0 will bring the user Speed and Strength for a long time, allowing them to rush to battle.
+totemic.page.warDance1=
+
+totemic.entry.buffaloDance=Танец буйволов Манданов
+
+totemic.entry.barkStripper=Собиратель коры
+totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
+totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal. While the bark is a crafting component for many blocks and items, usually to reinforce items.
