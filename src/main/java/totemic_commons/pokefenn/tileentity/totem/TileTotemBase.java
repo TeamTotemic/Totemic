@@ -45,7 +45,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public int[] musicSelector;
     public boolean isDoingStartup;
     public int tryingCeremonyID;
-    public int totalMelody;
+    public int totalCeremonyMelody;
     public boolean isMusicSelecting;
     public int ceremonyStartupTimer;
     public boolean isCeremony;
@@ -72,7 +72,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         musicSelector = new int[5];
         isDoingStartup = false;
         tryingCeremonyID = 0;
-        totalMelody = 0;
+        totalCeremonyMelody = 0;
         isMusicSelecting = true;
         ceremonyStartupTimer = 0;
         isCeremony = false;
@@ -108,9 +108,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
             if(worldObj.getWorldTime() % (20L * 30) == 0)
             {
-                for(int aMusicPlayed : musicPlayed)
+                for(int i = 0; i < musicPlayed.length; i++)
                 {
-                    musicPlayed[aMusicPlayed] = 0;
+                    musicPlayed[i] = 0;
                 }
             }
 
@@ -257,10 +257,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 currentCeremony = tryingCeremonyID;
                 tryingCeremonyID = 0;
                 isDoingStartup = false;
-            }
+            } else
+                startupMain();
 
             ceremonyStartupTimer++;
-            startupMain();
         }
 
         if(currentCeremony <= CeremonyRegistry.ceremonyRegistry.size() && currentCeremony != 0)
@@ -413,14 +413,14 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     public void resetMelody()
     {
-        totalMelody = 0;
+        totalCeremonyMelody = 0;
         int m = 0;
 
         for(int musicu : musicCeremony)
         {
             m += musicu;
         }
-        totalMelody = m;
+        totalCeremonyMelody = m;
     }
 
     public void resetAfterCeremony(boolean doResetMusicSelector)
@@ -460,18 +460,18 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         if(continueTimer > 20 * 5)
         {
             continueTimer = 0;
-            if(totalMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMelodyPer5After() < 0)
-                totalMelody = 0;
+            if(totalCeremonyMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMelodyPer5After() < 0)
+                totalCeremonyMelody = 0;
             else
-                totalMelody -= CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMelodyPer5After();
+                totalCeremonyMelody -= CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMelodyPer5After();
 
-            if(totalMelody < CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMelodyPer5After())
+            if(totalCeremonyMelody < CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMelodyPer5After())
             {
                 resetAfterCeremony(true);
             }
         }
 
-        return totalMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMelodyPer5After() >= 0;
+        return totalCeremonyMelody - CeremonyRegistry.ceremonyRegistry.get(currentCeremony - 1).getCeremonyActivation().getMelodyPer5After() >= 0;
     }
 
 
@@ -496,7 +496,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         }
 
         resetMelody();
-        return totalMelody >= (CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMusicNeeded() - (dancingEfficiency / 4));
+        return totalCeremonyMelody >= (CeremonyRegistry.ceremonyRegistry.get(tryingCeremonyID - 1).getCeremonyActivation().getMusicNeeded() - (dancingEfficiency / 4));
     }
 
     public void startupMain()
@@ -611,7 +611,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         musicSelector = nbtTagCompound.getIntArray("musicSelector");
         isDoingStartup = nbtTagCompound.getBoolean("isDoingStartup");
         tryingCeremonyID = nbtTagCompound.getInteger("tryingCeremonyID");
-        totalMelody = nbtTagCompound.getInteger("totalMelody");
+        totalCeremonyMelody = nbtTagCompound.getInteger("totalCeremonyMelody");
         isMusicSelecting = nbtTagCompound.getBoolean("isMusicSelecting");
         ceremonyStartupTimer = nbtTagCompound.getInteger("ceremonyStartupTimer");
         isCeremony = nbtTagCompound.getBoolean("isCeremony");
@@ -639,7 +639,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         nbtTagCompound.setIntArray("musicSelector", musicSelector);
         nbtTagCompound.setBoolean("isDoingStartup", isDoingStartup);
         nbtTagCompound.setInteger("tryingCeremonyID", tryingCeremonyID);
-        nbtTagCompound.setInteger("totalMelody", totalMelody);
+        nbtTagCompound.setInteger("totalCeremonyMelody", totalCeremonyMelody);
         nbtTagCompound.setBoolean("isMusicSelecting", isMusicSelecting);
         nbtTagCompound.setInteger("ceremonyStartupTimer", ceremonyStartupTimer);
         nbtTagCompound.setBoolean("isCeremony", isCeremony);

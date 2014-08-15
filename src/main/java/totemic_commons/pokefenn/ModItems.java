@@ -7,7 +7,7 @@ import totemic_commons.pokefenn.item.ItemTotempedia;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
-import totemic_commons.pokefenn.item.equipment.armour.ItemJingleDress;
+import totemic_commons.pokefenn.item.equipment.music.ItemJingleDress;
 import totemic_commons.pokefenn.item.equipment.music.ItemFlute;
 import totemic_commons.pokefenn.item.equipment.music.ItemRattle;
 import totemic_commons.pokefenn.lib.Strings;

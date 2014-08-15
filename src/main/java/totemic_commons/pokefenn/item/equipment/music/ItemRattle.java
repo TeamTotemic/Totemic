@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -9,18 +11,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.api.music.IMusic;
 import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketRattleSound;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
+import java.util.List;
+
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemRattle extends ItemTotemic implements IMusic
+public class ItemRattle extends ItemMusic implements IMusic
 {
     public int time;
 
@@ -32,6 +35,15 @@ public class ItemRattle extends ItemTotemic implements IMusic
         super(Strings.CEREMONY_RATTLE_NAME);
         time = 0;
         headPoles = 0;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        list.add("totemic.tooltip.rattle");
+
+        super.addInformation(stack, player, list, par4);
     }
 
     @Override

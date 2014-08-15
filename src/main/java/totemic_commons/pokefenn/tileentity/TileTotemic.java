@@ -92,6 +92,7 @@ public class TileTotemic extends TileEntity
         }
     }
 
+    /*
     @Override
     public String toString()
     {
@@ -101,6 +102,7 @@ public class TileTotemic extends TileEntity
 
         return stringBuilder.toString();
     }
+    */
 
 
 }

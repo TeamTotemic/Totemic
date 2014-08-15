@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.item.equipment.armour;
+package totemic_commons.pokefenn.item.equipment.music;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.api.music.IMusic;
@@ -21,6 +22,8 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.util.TotemUtil;
+
+import java.util.List;
 
 /**
  * Created by Pokefenn.
@@ -142,5 +145,20 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
     public void registerIcons(IIconRegister iconRegister)
     {
         itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        int musicOutput = getMusicOutput(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, true, player);
+        if(musicOutput < 5)
+            list.add(StatCollector.translateToLocal("totemic.music.lowMelody"));
+        else if(musicOutput == 6)
+            list.add(StatCollector.translateToLocal("totemic.music.mediumMelody"));
+        else if(musicOutput == 7)
+            list.add(StatCollector.translateToLocal("totemic.music.highMelody"));
+        else if(musicOutput > 7)
+            list.add(StatCollector.translateToLocal("totemic.music.veryHighMelody"));
     }
 }

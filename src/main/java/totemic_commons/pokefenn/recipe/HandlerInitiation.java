@@ -59,13 +59,13 @@ public class HandlerInitiation
 
     static void totemRegistry()
     {
-        horseTotem = TotemicAPI.addTotem(1, 4, 4, new TotemEffectHorse(), 1, "totemic.totem.horse");
-        squidTotem = TotemicAPI.addTotem(2, 4, 4, new TotemEffectSquid(), 1, "totemic.totem.squid");
-        blazeTotem = TotemicAPI.addTotem(3, 4, 4, new TotemEffectBlaze(), 2, "totemic.totem.blaze");
-        ocelotTotem = TotemicAPI.addTotem(4, 4, 4, new TotemEffectOcelot(), 2, "totemic.totem.ocelot");
-        batTotem = TotemicAPI.addTotem(5, 4, 8, new TotemEffectBat(), 2, "totemic.totem.bat");
-        spiderTotem = TotemicAPI.addTotem(6, 4, 4, new TotemEffectSpider(), 2, "totemic.totem.spider");
-        cowTotem = TotemicAPI.addTotem(7, 4, 4, new TotemEffectCow(), 1, "totemic.totem.cow");
+        horseTotem = TotemicAPI.addTotem(1, 4, 4, new TotemEffectHorse(), 1, StatCollector.translateToLocal("totemic.totem.horse"));
+        squidTotem = TotemicAPI.addTotem(2, 4, 4, new TotemEffectSquid(), 1, StatCollector.translateToLocal("totemic.totem.squid"));
+        blazeTotem = TotemicAPI.addTotem(3, 4, 4, new TotemEffectBlaze(), 2, StatCollector.translateToLocal("totemic.totem.blaze"));
+        ocelotTotem = TotemicAPI.addTotem(4, 4, 4, new TotemEffectOcelot(), 2, StatCollector.translateToLocal("totemic.totem.ocelot"));
+        batTotem = TotemicAPI.addTotem(5, 4, 8, new TotemEffectBat(), 2, StatCollector.translateToLocal("totemic.totem.bat"));
+        spiderTotem = TotemicAPI.addTotem(6, 4, 4, new TotemEffectSpider(), 2, StatCollector.translateToLocal("totemic.totem.spider"));
+        cowTotem = TotemicAPI.addTotem(7, 4, 4, new TotemEffectCow(), 1, StatCollector.translateToLocal("totemic.totem.cow"));
     }
 
     static void furnaceRecipes()

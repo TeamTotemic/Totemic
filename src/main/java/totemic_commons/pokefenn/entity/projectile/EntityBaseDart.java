@@ -12,13 +12,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.S2BPacketChangeGameState;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.item.equipment.ItemDarts;
 import totemic_commons.pokefenn.misc.DamageSources;
-import totemic_commons.pokefenn.potion.ModPotions;
 
 import java.util.List;
 
@@ -64,7 +60,7 @@ public class EntityBaseDart extends Entity implements IProjectile
         this.renderDistanceWeight = 10.0D;
         this.shootingEntity = par2EntityLivingBase;
         this.metadata = metadata;
-        if(metadata == ItemDarts.basicDart)
+        //if(metadata == ItemDarts.basicDart)
             damage += 0.5;
 
         if(par2EntityLivingBase instanceof EntityPlayer)
@@ -267,6 +263,7 @@ public class EntityBaseDart extends Entity implements IProjectile
 
                             if(!worldObj.isRemote)
                             {
+                                /*
                                 if(metadata == ItemDarts.poisonDart)
                                     entitylivingbase.addPotionEffect(new PotionEffect(Potion.poison.id, 20 * 6, 1));
                                 if(metadata == ItemDarts.blazeDart)
@@ -277,6 +274,7 @@ public class EntityBaseDart extends Entity implements IProjectile
                                     entitylivingbase.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
                                 if(metadata == ItemDarts.antidoteDart)
                                     entitylivingbase.addPotionEffect(new PotionEffect(ModPotions.antidotePotion.id, 20 * 16, 0));
+                                    */
                             }
                             f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
