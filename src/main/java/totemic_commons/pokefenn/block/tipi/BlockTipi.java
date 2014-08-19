@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.block;
+package totemic_commons.pokefenn.block.tipi;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -8,13 +8,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 
@@ -28,6 +26,13 @@ public class BlockTipi extends BlockTileTotemic
     {
         super(Material.cloth);
         setBlockName(Strings.TIPI_NAME);
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
+    {
+        int dir = MathHelper.floor_double((double) ((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+        world.setBlockMetadataWithNotify(x, y, z, dir, 0);
     }
 
     @Override
@@ -153,5 +158,23 @@ public class BlockTipi extends BlockTileTotemic
     public TileEntity createNewTileEntity(World var1, int var2)
     {
         return new TileTipi();
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @Override
+    public int getRenderType()
+    {
+        return -1;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
     }
 }

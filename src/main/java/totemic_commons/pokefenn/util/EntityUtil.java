@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
@@ -37,6 +38,12 @@ public class EntityUtil
     public static void spawnEntityInWorld(World world, double xPos, double yPos, double zPos, ItemStack itemStack)
     {
         EntityItem item = new EntityItem(world, xPos, yPos, zPos, itemStack);
+        world.spawnEntityInWorld(item);
+    }
+
+    public static void spawnEntityInWorld(World world, double xPos, double yPos, double zPos, Item itemStack)
+    {
+        EntityItem item = new EntityItem(world, xPos, yPos, zPos, new ItemStack(itemStack));
         world.spawnEntityInWorld(item);
     }
 

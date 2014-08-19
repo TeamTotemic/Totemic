@@ -9,6 +9,7 @@ import totemic_commons.pokefenn.client.rendering.item.*;
 import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
 import totemic_commons.pokefenn.client.rendering.tileentity.*;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
+import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
@@ -27,13 +28,14 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemBase), new ItemTotemBaseRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemPole), new ItemTotemPoleRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.drum), new ItemDrumRenderer());
+        //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.tipi), new ItemTipiRenderer());
 
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemPole.class, new TileTotemSocketCubeRenderer());
-
         ClientRegistry.bindTileEntitySpecialRenderer(TileDrum.class, new TileDrumRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTorch.class, new TileTotemTorchRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemBase.class, new TileTotemBaseRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileWindChime.class, new TileWindChimeRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileTipi.class, new TileTipiRenderer());
     }
 }

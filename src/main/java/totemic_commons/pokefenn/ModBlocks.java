@@ -7,6 +7,8 @@ import totemic_commons.pokefenn.block.music.BlockDrum;
 import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.block.plant.BlockCedarLeaves;
 import totemic_commons.pokefenn.block.plant.BlockCedarSapling;
+import totemic_commons.pokefenn.block.tipi.BlockDummyTipi;
+import totemic_commons.pokefenn.block.tipi.BlockTipi;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.lib.Strings;
@@ -26,6 +28,7 @@ public final class ModBlocks
     public static Block redCedarPlank;
     public static Block redCedarStripped;
     public static Block tipi;
+    public static Block dummyTipi;
 
     public static void init()
     {
@@ -42,6 +45,7 @@ public final class ModBlocks
         redCedarPlank = new BlockCedarPlank();
         redCedarStripped = new BlockCedarStripped();
         tipi = new BlockTipi();
+        dummyTipi = new BlockDummyTipi();
 
         GameRegistry.registerBlock(cedarLog, Strings.CEDAR_LOG_NAME);
         GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
@@ -55,6 +59,7 @@ public final class ModBlocks
         GameRegistry.registerBlock(redCedarPlank, Strings.RED_CEDAR_PLANK_NAME);
         GameRegistry.registerBlock(redCedarStripped, Strings.RED_CEDAR_STRIPPED_NAME);
         GameRegistry.registerBlock(tipi, Strings.TIPI_NAME);
+        GameRegistry.registerBlock(dummyTipi, Strings.DUMMY_TIPI_NAME);
 
         //GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
         //chlorophyll = new BlockChlorophyll();

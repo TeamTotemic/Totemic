@@ -2,6 +2,7 @@ package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import totemic_commons.pokefenn.item.ItemTipi;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotempedia;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
@@ -29,6 +30,7 @@ public final class ModItems
     public static Item buffaloItems;
     public static Item ceremonialRattle;
     public static Item flute;
+    public static Item tipi;
 
     public static void init()
     {
@@ -42,6 +44,7 @@ public final class ModItems
         ceremonialRattle = new ItemRattle();
         totempedia = new ItemTotempedia();
         flute = new ItemFlute();
+        tipi = new ItemTipi();
 
         GameRegistry.registerItem(totemWhittlingKnife, Strings.TOTEM_WHITTLING_KNIFE_NAME);
         GameRegistry.registerItem(totemicStaff, Strings.TOTEMIC_STAFF_NAME);
@@ -53,6 +56,7 @@ public final class ModItems
         GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
         GameRegistry.registerItem(totempedia, Strings.TOTEMPEDIA_NAME);
         GameRegistry.registerItem(flute, Strings.FLUTE_NAME);
+        GameRegistry.registerItem(tipi, Strings.TIPI_ITEM_NAME);
 
         initBaubles();
     }

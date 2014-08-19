@@ -18,6 +18,7 @@ public final class Strings
     public static final String RED_CEDAR_PLANK_NAME = "redCedarPlank";
     public static final String RED_CEDAR_STRIPPED_NAME = "redCedarStripped";
     public static final String TIPI_NAME = "totemicTipi";
+    public static final String DUMMY_TIPI_NAME = "dummyTotemicTipi";
 
     //Items
     public static final String TOTEM_WHITTLING_KNIFE_NAME = "totemWhittlingKnife";
@@ -36,6 +37,7 @@ public final class Strings
     public static final String CEREMONY_RATTLE_NAME = "ceremonialRattle";
     public static final String BUFFALO_ITEMS_NAME = "buffaloItems";
     public static final String FLUTE_NAME = "flute";
+    public static final String TIPI_ITEM_NAME = "tipiItem";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";

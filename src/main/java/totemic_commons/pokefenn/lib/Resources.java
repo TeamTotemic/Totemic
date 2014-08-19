@@ -44,6 +44,7 @@ public class Resources
     public static final ResourceLocation TEXTURE_TOTEM_BASE_JUNGLE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseJungle.png");
     public static final ResourceLocation TEXTURE_TOTEM_BASE_CEDAR = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseCedar.png");
     public static final ResourceLocation TEXTURE_WIND_CHIME = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "windChime.png");
+    public static final ResourceLocation TEXTURE_TIPI = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "tipi.png");
 
     public static ResourceLocation getTotemPole(int i)
     {
