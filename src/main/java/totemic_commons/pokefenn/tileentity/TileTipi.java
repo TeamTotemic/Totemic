@@ -36,7 +36,7 @@ public class TileTipi extends TileTotemic
     @Override
     public AxisAlignedBB getRenderBoundingBox()
     {
-        return AxisAlignedBB.getBoundingBox(this.xCoord - 1, this.yCoord - 6, this.zCoord - 1, this.xCoord + 1, this.yCoord, this.zCoord + 1);
+        return AxisAlignedBB.getBoundingBox(this.xCoord - 1, this.yCoord - 1, this.zCoord - 1, this.xCoord + 1, this.yCoord + 6, this.zCoord + 1);
     }
 
 }

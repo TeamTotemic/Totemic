@@ -54,9 +54,9 @@ public class ItemTipi extends ItemTotemic
             if(block.getMaterial() == Material.ground || (block.getUnlocalizedName().contains("dirt") || block.getUnlocalizedName().contains("grass")))
             {
                 int dir = MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-                world.setBlock(x, y + 6, z, ModBlocks.tipi, dir, 2);
-                world.setBlock(x, y + 5, z, ModBlocks.dummyTipi, 0, 2);
-                world.setBlock(x, y + 4, z, ModBlocks.dummyTipi, 0, 2);
+                world.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY + 4, movingObjectPosition.blockZ, ModBlocks.dummyTipi, 0, 2);
+                world.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY + 5, movingObjectPosition.blockZ, ModBlocks.dummyTipi, 0, 2);
+                world.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY + 6, movingObjectPosition.blockZ, ModBlocks.dummyTipi, 1, 2);
 
                 for(int i = 0; i < 2; i++)
                 {
@@ -65,9 +65,10 @@ public class ItemTipi extends ItemTotemic
                         world.setBlock(x + direction.offsetX, y + i + 1, z + direction.offsetZ, ModBlocks.dummyTipi, 0, 2);
                         world.setBlockToAir(x, y + i + 1, z);
                     }
-
-                    world.setBlockToAir(x + getDirectionThingy(dir)[0], y + i + 1, z + getDirectionThingy(dir)[1]);
+                    if(world.getBlock(x + getDirectionThingy(dir)[0], y + i + 1, z + getDirectionThingy(dir)[1]) == ModBlocks.dummyTipi)
+                        world.setBlockToAir(x + getDirectionThingy(dir)[0], y + i + 1, z + getDirectionThingy(dir)[1]);
                 }
+                world.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY + 1, movingObjectPosition.blockZ, ModBlocks.tipi, dir, 2);
                 itemStack.stackSize--;
             }
         }

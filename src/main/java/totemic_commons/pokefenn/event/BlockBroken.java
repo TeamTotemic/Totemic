@@ -22,7 +22,7 @@ public class BlockBroken
         {
             if(breakEvent.block == ModBlocks.tipi)
             {
-                breakUnderTipi(breakEvent.world, breakEvent.x, breakEvent.y, breakEvent.z);
+                breakUnderTipi(breakEvent.world, breakEvent.x, breakEvent.y + 6, breakEvent.z);
             }
 
             if(breakEvent.block == ModBlocks.dummyTipi)
@@ -32,7 +32,7 @@ public class BlockBroken
                 for(int i = -range; i <= range; i++)
                     for(int j = -vertRange; j <= vertRange; j++)
                         for(int k = -range; k <= range; k++)
-                            if(breakEvent.world.getBlock(breakEvent.x + i, breakEvent.y + j, breakEvent.z + k) == ModBlocks.tipi)
+                            if(breakEvent.world.getBlock(breakEvent.x + i, breakEvent.y + j, breakEvent.z + k) == ModBlocks.dummyTipi && breakEvent.world.getBlockMetadata(breakEvent.x + i, breakEvent.y + j, breakEvent.z + k) == 1)
                             {
                                 //Break all blocks under here, need to do this later.
                                 EntityUtil.spawnEntityInWorld(breakEvent.world, breakEvent.x + i, breakEvent.y + j, breakEvent.z + k, ModItems.tipi);
@@ -59,7 +59,7 @@ public class BlockBroken
                     {
                         Block block = world.getBlock(x + i, y + n, z + k);
 
-                        if(block == ModBlocks.dummyTipi)
+                        if(block == ModBlocks.dummyTipi || block == ModBlocks.tipi)
                         {
                             world.setBlockToAir(x + i, y + n, z + k);
                         }
