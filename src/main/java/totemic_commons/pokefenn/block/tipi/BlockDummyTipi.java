@@ -1,7 +1,11 @@
 package totemic_commons.pokefenn.block.tipi;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 
 import java.util.Random;
@@ -16,6 +20,13 @@ public class BlockDummyTipi extends Block
     {
         super(Material.cloth);
         setBlockName(Strings.DUMMY_TIPI_NAME);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerBlockIcons(IIconRegister register)
+    {
+        blockIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.DUMMY_TIPI);
     }
 
     @Override

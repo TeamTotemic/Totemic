@@ -30,6 +30,8 @@ public class Resources
 
     public static final String INFUSED_SAPLING = "infusedSapling";
 
+    public static final String DUMMY_TIPI = "dummyTipi";
+
     //Models
     public static final ResourceLocation TEXTURE_TOTEM_TORCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemTorch.png");
     public static final ResourceLocation TEXTURE_TOTEM_POLE_OAK = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleOak.png");
