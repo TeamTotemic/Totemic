@@ -46,8 +46,8 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer
         int dir = world.getBlockMetadata(i, j, k);
 
         GL11.glPushMatrix();
-        GL11.glScaled(2.9, 2.9, 2.9);
-        GL11.glTranslatef(0.15F, -0.20F, 0.15F);
+        GL11.glScaled(2.85, 2.85, 2.85);
+        GL11.glTranslatef(0.18F, -0.20F, 0.18F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         //GL11.glTranslatef(-0.5F, 0, -0.5F);
@@ -57,5 +57,7 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer
 
         GL11.glPopMatrix();
     }
+
+
 
 }

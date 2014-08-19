@@ -19,7 +19,7 @@ public class ItemTipi extends ItemTotemic
 {
     public ItemTipi()
     {
-        super(Strings.RESOURCE_PREFIX + Strings.TIPI_ITEM_NAME);
+        super(Strings.TIPI_ITEM_NAME);
         setMaxStackSize(1);
     }
 
@@ -28,14 +28,17 @@ public class ItemTipi extends ItemTotemic
     {
         if(!world.isRemote)
         {
+            //TODO if checks to see if it can actually place the tipi.
+
             MovingObjectPosition movingObjectPosition = EntityUtil.raytraceFromEntity(world, player, true, 3);
             Block block = EntityUtil.getBlockFromPosition(movingObjectPosition, world);
 
             if(block.getMaterial() == Material.ground || (block.getUnlocalizedName().contains("dirt") || block.getUnlocalizedName().contains("grass")))
             {
-                world.setBlock(x, y + 6, z, ModBlocks.tipi, 0, 2);
                 int dir = MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-                world.setBlockMetadataWithNotify(x, y + 6, z, dir, 2);
+                world.setBlock(x, y + 6, z, ModBlocks.tipi, dir, 2);
+                world.setBlock(x, y + 5, z, ModBlocks.dummyTipi, 0, 2);
+                world.setBlock(x, y + 4, z, ModBlocks.dummyTipi, 0, 2);
 
                 for(int i = 0; i < 3; i++)
                 {

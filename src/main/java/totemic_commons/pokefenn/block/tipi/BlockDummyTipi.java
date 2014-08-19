@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import totemic_commons.pokefenn.lib.Strings;
 
+import java.util.Random;
+
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
@@ -32,5 +34,11 @@ public class BlockDummyTipi extends Block
     public boolean isOpaqueCube()
     {
         return false;
+    }
+
+    @Override
+    public int quantityDropped(Random random)
+    {
+        return 0;
     }
 }
