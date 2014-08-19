@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -33,6 +34,23 @@ public class ItemTipi extends ItemTotemic
             MovingObjectPosition movingObjectPosition = EntityUtil.raytraceFromEntity(world, player, true, 3);
             Block block = EntityUtil.getBlockFromPosition(movingObjectPosition, world);
 
+            boolean canPlace = true;
+
+            int vertRadius = 6;
+            int radius = 2;
+            for(int i = -radius; i <= radius; i++)
+                for(int j = 1; j <= vertRadius; j++)
+                    for(int k = -radius; k <= radius; k++)
+                    {
+                        if(!world.isAirBlock(movingObjectPosition.blockX + i, movingObjectPosition.blockY + j, movingObjectPosition.blockZ + k))
+                        {
+                            canPlace = false;
+                        }
+                    }
+
+            if(!canPlace)
+                return false;
+
             if(block.getMaterial() == Material.ground || (block.getUnlocalizedName().contains("dirt") || block.getUnlocalizedName().contains("grass")))
             {
                 int dir = MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
@@ -40,23 +58,44 @@ public class ItemTipi extends ItemTotemic
                 world.setBlock(x, y + 5, z, ModBlocks.dummyTipi, 0, 2);
                 world.setBlock(x, y + 4, z, ModBlocks.dummyTipi, 0, 2);
 
-                for(int i = 0; i < 3; i++)
+                for(int i = 0; i < 2; i++)
                 {
-                    world.setBlock(x + 1, y + i + 1, z, ModBlocks.dummyTipi, 0, 2);
-                    world.setBlock(x, y + i + 1, z + 1, ModBlocks.dummyTipi, 0, 2);
-                    world.setBlock(x - 1, y + 1, z, ModBlocks.dummyTipi, 0, 2);
-                    world.setBlock(x + 1, y + i + 1, z + 1, ModBlocks.dummyTipi, 0, 2);
-                    world.setBlock(x - 1, y + i + 1, z - 1, ModBlocks.dummyTipi, 0, 2);
-                    world.setBlock(x, y + i + 1, z - 1, ModBlocks.dummyTipi, 0, 2);
-                    world.setBlock(x + 1, y + i + 1, z - 1, ModBlocks.dummyTipi, 0, 2);
-                    world.setBlock(x - 1, y + i + 1, z + 1, ModBlocks.dummyTipi, 0, 2);
-                    world.setBlock(x - 1, y + i + 1, z - 1, ModBlocks.dummyTipi, 0, 2);
+                    for(ForgeDirection direction : ForgeDirection.values())
+                    {
+                        world.setBlock(x + direction.offsetX, y + i + 1, z + direction.offsetZ, ModBlocks.dummyTipi, 0, 2);
+                        world.setBlockToAir(x, y + i + 1, z);
+                    }
 
+                    world.setBlockToAir(x + getDirectionThingy(dir)[0], y + i + 1, z + getDirectionThingy(dir)[1]);
                 }
                 itemStack.stackSize--;
             }
         }
 
         return false;
+    }
+
+
+    public int[] getDirectionThingy(int i)
+    {
+        int[] thingy = {0, 0};
+        if(i == 0)
+        {
+            thingy[1] = -1;
+        }
+        if(i == 1)
+        {
+            thingy[0] = 1;
+        }
+        if(i == 2)
+        {
+            thingy[1] = 1;
+        }
+
+        if(i == 3)
+        {
+            thingy[0] = -1;
+        }
+        return thingy;
     }
 }
