@@ -1,10 +1,12 @@
 package totemic_commons.pokefenn.api;
 
-import totemic_commons.pokefenn.api.recipe.CeremonyActivation;
-import totemic_commons.pokefenn.api.recipe.CeremonyEffect;
-import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
-import totemic_commons.pokefenn.api.recipe.TotemRegistry;
+import net.minecraft.item.ItemStack;
+import totemic_commons.pokefenn.api.ceremony.CeremonyActivation;
+import totemic_commons.pokefenn.api.ceremony.CeremonyEffect;
+import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
+import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
+import totemic_commons.pokefenn.api.totem.TotemRegistry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
@@ -53,6 +55,13 @@ public class TotemicAPI
         return ceremonyRegistry;
     }
 
+
+    public static MusicHandler addInstrument(int instrumentId, int baseOutput, int baseRange, int maximumMusic, ItemStack... item)
+    {
+        MusicHandler musicHandler = new MusicHandler(instrumentId, item, baseOutput, baseRange, maximumMusic );
+        MusicHandler.musicHandler.add(musicHandler);
+        return musicHandler;
+    }
 
     /**
      * Adds a category to the list of registered categories to appear in the Lexicon.

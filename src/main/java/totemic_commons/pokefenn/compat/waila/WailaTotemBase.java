@@ -5,7 +5,7 @@ import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
+import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 import java.util.List;

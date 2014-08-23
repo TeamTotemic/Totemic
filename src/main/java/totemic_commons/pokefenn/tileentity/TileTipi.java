@@ -12,10 +12,12 @@ import net.minecraft.util.AxisAlignedBB;
 public class TileTipi extends TileTotemic
 {
     public int colour;
+    public boolean hasCatcher;
 
     public TileTipi()
     {
         colour = 0;
+        hasCatcher = false;
     }
 
     @Override
@@ -23,6 +25,7 @@ public class TileTipi extends TileTotemic
     {
         super.writeToNBT(nbtTagCompound);
         nbtTagCompound.setInteger("colour", colour);
+        nbtTagCompound.setBoolean("hasCatcher", hasCatcher);
     }
 
     @Override
@@ -30,6 +33,7 @@ public class TileTipi extends TileTotemic
     {
         super.readFromNBT(nbtTagCompound);
         colour = nbtTagCompound.getInteger("colour");
+        hasCatcher = nbtTagCompound.getBoolean("hasCatcher");
     }
 
     @SideOnly(Side.CLIENT)

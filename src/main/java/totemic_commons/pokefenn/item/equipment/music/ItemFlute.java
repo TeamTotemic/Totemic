@@ -19,7 +19,7 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemFlute extends ItemMusic implements IMusic
+public class ItemFlute extends ItemMusic
 {
     public int time;
 
@@ -39,7 +39,7 @@ public class ItemFlute extends ItemMusic implements IMusic
             if(time >= 5 && !player.isSneaking())
             {
                 time = 0;
-                TotemUtil.playMusicFromItem(world, player, this.musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
+                TotemUtil.playMusicFromItem();
                 particlesAllAround(world, player.posX, player.posY, player.posZ, false);
                 return itemStack;
             }
@@ -66,12 +66,6 @@ public class ItemFlute extends ItemMusic implements IMusic
                 }
         }
         return itemStack;
-    }
-
-    @Override
-    public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return MusicEnum.FLUTE;
     }
 
     @Override

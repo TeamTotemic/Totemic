@@ -3,7 +3,7 @@ package totemic_commons.pokefenn.totem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.api.recipe.TotemRegistry;
+import totemic_commons.pokefenn.api.totem.TotemRegistry;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.util.EntityUtil;

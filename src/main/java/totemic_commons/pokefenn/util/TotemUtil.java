@@ -7,10 +7,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
-import totemic_commons.pokefenn.api.music.MusicEnum;
+import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
@@ -48,22 +46,6 @@ public class TotemUtil
         return welp + unlocalized;
     }
 
-    public static ItemStack getItemStackFromEnum(MusicEnum musicEnum)
-    {
-        if(musicEnum == MusicEnum.DRUM)
-            return new ItemStack(ModBlocks.drum);
-        else if(musicEnum == MusicEnum.FLUTE)
-            return new ItemStack(ModItems.flute);
-        else if(musicEnum == MusicEnum.JINGLE_DRESS)
-            return new ItemStack(ModItems.jingleDress);
-        else if(musicEnum == MusicEnum.WIND_CHIME)
-            return new ItemStack(ModBlocks.windChime);
-        else if(musicEnum == MusicEnum.RATTLE)
-            return new ItemStack(ModItems.ceremonialRattle);
-
-        return null;
-    }
-
     public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
         Random random = new Random();
@@ -76,7 +58,7 @@ public class TotemUtil
         player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32), defaultStrength - (melodyAmount > 112 ? 1 : 0)));
     }
 
-    public static void playMusicFromItemForCeremonySelector(ItemStack itemStack, EntityPlayer player, int x, int y, int z, MusicEnum musicEnum, int radius)
+    public static void playMusicFromItemForCeremonySelector(ItemStack itemStack, EntityPlayer player, int x, int y, int z, MusicHandler musicHandler, int radius)
     {
         World world = player.worldObj;
 
@@ -88,14 +70,14 @@ public class TotemUtil
                     {
                         if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect() && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).isMusicSelecting())
                         {
-                            setSelectors(x, y, z, world.getTileEntity(x + i, y + j, z + k), musicEnum, i, j, k);
+                            setSelectors(x, y, z, world.getTileEntity(x + i, y + j, z + k), musicHandler.getMusicId(), i, j, k);
                             return;
                         }
                     }
                 }
     }
 
-    public static void setSelectors(int x, int y, int z, TileEntity tileEntity, MusicEnum musicEnum, int i, int j, int k)
+    public static void setSelectors(int x, int y, int z, TileEntity tileEntity, int id, int i, int j, int k)
     {
         World world = tileEntity.getWorldObj();
 
@@ -106,25 +88,25 @@ public class TotemUtil
 
         if(musicSelectorArray[0] == 0)
         {
-            musicSelectorArray[0] = musicEnum.ordinal() + 1;
+            musicSelectorArray[0] = id + 1;
             musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
         } else if(musicSelectorArray[1] == 0)
         {
-            musicSelectorArray[1] = musicEnum.ordinal() + 1;
+            musicSelectorArray[1] = id + 1;
             musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
         } else if(musicSelectorArray[2] == 0)
         {
-            musicSelectorArray[2] = musicEnum.ordinal() + 1;
+            musicSelectorArray[2] = id + 1;
             musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
         } else if(musicSelectorArray[3] == 0)
         {
-            musicSelectorArray[3] = musicEnum.ordinal() + 1;
+            musicSelectorArray[3] = id + 1;
             musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
         }
         world.markBlockForUpdate(x, y, z);
     }
 
-    public static void playMusicFromBlockForCeremonySelector(World world, EntityPlayer player, int x, int y, int z, MusicEnum musicEnum, int radius)
+    public static void playMusicFromBlockForCeremonySelector(World world, EntityPlayer player, int x, int y, int z, int id, int radius)
     {
         for(int i = -radius; i <= radius; i++)
             for(int j = -radius; j <= radius; j++)
@@ -134,13 +116,13 @@ public class TotemUtil
                     {
                         if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect() && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).isMusicSelecting())
                         {
-                            setSelectors(x, y, z, world.getTileEntity(x + i, y + j, z + k), musicEnum, i, j, k);
+                            setSelectors(x, y, z, world.getTileEntity(x + i, y + j, z + k), id, i, j, k);
                         }
                     }
                 }
     }
 
-    public static void playMusicForCeremony(TileTotemic tileCeremony, MusicEnum musicEnum, int radius, int musicMaximum, int musicAmount)
+    public static void playMusicForCeremony(TileTotemic tileCeremony, int id, int radius, int musicMaximum, int musicAmount)
     {
         World world = tileCeremony.getWorldObj();
 
@@ -158,10 +140,10 @@ public class TotemUtil
 
                         if(block instanceof IMusicAcceptor && block instanceof TileTotemBase)
                         {
-                            addMusicPlayed((TileTotemBase) block, musicEnum);
-                            int shiftedMusic = getShiftedMusic(musicAmount, (TileTotemBase) block, musicEnum);
+                            addMusicPlayed((TileTotemBase) block, id);
+                            int shiftedMusic = getShiftedMusic(musicAmount, (TileTotemBase) block, id);
 
-                            playMusic(x, y, z, block, musicEnum, i, j, k, shiftedMusic, musicMaximum);
+                            playMusic(x, y, z, block, id, i, j, k, shiftedMusic, musicMaximum);
                             return;
                         }
 
@@ -169,7 +151,7 @@ public class TotemUtil
                 }
     }
 
-    public static void playMusic(int x, int y, int z, TileEntity tileEntity, MusicEnum musicEnum, int i, int j, int k, int musicAmount, int musicMaximum)
+    public static void playMusic(int x, int y, int z, TileEntity tileEntity, int id, int i, int j, int k, int musicAmount, int musicMaximum)
     {
         World world = tileEntity.getWorldObj();
 
@@ -179,16 +161,16 @@ public class TotemUtil
         {
             if(!((IMusicAcceptor) tileEntity).isDoingEndingEffect())
             {
-                if(musicArray[musicEnum.ordinal()] + musicAmount > musicMaximum)
+                if(musicArray[id] + musicAmount > musicMaximum)
                 {
-                    musicArray[musicEnum.ordinal()] = musicMaximum;
+                    musicArray[id] = musicMaximum;
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "cloud");
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
                     return;
 
-                } else if(musicArray[musicEnum.ordinal()] + musicAmount < musicMaximum)
+                } else if(musicArray[id] + musicAmount < musicMaximum)
                 {
-                    musicArray[musicEnum.ordinal()] += musicAmount;
+                    musicArray[id] += musicAmount;
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
                     return;
                 }
@@ -213,8 +195,9 @@ public class TotemUtil
         world.markBlockForUpdate(x, y, z);
     }
 
-    public static void playMusicFromItem(World world, EntityPlayer player, MusicEnum musicEnum, int x, int y, int z, int radius, int musicMaximum, int musicAmount)
+    public static void playMusicFromItem(World world, EntityPlayer player, int x, int y, int z, MusicHandler musicHandler, int bonusRadius, int bonusMusicAmount)
     {
+        int radius = musicHandler.getBaseRange() + bonusRadius;
         for(int i = -radius; i <= radius; i++)
             for(int j = -radius; j <= radius; j++)
                 for(int k = -radius; k <= radius; k++)
@@ -225,10 +208,10 @@ public class TotemUtil
 
                         if(block instanceof IMusicAcceptor && block instanceof TileTotemBase)
                         {
-                            addMusicPlayed((TileTotemBase) block, musicEnum);
-                            int shiftedMusic = getShiftedMusic(musicAmount, (TileTotemBase) block, musicEnum);
+                            addMusicPlayed((TileTotemBase) block, musicHandler.getMusicId());
+                            int shiftedMusic = getShiftedMusic(musicHandler.getBaseOutput() + bonusMusicAmount, (TileTotemBase) block, musicHandler.getMusicId());
 
-                            playMusic(x, y, z, block, musicEnum, i, j, k, shiftedMusic, musicMaximum);
+                            playMusic(x, y, z, block, musicHandler.getMusicId(), i, j, k, shiftedMusic, musicHandler.getMusicId());
                             return;
                         }
                     }
@@ -236,21 +219,21 @@ public class TotemUtil
                 }
     }
 
-    public static void addMusicPlayed(TileTotemBase tileTotemBase, MusicEnum musicEnum)
+    public static void addMusicPlayed(TileTotemBase tileTotemBase, int id)
     {
         if(tileTotemBase != null)
         {
-            tileTotemBase.musicPlayed[musicEnum.ordinal()]++;
+            tileTotemBase.musicPlayed[id]++;
         }
     }
 
-    public static int getShiftedMusic(int defaultMusic, TileTotemBase tileTotemBase, MusicEnum musicEnum)
+    public static int getShiftedMusic(int defaultMusic, TileTotemBase tileTotemBase, int id)
     {
         int newMusic = defaultMusic;
 
         //This is a variable that is the shifted amount of musical melody produced, this is shifted because the music has been played too many times
 
-        if(tileTotemBase.musicPlayed[musicEnum.ordinal()] > defaultMusic * 1.5)
+        if(tileTotemBase.musicPlayed[id] > defaultMusic * 1.5)
         {
             newMusic = (newMusic / 4) * 3;
         }

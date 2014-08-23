@@ -51,8 +51,8 @@ public class EntityBuffalo extends EntityCow
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.20000000298023224D);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35.0D);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.15000000298023224D);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class EntityBuffalo extends EntityCow
     @Override
     protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
     {
-        this.playSound("mob.cow.step", 0.15F, 1.0F);
+        playSound("mob.cow.step", 0.15F, 1.0F);
     }
 
     @Override
@@ -102,24 +102,24 @@ public class EntityBuffalo extends EntityCow
     @Override
     protected void dropFewItems(boolean par1, int par2)
     {
-        int j = this.rand.nextInt(3) + this.rand.nextInt(1 + par2);
+        int j = rand.nextInt(3) + rand.nextInt(1 + par2);
 
         for(int k = 0; k < j; ++k)
         {
-            EntityItem hide = new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.hide));
+            EntityItem hide = new EntityItem(worldObj, posX, posY, posZ, new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.hide));
             worldObj.spawnEntityInWorld(hide);
         }
 
-        j = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + par2);
+        j = rand.nextInt(3) + 1 + rand.nextInt(1 + par2);
 
         for(int k = 0; k < j; ++k)
         {
-            if(this.isBurning())
+            if(isBurning())
             {
-                this.dropItem(Items.cooked_beef, 2);
+                dropItem(Items.cooked_beef, 2);
             } else
             {
-                this.dropItem(Items.beef, 2);
+                dropItem(Items.beef, 2);
             }
         }
     }
@@ -161,6 +161,6 @@ public class EntityBuffalo extends EntityCow
     @Override
     public boolean canMateWith(EntityAnimal animal)
     {
-        return animal != this && (animal.getClass() == this.getClass() && this.isInLove() && animal.isInLove());
+        return animal != this && (animal.getClass() == getClass() && isInLove() && animal.isInLove());
     }
 }

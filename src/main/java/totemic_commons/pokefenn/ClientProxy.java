@@ -30,7 +30,6 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.drum), new ItemDrumRenderer());
         MinecraftForgeClient.registerItemRenderer(ModItems.tipi, new ItemTipiRenderer());
 
-
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemPole.class, new TileTotemSocketCubeRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileDrum.class, new TileDrumRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTorch.class, new TileTotemTorchRenderer());

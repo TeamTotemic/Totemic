@@ -1,6 +1,4 @@
-package totemic_commons.pokefenn.api.recipe;
-
-import totemic_commons.pokefenn.api.totem.ITotemEffect;
+package totemic_commons.pokefenn.api.totem;
 
 import java.util.ArrayList;
 import java.util.List;

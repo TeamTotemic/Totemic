@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.api.totem;
 
 import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.api.recipe.TotemRegistry;
 
 /**
  * Created with IntelliJ IDEA.

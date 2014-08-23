@@ -17,9 +17,9 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
-import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
-import totemic_commons.pokefenn.api.recipe.TotemRegistry;
+import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
+import totemic_commons.pokefenn.api.music.MusicHandler;
+import totemic_commons.pokefenn.api.totem.TotemRegistry;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -62,7 +62,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public TileTotemBase()
     {
         rangeUpgrades = 0;
-        musicCeremony = new int[MusicEnum.values().length];
+        musicCeremony = new int[MusicHandler.musicHandler.size()];
         tier = 1;
         efficiencyFromCeremony = 0;
         isDoingEffect = false;
@@ -80,7 +80,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         musicForTotemEffect = 0;
         totemPoleSize = 0;
         repetitionBonus = new int[TotemRegistry.getRecipes().size()];
-        musicPlayed = new int[MusicEnum.values().length];
+        musicPlayed = new int[MusicHandler.musicHandler.size()];
         isDoingEndingEffect = false;
         bindedPlayer = "";
         totemIds = new int[5];
@@ -310,8 +310,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         {
             if(musicSelector[0] != 0 && musicSelector[1] != 0 && musicSelector[2] != 0 && musicSelector[3] != 0)
             {
-                MusicEnum[] enums = ceremonyRegistry.getCeremonyEffect().getMusicEnums();
-                if(enums[0].ordinal() + 1 == musicSelector[0] && enums[1].ordinal() + 1 == musicSelector[1] && enums[2].ordinal() + 1 == musicSelector[2] && enums[3].ordinal() + 1 == musicSelector[3])
+                int[] ids = ceremonyRegistry.getCeremonyEffect().getMusicIds();
+                if(ids[0] + 1 == musicSelector[0] && ids[1] + 1 == musicSelector[1] && ids[2] + 1 == musicSelector[2] && ids[3] + 1 == musicSelector[3])
                 {
                     particleAroundTotemUpwards("fireworksSpark");
                     tryingCeremonyID = ceremonyRegistry.getCeremonyID();

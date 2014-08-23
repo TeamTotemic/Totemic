@@ -91,18 +91,4 @@ public class TileTotemic extends TileEntity
             nbtTagCompound.setString(Strings.NBT_TE_CUSTOM_NAME, customName);
         }
     }
-
-    /*
-    @Override
-    public String toString()
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-
-        stringBuilder.append(String.format("TileTotemic Data - xCoord: %d, yCoord: %d, zCoord: %d, customName: '%s', orientation: %s, state: %d\n", xCoord, yCoord, zCoord, customName, state));
-
-        return stringBuilder.toString();
-    }
-    */
-
-
 }

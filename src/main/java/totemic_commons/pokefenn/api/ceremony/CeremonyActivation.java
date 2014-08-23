@@ -1,8 +1,6 @@
-package totemic_commons.pokefenn.api.recipe;
+package totemic_commons.pokefenn.api.ceremony;
 
 import net.minecraft.item.ItemStack;
-import totemic_commons.pokefenn.api.ceremony.CeremonyTimeEnum;
-import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
 
 import java.util.ArrayList;
 import java.util.List;

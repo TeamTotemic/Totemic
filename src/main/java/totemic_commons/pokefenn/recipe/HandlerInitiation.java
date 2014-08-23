@@ -6,13 +6,9 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.TotemicAPI;
-import totemic_commons.pokefenn.api.ceremony.CeremonyTimeEnum;
-import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
-import totemic_commons.pokefenn.api.music.MusicEnum;
-import totemic_commons.pokefenn.api.recipe.CeremonyActivation;
-import totemic_commons.pokefenn.api.recipe.CeremonyEffect;
-import totemic_commons.pokefenn.api.recipe.CeremonyRegistry;
-import totemic_commons.pokefenn.api.recipe.TotemRegistry;
+import totemic_commons.pokefenn.api.ceremony.*;
+import totemic_commons.pokefenn.api.music.MusicHandler;
+import totemic_commons.pokefenn.api.totem.TotemRegistry;
 import totemic_commons.pokefenn.ceremony.*;
 import totemic_commons.pokefenn.totem.*;
 
@@ -25,7 +21,7 @@ public class HandlerInitiation
     public static CeremonyRegistry ghostDance;
     public static CeremonyRegistry rainDance;
     public static CeremonyRegistry drought;
-    public static CeremonyRegistry flute;
+    public static CeremonyRegistry fluteCeremony;
     public static CeremonyRegistry zaphkielWaltz;
     public static CeremonyRegistry warDance;
     public static CeremonyRegistry buffaloDance;
@@ -37,24 +33,31 @@ public class HandlerInitiation
     public static TotemRegistry batTotem;
     public static TotemRegistry spiderTotem;
     public static TotemRegistry cowTotem;
+    
+    public static MusicHandler flute;
+    public static MusicHandler drum;
+    public static MusicHandler windChime;
+    public static MusicHandler jingleDress;
+    public static MusicHandler rattle;
 
     public static void init()
     {
         totemRegistry();
         ceremonyHandler();
+        instruments();
 
         furnaceRecipes();
     }
 
     static void ceremonyHandler()
     {
-        flute = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.flute"), 2, new CeremonyEffect(new CeremonyFluteInfusion(), new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.FLUTE}), new CeremonyActivation(TimeStateEnum.INSTANT, 140, CeremonyTimeEnum.MEDIUM));
-        rainDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.rainDance"), 3, new CeremonyEffect(new CeremonyRain(), new MusicEnum[]{MusicEnum.RATTLE, MusicEnum.RATTLE, MusicEnum.FLUTE, MusicEnum.FLUTE}), new CeremonyActivation(TimeStateEnum.INSTANT, 130, CeremonyTimeEnum.MEDIUM));
-        drought = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.drought"), 4, new CeremonyEffect(new CeremonyRainRemoval(), new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.FLUTE, MusicEnum.RATTLE, MusicEnum.RATTLE}), new CeremonyActivation(TimeStateEnum.INSTANT, 130, CeremonyTimeEnum.MEDIUM));
-        ghostDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.ghostDance"), 5, new CeremonyEffect(new CeremonyGhostDance(), new MusicEnum[]{MusicEnum.RATTLE, MusicEnum.RATTLE, MusicEnum.RATTLE, MusicEnum.RATTLE}), new CeremonyActivation(TimeStateEnum.INSTANT, 160, CeremonyTimeEnum.SHORT_MEDIUM));
-        zaphkielWaltz = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.zaphkielWaltz"), 6, new CeremonyEffect(new CeremonyZaphkielWaltz(), new MusicEnum[]{MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.FLUTE}), new CeremonyActivation(TimeStateEnum.ENDING_EFFECT, CeremonyTimeEnum.SHORT_MEDIUM, 110, CeremonyTimeEnum.MEDIUM, 6));
-        warDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.warDance"), 7, new CeremonyEffect(new CeremonyWarDance(), new MusicEnum[]{MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.DRUM, MusicEnum.DRUM}), new CeremonyActivation(TimeStateEnum.INSTANT, 120, CeremonyTimeEnum.MEDIUM));
-        buffaloDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.buffaloDance"), 8, new CeremonyEffect(new CeremonyBuffaloDance(), new MusicEnum[]{MusicEnum.JINGLE_DRESS, MusicEnum.FLUTE, MusicEnum.DRUM, MusicEnum.WIND_CHIME}), new CeremonyActivation(TimeStateEnum.INSTANT, 150, CeremonyTimeEnum.MEDIUM));
+        fluteCeremony = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.flute"), 2, new CeremonyEffect(new CeremonyFluteInfusion(), new MusicHandler[]{flute, flute, flute, flute}), new CeremonyActivation(TimeStateEnum.INSTANT, 140, CeremonyTimeEnum.MEDIUM));
+        rainDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.rainDance"), 3, new CeremonyEffect(new CeremonyRain(), new MusicHandler[]{rattle, rattle, flute, flute}), new CeremonyActivation(TimeStateEnum.INSTANT, 130, CeremonyTimeEnum.MEDIUM));
+        drought = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.drought"), 4, new CeremonyEffect(new CeremonyRainRemoval(), new MusicHandler[]{flute, flute, rattle, rattle}), new CeremonyActivation(TimeStateEnum.INSTANT, 130, CeremonyTimeEnum.MEDIUM));
+        ghostDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.ghostDance"), 5, new CeremonyEffect(new CeremonyGhostDance(), new MusicHandler[]{rattle, rattle, rattle, rattle}), new CeremonyActivation(TimeStateEnum.INSTANT, 160, CeremonyTimeEnum.SHORT_MEDIUM));
+        zaphkielWaltz = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.zaphkielWaltz"), 6, new CeremonyEffect(new CeremonyZaphkielWaltz(), new MusicHandler[]{flute, drum, drum, flute}), new CeremonyActivation(TimeStateEnum.ENDING_EFFECT, CeremonyTimeEnum.SHORT_MEDIUM, 110, CeremonyTimeEnum.MEDIUM, 6));
+        warDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.warDance"), 7, new CeremonyEffect(new CeremonyWarDance(), new MusicHandler[]{drum, drum, drum, drum}), new CeremonyActivation(TimeStateEnum.INSTANT, 120, CeremonyTimeEnum.MEDIUM));
+        buffaloDance = TotemicAPI.addCeremony(StatCollector.translateToLocal("totemic.ceremony.buffaloDance"), 8, new CeremonyEffect(new CeremonyBuffaloDance(), new MusicHandler[]{jingleDress, flute, drum, windChime}), new CeremonyActivation(TimeStateEnum.INSTANT, 150, CeremonyTimeEnum.MEDIUM));
     }
 
     static void totemRegistry()
@@ -66,6 +69,11 @@ public class HandlerInitiation
         batTotem = TotemicAPI.addTotem(5, 4, 8, new TotemEffectBat(), 2, StatCollector.translateToLocal("totemic.totem.bat"));
         spiderTotem = TotemicAPI.addTotem(6, 4, 4, new TotemEffectSpider(), 2, StatCollector.translateToLocal("totemic.totem.spider"));
         cowTotem = TotemicAPI.addTotem(7, 4, 4, new TotemEffectCow(), 1, StatCollector.translateToLocal("totemic.totem.cow"));
+    }
+    
+    static void instruments()
+    {
+        //TODO
     }
 
     static void furnaceRecipes()

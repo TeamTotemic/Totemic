@@ -2,15 +2,10 @@ Totemic models and art:
 
 Models:
 
-Preferably all models are cube-y (and fit into minecraft), and same goes for the textures, and preferably stick to 16x.
-
-Wind Chime: CyanideX did it, not needed anymore ;D
+Preferably all models are cube-y (and fit into minecraft), It's also preferable that the models were made in techne, if it is meant to have animation.
 
 War Bonnet: A helmet piece of armour thingy, it has the feathers and everything (Really low priority)
 http://media-cache-ak0.pinimg.com/236x/4c/5e/09/4c5e0948e6ee03656ad9d5569d497302.jpg
-
-Tipi: A basic white tipi (by default) with the twigs at the top and everything, needs to be taller than one block.
-http://media-cdn.tripadvisor.com/media/photo-s/01/3d/24/45/our-tipi.jpg
 
 Flute: A really basic flute, will only render in hand, preferable to have a little twig for detail, made out of wood (Oak).
 

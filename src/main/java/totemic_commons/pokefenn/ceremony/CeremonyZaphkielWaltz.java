@@ -25,13 +25,11 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
     public void effect(TileEntity tileEntity)
     {
         TileTotemBase tileTotemBase = (TileTotemBase) tileEntity;
-
         World world = tileTotemBase.getWorldObj();
 
         if(tileTotemBase != null)
         {
             int radius = 6;
-
             int x = tileTotemBase.xCoord;
             int y = tileTotemBase.yCoord;
             int z = tileTotemBase.zCoord;
@@ -43,18 +41,22 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
                     if(entity instanceof EntityItem)
                     {
                         if(world.getWorldTime() % 20L == 0)
+                        {
                             if(((EntityItem) entity).getEntityItem().getItem() == Items.egg)
                             {
                                 Random random = new Random();
-
                                 if(random.nextInt(4) == 1)
                                 {
                                     EntityChicken chicken = new EntityChicken(world);
                                     chicken.setPosition(entity.posX, entity.posY, entity.posZ);
                                     world.spawnEntityInWorld(chicken);
-                                    ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - 1, 0));
+                                    if(((EntityItem) entity).getEntityItem().stackSize == 1)
+                                        entity.setDead();
+                                    else
+                                        ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - 1, 0));
                                 }
                             }
+                        }
                     }
                 }
             }
@@ -68,11 +70,10 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
                             if(world.getBlock(x + i, y + j, z + k) != null)
                             {
                                 Block block = world.getBlock(x + i, y + j, z + k);
-
                                 if(block instanceof IPlantable)
                                 {
                                     Random rand = new Random();
-                                    if(rand.nextInt(30) == 1)
+                                    if(rand.nextInt(4) == 1)
                                     {
                                         block.updateTick(world, x + i, y + j, z + k, rand);
                                         break;
