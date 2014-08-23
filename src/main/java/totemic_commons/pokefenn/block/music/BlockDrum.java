@@ -2,17 +2,15 @@ package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
-import totemic_commons.pokefenn.api.music.IMusic;
-import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.client.PacketDrumSound;
 import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.client.PacketDrumSound;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -20,7 +18,7 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class BlockDrum extends BlockTileTotemic implements IMusic
+public class BlockDrum extends BlockTileTotemic
 {
     public BlockDrum()
     {
@@ -51,14 +49,14 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
             if(!(player instanceof FakePlayer))
             {
                 tileDrum.canPlay = false;
-                TotemUtil.playMusicForCeremony(tileDrum, this.musicEnum(new ItemStack(this, 1, 0), world, x, y, z, true, player), this.getRange(world, x, y, z, true, player), this.getMaximumMusic(world, x, y, z, true, player), this.getMusicOutput(world, x, y, z, true, player));
+                TotemUtil.playMusicForCeremony(tileDrum, HandlerInitiation.drum, 0, 0);
                 MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
                 world.markBlockForUpdate(x, y, z);
             }
         } else
         {
             tileDrum.canPlay = false;
-            TotemUtil.playMusicFromBlockForCeremonySelector(world, player, x, y, z, musicEnum(new ItemStack(this, 1, 0), world, x, y, z, true, player), this.getRange(world, x, y, z, true, player));
+            TotemUtil.playMusicFromBlockForCeremonySelector(world, x, y, z, HandlerInitiation.drum, 0);
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
@@ -83,12 +81,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
         return true;
     }
 
-    @Override
-    public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return MusicEnum.DRUM;
-    }
-
+    /*
     @Override
     public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
@@ -106,6 +99,7 @@ public class BlockDrum extends BlockTileTotemic implements IMusic
     {
         return 5;
     }
+    */
 
     @Override
     public boolean renderAsNormalBlock()

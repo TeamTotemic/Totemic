@@ -13,7 +13,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
@@ -122,10 +121,12 @@ public class BlockTotemBase extends BlockTileTotemic
                         {
                             if(tileTotemBase.isMusicSelecting)
                             {
+                                /*
                                 if(tileTotemBase.musicSelector[i] == 0)
                                     player.addChatComponentMessage(new ChatComponentText("No Music for selection on " + (i + 1)));
                                 else if(tileTotemBase.musicSelector[i] != 0)
                                     player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileTotemBase.musicSelector[i] - 1].getMusicName()));
+                                */
                             }
                         }
                     }

@@ -15,12 +15,11 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
-import totemic_commons.pokefenn.api.music.IMusic;
-import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.server.PacketJingle;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 import java.util.List;
@@ -29,11 +28,10 @@ import java.util.List;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
+public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 {
     public int time = 0;
     public boolean hasSpeed = false;
-
 
     public ItemJingleDress()
     {
@@ -93,11 +91,11 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
     {
         if(!isSneaking)
         {
-            TotemUtil.playMusicFromItem(world, player, this.musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
+            TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.jingleDress, 0, 0);
             particlesAllAround(world, player.posX, player.posY, player.posZ);
         } else
         {
-            TotemUtil.playMusicFromItemForCeremonySelector(itemStack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(new ItemStack(this, 1, 0), world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
+            TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.jingleDress, 0);
             particlesAllAround(world, player.posX, player.posY, player.posZ);
         }
     }
@@ -116,11 +114,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
         return EquipmentMaterials.totemArmour.getDamageReductionAmount(slot);
     }
 
-    @Override
-    public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return MusicEnum.JINGLE_DRESS;
-    }
+    /*
 
     @Override
     public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
@@ -139,6 +133,13 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
     {
         return 8;
     }
+    */
+
+    public int getBonusMusic()
+    {
+        //TODO
+        return 0;
+    }
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -151,7 +152,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor, IMusic
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        int musicOutput = getMusicOutput(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, true, player);
+        int musicOutput = HandlerInitiation.jingleDress.getBaseOutput() + getBonusMusic();
         if(musicOutput < 5)
             list.add(StatCollector.translateToLocal("totemic.music.lowMelody"));
         else if(musicOutput == 6)

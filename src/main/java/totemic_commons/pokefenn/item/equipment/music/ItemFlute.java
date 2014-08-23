@@ -9,9 +9,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.api.music.IMusic;
-import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -25,7 +24,7 @@ public class ItemFlute extends ItemMusic
 
     public ItemFlute()
     {
-        super(Strings.FLUTE_NAME);
+        super(Strings.FLUTE_NAME, HandlerInitiation.flute);
         setMaxStackSize(1);
         time = 0;
     }
@@ -39,14 +38,14 @@ public class ItemFlute extends ItemMusic
             if(time >= 5 && !player.isSneaking())
             {
                 time = 0;
-                TotemUtil.playMusicFromItem();
+                TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.flute, 0, 0);
                 particlesAllAround(world, player.posX, player.posY, player.posZ, false);
                 return itemStack;
             }
             if(time >= 5 && player.isSneaking())
             {
                 time = 0;
-                TotemUtil.playMusicFromItemForCeremonySelector(itemStack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
+                TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
                 particlesAllAround(world, player.posX, player.posY, player.posZ, true);
             }
             if(itemStack.getItemDamage() == 1)
@@ -68,6 +67,7 @@ public class ItemFlute extends ItemMusic
         return itemStack;
     }
 
+    /*
     @Override
     public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
@@ -85,6 +85,7 @@ public class ItemFlute extends ItemMusic
     {
         return 7;
     }
+    */
 
     public void particlesAllAround(World world, double x, double y, double z, boolean firework)
     {

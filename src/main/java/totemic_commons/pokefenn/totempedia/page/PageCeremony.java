@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
+import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.util.TotemUtil;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 
@@ -35,16 +35,16 @@ public class PageCeremony extends PageRecipe
         {
             TextureManager render = Minecraft.getMinecraft().renderEngine;
             FontRenderer font = Minecraft.getMinecraft().fontRenderer;
-            MusicEnum[] musicEnums = ceremony.getCeremonyEffect().getMusicEnums();
+            int[] instruemnts = ceremony.getCeremonyEffect().getMusicIds();
             String musicNeeded = TotemUtil.getMusicNeeded(ceremony.getCeremonyActivation().getMusicNeeded());
             String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
 
-            if(TotemUtil.getItemStackFromEnum(musicEnums[0]) != null && TotemUtil.getItemStackFromEnum(musicEnums[1]) != null && TotemUtil.getItemStackFromEnum(musicEnums[2]) != null && TotemUtil.getItemStackFromEnum(musicEnums[3]) != null)
+            if(MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(0)).getItem(0) != null && MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(1)).getItem(0) != null && MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(2)).getItem(0) != null && MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(3)).getItem(0) != null)
             {
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 40, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[0]), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[1]), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[2]), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -21, gui.getTop() + 31, TotemUtil.getItemStackFromEnum(musicEnums[3]), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 40, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(0)).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(1)).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(2)).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -21, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(0)).getItem(3), false);
             }
 
             GL11.glEnable(GL11.GL_BLEND);

@@ -6,7 +6,6 @@ import net.minecraft.entity.EnumCreatureType;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
-import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
 
 /**
  * Created by Pokefenn.
@@ -18,7 +17,6 @@ public final class ModEntities
 
     public static void init()
     {
-        EntityRegistry.registerModEntity(EntityBaseDart.class, "totemDart", ConfigurationSettings.ENTITY_ID_DART, Totemic.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityBuffalo.class, "totemicBuffalo", ConfigurationSettings.ENTITY_ID_BUFFALO, Totemic.instance, 80, 5, true);
 
         EntityRegistry.addSpawn(EntityBuffalo.class, 1000, 2, 4, EnumCreatureType.creature);

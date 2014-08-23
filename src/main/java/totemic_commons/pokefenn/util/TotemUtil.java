@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.util;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
@@ -58,7 +57,7 @@ public class TotemUtil
         player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32), defaultStrength - (melodyAmount > 112 ? 1 : 0)));
     }
 
-    public static void playMusicFromItemForCeremonySelector(ItemStack itemStack, EntityPlayer player, int x, int y, int z, MusicHandler musicHandler, int radius)
+    public static void playMusicFromItemForCeremonySelector(EntityPlayer player, int x, int y, int z, MusicHandler musicHandler, int radius)
     {
         World world = player.worldObj;
 
@@ -106,8 +105,10 @@ public class TotemUtil
         world.markBlockForUpdate(x, y, z);
     }
 
-    public static void playMusicFromBlockForCeremonySelector(World world, EntityPlayer player, int x, int y, int z, int id, int radius)
+    public static void playMusicFromBlockForCeremonySelector(World world, int x, int y, int z, MusicHandler musicHandler, int bonusRadius)
     {
+        int radius = musicHandler.getBaseRange() + bonusRadius;
+        int id =  musicHandler.getMusicId();
         for(int i = -radius; i <= radius; i++)
             for(int j = -radius; j <= radius; j++)
                 for(int k = -radius; k <= radius; k++)
@@ -122,13 +123,17 @@ public class TotemUtil
                 }
     }
 
-    public static void playMusicForCeremony(TileTotemic tileCeremony, int id, int radius, int musicMaximum, int musicAmount)
+    public static void playMusicForCeremony(TileTotemic tileCeremony, MusicHandler musicHandler, int bonusRadius, int bonusMusicAmount)
     {
         World world = tileCeremony.getWorldObj();
 
         int x = tileCeremony.xCoord;
         int y = tileCeremony.yCoord;
         int z = tileCeremony.zCoord;
+
+        int radius = bonusRadius + musicHandler.getBaseRange();
+        int id = musicHandler.getMusicId();
+        int musicAmount = musicHandler.getBaseOutput() + bonusMusicAmount;
 
         for(int i = -radius; i <= radius; i++)
             for(int j = -radius; j <= radius; j++)
@@ -143,7 +148,7 @@ public class TotemUtil
                             addMusicPlayed((TileTotemBase) block, id);
                             int shiftedMusic = getShiftedMusic(musicAmount, (TileTotemBase) block, id);
 
-                            playMusic(x, y, z, block, id, i, j, k, shiftedMusic, musicMaximum);
+                            playMusic(x, y, z, block, id, i, j, k, shiftedMusic, musicHandler.getMusicMaximum());
                             return;
                         }
 
@@ -195,7 +200,7 @@ public class TotemUtil
         world.markBlockForUpdate(x, y, z);
     }
 
-    public static void playMusicFromItem(World world, EntityPlayer player, int x, int y, int z, MusicHandler musicHandler, int bonusRadius, int bonusMusicAmount)
+    public static void playMusicFromItem(World world, int x, int y, int z, MusicHandler musicHandler, int bonusRadius, int bonusMusicAmount)
     {
         int radius = musicHandler.getBaseRange() + bonusRadius;
         for(int i = -radius; i <= radius; i++)

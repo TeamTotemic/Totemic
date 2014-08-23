@@ -7,7 +7,6 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.entity.projectile.EntityBaseDart;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -60,11 +59,11 @@ public class ItemBlowGun extends ItemTotemic
             }
 
 
-            EntityBaseDart entity = new EntityBaseDart(world, player, moveSpeedThingy * 2.0F, metadata);
+            //EntityBaseDart entity = new EntityBaseDart(world, player, moveSpeedThingy * 2.0F, metadata);
             if(!world.isRemote)
             {
                 itemStack.damageItem(1, player);
-                world.spawnEntityInWorld(entity);
+                //world.spawnEntityInWorld(entity);
             }
 
         }

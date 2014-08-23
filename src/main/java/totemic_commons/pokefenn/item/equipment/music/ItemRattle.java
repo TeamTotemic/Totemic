@@ -9,11 +9,10 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
-import totemic_commons.pokefenn.api.music.IMusic;
-import totemic_commons.pokefenn.api.music.MusicEnum;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketRattleSound;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -23,7 +22,7 @@ import java.util.List;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemRattle extends ItemMusic implements IMusic
+public class ItemRattle extends ItemMusic
 {
     public int time;
 
@@ -32,7 +31,7 @@ public class ItemRattle extends ItemMusic implements IMusic
 
     public ItemRattle()
     {
-        super(Strings.CEREMONY_RATTLE_NAME);
+        super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.flute);
         time = 0;
         headPoles = 0;
     }
@@ -66,7 +65,7 @@ public class ItemRattle extends ItemMusic implements IMusic
                     if(time >= 4 && !player.isSneaking())
                     {
                         time = 0;
-                        TotemUtil.playMusicFromItem(world, player, this.musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), (int) player.posX, (int) player.posY, (int) player.posZ, this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMaximumMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getMusicOutput(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
+                        TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.rattle, 0, 0);
                         particlesAllAround(world, player.posX, player.posY, player.posZ, false);
                         PacketHandler.sendAround(new PacketRattleSound(x, y, z), ((EntityPlayer) entityLiving).worldObj.provider.dimensionId, x, y, z);
                         return false;
@@ -74,7 +73,7 @@ public class ItemRattle extends ItemMusic implements IMusic
                     if(time >= 4 && player.isSneaking())
                     {
                         time = 0;
-                        TotemUtil.playMusicFromItemForCeremonySelector(itemStack, player, (int) player.posX, (int) player.posY, (int) player.posZ, musicEnum(itemStack, world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player), this.getRange(world, (int) player.posX, (int) player.posY, (int) player.posZ, true, player));
+                        TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
                         particlesAllAround(world, player.posX, player.posY, player.posZ, true);
                         PacketHandler.sendAround(new PacketRattleSound(x, y, z), ((EntityPlayer) entityLiving).worldObj.provider.dimensionId, x, y, z);
                     }
@@ -101,12 +100,7 @@ public class ItemRattle extends ItemMusic implements IMusic
         }
     }
 
-    @Override
-    public MusicEnum musicEnum(ItemStack itemStack, World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return MusicEnum.RATTLE;
-    }
-
+    /*
     @Override
     public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
     {
@@ -124,4 +118,5 @@ public class ItemRattle extends ItemMusic implements IMusic
     {
         return 8;
     }
+    */
 }
