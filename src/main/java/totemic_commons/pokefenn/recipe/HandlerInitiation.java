@@ -43,7 +43,7 @@ public class HandlerInitiation
     public static void init()
     {
         totemRegistry();
-        ceremonyHandler();
+        //ceremonyHandler();
         instruments();
 
         furnaceRecipes();
