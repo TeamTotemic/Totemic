@@ -78,7 +78,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                     if(itemStack.getItemDamage() == TotemRegistry.totemEffect.size())
                     {
 
-                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole, blockMetadata < 4 ? blockMetadata : 5, 2);
+                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemBase, blockMetadata < 4 ? blockMetadata : 5, 2);
                         if(world.getBlock(block.blockX, block.blockY, block.blockZ) instanceof BlockTotemBase)
                         {
                             TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
