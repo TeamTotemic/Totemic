@@ -24,7 +24,7 @@ public final class ModEntities
         if(ConfigurationSettings.SPAWN_EGGS)
         {
             EntityList.IDtoClassMapping.put(ConfigurationSettings.ENTITY_ID_BUFFALO, EntityBuffalo.class);
-            EntityList.entityEggs.put(EntityBuffalo.class, new EntityList.EntityEggInfo(ConfigurationSettings.ENTITY_ID_BUFFALO, 0x1330, 0x1323122));
+            EntityList.entityEggs.put(ConfigurationSettings.ENTITY_ID_BUFFALO, new EntityList.EntityEggInfo(ConfigurationSettings.ENTITY_ID_BUFFALO, 0x1330, 0x1323122));
         }
     }
 
