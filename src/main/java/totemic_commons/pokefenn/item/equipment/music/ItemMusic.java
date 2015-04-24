@@ -9,6 +9,7 @@ import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.item.ItemTotemic;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Pokefenn.
@@ -21,7 +22,7 @@ public abstract class ItemMusic extends ItemTotemic
     public ItemMusic(String name, MusicHandler musicHandler)
     {
         super(name);
-        this.musicHandler = musicHandler;
+        this.musicHandler = Objects.requireNonNull(musicHandler);
     }
 
     @Override

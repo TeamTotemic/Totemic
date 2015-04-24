@@ -41,9 +41,9 @@ public final class ModItems
         jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
         //buffaloItems = new ItemBuffaloDrops();
-        //ceremonialRattle = new ItemRattle();
+        ceremonialRattle = new ItemRattle();
         totempedia = new ItemTotempedia();
-        //flute = new ItemFlute();
+        flute = new ItemFlute();
         tipi = new ItemTipi();
 
         GameRegistry.registerItem(totemWhittlingKnife, Strings.TOTEM_WHITTLING_KNIFE_NAME);
@@ -53,9 +53,9 @@ public final class ModItems
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
         //GameRegistry.registerItem(buffaloItems, Strings.BUFFALO_ITEMS_NAME);
-        //GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
+        GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
         GameRegistry.registerItem(totempedia, Strings.TOTEMPEDIA_NAME);
-        //GameRegistry.registerItem(flute, Strings.FLUTE_NAME);
+        GameRegistry.registerItem(flute, Strings.FLUTE_NAME);
         GameRegistry.registerItem(tipi, Strings.TIPI_ITEM_NAME);
 
         initBaubles();
