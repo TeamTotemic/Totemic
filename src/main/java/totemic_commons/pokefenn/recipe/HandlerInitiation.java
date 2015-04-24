@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.api.ceremony.*;
 import totemic_commons.pokefenn.api.music.MusicHandler;
@@ -74,6 +75,11 @@ public class HandlerInitiation
     static void instruments()
     {
         //TODO
+    	flute = TotemicAPI.addInstrument(0, 5, 2, 150, new ItemStack(ModItems.flute));
+    	drum = TotemicAPI.addInstrument(1, 7, 2, 150, new ItemStack(ModBlocks.drum));
+    	windChime = TotemicAPI.addInstrument(2, 8, 2, 150, new ItemStack(ModBlocks.windChime));
+    	jingleDress = TotemicAPI.addInstrument(3, 6, 2, 150, new ItemStack(ModItems.jingleDress));
+    	rattle = TotemicAPI.addInstrument(4, 6, 2, 150, new ItemStack(ModItems.ceremonialRattle));
     }
 
     static void furnaceRecipes()
