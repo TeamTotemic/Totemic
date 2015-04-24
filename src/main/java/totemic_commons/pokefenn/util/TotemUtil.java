@@ -29,17 +29,17 @@ public class TotemUtil
 
         if(music == 0)
             unlocalized = "none";
-        else if(music > 0 && music < 50)
+        else if(music < 50)
             unlocalized = "little";
-        else if(music > 50 && music < 75)
+        else if(music < 75)
             unlocalized = "littleMedium";
-        else if(music > 75 && music < 100)
+        else if(music < 100)
             unlocalized = "medium";
-        else if(music > 100 && music < 125)
+        else if(music < 125)
             unlocalized = "mediumLarge";
-        else if(music > 125 && music < 150)
+        else if(music < 150)
             unlocalized = "large";
-        else if(music > 150)
+        else
             unlocalized = "crazyLarge";
 
         return welp + unlocalized;
