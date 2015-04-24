@@ -18,8 +18,6 @@ public class CraftingRecipes
         oreDictionary();
         shapelessRecipes();
         shapedRecipes();
-
-        HandlerInitiation.init();
     }
 
     static void shapedRecipes()

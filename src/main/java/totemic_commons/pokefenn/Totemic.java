@@ -19,6 +19,7 @@ import totemic_commons.pokefenn.network.GuiHandler;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.CraftingRecipes;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.totempedia.LexiconData;
 
 import java.io.File;
@@ -52,6 +53,7 @@ public final class Totemic
         potionIncrease();
         logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
         logger.info("Totemic is Loading");
+        HandlerInitiation.init();
         ModBlocks.init();
         ModItems.init();
     }
