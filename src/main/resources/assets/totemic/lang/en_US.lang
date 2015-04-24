@@ -49,6 +49,15 @@ totemic.ceremony.drought=Drought Ceremony
 totemic.ceremony.potion=Ceremony of Divine Elixirs
 totemic.ceremony.buffaloDance=Mandan Buffalo Dance
 
+#Totem effect names
+totemic.totem.horse=Horse
+totemic.totem.squid=Squid
+totemic.totem.blaze=Blaze
+totemic.totem.ocelot=Ocelot
+totemic.totem.bat=Bat
+totemic.totem.spider=Spider
+totemic.totem.cow=Cow
+
 totemicmisc.timeForCeremony=Startup time:
 totemicmisc.seconds= Seconds
 totemicmisc.overTime=Over Time:
