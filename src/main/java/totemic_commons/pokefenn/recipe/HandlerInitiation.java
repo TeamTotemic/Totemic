@@ -44,8 +44,8 @@ public class HandlerInitiation
     public static void init()
     {
         totemRegistry();
-        //ceremonyHandler();
         instruments();
+        ceremonyHandler();
 
         furnaceRecipes();
     }
@@ -74,7 +74,7 @@ public class HandlerInitiation
     
     static void instruments()
     {
-        //TODO
+        //TODO: Correct values
     	flute = TotemicAPI.addInstrument(0, 5, 2, 150, new ItemStack(ModItems.flute));
     	drum = TotemicAPI.addInstrument(1, 7, 2, 150, new ItemStack(ModBlocks.drum));
     	windChime = TotemicAPI.addInstrument(2, 8, 2, 150, new ItemStack(ModBlocks.windChime));
