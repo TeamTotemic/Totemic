@@ -36,9 +36,9 @@ public class WailaTotemBase implements IWailaDataProvider
         {
             TileTotemBase totemBase = (TileTotemBase) accessor.getTileEntity();
             if(totemBase.isDoingEffect)
-                currenttip.add(CeremonyRegistry.ceremonyRegistry.get(totemBase.currentCeremony).getName());
+                currenttip.add(CeremonyRegistry.ceremonyRegistry.get(totemBase.currentCeremony).getLocalizedName());
             else if(totemBase.isDoingStartup)
-                currenttip.add(CeremonyRegistry.ceremonyRegistry.get(totemBase.tryingCeremonyID).getName());
+                currenttip.add(CeremonyRegistry.ceremonyRegistry.get(totemBase.tryingCeremonyID).getLocalizedName());
             currenttip.add(TileTotemBase.getMusicName(totemBase.musicForTotemEffect));
 
             if(totemBase.isMusicSelecting)

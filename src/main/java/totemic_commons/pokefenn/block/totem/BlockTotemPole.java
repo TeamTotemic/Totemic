@@ -74,7 +74,7 @@ public class BlockTotemPole extends BlockTileTotemic
         {
             if(player.getHeldItem() != null && tileTotemSocket.getTotemId() != 0 && (player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem().getItem() == ModItems.infusedTotemicStaff))
             {
-                player.addChatComponentMessage(new ChatComponentText("Active Totem Effect: " + TotemRegistry.getRecipes().get(tileTotemSocket.getTotemId())));
+                player.addChatComponentMessage(new ChatComponentText("Active Totem Effect: " + TotemRegistry.getRecipes().get(tileTotemSocket.getTotemId()).getLocalizedName()));
             }
             world.markBlockForUpdate(x, y, z);
         }

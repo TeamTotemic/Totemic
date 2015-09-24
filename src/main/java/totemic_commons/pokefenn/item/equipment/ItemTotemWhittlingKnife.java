@@ -34,7 +34,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         list.add("A knife for all your whittlin' needs");
         list.add("Shift and right click to change carving");
         if(stack.getItemDamage() < TotemRegistry.totemEffect.size())
-            list.add("Currently Carving: " + TotemRegistry.totemEffect.get(stack.getItemDamage()).getName());
+            list.add("Currently Carving: " + TotemRegistry.totemEffect.get(stack.getItemDamage()).getLocalizedName());
         if(stack.getItemDamage() == TotemRegistry.totemEffect.size())
             list.add("Currently Carving: Totem Base");
 

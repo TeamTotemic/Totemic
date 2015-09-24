@@ -22,16 +22,16 @@ import java.util.List;
 public class TotemicAPI
 {
 
-    private static List<LexiconCategory> categories = new ArrayList<LexiconCategory>();
-    private static List<LexiconEntry> allEntries = new ArrayList<LexiconEntry>();
+    private static List<LexiconCategory> categories = new ArrayList<>();
+    private static List<LexiconEntry> allEntries = new ArrayList<>();
 
     /**
-     * @param id         A identification for your Totem, used for repetition and is how the information of the Totem is stored.
+     * @param id         A unique identification for your Totem
      * @param vertical   The vertical radius of the Totem, this is the base
      * @param horizontal The horizontal radius of the Totem, this is the base
-     * @param effect     The TotemEffect
+     * @param effect     The Totem Effect
      * @param tier       The tier, currently not used, so just put 1 or something
-     * @param name       The name of the Totem
+     * @param name       The unlocalized name of the Totem
      * @return The TotemRegistry, you will then be able to store this to use it for later information
      */
     public static TotemRegistry addTotem(int id, int vertical, int horizontal, ITotemEffect effect, int tier, String name)
@@ -42,8 +42,8 @@ public class TotemicAPI
     }
 
     /**
-     * @param name               The name of the Ceremony, this will be displayed and such.
-     * @param ceremonyID         A identification integer that is used to hold the info for the Ceremony and get it back, etc.
+     * @param name               The unlocalized name of the Ceremony
+     * @param ceremonyID         A unique identification integer for your Ceremony
      * @param ceremonyActivation This holds information on what is needed to activate the ceremony.
      * @param ceremonyEffect     This holds information on what effect the Ceremony does.
      * @return The CeremonyRegistry of this Ceremony, save this and use the info later on.

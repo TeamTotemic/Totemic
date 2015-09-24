@@ -3,6 +3,8 @@ package totemic_commons.pokefenn.api.totem;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.util.StatCollector;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Pokefenn
@@ -66,4 +68,8 @@ public class TotemRegistry
         return this.name;
     }
 
+    public String getLocalizedName()
+    {
+        return StatCollector.translateToLocal(name);
+    }
 }
