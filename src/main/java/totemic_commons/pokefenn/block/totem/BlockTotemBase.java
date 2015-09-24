@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
@@ -108,7 +109,12 @@ public class BlockTotemBase extends BlockTileTotemic
             if(tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
             {
                 if(tileTotemBase.isDoingStartup)
+                {
                     player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing startup"));
+                    player.addChatComponentMessage(new ChatComponentText("Music amount: " + tileTotemBase.totalCeremonyMelody));
+                    player.addChatComponentMessage(new ChatComponentText("Startup time: " + tileTotemBase.ceremonyStartupTimer + " / "
+                            + CeremonyRegistry.fromId(tileTotemBase.tryingCeremonyID).getCeremonyActivation().getMaximumStartupTime().getTime()));
+                }
                 if(tileTotemBase.isDoingEffect)
                     player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing it's effect"));
 
