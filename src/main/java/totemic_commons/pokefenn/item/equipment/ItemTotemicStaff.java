@@ -1,24 +1,20 @@
 package totemic_commons.pokefenn.item.equipment;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.util.EntityUtil;
-
-import java.util.List;
 
 public class ItemTotemicStaff extends ItemTotemic
 {
-
-
     public ItemTotemicStaff()
     {
         super(Strings.TOTEMIC_STAFF_NAME);
@@ -40,28 +36,17 @@ public class ItemTotemicStaff extends ItemTotemic
     }
 
     @Override
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
         if(!world.isRemote)
         {
             //EntityBuffalo buffalo = new EntityBuffalo(world);
             //buffalo.setPosition(player.posX, player.posY, player.posZ);
             //world.spawnEntityInWorld(buffalo);
-
-            MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
-
-            if(block != null)
+            Block block = world.getBlock(x, y, z);
+            if(block instanceof ITotemicStaffUsage)
             {
-                Block blockQuery = (world.getBlock(block.blockX, block.blockY, block.blockZ));
-
-                if(blockQuery != null)
-                {
-                    if(blockQuery instanceof ITotemicStaffUsage)
-                    {
-                        ((ITotemicStaffUsage) blockQuery).onBasicRightClick(block.blockX, block.blockY, block.blockZ, player, world, par1ItemStack);
-                        return true;
-                    }
-                }
+                ((ITotemicStaffUsage) block).onBasicRightClick(x, y, z, player, world, stack);
             }
 
         }

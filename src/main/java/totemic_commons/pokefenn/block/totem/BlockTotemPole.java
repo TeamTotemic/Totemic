@@ -13,10 +13,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.api.totem.TotemRegistry;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
@@ -29,7 +31,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
  * Date: 02/02/14
  * Time: 13:03
  */
-public class BlockTotemPole extends BlockTileTotemic
+public class BlockTotemPole extends BlockTileTotemic implements ITotemicStaffUsage
 {
     public BlockTotemPole()
     {
@@ -67,20 +69,13 @@ public class BlockTotemPole extends BlockTileTotemic
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world, ItemStack itemStack)
     {
         TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(x, y, z);
-
-        if(tileTotemSocket != null && !world.isRemote)
+        if(tileTotemSocket.getTotemId() != 0)
         {
-            if(player.getHeldItem() != null && tileTotemSocket.getTotemId() != 0 && (player.getHeldItem().getItem() == ModItems.totemicStaff || player.getHeldItem().getItem() == ModItems.infusedTotemicStaff))
-            {
-                player.addChatComponentMessage(new ChatComponentText("Active Totem Effect: " + TotemRegistry.getRecipes().get(tileTotemSocket.getTotemId()).getLocalizedName()));
-            }
-            world.markBlockForUpdate(x, y, z);
+            player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", TotemRegistry.getRecipes().get(tileTotemSocket.getTotemId()).getLocalizedName()));
         }
-
-        return true;
     }
 
     @SideOnly(Side.CLIENT)

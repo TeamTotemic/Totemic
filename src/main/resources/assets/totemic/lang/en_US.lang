@@ -66,6 +66,7 @@ totemicmisc.capitalTrue=True
 totemicmisc.musicSelector=Musical Selectors
 totemicmisc.tipi.cantSleep=You can not sleep in a tipi without being in the open fields
 totemicmisc.tipi.nether=You can not sleep in the nether
+totemicmisc.activeEffect=Active Totem Effect: %s
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.
