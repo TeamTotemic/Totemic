@@ -22,6 +22,7 @@ public class TileTotemSocketCubeRenderer extends TileEntitySpecialRenderer
 {
     private final ModelTotemPole modelTotemSocket = new ModelTotemPole();
 
+    @Override
     public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f)
     {
         GL11.glPushMatrix();
@@ -41,7 +42,7 @@ public class TileTotemSocketCubeRenderer extends TileEntitySpecialRenderer
         int l1 = l % 65536;
         int l2 = l / 65536;
         tessellator.setColorOpaque_F(f, f, f);
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, l1, l2);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, 1.47F, 0.5F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
