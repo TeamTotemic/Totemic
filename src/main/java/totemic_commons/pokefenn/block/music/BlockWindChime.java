@@ -2,7 +2,6 @@ package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -10,14 +9,13 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModBlocks;
+import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketWindChimeSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
-import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
@@ -36,26 +34,23 @@ public class BlockWindChime extends BlockTileTotemic
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor)
     {
-        breakStuffs(x, y, z, world);
+        breakStuffs(world, x, y, z);
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+    public boolean canPlaceBlockAt(World world, int x, int y, int z)
     {
-        breakStuffs(x, y, z, world);
+        return world.isAirBlock(x, y-1, z) && world.isSideSolid(x, y+1, z, ForgeDirection.DOWN);
     }
 
-    public static void breakStuffs(int x, int y, int z, World world)
+    public void breakStuffs(World world, int x, int y, int z)
     {
         if(!world.isRemote)
         {
-            if(world.getTileEntity(x, y, z) instanceof TileWindChime)
+            if(!canPlaceBlockAt(world, x, y, z))
             {
-                if(!world.isAirBlock(x, y - 1, z) || world.isAirBlock(x, y + 1, z))
-                {
-                    world.setBlockToAir(x, y, z);
-                    EntityUtil.dropItem(world, x, y, z, new ItemStack(ModBlocks.windChime, 1 , 0));
-                }
+                world.setBlockToAir(x, y, z);
+                dropBlockAsItem(world, x, y, z, new ItemStack(this));
             }
         }
     }
