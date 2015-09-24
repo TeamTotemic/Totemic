@@ -27,11 +27,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.logging.Logger;
 
-@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = "0.4.1", dependencies = "after:Baubles;after:Waila;")
+@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, dependencies = "after:Baubles;after:Waila;")
 public final class Totemic
 {
     public static final String MOD_ID = "totemic";
     public static final String MOD_NAME = "Totemic";
+    public static final String MOD_VERSION = "${version}";
 
     @Instance(MOD_ID)
     public static Totemic instance;

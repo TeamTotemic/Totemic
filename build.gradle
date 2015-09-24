@@ -17,14 +17,20 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.2-0.4.1"
+version = "1.7.10-0.5.0"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
     version = "1.7.10-10.13.4.1448-1.7.10"
     runDir = "run"
+    
+    replaceIn "Totemic.java"
+    replace "\${version}", project.version
 }
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
 
 dependencies {
     // you may put jars on which you depend on in ./libs
