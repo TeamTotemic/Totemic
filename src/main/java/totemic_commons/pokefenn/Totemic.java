@@ -85,27 +85,35 @@ public final class Totemic
 
     void potionIncrease()
     {
-        Potion[] potionTypes = null;
-
-        for(Field f : Potion.class.getDeclaredFields())
+        try
         {
-            f.setAccessible(true);
-            try
+            for(Field f : Potion.class.getDeclaredFields())
             {
                 if(f.getName().equals("potionTypes") || f.getName().equals("field_76425_a"))
                 {
+                    f.setAccessible(true);
                     Field modfield = Field.class.getDeclaredField("modifiers");
                     modfield.setAccessible(true);
                     modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
-                    potionTypes = (Potion[]) f.get(null);
-                    final Potion[] newPotionTypes = new Potion[256];
-                    System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
-                    f.set(null, newPotionTypes);
+                    Potion[] potionTypes = (Potion[]) f.get(null);
+                    if(potionTypes.length < 256)
+                    {
+                        final Potion[] newPotionTypes = new Potion[256];
+                        System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
+                        f.set(null, newPotionTypes);
+
+                        logger.info("Successfully increased the potion array");
+                    }
+                    else
+                    {
+                        logger.info("Some other mod already increased the potion array");
+                    }
                 }
-            } catch(Exception e)
-            {
-                System.err.println(e);
             }
+        }
+        catch(Exception e)
+        {
+            logger.error("Could not increase potion array", e);
         }
     }
 
