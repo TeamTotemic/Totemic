@@ -36,6 +36,7 @@ public class BlockTotemBase extends BlockTileTotemic
         super(Material.wood);
         setBlockName(Strings.TOTEM_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
+        setBlockBounds(0.125F, 0.0F, 0.125F, 0.875F, 0.96875F, 0.875F);
     }
 
     @Override

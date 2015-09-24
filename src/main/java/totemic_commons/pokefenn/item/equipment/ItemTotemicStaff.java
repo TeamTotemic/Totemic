@@ -32,6 +32,7 @@ public class ItemTotemicStaff extends ItemTotemic
         list.add("A staff for your Totemic needs!");
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack par1ItemStack)
     {

@@ -35,7 +35,7 @@ public class BlockTotemPole extends BlockTileTotemic
         super(Material.wood);
         setBlockName(Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
-        setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.95F, 0.8F);
+        setBlockBounds(0.1875F, -0.03125F, 0.1875F, 0.8125F, 0.96875F, 0.8125F);
     }
 
     @Override
