@@ -74,7 +74,7 @@ public class BlockTotemPole extends BlockTileTotemic implements ITotemicStaffUsa
         TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(x, y, z);
         if(tileTotemSocket.getTotemId() != 0)
         {
-            player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", TotemRegistry.getRecipes().get(tileTotemSocket.getTotemId()).getLocalizedName()));
+            player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", TotemRegistry.fromId(tileTotemSocket.getTotemId()).getLocalizedName()));
         }
     }
 

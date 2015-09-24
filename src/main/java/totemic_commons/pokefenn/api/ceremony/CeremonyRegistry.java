@@ -1,7 +1,10 @@
 package totemic_commons.pokefenn.api.ceremony;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.util.StatCollector;
 
@@ -11,9 +14,10 @@ import net.minecraft.util.StatCollector;
  */
 public class CeremonyRegistry
 {
-    public static List<CeremonyRegistry> ceremonyRegistry = new ArrayList<CeremonyRegistry>();
+    private static final List<CeremonyRegistry> ceremonyList = new ArrayList<>();
+    private static final Map<Integer, CeremonyRegistry> idToCeremony = new HashMap<>();
 
-    private final int ceremonyID;
+    private final int id;
     private final String name;
     private final CeremonyEffect ceremonyEffect;
     private final CeremonyActivation ceremonyActivation;
@@ -21,14 +25,33 @@ public class CeremonyRegistry
     public CeremonyRegistry(String name, int ceremonyID, CeremonyEffect ceremonyEffect, CeremonyActivation ceremonyActivation)
     {
         this.name = name;
-        this.ceremonyID = ceremonyID;
+        this.id = ceremonyID;
         this.ceremonyActivation = ceremonyActivation;
         this.ceremonyEffect = ceremonyEffect;
     }
 
+    public static List<CeremonyRegistry> getCeremonyList()
+    {
+        return Collections.unmodifiableList(ceremonyList);
+    }
+
+    public static CeremonyRegistry fromId(int id)
+    {
+        return idToCeremony.get(id);
+    }
+
+    public static CeremonyRegistry addCeremony(CeremonyRegistry entry)
+    {
+        if(idToCeremony.containsKey(entry.id))
+            throw new IllegalArgumentException("Duplicate Ceremony entry for ID " + entry.id + ": " + entry.name + " and " + fromId(entry.id).name);
+        ceremonyList.add(entry);
+        idToCeremony.put(entry.id, entry);
+        return entry;
+    }
+
     public int getCeremonyID()
     {
-        return this.ceremonyID;
+        return this.id;
     }
 
     public String getName()

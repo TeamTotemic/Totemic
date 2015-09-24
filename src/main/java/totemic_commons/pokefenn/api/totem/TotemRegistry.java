@@ -1,7 +1,10 @@
 package totemic_commons.pokefenn.api.totem;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.minecraft.util.StatCollector;
 
@@ -13,8 +16,8 @@ import net.minecraft.util.StatCollector;
  */
 public class TotemRegistry
 {
-
-    public static ArrayList<TotemRegistry> totemEffect = new ArrayList<TotemRegistry>();
+    private static final List<TotemRegistry> effectsList = new ArrayList<>();
+    private static final Map<Integer, TotemRegistry> idToEffects = new HashMap<>();
 
     private final int id;
     private final int verticalHeight;
@@ -31,6 +34,25 @@ public class TotemRegistry
         this.effect = effect;
         this.tier = tier;
         this.name = name;
+    }
+
+    public static List<TotemRegistry> getTotemList()
+    {
+        return Collections.unmodifiableList(effectsList);
+    }
+
+    public static TotemRegistry fromId(int id)
+    {
+        return idToEffects.get(id);
+    }
+
+    public static TotemRegistry addTotem(TotemRegistry entry)
+    {
+        if(idToEffects.containsKey(entry.id))
+            throw new IllegalArgumentException("Duplicate Totem entry for ID " + entry.id + ": " + entry.name + " and " + fromId(entry.id).name);
+        effectsList.add(entry);
+        idToEffects.put(entry.id, entry);
+        return entry;
     }
 
     public int getTotemId()
@@ -51,11 +73,6 @@ public class TotemRegistry
     public ITotemEffect getEffect()
     {
         return this.effect;
-    }
-
-    public static List<TotemRegistry> getRecipes()
-    {
-        return totemEffect;
     }
 
     public int getTier()

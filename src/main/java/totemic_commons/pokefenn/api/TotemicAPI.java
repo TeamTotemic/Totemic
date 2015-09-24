@@ -37,8 +37,7 @@ public class TotemicAPI
     public static TotemRegistry addTotem(int id, int vertical, int horizontal, ITotemEffect effect, int tier, String name)
     {
         TotemRegistry totemRegistry = new TotemRegistry(id, vertical, horizontal, effect, tier, name);
-        TotemRegistry.getRecipes().add(totemRegistry);
-        return totemRegistry;
+        return TotemRegistry.addTotem(totemRegistry);
     }
 
     /**
@@ -51,7 +50,7 @@ public class TotemicAPI
     public static CeremonyRegistry addCeremony(String name, int ceremonyID, CeremonyEffect ceremonyEffect, CeremonyActivation ceremonyActivation)
     {
         CeremonyRegistry ceremonyRegistry = new CeremonyRegistry(name, ceremonyID, ceremonyEffect, ceremonyActivation);
-        CeremonyRegistry.ceremonyRegistry.add(ceremonyRegistry);
+        CeremonyRegistry.addCeremony(ceremonyRegistry);
         return ceremonyRegistry;
     }
 
