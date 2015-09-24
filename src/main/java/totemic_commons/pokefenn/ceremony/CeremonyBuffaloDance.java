@@ -30,7 +30,7 @@ public class CeremonyBuffaloDance extends CeremonyBase
                             if(entity instanceof EntityCow && !(entity instanceof EntityBuffalo))
                             {
                                 i++;
-                                EntityUtil.spawnEntityInWorld(tileEntity.getWorldObj(), entity.posX, entity.posY, entity.posZ, new EntityBuffalo(tileEntity.getWorldObj()));
+                                EntityUtil.spawnEntity(tileEntity.getWorldObj(), entity.posX, entity.posY, entity.posZ, new EntityBuffalo(tileEntity.getWorldObj()));
                                 entity.setDead();
                             }
                         }

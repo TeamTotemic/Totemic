@@ -54,7 +54,7 @@ public class BlockWindChime extends BlockTileTotemic
                 if(!world.isAirBlock(x, y - 1, z) || world.isAirBlock(x, y + 1, z))
                 {
                     world.setBlockToAir(x, y, z);
-                    EntityUtil.spawnEntityInWorld(world, x, y, z, new ItemStack(ModBlocks.windChime, 1 , 0));
+                    EntityUtil.dropItem(world, x, y, z, new ItemStack(ModBlocks.windChime, 1 , 0));
                 }
             }
         }

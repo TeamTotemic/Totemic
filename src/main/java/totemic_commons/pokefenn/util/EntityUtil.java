@@ -30,18 +30,18 @@ public class EntityUtil
         return world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius));
     }
 
-    public static void spawnEntityInWorld(World world, double xPos, double yPos, double zPos, Entity entity)
+    public static void spawnEntity(World world, double xPos, double yPos, double zPos, Entity entity)
     {
         world.spawnEntityInWorld(entity);
     }
 
-    public static void spawnEntityInWorld(World world, double xPos, double yPos, double zPos, ItemStack itemStack)
+    public static void dropItem(World world, double xPos, double yPos, double zPos, ItemStack itemStack)
     {
         EntityItem item = new EntityItem(world, xPos, yPos, zPos, itemStack);
         world.spawnEntityInWorld(item);
     }
 
-    public static void spawnEntityInWorld(World world, double xPos, double yPos, double zPos, Item itemStack)
+    public static void dropItem(World world, double xPos, double yPos, double zPos, Item itemStack)
     {
         EntityItem item = new EntityItem(world, xPos, yPos, zPos, new ItemStack(itemStack));
         world.spawnEntityInWorld(item);
