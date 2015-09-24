@@ -13,7 +13,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
@@ -147,6 +150,12 @@ public class BlockTotemBase extends BlockTileTotemic
     public TileEntity createNewTileEntity(World var1, int var2)
     {
         return new TileTotemBase();
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        return ModBlocks.totemPole.getIcon(side, meta);
     }
 
     @Override

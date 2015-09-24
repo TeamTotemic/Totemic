@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
@@ -79,6 +80,14 @@ public class BlockTotemPole extends BlockTileTotemic
         }
 
         return true;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IIcon getIcon(int side, int meta)
+    {
+        WoodVariant wood = WoodVariant.values()[meta];
+        return wood.log.getIcon(side, wood.logMeta);
     }
 
     @Override
