@@ -1,5 +1,12 @@
 package totemic_commons.pokefenn;
 
+import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -22,11 +29,6 @@ import totemic_commons.pokefenn.recipe.CraftingRecipes;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.totempedia.LexiconData;
 
-import java.io.File;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.logging.Logger;
-
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, dependencies = "after:Baubles;after:Waila;")
 public final class Totemic
 {
@@ -43,7 +45,7 @@ public final class Totemic
     //Creative tab stuff
     public static CreativeTabs tabsTotem = new CreativeTabTotemic(CreativeTabs.getNextID(), MOD_NAME);
 
-    public static final Logger logger = Logger.getLogger(MOD_NAME);
+    public static final Logger logger = LogManager.getLogger(MOD_NAME);
 
     public static boolean baublesLoaded = false;
 
@@ -76,7 +78,7 @@ public final class Totemic
     }
 
     @EventHandler
-    public void modsLoaded(FMLPostInitializationEvent event)
+    public void postInit(FMLPostInitializationEvent event)
     {
 
     }
