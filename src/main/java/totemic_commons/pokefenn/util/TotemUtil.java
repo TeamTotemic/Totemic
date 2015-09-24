@@ -57,9 +57,10 @@ public class TotemUtil
         player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32), defaultStrength - (melodyAmount > 112 ? 1 : 0)));
     }
 
-    public static void playMusicFromItemForCeremonySelector(EntityPlayer player, int x, int y, int z, MusicHandler musicHandler, int radius)
+    public static void playMusicFromItemForCeremonySelector(EntityPlayer player, int x, int y, int z, MusicHandler musicHandler, int bonusRadius)
     {
         World world = player.worldObj;
+        int radius = musicHandler.getBaseRange() + bonusRadius;
 
         for(int i = -radius; i <= radius; i++)
             for(int j = -radius; j <= radius; j++)
@@ -216,7 +217,7 @@ public class TotemUtil
                             addMusicPlayed((TileTotemBase) block, musicHandler.getMusicId());
                             int shiftedMusic = getShiftedMusic(musicHandler.getBaseOutput() + bonusMusicAmount, (TileTotemBase) block, musicHandler.getMusicId());
 
-                            playMusic(x, y, z, block, musicHandler.getMusicId(), i, j, k, shiftedMusic, musicHandler.getMusicId());
+                            playMusic(x, y, z, block, musicHandler.getMusicId(), i, j, k, shiftedMusic, musicHandler.getMusicMaximum());
                             return;
                         }
                     }
