@@ -1,5 +1,8 @@
 package totemic_commons.pokefenn.block.totem;
 
+import java.util.List;
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -15,10 +18,8 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
-
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,8 +29,7 @@ import java.util.Random;
  */
 public class BlockTotemBase extends BlockTileTotemic
 {
-
-    private Random rand = new Random();
+    //private Random rand = new Random();
 
     public BlockTotemBase()
     {
@@ -56,10 +56,11 @@ public class BlockTotemBase extends BlockTileTotemic
         world.setBlockMetadataWithNotify(x, y, z, itemStack.getItemDamage(), 2);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list)
     {
-        for(int i = 0; i < 5; i++)
+        for(int i = 0; i < WoodVariant.count; i++)
             list.add(new ItemStack(item, 1, i));
     }
 

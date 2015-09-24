@@ -1,23 +1,19 @@
 package totemic_commons.pokefenn.item.equipment;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.totem.TotemRegistry;
-import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
-import totemic_commons.pokefenn.util.EntityUtil;
-
-import java.util.List;
 
 public class ItemTotemWhittlingKnife extends ItemTotemic
 {
@@ -60,49 +56,32 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
-        //TODO make sure that this works
-        if(!world.isRemote)
+        if(world.isRemote)
+            return true;
+
+        Block block = world.getBlock(x, y, z);
+        int meta = world.getBlockMetadata(x, y, z);
+        WoodVariant wood = WoodVariant.fromLog(block, meta);
+        if(wood == null)
+            return false;
+
+        if(stack.getItemDamage() == TotemRegistry.totemEffect.size())
         {
-            MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
-
-            if(block != null && !player.isSneaking())
-            {
-                Block blockQuery = world.getBlock(block.blockX, block.blockY, block.blockZ);
-
-                if(blockQuery instanceof BlockLog && ((blockQuery.getClass().toString().contains("net.minecraft")) || blockQuery == ModBlocks.cedarLog))
-                {
-                    int blockMetadata = world.getBlockMetadata(block.blockX, block.blockY, block.blockZ);
-
-                    if(itemStack.getItemDamage() == TotemRegistry.totemEffect.size())
-                    {
-
-                        world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemBase, blockMetadata < 4 ? blockMetadata : 5, 2);
-                        if(world.getBlock(block.blockX, block.blockY, block.blockZ) instanceof BlockTotemBase)
-                        {
-                            TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
-                            //tileTotemBase.bindedPlayer = player.getDisplayName();
-                        }
-                        return true;
-                    } else
-                    {
-                        if(itemStack.getItemDamage() < TotemRegistry.totemEffect.size())
-                        {
-
-                            world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.totemPole, blockMetadata < 4 ? blockMetadata : 5, 2);
-                            TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(block.blockX, block.blockY, block.blockZ);
-
-                            tileTotemSocket.totemId = TotemRegistry.getRecipes().get(itemStack.getItemDamage()).getTotemId();
-                            world.markBlockForUpdate(block.blockX, block.blockY, block.blockZ);
-                            tileTotemSocket.markDirty();
-                            return true;
-                        }
-                    }
-                }
-
-            }
+            world.setBlock(x, y, z, ModBlocks.totemBase, wood.ordinal(), 3);
         }
+        else if(stack.getItemDamage() < TotemRegistry.totemEffect.size())
+        {
+            world.setBlock(x, y, z, ModBlocks.totemPole, wood.ordinal(), 3);
+            TileTotemPole tile = (TileTotemPole)world.getTileEntity(x, y, z);
+
+            tile.totemId = TotemRegistry.getRecipes().get(stack.getItemDamage()).getTotemId();
+            tile.markDirty();
+            world.markBlockForUpdate(x, y, z);
+        }
+        else
+            return false;
 
         return true;
     }

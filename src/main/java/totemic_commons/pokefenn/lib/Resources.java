@@ -30,52 +30,76 @@ public class Resources
     //Models
     public static final ResourceLocation TEXTURE_TOTEM_TORCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemTorch.png");
     public static final ResourceLocation TEXTURE_TOTEM_POLE_OAK = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleOak.png");
-    public static final ResourceLocation TEXTURE_TOTEM_POLE_BIRCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleBirch.png");
     public static final ResourceLocation TEXTURE_TOTEM_POLE_SPRUCE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleSpruce.png");
+    public static final ResourceLocation TEXTURE_TOTEM_POLE_BIRCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleBirch.png");
     public static final ResourceLocation TEXTURE_TOTEM_POLE_JUNGLE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleJungle.png");
+    public static final ResourceLocation TEXTURE_TOTEM_POLE_ACACIA = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleAcacia.png");
+    public static final ResourceLocation TEXTURE_TOTEM_POLE_DARK_OAK = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleDarkOak.png");
     public static final ResourceLocation TEXTURE_TOTEM_POLE_CEDAR = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleCedar.png");
     public static final ResourceLocation TEXTURE_DRUM = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "drum.png");
     public static final ResourceLocation TEXTURE_TOTEM_BASE_OAK = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseOak.png");
-    public static final ResourceLocation TEXTURE_TOTEM_BASE_BIRCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseBirch.png");
     public static final ResourceLocation TEXTURE_TOTEM_BASE_SPRUCE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseSpruce.png");
+    public static final ResourceLocation TEXTURE_TOTEM_BASE_BIRCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseBirch.png");
     public static final ResourceLocation TEXTURE_TOTEM_BASE_JUNGLE = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseJungle.png");
+    public static final ResourceLocation TEXTURE_TOTEM_BASE_ACACIA = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseAcacia.png");
+    public static final ResourceLocation TEXTURE_TOTEM_BASE_DARK_OAK = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseDarkOak.png");
     public static final ResourceLocation TEXTURE_TOTEM_BASE_CEDAR = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemBaseCedar.png");
     public static final ResourceLocation TEXTURE_WIND_CHIME = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "windChime.png");
     public static final ResourceLocation TEXTURE_TIPI = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "tipi.png");
 
+    public static ResourceLocation getTotemPole(WoodVariant v)
+    {
+        switch(v)
+        {
+        case OAK:
+            return TEXTURE_TOTEM_POLE_OAK;
+        case SPRUCE:
+            return TEXTURE_TOTEM_POLE_SPRUCE;
+        case BIRCH:
+            return TEXTURE_TOTEM_POLE_BIRCH;
+        case JUNGLE:
+            return TEXTURE_TOTEM_POLE_JUNGLE;
+        case ACACIA:
+            return TEXTURE_TOTEM_POLE_ACACIA;
+        case DARK_OAK:
+            return TEXTURE_TOTEM_POLE_DARK_OAK;
+        case CEDAR:
+            return TEXTURE_TOTEM_POLE_CEDAR;
+        default:
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static ResourceLocation getTotemPole(int i)
     {
-        switch(i)
-        {
-            case 0:
-                return TEXTURE_TOTEM_POLE_OAK;
-            case 1:
-                return TEXTURE_TOTEM_POLE_BIRCH;
-            case 2:
-                return TEXTURE_TOTEM_POLE_SPRUCE;
-            case 3:
-                return TEXTURE_TOTEM_POLE_JUNGLE;
+        return getTotemPole(WoodVariant.values()[i]);
+    }
 
-            default:
-                return TEXTURE_TOTEM_POLE_CEDAR;
+    public static ResourceLocation getTotemBase(WoodVariant v)
+    {
+        switch(v)
+        {
+        case OAK:
+            return TEXTURE_TOTEM_BASE_OAK;
+        case SPRUCE:
+            return TEXTURE_TOTEM_BASE_SPRUCE;
+        case BIRCH:
+            return TEXTURE_TOTEM_BASE_BIRCH;
+        case JUNGLE:
+            return TEXTURE_TOTEM_BASE_JUNGLE;
+        case ACACIA:
+            return TEXTURE_TOTEM_BASE_ACACIA;
+        case DARK_OAK:
+            return TEXTURE_TOTEM_BASE_DARK_OAK;
+        case CEDAR:
+            return TEXTURE_TOTEM_BASE_CEDAR;
+        default:
+            throw new IllegalArgumentException();
         }
     }
 
     public static ResourceLocation getTotemBase(int i)
     {
-        switch(i)
-        {
-            case 0:
-                return TEXTURE_TOTEM_BASE_OAK;
-            case 1:
-                return TEXTURE_TOTEM_BASE_BIRCH;
-            case 2:
-                return TEXTURE_TOTEM_BASE_SPRUCE;
-            case 3:
-                return TEXTURE_TOTEM_BASE_JUNGLE;
-
-            default:
-                return TEXTURE_TOTEM_BASE_CEDAR;
-        }
+        return getTotemBase(WoodVariant.values()[i]);
     }
 }
