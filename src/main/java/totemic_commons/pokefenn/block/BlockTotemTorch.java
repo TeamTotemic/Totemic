@@ -1,19 +1,18 @@
 package totemic_commons.pokefenn.block;
 
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
-
-import java.util.Random;
 
 /**
  * Created by Pokefenn.
@@ -27,35 +26,38 @@ public class BlockTotemTorch extends BlockTileTotemic
         setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 1.3F, 0.7F);
         setBlockName(Strings.TOTEM_TORCH_NAME);
         setLightLevel(1F);
+        setStepSound(soundTypeWood);
     }
 
-    @SideOnly(Side.CLIENT)
-    public IIcon iconThingy;
+    /*@SideOnly(Side.CLIENT)
+    public IIcon iconThingy;*/
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random rand)
     {
-        TileTotemTorch tileEntity = (TileTotemTorch) world.getTileEntity(x, y, z);
+        //TileTotemTorch tileEntity = (TileTotemTorch) world.getTileEntity(x, y, z);
 
-        for(int i = 0; i < 32; i++)
+        for(int i = 0; i < 16; i++)
         {
             world.spawnParticle("flame", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);
             world.spawnParticle("smoke", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);
         }
     }
 
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register)
     {
         iconThingy = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "totemsRange");
-    }
+    }*/
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(IBlockAccess p_149673_1_, int p_149673_2_, int p_149673_3_, int p_149673_4_, int p_149673_5_)
+    public IIcon getIcon(int side, int meta)
     {
-        return this.iconThingy;
+        //return this.iconThingy;
+        return Blocks.log.getIcon(2, 0);
     }
 
     @Override

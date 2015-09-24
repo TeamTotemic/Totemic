@@ -4,9 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
@@ -67,11 +69,16 @@ public class BlockWindChime extends BlockTileTotemic
         {
             PacketHandler.sendAround(new PacketWindChimeSound(x, y, z), world.getTileEntity(x, y, z));
             TotemUtil.playMusicFromBlockForCeremonySelector(world, x, y, z, HandlerInitiation.windChime, 0);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y - 0.5D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", (double) x + 0.5D, (double) y - 0.5D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
 
         }
         return true;
+    }
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        return Blocks.planks.getIcon(0, 0);
     }
 
     @Override

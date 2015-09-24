@@ -2,8 +2,10 @@ package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
@@ -25,6 +27,7 @@ public class BlockDrum extends BlockTileTotemic
         super(Material.wood);
         setBlockName(Strings.DRUM_NAME);
         setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.8F, 0.8F);
+        setStepSound(soundTypeWood);
     }
 
     @Override
@@ -50,15 +53,15 @@ public class BlockDrum extends BlockTileTotemic
             {
                 tileDrum.canPlay = false;
                 TotemUtil.playMusicForCeremony(tileDrum, HandlerInitiation.drum, 0, 0);
-                MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+                MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
                 world.markBlockForUpdate(x, y, z);
             }
         } else
         {
             tileDrum.canPlay = false;
             TotemUtil.playMusicFromBlockForCeremonySelector(world, x, y, z, HandlerInitiation.drum, 0);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", (double) x + 0.5D, (double) y + 1.2D, (double) z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
         }
 
@@ -100,6 +103,11 @@ public class BlockDrum extends BlockTileTotemic
         return 5;
     }
     */
+
+    @Override
+    public IIcon getIcon(int side, int meta) {
+        return Blocks.log.getIcon(2, 0);
+    }
 
     @Override
     public boolean renderAsNormalBlock()
