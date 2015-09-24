@@ -22,6 +22,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
 {
     private static final IEntitySelector attackEntitySelector = new IEntitySelector()
     {
+        @Override
         public boolean isEntityApplicable(Entity par1Entity)
         {
             return par1Entity instanceof EntityPlayer;
@@ -44,6 +45,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
 
     }
 
+    @Override
     public void onLivingUpdate()
     {
         super.onUpdate();
@@ -99,7 +101,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
 
     private void fireball2(int par1, EntityLivingBase par2EntityLivingBase)
     {
-        this.spawnFireball(par1, par2EntityLivingBase.posX, par2EntityLivingBase.posY + (double) par2EntityLivingBase.getEyeHeight() * 0.5D, par2EntityLivingBase.posZ, par1 == 0 && this.rand.nextFloat() < 0.001F);
+        this.spawnFireball(par1, par2EntityLivingBase.posX, par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight() * 0.5D, par2EntityLivingBase.posZ, par1 == 0 && this.rand.nextFloat() < 0.001F);
     }
 
     private double yPosWorkingOut(int par1)
@@ -114,9 +116,9 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
             return this.posX;
         } else
         {
-            float f = (this.renderYawOffset + (float) (180 * (par1 - 1))) / 180.0F * (float) Math.PI;
+            float f = (this.renderYawOffset + 180 * (par1 - 1)) / 180.0F * (float) Math.PI;
             float f1 = MathHelper.cos(f);
-            return this.posX + (double) f1 * 1.3D;
+            return this.posX + f1 * 1.3D;
         }
     }
 
@@ -127,9 +129,9 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
             return this.posZ;
         } else
         {
-            float f = (this.renderYawOffset + (float) (180 * (par1 - 1))) / 180.0F * (float) Math.PI;
+            float f = (this.renderYawOffset + 180 * (par1 - 1)) / 180.0F * (float) Math.PI;
             float f1 = MathHelper.sin(f);
-            return this.posZ + (double) f1 * 1.3D;
+            return this.posZ + f1 * 1.3D;
         }
     }
 

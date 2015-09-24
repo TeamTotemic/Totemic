@@ -1,10 +1,7 @@
 package totemic_commons.pokefenn.event;
 
-import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import totemic_commons.pokefenn.potion.ModPotions;
 

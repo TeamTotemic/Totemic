@@ -248,10 +248,10 @@ public class TotemUtil
 
     public static void musicParticleAtBlocks(World world, int xCoord, int yCoord, int zCoord, String particle)
     {
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord + 1, (double) yCoord, (double) zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord - 1, (double) yCoord, (double) zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord, (double) yCoord, (double) zCoord + 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord, (double) yCoord, (double) zCoord - 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord + 1, yCoord, zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord - 1, yCoord, zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, xCoord, yCoord, (double) zCoord + 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, xCoord, yCoord, (double) zCoord - 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
     }
 
 

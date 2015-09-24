@@ -23,6 +23,7 @@ public class ItemTomahawk extends ItemSword
         setCreativeTab(Totemic.tabsTotem);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack par1ItemStack)
     {

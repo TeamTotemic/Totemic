@@ -31,10 +31,10 @@ public class ItemBlowGun extends ItemTotemic
 
         //if(player.inventory.hasItem(ModItems.darts))
         {
-            float moveSpeedThingy = (float) charge / 20.0F;
+            float moveSpeedThingy = charge / 20.0F;
             moveSpeedThingy = (moveSpeedThingy * moveSpeedThingy + moveSpeedThingy * 2.0F) / 3.0F;
 
-            if((double) moveSpeedThingy < 0.1D)
+            if(moveSpeedThingy < 0.1D)
                 return;
 
             if(moveSpeedThingy > 1.0F)

@@ -34,7 +34,7 @@ public class GuiLexicon extends GuiScreen
     public static ItemStack stackUsed;
 
     public static final int BOOKMARK_START = 1337;
-    public static List<GuiLexicon> bookmarks = new ArrayList();
+    public static List<GuiLexicon> bookmarks = new ArrayList<>();
     boolean bookmarksNeedPopulation = false;
 
     public static final ResourceLocation texture = new ResourceLocation("totemic:textures/gui/totempedia.png");
@@ -231,7 +231,7 @@ public class GuiLexicon extends GuiScreen
 
     void populateBookmarks()
     {
-        List remove = new ArrayList();
+        List<GuiButton> remove = new ArrayList<>();
         List<GuiButton> buttons = buttonList;
         for(GuiButton button : buttons)
             if(button.id >= BOOKMARK_START)

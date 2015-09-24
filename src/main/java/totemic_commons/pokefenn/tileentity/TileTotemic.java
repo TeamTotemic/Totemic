@@ -58,6 +58,7 @@ public class TileTotemic extends TileEntity
         this.customName = customName;
     }
 
+    @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);

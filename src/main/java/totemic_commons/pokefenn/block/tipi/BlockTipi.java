@@ -29,7 +29,7 @@ public class BlockTipi extends BlockTileTotemic
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
     {
-        int dir = MathHelper.floor_double((double) ((entity.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+        int dir = MathHelper.floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
         world.setBlockMetadataWithNotify(x, y, z, dir, 0);
     }
 

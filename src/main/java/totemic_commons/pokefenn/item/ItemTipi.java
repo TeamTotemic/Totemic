@@ -53,7 +53,7 @@ public class ItemTipi extends ItemTotemic
 
             if(block.getMaterial() == Material.ground || (block.getUnlocalizedName().contains("dirt") || block.getUnlocalizedName().contains("grass")))
             {
-                int dir = MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+                int dir = MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3;
                 world.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY + 4, movingObjectPosition.blockZ, ModBlocks.dummyTipi, 0, 2);
                 world.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY + 5, movingObjectPosition.blockZ, ModBlocks.dummyTipi, 0, 2);
                 world.setBlock(movingObjectPosition.blockX, movingObjectPosition.blockY + 6, movingObjectPosition.blockZ, ModBlocks.dummyTipi, 1, 2);

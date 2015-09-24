@@ -27,7 +27,7 @@ public class GuiButtonBookmark extends GuiButton
         field_146123_n = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
         int k = getHoverState(field_146123_n);
 
-        List<String> tooltip = new ArrayList();
+        List<String> tooltip = new ArrayList<>();
         if(displayString.equals("+"))
             tooltip.add(StatCollector.translateToLocal("totemicmisc.clickToAdd"));
         else

@@ -36,7 +36,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
     GuiButton leftButton, rightButton, backButton;
     GuiLexicon parent;
 
-    List<LexiconEntry> entriesToDisplay = new ArrayList();
+    List<LexiconEntry> entriesToDisplay = new ArrayList<>();
 
     public GuiLexiconIndex(LexiconCategory category)
     {
@@ -145,7 +145,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
     {
         if(button == 0 && Math.abs(x - fx) > 100 && mc.gameSettings.touchscreen && !swiped)
         {
-            double swipe = (double) (x - fx) / Math.max(1, (double) time);
+            double swipe = (x - fx) / Math.max(1, (double) time);
             if(swipe < 0.5)
             {
                 nextPage();

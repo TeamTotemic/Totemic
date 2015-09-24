@@ -22,6 +22,7 @@ public class TileDrumRenderer extends TileEntitySpecialRenderer
 {
     private final ModelDrum modelDrum = new ModelDrum();
 
+    @Override
     public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f)
     {
         GL11.glPushMatrix();
@@ -41,7 +42,7 @@ public class TileDrumRenderer extends TileEntitySpecialRenderer
         int l1 = l % 65536;
         int l2 = l / 65536;
         tessellator.setColorOpaque_F(f, f, f);
-        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) l1, (float) l2);
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, l1, l2);
 
         int dir = world.getBlockMetadata(i, j, k);
 

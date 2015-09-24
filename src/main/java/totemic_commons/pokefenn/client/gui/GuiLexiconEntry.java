@@ -183,7 +183,7 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
     {
         if(button == 0 && Math.abs(x - fx) > 100 && mc.gameSettings.touchscreen && !swiped)
         {
-            double swipe = (double) (x - fx) / Math.max(1, (double) time);
+            double swipe = (x - fx) / Math.max(1, (double) time);
             if(swipe < 0.5)
             {
                 nextPage();

@@ -3,15 +3,30 @@ package totemic_commons.pokefenn.recipe;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.TotemicAPI;
-import totemic_commons.pokefenn.api.ceremony.*;
+import totemic_commons.pokefenn.api.ceremony.CeremonyActivation;
+import totemic_commons.pokefenn.api.ceremony.CeremonyEffect;
+import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
+import totemic_commons.pokefenn.api.ceremony.CeremonyTimeEnum;
+import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
 import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.api.totem.TotemRegistry;
-import totemic_commons.pokefenn.ceremony.*;
-import totemic_commons.pokefenn.totem.*;
+import totemic_commons.pokefenn.ceremony.CeremonyBuffaloDance;
+import totemic_commons.pokefenn.ceremony.CeremonyFluteInfusion;
+import totemic_commons.pokefenn.ceremony.CeremonyGhostDance;
+import totemic_commons.pokefenn.ceremony.CeremonyRain;
+import totemic_commons.pokefenn.ceremony.CeremonyRainRemoval;
+import totemic_commons.pokefenn.ceremony.CeremonyWarDance;
+import totemic_commons.pokefenn.ceremony.CeremonyZaphkielWaltz;
+import totemic_commons.pokefenn.totem.TotemEffectBat;
+import totemic_commons.pokefenn.totem.TotemEffectBlaze;
+import totemic_commons.pokefenn.totem.TotemEffectCow;
+import totemic_commons.pokefenn.totem.TotemEffectHorse;
+import totemic_commons.pokefenn.totem.TotemEffectOcelot;
+import totemic_commons.pokefenn.totem.TotemEffectSpider;
+import totemic_commons.pokefenn.totem.TotemEffectSquid;
 
 /**
  * Created by Pokefenn.
