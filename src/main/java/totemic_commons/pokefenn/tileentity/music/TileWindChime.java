@@ -1,13 +1,15 @@
 package totemic_commons.pokefenn.tileentity.music;
 
+import java.util.Random;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.network.PacketHandler;
@@ -15,8 +17,6 @@ import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
-
-import java.util.Random;
 
 /**
  * Created by Pokefenn.
@@ -26,15 +26,20 @@ public class TileWindChime extends TileTotemic
 {
     public boolean isPlaying;
     public int currentTime;
+    public int cooldownPassed;
+    public boolean canPlay;
     public float currentRotation;
 
     public TileWindChime()
     {
         isPlaying = false;
         currentTime = 0;
+        cooldownPassed = 0;
+        canPlay = true;
         currentRotation = 0;
     }
 
+    @Override
     public void updateEntity()
     {
         super.updateEntity();
@@ -71,6 +76,14 @@ public class TileWindChime extends TileTotemic
 
         if(!world.isRemote)
         {
+            if(!canPlay)
+                cooldownPassed++;
+            if(cooldownPassed > 20)
+            {
+                canPlay = true;
+                cooldownPassed = 0;
+            }
+
             Random rand = new Random();
 
             if(world.getWorldTime() % 40L == 0)
@@ -118,7 +131,7 @@ public class TileWindChime extends TileTotemic
                         {
                             BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
                             TotemUtil.playMusicForCeremony(this, HandlerInitiation.windChime, 0, 0);
-                            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", (double) xCoord + 0.5D, (double) yCoord + 1.2D, (double) zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+                            ((WorldServer)world).func_147487_a("note", xCoord + 0.5D, yCoord + 1.2D, zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
                         }
                     }
 
