@@ -1,14 +1,17 @@
 package totemic_commons.pokefenn.totem;
 
+import static totemic_commons.pokefenn.Totemic.logger;
+
+import java.lang.reflect.Field;
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.api.totem.TotemRegistry;
 import totemic_commons.pokefenn.api.totem.ITotemEffect;
+import totemic_commons.pokefenn.api.totem.TotemRegistry;
 import totemic_commons.pokefenn.util.EntityUtil;
-
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,34 +21,42 @@ import java.util.Random;
  */
 public class TotemEffectOcelot implements ITotemEffect
 {
+    private final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");
 
     @Override
     public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
-        if(EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical) != null)
+        try
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
+            if(EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical) != null)
             {
-                if(entity instanceof EntityCreeper)
+                for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
                 {
-                    int ignited = (Integer) ReflectionHelper.getPrivateValue(EntityCreeper.class, (EntityCreeper) entity, "timeSinceIgnited", "field_70833_d", "bq");
-
-                    if(repetitionBonus < 5)
+                    if(entity instanceof EntityCreeper)
                     {
-                        Random random = new Random();
-                        if(random.nextInt(4 + repetitionBonus + (melodyAmount / 16)) == 1)
+                        int ignited = (Integer) timeSinceIgnited.get(entity);
+
+                        if(repetitionBonus < 5)
                         {
-                            return;
+                            Random random = new Random();
+                            if(random.nextInt(4 + repetitionBonus + (melodyAmount / 16)) == 1)
+                            {
+                                return;
+                            }
                         }
-                    }
 
-                    if(ignited > 20 - repetitionBonus)
-                    {
-                        ReflectionHelper.setPrivateValue(EntityCreeper.class, (EntityCreeper) entity, 0, "timeSinceIgnited", "field_70833_d", "bq");
+                        if(ignited > 20 - repetitionBonus)
+                        {
+                            timeSinceIgnited.setInt(entity, 0);
+                            ((EntityCreeper)entity).setCreeperState(-1);
+                        }
                     }
                 }
             }
-
+        }
+        catch(IllegalAccessException e)
+        {
+            logger.error("Could not perform Ocelot Totem effect", e);
         }
     }
 

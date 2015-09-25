@@ -69,32 +69,40 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
-        if(world.isRemote)
+        if(player.isSneaking())
+        {
+            player.setCurrentItemOrArmor(0, onItemRightClick(stack, world, player));
             return true;
-
-        Block block = world.getBlock(x, y, z);
-        int meta = world.getBlockMetadata(x, y, z);
-        WoodVariant wood = WoodVariant.fromLog(block, meta);
-        if(wood == null)
-            return false;
-
-        if(stack.getItemDamage() == TotemRegistry.getTotemList().size())
-        {
-            world.setBlock(x, y, z, ModBlocks.totemBase, wood.ordinal(), 3);
-        }
-        else if(stack.getItemDamage() < TotemRegistry.getTotemList().size())
-        {
-            world.setBlock(x, y, z, ModBlocks.totemPole, wood.ordinal(), 3);
-            TileTotemPole tile = (TileTotemPole)world.getTileEntity(x, y, z);
-
-            tile.totemId = TotemRegistry.getTotemList().get(stack.getItemDamage()).getTotemId();
-            tile.markDirty();
-            world.markBlockForUpdate(x, y, z);
         }
         else
-            return false;
+        {
+            if(world.isRemote)
+                return true;
 
-        return true;
+            Block block = world.getBlock(x, y, z);
+            int meta = world.getBlockMetadata(x, y, z);
+            WoodVariant wood = WoodVariant.fromLog(block, meta);
+            if(wood == null)
+                return false;
+
+            if(stack.getItemDamage() == TotemRegistry.getTotemList().size())
+            {
+                world.setBlock(x, y, z, ModBlocks.totemBase, wood.ordinal(), 3);
+            }
+            else if(stack.getItemDamage() < TotemRegistry.getTotemList().size())
+            {
+                world.setBlock(x, y, z, ModBlocks.totemPole, wood.ordinal(), 3);
+                TileTotemPole tile = (TileTotemPole)world.getTileEntity(x, y, z);
+
+                tile.totemId = TotemRegistry.getTotemList().get(stack.getItemDamage()).getTotemId();
+                tile.markDirty();
+                world.markBlockForUpdate(x, y, z);
+            }
+            else
+                return false;
+
+            return true;
+        }
     }
 
 }
