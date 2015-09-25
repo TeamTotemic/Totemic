@@ -1,11 +1,17 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
+import java.util.List;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
@@ -62,6 +68,27 @@ public class ItemFlute extends ItemMusic
                 }
         }
         return itemStack;
+    }
+
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+        if(stack.getItemDamage() == 1)
+            return "item.totemic:fluteInfused";
+        else
+            return "item.totemic:flute";
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubItems(Item item, CreativeTabs tabs, List list) {
+        list.add(new ItemStack(item, 1, 0));
+        list.add(new ItemStack(item, 1, 1));
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public boolean hasEffect(ItemStack stack, int pass) {
+        return stack.getItemDamage() == 1;
     }
 
     /*
