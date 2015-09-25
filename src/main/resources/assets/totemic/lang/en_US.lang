@@ -3,6 +3,7 @@
 # Item localizations
 item.totemic:totemicStaff.name=Totemic Staff
 item.totemic:totemWhittlingKnife.name=Totem Whittling Knife
+item.totemic:totemWhittlingKnife.display=Totem Whittling Knife (%s)
 item.totemic:paintBrush.name=Totemist Paint Brush
 item.totemic:infusedStick.name=Cedar Stick
 item.totemic:totempedia.name=Totempedia

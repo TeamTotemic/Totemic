@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.totem.TotemRegistry;
@@ -17,14 +18,22 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
 public class ItemTotemWhittlingKnife extends ItemTotemic
 {
-
-    int time = 0;
-
     public ItemTotemWhittlingKnife()
     {
         super(Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setMaxStackSize(1);
         setContainerItem(this);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public String getCurrentlyCarving(int damage)
+    {
+        if(damage < TotemRegistry.getTotemList().size())
+            return TotemRegistry.getTotemList().get(damage).getLocalizedName();
+        else if(damage == TotemRegistry.getTotemList().size())
+            return StatCollector.translateToLocal("tile.totemBase.name");
+        else
+            return "";
     }
 
     @Override
@@ -33,11 +42,13 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         list.add("A knife for all your whittlin' needs");
         list.add("Shift and right click to change carving");
-        if(stack.getItemDamage() < TotemRegistry.getTotemList().size())
-            list.add("Currently Carving: " + TotemRegistry.getTotemList().get(stack.getItemDamage()).getLocalizedName());
-        if(stack.getItemDamage() == TotemRegistry.getTotemList().size())
-            list.add("Currently Carving: Totem Base");
+        list.add("Currently Carving: " + getCurrentlyCarving(stack.getItemDamage()));
+    }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public String getItemStackDisplayName(ItemStack stack) {
+        return StatCollector.translateToLocalFormatted(getUnlocalizedName() + ".display", getCurrentlyCarving(stack.getItemDamage()));
     }
 
     @Override
@@ -49,7 +60,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
-
         if(player.isSneaking())
             return new ItemStack(this, 1, (1 + itemStack.getItemDamage()) % (TotemRegistry.getTotemList().size() + 1));
         else
