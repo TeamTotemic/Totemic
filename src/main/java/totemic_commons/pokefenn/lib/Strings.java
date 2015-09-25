@@ -43,6 +43,9 @@ public final class Strings
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
     public static final String TILE_TOTEM_SOCKET = "tileTotemSocket";
 
+    //ItemStack NBT keys
+    public static final String KNIFE_TOTEM_KEY = "totem";
+
     //Old NBT stuff
     public static final String NBT_TE_STATE_KEY = "teState";
     public static final String NBT_TE_CUSTOM_NAME = "CustomName";

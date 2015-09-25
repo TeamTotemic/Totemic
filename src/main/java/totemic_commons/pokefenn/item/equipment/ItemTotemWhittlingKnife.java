@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
@@ -26,14 +27,23 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     }
 
     @SideOnly(Side.CLIENT)
-    public String getCurrentlyCarving(int damage)
+    public String getCurrentlyCarving(int i)
     {
-        if(damage < TotemRegistry.getTotemList().size())
-            return TotemRegistry.getTotemList().get(damage).getLocalizedName();
-        else if(damage == TotemRegistry.getTotemList().size())
+        if(i < TotemRegistry.getTotemList().size())
+            return TotemRegistry.getTotemList().get(i).getLocalizedName();
+        else if(i == TotemRegistry.getTotemList().size())
             return StatCollector.translateToLocal("tile.totemBase.name");
         else
             return "";
+    }
+
+    public int getCarvingIndex(ItemStack stack)
+    {
+        NBTTagCompound tag = stack.getTagCompound();
+        if(tag == null)
+            return 0;
+        else
+            return tag.getInteger(Strings.KNIFE_TOTEM_KEY);
     }
 
     @Override
@@ -42,13 +52,13 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         list.add("A knife for all your whittlin' needs");
         list.add("Shift and right click to change carving");
-        list.add("Currently Carving: " + getCurrentlyCarving(stack.getItemDamage()));
+        list.add("Currently Carving: " + getCurrentlyCarving(getCarvingIndex(stack)));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public String getItemStackDisplayName(ItemStack stack) {
-        return StatCollector.translateToLocalFormatted(getUnlocalizedName() + ".display", getCurrentlyCarving(stack.getItemDamage()));
+        return StatCollector.translateToLocalFormatted(getUnlocalizedName() + ".display", getCurrentlyCarving(getCarvingIndex(stack)));
     }
 
     @Override
@@ -61,7 +71,13 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
         if(player.isSneaking())
-            return new ItemStack(this, 1, (1 + itemStack.getItemDamage()) % (TotemRegistry.getTotemList().size() + 1));
+        {
+            ItemStack stack = itemStack.copy();
+            if(!stack.hasTagCompound())
+                stack.setTagCompound(new NBTTagCompound());
+            stack.getTagCompound().setInteger(Strings.KNIFE_TOTEM_KEY, (1 + getCarvingIndex(stack)) % (TotemRegistry.getTotemList().size() + 1));
+            return stack;
+        }
         else
             return itemStack;
     }
@@ -85,16 +101,17 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             if(wood == null)
                 return false;
 
-            if(stack.getItemDamage() == TotemRegistry.getTotemList().size())
+            int index = getCarvingIndex(stack);
+            if(index == TotemRegistry.getTotemList().size())
             {
                 world.setBlock(x, y, z, ModBlocks.totemBase, wood.ordinal(), 3);
             }
-            else if(stack.getItemDamage() < TotemRegistry.getTotemList().size())
+            else if(index < TotemRegistry.getTotemList().size())
             {
                 world.setBlock(x, y, z, ModBlocks.totemPole, wood.ordinal(), 3);
                 TileTotemPole tile = (TileTotemPole)world.getTileEntity(x, y, z);
 
-                tile.totemId = TotemRegistry.getTotemList().get(stack.getItemDamage()).getTotemId();
+                tile.totemId = TotemRegistry.getTotemList().get(getCarvingIndex(stack)).getTotemId();
                 tile.markDirty();
                 world.markBlockForUpdate(x, y, z);
             }
