@@ -9,7 +9,7 @@ import totemic_commons.pokefenn.block.totem.BlockTotemBase;
  */
 public class TotemicWailaMain
 {
-    public void initiateWaila(IWailaRegistrar reg)
+    public static void initiateWaila(IWailaRegistrar reg)
     {
         reg.registerBodyProvider(new WailaTotemBase(), BlockTotemBase.class);
     }
