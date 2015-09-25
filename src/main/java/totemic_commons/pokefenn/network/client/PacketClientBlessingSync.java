@@ -7,6 +7,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import totemic_commons.pokefenn.blessing.BlessingHandler;
+import totemic_commons.pokefenn.util.ClientUtil;
 
 /**
  * Created by Pokefenn.
@@ -44,7 +45,7 @@ public class PacketClientBlessingSync implements IMessage, IMessageHandler<Packe
     @Override
     public IMessage onMessage(PacketClientBlessingSync message, MessageContext ctx)
     {
-        EntityPlayer player = FMLClientHandler.instance().getClient().thePlayer;
+        EntityPlayer player = ClientUtil.getPlayer();
 
         BlessingHandler.setBlessing(message.blessing, player.getDisplayName(), player.worldObj);
 

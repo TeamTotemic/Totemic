@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.network;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -21,7 +22,7 @@ public class PacketHandler
     private static int id;
     public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Totemic.MOD_ID);
 
-    private static void registerPacket(Class clazz, Side side)
+    private static <T extends IMessage & IMessageHandler<T, IMessage>> void registerPacket(Class<T> clazz, Side side)
     {
         INSTANCE.registerMessage(clazz, clazz, id++, side);
     }
