@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.block.tipi;
 
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -19,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 
@@ -34,6 +37,7 @@ public class BlockTipi extends BlockTileTotemic
         setBlockName(Strings.TIPI_NAME);
         setBlockBounds(0, 0, 0, 0, 0, 0);
         setCreativeTab(null);
+        setBlockTextureName(Resources.TEXTURE_LOCATION + ":" + Resources.DUMMY_TIPI);
     }
 
     @Override
@@ -108,6 +112,11 @@ public class BlockTipi extends BlockTileTotemic
     @SideOnly(Side.CLIENT)
     @Override
     public Item getItem(World world, int x, int y, int z) {
+        return ModItems.tipi;
+    }
+
+    @Override
+    public Item getItemDropped(int meta, Random rand, int fortune) {
         return ModItems.tipi;
     }
 

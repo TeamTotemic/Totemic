@@ -27,7 +27,7 @@ public class BlockBroken
 
             if(breakEvent.block == ModBlocks.dummyTipi)
             {
-                int range = 5;
+                int range = 2;
                 int vertRange = 7;
                 for(int i = -range; i <= range; i++)
                     for(int j = -vertRange; j <= vertRange; j++)
@@ -37,7 +37,7 @@ public class BlockBroken
                                 //Break all blocks under here, need to do this later.
                                 breakEvent.world.setBlockToAir(breakEvent.x + i, breakEvent.y + j, breakEvent.z + k);
                                 breakUnderTipi(breakEvent.world, breakEvent.x + i, breakEvent.y + j, breakEvent.z + k);
-                                EntityUtil.dropItem(breakEvent.world, breakEvent.x + 0.5, breakEvent.y + 0.5, breakEvent.z + 0.5, ModItems.tipi);
+                                //EntityUtil.dropItem(breakEvent.world, breakEvent.x + 0.5, breakEvent.y + 0.5, breakEvent.z + 0.5, ModItems.tipi);
                                 break;
                             }
 
@@ -48,7 +48,7 @@ public class BlockBroken
     public static void breakUnderTipi(World world, int x, int y, int z)
     {
         int vertRadius = 7;
-        int radius = 5;
+        int radius = 2;
         for(int i = -radius; i <= radius; i++)
             for(int j = -vertRadius; j <= vertRadius; j++)
                 for(int k = -radius; k <= radius; k++)
@@ -59,8 +59,13 @@ public class BlockBroken
                     {
                         Block block = world.getBlock(x + i, y + n, z + k);
 
-                        if(block == ModBlocks.dummyTipi || block == ModBlocks.tipi)
+                        if(block == ModBlocks.dummyTipi)
                         {
+                            world.setBlockToAir(x + i, y + n, z + k);
+                        }
+                        else if(block == ModBlocks.tipi)
+                        {
+                            block.dropBlockAsItem(world, x + i, y + n, z + k, world.getBlockMetadata(x + i, y + n, z + k), 0);
                             world.setBlockToAir(x + i, y + n, z + k);
                         }
                     }
