@@ -1,9 +1,10 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
-import java.util.IdentityHashMap;
-import java.util.Map;
 import java.util.Random;
 
+import gnu.trove.iterator.TIntIntIterator;
+import gnu.trove.map.TIntIntMap;
+import gnu.trove.map.hash.TIntIntHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -55,7 +56,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public int continueTimer;
     public int musicForTotemEffect;
     public static int maximumMusic = 128;
-    public Map<TotemRegistry, Integer> repetitionBonus;
+    public TIntIntMap repetitionBonus;
     public boolean isDoingEndingEffect;
     public String bindedPlayer;
     public int[] totemIds;
@@ -82,9 +83,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         continueTimer = 0;
         musicForTotemEffect = 0;
         totemPoleSize = 0;
-        repetitionBonus = new IdentityHashMap<>();
+        repetitionBonus = new TIntIntHashMap();
         for(TotemRegistry totem : TotemRegistry.getTotemList())
-            repetitionBonus.put(totem, 0);
+            repetitionBonus.put(totem.getTotemId(), 0);
         musicPlayed = new int[MusicHandler.musicHandler.size()];
         isDoingEndingEffect = false;
         bindedPlayer = "";
@@ -147,7 +148,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 if(totemIds[i] != 0)
                 {
                     TotemRegistry totem = TotemRegistry.fromId(totemIds[i]);
-                    totem.getEffect().effect(this, totemPoleSize, totem, getRanges(totem)[0], getRanges(totem)[1], musicForTotemEffect, totemWoodBonus, repetitionBonus.get(totem));
+                    totem.getEffect().effect(this, totemPoleSize, totem, getRanges(totem)[0], getRanges(totem)[1], musicForTotemEffect, totemWoodBonus, repetitionBonus.get(totemIds[i]));
                 }
             }
         }
@@ -155,17 +156,18 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     public void resetRepetition()
     {
-        for(Map.Entry<TotemRegistry, Integer> entry : repetitionBonus.entrySet())
+        TIntIntIterator it = repetitionBonus.iterator();
+        while(it.hasNext())
         {
-            entry.setValue(0);
+            it.advance();
+            it.setValue(0);
         }
 
         for(int totemId : totemIds)
         {
             if(totemId != 0)
             {
-                TotemRegistry totem = TotemRegistry.fromId(totemId);
-                repetitionBonus.put(totem, 1 + repetitionBonus.get(totem));
+                repetitionBonus.increment(totemId);
             }
         }
     }
