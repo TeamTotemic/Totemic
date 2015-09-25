@@ -58,6 +58,12 @@ totemic.totem.bat=Bat
 totemic.totem.spider=Spider
 totemic.totem.cow=Cow
 
+#Music values
+totemic.music.lowMelody=Low Melody
+totemic.music.mediumMelody=Medium Melody
+totemic.music.highMelody=High Melody
+totemic.music.veryHighMelody=Very High Melody
+
 totemicmisc.timeForCeremony=Startup time:
 totemicmisc.seconds= Seconds
 totemicmisc.overTime=Over Time:
