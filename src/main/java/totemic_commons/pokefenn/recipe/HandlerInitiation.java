@@ -82,7 +82,7 @@ public class HandlerInitiation
         squidTotem = TotemicAPI.addTotem(2, 4, 4, new TotemEffectSquid(), 1, "totemic.totem.squid");
         blazeTotem = TotemicAPI.addTotem(3, 4, 4, new TotemEffectBlaze(), 2, "totemic.totem.blaze");
         ocelotTotem = TotemicAPI.addTotem(4, 4, 4, new TotemEffectOcelot(), 2, "totemic.totem.ocelot");
-        batTotem = TotemicAPI.addTotem(5, 4, 8, new TotemEffectBat(), 2, "totemic.totem.bat");
+        batTotem = TotemicAPI.addTotem(5, 8, 8, new TotemEffectBat(), 2, "totemic.totem.bat");
         spiderTotem = TotemicAPI.addTotem(6, 4, 4, new TotemEffectSpider(), 2, "totemic.totem.spider");
         cowTotem = TotemicAPI.addTotem(7, 4, 4, new TotemEffectCow(), 1, "totemic.totem.cow");
     }
