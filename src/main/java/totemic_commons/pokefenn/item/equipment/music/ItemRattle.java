@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.lib.Strings;
@@ -36,14 +37,14 @@ public class ItemRattle extends ItemMusic
         headPoles = 0;
     }
 
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("totemic.tooltip.rattle");
+        list.add(StatCollector.translateToLocal("totemic.tooltip.rattle"));
 
         super.addInformation(stack, player, list, par4);
-    }
+    }*/
 
     @Override
     public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack itemStack)
@@ -82,6 +83,13 @@ public class ItemRattle extends ItemMusic
         }
 
         return false;
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        if(!player.isSwingInProgress)
+            player.swingItem();
+        return stack;
     }
 
     public void particlesAllAround(World world, double x, double y, double z, boolean firework)

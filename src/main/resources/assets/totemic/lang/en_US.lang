@@ -16,6 +16,8 @@ item.totemic:barkStripper.name=Bark Stripper
 item.totemic:jingleDress.name=Jingle Dress
 item.totemic:ceremonialRattle.name=Rattle
 item.totemic:tipiItem.name=Tipi
+item.totemic:nuggetIron.name=Iron Nugget
+item.totemic:bellsIron.name=Iron Bells
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log
@@ -76,6 +78,8 @@ totemicmisc.musicSelector=Musical Selectors
 totemicmisc.tipi.cantSleep=You can not sleep in a tipi without being in the open fields
 totemicmisc.tipi.nether=You can not sleep in the nether
 totemicmisc.activeEffect=Active Totem Effect: %s
+
+#totemic.tooltip.rattle=Swing to make music
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.
