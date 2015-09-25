@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.util;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -12,8 +14,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,13 +38,13 @@ public class EntityUtil
     public static void dropItem(World world, double xPos, double yPos, double zPos, ItemStack itemStack)
     {
         EntityItem item = new EntityItem(world, xPos, yPos, zPos, itemStack);
+        item.delayBeforeCanPickup = 10;
         world.spawnEntityInWorld(item);
     }
 
-    public static void dropItem(World world, double xPos, double yPos, double zPos, Item itemStack)
+    public static void dropItem(World world, double xPos, double yPos, double zPos, Item item)
     {
-        EntityItem item = new EntityItem(world, xPos, yPos, zPos, new ItemStack(itemStack));
-        world.spawnEntityInWorld(item);
+        dropItem(world, xPos, yPos, zPos, new ItemStack(item));
     }
 
     //Code from Vazkii who borrowed it from mDiyo

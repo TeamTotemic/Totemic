@@ -40,7 +40,7 @@ public class ItemTipiRenderer implements IItemRenderer
     public void renderItem(ItemRenderType type, ItemStack item, Object... data)
     {
         GL11.glPushMatrix();
-        GL11.glTranslatef(0.4F, 0.8F, 0.4F);
+        GL11.glTranslatef(0.0F, 0.4F, 0.0F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         GL11.glScalef(0.045F, 0.045F, 0.045F);
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TIPI);

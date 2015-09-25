@@ -49,12 +49,12 @@ public class TotemUtil
     {
         Random random = new Random();
 
-        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 10) + (random.nextInt(6) * 8) + melodyAmount + (totemWoodBonus * 10), defaultStrength + (repetitionBonus == 5 || melodyAmount > 112 ? 1 : 0)));
+        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 10) + (random.nextInt(6) * 8) + melodyAmount + (totemWoodBonus * 10), defaultStrength + (repetitionBonus == 5 || melodyAmount > 112 ? 1 : 0), true));
     }
 
     public static void addNegativePotionEffect(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
-        player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32), defaultStrength - (melodyAmount > 112 ? 1 : 0)));
+        player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32), defaultStrength - (melodyAmount > 112 ? 1 : 0), true));
     }
 
     public static void playMusicFromItemForCeremonySelector(EntityPlayer player, int x, int y, int z, MusicHandler musicHandler, int bonusRadius)

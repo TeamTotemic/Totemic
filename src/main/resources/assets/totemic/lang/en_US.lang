@@ -15,7 +15,7 @@ item.totemic:cedarBark.name=Red Cedar Bark
 item.totemic:barkStripper.name=Bark Stripper
 item.totemic:jingleDress.name=Jingle Dress
 item.totemic:ceremonialRattle.name=Rattle
-
+item.totemic:tipiItem.name=Tipi
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log
@@ -28,6 +28,8 @@ tile.windChime.name=Wind Chime
 tile.totemTorch.name=Totem Torch
 tile.redCedarPlank.name=Red Cedar Plank
 tile.redCedarStripped.name=Red Cedar Stripped Log
+tile.totemicTipi.name=Tipi
+tile.dummyTotemicTipi.name=Tipi
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

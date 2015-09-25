@@ -38,10 +38,12 @@ public class CraftingRecipes
                 " n ", "nnn", " n ", ('n'), "nuggetIron"));
         GameRegistry.addRecipe(new ShapedOreRecipe(Items.iron_ingot,
                 "nnn", "nnn", "nnn", ('n'), "nuggetIron"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.tipi,
+                " s ", "sws", "w w", ('s'), "stickWood", ('w'), Blocks.wool));
 
         //Music
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0),
-                "eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE)));
+                "eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), Blocks.wool));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.windChime, 1, 0),
                 "iwi", "tst", "  t", ('i'), "ingotIron", ('s'), Items.string, ('w'), "logWood", ('t'), "stickWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.flute, 1, 0),

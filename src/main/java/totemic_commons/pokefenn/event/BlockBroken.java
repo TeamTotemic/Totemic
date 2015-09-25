@@ -35,9 +35,9 @@ public class BlockBroken
                             if(breakEvent.world.getBlock(breakEvent.x + i, breakEvent.y + j, breakEvent.z + k) == ModBlocks.dummyTipi && breakEvent.world.getBlockMetadata(breakEvent.x + i, breakEvent.y + j, breakEvent.z + k) == 1)
                             {
                                 //Break all blocks under here, need to do this later.
-                                EntityUtil.dropItem(breakEvent.world, breakEvent.x + i, breakEvent.y + j, breakEvent.z + k, ModItems.tipi);
                                 breakEvent.world.setBlockToAir(breakEvent.x + i, breakEvent.y + j, breakEvent.z + k);
                                 breakUnderTipi(breakEvent.world, breakEvent.x + i, breakEvent.y + j, breakEvent.z + k);
+                                EntityUtil.dropItem(breakEvent.world, breakEvent.x + 0.5, breakEvent.y + 0.5, breakEvent.z + 0.5, ModItems.tipi);
                                 break;
                             }
 
