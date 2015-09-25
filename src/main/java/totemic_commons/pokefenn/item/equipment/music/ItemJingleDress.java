@@ -150,7 +150,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean shift)
     {
         int musicOutput = HandlerInitiation.jingleDress.getBaseOutput() + getBonusMusic();
         if(musicOutput < 5)

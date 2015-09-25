@@ -160,12 +160,13 @@ public class TotemUtil
     public static void playMusic(int x, int y, int z, TileEntity tileEntity, int id, int i, int j, int k, int musicAmount, int musicMaximum)
     {
         World world = tileEntity.getWorldObj();
+        IMusicAcceptor acc = (IMusicAcceptor) tileEntity;
 
-        int[] musicArray = ((IMusicAcceptor) tileEntity).getMusicArray();
+        int[] musicArray = acc.getMusicArray();
 
-        if(((IMusicAcceptor) tileEntity).getIsCeremony())
+        if(acc.getIsCeremony())
         {
-            if(!((IMusicAcceptor) tileEntity).isDoingEndingEffect())
+            if(!acc.isDoingEndingEffect())
             {
                 if(musicArray[id] + musicAmount > musicMaximum)
                 {
@@ -185,14 +186,15 @@ public class TotemUtil
         {
             if(tileEntity instanceof TileTotemBase)
             {
-                if(((TileTotemBase) tileEntity).musicForTotemEffect + (musicAmount / 2) > TileTotemBase.maximumMusic)
+                TileTotemBase tile = (TileTotemBase) tileEntity;
+                if(tile.musicForTotemEffect + (musicAmount / 2) > TileTotemBase.maximumMusic)
                 {
-                    ((TileTotemBase) tileEntity).musicForTotemEffect = TileTotemBase.maximumMusic;
+                    tile.musicForTotemEffect = TileTotemBase.maximumMusic;
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "cloud");
                     return;
                 } else
                 {
-                    ((TileTotemBase) tileEntity).musicForTotemEffect += (musicAmount / 2);
+                    tile.musicForTotemEffect += (musicAmount / 2);
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
                     return;
                 }

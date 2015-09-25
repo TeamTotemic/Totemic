@@ -11,9 +11,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
@@ -22,6 +22,7 @@ import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.api.totem.TotemRegistry;
+import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -168,9 +169,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             for(int i = 0; i < musicForTotemEffect / 16; i++)
             {
                 Random random = new Random();
-                int negitiveOrNot1 = random.nextBoolean() ? 1 : -1;
-                int negitiveOrNot2 = random.nextBoolean() ? 1 : -1;
-                MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("note", (double) xCoord + (random.nextFloat() * negitiveOrNot1), yCoord, (double) zCoord + (random.nextFloat() * negitiveOrNot2), 4, 0.0D, 0.5D, 0.0D, 0.0D);
+                int plusminus1 = random.nextBoolean() ? 1 : -1;
+                int plusminus2 = random.nextBoolean() ? 1 : -1;
+                ((WorldServer)worldObj).func_147487_a("note", (double) xCoord + (random.nextFloat() * plusminus1), yCoord, (double) zCoord + (random.nextFloat() * plusminus2), 4, 0.0D, 0.5D, 0.0D, 0.0D);
             }
         }
     }
@@ -187,9 +188,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         for(int i = 0; i < j / 16; i++)
         {
             Random random = new Random();
-            int negitiveOrNot1 = random.nextBoolean() ? 1 : -1;
-            int negitiveOrNot2 = random.nextBoolean() ? 1 : -1;
-            MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a("note", (double) xCoord + (random.nextFloat() * negitiveOrNot1), yCoord, (double) zCoord + (random.nextFloat() * negitiveOrNot2), 4, 0.0D, 0.5D, 0.0D, 0.0D);
+            int plusminus1 = random.nextBoolean() ? 1 : -1;
+            int plusminus2 = random.nextBoolean() ? 1 : -1;
+            ((WorldServer)worldObj).func_147487_a("note", (double) xCoord + (random.nextFloat() * plusminus1), yCoord, (double) zCoord + (random.nextFloat() * plusminus2), 4, 0.0D, 0.5D, 0.0D, 0.0D);
         }
 
     }
@@ -201,15 +202,14 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
         totemWoodBonus = 0;
 
-        if(metadata == 0)
+        switch(WoodVariant.values()[metadata])
         {
+        case OAK:
             //oak effect
             totemWoodBonus += 2;
-        } else if(metadata == 1)
-        {
-            //birch effect
-        } else if(metadata == 2)
-        {
+            break;
+
+        case SPRUCE:
             //TODO better numbers, just temp for now.
             //spruce effect
             if(biomeGenBase != null && biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.COLD)
@@ -223,8 +223,13 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                     totemWoodBonus += 2;
                 }
             }
-        } else if(metadata == 3)
-        {
+            break;
+
+        case BIRCH:
+            //birch effect
+            break;
+
+        case JUNGLE:
             //jungle effect
             if(biomeGenBase != null && biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.WARM && !biomeGenBase.getEnableSnow())
             {
@@ -233,9 +238,13 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                     totemWoodBonus += 4;
                 }
             }
-        } else if(metadata == 4)
-        {
-            //cedar effect
+            break;
+
+        case ACACIA:
+        case DARK_OAK:
+        case CEDAR:
+        default:
+                break;
         }
     }
 
@@ -253,20 +262,20 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
         if(isDoingStartup && tryingCeremonyID != 0)
         {
-            if(canStartCeremony())
+            if(canStartCeremony(CeremonyRegistry.fromId(tryingCeremonyID)))
             {
                 currentCeremony = tryingCeremonyID;
                 tryingCeremonyID = 0;
                 isDoingStartup = false;
             } else
-                startupMain();
+                startupMain(CeremonyRegistry.fromId(tryingCeremonyID));
 
             ceremonyStartupTimer++;
         }
 
         if(currentCeremony <= CeremonyRegistry.getCeremonyList().size() && currentCeremony != 0)
         {
-            doCeremonyEffect();
+            doCeremonyEffect(CeremonyRegistry.fromId(currentCeremony));
         }
 
         if(isMusicSelecting && worldObj.getWorldTime() % (20 * 60) == 0)
@@ -276,25 +285,25 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         }
     }
 
-    public void doCeremonyEffect()
+    public void doCeremonyEffect(CeremonyRegistry cer)
     {
-        if(isDoingEndingEffect && CeremonyRegistry.fromId(currentCeremony).getCeremonyActivation().getTimeState() == TimeStateEnum.ENDING_EFFECT)
+        if(isDoingEndingEffect && cer.getCeremonyActivation().getTimeState() == TimeStateEnum.ENDING_EFFECT)
             ceremonyEffectTimer++;
-        if(ceremonyEffectTimer > CeremonyRegistry.fromId(currentCeremony).getCeremonyActivation().getMaximumTicksForEffect().getTime())
+        if(ceremonyEffectTimer > cer.getCeremonyActivation().getMaximumTicksForEffect().getTime())
             resetAfterCeremony(true);
 
-        ICeremonyEffect effect = CeremonyRegistry.fromId(currentCeremony).getCeremonyEffect().getCeremonyEffect();
+        ICeremonyEffect effect = cer.getCeremonyEffect().getCeremonyEffect();
 
         if(effect != null)
         {
-            if(CeremonyRegistry.fromId(currentCeremony).getCeremonyActivation().getTimeState() == TimeStateEnum.INSTANT)
+            if(cer.getCeremonyActivation().getTimeState() == TimeStateEnum.INSTANT)
             {
                 effect.effect(this);
                 resetAfterCeremony(true);
             } else
             {
                 isDoingEndingEffect = true;
-                if(canContinueCeremony())
+                if(canContinueCeremony(cer))
                 {
                     effect.effect(this);
                 } else
@@ -406,10 +415,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     public void particleAroundTotemUpwards(String particle)
     {
-        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, xCoord + 1D, yCoord, zCoord + 0.5D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, xCoord - 1D, yCoord, zCoord + 0.5D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, xCoord, yCoord, zCoord + 1D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(worldObj.provider.dimensionId).func_147487_a(particle, xCoord, yCoord, zCoord - 1D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        ((WorldServer)worldObj).func_147487_a(particle, xCoord + 1D, yCoord, zCoord + 0.5D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        ((WorldServer)worldObj).func_147487_a(particle, xCoord - 1D, yCoord, zCoord + 0.5D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        ((WorldServer)worldObj).func_147487_a(particle, xCoord, yCoord, zCoord + 1D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
+        ((WorldServer)worldObj).func_147487_a(particle, xCoord, yCoord, zCoord - 1D, 4, 0.0D, 0.5D, 0.0D, 0.0D);
     }
 
     public void resetMelody()
@@ -455,30 +464,30 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         }
     }
 
-    public boolean canContinueCeremony()
+    public boolean canContinueCeremony(CeremonyRegistry cer)
     {
         continueTimer++;
         if(continueTimer > 20 * 5)
         {
             continueTimer = 0;
-            if(totalCeremonyMelody - CeremonyRegistry.fromId(currentCeremony).getCeremonyActivation().getMelodyPer5After() < 0)
+            if(totalCeremonyMelody - cer.getCeremonyActivation().getMelodyPer5After() < 0)
                 totalCeremonyMelody = 0;
             else
-                totalCeremonyMelody -= CeremonyRegistry.fromId(currentCeremony).getCeremonyActivation().getMelodyPer5After();
+                totalCeremonyMelody -= cer.getCeremonyActivation().getMelodyPer5After();
 
-            if(totalCeremonyMelody < CeremonyRegistry.fromId(currentCeremony).getCeremonyActivation().getMelodyPer5After())
+            if(totalCeremonyMelody < cer.getCeremonyActivation().getMelodyPer5After())
             {
                 resetAfterCeremony(true);
             }
         }
 
-        return totalCeremonyMelody - CeremonyRegistry.fromId(currentCeremony).getCeremonyActivation().getMelodyPer5After() >= 0;
+        return totalCeremonyMelody - cer.getCeremonyActivation().getMelodyPer5After() >= 0;
     }
 
 
-    public boolean canStartCeremony()
+    public boolean canStartCeremony(CeremonyRegistry trying)
     {
-        if(CeremonyRegistry.fromId(tryingCeremonyID).getCeremonyActivation().getDoesNeedItems())
+        if(trying.getCeremonyActivation().getDoesNeedItems())
         {
             if(EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6) != null)
             {
@@ -486,9 +495,12 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 {
                     if(entity instanceof EntityItem)
                     {
-                        if(((EntityItem) entity).getEntityItem().getItem() == CeremonyRegistry.fromId(tryingCeremonyID).getCeremonyActivation().getItemStack().getItem() && ((EntityItem) entity).getEntityItem().getItemDamage() == CeremonyRegistry.fromId(tryingCeremonyID).getCeremonyActivation().getItemStack().getItemDamage() && ((EntityItem) entity).getEntityItem().stackSize >= CeremonyRegistry.fromId(tryingCeremonyID).getCeremonyActivation().getItemStack().stackSize)
+                        EntityItem item = (EntityItem)entity;
+                        if(item.getEntityItem().getItem() == trying.getCeremonyActivation().getItemStack().getItem()
+                                && item.getEntityItem().getItemDamage() == trying.getCeremonyActivation().getItemStack().getItemDamage()
+                                && item.getEntityItem().stackSize >= trying.getCeremonyActivation().getItemStack().stackSize)
                         {
-                            ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - CeremonyRegistry.fromId(tryingCeremonyID).getCeremonyActivation().getItemStack().stackSize, ((EntityItem) entity).getEntityItem().getItemDamage()));
+                            item.setEntityItemStack(new ItemStack(item.getEntityItem().getItem(), item.getEntityItem().stackSize - trying.getCeremonyActivation().getItemStack().stackSize, item.getEntityItem().getItemDamage()));
                             break;
                         }
                     }
@@ -497,23 +509,23 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         }
 
         resetMelody();
-        return totalCeremonyMelody >= (CeremonyRegistry.fromId(tryingCeremonyID).getCeremonyActivation().getMusicNeeded() - (dancingEfficiency / 4));
+        return totalCeremonyMelody >= (trying.getCeremonyActivation().getMusicNeeded() - (dancingEfficiency / 4));
     }
 
-    public void startupMain()
+    public void startupMain(CeremonyRegistry trying)
     {
-        if(ceremonyStartupTimer > CeremonyRegistry.fromId(tryingCeremonyID).getCeremonyActivation().getMaximumStartupTime().getTime())
+        if(ceremonyStartupTimer > trying.getCeremonyActivation().getMaximumStartupTime().getTime())
         {
             resetAfterCeremony(true);
         }
 
         if(worldObj.getWorldTime() % 5L == 0)
         {
-            danceLikeAMonkey();
+            danceLikeAMonkey(trying);
         }
     }
 
-    public void danceLikeAMonkey()
+    public void danceLikeAMonkey(CeremonyRegistry trying)
     {
         //TODO
         if(worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 8) != null)

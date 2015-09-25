@@ -22,24 +22,34 @@ public class CraftingRecipes
 
     static void shapedRecipes()
     {
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totemicStaff), new Object[]{" ls", " s ", "s l", ('s'), "stickWood", ('l'), new ItemStack(Blocks.leaves)}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totemWhittlingKnife, 1, 0), new Object[]{"  i", " sf", "s  ", ('s'), "stickWood", ('i'), Items.iron_ingot, ('f'), Items.flint}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.totemicStaff,
+                " ls", " s ", "s l", ('s'), "stickWood", ('l'), "treeLeaves"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.totemWhittlingKnife,
+                "  i", " sf", "s  ", ('s'), "stickWood", ('i'), "ingotIron", ('f'), Items.flint));
 
         //Generic
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.totemTorch, 1, 0), new Object[]{"sfs", "sws", " s ", ('s'), "stickWood", ('w'), "logWood", ('f'), new ItemStack(Blocks.torch, 1, OreDictionary.WILDCARD_VALUE)}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.barkStripper, 1, 0), new Object[]{"iii", "s s", "s s", ('i'), "ingotIron", ('s'), "stickWood"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.totempedia, 1), new Object[]{"bpb", "bpb", "bpb", ('b'), "logWood", ('p'), Items.paper}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 3, ItemTotemicItems.bellsIron), new Object[]{" n ", "nnn", " n ", ('n'), "nuggetIron"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.iron_ingot), new Object[]{"nnn", "nnn", "nnn", ('n'), "nuggetIron"}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.totemTorch,
+                "sfs", "sws", " s ", ('s'), "stickWood", ('w'), "logWood", ('f'), Blocks.torch));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.barkStripper,
+                "iii", "s s", "s s", ('i'), "ingotIron", ('s'), "stickWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.totempedia,
+                "bpb", "bpb", "bpb", ('b'), "logWood", ('p'), Items.paper));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 3, ItemTotemicItems.bellsIron),
+                " n ", "nnn", " n ", ('n'), "nuggetIron"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(Items.iron_ingot,
+                "nnn", "nnn", "nnn", ('n'), "nuggetIron"));
 
         //Music
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0), new Object[]{"eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE)}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.windChime, 1, 0), new Object[]{"iwi", "tst", "  t", ('i'), "ingotIron", ('s'), Items.string, ('w'), "logWood", ('t'), "stickWood"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.flute, 1, 0), new Object[]{" sc", " c ", "c  ", ('c'), "stickWood", ('s'), "treeLeaves"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ceremonialRattle, 1, 0), new Object[]{" ww", " bw", "s  ", ('s'), "stickWood", ('w'), "logWood", ('b'), Items.bone}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.jingleDress, 1, 0), new Object[]{" l ", "blb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron"}));
-
-
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0),
+                "eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.windChime, 1, 0),
+                "iwi", "tst", "  t", ('i'), "ingotIron", ('s'), Items.string, ('w'), "logWood", ('t'), "stickWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.flute, 1, 0),
+                " sc", " c ", "c  ", ('c'), "stickWood", ('s'), "treeLeaves"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ceremonialRattle, 1, 0),
+                " ww", " bw", "s  ", ('s'), "stickWood", ('w'), "logWood", ('b'), Items.bone));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.jingleDress, 1, 0),
+                " l ", "blb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron"));
     }
 
     static void shapelessRecipes()
