@@ -13,7 +13,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketWindChimeSound;
+import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -63,7 +63,7 @@ public class BlockWindChime extends BlockTileTotemic
         if(!world.isRemote && player.isSneaking() && !tileWindChime.isPlaying && tileWindChime.canPlay)
         {
             tileWindChime.canPlay = false;
-            PacketHandler.sendAround(new PacketWindChimeSound(x, y, z), world.getTileEntity(x, y, z));
+            PacketHandler.sendAround(new PacketSound(x, y, z, "windChime"), world.getTileEntity(x, y, z));
             TotemUtil.playMusicFromBlockForCeremonySelector(world, x, y, z, HandlerInitiation.windChime, 0);
             ((WorldServer)world).func_147487_a("note", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             ((WorldServer)world).func_147487_a("fireworksSpark", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);

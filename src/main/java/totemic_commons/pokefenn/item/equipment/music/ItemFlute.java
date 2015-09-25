@@ -16,6 +16,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -40,12 +42,17 @@ public class ItemFlute extends ItemMusic
     {
         if(!world.isRemote)
         {
+            int x = (int) player.posX;
+            int y = (int) player.posY;
+            int z = (int) player.posZ;
+
             time++;
             if(time >= 5 && !player.isSneaking())
             {
                 time = 0;
                 TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.flute, 0, 0);
                 particlesAllAround(world, player.posX, player.posY, player.posZ, false);
+                PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
                 return itemStack;
             }
             if(time >= 5 && player.isSneaking())
@@ -53,6 +60,7 @@ public class ItemFlute extends ItemMusic
                 time = 0;
                 TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
                 particlesAllAround(world, player.posX, player.posY, player.posZ, true);
+                PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
             }
             if(itemStack.getItemDamage() == 1)
                 for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))

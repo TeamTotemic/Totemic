@@ -1,23 +1,18 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketRattleSound;
+import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
-
-import java.util.List;
 
 /**
  * Created by Pokefenn.
@@ -68,7 +63,7 @@ public class ItemRattle extends ItemMusic
                         time = 0;
                         TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.rattle, 0, 0);
                         particlesAllAround(world, player.posX, player.posY, player.posZ, false);
-                        PacketHandler.sendAround(new PacketRattleSound(x, y, z), ((EntityPlayer) entityLiving).worldObj.provider.dimensionId, x, y, z);
+                        PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), ((EntityPlayer) entityLiving).worldObj.provider.dimensionId, x, y, z);
                         return false;
                     }
                     if(time >= 4 && player.isSneaking())
@@ -76,7 +71,7 @@ public class ItemRattle extends ItemMusic
                         time = 0;
                         TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
                         particlesAllAround(world, player.posX, player.posY, player.posZ, true);
-                        PacketHandler.sendAround(new PacketRattleSound(x, y, z), ((EntityPlayer) entityLiving).worldObj.provider.dimensionId, x, y, z);
+                        PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), ((EntityPlayer) entityLiving).worldObj.provider.dimensionId, x, y, z);
                     }
                 }
             }

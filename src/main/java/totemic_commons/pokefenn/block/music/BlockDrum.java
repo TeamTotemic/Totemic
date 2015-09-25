@@ -11,7 +11,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketDrumSound;
+import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -65,7 +65,7 @@ public class BlockDrum extends BlockTileTotemic
             world.markBlockForUpdate(x, y, z);
         }
 
-        PacketHandler.sendAround(new PacketDrumSound(x, y, z), world.getTileEntity(x, y, z));
+        PacketHandler.sendAround(new PacketSound(x, y, z, "drum"), world.getTileEntity(x, y, z));
     }
 
     @Override

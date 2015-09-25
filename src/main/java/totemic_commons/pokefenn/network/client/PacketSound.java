@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.network.client;
 
-import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -12,20 +12,22 @@ import totemic_commons.pokefenn.util.ClientUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketWindChimeSound implements IMessage, IMessageHandler<PacketWindChimeSound, IMessage>
+public class PacketSound implements IMessage, IMessageHandler<PacketSound, IMessage>
 {
     public int x, y, z;
+    public String type;
 
-    public PacketWindChimeSound()
+    public PacketSound()
     {
 
     }
 
-    public PacketWindChimeSound(int x, int y, int z)
+    public PacketSound(int x, int y, int z, String type)
     {
         this.x = x;
         this.y = y;
         this.z = z;
+        this.type = type;
     }
 
     @Override
@@ -34,6 +36,7 @@ public class PacketWindChimeSound implements IMessage, IMessageHandler<PacketWin
         this.x = buf.readInt();
         this.y = buf.readInt();
         this.z = buf.readInt();
+        this.type = ByteBufUtils.readUTF8String(buf); //TODO: Reduce network strain by serializing this into a number
     }
 
     @Override
@@ -42,13 +45,15 @@ public class PacketWindChimeSound implements IMessage, IMessageHandler<PacketWin
         buf.writeInt(x);
         buf.writeInt(y);
         buf.writeInt(z);
+        ByteBufUtils.writeUTF8String(buf, type);
     }
 
     @Override
-    public IMessage onMessage(PacketWindChimeSound message, MessageContext ctx)
+    public IMessage onMessage(PacketSound message, MessageContext ctx)
     {
         EntityPlayer player = ClientUtil.getPlayer();
-        player.worldObj.playSound(message.x, message.y, message.z, "totemic:windChime", 1.0F, 1.0F, false);
+
+        player.worldObj.playSound(message.x, message.y, message.z, "totemic:" + message.type, 1.0F, 1.0F, false);
 
         return null;
     }
