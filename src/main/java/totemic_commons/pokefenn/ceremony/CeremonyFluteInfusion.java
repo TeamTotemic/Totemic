@@ -27,17 +27,14 @@ public class CeremonyFluteInfusion extends CeremonyBase
             int z = tileTotemBase.zCoord;
 
             World world = tileTotemBase.getWorldObj();
-            if(EntityUtil.getEntitiesInRange(world, x, y, z, 5, 5) != null)
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 5, 5))
             {
-                for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 5, 5))
+                if(entity instanceof EntityItem)
                 {
-                    if(entity instanceof EntityItem)
+                    if(((EntityItem) entity).getEntityItem().getItem() == ModItems.flute)
                     {
-                        if(((EntityItem) entity).getEntityItem().getItem() == ModItems.flute)
-                        {
-                            EntityUtil.dropItem(world, entity.posX, entity.posY, entity.posZ, new ItemStack(ModItems.flute, 1, 1));
-                            entity.setDead();
-                        }
+                        EntityUtil.dropItem(world, entity.posX, entity.posY, entity.posZ, new ItemStack(ModItems.flute, 1, 1));
+                        entity.setDead();
                     }
                 }
             }

@@ -28,28 +28,25 @@ public class TotemEffectOcelot implements ITotemEffect
     {
         try
         {
-            if(EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical) != null)
+            for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
             {
-                for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
+                if(entity instanceof EntityCreeper)
                 {
-                    if(entity instanceof EntityCreeper)
+                    int ignited = (Integer) timeSinceIgnited.get(entity);
+
+                    if(repetitionBonus < 5)
                     {
-                        int ignited = (Integer) timeSinceIgnited.get(entity);
-
-                        if(repetitionBonus < 5)
+                        Random random = new Random();
+                        if(random.nextInt(4 + repetitionBonus + (melodyAmount / 16)) == 1)
                         {
-                            Random random = new Random();
-                            if(random.nextInt(4 + repetitionBonus + (melodyAmount / 16)) == 1)
-                            {
-                                return;
-                            }
+                            return;
                         }
+                    }
 
-                        if(ignited > 20 - repetitionBonus)
-                        {
-                            timeSinceIgnited.setInt(entity, 0);
-                            ((EntityCreeper)entity).setCreeperState(-1);
-                        }
+                    if(ignited > 20 - repetitionBonus)
+                    {
+                        timeSinceIgnited.setInt(entity, 0);
+                        ((EntityCreeper)entity).setCreeperState(-1);
                     }
                 }
             }

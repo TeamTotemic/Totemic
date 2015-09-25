@@ -16,15 +16,13 @@ public class CeremonyWarDance extends CeremonyBase
     @Override
     public void effect(TileEntity tileEntity)
     {
-        if(EntityUtil.getEntitiesInRange(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 8, 8) != null)
+
+        for(Entity entity : EntityUtil.getEntitiesInRange(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 8, 8))
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 8, 8))
+            if(entity instanceof EntityPlayer)
             {
-                if(entity instanceof EntityPlayer)
-                {
-                    ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 20 * (60 * 3), 1));
-                    ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 20 * (60), 1));
-                }
+                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 20 * (60 * 3), 1));
+                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 20 * (60), 1));
             }
         }
     }

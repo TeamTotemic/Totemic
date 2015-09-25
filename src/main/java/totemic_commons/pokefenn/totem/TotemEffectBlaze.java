@@ -25,23 +25,20 @@ public class TotemEffectBlaze implements ITotemEffect
     {
         if(totem.getWorldObj().getWorldTime() % 60L == 0)
         {
-            if(EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical) != null)
+
+            for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
             {
-                for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
+                if(entity instanceof EntityPlayer)
                 {
-                    if(entity instanceof EntityPlayer)
+                    if(entity.isBurning())
                     {
-                        if(entity.isBurning())
-                        {
-                            Random rand = new Random();
-                            if(rand.nextBoolean())
-                                ((EntityPlayer) entity).heal(2);
-                        }
-
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 40, Potion.fireResistance, 0, totemWoodBonus, repetitionBonus, melodyAmount);
+                        Random rand = new Random();
+                        if(rand.nextBoolean())
+                            ((EntityPlayer) entity).heal(2);
                     }
-                }
 
+                    TotemUtil.addPotionEffects((EntityPlayer) entity, 40, Potion.fireResistance, 0, totemWoodBonus, repetitionBonus, melodyAmount);
+                }
             }
         }
 

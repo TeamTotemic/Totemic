@@ -20,14 +20,11 @@ public class TotemEffectSpider implements ITotemEffect
     {
         if(totem.getWorldObj().getWorldTime() % 60L == 0)
         {
-            if(EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical) != null)
+            for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
             {
-                for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
+                if(entity instanceof EntityPlayer)
                 {
-                    if(entity instanceof EntityPlayer)
-                    {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 40, ModPotions.spiderPotion, 0, totemWoodBonus, repetitionBonus, melodyAmount);
-                    }
+                    TotemUtil.addPotionEffects((EntityPlayer) entity, 40, ModPotions.spiderPotion, 0, totemWoodBonus, repetitionBonus, melodyAmount);
                 }
             }
         }

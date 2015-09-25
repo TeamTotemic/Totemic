@@ -34,27 +34,24 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
             int y = tileTotemBase.yCoord;
             int z = tileTotemBase.zCoord;
 
-            if(EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8) != null)
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
             {
-                for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
+                if(entity instanceof EntityItem)
                 {
-                    if(entity instanceof EntityItem)
+                    if(world.getWorldTime() % 20L == 0)
                     {
-                        if(world.getWorldTime() % 20L == 0)
+                        if(((EntityItem) entity).getEntityItem().getItem() == Items.egg)
                         {
-                            if(((EntityItem) entity).getEntityItem().getItem() == Items.egg)
+                            Random random = new Random();
+                            if(random.nextInt(4) == 1)
                             {
-                                Random random = new Random();
-                                if(random.nextInt(4) == 1)
-                                {
-                                    EntityChicken chicken = new EntityChicken(world);
-                                    chicken.setPosition(entity.posX, entity.posY, entity.posZ);
-                                    world.spawnEntityInWorld(chicken);
-                                    if(((EntityItem) entity).getEntityItem().stackSize == 1)
-                                        entity.setDead();
-                                    else
-                                        ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - 1, 0));
-                                }
+                                EntityChicken chicken = new EntityChicken(world);
+                                chicken.setPosition(entity.posX, entity.posY, entity.posZ);
+                                world.spawnEntityInWorld(chicken);
+                                if(((EntityItem) entity).getEntityItem().stackSize == 1)
+                                    entity.setDead();
+                                else
+                                    ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - 1, 0));
                             }
                         }
                     }

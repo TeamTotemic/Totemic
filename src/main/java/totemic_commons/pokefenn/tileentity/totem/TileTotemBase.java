@@ -497,20 +497,17 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         if(trying.getCeremonyActivation().getDoesNeedItems())
         {
-            if(EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6) != null)
+            for(Entity entity : EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6))
             {
-                for(Entity entity : EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6))
+                if(entity instanceof EntityItem)
                 {
-                    if(entity instanceof EntityItem)
+                    EntityItem item = (EntityItem)entity;
+                    if(item.getEntityItem().getItem() == trying.getCeremonyActivation().getItemStack().getItem()
+                            && item.getEntityItem().getItemDamage() == trying.getCeremonyActivation().getItemStack().getItemDamage()
+                            && item.getEntityItem().stackSize >= trying.getCeremonyActivation().getItemStack().stackSize)
                     {
-                        EntityItem item = (EntityItem)entity;
-                        if(item.getEntityItem().getItem() == trying.getCeremonyActivation().getItemStack().getItem()
-                                && item.getEntityItem().getItemDamage() == trying.getCeremonyActivation().getItemStack().getItemDamage()
-                                && item.getEntityItem().stackSize >= trying.getCeremonyActivation().getItemStack().stackSize)
-                        {
-                            item.setEntityItemStack(new ItemStack(item.getEntityItem().getItem(), item.getEntityItem().stackSize - trying.getCeremonyActivation().getItemStack().stackSize, item.getEntityItem().getItemDamage()));
-                            break;
-                        }
+                        item.setEntityItemStack(new ItemStack(item.getEntityItem().getItem(), item.getEntityItem().stackSize - trying.getCeremonyActivation().getItemStack().stackSize, item.getEntityItem().getItemDamage()));
+                        break;
                     }
                 }
             }

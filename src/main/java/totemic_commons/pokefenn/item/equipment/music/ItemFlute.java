@@ -49,19 +49,16 @@ public class ItemFlute extends ItemMusic
                 particlesAllAround(world, player.posX, player.posY, player.posZ, true);
             }
             if(itemStack.getItemDamage() == 1)
-                if(EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2) != null)
+                for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
                 {
-                    for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
+                    if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
                     {
-                        if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
-                        {
-                            if(entity instanceof EntityAnimal)
-                                ((EntityAnimal) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 1, this, false));
-                            if(entity instanceof EntityVillager)
-                                ((EntityVillager) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 0.5, this, false));
-                        }
-
+                        if(entity instanceof EntityAnimal)
+                            ((EntityAnimal) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 1, this, false));
+                        if(entity instanceof EntityVillager)
+                            ((EntityVillager) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 0.5, this, false));
                     }
+
                 }
         }
         return itemStack;

@@ -23,15 +23,11 @@ public class TotemEffectBat implements ITotemEffect
     {
         if(totem.getWorldObj().getWorldTime() % 10L == 0L)
         {
-            if(EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical) != null)
+            for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
             {
-                for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
+                if(entity instanceof EntityPlayer)
                 {
-                    if(entity instanceof EntityPlayer)
-                    {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 20, ModPotions.batPotion, 0, totemWoodBonus, repetitionBonus, melodyAmount);
-                    }
-
+                    TotemUtil.addPotionEffects((EntityPlayer) entity, 20, ModPotions.batPotion, 0, totemWoodBonus, repetitionBonus, melodyAmount);
                 }
 
             }

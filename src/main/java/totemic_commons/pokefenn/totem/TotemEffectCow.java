@@ -21,15 +21,12 @@ public class TotemEffectCow implements ITotemEffect
     {
         if(totem.getWorldObj().getWorldTime() % 60L == 0)
         {
-            if(EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical) != null)
+            for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
             {
-                for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
+                if(entity instanceof EntityPlayer)
                 {
-                    if(entity instanceof EntityPlayer)
-                    {
-                        TotemUtil.addPotionEffects((EntityPlayer) entity, 40, Potion.resistance, 0, totemWoodBonus, repetitionBonus, melodyAmount);
-                        TotemUtil.addNegativePotionEffect((EntityPlayer) entity, 100, Potion.moveSlowdown, 1, totemWoodBonus, repetitionBonus, melodyAmount);
-                    }
+                    TotemUtil.addPotionEffects((EntityPlayer) entity, 40, Potion.resistance, 0, totemWoodBonus, repetitionBonus, melodyAmount);
+                    TotemUtil.addNegativePotionEffect((EntityPlayer) entity, 100, Potion.moveSlowdown, 1, totemWoodBonus, repetitionBonus, melodyAmount);
                 }
             }
         }
