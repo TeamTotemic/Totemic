@@ -18,7 +18,7 @@ public class TotemEffectSpider implements ITotemEffect
     @Override
     public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
-        if(totem.getWorldObj().getWorldTime() % 600L == 0)
+        if(totem.getWorldObj().getWorldTime() % 60L == 0)
         {
             if(EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical) != null)
             {
@@ -29,7 +29,6 @@ public class TotemEffectSpider implements ITotemEffect
                         TotemUtil.addPotionEffects((EntityPlayer) entity, 40, ModPotions.spiderPotion, 0, totemWoodBonus, repetitionBonus, melodyAmount);
                     }
                 }
-
             }
         }
     }
