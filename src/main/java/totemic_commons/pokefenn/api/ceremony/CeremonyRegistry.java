@@ -2,10 +2,10 @@ package totemic_commons.pokefenn.api.ceremony;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import gnu.trove.map.TIntObjectMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 import net.minecraft.util.StatCollector;
 
 /**
@@ -15,7 +15,7 @@ import net.minecraft.util.StatCollector;
 public class CeremonyRegistry
 {
     private static final List<CeremonyRegistry> ceremonyList = new ArrayList<>();
-    private static final Map<Integer, CeremonyRegistry> idToCeremony = new HashMap<>();
+    private static final TIntObjectMap<CeremonyRegistry> idToCeremony = new TIntObjectHashMap<>();
 
     private final int id;
     private final String name;

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import gnu.trove.map.TIntObjectMap;
+import gnu.trove.map.hash.TIntObjectHashMap;
 import net.minecraft.util.StatCollector;
 
 /**
@@ -17,7 +19,7 @@ import net.minecraft.util.StatCollector;
 public class TotemRegistry
 {
     private static final List<TotemRegistry> effectsList = new ArrayList<>();
-    private static final Map<Integer, TotemRegistry> idToEffects = new HashMap<>();
+    private static final TIntObjectMap<TotemRegistry> idToEffects = new TIntObjectHashMap<>();
 
     private final int id;
     private final int verticalHeight;
