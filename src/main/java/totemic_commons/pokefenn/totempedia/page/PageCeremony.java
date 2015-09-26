@@ -1,12 +1,13 @@
 package totemic_commons.pokefenn.totempedia.page;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -44,7 +45,7 @@ public class PageCeremony extends PageRecipe
                 renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 40, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(0)).getItem(0), false);
                 renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(1)).getItem(0), false);
                 renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(2)).getItem(0), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -21, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(0)).getItem(3), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -21, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(3)).getItem(0), false);
             }
 
             GL11.glEnable(GL11.GL_BLEND);
