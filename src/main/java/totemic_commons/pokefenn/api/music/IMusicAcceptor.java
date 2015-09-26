@@ -17,7 +17,7 @@ public interface IMusicAcceptor
     public int[] getMusicArray();
 
     /**
-     * @return The selector that is used to determin which Ceremony to play, just return a default value if not used.
+     * @return The selector that is used to determine which Ceremony to play, just return a default value if not used.
      */
     public int[] getMusicSelector();
 
@@ -32,7 +32,7 @@ public interface IMusicAcceptor
     public boolean isMusicSelecting();
 
     /**
-     * @return A variable that will increased when playing music out of a array enviroment.
+     * @return A variable that will increased when playing music out of a array environment.
      */
     public int getMusicForEffect();
 

@@ -78,6 +78,7 @@ totemicmisc.musicSelector=Musical Selectors
 totemicmisc.tipi.cantSleep=You can not sleep in a tipi without being in the open fields
 totemicmisc.tipi.nether=You can not sleep in the nether
 totemicmisc.activeEffect=Active Totem Effect: %s
+totemicmisc.startup=Starting up
 
 #totemic.tooltip.rattle=Swing to make music
 

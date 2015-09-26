@@ -58,6 +58,11 @@ public class TileTotemic extends TileEntity
         this.customName = customName;
     }
 
+    public void markForUpdate()
+    {
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {

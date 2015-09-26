@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.util;
 
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -10,8 +12,6 @@ import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
-
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -173,13 +173,11 @@ public class TotemUtil
                     musicArray[id] = musicMaximum;
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "cloud");
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
-                    return;
 
                 } else if(musicArray[id] + musicAmount < musicMaximum)
                 {
                     musicArray[id] += musicAmount;
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
-                    return;
                 }
             }
         } else
@@ -191,16 +189,14 @@ public class TotemUtil
                 {
                     tile.musicForTotemEffect = TileTotemBase.maximumMusic;
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "cloud");
-                    return;
                 } else
                 {
                     tile.musicForTotemEffect += (musicAmount / 2);
                     musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
-                    return;
                 }
             }
         }
-        world.markBlockForUpdate(x, y, z);
+        //world.markBlockForUpdate(x, y, z);
     }
 
     public static void playMusicFromItem(World world, int x, int y, int z, MusicHandler musicHandler, int bonusRadius, int bonusMusicAmount)

@@ -277,6 +277,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 currentCeremony = tryingCeremonyID;
                 tryingCeremonyID = 0;
                 isDoingStartup = false;
+                markForUpdate();
             } else
                 startupMain(CeremonyRegistry.fromId(tryingCeremonyID));
 
@@ -338,6 +339,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                     isDoingStartup = true;
                     isMusicSelecting = false;
                     resetSelector();
+                    markForUpdate();
                 }
             }
         }
@@ -464,6 +466,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             {
                 musicSelector[i] = 0;
             }
+        markForUpdate();
     }
 
     public void resetSelector()
