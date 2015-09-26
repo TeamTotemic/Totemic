@@ -49,7 +49,7 @@ public class ItemFlute extends ItemMusic
             time++;
             if(time >= 5 && !player.isSneaking())
             {
-                int bonusMusic = (itemStack.getItemDamage() == 1) ? 2 : 0;
+                int bonusMusic = (itemStack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
                 time = 0;
                 TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.flute, 0, bonusMusic);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);

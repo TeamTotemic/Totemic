@@ -110,10 +110,13 @@ public class BlockTotemBase extends BlockTileTotemic
             {
                 if(tileTotemBase.isDoingStartup)
                 {
+                    CeremonyRegistry trying = CeremonyRegistry.fromId(tileTotemBase.tryingCeremonyID);
                     player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing startup"));
-                    player.addChatComponentMessage(new ChatComponentText("Music amount: " + tileTotemBase.totalCeremonyMelody));
+                    player.addChatComponentMessage(new ChatComponentText(trying.getLocalizedName()));
+                    player.addChatComponentMessage(new ChatComponentText("Music amount: " + tileTotemBase.totalCeremonyMelody + " / "
+                            + trying.getCeremonyActivation().getMusicNeeded()));
                     player.addChatComponentMessage(new ChatComponentText("Startup time: " + tileTotemBase.ceremonyStartupTimer + " / "
-                            + CeremonyRegistry.fromId(tileTotemBase.tryingCeremonyID).getCeremonyActivation().getMaximumStartupTime().getTime()));
+                            + trying.getCeremonyActivation().getMaximumStartupTime().getTime()));
                 }
                 if(tileTotemBase.isDoingEffect)
                     player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing it's effect"));

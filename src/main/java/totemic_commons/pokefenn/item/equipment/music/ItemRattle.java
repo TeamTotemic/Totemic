@@ -27,7 +27,7 @@ public class ItemRattle extends ItemMusic
 
     public ItemRattle()
     {
-        super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.flute);
+        super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.rattle);
         time = 0;
         headPoles = 0;
     }
