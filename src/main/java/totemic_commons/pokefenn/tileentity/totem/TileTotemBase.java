@@ -284,7 +284,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             ceremonyStartupTimer++;
         }
 
-        if(currentCeremony <= CeremonyRegistry.getCeremonyList().size() && currentCeremony != 0)
+        if(currentCeremony != 0)
         {
             doCeremonyEffect(CeremonyRegistry.fromId(currentCeremony));
         }

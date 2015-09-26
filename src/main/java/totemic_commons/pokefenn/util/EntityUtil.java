@@ -32,6 +32,7 @@ public class EntityUtil
 
     public static void spawnEntity(World world, double xPos, double yPos, double zPos, Entity entity)
     {
+        entity.setPosition(xPos, yPos, zPos);
         world.spawnEntityInWorld(entity);
     }
 
