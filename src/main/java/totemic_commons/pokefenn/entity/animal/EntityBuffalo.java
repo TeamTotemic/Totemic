@@ -124,7 +124,8 @@ public class EntityBuffalo extends EntityCow
         }
     }
 
-    @Override
+    //TODO
+    /*@Override
     public boolean interact(EntityPlayer player)
     {
         ItemStack itemstack = player.inventory.getCurrentItem();
@@ -144,7 +145,7 @@ public class EntityBuffalo extends EntityCow
 
         return super.interact(player);
 
-    }
+    }*/
 
     @Override
     public EntityBuffalo createChild(EntityAgeable var1)
@@ -157,7 +158,7 @@ public class EntityBuffalo extends EntityCow
     {
         return 5 + worldObj.rand.nextInt(6);
     }
-    
+
     @Override
     public boolean canMateWith(EntityAnimal animal)
     {
