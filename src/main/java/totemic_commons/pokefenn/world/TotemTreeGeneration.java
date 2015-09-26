@@ -61,14 +61,9 @@ public class TotemTreeGeneration extends WorldGenerator
 
             if((block != null && block.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, ((BlockSapling) ModBlocks.totemSapling))) && y < worldHeight - treeHeight - 1)
             {
-                for(yOffset = y; yOffset <= y + 1 + treeHeight; ++yOffset)
+                for(yOffset = y + 1; yOffset <= y + 1 + treeHeight; ++yOffset)
                 {
                     byte radius = 1;
-
-                    if(yOffset == y)
-                    {
-                        radius = 0;
-                    }
 
                     if(yOffset >= y + 1 + treeHeight - 2)
                     {

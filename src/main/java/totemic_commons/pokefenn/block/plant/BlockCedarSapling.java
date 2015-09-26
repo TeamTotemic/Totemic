@@ -1,5 +1,8 @@
 package totemic_commons.pokefenn.block.plant;
 
+import java.util.List;
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
@@ -14,9 +17,6 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.world.TotemTreeGeneration;
-
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,6 +34,7 @@ public class BlockCedarSapling extends BlockSapling
         setBlockName(Strings.TOTEM_SAPLING_NAME);
         setBlockBounds(0.5F - 0.4F, 0.0F, 0.5F - 0.4F, 0.5F + 0.4F, 0.4F * 2.0F, 0.5F + 0.4F);
         setCreativeTab(Totemic.tabsTotem);
+        setStepSound(soundTypeGrass);
     }
 
     @Override
@@ -45,7 +46,6 @@ public class BlockCedarSapling extends BlockSapling
             {
                 world.setBlockToAir(x, y, z);
                 world.setBlock(x, y, z, ModBlocks.cedarLog, 0, 4);
-                //new TotemTreeGeneration(true).growTree(world, random, x, y, z);
             }
         }
     }

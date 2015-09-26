@@ -1,22 +1,19 @@
 package totemic_commons.pokefenn.block.plant;
 
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,40 +25,27 @@ public class BlockCedarLeaves extends BlockLeaves
 {
     public BlockCedarLeaves()
     {
-        super();
         setCreativeTab(Totemic.tabsTotem);
         setBlockName(Strings.TOTEM_LEAVES_NAME);
-        setLightOpacity(0);
-        setHardness(0.2F);
     }
 
+    @SideOnly(Side.CLIENT)
     private IIcon opaqueIcon;
+    @SideOnly(Side.CLIENT)
     private IIcon transparentIcon;
 
     @Override
-    public Item getItemDropped(int i, Random random, int j)
+    public Item getItemDropped(int meta, Random random, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.totemSapling);
     }
 
+    //The sapling drop chance
     @Override
-    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
+    protected int func_150123_b(int meta)
     {
-        if(!par1World.isRemote)
-        {
-            ArrayList<ItemStack> items = getDrops(par1World, par2, par3, par4, par5, par7);
-
-            for(ItemStack item : items)
-            {
-                Random rand = new Random();
-                if(rand.nextInt(12) == 1)
-                {
-                    this.dropBlockAsItem(par1World, par2, par3, par4, item);
-                }
-            }
-        }
+        return 80;
     }
-
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -77,6 +61,7 @@ public class BlockCedarLeaves extends BlockLeaves
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
         return !Blocks.leaves.isOpaqueCube() ? transparentIcon : opaqueIcon;
