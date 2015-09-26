@@ -8,30 +8,31 @@ package totemic_commons.pokefenn.client.rendering.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 public class ModelBuffalo extends ModelBase {
     // fields
-    ModelRenderer tailhairs;
-    ModelRenderer hoof1;
-    ModelRenderer leg1;
-    ModelRenderer leg3;
-    ModelRenderer hoof3;
-    ModelRenderer leg2;
-    ModelRenderer hoof2;
-    ModelRenderer leg4;
-    ModelRenderer hoof4;
-    ModelRenderer back;
-    ModelRenderer tail;
-    ModelRenderer body;
-    ModelRenderer head;
-    ModelRenderer hornbase2;
-    ModelRenderer horn3;
-    ModelRenderer horn1;
-    ModelRenderer horn2;
-    ModelRenderer hornbase1;
-    ModelRenderer horn4;
-    ModelRenderer horn5;
-    ModelRenderer horn6;
+    private ModelRenderer tailhairs;
+    private ModelRenderer hoof1;
+    private ModelRenderer leg1;
+    private ModelRenderer leg3;
+    private ModelRenderer hoof3;
+    private ModelRenderer leg2;
+    private ModelRenderer hoof2;
+    private ModelRenderer leg4;
+    private ModelRenderer hoof4;
+    private ModelRenderer back;
+    private ModelRenderer tail;
+    private ModelRenderer body;
+    private ModelRenderer head;
+    private ModelRenderer hornbase2;
+    private ModelRenderer horn3;
+    private ModelRenderer horn1;
+    private ModelRenderer horn2;
+    private ModelRenderer hornbase1;
+    private ModelRenderer horn4;
+    private ModelRenderer horn5;
+    private ModelRenderer horn6;
 
     public ModelBuffalo() {
         textureWidth = 128;
@@ -209,6 +210,19 @@ public class ModelBuffalo extends ModelBase {
     @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
+        head.rotateAngleX = f4 / (180F / (float)Math.PI) + ((float)Math.PI / 2F);
+        hornbase1.rotateAngleX = hornbase2.rotateAngleX = horn1.rotateAngleX = horn2.rotateAngleX = horn3.rotateAngleX
+                = horn4.rotateAngleX = horn5.rotateAngleX = horn6.rotateAngleX = head.rotateAngleX;
+        head.rotateAngleY = hornbase1.rotateAngleY = hornbase2.rotateAngleY = horn1.rotateAngleY = horn2.rotateAngleY = horn3.rotateAngleY
+                = horn4.rotateAngleY = horn5.rotateAngleY = horn6.rotateAngleY = f3 / (180F / (float)Math.PI);
+        //body.rotateAngleX = ((float)Math.PI * 85F / 180F);
+        hoof1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        leg1.rotateAngleX = hoof1.rotateAngleX + ((float)Math.PI * 8F / 180F);
+        hoof2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+        leg2.rotateAngleX = hoof2.rotateAngleX + ((float)Math.PI * 8F / 180F);
+        leg3.rotateAngleX = hoof3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+        leg4.rotateAngleX = hoof4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
     }
 
 }
