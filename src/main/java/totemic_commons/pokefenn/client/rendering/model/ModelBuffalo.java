@@ -5,6 +5,8 @@
 // - ZeuX
 package totemic_commons.pokefenn.client.rendering.model;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -178,6 +180,30 @@ public class ModelBuffalo extends ModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+
+        if(isChild) {
+            GL11.glPushMatrix();
+            GL11.glTranslatef(0.0F, 6.0F * f5, 4.0F * f5);
+        }
+
+        head.render(f5);
+        hornbase1.render(f5);
+        hornbase2.render(f5);
+        horn1.render(f5);
+        horn2.render(f5);
+        horn3.render(f5);
+        horn4.render(f5);
+        horn5.render(f5);
+        horn6.render(f5);
+
+        if(isChild) {
+            float scale = 0.5F;
+            GL11.glPopMatrix();
+            GL11.glPushMatrix();
+            GL11.glScalef(scale, scale, scale);
+            GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
+        }
+
         tailhairs.render(f5);
         hoof1.render(f5);
         leg1.render(f5);
@@ -190,15 +216,10 @@ public class ModelBuffalo extends ModelBase {
         back.render(f5);
         tail.render(f5);
         body.render(f5);
-        head.render(f5);
-        hornbase2.render(f5);
-        horn3.render(f5);
-        horn1.render(f5);
-        horn2.render(f5);
-        hornbase1.render(f5);
-        horn4.render(f5);
-        horn5.render(f5);
-        horn6.render(f5);
+
+        if(isChild) {
+            GL11.glPopMatrix();
+        }
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {
@@ -214,13 +235,15 @@ public class ModelBuffalo extends ModelBase {
         head.rotateAngleX = f4 / (180F / (float)Math.PI) + ((float)Math.PI / 2F);
         hornbase1.rotateAngleX = hornbase2.rotateAngleX = horn1.rotateAngleX = horn2.rotateAngleX = horn3.rotateAngleX
                 = horn4.rotateAngleX = horn5.rotateAngleX = horn6.rotateAngleX = head.rotateAngleX;
+
         head.rotateAngleY = hornbase1.rotateAngleY = hornbase2.rotateAngleY = horn1.rotateAngleY = horn2.rotateAngleY = horn3.rotateAngleY
                 = horn4.rotateAngleY = horn5.rotateAngleY = horn6.rotateAngleY = f3 / (180F / (float)Math.PI);
-        //body.rotateAngleX = ((float)Math.PI * 85F / 180F);
+
         hoof1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
         leg1.rotateAngleX = hoof1.rotateAngleX + ((float)Math.PI * 8F / 180F);
         hoof2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
         leg2.rotateAngleX = hoof2.rotateAngleX + ((float)Math.PI * 8F / 180F);
+
         leg3.rotateAngleX = hoof3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
         leg4.rotateAngleX = hoof4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
     }
