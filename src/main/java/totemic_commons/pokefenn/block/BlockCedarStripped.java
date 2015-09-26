@@ -28,11 +28,10 @@ public class BlockCedarStripped extends BlockLog
     {
         super();
         setBlockName(Strings.RED_CEDAR_STRIPPED_NAME);
-        setHardness(1F);
+        setHardness(1.5F);
         setCreativeTab(Totemic.tabsTotem);
         setTickRandomly(true);
     }
-
 
     @SideOnly(Side.CLIENT)
     private IIcon topAndBot;
@@ -60,16 +59,20 @@ public class BlockCedarStripped extends BlockLog
     {
         sideIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "cedarLogStrippedSide");
         topAndBot = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "cedarLogStrippedTop");
-
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIcon(int side, int meta)
+    protected IIcon getTopIcon(int meta)
     {
-        int logDirection = meta & 12;
-        return logDirection == 0 && (side == 1 || side == 0) ? topAndBot : (logDirection == 4 && (side == 5 || side == 4) ? topAndBot : (logDirection == 8 && (side == 2 || side == 3) ? topAndBot : sideIcon));
+        return topAndBot;
+    }
 
+    @SideOnly(Side.CLIENT)
+    @Override
+    protected IIcon getSideIcon(int meta)
+    {
+        return sideIcon;
     }
 
     @Override

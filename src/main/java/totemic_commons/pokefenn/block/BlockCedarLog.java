@@ -1,18 +1,19 @@
 package totemic_commons.pokefenn.block;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
-
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,7 +33,7 @@ public class BlockCedarLog extends BlockLog
     }
 
     @Override
-    public int damageDropped(int p_149692_1_)
+    public int damageDropped(int meta)
     {
         return 0;
     }
@@ -48,16 +49,20 @@ public class BlockCedarLog extends BlockLog
     {
         sideIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.INFUSED_WOOD_SIDE);
         topAndBot = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.INFUSED_WOOD_TOP_AND_BOT);
-
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIcon(int side, int meta)
+    protected IIcon getTopIcon(int meta)
     {
-        int logDirection = meta & 12;
-        return logDirection == 0 && (side == 1 || side == 0) ? topAndBot : (logDirection == 4 && (side == 5 || side == 4) ? topAndBot : (logDirection == 8 && (side == 2 || side == 3) ? topAndBot : sideIcon));
+        return topAndBot;
+    }
 
+    @SideOnly(Side.CLIENT)
+    @Override
+    protected IIcon getSideIcon(int meta)
+    {
+        return sideIcon;
     }
 
     @Override

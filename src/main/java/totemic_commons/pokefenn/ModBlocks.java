@@ -2,6 +2,7 @@ package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import totemic_commons.pokefenn.block.*;
 import totemic_commons.pokefenn.block.music.BlockDrum;
 import totemic_commons.pokefenn.block.music.BlockWindChime;
@@ -60,6 +61,13 @@ public final class ModBlocks
         GameRegistry.registerBlock(redCedarStripped, Strings.RED_CEDAR_STRIPPED_NAME);
         GameRegistry.registerBlock(tipi, Strings.TIPI_NAME);
         GameRegistry.registerBlock(dummyTipi, Strings.DUMMY_TIPI_NAME);
+
+        Blocks.fire.setFireInfo(cedarLog, 5, 5);
+        Blocks.fire.setFireInfo(redCedarStripped, 5, 10);
+        Blocks.fire.setFireInfo(redCedarPlank, 5, 20);
+        Blocks.fire.setFireInfo(totemLeaves, 30, 60);
+        Blocks.fire.setFireInfo(totemBase, 5, 5);
+        Blocks.fire.setFireInfo(totemPole, 5, 5);
 
         //GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
         //chlorophyll = new BlockChlorophyll();
