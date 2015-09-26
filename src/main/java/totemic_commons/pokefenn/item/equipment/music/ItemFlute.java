@@ -13,8 +13,8 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketSound;
@@ -49,18 +49,19 @@ public class ItemFlute extends ItemMusic
             time++;
             if(time >= 5 && !player.isSneaking())
             {
+                int bonusMusic = (itemStack.getItemDamage() == 1) ? 2 : 0;
                 time = 0;
-                TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.flute, 0, 0);
-                particlesAllAround(world, player.posX, player.posY, player.posZ, false);
+                TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.flute, 0, bonusMusic);
+                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
                 PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
-                return itemStack;
             }
             if(time >= 5 && player.isSneaking())
             {
                 time = 0;
                 TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
-                particlesAllAround(world, player.posX, player.posY, player.posZ, true);
+                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
                 PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
+                return itemStack;
             }
             if(itemStack.getItemDamage() == 1)
                 for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
@@ -119,19 +120,19 @@ public class ItemFlute extends ItemMusic
     }
     */
 
-    public void particlesAllAround(World world, double x, double y, double z, boolean firework)
+    public void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
     {
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.5D, 0.0D, 0.5D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+        world.func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.5D, 0.0D, 0.5D, 0.0D);
+        world.func_147487_a("note", x, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+        world.func_147487_a("note", x + 0.5D, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+        world.func_147487_a("note", x, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
 
         if(firework)
         {
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.5D, 0.0D, 0.5D, 0.0D);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+            world.func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.5D, 0.0D, 0.5D, 0.0D);
+            world.func_147487_a("fireworksSpark", x, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+            world.func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+            world.func_147487_a("fireworksSpark", x, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
         }
     }
 
