@@ -1,9 +1,9 @@
 package totemic_commons.pokefenn.api.music;
 
-import net.minecraft.item.ItemStack;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
 
 /**
  * Created by Pokefenn.
@@ -14,7 +14,7 @@ public class MusicHandler
 
     public static List<MusicHandler> musicHandler = new ArrayList<MusicHandler>();
 
-    private final ItemStack[] itemStacks;
+    private ItemStack[] itemStacks;
     private final int baseOutput;
     private final int musicMaximum;
     private final int musicId;
@@ -34,6 +34,11 @@ public class MusicHandler
         return this.musicId;
     }
 
+    public void setItems(ItemStack... items)
+    {
+        this.itemStacks = items;
+    }
+
     public ItemStack[] getItems()
     {
         return this.itemStacks;
@@ -41,7 +46,7 @@ public class MusicHandler
 
     public ItemStack getItem(int i)
     {
-        return this.itemStacks[i];
+        return itemStacks[i];
     }
 
     public int getMusicMaximum()

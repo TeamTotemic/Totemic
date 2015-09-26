@@ -97,11 +97,20 @@ public class HandlerInitiation
     static void instruments()
     {
         //TODO: Correct values
-    	flute = TotemicAPI.addInstrument(0, 5, 5, 150, new ItemStack(ModItems.flute));
-    	drum = TotemicAPI.addInstrument(1, 7, 5, 150, new ItemStack(ModBlocks.drum));
-    	windChime = TotemicAPI.addInstrument(2, 8, 5, 150, new ItemStack(ModBlocks.windChime));
-    	jingleDress = TotemicAPI.addInstrument(3, 6, 5, 150, new ItemStack(ModItems.jingleDress));
-    	rattle = TotemicAPI.addInstrument(4, 6, 5, 150, new ItemStack(ModItems.ceremonialRattle));
+    	flute = TotemicAPI.addInstrument(0, 5, 5, 150);
+    	drum = TotemicAPI.addInstrument(1, 7, 5, 150);
+    	windChime = TotemicAPI.addInstrument(2, 8, 5, 150);
+    	jingleDress = TotemicAPI.addInstrument(3, 6, 5, 150);
+    	rattle = TotemicAPI.addInstrument(4, 6, 5, 150);
+    }
+
+    public static void instrumentItems()
+    {
+        flute.setItems(new ItemStack(ModItems.flute));
+        drum.setItems(new ItemStack(ModBlocks.drum));
+        windChime.setItems(new ItemStack(ModBlocks.windChime));
+        jingleDress.setItems(new ItemStack(ModItems.jingleDress));
+        rattle.setItems(new ItemStack(ModItems.ceremonialRattle));
     }
 
     static void furnaceRecipes()

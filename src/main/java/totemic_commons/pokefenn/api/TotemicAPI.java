@@ -55,9 +55,9 @@ public class TotemicAPI
     }
 
 
-    public static MusicHandler addInstrument(int instrumentId, int baseOutput, int baseRange, int maximumMusic, ItemStack... item)
+    public static MusicHandler addInstrument(int instrumentId, int baseOutput, int baseRange, int maximumMusic)
     {
-        MusicHandler musicHandler = new MusicHandler(instrumentId, item, baseOutput, baseRange, maximumMusic );
+        MusicHandler musicHandler = new MusicHandler(instrumentId, new ItemStack[0], baseOutput, baseRange, maximumMusic );
         MusicHandler.musicHandler.add(musicHandler);
         return musicHandler;
     }

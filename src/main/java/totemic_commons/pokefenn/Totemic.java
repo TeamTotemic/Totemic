@@ -59,6 +59,7 @@ public final class Totemic
         HandlerInitiation.init();
         ModBlocks.init();
         ModItems.init();
+        HandlerInitiation.instrumentItems();
     }
 
     @EventHandler
