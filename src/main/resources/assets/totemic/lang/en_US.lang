@@ -34,7 +34,7 @@ tile.totemicTipi.name=Tipi
 tile.dummyTotemicTipi.name=Tipi
 
 #Entity localizations
-entity.totemic.totemicBuffalo.name=Buffalo
+entity.totemic.buffalo.name=Buffalo
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

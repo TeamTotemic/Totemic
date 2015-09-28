@@ -1,11 +1,9 @@
 package totemic_commons.pokefenn.entity;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EnumCreatureType;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
+import totemic_commons.pokefenn.lib.Strings;
 
 /**
  * Created by Pokefenn.
@@ -13,19 +11,10 @@ import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
  */
 public final class ModEntities
 {
-
-
     public static void init()
     {
-        EntityRegistry.registerModEntity(EntityBuffalo.class, "totemicBuffalo", ConfigurationSettings.ENTITY_ID_BUFFALO, Totemic.instance, 80, 5, true);
-
-        EntityRegistry.addSpawn(EntityBuffalo.class, 1000, 2, 4, EnumCreatureType.creature);
-
-        if(ConfigurationSettings.SPAWN_EGGS)
-        {
-            EntityList.IDtoClassMapping.put(ConfigurationSettings.ENTITY_ID_BUFFALO, EntityBuffalo.class);
-            EntityList.entityEggs.put(ConfigurationSettings.ENTITY_ID_BUFFALO, new EntityList.EntityEggInfo(ConfigurationSettings.ENTITY_ID_BUFFALO, 0x1330, 0x1323122));
-        }
+        EntityRegistry.registerGlobalEntityID(EntityBuffalo.class, Strings.BUFFALO_NAME, EntityRegistry.findGlobalUniqueEntityId(), 0x001330, 0x323122);
+        EntityRegistry.registerModEntity(EntityBuffalo.class, Strings.BUFFALO_NAME, 0, Totemic.instance, 80, 5, true);
+        //EntityRegistry.addSpawn(EntityBuffalo.class, 1000, 2, 4, EnumCreatureType.creature); //No biomes to spawn in
     }
-
 }

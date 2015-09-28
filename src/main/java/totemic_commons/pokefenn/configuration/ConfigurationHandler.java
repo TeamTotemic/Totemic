@@ -33,11 +33,6 @@ public final class ConfigurationHandler
             ConfigurationSettings.POTION_ID_ANTIDOTE = configuration.get(CATEGORY_POTION, "antidotePotionID", 34).getInt(34);
             ConfigurationSettings.POTION_ID_SPIDER = configuration.get(CATEGORY_POTION, "spiderPotionID", 35).getInt(35);
 
-            //ConfigurationSettings.ENTITY_ID_EFREET = configuration.get(CATEGORY_ENTITY, "efreetEntityID", 22).getInt(27);
-            ConfigurationSettings.ENTITY_ID_DART = configuration.get(CATEGORY_ENTITY, "dartEntityID", 23).getInt(28);
-            ConfigurationSettings.ENTITY_ID_BUFFALO = configuration.get(CATEGORY_ENTITY, "buffaloEntityID", 24).getInt(29);
-            ConfigurationSettings.SPAWN_EGGS = configuration.get(CATEGORY_ENTITY, "addSpawnEggs", true).getBoolean(true);
-
         } catch(Exception e)
         {
             e.printStackTrace();
