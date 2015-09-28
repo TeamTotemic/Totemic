@@ -41,7 +41,7 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
                         EntityItem item = (EntityItem)entity;
                         if(item.getEntityItem().getItem() == Items.egg)
                         {
-                            if(world.rand.nextInt(4) == 1)
+                            if(world.rand.nextInt(4) == 0)
                             {
                                 EntityChicken chicken = new EntityChicken(world);
                                 chicken.setPosition(entity.posX, entity.posY, entity.posZ);
@@ -66,16 +66,12 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
                     for(int j = -radius; j <= radius; j++)
                         for(int k = -radius; k <= radius; k++)
                         {
-                            if(world.getBlock(x + i, y + j, z + k) != null)
+                            Block block = world.getBlock(x + i, y + j, z + k);
+                            if(block instanceof IGrowable && block.getTickRandomly())
                             {
-                                Block block = world.getBlock(x + i, y + j, z + k);
-                                if(block instanceof IGrowable)
+                                if(world.rand.nextInt(4) == 0)
                                 {
-                                    if(world.rand.nextInt(4) == 1)
-                                    {
-                                        block.updateTick(world, x + i, y + j, z + k, world.rand);
-                                        break;
-                                    }
+                                    block.updateTick(world, x + i, y + j, z + k, world.rand);
                                 }
                             }
                         }
