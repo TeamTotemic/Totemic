@@ -18,6 +18,7 @@ public class CraftingRecipes
         oreDictionary();
         shapelessRecipes();
         shapedRecipes();
+        furnaceRecipes();
     }
 
     static void shapedRecipes()
@@ -67,9 +68,16 @@ public class CraftingRecipes
     {
         OreDictionary.registerOre("cropVine", new ItemStack(Blocks.vine));
         OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.totemLeaves, 1));
-        OreDictionary.registerOre("cedarLog", new ItemStack(ModBlocks.cedarLog, 1, 0));
+        OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedarLog, 1, 0));
+        OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.redCedarPlank, 1, 0));
         OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.nuggetIron));
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.bellsIron));
+    }
+
+    static void furnaceRecipes()
+    {
+        GameRegistry.addSmelting(ModBlocks.redCedarStripped, new ItemStack(Items.coal, 1, 1), 0.5F);
+        GameRegistry.addSmelting(ModBlocks.cedarLog, new ItemStack(Items.coal, 1, 1), 0.5F);
     }
 
 }

@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.recipe;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -45,8 +46,6 @@ public class HandlerInitiation
         totemRegistry();
         instruments();
         ceremonyHandler();
-
-        furnaceRecipes();
     }
 
     static void ceremonyHandler()
@@ -96,11 +95,4 @@ public class HandlerInitiation
         jingleDress.setItems(new ItemStack(ModItems.jingleDress));
         rattle.setItems(new ItemStack(ModItems.ceremonialRattle));
     }
-
-    static void furnaceRecipes()
-    {
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.redCedarStripped), new ItemStack(Items.coal, 1, 1), 0.5F);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(ModBlocks.cedarLog), new ItemStack(Items.coal, 1, 1), 0.5F);
-    }
-
 }
