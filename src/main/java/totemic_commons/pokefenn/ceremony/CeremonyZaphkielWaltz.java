@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.IGrowable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
@@ -8,11 +9,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
-
-import java.util.Random;
 
 /**
  * Created by Pokefenn.
@@ -34,31 +32,35 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
             int y = tileTotemBase.yCoord;
             int z = tileTotemBase.zCoord;
 
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
+            if(world.getWorldTime() % 20L == 0)
             {
-                if(entity instanceof EntityItem)
+                for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
                 {
-                    if(world.getWorldTime() % 20L == 0)
+                    if(entity instanceof EntityItem)
                     {
-                        if(((EntityItem) entity).getEntityItem().getItem() == Items.egg)
+                        EntityItem item = (EntityItem)entity;
+                        if(item.getEntityItem().getItem() == Items.egg)
                         {
-                            Random random = new Random();
-                            if(random.nextInt(4) == 1)
+                            if(world.rand.nextInt(4) == 1)
                             {
                                 EntityChicken chicken = new EntityChicken(world);
                                 chicken.setPosition(entity.posX, entity.posY, entity.posZ);
                                 world.spawnEntityInWorld(chicken);
-                                if(((EntityItem) entity).getEntityItem().stackSize == 1)
-                                    entity.setDead();
+                                if(item.getEntityItem().stackSize == 1)
+                                    item.setDead();
                                 else
-                                    ((EntityItem) entity).setEntityItemStack(new ItemStack(((EntityItem) entity).getEntityItem().getItem(), ((EntityItem) entity).getEntityItem().stackSize - 1, 0));
+                                {
+                                    ItemStack stack = item.getEntityItem().copy();
+                                    stack.stackSize--;
+                                    item.setEntityItemStack(stack);
+                                }
                             }
                         }
                     }
                 }
             }
 
-            if(tileTotemBase.getWorldObj().getWorldTime() % 10L == 0)
+            if(world.getWorldTime() % 5L == 0)
             {
                 for(int i = -radius; i <= radius; i++)
                     for(int j = -radius; j <= radius; j++)
@@ -67,12 +69,11 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
                             if(world.getBlock(x + i, y + j, z + k) != null)
                             {
                                 Block block = world.getBlock(x + i, y + j, z + k);
-                                if(block instanceof IPlantable)
+                                if(block instanceof IGrowable)
                                 {
-                                    Random rand = new Random();
-                                    if(rand.nextInt(4) == 1)
+                                    if(world.rand.nextInt(4) == 1)
                                     {
-                                        block.updateTick(world, x + i, y + j, z + k, rand);
+                                        block.updateTick(world, x + i, y + j, z + k, world.rand);
                                         break;
                                     }
                                 }
