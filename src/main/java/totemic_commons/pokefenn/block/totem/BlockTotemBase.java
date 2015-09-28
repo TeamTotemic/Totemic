@@ -119,7 +119,7 @@ public class BlockTotemBase extends BlockTileTotemic
                             + trying.getCeremonyActivation().getMaximumStartupTime().getTime()));
                 }
                 if(tileTotemBase.isDoingEffect)
-                    player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing it's effect"));
+                    player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing its effect"));
 
                 if(!tileTotemBase.isDoingEffect && !player.isSneaking())
                 {

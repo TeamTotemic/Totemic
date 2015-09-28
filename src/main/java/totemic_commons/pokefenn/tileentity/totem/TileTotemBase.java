@@ -277,6 +277,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
                 currentCeremony = tryingCeremonyID;
                 tryingCeremonyID = 0;
                 isDoingStartup = false;
+                isDoingEffect = true;
                 markForUpdate();
             } else
                 startupMain(CeremonyRegistry.fromId(tryingCeremonyID));
@@ -300,8 +301,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         if(isDoingEndingEffect && cer.getCeremonyActivation().getTimeState() == TimeStateEnum.ENDING_EFFECT)
             ceremonyEffectTimer++;
-        if(ceremonyEffectTimer > cer.getCeremonyActivation().getMaximumTicksForEffect().getTime())
+        if(ceremonyEffectTimer > cer.getCeremonyActivation().getMaximumTicksForEffect().getTime()) {
             resetAfterCeremony(true);
+            return;
+        }
 
         ICeremonyEffect effect = cer.getCeremonyEffect().getCeremonyEffect();
 
@@ -311,7 +314,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             {
                 effect.effect(this);
                 resetAfterCeremony(true);
-            } else
+            }
+            else
             {
                 isDoingEndingEffect = true;
                 if(canContinueCeremony(cer))
