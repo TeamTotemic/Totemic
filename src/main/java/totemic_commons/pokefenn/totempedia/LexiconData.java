@@ -22,11 +22,11 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 public final class LexiconData
 {
 
-    public static LexiconCategory categoryBasics;
+    //public static LexiconCategory categoryBasics;
     public static LexiconCategory categoryDevices;
     public static LexiconCategory categoryTools;
-    public static LexiconCategory categoryMisc;
-    public static LexiconCategory categoryLore;
+    //public static LexiconCategory categoryMisc;
+    //public static LexiconCategory categoryLore;
     public static LexiconCategory categoryCeremony;
     public static LexiconCategory categoryTotems;
     public static LexiconCategory categoryInstruments;
@@ -43,6 +43,7 @@ public final class LexiconData
 
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry rainDance;
+    public static LexiconEntry droughtDance;
     public static LexiconEntry warDance;
     public static LexiconEntry buffaloDance;
 
@@ -53,14 +54,14 @@ public final class LexiconData
 
     public static void init()
     {
-        TotemicAPI.addCategory(categoryBasics = new LexiconCategory(Totempedia.CATEGORY_BASICS));
+        //TotemicAPI.addCategory(categoryBasics = new LexiconCategory(Totempedia.CATEGORY_BASICS));
         TotemicAPI.addCategory(categoryDevices = new LexiconCategory(Totempedia.CATEGORY_DEVICES));
         TotemicAPI.addCategory(categoryInstruments = new LexiconCategory(Totempedia.CATEGORY_INSTRUMENTS));
         TotemicAPI.addCategory(categoryTotems = new LexiconCategory(Totempedia.CATEGORY_TOTEMS));
         TotemicAPI.addCategory(categoryCeremony = new LexiconCategory(Totempedia.CATEGORY_CEREMONY));
         TotemicAPI.addCategory(categoryTools = new LexiconCategory(Totempedia.CATEGORY_TOOLS));
-        TotemicAPI.addCategory(categoryMisc = new LexiconCategory(Totempedia.CATEGORY_MISC));
-        TotemicAPI.addCategory(categoryLore = new LexiconCategory(Totempedia.CATEGORY_LORE));
+        //TotemicAPI.addCategory(categoryMisc = new LexiconCategory(Totempedia.CATEGORY_MISC));
+        //TotemicAPI.addCategory(categoryLore = new LexiconCategory(Totempedia.CATEGORY_LORE));
 
         //cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics);
         //cedarTree.setLexiconPages(new PageText("0"), new PageText("1"));
@@ -90,16 +91,19 @@ public final class LexiconData
         jingleDress.setLexiconPages(new PageText("0"), new PageText("1"));
 
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
-        performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));
+        performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"), new PageText("4"));
 
         rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony);
         rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.rainDance));
 
+        droughtDance = new BLexiconEntry(Totempedia.DROUGHT_DANCE, categoryCeremony);
+        droughtDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.drought));
+
         warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony);
         warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.warDance));
 
-        //buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony);
-        //buffaloDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.buffaloDance));
+        buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony);
+        buffaloDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.buffaloDance));
 
         //Stripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
         //barkStripper.setLexiconPages(new PageText("0"), new PageText("1"));
