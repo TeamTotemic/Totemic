@@ -51,7 +51,7 @@ public class PageCeremony extends PageRecipe
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-            PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 90, font.getStringWidth(musicNeeded) / 2, 150, musicNeeded);
+            PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 3, gui.getTop() + 90, font.getStringWidth(musicNeeded), 150, musicNeeded);
 
             font.drawString(StatCollector.translateToLocal("totemicmisc.musicSelector"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.musicSelector")) / 2, gui.getTop() + 14, 0x66000000);
             /*font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 90, 0x66000000);
