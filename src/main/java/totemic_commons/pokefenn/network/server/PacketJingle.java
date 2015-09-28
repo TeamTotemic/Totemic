@@ -13,8 +13,7 @@ import totemic_commons.pokefenn.item.equipment.music.ItemJingleDress;
  */
 public class PacketJingle implements IMessage, IMessageHandler<PacketJingle, IMessage>
 {
-    public double motionX;
-    public double motionZ;
+    public float motionAbs;
 
     public PacketJingle()
     {
@@ -23,40 +22,36 @@ public class PacketJingle implements IMessage, IMessageHandler<PacketJingle, IMe
 
     public PacketJingle(double motionX, double motionZ)
     {
-        this.motionX = motionX;
-        this.motionZ = motionZ;
+        this.motionAbs = (float)Math.sqrt(motionX*motionX + motionZ*motionZ);
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
-        this.motionX = buf.readDouble();
-        this.motionZ = buf.readDouble();
+        this.motionAbs = buf.readFloat();
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
-        buf.writeDouble(motionX);
-        buf.writeDouble(motionZ);
+        buf.writeFloat(motionAbs);
     }
 
     @Override
     public IMessage onMessage(PacketJingle message, MessageContext ctx)
     {
-        //TODO
         EntityPlayer player = ctx.getServerHandler().playerEntity;
 
-        if(player.getCurrentArmor(1) != null)
+        if(player.getCurrentArmor(1) != null && player.getCurrentArmor(1).getItem() instanceof ItemJingleDress)
         {
-            if((message.motionX > 0 || message.motionZ > 0) && !player.isSneaking())
+            if(message.motionAbs > 0 && !player.isSneaking())
             {
-                if(message.motionX > 0.08 || message.motionZ > 0.08)
+                if(message.motionAbs > 0.08)
                 {
-                    ((ItemJingleDress) player.getCurrentArmor(1).getItem()).time += message.motionX > 0.17 ? 2 : 1;
+                    ((ItemJingleDress) player.getCurrentArmor(1).getItem()).time += message.motionAbs > 0.17 ? 2 : 1;
                 }
             }
-            if(player.isSneaking() && (message.motionX > 0 || message.motionZ > 0))
+            if(player.isSneaking() && (message.motionAbs > 0))
             {
                 ((ItemJingleDress) player.getCurrentArmor(1).getItem()).time += 1;
             }

@@ -30,6 +30,7 @@ import totemic_commons.pokefenn.util.TotemUtil;
  */
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 {
+    //TODO: This cannot possible work when there's more than one player
     public int time = 0;
     public boolean hasSpeed = false;
 
@@ -70,7 +71,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         if(world.isRemote)
         {
             if(world.getWorldTime() % 20L == 0)
-                if(player.motionX > 0 || player.motionZ > 0)
+                if(Math.abs(player.motionX) > 0 || Math.abs(player.motionZ) > 0)
                     PacketHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
         } else
         {
