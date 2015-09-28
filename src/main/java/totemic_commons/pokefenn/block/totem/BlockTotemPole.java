@@ -36,7 +36,7 @@ public class BlockTotemPole extends BlockTileTotemic implements ITotemicStaffUsa
         super(Material.wood);
         setBlockName(Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
-        setBlockBounds(0.1875F, -0.03125F, 0.1875F, 0.8125F, 0.96875F, 0.8125F);
+        setBlockBounds(0.1875F, 0.0F, 0.1875F, 0.8125F, 1.0F, 0.8125F);
         setStepSound(soundTypeWood);
     }
 

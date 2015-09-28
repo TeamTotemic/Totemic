@@ -45,7 +45,7 @@ public class TileTotemSocketCubeRenderer extends TileEntitySpecialRenderer
         tessellator.setColorOpaque_F(f, f, f);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, l1, l2);
         GL11.glPushMatrix();
-        GL11.glTranslatef(0.5F, 1.47F, 0.5F);
+        GL11.glTranslatef(0.5F, 1.5F, 0.5F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.getTotemPole(world.getBlockMetadata(i, j, k)));
