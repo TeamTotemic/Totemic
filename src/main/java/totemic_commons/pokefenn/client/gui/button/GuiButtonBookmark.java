@@ -1,14 +1,14 @@
 package totemic_commons.pokefenn.client.gui.button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GuiButtonBookmark extends GuiButton
 {

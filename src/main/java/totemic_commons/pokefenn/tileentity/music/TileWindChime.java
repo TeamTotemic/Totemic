@@ -11,7 +11,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.block.music.BlockWindChime;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
@@ -129,7 +128,6 @@ public class TileWindChime extends TileTotemic
                     {
                         if(world.getBlock(xCoord, yCoord, zCoord) == ModBlocks.windChime)
                         {
-                            BlockWindChime thisBlock = (BlockWindChime) world.getBlock(xCoord, yCoord, zCoord);
                             TotemUtil.playMusicForCeremony(this, HandlerInitiation.windChime, 0, 0);
                             ((WorldServer)world).func_147487_a("note", xCoord + 0.5D, yCoord + 1.2D, zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
                         }

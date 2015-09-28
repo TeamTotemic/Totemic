@@ -10,11 +10,12 @@
  */
 package totemic_commons.pokefenn.client.gui;
 
+import org.lwjgl.input.Mouse;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.input.Mouse;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBackWithShift;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonPage;

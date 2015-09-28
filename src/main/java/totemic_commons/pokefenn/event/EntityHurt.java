@@ -2,10 +2,7 @@ package totemic_commons.pokefenn.event;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.entity.Entity;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-
-import java.util.Random;
 
 /**
  * Created by Pokefenn.
@@ -17,9 +14,9 @@ public class EntityHurt
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onEntityHurt(LivingHurtEvent event)
     {
-        Entity sourceDamageEntity = event.source.getSourceOfDamage();
+        //Entity sourceDamageEntity = event.source.getSourceOfDamage();
 
-        Random random = new Random();
+        //Random random = new Random();
 
         //if(event.entity != null && event.source != TotemicDamageSource.vigor && event.entityLiving != null && sourceDamageEntity != null && sourceDamageEntity instanceof EntityPlayer && Totemic.baublesLoaded)
         {

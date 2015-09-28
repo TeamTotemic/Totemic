@@ -11,11 +11,11 @@
  */
 package vazkii.botania.totemic_custom.api.lexicon;
 
-import net.minecraft.util.StatCollector;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import net.minecraft.util.StatCollector;
 
 public class LexiconEntry implements Comparable<LexiconEntry>
 {

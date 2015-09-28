@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.client.rendering.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -8,7 +10,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.client.rendering.model.ModelTotemPole;
 import totemic_commons.pokefenn.lib.Resources;

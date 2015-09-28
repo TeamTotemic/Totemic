@@ -1,13 +1,13 @@
 package totemic_commons.pokefenn.world;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.ModBlocks;
-
-import java.util.Random;
 
 public class TotemTreeGeneration extends WorldGenerator
 {

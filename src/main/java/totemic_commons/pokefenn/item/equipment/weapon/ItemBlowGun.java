@@ -40,7 +40,7 @@ public class ItemBlowGun extends ItemTotemic
             if(moveSpeedThingy > 1.0F)
                 moveSpeedThingy = 1.0F;
 
-            int metadata = 0;
+            //int metadata = 0;
 
             for(int i = 0; i < player.inventory.getSizeInventory(); i++)
             {
@@ -50,7 +50,7 @@ public class ItemBlowGun extends ItemTotemic
 
                     //if(playerStack.getItem() == ModItems.darts)
                     {
-                        metadata = playerStack.getItemDamage();
+                        //metadata = playerStack.getItemDamage();
                         if(!world.isRemote)
                             playerStack.stackSize--;
                         break;

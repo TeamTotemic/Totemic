@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.block;
 
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -8,8 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
-
-import java.util.Random;
 
 /**
  * Created by Pokefenn.

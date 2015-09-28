@@ -11,6 +11,11 @@
  */
 package totemic_commons.pokefenn.totempedia.page;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,16 +30,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.lib.Resources;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconRecipeMappings;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class PageCraftingRecipe extends PageRecipe
 {
@@ -126,6 +126,7 @@ public class PageCraftingRecipe extends PageRecipe
         ++ticksElapsed;
     }
 
+    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public void renderCraftingRecipe(IGuiLexiconEntry gui, IRecipe recipe)
     {
@@ -147,7 +148,7 @@ public class PageCraftingRecipe extends PageRecipe
                 {
                     Object input = shaped.getInput()[y * width + x];
                     if(input != null)
-                        renderItemAtGridPos(gui, 1 + x, 1 + y, input instanceof ItemStack ? (ItemStack) input : ((ArrayList<ItemStack>) input).get(0), true);
+                        renderItemAtGridPos(gui, 1 + x, 1 + y, input instanceof ItemStack ? (ItemStack) input : ((List<ItemStack>) input).get(0), true);
                 }
 
             oreDictRecipe = true;
@@ -186,7 +187,7 @@ public class PageCraftingRecipe extends PageRecipe
 
                         Object input = shapeless.getInput().get(index);
                         if(input != null)
-                            renderItemAtGridPos(gui, 1 + x, 1 + y, input instanceof ItemStack ? (ItemStack) input : ((ArrayList<ItemStack>) input).get(0), true);
+                            renderItemAtGridPos(gui, 1 + x, 1 + y, input instanceof ItemStack ? (ItemStack) input : ((List<ItemStack>) input).get(0), true);
                     }
             }
 

@@ -1,10 +1,10 @@
 package totemic_commons.pokefenn.misc.villager;
 
+import java.util.Random;
+
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.village.MerchantRecipeList;
-
-import java.util.Random;
 
 /**
  * Created by Pokefenn.

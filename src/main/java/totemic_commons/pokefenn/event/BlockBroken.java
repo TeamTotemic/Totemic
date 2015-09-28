@@ -5,8 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
  * Created by Pokefenn.

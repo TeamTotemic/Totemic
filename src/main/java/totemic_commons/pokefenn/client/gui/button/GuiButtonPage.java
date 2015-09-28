@@ -11,14 +11,15 @@
  */
 package totemic_commons.pokefenn.client.gui.button;
 
+import java.util.Arrays;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
-
-import java.util.Arrays;
 
 public class GuiButtonPage extends GuiButton
 {

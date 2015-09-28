@@ -11,8 +11,6 @@ import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.util.EntityUtil;
 
-import java.util.Random;
-
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
@@ -45,7 +43,7 @@ public class ItemBarkStripper extends ItemTotemic
                     if(time > 4)
                     {
                         time = 0;
-                        Random random = new Random();
+                        //Random random = new Random();
 
                         world.setBlock(block.blockX, block.blockY, block.blockZ, ModBlocks.redCedarStripped);
                         //EntityItem bark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 1 + random.nextInt(3), ItemTotemicItems.cedarBark));

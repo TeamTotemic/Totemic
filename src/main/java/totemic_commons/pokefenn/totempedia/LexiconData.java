@@ -12,8 +12,8 @@
 package totemic_commons.pokefenn.totempedia;
 
 import totemic_commons.pokefenn.api.TotemicAPI;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.lib.Totempedia;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.totempedia.page.PageCeremony;
 import totemic_commons.pokefenn.totempedia.page.PageText;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;

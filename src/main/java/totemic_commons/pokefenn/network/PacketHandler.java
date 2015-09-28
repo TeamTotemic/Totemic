@@ -8,7 +8,9 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.network.client.*;
+import totemic_commons.pokefenn.network.client.PacketClientBlessingSync;
+import totemic_commons.pokefenn.network.client.PacketSound;
+import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.network.server.PacketServerBlessingSync;
 

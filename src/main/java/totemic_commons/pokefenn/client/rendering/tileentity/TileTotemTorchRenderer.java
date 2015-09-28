@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.client.rendering.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -8,7 +10,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.client.rendering.model.ModelTotemTorch;
 import totemic_commons.pokefenn.lib.Resources;
@@ -43,8 +44,6 @@ public class TileTotemTorchRenderer extends TileEntitySpecialRenderer
         int l2 = l / 65536;
         tessellator.setColorOpaque_F(f, f, f);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, l1, l2);
-
-        int dir = world.getBlockMetadata(i, j, k);
 
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, 1.47F, 0.5F);

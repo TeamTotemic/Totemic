@@ -1,8 +1,8 @@
 package totemic_commons.pokefenn.configuration;
 
-import net.minecraftforge.common.config.Configuration;
-
 import java.io.File;
+
+import net.minecraftforge.common.config.Configuration;
 
 public final class ConfigurationHandler
 {

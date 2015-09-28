@@ -1,9 +1,9 @@
 package totemic_commons.pokefenn.api.ceremony;
 
-import net.minecraft.item.ItemStack;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
 
 /**
  * Created by Pokefenn.

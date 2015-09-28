@@ -11,13 +11,14 @@
  */
 package totemic_commons.pokefenn.totempedia.page;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconPage;
 

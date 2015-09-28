@@ -10,6 +10,11 @@
  */
 package totemic_commons.pokefenn.client.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -17,15 +22,11 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBookmark;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonInvisible;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GuiLexicon extends GuiScreen
 {

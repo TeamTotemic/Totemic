@@ -10,21 +10,21 @@
  */
 package totemic_commons.pokefenn.client.gui;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.lwjgl.input.Mouse;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.input.Mouse;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBack;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonInvisible;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonPage;
-import vazkii.botania.totemic_custom.api.lexicon.ILexicon;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class GuiLexiconIndex extends GuiLexicon implements IParented
 {
@@ -66,7 +66,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
         buttonList.add(rightButton = new GuiButtonPage(14, left + guiWidth - 18, top + guiHeight - 10, true));
 
         entriesToDisplay.clear();
-        ILexicon lex = (ILexicon) stackUsed.getItem();
+        //ILexicon lex = (ILexicon) stackUsed.getItem();
         for(LexiconEntry entry : category.entries)
         {
             entriesToDisplay.add(entry);

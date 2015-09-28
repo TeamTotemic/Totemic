@@ -1,5 +1,9 @@
 package totemic_commons.pokefenn.client.rendering.tileentity;
 
+import java.util.Random;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -8,14 +12,10 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import org.lwjgl.opengl.GL11;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.client.rendering.model.ModelWindChime;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
-import totemic_commons.pokefenn.util.MathsUtil;
-
-import java.util.Random;
 
 /**
  * Created by Pokefenn.
@@ -55,8 +55,8 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         {
             if(tileEntity.getWorldObj().getWorldTime() % 2L == 0)
             {
-                float percent = tileEntity.currentRotation / 90F;
-                float sinerp = MathsUtil.sinerp(0, 0.5F, percent);
+                //float percent = tileEntity.currentRotation / 90F;
+                //float sinerp = MathsUtil.sinerp(0, 0.5F, percent);
 
                 modelWindChime.chime1.rotateAngleX = getRotationThingy();
                 modelWindChime.chime1.rotateAngleZ = getRotationThingy();

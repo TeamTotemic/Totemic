@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -21,8 +23,6 @@ import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.TotemUtil;
-
-import java.util.List;
 
 /**
  * Created by Pokefenn.

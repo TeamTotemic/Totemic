@@ -36,16 +36,16 @@ public class PageCeremony extends PageRecipe
         {
             TextureManager render = Minecraft.getMinecraft().renderEngine;
             FontRenderer font = Minecraft.getMinecraft().fontRenderer;
-            int[] instruemnts = ceremony.getCeremonyEffect().getMusicIds();
+            int[] instruments = ceremony.getCeremonyEffect().getMusicIds();
             String musicNeeded = TotemUtil.getMusicNeeded(ceremony.getCeremonyActivation().getMusicNeeded());
-            String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
+            //String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
 
-            if(MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(0)).getItem(0) != null && MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(1)).getItem(0) != null && MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(2)).getItem(0) != null && MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(3)).getItem(0) != null)
+            if(MusicHandler.musicHandler.get(instruments[0]).getItem(0) != null && MusicHandler.musicHandler.get(instruments[1]).getItem(0) != null && MusicHandler.musicHandler.get(instruments[2]).getItem(0) != null && MusicHandler.musicHandler.get(instruments[3]).getItem(0) != null)
             {
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 40, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(0)).getItem(0), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(1)).getItem(0), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(2)).getItem(0), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -21, gui.getTop() + 31, MusicHandler.musicHandler.get(ceremony.getCeremonyEffect().getMusicIds(3)).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 40, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[0]).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[1]).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[2]).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -21, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[3]).getItem(0), false);
             }
 
             GL11.glEnable(GL11.GL_BLEND);

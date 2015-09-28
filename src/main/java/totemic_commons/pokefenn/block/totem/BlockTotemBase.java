@@ -101,10 +101,10 @@ public class BlockTotemBase extends BlockTileTotemic
 
         if(tileTotemBase != null && !world.isRemote)
         {
-            if(!tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
+            /*if(!tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
             {
                 TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
-            }
+            }*/
 
             if(tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
             {

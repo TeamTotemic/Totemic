@@ -1,5 +1,8 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
+import java.util.List;
+import java.util.Objects;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,9 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.item.ItemTotemic;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Pokefenn.

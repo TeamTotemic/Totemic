@@ -1,11 +1,10 @@
 package totemic_commons.pokefenn.world;
 
+import java.util.Random;
+
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import totemic_commons.pokefenn.configuration.ConfigurationSettings;
-
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,7 +17,7 @@ public class TotemicWorldGeneration implements IWorldGenerator
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
-        int x = chunkX * 16 + random.nextInt(16);
+        /*int x = chunkX * 16 + random.nextInt(16);
         int z = chunkZ * 16 + random.nextInt(16);
 
         if(ConfigurationSettings.GENERATE_TOTEM_TREES)
@@ -28,7 +27,7 @@ public class TotemicWorldGeneration implements IWorldGenerator
                 //new TotemTreeGeneration().generate(world, random, x, random.nextInt(3) + 4, z);
             }
 
-        }
+        }*/
 
 
     }

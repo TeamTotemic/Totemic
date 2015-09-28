@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.entity.boss;
 
+import java.util.Random;
+
 import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,8 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 /**
  * Created by Pokefenn.

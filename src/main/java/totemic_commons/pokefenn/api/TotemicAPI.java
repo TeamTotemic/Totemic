@@ -1,5 +1,8 @@
 package totemic_commons.pokefenn.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.api.ceremony.CeremonyActivation;
 import totemic_commons.pokefenn.api.ceremony.CeremonyEffect;
@@ -9,9 +12,6 @@ import totemic_commons.pokefenn.api.totem.ITotemEffect;
 import totemic_commons.pokefenn.api.totem.TotemRegistry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.

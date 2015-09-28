@@ -10,6 +10,9 @@
  */
 package totemic_commons.pokefenn.totempedia.page;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -19,9 +22,6 @@ import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.client.FontHelper;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconPage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PageText extends LexiconPage
 {

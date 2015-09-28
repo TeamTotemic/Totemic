@@ -10,6 +10,14 @@
  */
 package totemic_commons.pokefenn.totempedia.page;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -18,18 +26,11 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.client.gui.GuiLexiconEntry;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconPage;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconRecipeMappings;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class PageRecipe extends LexiconPage
 {
