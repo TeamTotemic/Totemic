@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
@@ -26,12 +27,14 @@ public class CeremonyBuffaloDance extends CeremonyBase
                     if(entity instanceof EntityCow && !(entity instanceof EntityBuffalo))
                     {
                         i++;
-                        EntityUtil.spawnEntity(tileEntity.getWorldObj(), entity.posX, entity.posY, entity.posZ, new EntityBuffalo(tileEntity.getWorldObj()));
+                        EntityBuffalo buffalo = new EntityBuffalo(tileEntity.getWorldObj());
+                        float health = ((EntityLivingBase)entity).getHealth() / ((EntityLivingBase)entity).getMaxHealth() * buffalo.getMaxHealth();
+                        buffalo.setHealth(health);
+                        EntityUtil.spawnEntity(tileEntity.getWorldObj(), entity.posX, entity.posY, entity.posZ, buffalo);
                         entity.setDead();
                     }
                 }
             }
-
         }
     }
 }
