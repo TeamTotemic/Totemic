@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.block.music;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +31,7 @@ public class BlockWindChime extends BlockTileTotemic
         super(Material.iron);
         setBlockName(Strings.WIND_CHIME_NAME);
         setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
+        setHardness(1.5F);
     }
 
     @Override
@@ -71,9 +74,11 @@ public class BlockWindChime extends BlockTileTotemic
         return true;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIcon(int side, int meta) {
-        return Blocks.planks.getIcon(0, 0);
+    public IIcon getIcon(int side, int meta)
+    {
+        return Blocks.stained_hardened_clay.getIcon(0, 0);
     }
 
     @Override
