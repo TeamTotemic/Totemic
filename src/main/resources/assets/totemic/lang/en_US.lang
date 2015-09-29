@@ -112,7 +112,7 @@ totemic.category.devices=Devices
 totemic.category.tools=Tools
 totemic.category.misc=Miscellaneous
 totemic.category.lore=Lore
-totemic.category.totems=Totems
+totemic.category.totems=Totems and Effects
 totemic.category.ceremonies=Ceremonies
 totemic.category.instruments=Musical Instruments
 
@@ -125,7 +125,7 @@ totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across t
 
 totemic.entry.creatingTotems=Totem Poles
 totemic.page.creatingTotems0=Creating a Totem Pole is a very simple thing to do. First you must create a &1Totem Whittling Knife&0, this will be what you use to carve out your Totem Poles out of wood logs. The knife can carve different patterns of &4Totem Poles&0, which will lead to different effects. Right clicking while sneaking will change which pattern will be carved.
-totemic.page.creatingTotems1=You can also use the Totem Whittling Knife to carve out the &1Totem Base&0. Each Totem Pole needs one Totem Base at the bottom and can be up to 6 meters high.<br>Totem Poles will, by default, give beneficial effects to all nearby players. The effects depend on the carving pattern, multiple effects can be mixed and matched within a Totem Pole.
+totemic.page.creatingTotems1=You also use the Totem Whittling Knife to carve out the &1Totem Base&0. Each Totem Pole needs one Totem Base at the bottom and can be up to 6 meters high.<br>Totem Poles will by default give beneficial &4effects&0 to all nearby players. The effects depend on the carving pattern. A Totem Pole can have different carvings on different heights.
 
 totemic.entry.instruments=Instruments
 totemic.page.instruments0=Instruments are a way to create &4Musical Melody&0, which is a type of power that many blocks and systems require, such as the &1Totem Base&0 and even &4Ceremonies&0. When played, all instruments will output their music to the first available nearby block that can accept it. Each instrument will produce &4Musical Melody&0 in very many different ways, with different outputs and ranges.
@@ -144,6 +144,7 @@ totemic.page.jingleDress1=Sneaking around while wearing the dress is also possib
 
 totemic.entry.flute=Flute
 totemic.page.flute0=The &1Flute&0, one of the simplest yet most effective instruments known to the lands. It fulfills a very simple role of playing music without any complication. Because of its simplistic, it is not known to be the most melodic instrument, including with how much &4Totems&0 can accept, and how much a blow of the &1Flute&0 will give. As per usual, it can be played while sneaking to allow a nearby &4Totem&0 to try to perform a Ceremony.
+totemic.page.flute1=Apart from the mundane Flute, there exists a way to &4infuse&0 a flute with the &1Ceremony of Flute Imbuation&0. The sound of an Infused Flute is much more melodic and has special properties. 
 
 totemic.entry.rattle=Rattle
 totemic.page.rattle0=The &1Ceremonial Rattle&0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The &1Rattle&0 produces &4Musical Melody&0 whenever it has been shook with the hand. It is currently unknown if it has any other bonuses, but it believed to one day. And like all instruments, it can be played while sneaking so as to activate ceremonies.
@@ -170,8 +171,20 @@ totemic.page.warDance1=&oA convoluted game of chess&r
 
 totemic.entry.buffaloDance=Mandan Buffalo Dance
 totemic.page.buffaloDance0=As the White Man came and took over the lands, he murdered almost all of the &1Buffalos&0 that were once roaming the lands in large hordes. However, not all hope is lost. The &4Mandan Buffalo Dance&0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native.
-totemic.page.buffaloDance1=
+totemic.page.buffaloDance1=&oAvoid using red rags&r
+
+totemic.entry.zaphkielWaltz=Zaphkiel Waltz
+totemic.page.zaphkielWaltz0=The &4Zaphkiel Waltz&0 is a strong growth ceremony. For a short while, nearby plants will grow at a much faster rate than usual, and chickens will grow out of their eggs quickly. Additionally, the Zaphkiel Waltz will transform mundane saplings into &4Red Cedar Saplings&0.
+totemic.page.zaphkielWaltz1=&oQuite far west from Vienna&r
+
+totemic.entry.fluteInfusion=Flute Imbuation
+totemic.page.fluteInfusion0=The &4Ceremony of Flute Imbuation&0 is a way to infuse a regular &1Flute&0 with melodic energy, giving it special properties. Just drop the Flute on the ground while performing the Ceremony.<br>The melody of an &1Infused Flute&0 is quite more melodic than a mundane Flute sound, so much that &1Animals&0 and &1Villagers&0 cannot resist it and will be attracted to it. Its effects on Totems is more potent as well.
+totemic.page.fluteInfusion1=&oStronger than Twilicane&r
 
 totemic.entry.barkStripper=Bark Stripper
-totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
-totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
+totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to remove the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log.
+totemic.page.barkStripper1=The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal.<br>Red Cedar Stripped Logs that are left on grass will slowly regrow their bark after a while.
+
+#TODO
+#totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
+#totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
