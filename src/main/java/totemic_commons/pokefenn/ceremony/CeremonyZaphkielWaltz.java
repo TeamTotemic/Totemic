@@ -5,10 +5,13 @@ import net.minecraft.block.IGrowable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -54,6 +57,7 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
                                     stack.stackSize--;
                                     item.setEntityItemStack(stack);
                                 }
+                                spawnParticles(world, item.posX, item.posY, item.posZ);
                             }
                         }
                     }
@@ -67,15 +71,26 @@ public class CeremonyZaphkielWaltz extends CeremonyBase
                         for(int k = -radius; k <= radius; k++)
                         {
                             Block block = world.getBlock(x + i, y + j, z + k);
-                            if(block instanceof IGrowable && block.getTickRandomly())
+                            if(block == Blocks.sapling)
+                            {
+                                world.setBlock(x + i, y + j, z + k, ModBlocks.totemSapling, 0, 3);
+                                spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5);
+                            }
+                            else if(block instanceof IGrowable && block.getTickRandomly())
                             {
                                 if(world.rand.nextInt(4) == 0)
                                 {
                                     block.updateTick(world, x + i, y + j, z + k, world.rand);
+                                    spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5);
                                 }
                             }
                         }
             }
         }
+    }
+
+    private void spawnParticles(World world, double x, double y, double z)
+    {
+        ((WorldServer)world).func_147487_a("happyVillager", x, y, z, 2, 0, 0.5, 0, 0);
     }
 }
