@@ -43,7 +43,7 @@ public class BlockCedarStripped extends BlockLog
     {
         if(!world.isRemote)
         {
-            if(random.nextInt(20 * 60 * 4) == 1)
+            if(random.nextInt(20) == 0) //about once every 15-20 minutes
             {
                 if(world.getBlock(x, y - 1, z).getMaterial() == Material.ground || world.getBlock(x, y - 1, z).getMaterial() == Material.grass)
                 {
