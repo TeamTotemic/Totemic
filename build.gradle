@@ -37,6 +37,10 @@ repositories {
         name "Mobiusstrip"
         url "http://mobiusstrip.eu/maven"
     }
+    maven {
+        name "Chickenbones"
+        url "http://chickenbones.net/maven"
+    }
 }
 
 dependencies {
