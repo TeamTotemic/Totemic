@@ -178,7 +178,9 @@ public class ModelBuffalo extends ModelBase {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        super.render(entity, f, f1, f2, f3, f4, f5);
+        GL11.glPushMatrix();
+        GL11.glTranslatef(0, -0.75F, 0);
+        GL11.glScalef(1.5F, 1.5F, 1.5F);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
         if(isChild) {
@@ -199,7 +201,6 @@ public class ModelBuffalo extends ModelBase {
         if(isChild) {
             float scale = 0.5F;
             GL11.glPopMatrix();
-            GL11.glPushMatrix();
             GL11.glScalef(scale, scale, scale);
             GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
         }
@@ -217,9 +218,7 @@ public class ModelBuffalo extends ModelBase {
         tail.render(f5);
         body.render(f5);
 
-        if(isChild) {
-            GL11.glPopMatrix();
-        }
+        GL11.glPopMatrix();
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {

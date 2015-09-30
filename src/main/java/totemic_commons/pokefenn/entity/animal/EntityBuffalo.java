@@ -25,7 +25,7 @@ public class EntityBuffalo extends EntityCow
     public EntityBuffalo(World world)
     {
         super(world);
-        setSize(0.9F, 1.3F);
+        setSize(1.35F, 1.95F);
         getNavigator().setAvoidsWater(true);
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIPanic(this, 2.0D));
