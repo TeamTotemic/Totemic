@@ -6,6 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
@@ -59,7 +60,7 @@ public class CraftingRecipes
     {
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 5, 0), ModBlocks.redCedarStripped);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 3, 0), ModBlocks.cedarLog);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModItems.subItems, 9, ItemTotemicItems.nuggetIron), Items.iron_ingot);
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.subItems, 9, ItemTotemicItems.nuggetIron), "ingotIron"));
 
         //Music
     }

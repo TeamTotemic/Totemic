@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
@@ -103,26 +102,23 @@ public class EntityBuffalo extends EntityCow
     }
 
     @Override
-    protected void dropFewItems(boolean par1, int par2)
+    protected void dropFewItems(boolean hitByPlayer, int looting)
     {
-        int j = rand.nextInt(3) + rand.nextInt(1 + par2);
-
+        int j = rand.nextInt(3) + rand.nextInt(1 + looting);
         for(int k = 0; k < j; ++k)
         {
-            EntityItem hide = new EntityItem(worldObj, posX, posY, posZ, new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.hide));
-            worldObj.spawnEntityInWorld(hide);
+            entityDropItem(new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()), 0F);
         }
 
-        j = rand.nextInt(3) + 1 + rand.nextInt(1 + par2);
-
+        j = rand.nextInt(5) + 1 + rand.nextInt(2 + 2*looting);
         for(int k = 0; k < j; ++k)
         {
             if(isBurning())
             {
-                dropItem(Items.cooked_beef, 2);
+                dropItem(Items.cooked_beef, 1);
             } else
             {
-                dropItem(Items.beef, 2);
+                dropItem(Items.beef, 1);
             }
         }
     }

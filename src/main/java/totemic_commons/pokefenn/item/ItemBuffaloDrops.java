@@ -10,7 +10,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -19,15 +18,17 @@ import totemic_commons.pokefenn.lib.Strings;
  */
 public class ItemBuffaloDrops extends ItemTotemic
 {
+    public enum Type
+    {
+        hide, /*teeth, horn, hair, hoof, dung*/;
 
-    private static final String[] BUFFALO_ITEM_NAMES = new String[]{"Teeth", "Hide", "Horn", "Hair", "Hoove"/*, "Dung"*/};
+        public final String name;
 
-    public static final int teeth = 0;
-    public static final int hide = 1;
-    public static final int horn = 2;
-    public static final int hair = 3;
-    public static final int hoove = 4;
-    //public static final int dung = 5;
+        private Type()
+        {
+            this.name = "buffalo" + Character.toUpperCase(toString().charAt(0)) + toString().substring(1);
+        }
+    }
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
@@ -36,30 +37,20 @@ public class ItemBuffaloDrops extends ItemTotemic
     {
         super("");
         setHasSubtypes(true);
-        setMaxStackSize(64);
-        setCreativeTab(Totemic.tabsTotem);
     }
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-
-        StringBuilder unlocalizedName = new StringBuilder();
-        int meta = MathHelper.clamp_int(itemStack.getItemDamage(), 0, BUFFALO_ITEM_NAMES.length - 1);
-
-        unlocalizedName.append("item.");
-        unlocalizedName.append(Strings.RESOURCE_PREFIX);
-        unlocalizedName.append("buffalo");
-        unlocalizedName.append(BUFFALO_ITEM_NAMES[meta]);
-
-        return unlocalizedName.toString();
+        Type type = Type.values()[MathHelper.clamp_int(itemStack.getItemDamage(), 0, Type.values().length - 1)];
+        return "item." + Strings.RESOURCE_PREFIX + type.name;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int meta)
     {
-        int j = MathHelper.clamp_int(meta, 0, BUFFALO_ITEM_NAMES.length - 1);
+        int j = MathHelper.clamp_int(meta, 0, Type.values().length - 1);
         return icons[j];
     }
 
@@ -67,10 +58,10 @@ public class ItemBuffaloDrops extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
-        icons = new IIcon[BUFFALO_ITEM_NAMES.length];
+        icons = new IIcon[Type.values().length];
 
-        for(int i = 0; i < BUFFALO_ITEM_NAMES.length; ++i)
-            icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + "buffalo" + BUFFALO_ITEM_NAMES[i]);
+        for(int i = 0; i < Type.values().length; ++i)
+            icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + Type.values()[i].name);
     }
 
 
@@ -78,7 +69,7 @@ public class ItemBuffaloDrops extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item id, CreativeTabs creativeTab, List list)
     {
-        for(int meta = 0; meta < BUFFALO_ITEM_NAMES.length; ++meta)
+        for(int meta = 0; meta < Type.values().length; ++meta)
             list.add(new ItemStack(id, 1, meta));
     }
 }

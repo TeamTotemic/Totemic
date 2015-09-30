@@ -15,8 +15,8 @@ import totemic_commons.pokefenn.lib.Strings;
  */
 public class ItemTotemic extends Item
 {
-    public boolean registerIcons = true;
-    public boolean creativeTab = true;
+    protected boolean registerIcons = true;
+    protected boolean creativeTab = true;
 
     public ItemTotemic(String name)
     {

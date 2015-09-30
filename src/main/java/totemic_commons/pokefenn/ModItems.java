@@ -2,6 +2,7 @@ package totemic_commons.pokefenn;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import totemic_commons.pokefenn.item.ItemBuffaloDrops;
 import totemic_commons.pokefenn.item.ItemTipi;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotempedia;
@@ -40,7 +41,7 @@ public final class ModItems
         subItems = new ItemTotemicItems();
         jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
-        //buffaloItems = new ItemBuffaloDrops();
+        buffaloItems = new ItemBuffaloDrops();
         ceremonialRattle = new ItemRattle();
         totempedia = new ItemTotempedia();
         flute = new ItemFlute();
@@ -52,7 +53,7 @@ public final class ModItems
         //GameRegistry.registerItem(totems, Strings.TOTEMS_NAME);
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
-        //GameRegistry.registerItem(buffaloItems, Strings.BUFFALO_ITEMS_NAME);
+        GameRegistry.registerItem(buffaloItems, Strings.BUFFALO_ITEMS_NAME);
         GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
         GameRegistry.registerItem(totempedia, Strings.TOTEMPEDIA_NAME);
         GameRegistry.registerItem(flute, Strings.FLUTE_NAME);
