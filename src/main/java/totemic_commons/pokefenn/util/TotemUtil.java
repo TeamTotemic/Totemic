@@ -5,9 +5,9 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
@@ -79,7 +79,7 @@ public class TotemUtil
 
     public static void setSelectors(int x, int y, int z, TileEntity tileEntity, int id, int i, int j, int k)
     {
-        World world = tileEntity.getWorldObj();
+        WorldServer world = (WorldServer)tileEntity.getWorldObj();
 
         if(world.getTileEntity(x + i, y + j, z + k) instanceof TileTotemBase)
             ((TileTotemBase) world.getTileEntity(x + i, y + j, z + k)).isCeremony = true;
@@ -159,7 +159,7 @@ public class TotemUtil
 
     public static void playMusic(int x, int y, int z, TileEntity tileEntity, int id, int i, int j, int k, int musicAmount, int musicMaximum)
     {
-        World world = tileEntity.getWorldObj();
+        WorldServer world = (WorldServer)tileEntity.getWorldObj();
         IMusicAcceptor acc = (IMusicAcceptor) tileEntity;
 
         int[] musicArray = acc.getMusicArray();
@@ -245,12 +245,12 @@ public class TotemUtil
         return newMusic;
     }
 
-    public static void musicParticleAtBlocks(World world, int xCoord, int yCoord, int zCoord, String particle)
+    public static void musicParticleAtBlocks(WorldServer world, int xCoord, int yCoord, int zCoord, String particle)
     {
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord + 1, yCoord, zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, (double) xCoord - 1, yCoord, zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, xCoord, yCoord, (double) zCoord + 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a(particle, xCoord, yCoord, (double) zCoord - 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        world.func_147487_a(particle, (double) xCoord + 1, yCoord, zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        world.func_147487_a(particle, (double) xCoord - 1, yCoord, zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        world.func_147487_a(particle, xCoord, yCoord, (double) zCoord + 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        world.func_147487_a(particle, xCoord, yCoord, (double) zCoord - 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
     }
 
 

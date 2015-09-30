@@ -16,6 +16,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
@@ -93,20 +94,20 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         if(!isSneaking)
         {
             TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.jingleDress, 0, 0);
-            particlesAllAround(world, player.posX, player.posY, player.posZ);
+            particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
         } else
         {
             TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.jingleDress, 0);
-            particlesAllAround(world, player.posX, player.posY, player.posZ);
+            particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
         }
     }
 
-    public void particlesAllAround(World world, double x, double y, double z)
+    public void particlesAllAround(WorldServer world, double x, double y, double z)
     {
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y + 0.4D, z + 0.5D, 2, 0.5D, 0.2D, 0.5D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x, y + 0.4, z, 2, 0.0D, 0.2D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y + 0.4D, z, 2, 0.0D, 0.2D, 0.0D, 0.0D);
-        MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x, y + 0.4D, z + 0.5D, 2, 0.0D, 0.2D, 0.0D, 0.0D);
+        world.func_147487_a("note", x + 0.5D, y + 0.4D, z + 0.5D, 2, 0.5D, 0.2D, 0.5D, 0.0D);
+        world.func_147487_a("note", x, y + 0.4, z, 2, 0.0D, 0.2D, 0.0D, 0.0D);
+        world.func_147487_a("note", x + 0.5D, y + 0.4D, z, 2, 0.0D, 0.2D, 0.0D, 0.0D);
+        world.func_147487_a("note", x, y + 0.4D, z + 0.5D, 2, 0.0D, 0.2D, 0.0D, 0.0D);
     }
 
     @Override

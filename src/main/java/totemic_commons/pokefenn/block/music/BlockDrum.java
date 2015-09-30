@@ -3,10 +3,10 @@ package totemic_commons.pokefenn.block.music;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
@@ -42,10 +42,10 @@ public class BlockDrum extends BlockTileTotemic
         TileDrum tileDrum = (TileDrum) world.getTileEntity(x, y, z);
 
         if(!world.isRemote && tileDrum.canPlay)
-            playDaMusicu(world, x, y, z, player, tileDrum, player.isSneaking());
+            playDaMusicu((WorldServer)world, x, y, z, player, tileDrum, player.isSneaking());
     }
 
-    public void playDaMusicu(World world, int x, int y, int z, EntityPlayer player, TileDrum tileDrum, boolean isSneaking)
+    public void playDaMusicu(WorldServer world, int x, int y, int z, EntityPlayer player, TileDrum tileDrum, boolean isSneaking)
     {
         if(!isSneaking)
         {
@@ -53,15 +53,15 @@ public class BlockDrum extends BlockTileTotemic
             {
                 tileDrum.canPlay = false;
                 TotemUtil.playMusicForCeremony(tileDrum, HandlerInitiation.drum, 0, 0);
-                MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+                world.func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
                 world.markBlockForUpdate(x, y, z);
             }
         } else
         {
             tileDrum.canPlay = false;
             TotemUtil.playMusicFromBlockForCeremonySelector(world, x, y, z, HandlerInitiation.drum, 0);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
-            MinecraftServer.getServer().worldServerForDimension(world.provider.dimensionId).func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+            world.func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+            world.func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
         }
 
@@ -77,7 +77,7 @@ public class BlockDrum extends BlockTileTotemic
         {
             if(tileDrum.canPlay)
             {
-                playDaMusicu(world, x, y, z, player, tileDrum, player.isSneaking());
+                playDaMusicu((WorldServer)world, x, y, z, player, tileDrum, player.isSneaking());
             }
         }
 
