@@ -36,6 +36,8 @@ public final class Strings
     public static final String TOMAHAWK_NAME = "tomahawk";
     public static final String CEREMONY_RATTLE_NAME = "ceremonialRattle";
     public static final String BUFFALO_ITEMS_NAME = "buffaloItems";
+    public static final String BUFFALO_MEAT_NAME = "buffaloMeat";
+    public static final String BUFFALO_COOKED_MEAT_NAME = "buffaloCookedMeat";
     public static final String FLUTE_NAME = "flute";
     public static final String TIPI_ITEM_NAME = "tipiItem";
 

@@ -115,10 +115,10 @@ public class EntityBuffalo extends EntityCow
         {
             if(isBurning())
             {
-                dropItem(Items.cooked_beef, 1);
+                dropItem(ModItems.buffaloCookedMeat, 1);
             } else
             {
-                dropItem(Items.beef, 1);
+                dropItem(ModItems.buffaloMeat, 1);
             }
         }
     }

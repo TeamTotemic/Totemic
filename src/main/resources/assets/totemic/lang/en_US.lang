@@ -18,6 +18,9 @@ item.totemic:ceremonialRattle.name=Rattle
 item.totemic:tipiItem.name=Tipi
 item.totemic:nuggetIron.name=Iron Nugget
 item.totemic:bellsIron.name=Iron Bells
+item.totemic:buffaloHide.name=Buffalo Hide
+item.totemic:buffaloMeat.name=Raw Buffalo Meat
+item.totemic:buffaloCookedMeat.name=Cooked Buffalo Meat
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log

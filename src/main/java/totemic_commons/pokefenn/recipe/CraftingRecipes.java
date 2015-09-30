@@ -9,6 +9,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.item.ItemBuffaloDrops;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 
 public class CraftingRecipes
@@ -61,6 +62,7 @@ public class CraftingRecipes
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 5, 0), ModBlocks.redCedarStripped);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 3, 0), ModBlocks.cedarLog);
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.subItems, 9, ItemTotemicItems.nuggetIron), "ingotIron"));
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.leather), new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()));
 
         //Music
     }
@@ -79,6 +81,7 @@ public class CraftingRecipes
     {
         GameRegistry.addSmelting(ModBlocks.redCedarStripped, new ItemStack(Items.coal, 1, 1), 0.5F);
         GameRegistry.addSmelting(ModBlocks.cedarLog, new ItemStack(Items.coal, 1, 1), 0.5F);
+        GameRegistry.addSmelting(ModItems.buffaloMeat, new ItemStack(ModItems.buffaloCookedMeat), 0.35F);
     }
 
 }
