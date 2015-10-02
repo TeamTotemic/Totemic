@@ -7,7 +7,8 @@ import totemic_commons.pokefenn.ModBlocks;
 /**
  * @author ljfa
  */
-public enum WoodVariant {
+public enum WoodVariant
+{
     OAK(Blocks.log, 0),
     SPRUCE(Blocks.log, 1),
     BIRCH(Blocks.log, 2),
@@ -19,7 +20,8 @@ public enum WoodVariant {
     public final Block log;
     public final int logMeta;
 
-    private WoodVariant(Block log, int logMeta) {
+    private WoodVariant(Block log, int logMeta)
+    {
         this.log = log;
         this.logMeta = logMeta;
     }
@@ -27,7 +29,8 @@ public enum WoodVariant {
     public static final int count = values().length;
 
     /** @return The variant for the specified log block, or null if it is not a log */
-    public static WoodVariant fromLog(Block block, int meta) {
+    public static WoodVariant fromLog(Block block, int meta)
+    {
         if(block == Blocks.log)
             return values()[meta & 3]; //oak - jungle
         else if(block == Blocks.log2)

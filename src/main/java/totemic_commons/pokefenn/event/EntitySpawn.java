@@ -9,10 +9,13 @@ import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 /**
  * @author ljfa
  */
-public class EntitySpawn {
+public class EntitySpawn
+{
     @SubscribeEvent
-    public void onEntityJoin(EntityJoinWorldEvent event) {
-        if(event.entity instanceof EntitySkeleton) {
+    public void onEntityJoin(EntityJoinWorldEvent event)
+    {
+        if(event.entity instanceof EntitySkeleton)
+        {
             EntitySkeleton entity = (EntitySkeleton)event.entity;
             entity.targetTasks.addTask(3, new EntityAINearestAttackableTarget(entity, EntityBuffalo.class, 0, true));
         }

@@ -12,7 +12,8 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
-public class ModelBuffalo extends ModelBase {
+public class ModelBuffalo extends ModelBase
+{
     // fields
     private ModelRenderer tailhairs;
     private ModelRenderer hoof1;
@@ -36,7 +37,8 @@ public class ModelBuffalo extends ModelBase {
     private ModelRenderer horn5;
     private ModelRenderer horn6;
 
-    public ModelBuffalo() {
+    public ModelBuffalo()
+    {
         textureWidth = 128;
         textureHeight = 128;
 
@@ -177,13 +179,15 @@ public class ModelBuffalo extends ModelBase {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    {
         GL11.glPushMatrix();
         GL11.glTranslatef(0, -0.75F, 0);
         GL11.glScalef(1.5F, 1.5F, 1.5F);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-        if(isChild) {
+        if(isChild)
+        {
             GL11.glPushMatrix();
             GL11.glTranslatef(0.0F, 6.0F * f5, 4.0F * f5);
         }
@@ -198,7 +202,8 @@ public class ModelBuffalo extends ModelBase {
         horn5.render(f5);
         horn6.render(f5);
 
-        if(isChild) {
+        if(isChild)
+        {
             float scale = 0.5F;
             GL11.glPopMatrix();
             GL11.glScalef(scale, scale, scale);
@@ -221,14 +226,16 @@ public class ModelBuffalo extends ModelBase {
         GL11.glPopMatrix();
     }
 
-    private void setRotation(ModelRenderer model, float x, float y, float z) {
+    private void setRotation(ModelRenderer model, float x, float y, float z)
+    {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
 
     @Override
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity) {
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
         head.rotateAngleX = f4 / (180F / (float)Math.PI) + ((float)Math.PI / 2F);
