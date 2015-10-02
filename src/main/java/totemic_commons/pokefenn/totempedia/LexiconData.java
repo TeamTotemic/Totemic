@@ -13,8 +13,10 @@ package totemic_commons.pokefenn.totempedia;
 
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.lib.Totempedia;
+import totemic_commons.pokefenn.recipe.CraftingRecipes;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.totempedia.page.PageCeremony;
+import totemic_commons.pokefenn.totempedia.page.PageCraftingRecipe;
 import totemic_commons.pokefenn.totempedia.page.PageText;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
@@ -72,26 +74,26 @@ public final class LexiconData
         //buffaloBasic.setLexiconPages(new PageText("0"), new PageText("1"));
 
         creatingTotems = new BLexiconEntry(Totempedia.CREATING_TOTEMS, categoryTotems);
-        creatingTotems.setLexiconPages(new PageText("0"), new PageText("1"));
+        creatingTotems.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.totemWhittlingKnife));
 
         //Instruments
         instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryInstruments);
         instruments.setLexiconPages(new PageText("0"), new PageText("1"));
 
         windChime = new BLexiconEntry(Totempedia.WIND_CHIME, categoryInstruments);
-        windChime.setLexiconPages(new PageText("0"), new PageText("1"));
+        windChime.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.windChime));
 
         drum = new BLexiconEntry(Totempedia.DRUM, categoryInstruments);
-        drum.setLexiconPages(new PageText("0"));
+        drum.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.drum));
 
         flute = new BLexiconEntry(Totempedia.FLUTE, categoryInstruments);
-        flute.setLexiconPages(new PageText("0"), new PageText("1"));
+        flute.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.flute));
 
         rattle = new BLexiconEntry(Totempedia.RATTLE, categoryInstruments);
-        rattle.setLexiconPages(new PageText("0"), new PageText("1"));
+        rattle.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.ceremonialRattle));
 
         jingleDress = new BLexiconEntry(Totempedia.JINGLE_DRESS, categoryInstruments);
-        jingleDress.setLexiconPages(new PageText("0"), new PageText("1"));
+        jingleDress.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.jingleDress));
 
         //Ceremonies
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
@@ -117,6 +119,6 @@ public final class LexiconData
 
         //Tools
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
-        barkStripper.setLexiconPages(new PageText("0"), new PageText("1"));
+        barkStripper.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.barkStripper));
     }
 }

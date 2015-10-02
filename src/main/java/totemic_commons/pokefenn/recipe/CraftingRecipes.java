@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -14,6 +15,15 @@ import totemic_commons.pokefenn.item.ItemTotemicItems;
 
 public class CraftingRecipes
 {
+    public static IRecipe totemWhittlingKnife;
+
+    public static IRecipe barkStripper;
+
+    public static IRecipe drum;
+    public static IRecipe windChime;
+    public static IRecipe flute;
+    public static IRecipe ceremonialRattle;
+    public static IRecipe jingleDress;
 
     public static void init()
     {
@@ -27,13 +37,13 @@ public class CraftingRecipes
     {
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.totemicStaff,
                 " ls", " s ", "s l", ('s'), "stickWood", ('l'), "treeLeaves"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.totemWhittlingKnife,
+        GameRegistry.addRecipe(totemWhittlingKnife = new ShapedOreRecipe(ModItems.totemWhittlingKnife,
                 "  i", " sf", "s  ", ('s'), "stickWood", ('i'), "ingotIron", ('f'), Items.flint));
 
         //Generic
         GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.totemTorch,
                 "sfs", "sws", " s ", ('s'), "stickWood", ('w'), "logWood", ('f'), Blocks.torch));
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.barkStripper,
+        GameRegistry.addRecipe(barkStripper = new ShapedOreRecipe(ModItems.barkStripper,
                 "iii", "s s", "s s", ('i'), "ingotIron", ('s'), "stickWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.totempedia,
                 "bpb", "bpb", "bpb", ('b'), "logWood", ('p'), Items.paper));
@@ -45,15 +55,15 @@ public class CraftingRecipes
                 " s ", "sws", "w w", ('s'), "stickWood", ('w'), Blocks.wool));
 
         //Music
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0),
+        GameRegistry.addRecipe(drum = new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0),
                 "eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), Blocks.wool));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.windChime, 1, 0),
+        GameRegistry.addRecipe(windChime = new ShapedOreRecipe(new ItemStack(ModBlocks.windChime, 1, 0),
                 "iwi", "tst", "  t", ('i'), "ingotIron", ('s'), Items.string, ('w'), "logWood", ('t'), "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.flute, 1, 0),
+        GameRegistry.addRecipe(flute = new ShapedOreRecipe(new ItemStack(ModItems.flute, 1, 0),
                 " sc", " c ", "c  ", ('c'), "stickWood", ('s'), "treeLeaves"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ceremonialRattle, 1, 0),
+        GameRegistry.addRecipe(ceremonialRattle = new ShapedOreRecipe(new ItemStack(ModItems.ceremonialRattle, 1, 0),
                 " ww", " bw", "s  ", ('s'), "stickWood", ('w'), "logWood", ('b'), Items.bone));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.jingleDress, 1, 0),
+        GameRegistry.addRecipe(jingleDress = new ShapedOreRecipe(new ItemStack(ModItems.jingleDress, 1, 0),
                 " l ", "blb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron"));
     }
 
