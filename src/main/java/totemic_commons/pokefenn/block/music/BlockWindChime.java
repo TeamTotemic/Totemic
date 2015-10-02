@@ -43,7 +43,8 @@ public class BlockWindChime extends BlockTileTotemic
     @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z)
     {
-        return world.isAirBlock(x, y-1, z) && world.isSideSolid(x, y+1, z, ForgeDirection.DOWN);
+        return world.isAirBlock(x, y-1, z)
+                && (world.isSideSolid(x, y+1, z, ForgeDirection.DOWN) || world.getBlock(x, y+1, z).isLeaves(world, x, y+1, z));
     }
 
     public void breakStuffs(World world, int x, int y, int z)
