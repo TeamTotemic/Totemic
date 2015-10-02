@@ -96,12 +96,10 @@ totemicmisc.activeEffect=Active Totem Effect: %s
 totemicmisc.startup=Starting up
 totemicmisc.activeCeremony=Active Ceremony
 
-#totemic.tooltip.rattle=Swing to make music
-
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.
 
-totemicmisc.clickToAdd=Click to Add
+totemicmisc.clickToAdd=Add bookmark
 totemicmisc.back=Back
 totemicmisc.clickToSee=Click to go to
 totemicmisc.shiftToRemove=Shift click to Remove
@@ -109,6 +107,8 @@ totemicmisc.nextPage=Next page
 totemicmisc.prevPage=Previous page
 totemicmisc.bookmark=Bookmark
 totemicmisc.clickToIndex=Click to return to index
+totemicmisc.shapeless=Shapeless
+totemicmisc.oredict=Ore Dictionary
 
 totemic.category.basics=Totemic Basics
 totemic.category.devices=Devices
@@ -129,6 +129,7 @@ totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across t
 totemic.entry.creatingTotems=Totem Poles
 totemic.page.creatingTotems0=Creating a Totem Pole is a very simple thing to do. First you must create a &1Totem Whittling Knife&0, this will be what you use to carve out your Totem Poles out of wood logs. The knife can carve different patterns of &4Totem Poles&0, which will lead to different effects. Right clicking while sneaking will change which pattern will be carved.
 totemic.page.creatingTotems1=You also use the Totem Whittling Knife to carve out the &1Totem Base&0. Each Totem Pole needs one Totem Base at the bottom and can be up to 6 meters high.<br>Totem Poles will by default give beneficial &4effects&0 to all nearby players. The effects depend on the carving pattern. A Totem Pole can have different carvings on different heights.
+totemic.page.creatingTotems2=
 
 totemic.entry.instruments=Instruments
 totemic.page.instruments0=Instruments are a way to create &4Musical Melody&0, which is a type of power that many blocks and systems require, such as the &1Totem Base&0 and even &4Ceremonies&0. When played, all instruments will output their music to the first available nearby block that can accept it. Each instrument will produce &4Musical Melody&0 in very many different ways, with different outputs and ranges.
@@ -137,21 +138,26 @@ totemic.page.instruments1=
 totemic.entry.windChime=Wind Chime
 totemic.page.windChime0=The &1Wind Chime&0 is a instrument that will wave in the wind and periodically produce &4Musical Melody&0 when the wind blows, including all other nearby &1Wind Chimes&0. The &1Wind Chime&0 cannot have any blocks below it, and must have a block above it to support it or else it will merely fall off. While the &1Wind Chime&0 does not create a large amount of &4Musical Melody&0, it does not require any intervention by players.
 totemic.page.windChime1=It is not rare to see &1Wind Chimes&0 hanging from the branches of leaves, there have even been rumors that it could make them create more melodic music. When the &1Wind Chime&0 is playing, it will shake vigorously and create music. Because the music from the &1Wind Chime&0 is so easy to come by, it does not take much of it before the maximum amount of &4Musical Melody&0 is reached.
+totemic.page.windChime2=
 
 totemic.entry.drum=Drum
 totemic.page.drum0=The &1Drum&0 is an instrumental block that can be played by simply bashing it with either fist. Because it takes time for the skin on the Drum to reflect back, it can take a second for it to be playable again. Drum beats are usually constant, and a vital part of any Ceremony. Because of that the music is quite melodic. Of course playing it while sneaking to select a &4Ceremony&0 works the same as usual.
+totemic.page.drum1=
 
 totemic.entry.jingleDress=Jingle Dress
 totemic.page.jingleDress0=The &1Jingle Dress&0. One of the most prestigious pieces of clothing available for &4Totemists&0. It is a Dress made out of leaves that has been adorned with bells. Running around will cause it to play music to all nearby Totem Poles. They say the faster you run the more music it creates, and a speed potion increases it ten fold! (Although one has to wonder about the accuracy of these sayings).
 totemic.page.jingleDress1=Sneaking around while wearing the dress is also possible. The sound of this instrument is highly melodic, meaning that it produces a large amount if played correctly, and &1Totems&0 can also accept a high amount of the &4Musical Melody&0 from it.
+totemic.page.jingleDress2=
 
 totemic.entry.flute=Flute
 totemic.page.flute0=The &1Flute&0, one of the simplest yet most effective instruments known to the lands. It fulfills a very simple role of playing music without any complication. Because of its simplistic, it is not known to be the most melodic instrument, including with how much &4Totems&0 can accept, and how much a blow of the &1Flute&0 will give. As per usual, it can be played while sneaking to allow a nearby &4Totem&0 to try to perform a Ceremony.
-totemic.page.flute1=Apart from the mundane Flute, there exists a way to &4infuse&0 a flute with the &1Ceremony of Flute Imbuation&0. The sound of an Infused Flute is much more melodic and has special properties. 
+totemic.page.flute1=Apart from the mundane Flute, there exists a way to &4infuse&0 a flute with the &1Ceremony of Flute Imbuation&0. The sound of an Infused Flute is much more melodic and has special properties.
+totemic.page.flute2=
 
 totemic.entry.rattle=Rattle
 totemic.page.rattle0=The &1Ceremonial Rattle&0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The &1Rattle&0 produces &4Musical Melody&0 whenever it has been shook with the hand. It is currently unknown if it has any other bonuses, but it believed to one day. And like all instruments, it can be played while sneaking so as to activate ceremonies.
 totemic.page.rattle1=
+totemic.page.rattle2=
 
 totemic.entry.performingCeremonies=Performing Ceremonies
 totemic.page.performingCeremonies0=&4Ceremonies&0 are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The center of a &4Ceremony&0 is a &1Totem Base&0, all music and other things are centered to the &1Totem Pole&0 and it is where the effects are released from.
@@ -187,6 +193,7 @@ totemic.page.fluteInfusion1=&oStronger than Twilicane&r
 totemic.entry.barkStripper=Bark Stripper
 totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to remove the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log.
 totemic.page.barkStripper1=The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal.<br>Red Cedar Stripped Logs that are left on grass will slowly regrow their bark after a while.
+totemic.page.barkStripper2=
 
 #TODO
 #totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
