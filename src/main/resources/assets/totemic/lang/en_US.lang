@@ -124,7 +124,8 @@ totemic.page.cedarTree0=The great Red Cedar Tree, one of the strongest, and most
 totemic.page.cedarTree1=The height of the Red Cedar tree is usually from 6 to 9 blocks, but of course that can vary. The tree drops saplings like normal trees, and performs all other normal sapling behavior.
 
 totemic.entry.buffaloBasic=Buffaloes
-totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for the resources it can grant, and the powers it wields. Buffaloes can be later 'created' through a Ceremony. They are incredibly sturdy and have a very large amount of health.
+totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for the resources it can grant, and the powers it wields. They are incredibly sturdy and have a very large amount of health.<br>Unfortunately, the White Man has hunted down nearly all of the wild Buffaloes. But they can still be 'created' later on with the &4Mandan Buffalo Dance&0 Ceremony. 
+totemic.page.buffaloBasic1=
 
 totemic.entry.creatingTotems=Totem Poles
 totemic.page.creatingTotems0=Creating a Totem Pole is a very simple thing to do. First you must create a &1Totem Whittling Knife&0, this will be what you use to carve out your Totem Poles out of wood logs. The knife can carve different patterns of &4Totem Poles&0, which will lead to different effects. Right clicking while sneaking will change which pattern will be carved.
@@ -198,3 +199,7 @@ totemic.page.barkStripper2=
 #TODO
 #totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
 #totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
+
+totemic.entry.tipi=Tipi
+totemic.page.tipi0=The &1Tipi&0 is a type of tent, shaped like a cone. It can be placed on a flat surface of dirt or grass, and you can sleep inside it.
+totemic.page.tipi1=

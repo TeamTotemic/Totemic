@@ -24,16 +24,16 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 public final class LexiconData
 {
 
-    //public static LexiconCategory categoryBasics;
-    public static LexiconCategory categoryDevices;
+    public static LexiconCategory categoryBasics;
+    //public static LexiconCategory categoryDevices;
     public static LexiconCategory categoryTools;
-    //public static LexiconCategory categoryMisc;
+    public static LexiconCategory categoryMisc;
     //public static LexiconCategory categoryLore;
     public static LexiconCategory categoryCeremony;
     public static LexiconCategory categoryTotems;
     public static LexiconCategory categoryInstruments;
 
-    public static LexiconEntry cedarTree;
+    //public static LexiconEntry cedarTree;
     public static LexiconEntry buffaloBasic;
 
     public static LexiconEntry instruments;
@@ -56,22 +56,25 @@ public final class LexiconData
     public static LexiconEntry barkStripper;
     //public static LexiconEntry blowDart;
 
+    public static LexiconEntry tipi;
+
     public static void init()
     {
-        //TotemicAPI.addCategory(categoryBasics = new LexiconCategory(Totempedia.CATEGORY_BASICS));
-        TotemicAPI.addCategory(categoryDevices = new LexiconCategory(Totempedia.CATEGORY_DEVICES));
+        TotemicAPI.addCategory(categoryBasics = new LexiconCategory(Totempedia.CATEGORY_BASICS));
+        //TotemicAPI.addCategory(categoryDevices = new LexiconCategory(Totempedia.CATEGORY_DEVICES));
         TotemicAPI.addCategory(categoryInstruments = new LexiconCategory(Totempedia.CATEGORY_INSTRUMENTS));
         TotemicAPI.addCategory(categoryTotems = new LexiconCategory(Totempedia.CATEGORY_TOTEMS));
         TotemicAPI.addCategory(categoryCeremony = new LexiconCategory(Totempedia.CATEGORY_CEREMONY));
         TotemicAPI.addCategory(categoryTools = new LexiconCategory(Totempedia.CATEGORY_TOOLS));
-        //TotemicAPI.addCategory(categoryMisc = new LexiconCategory(Totempedia.CATEGORY_MISC));
+        TotemicAPI.addCategory(categoryMisc = new LexiconCategory(Totempedia.CATEGORY_MISC));
         //TotemicAPI.addCategory(categoryLore = new LexiconCategory(Totempedia.CATEGORY_LORE));
 
+        //Basics
         //cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics);
         //cedarTree.setLexiconPages(new PageText("0"), new PageText("1"));
 
-        //buffaloBasic = new BLexiconEntry(Totempedia.BUFFALO_BASIC, categoryBasics);
-        //buffaloBasic.setLexiconPages(new PageText("0"), new PageText("1"));
+        buffaloBasic = new BLexiconEntry(Totempedia.BUFFALO_BASIC, categoryBasics);
+        buffaloBasic.setLexiconPages(new PageText("0"));
 
         creatingTotems = new BLexiconEntry(Totempedia.CREATING_TOTEMS, categoryTotems);
         creatingTotems.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.totemWhittlingKnife));
@@ -120,5 +123,9 @@ public final class LexiconData
         //Tools
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
         barkStripper.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.barkStripper));
+
+        //Misc
+        tipi = new BLexiconEntry(Totempedia.TIPI, categoryMisc);
+        tipi.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.tipi));
     }
 }

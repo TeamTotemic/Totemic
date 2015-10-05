@@ -25,6 +25,8 @@ public class CraftingRecipes
     public static IRecipe ceremonialRattle;
     public static IRecipe jingleDress;
 
+    public static IRecipe tipi;
+
     public static void init()
     {
         oreDictionary();
@@ -51,7 +53,7 @@ public class CraftingRecipes
                 " n ", "nnn", " n ", ('n'), "nuggetIron"));
         GameRegistry.addRecipe(new ShapedOreRecipe(Items.iron_ingot,
                 "nnn", "nnn", "nnn", ('n'), "nuggetIron"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.tipi,
+        GameRegistry.addRecipe(tipi = new ShapedOreRecipe(ModItems.tipi,
                 " s ", "sws", "w w", ('s'), "stickWood", ('w'), Blocks.wool));
 
         //Music
