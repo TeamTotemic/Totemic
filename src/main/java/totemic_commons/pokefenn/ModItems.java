@@ -36,7 +36,6 @@ public final class ModItems
     {
         totemWhittlingKnife = new ItemTotemWhittlingKnife();
         totemicStaff = new ItemTotemicStaff();
-        //totems = new ItemTotems();
         subItems = new ItemTotemicItems();
         jingleDress = new ItemJingleDress();
         barkStripper = new ItemBarkStripper();
@@ -51,7 +50,6 @@ public final class ModItems
         GameRegistry.registerItem(totemWhittlingKnife, Strings.TOTEM_WHITTLING_KNIFE_NAME);
         GameRegistry.registerItem(totemicStaff, Strings.TOTEMIC_STAFF_NAME);
         GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
-        //GameRegistry.registerItem(totems, Strings.TOTEMS_NAME);
         GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
         GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
         GameRegistry.registerItem(buffaloItems, Strings.BUFFALO_ITEMS_NAME);
@@ -61,14 +59,6 @@ public final class ModItems
         GameRegistry.registerItem(totempedia, Strings.TOTEMPEDIA_NAME);
         GameRegistry.registerItem(flute, Strings.FLUTE_NAME);
         GameRegistry.registerItem(tipi, Strings.TIPI_ITEM_NAME);
-
-        initBaubles();
     }
-
-    public static void initBaubles()
-    {
-        Totemic.baublesLoaded = true;
-    }
-
 
 }
