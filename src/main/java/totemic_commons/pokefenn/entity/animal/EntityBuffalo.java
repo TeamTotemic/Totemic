@@ -20,7 +20,11 @@ import totemic_commons.pokefenn.item.ItemBuffaloDrops;
  */
 public class EntityBuffalo extends EntityCow
 {
-    public static boolean isSheared = false;
+    public boolean isSheared = false;
+
+    public static final int MAX_AGE = 20 * 60 * 20;
+
+    private static final int AGE_DATAWATCHER = 16;
 
     public EntityBuffalo(World world)
     {
@@ -38,6 +42,13 @@ public class EntityBuffalo extends EntityCow
     }
 
     @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        dataWatcher.addObject(AGE_DATAWATCHER, 0);
+    }
+
+    @Override
     public boolean isAIEnabled()
     {
         return true;
@@ -47,14 +58,35 @@ public class EntityBuffalo extends EntityCow
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35.0D);
-        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.15000000298023224D);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.15);
     }
 
     @Override
-    protected void updateAITasks()
+    public void onLivingUpdate()
     {
-        super.updateAITasks();
+        super.onLivingUpdate();
+        if(!worldObj.isRemote && !isChild())
+        {
+            int age = getBuffaloAge();
+            if(age < MAX_AGE)
+                setBuffaloAge(age + 1);
+        }
+    }
+
+    public int getBuffaloAge()
+    {
+        return dataWatcher.getWatchableObjectInt(AGE_DATAWATCHER);
+    }
+
+    public float getRelativeAge()
+    {
+        return getBuffaloAge() / (float)MAX_AGE;
+    }
+
+    public void setBuffaloAge(int age)
+    {
+        dataWatcher.updateObject(AGE_DATAWATCHER, age);
     }
 
     @Override
@@ -88,17 +120,19 @@ public class EntityBuffalo extends EntityCow
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
+    public void writeEntityToNBT(NBTTagCompound tag)
     {
-        super.writeEntityToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setBoolean("isSheared", isSheared);
+        super.writeEntityToNBT(tag);
+        tag.setBoolean("isSheared", isSheared);
+        tag.setInteger("buffaloAge", getBuffaloAge());
     }
 
     @Override
-    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
+    public void readEntityFromNBT(NBTTagCompound tag)
     {
-        super.readEntityFromNBT(par1NBTTagCompound);
-        isSheared = par1NBTTagCompound.getBoolean("isSheared");
+        super.readEntityFromNBT(tag);
+        isSheared = tag.getBoolean("isSheared");
+        setBuffaloAge(tag.getInteger("buffaloAge"));
     }
 
     @Override

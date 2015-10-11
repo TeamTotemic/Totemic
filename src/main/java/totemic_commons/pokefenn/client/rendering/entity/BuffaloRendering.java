@@ -11,9 +11,9 @@ import net.minecraft.util.ResourceLocation;
  */
 public class BuffaloRendering extends RenderLiving
 {
-    public BuffaloRendering(ModelBase par1ModelBase, float par2)
+    public BuffaloRendering(ModelBase model, float shadowSize)
     {
-        super(par1ModelBase, par2);
+        super(model, shadowSize);
     }
 
     @Override

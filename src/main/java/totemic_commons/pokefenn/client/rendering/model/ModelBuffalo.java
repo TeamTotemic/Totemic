@@ -11,6 +11,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 
 public class ModelBuffalo extends ModelBase
 {
@@ -181,9 +182,11 @@ public class ModelBuffalo extends ModelBase
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
+        float scale = 1.0F + 0.5F * ((EntityBuffalo)entity).getRelativeAge();
+
         GL11.glPushMatrix();
-        GL11.glTranslatef(0, -0.75F, 0);
-        GL11.glScalef(1.5F, 1.5F, 1.5F);
+        GL11.glTranslatef(0, 1.5F * (1.0F - scale), 0);
+        GL11.glScalef(scale, scale, scale);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
         if(isChild)
@@ -204,9 +207,9 @@ public class ModelBuffalo extends ModelBase
 
         if(isChild)
         {
-            float scale = 0.5F;
+            float childScale = 0.5F;
             GL11.glPopMatrix();
-            GL11.glScalef(scale, scale, scale);
+            GL11.glScalef(childScale, childScale, childScale);
             GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
         }
 
