@@ -138,13 +138,16 @@ public class EntityBuffalo extends EntityCow
     @Override
     protected void dropFewItems(boolean hitByPlayer, int looting)
     {
-        int j = rand.nextInt(3) + rand.nextInt(1 + looting);
+        int age = getBuffaloAge();
+
+        int bonus = (3 * age) / MAX_AGE;
+        int j = rand.nextInt(1 + bonus) + rand.nextInt(1 + looting);
         for(int k = 0; k < j; ++k)
         {
             entityDropItem(new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()), 0F);
         }
 
-        j = rand.nextInt(5) + 1 + rand.nextInt(2 + 2*looting);
+        j = rand.nextInt(2 + bonus) + (bonus >= 2 ? 1 : 0) + rand.nextInt(2 + 2*looting);
         for(int k = 0; k < j; ++k)
         {
             if(isBurning())
@@ -189,7 +192,8 @@ public class EntityBuffalo extends EntityCow
     @Override
     protected int getExperiencePoints(EntityPlayer player)
     {
-        return 5 + worldObj.rand.nextInt(6);
+        int bonus = (3 * getBuffaloAge()) / MAX_AGE;
+        return 2 + bonus + worldObj.rand.nextInt(3 + bonus);
     }
 
     @Override
