@@ -145,6 +145,8 @@ public class EntityBuffalo extends EntityCow
         for(int k = 0; k < j; ++k)
         {
             entityDropItem(new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()), 0F);
+            if(rand.nextBoolean())
+                entityDropItem(new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.teeth.ordinal()), 0F);
         }
 
         j = rand.nextInt(2 + bonus) + (bonus >= 2 ? 1 : 0) + rand.nextInt(2 + 2*looting);
