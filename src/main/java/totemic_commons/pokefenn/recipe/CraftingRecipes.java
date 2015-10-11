@@ -64,9 +64,9 @@ public class CraftingRecipes
         GameRegistry.addRecipe(flute = new ShapedOreRecipe(new ItemStack(ModItems.flute, 1, 0),
                 " sc", " c ", "c  ", ('c'), "stickWood", ('s'), "treeLeaves"));
         GameRegistry.addRecipe(ceremonialRattle = new ShapedOreRecipe(new ItemStack(ModItems.ceremonialRattle, 1, 0),
-                " ww", " bw", "s  ", ('s'), "stickWood", ('w'), "logWood", ('b'), Items.bone));
+                " ww", " bw", "s  ", ('s'), "stickWood", ('w'), "logWood", ('b'), "teethBuffalo"));
         GameRegistry.addRecipe(jingleDress = new ShapedOreRecipe(new ItemStack(ModItems.jingleDress, 1, 0),
-                " l ", "blb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron"));
+                " l ", "bhb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron", ('h'), "hideBuffalo"));
     }
 
     static void shapelessRecipes()
@@ -87,6 +87,8 @@ public class CraftingRecipes
         OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.redCedarPlank, 1, 0));
         OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.nuggetIron));
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.bellsIron));
+        OreDictionary.registerOre("hideBuffalo", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()));
+        OreDictionary.registerOre("teethBuffalo", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.teeth.ordinal()));
     }
 
     static void furnaceRecipes()
