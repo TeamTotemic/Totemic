@@ -40,12 +40,10 @@ public class PageCeremony extends PageRecipe
             String musicNeeded = TotemUtil.getMusicNeeded(ceremony.getCeremonyActivation().getMusicNeeded());
             //String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
 
-            if(MusicHandler.musicHandler.get(instruments[0]).getItem(0) != null && MusicHandler.musicHandler.get(instruments[1]).getItem(0) != null && MusicHandler.musicHandler.get(instruments[2]).getItem(0) != null && MusicHandler.musicHandler.get(instruments[3]).getItem(0) != null)
+            if(MusicHandler.musicHandler.get(instruments[0]).getItem(0) != null && MusicHandler.musicHandler.get(instruments[1]).getItem(0) != null)
             {
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 40, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[0]).getItem(0), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[1]).getItem(0), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[2]).getItem(0), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - -21, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[3]).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[0]).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[1]).getItem(0), false);
             }
 
             GL11.glEnable(GL11.GL_BLEND);

@@ -57,6 +57,8 @@ public class TotemicAPI
 
     public static MusicHandler addInstrument(int instrumentId, int baseOutput, int baseRange, int maximumMusic)
     {
+        if(instrumentId != MusicHandler.musicHandler.size()) //TODO: This is a technical limitation that has to be fixed
+            throw new IllegalArgumentException("Invalid instrument ID (must be contiguous for now)");
         MusicHandler musicHandler = new MusicHandler(instrumentId, new ItemStack[1], baseOutput, baseRange, maximumMusic );
         MusicHandler.musicHandler.add(musicHandler);
         return musicHandler;

@@ -19,6 +19,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.api.ceremony.CeremonyEffect;
 import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
@@ -73,7 +74,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         currentCeremony = 0;
         ceremonyEffectTimer = 0;
         dancingEfficiency = 0;
-        musicSelector = new int[5];
+        musicSelector = new int[CeremonyEffect.NUM_SELECTORS];
         isDoingStartup = false;
         tryingCeremonyID = 0;
         totalCeremonyMelody = 0;
@@ -333,10 +334,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         for(CeremonyRegistry ceremonyRegistry : CeremonyRegistry.getCeremonyList())
         {
-            if(musicSelector[0] != 0 && musicSelector[1] != 0 && musicSelector[2] != 0 && musicSelector[3] != 0)
+            if(musicSelector[0] != 0 && musicSelector[1] != 0)
             {
                 int[] ids = ceremonyRegistry.getCeremonyEffect().getMusicIds();
-                if(ids[0] + 1 == musicSelector[0] && ids[1] + 1 == musicSelector[1] && ids[2] + 1 == musicSelector[2] && ids[3] + 1 == musicSelector[3])
+                if(ids[0] + 1 == musicSelector[0] && ids[1] + 1 == musicSelector[1])
                 {
                     particleAroundTotemUpwards("fireworksSpark");
                     tryingCeremonyID = ceremonyRegistry.getCeremonyID();
@@ -467,7 +468,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
             musicCeremony[i] = 0;
         }
         if(doResetMusicSelector)
-            for(int i = 0; i < 4; i++)
+            for(int i = 0; i < CeremonyEffect.NUM_SELECTORS; i++)
             {
                 musicSelector[i] = 0;
             }
@@ -476,7 +477,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     public void resetSelector()
     {
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < CeremonyEffect.NUM_SELECTORS; i++)
         {
             musicSelector[i] = 0;
         }

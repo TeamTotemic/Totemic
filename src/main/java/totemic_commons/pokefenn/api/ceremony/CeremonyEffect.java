@@ -11,23 +11,26 @@ import totemic_commons.pokefenn.api.music.MusicHandler;
  */
 public class CeremonyEffect
 {
-    public static List<CeremonyEffect> ceremonyRegistry = new ArrayList<CeremonyEffect>();
+    public static final int NUM_SELECTORS = 2;
+
+    //public static List<CeremonyEffect> ceremonyRegistry = new ArrayList<CeremonyEffect>();
 
     private final int[] musicIds;
     private final ICeremonyEffect ceremonyEffect;
 
     /**
-     * @param musicIds       An array holding the music Ids for the musical selector, has to hold 4 instruments, no more, no less.
      * @param ceremonyEffect The effect the ceremony does.
+     * @param musicIds       An array holding the music Ids for the musical selector, has to hold NUM_SELECTORS instruments, no more, no less.
      */
-
     public CeremonyEffect(ICeremonyEffect ceremonyEffect, MusicHandler[] musicIds)
     {
+        if(musicIds.length != NUM_SELECTORS)
+            throw new IllegalArgumentException("Wrong number of musical selectors (" + musicIds.length + ")");
+
         this.ceremonyEffect = ceremonyEffect;
+        int[] musicIdsHere = new int[NUM_SELECTORS];
 
-        int[] musicIdsHere = new int[4];
-
-        for(int i = 0; i < musicIds.length; i++)
+        for(int i = 0; i < NUM_SELECTORS; i++)
         {
             musicIdsHere[i] = musicIds[i].getMusicId();
         }

@@ -94,14 +94,6 @@ public class TotemUtil
         {
             musicSelectorArray[1] = id + 1;
             musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
-        } else if(musicSelectorArray[2] == 0)
-        {
-            musicSelectorArray[2] = id + 1;
-            musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
-        } else if(musicSelectorArray[3] == 0)
-        {
-            musicSelectorArray[3] = id + 1;
-            musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
         }
         world.markBlockForUpdate(x, y, z);
     }

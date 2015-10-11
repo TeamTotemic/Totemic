@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
  */
 public class CeremonyActivation
 {
-    public static List<CeremonyActivation> ceremonyActivation = new ArrayList<CeremonyActivation>();
+    //public static List<CeremonyActivation> ceremonyActivation = new ArrayList<CeremonyActivation>();
 
     private final boolean doesNeedItems;
     private final ItemStack itemStack;
@@ -28,7 +28,7 @@ public class CeremonyActivation
      * @param doesNeedItems         Does it need items for when it starts up?
      * @param musicNeeded           The total amount of musical melody needed for the ceremony.
      * @param maximumStartupTime    The longest it can take for the startup, before the effect starts or anything.
-     * @param melodyPer5After       If the ceremony is not instant, how much melody does it take ever 5?
+     * @param melodyPer5After       If the ceremony is not instant, how much melody does it take every 5 seconds?
      */
 
     public CeremonyActivation(boolean doesNeedItems, ItemStack item, TimeStateEnum timeState, CeremonyTimeEnum maximumTicksForEffect, int musicNeeded, CeremonyTimeEnum maximumStartupTime, int melodyPer5After)
