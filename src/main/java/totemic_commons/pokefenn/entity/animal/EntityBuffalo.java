@@ -141,7 +141,7 @@ public class EntityBuffalo extends EntityCow
         int age = getBuffaloAge();
 
         int bonus = (3 * age) / MAX_AGE;
-        int j = rand.nextInt(1 + bonus) + rand.nextInt(1 + looting);
+        int j = rand.nextInt(2 + bonus) + rand.nextInt(1 + looting);
         for(int k = 0; k < j; ++k)
         {
             entityDropItem(new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()), 0F);
