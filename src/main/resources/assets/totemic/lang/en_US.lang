@@ -17,6 +17,7 @@ item.totemic:tipiItem.name=Tipi
 item.totemic:nuggetIron.name=Iron Nugget
 item.totemic:bellsIron.name=Iron Bells
 item.totemic:buffaloHide.name=Buffalo Hide
+item.totemic:buffaloTeeth.name=Buffalo Teeth
 item.totemic:buffaloMeat.name=Raw Buffalo Meat
 item.totemic:buffaloCookedMeat.name=Cooked Buffalo Meat
 
@@ -88,7 +89,7 @@ totemicmisc.overTime=Over Time:
 totemicmisc.capitalFalse=False
 totemicmisc.capitalTrue=True
 totemicmisc.musicSelector=Musical Selectors
-totemicmisc.tipi.cantSleep=You can not sleep in a tipi without being in the open fields
+totemicmisc.tipi.cantSleep=You can not sleep in a Tipi without being in the open fields
 totemicmisc.tipi.nether=You can not sleep in the nether
 totemicmisc.activeEffect=Active Totem Effect: %s
 totemicmisc.startup=Starting up
@@ -140,7 +141,7 @@ totemic.page.windChime1=It is not rare to see &1Wind Chimes&0 hanging from the b
 totemic.page.windChime2=
 
 totemic.entry.drum=Drum
-totemic.page.drum0=The &1Drum&0 is an instrumental block that can be played by simply bashing it with either fist. Because of the time for the skin on the Drum to reflect back it can take a second for it to be playable again. Drum beats are usually constant, and a vital part of any Ceremony. Because of that the music is quite melodic. As with most instruments, shifting when playing it will allow you to select a &4Ceremony&0.
+totemic.page.drum0=The &1Drum&0 is an instrumental block that can be played by simply bashing it with either fist. Because of the time for the skin on the Drum to reflect back it can take a second for it to be playable again. Drum beats are usually constant, and a vital part of any Ceremony. Because of that the music is quite melodic. As with most instruments, sneaking when playing it will allow you to select a &4Ceremony&0.
 totemic.page.drum1=
 
 totemic.entry.jingleDress=Jingle Dress
@@ -178,7 +179,7 @@ totemic.page.warDance0=The &4War Dance Ceremony&0 is a Ceremony that will height
 totemic.page.warDance1=&oA convoluted game of chess&r
 
 totemic.entry.buffaloDance=Mandan Buffalo Dance
-totemic.page.buffaloDance0=As the White Man came and took over the lands, he murdered almost all of the &1Buffalos&0 that were once roaming the lands in large hordes. However, not all hope is lost. The &4Mandan Buffalo Dance&0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native.
+totemic.page.buffaloDance0=As the White Man came and took over the lands, he murdered almost all of the &1Buffalos&0 that were once roaming the lands in large hordes. However, not all hope is lost. The &4Mandan Buffalo Dance&0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native. But they will grow larger and stronger over time.
 totemic.page.buffaloDance1=&oAvoid using red rags&r
 
 totemic.entry.zaphkielWaltz=Zaphkiel Waltz
