@@ -80,10 +80,10 @@ public class HandlerInitiation
     static void instruments()
     {
         //TODO: Correct values
-    	flute = TotemicAPI.addInstrument(0, 5, 5, 150);
+    	flute = TotemicAPI.addInstrument(0, 5, 5, 120);
     	drum = TotemicAPI.addInstrument(1, 7, 5, 150);
-    	windChime = TotemicAPI.addInstrument(2, 8, 5, 150);
-    	jingleDress = TotemicAPI.addInstrument(3, 6, 5, 150);
+    	windChime = TotemicAPI.addInstrument(2, 7, 5, 90);
+    	jingleDress = TotemicAPI.addInstrument(3, 6, 5, 160);
     	rattle = TotemicAPI.addInstrument(4, 6, 5, 150);
     }
 
