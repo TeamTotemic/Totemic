@@ -48,7 +48,16 @@ public class HandlerInitiation
         ceremonyHandler();
     }
 
-    static void ceremonyHandler()
+    public static void instrumentItems()
+    {
+        flute.setItems(new ItemStack(ModItems.flute));
+        drum.setItems(new ItemStack(ModBlocks.drum));
+        windChime.setItems(new ItemStack(ModBlocks.windChime));
+        jingleDress.setItems(new ItemStack(ModItems.jingleDress));
+        rattle.setItems(new ItemStack(ModItems.ceremonialRattle));
+    }
+
+    private static void ceremonyHandler()
     {
         fluteCeremony = TotemicAPI.addCeremony("totemic.ceremony.flute", 2, new CeremonyEffect(new CeremonyFluteInfusion(),
                 new MusicHandler[]{flute, flute}), new CeremonyActivation(TimeStateEnum.INSTANT, 140, CeremonyTimeEnum.MEDIUM));
@@ -66,7 +75,7 @@ public class HandlerInitiation
                 new MusicHandler[]{drum, windChime}), new CeremonyActivation(TimeStateEnum.INSTANT, 150, CeremonyTimeEnum.MEDIUM));
     }
 
-    static void totemRegistry()
+    private static void totemRegistry()
     {
         horseTotem = TotemicAPI.addTotem(1, 4, 4, new TotemEffectHorse(), 1, "totemic.totem.horse");
         squidTotem = TotemicAPI.addTotem(2, 4, 4, new TotemEffectSquid(), 1, "totemic.totem.squid");
@@ -77,22 +86,14 @@ public class HandlerInitiation
         cowTotem = TotemicAPI.addTotem(7, 4, 4, new TotemEffectCow(), 1, "totemic.totem.cow");
     }
 
-    static void instruments()
+    private static void instruments()
     {
         //TODO: Correct values
-    	flute = TotemicAPI.addInstrument(0, 5, 5, 120);
-    	drum = TotemicAPI.addInstrument(1, 7, 5, 150);
-    	windChime = TotemicAPI.addInstrument(2, 7, 5, 90);
-    	jingleDress = TotemicAPI.addInstrument(3, 6, 5, 160);
-    	rattle = TotemicAPI.addInstrument(4, 6, 5, 150);
+    	flute = TotemicAPI.addInstrument(0, 5, 5, 70);
+    	drum = TotemicAPI.addInstrument(1, 7, 5, 80);
+    	windChime = TotemicAPI.addInstrument(2, 7, 5, 60);
+    	jingleDress = TotemicAPI.addInstrument(3, 6, 5, 100);
+    	rattle = TotemicAPI.addInstrument(4, 6, 5, 90);
     }
 
-    public static void instrumentItems()
-    {
-        flute.setItems(new ItemStack(ModItems.flute));
-        drum.setItems(new ItemStack(ModBlocks.drum));
-        windChime.setItems(new ItemStack(ModBlocks.windChime));
-        jingleDress.setItems(new ItemStack(ModItems.jingleDress));
-        rattle.setItems(new ItemStack(ModItems.ceremonialRattle));
-    }
 }
