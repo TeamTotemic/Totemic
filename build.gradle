@@ -77,7 +77,8 @@ task deobfJar(type: Jar) {
 // Create API library zip
 task apiZip(type: Zip) {
     from(sourceSets.main.java) {
-
+        include 'vazkii/**'
+        include 'totemic_commons/pokefenn/api/**'
     }
     classifier = 'api'
 }
