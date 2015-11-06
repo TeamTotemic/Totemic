@@ -51,9 +51,9 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("A knife for all your whittlin' needs");
-        list.add("Shift and right click to change carving");
-        list.add("Currently Carving: " + getCurrentlyCarving(getCarvingIndex(stack)));
+        list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip1"));
+        list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip2"));
+        list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip3") + " " + getCurrentlyCarving(getCarvingIndex(stack)));
     }
 
     @Override

@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.item.ItemTotemic;
@@ -25,7 +26,7 @@ public class ItemTotemicStaff extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("A staff for your Totemic needs!");
+        list.add(StatCollector.translateToLocal("item.totemic:totemicStaff.tooltip"));
     }
 
     @Override
