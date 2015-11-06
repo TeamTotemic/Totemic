@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
+import totemic_commons.pokefenn.util.MathsUtil;
 
 /**
  * Created by Pokefenn.
@@ -23,6 +24,7 @@ public class EntityBuffalo extends EntityCow
     public boolean isSheared = false;
 
     public static final int MAX_AGE = 20 * 60 * 20;
+    public static final float MIN_HP = 15, MAX_HP = 35;
 
     private static final int AGE_DATAWATCHER = 16;
 
@@ -39,6 +41,7 @@ public class EntityBuffalo extends EntityCow
         tasks.addTask(5, new EntityAIWander(this, 1.0D));
         tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         tasks.addTask(7, new EntityAILookIdle(this));
+        setHealth(MIN_HP);
     }
 
     @Override
@@ -58,7 +61,7 @@ public class EntityBuffalo extends EntityCow
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(35);
+        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(MAX_HP);
         getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.15);
     }
 
@@ -66,11 +69,20 @@ public class EntityBuffalo extends EntityCow
     public void onLivingUpdate()
     {
         super.onLivingUpdate();
-        if(!worldObj.isRemote && !isChild())
+
+        final int interval = 5;
+        if(!worldObj.isRemote && (worldObj.getTotalWorldTime() % interval == 0) && !isChild())
         {
             int age = getBuffaloAge();
-            if(age < MAX_AGE)
-                setBuffaloAge(age + 1);
+            if(age < MAX_AGE) {
+                age += interval;
+                setBuffaloAge(age);
+
+                float oldMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, (age - interval) / (float)MAX_AGE);
+                float newMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, age / (float)MAX_AGE);
+                getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newMaxHP);
+                setHealth(getHealth() * newMaxHP / oldMaxHP);
+            }
         }
     }
 
@@ -132,7 +144,9 @@ public class EntityBuffalo extends EntityCow
     {
         super.readEntityFromNBT(tag);
         isSheared = tag.getBoolean("isSheared");
-        setBuffaloAge(tag.getInteger("buffaloAge"));
+
+        int age = tag.getInteger("buffaloAge");
+        setBuffaloAge(age);
     }
 
     @Override
