@@ -35,8 +35,8 @@ public class PageText extends LexiconPage
     @SideOnly(Side.CLIENT)
     public void renderScreen(IGuiLexiconEntry gui, int mx, int my)
     {
-        int width = gui.getWidth() - 34;
-        int x = gui.getLeft() + 16;
+        int width = gui.getWidth() - 30;
+        int x = gui.getLeft() + 14;
         int y = gui.getTop() + 2;
 
         renderText(x, y, width, gui.getHeight(), getUnlocalizedName());
