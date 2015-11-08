@@ -18,6 +18,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ISpecialArmor;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
@@ -39,6 +40,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     {
         super(EquipmentMaterials.jingleDress, 0, 2);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.JINGLE_DRESS_NAME);
+        setCreativeTab(Totemic.tabsTotem);
     }
 
     @Override
