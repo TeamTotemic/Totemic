@@ -3,11 +3,8 @@
 # Item localizations
 item.totemic:totemicStaff.name=图腾权杖
 item.totemic:totemWhittlingKnife.name=图腾刻刀
-item.totemic:paintBrush.name=图腾漆刷
-item.totemic:infusedStick.name=柏木棍
+item.totemic:totemWhittlingKnife.display=图腾刻刀 (%s)
 item.totemic:totempedia.name=图腾百科全书
-item.totemic:heiTiki.name=Hei-Tiki绿石护身符
-item.totemic:herculeseBeetle.name=独角仙
 item.totemic:flute.name=长笛
 item.totemic:fluteInfused.name=蕴魔长笛
 item.totemic:cedarBark.name=红柏树皮

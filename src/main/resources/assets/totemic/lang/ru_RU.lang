@@ -3,11 +3,8 @@
 # Item localizations
 item.totemic:totemicStaff.name=Тотемный посох
 item.totemic:totemWhittlingKnife.name=Нож для строгания тотема
-item.totemic:paintBrush.name=Кисточка тотемиста
-item.totemic:infusedStick.name=Кедровая палка
+item.totemic:totemWhittlingKnife.display=Нож для строгания тотема (%s)
 item.totemic:totempedia.name=Тотемпедия
-item.totemic:heiTiki.name=Хей-Тики
-item.totemic:herculeseBeetle.name=Жук-геркулес
 item.totemic:flute.name=Флейта
 item.totemic:fluteInfused.name=Флейта
 item.totemic:cedarBark.name=Кора красного кедра
