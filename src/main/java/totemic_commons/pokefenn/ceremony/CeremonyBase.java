@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.ceremony;
 
-import totemic_commons.pokefenn.api.ceremony.ICeremonyEffect;
+import totemic_commons.pokefenn.legacy_api.ceremony.ICeremonyEffect;
 
 /**
  * Created by Pokefenn.

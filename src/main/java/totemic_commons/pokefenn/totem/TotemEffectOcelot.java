@@ -9,8 +9,8 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.api.totem.ITotemEffect;
-import totemic_commons.pokefenn.api.totem.TotemRegistry;
+import totemic_commons.pokefenn.legacy_api.totem.ITotemEffect;
+import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**

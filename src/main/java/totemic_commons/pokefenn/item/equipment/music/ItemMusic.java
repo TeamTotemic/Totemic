@@ -8,8 +8,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import totemic_commons.pokefenn.api.music.MusicHandler;
 import totemic_commons.pokefenn.item.ItemTotemic;
+import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
 
 /**
  * Created by Pokefenn.

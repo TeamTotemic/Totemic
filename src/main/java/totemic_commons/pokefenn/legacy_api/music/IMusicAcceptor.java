@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.api.music;
+package totemic_commons.pokefenn.legacy_api.music;
 
 /**
  * Created by Pokefenn.

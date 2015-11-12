@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.api.totem;
+package totemic_commons.pokefenn.legacy_api.totem;
 
 import java.util.ArrayList;
 import java.util.Collections;

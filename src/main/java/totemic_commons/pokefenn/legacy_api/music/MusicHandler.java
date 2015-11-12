@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.api.music;
+package totemic_commons.pokefenn.legacy_api.music;
 
 import java.util.ArrayList;
 import java.util.List;

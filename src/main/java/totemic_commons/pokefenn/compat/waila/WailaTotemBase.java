@@ -11,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
+import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 /**

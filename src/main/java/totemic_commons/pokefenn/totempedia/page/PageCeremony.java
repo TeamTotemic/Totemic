@@ -8,8 +8,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
-import totemic_commons.pokefenn.api.music.MusicHandler;
+import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
+import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
 import totemic_commons.pokefenn.util.TotemUtil;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 

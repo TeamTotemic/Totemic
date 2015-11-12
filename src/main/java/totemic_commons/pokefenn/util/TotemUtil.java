@@ -8,8 +8,8 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import totemic_commons.pokefenn.api.music.IMusicAcceptor;
-import totemic_commons.pokefenn.api.music.MusicHandler;
+import totemic_commons.pokefenn.legacy_api.music.IMusicAcceptor;
+import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 

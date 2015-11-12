@@ -1,15 +1,15 @@
-package totemic_commons.pokefenn.api;
+package totemic_commons.pokefenn.legacy_api;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
-import totemic_commons.pokefenn.api.ceremony.CeremonyActivation;
-import totemic_commons.pokefenn.api.ceremony.CeremonyEffect;
-import totemic_commons.pokefenn.api.ceremony.CeremonyRegistry;
-import totemic_commons.pokefenn.api.music.MusicHandler;
-import totemic_commons.pokefenn.api.totem.ITotemEffect;
-import totemic_commons.pokefenn.api.totem.TotemRegistry;
+import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyActivation;
+import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyEffect;
+import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
+import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
+import totemic_commons.pokefenn.legacy_api.totem.ITotemEffect;
+import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 

@@ -6,11 +6,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.api.TotemicAPI;
-import totemic_commons.pokefenn.api.ceremony.*;
-import totemic_commons.pokefenn.api.music.MusicHandler;
-import totemic_commons.pokefenn.api.totem.TotemRegistry;
 import totemic_commons.pokefenn.ceremony.*;
+import totemic_commons.pokefenn.legacy_api.TotemicAPI;
+import totemic_commons.pokefenn.legacy_api.ceremony.*;
+import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
+import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
 import totemic_commons.pokefenn.totem.*;
 
 /**

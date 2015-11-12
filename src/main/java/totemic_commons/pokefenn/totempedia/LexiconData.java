@@ -11,7 +11,7 @@
  */
 package totemic_commons.pokefenn.totempedia;
 
-import totemic_commons.pokefenn.api.TotemicAPI;
+import totemic_commons.pokefenn.legacy_api.TotemicAPI;
 import totemic_commons.pokefenn.lib.Totempedia;
 import totemic_commons.pokefenn.recipe.CraftingRecipes;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;

@@ -12,7 +12,7 @@
 package totemic_commons.pokefenn.totempedia;
 
 
-import totemic_commons.pokefenn.api.TotemicAPI;
+import totemic_commons.pokefenn.legacy_api.TotemicAPI;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconPage;

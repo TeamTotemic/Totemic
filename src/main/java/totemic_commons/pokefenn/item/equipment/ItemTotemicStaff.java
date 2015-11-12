@@ -10,8 +10,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.item.ItemTotemic;
+import totemic_commons.pokefenn.legacy_api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.lib.Strings;
 
 public class ItemTotemicStaff extends ItemTotemic

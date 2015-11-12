@@ -1,9 +1,9 @@
-package totemic_commons.pokefenn.api.ceremony;
+package totemic_commons.pokefenn.legacy_api.ceremony;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import totemic_commons.pokefenn.api.music.MusicHandler;
+import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
 
 /**
  * Created by Pokefenn.

@@ -22,10 +22,10 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBookmark;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonInvisible;
+import totemic_commons.pokefenn.legacy_api.TotemicAPI;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 
 public class GuiLexicon extends GuiScreen

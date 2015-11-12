@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.api;
+package totemic_commons.pokefenn.legacy_api;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
