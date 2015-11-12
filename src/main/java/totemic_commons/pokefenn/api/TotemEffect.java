@@ -6,22 +6,22 @@ import net.minecraft.util.StatCollector;
 public abstract class TotemEffect
 {
     protected final String name;
-    protected final int vertical;
-    protected final int horizontal;
+    protected final int baseHorizontal;
+    protected final int baseVertical;
     protected final int tier;
 
     /**
      * @param modid         your mod ID
      * @param baseName      the base name of your totem effect. Will be prefixed by the mod ID and ":".
-     * @param horizontal    the horizontal range
-     * @param vertical      the vertical range
+     * @param horizontal    the minimum horizontal range
+     * @param vertical      the minimum vertical range
      * @param tier          currently unused, for now just use 1
      */
     public TotemEffect(String modid, String baseName, int horizontal, int vertical, int tier)
     {
         this.name = modid + ":" + baseName;
-        this.vertical = vertical;
-        this.horizontal = horizontal;
+        this.baseHorizontal = horizontal;
+        this.baseVertical = vertical;
         this.tier = tier;
     }
 
@@ -29,11 +29,13 @@ public abstract class TotemEffect
      * Performs the actual totem effect
      * @param totem             the totem base block where the effect happens
      * @param poleSize          the height of the totem pole
+     * @param horizontal        the total horizontal range with bonuses
+     * @param vertical          the total vertical range with bonuses
      * @param melodyAmount      the amount of musical melody the totem pole has
      * @param totemWoodBonus    a number dependent on the wood type the pole is made of
      * @param repetitionBonus   the number of totem pole blocks in the totem that are carved with this effect
      */
-    public abstract void effect(TileEntity totem, int poleSize, int melodyAmount, int totemWoodBonus, int repetitionBonus);
+    public abstract void effect(TileEntity totem, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus);
 
     public String getName()
     {
@@ -45,14 +47,14 @@ public abstract class TotemEffect
         return StatCollector.translateToLocal("totemic.totem." + name);
     }
 
-    public int getVerticalRange()
-    {
-        return vertical;
-    }
-
     public int getHorizontalRange()
     {
-        return horizontal;
+        return baseHorizontal;
+    }
+
+    public int getVerticalRange()
+    {
+        return baseVertical;
     }
 
     public int getTier()

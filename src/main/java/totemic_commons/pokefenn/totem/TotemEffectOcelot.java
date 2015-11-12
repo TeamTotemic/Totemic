@@ -28,7 +28,7 @@ public class TotemEffectOcelot extends TotemEffect
     private final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");
 
     @Override
-    public void effect(TileEntity totem, int poleSize, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(TileEntity totem, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
         try
         {

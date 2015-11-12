@@ -25,7 +25,7 @@ public class TotemEffectBlaze extends TotemEffect
     }
 
     @Override
-    public void effect(TileEntity totem, int poleSize, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(TileEntity totem, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
         if(totem.getWorldObj().getWorldTime() % 60L == 0)
         {
