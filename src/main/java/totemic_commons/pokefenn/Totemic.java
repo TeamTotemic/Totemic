@@ -15,8 +15,10 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
+import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.compat.Compatibility;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.entity.ModEntities;
@@ -52,6 +54,9 @@ public final class Totemic
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        //Initialize API by reflection
+        ReflectionHelper.setPrivateValue(TotemicAPI.class, null, new ApiImpl(), "instance");
+
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
         potionIncrease();
         logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
