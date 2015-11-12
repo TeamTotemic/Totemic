@@ -1,13 +1,13 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
-import java.util.Objects;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraftforge.common.util.Constants;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemEffect;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
@@ -18,6 +18,12 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  */
 public class TileTotemPole extends TileTotemic// implements IInventory
 {
+    //compatibility with legacy worlds
+    public static final TotemEffect[] legacyIDMapping = {
+            null, HandlerInitiation.horseTotem, HandlerInitiation.squidTotem, HandlerInitiation.blazeTotem,
+            HandlerInitiation.ocelotTotem, HandlerInitiation.batTotem, HandlerInitiation.spiderTotem, HandlerInitiation.cowTotem
+    };
+
     public TotemEffect effect = null;
 
     public TotemEffect getTotemEffect()
@@ -43,7 +49,13 @@ public class TileTotemPole extends TileTotemic// implements IInventory
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
-        effect = Totemic.api.getTotem(nbtTagCompound.getString("effect"));
+        if(nbtTagCompound.hasKey("effect", Constants.NBT.TAG_STRING))
+            effect = Totemic.api.getTotem(nbtTagCompound.getString("effect"));
+        else if(nbtTagCompound.hasKey("totemId", Constants.NBT.TAG_INT)) {
+            //compatibility for worlds created with a legacy version (<= 0.5.1)
+            //TODO: Remove this code later at some point
+            effect = legacyIDMapping[nbtTagCompound.getInteger("totemId")];
+        }
     }
 
     @Override
