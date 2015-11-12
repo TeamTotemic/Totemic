@@ -3,8 +3,7 @@ package totemic_commons.pokefenn.totem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.legacy_api.totem.ITotemEffect;
-import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
+import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -15,11 +14,15 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Date: 23/01/14
  * Time: 13:54
  */
-public class TotemEffectBat implements ITotemEffect
+public class TotemEffectBat extends TotemEffect
 {
+    public TotemEffectBat(String modid, String baseName, int vertical, int horizontal, int tier)
+    {
+        super(modid, baseName, horizontal, vertical, tier);
+    }
 
     @Override
-    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(TileEntity totem, int poleSize, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
         if(totem.getWorldObj().getWorldTime() % 10L == 0L)
         {

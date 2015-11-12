@@ -6,8 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.legacy_api.totem.ITotemEffect;
-import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
+import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -17,16 +16,21 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Date: 25/01/14
  * Time: 21:42
  */
-public class TotemEffectBlaze implements ITotemEffect
+public class TotemEffectBlaze extends TotemEffect
 {
 
+    public TotemEffectBlaze(String modid, String baseName, int vertical, int horizontal, int tier)
+    {
+        super(modid, baseName, horizontal, vertical, tier);
+    }
+
     @Override
-    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(TileEntity totem, int poleSize, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
         if(totem.getWorldObj().getWorldTime() % 60L == 0)
         {
 
-            for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
+            for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, getHorizontalRange(), getVerticalRange()))
             {
                 if(entity instanceof EntityPlayer)
                 {

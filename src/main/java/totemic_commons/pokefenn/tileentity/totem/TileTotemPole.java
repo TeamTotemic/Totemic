@@ -1,9 +1,13 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import java.util.Objects;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
@@ -14,16 +18,11 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  */
 public class TileTotemPole extends TileTotemic// implements IInventory
 {
-    public int totemId;
+    public TotemEffect effect = null;
 
-    public TileTotemPole()
+    public TotemEffect getTotemEffect()
     {
-        totemId = 0;
-    }
-
-    public int getTotemId()
-    {
-        return totemId;
+        return effect;
     }
 
     @Override
@@ -44,14 +43,15 @@ public class TileTotemPole extends TileTotemic// implements IInventory
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
-        totemId = nbtTagCompound.getInteger("totemId");
+        effect = Totemic.api.getTotem(nbtTagCompound.getString("effect"));
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound)
     {
         super.writeToNBT(nbtTagCompound);
-        nbtTagCompound.setInteger("totemId", totemId);
+        if(effect != null)
+            nbtTagCompound.setString("effect", effect.getName());
     }
 
 }

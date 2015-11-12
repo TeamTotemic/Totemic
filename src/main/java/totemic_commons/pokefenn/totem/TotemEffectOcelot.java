@@ -9,8 +9,7 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.tileentity.TileEntity;
-import totemic_commons.pokefenn.legacy_api.totem.ITotemEffect;
-import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
+import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
@@ -19,12 +18,17 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Date: 27/01/14
  * Time: 14:27
  */
-public class TotemEffectOcelot implements ITotemEffect
+public class TotemEffectOcelot extends TotemEffect
 {
+    public TotemEffectOcelot(String modid, String baseName, int horizontal, int vertical, int tier)
+    {
+        super(modid, baseName, horizontal, vertical, tier);
+    }
+
     private final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");
 
     @Override
-    public void effect(TileEntity totem, int socketAmount, TotemRegistry totemRegistry, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(TileEntity totem, int poleSize, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
         try
         {

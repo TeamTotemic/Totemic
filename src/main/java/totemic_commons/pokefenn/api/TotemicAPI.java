@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.api;
 
+import java.util.List;
+
 /**
  * This class provides access to Totemic's registries
  */
@@ -22,6 +24,21 @@ public final class TotemicAPI
 
     public interface API
     {
+        /**
+         * Adds a new totem effect
+         * @return effect
+         */
+        public TotemEffect addTotem(TotemEffect effect);
 
+        /**
+         * Gets a totem effect by its unlocalized name
+         * @param name the unlocalized name, including the mod ID
+         */
+        public TotemEffect getTotem(String name);
+
+        /**
+         * @return a list of all registered totem effects
+         */
+        public List<TotemEffect> getTotemList();
     }
 }

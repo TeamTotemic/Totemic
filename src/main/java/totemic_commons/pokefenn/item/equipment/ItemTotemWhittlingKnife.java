@@ -11,8 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.ItemTotemic;
-import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
@@ -30,9 +30,9 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public String getCurrentlyCarving(int i)
     {
-        if(i < TotemRegistry.getTotemList().size())
-            return TotemRegistry.getTotemList().get(i).getLocalizedName();
-        else if(i == TotemRegistry.getTotemList().size())
+        if(i < Totemic.api.getTotemList().size())
+            return Totemic.api.getTotemList().get(i).getLocalizedName();
+        else if(i == Totemic.api.getTotemList().size())
             return StatCollector.translateToLocal("tile.totemBase.name");
         else
             return "";
@@ -76,7 +76,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             ItemStack stack = itemStack.copy();
             if(!stack.hasTagCompound())
                 stack.setTagCompound(new NBTTagCompound());
-            stack.getTagCompound().setInteger(Strings.KNIFE_TOTEM_KEY, (1 + getCarvingIndex(stack)) % (TotemRegistry.getTotemList().size() + 1));
+            stack.getTagCompound().setInteger(Strings.KNIFE_TOTEM_KEY, (1 + getCarvingIndex(stack)) % (Totemic.api.getTotemList().size() + 1));
             return stack;
         }
         else
@@ -103,16 +103,16 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                 return false;
 
             int index = getCarvingIndex(stack);
-            if(index == TotemRegistry.getTotemList().size())
+            if(index == Totemic.api.getTotemList().size())
             {
                 world.setBlock(x, y, z, ModBlocks.totemBase, wood.ordinal(), 3);
             }
-            else if(index < TotemRegistry.getTotemList().size())
+            else if(index < Totemic.api.getTotemList().size())
             {
                 world.setBlock(x, y, z, ModBlocks.totemPole, wood.ordinal(), 3);
                 TileTotemPole tile = (TileTotemPole)world.getTileEntity(x, y, z);
 
-                tile.totemId = TotemRegistry.getTotemList().get(getCarvingIndex(stack)).getTotemId();
+                tile.effect = Totemic.api.getTotemList().get(getCarvingIndex(stack));
                 tile.markDirty();
                 world.markBlockForUpdate(x, y, z);
             }

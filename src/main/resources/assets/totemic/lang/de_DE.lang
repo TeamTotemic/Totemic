@@ -65,13 +65,13 @@ totemic.ceremony.buffaloDance=Mandan-Büffeltanz
 totemic.ceremony.zaphkielWaltz=Zaphkiel-Walzer
 
 #Totem effect names
-totemic.totem.horse=Pferd
-totemic.totem.squid=Tintenfisch
-totemic.totem.blaze=Lohe
-totemic.totem.ocelot=Ozelot
-totemic.totem.bat=Fledermaus
-totemic.totem.spider=Spinne
-totemic.totem.cow=Kuh
+totemic.totem.totemic:horse=Pferd
+totemic.totem.totemic:squid=Tintenfisch
+totemic.totem.totemic:blaze=Lohe
+totemic.totem.totemic:ocelot=Ozelot
+totemic.totem.totemic:bat=Fledermaus
+totemic.totem.totemic:spider=Spinne
+totemic.totem.totemic:cow=Kuh
 
 #Music values
 totemic.music.lowMelody=Wenig Melodie

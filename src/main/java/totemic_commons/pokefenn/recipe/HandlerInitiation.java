@@ -1,16 +1,14 @@
 package totemic_commons.pokefenn.recipe;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.ceremony.*;
 import totemic_commons.pokefenn.legacy_api.TotemicAPI;
 import totemic_commons.pokefenn.legacy_api.ceremony.*;
 import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
-import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
 import totemic_commons.pokefenn.totem.*;
 
 /**
@@ -27,13 +25,13 @@ public class HandlerInitiation
     public static CeremonyRegistry warDance;
     public static CeremonyRegistry buffaloDance;
 
-    public static TotemRegistry horseTotem;
-    public static TotemRegistry squidTotem;
-    public static TotemRegistry blazeTotem;
-    public static TotemRegistry ocelotTotem;
-    public static TotemRegistry batTotem;
-    public static TotemRegistry spiderTotem;
-    public static TotemRegistry cowTotem;
+    public static TotemEffect horseTotem;
+    public static TotemEffect squidTotem;
+    public static TotemEffect blazeTotem;
+    public static TotemEffect ocelotTotem;
+    public static TotemEffect batTotem;
+    public static TotemEffect spiderTotem;
+    public static TotemEffect cowTotem;
 
     public static MusicHandler flute;
     public static MusicHandler drum;
@@ -77,13 +75,13 @@ public class HandlerInitiation
 
     private static void totemRegistry()
     {
-        horseTotem = TotemicAPI.addTotem(1, 4, 4, new TotemEffectHorse(), 1, "totemic.totem.horse");
-        squidTotem = TotemicAPI.addTotem(2, 4, 4, new TotemEffectSquid(), 1, "totemic.totem.squid");
-        blazeTotem = TotemicAPI.addTotem(3, 4, 4, new TotemEffectBlaze(), 2, "totemic.totem.blaze");
-        ocelotTotem = TotemicAPI.addTotem(4, 4, 4, new TotemEffectOcelot(), 2, "totemic.totem.ocelot");
-        batTotem = TotemicAPI.addTotem(5, 8, 8, new TotemEffectBat(), 2, "totemic.totem.bat");
-        spiderTotem = TotemicAPI.addTotem(6, 4, 4, new TotemEffectSpider(), 2, "totemic.totem.spider");
-        cowTotem = TotemicAPI.addTotem(7, 4, 4, new TotemEffectCow(), 1, "totemic.totem.cow");
+        horseTotem = Totemic.api.addTotem(new TotemEffectHorse("totemic", "horse", 4, 4, 1));
+        squidTotem = Totemic.api.addTotem(new TotemEffectSquid("totemic", "squid", 4, 4, 1));
+        blazeTotem = Totemic.api.addTotem(new TotemEffectBlaze("totemic", "blaze", 4, 4, 2));
+        ocelotTotem = Totemic.api.addTotem(new TotemEffectOcelot("totemic", "ocelot", 4, 4, 2));
+        batTotem = Totemic.api.addTotem(new TotemEffectBat("totemic", "bat", 8, 8, 2));
+        spiderTotem = Totemic.api.addTotem(new TotemEffectSpider("totemic", "spider", 4, 4, 2));
+        cowTotem = Totemic.api.addTotem(new TotemEffectCow("totemic", "cow", 4, 4, 1));
     }
 
     private static void instruments()

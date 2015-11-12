@@ -41,6 +41,8 @@ public final class Totemic
     @Instance(MOD_ID)
     public static Totemic instance;
 
+    public static final TotemicAPI.API api = new ApiImpl();
+
     @SidedProxy(clientSide = "totemic_commons.pokefenn.ClientProxy", serverSide = "totemic_commons.pokefenn.CommonProxy", modId = MOD_ID)
     public static CommonProxy proxy;
 
@@ -55,7 +57,7 @@ public final class Totemic
     public void preInit(FMLPreInitializationEvent event)
     {
         //Initialize API by reflection
-        ReflectionHelper.setPrivateValue(TotemicAPI.class, null, new ApiImpl(), "instance");
+        ReflectionHelper.setPrivateValue(TotemicAPI.class, null, api, "instance");
 
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
         potionIncrease();

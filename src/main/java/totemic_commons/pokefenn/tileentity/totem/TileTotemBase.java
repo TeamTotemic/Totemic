@@ -2,15 +2,17 @@ package totemic_commons.pokefenn.tileentity.totem;
 
 import java.util.Random;
 
-import gnu.trove.iterator.TIntIntIterator;
-import gnu.trove.map.TIntIntMap;
-import gnu.trove.map.hash.TIntIntHashMap;
+import gnu.trove.iterator.TObjectIntIterator;
+import gnu.trove.map.TObjectIntMap;
+import gnu.trove.map.hash.TObjectIntHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -18,14 +20,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.util.Constants;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyEffect;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.legacy_api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.legacy_api.ceremony.TimeStateEnum;
 import totemic_commons.pokefenn.legacy_api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
-import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -38,6 +42,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 {
+    public static final int MAX_HEIGHT = 5;
+    public static final int maximumMusic = 128;
+
     public int totemPoleSize;
     public int rangeUpgrades;
     public int tier;
@@ -56,11 +63,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     public boolean isCeremony;
     public int continueTimer;
     public int musicForTotemEffect;
-    public static int maximumMusic = 128;
-    public TIntIntMap repetitionBonus;
+    public TObjectIntMap<TotemEffect> repetitionBonus;
     public boolean isDoingEndingEffect;
     public String bindedPlayer;
-    public int[] totemIds;
+    public TotemEffect[] effects;
     public int totemWoodBonus;
     public int[] musicPlayed;
 
@@ -84,13 +90,13 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         continueTimer = 0;
         musicForTotemEffect = 0;
         totemPoleSize = 0;
-        repetitionBonus = new TIntIntHashMap();
-        for(TotemRegistry totem : TotemRegistry.getTotemList())
-            repetitionBonus.put(totem.getTotemId(), 0);
+        repetitionBonus = new TObjectIntHashMap<>();
+        for(TotemEffect totem : Totemic.api.getTotemList())
+            repetitionBonus.put(totem, 0);
         musicPlayed = new int[MusicHandler.musicHandler.size()];
         isDoingEndingEffect = false;
         bindedPlayer = "";
-        totemIds = new int[5];
+        effects = new TotemEffect[MAX_HEIGHT];
         totemWoodBonus = 0;
     }
 
@@ -146,10 +152,9 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         {
             for(int i = 0; i < totemPoleSize; i++)
             {
-                if(totemIds[i] != 0)
+                if(effects[i] != null)
                 {
-                    TotemRegistry totem = TotemRegistry.fromId(totemIds[i]);
-                    totem.getEffect().effect(this, totemPoleSize, totem, getRanges(totem)[0], getRanges(totem)[1], musicForTotemEffect, totemWoodBonus, repetitionBonus.get(totemIds[i]));
+                    effects[i].effect(this, totemPoleSize, musicForTotemEffect, totemWoodBonus, repetitionBonus.get(effects[i]));
                 }
             }
         }
@@ -157,18 +162,18 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
 
     public void resetRepetition()
     {
-        TIntIntIterator it = repetitionBonus.iterator();
+        TObjectIntIterator<TotemEffect> it = repetitionBonus.iterator();
         while(it.hasNext())
         {
             it.advance();
             it.setValue(0);
         }
 
-        for(int totemId : totemIds)
+        for(TotemEffect totem : effects)
         {
-            if(totemId != 0)
+            if(totem != null)
             {
-                repetitionBonus.increment(totemId);
+                repetitionBonus.increment(totem);
             }
         }
     }
@@ -386,12 +391,12 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         return "lolbroked";
     }
 
-    public int[] getRanges(TotemRegistry totemRegistry)
+    public int[] getRanges(TotemEffect totem)
     {
         int[] array = new int[2];
 
-        array[0] = totemRegistry.getHorizontal();
-        array[1] = totemRegistry.getVerticalHeight();
+        array[0] = totem.getHorizontalRange();
+        array[1] = totem.getVerticalRange();
 
         if(musicForTotemEffect > 10 && musicForTotemEffect < 32)
         {
@@ -560,12 +565,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         for(int i = 0; i < totemPoleSize; i++)
         {
-            if(getTotemId(i) != 0)
-            {
-                totemIds[i] = getTotemId(i);
-
-            } else
-                totemIds[i] = 0;
+            effects[i] = getTotemEffect(i);
         }
     }
 
@@ -575,11 +575,11 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         return true;
     }
 
-    protected int getTotemId(int yOffset)
+    protected TotemEffect getTotemEffect(int yOffset)
     {
         TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + 1 + yOffset, this.zCoord);
 
-        return tileEntity instanceof TileTotemPole ? (((TileTotemPole) tileEntity).getTotemId()) : 0;
+        return tileEntity instanceof TileTotemPole ? (((TileTotemPole) tileEntity).getTotemEffect()) : null;
     }
 
     protected int setTotemPoleAmounts()
@@ -648,7 +648,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         musicForTotemEffect = nbtTagCompound.getInteger("musicForTotemEffect");
         isDoingEndingEffect = nbtTagCompound.getBoolean("isDoingEndingEffect");
         bindedPlayer = nbtTagCompound.getString("bindedPlayer");
-        totemIds = nbtTagCompound.getIntArray("totemIds");
+        NBTTagList totemIdsTag = nbtTagCompound.getTagList("effects", Constants.NBT.TAG_STRING);
+        effects = new TotemEffect[MAX_HEIGHT];
+        for(int i = 0; i < totemIdsTag.tagCount(); i++)
+            effects[i] = Totemic.api.getTotem(totemIdsTag.getStringTagAt(i));
         totemWoodBonus = nbtTagCompound.getInteger("totemWoodBonus");
     }
 
@@ -676,7 +679,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
         nbtTagCompound.setInteger("musicForTotemEffect", musicForTotemEffect);
         nbtTagCompound.setBoolean("isDoingEndingEffect", isDoingEndingEffect);
         nbtTagCompound.setString("bindedPlayer", bindedPlayer);
-        nbtTagCompound.setIntArray("totemIds", totemIds);
+        NBTTagList totemIdsTag = new NBTTagList();
+        for(TotemEffect effect: effects)
+            totemIdsTag.appendTag(new NBTTagString(String.valueOf(effect)));
+        nbtTagCompound.setTag("effects", totemIdsTag);
         nbtTagCompound.setInteger("totemWoodBonus", totemWoodBonus);
     }
 

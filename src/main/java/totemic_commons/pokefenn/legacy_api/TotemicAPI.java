@@ -8,8 +8,6 @@ import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyActivation;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyEffect;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
-import totemic_commons.pokefenn.legacy_api.totem.ITotemEffect;
-import totemic_commons.pokefenn.legacy_api.totem.TotemRegistry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
@@ -34,11 +32,11 @@ public class TotemicAPI
      * @param name       The unlocalized name of the Totem
      * @return The TotemRegistry, you will then be able to store this to use it for later information
      */
-    public static TotemRegistry addTotem(int id, int vertical, int horizontal, ITotemEffect effect, int tier, String name)
+    /*public static TotemRegistry addTotem(int id, int vertical, int horizontal, ITotemEffect effect, int tier, String name)
     {
         TotemRegistry totemRegistry = new TotemRegistry(id, vertical, horizontal, effect, tier, name);
         return TotemRegistry.addTotem(totemRegistry);
-    }
+    }*/
 
     /**
      * @param name               The unlocalized name of the Ceremony
