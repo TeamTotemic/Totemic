@@ -10,8 +10,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.api.TotemicStaffUsage;
 import totemic_commons.pokefenn.item.ItemTotemic;
-import totemic_commons.pokefenn.legacy_api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.lib.Strings;
 
 public class ItemTotemicStaff extends ItemTotemic
@@ -45,9 +45,9 @@ public class ItemTotemicStaff extends ItemTotemic
             //buffalo.setPosition(player.posX, player.posY, player.posZ);
             //world.spawnEntityInWorld(buffalo);
             Block block = world.getBlock(x, y, z);
-            if(block instanceof ITotemicStaffUsage)
+            if(block instanceof TotemicStaffUsage)
             {
-                ((ITotemicStaffUsage) block).onBasicRightClick(x, y, z, player, world, stack);
+                ((TotemicStaffUsage) block).onTotemicStaffRightClick(world, x, y, z, player, stack);
             }
 
         }

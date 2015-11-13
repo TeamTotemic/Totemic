@@ -16,8 +16,8 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.TotemicStaffUsage;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
-import totemic_commons.pokefenn.legacy_api.ITotemicStaffUsage;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
@@ -28,7 +28,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
  * Date: 02/02/14
  * Time: 13:03
  */
-public class BlockTotemPole extends BlockTileTotemic implements ITotemicStaffUsage
+public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsage
 {
     public BlockTotemPole()
     {
@@ -66,7 +66,7 @@ public class BlockTotemPole extends BlockTileTotemic implements ITotemicStaffUsa
     }
 
     @Override
-    public void onBasicRightClick(int x, int y, int z, EntityPlayer player, World world, ItemStack itemStack)
+    public void onTotemicStaffRightClick(World world, int x, int y, int z, EntityPlayer player, ItemStack itemStack)
     {
         TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(x, y, z);
         if(tileTotemSocket.getTotemEffect() != null)
