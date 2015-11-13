@@ -9,7 +9,7 @@ import net.minecraft.world.World;
  * Licensed under MIT (If this is one of my Mods)
  */
 /**
- * To be implemented by blocks that react when they're right-clicked with a Totemic Staff
+ * An interface for blocks that react when they're right-clicked with a Totemic Staff
  */
 public interface TotemicStaffUsage
 {

@@ -4,11 +4,14 @@ import java.util.*;
 
 import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.api.TotemicAPI;
+import totemic_commons.pokefenn.api.music.MusicInstrument;
 
 public final class ApiImpl implements TotemicAPI.API
 {
     public final Map<String, TotemEffect> totemEffects = new HashMap<>();
     public final List<TotemEffect> totemList = new ArrayList<>();
+
+    public final Map<String, MusicInstrument> instruments = new HashMap<>();
 
     @Override
     public TotemEffect addTotem(TotemEffect effect)
@@ -30,6 +33,21 @@ public final class ApiImpl implements TotemicAPI.API
     public List<TotemEffect> getTotemList()
     {
         return Collections.unmodifiableList(totemList);
+    }
+
+    @Override
+    public MusicInstrument addInstrument(MusicInstrument instrument)
+    {
+        if(instruments.containsKey(instrument.getName()))
+            throw new IllegalArgumentException("Duplicate Music instrument entry for ID " + instrument.getName());
+        instruments.put(instrument.getName(), instrument);
+        return instrument;
+    }
+
+    @Override
+    public MusicInstrument getInstrument(String name)
+    {
+        return instruments.get(name);
     }
 
 }
