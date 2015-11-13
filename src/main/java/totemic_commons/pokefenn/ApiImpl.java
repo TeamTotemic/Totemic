@@ -5,7 +5,7 @@ import java.util.*;
 import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.api.TotemicAPI;
 
-public class ApiImpl implements TotemicAPI.API
+public final class ApiImpl implements TotemicAPI.API
 {
     public final Map<String, TotemEffect> totemEffects = new HashMap<>();
     public final List<TotemEffect> totemList = new ArrayList<>();

@@ -37,7 +37,7 @@ public final class TotemicAPI
         public TotemEffect getTotem(String name);
 
         /**
-         * @return a list of all registered totem effects
+         * @return a list of all registered totem effects. No particular order is guaranteed across different launches.
          */
         public List<TotemEffect> getTotemList();
     }

@@ -41,7 +41,7 @@ public final class Totemic
     @Instance(MOD_ID)
     public static Totemic instance;
 
-    public static final TotemicAPI.API api = new ApiImpl();
+    public static final ApiImpl api = new ApiImpl();
 
     @SidedProxy(clientSide = "totemic_commons.pokefenn.ClientProxy", serverSide = "totemic_commons.pokefenn.CommonProxy", modId = MOD_ID)
     public static CommonProxy proxy;
