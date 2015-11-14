@@ -24,6 +24,8 @@ import net.minecraftforge.common.util.Constants;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemEffect;
+import totemic_commons.pokefenn.api.music.MusicAcceptor;
+import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyEffect;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.legacy_api.ceremony.ICeremonyEffect;
@@ -40,7 +42,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Date: 29/01/14
  * Time: 20:22
  */
-public class TileTotemBase extends TileTotemic implements IMusicAcceptor
+public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicAcceptor
 {
     public static final int MAX_HEIGHT = 5;
     public static final int maximumMusic = 128;
@@ -728,5 +730,25 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor
     {
         //TODO
         return isDoingEndingEffect;
+    }
+
+    @Override
+    public int getMusicAmount(MusicInstrument instr)
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public void addMusic(MusicInstrument instr, int amount)
+    {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public int getMusicCapacity(MusicInstrument instr)
+    {
+        return instr.getMusicMaximum();
     }
 }
