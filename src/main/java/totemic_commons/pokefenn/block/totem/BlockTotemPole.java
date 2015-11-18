@@ -66,13 +66,17 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public void onTotemicStaffRightClick(World world, int x, int y, int z, EntityPlayer player, ItemStack itemStack)
+    public boolean onTotemicStaffRightClick(World world, int x, int y, int z, EntityPlayer player, ItemStack itemStack)
     {
-        TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(x, y, z);
-        if(tileTotemSocket.getTotemEffect() != null)
+        if(!world.isRemote)
         {
-            player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", tileTotemSocket.getTotemEffect().getLocalizedName()));
+            TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(x, y, z);
+            if(tileTotemSocket.getTotemEffect() != null)
+            {
+                player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", tileTotemSocket.getTotemEffect().getLocalizedName()));
+            }
         }
+        return true;
     }
 
     @SideOnly(Side.CLIENT)

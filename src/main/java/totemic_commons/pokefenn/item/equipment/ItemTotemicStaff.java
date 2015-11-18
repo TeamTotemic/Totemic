@@ -39,20 +39,12 @@ public class ItemTotemicStaff extends ItemTotemic
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
-        if(!world.isRemote)
+        Block block = world.getBlock(x, y, z);
+        if(block instanceof TotemicStaffUsage)
         {
-            //EntityBuffalo buffalo = new EntityBuffalo(world);
-            //buffalo.setPosition(player.posX, player.posY, player.posZ);
-            //world.spawnEntityInWorld(buffalo);
-            Block block = world.getBlock(x, y, z);
-            if(block instanceof TotemicStaffUsage)
-            {
-                ((TotemicStaffUsage) block).onTotemicStaffRightClick(world, x, y, z, player, stack);
-            }
-
+            return ((TotemicStaffUsage) block).onTotemicStaffRightClick(world, x, y, z, player, stack);
         }
-
-        return true;
+        return false;
     }
 
 

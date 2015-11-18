@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.TotemicStaffUsage;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.lib.Strings;
@@ -30,7 +31,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
  * Date: 29/01/14
  * Time: 20:20
  */
-public class BlockTotemBase extends BlockTileTotemic
+public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsage
 {
     //private Random rand = new Random();
 
@@ -92,70 +93,49 @@ public class BlockTotemBase extends BlockTileTotemic
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+    public boolean onTotemicStaffRightClick(World world, int x, int y, int z, EntityPlayer player, ItemStack stack)
     {
+        if(world.isRemote)
+            return true;
         TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(x, y, z);
-
-        ItemStack heldItem = player.inventory.getCurrentItem();
-
-
-        if(tileTotemBase != null && !world.isRemote)
+        if(tileTotemBase != null)
         {
-            /*if(!tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
+            if(tileTotemBase.isDoingStartup)
             {
-                TileTotemBase tileEntity = (TileTotemBase) world.getTileEntity(x, y, z);
-            }*/
-
-            if(tileTotemBase.isCeremony && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff)
+                CeremonyRegistry trying = CeremonyRegistry.fromId(tileTotemBase.tryingCeremonyID);
+                player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing startup"));
+                player.addChatComponentMessage(new ChatComponentText(trying.getLocalizedName()));
+                player.addChatComponentMessage(new ChatComponentText("Music amount: " + tileTotemBase.totalCeremonyMelody + " / "
+                        + trying.getCeremonyActivation().getMusicNeeded()));
+                player.addChatComponentMessage(new ChatComponentText("Startup time: " + tileTotemBase.ceremonyStartupTimer + " / "
+                        + trying.getCeremonyActivation().getMaximumStartupTime().getTime()));
+            }
+            if(tileTotemBase.isDoingEffect)
             {
-                if(tileTotemBase.isDoingStartup)
-                {
-                    CeremonyRegistry trying = CeremonyRegistry.fromId(tileTotemBase.tryingCeremonyID);
-                    player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing startup"));
-                    player.addChatComponentMessage(new ChatComponentText(trying.getLocalizedName()));
-                    player.addChatComponentMessage(new ChatComponentText("Music amount: " + tileTotemBase.totalCeremonyMelody + " / "
-                            + trying.getCeremonyActivation().getMusicNeeded()));
-                    player.addChatComponentMessage(new ChatComponentText("Startup time: " + tileTotemBase.ceremonyStartupTimer + " / "
-                            + trying.getCeremonyActivation().getMaximumStartupTime().getTime()));
-                }
-                if(tileTotemBase.isDoingEffect)
-                {
-                    player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing its effect"));
-                    player.addChatComponentMessage(new ChatComponentText(CeremonyRegistry.fromId(tileTotemBase.currentCeremony).getLocalizedName()));
-                }
-
-                if(!tileTotemBase.isDoingEffect && !player.isSneaking())
-                {
-                    //if(tileTotemBase.isMusicSelecting)
-                    {
-                        if(tileTotemBase.isMusicSelecting && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingEffect && !tileTotemBase.isDoingStartup)
-                        {
-                            player.addChatComponentMessage(new ChatComponentText("No Music for selector."));
-                            return true;
-                        }
-
-                        for(int i = 0; i < 4; i++)
-                        {
-                            if(tileTotemBase.isMusicSelecting)
-                            {
-                                /*
-                                if(tileTotemBase.musicSelector[i] == 0)
-                                    player.addChatComponentMessage(new ChatComponentText("No Music for selection on " + (i + 1)));
-                                else if(tileTotemBase.musicSelector[i] != 0)
-                                    player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileTotemBase.musicSelector[i] - 1].getMusicName()));
-                                */
-                            }
-                        }
-                    }
-
-                }
+                player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing its effect"));
+                player.addChatComponentMessage(new ChatComponentText(CeremonyRegistry.fromId(tileTotemBase.currentCeremony).getLocalizedName()));
             }
 
+            if(!tileTotemBase.isDoingEffect && !player.isSneaking())
+            {
+                if(tileTotemBase.isMusicSelecting && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingEffect && !tileTotemBase.isDoingStartup)
+                {
+                    player.addChatComponentMessage(new ChatComponentText("No Music for selector."));
+                    return true;
+                }
+                if(tileTotemBase.isMusicSelecting)
+                {
+                    /*for(int i = 0; i < 4; i++)
+                    {
+                        if(tileTotemBase.musicSelector[i] == 0)
+                            player.addChatComponentMessage(new ChatComponentText("No Music for selection on " + (i + 1)));
+                        else if(tileTotemBase.musicSelector[i] != 0)
+                            player.addChatComponentMessage(new ChatComponentText("Musical Selection " + (i + 1) + " is " + MusicEnum.values()[tileTotemBase.musicSelector[i] - 1].getMusicName()));/
+                    }*/
+                }
+            }
         }
-
-
-        return !(heldItem != null && heldItem.getItem() == ModItems.totemicStaff);
-
+        return true;
     }
 
     @Override

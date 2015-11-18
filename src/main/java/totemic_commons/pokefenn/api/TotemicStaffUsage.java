@@ -19,7 +19,8 @@ public interface TotemicStaffUsage
      * @param world     the world
      * @param player    the player who clicked
      * @param itemStack the Totemic Staff that was clicked
+     * @return true if something happened
      */
-    public void onTotemicStaffRightClick(World world, int x, int y, int z, EntityPlayer player, ItemStack itemStack);
+    public boolean onTotemicStaffRightClick(World world, int x, int y, int z, EntityPlayer player, ItemStack itemStack);
 
 }
