@@ -47,59 +47,34 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public static final int MAX_HEIGHT = 5;
     public static final int MAX_EFFECT_MUSIC = 128;
 
-    public int totemPoleSize;
-    public int rangeUpgrades;
-    public int tier;
-    public int efficiencyFromCeremony;
-    public boolean isDoingEffect;
-    public int currentCeremony;
-    public int ceremonyEffectTimer;
-    public int dancingEfficiency;
-    public TObjectIntMap<MusicInstrument> ceremonyMusic;
-    public MusicInstrument[] musicSelector;
-    public boolean isDoingStartup;
-    public int tryingCeremonyID;
-    public int totalCeremonyMelody;
-    public boolean isMusicSelecting;
-    public int ceremonyStartupTimer;
-    public boolean isCeremony;
-    public int continueTimer;
-    public int musicForTotemEffect;
-    public TObjectIntMap<TotemEffect> repetitionBonus;
-    public boolean isDoingEndingEffect;
-    public String bindedPlayer;
-    public TotemEffect[] effects;
-    public int totemWoodBonus;
-    public TObjectIntMap<MusicInstrument> timesPlayed;
+    public int totemPoleSize = 0;
+    public int rangeUpgrades = 0;
+    public int tier = 1;
+    public int efficiencyFromCeremony = 0;
+    public boolean isDoingEffect = false;
+    public int currentCeremony = 0;
+    public int ceremonyEffectTimer = 0;
+    public int dancingEfficiency = 0;
+    public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>();
+    public final MusicInstrument[] musicSelector = new MusicInstrument[CeremonyEffect.NUM_SELECTORS];
+    public boolean isDoingStartup = false;
+    public int tryingCeremonyID = 0;
+    public int totalCeremonyMelody = 0;
+    public boolean isMusicSelecting = true;
+    public int ceremonyStartupTimer = 0;
+    public boolean isCeremony = false;
+    public int continueTimer = 0;
+    public int musicForTotemEffect = 0;
+    public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>();
+    public boolean isDoingEndingEffect = false;
+    public String bindedPlayer = "";
+    public TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
+    public int totemWoodBonus = 0;
+    public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>();
 
     public TileTotemBase()
     {
-        rangeUpgrades = 0;
-        ceremonyMusic = new TObjectIntHashMap<>();
-        tier = 1;
-        efficiencyFromCeremony = 0;
-        isDoingEffect = false;
-        currentCeremony = 0;
-        ceremonyEffectTimer = 0;
-        dancingEfficiency = 0;
-        musicSelector = new MusicInstrument[CeremonyEffect.NUM_SELECTORS];
-        isDoingStartup = false;
-        tryingCeremonyID = 0;
-        totalCeremonyMelody = 0;
-        isMusicSelecting = true;
-        ceremonyStartupTimer = 0;
-        isCeremony = false;
-        continueTimer = 0;
-        musicForTotemEffect = 0;
-        totemPoleSize = 0;
-        repetitionBonus = new TObjectIntHashMap<>();
-        for(TotemEffect totem : Totemic.api.getTotemList())
-            repetitionBonus.put(totem, 0);
-        isDoingEndingEffect = false;
-        bindedPlayer = "";
-        effects = new TotemEffect[MAX_HEIGHT];
-        totemWoodBonus = 0;
-        timesPlayed = new TObjectIntHashMap<>();
+
     }
 
     @Override
@@ -162,18 +137,12 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     public void resetRepetition()
     {
-        TObjectIntIterator<TotemEffect> it = repetitionBonus.iterator();
-        while(it.hasNext())
-        {
-            it.advance();
-            it.setValue(0);
-        }
-
+        repetitionBonus.clear();
         for(TotemEffect totem : effects)
         {
             if(totem != null)
             {
-                repetitionBonus.increment(totem);
+                repetitionBonus.adjustOrPutValue(totem, 1, 1);
             }
         }
     }
