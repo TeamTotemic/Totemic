@@ -69,35 +69,33 @@ public class TotemUtil
                 {
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
-                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect() && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).isMusicSelecting())
+                        TileEntity tile = world.getTileEntity(x + i, y + j, z + k);
+                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).doesMusicSelect() && ((TileTotemBase) tile).isMusicSelecting())
                         {
-                            setSelectors(x, y, z, world.getTileEntity(x + i, y + j, z + k), instr, i, j, k);
+                            setSelectors((TileTotemBase) tile, instr);
                             return;
                         }
                     }
                 }
     }
 
-    public static void setSelectors(int x, int y, int z, TileEntity tileEntity, MusicInstrument instr, int i, int j, int k)
+    public static void setSelectors(TileTotemBase tile, MusicInstrument instr)
     {
-        WorldServer world = (WorldServer)tileEntity.getWorldObj();
+        WorldServer world = (WorldServer)tile.getWorldObj();
+        tile.isCeremony = true;
 
-        if(world.getTileEntity(x + i, y + j, z + k) instanceof TileTotemBase)
-            ((TileTotemBase) world.getTileEntity(x + i, y + j, z + k)).isCeremony = true;
+        MusicInstrument[] musicSelectorArray = tile.musicSelector;
 
-        /*int[] musicSelectorArray = ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).getMusicSelector();
-
-        if(musicSelectorArray[0] == 0)
+        if(musicSelectorArray[0] == null)
         {
-            musicSelectorArray[0] = id + 1;
-            musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
-        } else if(musicSelectorArray[1] == 0)
+            musicSelectorArray[0] = instr;
+            musicParticleAtBlocks(world, tile.xCoord, tile.yCoord, tile.zCoord, "note");
+        } else if(musicSelectorArray[1] == null)
         {
-            musicSelectorArray[1] = id + 1;
-            musicParticleAtBlocks(world, x + i, y + j, z + k, "note");
-        }*/
-        //TODO
-        world.markBlockForUpdate(x, y, z);
+            musicSelectorArray[1] = instr;
+            musicParticleAtBlocks(world, tile.xCoord, tile.yCoord, tile.zCoord, "note");
+        }
+        world.markBlockForUpdate(tile.xCoord, tile.yCoord, tile.zCoord);
     }
 
     public static void playMusicFromBlockForCeremonySelector(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius)
@@ -109,9 +107,11 @@ public class TotemUtil
                 {
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
-                        if(world.getTileEntity(x + i, y + j, z + k) instanceof IMusicAcceptor && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).doesMusicSelect() && ((IMusicAcceptor) world.getTileEntity(x + i, y + j, z + k)).isMusicSelecting())
+                        TileEntity tile = world.getTileEntity(x + i, y + j, z + k);
+                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).doesMusicSelect() && ((TileTotemBase) tile).isMusicSelecting())
                         {
-                            setSelectors(x, y, z, world.getTileEntity(x + i, y + j, z + k), instr, i, j, k);
+                            setSelectors((TileTotemBase) tile, instr);
+                            return;
                         }
                     }
                 }
