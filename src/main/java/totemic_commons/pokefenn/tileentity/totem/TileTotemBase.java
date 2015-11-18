@@ -447,6 +447,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
     public void resetAfterCeremony(boolean doResetMusicSelector)
     {
         currentCeremony = 0;
+        isCeremony = false;
         tryingCeremonyID = 0;
         isMusicSelecting = true;
         isDoingEffect = false;
