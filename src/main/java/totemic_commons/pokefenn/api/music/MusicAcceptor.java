@@ -7,18 +7,8 @@ package totemic_commons.pokefenn.api.music;
 public interface MusicAcceptor
 {
     /**
-     * @return how much music of the given instrument the tile has
-     */
-    public int getMusicAmount(MusicInstrument instr);
-
-    /**
      * Adds up to amount music of the given instrument
+     * @return how much music was actually added
      */
-    public void addMusic(MusicInstrument instr, int amount);
-
-    /**
-     * @return how much music of the given type the tile can accept, typically
-     * at most instr.musicMaximum()
-     */
-    public int getMusicCapacity(MusicInstrument instr);
+    public int addMusic(MusicInstrument instr, int amount);
 }
