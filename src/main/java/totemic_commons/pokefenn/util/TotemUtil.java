@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.legacy_api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
@@ -70,7 +69,7 @@ public class TotemUtil
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
                         TileEntity tile = world.getTileEntity(x + i, y + j, z + k);
-                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).doesMusicSelect() && ((TileTotemBase) tile).isMusicSelecting())
+                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).isMusicSelecting)
                         {
                             setSelectors((TileTotemBase) tile, instr);
                             return;
@@ -108,7 +107,7 @@ public class TotemUtil
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
                         TileEntity tile = world.getTileEntity(x + i, y + j, z + k);
-                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).doesMusicSelect() && ((TileTotemBase) tile).isMusicSelecting())
+                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).isMusicSelecting)
                         {
                             setSelectors((TileTotemBase) tile, instr);
                             return;
@@ -136,7 +135,7 @@ public class TotemUtil
                     {
                         TileEntity block = world.getTileEntity(x + i, y + j, z + k);
 
-                        if(block instanceof IMusicAcceptor && block instanceof TileTotemBase)
+                        if(block instanceof TileTotemBase)
                         {
                             int shiftedMusic = getShiftedMusic(musicAmount, (TileTotemBase) block, instr);
 

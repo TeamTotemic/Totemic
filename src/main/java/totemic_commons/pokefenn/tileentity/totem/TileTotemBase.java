@@ -32,7 +32,6 @@ import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyEffect;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.legacy_api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.legacy_api.ceremony.TimeStateEnum;
-import totemic_commons.pokefenn.legacy_api.music.IMusicAcceptor;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -43,7 +42,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Date: 29/01/14
  * Time: 20:22
  */
-public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicAcceptor
+public class TileTotemBase extends TileTotemic implements MusicAcceptor
 {
     public static final int MAX_HEIGHT = 5;
     public static final int MAX_EFFECT_MUSIC = 128;
@@ -676,37 +675,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
             totemIdsTag.appendTag(new NBTTagString(String.valueOf(effect)));
         nbtTagCompound.setTag("effects", totemIdsTag);
         nbtTagCompound.setInteger("totemWoodBonus", totemWoodBonus);
-    }
-
-    @Override
-    public boolean doesMusicSelect()
-    {
-        return true;
-    }
-
-    @Override
-    public boolean isMusicSelecting()
-    {
-        return isMusicSelecting;
-    }
-
-    @Override
-    public int getMusicForEffect()
-    {
-        return musicForTotemEffect;
-    }
-
-    @Override
-    public boolean getIsCeremony()
-    {
-        return isCeremony;
-    }
-
-    @Override
-    public boolean isDoingEndingEffect()
-    {
-        //TODO
-        return isDoingEndingEffect;
     }
 
     @Override
