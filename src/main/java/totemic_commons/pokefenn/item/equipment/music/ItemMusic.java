@@ -8,8 +8,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.item.ItemTotemic;
-import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
 
 /**
  * Created by Pokefenn.
@@ -17,9 +17,9 @@ import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
  */
 public abstract class ItemMusic extends ItemTotemic
 {
-    public MusicHandler musicHandler;
+    public MusicInstrument musicHandler;
 
-    public ItemMusic(String name, MusicHandler musicHandler)
+    public ItemMusic(String name, MusicInstrument musicHandler)
     {
         super(name);
         this.musicHandler = Objects.requireNonNull(musicHandler);

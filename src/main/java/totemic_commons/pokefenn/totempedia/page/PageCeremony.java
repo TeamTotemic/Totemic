@@ -6,10 +6,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
-import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
 import totemic_commons.pokefenn.util.TotemUtil;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 
@@ -36,14 +37,17 @@ public class PageCeremony extends PageRecipe
         {
             TextureManager render = Minecraft.getMinecraft().renderEngine;
             FontRenderer font = Minecraft.getMinecraft().fontRenderer;
-            int[] instruments = ceremony.getCeremonyEffect().getMusicIds();
+            MusicInstrument[] instruments = ceremony.getCeremonyEffect().getMusicIds();
             String musicNeeded = TotemUtil.getMusicNeeded(ceremony.getCeremonyActivation().getMusicNeeded());
             //String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
 
-            if(MusicHandler.musicHandler.get(instruments[0]).getItem(0) != null && MusicHandler.musicHandler.get(instruments[1]).getItem(0) != null)
+            ItemStack item0 = instruments[0].getItem();
+            ItemStack item1 = instruments[1].getItem();
+
+            if(item0 != null && item1 != null)
             {
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[0]).getItem(0), false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, MusicHandler.musicHandler.get(instruments[1]).getItem(0), false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, item0, false);
+                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, item1, false);
             }
 
             GL11.glEnable(GL11.GL_BLEND);

@@ -1,6 +1,8 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import java.util.Arrays;
 import java.util.Random;
+import java.util.Set;
 
 import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
@@ -31,7 +33,6 @@ import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.legacy_api.ceremony.ICeremonyEffect;
 import totemic_commons.pokefenn.legacy_api.ceremony.TimeStateEnum;
 import totemic_commons.pokefenn.legacy_api.music.IMusicAcceptor;
-import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -45,7 +46,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicAcceptor
 {
     public static final int MAX_HEIGHT = 5;
-    public static final int maximumMusic = 128;
+    public static final int MAX_EFFECT_MUSIC = 128;
 
     public int totemPoleSize;
     public int rangeUpgrades;
@@ -55,8 +56,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
     public int currentCeremony;
     public int ceremonyEffectTimer;
     public int dancingEfficiency;
-    public int[] musicCeremony;
-    public int[] musicSelector;
+    public TObjectIntMap<MusicInstrument> ceremonyMusic;
+    public MusicInstrument[] musicSelector;
     public boolean isDoingStartup;
     public int tryingCeremonyID;
     public int totalCeremonyMelody;
@@ -70,19 +71,19 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
     public String bindedPlayer;
     public TotemEffect[] effects;
     public int totemWoodBonus;
-    public int[] musicPlayed;
+    public TObjectIntMap<MusicInstrument> timesPlayed;
 
     public TileTotemBase()
     {
         rangeUpgrades = 0;
-        musicCeremony = new int[MusicHandler.musicHandler.size()];
+        ceremonyMusic = new TObjectIntHashMap<>();
         tier = 1;
         efficiencyFromCeremony = 0;
         isDoingEffect = false;
         currentCeremony = 0;
         ceremonyEffectTimer = 0;
         dancingEfficiency = 0;
-        musicSelector = new int[CeremonyEffect.NUM_SELECTORS];
+        musicSelector = new MusicInstrument[CeremonyEffect.NUM_SELECTORS];
         isDoingStartup = false;
         tryingCeremonyID = 0;
         totalCeremonyMelody = 0;
@@ -95,11 +96,11 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
         repetitionBonus = new TObjectIntHashMap<>();
         for(TotemEffect totem : Totemic.api.getTotemList())
             repetitionBonus.put(totem, 0);
-        musicPlayed = new int[MusicHandler.musicHandler.size()];
         isDoingEndingEffect = false;
         bindedPlayer = "";
         effects = new TotemEffect[MAX_HEIGHT];
         totemWoodBonus = 0;
+        timesPlayed = new TObjectIntHashMap<>();
     }
 
     @Override
@@ -124,10 +125,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
 
             if(worldObj.getWorldTime() % (20L * 30) == 0)
             {
-                for(int i = 0; i < musicPlayed.length; i++)
-                {
-                    musicPlayed[i] = 0;
-                }
+                timesPlayed.clear();
             }
 
             if(worldObj.getWorldTime() % 80L == 0)
@@ -197,14 +195,7 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
 
     public void spawnParticlesCeremony()
     {
-        int j = 0;
-
-        for(int aMusicCeremony : musicCeremony)
-        {
-            j += aMusicCeremony;
-        }
-
-        for(int i = 0; i < j / 16; i++)
+        for(int i = 0; i < totalCeremonyMelody / 16; i++)
         {
             Random random = new Random();
             int plusminus1 = random.nextBoolean() ? 1 : -1;
@@ -342,10 +333,10 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
     {
         for(CeremonyRegistry ceremonyRegistry : CeremonyRegistry.getCeremonyList())
         {
-            if(musicSelector[0] != 0 && musicSelector[1] != 0)
+            if(musicSelector[0] != null && musicSelector[1] != null)
             {
-                int[] ids = ceremonyRegistry.getCeremonyEffect().getMusicIds();
-                if(ids[0] + 1 == musicSelector[0] && ids[1] + 1 == musicSelector[1])
+                MusicInstrument[] ids = ceremonyRegistry.getCeremonyEffect().getMusicIds();
+                if(ids[0] == musicSelector[0] && ids[1] == musicSelector[1])
                 {
                     particleAroundTotemUpwards("fireworksSpark");
                     tryingCeremonyID = ceremonyRegistry.getCeremonyID();
@@ -449,13 +440,8 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
     public void resetMelody()
     {
         totalCeremonyMelody = 0;
-        int m = 0;
-
-        for(int musicu : musicCeremony)
-        {
-            m += musicu;
-        }
-        totalCeremonyMelody = m;
+        for(int value: ceremonyMusic.values())
+            totalCeremonyMelody += value;
     }
 
     public void resetAfterCeremony(boolean doResetMusicSelector)
@@ -471,24 +457,15 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
 
         dancingEfficiency = 0;
 
-        for(int i = 0; i < musicCeremony.length; i++)
-        {
-            musicCeremony[i] = 0;
-        }
+        ceremonyMusic.clear();
         if(doResetMusicSelector)
-            for(int i = 0; i < CeremonyEffect.NUM_SELECTORS; i++)
-            {
-                musicSelector[i] = 0;
-            }
+            Arrays.fill(musicSelector, null);
         markForUpdate();
     }
 
     public void resetSelector()
     {
-        for(int i = 0; i < CeremonyEffect.NUM_SELECTORS; i++)
-        {
-            musicSelector[i] = 0;
-        }
+        Arrays.fill(musicSelector, null);
     }
 
     public boolean canContinueCeremony(CeremonyRegistry cer)
@@ -639,8 +616,14 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
         currentCeremony = nbtTagCompound.getInteger("currentCeremony");
         dancingEfficiency = nbtTagCompound.getInteger("dancingEfficiency");
         ceremonyEffectTimer = nbtTagCompound.getInteger("ceremonyEffectTimer");
-        musicCeremony = nbtTagCompound.getIntArray("musicCeremony");
-        musicSelector = nbtTagCompound.getIntArray("musicSelector");
+        ceremonyMusic.clear();
+        NBTTagCompound ceremonyMusicTag = nbtTagCompound.getCompoundTag("ceremonyMusic");
+        for(String key: (Set<String>)ceremonyMusicTag.func_150296_c())
+        {
+            MusicInstrument instr = Totemic.api.getInstrument(key);
+            if(instr != null)
+                ceremonyMusic.put(instr, ceremonyMusicTag.getInteger(key));
+        }
         isDoingStartup = nbtTagCompound.getBoolean("isDoingStartup");
         tryingCeremonyID = nbtTagCompound.getInteger("tryingCeremonyID");
         totalCeremonyMelody = nbtTagCompound.getInteger("totalCeremonyMelody");
@@ -663,7 +646,13 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
     {
         super.writeToNBT(nbtTagCompound);
 
-        nbtTagCompound.setIntArray("musicCeremony", musicCeremony);
+        NBTTagCompound ceremonyMusicTag = new NBTTagCompound();
+        for(TObjectIntIterator<MusicInstrument> it = ceremonyMusic.iterator(); it.hasNext();)
+        {
+            it.advance();
+            ceremonyMusicTag.setInteger(it.key().getName(), it.value());
+        }
+        nbtTagCompound.setTag("ceremonyMusic", ceremonyMusicTag);
         nbtTagCompound.setInteger("totemPoleSize", totemPoleSize);
         nbtTagCompound.setInteger("tier", tier);
         nbtTagCompound.setInteger("efficiencyFromCeremony", efficiencyFromCeremony);
@@ -671,7 +660,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
         nbtTagCompound.setInteger("currentCeremony", currentCeremony);
         nbtTagCompound.setInteger("ceremonyEffectTimer", ceremonyEffectTimer);
         nbtTagCompound.setInteger("dancingEfficiency", dancingEfficiency);
-        nbtTagCompound.setIntArray("musicSelector", musicSelector);
         nbtTagCompound.setBoolean("isDoingStartup", isDoingStartup);
         nbtTagCompound.setInteger("tryingCeremonyID", tryingCeremonyID);
         nbtTagCompound.setInteger("totalCeremonyMelody", totalCeremonyMelody);
@@ -687,18 +675,6 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
             totemIdsTag.appendTag(new NBTTagString(String.valueOf(effect)));
         nbtTagCompound.setTag("effects", totemIdsTag);
         nbtTagCompound.setInteger("totemWoodBonus", totemWoodBonus);
-    }
-
-    @Override
-    public int[] getMusicArray()
-    {
-        return musicCeremony;
-    }
-
-    @Override
-    public int[] getMusicSelector()
-    {
-        return musicSelector;
     }
 
     @Override
@@ -733,22 +709,24 @@ public class TileTotemBase extends TileTotemic implements IMusicAcceptor, MusicA
     }
 
     @Override
-    public int getMusicAmount(MusicInstrument instr)
+    public int addMusic(MusicInstrument instr, int amount)
     {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public void addMusic(MusicInstrument instr, int amount)
-    {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public int getMusicCapacity(MusicInstrument instr)
-    {
-        return instr.getMusicMaximum();
+        if(!isCeremony)
+        {
+            timesPlayed.adjustOrPutValue(instr, 1, 1);
+            int prevVal = musicForTotemEffect;
+            musicForTotemEffect = Math.min(prevVal + amount / 2, MAX_EFFECT_MUSIC);
+            return musicForTotemEffect - prevVal;
+        }
+        else if(isDoingStartup)
+        {
+            timesPlayed.adjustOrPutValue(instr, 1, 1);
+            int prevVal = ceremonyMusic.get(instr);
+            int newVal = Math.min(prevVal + amount, instr.getMusicMaximum());
+            ceremonyMusic.put(instr, newVal);
+            return newVal - prevVal;
+        }
+        else
+            return 0;
     }
 }

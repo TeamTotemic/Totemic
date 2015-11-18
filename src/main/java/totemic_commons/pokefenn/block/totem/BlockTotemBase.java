@@ -128,7 +128,7 @@ public class BlockTotemBase extends BlockTileTotemic
                 {
                     //if(tileTotemBase.isMusicSelecting)
                     {
-                        if(tileTotemBase.isMusicSelecting && tileTotemBase.musicSelector[0] == 0 && tileTotemBase.musicSelector[1] == 0 && !tileTotemBase.isDoingEffect && !tileTotemBase.isDoingStartup)
+                        if(tileTotemBase.isMusicSelecting && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingEffect && !tileTotemBase.isDoingStartup)
                         {
                             player.addChatComponentMessage(new ChatComponentText("No Music for selector."));
                             return true;

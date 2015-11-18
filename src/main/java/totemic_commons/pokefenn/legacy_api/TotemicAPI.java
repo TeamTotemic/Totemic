@@ -3,11 +3,9 @@ package totemic_commons.pokefenn.legacy_api;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.item.ItemStack;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyActivation;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyEffect;
 import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
-import totemic_commons.pokefenn.legacy_api.music.MusicHandler;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
@@ -53,14 +51,14 @@ public class TotemicAPI
     }
 
 
-    public static MusicHandler addInstrument(int instrumentId, int baseOutput, int baseRange, int maximumMusic)
+    /*public static MusicHandler addInstrument(int instrumentId, int baseOutput, int baseRange, int maximumMusic)
     {
         if(instrumentId != MusicHandler.musicHandler.size()) //TODO: This is a technical limitation that has to be fixed
             throw new IllegalArgumentException("Invalid instrument ID (must be contiguous for now)");
         MusicHandler musicHandler = new MusicHandler(instrumentId, new ItemStack[1], baseOutput, baseRange, maximumMusic );
         MusicHandler.musicHandler.add(musicHandler);
         return musicHandler;
-    }
+    }*/
 
     /**
      * Adds a category to the list of registered categories to appear in the Lexicon.
