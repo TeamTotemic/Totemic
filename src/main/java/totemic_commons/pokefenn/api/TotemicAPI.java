@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.api;
 
 import java.util.List;
 
+import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
 /**
@@ -54,5 +55,17 @@ public final class TotemicAPI
          * @param name the unlocalized name, including the mod ID
          */
         public MusicInstrument getInstrument(String name);
+
+        /**
+         * Adds a new ceremony
+         * @return ceremony
+         */
+        public Ceremony addCeremony(Ceremony ceremony);
+
+        /**
+         * Gets a ceremony by its unlocalized name
+         * @param name the unlocalized name, including the mod ID
+         */
+        public Ceremony getCeremony(String name);
     }
 }
