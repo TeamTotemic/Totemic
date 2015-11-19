@@ -6,6 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.api.ceremony.Ceremony;
+import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
+import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -13,29 +16,25 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyFluteInfusion extends CeremonyBase
+public class CeremonyFluteInfusion extends Ceremony
 {
-    @Override
-    public void effect(TileEntity tileEntity)
+    public CeremonyFluteInfusion(String modid, String name, int musicNeeded, CeremonyTime maxStartupTime, CeremonyTime effectTime,
+            int musicPer5, MusicInstrument... instruments)
     {
-        if(tileEntity instanceof TileTotemBase)
+        super(modid, name, musicNeeded, maxStartupTime, effectTime, musicPer5, instruments);
+    }
+
+    @Override
+    public void effect(World world, int x, int y, int z)
+    {
+        for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 5, 5))
         {
-            TileTotemBase tileTotemBase = (TileTotemBase) tileEntity;
-
-            int x = tileTotemBase.xCoord;
-            int y = tileTotemBase.yCoord;
-            int z = tileTotemBase.zCoord;
-
-            World world = tileTotemBase.getWorldObj();
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 5, 5))
+            if(entity instanceof EntityItem)
             {
-                if(entity instanceof EntityItem)
+                if(((EntityItem) entity).getEntityItem().getItem() == ModItems.flute)
                 {
-                    if(((EntityItem) entity).getEntityItem().getItem() == ModItems.flute)
-                    {
-                        EntityUtil.dropItem(world, entity.posX, entity.posY, entity.posZ, new ItemStack(ModItems.flute, 1, 1));
-                        entity.setDead();
-                    }
+                    EntityUtil.dropItem(world, entity.posX, entity.posY, entity.posZ, new ItemStack(ModItems.flute, 1, 1));
+                    entity.setDead();
                 }
             }
         }

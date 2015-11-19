@@ -6,7 +6,7 @@ package totemic_commons.pokefenn.api.ceremony;
  */
 public enum CeremonyTime
 {
-    NO_TIME(0),
+    INSTANT(0),
     VERY_SHORT(5 * 20),
     SHORT(15 * 20),
     SHORT_MEDIUM(22 * 20),

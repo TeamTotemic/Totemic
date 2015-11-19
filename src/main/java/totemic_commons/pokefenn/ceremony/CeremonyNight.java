@@ -1,30 +1,31 @@
 package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import net.minecraft.world.WorldServer;
+import totemic_commons.pokefenn.api.ceremony.Ceremony;
+import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
+import totemic_commons.pokefenn.api.music.MusicInstrument;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyNight extends CeremonyBase
+public class CeremonyNight extends Ceremony
 {
-    @Override
-    public void effect(TileEntity tileEntity)
+    public CeremonyNight(String modid, String name, int musicNeeded, CeremonyTime maxStartupTime, CeremonyTime effectTime, int musicPer5,
+            MusicInstrument... instruments)
     {
-        TileTotemBase tileTotemBase = (TileTotemBase) tileEntity.getWorldObj().getTileEntity(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord);
+        super(modid, name, musicNeeded, maxStartupTime, effectTime, musicPer5, instruments);
+    }
 
-        World world = tileTotemBase.getWorldObj();
-
-        if(tileTotemBase != null)
+    @Override
+    public void effect(World world, int x, int y, int z)
+    {
+        if(world.isDaytime())
         {
-            if(world.isDaytime())
-            {
-                for(int j = 0; j < MinecraftServer.getServer().worldServers.length; ++j)
-                    MinecraftServer.getServer().worldServers[j].setWorldTime((13000));
-            }
+            for(WorldServer ws: MinecraftServer.getServer().worldServers)
+                ws.setWorldTime((13000));
         }
     }
 }

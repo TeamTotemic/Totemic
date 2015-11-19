@@ -63,7 +63,7 @@ public class CeremonyActivation
         this.melodyPer5After = 0;
         this.maximumStartupTime = maximumStartupTime;
         this.doesNeedItems = false;
-        this.maximumTicksForEffect = CeremonyTime.NO_TIME;
+        this.maximumTicksForEffect = CeremonyTime.INSTANT;
     }
 
     public boolean getDoesNeedItems()

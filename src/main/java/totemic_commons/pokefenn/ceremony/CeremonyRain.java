@@ -1,19 +1,28 @@
 package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
+import totemic_commons.pokefenn.api.ceremony.Ceremony;
+import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
+import totemic_commons.pokefenn.api.music.MusicInstrument;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyRain extends CeremonyBase
+public class CeremonyRain extends Ceremony
 {
-    @Override
-    public void effect(TileEntity tileTotemBase)
+    public CeremonyRain(String modid, String name, int musicNeeded, CeremonyTime maxStartupTime, CeremonyTime effectTime, int musicPer5,
+            MusicInstrument... instruments)
     {
-        if(!tileTotemBase.getWorldObj().isRaining())
+        super(modid, name, musicNeeded, maxStartupTime, effectTime, musicPer5, instruments);
+    }
+
+    @Override
+    public void effect(World world, int x, int y, int z)
+    {
+        if(!world.isRaining())
         {
             WorldInfo worldinfo = MinecraftServer.getServer().worldServers[0].getWorldInfo();
             worldinfo.setRaining(true);

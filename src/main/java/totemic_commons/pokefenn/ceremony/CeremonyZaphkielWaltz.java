@@ -8,10 +8,12 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.api.ceremony.Ceremony;
+import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
+import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -19,73 +21,70 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class CeremonyZaphkielWaltz extends CeremonyBase
+public class CeremonyZaphkielWaltz extends Ceremony
 {
 
-    @Override
-    public void effect(TileEntity tileEntity)
+    public CeremonyZaphkielWaltz(String modid, String name, int musicNeeded, CeremonyTime maxStartupTime, CeremonyTime effectTime,
+            int musicPer5, MusicInstrument... instruments)
     {
-        TileTotemBase tileTotemBase = (TileTotemBase) tileEntity;
-        World world = tileTotemBase.getWorldObj();
+        super(modid, name, musicNeeded, maxStartupTime, effectTime, musicPer5, instruments);
+    }
 
-        if(tileTotemBase != null)
+    @Override
+    public void effect(World world, int x, int y, int z)
+    {
+        int radius = 6;
+
+        if(world.getWorldTime() % 20L == 0)
         {
-            int radius = 6;
-            int x = tileTotemBase.xCoord;
-            int y = tileTotemBase.yCoord;
-            int z = tileTotemBase.zCoord;
-
-            if(world.getWorldTime() % 20L == 0)
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
             {
-                for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
+                if(entity instanceof EntityItem)
                 {
-                    if(entity instanceof EntityItem)
+                    EntityItem item = (EntityItem)entity;
+                    if(item.getEntityItem().getItem() == Items.egg)
                     {
-                        EntityItem item = (EntityItem)entity;
-                        if(item.getEntityItem().getItem() == Items.egg)
+                        if(world.rand.nextInt(4) == 0)
                         {
-                            if(world.rand.nextInt(4) == 0)
+                            EntityChicken chicken = new EntityChicken(world);
+                            chicken.setPosition(entity.posX, entity.posY, entity.posZ);
+                            world.spawnEntityInWorld(chicken);
+                            if(item.getEntityItem().stackSize == 1)
+                                item.setDead();
+                            else
                             {
-                                EntityChicken chicken = new EntityChicken(world);
-                                chicken.setPosition(entity.posX, entity.posY, entity.posZ);
-                                world.spawnEntityInWorld(chicken);
-                                if(item.getEntityItem().stackSize == 1)
-                                    item.setDead();
-                                else
-                                {
-                                    ItemStack stack = item.getEntityItem().copy();
-                                    stack.stackSize--;
-                                    item.setEntityItemStack(stack);
-                                }
-                                spawnParticles(world, item.posX, item.posY, item.posZ);
+                                ItemStack stack = item.getEntityItem().copy();
+                                stack.stackSize--;
+                                item.setEntityItemStack(stack);
                             }
+                            spawnParticles(world, item.posX, item.posY, item.posZ);
                         }
                     }
                 }
             }
+        }
 
-            if(world.getWorldTime() % 5L == 0)
-            {
-                for(int i = -radius; i <= radius; i++)
-                    for(int j = -radius; j <= radius; j++)
-                        for(int k = -radius; k <= radius; k++)
+        if(world.getWorldTime() % 5L == 0)
+        {
+            for(int i = -radius; i <= radius; i++)
+                for(int j = -radius; j <= radius; j++)
+                    for(int k = -radius; k <= radius; k++)
+                    {
+                        Block block = world.getBlock(x + i, y + j, z + k);
+                        if(block == Blocks.sapling)
                         {
-                            Block block = world.getBlock(x + i, y + j, z + k);
-                            if(block == Blocks.sapling)
+                            world.setBlock(x + i, y + j, z + k, ModBlocks.totemSapling, 0, 3);
+                            spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5);
+                        }
+                        else if(block instanceof IGrowable && block.getTickRandomly())
+                        {
+                            if(world.rand.nextInt(4) == 0)
                             {
-                                world.setBlock(x + i, y + j, z + k, ModBlocks.totemSapling, 0, 3);
+                                block.updateTick(world, x + i, y + j, z + k, world.rand);
                                 spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5);
                             }
-                            else if(block instanceof IGrowable && block.getTickRandomly())
-                            {
-                                if(world.rand.nextInt(4) == 0)
-                                {
-                                    block.updateTick(world, x + i, y + j, z + k, world.rand);
-                                    spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5);
-                                }
-                            }
                         }
-            }
+                    }
         }
     }
 

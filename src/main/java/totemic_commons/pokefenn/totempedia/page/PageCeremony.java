@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.totempedia.page;
 
+import java.util.Objects;
+
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -9,8 +11,8 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.util.TotemUtil;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 
@@ -22,58 +24,54 @@ public class PageCeremony extends PageRecipe
 {
     public ResourceLocation ceremonyOverlay = new ResourceLocation("totemic:textures/gui/ceremonyOverlay.png");
 
-    public CeremonyRegistry ceremony;
+    public Ceremony ceremony;
 
-    public PageCeremony(String unlocalizedName, CeremonyRegistry ceremony)
+    public PageCeremony(String unlocalizedName, Ceremony ceremony)
     {
         super(unlocalizedName);
-        this.ceremony = ceremony;
+        this.ceremony = Objects.requireNonNull(ceremony);
     }
 
     @Override
     public void renderScreen(IGuiLexiconEntry gui, int mx, int my)
     {
-        if(ceremony.getCeremonyID() >= 0)
+        TextureManager render = Minecraft.getMinecraft().renderEngine;
+        FontRenderer font = Minecraft.getMinecraft().fontRenderer;
+        MusicInstrument[] instruments = ceremony.getInstruments();
+        String musicNeeded = TotemUtil.getMusicNeeded(ceremony.getMusicNeeded());
+        //String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
+
+        ItemStack item0 = instruments[0].getItem();
+        ItemStack item1 = instruments[1].getItem();
+
+        if(item0 != null && item1 != null)
         {
-            TextureManager render = Minecraft.getMinecraft().renderEngine;
-            FontRenderer font = Minecraft.getMinecraft().fontRenderer;
-            MusicInstrument[] instruments = ceremony.getCeremonyEffect().getMusicIds();
-            String musicNeeded = TotemUtil.getMusicNeeded(ceremony.getCeremonyActivation().getMusicNeeded());
-            //String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
-
-            ItemStack item0 = instruments[0].getItem();
-            ItemStack item1 = instruments[1].getItem();
-
-            if(item0 != null && item1 != null)
-            {
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, item0, false);
-                renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, item1, false);
-            }
-
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
-            PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 3, gui.getTop() + 90, font.getStringWidth(musicNeeded), 150, musicNeeded);
-
-            font.drawString(StatCollector.translateToLocal("totemicmisc.musicSelector"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.musicSelector")) / 2, gui.getTop() + 14, 0x66000000);
-            /*font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 90, 0x66000000);
-            font.drawString(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds")) / 2, gui.getTop() + 105, 0x66000000);
-            font.drawString(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME ? StatCollector.translateToLocal("totemicmisc.capitalTrue") : StatCollector.translateToLocal("totemicmisc.capitalFalse")), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME)) / 2, gui.getTop() + 120, 0x66000000);
-            //font.drawString(StatCollector.translateToLocal(reference), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(reference)) / 2, gui.getTop() + 161, 0x66000000);
-            */
-
-            PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(getUnlocalizedName())) / 3, gui.getTop() + 150, 150, 150, StatCollector.translateToLocal(getUnlocalizedName()));
-
-            GL11.glDisable(GL11.GL_BLEND);
-
-            render.bindTexture(ceremonyOverlay);
-
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            GL11.glColor4f(1F, 1F, 1F, 1F);
-            ((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
-            GL11.glDisable(GL11.GL_BLEND);
-
+            renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, item0, false);
+            renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, item1, false);
         }
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+        PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 3, gui.getTop() + 90, font.getStringWidth(musicNeeded), 150, musicNeeded);
+
+        font.drawString(StatCollector.translateToLocal("totemicmisc.musicSelector"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.musicSelector")) / 2, gui.getTop() + 14, 0x66000000);
+        /*font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 90, 0x66000000);
+        font.drawString(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds")) / 2, gui.getTop() + 105, 0x66000000);
+        font.drawString(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME ? StatCollector.translateToLocal("totemicmisc.capitalTrue") : StatCollector.translateToLocal("totemicmisc.capitalFalse")), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME)) / 2, gui.getTop() + 120, 0x66000000);
+        //font.drawString(StatCollector.translateToLocal(reference), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(reference)) / 2, gui.getTop() + 161, 0x66000000);
+        */
+
+        PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(getUnlocalizedName())) / 3, gui.getTop() + 150, 150, 150, StatCollector.translateToLocal(getUnlocalizedName()));
+
+        GL11.glDisable(GL11.GL_BLEND);
+
+        render.bindTexture(ceremonyOverlay);
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GL11.glColor4f(1F, 1F, 1F, 1F);
+        ((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
+        GL11.glDisable(GL11.GL_BLEND);
     }
 }

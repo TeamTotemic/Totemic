@@ -39,7 +39,8 @@ public abstract class Ceremony
     }
 
     /**
-     * Performs the ceremony effect at the given Totem Base position
+     * Performs the ceremony effect at the given Totem Base position.
+     * If the ceremony is not instant, this will be called each tick.
      */
     public abstract void effect(World world, int x, int y, int z);
 
