@@ -1,10 +1,10 @@
-package totemic_commons.pokefenn.legacy_api.ceremony;
+package totemic_commons.pokefenn.api.ceremony;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public enum CeremonyTimeEnum
+public enum CeremonyTime
 {
     NO_TIME(0),
     VERY_SHORT(5 * 20),
@@ -18,7 +18,7 @@ public enum CeremonyTimeEnum
 
     private final int time;
 
-    CeremonyTimeEnum(int time)
+    CeremonyTime(int time)
     {
         this.time = time;
     }

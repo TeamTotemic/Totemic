@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
+import totemic_commons.pokefenn.api.ceremony.TimeStateEnum;
 
 /**
  * Created by Pokefenn.
@@ -16,9 +18,9 @@ public class CeremonyActivation
     private final boolean doesNeedItems;
     private final ItemStack itemStack;
     private final TimeStateEnum timeState;
-    private final CeremonyTimeEnum maximumTicksForEffect;
+    private final CeremonyTime maximumTicksForEffect;
     private final int musicNeeded;
-    private final CeremonyTimeEnum maximumStartupTime;
+    private final CeremonyTime maximumStartupTime;
     private final int melodyPer5After;
 
     /**
@@ -31,7 +33,7 @@ public class CeremonyActivation
      * @param melodyPer5After       If the ceremony is not instant, how much melody does it take every 5 seconds?
      */
 
-    public CeremonyActivation(boolean doesNeedItems, ItemStack item, TimeStateEnum timeState, CeremonyTimeEnum maximumTicksForEffect, int musicNeeded, CeremonyTimeEnum maximumStartupTime, int melodyPer5After)
+    public CeremonyActivation(boolean doesNeedItems, ItemStack item, TimeStateEnum timeState, CeremonyTime maximumTicksForEffect, int musicNeeded, CeremonyTime maximumStartupTime, int melodyPer5After)
     {
         this.timeState = timeState;
         this.maximumStartupTime = maximumStartupTime;
@@ -42,7 +44,7 @@ public class CeremonyActivation
         this.itemStack = item;
     }
 
-    public CeremonyActivation(TimeStateEnum timeState, CeremonyTimeEnum maximumTicksForEffect, int musicNeeded, CeremonyTimeEnum maximumStartupTime, int melodyPer5After)
+    public CeremonyActivation(TimeStateEnum timeState, CeremonyTime maximumTicksForEffect, int musicNeeded, CeremonyTime maximumStartupTime, int melodyPer5After)
     {
         this.timeState = timeState;
         this.maximumStartupTime = maximumStartupTime;
@@ -53,7 +55,7 @@ public class CeremonyActivation
         this.itemStack = null;
     }
 
-    public CeremonyActivation(TimeStateEnum timeState, int musicNeeded, CeremonyTimeEnum maximumStartupTime)
+    public CeremonyActivation(TimeStateEnum timeState, int musicNeeded, CeremonyTime maximumStartupTime)
     {
         this.timeState = timeState;
         this.musicNeeded = musicNeeded;
@@ -61,7 +63,7 @@ public class CeremonyActivation
         this.melodyPer5After = 0;
         this.maximumStartupTime = maximumStartupTime;
         this.doesNeedItems = false;
-        this.maximumTicksForEffect = CeremonyTimeEnum.NO_TIME;
+        this.maximumTicksForEffect = CeremonyTime.NO_TIME;
     }
 
     public boolean getDoesNeedItems()
@@ -79,7 +81,7 @@ public class CeremonyActivation
         return this.timeState;
     }
 
-    public CeremonyTimeEnum getMaximumTicksForEffect()
+    public CeremonyTime getMaximumTicksForEffect()
     {
         return this.maximumTicksForEffect;
     }
@@ -89,7 +91,7 @@ public class CeremonyActivation
         return this.musicNeeded;
     }
 
-    public CeremonyTimeEnum getMaximumStartupTime()
+    public CeremonyTime getMaximumStartupTime()
     {
         return this.maximumStartupTime;
     }
