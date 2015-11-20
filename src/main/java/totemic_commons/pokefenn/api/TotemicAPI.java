@@ -5,6 +5,8 @@ import java.util.Map;
 
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
+import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
 /**
  * This class provides access to Totemic's registries
@@ -79,5 +81,21 @@ public final class TotemicAPI
          * @return an immutable map of all registered ceremonies
          */
         public Map<String, Ceremony> getCeremonies();
+
+        /**
+         * Adds a new category to the Totempedia
+         * @return cat
+         */
+        public LexiconCategory addCategory(LexiconCategory cat);
+
+        /**
+         * @return an immutable list of all Totempedia categories
+         */
+        public List<LexiconCategory> getCategories();
+
+        /**
+         * Adds a new Totempedia entry to the given category
+         */
+        public void addLexiconEntry(LexiconCategory category, LexiconEntry entry);
     }
 }

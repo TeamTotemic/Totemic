@@ -6,6 +6,8 @@ import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
+import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
 public final class ApiImpl implements TotemicAPI.API
 {
@@ -15,6 +17,9 @@ public final class ApiImpl implements TotemicAPI.API
     public final Map<String, MusicInstrument> instruments = new HashMap<>();
 
     public final Map<String, Ceremony> ceremonies = new HashMap<>();
+
+    public final List<LexiconCategory> categories = new ArrayList<>();
+    public final List<LexiconEntry> lexiconEntries = new ArrayList<>();
 
     @Override
     public TotemEffect addTotem(TotemEffect effect)
@@ -86,6 +91,26 @@ public final class ApiImpl implements TotemicAPI.API
     public Map<String, Ceremony> getCeremonies()
     {
         return Collections.unmodifiableMap(ceremonies);
+    }
+
+    @Override
+    public LexiconCategory addCategory(LexiconCategory cat)
+    {
+        categories.add(cat);
+        return cat;
+    }
+
+    @Override
+    public List<LexiconCategory> getCategories()
+    {
+        return Collections.unmodifiableList(categories);
+    }
+
+    @Override
+    public void addLexiconEntry(LexiconCategory category, LexiconEntry entry)
+    {
+        lexiconEntries.add(entry);
+        category.entries.add(entry);
     }
 
 }
