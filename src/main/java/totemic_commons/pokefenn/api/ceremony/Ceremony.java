@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.api.ceremony;
 
+import java.util.Objects;
+
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -30,6 +32,8 @@ public abstract class Ceremony
     {
         if(instruments.length != NUM_SELECTORS)
             throw new IllegalArgumentException("Wrong number of musical selectors (" + instruments.length + ")");
+        for(MusicInstrument instr: instruments)
+            Objects.requireNonNull(instr);
 
         this.name = modid + ":" + name;
         this.musicNeeded = musicNeeded;
