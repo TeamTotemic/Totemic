@@ -37,7 +37,7 @@ public abstract class TotemEffect
      */
     public abstract void effect(TileEntity totem, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus);
 
-    public String getName()
+    public final String getName()
     {
         return name;
     }

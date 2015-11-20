@@ -42,7 +42,7 @@ public class MusicInstrument
         this.itemStack = itemStack;
     }
 
-    public String getName()
+    public final String getName()
     {
         return name;
     }

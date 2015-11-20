@@ -54,6 +54,12 @@ public final class ApiImpl implements TotemicAPI.API
     }
 
     @Override
+    public Map<String, MusicInstrument> getInstruments()
+    {
+        return Collections.unmodifiableMap(instruments);
+    }
+
+    @Override
     public Ceremony addCeremony(Ceremony ceremony)
     {
         if(ceremonies.containsKey(ceremony.getName()))
@@ -74,6 +80,12 @@ public final class ApiImpl implements TotemicAPI.API
     public Ceremony getCeremony(String name)
     {
         return ceremonies.get(name);
+    }
+
+    @Override
+    public Map<String, Ceremony> getCeremonies()
+    {
+        return Collections.unmodifiableMap(ceremonies);
     }
 
 }

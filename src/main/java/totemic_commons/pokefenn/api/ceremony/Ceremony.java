@@ -49,7 +49,7 @@ public abstract class Ceremony
      */
     public abstract void effect(World world, int x, int y, int z);
 
-    public String getName()
+    public final String getName()
     {
         return name;
     }

@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.api;
 
 import java.util.List;
+import java.util.Map;
 
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -40,7 +41,8 @@ public final class TotemicAPI
         public TotemEffect getTotem(String name);
 
         /**
-         * @return a list of all registered totem effects. No particular order is guaranteed across different launches.
+         * @return an immutable list of all registered totem effects.
+         * No particular order is guaranteed across different launches.
          */
         public List<TotemEffect> getTotemList();
 
@@ -57,6 +59,11 @@ public final class TotemicAPI
         public MusicInstrument getInstrument(String name);
 
         /**
+         * @return an immutable map of all registered instruments
+         */
+        public Map<String, MusicInstrument> getInstruments();
+
+        /**
          * Adds a new ceremony
          * @return ceremony
          */
@@ -67,5 +74,10 @@ public final class TotemicAPI
          * @param name the unlocalized name, including the mod ID
          */
         public Ceremony getCeremony(String name);
+
+        /**
+         * @return an immutable map of all registered ceremonies
+         */
+        public Map<String, Ceremony> getCeremonies();
     }
 }
