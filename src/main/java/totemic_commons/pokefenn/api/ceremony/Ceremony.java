@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.api.ceremony;
 
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
@@ -47,6 +48,11 @@ public abstract class Ceremony
     public String getName()
     {
         return name;
+    }
+
+    public String getLocalizedName()
+    {
+        return StatCollector.translateToLocal("totemic.ceremony." + name);
     }
 
     public int getMusicNeeded()

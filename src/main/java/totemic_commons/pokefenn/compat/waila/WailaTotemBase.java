@@ -11,7 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 /**
@@ -43,12 +42,12 @@ public class WailaTotemBase implements IWailaDataProvider
             if(totemBase.isDoingEffect)
             {
                 currenttip.add(StatCollector.translateToLocal("totemicmisc.activeCeremony"));
-                currenttip.add(CeremonyRegistry.fromId(totemBase.currentCeremony).getLocalizedName());
+                currenttip.add(totemBase.currentCeremony.getLocalizedName());
             }
             else if(totemBase.isDoingStartup)
             {
                 currenttip.add(StatCollector.translateToLocal("totemicmisc.startup"));
-                currenttip.add(CeremonyRegistry.fromId(totemBase.tryingCeremonyID).getLocalizedName());
+                currenttip.add(totemBase.startupCeremony.getLocalizedName());
             }
             /*else
                 currenttip.add(TileTotemBase.getMusicName(totemBase.musicForTotemEffect));*/

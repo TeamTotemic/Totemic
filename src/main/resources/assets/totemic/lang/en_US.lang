@@ -56,13 +56,14 @@ totemic.melodyName.high=Highly Melodic
 totemic.melodyName.maximum=Bursting with Melody
 
 #Ceremony names
-totemic.ceremony.flute=Ceremony of Flute Imbuation
-totemic.ceremony.ghostDance=Ghost Dance
-totemic.ceremony.rainDance=Rain Dance
-totemic.ceremony.drought=Drought Ceremony
-totemic.ceremony.potion=Ceremony of Divine Elixirs
-totemic.ceremony.buffaloDance=Mandan Buffalo Dance
-totemic.ceremony.zaphkielWaltz=Zaphkiel Waltz
+totemic.ceremony.totemic:flute=Ceremony of Flute Imbuation
+totemic.ceremony.totemic:ghostDance=Ghost Dance
+totemic.ceremony.totemic:rainDance=Rain Dance
+totemic.ceremony.totemic:drought=Drought Ceremony
+totemic.ceremony.totemic:potion=Ceremony of Divine Elixirs
+totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
+totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel Waltz
+totemic.ceremony.totemic:warDance=War Dance
 
 #Totem effect names
 totemic.totem.totemic:horse=Horse

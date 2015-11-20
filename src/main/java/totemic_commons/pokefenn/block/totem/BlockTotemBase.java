@@ -19,8 +19,8 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicStaffUsage;
+import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
-import totemic_commons.pokefenn.legacy_api.ceremony.CeremonyRegistry;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
@@ -102,18 +102,18 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
         {
             if(tileTotemBase.isDoingStartup)
             {
-                CeremonyRegistry trying = CeremonyRegistry.fromId(tileTotemBase.tryingCeremonyID);
+                Ceremony trying = tileTotemBase.startupCeremony;
                 player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing startup"));
                 player.addChatComponentMessage(new ChatComponentText(trying.getLocalizedName()));
                 player.addChatComponentMessage(new ChatComponentText("Music amount: " + tileTotemBase.totalCeremonyMelody + " / "
-                        + trying.getCeremonyActivation().getMusicNeeded()));
+                        + trying.getMusicNeeded()));
                 player.addChatComponentMessage(new ChatComponentText("Startup time: " + tileTotemBase.ceremonyStartupTimer + " / "
-                        + trying.getCeremonyActivation().getMaximumStartupTime().getTime()));
+                        + trying.getMaxStartupTime().getTime()));
             }
             if(tileTotemBase.isDoingEffect)
             {
                 player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing its effect"));
-                player.addChatComponentMessage(new ChatComponentText(CeremonyRegistry.fromId(tileTotemBase.currentCeremony).getLocalizedName()));
+                player.addChatComponentMessage(new ChatComponentText(tileTotemBase.currentCeremony.getLocalizedName()));
             }
 
             if(!tileTotemBase.isDoingEffect && !player.isSneaking())

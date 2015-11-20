@@ -56,13 +56,14 @@ totemic.melodyName.high=Höchst melodisch
 totemic.melodyName.maximum=Voller Melodie
 
 #Ceremony names
-totemic.ceremony.flute=Zeremonie der Flötenverzauberung
-totemic.ceremony.ghostDance=Geistertanz
-totemic.ceremony.rainDance=Regentanz
-totemic.ceremony.drought=Trockenheitstanz
-totemic.ceremony.potion=Zeremonie der Göttlichen Elixiere
-totemic.ceremony.buffaloDance=Mandan-Büffeltanz
-totemic.ceremony.zaphkielWaltz=Zaphkiel-Walzer
+totemic.ceremony.totemic:flute=Zeremonie der Flötenverzauberung
+totemic.ceremony.totemic:ghostDance=Geistertanz
+totemic.ceremony.totemic:rainDance=Regentanz
+totemic.ceremony.totemic:drought=Trockenheitstanz
+totemic.ceremony.totemic:potion=Zeremonie der Göttlichen Elixiere
+totemic.ceremony.totemic:buffaloDance=Mandan-Büffeltanz
+totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel-Walzer
+totemic.ceremony.totemic:warDance=Kriegstanz
 
 #Totem effect names
 totemic.totem.totemic:horse=Pferd
