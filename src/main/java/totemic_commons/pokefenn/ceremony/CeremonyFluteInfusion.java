@@ -3,13 +3,11 @@ package totemic_commons.pokefenn.ceremony;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
