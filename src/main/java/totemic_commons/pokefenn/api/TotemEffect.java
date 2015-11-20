@@ -42,9 +42,17 @@ public abstract class TotemEffect
         return name;
     }
 
+    /**
+     * @return the unlocalized name of the Totem Effect, which is given by "totemic.totem." followed by the name
+     */
+    public String getUnlocalizedName()
+    {
+        return "totemic.totem." + name;
+    }
+
     public String getLocalizedName()
     {
-        return StatCollector.translateToLocal("totemic.totem." + name);
+        return StatCollector.translateToLocal(getUnlocalizedName());
     }
 
     public int getHorizontalRange()

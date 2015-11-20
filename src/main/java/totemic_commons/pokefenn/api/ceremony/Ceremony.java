@@ -54,9 +54,17 @@ public abstract class Ceremony
         return name;
     }
 
+    /**
+     * @return the unlocalized name of the Ceremony, which is given by "totemic.ceremony." followed by the name
+     */
+    public String getUnlocalizedName()
+    {
+        return "totemic.ceremony." + name;
+    }
+
     public String getLocalizedName()
     {
-        return StatCollector.translateToLocal("totemic.ceremony." + name);
+        return StatCollector.translateToLocal(getUnlocalizedName());
     }
 
     public int getMusicNeeded()
