@@ -288,7 +288,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     public void selectorHandling()
     {
-        for(Ceremony ceremony : Totemic.api.ceremonies.values())
+        for(Ceremony ceremony : Totemic.api.getCeremonies().values())
         {
             if(musicSelector[0] != null && musicSelector[1] != null)
             {

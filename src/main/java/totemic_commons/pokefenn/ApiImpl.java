@@ -11,15 +11,15 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
 public final class ApiImpl implements TotemicAPI.API
 {
-    public final Map<String, TotemEffect> totemEffects = new HashMap<>();
-    public final List<TotemEffect> totemList = new ArrayList<>();
+    private final Map<String, TotemEffect> totemEffects = new HashMap<>();
+    private final List<TotemEffect> totemList = new ArrayList<>();
 
-    public final Map<String, MusicInstrument> instruments = new HashMap<>();
+    private final Map<String, MusicInstrument> instruments = new HashMap<>();
 
-    public final Map<String, Ceremony> ceremonies = new HashMap<>();
+    private final Map<String, Ceremony> ceremonies = new HashMap<>();
 
-    public final List<LexiconCategory> categories = new ArrayList<>();
-    public final List<LexiconEntry> lexiconEntries = new ArrayList<>();
+    private final List<LexiconCategory> categories = new ArrayList<>();
+    private final List<LexiconEntry> lexiconEntries = new ArrayList<>();
 
     @Override
     public TotemEffect addTotem(TotemEffect effect)
