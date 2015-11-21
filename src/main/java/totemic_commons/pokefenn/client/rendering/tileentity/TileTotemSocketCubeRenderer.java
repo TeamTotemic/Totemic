@@ -48,7 +48,7 @@ public class TileTotemSocketCubeRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef(0.5F, 1.5F, 0.5F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
 
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.getTotemPole(world.getBlockMetadata(i, j, k)));
+        bindTexture(Resources.getTotemPole(world.getBlockMetadata(i, j, k)));
 
         this.modelTotemSocket.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 

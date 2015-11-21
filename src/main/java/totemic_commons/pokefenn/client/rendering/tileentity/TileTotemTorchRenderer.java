@@ -49,7 +49,7 @@ public class TileTotemTorchRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef(0.5F, 1.47F, 0.5F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         //GL11.glTranslatef(-0.5F, 0, -0.5F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TOTEM_TORCH);
+        bindTexture(Resources.TEXTURE_TOTEM_TORCH);
 
         this.modelTotemSocket.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 

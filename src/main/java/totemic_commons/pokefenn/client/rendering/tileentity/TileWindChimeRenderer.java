@@ -33,7 +33,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         TileWindChime tile = (TileWindChime) tileEntity;
 
-        render(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.totemBase);
+        render(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.windChime);
         GL11.glPopMatrix();
     }
 
@@ -49,7 +49,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, 1.47F, 0.5F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_WIND_CHIME);
+        bindTexture(Resources.TEXTURE_WIND_CHIME);
 
         if(tileEntity.isPlaying)
         {

@@ -31,7 +31,7 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer
         GL11.glTranslatef((float) d, (float) d1, (float) d2);
         TileTipi tile = (TileTipi) tileEntity;
 
-        renderBlockYour(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.drum);
+        renderBlockYour(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.tipi);
         GL11.glPopMatrix();
     }
 
@@ -53,7 +53,7 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer
         GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         //GL11.glTranslatef(-0.5F, 0, -0.5F);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(Resources.TEXTURE_TIPI);
+        bindTexture(Resources.TEXTURE_TIPI);
 
         this.modelTipi.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 

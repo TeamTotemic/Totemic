@@ -28,34 +28,20 @@ public class BlockTotemTorch extends BlockTileTotemic
         setStepSound(soundTypeWood);
     }
 
-    /*@SideOnly(Side.CLIENT)
-    public IIcon iconThingy;*/
-
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random rand)
     {
-        //TileTotemTorch tileEntity = (TileTotemTorch) world.getTileEntity(x, y, z);
-
-        for(int i = 0; i < 16; i++)
-        {
+        for(int i = 0; i < 2; i++)
             world.spawnParticle("flame", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);
+        for(int i = 0; i < 16; i++)
             world.spawnParticle("smoke", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);
-        }
     }
-
-    /*@Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister register)
-    {
-        iconThingy = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + "totemsRange");
-    }*/
 
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
-        //return this.iconThingy;
         return Blocks.log.getIcon(2, 0);
     }
 
