@@ -15,7 +15,6 @@ public class ModEvents
         //MinecraftForge.EVENT_BUS.register(new EntityHurt());
         MinecraftForge.EVENT_BUS.register(new EntityFall());
         MinecraftForge.EVENT_BUS.register(new EntityJump());
-        MinecraftForge.EVENT_BUS.register(new BlockBroken());
         MinecraftForge.EVENT_BUS.register(new EntityRightClick());
         MinecraftForge.EVENT_BUS.register(new EntitySpawn());
     }
