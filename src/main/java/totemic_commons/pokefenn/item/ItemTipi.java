@@ -5,12 +5,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
  * Created by Pokefenn.
