@@ -125,7 +125,6 @@ public class TotemUtil
         int z = tileCeremony.zCoord;
 
         int radius = bonusRadius + instr.getBaseRange();
-        int musicAmount = instr.getBaseOutput() + bonusMusicAmount;
 
         for(int i = -radius; i <= radius; i++)
             for(int j = -radius; j <= radius; j++)
@@ -137,7 +136,7 @@ public class TotemUtil
 
                         if(block instanceof TileTotemBase)
                         {
-                            int shiftedMusic = getShiftedMusic(musicAmount, (TileTotemBase) block, instr);
+                            int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
 
                             playMusic(x, y, z, block, instr, shiftedMusic, instr.getMusicMaximum());
                             return;
@@ -171,28 +170,12 @@ public class TotemUtil
 
                     if(block instanceof TileTotemBase)
                     {
-                        int shiftedMusic = getShiftedMusic(instr.getBaseOutput() + bonusMusicAmount, (TileTotemBase) block, instr);
+                        int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
 
                         playMusic(x, y, z, block, instr, shiftedMusic, instr.getMusicMaximum());
                         return;
                     }
                 }
-    }
-
-    public static int getShiftedMusic(int defaultMusic, TileTotemBase tileTotemBase, MusicInstrument instr)
-    {
-        /*int newMusic = defaultMusic;
-
-        //This is a variable that is the shifted amount of musical melody produced, this is shifted because the music has been played too many times
-
-        if(tileTotemBase.musicPlayed[id] > defaultMusic * 1.5)
-        {
-            newMusic = (newMusic * 3) / 4;
-        }
-
-        return newMusic;*/
-        //TODO
-        return defaultMusic;
     }
 
     public static void musicParticleAtBlocks(WorldServer world, int xCoord, int yCoord, int zCoord, String particle)

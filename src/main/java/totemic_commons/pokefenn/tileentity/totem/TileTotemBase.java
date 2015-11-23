@@ -91,10 +91,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                     spawnParticlesCeremony();
             }
 
-            if(worldObj.getWorldTime() % (20L * 30) == 0)
-            {
-                timesPlayed.clear();
-            }
+            if(!isCeremony)
+                if(worldObj.getWorldTime() % (20L * 30) == 0)
+                {
+                    timesPlayed.clear();
+                }
 
             if(worldObj.getWorldTime() % 80L == 0)
             {
@@ -416,6 +417,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         dancingEfficiency = 0;
 
         ceremonyMusic.clear();
+        timesPlayed.clear();
         if(doResetMusicSelector)
             Arrays.fill(musicSelector, null);
         markForUpdate();
@@ -649,11 +651,20 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         {
             timesPlayed.adjustOrPutValue(instr, 1, 1);
             int prevVal = ceremonyMusic.get(instr);
+            amount = getDiminishedMusic(instr, amount);
             int newVal = Math.min(prevVal + amount, instr.getMusicMaximum());
             ceremonyMusic.put(instr, newVal);
             return newVal - prevVal;
         }
         else
             return 0;
+    }
+
+    public int getDiminishedMusic(MusicInstrument instr, int amount)
+    {
+        if(timesPlayed.get(instr) >= amount)
+            return amount * 3 / 4;
+        else
+            return amount;
     }
 }
