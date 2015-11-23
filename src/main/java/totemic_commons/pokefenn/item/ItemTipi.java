@@ -25,76 +25,69 @@ public class ItemTipi extends ItemTotemic
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int thingy, float p_77648_8_, float p_77648_9_, float p_77648_10_)
+    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
-        if(!world.isRemote)
+        Block block = world.getBlock(x, y, z);
+        if(block.getMaterial() != Material.ground && !block.getUnlocalizedName().contains("dirt") && !block.getUnlocalizedName().contains("grass"))
         {
-            //TODO if checks to see if it can actually place the tipi.
-
-            MovingObjectPosition mop = EntityUtil.raytraceFromEntity(world, player, true, 3);
-            Block block = EntityUtil.getBlockFromPosition(mop, world);
-
-            int vertRadius = 6;
-            int radius = 2;
-            for(int i = -radius; i <= radius; i++)
-                for(int j = 1; j <= vertRadius; j++)
-                    for(int k = -radius; k <= radius; k++)
-                    {
-                        if(!world.getBlock(mop.blockX + i, mop.blockY + j, mop.blockZ + k)
-                                .isReplaceable(world, mop.blockX + i, mop.blockY + j, mop.blockZ + k))
-                        {
-                            return false;
-                        }
-                    }
-
-            if(block.getMaterial() == Material.ground || (block.getUnlocalizedName().contains("dirt") || block.getUnlocalizedName().contains("grass")))
-            {
-                int dir = MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3;
-                world.setBlock(mop.blockX, mop.blockY + 4, mop.blockZ, ModBlocks.dummyTipi, 0, 2);
-                world.setBlock(mop.blockX, mop.blockY + 5, mop.blockZ, ModBlocks.dummyTipi, 0, 2);
-                world.setBlock(mop.blockX, mop.blockY + 6, mop.blockZ, ModBlocks.dummyTipi, 1, 2);
-
-                for(int i = 0; i < 2; i++)
-                {
-                    for(ForgeDirection direction : ForgeDirection.values())
-                    {
-                        world.setBlock(x + direction.offsetX, y + i + 1, z + direction.offsetZ, ModBlocks.dummyTipi, 0, 2);
-                    }
-                    world.setBlockToAir(x, y + i + 1, z);
-                    if(world.getBlock(x + getDirectionThingy(dir)[0], y + i + 1, z + getDirectionThingy(dir)[1]) == ModBlocks.dummyTipi)
-                        world.setBlockToAir(x + getDirectionThingy(dir)[0], y + i + 1, z + getDirectionThingy(dir)[1]);
-                }
-                world.setBlock(mop.blockX, mop.blockY + 1, mop.blockZ, ModBlocks.tipi, dir, 2);
-                itemStack.stackSize--;
-
-                return true;
-            }
+            return false;
         }
 
-        return false;
+        int height = 6;
+        int radius = 2;
+        for(int i = -radius; i <= radius; i++)
+            for(int j = 1; j <= height; j++)
+                for(int k = -radius; k <= radius; k++)
+                {
+                    if(!world.getBlock(x + i, y + j, z + k).isReplaceable(world, x + i, y + j, z + k))
+                    {
+                        return false;
+                    }
+                }
+
+        int dir = MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3;
+        world.setBlock(x, y + 4, z, ModBlocks.dummyTipi, 0, 2);
+        world.setBlock(x, y + 5, z, ModBlocks.dummyTipi, 0, 2);
+        world.setBlock(x, y + 6, z, ModBlocks.dummyTipi, 1, 2);
+
+        for(int i = 0; i < 2; i++)
+        {
+            for(ForgeDirection direction : ForgeDirection.values())
+            {
+                world.setBlock(x + direction.offsetX, y + i + 1, z + direction.offsetZ, ModBlocks.dummyTipi, 0, 2);
+            }
+            world.setBlockToAir(x, y + i + 1, z);
+            int[] offsets = getDirectionOffsets(dir);
+            if(world.getBlock(x + offsets[0], y + i + 1, z + offsets[1]) == ModBlocks.dummyTipi)
+                world.setBlockToAir(x + offsets[0], y + i + 1, z + offsets[1]);
+        }
+        world.setBlock(x, y + 1, z, ModBlocks.tipi, dir, 2);
+        itemStack.stackSize--;
+
+        return true;
     }
 
 
-    public int[] getDirectionThingy(int i)
+    public int[] getDirectionOffsets(int i)
     {
-        int[] thingy = {0, 0};
+        int[] offsets = {0, 0};
         if(i == 0)
         {
-            thingy[1] = -1;
+            offsets[1] = -1;
         }
         if(i == 1)
         {
-            thingy[0] = 1;
+            offsets[0] = 1;
         }
         if(i == 2)
         {
-            thingy[1] = 1;
+            offsets[1] = 1;
         }
 
         if(i == 3)
         {
-            thingy[0] = -1;
+            offsets[0] = -1;
         }
-        return thingy;
+        return offsets;
     }
 }
