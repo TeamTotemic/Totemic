@@ -31,10 +31,6 @@ import totemic_commons.pokefenn.util.TotemUtil;
  */
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 {
-    //TODO: This cannot possible work when there's more than one player
-    public int time = 0;
-    public boolean hasSpeed = false;
-
     public ItemJingleDress()
     {
         super(EquipmentMaterials.jingleDress, 0, 2);
@@ -73,19 +69,18 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         if(world.isRemote)
         {
             if(world.getWorldTime() % 20L == 0)
-                if(Math.abs(player.motionX) > 0 || Math.abs(player.motionZ) > 0)
+                if(player.motionX != 0 || player.motionZ != 0)
                     PacketHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
         } else
         {
             if(world.getWorldTime() % 20L == 0)
             {
-                hasSpeed = player.isPotionActive(Potion.moveSpeed);
-            }
-
-            if(time > 2 || (hasSpeed && time > 1))
-            {
-                time = 0;
-                playMusic(world, player, itemStack, player.isSneaking());
+                int time = player.getEntityData().getByte(Strings.JINGLE_TIME);
+                if(time >= 3 || (player.isPotionActive(Potion.moveSpeed) && time >= 2))
+                {
+                    playMusic(world, player, itemStack, player.isSneaking());
+                    player.getEntityData().removeTag(Strings.JINGLE_TIME);
+                }
             }
         }
     }
@@ -116,27 +111,6 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     {
         return EquipmentMaterials.totemArmour.getDamageReductionAmount(slot);
     }
-
-    /*
-
-    @Override
-    public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 90;
-    }
-
-    @Override
-    public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return isFromPlayer && player != null && player.getCurrentArmor(3) != null ? 7 : 0;
-    }
-
-    @Override
-    public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 8;
-    }
-    */
 
     public int getBonusMusic()
     {

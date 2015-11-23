@@ -51,6 +51,9 @@ public final class Strings
     //ItemStack NBT keys
     public static final String KNIFE_TOTEM_KEY = "totem";
 
+    //Entity NBT keys
+    public static final String JINGLE_TIME = "totemic:jingleTime";
+
     //Old NBT stuff
     public static final String NBT_TE_STATE_KEY = "teState";
     public static final String NBT_TE_CUSTOM_NAME = "CustomName";
