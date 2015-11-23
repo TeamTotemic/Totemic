@@ -73,17 +73,15 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     @Override
     public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
     {
-        TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(x, y, z);
-
-        if(tileTotemBase != null)
-            if(!world.isRemote)
-            {
+        if(!world.isRemote)
+        {
+            TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(x, y, z);
+            if(tileTotemBase != null)
                 if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff && tileTotemBase.isCeremony)
                 {
-                    tileTotemBase.resetSelector();
-                    tileTotemBase.isCeremony = false;
+                    tileTotemBase.resetAfterCeremony(true);
                 }
-            }
+        }
     }
 
     @Override
