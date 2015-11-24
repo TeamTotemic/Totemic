@@ -43,10 +43,9 @@ public final class TotemicAPI
         public TotemEffect getTotem(String name);
 
         /**
-         * @return an immutable list of all registered totem effects.
-         * No particular order is guaranteed across different launches.
+         * @return an immutable map of all registered totem effects
          */
-        public List<TotemEffect> getTotemList();
+        public Map<String, TotemEffect> getTotems();
 
         /**
          * Adds a new music instrument

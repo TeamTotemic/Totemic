@@ -38,6 +38,11 @@ public final class ApiImpl implements TotemicAPI.API
     }
 
     @Override
+    public Map<String, TotemEffect> getTotems()
+    {
+        return Collections.unmodifiableMap(totemEffects);
+    }
+
     public List<TotemEffect> getTotemList()
     {
         return Collections.unmodifiableList(totemList);
