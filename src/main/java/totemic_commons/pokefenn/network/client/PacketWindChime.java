@@ -34,7 +34,7 @@ public class PacketWindChime implements IMessage, IMessageHandler<PacketWindChim
     public void fromBytes(ByteBuf buf)
     {
         this.x = buf.readInt();
-        this.y = buf.readInt();
+        this.y = buf.readShort();
         this.z = buf.readInt();
         this.isPlaying = buf.readBoolean();
     }
@@ -43,7 +43,7 @@ public class PacketWindChime implements IMessage, IMessageHandler<PacketWindChim
     public void toBytes(ByteBuf buf)
     {
         buf.writeInt(x);
-        buf.writeInt(y);
+        buf.writeShort(y);
         buf.writeInt(z);
         buf.writeBoolean(isPlaying);
     }

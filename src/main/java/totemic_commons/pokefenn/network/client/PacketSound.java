@@ -34,16 +34,16 @@ public class PacketSound implements IMessage, IMessageHandler<PacketSound, IMess
     public void fromBytes(ByteBuf buf)
     {
         this.x = buf.readInt();
-        this.y = buf.readInt();
+        this.y = buf.readShort();
         this.z = buf.readInt();
-        this.type = ByteBufUtils.readUTF8String(buf); //TODO: Reduce network strain by serializing this into a number
+        this.type = ByteBufUtils.readUTF8String(buf);
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
         buf.writeInt(x);
-        buf.writeInt(y);
+        buf.writeShort(y);
         buf.writeInt(z);
         ByteBufUtils.writeUTF8String(buf, type);
     }
