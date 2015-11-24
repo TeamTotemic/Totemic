@@ -28,7 +28,7 @@ public class TileTotemSocketCubeRenderer extends TileEntitySpecialRenderer
     {
         GL11.glPushMatrix();
 
-        GL11.glTranslatef((float) d, (float) d1, (float) d2);
+        GL11.glTranslated(d, d1, d2);
         TileTotemPole tile = (TileTotemPole) tileEntity;
 
         renderTotemSocket(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.totemPole);

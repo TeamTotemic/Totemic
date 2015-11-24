@@ -28,7 +28,7 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer
     {
         GL11.glPushMatrix();
 
-        GL11.glTranslatef((float) d, (float) d1, (float) d2);
+        GL11.glTranslated(d, d1, d2);
         TileTipi tile = (TileTipi) tileEntity;
 
         renderBlockYour(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.tipi);

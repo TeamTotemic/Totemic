@@ -30,7 +30,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
     {
         GL11.glPushMatrix();
 
-        GL11.glTranslatef((float) d, (float) d1, (float) d2);
+        GL11.glTranslated(d, d1, d2);
         TileWindChime tile = (TileWindChime) tileEntity;
 
         render(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.windChime);
