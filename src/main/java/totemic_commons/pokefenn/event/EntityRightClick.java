@@ -19,14 +19,14 @@ public class EntityRightClick
     {
         if(event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK)
         {
-            Block block = event.world.getBlock(event.x, event.y, event.z);
-            if(block != null)
+            if(event.world.getBlock(event.x, event.y + 1, event.z) == ModBlocks.tipi)
             {
-                if(block.getMaterial() == Material.ground || block.getUnlocalizedName().contains("dirt") || block.getUnlocalizedName().contains("grass"))
+                Block block = event.world.getBlock(event.x, event.y, event.z);
+                if(block != null)
                 {
-                    if(event.world.getBlock(event.x, event.y + 1, event.z) == ModBlocks.tipi)
+                    if(block.getMaterial() == Material.ground || block.getUnlocalizedName().contains("dirt") || block.getUnlocalizedName().contains("grass"))
                     {
-                        ((BlockTipi) event.world.getBlock(event.x, event.y + 1, event.z)).tipiSleep(event.world, event.x, event.y + 1, event.z, event.entityPlayer);
+                        ((BlockTipi)ModBlocks.tipi).tipiSleep(event.world, event.x, event.y + 1, event.z, event.entityPlayer);
                     }
                 }
             }
