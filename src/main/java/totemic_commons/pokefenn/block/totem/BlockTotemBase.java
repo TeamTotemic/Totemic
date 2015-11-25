@@ -98,7 +98,7 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
         TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(x, y, z);
         if(tileTotemBase != null)
         {
-            if(tileTotemBase.isDoingStartup)
+            if(tileTotemBase.isDoingStartup())
             {
                 Ceremony trying = tileTotemBase.startupCeremony;
                 player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing startup"));
@@ -108,15 +108,15 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
                 player.addChatComponentMessage(new ChatComponentText("Startup time: " + tileTotemBase.ceremonyStartupTimer + " / "
                         + trying.getMaxStartupTime().getTime()));
             }
-            if(tileTotemBase.isDoingEffect)
+            if(tileTotemBase.isDoingCeremonyEffect())
             {
                 player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing its effect"));
                 player.addChatComponentMessage(new ChatComponentText(tileTotemBase.currentCeremony.getLocalizedName()));
             }
 
-            if(!tileTotemBase.isDoingEffect && !player.isSneaking())
+            if(!tileTotemBase.isDoingCeremonyEffect() && !player.isSneaking())
             {
-                if(tileTotemBase.isMusicSelecting && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingEffect && !tileTotemBase.isDoingStartup)
+                if(tileTotemBase.isMusicSelecting && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingCeremonyEffect() && !tileTotemBase.isDoingStartup())
                 {
                     player.addChatComponentMessage(new ChatComponentText("No Music for selector."));
                     return true;
