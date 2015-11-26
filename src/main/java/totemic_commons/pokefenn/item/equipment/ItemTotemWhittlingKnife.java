@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
@@ -38,13 +39,13 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             return "";
     }
 
-    public int getCarvingIndex(ItemStack stack)
+    public static int getCarvingIndex(ItemStack stack)
     {
         NBTTagCompound tag = stack.getTagCompound();
         if(tag == null)
             return 0;
         else
-            return tag.getInteger(Strings.KNIFE_TOTEM_KEY);
+            return MathHelper.clamp_int(tag.getInteger(Strings.KNIFE_TOTEM_KEY), 0, Totemic.api.getTotemList().size());
     }
 
     @Override
@@ -72,13 +73,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
         if(player.isSneaking())
-        {
-            ItemStack stack = itemStack.copy();
-            if(!stack.hasTagCompound())
-                stack.setTagCompound(new NBTTagCompound());
-            stack.getTagCompound().setInteger(Strings.KNIFE_TOTEM_KEY, (1 + getCarvingIndex(stack)) % (Totemic.api.getTotemList().size() + 1));
-            return stack;
-        }
+            return changeIndex(itemStack, 1);
         else
             return itemStack;
     }
@@ -122,6 +117,16 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
             return true;
         }
+    }
+
+    public static ItemStack changeIndex(ItemStack itemStack, int i)
+    {
+        ItemStack stack = itemStack.copy();
+        if(!stack.hasTagCompound())
+            stack.setTagCompound(new NBTTagCompound());
+        stack.getTagCompound().setInteger(Strings.KNIFE_TOTEM_KEY,
+                Math.floorMod(i + getCarvingIndex(stack), Totemic.api.getTotemList().size() + 1));
+        return stack;
     }
 
 }

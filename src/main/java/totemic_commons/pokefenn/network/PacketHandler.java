@@ -12,6 +12,7 @@ import totemic_commons.pokefenn.network.client.PacketClientBlessingSync;
 import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.network.server.PacketJingle;
+import totemic_commons.pokefenn.network.server.PacketMouseWheel;
 import totemic_commons.pokefenn.network.server.PacketServerBlessingSync;
 
 /**
@@ -24,7 +25,7 @@ public class PacketHandler
     private static int id;
     public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Totemic.MOD_ID);
 
-    private static <T extends IMessage & IMessageHandler<T, IMessage>> void registerPacket(Class<T> clazz, Side side)
+    private static <T extends IMessage & IMessageHandler<T, R>, R extends IMessage> void registerPacket(Class<T> clazz, Side side)
     {
         INSTANCE.registerMessage(clazz, clazz, id++, side);
     }
@@ -36,6 +37,7 @@ public class PacketHandler
         registerPacket(PacketClientBlessingSync.class, Side.CLIENT);
         registerPacket(PacketWindChime.class, Side.CLIENT);
         registerPacket(PacketSound.class, Side.CLIENT);
+        registerPacket(PacketMouseWheel.class, Side.SERVER);
     }
 
     public static void sendToClient(IMessage packet, EntityPlayerMP player)
