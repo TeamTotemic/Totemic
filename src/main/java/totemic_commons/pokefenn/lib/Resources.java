@@ -16,7 +16,6 @@ public class Resources
     public static final String TEXTURE_LOCATION = "totemic";
 
     //Blocks
-
     public static final String TOTEM_LEAVES_OPAQUE = "cedarLeavesOpaque";
     public static final String TOTEM_LEAVES_TRANSPARENT = "cedarLeavesTransparent";
 

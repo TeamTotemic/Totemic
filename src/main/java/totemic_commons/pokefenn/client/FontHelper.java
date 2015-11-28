@@ -13,27 +13,27 @@ package totemic_commons.pokefenn.client;
 public final class FontHelper
 {
 
-    public static boolean isFormatColor(char par0)
+    public static boolean isFormatColor(char ch)
     {
-        return par0 >= 48 && par0 <= 57 || par0 >= 97 && par0 <= 102 || par0 >= 65 && par0 <= 70;
+        return ch >= 48 && ch <= 57 || ch >= 97 && ch <= 102 || ch >= 65 && ch <= 70;
     }
 
-    public static boolean isFormatSpecial(char par0)
+    public static boolean isFormatSpecial(char ch)
     {
-        return par0 >= 107 && par0 <= 111 || par0 >= 75 && par0 <= 79 || par0 == 114 || par0 == 82;
+        return ch >= 107 && ch <= 111 || ch >= 75 && ch <= 79 || ch == 114 || ch == 82;
     }
 
-    public static String getFormatFromString(String par0Str)
+    public static String getFormatFromString(String str)
     {
         String s1 = "";
         int i = -1;
-        int j = par0Str.length();
+        int j = str.length();
 
-        while((i = par0Str.indexOf(167, i + 1)) != -1)
+        while((i = str.indexOf(167, i + 1)) != -1)
         {
             if(i < j - 1)
             {
-                char c0 = par0Str.charAt(i + 1);
+                char c0 = str.charAt(i + 1);
 
                 if(isFormatColor(c0))
                     s1 = "\u00a7" + c0;

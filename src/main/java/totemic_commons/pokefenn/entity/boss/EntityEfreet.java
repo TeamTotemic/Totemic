@@ -23,9 +23,9 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
     private static final IEntitySelector attackEntitySelector = new IEntitySelector()
     {
         @Override
-        public boolean isEntityApplicable(Entity par1Entity)
+        public boolean isEntityApplicable(Entity entity)
         {
-            return par1Entity instanceof EntityPlayer;
+            return entity instanceof EntityPlayer;
         }
     };
 

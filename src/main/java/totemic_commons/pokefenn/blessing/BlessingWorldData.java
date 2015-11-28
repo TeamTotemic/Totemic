@@ -10,13 +10,11 @@ import net.minecraft.world.WorldSavedData;
 public class BlessingWorldData extends WorldSavedData
 {
     public int blessing;
-    //public String name;
 
     public BlessingWorldData(String par1Str)
     {
         super(par1Str);
         blessing = 0;
-        //name = "";
     }
 
     @Override

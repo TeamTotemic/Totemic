@@ -31,15 +31,6 @@ public class ItemRattle extends ItemMusic
         setMaxStackSize(1);
     }
 
-    /*@Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
-    {
-        list.add(StatCollector.translateToLocal("totemic.tooltip.rattle"));
-
-        super.addInformation(stack, player, list, par4);
-    }*/
-
     @Override
     public boolean onEntitySwing(EntityLivingBase entity, ItemStack stack)
     {
@@ -103,23 +94,4 @@ public class ItemRattle extends ItemMusic
         }
     }
 
-    /*
-    @Override
-    public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 110;
-    }
-
-    @Override
-    public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 9 + (headPoles * 2);
-    }
-
-    @Override
-    public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 8;
-    }
-    */
 }

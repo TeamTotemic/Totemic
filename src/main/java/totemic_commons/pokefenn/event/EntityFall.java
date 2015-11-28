@@ -13,7 +13,7 @@ public class EntityFall
 {
 
     @SubscribeEvent()
-    public void onLivingFall(LivingFallEvent entity/*, float distance*/)
+    public void onLivingFall(LivingFallEvent entity)
     {
         if(entity.entityLiving instanceof EntityPlayer && entity.entityLiving.isPotionActive(ModPotions.batPotion.id))
         {

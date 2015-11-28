@@ -24,8 +24,7 @@ public class CeremonyRain extends Ceremony
     {
         if(!world.isRaining())
         {
-            WorldInfo worldinfo = MinecraftServer.getServer().worldServers[0].getWorldInfo();
-            worldinfo.setRaining(true);
+            world.getWorldInfo().setRaining(true);
         }
     }
 }

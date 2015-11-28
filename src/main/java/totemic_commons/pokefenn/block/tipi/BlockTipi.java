@@ -73,13 +73,10 @@ public class BlockTipi extends BlockTileTotemic
                         return true;
                     }
 
-                    //BlockBed.func_149979_a(world, x, y, z, false);
-
                     EntityPlayer.EnumStatus enumstatus = player.sleepInBedAt(x, y, z);
 
                     if(enumstatus == EntityPlayer.EnumStatus.OK)
                     {
-                        //BlockBed.func_149979_a(world, x, y, z, true);
                         return true;
                     } else
                     {

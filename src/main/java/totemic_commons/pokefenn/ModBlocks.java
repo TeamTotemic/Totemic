@@ -43,7 +43,6 @@ public final class ModBlocks
         totemSapling = new BlockCedarSapling();
         totemLeaves = new BlockCedarLeaves();
         totemTorch = new BlockTotemTorch();
-        //flameParticle = new BlockFlameParticle();
         drum = new BlockDrum();
         windChime = new BlockWindChime();
         redCedarPlank = new BlockCedarPlank();
@@ -57,7 +56,6 @@ public final class ModBlocks
         GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);
         GameRegistry.registerBlock(totemLeaves, Strings.TOTEM_LEAVES_NAME);
         GameRegistry.registerBlock(totemTorch, Strings.TOTEM_TORCH_NAME);
-        //GameRegistry.registerBlock(flameParticle, Strings.FLAME_PARTICLE_NAME);
         GameRegistry.registerBlock(drum, Strings.DRUM_NAME);
         GameRegistry.registerBlock(windChime, Strings.WIND_CHIME_NAME);
         GameRegistry.registerBlock(redCedarPlank, Strings.RED_CEDAR_PLANK_NAME);
@@ -71,9 +69,6 @@ public final class ModBlocks
         Blocks.fire.setFireInfo(totemLeaves, 30, 60);
         Blocks.fire.setFireInfo(totemBase, 5, 5);
         Blocks.fire.setFireInfo(totemPole, 5, 5);
-
-        //GameRegistry.registerBlock(chlorophyll, Strings.FLUID_CHLOROPHYLL_NAME);
-        //chlorophyll = new BlockChlorophyll();
     }
 
 }

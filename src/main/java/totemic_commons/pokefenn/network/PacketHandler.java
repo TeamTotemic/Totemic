@@ -13,7 +13,6 @@ import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.network.server.PacketMouseWheel;
-import totemic_commons.pokefenn.network.server.PacketServerBlessingSync;
 
 /**
  * Created by Pokefenn.
@@ -33,7 +32,6 @@ public class PacketHandler
     public static void init()
     {
         registerPacket(PacketJingle.class, Side.SERVER);
-        registerPacket(PacketServerBlessingSync.class, Side.SERVER);
         registerPacket(PacketClientBlessingSync.class, Side.CLIENT);
         registerPacket(PacketWindChime.class, Side.CLIENT);
         registerPacket(PacketSound.class, Side.CLIENT);

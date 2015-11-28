@@ -105,24 +105,4 @@ public class BlockWindChime extends BlockTileTotemic
     {
         return new TileWindChime();
     }
-
-    /*
-    @Override
-    public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 60;
-    }
-
-    @Override
-    public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return world.getBlock(x, y + 1, z) != null && world.getBlock(x, y, z).getMaterial() == Material.leaves ? 5 : 4;
-    }
-
-    @Override
-    public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 7;
-    }
-    */
 }

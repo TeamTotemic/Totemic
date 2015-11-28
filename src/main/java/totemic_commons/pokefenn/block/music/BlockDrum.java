@@ -84,28 +84,9 @@ public class BlockDrum extends BlockTileTotemic
         return true;
     }
 
-    /*
     @Override
-    public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
+    public IIcon getIcon(int side, int meta)
     {
-        return 75;
-    }
-
-    @Override
-    public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return world.getBlockMetadata(x, y, z) == 0 ? 6 : 12;
-    }
-
-    @Override
-    public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 5;
-    }
-    */
-
-    @Override
-    public IIcon getIcon(int side, int meta) {
         return Blocks.log.getIcon(2, 0);
     }
 

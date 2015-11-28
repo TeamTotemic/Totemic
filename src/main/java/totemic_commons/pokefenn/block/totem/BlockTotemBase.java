@@ -33,8 +33,6 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
  */
 public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsage
 {
-    //private Random rand = new Random();
-
     public BlockTotemBase()
     {
         super(Material.wood);
@@ -118,7 +116,7 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
             {
                 if(tileTotemBase.isMusicSelecting && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingCeremonyEffect() && !tileTotemBase.isDoingStartup())
                 {
-                    player.addChatComponentMessage(new ChatComponentText("No Music for selector."));
+                    player.addChatComponentMessage(new ChatComponentText("No Musical selection"));
                     return true;
                 }
                 if(tileTotemBase.isMusicSelecting)

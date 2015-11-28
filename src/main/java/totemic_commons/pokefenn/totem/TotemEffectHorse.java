@@ -36,8 +36,4 @@ public class TotemEffectHorse extends TotemEffect
         }
 
     }
-
-
 }
-
-

@@ -24,8 +24,7 @@ public class CeremonyNight extends Ceremony
     {
         if(world.isDaytime())
         {
-            for(WorldServer ws: MinecraftServer.getServer().worldServers)
-                ws.setWorldTime((13000));
+            world.setWorldTime(13000);
         }
     }
 }

@@ -103,26 +103,6 @@ public class ItemFlute extends ItemMusic
         return stack.getItemDamage() == 1;
     }
 
-    /*
-    @Override
-    public int getMaximumMusic(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 90;
-    }
-
-    @Override
-    public int getMusicOutput(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 5;
-    }
-
-    @Override
-    public int getRange(World world, int x, int y, int z, boolean isFromPlayer, EntityPlayer player)
-    {
-        return 7;
-    }
-    */
-
     public void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
     {
         world.func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.5D, 0.0D, 0.5D, 0.0D);
