@@ -5,8 +5,11 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import totemic_commons.pokefenn.item.equipment.music.ItemJingleDress;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.util.ItemUtil;
 
 /**
  * Created by Pokefenn.
@@ -42,8 +45,9 @@ public class PacketJingle implements IMessage, IMessageHandler<PacketJingle, IMe
     public IMessage onMessage(PacketJingle message, MessageContext ctx)
     {
         EntityPlayer player = ctx.getServerHandler().playerEntity;
+        ItemStack armor = player.getCurrentArmor(1);
 
-        if(player.getCurrentArmor(1) != null && player.getCurrentArmor(1).getItem() instanceof ItemJingleDress)
+        if(armor != null && armor.getItem() instanceof ItemJingleDress)
         {
             int plusTime = 0;
 
@@ -60,7 +64,10 @@ public class PacketJingle implements IMessage, IMessageHandler<PacketJingle, IMe
             }
 
             if(plusTime != 0)
-                player.getEntityData().setByte(Strings.JINGLE_TIME, (byte)(plusTime + player.getEntityData().getByte(Strings.JINGLE_TIME)));
+            {
+                NBTTagCompound tag = ItemUtil.getOrCreateTag(armor);
+                tag.setByte(Strings.INSTR_TIME_KEY, (byte)(plusTime + tag.getByte(Strings.INSTR_TIME_KEY)));
+            }
         }
 
         return null;

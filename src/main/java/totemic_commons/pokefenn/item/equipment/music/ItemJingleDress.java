@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
@@ -73,13 +74,14 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
                     PacketHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
         } else
         {
-            if(world.getWorldTime() % 20L == 0)
+            NBTTagCompound tag = itemStack.getTagCompound();
+            if(world.getWorldTime() % 20L == 0 && tag != null)
             {
-                int time = player.getEntityData().getByte(Strings.JINGLE_TIME);
+                int time = tag.getByte(Strings.INSTR_TIME_KEY);
                 if(time >= 3 || (player.isPotionActive(Potion.moveSpeed) && time >= 2))
                 {
                     playMusic(world, player, itemStack, player.isSneaking());
-                    player.getEntityData().removeTag(Strings.JINGLE_TIME);
+                    tag.setByte(Strings.INSTR_TIME_KEY, (byte)0);
                 }
             }
         }

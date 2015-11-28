@@ -46,7 +46,7 @@ public class ItemFlute extends ItemMusic
             int z = (int) player.posZ;
 
             NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
-            int time = tag.getInteger(Strings.FLUTE_TIME_KEY);
+            int time = tag.getInteger(Strings.INSTR_TIME_KEY);
 
             time++;
             if(time >= 5 && !player.isSneaking())
@@ -77,7 +77,7 @@ public class ItemFlute extends ItemMusic
 
                 }
 
-            tag.setInteger(Strings.FLUTE_TIME_KEY, time);
+            tag.setInteger(Strings.INSTR_TIME_KEY, time);
         }
         return itemStack;
     }

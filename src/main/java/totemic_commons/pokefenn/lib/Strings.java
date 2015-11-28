@@ -50,10 +50,7 @@ public final class Strings
 
     //ItemStack NBT keys
     public static final String KNIFE_TOTEM_KEY = "totem";
-    public static final String FLUTE_TIME_KEY = "time";
-
-    //Entity NBT keys
-    public static final String JINGLE_TIME = "totemic:jingleTime";
+    public static final String INSTR_TIME_KEY = "time";
 
     //Old NBT stuff
     public static final String NBT_TE_STATE_KEY = "teState";
