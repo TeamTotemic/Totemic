@@ -1,8 +1,6 @@
 package totemic_commons.pokefenn.ceremony;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.WorldInfo;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -13,18 +11,21 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
  */
 public class CeremonyRain extends Ceremony
 {
-    public CeremonyRain(String modid, String name, int musicNeeded, CeremonyTime maxStartupTime, CeremonyTime effectTime, int musicPer5,
-            MusicInstrument... instruments)
+    public final boolean doRain;
+
+    public CeremonyRain(boolean doRain, String modid, String name, int musicNeeded, CeremonyTime maxStartupTime, CeremonyTime effectTime,
+            int musicPer5, MusicInstrument... instruments)
     {
         super(modid, name, musicNeeded, maxStartupTime, effectTime, musicPer5, instruments);
+        this.doRain = doRain;
     }
 
     @Override
     public void effect(World world, int x, int y, int z)
     {
-        if(!world.isRaining())
+        if(world.isRaining() != doRain)
         {
-            world.getWorldInfo().setRaining(true);
+            world.getWorldInfo().setRaining(doRain);
         }
     }
 }

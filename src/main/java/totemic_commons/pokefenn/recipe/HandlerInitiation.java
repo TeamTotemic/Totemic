@@ -59,9 +59,9 @@ public class HandlerInitiation
     {
         fluteCeremony = Totemic.api.addCeremony(new CeremonyFluteInfusion("totemic", "flute", 140, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
                 flute, flute));
-        rainDance = Totemic.api.addCeremony(new CeremonyRain("totemic", "rainDance", 130, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
+        rainDance = Totemic.api.addCeremony(new CeremonyRain(true, "totemic", "rainDance", 130, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
                 rattle, flute));
-        drought = Totemic.api.addCeremony(new CeremonyRainRemoval("totemic", "drought", 130, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
+        drought = Totemic.api.addCeremony(new CeremonyRain(false, "totemic", "drought", 130, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
                 flute, rattle));
         ghostDance = Totemic.api.addCeremony(new CeremonyGhostDance("totemic", "ghostDance", 160, CeremonyTime.SHORT_MEDIUM, CeremonyTime.INSTANT, 0,
                 rattle, rattle));
