@@ -13,6 +13,7 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.lib.Strings;
@@ -20,6 +21,7 @@ import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
+import totemic_commons.pokefenn.util.ItemUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
@@ -28,13 +30,10 @@ import totemic_commons.pokefenn.util.TotemUtil;
  */
 public class ItemFlute extends ItemMusic
 {
-    public int time;
-
     public ItemFlute()
     {
         super(Strings.FLUTE_NAME, HandlerInitiation.flute);
         setMaxStackSize(1);
-        time = 0;
     }
 
     @Override
@@ -46,12 +45,15 @@ public class ItemFlute extends ItemMusic
             int y = (int) player.posY;
             int z = (int) player.posZ;
 
+            NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
+            int time = tag.getInteger(Strings.FLUTE_TIME_KEY);
+
             time++;
             if(time >= 5 && !player.isSneaking())
             {
                 int bonusMusic = (itemStack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
                 time = 0;
-                TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.flute, 0, bonusMusic);
+                TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0, bonusMusic);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
                 PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
             }
@@ -61,9 +63,8 @@ public class ItemFlute extends ItemMusic
                 TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
                 PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
-                return itemStack;
             }
-            if(itemStack.getItemDamage() == 1)
+            if(itemStack.getItemDamage() == 1 && !player.isSneaking())
                 for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
                 {
                     if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
@@ -75,6 +76,8 @@ public class ItemFlute extends ItemMusic
                     }
 
                 }
+
+            tag.setInteger(Strings.FLUTE_TIME_KEY, time);
         }
         return itemStack;
     }
