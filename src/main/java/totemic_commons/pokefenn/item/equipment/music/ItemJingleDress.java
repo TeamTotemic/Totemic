@@ -77,11 +77,11 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
             NBTTagCompound tag = itemStack.getTagCompound();
             if(world.getWorldTime() % 20L == 0 && tag != null)
             {
-                int time = tag.getByte(Strings.INSTR_TIME_KEY);
+                int time = tag.getInteger(Strings.INSTR_TIME_KEY);
                 if(time >= 3 || (player.isPotionActive(Potion.moveSpeed) && time >= 2))
                 {
                     playMusic(world, player, itemStack, player.isSneaking());
-                    tag.setByte(Strings.INSTR_TIME_KEY, (byte)0);
+                    tag.setInteger(Strings.INSTR_TIME_KEY, 0);
                 }
             }
         }

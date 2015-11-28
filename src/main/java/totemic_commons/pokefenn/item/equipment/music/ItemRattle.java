@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.item.equipment.music;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -12,6 +13,7 @@ import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
+import totemic_commons.pokefenn.util.ItemUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
@@ -20,16 +22,13 @@ import totemic_commons.pokefenn.util.TotemUtil;
  */
 public class ItemRattle extends ItemMusic
 {
-    public int time;
-
     //This int will hold the amount of nearby poles, which are sticks and buffalo heads. Each pole will increase the music made.
-    public int headPoles;
+    //public int headPoles;
 
     public ItemRattle()
     {
         super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.rattle);
-        time = 0;
-        headPoles = 0;
+        setMaxStackSize(1);
     }
 
     /*@Override
@@ -42,38 +41,39 @@ public class ItemRattle extends ItemMusic
     }*/
 
     @Override
-    public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack itemStack)
+    public boolean onEntitySwing(EntityLivingBase entity, ItemStack stack)
     {
-        World world = entityLiving.worldObj;
-        int x = (int) entityLiving.posX;
-        int y = (int) entityLiving.posY;
-        int z = (int) entityLiving.posZ;
+        World world = entity.worldObj;
+        int x = (int) entity.posX;
+        int y = (int) entity.posY;
+        int z = (int) entity.posZ;
 
-        if(!world.isRemote)
+        if(!world.isRemote && entity instanceof EntityPlayer && !(entity instanceof FakePlayer))
         {
-            if(entityLiving instanceof EntityPlayer && !(entityLiving instanceof FakePlayer))
+            EntityPlayer player = (EntityPlayer) entity;
+            MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
+            if(block == null)
             {
-                EntityPlayer player = (EntityPlayer) entityLiving;
-                MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
-                if(block == null)
+                NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
+                int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+
+                time++;
+                if(time >= 4 && !player.isSneaking())
                 {
-                    time++;
-                    if(time >= 4 && !player.isSneaking())
-                    {
-                        time = 0;
-                        TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.rattle, 0, 0);
-                        particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                        PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), ((EntityPlayer) entityLiving).worldObj.provider.dimensionId, x, y, z);
-                        return false;
-                    }
-                    if(time >= 4 && player.isSneaking())
-                    {
-                        time = 0;
-                        TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
-                        particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                        PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), ((EntityPlayer) entityLiving).worldObj.provider.dimensionId, x, y, z);
-                    }
+                    time = 0;
+                    TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0, 0);
+                    particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
+                    PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), ((EntityPlayer) entity).worldObj.provider.dimensionId, x, y, z);
                 }
+                if(time >= 4 && player.isSneaking())
+                {
+                    time = 0;
+                    TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
+                    particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
+                    PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), ((EntityPlayer) entity).worldObj.provider.dimensionId, x, y, z);
+                }
+
+                tag.setInteger(Strings.INSTR_TIME_KEY, time);
             }
         }
 
