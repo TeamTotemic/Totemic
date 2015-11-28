@@ -17,6 +17,7 @@ public class CraftingRecipes
 {
     public static IRecipe totemWhittlingKnife;
 
+    public static IRecipe totemicStaff;
     public static IRecipe barkStripper;
 
     public static IRecipe drum;
@@ -37,7 +38,7 @@ public class CraftingRecipes
 
     static void shapedRecipes()
     {
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.totemicStaff,
+        GameRegistry.addRecipe(totemicStaff = new ShapedOreRecipe(ModItems.totemicStaff,
                 " ls", " s ", "s l", ('s'), "stickWood", ('l'), "treeLeaves"));
         GameRegistry.addRecipe(totemWhittlingKnife = new ShapedOreRecipe(ModItems.totemWhittlingKnife,
                 "  i", " sf", "s  ", ('s'), "stickWood", ('i'), "ingotIron", ('f'), Items.flint));

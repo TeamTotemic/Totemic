@@ -33,7 +33,7 @@ public final class LexiconData
     public static LexiconCategory categoryTotems;
     public static LexiconCategory categoryInstruments;
 
-    //public static LexiconEntry cedarTree;
+    public static LexiconEntry cedarTree;
     public static LexiconEntry buffaloBasic;
 
     public static LexiconEntry instruments;
@@ -53,6 +53,7 @@ public final class LexiconData
 
     public static LexiconEntry creatingTotems;
 
+    public static LexiconEntry totemicStaff;
     public static LexiconEntry barkStripper;
     //public static LexiconEntry blowDart;
 
@@ -70,8 +71,8 @@ public final class LexiconData
         //TotemicAPI.addCategory(categoryLore = new LexiconCategory(Totempedia.CATEGORY_LORE));
 
         //Basics
-        //cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics);
-        //cedarTree.setLexiconPages(new PageText("0"), new PageText("1"));
+        cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics);
+        cedarTree.setLexiconPages(new PageText("0")/*, new PageText("1")*/);
 
         buffaloBasic = new BLexiconEntry(Totempedia.BUFFALO_BASIC, categoryBasics);
         buffaloBasic.setLexiconPages(new PageText("0"));
@@ -81,7 +82,7 @@ public final class LexiconData
 
         //Instruments
         instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryInstruments);
-        instruments.setLexiconPages(new PageText("0"), new PageText("1"));
+        instruments.setLexiconPages(new PageText("0")/*, new PageText("1")*/);
 
         windChime = new BLexiconEntry(Totempedia.WIND_CHIME, categoryInstruments);
         windChime.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.windChime));
@@ -90,10 +91,10 @@ public final class LexiconData
         drum.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.drum));
 
         flute = new BLexiconEntry(Totempedia.FLUTE, categoryInstruments);
-        flute.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.flute));
+        flute.setLexiconPages(new PageText("0"), /*new PageText("1"),*/ new PageCraftingRecipe("2", CraftingRecipes.flute));
 
         rattle = new BLexiconEntry(Totempedia.RATTLE, categoryInstruments);
-        rattle.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.ceremonialRattle));
+        rattle.setLexiconPages(new PageText("0"), /*new PageText("1"),*/ new PageCraftingRecipe("2", CraftingRecipes.ceremonialRattle));
 
         jingleDress = new BLexiconEntry(Totempedia.JINGLE_DRESS, categoryInstruments);
         jingleDress.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.jingleDress));
@@ -121,6 +122,9 @@ public final class LexiconData
         fluteInfusion.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.fluteCeremony));
 
         //Tools
+        totemicStaff = new BLexiconEntry(Totempedia.TOTEMIC_STAFF, categoryTools);
+        totemicStaff.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.totemicStaff));
+
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
         barkStripper.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.barkStripper));
 

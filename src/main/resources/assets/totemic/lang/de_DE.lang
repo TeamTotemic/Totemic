@@ -124,7 +124,7 @@ totemic.category.ceremonies=Zeremonien
 totemic.category.instruments=Musikinstrumente
 
 totemic.entry.cedarTree=Der Rote Zedernbaum
-totemic.page.cedarTree0=
+totemic.page.cedarTree0=The &1Red Cedar Tree&0 is a large tree that has magical properties, so its wood is especially useful for carving Totem poles out of. It can be obtained by infusing mundane saplings with musical energy in the &4Zaphkiel Waltz ceremony&0.<br>Red Cedar wood can be used like regular wood, and you can use a &4bark stripper&0 to remove its bark.
 totemic.page.cedarTree1=
 
 totemic.entry.buffaloBasic=Büffel
@@ -194,6 +194,10 @@ totemic.page.zaphkielWaltz1=&oGothisch elegant&r
 totemic.entry.fluteInfusion=Flötenverzauberung
 totemic.page.fluteInfusion0=The &4Ceremony of Flute Imbuation&0 is a way to infuse a regular &1Flute&0 with melodic energy, giving it special properties. Just drop the Flute on the ground while performing the Ceremony.<br>The melody of an &1Infused Flute&0 is quite more melodic than a mundane Flute sound, so much that &1Animals&0 and &1Villagers&0 cannot resist it and will be attracted to it. Its effects on Totems is more potent as well.
 totemic.page.fluteInfusion1=&oStärker als Twilicane&r
+
+totemic.entry.totemicStaff=Totemstab
+totemic.page.totemicStaff0=The &1Totemic Staff&0 can be used on various blocks to give you information about them.<br>Also, left-clicking it on a Totem Base will cancel ceremonies and musical selections on it.
+totemic.page.totemicStaff1=&oGarantiert kein Schraubenschlüssel&r
 
 totemic.entry.barkStripper=Entrinder
 totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to remove the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log.
