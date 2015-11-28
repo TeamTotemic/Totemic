@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
+import net.minecraft.util.StringUtils;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -15,13 +16,8 @@ import totemic_commons.pokefenn.lib.Strings;
  */
 public class ItemTotemic extends Item
 {
-    protected boolean registerIcons = true;
-    protected boolean creativeTab = true;
-
-    public ItemTotemic(String name)
+    public ItemTotemic(String name, boolean creativeTab)
     {
-        super();
-        setMaxStackSize(64);
         setNoRepair();
         if(!name.equals(""))
             setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
@@ -29,11 +25,16 @@ public class ItemTotemic extends Item
             setCreativeTab(Totemic.tabsTotem);
     }
 
+    public ItemTotemic(String name)
+    {
+        this(name, true);
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
-        if(registerIcons && !hasSubtypes)
+        if(!hasSubtypes)
             itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
     }
 
