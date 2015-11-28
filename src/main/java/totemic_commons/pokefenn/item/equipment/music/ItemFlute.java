@@ -1,12 +1,16 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
@@ -30,6 +34,10 @@ import totemic_commons.pokefenn.util.TotemUtil;
  */
 public class ItemFlute extends ItemMusic
 {
+    //Entities that have been tempted by the infused flute get stored in this weak set
+    //so as to avoid adding the same AI task multiple times
+    private final Set<Entity> temptedEntities = Collections.newSetFromMap(new WeakHashMap<Entity, Boolean>());
+
     public ItemFlute()
     {
         super(Strings.FLUTE_NAME, HandlerInitiation.flute);
@@ -69,10 +77,13 @@ public class ItemFlute extends ItemMusic
                 {
                     if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
                     {
-                        if(entity instanceof EntityAnimal)
-                            ((EntityAnimal) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 1, this, false));
-                        if(entity instanceof EntityVillager)
-                            ((EntityVillager) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, 0.5, this, false));
+                        if(temptedEntities.contains(entity))
+                            continue;
+
+                        double d = (entity instanceof EntityAnimal) ? 1 : 0.5;
+                        ((EntityLiving) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, d, this, false));
+
+                        temptedEntities.add(entity);
                     }
 
                 }
