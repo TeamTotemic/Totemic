@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -12,6 +11,7 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.block.tipi.BlockTipi;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.server.PacketMouseWheel;
+import totemic_commons.pokefenn.util.ClientUtil;
 
 /**
  * Created by Pokefenn.
@@ -47,7 +47,7 @@ public class PlayerInteract
 
         if(event.dwheel != 0)
         {
-            EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+            EntityPlayer player = ClientUtil.getPlayer();
             if(player.isSneaking() && player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemWhittlingKnife)
             {
                 PacketHandler.sendToServer(new PacketMouseWheel(event.dwheel > 0));
