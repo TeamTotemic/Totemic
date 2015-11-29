@@ -1,21 +1,20 @@
 package totemic_commons.pokefenn.network.client;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+import totemic_commons.pokefenn.network.PacketBase;
 import totemic_commons.pokefenn.util.ClientUtil;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketSound implements IMessage, IMessageHandler<PacketSound, IMessage>
+public class PacketSound extends PacketBase<PacketSound>
 {
-    public int x, y, z;
-    public String type;
+    private int x, y, z;
+    private String type;
 
     public PacketSound()
     {
@@ -49,12 +48,10 @@ public class PacketSound implements IMessage, IMessageHandler<PacketSound, IMess
     }
 
     @Override
-    public IMessage onMessage(PacketSound message, MessageContext ctx)
+    protected void handleClient(MessageContext ctx)
     {
         EntityPlayer player = ClientUtil.getPlayer();
 
-        player.worldObj.playSound(message.x, message.y, message.z, "totemic:" + message.type, 1.0F, 1.0F, false);
-
-        return null;
+        player.worldObj.playSound(x, y, z, "totemic:" + type, 1.0F, 1.0F, false);
     }
 }

@@ -1,23 +1,22 @@
 package totemic_commons.pokefenn.network.server;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import totemic_commons.pokefenn.item.equipment.music.ItemJingleDress;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.PacketBase;
 import totemic_commons.pokefenn.util.ItemUtil;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketJingle implements IMessage, IMessageHandler<PacketJingle, IMessage>
+public class PacketJingle extends PacketBase<PacketJingle>
 {
-    public float motionAbs;
+    private float motionAbs;
 
     public PacketJingle()
     {
@@ -42,9 +41,8 @@ public class PacketJingle implements IMessage, IMessageHandler<PacketJingle, IMe
     }
 
     @Override
-    public IMessage onMessage(PacketJingle message, MessageContext ctx)
+    protected void handleServer(EntityPlayerMP player, MessageContext ctx)
     {
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
         ItemStack armor = player.getCurrentArmor(1);
 
         if(armor != null && armor.getItem() instanceof ItemJingleDress)
@@ -53,12 +51,12 @@ public class PacketJingle implements IMessage, IMessageHandler<PacketJingle, IMe
 
             if(!player.isSneaking())
             {
-                if(message.motionAbs > 0.17)
+                if(motionAbs > 0.17)
                     plusTime = 2;
-                else if(message.motionAbs > 0.08)
+                else if(motionAbs > 0.08)
                     plusTime = 1;
             }
-            if(player.isSneaking() && message.motionAbs > 0)
+            if(player.isSneaking() && motionAbs > 0)
             {
                 plusTime = 1;
             }
@@ -69,7 +67,5 @@ public class PacketJingle implements IMessage, IMessageHandler<PacketJingle, IMe
                 tag.setByte(Strings.INSTR_TIME_KEY, (byte)(plusTime + tag.getByte(Strings.INSTR_TIME_KEY)));
             }
         }
-
-        return null;
     }
 }

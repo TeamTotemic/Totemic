@@ -1,21 +1,19 @@
 package totemic_commons.pokefenn.network.client;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import totemic_commons.pokefenn.blessing.BlessingHandler;
+import totemic_commons.pokefenn.network.PacketBase;
 import totemic_commons.pokefenn.util.ClientUtil;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketClientBlessingSync implements IMessage, IMessageHandler<PacketClientBlessingSync, IMessage>
+public class PacketClientBlessingSync extends PacketBase<PacketClientBlessingSync>
 {
-    public String player;
-    public int blessing;
+    private int blessing;
 
     public PacketClientBlessingSync()
     {
@@ -42,12 +40,10 @@ public class PacketClientBlessingSync implements IMessage, IMessageHandler<Packe
     }
 
     @Override
-    public IMessage onMessage(PacketClientBlessingSync message, MessageContext ctx)
+    protected void handleClient(MessageContext ctx)
     {
         EntityPlayer player = ClientUtil.getPlayer();
 
-        BlessingHandler.setBlessing(message.blessing, player.getDisplayName(), player.worldObj);
-
-        return null;
+        BlessingHandler.setBlessing(blessing, player.getDisplayName(), player.worldObj);
     }
 }

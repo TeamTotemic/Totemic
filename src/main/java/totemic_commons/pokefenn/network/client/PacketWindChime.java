@@ -1,10 +1,9 @@
 package totemic_commons.pokefenn.network.client;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+import totemic_commons.pokefenn.network.PacketBase;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.util.ClientUtil;
 
@@ -12,10 +11,10 @@ import totemic_commons.pokefenn.util.ClientUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketWindChime implements IMessage, IMessageHandler<PacketWindChime, IMessage>
+public class PacketWindChime extends PacketBase<PacketWindChime>
 {
-    public int x, y, z;
-    public boolean isPlaying;
+    private int x, y, z;
+    private boolean isPlaying;
 
     public PacketWindChime()
     {
@@ -49,17 +48,15 @@ public class PacketWindChime implements IMessage, IMessageHandler<PacketWindChim
     }
 
     @Override
-    public IMessage onMessage(PacketWindChime message, MessageContext ctx)
+    protected void handleClient(MessageContext ctx)
     {
         EntityPlayer player = ClientUtil.getPlayer();
 
-        if(player.worldObj.getTileEntity(message.x, message.y, message.z) instanceof TileWindChime)
+        if(player.worldObj.getTileEntity(x, y, z) instanceof TileWindChime)
         {
-            TileWindChime tileWindChime = (TileWindChime) player.worldObj.getTileEntity(message.x, message.y, message.z);
+            TileWindChime tileWindChime = (TileWindChime) player.worldObj.getTileEntity(x, y, z);
 
-            tileWindChime.isPlaying = message.isPlaying;
+            tileWindChime.isPlaying = isPlaying;
         }
-
-        return null;
     }
 }
