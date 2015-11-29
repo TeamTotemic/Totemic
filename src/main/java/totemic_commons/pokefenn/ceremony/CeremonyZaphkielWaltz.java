@@ -80,7 +80,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
                             if(world.rand.nextInt(4) == 0)
                             {
                                 block.updateTick(world, x + i, y + j, z + k, world.rand);
-                                spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5);
+                                spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5); //TODO: This sends way too many packets
                             }
                         }
                     }

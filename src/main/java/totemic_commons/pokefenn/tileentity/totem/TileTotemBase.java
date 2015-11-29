@@ -42,12 +42,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public static final int MAX_EFFECT_MUSIC = 128;
 
     public int totemPoleSize = 0;
-    public int rangeUpgrades = 0;
     public int tier = 1;
-    public int efficiencyFromCeremony = 0;
     public int ceremonyEffectTimer = 0;
     public int dancingEfficiency = 0;
-    public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>();
+    public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>(Totemic.api.getInstruments().size(), 0.75f);
     public final MusicInstrument[] musicSelector = new MusicInstrument[Ceremony.NUM_SELECTORS];
     public Ceremony startupCeremony = null;
     public Ceremony currentCeremony = null;
@@ -57,12 +55,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public boolean isCeremony = false;
     public int continueTimer = 0;
     public int musicForTotemEffect = 0;
-    public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>();
+    public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.getTotems().size(), 0.75f);
     public boolean isDoingEndingEffect = false;
-    public String bindedPlayer = "";
     public TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
     public int totemWoodBonus = 0;
-    public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>();
+    public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.getInstruments().size(), 0.75f);
 
     public TileTotemBase()
     {
@@ -72,8 +69,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     @Override
     public void updateEntity()
     {
-        super.updateEntity();
-
         if(!worldObj.isRemote)
         {
             deprecateMelody();
@@ -559,7 +554,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
         totemPoleSize = nbtTagCompound.getInteger("totemPoleSize");
         tier = nbtTagCompound.getInteger("tier");
-        efficiencyFromCeremony = nbtTagCompound.getInteger("efficiencyFromCeremony");
         currentCeremony = Totemic.api.getCeremony(nbtTagCompound.getString("currentCeremony"));
         dancingEfficiency = nbtTagCompound.getInteger("dancingEfficiency");
         ceremonyEffectTimer = nbtTagCompound.getInteger("ceremonyEffectTimer");
@@ -579,7 +573,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         continueTimer = nbtTagCompound.getInteger("continueTimer");
         musicForTotemEffect = nbtTagCompound.getInteger("musicForTotemEffect");
         isDoingEndingEffect = nbtTagCompound.getBoolean("isDoingEndingEffect");
-        bindedPlayer = nbtTagCompound.getString("bindedPlayer");
         NBTTagList totemIdsTag = nbtTagCompound.getTagList("effects", Constants.NBT.TAG_STRING);
         effects = new TotemEffect[MAX_HEIGHT];
         for(int i = 0; i < totemIdsTag.tagCount(); i++)
@@ -601,7 +594,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         nbtTagCompound.setTag("ceremonyMusic", ceremonyMusicTag);
         nbtTagCompound.setInteger("totemPoleSize", totemPoleSize);
         nbtTagCompound.setInteger("tier", tier);
-        nbtTagCompound.setInteger("efficiencyFromCeremony", efficiencyFromCeremony);
         if(currentCeremony != null)
             nbtTagCompound.setString("currentCeremony", currentCeremony.getName());
         nbtTagCompound.setInteger("ceremonyEffectTimer", ceremonyEffectTimer);
@@ -615,7 +607,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         nbtTagCompound.setInteger("continueTimer", continueTimer);
         nbtTagCompound.setInteger("musicForTotemEffect", musicForTotemEffect);
         nbtTagCompound.setBoolean("isDoingEndingEffect", isDoingEndingEffect);
-        nbtTagCompound.setString("bindedPlayer", bindedPlayer);
         NBTTagList totemIdsTag = new NBTTagList();
         for(TotemEffect effect: effects)
             totemIdsTag.appendTag(new NBTTagString(String.valueOf(effect)));
