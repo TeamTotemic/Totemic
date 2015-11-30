@@ -2,10 +2,12 @@ package totemic_commons.pokefenn.network.client;
 
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import totemic_commons.pokefenn.network.PacketBase;
-import totemic_commons.pokefenn.util.ClientUtil;
 
 /**
  * Created by Pokefenn.
@@ -48,9 +50,10 @@ public class PacketSound extends PacketBase<PacketSound>
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     protected void handleClient(MessageContext ctx)
     {
-        EntityPlayer player = ClientUtil.getPlayer();
+        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 
         player.worldObj.playSound(x, y, z, "totemic:" + type, 1.0F, 1.0F, false);
     }

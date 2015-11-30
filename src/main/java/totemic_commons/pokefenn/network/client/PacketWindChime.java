@@ -1,11 +1,13 @@
 package totemic_commons.pokefenn.network.client;
 
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import totemic_commons.pokefenn.network.PacketBase;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
-import totemic_commons.pokefenn.util.ClientUtil;
 
 /**
  * Created by Pokefenn.
@@ -48,9 +50,10 @@ public class PacketWindChime extends PacketBase<PacketWindChime>
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     protected void handleClient(MessageContext ctx)
     {
-        EntityPlayer player = ClientUtil.getPlayer();
+        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 
         if(player.worldObj.getTileEntity(x, y, z) instanceof TileWindChime)
         {

@@ -4,6 +4,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 /**
@@ -23,7 +24,9 @@ public abstract class PacketBase<T extends PacketBase<T>> implements IMessage, I
         return null;
     }
 
-    protected void handleClient(MessageContext ctx) {}
     protected void handleServer(EntityPlayerMP player, MessageContext ctx) {}
+
+    @SideOnly(Side.CLIENT)
+    protected void handleClient(MessageContext ctx) {}
 
 }
