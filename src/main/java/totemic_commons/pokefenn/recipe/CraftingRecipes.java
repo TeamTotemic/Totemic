@@ -26,6 +26,7 @@ public class CraftingRecipes
     public static IRecipe ceremonialRattle;
     public static IRecipe jingleDress;
 
+    public static IRecipe bellsIron;
     public static IRecipe tipi;
 
     public static void init()
@@ -50,7 +51,7 @@ public class CraftingRecipes
                 "iii", "s s", "s s", ('i'), "ingotIron", ('s'), "stickWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.totempedia,
                 "bpb", "bpb", "bpb", ('b'), "logWood", ('p'), Items.paper));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.subItems, 3, ItemTotemicItems.bellsIron),
+        GameRegistry.addRecipe(bellsIron = new ShapedOreRecipe(new ItemStack(ModItems.subItems, 3, ItemTotemicItems.bellsIron),
                 " n ", "nnn", " n ", ('n'), "nuggetIron"));
         GameRegistry.addRecipe(new ShapedOreRecipe(Items.iron_ingot,
                 "nnn", "nnn", "nnn", ('n'), "nuggetIron"));

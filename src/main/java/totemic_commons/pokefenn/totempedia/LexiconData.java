@@ -97,7 +97,8 @@ public final class LexiconData
         rattle.setLexiconPages(new PageText("0"), /*new PageText("1"),*/ new PageCraftingRecipe("2", CraftingRecipes.ceremonialRattle));
 
         jingleDress = new BLexiconEntry(Totempedia.JINGLE_DRESS, categoryInstruments);
-        jingleDress.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.jingleDress));
+        jingleDress.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.jingleDress),
+                new PageCraftingRecipe("3", CraftingRecipes.bellsIron));
 
         //Ceremonies
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
@@ -119,7 +120,7 @@ public final class LexiconData
         zaphkielWaltz.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.zaphkielWaltz));
 
         fluteInfusion = new BLexiconEntry(Totempedia.FLUTE_INFUSION, categoryCeremony);
-        fluteInfusion.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.fluteCeremony));
+        fluteInfusion.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", HandlerInitiation.fluteCeremony));
 
         //Tools
         totemicStaff = new BLexiconEntry(Totempedia.TOTEMIC_STAFF, categoryTools);

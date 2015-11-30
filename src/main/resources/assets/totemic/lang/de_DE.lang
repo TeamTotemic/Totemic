@@ -153,6 +153,7 @@ totemic.entry.jingleDress=Glockenkleid
 totemic.page.jingleDress0=The &1Jingle Dress&0. One of the most prestigious pieces of clothing available for any &4Totemists&0. It is a leaf Dress adorned with bells. Running around will cause it to play music to all nearby Totem Poles. They say the faster you run the more music it creates, and a speed potion increases it ten fold! (Although one has to wonder about the accuracy of these sayings).
 totemic.page.jingleDress1=Sneaking around while wearing the dress is also possible. The sound of this instrument is highly melodic, meaning that it produces a large amount if played correctly, and &1Totems&0 can also accept a high amount of the &4Musical Melody&0 from it.
 totemic.page.jingleDress2=
+totemic.page.jingleDress3=
 
 totemic.entry.flute=Flöte
 totemic.page.flute0=Sometimes a &1Flute&0 can be one of the most simple and effective instruments available. Unlike other instruments, the &1Flute&0 simply plays music without any complication. Because of its simplicity, it is not known to be the most melodic instrument, meaning that &4Totems&0 may not accept very much of the melody. When sneaking, it can be used to select a &4Ceremony&0 for any nearby &4Totem Poles&0
@@ -192,8 +193,9 @@ totemic.page.zaphkielWaltz0=The &4Zaphkiel Waltz&0 is a strong growth ceremony. 
 totemic.page.zaphkielWaltz1=&oGothisch elegant&r
 
 totemic.entry.fluteInfusion=Flötenverzauberung
-totemic.page.fluteInfusion0=The &4Ceremony of Flute Imbuation&0 is a way to infuse a regular &1Flute&0 with melodic energy, giving it special properties. Just drop the Flute on the ground while performing the Ceremony.<br>The melody of an &1Infused Flute&0 is quite more melodic than a mundane Flute sound, so much that &1Animals&0 and &1Villagers&0 cannot resist it and will be attracted to it. Its effects on Totems is more potent as well.
-totemic.page.fluteInfusion1=&oStärker als Twilicane&r
+totemic.page.fluteInfusion0=The &4Ceremony of Flute Imbuation&0 is a way to infuse a regular &1Flute&0 with melodic energy, giving it special properties. Just drop the Flute on the ground while performing the Ceremony.
+totemic.page.fluteInfusion1=The melody of an &1Infused Flute&0 is quite more melodic than a mundane Flute sound, so much that &1Animals&0 and &1Villagers&0 cannot resist it and will be attracted to it. Its effects on Totems is more potent as well.
+totemic.page.fluteInfusion2=&oStärker als Twilicane&r
 
 totemic.entry.totemicStaff=Totemstab
 totemic.page.totemicStaff0=The &1Totemic Staff&0 can be used on various blocks to give you information about them.<br>Also, left-clicking it on a Totem Base will cancel ceremonies and musical selections on it.
