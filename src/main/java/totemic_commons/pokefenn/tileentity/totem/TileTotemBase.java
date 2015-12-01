@@ -402,6 +402,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         dancingEfficiency = 0;
 
         ceremonyMusic.clear();
+        totalCeremonyMelody = 0;
         timesPlayed.clear();
         if(doResetMusicSelector)
             Arrays.fill(musicSelector, null);
@@ -565,6 +566,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             if(instr != null)
                 ceremonyMusic.put(instr, ceremonyMusicTag.getInteger(key));
         }
+        resetMelody();
         startupCeremony = Totemic.api.getCeremony(nbtTagCompound.getString("tryingCeremonyID"));
         totalCeremonyMelody = nbtTagCompound.getInteger("totalCeremonyMelody");
         isMusicSelecting = nbtTagCompound.getBoolean("isMusicSelecting");

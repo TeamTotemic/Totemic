@@ -9,12 +9,10 @@ public class TileTotemic extends TileEntity
 {
 
     protected ForgeDirection orientation;
-    protected byte state;
     protected String customName;
 
     public TileTotemic()
     {
-        state = 0;
         customName = "";
         orientation = ForgeDirection.SOUTH;
     }
@@ -28,17 +26,6 @@ public class TileTotemic extends TileEntity
     public void setOrientation(int orientation)
     {
         this.orientation = ForgeDirection.getOrientation(orientation);
-    }
-
-    public short getState()
-    {
-        return state;
-    }
-
-    public void setState(byte state)
-    {
-
-        this.state = state;
     }
 
     public boolean hasCustomName()
@@ -73,11 +60,6 @@ public class TileTotemic extends TileEntity
             orientation = ForgeDirection.getOrientation(nbtTagCompound.getByte(Strings.NBT_TE_DIRECTION_KEY));
         }
 
-        if(nbtTagCompound.hasKey(Strings.NBT_TE_STATE_KEY))
-        {
-            state = nbtTagCompound.getByte(Strings.NBT_TE_STATE_KEY);
-        }
-
         if(nbtTagCompound.hasKey(Strings.NBT_TE_CUSTOM_NAME))
         {
             customName = nbtTagCompound.getString(Strings.NBT_TE_CUSTOM_NAME);
@@ -90,7 +72,6 @@ public class TileTotemic extends TileEntity
         super.writeToNBT(nbtTagCompound);
 
         nbtTagCompound.setByte(Strings.NBT_TE_DIRECTION_KEY, (byte) orientation.ordinal());
-        nbtTagCompound.setByte(Strings.NBT_TE_STATE_KEY, state);
 
         if(this.hasCustomName())
         {
