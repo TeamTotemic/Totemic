@@ -64,7 +64,7 @@ public class BlockWindChime extends BlockTileTotemic
     {
         TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(x, y, z);
 
-        if(!world.isRemote && player.isSneaking() && !tileWindChime.isPlaying && tileWindChime.canPlay)
+        if(!world.isRemote && player.isSneaking() && !tileWindChime.isPlaying() && tileWindChime.canPlay)
         {
             tileWindChime.canPlay = false;
             PacketHandler.sendAround(new PacketSound(x, y, z, "windChime"), world.getTileEntity(x, y, z));

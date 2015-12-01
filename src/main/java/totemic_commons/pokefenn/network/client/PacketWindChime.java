@@ -16,19 +16,17 @@ import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 public class PacketWindChime extends PacketBase<PacketWindChime>
 {
     private int x, y, z;
-    private boolean isPlaying;
 
     public PacketWindChime()
     {
 
     }
 
-    public PacketWindChime(int x, int y, int z, boolean isPlaying)
+    public PacketWindChime(int x, int y, int z)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.isPlaying = isPlaying;
     }
 
     @Override
@@ -37,7 +35,6 @@ public class PacketWindChime extends PacketBase<PacketWindChime>
         this.x = buf.readInt();
         this.y = buf.readShort();
         this.z = buf.readInt();
-        this.isPlaying = buf.readBoolean();
     }
 
     @Override
@@ -46,7 +43,6 @@ public class PacketWindChime extends PacketBase<PacketWindChime>
         buf.writeInt(x);
         buf.writeShort(y);
         buf.writeInt(z);
-        buf.writeBoolean(isPlaying);
     }
 
     @Override
@@ -59,7 +55,7 @@ public class PacketWindChime extends PacketBase<PacketWindChime>
         {
             TileWindChime tileWindChime = (TileWindChime) player.worldObj.getTileEntity(x, y, z);
 
-            tileWindChime.isPlaying = isPlaying;
+            tileWindChime.setPlaying(true);
         }
     }
 }

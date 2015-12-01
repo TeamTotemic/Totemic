@@ -51,7 +51,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         bindTexture(Resources.TEXTURE_WIND_CHIME);
 
-        if(tileEntity.isPlaying)
+        if(tileEntity.isPlaying())
         {
             if(tileEntity.getWorldObj().getWorldTime() % 2L == 0)
             {

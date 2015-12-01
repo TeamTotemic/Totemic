@@ -21,7 +21,7 @@ import totemic_commons.pokefenn.util.TotemUtil;
  */
 public class TileWindChime extends TileTotemic
 {
-    public boolean isPlaying;
+    private boolean isPlaying;
     public int currentTime;
     public int cooldownPassed;
     public boolean canPlay;
@@ -54,21 +54,22 @@ public class TileWindChime extends TileTotemic
             else if(currentRotation >= 4F)
                 currentRotation = 4F;
 
-            if(worldObj.getWorldTime() % 40L == 0)
-                if(isPlaying)
-                    world.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 1.0F, 1.0F, false);
+            if(isPlaying && worldObj.getWorldTime() % 40L == 0)
+            {
+                world.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 1.0F, 1.0F, false);
+                world.spawnParticle("note", xCoord + 0.5, yCoord - 0.8, zCoord + 0.5, 0, 0, 0);
+            }
         }
 
         if(isPlaying)
         {
             currentTime++;
-        }
-
-        //This is for how long it can play
-        if(currentTime > 20 * 12)
-        {
-            isPlaying = false;
-            currentTime = 0;
+            //This is for how long it can play
+            if(currentTime >= 20 * 12)
+            {
+                isPlaying = false;
+                currentTime = 0;
+            }
         }
 
         if(!world.isRemote)
@@ -83,19 +84,21 @@ public class TileWindChime extends TileTotemic
 
             Random rand = new Random();
 
-            if(world.getWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
+            if(!isPlaying && world.getWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
             {
-                isPlaying = true;
-                PacketHandler.sendAround(new PacketWindChime(xCoord, yCoord, zCoord, isPlaying), this);
-                int radius = 5;
+                setPlaying(true);
+                int radius = 2;
 
                 for(int i = -radius; i <= radius; i++)
                     for(int j = -radius; j <= radius; j++)
                         for(int k = -radius; k <= radius; k++)
                             if(world.getBlock(xCoord + i, yCoord + j, zCoord + k) == ModBlocks.windChime)
                             {
-                                TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(xCoord + i, yCoord + j, zCoord + k);
-                                tileWindChime.isPlaying = true;
+                                if(rand.nextInt(3) == 0)
+                                {
+                                    TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(xCoord + i, yCoord + j, zCoord + k);
+                                    tileWindChime.setPlaying(true);
+                                }
                             }
             }
 
@@ -105,11 +108,20 @@ public class TileWindChime extends TileTotemic
                     int bonus = world.getBlock(xCoord, yCoord + 1, zCoord).isLeaves(world, xCoord, yCoord + 1, zCoord)
                             ? world.rand.nextInt(3) : 0;
                     TotemUtil.playMusicForCeremony(this, HandlerInitiation.windChime, 0, bonus);
-                    ((WorldServer)world).func_147487_a("note", xCoord + 0.5D, yCoord - 0.8D, zCoord + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
                 }
-
-
         }
+    }
+
+    public void setPlaying(boolean playing)
+    {
+        if(!this.isPlaying && playing && !worldObj.isRemote)
+            PacketHandler.sendAround(new PacketWindChime(xCoord, yCoord, zCoord), this);
+        this.isPlaying = playing;
+    }
+
+    public boolean isPlaying()
+    {
+        return isPlaying;
     }
 
     @Override
