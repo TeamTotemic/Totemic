@@ -46,7 +46,7 @@ public final class Strings
     public static final String TILE_TOTEM_SOCKET = "tileTotemSocket";
 
     //Entities
-    public static final String BUFFALO_NAME = "totemic.buffalo";
+    public static final String BUFFALO_NAME = "buffalo";
 
     //ItemStack NBT keys
     public static final String KNIFE_TOTEM_KEY = "totem";
