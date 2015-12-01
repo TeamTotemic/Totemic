@@ -69,7 +69,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     @Override
     public void updateEntity()
     {
-        if(!worldObj.isRemote)
+        if(!worldObj.isRemote) //SERVER
         {
             deprecateMelody();
             if(worldObj.getWorldTime() % 40L == 0)
@@ -104,18 +104,23 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 totemEffect();
             }
         }
+        else //CLIENT
+        {
+            if(isCeremony)
+                doCeremonyClient();
+        }
     }
 
     public void totemEffect()
     {
         if(totemPoleSize > 0)
         {
-            for(int i = 0; i < totemPoleSize; i++)
+            for(TotemEffect effect: effects)
             {
-                if(effects[i] != null)
+                if(effect != null)
                 {
-                    int[] ranges = getRanges(effects[i]);
-                    effects[i].effect(this, totemPoleSize, ranges[0], ranges[1], musicForTotemEffect, totemWoodBonus, repetitionBonus.get(effects[i]));
+                    int[] ranges = getRanges(effect);
+                    effect.effect(this, totemPoleSize, ranges[0], ranges[1], musicForTotemEffect, totemWoodBonus, repetitionBonus.get(effect));
                 }
             }
         }
@@ -248,6 +253,16 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         }
     }
 
+    public void doCeremonyClient()
+    {
+        if(currentCeremony != null)
+        {
+            currentCeremony.clientEffect(worldObj, xCoord, yCoord, zCoord);
+            if(currentCeremony.getEffectTime() == CeremonyTime.INSTANT)
+                resetAfterCeremony(true);
+        }
+    }
+
     public void doCeremonyEffect(Ceremony cer)
     {
         if(isDoingEndingEffect && cer.getEffectTime() != CeremonyTime.INSTANT)
@@ -265,7 +280,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         else
         {
             isDoingEndingEffect = true;
-            if(canContinueCeremony(cer))
+            if(drainCeremonyMelody(cer))
             {
                 cer.effect(worldObj, xCoord, yCoord, zCoord);
             } else
@@ -414,7 +429,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         Arrays.fill(musicSelector, null);
     }
 
-    public boolean canContinueCeremony(Ceremony cer)
+    public boolean drainCeremonyMelody(Ceremony cer)
     {
         continueTimer++;
         if(continueTimer > 20 * 5)

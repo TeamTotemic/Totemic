@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.ceremony;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.entity.Entity;
@@ -9,7 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
@@ -56,12 +57,39 @@ public class CeremonyZaphkielWaltz extends Ceremony
                                 stack.stackSize--;
                                 item.setEntityItemStack(stack);
                             }
-                            spawnParticles(world, item.posX, item.posY, item.posZ);
                         }
                     }
                 }
             }
         }
+
+        if(world.getWorldTime() % 5L == 0)
+        {
+            for(int i = -radius; i <= radius; i++)
+                for(int j = -radius; j <= radius; j++)
+                    for(int k = -radius; k <= radius; k++)
+                    {
+                        Block block = world.getBlock(x + i, y + j, z + k);
+                        if(block == Blocks.sapling)
+                        {
+                            world.setBlock(x + i, y + j, z + k, ModBlocks.totemSapling, 0, 3);
+                        }
+                        else if(block instanceof IGrowable && block.getTickRandomly())
+                        {
+                            if(world.rand.nextInt(4) == 0)
+                            {
+                                block.updateTick(world, x + i, y + j, z + k, world.rand);
+                            }
+                        }
+                    }
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void clientEffect(World world, int x, int y, int z)
+    {
+        int radius = 6;
 
         if(world.getWorldTime() % 5L == 0)
         {
@@ -79,8 +107,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
                         {
                             if(world.rand.nextInt(4) == 0)
                             {
-                                block.updateTick(world, x + i, y + j, z + k, world.rand);
-                                spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5); //TODO: This sends way too many packets
+                                spawnParticles(world, x + i + 0.5, y + j + 0.6, z + k + 0.5);
                             }
                         }
                     }
@@ -89,6 +116,10 @@ public class CeremonyZaphkielWaltz extends Ceremony
 
     private void spawnParticles(World world, double x, double y, double z)
     {
-        ((WorldServer)world).func_147487_a("happyVillager", x, y, z, 2, 0, 0.5, 0, 0);
+        double dx = world.rand.nextGaussian();
+        double dy = world.rand.nextGaussian() * 0.5;
+        double dz = world.rand.nextGaussian();
+        double velY = world.rand.nextGaussian();
+        world.spawnParticle("happyVillager", x + dx, y + dy, z + dz, 0, velY, 0);
     }
 }

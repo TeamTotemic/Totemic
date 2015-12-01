@@ -2,6 +2,8 @@ package totemic_commons.pokefenn.api.ceremony;
 
 import java.util.Objects;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -48,6 +50,15 @@ public abstract class Ceremony
      * If the ceremony is not instant, this will be called each tick.
      */
     public abstract void effect(World world, int x, int y, int z);
+
+    /**
+     * Performs the client side part of the ceremony effect at the given Totem Base position.
+     * If the ceremony is not instant, this will be called each tick.
+     *
+     * TODO: Maybe incorporate this into effect() ?
+     */
+    @SideOnly(Side.CLIENT)
+    public void clientEffect(World world, int x, int y, int z) {}
 
     public final String getName()
     {
