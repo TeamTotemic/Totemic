@@ -257,7 +257,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     {
         if(currentCeremony != null)
         {
-            currentCeremony.clientEffect(worldObj, xCoord, yCoord, zCoord);
+            currentCeremony.effect(worldObj, xCoord, yCoord, zCoord);
             if(currentCeremony.getEffectTime() == CeremonyTime.INSTANT)
                 resetAfterCeremony(true);
         }

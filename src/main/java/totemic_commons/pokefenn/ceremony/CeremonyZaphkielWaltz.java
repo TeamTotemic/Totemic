@@ -35,9 +35,9 @@ public class CeremonyZaphkielWaltz extends Ceremony
     {
         int radius = 6;
 
-        if(world.getWorldTime() % 20L == 0)
+        if(!world.isRemote && world.getWorldTime() % 20L == 0)
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, radius, radius))
             {
                 if(entity instanceof EntityItem)
                 {
@@ -73,40 +73,14 @@ public class CeremonyZaphkielWaltz extends Ceremony
                         if(block == Blocks.sapling)
                         {
                             world.setBlock(x + i, y + j, z + k, ModBlocks.totemSapling, 0, 3);
-                        }
-                        else if(block instanceof IGrowable && block.getTickRandomly())
-                        {
-                            if(world.rand.nextInt(4) == 0)
-                            {
-                                block.updateTick(world, x + i, y + j, z + k, world.rand);
-                            }
-                        }
-                    }
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void clientEffect(World world, int x, int y, int z)
-    {
-        int radius = 6;
-
-        if(world.getWorldTime() % 5L == 0)
-        {
-            for(int i = -radius; i <= radius; i++)
-                for(int j = -radius; j <= radius; j++)
-                    for(int k = -radius; k <= radius; k++)
-                    {
-                        Block block = world.getBlock(x + i, y + j, z + k);
-                        if(block == Blocks.sapling)
-                        {
-                            world.setBlock(x + i, y + j, z + k, ModBlocks.totemSapling, 0, 3);
                             spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5);
                         }
                         else if(block instanceof IGrowable && block.getTickRandomly())
                         {
                             if(world.rand.nextInt(4) == 0)
                             {
+                                if(!world.isRemote)
+                                    block.updateTick(world, x + i, y + j, z + k, world.rand);
                                 spawnParticles(world, x + i + 0.5, y + j + 0.6, z + k + 0.5);
                             }
                         }
@@ -116,10 +90,13 @@ public class CeremonyZaphkielWaltz extends Ceremony
 
     private void spawnParticles(World world, double x, double y, double z)
     {
-        double dx = world.rand.nextGaussian();
-        double dy = world.rand.nextGaussian() * 0.5;
-        double dz = world.rand.nextGaussian();
-        double velY = world.rand.nextGaussian();
-        world.spawnParticle("happyVillager", x + dx, y + dy, z + dz, 0, velY, 0);
+        if(world.isRemote)
+        {
+            double dx = world.rand.nextGaussian();
+            double dy = world.rand.nextGaussian() * 0.5;
+            double dz = world.rand.nextGaussian();
+            double velY = world.rand.nextGaussian();
+            world.spawnParticle("happyVillager", x + dx, y + dy, z + dz, 0, velY, 0);
+        }
     }
 }

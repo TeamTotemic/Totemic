@@ -25,6 +25,9 @@ public class CeremonyFluteInfusion extends Ceremony
     @Override
     public void effect(World world, int x, int y, int z)
     {
+        if(world.isRemote)
+            return;
+
         for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 5, 5))
         {
             if(entity instanceof EntityItem)

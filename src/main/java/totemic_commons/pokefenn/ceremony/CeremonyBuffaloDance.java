@@ -25,15 +25,17 @@ public class CeremonyBuffaloDance extends Ceremony
     @Override
     public void effect(World world, int x, int y, int z)
     {
-        int i = 0;
+        if(world.isRemote)
+            return;
 
+        int buffalos = 0;
         for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
         {
-            if(i < 2)
+            if(buffalos < 2)
             {
                 if(entity instanceof EntityCow && !(entity instanceof EntityBuffalo))
                 {
-                    i++;
+                    buffalos++;
                     EntityBuffalo buffalo = new EntityBuffalo(world);
                     float health = ((EntityLivingBase)entity).getHealth() / ((EntityLivingBase)entity).getMaxHealth() * buffalo.getMaxHealth();
                     buffalo.setHealth(health);

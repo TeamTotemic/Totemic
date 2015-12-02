@@ -22,7 +22,7 @@ public class CeremonyNight extends Ceremony
     @Override
     public void effect(World world, int x, int y, int z)
     {
-        if(world.isDaytime())
+        if(!world.isRemote && world.isDaytime())
         {
             world.setWorldTime(13000);
         }
