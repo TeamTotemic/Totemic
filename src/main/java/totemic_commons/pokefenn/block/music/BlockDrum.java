@@ -53,15 +53,15 @@ public class BlockDrum extends BlockTileTotemic
             {
                 tileDrum.canPlay = false;
                 TotemUtil.playMusicForCeremony(tileDrum, HandlerInitiation.drum, 0, 0);
-                world.func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+                world.func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
                 world.markBlockForUpdate(x, y, z);
             }
         } else
         {
             tileDrum.canPlay = false;
             TotemUtil.playMusicFromBlockForCeremonySelector(world, x, y, z, HandlerInitiation.drum, 0);
-            world.func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
-            world.func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+            world.func_147487_a("note", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
+            world.func_147487_a("fireworksSpark", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
         }
 

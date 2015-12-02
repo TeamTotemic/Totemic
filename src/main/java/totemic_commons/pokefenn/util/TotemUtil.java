@@ -180,10 +180,7 @@ public class TotemUtil
 
     public static void musicParticleAtBlocks(WorldServer world, int xCoord, int yCoord, int zCoord, String particle)
     {
-        world.func_147487_a(particle, (double) xCoord + 1, yCoord, zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
-        world.func_147487_a(particle, (double) xCoord - 1, yCoord, zCoord, 2, 0.0D, 0.5D, 0.0D, 0.0D);
-        world.func_147487_a(particle, xCoord, yCoord, (double) zCoord + 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
-        world.func_147487_a(particle, xCoord, yCoord, (double) zCoord - 1, 2, 0.0D, 0.5D, 0.0D, 0.0D);
+        world.func_147487_a(particle, xCoord + 0.5, yCoord, zCoord + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
     }
 
 
