@@ -17,6 +17,8 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.util.Constants;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
@@ -164,6 +166,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     {
         int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
         BiomeGenBase biomeGenBase = worldObj.getBiomeGenForCoords(xCoord, zCoord);
+        if(biomeGenBase == null) //assume some default if that happens
+            biomeGenBase = BiomeGenBase.plains;
 
         totemWoodBonus = 0;
 
@@ -177,7 +181,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         case SPRUCE:
             //TODO better numbers, just temp for now.
             //spruce effect
-            if(biomeGenBase != null && biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.COLD)
+            if(biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.COLD)
             {
                 if(biomeGenBase.getEnableSnow())
                 {
@@ -192,11 +196,15 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
         case BIRCH:
             //birch effect
+            if(BiomeDictionary.isBiomeOfType(biomeGenBase, Type.FOREST))
+            {
+                totemWoodBonus += 2;
+            }
             break;
 
         case JUNGLE:
             //jungle effect
-            if(biomeGenBase != null && biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.WARM && !biomeGenBase.getEnableSnow())
+            if(biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.WARM && !biomeGenBase.getEnableSnow())
             {
                 if(biomeGenBase.temperature > 1.0F)
                 {
@@ -206,10 +214,36 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             break;
 
         case ACACIA:
+            //acacia effect
+            if(biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.WARM)
+            {
+                totemWoodBonus += 3;
+            }
+            if(BiomeDictionary.isBiomeOfType(biomeGenBase, Type.SPARSE))
+            {
+                totemWoodBonus += 2;
+            }
+            break;
+
         case DARK_OAK:
+            //dark oak effect
+            if(BiomeDictionary.isBiomeOfType(biomeGenBase, Type.SPOOKY))
+            {
+                totemWoodBonus += 4;
+            }
+            break;
+
         case CEDAR:
+            //cedar effect
+            totemWoodBonus += 5;
+            if(BiomeDictionary.isBiomeOfType(biomeGenBase, Type.MAGICAL))
+            {
+                totemWoodBonus += 2;
+            }
+            break;
+
         default:
-                break;
+            break;
         }
     }
 
