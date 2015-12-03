@@ -16,7 +16,6 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.util.Constants;
 import totemic_commons.pokefenn.ModBlocks;
@@ -28,6 +27,7 @@ import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
+import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created with IntelliJ IDEA.
@@ -395,7 +395,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     public void particleAroundTotemUpwards(String particle)
     {
-        ((WorldServer)worldObj).func_147487_a(particle, xCoord + 0.5, yCoord, zCoord + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
+        TotemUtil.particlePacket(worldObj, particle, xCoord + 0.5, yCoord, zCoord + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
     }
 
     public void syncMelody()

@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
@@ -69,8 +68,8 @@ public class BlockWindChime extends BlockTileTotemic
             tileWindChime.canPlay = false;
             PacketHandler.sendAround(new PacketSound(x, y, z, "windChime"), world.getTileEntity(x, y, z));
             TotemUtil.playMusicFromBlockForCeremonySelector(world, x, y, z, HandlerInitiation.windChime, 0);
-            ((WorldServer)world).func_147487_a("note", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
-            ((WorldServer)world).func_147487_a("fireworksSpark", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+            TotemUtil.particlePacket(world, "note", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
+            TotemUtil.particlePacket(world, "fireworksSpark", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
         }
         return true;
     }

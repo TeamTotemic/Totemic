@@ -102,7 +102,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 
     public void particlesAllAround(WorldServer world, double x, double y, double z)
     {
-        world.func_147487_a("note", x, y + 0.4D, z, 6, 0.5D, 0.2D, 0.5D, 0.0D);
+        TotemUtil.particlePacket(world, "note", x, y + 0.4D, z, 6, 0.5D, 0.2D, 0.5D, 0.0D);
     }
 
     @Override

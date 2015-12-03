@@ -178,9 +178,29 @@ public class TotemUtil
                 }
     }
 
+    /**
+     * Sends a packet to the client, spawning a cloud of particles
+     * @param world the world. Must be an instance of WorldServer.
+     * @param name the name of the particle
+     * @param x the x-position
+     * @param y the y-position
+     * @param z the z-position
+     * @param num how many particles to spawn. Can also be zero, then only one
+     * particle is spawned and the next three parameters give the velocity rather than the spread.
+     * @param spreadX how much the cloud is spread out in x-direction
+     * @param spreadY how much the cloud is spread out in y-direction
+     * @param spreadZ how much the cloud is spread out in z-direction
+     * @param vel the velocity of the particles
+     */
+    public static void particlePacket(World world, String name, double x, double y, double z, int num,
+            double spreadX, double spreadY, double spreadZ, double vel)
+    {
+        ((WorldServer) world).func_147487_a(name, x, y, z, num, spreadX, spreadY, spreadZ, vel);
+    }
+
     public static void musicParticleAtBlocks(WorldServer world, int xCoord, int yCoord, int zCoord, String particle)
     {
-        world.func_147487_a(particle, xCoord + 0.5, yCoord, zCoord + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
+        particlePacket(world, particle, xCoord + 0.5, yCoord, zCoord + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
     }
 
 

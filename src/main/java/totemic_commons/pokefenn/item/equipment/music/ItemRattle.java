@@ -80,11 +80,11 @@ public class ItemRattle extends ItemMusic
 
     public void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
     {
-        world.func_147487_a("note", x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
+        TotemUtil.particlePacket(world, "note", x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
 
         if(firework)
         {
-            world.func_147487_a("fireworksSpark", x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
+            TotemUtil.particlePacket(world, "fireworksSpark", x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
         }
     }
 
