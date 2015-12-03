@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.recipe;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
@@ -9,7 +10,11 @@ import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.ceremony.*;
-import totemic_commons.pokefenn.totem.*;
+import totemic_commons.pokefenn.potion.ModPotions;
+import totemic_commons.pokefenn.totem.TotemEffectBlaze;
+import totemic_commons.pokefenn.totem.TotemEffectCow;
+import totemic_commons.pokefenn.totem.TotemEffectOcelot;
+import totemic_commons.pokefenn.totem.TotemEffectPotion;
 
 /**
  * Created by Pokefenn.
@@ -75,12 +80,12 @@ public class HandlerInitiation
 
     private static void totemRegistry()
     {
-        horseTotem = Totemic.api.addTotem(new TotemEffectHorse("totemic", "horse", 4, 4, 1));
-        squidTotem = Totemic.api.addTotem(new TotemEffectSquid("totemic", "squid", 4, 4, 1));
+        horseTotem = Totemic.api.addTotem(new TotemEffectPotion("totemic", "horse", 4, 4, 1, ModPotions.horsePotion, 80, 50, 0));
+        squidTotem = Totemic.api.addTotem(new TotemEffectPotion("totemic", "squid", 4, 4, 1, Potion.waterBreathing, 80, 40, 0));
         blazeTotem = Totemic.api.addTotem(new TotemEffectBlaze("totemic", "blaze", 4, 4, 2));
         ocelotTotem = Totemic.api.addTotem(new TotemEffectOcelot("totemic", "ocelot", 4, 4, 2));
-        batTotem = Totemic.api.addTotem(new TotemEffectBat("totemic", "bat", 8, 8, 2));
-        spiderTotem = Totemic.api.addTotem(new TotemEffectSpider("totemic", "spider", 4, 4, 2));
+        batTotem = Totemic.api.addTotem(new TotemEffectPotion("totemic", "bat", 8, 8, 2, ModPotions.batPotion, 10, 20, 0));
+        spiderTotem = Totemic.api.addTotem(new TotemEffectPotion("totemic", "spider", 4, 4, 2, ModPotions.spiderPotion, 60, 40, 0));
         cowTotem = Totemic.api.addTotem(new TotemEffectCow("totemic", "cow", 4, 4, 1));
     }
 

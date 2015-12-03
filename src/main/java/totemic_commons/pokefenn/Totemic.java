@@ -63,6 +63,7 @@ public final class Totemic
         potionIncrease();
         logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
         logger.info("Totemic is Loading");
+        ModPotions.init();
         HandlerInitiation.init();
         ModBlocks.init();
         ModItems.init();
@@ -80,7 +81,6 @@ public final class Totemic
         CraftingRecipes.init();
         LexiconData.init();
         proxy.registerTileEntities();
-        ModPotions.init();
         ModEvents.init();
         Compatibility.sendIMCMessages();
     }

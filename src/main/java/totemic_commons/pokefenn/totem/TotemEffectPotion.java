@@ -1,11 +1,14 @@
 package totemic_commons.pokefenn.totem;
 
+import java.util.Objects;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
+import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created by Pokefenn.
@@ -13,18 +16,18 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class TotemEffectPotion extends TotemEffect
 {
-    public Potion effect;
-    public int timeTill;
-    public int defaultTime;
-    public int multiplication;
+    public final Potion potion;
+    public final int interval;
+    public final int defaultTime;
+    public final int amplifier;
 
-    public TotemEffectPotion(String modid, String baseName, int horizontal, int vertical, int tier, Potion potion, int timeTill, int defaultTime, int multiplication)
+    public TotemEffectPotion(String modid, String baseName, int horizontal, int vertical, int tier, Potion potion, int interval, int defaultTime, int amplifier)
     {
         super(modid, baseName, horizontal, vertical, tier);
-        this.effect = potion;
-        this.timeTill = timeTill;
+        this.potion = Objects.requireNonNull(potion);
+        this.interval = interval;
         this.defaultTime = defaultTime;
-        this.multiplication = multiplication;
+        this.amplifier = amplifier;
     }
 
     @Override
@@ -33,14 +36,14 @@ public class TotemEffectPotion extends TotemEffect
         if(totem.getWorldObj().isRemote)
             return;
 
-        if(totem.getWorldObj().getWorldTime() % timeTill == 0)
+        if(totem.getWorldObj().getWorldTime() % interval == 0)
         {
 
             for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
             {
                 if(entity instanceof EntityPlayer)
                 {
-                    //TotemUtil.addPotionEffects((EntityPlayer) entity, defaultTime, multiplication, effect, 0, totemWoodBonus, repetitionBonus);
+                    TotemUtil.addPotionEffects((EntityPlayer) entity, defaultTime, potion, amplifier, totemWoodBonus, repetitionBonus, melodyAmount);
                 }
             }
         }
