@@ -47,9 +47,9 @@ public class TotemUtil
 
     public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
-        Random random = new Random();
+        Random random = player.getRNG();
 
-        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 10) + (random.nextInt(6) * 8) + melodyAmount + (totemWoodBonus * 10), defaultStrength + (repetitionBonus == 5 || melodyAmount > 112 ? 1 : 0), true));
+        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 10) + random.nextInt(41) + melodyAmount + (totemWoodBonus * 10), defaultStrength + (repetitionBonus >= 5 || melodyAmount > 112 ? 1 : 0), true));
     }
 
     public static void addNegativePotionEffect(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
