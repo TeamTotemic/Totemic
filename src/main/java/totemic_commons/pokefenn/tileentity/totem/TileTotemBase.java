@@ -79,8 +79,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         if(worldObj.getWorldTime() % 80L == 0)
         {
             totemPoleSize = calculateTotemPoleAmount();
-            scanArea();
-            resetRepetition();
+            calculateEffects();
         }
 
         if(!worldObj.isRemote) //SERVER
@@ -136,18 +135,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                     int[] ranges = getRanges(effect);
                     effect.effect(this, totemPoleSize, ranges[0], ranges[1], musicForTotemEffect, totemWoodBonus, repetitionBonus.get(effect));
                 }
-            }
-        }
-    }
-
-    public void resetRepetition()
-    {
-        repetitionBonus.clear();
-        for(TotemEffect totem : effects)
-        {
-            if(totem != null)
-            {
-                repetitionBonus.adjustOrPutValue(totem, 1, 1);
             }
         }
     }
@@ -512,11 +499,13 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         }
     }
 
-    protected void scanArea()
+    protected void calculateEffects()
     {
+        repetitionBonus.clear();
         for(int i = 0; i < totemPoleSize; i++)
         {
             effects[i] = getTotemEffect(i);
+            repetitionBonus.adjustOrPutValue(effects[i], 1, 1);
         }
         Arrays.fill(effects, totemPoleSize, effects.length, null);
     }
