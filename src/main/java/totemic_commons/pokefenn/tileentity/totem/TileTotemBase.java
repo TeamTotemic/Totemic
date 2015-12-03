@@ -60,6 +60,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
     public int totemWoodBonus = 0;
     public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.getInstruments().size(), 0.75f);
+    public boolean firstTick = true;
 
     public TileTotemBase()
     {
@@ -69,26 +70,28 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     @Override
     public void updateEntity()
     {
+        if(firstTick)
+        {
+            calculateTotemWoodBonus();
+            firstTick = false;
+        }
+
+        if(worldObj.getWorldTime() % 80L == 0)
+        {
+            totemPoleSize = calculateTotemPoleAmount();
+            scanArea();
+            resetRepetition();
+        }
+
         if(!worldObj.isRemote) //SERVER
         {
             deprecateMelody();
-            if(worldObj.getWorldTime() % 40L == 0)
-            {
-                calculateTotemWoodBonus();
-                resetRepetition();
-            }
 
             if(!isCeremony)
                 if(worldObj.getWorldTime() % (20L * 30) == 0)
                 {
                     timesPlayed.clear();
                 }
-
-            if(worldObj.getWorldTime() % 80L == 0)
-            {
-                totemPoleSize = calculateTotemPoleAmount();
-                scanArea();
-            }
 
             if(isCeremony)
             {
@@ -109,6 +112,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         {
             if(isCeremony)
                 doCeremonyClient();
+            else
+                totemEffect();
 
             if(worldObj.getWorldTime() % 40 == 0)
             {
@@ -513,6 +518,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         {
             effects[i] = getTotemEffect(i);
         }
+        Arrays.fill(effects, totemPoleSize, effects.length, null);
     }
 
     @Override

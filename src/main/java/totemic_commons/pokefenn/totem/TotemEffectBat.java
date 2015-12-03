@@ -24,6 +24,9 @@ public class TotemEffectBat extends TotemEffect
     @Override
     public void effect(TileEntity totem, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
+        if(totem.getWorldObj().isRemote)
+            return;
+
         if(totem.getWorldObj().getWorldTime() % 10L == 0L)
         {
             for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))

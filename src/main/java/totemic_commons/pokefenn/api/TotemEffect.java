@@ -26,7 +26,9 @@ public abstract class TotemEffect
     }
 
     /**
-     * Performs the actual totem effect
+     * Performs the totem effect at the given Totem tile entity.
+     * The ranges given as parameters to this method can be different from the base ranges passed to the constructor.
+     * This gets called on the server and the client.
      * @param totem             the totem base block where the effect happens
      * @param poleSize          the height of the totem pole
      * @param horizontal        the total horizontal range with bonuses
