@@ -74,7 +74,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             deprecateMelody();
             if(worldObj.getWorldTime() % 40L == 0)
             {
-                getTotemWoodBonus();
+                calculateTotemWoodBonus();
                 resetRepetition();
             }
 
@@ -86,7 +86,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
             if(worldObj.getWorldTime() % 80L == 0)
             {
-                totemPoleSize = setTotemPoleAmounts();
+                totemPoleSize = calculateTotemPoleAmount();
                 scanArea();
             }
 
@@ -168,7 +168,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     }
 
-    public void getTotemWoodBonus()
+    public void calculateTotemWoodBonus()
     {
         int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
         BiomeGenBase biomeGenBase = worldObj.getBiomeGenForCoords(xCoord, zCoord);
@@ -351,46 +351,45 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     public int[] getRanges(TotemEffect totem)
     {
-        int[] array = new int[2];
-
-        array[0] = totem.getHorizontalRange();
-        array[1] = totem.getVerticalRange();
+        int horiz = totem.getHorizontalRange();
+        int vert = totem.getVerticalRange();
 
         if(musicForTotemEffect > 10 && musicForTotemEffect < 32)
         {
-            array[0] += 1;
-            array[1] += 1;
+            horiz += 1;
+            vert += 1;
         } else if(musicForTotemEffect > 32 && musicForTotemEffect < 64)
         {
-            array[0] += 2;
-            array[1] += 2;
+            horiz += 2;
+            vert += 2;
         } else if(musicForTotemEffect > 64 && musicForTotemEffect < 96)
         {
-            array[0] += 3;
-            array[1] += 3;
+            horiz += 3;
+            vert += 3;
         } else if(musicForTotemEffect > 96 && musicForTotemEffect < 115)
         {
-            array[0] += 4;
-            array[1] += 4;
+            horiz += 4;
+            vert += 4;
         } else if(musicForTotemEffect > 115)
         {
-            array[0] += 6;
-            array[1] += 6;
+            horiz += 6;
+            vert += 6;
         }
 
-        array[0] += totemWoodBonus / 5;
-        array[0] += totemWoodBonus / 5;
+        //FIXME: These are always zero
+        //horiz += totemWoodBonus / 5;
+        //vert += totemWoodBonus / 5;
 
         if(totemPoleSize == 5)
         {
-            array[0] += 2;
-            array[1] += 2;
+            horiz += 2;
+            vert += 2;
         }
 
-        array[0] += totemPoleSize / 8;
-        array[1] += totemPoleSize / 8;
+        //horiz += totemPoleSize / 8;
+        //vert += totemPoleSize / 8;
 
-        return array;
+        return new int[] {horiz, vert};
     }
 
     public void particleAroundTotemUpwards(String particle)
@@ -529,32 +528,19 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         return tileEntity instanceof TileTotemPole ? (((TileTotemPole) tileEntity).getTotemEffect()) : null;
     }
 
-    protected int setTotemPoleAmounts()
+    protected int calculateTotemPoleAmount()
     {
-        Block block1 = worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
-        Block block2 = worldObj.getBlock(this.xCoord, this.yCoord + 2, this.zCoord);
-        Block block3 = worldObj.getBlock(this.xCoord, this.yCoord + 3, this.zCoord);
-        Block block4 = worldObj.getBlock(this.xCoord, this.yCoord + 4, this.zCoord);
-        Block block5 = worldObj.getBlock(this.xCoord, this.yCoord + 5, this.zCoord);
+        final int maxHeight = 5;
+        int y = 0;
 
-        if(block1 == ModBlocks.totemPole && block2 != ModBlocks.totemPole)
+        for(; y < maxHeight; y++)
         {
-            return 1;
-        } else if(block1 == ModBlocks.totemPole && block2 == ModBlocks.totemPole && block3 != ModBlocks.totemPole)
-        {
-            return 2;
-        } else if(block1 == ModBlocks.totemPole && block2 == ModBlocks.totemPole && block3 == ModBlocks.totemPole && block4 != ModBlocks.totemPole)
-        {
-            return 3;
-        } else if(block1 == ModBlocks.totemPole && block2 == ModBlocks.totemPole && block3 == ModBlocks.totemPole && block4 == ModBlocks.totemPole && block5 != ModBlocks.totemPole)
-        {
-            return 4;
-        } else if(block1 == ModBlocks.totemPole && block2 == ModBlocks.totemPole && block3 == ModBlocks.totemPole && block4 == ModBlocks.totemPole && block5 == ModBlocks.totemPole)
-        {
-            return 5;
+            Block block = worldObj.getBlock(xCoord, yCoord + 1 + y, zCoord);
+            if(block != ModBlocks.totemPole)
+                break;
         }
 
-        return 0;
+        return y;
     }
 
     //TODO: Description packets for this TE are incredibly heavyweight
