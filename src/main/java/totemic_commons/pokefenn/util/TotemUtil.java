@@ -69,7 +69,7 @@ public class TotemUtil
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
                         TileEntity tile = world.getTileEntity(x + i, y + j, z + k);
-                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).isMusicSelecting)
+                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
                         {
                             setSelectors((TileTotemBase) tile, instr);
                             return;
@@ -107,7 +107,7 @@ public class TotemUtil
                     if(world.getBlock(x + i, y + j, z + k) != null)
                     {
                         TileEntity tile = world.getTileEntity(x + i, y + j, z + k);
-                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).isMusicSelecting)
+                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
                         {
                             setSelectors((TileTotemBase) tile, instr);
                             return;

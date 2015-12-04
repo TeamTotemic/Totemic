@@ -51,7 +51,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public Ceremony startupCeremony = null;
     public Ceremony currentCeremony = null;
     public int totalCeremonyMelody = 0;
-    public boolean isMusicSelecting = true;
     public int ceremonyStartupTimer = 0;
     public boolean isCeremony = false;
     public int continueTimer = 0;
@@ -277,7 +276,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             doCeremonyEffect(currentCeremony);
         }
 
-        if(isMusicSelecting && worldObj.getWorldTime() % (20 * 60) == 0)
+        if(canMusicSelect() && worldObj.getWorldTime() % (20 * 60) == 0)
         {
             resetAfterCeremony(true);
         }
@@ -331,7 +330,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 {
                     particleAroundTotemUpwards("fireworksSpark");
                     startupCeremony = ceremony;
-                    isMusicSelecting = false;
                     resetSelector();
                     markForUpdate();
                 }
@@ -442,7 +440,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         currentCeremony = null;
         isCeremony = false;
         startupCeremony = null;
-        isMusicSelecting = true;
         ceremonyStartupTimer = 0;
         ceremonyEffectTimer = 0;
         isDoingEndingEffect = false;
@@ -591,7 +588,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         recalculateMelody();
         startupCeremony = Totemic.api.getCeremony(nbtTagCompound.getString("tryingCeremonyID"));
         totalCeremonyMelody = nbtTagCompound.getInteger("totalCeremonyMelody");
-        isMusicSelecting = nbtTagCompound.getBoolean("isMusicSelecting");
         ceremonyStartupTimer = nbtTagCompound.getInteger("ceremonyStartupTimer");
         isCeremony = nbtTagCompound.getBoolean("isCeremony");
         continueTimer = nbtTagCompound.getInteger("continueTimer");
@@ -625,7 +621,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         if(startupCeremony != null)
             nbtTagCompound.setString("tryingCeremonyID", startupCeremony.getName());
         nbtTagCompound.setInteger("totalCeremonyMelody", totalCeremonyMelody);
-        nbtTagCompound.setBoolean("isMusicSelecting", isMusicSelecting);
         nbtTagCompound.setInteger("ceremonyStartupTimer", ceremonyStartupTimer);
         nbtTagCompound.setBoolean("isCeremony", isCeremony);
         nbtTagCompound.setInteger("continueTimer", continueTimer);
@@ -682,5 +677,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public boolean isDoingCeremonyEffect()
     {
         return currentCeremony != null;
+    }
+
+    public boolean canMusicSelect()
+    {
+        return !isDoingStartup() && !isDoingCeremonyEffect();
     }
 }

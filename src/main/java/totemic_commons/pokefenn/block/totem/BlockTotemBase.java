@@ -114,12 +114,12 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
 
             if(!tileTotemBase.isDoingCeremonyEffect() && !player.isSneaking())
             {
-                if(tileTotemBase.isMusicSelecting && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingCeremonyEffect() && !tileTotemBase.isDoingStartup())
+                if(tileTotemBase.canMusicSelect() && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingCeremonyEffect() && !tileTotemBase.isDoingStartup())
                 {
                     player.addChatComponentMessage(new ChatComponentText("No Musical selection"));
                     return true;
                 }
-                if(tileTotemBase.isMusicSelecting)
+                if(tileTotemBase.canMusicSelect())
                 {
                     /*for(int i = 0; i < 4; i++)
                     {
