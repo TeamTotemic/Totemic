@@ -42,26 +42,27 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public static final int MAX_HEIGHT = 5;
     public static final int MAX_EFFECT_MUSIC = 128;
 
-    public int totemPoleSize = 0;
+    public boolean firstTick = true;
     public int tier = 1;
-    public int ceremonyEffectTimer = 0;
     public int dancingEfficiency = 0;
-    public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>(Totemic.api.getInstruments().size(), 0.75f);
+    public int musicForTotemEffect = 0;
+    public int totemPoleSize = 0;
+    public boolean musicChanged = false;
+    public final TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
+    public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.getTotems().size(), 0.75f);
+    public int totemWoodBonus = 0;
+
+    public boolean isCeremony = false;
     public final MusicInstrument[] musicSelector = new MusicInstrument[Ceremony.NUM_SELECTORS];
+    public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>(Totemic.api.getInstruments().size(), 0.75f);
+    public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.getInstruments().size(), 0.75f);
+    public int totalCeremonyMelody = 0;
     public Ceremony startupCeremony = null;
     public Ceremony currentCeremony = null;
-    public int totalCeremonyMelody = 0;
     public int ceremonyStartupTimer = 0;
-    public boolean isCeremony = false;
+    public int ceremonyEffectTimer = 0;
     public int continueTimer = 0;
-    public int musicForTotemEffect = 0;
-    public boolean musicChanged = false;
-    public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.getTotems().size(), 0.75f);
     public boolean isDoingEndingEffect = false;
-    public TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
-    public int totemWoodBonus = 0;
-    public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.getInstruments().size(), 0.75f);
-    public boolean firstTick = true;
 
     public TileTotemBase()
     {
@@ -568,69 +569,76 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    public void readFromNBT(NBTTagCompound tag)
     {
-        super.readFromNBT(nbtTagCompound);
+        super.readFromNBT(tag);
 
-        totemPoleSize = nbtTagCompound.getInteger("totemPoleSize");
-        tier = nbtTagCompound.getInteger("tier");
-        currentCeremony = Totemic.api.getCeremony(nbtTagCompound.getString("currentCeremony"));
-        dancingEfficiency = nbtTagCompound.getInteger("dancingEfficiency");
-        ceremonyEffectTimer = nbtTagCompound.getInteger("ceremonyEffectTimer");
-        ceremonyMusic.clear();
-        NBTTagCompound ceremonyMusicTag = nbtTagCompound.getCompoundTag("ceremonyMusic");
-        for(String key: (Set<String>)ceremonyMusicTag.func_150296_c())
-        {
-            MusicInstrument instr = Totemic.api.getInstrument(key);
-            if(instr != null)
-                ceremonyMusic.put(instr, ceremonyMusicTag.getInteger(key));
-        }
-        recalculateMelody();
-        startupCeremony = Totemic.api.getCeremony(nbtTagCompound.getString("tryingCeremonyID"));
-        totalCeremonyMelody = nbtTagCompound.getInteger("totalCeremonyMelody");
-        ceremonyStartupTimer = nbtTagCompound.getInteger("ceremonyStartupTimer");
-        isCeremony = nbtTagCompound.getBoolean("isCeremony");
-        continueTimer = nbtTagCompound.getInteger("continueTimer");
-        musicForTotemEffect = nbtTagCompound.getInteger("musicForTotemEffect");
-        isDoingEndingEffect = nbtTagCompound.getBoolean("isDoingEndingEffect");
-        NBTTagList totemIdsTag = nbtTagCompound.getTagList("effects", Constants.NBT.TAG_STRING);
-        effects = new TotemEffect[MAX_HEIGHT];
+        tier = tag.getInteger("tier");
+        dancingEfficiency = tag.getInteger("dancingEfficiency");
+        musicForTotemEffect = tag.getInteger("musicForTotemEffect");
+        totemPoleSize = tag.getInteger("totemPoleSize");
+
+        NBTTagList totemIdsTag = tag.getTagList("effects", Constants.NBT.TAG_STRING);
+        Arrays.fill(effects, null);
         for(int i = 0; i < totemIdsTag.tagCount(); i++)
             effects[i] = Totemic.api.getTotem(totemIdsTag.getStringTagAt(i));
-        totemWoodBonus = nbtTagCompound.getInteger("totemWoodBonus");
+
+        isCeremony = tag.getBoolean("isCeremony");
+        if(isCeremony)
+        {
+            NBTTagCompound ceremonyMusicTag = tag.getCompoundTag("ceremonyMusic");
+            ceremonyMusic.clear();
+            for(String key: (Set<String>)ceremonyMusicTag.func_150296_c())
+            {
+                MusicInstrument instr = Totemic.api.getInstrument(key);
+                if(instr != null)
+                    ceremonyMusic.put(instr, ceremonyMusicTag.getInteger(key));
+            }
+            recalculateMelody();
+
+            startupCeremony = Totemic.api.getCeremony(tag.getString("tryingCeremonyID"));
+            currentCeremony = Totemic.api.getCeremony(tag.getString("currentCeremony"));
+            ceremonyStartupTimer = tag.getInteger("ceremonyStartupTimer");
+            ceremonyEffectTimer = tag.getInteger("ceremonyEffectTimer");
+            continueTimer = tag.getInteger("continueTimer");
+            isDoingEndingEffect = tag.getBoolean("isDoingEndingEffect");
+        }
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    public void writeToNBT(NBTTagCompound tag)
     {
-        super.writeToNBT(nbtTagCompound);
+        super.writeToNBT(tag);
 
-        NBTTagCompound ceremonyMusicTag = new NBTTagCompound();
-        for(TObjectIntIterator<MusicInstrument> it = ceremonyMusic.iterator(); it.hasNext();)
-        {
-            it.advance();
-            ceremonyMusicTag.setInteger(it.key().getName(), it.value());
-        }
-        nbtTagCompound.setTag("ceremonyMusic", ceremonyMusicTag);
-        nbtTagCompound.setInteger("totemPoleSize", totemPoleSize);
-        nbtTagCompound.setInteger("tier", tier);
-        if(currentCeremony != null)
-            nbtTagCompound.setString("currentCeremony", currentCeremony.getName());
-        nbtTagCompound.setInteger("ceremonyEffectTimer", ceremonyEffectTimer);
-        nbtTagCompound.setInteger("dancingEfficiency", dancingEfficiency);
-        if(startupCeremony != null)
-            nbtTagCompound.setString("tryingCeremonyID", startupCeremony.getName());
-        nbtTagCompound.setInteger("totalCeremonyMelody", totalCeremonyMelody);
-        nbtTagCompound.setInteger("ceremonyStartupTimer", ceremonyStartupTimer);
-        nbtTagCompound.setBoolean("isCeremony", isCeremony);
-        nbtTagCompound.setInteger("continueTimer", continueTimer);
-        nbtTagCompound.setInteger("musicForTotemEffect", musicForTotemEffect);
-        nbtTagCompound.setBoolean("isDoingEndingEffect", isDoingEndingEffect);
+        tag.setInteger("tier", tier);
+        tag.setInteger("dancingEfficiency", dancingEfficiency);
+        tag.setInteger("musicForTotemEffect", musicForTotemEffect);
+        tag.setInteger("totemPoleSize", totemPoleSize);
+
         NBTTagList totemIdsTag = new NBTTagList();
         for(TotemEffect effect: effects)
             totemIdsTag.appendTag(new NBTTagString(String.valueOf(effect)));
-        nbtTagCompound.setTag("effects", totemIdsTag);
-        nbtTagCompound.setInteger("totemWoodBonus", totemWoodBonus);
+        tag.setTag("effects", totemIdsTag);
+
+        tag.setBoolean("isCeremony", isCeremony);
+        if(isCeremony)
+        {
+            NBTTagCompound ceremonyMusicTag = new NBTTagCompound();
+            for(TObjectIntIterator<MusicInstrument> it = ceremonyMusic.iterator(); it.hasNext();)
+            {
+                it.advance();
+                ceremonyMusicTag.setInteger(it.key().getName(), it.value());
+            }
+            tag.setTag("ceremonyMusic", ceremonyMusicTag);
+            if(startupCeremony != null)
+                tag.setString("tryingCeremonyID", startupCeremony.getName());
+            if(currentCeremony != null)
+                tag.setString("currentCeremony", currentCeremony.getName());
+            tag.setInteger("ceremonyStartupTimer", ceremonyStartupTimer);
+            tag.setInteger("ceremonyEffectTimer", ceremonyEffectTimer);
+            tag.setInteger("continueTimer", continueTimer);
+            tag.setBoolean("isDoingEndingEffect", isDoingEndingEffect);
+        }
     }
 
     @Override
