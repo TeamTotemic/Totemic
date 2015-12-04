@@ -256,7 +256,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
         if(worldObj.getWorldTime() % 30L == 0)
         {
-            resetMelody();
+            recalculateMelody();
         }
 
         if(isDoingStartup())
@@ -430,7 +430,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         musicChanged = false;
     }
 
-    public void resetMelody()
+    public void recalculateMelody()
     {
         totalCeremonyMelody = 0;
         for(int value: ceremonyMusic.values())
@@ -482,26 +482,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     public boolean canStartCeremony(Ceremony trying)
     {
-        /*if(trying.getCeremonyActivation().getDoesNeedItems())
-        {
-            for(Entity entity : EntityUtil.getEntitiesInRange(worldObj, xCoord, yCoord, zCoord, 6, 6))
-            {
-                if(entity instanceof EntityItem)
-                {
-                    EntityItem item = (EntityItem)entity;
-                    if(item.getEntityItem().getItem() == trying.getCeremonyActivation().getItemStack().getItem()
-                            && item.getEntityItem().getItemDamage() == trying.getCeremonyActivation().getItemStack().getItemDamage()
-                            && item.getEntityItem().stackSize >= trying.getCeremonyActivation().getItemStack().stackSize)
-                    {
-                        item.setEntityItemStack(new ItemStack(item.getEntityItem().getItem(), item.getEntityItem().stackSize - trying.getCeremonyActivation().getItemStack().stackSize, item.getEntityItem().getItemDamage()));
-                        break;
-                    }
-                }
-            }
-        }*/
-        //TODO
+        //TODO: Other possible preconditions, such as the presence of some item
 
-        resetMelody();
         return totalCeremonyMelody >= (trying.getMusicNeeded() - (dancingEfficiency / 4));
     }
 
@@ -606,7 +588,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             if(instr != null)
                 ceremonyMusic.put(instr, ceremonyMusicTag.getInteger(key));
         }
-        resetMelody();
+        recalculateMelody();
         startupCeremony = Totemic.api.getCeremony(nbtTagCompound.getString("tryingCeremonyID"));
         totalCeremonyMelody = nbtTagCompound.getInteger("totalCeremonyMelody");
         isMusicSelecting = nbtTagCompound.getBoolean("isMusicSelecting");
