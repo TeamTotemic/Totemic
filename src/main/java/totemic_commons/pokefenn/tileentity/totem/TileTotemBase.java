@@ -101,7 +101,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 doCeremonyCode();
             }
 
-            if(!isCeremony/* && currentInput == 0*/)
+            if(!isCeremony)
             {
                 totemEffect();
             }
@@ -324,9 +324,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     public void selectorHandling()
     {
-        for(Ceremony ceremony : Totemic.api.getCeremonies().values())
+        if(musicSelector[0] != null && musicSelector[1] != null)
         {
-            if(musicSelector[0] != null && musicSelector[1] != null)
+            for(Ceremony ceremony : Totemic.api.getCeremonies().values())
             {
                 MusicInstrument[] ids = ceremony.getInstruments();
                 if(ids[0] == musicSelector[0] && ids[1] == musicSelector[1])
@@ -335,8 +335,12 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                     startupCeremony = ceremony;
                     resetSelector();
                     markForUpdate();
+                    return;
                 }
             }
+            //No match found
+            particleAroundTotemUpwards("smoke");
+            resetSelector();
         }
     }
 
