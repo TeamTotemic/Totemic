@@ -47,7 +47,7 @@ public class PacketHandler
 
     public static void sendAround(IMessage packet, int dim, double x, double y, double z)
     {
-        INSTANCE.sendToAllAround(packet, new NetworkRegistry.TargetPoint(dim, x, y, z, 176));
+        INSTANCE.sendToAllAround(packet, new NetworkRegistry.TargetPoint(dim, x, y, z, 64));
     }
 
     public static void sendToServer(IMessage packet)
