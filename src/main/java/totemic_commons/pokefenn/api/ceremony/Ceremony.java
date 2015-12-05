@@ -2,8 +2,6 @@ package totemic_commons.pokefenn.api.ceremony;
 
 import java.util.Objects;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
