@@ -137,7 +137,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 if(effect != null)
                 {
                     int[] ranges = getRanges(effect);
-                    effect.effect(this, totemPoleSize, ranges[0], ranges[1], musicForTotemEffect, totemWoodBonus, repetitionBonus.get(effect));
+                    effect.effect(worldObj, xCoord, yCoord, zCoord, totemPoleSize, ranges[0], ranges[1],
+                            musicForTotemEffect, totemWoodBonus, repetitionBonus.get(effect));
                 }
             }
         }

@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.api;
 
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 
 public abstract class TotemEffect
 {
@@ -26,10 +26,10 @@ public abstract class TotemEffect
     }
 
     /**
-     * Performs the totem effect at the given Totem tile entity.
-     * The ranges given as parameters to this method can be different from the base ranges passed to the constructor.
+     * Performs the totem effect at the given Totem base position.
+     * Note: The horizontal and vertical ranges given as parameters to this method
+     * can be different from the base ranges passed to the constructor.
      * This gets called on the server and the client.
-     * @param totem             the totem base block where the effect happens
      * @param poleSize          the height of the totem pole
      * @param horizontal        the total horizontal range with bonuses
      * @param vertical          the total vertical range with bonuses
@@ -37,7 +37,7 @@ public abstract class TotemEffect
      * @param totemWoodBonus    a number dependent on the wood type the pole is made of
      * @param repetitionBonus   the number of totem pole blocks in the totem that are carved with this effect
      */
-    public abstract void effect(TileEntity totem, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus);
+    public abstract void effect(World world, int x, int y, int z, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus);
 
     public final String getName()
     {

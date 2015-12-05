@@ -5,7 +5,7 @@ import java.util.Objects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -31,15 +31,15 @@ public class TotemEffectPotion extends TotemEffect
     }
 
     @Override
-    public void effect(TileEntity totem, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(World world, int x, int y, int z, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
-        if(totem.getWorldObj().isRemote)
+        if(world.isRemote)
             return;
 
-        if(totem.getWorldObj().getWorldTime() % interval == 0)
+        if(world.getWorldTime() % interval == 0)
         {
 
-            for(Entity entity : EntityUtil.getEntitiesInRange(totem.getWorldObj(), totem.xCoord, totem.yCoord, totem.zCoord, horizontal, vertical))
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, horizontal, vertical))
             {
                 if(entity instanceof EntityPlayer)
                 {
