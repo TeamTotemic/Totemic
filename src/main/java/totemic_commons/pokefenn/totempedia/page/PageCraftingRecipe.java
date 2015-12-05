@@ -53,7 +53,7 @@ public class PageCraftingRecipe extends PageRecipe
         this.recipes = recipes;
     }
 
-    public PageCraftingRecipe(String unlocalizedName, IRecipe recipe)
+    public PageCraftingRecipe(String unlocalizedName, IRecipe... recipe)
     {
         this(unlocalizedName, Arrays.asList(recipe));
     }

@@ -131,6 +131,6 @@ public final class LexiconData
 
         //Misc
         tipi = new BLexiconEntry(Totempedia.TIPI, categoryMisc);
-        tipi.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.tipi));
+        tipi.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.tipiWool, CraftingRecipes.tipiHide));
     }
 }
