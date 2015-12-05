@@ -28,6 +28,8 @@ import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.lib.WoodVariant;
+import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.client.PacketTotemMusic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -425,7 +427,12 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public void syncMelody()
     {
         if(musicChanged)
-            markForUpdate();
+        {
+            if(isCeremony)
+                PacketHandler.sendAround(new PacketTotemMusic(xCoord, yCoord, zCoord, ceremonyMusic), this);
+            else
+                PacketHandler.sendAround(new PacketTotemMusic(xCoord, yCoord, zCoord, musicForTotemEffect), this);
+        }
         musicChanged = false;
     }
 
@@ -552,8 +559,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         return y;
     }
 
-    //TODO: Description packets for this TE are incredibly heavyweight
-    //Need a way to only do partial updates
     @Override
     public Packet getDescriptionPacket()
     {
