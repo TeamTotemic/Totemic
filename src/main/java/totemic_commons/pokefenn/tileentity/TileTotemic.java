@@ -7,7 +7,6 @@ import totemic_commons.pokefenn.lib.Strings;
 
 public class TileTotemic extends TileEntity
 {
-
     protected ForgeDirection orientation;
     protected String customName;
 
@@ -16,7 +15,6 @@ public class TileTotemic extends TileEntity
         customName = "";
         orientation = ForgeDirection.SOUTH;
     }
-
 
     public void setOrientation(ForgeDirection orientation)
     {
@@ -35,13 +33,11 @@ public class TileTotemic extends TileEntity
 
     public String getCustomName()
     {
-
         return customName;
     }
 
     public void setCustomName(String customName)
     {
-
         this.customName = customName;
     }
 

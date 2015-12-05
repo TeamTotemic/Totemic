@@ -86,9 +86,14 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             calculateEffects();
         }
 
+        deprecateMelody();
+
         if(!worldObj.isRemote) //SERVER
         {
-            deprecateMelody();
+            if(worldObj.getWorldTime() % 30L == 0)
+            {
+                syncMelody();
+            }
 
             if(!isCeremony)
                 if(worldObj.getWorldTime() % (20L * 30) == 0)
@@ -104,11 +109,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             if(!isCeremony)
             {
                 totemEffect();
-            }
-
-            if(worldObj.getWorldTime() % 30L == 0)
-            {
-                syncMelody();
             }
         }
         else //CLIENT
@@ -332,7 +332,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 MusicInstrument[] ids = ceremony.getInstruments();
                 if(ids[0] == musicSelector[0] && ids[1] == musicSelector[1])
                 {
-                    particleAroundTotemUpwards("fireworksSpark");
+                    TotemUtil.particlePacket(worldObj, "fireworksSpark", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
                     startupCeremony = ceremony;
                     resetSelector();
                     markForUpdate();
@@ -340,8 +340,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 }
             }
             //No match found
-            particleAroundTotemUpwards("smoke");
-            resetSelector();
+            TotemUtil.particlePacket(worldObj, "smoke", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 24, 0.7D, 0.5D, 0.7D, 0.0D);
+            resetAfterCeremony(true);
         }
     }
 
@@ -350,10 +350,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         if(musicForTotemEffect > 0)
         {
             if(worldObj.getWorldTime() % 47L == 0)
-            {
-                if(musicForTotemEffect - 1 != 0)
-                    musicForTotemEffect--;
-            }
+                musicForTotemEffect--;
         }
     }
 
@@ -362,23 +359,22 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         if(i < 10)
         {
             return StatCollector.translateToLocal("totemic.melodyName.incrediblyLow");
-        } else if(i > 10 && i < 32)
+        } else if(i >= 10 && i < 32)
         {
             return StatCollector.translateToLocal("totemic.melodyName.weak");
-        } else if(i > 32 && i < 64)
+        } else if(i >= 32 && i < 64)
         {
             return StatCollector.translateToLocal("totemic.melodyName.low");
-        } else if(i > 64 && i < 96)
+        } else if(i >= 64 && i < 96)
         {
             return StatCollector.translateToLocal("totemic.melodyName.sufficient");
-        } else if(i > 96 && i < 115)
+        } else if(i >= 96 && i < 115)
         {
             return StatCollector.translateToLocal("totemic.melodyName.high");
-        } else if(i > 115)
+        } else
         {
             return StatCollector.translateToLocal("totemic.melodyName.maximum");
         }
-        return "lolbroked";
     }
 
     public int[] getRanges(TotemEffect totem)
@@ -422,11 +418,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         //vert += totemPoleSize / 8;
 
         return new int[] {horiz, vert};
-    }
-
-    public void particleAroundTotemUpwards(String particle)
-    {
-        TotemUtil.particlePacket(worldObj, particle, xCoord + 0.5, yCoord, zCoord + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
     }
 
     public void syncMelody()
@@ -536,12 +527,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         Arrays.fill(effects, totemPoleSize, effects.length, null);
     }
 
-    @Override
-    public boolean canUpdate()
-    {
-        return true;
-    }
-
     protected TotemEffect getTotemEffect(int yOffset)
     {
         TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + 1 + yOffset, this.zCoord);
@@ -551,16 +536,13 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     protected int calculateTotemPoleAmount()
     {
-        final int maxHeight = 5;
         int y = 0;
-
-        for(; y < maxHeight; y++)
+        for(; y < MAX_HEIGHT; y++)
         {
             Block block = worldObj.getBlock(xCoord, yCoord + 1 + y, zCoord);
             if(block != ModBlocks.totemPole)
                 break;
         }
-
         return y;
     }
 

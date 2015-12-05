@@ -39,8 +39,6 @@ public class TileWindChime extends TileTotemic
     public void updateEntity()
     {
         super.updateEntity();
-        World world = worldObj;
-
         if(worldObj.isRemote)
         {
 
@@ -55,8 +53,8 @@ public class TileWindChime extends TileTotemic
 
             if(isPlaying && worldObj.getWorldTime() % 40L == 0)
             {
-                world.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 1.0F, 1.0F, false);
-                world.spawnParticle("note", xCoord + 0.5, yCoord - 0.8, zCoord + 0.5, 0, 0, 0);
+                worldObj.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 1.0F, 1.0F, false);
+                worldObj.spawnParticle("note", xCoord + 0.5, yCoord - 0.8, zCoord + 0.5, 0, 0, 0);
             }
         }
 
@@ -71,7 +69,7 @@ public class TileWindChime extends TileTotemic
             }
         }
 
-        if(!world.isRemote)
+        if(!worldObj.isRemote)
         {
             if(!canPlay)
                 cooldownPassed++;
@@ -83,7 +81,7 @@ public class TileWindChime extends TileTotemic
 
             Random rand = new Random();
 
-            if(!isPlaying && world.getWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
+            if(!isPlaying && worldObj.getWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
             {
                 setPlaying(true);
                 int radius = 2;
@@ -91,21 +89,21 @@ public class TileWindChime extends TileTotemic
                 for(int i = -radius; i <= radius; i++)
                     for(int j = -radius; j <= radius; j++)
                         for(int k = -radius; k <= radius; k++)
-                            if(world.getBlock(xCoord + i, yCoord + j, zCoord + k) == ModBlocks.windChime)
+                            if(worldObj.getBlock(xCoord + i, yCoord + j, zCoord + k) == ModBlocks.windChime)
                             {
                                 if(rand.nextInt(3) == 0)
                                 {
-                                    TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(xCoord + i, yCoord + j, zCoord + k);
+                                    TileWindChime tileWindChime = (TileWindChime) worldObj.getTileEntity(xCoord + i, yCoord + j, zCoord + k);
                                     tileWindChime.setPlaying(true);
                                 }
                             }
             }
 
             if(isPlaying)
-                if(world.getWorldTime() % 50L == 0 && rand.nextInt(2) == 0)
+                if(worldObj.getWorldTime() % 50L == 0 && rand.nextInt(2) == 0)
                 {
-                    int bonus = world.getBlock(xCoord, yCoord + 1, zCoord).isLeaves(world, xCoord, yCoord + 1, zCoord)
-                            ? world.rand.nextInt(3) : 0;
+                    int bonus = worldObj.getBlock(xCoord, yCoord + 1, zCoord).isLeaves(worldObj, xCoord, yCoord + 1, zCoord)
+                            ? worldObj.rand.nextInt(3) : 0;
                     TotemUtil.playMusicForCeremony(this, HandlerInitiation.windChime, 0, bonus);
                 }
         }

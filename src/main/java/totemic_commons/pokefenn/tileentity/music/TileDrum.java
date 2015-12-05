@@ -31,16 +31,12 @@ public class TileDrum extends TileTotemic
     @Override
     public void updateEntity()
     {
-        super.updateEntity();
-
         /* TODO
          * Have the drums play music when you jump ontop of them, the armour will increase the amount of music played.
          * Also a drum beater item so when you hit the drum it pounces extra music.
          */
 
-        World world = worldObj;
-
-        if(!world.isRemote)
+        if(!worldObj.isRemote)
         {
             if(!canPlay)
             {

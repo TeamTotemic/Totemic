@@ -16,7 +16,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 02/02/14
  * Time: 13:04
  */
-public class TileTotemPole extends TileTotemic// implements IInventory
+public class TileTotemPole extends TileTotemic
 {
     //compatibility with legacy worlds
     public static final TotemEffect[] legacyIDMapping = {

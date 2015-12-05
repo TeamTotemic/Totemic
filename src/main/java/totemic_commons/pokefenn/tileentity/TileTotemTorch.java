@@ -24,18 +24,4 @@ public class TileTotemTorch extends TileTotemic
     {
         readFromNBT(pkt.func_148857_g());
     }
-
-    @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
-    {
-        super.writeToNBT(nbtTagCompound);
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbtTagCompound)
-    {
-        super.readFromNBT(nbtTagCompound);
-    }
-
-
 }
