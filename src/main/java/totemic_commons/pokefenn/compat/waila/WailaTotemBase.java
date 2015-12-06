@@ -48,15 +48,11 @@ public class WailaTotemBase implements IWailaDataProvider
             {
                 currenttip.add(StatCollector.translateToLocal("totemicmisc.startup"));
                 currenttip.add(totemBase.startupCeremony.getLocalizedName());
+                currenttip.add(StatCollector.translateToLocal("totemicmisc.music")
+                        + totemBase.totalCeremonyMelody + " / " + totemBase.startupCeremony.getMusicNeeded());
+                currenttip.add(StatCollector.translateToLocal("totemicmisc.time")
+                        + totemBase.ceremonyStartupTimer + " / " + totemBase.startupCeremony.getMaxStartupTime().getTime());
             }
-            /*else
-                currenttip.add(TileTotemBase.getMusicName(totemBase.musicForTotemEffect));*/
-
-            /*if(totemBase.isMusicSelecting)
-                for(int i = 0; i < 4; i++)
-                {
-                    //currenttip.add();
-                }*/
         }
 
         return currenttip;

@@ -294,6 +294,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             if(currentCeremony.getEffectTime() == CeremonyTime.INSTANT)
                 resetAfterCeremony(true);
         }
+        else if(startupCeremony != null)
+        {
+            ceremonyStartupTimer++;
+        }
     }
 
     public void doCeremonyEffect(Ceremony cer)
@@ -594,6 +598,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             ceremonyEffectTimer = tag.getInteger("ceremonyEffectTimer");
             continueTimer = tag.getInteger("continueTimer");
             isDoingEndingEffect = tag.getBoolean("isDoingEndingEffect");
+        }
+        else
+        {
+            startupCeremony = null;
+            currentCeremony = null;
         }
     }
 
