@@ -268,6 +268,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             {
                 currentCeremony = startupCeremony;
                 startupCeremony = null;
+                TotemUtil.particlePacket(worldObj, "happyVillager", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
                 markForUpdate();
             } else
                 startupMain(startupCeremony);
@@ -344,7 +345,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 }
             }
             //No match found
-            TotemUtil.particlePacket(worldObj, "smoke", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 24, 0.7D, 0.5D, 0.7D, 0.0D);
+            TotemUtil.particlePacket(worldObj, "largesmoke", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
         }
     }
@@ -496,6 +497,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     {
         if(ceremonyStartupTimer > trying.getMaxStartupTime().getTime())
         {
+            TotemUtil.particlePacket(worldObj, "largesmoke", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
         }
 
