@@ -475,14 +475,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         {
             continueTimer = 0;
             totalCeremonyMelody = Math.max(totalCeremonyMelody - cer.getMusicPer5(), 0);
-
-            if(totalCeremonyMelody < cer.getMusicPer5())
-            {
-                resetAfterCeremony(true);
-            }
         }
 
-        return totalCeremonyMelody - cer.getMusicPer5() >= 0;
+        return totalCeremonyMelody >= cer.getMusicPer5();
     }
 
 
