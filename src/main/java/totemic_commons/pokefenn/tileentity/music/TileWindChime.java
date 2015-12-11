@@ -114,6 +114,7 @@ public class TileWindChime extends TileTotemic
         if(!this.isPlaying && playing && !worldObj.isRemote)
             PacketHandler.sendAround(new PacketWindChime(xCoord, yCoord, zCoord), this);
         this.isPlaying = playing;
+        markDirty();
     }
 
     public boolean isPlaying()

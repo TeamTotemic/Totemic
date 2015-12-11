@@ -270,6 +270,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 startupCeremony = null;
                 TotemUtil.particlePacket(worldObj, "happyVillager", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
                 markForUpdate();
+                markDirty();
             } else
                 startupMain(startupCeremony);
 
@@ -341,6 +342,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                     startupCeremony = ceremony;
                     resetSelector();
                     markForUpdate();
+                    markDirty();
                     return;
                 }
             }
@@ -461,6 +463,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         if(doResetMusicSelector)
             Arrays.fill(musicSelector, null);
         markForUpdate();
+        markDirty();
     }
 
     public void resetSelector()
