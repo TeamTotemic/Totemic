@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.Set;
 
@@ -7,6 +8,7 @@ import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -27,6 +29,7 @@ import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.event.GameOverlay;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketTotemMusic;
@@ -299,6 +302,16 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         else if(startupCeremony != null)
         {
             ceremonyStartupTimer++;
+
+            EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+            if(getDistanceFrom(player.posX, player.posY, player.posZ) <= 64)
+            {
+                GameOverlay.activeTotem = this;
+            }
+            else
+            {
+                GameOverlay.activeTotem = null;
+            }
         }
     }
 
