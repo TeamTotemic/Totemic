@@ -92,16 +92,16 @@ public class RenderHelper
         GL11.glColor4f(1F, 1F, 1F, 1F);
     }
 
-    public static void drawGradientRect(int par1, int par2, float z, int par3, int par4, int par5, int par6)
+    public static void drawGradientRect(int x1, int y1, float z, int x2, int y2, int color1, int color2)
     {
-        float var7 = (par5 >> 24 & 255) / 255F;
-        float var8 = (par5 >> 16 & 255) / 255F;
-        float var9 = (par5 >> 8 & 255) / 255F;
-        float var10 = (par5 & 255) / 255F;
-        float var11 = (par6 >> 24 & 255) / 255F;
-        float var12 = (par6 >> 16 & 255) / 255F;
-        float var13 = (par6 >> 8 & 255) / 255F;
-        float var14 = (par6 & 255) / 255F;
+        float var7 = (color1 >> 24 & 255) / 255F;
+        float var8 = (color1 >> 16 & 255) / 255F;
+        float var9 = (color1 >> 8 & 255) / 255F;
+        float var10 = (color1 & 255) / 255F;
+        float var11 = (color2 >> 24 & 255) / 255F;
+        float var12 = (color2 >> 16 & 255) / 255F;
+        float var13 = (color2 >> 8 & 255) / 255F;
+        float var14 = (color2 & 255) / 255F;
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -110,11 +110,11 @@ public class RenderHelper
         Tessellator var15 = Tessellator.instance;
         var15.startDrawingQuads();
         var15.setColorRGBA_F(var8, var9, var10, var7);
-        var15.addVertex(par3, par2, z);
-        var15.addVertex(par1, par2, z);
+        var15.addVertex(x2, y1, z);
+        var15.addVertex(x1, y1, z);
         var15.setColorRGBA_F(var12, var13, var14, var11);
-        var15.addVertex(par1, par4, z);
-        var15.addVertex(par3, par4, z);
+        var15.addVertex(x1, y2, z);
+        var15.addVertex(x2, y2, z);
         var15.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
@@ -122,16 +122,16 @@ public class RenderHelper
         GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
 
-    public static void drawTexturedModalRect(int par1, int par2, float z, int par3, int par4, int par5, int par6)
+    public static void drawTexturedModalRect(int x, int y, float z, int u, int v, int w, int h)
     {
         float f = 0.00390625F;
         float f1 = 0.00390625F;
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(par1 + 0, par2 + par6, z, (par3 + 0) * f, (par4 + par6) * f1);
-        tessellator.addVertexWithUV(par1 + par5, par2 + par6, z, (par3 + par5) * f, (par4 + par6) * f1);
-        tessellator.addVertexWithUV(par1 + par5, par2 + 0, z, (par3 + par5) * f, (par4 + 0) * f1);
-        tessellator.addVertexWithUV(par1 + 0, par2 + 0, z, (par3 + 0) * f, (par4 + 0) * f1);
+        tessellator.addVertexWithUV(x + 0, y + h, z, (u + 0) * f, (v + h) * f1);
+        tessellator.addVertexWithUV(x + w, y + h, z, (u + w) * f, (v + h) * f1);
+        tessellator.addVertexWithUV(x + w, y + 0, z, (u + w) * f, (v + 0) * f1);
+        tessellator.addVertexWithUV(x + 0, y + 0, z, (u + 0) * f, (v + 0) * f1);
         tessellator.draw();
     }
 
