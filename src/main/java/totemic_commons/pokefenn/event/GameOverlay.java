@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
+import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 public class GameOverlay
@@ -20,6 +21,9 @@ public class GameOverlay
     {
         if(event.type == ElementType.ALL)
         {
+            if(activeTotem != null && !activeTotem.isCeremony)
+                activeTotem = null;
+
             if(activeTotem != null)
             {
                 int w = 144;
@@ -31,7 +35,6 @@ public class GameOverlay
                 FontRenderer font = Minecraft.getMinecraft().fontRenderer;
 
                 GL11.glEnable(GL11.GL_BLEND);
-                //GL11.glDisable(GL11.GL_ALPHA_TEST);
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 GL11.glPushMatrix();
                 GL11.glTranslatef(x, y, z);
@@ -39,10 +42,7 @@ public class GameOverlay
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
                 tes.startDrawingQuads();
                 tes.setColorRGBA(80, 180, 70, 128);
-                tes.addVertex(0, 0, 0);
-                tes.addVertex(0, h, 0);
-                tes.addVertex(w, h, 0);
-                tes.addVertex(w, 0, 0);
+                RenderHelper.addQuad(tes, 0, 0, 0, w, h);
                 tes.draw();
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
 
@@ -61,34 +61,21 @@ public class GameOverlay
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
                     tes.startDrawingQuads();
                     tes.setColorRGBA(80, 255, 200, 80);
-                    tes.addVertex(40, 11, 0);
-                    tes.addVertex(40, 11 + 7, 0);
-                    tes.addVertex(40 + barWidth, 11 + 7, 0);
-                    tes.addVertex(40 + barWidth, 11, 0);
+                    RenderHelper.addQuad(tes, 40, 11, 0, barWidth, 7);
 
                     tes.setColorRGBA(60, 60, 255, 160);
-                    tes.addVertex(40, 11, 0);
-                    tes.addVertex(40, 11 + 7, 0);
-                    tes.addVertex(40 + musicW, 11 + 7, 0);
-                    tes.addVertex(40 + musicW, 11, 0);
+                    RenderHelper.addQuad(tes, 40, 11, 0, musicW, 7);
 
                     tes.setColorRGBA(80, 255, 200, 80);
-                    tes.addVertex(40, 21, 0);
-                    tes.addVertex(40, 21 + 7, 0);
-                    tes.addVertex(40 + barWidth, 21 + 7, 0);
-                    tes.addVertex(40 + barWidth, 21, 0);
+                    RenderHelper.addQuad(tes, 40, 21, 0, barWidth, 7);
 
                     tes.setColorRGBA(60, 60, 255, 160);
-                    tes.addVertex(40, 21, 0);
-                    tes.addVertex(40, 21 + 7, 0);
-                    tes.addVertex(40 + timeW, 21 + 7, 0);
-                    tes.addVertex(40 + timeW, 21, 0);
+                    RenderHelper.addQuad(tes, 40, 21, 0, timeW, 7);
                     tes.draw();
                     GL11.glEnable(GL11.GL_TEXTURE_2D);
                 }
 
                 GL11.glPopMatrix();
-                //GL11.glEnable(GL11.GL_ALPHA_TEST);
                 GL11.glDisable(GL11.GL_BLEND);
             }
         }

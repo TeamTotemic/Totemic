@@ -190,4 +190,12 @@ public class RenderHelper
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glPopMatrix();
     }
+
+    public static void addQuad(Tessellator tes, double x, double y, double z, double w, double h)
+    {
+        tes.addVertex(x, y, z);
+        tes.addVertex(x, y + h, z);
+        tes.addVertex(x + w, y + h, z);
+        tes.addVertex(x + w, y, z);
+    }
 }
