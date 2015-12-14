@@ -26,6 +26,9 @@ public class Resources
 
     public static final String DUMMY_TIPI = "dummyTipi";
 
+    //GUI overlay
+    public static final String CEREMONY_HUD = PREFIX_GUI + "ceremonyHUD.png";
+
     //Models
     public static final ResourceLocation TEXTURE_TOTEM_TORCH = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemTorch.png");
     public static final ResourceLocation TEXTURE_TOTEM_POLE_OAK = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "totemPoleOak.png");

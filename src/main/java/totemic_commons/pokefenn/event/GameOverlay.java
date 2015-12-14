@@ -6,15 +6,19 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.client.RenderHelper;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 public class GameOverlay
 {
     public static TileTotemBase activeTotem = null;
+
+    private static final ResourceLocation hudTexture = new ResourceLocation(Resources.CEREMONY_HUD);
 
     @SubscribeEvent
     public void renderHUD(RenderGameOverlayEvent.Post event)
@@ -26,7 +30,7 @@ public class GameOverlay
 
             if(activeTotem != null)
             {
-                int w = 144;
+                int w = 117;
                 int h = 30;
                 float x = event.resolution.getScaledWidth() / 2 - w/2;
                 float y = event.resolution.getScaledHeight() / 2 - 100;
@@ -49,11 +53,24 @@ public class GameOverlay
                 if(activeTotem.isDoingStartup())
                 {
                     Ceremony cer = activeTotem.startupCeremony;
-                    int barWidth = 102;
+                    int barWidth = 104;
 
                     font.drawString(cer.getLocalizedName(), 1, 1, 0x000000);
-                    font.drawString("Music:", 1, 11, 0x000000);
-                    font.drawString("Time:", 1, 21, 0x000000);
+
+                    Minecraft.getMinecraft().renderEngine.bindTexture(hudTexture);
+                    tes.startDrawingQuads();
+                    tes.setColorRGBA(0, 255, 0, 200);
+                    tes.addVertexWithUV(1 + 0, 10 + 0, 0, 16.0 / 32, 0.0 / 32);
+                    tes.addVertexWithUV(1 + 0, 10 + 9, 0, 16.0 / 32, 8.0 / 32);
+                    tes.addVertexWithUV(1 + 9, 10 + 9, 0, 24.0 / 32, 8.0 / 32);
+                    tes.addVertexWithUV(1 + 9, 10 + 0, 0, 24.0 / 32, 0.0 / 32);
+
+                    tes.setColorRGBA(255, 255, 255, 200);
+                    tes.addVertexWithUV(1 + 0, 20 + 0, 0, 0.0 / 32, 0.0 / 32);
+                    tes.addVertexWithUV(1 + 0, 20 + 9, 0, 0.0 / 32, 16.0 / 32);
+                    tes.addVertexWithUV(1 + 9, 20 + 9, 0, 16.0 / 32, 16.0 / 32);
+                    tes.addVertexWithUV(1 + 9, 20 + 0, 0, 16.0 / 32, 0.0 / 32);
+                    tes.draw();
 
                     float musicW = activeTotem.totalCeremonyMelody / (float)cer.getMusicNeeded() * barWidth;
                     float timeW = activeTotem.ceremonyStartupTimer / (float)cer.getMaxStartupTime().getTime() * barWidth;
@@ -61,16 +78,16 @@ public class GameOverlay
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
                     tes.startDrawingQuads();
                     tes.setColorRGBA(80, 255, 200, 80);
-                    RenderHelper.addQuad(tes, 40, 11, 0, barWidth, 7);
+                    RenderHelper.addQuad(tes, 11, 11, 0, barWidth, 7);
 
                     tes.setColorRGBA(60, 60, 255, 160);
-                    RenderHelper.addQuad(tes, 40, 11, 0, musicW, 7);
+                    RenderHelper.addQuad(tes, 11, 11, 0, musicW, 7);
 
                     tes.setColorRGBA(80, 255, 200, 80);
-                    RenderHelper.addQuad(tes, 40, 21, 0, barWidth, 7);
+                    RenderHelper.addQuad(tes, 11, 21, 0, barWidth, 7);
 
                     tes.setColorRGBA(60, 60, 255, 160);
-                    RenderHelper.addQuad(tes, 40, 21, 0, timeW, 7);
+                    RenderHelper.addQuad(tes, 11, 21, 0, timeW, 7);
                     tes.draw();
                     GL11.glEnable(GL11.GL_TEXTURE_2D);
                 }
