@@ -3,6 +3,8 @@ package totemic_commons.pokefenn.tileentity.totem;
 import java.util.Arrays;
 import java.util.Set;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
@@ -270,6 +272,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             {
                 currentCeremony = startupCeremony;
                 startupCeremony = null;
+                isDoingEndingEffect = currentCeremony.getEffectTime() != CeremonyTime.INSTANT;
                 TotemUtil.particlePacket(worldObj, "happyVillager", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
                 markForUpdate();
                 markDirty();
@@ -290,6 +293,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         }
     }
 
+    @SideOnly(Side.CLIENT)
     public void doCeremonyClient()
     {
         if(currentCeremony != null)
@@ -297,6 +301,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             currentCeremony.effect(worldObj, xCoord, yCoord, zCoord);
             if(currentCeremony.getEffectTime() == CeremonyTime.INSTANT)
                 resetAfterCeremony(true);
+            else
+                ceremonyEffectTimer++;
         }
         else if(startupCeremony != null)
         {
@@ -317,13 +323,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     public void doCeremonyEffect(Ceremony cer)
     {
-        if(isDoingEndingEffect && cer.getEffectTime() != CeremonyTime.INSTANT)
-            ceremonyEffectTimer++;
-        if(ceremonyEffectTimer > cer.getEffectTime().getTime()) {
-            resetAfterCeremony(true);
-            return;
-        }
-
         if(cer.getEffectTime() == CeremonyTime.INSTANT)
         {
             cer.effect(worldObj, xCoord, yCoord, zCoord);
@@ -331,11 +330,12 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         }
         else
         {
-            isDoingEndingEffect = true;
-            if(drainCeremonyMelody(cer))
+            ceremonyEffectTimer++;
+            if(ceremonyEffectTimer <= cer.getEffectTime().getTime() && drainCeremonyMelody(cer))
             {
                 cer.effect(worldObj, xCoord, yCoord, zCoord);
-            } else
+            }
+            else
             {
                 resetAfterCeremony(true);
             }
