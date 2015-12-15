@@ -34,42 +34,34 @@ public class GameOverlay
                 int h = 30;
                 float x = event.resolution.getScaledWidth() / 2 - w/2;
                 float y = event.resolution.getScaledHeight() / 2 - 100;
-                float z = 1;
                 Tessellator tes = Tessellator.instance;
                 FontRenderer font = Minecraft.getMinecraft().fontRenderer;
 
                 GL11.glEnable(GL11.GL_BLEND);
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 GL11.glPushMatrix();
-                GL11.glTranslatef(x, y, z);
+                GL11.glTranslatef(x, y, 0);
 
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
                 tes.startDrawingQuads();
-                tes.setColorRGBA(80, 180, 70, 128);
+                tes.setColorRGBA(80, 180, 70, 128); //Background
                 RenderHelper.addQuad(tes, 0, 0, 0, w, h);
                 tes.draw();
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
 
+                int barWidth = 104;
+
                 if(activeTotem.isDoingStartup())
                 {
                     Ceremony cer = activeTotem.startupCeremony;
-                    int barWidth = 104;
 
-                    font.drawString(cer.getLocalizedName(), 1, 1, 0x000000);
+                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
+                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
 
                     Minecraft.getMinecraft().renderEngine.bindTexture(hudTexture);
                     tes.startDrawingQuads();
-                    tes.setColorRGBA(0, 255, 0, 200);
-                    tes.addVertexWithUV(1 + 0, 10 + 0, 0, 16.0 / 32, 0.0 / 32);
-                    tes.addVertexWithUV(1 + 0, 10 + 9, 0, 16.0 / 32, 8.0 / 32);
-                    tes.addVertexWithUV(1 + 9, 10 + 9, 0, 24.0 / 32, 8.0 / 32);
-                    tes.addVertexWithUV(1 + 9, 10 + 0, 0, 24.0 / 32, 0.0 / 32);
-
-                    tes.setColorRGBA(255, 255, 255, 200);
-                    tes.addVertexWithUV(1 + 0, 20 + 0, 0, 0.0 / 32, 0.0 / 32);
-                    tes.addVertexWithUV(1 + 0, 20 + 9, 0, 0.0 / 32, 16.0 / 32);
-                    tes.addVertexWithUV(1 + 9, 20 + 9, 0, 16.0 / 32, 16.0 / 32);
-                    tes.addVertexWithUV(1 + 9, 20 + 0, 0, 16.0 / 32, 0.0 / 32);
+                    drawNote(tes);
+                    drawClock(tes);
                     tes.draw();
 
                     float musicW = activeTotem.totalCeremonyMelody / (float)cer.getMusicNeeded() * barWidth;
@@ -91,10 +83,35 @@ public class GameOverlay
                     tes.draw();
                     GL11.glEnable(GL11.GL_TEXTURE_2D);
                 }
+                else if(activeTotem.isDoingEndingEffect)
+                {
+                    Ceremony cer = activeTotem.currentCeremony;
+
+                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
+                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
+                }
 
                 GL11.glPopMatrix();
                 GL11.glDisable(GL11.GL_BLEND);
             }
         }
+    }
+
+    private void drawNote(Tessellator tes)
+    {
+        tes.setColorRGBA(0, 255, 0, 200);
+        tes.addVertexWithUV(1 + 0, 10 + 0, 0, 16.0 / 32, 0.0 / 32);
+        tes.addVertexWithUV(1 + 0, 10 + 9, 0, 16.0 / 32, 8.0 / 32);
+        tes.addVertexWithUV(1 + 9, 10 + 9, 0, 24.0 / 32, 8.0 / 32);
+        tes.addVertexWithUV(1 + 9, 10 + 0, 0, 24.0 / 32, 0.0 / 32);
+    }
+
+    private void drawClock(Tessellator tes)
+    {
+        tes.setColorRGBA(255, 255, 255, 200);
+        tes.addVertexWithUV(1 + 0, 20 + 0, 0, 0.0 / 32, 0.0 / 32);
+        tes.addVertexWithUV(1 + 0, 20 + 9, 0, 0.0 / 32, 16.0 / 32);
+        tes.addVertexWithUV(1 + 9, 20 + 9, 0, 16.0 / 32, 16.0 / 32);
+        tes.addVertexWithUV(1 + 9, 20 + 0, 0, 16.0 / 32, 0.0 / 32);
     }
 }
