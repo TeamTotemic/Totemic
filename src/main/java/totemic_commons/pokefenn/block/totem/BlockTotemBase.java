@@ -101,10 +101,6 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
                 Ceremony trying = tileTotemBase.startupCeremony;
                 player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing startup"));
                 player.addChatComponentMessage(new ChatComponentText(trying.getLocalizedName()));
-                player.addChatComponentMessage(new ChatComponentText("Music amount: " + tileTotemBase.totalCeremonyMelody + " / "
-                        + trying.getMusicNeeded()));
-                player.addChatComponentMessage(new ChatComponentText("Startup time: " + tileTotemBase.ceremonyStartupTimer + " / "
-                        + trying.getMaxStartupTime().getTime()));
             }
             if(tileTotemBase.isDoingCeremonyEffect())
             {

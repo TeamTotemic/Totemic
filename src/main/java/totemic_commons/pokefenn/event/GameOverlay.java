@@ -28,7 +28,7 @@ public class GameOverlay
             if(activeTotem != null && !activeTotem.isCeremony)
                 activeTotem = null;
 
-            if(activeTotem != null)
+            if(activeTotem != null && (activeTotem.isDoingStartup() || activeTotem.isDoingEndingEffect))
             {
                 int w = 117;
                 int h = 30;
