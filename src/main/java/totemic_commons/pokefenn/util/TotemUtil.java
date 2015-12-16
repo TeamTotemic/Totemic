@@ -121,11 +121,11 @@ public class TotemUtil
 
         for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
         {
-            if(tile instanceof TileTotemBase)
+            if(tile instanceof MusicAcceptor)
             {
                 int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
 
-                addMusic(world, x, y, z, (TileTotemBase)tile, instr, shiftedMusic, instr.getMusicMaximum());
+                addMusic((MusicAcceptor)tile, instr, shiftedMusic, instr.getMusicMaximum());
                 return;
             }
         }
@@ -137,23 +137,27 @@ public class TotemUtil
 
         for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
         {
-            if(tile instanceof TileTotemBase)
+            if(tile instanceof MusicAcceptor)
             {
                 int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
 
-                addMusic(world, x, y, z, (TileTotemBase)tile, instr, shiftedMusic, instr.getMusicMaximum());
+                addMusic((MusicAcceptor)tile, instr, shiftedMusic, instr.getMusicMaximum());
                 return;
             }
         }
     }
 
-    public static void addMusic(World world, int x, int y, int z, MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum)
+    public static void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum)
     {
+        TileEntity te = (TileEntity)tile;
+        WorldServer world = (WorldServer)te.getWorldObj();
+        int x = te.xCoord, y = te.yCoord, z = te.zCoord;
+
         int added = tile.addMusic(instr, musicAmount);
         if(added > 0)
-            musicParticleAtBlocks((WorldServer)world, x, y, z, "note");
+            musicParticleAtBlocks(world, x, y, z, "note");
         else
-            musicParticleAtBlocks((WorldServer)world, x, y, z, "cloud");
+            musicParticleAtBlocks(world, x, y, z, "cloud");
     }
 
     /**
