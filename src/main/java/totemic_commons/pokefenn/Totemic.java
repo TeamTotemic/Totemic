@@ -31,7 +31,8 @@ import totemic_commons.pokefenn.recipe.CraftingRecipes;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.totempedia.LexiconData;
 
-@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, dependencies = "after:Baubles;after:Waila;")
+@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, dependencies = "after:Waila;",
+        guiFactory = "totemic_commons.pokefenn.configuration.TotemicGuiFactory")
 public final class Totemic
 {
     public static final String MOD_ID = "totemic";
