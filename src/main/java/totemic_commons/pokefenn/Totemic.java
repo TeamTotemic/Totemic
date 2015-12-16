@@ -47,11 +47,9 @@ public final class Totemic
     public static CommonProxy proxy;
 
     //Creative tab stuff
-    public static CreativeTabs tabsTotem = new CreativeTabTotemic(CreativeTabs.getNextID(), MOD_NAME);
+    public static final CreativeTabs tabsTotem = new CreativeTabTotemic(CreativeTabs.getNextID(), MOD_NAME);
 
     public static final Logger logger = LogManager.getLogger(MOD_NAME);
-
-    public static boolean baublesLoaded = false;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)

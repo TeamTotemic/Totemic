@@ -11,6 +11,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.client.RenderHelper;
+import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
@@ -32,10 +33,11 @@ public class GameOverlay
             {
                 int w = 117;
                 int h = 30;
-                float x = event.resolution.getScaledWidth() / 2 - w/2;
-                float y = event.resolution.getScaledHeight() / 2 - 100;
+                float x = (event.resolution.getScaledWidth() - w) / 2 + ConfigurationSettings.CEREMONY_HUD_X;
+                float y = (event.resolution.getScaledHeight() - h) / 2 + ConfigurationSettings.CEREMONY_HUD_Y;
                 Tessellator tes = Tessellator.instance;
-                FontRenderer font = Minecraft.getMinecraft().fontRenderer;
+                Minecraft mc = Minecraft.getMinecraft();
+                FontRenderer font = mc.fontRenderer;
 
                 GL11.glEnable(GL11.GL_BLEND);
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -58,7 +60,7 @@ public class GameOverlay
                     int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
                     font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
 
-                    Minecraft.getMinecraft().renderEngine.bindTexture(hudTexture);
+                    mc.renderEngine.bindTexture(hudTexture);
                     tes.startDrawingQuads();
                     drawNote(tes);
                     drawClock(tes);

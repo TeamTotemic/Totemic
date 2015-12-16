@@ -14,7 +14,6 @@ public class ModPotions
 
     public static Potion batPotion;
     public static Potion horsePotion;
-    public static Potion antidotePotion;
     public static Potion spiderPotion;
 
     public static void init()
