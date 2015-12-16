@@ -49,33 +49,16 @@ public class TotemUtil
     {
         Random random = player.getRNG();
 
-        player.addPotionEffect(new PotionEffect(potion.getId(), defaultTime + (repetitionBonus * 10) + random.nextInt(41) + melodyAmount + (totemWoodBonus * 10), defaultStrength + (repetitionBonus >= 5 || melodyAmount > 112 ? 1 : 0), true));
+        player.addPotionEffect(new PotionEffect(potion.getId(),
+                defaultTime + (repetitionBonus * 10) + random.nextInt(41) + melodyAmount + (totemWoodBonus * 10),
+                defaultStrength + (repetitionBonus >= 5 || melodyAmount > 112 ? 1 : 0), true));
     }
 
     public static void addNegativePotionEffect(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
-        player.addPotionEffect(new PotionEffect(potion.id, defaultTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32), defaultStrength - (melodyAmount > 112 ? 1 : 0), true));
-    }
-
-    public static void playMusicFromItemForCeremonySelector(EntityPlayer player, int x, int y, int z, MusicInstrument instr, int bonusRadius)
-    {
-        World world = player.worldObj;
-        int radius = instr.getBaseRange() + bonusRadius;
-
-        for(int i = -radius; i <= radius; i++)
-            for(int j = -radius; j <= radius; j++)
-                for(int k = -radius; k <= radius; k++)
-                {
-                    if(world.getBlock(x + i, y + j, z + k) != null)
-                    {
-                        TileEntity tile = world.getTileEntity(x + i, y + j, z + k);
-                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
-                        {
-                            setSelectors((TileTotemBase) tile, instr);
-                            return;
-                        }
-                    }
-                }
+        player.addPotionEffect(new PotionEffect(potion.id,
+                defaultTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32),
+                defaultStrength - (melodyAmount > 112 ? 1 : 0), true));
     }
 
     public static void setSelectors(TileTotemBase tile, MusicInstrument instr)
@@ -97,85 +80,80 @@ public class TotemUtil
         world.markBlockForUpdate(tile.xCoord, tile.yCoord, tile.zCoord);
     }
 
+    public static void playMusicFromItemForCeremonySelector(EntityPlayer player, int x, int y, int z, MusicInstrument instr, int bonusRadius)
+    {
+        World world = player.worldObj;
+        int radius = instr.getBaseRange() + bonusRadius;
+
+        for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
+        {
+            if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
+            {
+                setSelectors((TileTotemBase) tile, instr);
+                return;
+            }
+        }
+    }
+
     public static void playMusicFromBlockForCeremonySelector(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius)
     {
         int radius = instr.getBaseRange() + bonusRadius;
-        for(int i = -radius; i <= radius; i++)
-            for(int j = -radius; j <= radius; j++)
-                for(int k = -radius; k <= radius; k++)
-                {
-                    if(world.getBlock(x + i, y + j, z + k) != null)
-                    {
-                        TileEntity tile = world.getTileEntity(x + i, y + j, z + k);
-                        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
-                        {
-                            setSelectors((TileTotemBase) tile, instr);
-                            return;
-                        }
-                    }
-                }
+
+        for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
+        {
+            if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
+            {
+                setSelectors((TileTotemBase) tile, instr);
+                return;
+            }
+        }
     }
 
-    public static void playMusicForCeremony(TileTotemic tileCeremony, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
+    public static void playMusicForCeremony(TileTotemic tileInstr, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
     {
-        World world = tileCeremony.getWorldObj();
+        World world = tileInstr.getWorldObj();
 
-        int x = tileCeremony.xCoord;
-        int y = tileCeremony.yCoord;
-        int z = tileCeremony.zCoord;
+        int x = tileInstr.xCoord;
+        int y = tileInstr.yCoord;
+        int z = tileInstr.zCoord;
 
         int radius = bonusRadius + instr.getBaseRange();
 
-        for(int i = -radius; i <= radius; i++)
-            for(int j = -radius; j <= radius; j++)
-                for(int k = -radius; k <= radius; k++)
-                {
-                    if(world.getBlock(x + i, y + j, z + k) != null)
-                    {
-                        TileEntity block = world.getTileEntity(x + i, y + j, z + k);
+        for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
+        {
+            if(tile instanceof TileTotemBase)
+            {
+                int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
 
-                        if(block instanceof TileTotemBase)
-                        {
-                            int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
-
-                            playMusic(x, y, z, block, instr, shiftedMusic, instr.getMusicMaximum());
-                            return;
-                        }
-
-                    }
-                }
-    }
-
-    public static void playMusic(int x, int y, int z, TileEntity tileEntity, MusicInstrument instr, int musicAmount, int musicMaximum)
-    {
-        WorldServer world = (WorldServer)tileEntity.getWorldObj();
-        int tileX = tileEntity.xCoord, tileY = tileEntity.yCoord, tileZ = tileEntity.zCoord;
-
-        MusicAcceptor tile = (MusicAcceptor)tileEntity;
-        int added = tile.addMusic(instr, musicAmount);
-        if(added > 0)
-            musicParticleAtBlocks(world, tileX, tileY, tileZ, "note");
-        else
-            musicParticleAtBlocks(world, tileX, tileY, tileZ, "cloud");
+                addMusic(world, x, y, z, (TileTotemBase)tile, instr, shiftedMusic, instr.getMusicMaximum());
+                return;
+            }
+        }
     }
 
     public static void playMusicFromItem(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
     {
         int radius = instr.getBaseRange() + bonusRadius;
-        for(int i = -radius; i <= radius; i++)
-            for(int j = -radius; j <= radius; j++)
-                for(int k = -radius; k <= radius; k++)
-                {
-                    TileEntity block = world.getTileEntity(x + i, y + j, z + k);
 
-                    if(block instanceof TileTotemBase)
-                    {
-                        int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
+        for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
+        {
+            if(tile instanceof TileTotemBase)
+            {
+                int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
 
-                        playMusic(x, y, z, block, instr, shiftedMusic, instr.getMusicMaximum());
-                        return;
-                    }
-                }
+                addMusic(world, x, y, z, (TileTotemBase)tile, instr, shiftedMusic, instr.getMusicMaximum());
+                return;
+            }
+        }
+    }
+
+    public static void addMusic(World world, int x, int y, int z, MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum)
+    {
+        int added = tile.addMusic(instr, musicAmount);
+        if(added > 0)
+            musicParticleAtBlocks((WorldServer)world, x, y, z, "note");
+        else
+            musicParticleAtBlocks((WorldServer)world, x, y, z, "cloud");
     }
 
     /**

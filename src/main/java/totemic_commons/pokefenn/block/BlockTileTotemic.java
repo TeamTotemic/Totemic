@@ -4,6 +4,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -28,7 +29,8 @@ public abstract class BlockTileTotemic extends BlockContainer
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
     {
-        if(world.getTileEntity(x, y, z) instanceof TileTotemic)
+        TileEntity tile = world.getTileEntity(x, y, z);
+        if(tile instanceof TileTotemic)
         {
             int direction = 0;
             int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
@@ -49,10 +51,10 @@ public abstract class BlockTileTotemic extends BlockContainer
 
             if(itemStack.hasDisplayName())
             {
-                ((TileTotemic) world.getTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
+                ((TileTotemic) tile).setCustomName(itemStack.getDisplayName());
             }
 
-            ((TileTotemic) world.getTileEntity(x, y, z)).setOrientation(direction);
+            ((TileTotemic) tile).setOrientation(direction);
 
             world.markBlockForUpdate(x, y, z);
         }

@@ -9,11 +9,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,6 +30,17 @@ public class EntityUtil
     public static List<Entity> getEntitiesInRange(World world, double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
     {
         return world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius));
+    }
+
+    public static List<TileEntity> getTileEntitiesIn(WorldServer world, int minX, int minY, int minZ, int maxX, int maxY, int maxZ)
+    {
+        return world.func_147486_a(minX, minY, minZ, maxX, maxY, maxZ);
+    }
+
+    public static List<TileEntity> getTileEntitiesInRange(WorldServer world, int minX, int minY, int minZ, int horizontalRadius, int verticalRadius)
+    {
+        return world.func_147486_a(minX - horizontalRadius, minY - verticalRadius, minZ - horizontalRadius,
+                minX + horizontalRadius, minY + verticalRadius, minZ + horizontalRadius);
     }
 
     public static void spawnEntity(World world, double xPos, double yPos, double zPos, Entity entity)
