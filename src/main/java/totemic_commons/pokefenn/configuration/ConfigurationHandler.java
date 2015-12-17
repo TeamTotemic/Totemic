@@ -14,7 +14,7 @@ import totemic_commons.pokefenn.Totemic;
 
 public final class ConfigurationHandler
 {
-    public static Configuration configuration;
+    public static Configuration conf;
     public static final String CATEGORY_GAMEPLAY = "gameplay";
     public static final String CATEGORY_TOTEMS = "totem";
     public static final String CATEGORY_POTION = "potions";
@@ -24,18 +24,18 @@ public final class ConfigurationHandler
 
     public static void init(File configFile)
     {
-        configuration = new Configuration(configFile);
+        conf = new Configuration(configFile);
 
         try
         {
-            configuration.load();
+            conf.load();
             loadValues();
         } catch(Exception e)
         {
             logger.catching(Level.ERROR, e);
         } finally
         {
-            configuration.save();
+            conf.save();
         }
 
         FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
@@ -43,12 +43,13 @@ public final class ConfigurationHandler
 
     private static void loadValues()
     {
-        ConfigurationSettings.POTION_ID_BAT = configuration.get(CATEGORY_POTION, "batPotionID", 32).getInt();
-        ConfigurationSettings.POTION_ID_HORSE = configuration.get(CATEGORY_POTION, "horsePotionID", 33).getInt();
-        ConfigurationSettings.POTION_ID_SPIDER = configuration.get(CATEGORY_POTION, "spiderPotionID", 35).getInt();
+        conf.getCategory(CATEGORY_POTION).setRequiresMcRestart(true);
+        ConfigurationSettings.POTION_ID_BAT = conf.get(CATEGORY_POTION, "batPotionID", 32).getInt();
+        ConfigurationSettings.POTION_ID_HORSE = conf.get(CATEGORY_POTION, "horsePotionID", 33).getInt();
+        ConfigurationSettings.POTION_ID_SPIDER = conf.get(CATEGORY_POTION, "spiderPotionID", 35).getInt();
 
-        ConfigurationSettings.CEREMONY_HUD_X = configuration.get(CATEGORY_CLIENT, "ceremonyHudPositionX", 0, "horizontal position of the ceremony HUD (offset from center of the screen)").getInt();
-        ConfigurationSettings.CEREMONY_HUD_Y = configuration.get(CATEGORY_CLIENT, "ceremonyHudPositionY", -70, "vertical position of the ceremony HUD (offset from center of the screen)").getInt();
+        ConfigurationSettings.CEREMONY_HUD_X = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionX", 0, "horizontal position of the ceremony HUD (offset from center of the screen)").getInt();
+        ConfigurationSettings.CEREMONY_HUD_Y = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionY", -70, "vertical position of the ceremony HUD (offset from center of the screen)").getInt();
     }
 
     @SubscribeEvent
@@ -60,7 +61,7 @@ public final class ConfigurationHandler
                 loadValues();
             } finally
             {
-                configuration.save();
+                conf.save();
             }
     }
 

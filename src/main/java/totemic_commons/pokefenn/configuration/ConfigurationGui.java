@@ -22,8 +22,8 @@ public class ConfigurationGui extends GuiConfig
     {
         List<IConfigElement> list = new ArrayList<>();
 
-        for(String cat: ConfigurationHandler.configuration.getCategoryNames())
-            list.add(new ConfigElement<>(ConfigurationHandler.configuration.getCategory(cat)));
+        for(String cat: ConfigurationHandler.conf.getCategoryNames())
+            list.add(new ConfigElement<>(ConfigurationHandler.conf.getCategory(cat)));
 
         return list;
     }
