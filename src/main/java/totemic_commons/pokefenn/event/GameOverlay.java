@@ -26,7 +26,7 @@ public class GameOverlay
     {
         if(event.type == ElementType.ALL)
         {
-            if(activeTotem != null && !activeTotem.isCeremony)
+            if(activeTotem != null && (!activeTotem.isCeremony || activeTotem.isInvalid()))
                 activeTotem = null;
 
             if(activeTotem != null && (activeTotem.isDoingStartup() || activeTotem.isDoingEndingEffect))
