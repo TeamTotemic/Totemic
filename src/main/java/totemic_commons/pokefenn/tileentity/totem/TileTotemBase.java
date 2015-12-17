@@ -94,11 +94,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
         if(!worldObj.isRemote) //SERVER
         {
-            if(worldObj.getWorldTime() % 30L == 0)
-            {
-                syncMelody();
-            }
-
             if(!isCeremony)
                 if(worldObj.getWorldTime() % (20L * 30) == 0)
                 {
@@ -113,6 +108,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             if(!isCeremony)
             {
                 totemEffect();
+            }
+
+            if(worldObj.getWorldTime() % 20L == 0)
+            {
+                syncMelody();
             }
         }
         else //CLIENT
@@ -261,7 +261,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             selectorHandling();
         }
 
-        if(worldObj.getWorldTime() % 30L == 0)
+        if(worldObj.getWorldTime() % 20L == 0)
         {
             recalculateMelody();
         }
