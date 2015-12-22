@@ -23,7 +23,7 @@ public class EntityBuffalo extends EntityCow
 {
     public boolean isSheared = false;
 
-    public static final int MAX_AGE = 20 * 60 * 20;
+    public static final int MAX_AGE = 10 * 60 * 20;
     public static final float MIN_HP = 15, MAX_HP = 35;
 
     private static final int AGE_DATAWATCHER = 16;
@@ -88,7 +88,7 @@ public class EntityBuffalo extends EntityCow
 
     public int getBuffaloAge()
     {
-        return dataWatcher.getWatchableObjectInt(AGE_DATAWATCHER);
+        return Math.min(dataWatcher.getWatchableObjectInt(AGE_DATAWATCHER), MAX_AGE);
     }
 
     public float getRelativeAge()
@@ -159,7 +159,7 @@ public class EntityBuffalo extends EntityCow
         for(int k = 0; k < j; ++k)
         {
             entityDropItem(new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()), 0F);
-            if(rand.nextBoolean())
+            if(rand.nextInt(3) < 2)
                 entityDropItem(new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.teeth.ordinal()), 0F);
         }
 
