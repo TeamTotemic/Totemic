@@ -1,5 +1,9 @@
 package totemic_commons.pokefenn.network.client;
 
+import static totemic_commons.pokefenn.Totemic.logger;
+
+import java.util.Calendar;
+
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
@@ -17,6 +21,19 @@ public class PacketSound extends PacketBase<PacketSound>
 {
     private int x, y, z;
     private String type;
+
+    private static final boolean isChristmasTime;
+    private static final int[] silentNightBars = {1, 1, 2, 3, 4, 1, 4, 1, 5, 6, 7, 8};
+    private static int silentNightCounter = 0;
+
+    static {
+        Calendar cal = Calendar.getInstance();
+        int month = cal.get(Calendar.MONTH);
+        isChristmasTime = (month == Calendar.DECEMBER);
+
+        if(isChristmasTime)
+            logger.info("Merry Christmas!");
+    }
 
     public PacketSound()
     {
@@ -55,6 +72,13 @@ public class PacketSound extends PacketBase<PacketSound>
     {
         EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 
-        player.worldObj.playSound(x, y, z, "totemic:" + type, 1.0F, 1.0F, false);
+        if(isChristmasTime && type.equals("flute"))
+        {
+            String silentNight = "totemic:silentnight" + silentNightBars[silentNightCounter];
+            silentNightCounter = (silentNightCounter + 1) % silentNightBars.length;
+            player.worldObj.playSound(x, y, z, silentNight, 1.0F, 1.0F, false);
+        }
+        else
+            player.worldObj.playSound(x, y, z, "totemic:" + type, 1.0F, 1.0F, false);
     }
 }

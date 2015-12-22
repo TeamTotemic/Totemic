@@ -2,5 +2,13 @@
 	"windChime": {"category": "block", "sounds": ["windChime"]},
 	"rattle": {"category": "block", "sounds": ["rattle"]},
 	"flute": {"category": "block", "sounds": ["flute1", "flute2"]},
-	"drum": {"category": "block", "sounds": ["drum"]}
+	"drum": {"category": "block", "sounds": ["drum"]},
+    "silentnight1": {"category": "block", "sounds": ["silentnight1"]},
+    "silentnight2": {"category": "block", "sounds": ["silentnight2"]},
+    "silentnight3": {"category": "block", "sounds": ["silentnight3"]},
+    "silentnight4": {"category": "block", "sounds": ["silentnight4"]},
+    "silentnight5": {"category": "block", "sounds": ["silentnight5"]},
+    "silentnight6": {"category": "block", "sounds": ["silentnight6"]},
+    "silentnight7": {"category": "block", "sounds": ["silentnight7"]},
+    "silentnight8": {"category": "block", "sounds": ["silentnight8"]}
 }
