@@ -124,7 +124,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
     }
 
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean shift)
     {
@@ -137,5 +137,5 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
             list.add(StatCollector.translateToLocal("totemic.music.highMelody"));
         else if(musicOutput > 7)
             list.add(StatCollector.translateToLocal("totemic.music.veryHighMelody"));
-    }
+    }*/
 }

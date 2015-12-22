@@ -25,7 +25,7 @@ public abstract class ItemMusic extends ItemTotemic
         this.musicHandler = Objects.requireNonNull(musicHandler);
     }
 
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
@@ -38,6 +38,6 @@ public abstract class ItemMusic extends ItemTotemic
             list.add(StatCollector.translateToLocal("totemic.music.highMelody"));
         else if(musicOutput > 7)
             list.add(StatCollector.translateToLocal("totemic.music.veryHighMelody"));
-    }
+    }*/
 
 }

@@ -62,19 +62,26 @@ public class HandlerInitiation
 
     private static void ceremonyHandler()
     {
+        //Music amount landmarks:
+        //150: Flute + Drum only
+        //210: Flute + Drum + full Wind Chime
+        //240: Flute + Drum + Rattle
+        //340: Flute + Drum + Rattle + Jingle Dress
+        //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
+
         fluteCeremony = Totemic.api.addCeremony(new CeremonyFluteInfusion("totemic", "flute", 140, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
                 flute, flute));
-        rainDance = Totemic.api.addCeremony(new CeremonyRain(true, "totemic", "rainDance", 130, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
+        rainDance = Totemic.api.addCeremony(new CeremonyRain(true, "totemic", "rainDance", 180, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
                 rattle, flute));
-        drought = Totemic.api.addCeremony(new CeremonyRain(false, "totemic", "drought", 130, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
+        drought = Totemic.api.addCeremony(new CeremonyRain(false, "totemic", "drought", 180, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
                 flute, rattle));
-        ghostDance = Totemic.api.addCeremony(new CeremonyGhostDance("totemic", "ghostDance", 160, CeremonyTime.SHORT_MEDIUM, CeremonyTime.INSTANT, 0,
+        ghostDance = Totemic.api.addCeremony(new CeremonyGhostDance("totemic", "ghostDance", 340, CeremonyTime.SHORT_MEDIUM, CeremonyTime.INSTANT, 0,
                 rattle, rattle));
-        zaphkielWaltz = Totemic.api.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 110, CeremonyTime.MEDIUM, CeremonyTime.SHORT_MEDIUM, 6,
+        zaphkielWaltz = Totemic.api.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 220, CeremonyTime.LONG, CeremonyTime.SHORT_MEDIUM, 6,
                 flute, drum));
-        warDance = Totemic.api.addCeremony(new CeremonyWarDance("totemic", "warDance", 120, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
+        warDance = Totemic.api.addCeremony(new CeremonyWarDance("totemic", "warDance", 120, CeremonyTime.SHORT_MEDIUM, CeremonyTime.INSTANT, 0,
                 drum, drum));
-        buffaloDance = Totemic.api.addCeremony(new CeremonyBuffaloDance("totemic", "buffaloDance", 150, CeremonyTime.MEDIUM, CeremonyTime.INSTANT, 0,
+        buffaloDance = Totemic.api.addCeremony(new CeremonyBuffaloDance("totemic", "buffaloDance", 150, CeremonyTime.SHORT_MEDIUM, CeremonyTime.INSTANT, 0,
                 drum, windChime));
     }
 
