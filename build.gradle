@@ -18,7 +18,7 @@ buildscript {
 apply plugin: 'forge'
 apply plugin: 'curseforge'
 
-version = "1.7.10-0.6.0"
+version = "1.7.10-0.6.1"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
@@ -93,7 +93,7 @@ artifacts {
 curse {
     projectId = '237541'
     apiKey = project.hasProperty('curseForgeApiKey') ? project.curseForgeApiKey : ''
-    releaseType = 'alpha'
+    releaseType = 'beta'
 
     additionalArtifact deobfJar
     additionalArtifact apiZip

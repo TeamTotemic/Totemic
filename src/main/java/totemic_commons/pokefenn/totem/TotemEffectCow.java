@@ -32,8 +32,8 @@ public class TotemEffectCow extends TotemEffect
             {
                 if(entity instanceof EntityPlayer)
                 {
-                    TotemUtil.addPotionEffects((EntityPlayer) entity, 40, Potion.resistance, 0, totemWoodBonus, repetitionBonus, melodyAmount);
-                    TotemUtil.addNegativePotionEffect((EntityPlayer) entity, 100, Potion.moveSlowdown, 1, totemWoodBonus, repetitionBonus, melodyAmount);
+                    TotemUtil.addPotionEffects((EntityPlayer) entity, 50, Potion.resistance, 0, totemWoodBonus, repetitionBonus, melodyAmount);
+                    TotemUtil.addNegativePotionEffect((EntityPlayer) entity, 150, Potion.moveSlowdown, 1, totemWoodBonus, repetitionBonus, melodyAmount);
                 }
             }
         }

@@ -33,7 +33,7 @@ public class CeremonyWarDance extends Ceremony
             if(entity instanceof EntityPlayer)
             {
                 ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 20 * (60 * 3), 1));
-                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 20 * (60), 1));
+                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 20 * (60 + 30), 1));
             }
         }
     }
