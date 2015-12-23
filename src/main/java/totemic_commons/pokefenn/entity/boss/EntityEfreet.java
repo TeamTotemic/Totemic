@@ -56,7 +56,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
         {
             if(this.isBurning())
             {
-                if(this.worldObj.getWorldTime() % 30L == 0)
+                if(this.worldObj.getTotalWorldTime() % 30L == 0)
                     if(rand.nextBoolean())
                         this.heal(rand.nextInt(3));
             }
@@ -64,7 +64,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
 
         if(this.worldObj.isRemote)
         {
-            if(this.worldObj.getWorldTime() % 10L == 0)
+            if(this.worldObj.getTotalWorldTime() % 10L == 0)
                 for(int i = 1; i < 10; i++)
                     worldObj.spawnParticle("flame", this.posX, this.posY, this.posZ, 0.1F, 0.1F, 0.1F);
         }

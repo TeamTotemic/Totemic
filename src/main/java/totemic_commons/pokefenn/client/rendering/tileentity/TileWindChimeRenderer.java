@@ -52,7 +52,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
 
         if(tileEntity.isPlaying())
         {
-            if(tileEntity.getWorldObj().getWorldTime() % 2L == 0)
+            if(tileEntity.getWorldObj().getTotalWorldTime() % 2L == 0)
             {
                 //float percent = tileEntity.currentRotation / 90F;
                 //float sinerp = MathsUtil.sinerp(0, 0.5F, percent);

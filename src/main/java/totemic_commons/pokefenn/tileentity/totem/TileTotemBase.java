@@ -84,7 +84,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             firstTick = false;
         }
 
-        if(worldObj.getWorldTime() % 80L == 0)
+        if(worldObj.getTotalWorldTime() % 80L == 0)
         {
             totemPoleSize = calculateTotemPoleAmount();
             calculateEffects();
@@ -95,7 +95,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         if(!worldObj.isRemote) //SERVER
         {
             if(!isCeremony)
-                if(worldObj.getWorldTime() % (20L * 30) == 0)
+                if(worldObj.getTotalWorldTime() % (20L * 30) == 0)
                 {
                     timesPlayed.clear();
                 }
@@ -110,7 +110,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 totemEffect();
             }
 
-            if(worldObj.getWorldTime() % 20L == 0)
+            if(worldObj.getTotalWorldTime() % 20L == 0)
             {
                 syncMelody();
             }
@@ -122,7 +122,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             else
                 totemEffect();
 
-            if(worldObj.getWorldTime() % 40 == 0)
+            if(worldObj.getTotalWorldTime() % 40 == 0)
             {
                 if(!isCeremony)
                     spawnParticles();
@@ -261,7 +261,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             selectorHandling();
         }
 
-        if(worldObj.getWorldTime() % 20L == 0)
+        if(worldObj.getTotalWorldTime() % 20L == 0)
         {
             recalculateMelody();
         }
@@ -287,7 +287,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             doCeremonyEffect(currentCeremony);
         }
 
-        if(canMusicSelect() && worldObj.getWorldTime() % (20 * 60) == 0)
+        if(canMusicSelect() && worldObj.getTotalWorldTime() % (20 * 60) == 0)
         {
             resetAfterCeremony(true);
         }
@@ -369,7 +369,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     {
         if(musicForTotemEffect > 0)
         {
-            if(worldObj.getWorldTime() % 47L == 0)
+            if(worldObj.getTotalWorldTime() % 47L == 0)
                 musicForTotemEffect--;
         }
     }
@@ -512,7 +512,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             resetAfterCeremony(true);
         }
 
-        if(worldObj.getWorldTime() % 5L == 0)
+        if(worldObj.getTotalWorldTime() % 5L == 0)
         {
             danceLikeAMonkey(trying);
         }

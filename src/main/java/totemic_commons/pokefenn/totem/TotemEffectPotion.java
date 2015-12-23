@@ -36,7 +36,7 @@ public class TotemEffectPotion extends TotemEffect
         if(world.isRemote)
             return;
 
-        if(world.getWorldTime() % interval == 0)
+        if(world.getTotalWorldTime() % interval == 0)
         {
 
             for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, horizontal, vertical))

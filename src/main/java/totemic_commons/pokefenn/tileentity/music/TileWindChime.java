@@ -50,7 +50,7 @@ public class TileWindChime extends TileTotemic
             else if(currentRotation >= 4F)
                 currentRotation = 4F;
 
-            if(isPlaying && worldObj.getWorldTime() % 40L == 0)
+            if(isPlaying && worldObj.getTotalWorldTime() % 40L == 0)
             {
                 worldObj.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 1.0F, 1.0F, false);
                 worldObj.spawnParticle("note", xCoord + 0.5, yCoord - 0.8, zCoord + 0.5, 0, 0, 0);
@@ -80,7 +80,7 @@ public class TileWindChime extends TileTotemic
 
             Random rand = new Random();
 
-            if(!isPlaying && worldObj.getWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
+            if(!isPlaying && worldObj.getTotalWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
             {
                 setPlaying(true);
                 int radius = 2;
@@ -99,7 +99,7 @@ public class TileWindChime extends TileTotemic
             }
 
             if(isPlaying)
-                if(worldObj.getWorldTime() % 50L == 0 && rand.nextInt(2) == 0)
+                if(worldObj.getTotalWorldTime() % 50L == 0 && rand.nextInt(2) == 0)
                 {
                     int bonus = worldObj.getBlock(xCoord, yCoord + 1, zCoord).isLeaves(worldObj, xCoord, yCoord + 1, zCoord)
                             ? worldObj.rand.nextInt(3) : 0;

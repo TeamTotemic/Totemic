@@ -26,7 +26,7 @@ public class TotemEffectCow extends TotemEffect
         if(world.isRemote)
             return;
 
-        if(world.getWorldTime() % 60L == 0)
+        if(world.getTotalWorldTime() % 60L == 0)
         {
             for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, horizontal, vertical))
             {

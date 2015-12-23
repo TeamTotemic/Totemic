@@ -69,13 +69,13 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     {
         if(world.isRemote)
         {
-            if(world.getWorldTime() % 20L == 0)
+            if(world.getTotalWorldTime() % 20L == 0)
                 if(player.motionX != 0 || player.motionZ != 0)
                     PacketHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
         } else
         {
             NBTTagCompound tag = itemStack.getTagCompound();
-            if(world.getWorldTime() % 20L == 0 && tag != null)
+            if(world.getTotalWorldTime() % 20L == 0 && tag != null)
             {
                 int time = tag.getInteger(Strings.INSTR_TIME_KEY);
                 if(time >= 3 || (player.isPotionActive(Potion.moveSpeed) && time >= 2))
