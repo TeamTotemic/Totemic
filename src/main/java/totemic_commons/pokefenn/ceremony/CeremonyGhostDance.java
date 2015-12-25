@@ -15,7 +15,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class CeremonyGhostDance extends Ceremony
 {
-    public CeremonyGhostDance(String modid, String name, int musicNeeded, CeremonyTime maxStartupTime, CeremonyTime effectTime,
+    public CeremonyGhostDance(String modid, String name, int musicNeeded, int maxStartupTime, int effectTime,
             int musicPer5, MusicInstrument... instruments)
     {
         super(modid, name, musicNeeded, maxStartupTime, effectTime, musicPer5, instruments);

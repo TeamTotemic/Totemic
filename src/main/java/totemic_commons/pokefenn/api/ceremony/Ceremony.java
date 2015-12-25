@@ -13,8 +13,8 @@ public abstract class Ceremony
 
     protected final String name;
     protected final int musicNeeded;
-    protected final CeremonyTime maxStartupTime;
-    protected final CeremonyTime effectTime;
+    protected final int maxStartupTime;
+    protected final int effectTime;
     protected final int musicPer5;
     protected final MusicInstrument[] instruments;
 
@@ -28,7 +28,7 @@ public abstract class Ceremony
      * @param musicPer5         if the effect is not instant, how much melody per 5 seconds it will consume
      * @param instruments       the music instruments for selecting the ceremony. Has to be NUM_SELECTORS instruments.
      */
-    public Ceremony(String modid, String name, int musicNeeded, CeremonyTime maxStartupTime, CeremonyTime effectTime, int musicPer5, MusicInstrument... instruments)
+    public Ceremony(String modid, String name, int musicNeeded, int maxStartupTime, int effectTime, int musicPer5, MusicInstrument... instruments)
     {
         if(instruments.length != NUM_SELECTORS)
             throw new IllegalArgumentException("Wrong number of musical selectors (" + instruments.length + ")");
@@ -73,12 +73,12 @@ public abstract class Ceremony
         return musicNeeded;
     }
 
-    public CeremonyTime getMaxStartupTime()
+    public int getMaxStartupTime()
     {
         return maxStartupTime;
     }
 
-    public CeremonyTime getEffectTime()
+    public int getEffectTime()
     {
         return effectTime;
     }

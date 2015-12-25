@@ -11,7 +11,7 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
  */
 public class CeremonyNight extends Ceremony
 {
-    public CeremonyNight(String modid, String name, int musicNeeded, CeremonyTime maxStartupTime, CeremonyTime effectTime, int musicPer5,
+    public CeremonyNight(String modid, String name, int musicNeeded, int maxStartupTime, int effectTime, int musicPer5,
             MusicInstrument... instruments)
     {
         super(modid, name, musicNeeded, maxStartupTime, effectTime, musicPer5, instruments);

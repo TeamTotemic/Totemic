@@ -67,7 +67,7 @@ public class GameOverlay
                     tes.draw();
 
                     float musicW = activeTotem.totalCeremonyMelody / (float)cer.getMusicNeeded() * barWidth;
-                    float timeW = Math.min(activeTotem.ceremonyStartupTimer / (float)cer.getMaxStartupTime().getTime(), 1.0f) * barWidth;
+                    float timeW = Math.min(activeTotem.ceremonyStartupTimer / (float)cer.getMaxStartupTime(), 1.0f) * barWidth;
 
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
                     tes.startDrawingQuads();

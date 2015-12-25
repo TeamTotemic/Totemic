@@ -331,7 +331,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         else
         {
             ceremonyEffectTimer++;
-            if(ceremonyEffectTimer <= cer.getEffectTime().getTime() && drainCeremonyMelody(cer))
+            if(ceremonyEffectTimer <= cer.getEffectTime() && drainCeremonyMelody(cer))
             {
                 cer.effect(worldObj, xCoord, yCoord, zCoord);
             }
@@ -506,7 +506,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     public void startupMain(Ceremony trying)
     {
-        if(ceremonyStartupTimer > trying.getMaxStartupTime().getTime())
+        if(ceremonyStartupTimer > trying.getMaxStartupTime())
         {
             TotemUtil.particlePacket(worldObj, "largesmoke", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
