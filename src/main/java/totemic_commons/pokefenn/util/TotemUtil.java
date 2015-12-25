@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 /**

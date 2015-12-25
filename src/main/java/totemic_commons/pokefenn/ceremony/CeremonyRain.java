@@ -13,10 +13,9 @@ public class CeremonyRain extends Ceremony
 {
     public final boolean doRain;
 
-    public CeremonyRain(boolean doRain, String modid, String name, int musicNeeded, int maxStartupTime, int effectTime,
-            int musicPer5, MusicInstrument... instruments)
+    public CeremonyRain(boolean doRain, String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
-        super(modid, name, musicNeeded, maxStartupTime, effectTime, musicPer5, instruments);
+        super(modid, name, musicNeeded, maxStartupTime, instruments);
         this.doRain = doRain;
     }
 

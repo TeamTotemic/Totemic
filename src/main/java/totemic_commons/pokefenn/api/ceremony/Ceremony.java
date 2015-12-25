@@ -24,7 +24,7 @@ public abstract class Ceremony
      * @param name              the base name of your Ceremony. Will be prefixed by the mod id and ":".
      * @param musicNeeded       the amount of music needed to start the ceremony
      * @param maxStartupTime    the maximum time that starting the ceremony may take
-     * @param effectTime        the maximum time the ceremony effect will last
+     * @param effectTime        the maximum time the ceremony effect will last, or 0 if it is instant
      * @param musicPer5         if the effect is not instant, how much melody per 5 seconds it will consume
      * @param instruments       the music instruments for selecting the ceremony. Has to be NUM_SELECTORS instruments.
      */
@@ -41,6 +41,19 @@ public abstract class Ceremony
         this.effectTime = effectTime;
         this.musicPer5 = musicPer5;
         this.instruments = instruments;
+    }
+
+    /**
+     * Creates a new ceremony with an instant effect
+     * @param modid             your mod ID
+     * @param name              the base name of your Ceremony. Will be prefixed by the mod id and ":".
+     * @param musicNeeded       the amount of music needed to start the ceremony
+     * @param maxStartupTime    the maximum time that starting the ceremony may take
+     * @param instruments       the music instruments for selecting the ceremony. Has to be NUM_SELECTORS instruments.
+     */
+    public Ceremony(String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
+    {
+        this(modid, name, musicNeeded, maxStartupTime, 0, 0, instruments);
     }
 
     /**
