@@ -91,11 +91,11 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     {
         if(!isSneaking)
         {
-            TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.jingleDress, 0, 0);
+            TotemUtil.playMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.jingleDress, 0, 0);
             particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
         } else
         {
-            TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.jingleDress, 0);
+            TotemUtil.playMusicForSelector(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, HandlerInitiation.jingleDress, 0);
             particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
         }
     }

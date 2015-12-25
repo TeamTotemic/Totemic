@@ -103,7 +103,7 @@ public class TileWindChime extends TileTotemic
                 {
                     int bonus = worldObj.getBlock(xCoord, yCoord + 1, zCoord).isLeaves(worldObj, xCoord, yCoord + 1, zCoord)
                             ? worldObj.rand.nextInt(3) : 0;
-                    TotemUtil.playMusicForCeremony(this, HandlerInitiation.windChime, 0, bonus);
+                    TotemUtil.playMusic(worldObj, xCoord, yCoord, zCoord, HandlerInitiation.windChime, 0, bonus);
                 }
         }
     }

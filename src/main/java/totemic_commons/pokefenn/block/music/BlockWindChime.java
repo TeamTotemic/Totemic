@@ -67,7 +67,7 @@ public class BlockWindChime extends BlockTileTotemic
         {
             tileWindChime.canPlay = false;
             PacketHandler.sendAround(new PacketSound(x, y, z, "windChime"), world.getTileEntity(x, y, z));
-            TotemUtil.playMusicFromBlockForCeremonySelector(world, x, y, z, HandlerInitiation.windChime, 0);
+            TotemUtil.playMusicForSelector(world, x, y, z, HandlerInitiation.windChime, 0);
             TotemUtil.particlePacket(world, "note", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
             TotemUtil.particlePacket(world, "fireworksSpark", x + 0.5D, y - 0.5D, z + 0.5D, 6, 0.0D, 0.0D, 0.0D, 0.0D);
         }

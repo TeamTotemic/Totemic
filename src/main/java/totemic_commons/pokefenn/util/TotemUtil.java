@@ -21,8 +21,10 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
  */
 public class TotemUtil
 {
-
-    public static String getMusicNeeded(int music)
+    /**
+     * @return a localized representation of the music amount needed to start a ceremony (from "none" up to "crazy large")
+     */
+    public static String getMusicNeededLocalized(int music)
     {
         String welp = "totemic.musicNeeded.";
         String unlocalized = "";
@@ -45,6 +47,10 @@ public class TotemUtil
         return welp + unlocalized;
     }
 
+    /**
+     * Adds a positive potion effect to the player, where time and strength are determined based on
+     * the properties of a Totem Pole
+     */
     public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
         Random random = player.getRNG();
@@ -54,6 +60,10 @@ public class TotemUtil
                 defaultStrength + (repetitionBonus >= 5 || melodyAmount > 112 ? 1 : 0), true));
     }
 
+    /**
+     * Adds a negative potion effect to the player, where time and strength are determined based on
+     * the properties of a Totem Pole
+     */
     public static void addNegativePotionEffect(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
     {
         player.addPotionEffect(new PotionEffect(potion.id,
@@ -61,7 +71,7 @@ public class TotemUtil
                 defaultStrength - (melodyAmount > 112 ? 1 : 0), true));
     }
 
-    public static void setSelectors(TileTotemBase tile, MusicInstrument instr)
+    private static void setSelectors(TileTotemBase tile, MusicInstrument instr)
     {
         WorldServer world = (WorldServer)tile.getWorldObj();
         tile.isCeremony = true;
@@ -80,22 +90,13 @@ public class TotemUtil
         world.markBlockForUpdate(tile.xCoord, tile.yCoord, tile.zCoord);
     }
 
-    public static void playMusicFromItemForCeremonySelector(EntityPlayer player, int x, int y, int z, MusicInstrument instr, int bonusRadius)
-    {
-        World world = player.worldObj;
-        int radius = instr.getBaseRange() + bonusRadius;
-
-        for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
-        {
-            if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
-            {
-                setSelectors((TileTotemBase) tile, instr);
-                return;
-            }
-        }
-    }
-
-    public static void playMusicFromBlockForCeremonySelector(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius)
+    /**
+     * Plays music at the given position to nearby Totem bases to select a ceremony.
+     * Usually this is triggered by playing the instrument while sneaking.
+     * @param instr the instrument
+     * @param bonusRadius additional radius
+     */
+    public static void playMusicForSelector(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius)
     {
         int radius = instr.getBaseRange() + bonusRadius;
 
@@ -109,29 +110,13 @@ public class TotemUtil
         }
     }
 
-    public static void playMusicForCeremony(TileTotemic tileInstr, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
-    {
-        World world = tileInstr.getWorldObj();
-
-        int x = tileInstr.xCoord;
-        int y = tileInstr.yCoord;
-        int z = tileInstr.zCoord;
-
-        int radius = bonusRadius + instr.getBaseRange();
-
-        for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
-        {
-            if(tile instanceof MusicAcceptor)
-            {
-                int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
-
-                addMusic((MusicAcceptor)tile, instr, shiftedMusic, instr.getMusicMaximum());
-                return;
-            }
-        }
-    }
-
-    public static void playMusicFromItem(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
+    /**
+     * Plays music at the given position to nearby music acceptors
+     * @param instr the instrument
+     * @param bonusRadius additional radius
+     * @param bonusMusicAmount additional music amount
+     */
+    public static void playMusic(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
     {
         int radius = instr.getBaseRange() + bonusRadius;
 
@@ -147,6 +132,9 @@ public class TotemUtil
         }
     }
 
+    /**
+     * Adds music to the given music acceptor tile entity and spawns particles at its location
+     */
     public static void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum)
     {
         TileEntity te = (TileEntity)tile;
@@ -180,6 +168,10 @@ public class TotemUtil
         ((WorldServer) world).func_147487_a(name, x, y, z, num, spreadX, spreadY, spreadZ, vel);
     }
 
+    /**
+     * Sends a packet to the client, spawning a cloud of particles at the given block location
+     * @see TotemUtil#particlePacket
+     */
     public static void musicParticleAtBlocks(WorldServer world, int xCoord, int yCoord, int zCoord, String particle)
     {
         particlePacket(world, particle, xCoord + 0.5, yCoord, zCoord + 0.5, 6, 0.5, 0.5, 0.5, 0.0);

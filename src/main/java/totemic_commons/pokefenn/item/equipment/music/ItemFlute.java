@@ -61,14 +61,14 @@ public class ItemFlute extends ItemMusic
             {
                 int bonusMusic = (itemStack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
                 time = 0;
-                TotemUtil.playMusicFromItem(world, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0, bonusMusic);
+                TotemUtil.playMusic(world, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0, bonusMusic);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
                 PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
             }
             if(time >= 5 && player.isSneaking())
             {
                 time = 0;
-                TotemUtil.playMusicFromItemForCeremonySelector(player, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
+                TotemUtil.playMusicForSelector(player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ, musicHandler, 0);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
                 PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
             }

@@ -38,7 +38,7 @@ public class PageCeremony extends PageRecipe
         TextureManager render = Minecraft.getMinecraft().renderEngine;
         FontRenderer font = Minecraft.getMinecraft().fontRenderer;
         MusicInstrument[] instruments = ceremony.getInstruments();
-        String musicNeeded = TotemUtil.getMusicNeeded(ceremony.getMusicNeeded());
+        String musicNeeded = TotemUtil.getMusicNeededLocalized(ceremony.getMusicNeeded());
         //String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
 
         ItemStack item0 = instruments[0].getItem();

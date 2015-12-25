@@ -52,14 +52,14 @@ public class BlockDrum extends BlockTileTotemic
             if(!(player instanceof FakePlayer))
             {
                 tileDrum.canPlay = false;
-                TotemUtil.playMusicForCeremony(tileDrum, HandlerInitiation.drum, 0, 0);
+                TotemUtil.playMusic(world, x, y, z, HandlerInitiation.drum, 0, 0);
                 TotemUtil.particlePacket(world, "note", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
                 world.markBlockForUpdate(x, y, z);
             }
         } else
         {
             tileDrum.canPlay = false;
-            TotemUtil.playMusicFromBlockForCeremonySelector(world, x, y, z, HandlerInitiation.drum, 0);
+            TotemUtil.playMusicForSelector(world, x, y, z, HandlerInitiation.drum, 0);
             TotemUtil.particlePacket(world, "note", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
             TotemUtil.particlePacket(world, "fireworksSpark", x + 0.5D, y + 1.2D, z + 0.5D, 2, 0.0D, 0.0D, 0.0D, 0.0D);
             world.markBlockForUpdate(x, y, z);
