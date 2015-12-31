@@ -12,7 +12,7 @@ public class MusicApiImpl implements MusicAPI
     public void playMusicForSelector(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius)
     {
         TotemUtil.playMusicForSelector(world, x, y, z, instr, bonusRadius);
-        }
+    }
 
     @Override
     public void playMusic(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)

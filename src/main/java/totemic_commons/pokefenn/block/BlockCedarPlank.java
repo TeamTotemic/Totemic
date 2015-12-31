@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -18,6 +19,7 @@ public class BlockCedarPlank extends Block
         setHardness(2F);
         setBlockTextureName(Resources.TEXTURE_LOCATION + ":" + "cedarPlank");
         setStepSound(soundTypeWood);
+        setCreativeTab(Totemic.tabsTotem);
     }
 
 }
