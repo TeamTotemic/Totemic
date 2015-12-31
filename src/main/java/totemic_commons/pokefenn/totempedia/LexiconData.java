@@ -12,6 +12,7 @@
 package totemic_commons.pokefenn.totempedia;
 
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.TotemicRegistry;
 import totemic_commons.pokefenn.lib.Totempedia;
 import totemic_commons.pokefenn.recipe.CraftingRecipes;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
@@ -61,13 +62,15 @@ public final class LexiconData
 
     public static void init()
     {
-        Totemic.api.addCategory(categoryBasics = new LexiconCategory(Totempedia.CATEGORY_BASICS));
-        //TotemicAPI.addCategory(categoryDevices = new LexiconCategory(Totempedia.CATEGORY_DEVICES));
-        Totemic.api.addCategory(categoryInstruments = new LexiconCategory(Totempedia.CATEGORY_INSTRUMENTS));
-        Totemic.api.addCategory(categoryTotems = new LexiconCategory(Totempedia.CATEGORY_TOTEMS));
-        Totemic.api.addCategory(categoryCeremony = new LexiconCategory(Totempedia.CATEGORY_CEREMONY));
-        Totemic.api.addCategory(categoryTools = new LexiconCategory(Totempedia.CATEGORY_TOOLS));
-        Totemic.api.addCategory(categoryMisc = new LexiconCategory(Totempedia.CATEGORY_MISC));
+        TotemicRegistry reg = Totemic.api.registry();
+
+        reg.addCategory(categoryBasics = new LexiconCategory(Totempedia.CATEGORY_BASICS));
+        //reg.addCategory(categoryDevices = new LexiconCategory(Totempedia.CATEGORY_DEVICES));
+        reg.addCategory(categoryInstruments = new LexiconCategory(Totempedia.CATEGORY_INSTRUMENTS));
+        reg.addCategory(categoryTotems = new LexiconCategory(Totempedia.CATEGORY_TOTEMS));
+        reg.addCategory(categoryCeremony = new LexiconCategory(Totempedia.CATEGORY_CEREMONY));
+        reg.addCategory(categoryTools = new LexiconCategory(Totempedia.CATEGORY_TOOLS));
+        reg.addCategory(categoryMisc = new LexiconCategory(Totempedia.CATEGORY_MISC));
         //TotemicAPI.addCategory(categoryLore = new LexiconCategory(Totempedia.CATEGORY_LORE));
 
         //Basics

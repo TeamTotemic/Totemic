@@ -12,7 +12,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.RegistryImpl;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
@@ -21,6 +23,8 @@ import totemic_commons.pokefenn.util.ItemUtil;
 
 public class ItemTotemWhittlingKnife extends ItemTotemic
 {
+    private static final List<TotemEffect> totemList = ((RegistryImpl)Totemic.api.registry()).getTotemList();
+
     public ItemTotemWhittlingKnife()
     {
         super(Strings.TOTEM_WHITTLING_KNIFE_NAME);
@@ -32,9 +36,9 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public String getCurrentlyCarving(int i)
     {
-        if(i < Totemic.api.getTotemList().size())
-            return Totemic.api.getTotemList().get(i).getLocalizedName();
-        else if(i == Totemic.api.getTotemList().size())
+        if(i < totemList.size())
+            return totemList.get(i).getLocalizedName();
+        else if(i == totemList.size())
             return StatCollector.translateToLocal("tile.totemBase.name");
         else
             return "";
@@ -46,7 +50,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         if(tag == null)
             return 0;
         else
-            return MathHelper.clamp_int(tag.getInteger(Strings.KNIFE_TOTEM_KEY), 0, Totemic.api.getTotemList().size());
+            return MathHelper.clamp_int(tag.getInteger(Strings.KNIFE_TOTEM_KEY), 0, totemList.size());
     }
 
     @Override
@@ -99,16 +103,16 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                 return false;
 
             int index = getCarvingIndex(stack);
-            if(index == Totemic.api.getTotemList().size())
+            if(index == totemList.size())
             {
                 world.setBlock(x, y, z, ModBlocks.totemBase, wood.ordinal(), 3);
             }
-            else if(index < Totemic.api.getTotemList().size())
+            else if(index < totemList.size())
             {
                 world.setBlock(x, y, z, ModBlocks.totemPole, wood.ordinal(), 3);
                 TileTotemPole tile = (TileTotemPole)world.getTileEntity(x, y, z);
 
-                tile.effect = Totemic.api.getTotemList().get(getCarvingIndex(stack));
+                tile.effect = totemList.get(getCarvingIndex(stack));
                 tile.markDirty();
                 world.markBlockForUpdate(x, y, z);
             }
@@ -123,9 +127,9 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     public static ItemStack changeIndex(ItemStack itemStack, int i)
     {
         ItemStack stack = itemStack.copy();
-        int newIndex = (i + getCarvingIndex(stack)) % (Totemic.api.getTotemList().size() + 1);
+        int newIndex = (i + getCarvingIndex(stack)) % (totemList.size() + 1);
         if(newIndex < 0)
-            newIndex += Totemic.api.getTotemList().size() + 1;
+            newIndex += totemList.size() + 1;
         ItemUtil.getOrCreateTag(stack).setInteger(Strings.KNIFE_TOTEM_KEY, newIndex);
         return stack;
     }

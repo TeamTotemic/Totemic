@@ -23,7 +23,7 @@ public class BLexiconEntry extends LexiconEntry
     public BLexiconEntry(String unlocalizedName, LexiconCategory category)
     {
         super(unlocalizedName, category);
-        TotemicAPI.get().addLexiconEntry(category, this);
+        TotemicAPI.get().registry().addLexiconEntry(category, this);
     }
 
     @Override

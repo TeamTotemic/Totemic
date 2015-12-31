@@ -5,6 +5,7 @@ import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.TotemicRegistry;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -62,6 +63,7 @@ public class HandlerInitiation
 
     private static void ceremonyHandler()
     {
+        TotemicRegistry reg = Totemic.api.registry();
         //Music amount landmarks:
         //150: Flute + Drum only
         //210: Flute + Drum + full Wind Chime
@@ -69,40 +71,44 @@ public class HandlerInitiation
         //340: Flute + Drum + Rattle + Jingle Dress
         //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
 
-        fluteCeremony = Totemic.api.addCeremony(new CeremonyFluteInfusion("totemic", "flute", 140, CeremonyTime.MEDIUM,
+        fluteCeremony = reg.addCeremony(new CeremonyFluteInfusion("totemic", "flute", 140, CeremonyTime.MEDIUM,
                 flute, flute));
-        rainDance = Totemic.api.addCeremony(new CeremonyRain(true, "totemic", "rainDance", 180, CeremonyTime.MEDIUM,
+        rainDance = reg.addCeremony(new CeremonyRain(true, "totemic", "rainDance", 180, CeremonyTime.MEDIUM,
                 rattle, flute));
-        drought = Totemic.api.addCeremony(new CeremonyRain(false, "totemic", "drought", 180, CeremonyTime.MEDIUM,
+        drought = reg.addCeremony(new CeremonyRain(false, "totemic", "drought", 180, CeremonyTime.MEDIUM,
                 flute, rattle));
-        ghostDance = Totemic.api.addCeremony(new CeremonyGhostDance("totemic", "ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
+        ghostDance = reg.addCeremony(new CeremonyGhostDance("totemic", "ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
                 rattle, rattle));
-        zaphkielWaltz = Totemic.api.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 220, CeremonyTime.LONG, CeremonyTime.SHORT_MEDIUM, 6,
+        zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 220, CeremonyTime.LONG, CeremonyTime.SHORT_MEDIUM, 6,
                 flute, drum));
-        warDance = Totemic.api.addCeremony(new CeremonyWarDance("totemic", "warDance", 120, CeremonyTime.SHORT_MEDIUM,
+        warDance = reg.addCeremony(new CeremonyWarDance("totemic", "warDance", 120, CeremonyTime.SHORT_MEDIUM,
                 drum, drum));
-        buffaloDance = Totemic.api.addCeremony(new CeremonyBuffaloDance("totemic", "buffaloDance", 150, CeremonyTime.SHORT_MEDIUM,
+        buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic", "buffaloDance", 150, CeremonyTime.SHORT_MEDIUM,
                 drum, windChime));
     }
 
     private static void totemRegistry()
     {
-        horseTotem = Totemic.api.addTotem(new TotemEffectPotion("totemic", "horse", 4, 4, 1, ModPotions.horsePotion, 80, 60, 0));
-        squidTotem = Totemic.api.addTotem(new TotemEffectPotion("totemic", "squid", 4, 4, 1, Potion.waterBreathing, 80, 60, 0));
-        blazeTotem = Totemic.api.addTotem(new TotemEffectBlaze("totemic", "blaze", 4, 4, 2));
-        ocelotTotem = Totemic.api.addTotem(new TotemEffectOcelot("totemic", "ocelot", 4, 4, 2));
-        batTotem = Totemic.api.addTotem(new TotemEffectPotion("totemic", "bat", 8, 8, 2, ModPotions.batPotion, 10, 20, 0));
-        spiderTotem = Totemic.api.addTotem(new TotemEffectPotion("totemic", "spider", 4, 4, 2, ModPotions.spiderPotion, 60, 50, 0));
-        cowTotem = Totemic.api.addTotem(new TotemEffectCow("totemic", "cow", 4, 4, 1));
+        TotemicRegistry reg = Totemic.api.registry();
+
+        horseTotem = reg.addTotem(new TotemEffectPotion("totemic", "horse", 4, 4, 1, ModPotions.horsePotion, 80, 60, 0));
+        squidTotem = reg.addTotem(new TotemEffectPotion("totemic", "squid", 4, 4, 1, Potion.waterBreathing, 80, 60, 0));
+        blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic", "blaze", 4, 4, 2));
+        ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic", "ocelot", 4, 4, 2));
+        batTotem = reg.addTotem(new TotemEffectPotion("totemic", "bat", 8, 8, 2, ModPotions.batPotion, 10, 20, 0));
+        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic", "spider", 4, 4, 2, ModPotions.spiderPotion, 60, 50, 0));
+        cowTotem = reg.addTotem(new TotemEffectCow("totemic", "cow", 4, 4, 1));
     }
 
     private static void instruments()
     {
-    	flute = Totemic.api.addInstrument(new MusicInstrument("totemic", "flute", 5, 70, 5));
-    	drum = Totemic.api.addInstrument(new MusicInstrument("totemic", "drum", 7, 80, 5));
-    	windChime = Totemic.api.addInstrument(new MusicInstrument("totemic", "windChime", 7, 60, 5));
-    	jingleDress = Totemic.api.addInstrument(new MusicInstrument("totemic", "jingleDress", 6, 100, 5));
-    	rattle = Totemic.api.addInstrument(new MusicInstrument("totemic", "rattle", 6, 90, 5));
+        TotemicRegistry reg = Totemic.api.registry();
+
+    	flute = reg.addInstrument(new MusicInstrument("totemic", "flute", 5, 70, 5));
+    	drum = reg.addInstrument(new MusicInstrument("totemic", "drum", 7, 80, 5));
+    	windChime = reg.addInstrument(new MusicInstrument("totemic", "windChime", 7, 60, 5));
+    	jingleDress = reg.addInstrument(new MusicInstrument("totemic", "jingleDress", 6, 100, 5));
+    	rattle = reg.addInstrument(new MusicInstrument("totemic", "rattle", 6, 90, 5));
     }
 
 }

@@ -50,7 +50,7 @@ public class TileTotemPole extends TileTotemic
     {
         super.readFromNBT(nbtTagCompound);
         if(nbtTagCompound.hasKey("effect", Constants.NBT.TAG_STRING))
-            effect = Totemic.api.getTotem(nbtTagCompound.getString("effect"));
+            effect = Totemic.api.registry().getTotem(nbtTagCompound.getString("effect"));
         else if(nbtTagCompound.hasKey("totemId", Constants.NBT.TAG_INT)) {
             //compatibility for worlds created with a legacy version (<= 0.5.1)
             //TODO: Remove this code later at some point

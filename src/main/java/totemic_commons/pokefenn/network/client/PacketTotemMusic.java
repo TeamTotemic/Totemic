@@ -110,7 +110,7 @@ public class PacketTotemMusic extends PacketBase<PacketTotemMusic>
             {
                 totem.ceremonyMusic.clear();
                 for(int i = 0; i < instruments.length; i++)
-                    totem.ceremonyMusic.put(Totemic.api.getInstrument(instruments[i]), values[i]);
+                    totem.ceremonyMusic.put(Totemic.api.registry().getInstrument(instruments[i]), values[i]);
                 totem.recalculateMelody();
             }
         }

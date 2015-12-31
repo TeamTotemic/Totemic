@@ -55,13 +55,13 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public int totemPoleSize = 0;
     public boolean musicChanged = false;
     public final TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
-    public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.getTotems().size(), 0.75f);
+    public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.registry().getTotems().size(), 0.75f);
     public int totemWoodBonus = 0;
 
     public boolean isCeremony = false;
     public final MusicInstrument[] musicSelector = new MusicInstrument[Ceremony.NUM_SELECTORS];
-    public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>(Totemic.api.getInstruments().size(), 0.75f);
-    public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.getInstruments().size(), 0.75f);
+    public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75f);
+    public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75f);
     public int totalCeremonyMelody = 0;
     public Ceremony startupCeremony = null;
     public Ceremony currentCeremony = null;
@@ -346,7 +346,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     {
         if(musicSelector[0] != null && musicSelector[1] != null)
         {
-            for(Ceremony ceremony : Totemic.api.getCeremonies().values())
+            for(Ceremony ceremony : Totemic.api.registry().getCeremonies().values())
             {
                 MusicInstrument[] ids = ceremony.getInstruments();
                 if(ids[0] == musicSelector[0] && ids[1] == musicSelector[1])
@@ -590,7 +590,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         NBTTagList totemIdsTag = tag.getTagList("effects", Constants.NBT.TAG_STRING);
         Arrays.fill(effects, null);
         for(int i = 0; i < totemIdsTag.tagCount(); i++)
-            effects[i] = Totemic.api.getTotem(totemIdsTag.getStringTagAt(i));
+            effects[i] = Totemic.api.registry().getTotem(totemIdsTag.getStringTagAt(i));
 
         isCeremony = tag.getBoolean("isCeremony");
         if(isCeremony)
@@ -599,14 +599,14 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             ceremonyMusic.clear();
             for(String key: (Set<String>)ceremonyMusicTag.func_150296_c())
             {
-                MusicInstrument instr = Totemic.api.getInstrument(key);
+                MusicInstrument instr = Totemic.api.registry().getInstrument(key);
                 if(instr != null)
                     ceremonyMusic.put(instr, ceremonyMusicTag.getInteger(key));
             }
             recalculateMelody();
 
-            startupCeremony = Totemic.api.getCeremony(tag.getString("tryingCeremonyID"));
-            currentCeremony = Totemic.api.getCeremony(tag.getString("currentCeremony"));
+            startupCeremony = Totemic.api.registry().getCeremony(tag.getString("tryingCeremonyID"));
+            currentCeremony = Totemic.api.registry().getCeremony(tag.getString("currentCeremony"));
             ceremonyStartupTimer = tag.getInteger("ceremonyStartupTimer");
             ceremonyEffectTimer = tag.getInteger("ceremonyEffectTimer");
             continueTimer = tag.getInteger("continueTimer");
