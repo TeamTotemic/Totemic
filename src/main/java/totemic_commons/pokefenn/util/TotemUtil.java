@@ -46,30 +46,6 @@ public class TotemUtil
         return welp + unlocalized;
     }
 
-    /**
-     * Adds a positive potion effect to the player, where time and strength are determined based on
-     * the properties of a Totem Pole
-     */
-    public static void addPotionEffects(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
-    {
-        Random random = player.getRNG();
-
-        player.addPotionEffect(new PotionEffect(potion.getId(),
-                defaultTime + (repetitionBonus * 10) + random.nextInt(41) + melodyAmount + (totemWoodBonus * 10),
-                defaultStrength + (repetitionBonus >= 5 || melodyAmount > 112 ? 1 : 0), true));
-    }
-
-    /**
-     * Adds a negative potion effect to the player, where time and strength are determined based on
-     * the properties of a Totem Pole
-     */
-    public static void addNegativePotionEffect(EntityPlayer player, int defaultTime, Potion potion, int defaultStrength, int totemWoodBonus, int repetitionBonus, int melodyAmount)
-    {
-        player.addPotionEffect(new PotionEffect(potion.id,
-                defaultTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32),
-                defaultStrength - (melodyAmount > 112 ? 1 : 0), true));
-    }
-
     private static void setSelectors(TileTotemBase tile, MusicInstrument instr)
     {
         WorldServer world = (WorldServer)tile.getWorldObj();

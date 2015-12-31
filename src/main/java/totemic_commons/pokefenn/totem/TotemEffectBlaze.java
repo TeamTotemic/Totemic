@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -44,7 +45,7 @@ public class TotemEffectBlaze extends TotemEffect
                             ((EntityPlayer) entity).heal(2);
                     }
 
-                    TotemUtil.addPotionEffects((EntityPlayer) entity, 50, Potion.fireResistance, 0, totemWoodBonus, repetitionBonus, melodyAmount);
+                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.fireResistance, true, 50, 0, melodyAmount, totemWoodBonus, repetitionBonus);
                 }
             }
         }

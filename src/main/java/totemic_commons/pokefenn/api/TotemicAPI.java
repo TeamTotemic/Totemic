@@ -37,6 +37,11 @@ public final class TotemicAPI
         public MusicAPI music();
 
         /**
+         * @return an instance of the Totem Effect API
+         */
+        public TotemEffectAPI totemEffect();
+
+        /**
          * Adds a new totem effect
          * @return effect
          */

@@ -3,6 +3,7 @@ package totemic_commons.pokefenn;
 import java.util.*;
 
 import totemic_commons.pokefenn.api.TotemEffect;
+import totemic_commons.pokefenn.api.TotemEffectAPI;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicAPI;
@@ -13,6 +14,7 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 public final class ApiImpl implements TotemicAPI.API
 {
     private final MusicAPI musicApi = new MusicApiImpl();
+    private final TotemEffectAPI totemEffectApi = new TotemEffectApiImpl();
 
     private final Map<String, TotemEffect> totemEffects = new HashMap<>();
     private final List<TotemEffect> totemList = new ArrayList<>();
@@ -28,6 +30,12 @@ public final class ApiImpl implements TotemicAPI.API
     public MusicAPI music()
     {
         return musicApi;
+    }
+
+    @Override
+    public TotemEffectAPI totemEffect()
+    {
+        return totemEffectApi;
     }
 
     @Override
