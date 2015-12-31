@@ -17,6 +17,7 @@ import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
+import totemic_commons.pokefenn.util.ItemUtil;
 
 public class ItemTotemWhittlingKnife extends ItemTotemic
 {
@@ -122,10 +123,10 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     public static ItemStack changeIndex(ItemStack itemStack, int i)
     {
         ItemStack stack = itemStack.copy();
-        if(!stack.hasTagCompound())
-            stack.setTagCompound(new NBTTagCompound());
-        stack.getTagCompound().setInteger(Strings.KNIFE_TOTEM_KEY,
-                Math.floorMod(i + getCarvingIndex(stack), Totemic.api.getTotemList().size() + 1));
+        int newIndex = (i + getCarvingIndex(stack)) % (Totemic.api.getTotemList().size() + 1);
+        if(newIndex < 0)
+            newIndex += Totemic.api.getTotemList().size() + 1;
+        ItemUtil.getOrCreateTag(stack).setInteger(Strings.KNIFE_TOTEM_KEY, newIndex);
         return stack;
     }
 
