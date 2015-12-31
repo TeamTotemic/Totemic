@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.api.TotemEffect;
+import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**

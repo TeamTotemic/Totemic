@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import totemic_commons.pokefenn.api.TotemEffectAPI;
+import totemic_commons.pokefenn.api.totem.TotemEffectAPI;
 
 public class TotemEffectApiImpl implements TotemEffectAPI
 {

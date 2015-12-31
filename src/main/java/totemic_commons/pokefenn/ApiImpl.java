@@ -2,12 +2,12 @@ package totemic_commons.pokefenn;
 
 import java.util.*;
 
-import totemic_commons.pokefenn.api.TotemEffect;
-import totemic_commons.pokefenn.api.TotemEffectAPI;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicAPI;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.api.totem.TotemEffect;
+import totemic_commons.pokefenn.api.totem.TotemEffectAPI;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 

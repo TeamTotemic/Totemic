@@ -5,16 +5,16 @@ import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.api.totem.TotemEffect;
+import totemic_commons.pokefenn.api.totem.TotemEffectPotion;
 import totemic_commons.pokefenn.ceremony.*;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.totem.TotemEffectBlaze;
 import totemic_commons.pokefenn.totem.TotemEffectCow;
 import totemic_commons.pokefenn.totem.TotemEffectOcelot;
-import totemic_commons.pokefenn.totem.TotemEffectPotion;
 
 /**
  * Created by Pokefenn.

@@ -7,9 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.TotemEffect;
+import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created with IntelliJ IDEA.

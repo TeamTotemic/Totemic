@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
-import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.blessing.BlessingHandler;
 import totemic_commons.pokefenn.util.EntityUtil;

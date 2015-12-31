@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.totem;
+package totemic_commons.pokefenn.api.totem;
 
 import java.util.List;
 import java.util.Objects;
@@ -7,12 +7,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.api.TotemicAPI;
 
 /**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
+ * Default implementation of a Totem Effect that adds a potion effect to nearby players
  */
 public class TotemEffectPotion extends TotemEffect
 {
@@ -32,6 +30,9 @@ public class TotemEffectPotion extends TotemEffect
         this.amplifier = amplifier;
     }
 
+    /**
+     * Alternative constructor for positive potion effects
+     */
     public TotemEffectPotion(String modid, String baseName, int horizontal, int vertical, int tier, Potion potion, int interval, int defaultTime, int amplifier)
     {
         this(modid, baseName, horizontal, vertical, tier, potion, true, interval, defaultTime, amplifier);
@@ -48,7 +49,7 @@ public class TotemEffectPotion extends TotemEffect
 
             for(EntityPlayer entity : getPlayersInRange(world, x, y, z, horizontal, vertical))
             {
-                TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, true, defaultTime, amplifier, melodyAmount, totemWoodBonus, repetitionBonus);
+                TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, isPositive, defaultTime, amplifier, melodyAmount, totemWoodBonus, repetitionBonus);
             }
         }
     }

@@ -6,7 +6,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.Constants;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.TotemEffect;
+import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 

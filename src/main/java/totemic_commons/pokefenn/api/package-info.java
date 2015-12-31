@@ -1,6 +1,6 @@
 /**
  * The Totemic API.
- * Note that it is still subject to possibly breaking changes.
+ * It is unfinished and suboptimal but hopefully it is at least somewhat useful
  */
 @API(apiVersion = "0.4.0", owner = Totemic.MOD_ID, provides = "totemic|API")
 package totemic_commons.pokefenn.api;
