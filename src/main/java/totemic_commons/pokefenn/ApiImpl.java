@@ -5,12 +5,15 @@ import java.util.*;
 import totemic_commons.pokefenn.api.TotemEffect;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
+import totemic_commons.pokefenn.api.music.MusicAPI;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
 public final class ApiImpl implements TotemicAPI.API
 {
+    private final MusicAPI musicApi = new MusicApiImpl();
+
     private final Map<String, TotemEffect> totemEffects = new HashMap<>();
     private final List<TotemEffect> totemList = new ArrayList<>();
 
@@ -20,6 +23,12 @@ public final class ApiImpl implements TotemicAPI.API
 
     private final List<LexiconCategory> categories = new ArrayList<>();
     private final List<LexiconEntry> lexiconEntries = new ArrayList<>();
+
+    @Override
+    public MusicAPI music()
+    {
+        return musicApi;
+    }
 
     @Override
     public TotemEffect addTotem(TotemEffect effect)

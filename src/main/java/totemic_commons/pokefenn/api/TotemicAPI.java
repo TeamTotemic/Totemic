@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
+import totemic_commons.pokefenn.api.music.MusicAPI;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
@@ -30,6 +31,11 @@ public final class TotemicAPI
 
     public interface API
     {
+        /**
+         * @return an instance of the Music API
+         */
+        public MusicAPI music();
+
         /**
          * Adds a new totem effect
          * @return effect
