@@ -10,19 +10,19 @@ import totemic_commons.pokefenn.util.TotemUtil;
 public class MusicApiImpl implements MusicAPI
 {
     @Override
-    public void playMusicForSelector(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius)
+    public void playMusicForSelector(World world, double x, double y, double z, MusicInstrument instr, int bonusRadius)
     {
         TotemUtil.playMusicForSelector(world, x, y, z, instr, bonusRadius);
     }
 
     @Override
-    public void playMusic(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
+    public void playMusic(World world, double x, double y, double z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
     {
         TotemUtil.playMusic(world, x, y, z, instr, bonusRadius, bonusMusicAmount);
     }
 
     @Override
-    public MusicAcceptor getClosestAcceptor(World world, int x, int y, int z, int horizontalRadius, int verticalRadius)
+    public MusicAcceptor getClosestAcceptor(World world, double x, double y, double z, int horizontalRadius, int verticalRadius)
     {
         return TotemUtil.getClosestAcceptor((WorldServer) world, x, y, z, horizontalRadius, verticalRadius);
     }

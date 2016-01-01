@@ -63,11 +63,11 @@ public class TotemUtil
     /**
      * Returns the closest music acceptor from that position, or null if there is none in range
      */
-    public static MusicAcceptor getClosestAcceptor(WorldServer world, int x, int y, int z, int horizontalRadius, int verticalRadius)
+    public static MusicAcceptor getClosestAcceptor(WorldServer world, double x, double y, double z, int horizontalRadius, int verticalRadius)
     {
         MusicAcceptor closest = null;
         double closestDist = Double.POSITIVE_INFINITY;
-        for(TileEntity tile: EntityUtil.getTileEntitiesInRange(world, x, y, z, horizontalRadius, verticalRadius))
+        for(TileEntity tile: EntityUtil.getTileEntitiesInRange(world, (int)(x-0.5), (int)(y-0.5), (int)(z-0.5), horizontalRadius, verticalRadius))
         {
             if(tile instanceof MusicAcceptor)
             {
@@ -77,8 +77,6 @@ public class TotemUtil
                     closest = (MusicAcceptor) tile;
                     closestDist = dist;
                 }
-                if(dist <= 0.5*0.5)
-                    break; //in this case there cannot be any tile that is closer
             }
         }
         return closest;
@@ -90,7 +88,7 @@ public class TotemUtil
      * @param instr the instrument
      * @param bonusRadius additional radius
      */
-    public static void playMusicForSelector(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius)
+    public static void playMusicForSelector(World world, double x, double y, double z, MusicInstrument instr, int bonusRadius)
     {
         int radius = instr.getBaseRange() + bonusRadius;
 
@@ -107,7 +105,7 @@ public class TotemUtil
      * @param bonusRadius additional radius
      * @param bonusMusicAmount additional music amount
      */
-    public static void playMusic(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
+    public static void playMusic(World world, double x, double y, double z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
     {
         int radius = instr.getBaseRange() + bonusRadius;
 
