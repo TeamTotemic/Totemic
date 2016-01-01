@@ -43,7 +43,7 @@ public class TotemUtil
 
     private static void setSelectors(TileTotemBase tile, MusicInstrument instr)
     {
-        WorldServer world = (WorldServer)tile.getWorldObj();
+        WorldServer world = (WorldServer) tile.getWorldObj();
         tile.isCeremony = true;
 
         MusicInstrument[] musicSelectorArray = tile.musicSelector;
@@ -61,6 +61,30 @@ public class TotemUtil
     }
 
     /**
+     * Returns the closest music acceptor from that position, or null if there is none in range
+     */
+    public static MusicAcceptor getClosestAcceptor(WorldServer world, int x, int y, int z, int horizontalRadius, int verticalRadius)
+    {
+        MusicAcceptor closest = null;
+        double closestDist = Double.POSITIVE_INFINITY;
+        for(TileEntity tile: EntityUtil.getTileEntitiesInRange(world, x, y, z, horizontalRadius, verticalRadius))
+        {
+            if(tile instanceof MusicAcceptor)
+            {
+                double dist = tile.getDistanceFrom(x, y, z);
+                if(dist < closestDist)
+                {
+                    closest = (MusicAcceptor) tile;
+                    closestDist = dist;
+                }
+                if(dist <= 0.5*0.5)
+                    break; //in this case there cannot be any tile that is closer
+            }
+        }
+        return closest;
+    }
+
+    /**
      * Plays music at the given position to nearby Totem bases to select a ceremony.
      * Usually this is triggered by playing the instrument while sneaking.
      * @param instr the instrument
@@ -70,13 +94,10 @@ public class TotemUtil
     {
         int radius = instr.getBaseRange() + bonusRadius;
 
-        for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
+        MusicAcceptor tile = getClosestAcceptor((WorldServer) world, x, y, z, radius, radius);
+        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
         {
-            if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
-            {
-                setSelectors((TileTotemBase) tile, instr);
-                return;
-            }
+            setSelectors((TileTotemBase) tile, instr);
         }
     }
 
@@ -90,15 +111,11 @@ public class TotemUtil
     {
         int radius = instr.getBaseRange() + bonusRadius;
 
-        for(TileEntity tile: EntityUtil.getTileEntitiesInRange((WorldServer)world, x, y, z, radius, radius))
+        MusicAcceptor tile = getClosestAcceptor((WorldServer) world, x, y, z, radius, radius);
+        if(tile != null)
         {
-            if(tile instanceof MusicAcceptor)
-            {
-                int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
-
-                addMusic((MusicAcceptor)tile, instr, shiftedMusic, instr.getMusicMaximum());
-                return;
-            }
+            int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
+            addMusic(tile, instr, shiftedMusic, instr.getMusicMaximum());
         }
     }
 
@@ -107,8 +124,8 @@ public class TotemUtil
      */
     public static void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum)
     {
-        TileEntity te = (TileEntity)tile;
-        WorldServer world = (WorldServer)te.getWorldObj();
+        TileEntity te = (TileEntity) tile;
+        WorldServer world = (WorldServer) te.getWorldObj();
         int x = te.xCoord, y = te.yCoord, z = te.zCoord;
 
         int added = tile.addMusic(instr, musicAmount);

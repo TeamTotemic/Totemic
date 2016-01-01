@@ -37,10 +37,10 @@ public class EntityUtil
         return world.func_147486_a(minX, minY, minZ, maxX, maxY, maxZ);
     }
 
-    public static List<TileEntity> getTileEntitiesInRange(WorldServer world, int minX, int minY, int minZ, int horizontalRadius, int verticalRadius)
+    public static List<TileEntity> getTileEntitiesInRange(WorldServer world, int x, int y, int z, int horizontalRadius, int verticalRadius)
     {
-        return world.func_147486_a(minX - horizontalRadius, minY - verticalRadius, minZ - horizontalRadius,
-                minX + horizontalRadius, minY + verticalRadius, minZ + horizontalRadius);
+        return world.func_147486_a(x - horizontalRadius, y - verticalRadius, z - horizontalRadius,
+                x + horizontalRadius, y + verticalRadius, z + horizontalRadius);
     }
 
     public static void spawnEntity(World world, double xPos, double yPos, double zPos, Entity entity)
