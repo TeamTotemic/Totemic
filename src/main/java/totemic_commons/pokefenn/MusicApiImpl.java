@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn;
 
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.MusicAPI;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -18,6 +19,12 @@ public class MusicApiImpl implements MusicAPI
     public void playMusic(World world, int x, int y, int z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
     {
         TotemUtil.playMusic(world, x, y, z, instr, bonusRadius, bonusMusicAmount);
+    }
+
+    @Override
+    public MusicAcceptor getClosestAcceptor(World world, int x, int y, int z, int horizontalRadius, int verticalRadius)
+    {
+        return TotemUtil.getClosestAcceptor((WorldServer) world, x, y, z, horizontalRadius, verticalRadius);
     }
 
     @Override

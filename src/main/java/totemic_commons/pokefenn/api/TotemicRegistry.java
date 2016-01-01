@@ -10,7 +10,8 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
 /**
- * Provides access to Totemic's registries
+ * Provides access to Totemic's registries.
+ * Use <tt>TotemicAPI.get().registry()</tt> to get an instance of this interface.
  */
 public interface TotemicRegistry
 {
