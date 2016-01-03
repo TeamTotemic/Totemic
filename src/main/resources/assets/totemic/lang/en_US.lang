@@ -138,6 +138,10 @@ totemic.page.creatingTotems0=Creating a Totem Pole is a very simple thing to do.
 totemic.page.creatingTotems1=You also use the Totem Whittling Knife to carve out the &1Totem Base&0. Each Totem Pole needs one Totem Base at the bottom and can be up to 6 meters high.<br>Totem Poles will by default give beneficial &4effects&0 to all nearby players. The effects depend on the carving pattern. A Totem Pole can have different carvings on different heights.
 totemic.page.creatingTotems2=
 
+totemic.entry.totemEffects=Totem Effects
+totemic.page.totemEffects0=These are the different effects you can carve on a Totem pole:<br>&1Horse&0: Gives you a speed boost<br>&1Squid&0: Gives you Water Breathing<br>&1Blaze&0: Gives you Fire Resistance<br>&1Ocelot&0: Prevents Creepers from exploding
+totemic.page.totemEffects1=&1Bat&0: Negates fall damage and lets you move forward when you sneak mid-air<br>&1Spider&0: Lets you climb walls like a spider<br>&1Cow&0: Gives you resistance to damage, but also slows you down
+
 totemic.entry.instruments=Instruments
 totemic.page.instruments0=Instruments are a way to create &4Musical Melody&0, which is the life of &1Totem Poles&0. When an instrument is played, their melody will seep into any receivers. Every instrument produces &4Musical Melody&0 in different ways, such as how strong the melody is, how far it goes and how much a Totem can accept.
 totemic.page.instruments1=
