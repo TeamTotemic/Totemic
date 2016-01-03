@@ -1,8 +1,8 @@
 /**
  * The Totemic API.
- * It is unfinished and suboptimal but hopefully it is at least somewhat useful
+ * This should provide some functionality for extending Totemic.
  */
-@API(apiVersion = "0.4.0", owner = Totemic.MOD_ID, provides = "totemic|API")
+@API(apiVersion = "1.0.0", owner = Totemic.MOD_ID, provides = "totemic|API")
 package totemic_commons.pokefenn.api;
 
 import cpw.mods.fml.common.API;

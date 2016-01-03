@@ -77,8 +77,8 @@ public class HandlerInitiation
                 rattle, flute));
         drought = reg.addCeremony(new CeremonyRain(false, "totemic", "drought", 180, CeremonyTime.MEDIUM,
                 flute, rattle));
-        ghostDance = reg.addCeremony(new CeremonyGhostDance("totemic", "ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
-                rattle, rattle));
+        /*ghostDance = reg.addCeremony(new CeremonyGhostDance("totemic", "ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
+                rattle, rattle));*/
         zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 220, CeremonyTime.LONG, CeremonyTime.SHORT_MEDIUM, 6,
                 flute, drum));
         warDance = reg.addCeremony(new CeremonyWarDance("totemic", "warDance", 120, CeremonyTime.SHORT_MEDIUM,
