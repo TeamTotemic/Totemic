@@ -6,7 +6,7 @@ item.totemic:totemicStaff.tooltip=Ein Stab für deine Totem-Bedürfnisse!
 item.totemic:totemWhittlingKnife.name=Totemschnitzmesser
 item.totemic:totemWhittlingKnife.display=Totemschnitzmesser (%s)
 item.totemic:totemWhittlingKnife.tooltip1=Ein Messer für all deine Schnitzerei
-item.totemic:totemWhittlingKnife.tooltip2=Shift+Rechtskick zum Ändern des Musters
+item.totemic:totemWhittlingKnife.tooltip2=Schleichen+Rechts oder Mausrad zum Ändern des Musters
 item.totemic:totemWhittlingKnife.tooltip3=Momentanes Schnitzmuster:
 item.totemic:paintBrush.name=Totem-Farbpinsel
 item.totemic:infusedStick.name=Zedernstock
@@ -53,14 +53,14 @@ totemic.melodyName.weak=Ungenügende Melodie
 totemic.melodyName.low=Dürftige Melodie
 totemic.melodyName.sufficient=Reichlich Melodie
 totemic.melodyName.high=Höchst melodisch
-totemic.melodyName.maximum=Voller Melodie
+totemic.melodyName.maximum=Platzend vor Melodie
 
 #Ceremony names
-totemic.ceremony.totemic:flute=Zeremonie der Flötenverzauberung
+totemic.ceremony.totemic:flute=Flötenverzauberung
 totemic.ceremony.totemic:ghostDance=Geistertanz
 totemic.ceremony.totemic:rainDance=Regentanz
 totemic.ceremony.totemic:drought=Trockenheitstanz
-totemic.ceremony.totemic:potion=Zeremonie der Göttlichen Elixiere
+totemic.ceremony.totemic:potion=Göttliche Elixiere
 totemic.ceremony.totemic:buffaloDance=Mandan-Büffeltanz
 totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel-Walzer
 totemic.ceremony.totemic:warDance=Kriegstanz
@@ -93,7 +93,7 @@ totemicmisc.seconds= Sekunden
 totemicmisc.overTime=Über die Zeit:
 totemicmisc.capitalFalse=Falsch
 totemicmisc.capitalTrue=Wahr
-totemicmisc.musicSelector=Musikalische Selektoren
+totemicmisc.musicSelector=Musikalische Selektion
 totemicmisc.tipi.cantSleep=Du kannst nicht in einem Tipi schlafen ohne unter freiem Himmel zu sein
 totemicmisc.tipi.nether=Du kannst nicht im Nether schlafen
 totemicmisc.activeEffect=Aktiver Totemeffekt: %s
@@ -106,11 +106,12 @@ totemic.gui.lexicon.header=Die Totempedia, ein Leitfaden für all deine Totem-Be
 totemicmisc.clickToAdd=Neues Lesezeichen
 totemicmisc.back=Zurück
 totemicmisc.clickToSee=Klicke um dorthin zu gehen
-totemicmisc.shiftToRemove=Shift+Klick zum Entfernen
+totemicmisc.shiftToRemove=Umschalt+Klick zum Entfernen
 totemicmisc.nextPage=Nächste Seite
 totemicmisc.prevPage=Vorherige Seite
 totemicmisc.bookmark=Lesezeichen
 totemicmisc.clickToIndex=zum Inhaltsverzeicnis
+totemicmisc.clickToRecipe=Umschalt+Klick zum Rezept
 totemicmisc.shapeless=Formlos
 totemicmisc.oredict=Ore Dictionary
 
@@ -119,91 +120,95 @@ totemic.category.devices=Vorrichtungen
 totemic.category.tools=Werkzeuge
 totemic.category.misc=Sonstiges
 totemic.category.lore=Geschichte
-totemic.category.totems=Totems und Effekte
+totemic.category.totems=Totempfähle und Effekte
 totemic.category.ceremonies=Zeremonien
 totemic.category.instruments=Musikinstrumente
 
 totemic.entry.cedarTree=Der Rote Zedernbaum
-totemic.page.cedarTree0=The &1Red Cedar Tree&0 is a large tree that has magical properties, so its wood is especially useful for carving Totem poles out of. It can be obtained by infusing mundane saplings with musical energy in the &4Zaphkiel Waltz ceremony&0.<br>Red Cedar wood can be used like regular wood, and you can use a &4bark stripper&0 to remove its bark.
+totemic.page.cedarTree0=Der &1Rote Zedernbaum&0 ist ein großer Baum mit magischen Eigenschaften, sein Holz eignet sich besonders zum Schnitzen von Totempfählen. Man erhält ihn, indem man Setzlinge gewöhnlicher Bäume in der &4Zaphkiel-Walzer-Zeremonie&0 mit musikalischer Energie erfüllt.<br>Rote Zedernholzstämme können genutzt werden wie normales Holz, und man kann ihre Rinde mit einem &4Entrinder&0 entfernen.
 totemic.page.cedarTree1=
 
 totemic.entry.buffaloBasic=Büffel
-totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for all of the resources it can grant. They are incredibly sturdy and have a very large amount of health. Hunting has left them nearly extinct, but they can still be 'created' with the &4Mandan Buffalo Dance&0 Ceremony. 
+totemic.page.buffaloBasic0=Der mächtige Büffel, ein Tier das im ganzen Land bekannt ist für die Resourcen das es geben kann. Sie sind besonders stämmig und haben viele Lebenspunkte. Durch exzessive Jagd sind sie beinahe ausgestorben, aber sie können durch die &4Mandan-Büffeltanz&0-Zeremonie 'geschaffen' werden.
 totemic.page.buffaloBasic1=
 
 totemic.entry.creatingTotems=Totempfähle
-totemic.page.creatingTotems0=Creating a Totem Pole is a very simple thing to do. First you must create a &1Totem Whittling Knife&0, this will be what you use to carve out your Totem Poles out of wood logs. The knife can carve different patterns of &4Totem Poles&0, which will lead to different effects. Right clicking while sneaking will change which pattern will be carved.
-totemic.page.creatingTotems1=You also use the Totem Whittling Knife to carve out the &1Totem Base&0. Each Totem Pole needs one Totem Base at the bottom and can be up to 6 meters high.<br>Totem Poles will by default give beneficial &4effects&0 to all nearby players. The effects depend on the carving pattern. A Totem Pole can have different carvings on different heights.
+totemic.page.creatingTotems0=Ein Totempfahl ist leicht zu erzeugen. Zunächst benötigst du ein &1Totem-Schnitzmesser&0, damit kannst du Totempfähle aus beliebigen Arten von Holzstämmen schnitzen. Das Messer kann verschiedene Muster von &4Totempfählen&0 zeichnen, welche zu unterschiedlichen Effekten führen. Rechtsklick oder Mausrad während des Schleichens verändert, welches Muster geschnitzt wird.  
+totemic.page.creatingTotems1=Das Totemschnitzmesser wird auch benutzt, um die &1Totembasis&0 zu schnitzen. Jeder Totempfahl benötigt eine Basis unten und kann bis zu 6 Meter hoch sein.<br>Totempfähle geben normalerweise positive &4Effekte&0 zu nahen Spielern. Die Effekte hängen vom Schnitzmuster ab. Ein Totempfahl kann verschiedene Muster auf unterschiedlichen Höhen haben.
 totemic.page.creatingTotems2=
 
+totemic.entry.totemEffects=Totemeffekte
+totemic.page.totemEffects0=Diese Effekte können in einen Totempfahl eingeschnitzt werden:<br>&1Pferd&0: Gibt dir Schnelligkeit<br>&1Titntenfisch&0: Gibt dir Unterwasseratmung<br>&1Lohe&0: Gibt dir Feuerresistenz<br>&1Ozelot&0: Verhindert, dass Creeper explodieren
+totemic.page.totemEffects1=&1Fledermaus&0: Negiert Fallschaden und lässt dich vorwärts bewegen wenn du in der Luft schleichst<br>&1Spinne&0: Lässt dich Wände hochklettern wie eine Spinne<br>&1Kuh&0: Gibt dir Schadensresistenz, aber verlangsamt dich auch
+
 totemic.entry.instruments=Instrumente
-totemic.page.instruments0=Instruments are a way to create &4Musical Melody&0, which is the life of &1Totem Poles&0. When an instrument is played, their melody will seep into any receivers. Every instrument produces &4Musical Melody&0 in different ways, such as how strong the melody is, how far it goes and how much a Totem can accept.
+totemic.page.instruments0=Mit Instrumenten kann man &4Musikalische Energie&0 erzeugen, welche &1Totempfähle&0 antreibt. Spielt man ein Instrument während man schleicht, gelangt seine Melodie in nahe Verbraucher. Jedes Instrument erzeugt &4Melodie&0 auf unterschiedliche Arten und Weisen, beispielsweise wie stark die Melodie ist, wie weit sie hörbar ist und wie viel davon ein Totempfahl annehmen kann.
 totemic.page.instruments1=
 
 totemic.entry.windChime=Windspiel
-totemic.page.windChime0=The &1Wind Chime&0 is an instrument that will wave in the wind and periodically produce &4Musical Melody&0. The &1Wind Chime&0 cannot have any blocks below it, and must have a block above it to support it or else it will merely fall off. While the &1Wind Chime&0 does not create a large amount of &4Musical Melody&0, it does not require any intervention by players.
-totemic.page.windChime1=It is not rare to see &1Wind Chimes&0 hanging from the branches of leaves, there have even been rumours that it could make them create more &4Musical Melody&0. When the &1Wind Chime&0 is playing, it will shake vigorously and create music. Because the music from the &1Wind Chime&0 is so easy to come by, it does not take much of it before the maximum amount of &4Musical Melody&0 is reached.
+totemic.page.windChime0=Das &1Windspiel&0 ist ein Instrument, das im Wind flattert und so &4Melodie&0 erzeugt. Das &1Windspiel&0 muss an einem Block hängen und einen Block Platz nach unten haben. Das &1Windspiel&0 erzeugt nicht sehr viel &4Melodie&0, aber es benötigt kein Eingreifen durch Spieler.
+totemic.page.windChime1=&1Windspiele&0 können auch an Zweigen von Bäumen hängen, und man glaubt sogar, dass sie dadurch mehr &4Melodie&0 erzeugen. Da die Melodie von &1Windspielen&0 so einfach zu erhalten ist, dauert es nicht lange, bis ein Totempfahl mit seiner &4Melodie&0 gesättigt ist.
 totemic.page.windChime2=
 
 totemic.entry.drum=Trommel
-totemic.page.drum0=The &1Drum&0 is an instrumental block that can be played by simply bashing it with either fist. Because of the time for the skin on the Drum to reflect back it can take a second for it to be playable again. Drum beats are usually constant, and a vital part of any Ceremony. Because of that the music is quite melodic. As with most instruments, sneaking when playing it will allow you to select a &4Ceremony&0.
+totemic.page.drum0=Die &1Trommel&0 ist ein Instrument, das einfach durch Schlagen mit der Hand gespielt werden kann. Trommelschläge sind normalerweise konstant und ein unverzichtbarer Teil jeder Zeremonie. Deswegen ist ihre Melodie besonders melodisch. So wie die meisten Instrumente kann während des Schleichens gespielt werden, um &4Zeremonien&0 auszuwählen.
 totemic.page.drum1=
 
 totemic.entry.jingleDress=Glockenkleid
-totemic.page.jingleDress0=The &1Jingle Dress&0. One of the most prestigious pieces of clothing available for any &4Totemists&0. It is a leaf Dress adorned with bells. Running around will cause it to play music to all nearby Totem Poles. They say the faster you run the more music it creates, and a speed potion increases it ten fold! (Although one has to wonder about the accuracy of these sayings).
-totemic.page.jingleDress1=Sneaking around while wearing the dress is also possible. The sound of this instrument is highly melodic, meaning that it produces a large amount if played correctly, and &1Totems&0 can also accept a high amount of the &4Musical Melody&0 from it.
+totemic.page.jingleDress0=Das &1Glockenkleid&0, ein besonders glanzvolles Kleidungsstück fpr einen &4Totemist&0. Es ist ein Laubkleid geziert mit Glocken. Durch Umherlaufen erzeugt es Musik. Man sagt, je schneller man läuft desto mehr Musik erzeugt es, und ein Geschwindigkeitstrank erhöht es noch mehr!
+totemic.page.jingleDress1=Die Melodie dieses Instruments ist höchst melodisch, es erzeugt also eine große Menge Melodie wenn es korrekt gespielt wird, und &1Totempfähle&0 können auch eine große Menge dieser Melodie aufnehmen,
 totemic.page.jingleDress2=
 totemic.page.jingleDress3=
 
 totemic.entry.flute=Flöte
-totemic.page.flute0=Sometimes a &1Flute&0 can be one of the most simple and effective instruments available. Unlike other instruments, the &1Flute&0 simply plays music without any complication. Because of its simplicity, it is not known to be the most melodic instrument, meaning that &4Totems&0 may not accept very much of the melody. When sneaking, it can be used to select a &4Ceremony&0 for any nearby &4Totem Poles&0
-totemic.page.flute1=
+totemic.page.flute0=Manchmal ist eine &1Flöte&0 eines der simpelsten und effektivsten Instrumente. Anders als andere Instrumente kann man die &1Flöte&0 ohne weitere Schwierigkeiten spielen. Da sie so simpel ist, ist sie nicht dafür bekannt, besonders melodisch zu sein, das heißt &4Totempfähle&0 können nicht besonders viel ihrer Melodie aufnehmen.
+totemic.page.flute1=Durch Schleichen kann sie benutzt werden, um &4Zeremonien&0 an nahen &4Totempfählen&0 auszuwählen.<br>Die &1Flöte&0 kann in der &4Zeremonie der Flötenverzauberung&0 mit speziellen Eigenschaften verzaubert werden.
 totemic.page.flute2=
 
 totemic.entry.rattle=Rassel
-totemic.page.rattle0=The &1Ceremonial Rattle&0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The &1Rattle&0 produces &4Musical Melody&0 whenever it has been shook with the hand. It is currently unknown if it has any other bonuses, but it believed to one day. And like all instruments, it can be played while sneaking so as to activate ceremonies.
+totemic.page.rattle0=Die &1Zeremonielle Rassel&0 ist ein Instrument, das als Rückgrat von Zeremonien diente solange Totemisten bekannt sind. Die &1Rassel&0 produziert &4Melodie&0, wenn sie mit der Hand geschüttelt wird. Es ist derzeit nicht bekannt, ob sie andere Vorzüge hat, es wird aber vermutet. Wie alle Instrumente kann sie während des Schleichens gespielt werden um Zeremonien zu aktivieren.
 totemic.page.rattle1=
 totemic.page.rattle2=
 
 totemic.entry.performingCeremonies=Durchführung von Zeremonien
-totemic.page.performingCeremonies0=&4Ceremonies&0 are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The center of a &4Ceremony&0 is a &1Totem Base&0, all music and other things are centered to the &1Totem Pole&0 and it is where the effects are released from.
-totemic.page.performingCeremonies1=To perform a &4Ceremony&0, there are a few things you must do. To select and initiate your &4Ceremony&0, you must play 4 Instruments in their selector mode to a &1Totem Pole&0. To play most Instruments in a selector mode, just play them normally while sneaking. When you have played 4 corresponding instruments for a &4Ceremony&0, the startup will initiate.
-totemic.page.performingCeremonies2=While it is in this startup mode, the &1Totem Pole&0 will accept all nearby music and store it. This is called &4Musical Melody&0 and it is what is needed for the &4Ceremonies&0 effect to activate. When the total &4Musical Melody&0 hits the threshold of the &4Ceremonies&0 Melody requirement, it will activate the effect. Each instrument can only be played up to a certain point,
-totemic.page.performingCeremonies3=so a whole ceremony could not be played with just one instrument. Also, you only have a limited amount of time to get the ceremony going, so you need to be quick enough to play the instruments. After you played enough &4Musical Melody&0, the &4Ceremony&0 will begin performing its effects. Some &4Ceremonies&0 have instant effects, others will last over a certain amount of time after the effect
-totemic.page.performingCeremonies4=initially starts. Doing the effects will drain the &4Musical Melody&0 over that time. It should be noted that the effects can only go for a certain amount of time and will stop after that time has elapsed.
+totemic.page.performingCeremonies0=&4Zeremonien&0 sind ein Weg für Totemisten, um durch Musik all ihre Kräfte über eine gewisse Zeit zusammenzunehmen, um sie dann in einem Stoß freizusetzen und Effekte zu erzeugen. Das Zentrum einer &4Zeremonie&0 ist eine &1Totembasis&0, alle Musik und andere Dinge sind um den &1Totempfahl&0 zentriert, und dort werden die Effekte freigesetzt.
+totemic.page.performingCeremonies1=Um eine &4Zeremonie&0 durchzuführen, musst du einige Dinge tun. Um eine &4Zeremonie&0 auszuwählen und einzuleiten, musst du 2 Instrumente im Selektor-Modus nahe einem &1Totempfahl&0 spielen. Um Instrumente im Selektor-Modus zu spielen, spiele sie während du schleichst. Nachdem du 2 passende Instrumente gespielt hast, beginnt die &4Anlaufphase&0.
+totemic.page.performingCeremonies2=Während der &1Totempfahl&0 in dieser Anlaufphase ist, akzeptiert er Musik aus der Umgebung und speichert sie. Dies wird &4Musikalische Energie&0 genannt, und dies ist, was man benötigt, um den Effekt der &4Zeremonie&0 zu aktivieren. Wenn die gesamte &4Musikalische Energie&0 den Grenzwert überschreitet, den man für die &4Zeremonie&0 benötigt, wird der Effekt aktiviert.
+totemic.page.performingCeremonies3=Jedes Instrument kann nur begrenzt gespielt werden, man kann also nicht eine komplette Zeremonie mit nur einem Instrument spielen. Außerdem hast du nur eine begrenzte Zeit zur Verfügung, um die Zeremonie zum Laufen zu bringen, also musst du schnell genug sein mit den Instrumenten. Einige &4Zeremonien&0 haben sofortige Effekte, andere dauern über eine gewisse Zeit an.
+totemic.page.performingCeremonies4=Die Effekte verbrauchen die &4Musikalische Energie&0 über die Zeit. Die Effekte können nur eine gweisse Zeit andauern und hören dann auf.
 
 totemic.entry.rainDance=Regentanz
-totemic.page.rainDance0=The &4Rain Dance Ceremony&0 is a way for you to bring a torrent of rain into the world. If the rain becomes too much to bare, the &4Drought Ceremony&0 is always available, which will remove all rain. Because the effects of this &4Ceremony&0 are so potent, it may be hard to perform.
+totemic.page.rainDance0=Mit dem &4Regentanz&0 kannst du eine Regenflut über das Land bringen. Wird der Regen zu viel, kann er über den &4Trockenheitstanz&0 wieder entfernt werden. Da die Effekte dieser Zeremonie sehr potent sind, kann sie etwas schwer durchzuführen sein.
 totemic.page.rainDance1=&oWie ein Politoed&r.
 
 totemic.entry.drought=Trockenheitstanz
-totemic.page.drought0=The &4Drought Ceremony&0 will clear the sky and end any storms that may be plaguing your world. It is simply the opposite of the &4Rain Dance Ceremony&0.
+totemic.page.drought0=Der &4Trockenheitstanz&0 klart den Himmel auf und beendet jeden Regen, der das Land heimsucht. Er ist das Gegenteil des &4Regentanzes&0.
 totemic.page.drought1=&oNinetails, nicht Kurama!&r
 
 totemic.entry.warDance=Kriegszeremonie
-totemic.page.warDance0=The &4War Dance Ceremony&0 is a Ceremony that will heighten your senses for a incoming war and bring the adrenalin to your entire body. After performing it, the &4Ceremony&0 will bring the user Speed and Strength for a long time, allowing them to rush to battle.
+totemic.page.warDance0=Die &4Kriegstanz-Zeremonie&0 ist eine Zeremonie, die deine Sinne für einen Krieg stärkt und Adrenalin in deinen gesamten Körper bringt. Nach der Durchführung bringt die &4Zeremonie&0 Geschwindigkeit und Stärke für eine Weile, um in den Kampf zu stürmen.
 totemic.page.warDance1=&oEin verwickeltes Schachspiel&r
 
 totemic.entry.buffaloDance=Mandan-Büffeltanz
-totemic.page.buffaloDance0=As the White Man came and took over the lands, he murdered almost all of the &1Buffalos&0 that were once roaming the lands in large hordes. However, not all hope is lost. The &4Mandan Buffalo Dance&0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native. But they will grow larger and stronger over time.
+totemic.page.buffaloDance0=Als der Weiße Mann das Land übernahm, tötete er fast alle &1Büffel&0, die einst in großen Herden daherzogen. Aber nicht alle Hoffnung ist verloren. Die &4Mandan-Büffeltanz-Zeremonie&0 kann Kühen Kraft geben und sie in Büffel verwandeln, allerdings schwächere als die einheimischen. Aber mit der Zeit wachsen sie größer und stärker.
 totemic.page.buffaloDance1=&oVermeide rote Tücher&r
 
 totemic.entry.zaphkielWaltz=Zaphkiel-Walzer
-totemic.page.zaphkielWaltz0=The &4Zaphkiel Waltz&0 is a strong growth ceremony. For a short while, nearby plants will grow at a much faster rate than usual, and chickens will grow out of their eggs quickly. Additionally, the Zaphkiel Waltz will transform mundane saplings into &4Red Cedar Saplings&0.
+totemic.page.zaphkielWaltz0=Der &4Zaphkiel-Walzer&0 ist eine starke Wachstumszeremonie. Für eine kurze Weile wachen Pflanzen in der Umgebung und Küken in Eiern sehr viel schneller. Außerdem verwandelt der Walzer gewöhnliche Setzlinge in &4Rote Zedernsetzlinge&0.
 totemic.page.zaphkielWaltz1=&oGothisch elegant&r
 
 totemic.entry.fluteInfusion=Flötenverzauberung
-totemic.page.fluteInfusion0=The &4Ceremony of Flute Imbuation&0 is a way to infuse a regular &1Flute&0 with melodic energy, giving it special properties. Just drop the Flute on the ground while performing the Ceremony.
-totemic.page.fluteInfusion1=The melody of an &1Infused Flute&0 is quite more melodic than a mundane Flute sound, so much that &1Animals&0 and &1Villagers&0 cannot resist it and will be attracted to it. Its effects on Totems is more potent as well.
+totemic.page.fluteInfusion0=Die &4Flötenverzauberung&0 ist ein Weg, eine normale &1Flöte&0 mit musikalischer Energie zu verzaubern, um ihr spezielle Eigenschaften zu verleihen. Leg die Flöte einfach auf den Boden, bevor du die Zeremonie durchführst.
+totemic.page.fluteInfusion1=Die Melodie einer verzauberten Flöte ist deutlich stärker als ein normaler Flötenklang, so sehr, dass &1Tiere&0 und &1Dorfbewohner&0 sie nicht widerstehen können und von ihr angezogen werden. Ihr Effekt an Totempfählen ist ebenfalls stärker.
 totemic.page.fluteInfusion2=&oStärker als Twilicane&r
 
 totemic.entry.totemicStaff=Totemstab
-totemic.page.totemicStaff0=The &1Totemic Staff&0 can be used on various blocks to give you information about them.<br>Also, left-clicking it on a Totem Base will cancel ceremonies and musical selections on it.
+totemic.page.totemicStaff0=Der &1Totemstab&0 kann an verschiedenen Blöcken benutzt werden, um Informationen über sie zu liefern.<br>Außerdem kann man mit ihm durch Linksklick auf eine Totembasis Zeremonien und Selektionen abbrechen.
 totemic.page.totemicStaff1=&oGarantiert kein Schraubenschlüssel&r
 
 totemic.entry.barkStripper=Entrinder
-totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to remove the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log.
-totemic.page.barkStripper1=The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal.<br>Red Cedar Stripped Logs that are left on grass will slowly regrow their bark after a while.
+totemic.page.barkStripper0=Mit dem &1Entrinder&0 kannst du die Rinde von &1Rotem Zedernholz&0 entfernen und das blanke Holz des Baumes zum Vorschein bringen. Durch Rechtsklicken auf den Baumstamm entfernt es nach ein paar Sekunden die Rinde.
+totemic.page.barkStripper1=Das &1Entrindete Zedernholz&0 ist ergiebiger zur Hestellung von Brettern, und kann in einem Ofen zu Holzkohle verarbeitet werden.<br>Wird entrindetes Zedernholz auf Gras liegen gelassen, wächst die Rinde langsam nach.
 totemic.page.barkStripper2=
 
 #TODO
@@ -211,5 +216,5 @@ totemic.page.barkStripper2=
 #totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
 
 totemic.entry.tipi=Tipi
-totemic.page.tipi0=The &1Tipi&0 is a type of tent, shaped like a cone. It consists of a wooden frame with a tarp out of either Buffalo hide or textile. It can be placed on a flat surface of dirt or grass, and you can sleep inside it.
+totemic.page.tipi0=Der &1Tipi&0 ist kegelförmiger Zelt. Es besteht aus einem hölzernen Gerüst mit einer Plane aus Büffelleder oder Textil. Er kann auf einer flachen Oberfläche aus Erde oder Gras platziert werden, und man kann darin schlafen.
 totemic.page.tipi1=
