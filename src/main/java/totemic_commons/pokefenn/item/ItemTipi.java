@@ -1,15 +1,14 @@
 package totemic_commons.pokefenn.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -26,9 +25,9 @@ public class ItemTipi extends ItemTotemic
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        Block block = world.getBlock(x, y, z);
+        Block block = world.getBlockState(pos).getBlock();
         if(block.getMaterial() != Material.ground && !block.getUnlocalizedName().contains("dirt") && !block.getUnlocalizedName().contains("grass"))
         {
             return false;
@@ -40,61 +39,29 @@ public class ItemTipi extends ItemTotemic
             for(int j = 1; j <= height; j++)
                 for(int k = -radius; k <= radius; k++)
                 {
-                    if(!world.getBlock(x + i, y + j, z + k).isReplaceable(world, x + i, y + j, z + k))
-                    {
+                    BlockPos p = pos.add(i, j, k);
+                    if(!world.getBlockState(p).getBlock().isReplaceable(world, p))
                         return false;
-                    }
                 }
 
-        int dir = MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3;
-        world.setBlock(x, y + 4, z, ModBlocks.dummyTipi, 0, 2);
-        world.setBlock(x, y + 5, z, ModBlocks.dummyTipi, 0, 2);
-        world.setBlock(x, y + 6, z, ModBlocks.dummyTipi, 1, 2);
+        EnumFacing dir = EnumFacing.fromAngle(player.rotationYaw);
+        world.setBlockState(pos.up(4), ModBlocks.dummyTipi.getDefaultState(), 2);
+        world.setBlockState(pos.up(5), ModBlocks.dummyTipi.getDefaultState(), 2);
+        world.setBlockState(pos.up(6), ModBlocks.dummyTipi.getDefaultState()/* meta 1 FIXME*/, 2);
 
         for(int i = 0; i < 2; i++)
         {
-            for(ForgeDirection direction : ForgeDirection.values())
+            for(EnumFacing direction : EnumFacing.HORIZONTALS)
             {
-                world.setBlock(x + direction.offsetX, y + i + 1, z + direction.offsetZ, ModBlocks.dummyTipi, 0, 2);
+                world.setBlockState(pos.add(direction.getDirectionVec()).up(i+1), ModBlocks.dummyTipi.getDefaultState(), 2);
             }
-            world.setBlockToAir(x, y + i + 1, z);
-            int[] offsets = getDirectionOffsets(dir);
-            if(world.getBlock(x + offsets[0], y + i + 1, z + offsets[1]) == ModBlocks.dummyTipi)
-                world.setBlockToAir(x + offsets[0], y + i + 1, z + offsets[1]);
+            world.setBlockToAir(pos.up(i+1));
+            if(world.getBlockState(pos.add(dir.getDirectionVec()).up(i+1)).getBlock() == ModBlocks.dummyTipi)
+                world.setBlockToAir(pos.add(dir.getDirectionVec()).up(i+1));
         }
-        world.setBlock(x, y + 1, z, ModBlocks.tipi, dir, 2);
-        itemStack.stackSize--;
+        world.setBlockState(pos.up(), ModBlocks.tipi.getDefaultState()/*meta FIXME*/, 2);
+        stack.stackSize--;
 
         return true;
-    }
-
-
-    public int[] getDirectionOffsets(int i)
-    {
-        int[] offsets = {0, 0};
-        if(i == 0)
-        {
-            offsets[1] = -1;
-        }
-        if(i == 1)
-        {
-            offsets[0] = 1;
-        }
-        if(i == 2)
-        {
-            offsets[1] = 1;
-        }
-
-        if(i == 3)
-        {
-            offsets[0] = -1;
-        }
-        return offsets;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IIconRegister iconRegister)
-    {
     }
 }

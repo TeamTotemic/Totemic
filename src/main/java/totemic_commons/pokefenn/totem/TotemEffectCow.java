@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.totem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
@@ -21,14 +22,14 @@ public class TotemEffectCow extends TotemEffect
     }
 
     @Override
-    public void effect(World world, int x, int y, int z, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(World world, BlockPos pos, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
         if(world.isRemote)
             return;
 
         if(world.getTotalWorldTime() % 60L == 0)
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, horizontal, vertical))
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, horizontal, vertical))
             {
                 if(entity instanceof EntityPlayer)
                 {

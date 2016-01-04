@@ -2,12 +2,14 @@ package totemic_commons.pokefenn.block;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
@@ -27,9 +29,9 @@ public abstract class BlockTileTotemic extends BlockContainer
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityLiving, ItemStack itemStack)
     {
-        TileEntity tile = world.getTileEntity(x, y, z);
+        TileEntity tile = world.getTileEntity(pos);
         if(tile instanceof TileTotemic)
         {
             int direction = 0;
@@ -37,16 +39,16 @@ public abstract class BlockTileTotemic extends BlockContainer
 
             if(facing == 0)
             {
-                direction = ForgeDirection.NORTH.ordinal();
+                direction = EnumFacing.NORTH.ordinal();
             } else if(facing == 1)
             {
-                direction = ForgeDirection.EAST.ordinal();
+                direction = EnumFacing.EAST.ordinal();
             } else if(facing == 2)
             {
-                direction = ForgeDirection.SOUTH.ordinal();
+                direction = EnumFacing.SOUTH.ordinal();
             } else if(facing == 3)
             {
-                direction = ForgeDirection.WEST.ordinal();
+                direction = EnumFacing.WEST.ordinal();
             }
 
             if(itemStack.hasDisplayName())
@@ -56,7 +58,7 @@ public abstract class BlockTileTotemic extends BlockContainer
 
             ((TileTotemic) tile).setOrientation(direction);
 
-            world.markBlockForUpdate(x, y, z);
+            world.markBlockForUpdate(pos);
         }
     }
 

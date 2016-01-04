@@ -1,11 +1,12 @@
 package totemic_commons.pokefenn.network.client;
 
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.network.PacketBase;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 
@@ -15,34 +16,28 @@ import totemic_commons.pokefenn.tileentity.music.TileWindChime;
  */
 public class PacketWindChime extends PacketBase<PacketWindChime>
 {
-    private int x, y, z;
+    private BlockPos pos;
 
     public PacketWindChime()
     {
 
     }
 
-    public PacketWindChime(int x, int y, int z)
+    public PacketWindChime(BlockPos pos)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.pos = pos;
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
-        this.x = buf.readInt();
-        this.y = buf.readShort();
-        this.z = buf.readInt();
+        this.pos = BlockPos.fromLong(buf.readLong());
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
-        buf.writeInt(x);
-        buf.writeShort(y);
-        buf.writeInt(z);
+        buf.writeLong(pos.toLong());
     }
 
     @Override
@@ -51,9 +46,9 @@ public class PacketWindChime extends PacketBase<PacketWindChime>
     {
         EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 
-        if(player.worldObj.getTileEntity(x, y, z) instanceof TileWindChime)
+        if(player.worldObj.getTileEntity(pos) instanceof TileWindChime)
         {
-            TileWindChime tileWindChime = (TileWindChime) player.worldObj.getTileEntity(x, y, z);
+            TileWindChime tileWindChime = (TileWindChime) player.worldObj.getTileEntity(pos);
 
             tileWindChime.setPlaying(true);
         }

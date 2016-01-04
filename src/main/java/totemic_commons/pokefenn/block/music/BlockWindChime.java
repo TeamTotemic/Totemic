@@ -1,16 +1,15 @@
 package totemic_commons.pokefenn.block.music;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
@@ -28,57 +27,50 @@ public class BlockWindChime extends BlockTileTotemic
     public BlockWindChime()
     {
         super(Material.iron);
-        setBlockName(Strings.WIND_CHIME_NAME);
+        setUnlocalizedName(Strings.WIND_CHIME_NAME);
         setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
         setHardness(1.5F);
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbor)
+    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighbor)
     {
-        breakStuffs(world, x, y, z);
+        breakStuffs(world, pos);
     }
 
     @Override
-    public boolean canPlaceBlockAt(World world, int x, int y, int z)
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
-        return world.isAirBlock(x, y-1, z)
-                && (world.isSideSolid(x, y+1, z, ForgeDirection.DOWN) || world.getBlock(x, y+1, z).isLeaves(world, x, y+1, z));
+        return world.isAirBlock(pos.down())
+                && (world.isSideSolid(pos.up(), EnumFacing.DOWN) || world.getBlockState(pos.up()).getBlock().isLeaves(world, pos.up()));
     }
 
-    public void breakStuffs(World world, int x, int y, int z)
+    public void breakStuffs(World world, BlockPos pos)
     {
         if(!world.isRemote)
         {
-            if(!canPlaceBlockAt(world, x, y, z))
+            if(!canPlaceBlockAt(world, pos))
             {
-                world.setBlockToAir(x, y, z);
-                dropBlockAsItem(world, x, y, z, new ItemStack(this));
+                world.setBlockToAir(pos);
+                spawnAsEntity(world, pos, new ItemStack(this));
             }
         }
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(x, y, z);
+        TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(pos);
 
         if(!world.isRemote && player.isSneaking() && !tileWindChime.isPlaying() && tileWindChime.canPlay)
         {
             tileWindChime.canPlay = false;
-            PacketHandler.sendAround(new PacketSound(x, y, z, "windChime"), world.getTileEntity(x, y, z));
-            TotemUtil.playMusicForSelector(world, x + 0.5, y + 0.5, z + 0.5, HandlerInitiation.windChime, 0);
-            TotemUtil.particlePacket(world, "note", x + 0.5, y - 0.5, z + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
-            TotemUtil.particlePacket(world, "fireworksSpark", x + 0.5, y - 0.5, z + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
+            PacketHandler.sendAround(new PacketSound(pos, "windChime"), world.getTileEntity(pos));
+            TotemUtil.playMusicForSelector(world, pos, HandlerInitiation.windChime, 0);
+            TotemUtil.particlePacket(world, EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
+            TotemUtil.particlePacket(world, EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
         }
         return true;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIcon(int side, int meta)
-    {
-        return Blocks.stained_hardened_clay.getIcon(0, 0);
     }
 
     @Override
@@ -89,12 +81,6 @@ public class BlockWindChime extends BlockTileTotemic
 
     @Override
     public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean renderAsNormalBlock()
     {
         return false;
     }

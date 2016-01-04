@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.block.BlockCedarLog;
@@ -25,17 +27,17 @@ public class ItemBarkStripper extends ItemTotemic
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if(player.isSneaking())
             return false;
 
-        Block block = world.getBlock(x, y, z);
+        Block block = world.getBlockState(pos).getBlock();
         if(block instanceof BlockCedarLog)
         {
             if(!world.isRemote)
             {
-                NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
+                NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
                 int time = tag.getInteger(Strings.INSTR_TIME_KEY);
 
                 time++;
@@ -44,10 +46,10 @@ public class ItemBarkStripper extends ItemTotemic
                     time = 0;
                     //Random random = world.rand;
 
-                    world.setBlock(x, y, z, ModBlocks.redCedarStripped);
+                    world.setBlockState(pos, ModBlocks.redCedarStripped.getDefaultState());
                     //EntityItem bark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 1 + random.nextInt(3), ItemTotemicItems.cedarBark));
                     //world.spawnEntityInWorld(bark);
-                    itemStack.damageItem(1, player);
+                    stack.damageItem(1, player);
                 }
 
                 tag.setInteger(Strings.INSTR_TIME_KEY, time);

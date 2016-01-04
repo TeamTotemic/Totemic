@@ -10,6 +10,7 @@
  */
 package totemic_commons.pokefenn.client.gui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -159,7 +160,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
     }
 
     @Override
-    protected void mouseClicked(int par1, int par2, int par3)
+    protected void mouseClicked(int par1, int par2, int par3) throws IOException
     {
         super.mouseClicked(par1, par2, par3);
 
@@ -169,7 +170,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
     }
 
     @Override
-    public void handleMouseInput()
+    public void handleMouseInput() throws IOException
     {
         super.handleMouseInput();
 
@@ -184,7 +185,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
     }
 
     @Override
-    protected void keyTyped(char par1, int par2)
+    protected void keyTyped(char par1, int par2) throws IOException
     {
         if(par2 == 203 || par2 == 200 || par2 == 201) // Left, Up, Page Up
             prevPage();

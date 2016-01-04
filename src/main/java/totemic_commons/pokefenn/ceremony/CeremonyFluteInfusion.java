@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.ceremony;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
@@ -21,12 +22,12 @@ public class CeremonyFluteInfusion extends Ceremony
     }
 
     @Override
-    public void effect(World world, int x, int y, int z)
+    public void effect(World world, BlockPos pos)
     {
         if(world.isRemote)
             return;
 
-        for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 5, 5))
+        for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, 5, 5))
         {
             if(entity instanceof EntityItem)
             {

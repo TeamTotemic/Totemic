@@ -16,9 +16,6 @@ import java.util.List;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -28,6 +25,9 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import totemic_commons.pokefenn.client.RenderHelper;
@@ -166,7 +166,7 @@ public class PageCraftingRecipe extends PageRecipe
                         if(index >= shapeless.recipeItems.size())
                             break drawGrid;
 
-                        renderItemAtGridPos(gui, 1 + x, 1 + y, (ItemStack) shapeless.recipeItems.get(index), true);
+                        renderItemAtGridPos(gui, 1 + x, 1 + y, shapeless.recipeItems.get(index), true);
                     }
             }
 

@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import totemic_commons.pokefenn.item.*;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;

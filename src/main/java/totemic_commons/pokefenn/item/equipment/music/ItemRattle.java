@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -35,10 +36,6 @@ public class ItemRattle extends ItemMusic
     public boolean onEntitySwing(EntityLivingBase entity, ItemStack stack)
     {
         World world = entity.worldObj;
-        int x = (int) entity.posX;
-        int y = (int) entity.posY;
-        int z = (int) entity.posZ;
-
         if(!world.isRemote && entity instanceof EntityPlayer && !(entity instanceof FakePlayer))
         {
             EntityPlayer player = (EntityPlayer) entity;
@@ -54,14 +51,14 @@ public class ItemRattle extends ItemMusic
                     time = 0;
                     TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, 0);
                     particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                    PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), player.worldObj.provider.dimensionId, x, y, z);
+                    PacketHandler.sendAround(new PacketSound(player.playerLocation, "rattle"), player.worldObj.provider.getDimensionId(), player.playerLocation);
                 }
                 if(time >= 4 && player.isSneaking())
                 {
                     time = 0;
                     TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
                     particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                    PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), player.worldObj.provider.dimensionId, x, y, z);
+                    PacketHandler.sendAround(new PacketSound(player.playerLocation, "rattle"), player.worldObj.provider.getDimensionId(), player.playerLocation);
                 }
 
                 tag.setInteger(Strings.INSTR_TIME_KEY, time);
@@ -80,11 +77,11 @@ public class ItemRattle extends ItemMusic
 
     public void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
     {
-        TotemUtil.particlePacket(world, "note", x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
+        TotemUtil.particlePacket(world, EnumParticleTypes.NOTE, x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
 
         if(firework)
         {
-            TotemUtil.particlePacket(world, "fireworksSpark", x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
+            TotemUtil.particlePacket(world, EnumParticleTypes.FIREWORKS_SPARK, x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
         }
     }
 

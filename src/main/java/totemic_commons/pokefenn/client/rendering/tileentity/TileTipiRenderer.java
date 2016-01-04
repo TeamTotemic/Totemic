@@ -2,39 +2,35 @@ package totemic_commons.pokefenn.client.rendering.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.client.rendering.model.ModelTipi;
-import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class TileTipiRenderer extends TileEntitySpecialRenderer
+public class TileTipiRenderer extends TileEntitySpecialRenderer<TileTipi>
 {
     private final ModelTipi modelTipi = new ModelTipi();
 
     @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f)
+    public void renderTileEntityAt(TileTipi tile, double x, double y, double z, float f, int destroyStage)
     {
         GL11.glPushMatrix();
 
-        GL11.glTranslated(d, d1, d2);
-        TileTipi tile = (TileTipi) tileEntity;
+        GL11.glTranslated(x, y, z);
+        GL11.glScaled(2.85, 2.85, 2.85);
+        GL11.glTranslatef(0.18F, 1.55F, 0.18F);
+        //GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
+        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        this.modelTipi.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
-        renderBlockYour(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.tipi);
         GL11.glPopMatrix();
     }
 
-    public void renderBlockYour(TileTipi tl, World world, int i, int j, int k, Block block)
+    /*public void renderBlockYour(TileTipi tl, World world, int i, int j, int k, Block block)
     {
         Tessellator tessellator = Tessellator.instance;
         float f = block.getMixedBrightnessForBlock(world, i, j, k);
@@ -57,7 +53,7 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer
         this.modelTipi.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
         GL11.glPopMatrix();
-    }
+    }*/
 
 
 

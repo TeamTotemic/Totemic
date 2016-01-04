@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.ceremony;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -19,7 +20,7 @@ public class CeremonyRain extends Ceremony
     }
 
     @Override
-    public void effect(World world, int x, int y, int z)
+    public void effect(World world, BlockPos pos)
     {
         if(!world.isRemote && world.isRaining() != doRain)
         {

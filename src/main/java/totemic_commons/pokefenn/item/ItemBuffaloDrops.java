@@ -2,14 +2,12 @@ package totemic_commons.pokefenn.item;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -30,9 +28,6 @@ public class ItemBuffaloDrops extends ItemTotemic
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    private IIcon[] icons;
-
     public ItemBuffaloDrops()
     {
         super("");
@@ -48,26 +43,7 @@ public class ItemBuffaloDrops extends ItemTotemic
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int meta)
-    {
-        int j = MathHelper.clamp_int(meta, 0, Type.values().length - 1);
-        return icons[j];
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        icons = new IIcon[Type.values().length];
-
-        for(int i = 0; i < Type.values().length; ++i)
-            icons[i] = iconRegister.registerIcon(Strings.RESOURCE_PREFIX + Type.values()[i].name);
-    }
-
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
+    public void getSubItems(Item id, CreativeTabs creativeTab, List<ItemStack> list)
     {
         for(int meta = 0; meta < Type.values().length; ++meta)
             list.add(new ItemStack(id, 1, meta));

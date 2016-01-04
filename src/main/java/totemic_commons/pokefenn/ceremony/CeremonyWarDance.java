@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -21,12 +22,12 @@ public class CeremonyWarDance extends Ceremony
     }
 
     @Override
-    public void effect(World world, int x, int y, int z)
+    public void effect(World world, BlockPos pos)
     {
         if(world.isRemote)
             return;
 
-        for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
+        for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, 8, 8))
         {
             if(entity instanceof EntityPlayer)
             {

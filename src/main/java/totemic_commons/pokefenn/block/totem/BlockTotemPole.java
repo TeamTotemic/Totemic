@@ -3,18 +3,20 @@ package totemic_commons.pokefenn.block.totem;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicStaffUsage;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
@@ -33,44 +35,38 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     public BlockTotemPole()
     {
         super(Material.wood);
-        setBlockName(Strings.TOTEM_POLE_NAME);
+        setUnlocalizedName(Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setBlockBounds(0.1875F, 0.0F, 0.1875F, 0.8125F, 1.0F, 0.8125F);
         setStepSound(soundTypeWood);
     }
 
     @Override
-    public Item getItemDropped(int par1, Random random, int par2)
+    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return Item.getItemFromBlock(this);
+        return super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer); //FIXME: metadata
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+    public int damageDropped(IBlockState state)
     {
-        world.setBlockMetadataWithNotify(x, y, z, itemStack.getItemDamage(), 1);
-    }
-
-    @Override
-    public int damageDropped(int meta)
-    {
-        return meta;
+        return 0; //meta FIXME
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
         for(int i = 0; i < WoodVariant.count; i++)
             list.add(new ItemStack(item, 1, i));
     }
 
     @Override
-    public boolean onTotemicStaffRightClick(World world, int x, int y, int z, EntityPlayer player, ItemStack itemStack)
+    public boolean onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
     {
         if(!world.isRemote)
         {
-            TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(x, y, z);
+            TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(pos);
             if(tileTotemSocket.getTotemEffect() != null)
             {
                 player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", tileTotemSocket.getTotemEffect().getLocalizedName()));
@@ -79,26 +75,13 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIcon(int side, int meta)
-    {
-        WoodVariant wood = WoodVariant.values()[meta];
-        return wood.log.getIcon(side, wood.logMeta);
-    }
-
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
     @Override
     public boolean isOpaqueCube()
     {
         return false;
     }
 
+    //TODO: JSON model
     @Override
     public int getRenderType()
     {

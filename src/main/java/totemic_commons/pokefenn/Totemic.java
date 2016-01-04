@@ -7,17 +7,17 @@ import java.lang.reflect.Modifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.potion.Potion;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.compat.Compatibility;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
@@ -32,7 +32,7 @@ import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.totempedia.LexiconData;
 
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, dependencies = "after:Waila;",
-        guiFactory = "totemic_commons.pokefenn.configuration.TotemicGuiFactory")
+        acceptedMinecraftVersions = "[1.8.9,)", guiFactory = "totemic_commons.pokefenn.configuration.TotemicGuiFactory")
 public final class Totemic
 {
     public static final String MOD_ID = "totemic";

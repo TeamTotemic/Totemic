@@ -2,16 +2,20 @@ package totemic_commons.pokefenn.blessing;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
+ *
+ * TODO: This class is currently unused, but when it gets used again, it needs to be updated,
+ * e.g. use UUIDs instead of nicknames
  */
 public class BlessingHandler
 {
-    public static void increaseBlessing(int amount, String player, World world, int x, int y, int z)
+    public static void increaseBlessing(int amount, String player, World world, BlockPos pos)
     {
         //Only send this method from server > client
         BlessingWorldData blessing = (BlessingWorldData) world.loadItemData(BlessingWorldData.class, player);
@@ -23,19 +27,19 @@ public class BlessingHandler
         }
 
         blessing.blessing += amount;
-       // PacketHandler.sendAround(new PacketClientBlessingSync(getBlessing(player, world)), world.provider.dimensionId, x, y, z);
+       // PacketHandler.sendAround(new PacketClientBlessingSync(getBlessing(player, world)), world.provider.dimensionId, pos);
     }
 
-    public static void increaseBlessingNearby(int amount, World world, int x, int y, int z, int range)
+    public static void increaseBlessingNearby(int amount, World world, BlockPos pos, int range)
     {
-        if(EntityUtil.getEntitiesInRange(world, x, y, z, range, range) != null)
+        if(EntityUtil.getEntitiesInRange(world, pos, range, range) != null)
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, range, range))
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, range, range))
             {
                 if(entity instanceof EntityPlayer)
                 {
-                    String player = ((EntityPlayer) entity).getDisplayName();
-                    increaseBlessing(amount, player, world, x, y, z);
+                    String player = ((EntityPlayer) entity).getName();
+                    increaseBlessing(amount, player, world, pos);
                 }
             }
         }

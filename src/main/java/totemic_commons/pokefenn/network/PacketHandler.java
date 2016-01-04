@@ -1,12 +1,13 @@
 package totemic_commons.pokefenn.network;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.network.client.PacketClientBlessingSync;
 import totemic_commons.pokefenn.network.client.PacketSound;
@@ -50,6 +51,11 @@ public class PacketHandler
         INSTANCE.sendToAllAround(packet, new NetworkRegistry.TargetPoint(dim, x, y, z, 64));
     }
 
+    public static void sendAround(IMessage packet, int dim, BlockPos pos)
+    {
+        sendAround(packet, dim, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+    }
+
     public static void sendToServer(IMessage packet)
     {
         INSTANCE.sendToServer(packet);
@@ -57,7 +63,7 @@ public class PacketHandler
 
     public static void sendAround(IMessage packet, TileEntity tile)
     {
-        sendAround(packet, tile.getWorldObj().provider.dimensionId, tile.xCoord, tile.yCoord, tile.zCoord);
+        sendAround(packet, tile.getWorld().provider.getDimensionId(), tile.getPos());
     }
 
 }

@@ -1,10 +1,12 @@
 package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
@@ -25,7 +27,7 @@ public class BlockDrum extends BlockTileTotemic
     public BlockDrum()
     {
         super(Material.wood);
-        setBlockName(Strings.DRUM_NAME);
+        setUnlocalizedName(Strings.DRUM_NAME);
         setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.8F, 0.8F);
         setStepSound(soundTypeWood);
     }
@@ -37,65 +39,54 @@ public class BlockDrum extends BlockTileTotemic
     }
 
     @Override
-    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
+    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
     {
-        TileDrum tileDrum = (TileDrum) world.getTileEntity(x, y, z);
+        TileDrum tileDrum = (TileDrum) world.getTileEntity(pos);
 
         if(!world.isRemote && tileDrum.canPlay)
-            playDaMusicu((WorldServer)world, x, y, z, player, tileDrum, player.isSneaking());
+            playDaMusicu((WorldServer)world, pos, player, tileDrum, player.isSneaking());
     }
 
-    public void playDaMusicu(WorldServer world, int x, int y, int z, EntityPlayer player, TileDrum tileDrum, boolean isSneaking)
+    public void playDaMusicu(WorldServer world, BlockPos pos, EntityPlayer player, TileDrum tileDrum, boolean isSneaking)
     {
         if(!isSneaking)
         {
             if(!(player instanceof FakePlayer))
             {
                 tileDrum.canPlay = false;
-                TotemUtil.playMusic(world, x + 0.5, y + 0.5, z + 0.5, HandlerInitiation.drum, 0, 0);
-                TotemUtil.particlePacket(world, "note", x + 0.5, y + 1.2, z + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
-                world.markBlockForUpdate(x, y, z);
+                TotemUtil.playMusic(world, pos, HandlerInitiation.drum, 0, 0);
+                TotemUtil.particlePacket(world, EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
+                world.markBlockForUpdate(pos);
             }
         } else
         {
             tileDrum.canPlay = false;
-            TotemUtil.playMusicForSelector(world, x, y, z, HandlerInitiation.drum, 0);
-            TotemUtil.particlePacket(world, "note", x + 0.5, y + 1.2, z + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
-            TotemUtil.particlePacket(world, "fireworksSpark", x + 0.5, y + 1.2, z + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
-            world.markBlockForUpdate(x, y, z);
+            TotemUtil.playMusicForSelector(world, pos, HandlerInitiation.drum, 0);
+            TotemUtil.particlePacket(world, EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
+            TotemUtil.particlePacket(world, EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
+            world.markBlockForUpdate(pos);
         }
 
-        PacketHandler.sendAround(new PacketSound(x, y, z, "drum"), world.getTileEntity(x, y, z));
+        PacketHandler.sendAround(new PacketSound(pos, "drum"), world.getTileEntity(pos));
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        TileDrum tileDrum = (TileDrum) world.getTileEntity(x, y, z);
+        TileDrum tileDrum = (TileDrum) world.getTileEntity(pos);
 
         if(!world.isRemote)
         {
             if(tileDrum.canPlay)
             {
-                playDaMusicu((WorldServer)world, x, y, z, player, tileDrum, player.isSneaking());
+                playDaMusicu((WorldServer)world, pos, player, tileDrum, player.isSneaking());
             }
         }
 
         return true;
     }
 
-    @Override
-    public IIcon getIcon(int side, int meta)
-    {
-        return Blocks.log.getIcon(2, 0);
-    }
-
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
+    //TODO: JSON model
     @Override
     public int getRenderType()
     {

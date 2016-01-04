@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.api.ceremony;
 
 import java.util.Objects;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -61,7 +62,7 @@ public abstract class Ceremony
      * If the ceremony is not instant, this will be called each tick.
      * This gets called on the server and the client.
      */
-    public abstract void effect(World world, int x, int y, int z);
+    public abstract void effect(World world, BlockPos pos);
 
     public final String getName()
     {

@@ -1,11 +1,11 @@
 package totemic_commons.pokefenn.network.client;
 
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.blessing.BlessingHandler;
 import totemic_commons.pokefenn.network.PacketBase;
 
@@ -47,6 +47,6 @@ public class PacketClientBlessingSync extends PacketBase<PacketClientBlessingSyn
     {
         EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 
-        BlessingHandler.setBlessing(blessing, player.getDisplayName(), player.worldObj);
+        BlessingHandler.setBlessing(blessing, player.getName(), player.worldObj);
     }
 }

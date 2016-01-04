@@ -10,6 +10,8 @@
  */
 package totemic_commons.pokefenn.client.gui;
 
+import java.io.IOException;
+
 import org.lwjgl.input.Mouse;
 
 import net.minecraft.client.gui.GuiButton;
@@ -198,7 +200,7 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
     }
 
     @Override
-    protected void mouseClicked(int par1, int par2, int par3)
+    protected void mouseClicked(int par1, int par2, int par3) throws IOException
     {
         super.mouseClicked(par1, par2, par3);
 
@@ -208,7 +210,7 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
     }
 
     @Override
-    public void handleMouseInput()
+    public void handleMouseInput() throws IOException
     {
         super.handleMouseInput();
 
@@ -223,7 +225,7 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
     }
 
     @Override
-    protected void keyTyped(char par1, int par2)
+    protected void keyTyped(char par1, int par2) throws IOException
     {
         if(par2 == 203 || par2 == 200 || par2 == 201) // Left, Up, Page Up
             prevPage();

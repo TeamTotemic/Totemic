@@ -1,8 +1,8 @@
 package totemic_commons.pokefenn.network;
 
-import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
 import vazkii.botania.totemic_custom.api.lexicon.ILexicon;
 

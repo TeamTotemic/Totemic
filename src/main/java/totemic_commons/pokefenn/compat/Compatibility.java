@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.compat;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 
 /**
  * Created by Pokefenn.

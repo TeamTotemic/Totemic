@@ -1,11 +1,10 @@
 package totemic_commons.pokefenn.item.equipment.weapon;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
@@ -27,13 +26,6 @@ public class ItemTomahawk extends ItemSword
     @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack par1ItemStack)
     {
-        return EnumRarity.uncommon;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
+        return EnumRarity.UNCOMMON;
     }
 }

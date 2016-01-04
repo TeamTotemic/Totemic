@@ -1,12 +1,13 @@
 package totemic_commons.pokefenn.network.client;
 
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.network.PacketBase;
 
 /**
@@ -15,7 +16,7 @@ import totemic_commons.pokefenn.network.PacketBase;
  */
 public class PacketSound extends PacketBase<PacketSound>
 {
-    private int x, y, z;
+    private BlockPos pos;
     private String type;
 
     public PacketSound()
@@ -23,29 +24,23 @@ public class PacketSound extends PacketBase<PacketSound>
 
     }
 
-    public PacketSound(int x, int y, int z, String type)
+    public PacketSound(BlockPos pos, String type)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.pos = pos;
         this.type = type;
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
-        this.x = buf.readInt();
-        this.y = buf.readShort();
-        this.z = buf.readInt();
+        this.pos = BlockPos.fromLong(buf.readLong());
         this.type = ByteBufUtils.readUTF8String(buf);
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
-        buf.writeInt(x);
-        buf.writeShort(y);
-        buf.writeInt(z);
+        buf.writeLong(pos.toLong());
         ByteBufUtils.writeUTF8String(buf, type);
     }
 
@@ -55,6 +50,6 @@ public class PacketSound extends PacketBase<PacketSound>
     {
         EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 
-        player.worldObj.playSound(x, y, z, "totemic:" + type, 1.0F, 1.0F, false);
+        player.worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), "totemic:" + type, 1.0F, 1.0F, false);
     }
 }

@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -20,15 +21,15 @@ public class CeremonyGhostDance extends Ceremony
     }
 
     @Override
-    public void effect(World world, int x, int y, int z)
+    public void effect(World world, BlockPos pos)
     {
         if(world.isRemote)
             return;
 
-        for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
+        for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, 8, 8))
         if(entity instanceof EntityPlayer)
         {
-            BlessingHandler.increaseBlessing(2, ((EntityPlayer) entity).getDisplayName(), world, x, y, z);
+            BlessingHandler.increaseBlessing(2, ((EntityPlayer) entity).getName(), world, pos);
         }
 
     }

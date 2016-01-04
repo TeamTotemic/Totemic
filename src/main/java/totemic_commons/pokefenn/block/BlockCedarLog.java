@@ -2,16 +2,14 @@ package totemic_commons.pokefenn.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLog;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -26,47 +24,20 @@ public class BlockCedarLog extends BlockLog
     public BlockCedarLog()
     {
         super();
-        setBlockName(Strings.CEDAR_LOG_NAME);
+        setUnlocalizedName(Strings.CEDAR_LOG_NAME);
         setHardness(2F);
         setCreativeTab(Totemic.tabsTotem);
     }
 
     @Override
-    public int damageDropped(int meta)
+    public int damageDropped(IBlockState state)
     {
         return 0;
     }
 
-    @SideOnly(Side.CLIENT)
-    private IIcon topAndBot;
-    @SideOnly(Side.CLIENT)
-    private IIcon sideIcon;
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerBlockIcons(IIconRegister register)
-    {
-        sideIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.INFUSED_WOOD_SIDE);
-        topAndBot = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.INFUSED_WOOD_TOP_AND_BOT);
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    protected IIcon getTopIcon(int meta)
-    {
-        return topAndBot;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    protected IIcon getSideIcon(int meta)
-    {
-        return sideIcon;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item blockId, CreativeTabs creativeTab, List subTypes)
+    public void getSubBlocks(Item blockId, CreativeTabs creativeTab, List<ItemStack> subTypes)
     {
         subTypes.add(new ItemStack(blockId, 1, 0));
     }

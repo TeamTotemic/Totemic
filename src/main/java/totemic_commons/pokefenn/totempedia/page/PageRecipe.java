@@ -18,14 +18,16 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.resources.model.ModelManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.client.gui.GuiLexiconEntry;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
@@ -142,7 +144,7 @@ public class PageRecipe extends LexiconPage
     @SideOnly(Side.CLIENT)
     public void renderItem(IGuiLexiconEntry gui, int xPos, int yPos, ItemStack stack, boolean accountForContainer)
     {
-        RenderItem render = new RenderItem();
+        RenderItem render = new RenderItem(Minecraft.getMinecraft().getTextureManager());
         boolean mouseDown = Mouse.isButtonDown(0);
 
         GL11.glPushMatrix();
@@ -151,8 +153,8 @@ public class PageRecipe extends LexiconPage
         net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
-        render.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
-        render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
+        render.renderItemAndEffectIntoGUI(stack, xPos, yPos);
+        render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRendererObj, stack, xPos, yPos, "");
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         GL11.glPopMatrix();
 

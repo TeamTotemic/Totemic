@@ -3,18 +3,17 @@ package totemic_commons.pokefenn.block.plant;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.world.TotemTreeGeneration;
 
@@ -30,22 +29,21 @@ public class BlockCedarSapling extends BlockSapling
 
     public BlockCedarSapling()
     {
-        super();
-        setBlockName(Strings.TOTEM_SAPLING_NAME);
+        setUnlocalizedName(Strings.TOTEM_SAPLING_NAME);
         setBlockBounds(0.5F - 0.4F, 0.0F, 0.5F - 0.4F, 0.5F + 0.4F, 0.4F * 2.0F, 0.5F + 0.4F);
         setCreativeTab(Totemic.tabsTotem);
         setStepSound(soundTypeGrass);
     }
 
     @Override
-    public void func_149878_d(World world, int x, int y, int z, Random random)
+    public void grow(World world, BlockPos pos, IBlockState state, Random random)
     {
         if(!world.isRemote)
         {
-            if(treeGen.growTree(world, random, x, y, z))
+            if(treeGen.growTree(world, random, pos))
             {
-                world.setBlockToAir(x, y, z);
-                world.setBlock(x, y, z, ModBlocks.cedarLog, 0, 4);
+                world.setBlockToAir(pos);
+                world.setBlockState(pos, ModBlocks.cedarLog.getDefaultState(), 4);
             }
         }
     }
@@ -53,34 +51,14 @@ public class BlockCedarSapling extends BlockSapling
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item blockId, CreativeTabs tab, List subBlocks)
+    public void getSubBlocks(Item blockId, CreativeTabs tab, List<ItemStack> subBlocks)
     {
         subBlocks.add(new ItemStack(blockId, 1, 0));
     }
 
     @Override
-    public Item getItemDropped(int p_149650_1_, Random random, int p_149650_3_)
+    public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.totemSapling);
     }
-
-
-    @SideOnly(Side.CLIENT)
-    private IIcon saplingIcon;
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerBlockIcons(IIconRegister register)
-    {
-        saplingIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.INFUSED_SAPLING);
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIcon(int side, int meta)
-    {
-        return saplingIcon;
-    }
-
-
 }

@@ -6,6 +6,7 @@ import java.util.Objects;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.TotemicAPI;
 
@@ -39,7 +40,7 @@ public class TotemEffectPotion extends TotemEffect
     }
 
     @Override
-    public void effect(World world, int x, int y, int z, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(World world, BlockPos pos, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
         if(world.isRemote)
             return;
@@ -47,15 +48,15 @@ public class TotemEffectPotion extends TotemEffect
         if(world.getTotalWorldTime() % interval == 0)
         {
 
-            for(EntityPlayer entity : getPlayersInRange(world, x, y, z, horizontal, vertical))
+            for(EntityPlayer entity : getPlayersInRange(world, pos, horizontal, vertical))
             {
                 TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, isPositive, defaultTime, amplifier, melodyAmount, totemWoodBonus, repetitionBonus);
             }
         }
     }
 
-    public static List<EntityPlayer> getPlayersInRange(World world, int x, int y, int z, int horizontal, int vertical)
+    public static List<EntityPlayer> getPlayersInRange(World world, BlockPos pos, int horizontal, int vertical)
     {
-        return world.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(x - 0.5F, y - 0.5f, z - 0.5f, x + 0.5f, y + 0.5f, z + 0.5f).expand(horizontal, vertical, horizontal));
+        return world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX() - 0.5F, pos.getY() - 0.5f, pos.getZ() - 0.5f, pos.getX() + 0.5f, pos.getY() + 0.5f, pos.getZ() + 0.5f).expand(horizontal, vertical, horizontal));
     }
 }

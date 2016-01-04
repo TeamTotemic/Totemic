@@ -2,7 +2,8 @@ package totemic_commons.pokefenn.entity.boss;
 
 import java.util.Random;
 
-import net.minecraft.command.IEntitySelector;
+import com.google.common.base.Predicate;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -11,6 +12,7 @@ import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -20,15 +22,7 @@ import net.minecraft.world.World;
  */
 public class EntityEfreet extends EntityMob implements IBossDisplayData, IRangedAttackMob
 {
-    private static final IEntitySelector attackEntitySelector = new IEntitySelector()
-    {
-        @Override
-        public boolean isEntityApplicable(Entity entity)
-        {
-            return entity instanceof EntityPlayer;
-        }
-    };
-
+    private static final Predicate<Entity> attackEntitySelector = e -> e instanceof EntityPlayer;
 
     public EntityEfreet(World par1World)
     {
@@ -40,7 +34,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, false, false, attackEntitySelector));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 0, false, false, attackEntitySelector));
         this.targetTasks.addTask(3, new EntityAIWander(this, 1));
 
     }
@@ -66,7 +60,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
         {
             if(this.worldObj.getTotalWorldTime() % 10L == 0)
                 for(int i = 1; i < 10; i++)
-                    worldObj.spawnParticle("flame", this.posX, this.posY, this.posZ, 0.1F, 0.1F, 0.1F);
+                    worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.1F, 0.1F, 0.1F);
         }
     }
 
@@ -79,7 +73,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
 
     private void spawnFireball(int par1, double par2, double par4, double par6, boolean par8)
     {
-        this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1014, (int) this.posX, (int) this.posY, (int) this.posZ, 0);
+        this.worldObj.playAuxSFXAtEntity(null, 1014, this.getPosition(), 0);
         double xPosWorkingOut = this.xPosWorkingOut(par1);
         double yPosWorkingOut = this.yPosWorkingOut(par1);
         double zPosworkingOut = this.zPosworkingOut(par1);

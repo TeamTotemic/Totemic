@@ -13,12 +13,12 @@ package totemic_commons.pokefenn.totempedia.page;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.client.FontHelper;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconPage;
@@ -45,7 +45,7 @@ public class PageText extends LexiconPage
     @SideOnly(Side.CLIENT)
     public static void renderText(int x, int y, int width, int height, String unlocalizedText)
     {
-        FontRenderer renderer = Minecraft.getMinecraft().fontRenderer;
+        FontRenderer renderer = Minecraft.getMinecraft().fontRendererObj;
         boolean unicode = renderer.getUnicodeFlag();
         renderer.setUnicodeFlag(true);
         String text = StatCollector.translateToLocal(unlocalizedText).replaceAll("&", "\u00a7");
@@ -78,7 +78,7 @@ public class PageText extends LexiconPage
                     pendingFormat = "";
                 }
 
-                if(MathHelper.stringNullOrLengthZero(format))
+                if(format == null || format.equals(""))
                     format = lastFormat;
 
                 if(renderer.getStringWidth(workingOn + " " + s1) >= width)

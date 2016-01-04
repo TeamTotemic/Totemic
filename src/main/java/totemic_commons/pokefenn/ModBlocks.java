@@ -1,8 +1,8 @@
 package totemic_commons.pokefenn;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import totemic_commons.pokefenn.block.BlockCedarLog;
 import totemic_commons.pokefenn.block.BlockCedarPlank;
 import totemic_commons.pokefenn.block.BlockCedarStripped;

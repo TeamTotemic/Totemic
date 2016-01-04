@@ -28,7 +28,7 @@ public class ItemHuntingKnife extends ItemSword
     public boolean hitEntity(ItemStack itemStack, EntityLivingBase entity1, EntityLivingBase entity2)
     {
         if(entity1 instanceof EntityAnimal)
-            ((EntityAnimal) entity1).tasks.addTask(0, new EntityAIAvoidEntity((EntityCreature) entity1, EntityPlayer.class, 16.0F, 3D, 1.6D));
+            ((EntityAnimal) entity1).tasks.addTask(0, new EntityAIAvoidEntity<>((EntityCreature) entity1, EntityPlayer.class, 16.0F, 3D, 1.6D));
 
         itemStack.damageItem(1, entity2);
         return true;

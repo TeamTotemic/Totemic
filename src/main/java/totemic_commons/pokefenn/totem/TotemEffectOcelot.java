@@ -5,10 +5,11 @@ import static totemic_commons.pokefenn.Totemic.logger;
 import java.lang.reflect.Field;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -28,14 +29,14 @@ public class TotemEffectOcelot extends TotemEffect
     private final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");
 
     @Override
-    public void effect(World world, int x, int y, int z, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(World world, BlockPos pos, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
         if(world.isRemote)
             return;
 
         try
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, horizontal, vertical))
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, horizontal, vertical))
             {
                 if(entity instanceof EntityCreeper)
                 {

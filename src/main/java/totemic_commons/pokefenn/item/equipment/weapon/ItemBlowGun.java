@@ -1,12 +1,12 @@
 package totemic_commons.pokefenn.item.equipment.weapon;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -73,7 +73,7 @@ public class ItemBlowGun extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack par1ItemStack)
     {
-        return EnumRarity.uncommon;
+        return EnumRarity.UNCOMMON;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class ItemBlowGun extends ItemTotemic
     }
 
     @Override
-    public ItemStack onEaten(ItemStack itemStack, World world, EntityPlayer player)
+    public ItemStack onItemUseFinish(ItemStack itemStack, World world, EntityPlayer player)
     {
         return itemStack;
     }
@@ -102,6 +102,6 @@ public class ItemBlowGun extends ItemTotemic
     @Override
     public EnumAction getItemUseAction(ItemStack itemStack)
     {
-        return EnumAction.bow;
+        return EnumAction.BOW;
     }
 }

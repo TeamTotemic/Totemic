@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.entity;
 
-import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.EntityList;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 import totemic_commons.pokefenn.lib.Strings;

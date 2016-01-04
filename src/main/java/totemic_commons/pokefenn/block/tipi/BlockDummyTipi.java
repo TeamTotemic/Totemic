@@ -2,16 +2,17 @@ package totemic_commons.pokefenn.block.tipi;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -23,28 +24,31 @@ public class BlockDummyTipi extends Block
     public BlockDummyTipi()
     {
         super(Material.cloth);
-        setBlockName(Strings.DUMMY_TIPI_NAME);
+        setUnlocalizedName(Strings.DUMMY_TIPI_NAME);
         setHardness(0.2F);
-        setBlockTextureName(Resources.TEXTURE_LOCATION + ":" + Resources.DUMMY_TIPI);
     }
 
     @Override
-    public void onBlockHarvested(World world, int x, int y, int z, int meta,  EntityPlayer player)
+    public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
         int range = 2;
         int vertRange = 7;
         for(int i = -range; i <= range; i++)
             for(int j = -vertRange; j <= vertRange; j++)
                 for(int k = -range; k <= range; k++)
-                    if(world.getBlock(x + i, y + j, z + k) == ModBlocks.dummyTipi && world.getBlockMetadata(x + i, y + j, z + k) == 1)
+                {
+                    BlockPos p = pos.add(i, j, k);
+                    IBlockState s = world.getBlockState(p);
+                    if(s.getBlock() == ModBlocks.dummyTipi /* && metadata == 1 FIXME */)
                     {
-                        world.setBlockToAir(x + i, y + j, z + k);
-                        BlockDummyTipi.breakUnderTipi(world, x + i, y + j, z + k);
+                        world.setBlockToAir(p);
+                        BlockDummyTipi.breakUnderTipi(world, p);
                         break;
                     }
+                }
     }
 
-    public static void breakUnderTipi(World world, int x, int y, int z)
+    public static void breakUnderTipi(World world, BlockPos pos)
     {
         int vertRadius = 7;
         int radius = 2;
@@ -52,32 +56,26 @@ public class BlockDummyTipi extends Block
             for(int j = -vertRadius; j <= vertRadius; j++)
                 for(int k = -radius; k <= radius; k++)
                 {
-                    int n = j * -1;
-                    Block block = world.getBlock(x + i, y + n, z + k);
+                    BlockPos p = pos.add(i, j, k);
+                    IBlockState s = world.getBlockState(p);
 
-                    if(block == ModBlocks.dummyTipi)
+                    if(s.getBlock() == ModBlocks.dummyTipi)
                     {
-                        world.setBlockToAir(x + i, y + n, z + k);
+                        world.setBlockToAir(p);
                     }
-                    else if(block == ModBlocks.tipi)
+                    else if(s.getBlock() == ModBlocks.tipi)
                     {
-                        block.dropBlockAsItem(world, x + i, y + n, z + k, world.getBlockMetadata(x + i, y + n, z + k), 0);
-                        world.setBlockToAir(x + i, y + n, z + k);
+                        s.getBlock().dropBlockAsItem(world, p, world.getBlockState(p), 0);
+                        world.setBlockToAir(p);
                     }
                 }
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Item getItem(World world, int x, int y, int z)
+    public Item getItem(World world, BlockPos pos)
     {
         return ModItems.tipi;
-    }
-
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
     }
 
     @Override

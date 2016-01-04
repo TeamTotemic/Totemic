@@ -2,9 +2,9 @@ package totemic_commons.pokefenn.world;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.fml.common.IWorldGenerator;
 
 /**
  * Created with IntelliJ IDEA.

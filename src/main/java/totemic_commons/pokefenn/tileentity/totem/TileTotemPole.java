@@ -7,7 +7,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.Constants;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
@@ -30,13 +29,13 @@ public class TileTotemPole extends TileTotemic
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         this.writeToNBT(nbttagcompound);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, nbttagcompound);
+        return new S35PacketUpdateTileEntity(pos, 0, nbttagcompound);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
-        readFromNBT(pkt.func_148857_g());
+        readFromNBT(pkt.getNbtCompound());
     }
 
     @Override

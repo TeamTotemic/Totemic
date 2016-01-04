@@ -1,13 +1,15 @@
 package totemic_commons.pokefenn.ceremony;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
@@ -28,13 +30,13 @@ public class CeremonyZaphkielWaltz extends Ceremony
     }
 
     @Override
-    public void effect(World world, int x, int y, int z)
+    public void effect(World world, BlockPos pos)
     {
         int radius = 6;
 
         if(!world.isRemote && world.getTotalWorldTime() % 20L == 0)
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, radius, radius))
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, radius, radius))
             {
                 if(entity instanceof EntityItem)
                 {
@@ -66,19 +68,20 @@ public class CeremonyZaphkielWaltz extends Ceremony
                 for(int j = -radius; j <= radius; j++)
                     for(int k = -radius; k <= radius; k++)
                     {
-                        Block block = world.getBlock(x + i, y + j, z + k);
-                        if(block == Blocks.sapling)
+                        BlockPos p = pos.add(i, j, k);
+                        IBlockState s = world.getBlockState(p);
+                        if(s.getBlock() == Blocks.sapling)
                         {
-                            world.setBlock(x + i, y + j, z + k, ModBlocks.totemSapling, 0, 3);
-                            spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5);
+                            world.setBlockState(p, ModBlocks.totemSapling.getDefaultState(), 3);
+                            spawnParticles(world, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5);
                         }
-                        else if(block instanceof IGrowable && block.getTickRandomly())
+                        else if(s.getBlock() instanceof IGrowable && s.getBlock().getTickRandomly())
                         {
                             if(world.rand.nextInt(4) == 0)
                             {
                                 if(!world.isRemote)
-                                    block.updateTick(world, x + i, y + j, z + k, world.rand);
-                                spawnParticles(world, x + i + 0.5, y + j + 0.6, z + k + 0.5);
+                                    s.getBlock().updateTick(world, p, world.getBlockState(p), world.rand);
+                                spawnParticles(world, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5);
                             }
                         }
                     }
@@ -93,7 +96,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
             double dy = world.rand.nextGaussian() * 0.5;
             double dz = world.rand.nextGaussian();
             double velY = world.rand.nextGaussian();
-            world.spawnParticle("happyVillager", x + dx, y + dy, z + dz, 0, velY, 0);
+            world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x + dx, y + dy, z + dz, 0, velY, 0);
         }
     }
 }

@@ -11,7 +11,6 @@ import totemic_commons.pokefenn.configuration.ConfigurationSettings;
  */
 public class ModPotions
 {
-
     public static Potion batPotion;
     public static Potion horsePotion;
     public static Potion spiderPotion;

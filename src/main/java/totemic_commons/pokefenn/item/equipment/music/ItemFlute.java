@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -18,8 +16,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketSound;
@@ -49,10 +50,6 @@ public class ItemFlute extends ItemMusic
     {
         if(!world.isRemote)
         {
-            int x = (int) player.posX;
-            int y = (int) player.posY;
-            int z = (int) player.posZ;
-
             NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
             int time = tag.getInteger(Strings.INSTR_TIME_KEY);
 
@@ -63,14 +60,14 @@ public class ItemFlute extends ItemMusic
                 time = 0;
                 TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, bonusMusic);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
+                PacketHandler.sendAround(new PacketSound(player.playerLocation, "flute"), player.worldObj.provider.getDimensionId(), player.playerLocation);
             }
             if(time >= 5 && player.isSneaking())
             {
                 time = 0;
                 TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
+                PacketHandler.sendAround(new PacketSound(player.playerLocation, "flute"), player.worldObj.provider.getDimensionId(), player.playerLocation);
             }
             if(itemStack.getItemDamage() == 1 && !player.isSneaking())
                 for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
@@ -103,24 +100,24 @@ public class ItemFlute extends ItemMusic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tabs, List list) {
+    public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list) {
         list.add(new ItemStack(item, 1, 0));
         list.add(new ItemStack(item, 1, 1));
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public boolean hasEffect(ItemStack stack, int pass) {
+    public boolean hasEffect(ItemStack stack) {
         return stack.getItemDamage() == 1;
     }
 
     public void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
     {
-        TotemUtil.particlePacket(world, "note", x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
+        TotemUtil.particlePacket(world, EnumParticleTypes.NOTE, x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
 
         if(firework)
         {
-            TotemUtil.particlePacket(world, "fireworksSpark", x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
+            TotemUtil.particlePacket(world, EnumParticleTypes.FIREWORKS_SPARK, x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
         }
     }
 

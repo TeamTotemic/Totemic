@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
@@ -25,7 +26,7 @@ public class TotemEffectBlaze extends TotemEffect
     }
 
     @Override
-    public void effect(World world, int x, int y, int z, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(World world, BlockPos pos, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
     {
         if(world.isRemote)
             return;
@@ -33,7 +34,7 @@ public class TotemEffectBlaze extends TotemEffect
         if(world.getTotalWorldTime() % 60L == 0)
         {
 
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, getHorizontalRange(), getVerticalRange()))
+            for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, getHorizontalRange(), getVerticalRange()))
             {
                 if(entity instanceof EntityPlayer)
                 {

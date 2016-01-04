@@ -6,6 +6,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ITickable;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
@@ -17,7 +20,7 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class TileWindChime extends TileTotemic
+public class TileWindChime extends TileTotemic implements ITickable
 {
     private boolean isPlaying;
     public int currentTime;
@@ -35,9 +38,8 @@ public class TileWindChime extends TileTotemic
     }
 
     @Override
-    public void updateEntity()
+    public void update()
     {
-        super.updateEntity();
         if(worldObj.isRemote)
         {
 
@@ -52,8 +54,8 @@ public class TileWindChime extends TileTotemic
 
             if(isPlaying && worldObj.getTotalWorldTime() % 40L == 0)
             {
-                worldObj.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 1.0F, 1.0F, false);
-                worldObj.spawnParticle("note", xCoord + 0.5, yCoord - 0.8, zCoord + 0.5, 0, 0, 0);
+                worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), "totemic:windChime", 1.0F, 1.0F, false);
+                worldObj.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.8, pos.getZ() + 0.5, 0, 0, 0);
             }
         }
 
@@ -88,22 +90,25 @@ public class TileWindChime extends TileTotemic
                 for(int i = -radius; i <= radius; i++)
                     for(int j = -radius; j <= radius; j++)
                         for(int k = -radius; k <= radius; k++)
-                            if(worldObj.getBlock(xCoord + i, yCoord + j, zCoord + k) == ModBlocks.windChime)
+                        {
+                            BlockPos p = pos.add(i, j, k);
+                            if(worldObj.getBlockState(p).getBlock() == ModBlocks.windChime)
                             {
                                 if(rand.nextInt(3) == 0)
                                 {
-                                    TileWindChime tileWindChime = (TileWindChime) worldObj.getTileEntity(xCoord + i, yCoord + j, zCoord + k);
+                                    TileWindChime tileWindChime = (TileWindChime) worldObj.getTileEntity(p);
                                     tileWindChime.setPlaying(true);
                                 }
                             }
+                        }
             }
 
             if(isPlaying)
                 if(worldObj.getTotalWorldTime() % 50L == 0 && rand.nextInt(2) == 0)
                 {
-                    int bonus = worldObj.getBlock(xCoord, yCoord + 1, zCoord).isLeaves(worldObj, xCoord, yCoord + 1, zCoord)
+                    int bonus = worldObj.getBlockState(pos.up()).getBlock().isLeaves(worldObj, pos.up())
                             ? worldObj.rand.nextInt(3) : 0;
-                    TotemUtil.playMusic(worldObj, xCoord, yCoord, zCoord, HandlerInitiation.windChime, 0, bonus);
+                    TotemUtil.playMusic(worldObj, pos, HandlerInitiation.windChime, 0, bonus);
                 }
         }
     }
@@ -111,7 +116,7 @@ public class TileWindChime extends TileTotemic
     public void setPlaying(boolean playing)
     {
         if(!this.isPlaying && playing && !worldObj.isRemote)
-            PacketHandler.sendAround(new PacketWindChime(xCoord, yCoord, zCoord), this);
+            PacketHandler.sendAround(new PacketWindChime(pos), this);
         this.isPlaying = playing;
         markDirty();
     }
@@ -126,13 +131,13 @@ public class TileWindChime extends TileTotemic
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         this.writeToNBT(nbttagcompound);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, nbttagcompound);
+        return new S35PacketUpdateTileEntity(pos, 0, nbttagcompound);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
-        readFromNBT(pkt.func_148857_g());
+        readFromNBT(pkt.getNbtCompound());
     }
 
     @Override

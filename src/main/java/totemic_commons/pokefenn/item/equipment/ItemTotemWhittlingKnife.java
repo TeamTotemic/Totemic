@@ -2,15 +2,17 @@ package totemic_commons.pokefenn.item.equipment;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.RegistryImpl;
 import totemic_commons.pokefenn.Totemic;
@@ -55,7 +57,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4)
     {
         list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip1"));
         list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip2"));
@@ -69,12 +71,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     }
 
     @Override
-    public boolean doesContainerItemLeaveCraftingGrid(ItemStack itemStack)
-    {
-        return false;
-    }
-
-    @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
         if(player.isSneaking())
@@ -84,7 +80,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         if(player.isSneaking())
         {
@@ -96,25 +92,24 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             if(world.isRemote)
                 return true;
 
-            Block block = world.getBlock(x, y, z);
-            int meta = world.getBlockMetadata(x, y, z);
-            WoodVariant wood = WoodVariant.fromLog(block, meta);
+            IBlockState state = world.getBlockState(pos);
+            WoodVariant wood = WoodVariant.fromLog(state);
             if(wood == null)
                 return false;
 
             int index = getCarvingIndex(stack);
             if(index == totemList.size())
             {
-                world.setBlock(x, y, z, ModBlocks.totemBase, wood.ordinal(), 3);
+                world.setBlockState(pos, ModBlocks.totemBase.getDefaultState()/*meta wood.ordinal() FIXME*/, 3);
             }
             else if(index < totemList.size())
             {
-                world.setBlock(x, y, z, ModBlocks.totemPole, wood.ordinal(), 3);
-                TileTotemPole tile = (TileTotemPole)world.getTileEntity(x, y, z);
+                world.setBlockState(pos, ModBlocks.totemPole.getDefaultState()/*meta wood.ordinal() FIXME*/, 3);
+                TileTotemPole tile = (TileTotemPole)world.getTileEntity(pos);
 
                 tile.effect = totemList.get(getCarvingIndex(stack));
                 tile.markDirty();
-                world.markBlockForUpdate(x, y, z);
+                world.markBlockForUpdate(pos);
             }
             else
                 return false;

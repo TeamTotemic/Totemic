@@ -1,14 +1,12 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
 import java.util.Arrays;
-import java.util.Set;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,11 +16,15 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
@@ -43,7 +45,7 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Date: 29/01/14
  * Time: 20:22
  */
-public class TileTotemBase extends TileTotemic implements MusicAcceptor
+public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickable
 {
     public static final int MAX_HEIGHT = 5;
     public static final int MAX_EFFECT_MUSIC = 128;
@@ -76,7 +78,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     }
 
     @Override
-    public void updateEntity()
+    public void update()
     {
         if(firstTick)
         {
@@ -141,7 +143,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 if(effect != null)
                 {
                     int[] ranges = getRanges(effect);
-                    effect.effect(worldObj, xCoord, yCoord, zCoord, totemPoleSize, ranges[0], ranges[1],
+                    effect.effect(worldObj, pos, totemPoleSize, ranges[0], ranges[1],
                             musicForTotemEffect, totemWoodBonus, repetitionBonus.get(effect));
                 }
             }
@@ -154,7 +156,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         {
             float dx = 2 * worldObj.rand.nextFloat() - 1;
             float dz = 2 * worldObj.rand.nextFloat() - 1;
-            worldObj.spawnParticle("note", xCoord + 0.5 + dx, yCoord, zCoord + 0.5 + dz, 0, 0.5, 0);
+            worldObj.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5 + dx, pos.getY(), pos.getZ() + 0.5 + dz, 0, 0.5, 0);
         }
     }
 
@@ -164,21 +166,21 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         {
             float dx = 2 * worldObj.rand.nextFloat() - 1;
             float dz = 2 * worldObj.rand.nextFloat() - 1;
-            worldObj.spawnParticle("note", xCoord + 0.5 + dx, yCoord, zCoord + 0.5 + dz, 0, 0.5, 0);
+            worldObj.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5 + dx, pos.getY(), pos.getZ() + 0.5 + dz, 0, 0.5, 0);
         }
 
     }
 
     public void calculateTotemWoodBonus()
     {
-        int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-        BiomeGenBase biomeGenBase = worldObj.getBiomeGenForCoords(xCoord, zCoord);
+        IBlockState state = worldObj.getBlockState(pos);
+        BiomeGenBase biomeGenBase = worldObj.getBiomeGenForCoords(pos);
         if(biomeGenBase == null) //assume some default if that happens
             biomeGenBase = BiomeGenBase.plains;
 
         totemWoodBonus = 0;
 
-        switch(WoodVariant.values()[metadata])
+        switch(WoodVariant.values()[0/*state FIXME*/])
         {
         case OAK:
             //oak effect
@@ -273,7 +275,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 currentCeremony = startupCeremony;
                 startupCeremony = null;
                 isDoingEndingEffect = currentCeremony.getEffectTime() != CeremonyTime.INSTANT;
-                TotemUtil.particlePacket(worldObj, "happyVillager", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
+                TotemUtil.particlePacket(worldObj, EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
                 markForUpdate();
                 markDirty();
             } else
@@ -298,7 +300,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     {
         if(currentCeremony != null)
         {
-            currentCeremony.effect(worldObj, xCoord, yCoord, zCoord);
+            currentCeremony.effect(worldObj, pos);
             if(currentCeremony.getEffectTime() == CeremonyTime.INSTANT)
                 resetAfterCeremony(true);
             else
@@ -310,7 +312,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         }
 
         EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-        if(getDistanceFrom(player.posX, player.posY, player.posZ) <= 64)
+        if(getDistanceSq(player.posX, player.posY, player.posZ) <= 8*8)
         {
             GameOverlay.activeTotem = this;
         }
@@ -325,7 +327,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     {
         if(cer.getEffectTime() == CeremonyTime.INSTANT)
         {
-            cer.effect(worldObj, xCoord, yCoord, zCoord);
+            cer.effect(worldObj, pos);
             resetAfterCeremony(true);
         }
         else
@@ -333,7 +335,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             ceremonyEffectTimer++;
             if(ceremonyEffectTimer <= cer.getEffectTime() && drainCeremonyMelody(cer))
             {
-                cer.effect(worldObj, xCoord, yCoord, zCoord);
+                cer.effect(worldObj, pos);
             }
             else
             {
@@ -351,7 +353,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 MusicInstrument[] ids = ceremony.getInstruments();
                 if(ids[0] == musicSelector[0] && ids[1] == musicSelector[1])
                 {
-                    TotemUtil.particlePacket(worldObj, "fireworksSpark", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
+                    TotemUtil.particlePacket(worldObj, EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
                     startupCeremony = ceremony;
                     resetSelector();
                     markForUpdate();
@@ -360,7 +362,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 }
             }
             //No match found
-            TotemUtil.particlePacket(worldObj, "largesmoke", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
+            TotemUtil.particlePacket(worldObj, EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
         }
     }
@@ -445,9 +447,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         if(musicChanged)
         {
             if(isCeremony)
-                PacketHandler.sendAround(new PacketTotemMusic(xCoord, yCoord, zCoord, ceremonyMusic), this);
+                PacketHandler.sendAround(new PacketTotemMusic(pos, ceremonyMusic), this);
             else
-                PacketHandler.sendAround(new PacketTotemMusic(xCoord, yCoord, zCoord, musicForTotemEffect), this);
+                PacketHandler.sendAround(new PacketTotemMusic(pos, musicForTotemEffect), this);
         }
         musicChanged = false;
     }
@@ -508,7 +510,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     {
         if(ceremonyStartupTimer > trying.getMaxStartupTime())
         {
-            TotemUtil.particlePacket(worldObj, "largesmoke", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
+            TotemUtil.particlePacket(worldObj, EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
         }
 
@@ -521,9 +523,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public void danceLikeAMonkey(Ceremony trying)
     {
         //TODO
-        if(worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 8) != null)
+        if(worldObj.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 8) != null)
         {
-            EntityPlayer player = worldObj.getClosestPlayer(xCoord, yCoord, zCoord, 8);
+            EntityPlayer player = worldObj.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 8);
 
             if(dancingEfficiency < 50)
                 if((int) player.posX != (int) player.prevPosX && (int) player.posY != (int) player.prevPosY)
@@ -546,7 +548,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     protected TotemEffect getTotemEffect(int yOffset)
     {
-        TileEntity tileEntity = this.worldObj.getTileEntity(this.xCoord, this.yCoord + 1 + yOffset, this.zCoord);
+        TileEntity tileEntity = this.worldObj.getTileEntity(pos.up(1 + yOffset));
 
         return tileEntity instanceof TileTotemPole ? (((TileTotemPole) tileEntity).getTotemEffect()) : null;
     }
@@ -556,7 +558,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         int y = 0;
         for(; y < MAX_HEIGHT; y++)
         {
-            Block block = worldObj.getBlock(xCoord, yCoord + 1 + y, zCoord);
+            Block block = worldObj.getBlockState(pos.up(1+y)).getBlock();
             if(block != ModBlocks.totemPole)
                 break;
         }
@@ -568,13 +570,13 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         this.writeToNBT(nbttagcompound);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, nbttagcompound);
+        return new S35PacketUpdateTileEntity(pos, 0, nbttagcompound);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
-        readFromNBT(pkt.func_148857_g());
+        readFromNBT(pkt.getNbtCompound());
     }
 
     @Override
@@ -597,7 +599,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         {
             NBTTagCompound ceremonyMusicTag = tag.getCompoundTag("ceremonyMusic");
             ceremonyMusic.clear();
-            for(String key: (Set<String>)ceremonyMusicTag.func_150296_c())
+            for(String key: ceremonyMusicTag.getKeySet())
             {
                 MusicInstrument instr = Totemic.api.registry().getInstrument(key);
                 if(instr != null)

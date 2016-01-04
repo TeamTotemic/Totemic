@@ -1,8 +1,5 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,9 +9,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ISpecialArmor;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
@@ -58,7 +58,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack par1ItemStack)
     {
-        return EnumRarity.uncommon;
+        return EnumRarity.UNCOMMON;
     }
 
     @Override
@@ -99,7 +99,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 
     public void particlesAllAround(WorldServer world, double x, double y, double z)
     {
-        TotemUtil.particlePacket(world, "note", x, y + 0.4D, z, 6, 0.5D, 0.2D, 0.5D, 0.0D);
+        TotemUtil.particlePacket(world, EnumParticleTypes.NOTE, x, y + 0.4D, z, 6, 0.5D, 0.2D, 0.5D, 0.0D);
     }
 
     @Override
@@ -113,26 +113,4 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         //TODO
         return 0;
     }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
-    }
-
-    /*@Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean shift)
-    {
-        int musicOutput = HandlerInitiation.jingleDress.getBaseOutput() + getBonusMusic();
-        if(musicOutput < 5)
-            list.add(StatCollector.translateToLocal("totemic.music.lowMelody"));
-        else if(musicOutput == 6)
-            list.add(StatCollector.translateToLocal("totemic.music.mediumMelody"));
-        else if(musicOutput == 7)
-            list.add(StatCollector.translateToLocal("totemic.music.highMelody"));
-        else if(musicOutput > 7)
-            list.add(StatCollector.translateToLocal("totemic.music.veryHighMelody"));
-    }*/
 }

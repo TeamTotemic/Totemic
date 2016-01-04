@@ -2,28 +2,28 @@ package totemic_commons.pokefenn.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 import totemic_commons.pokefenn.lib.Strings;
 
 public class TileTotemic extends TileEntity
 {
-    protected ForgeDirection orientation;
+    protected EnumFacing orientation;
     protected String customName;
 
     public TileTotemic()
     {
         customName = "";
-        orientation = ForgeDirection.SOUTH;
+        orientation = EnumFacing.SOUTH;
     }
 
-    public void setOrientation(ForgeDirection orientation)
+    public void setOrientation(EnumFacing orientation)
     {
         this.orientation = orientation;
     }
 
     public void setOrientation(int orientation)
     {
-        this.orientation = ForgeDirection.getOrientation(orientation);
+        this.orientation = EnumFacing.getFront(orientation);
     }
 
     public boolean hasCustomName()
@@ -43,7 +43,7 @@ public class TileTotemic extends TileEntity
 
     public void markForUpdate()
     {
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        worldObj.markBlockForUpdate(pos);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class TileTotemic extends TileEntity
 
         if(nbtTagCompound.hasKey(Strings.NBT_TE_DIRECTION_KEY))
         {
-            orientation = ForgeDirection.getOrientation(nbtTagCompound.getByte(Strings.NBT_TE_DIRECTION_KEY));
+            orientation = EnumFacing.getFront(nbtTagCompound.getByte(Strings.NBT_TE_DIRECTION_KEY));
         }
 
         if(nbtTagCompound.hasKey(Strings.NBT_TE_CUSTOM_NAME))

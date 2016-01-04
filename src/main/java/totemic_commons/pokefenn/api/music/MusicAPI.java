@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.api.music;
 
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
 /**
@@ -54,6 +55,7 @@ public interface MusicAPI
      * @param spreadZ how much the cloud is spread out in z-direction
      * @param vel the velocity of the particles
      */
-    public void particlePacket(World world, String name, double x, double y, double z, int num,
+    @Deprecated
+    public void particlePacket(World world, EnumParticleTypes type, double x, double y, double z, int num,
             double spreadX, double spreadY, double spreadZ, double vel);
 }

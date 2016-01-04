@@ -11,8 +11,8 @@
  */
 package vazkii.botania.totemic_custom.api.lexicon;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 
 public abstract class LexiconPage

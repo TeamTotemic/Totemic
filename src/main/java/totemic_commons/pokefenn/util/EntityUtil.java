@@ -2,7 +2,7 @@ package totemic_commons.pokefenn.util;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,10 +10,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
@@ -29,18 +26,24 @@ public class EntityUtil
     //Code from @WayofTime
     public static List<Entity> getEntitiesInRange(World world, double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
     {
-        return world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius));
+        return world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius));
     }
 
+    public static List<Entity> getEntitiesInRange(World world, BlockPos pos, double horizontalRadius, double verticalRadius)
+    {
+        return getEntitiesInRange(world, pos.getX(), pos.getY(), pos.getZ(), horizontalRadius, verticalRadius);
+    }
+
+    @Deprecated
     public static List<TileEntity> getTileEntitiesIn(WorldServer world, int minX, int minY, int minZ, int maxX, int maxY, int maxZ)
     {
-        return world.func_147486_a(minX, minY, minZ, maxX, maxY, maxZ);
+        return world.getTileEntitiesIn(minX, minY, minZ, maxX, maxY, maxZ);
     }
 
-    public static List<TileEntity> getTileEntitiesInRange(WorldServer world, int x, int y, int z, int horizontalRadius, int verticalRadius)
+    public static List<TileEntity> getTileEntitiesInRange(WorldServer world, BlockPos pos, int horizontalRadius, int verticalRadius)
     {
-        return world.func_147486_a(x - horizontalRadius, y - verticalRadius, z - horizontalRadius,
-                x + horizontalRadius, y + verticalRadius, z + horizontalRadius);
+        return world.getTileEntitiesIn(pos.getX() - horizontalRadius, pos.getY() - verticalRadius, pos.getZ() - horizontalRadius,
+                pos.getX() + horizontalRadius, pos.getY() + verticalRadius, pos.getZ() + horizontalRadius);
     }
 
     public static void spawnEntity(World world, double xPos, double yPos, double zPos, Entity entity)
@@ -52,7 +55,7 @@ public class EntityUtil
     public static void dropItem(World world, double xPos, double yPos, double zPos, ItemStack itemStack)
     {
         EntityItem item = new EntityItem(world, xPos, yPos, zPos, itemStack);
-        item.delayBeforeCanPickup = 10;
+        item.setPickupDelay(10);
         world.spawnEntityInWorld(item);
     }
 
@@ -72,7 +75,7 @@ public class EntityUtil
         if(!world.isRemote && player instanceof EntityPlayer)
             d1 += 1.62D;
         double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * f;
-        Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
+        Vec3 vec3 = new Vec3(d0, d1, d2);
         float f3 = MathHelper.cos(-f2 * 0.017453292F - (float) Math.PI);
         float f4 = MathHelper.sin(-f2 * 0.017453292F - (float) Math.PI);
         float f5 = -MathHelper.cos(-f1 * 0.017453292F);
@@ -87,9 +90,9 @@ public class EntityUtil
 
     }
 
-    public static Block getBlockFromPosition(MovingObjectPosition movingObjectPosition, World world)
+    public static IBlockState getBlockFromPosition(MovingObjectPosition movingObjectPosition, World world)
     {
-        return world.getBlock(movingObjectPosition.blockX, movingObjectPosition.blockY, movingObjectPosition.blockZ);
+        return world.getBlockState(movingObjectPosition.getBlockPos());
     }
 
 }

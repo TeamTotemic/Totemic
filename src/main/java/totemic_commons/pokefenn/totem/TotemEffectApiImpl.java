@@ -34,6 +34,6 @@ public class TotemEffectApiImpl implements TotemEffectAPI
         player.addPotionEffect(new PotionEffect(potion.id,
                 getDefaultPotionTime(defaultTime, isPositive, player.getRNG(), melodyAmount, totemWoodBonus, repetitionBonus),
                 getDefaultPotionStrength(defaultStrength, isPositive, player.getRNG(), melodyAmount, totemWoodBonus, repetitionBonus),
-                true));
+                true, false));
     }
 }

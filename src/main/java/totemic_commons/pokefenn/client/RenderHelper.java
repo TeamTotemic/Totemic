@@ -8,6 +8,8 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 /**
  * Created by Pokefenn.
@@ -52,7 +54,7 @@ public class RenderHelper
             int var5 = 0;
             int var6;
             int var7;
-            FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
+            FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
             for(var6 = 0; var6 < tooltipData.size(); ++var6)
             {
                 var7 = fontRenderer.getStringWidth(tooltipData.get(var6));
@@ -107,15 +109,16 @@ public class RenderHelper
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glShadeModel(GL11.GL_SMOOTH);
-        Tessellator var15 = Tessellator.instance;
-        var15.startDrawingQuads();
-        var15.setColorRGBA_F(var8, var9, var10, var7);
-        var15.addVertex(x2, y1, z);
-        var15.addVertex(x1, y1, z);
-        var15.setColorRGBA_F(var12, var13, var14, var11);
-        var15.addVertex(x1, y2, z);
-        var15.addVertex(x2, y2, z);
-        var15.draw();
+        Tessellator tes = Tessellator.getInstance();
+        WorldRenderer wr = tes.getWorldRenderer();
+        wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+        wr.color(var8, var9, var10, var7);
+        wr.pos(x2, y1, z);
+        wr.pos(x1, y1, z);
+        wr.color(var12, var13, var14, var11);
+        wr.pos(x1, y2, z);
+        wr.pos(x2, y2, z);
+        tes.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_ALPHA_TEST);
@@ -126,18 +129,20 @@ public class RenderHelper
     {
         float f = 0.00390625F;
         float f1 = 0.00390625F;
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(x + 0, y + h, z, (u + 0) * f, (v + h) * f1);
-        tessellator.addVertexWithUV(x + w, y + h, z, (u + w) * f, (v + h) * f1);
-        tessellator.addVertexWithUV(x + w, y + 0, z, (u + w) * f, (v + 0) * f1);
-        tessellator.addVertexWithUV(x + 0, y + 0, z, (u + 0) * f, (v + 0) * f1);
-        tessellator.draw();
+        Tessellator tes = Tessellator.getInstance();
+        WorldRenderer wr = tes.getWorldRenderer();
+        wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        wr.pos(x + 0, y + h, z).tex((u + 0) * f, (v + h) * f1);
+        wr.pos(x + w, y + h, z).tex((u + w) * f, (v + h) * f1);
+        wr.pos(x + w, y + 0, z).tex((u + w) * f, (v + 0) * f1);
+        wr.pos(x + 0, y + 0, z).tex((u + 0) * f, (v + 0) * f1);
+        tes.draw();
     }
 
     public static void renderStar(int color, float xScale, float yScale, float zScale, long seed)
     {
-        Tessellator tessellator = Tessellator.instance;
+        Tessellator tes = Tessellator.getInstance();
+        WorldRenderer wr = tes.getWorldRenderer();
 
         int ticks = (int) (Minecraft.getMinecraft().theWorld.getTotalWorldTime() % 200);
         if(ticks >= 100)
@@ -168,17 +173,17 @@ public class RenderHelper
             GL11.glRotatef(random.nextFloat() * 360F, 1F, 0F, 0F);
             GL11.glRotatef(random.nextFloat() * 360F, 0F, 1F, 0F);
             GL11.glRotatef(random.nextFloat() * 360F + f1 * 90F, 0F, 0F, 1F);
-            tessellator.startDrawing(GL11.GL_TRIANGLE_FAN);
+            wr.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
             float f3 = random.nextFloat() * 20F + 5F + f2 * 10F;
             float f4 = random.nextFloat() * 2F + 1F + f2 * 2F;
-            tessellator.setColorRGBA_I(color, (int) (255F * (1F - f2)));
-            tessellator.addVertex(0, 0, 0);
-            tessellator.setColorRGBA_F(0F, 0F, 0F, 0);
-            tessellator.addVertex(-0.866D * f4, f3, -0.5F * f4);
-            tessellator.addVertex(0.866D * f4, f3, -0.5F * f4);
-            tessellator.addVertex(0, f3, 1F * f4);
-            tessellator.addVertex(-0.866D * f4, f3, -0.5F * f4);
-            tessellator.draw();
+            wr.putColor4((color << 8) | (int) (255F * (1F - f2)));
+            wr.pos(0, 0, 0);
+            wr.color(0F, 0F, 0F, 0);
+            wr.pos(-0.866D * f4, f3, -0.5F * f4);
+            wr.pos(0.866D * f4, f3, -0.5F * f4);
+            wr.pos(0, f3, 1F * f4);
+            wr.pos(-0.866D * f4, f3, -0.5F * f4);
+            tes.draw();
         }
 
         GL11.glDepthMask(true);
@@ -191,11 +196,11 @@ public class RenderHelper
         GL11.glPopMatrix();
     }
 
-    public static void addQuad(Tessellator tes, double x, double y, double z, double w, double h)
+    public static void addQuad(WorldRenderer wr, double x, double y, double z, double w, double h)
     {
-        tes.addVertex(x, y, z);
-        tes.addVertex(x, y + h, z);
-        tes.addVertex(x + w, y + h, z);
-        tes.addVertex(x + w, y, z);
+        wr.pos(x, y, z);
+        wr.pos(x, y + h, z);
+        wr.pos(x + w, y + h, z);
+        wr.pos(x + w, y, z);
     }
 }

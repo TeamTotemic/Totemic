@@ -10,6 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
@@ -32,7 +34,7 @@ public class EntityBuffalo extends EntityCow
     {
         super(world);
         setSize(1.35F, 1.95F);
-        getNavigator().setAvoidsWater(true);
+        ((PathNavigateGround)this.getNavigator()).setAvoidsWater(true);
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         tasks.addTask(2, new EntityAIMate(this, 1.0D));
@@ -49,12 +51,6 @@ public class EntityBuffalo extends EntityCow
     {
         super.entityInit();
         dataWatcher.addObject(AGE_DATAWATCHER, 0);
-    }
-
-    @Override
-    public boolean isAIEnabled()
-    {
-        return true;
     }
 
     @Override
@@ -111,12 +107,6 @@ public class EntityBuffalo extends EntityCow
     protected String getDeathSound()
     {
         return "mob.cow.hurt";
-    }
-
-    @Override
-    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_)
-    {
-        playSound("mob.cow.step", 0.15F, 1.0F);
     }
 
     @Override

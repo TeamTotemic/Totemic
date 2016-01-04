@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.api.totem;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
@@ -37,7 +38,7 @@ public abstract class TotemEffect
      * @param totemWoodBonus    a number dependent on the wood type the pole is made of
      * @param repetitionBonus   the number of totem pole blocks in the totem that are carved with this effect
      */
-    public abstract void effect(World world, int x, int y, int z, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus);
+    public abstract void effect(World world, BlockPos pos, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus);
 
     public final String getName()
     {

@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;

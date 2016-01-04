@@ -2,9 +2,9 @@ package totemic_commons.pokefenn.block.tipi;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -14,9 +14,10 @@ import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
-import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 
@@ -29,24 +30,23 @@ public class BlockTipi extends BlockTileTotemic
     public BlockTipi()
     {
         super(Material.cloth);
-        setBlockName(Strings.TIPI_NAME);
+        setUnlocalizedName(Strings.TIPI_NAME);
         setBlockBounds(0, 0, 0, 0, 0, 0);
         setCreativeTab(null);
-        setBlockTextureName(Resources.TEXTURE_LOCATION + ":" + Resources.DUMMY_TIPI);
     }
 
     @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack)
     {
         int dir = MathHelper.floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
-        world.setBlockMetadataWithNotify(x, y, z, dir, 0);
+        //world.setBlockMetadataWithNotify(pos, dir, 0); FIXME
     }
 
-    public boolean tipiSleep(World world, int x, int y, int z, EntityPlayer player)
+    public boolean tipiSleep(World world, BlockPos pos, EntityPlayer player)
     {
         if(!world.isRemote)
         {
-            if(world.getBiomeGenForCoords(x, z) != BiomeGenBase.hell)
+            if(world.getBiomeGenForCoords(pos) != BiomeGenBase.hell)
             {
                 if(world.provider.canRespawnHere())
                 {
@@ -58,9 +58,9 @@ public class BlockTipi extends BlockTileTotemic
 
                         if(entityplayer2.isPlayerSleeping())
                         {
-                            ChunkCoordinates chunkcoordinates = entityplayer2.playerLocation;
+                            BlockPos playerPos = entityplayer2.playerLocation;
 
-                            if(chunkcoordinates.posX == x && chunkcoordinates.posY == y && chunkcoordinates.posZ == z)
+                            if(playerPos.equals(pos))
                             {
                                 entityplayer1 = entityplayer2;
                             }
@@ -73,7 +73,7 @@ public class BlockTipi extends BlockTileTotemic
                         return true;
                     }
 
-                    EntityPlayer.EnumStatus enumstatus = player.sleepInBedAt(x, y, z);
+                    EntityPlayer.EnumStatus enumstatus = player.trySleep(pos);
 
                     if(enumstatus == EntityPlayer.EnumStatus.OK)
                     {
@@ -103,29 +103,24 @@ public class BlockTipi extends BlockTileTotemic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Item getItem(World world, int x, int y, int z) {
+    public Item getItem(World world, BlockPos pos) {
         return ModItems.tipi;
     }
 
     @Override
-    public Item getItemDropped(int meta, Random rand, int fortune) {
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
         return ModItems.tipi;
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
     {
         return null;
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isBed(IBlockAccess world, int x, int y, int z, EntityLivingBase player)
+    public boolean isBed(IBlockAccess world, BlockPos pos, Entity player)
     {
         return true;
     }
@@ -136,12 +131,7 @@ public class BlockTipi extends BlockTileTotemic
         return new TileTipi();
     }
 
-    @Override
-    public boolean renderAsNormalBlock()
-    {
-        return false;
-    }
-
+    //TODO: OBJ or JSON model maybe?
     @Override
     public int getRenderType()
     {

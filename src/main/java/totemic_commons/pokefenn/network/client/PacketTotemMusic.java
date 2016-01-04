@@ -1,14 +1,15 @@
 package totemic_commons.pokefenn.network.client;
 
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.network.PacketBase;
@@ -16,26 +17,22 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 public class PacketTotemMusic extends PacketBase<PacketTotemMusic>
 {
-    private int x, y, z;
+    private BlockPos pos;
     private boolean isCeremony;
     private int effectMusic = 0;
     private String[] instruments = null;
     private int[] values = null;
 
-    public PacketTotemMusic(int x, int y, int z, int effectMusic)
+    public PacketTotemMusic(BlockPos pos, int effectMusic)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.pos = pos;
         this.isCeremony = false;
         this.effectMusic = effectMusic;
     }
 
-    public PacketTotemMusic(int x, int y, int z, TObjectIntMap<MusicInstrument> ceremonyMusic)
+    public PacketTotemMusic(BlockPos pos, TObjectIntMap<MusicInstrument> ceremonyMusic)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.pos = pos;
         this.isCeremony = true;
         instruments = new String[ceremonyMusic.size()];
         values = new int[ceremonyMusic.size()];
@@ -53,9 +50,7 @@ public class PacketTotemMusic extends PacketBase<PacketTotemMusic>
     @Override
     public void fromBytes(ByteBuf buf)
     {
-        x = buf.readInt();
-        y = buf.readShort();
-        z = buf.readInt();
+        pos = BlockPos.fromLong(buf.readLong());
         isCeremony = buf.readBoolean();
         if(!isCeremony)
         {
@@ -77,9 +72,7 @@ public class PacketTotemMusic extends PacketBase<PacketTotemMusic>
     @Override
     public void toBytes(ByteBuf buf)
     {
-        buf.writeInt(x);
-        buf.writeShort(y);
-        buf.writeInt(z);
+        buf.writeLong(pos.toLong());
         buf.writeBoolean(isCeremony);
         if(!isCeremony)
         {
@@ -100,7 +93,7 @@ public class PacketTotemMusic extends PacketBase<PacketTotemMusic>
     @SideOnly(Side.CLIENT)
     protected void handleClient(MessageContext ctx)
     {
-        TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(x, y, z);
+        TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(pos);
         if(tile instanceof TileTotemBase)
         {
             TileTotemBase totem = (TileTotemBase)tile;

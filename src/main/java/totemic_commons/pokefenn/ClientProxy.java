@@ -1,11 +1,8 @@
 package totemic_commons.pokefenn;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import totemic_commons.pokefenn.client.rendering.entity.BuffaloRendering;
-import totemic_commons.pokefenn.client.rendering.item.*;
 import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
 import totemic_commons.pokefenn.client.rendering.tileentity.*;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
@@ -23,17 +20,6 @@ public class ClientProxy extends CommonProxy
     {
         RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, new BuffaloRendering(new ModelBuffalo(), 0.5F));
 
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemTorch), new ItemTotemTorchRenderer());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.windChime), new ItemWindChimeRenderer());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemBase), new ItemTotemBaseRenderer());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemPole), new ItemTotemPoleRenderer());
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.drum), new ItemDrumRenderer());
-        MinecraftForgeClient.registerItemRenderer(ModItems.tipi, new ItemTipiRenderer());
-
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemPole.class, new TileTotemSocketCubeRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileDrum.class, new TileDrumRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemTorch.class, new TileTotemTorchRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTotemBase.class, new TileTotemBaseRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileWindChime.class, new TileWindChimeRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTipi.class, new TileTipiRenderer());
     }

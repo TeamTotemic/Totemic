@@ -1,18 +1,22 @@
 package totemic_commons.pokefenn.block.plant;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.BlockPlanks.EnumType;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.util.IIcon;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -26,32 +30,26 @@ public class BlockCedarLeaves extends BlockLeaves
     public BlockCedarLeaves()
     {
         setCreativeTab(Totemic.tabsTotem);
-        setBlockName(Strings.TOTEM_LEAVES_NAME);
+        setUnlocalizedName(Strings.TOTEM_LEAVES_NAME);
     }
 
-    @SideOnly(Side.CLIENT)
-    private IIcon opaqueIcon;
-    @SideOnly(Side.CLIENT)
-    private IIcon transparentIcon;
-
     @Override
-    public Item getItemDropped(int meta, Random random, int fortune)
+    public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.totemSapling);
     }
 
-    //The sapling drop chance
     @Override
-    protected int func_150123_b(int meta)
+    protected int getSaplingDropChance(IBlockState state)
     {
         return 80;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess iba, int x, int y, int z, int side)
+    public boolean shouldSideBeRendered(IBlockAccess iba, BlockPos pos, EnumFacing side)
     {
-        return !Blocks.leaves.isOpaqueCube() || super.shouldSideBeRendered(iba, x, y, z, side);
+        return !Blocks.leaves.isOpaqueCube() || super.shouldSideBeRendered(iba, pos, side);
     }
 
     @Override
@@ -61,27 +59,14 @@ public class BlockCedarLeaves extends BlockLeaves
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon(int side, int meta)
+    public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return !Blocks.leaves.isOpaqueCube() ? transparentIcon : opaqueIcon;
+        return Collections.singletonList(item);
     }
-
 
     @Override
-    public String[] func_150125_e()
+    public EnumType getWoodType(int meta)
     {
-        return new String[0];
+        return null;
     }
-
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister register)
-    {
-        opaqueIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.TOTEM_LEAVES_OPAQUE);
-        transparentIcon = register.registerIcon(Resources.TEXTURE_LOCATION + ":" + Resources.TOTEM_LEAVES_TRANSPARENT);
-    }
-
-
 }

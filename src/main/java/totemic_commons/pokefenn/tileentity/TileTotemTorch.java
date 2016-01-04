@@ -16,12 +16,12 @@ public class TileTotemTorch extends TileTotemic
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         this.writeToNBT(nbttagcompound);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, nbttagcompound);
+        return new S35PacketUpdateTileEntity(pos, 0, nbttagcompound);
     }
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
-        readFromNBT(pkt.func_148857_g());
+        readFromNBT(pkt.getNbtCompound());
     }
 }

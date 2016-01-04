@@ -1,9 +1,9 @@
 package totemic_commons.pokefenn.tileentity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by Pokefenn.
@@ -40,7 +40,7 @@ public class TileTipi extends TileTotemic
     @Override
     public AxisAlignedBB getRenderBoundingBox()
     {
-        return AxisAlignedBB.getBoundingBox(this.xCoord - 1, this.yCoord - 1, this.zCoord - 1, this.xCoord + 2, this.yCoord + 6, this.zCoord + 2);
+        return new AxisAlignedBB(pos.add(-1, -1, -1), pos.add(2, 6, 2));
     }
 
 }

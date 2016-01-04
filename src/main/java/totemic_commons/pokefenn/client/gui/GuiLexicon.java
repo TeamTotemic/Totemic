@@ -99,7 +99,7 @@ public class GuiLexicon extends GuiScreen
     public void drawBookmark(int x, int y, String s, boolean drawLeft)
     {
         // This function is called from the buttons so I can't use fontRendererObj
-        FontRenderer font = Minecraft.getMinecraft().fontRenderer;
+        FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
         boolean unicode = font.getUnicodeFlag();
         font.setUnicodeFlag(true);
         int l = font.getStringWidth(s.trim());

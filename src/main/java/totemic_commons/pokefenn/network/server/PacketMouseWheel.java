@@ -1,8 +1,8 @@
 package totemic_commons.pokefenn.network.server;
 
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.network.PacketBase;

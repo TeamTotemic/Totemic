@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.misc.villager;
 
-import cpw.mods.fml.common.registry.VillagerRegistry;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 /**
  * Created by Pokefenn.
@@ -12,9 +12,9 @@ public class TotemicVillagerInitiation
 
     public static void init()
     {
-        VillagerRegistry.instance().registerVillagerId(TOTEMIST_VILLAGER_ID);
+        //VillagerRegistry.instance().registerVillagerId(TOTEMIST_VILLAGER_ID);
 
-        VillagerRegistry.instance().registerVillageTradeHandler(TOTEMIST_VILLAGER_ID, new TotemicVillagerTrading());
+        //VillagerRegistry.instance().registerVillageTradeHandler(TOTEMIST_VILLAGER_ID, new TotemicVillagerTrading());
 
     }
 }

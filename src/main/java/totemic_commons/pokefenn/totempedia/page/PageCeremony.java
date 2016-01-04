@@ -36,7 +36,7 @@ public class PageCeremony extends PageRecipe
     public void renderScreen(IGuiLexiconEntry gui, int mx, int my)
     {
         TextureManager render = Minecraft.getMinecraft().renderEngine;
-        FontRenderer font = Minecraft.getMinecraft().fontRenderer;
+        FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
         MusicInstrument[] instruments = ceremony.getInstruments();
         String musicNeeded = TotemUtil.getMusicNeededLocalized(ceremony.getMusicNeeded());
         //String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
