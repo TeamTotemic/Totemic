@@ -18,12 +18,6 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  */
 public class TileTotemPole extends TileTotemic
 {
-    //compatibility with legacy worlds
-    public static final TotemEffect[] legacyIDMapping = {
-            null, HandlerInitiation.horseTotem, HandlerInitiation.squidTotem, HandlerInitiation.blazeTotem,
-            HandlerInitiation.ocelotTotem, HandlerInitiation.batTotem, HandlerInitiation.spiderTotem, HandlerInitiation.cowTotem
-    };
-
     public TotemEffect effect = null;
 
     public TotemEffect getTotemEffect()
@@ -51,11 +45,6 @@ public class TileTotemPole extends TileTotemic
         super.readFromNBT(nbtTagCompound);
         if(nbtTagCompound.hasKey("effect", Constants.NBT.TAG_STRING))
             effect = Totemic.api.registry().getTotem(nbtTagCompound.getString("effect"));
-        else if(nbtTagCompound.hasKey("totemId", Constants.NBT.TAG_INT)) {
-            //compatibility for worlds created with a legacy version (<= 0.5.1)
-            //TODO: Remove this code later at some point
-            effect = legacyIDMapping[nbtTagCompound.getInteger("totemId")];
-        }
     }
 
     @Override
