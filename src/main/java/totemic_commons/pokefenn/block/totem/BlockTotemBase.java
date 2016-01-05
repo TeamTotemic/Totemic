@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -34,6 +34,8 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
  */
 public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsage
 {
+    public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("woodVariant", WoodVariant.class);
+
     public BlockTotemBase()
     {
         super(Material.wood);
@@ -52,20 +54,14 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     @Override
     public int damageDropped(IBlockState state)
     {
-        return 0; //meta FIXME
-    }
-
-    @Override
-    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-    {
-        return super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer); //FIXME: metadata
+        return getMetaFromState(state);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
-        for(int i = 0; i < WoodVariant.count; i++)
+        for(int i = 0; i < WoodVariant.values().length; i++)
             list.add(new ItemStack(item, 1, i));
     }
 
@@ -119,6 +115,24 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
             }
         }
         return true;
+    }
+
+    @Override
+    protected BlockState createBlockState()
+    {
+        return new BlockState(this, WOOD);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(WOOD).ordinal();
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return getDefaultState().withProperty(WOOD, WoodVariant.values()[meta]);
     }
 
     @Override

@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,19 +32,13 @@ public class BlockTotemTorch extends BlockTileTotemic
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        //FIXME
-        /*for(int i = 0; i < 2; i++)
-            world.spawnParticle("flame", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);
+        for(int i = 0; i < 2; i++)
+            world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, 0, 0, 0);
         for(int i = 0; i < 16; i++)
-            world.spawnParticle("smoke", x + 0.5, y + 1F, z + 0.5, 0, 0, 0);*/
+            world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, 0, 0, 0);
     }
 
     //TODO: Replace TESR by JSON model
-    @Override
-    public int getRenderType()
-    {
-        return -1;
-    }
 
     @Override
     public boolean isOpaqueCube()

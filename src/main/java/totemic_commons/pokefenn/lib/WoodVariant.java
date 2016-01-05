@@ -6,12 +6,13 @@ import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.IStringSerializable;
 import totemic_commons.pokefenn.ModBlocks;
 
 /**
  * @author ljfa
  */
-public enum WoodVariant
+public enum WoodVariant implements IStringSerializable
 {
     OAK(Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, EnumType.OAK)),
     SPRUCE(Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, EnumType.SPRUCE)),
@@ -28,8 +29,6 @@ public enum WoodVariant
         this.log = log;
     }
 
-    public static final int count = values().length;
-
     /** @return The variant for the specified log block, or null if it is not a log */
     public static WoodVariant fromLog(IBlockState log)
     {
@@ -43,5 +42,11 @@ public enum WoodVariant
             return CEDAR;
         else
             return null;
+    }
+
+    @Override
+    public String getName()
+    {
+        return toString();
     }
 }

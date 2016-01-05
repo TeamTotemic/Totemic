@@ -1,16 +1,21 @@
 package totemic_commons.pokefenn.block;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
+ * Created by Pokefenn. Licensed under MIT (If this is one of my Mods)
  */
 public class BlockFlameParticle extends Block
 {
@@ -21,7 +26,7 @@ public class BlockFlameParticle extends Block
         setCreativeTab(Totemic.tabsTotem);
     }
 
-    /*@Override
+    @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
@@ -30,15 +35,15 @@ public class BlockFlameParticle extends Block
         if(currentInput == 0)
             for(int i = 0; i < 5; i++)
             {
-                float random = rand.nextFloat();
+                float randomX = rand.nextFloat();
+                float randomZ = rand.nextFloat();
                 for(int k = 0; k <= 15; k++)
                 {
-                    //FIXME: World.spawnParticle changed signature
-                    world.spawnParticle("flame", pos.getX() + random, pos.getY() + (rand.nextFloat() * k), pos.getZ() + random, 0, 0.15, 0);
-                    world.spawnParticle("smoke", x + random, y + (rand.nextFloat() * k), z + random, 0, 0.15, 0);
+                    world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + randomX, pos.getY() + (rand.nextFloat() * k), pos.getZ() + randomZ, 0, 0.15, 0);
+                    world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + randomX, pos.getY() + (rand.nextFloat() * k), pos.getZ() + randomZ, 0, 0.15, 0);
                 }
             }
-    }*/
+    }
 
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)

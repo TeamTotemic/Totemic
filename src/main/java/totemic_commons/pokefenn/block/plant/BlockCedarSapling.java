@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.BlockSapling;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -48,17 +49,29 @@ public class BlockCedarSapling extends BlockSapling
         }
     }
 
-
     @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item blockId, CreativeTabs tab, List<ItemStack> subBlocks)
+    protected BlockState createBlockState()
     {
-        subBlocks.add(new ItemStack(blockId, 1, 0));
+        //TYPE is necessary because otherwise the constructor of BlockSapling will crash due to the missing property
+        return new BlockState(this, TYPE, STAGE);
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random random, int fortune)
+    public int getMetaFromState(IBlockState state)
     {
-        return Item.getItemFromBlock(ModBlocks.totemSapling);
+        return state.getValue(STAGE);
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return getDefaultState().withProperty(STAGE, meta);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    {
+        list.add(new ItemStack(item));
     }
 }

@@ -6,6 +6,7 @@ import java.util.Random;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -56,6 +57,32 @@ public class BlockCedarLeaves extends BlockLeaves
     public boolean isOpaqueCube()
     {
         return Blocks.leaves.isOpaqueCube();
+    }
+
+    @Override
+    protected BlockState createBlockState()
+    {
+        return new BlockState(this, CHECK_DECAY, DECAYABLE);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        int meta = 0;
+        if(!state.getValue(DECAYABLE))
+            meta |= 4;
+        if(state.getValue(CHECK_DECAY))
+            meta |= 8;
+
+        return meta;
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return getDefaultState()
+                .withProperty(DECAYABLE, (meta & 4) == 0)
+                .withProperty(CHECK_DECAY, (meta & 8) != 0);
     }
 
     @Override

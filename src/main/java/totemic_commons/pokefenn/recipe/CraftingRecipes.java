@@ -56,9 +56,9 @@ public class CraftingRecipes
                 " n ", "nnn", " n ", ('n'), "nuggetIron"));
         GameRegistry.addRecipe(new ShapedOreRecipe(Items.iron_ingot,
                 "nnn", "nnn", "nnn", ('n'), "nuggetIron"));
-        GameRegistry.addRecipe(tipiWool = new ShapedOreRecipe(ModItems.tipi,
+        GameRegistry.addRecipe(tipiWool = new ShapedOreRecipe(ModBlocks.tipi,
                 " s ", "sws", "w w", ('s'), "stickWood", ('w'), Blocks.wool));
-        GameRegistry.addRecipe(tipiHide = new ShapedOreRecipe(ModItems.tipi,
+        GameRegistry.addRecipe(tipiHide = new ShapedOreRecipe(ModBlocks.tipi,
                 " s ", "sws", "w w", ('s'), "stickWood", ('w'), "hideBuffalo"));
 
         //Music

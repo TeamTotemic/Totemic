@@ -32,6 +32,7 @@ import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
+import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.event.GameOverlay;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.network.PacketHandler;
@@ -180,7 +181,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
 
         totemWoodBonus = 0;
 
-        switch(WoodVariant.values()[0/*state FIXME*/])
+        switch(state.getValue(BlockTotemBase.WOOD))
         {
         case OAK:
             //oak effect

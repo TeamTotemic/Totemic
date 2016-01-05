@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
@@ -32,7 +32,7 @@ public class BlockTipi extends BlockTileTotemic
         super(Material.cloth);
         setUnlocalizedName(Strings.TIPI_NAME);
         setBlockBounds(0, 0, 0, 0, 0, 0);
-        setCreativeTab(null);
+        setCreativeTab(Totemic.tabsTotem);
     }
 
     @Override
@@ -104,13 +104,13 @@ public class BlockTipi extends BlockTileTotemic
     @SideOnly(Side.CLIENT)
     @Override
     public Item getItem(World world, BlockPos pos) {
-        return ModItems.tipi;
+        return Item.getItemFromBlock(this);
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return ModItems.tipi;
+        return Item.getItemFromBlock(this);
     }
 
     @Override

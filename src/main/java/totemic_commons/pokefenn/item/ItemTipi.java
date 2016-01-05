@@ -3,25 +3,28 @@ package totemic_commons.pokefenn.item;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemTipi extends ItemTotemic
+public class ItemTipi extends ItemBlock
 {
-    public ItemTipi()
+    public ItemTipi(Block block)
     {
-        super(Strings.TIPI_ITEM_NAME);
+        super(block);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TIPI_ITEM_NAME);
+        setNoRepair();
         setMaxStackSize(1);
+        setCreativeTab(Totemic.tabsTotem);
     }
 
     @Override

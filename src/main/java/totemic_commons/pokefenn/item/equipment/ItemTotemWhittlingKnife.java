@@ -17,6 +17,8 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.RegistryImpl;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
+import totemic_commons.pokefenn.block.totem.BlockTotemBase;
+import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
@@ -100,11 +102,11 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             int index = getCarvingIndex(stack);
             if(index == totemList.size())
             {
-                world.setBlockState(pos, ModBlocks.totemBase.getDefaultState()/*meta wood.ordinal() FIXME*/, 3);
+                world.setBlockState(pos, ModBlocks.totemBase.getDefaultState().withProperty(BlockTotemBase.WOOD, wood), 3);
             }
             else if(index < totemList.size())
             {
-                world.setBlockState(pos, ModBlocks.totemPole.getDefaultState()/*meta wood.ordinal() FIXME*/, 3);
+                world.setBlockState(pos, ModBlocks.totemPole.getDefaultState().withProperty(BlockTotemPole.WOOD, wood), 3);
                 TileTotemPole tile = (TileTotemPole)world.getTileEntity(pos);
 
                 tile.effect = totemList.get(getCarvingIndex(stack));

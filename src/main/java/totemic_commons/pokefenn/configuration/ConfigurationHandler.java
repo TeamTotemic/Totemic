@@ -6,9 +6,9 @@ import java.io.File;
 
 import org.apache.logging.log4j.Level;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import totemic_commons.pokefenn.Totemic;
 
@@ -37,7 +37,7 @@ public final class ConfigurationHandler
             conf.save();
         }
 
-        FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
+        MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
     }
 
     private static void loadValues()

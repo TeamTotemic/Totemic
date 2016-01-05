@@ -75,7 +75,7 @@ public class BlockDummyTipi extends Block
     @Override
     public Item getItem(World world, BlockPos pos)
     {
-        return ModItems.tipi;
+        return Item.getItemFromBlock(ModBlocks.tipi);
     }
 
     @Override

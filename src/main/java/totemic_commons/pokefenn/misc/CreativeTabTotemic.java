@@ -4,7 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.ModBlocks;
 
 public class CreativeTabTotemic extends CreativeTabs
 {
@@ -17,7 +17,7 @@ public class CreativeTabTotemic extends CreativeTabs
     @Override
     public Item getTabIconItem()
     {
-        return ModItems.tipi;
+        return Item.getItemFromBlock(ModBlocks.tipi);
     }
 
     /*@SideOnly(Side.CLIENT)
