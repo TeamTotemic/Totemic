@@ -61,8 +61,7 @@ public class BlockTipi extends BlockTileTotemic
 
                         if(entityplayer2.isPlayerSleeping())
                         {
-                            BlockPos playerPos = entityplayer2.playerLocation;
-
+                            BlockPos playerPos = new BlockPos(entityplayer2.posX, entityplayer2.posY, entityplayer2.posZ);
                             if(playerPos.equals(pos))
                             {
                                 entityplayer1 = entityplayer2;

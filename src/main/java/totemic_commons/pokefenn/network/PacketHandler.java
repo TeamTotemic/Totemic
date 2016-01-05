@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.network;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -49,6 +50,11 @@ public class PacketHandler
     public static void sendAround(IMessage packet, int dim, double x, double y, double z)
     {
         INSTANCE.sendToAllAround(packet, new NetworkRegistry.TargetPoint(dim, x, y, z, 64));
+    }
+
+    public static void sendAround(IMessage packet, Entity ent)
+    {
+        sendAround(packet, ent.worldObj.provider.getDimensionId(), ent.posX, ent.posY, ent.posZ);
     }
 
     public static void sendAround(IMessage packet, int dim, BlockPos pos)

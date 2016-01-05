@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.network.client;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -22,6 +23,11 @@ public class PacketSound extends PacketBase<PacketSound>
     public PacketSound()
     {
 
+    }
+
+    public PacketSound(Entity entity, String type)
+    {
+        this(new BlockPos(entity.posX, entity.posY, entity.posZ), type);
     }
 
     public PacketSound(BlockPos pos, String type)

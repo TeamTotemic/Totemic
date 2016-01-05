@@ -51,14 +51,14 @@ public class ItemRattle extends ItemMusic
                     time = 0;
                     TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, 0);
                     particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                    PacketHandler.sendAround(new PacketSound(player.playerLocation, "rattle"), player.worldObj.provider.getDimensionId(), player.playerLocation);
+                    PacketHandler.sendAround(new PacketSound(player, "rattle"), player);
                 }
                 if(time >= 4 && player.isSneaking())
                 {
                     time = 0;
                     TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
                     particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                    PacketHandler.sendAround(new PacketSound(player.playerLocation, "rattle"), player.worldObj.provider.getDimensionId(), player.playerLocation);
+                    PacketHandler.sendAround(new PacketSound(player, "rattle"), player);
                 }
 
                 tag.setInteger(Strings.INSTR_TIME_KEY, time);

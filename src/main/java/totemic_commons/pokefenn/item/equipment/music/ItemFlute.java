@@ -37,7 +37,7 @@ public class ItemFlute extends ItemMusic
 {
     //Entities that have been tempted by the infused flute get stored in this weak set
     //so as to avoid adding the same AI task multiple times
-    private final Set<Entity> temptedEntities = Collections.newSetFromMap(new WeakHashMap<Entity, Boolean>());
+    private final Set<Entity> temptedEntities = Collections.newSetFromMap(new WeakHashMap<>());
 
     public ItemFlute()
     {
@@ -60,14 +60,14 @@ public class ItemFlute extends ItemMusic
                 time = 0;
                 TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, bonusMusic);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                PacketHandler.sendAround(new PacketSound(player.playerLocation, "flute"), player.worldObj.provider.getDimensionId(), player.playerLocation);
+                PacketHandler.sendAround(new PacketSound(player, "flute"), player);
             }
             if(time >= 5 && player.isSneaking())
             {
                 time = 0;
                 TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                PacketHandler.sendAround(new PacketSound(player.playerLocation, "flute"), player.worldObj.provider.getDimensionId(), player.playerLocation);
+                PacketHandler.sendAround(new PacketSound(player, "flute"), player);
             }
             if(itemStack.getItemDamage() == 1 && !player.isSneaking())
                 for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
