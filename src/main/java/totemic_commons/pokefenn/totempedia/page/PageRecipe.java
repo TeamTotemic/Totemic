@@ -144,7 +144,7 @@ public class PageRecipe extends LexiconPage
     @SideOnly(Side.CLIENT)
     public void renderItem(IGuiLexiconEntry gui, int xPos, int yPos, ItemStack stack, boolean accountForContainer)
     {
-        RenderItem render = new RenderItem(Minecraft.getMinecraft().getTextureManager());
+        RenderItem render = Minecraft.getMinecraft().getRenderItem();
         boolean mouseDown = Mouse.isButtonDown(0);
 
         GL11.glPushMatrix();

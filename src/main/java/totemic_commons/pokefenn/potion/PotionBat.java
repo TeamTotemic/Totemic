@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.potion;
 
 import net.minecraft.potion.Potion;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,10 +12,10 @@ import net.minecraft.potion.Potion;
 public class PotionBat extends Potion
 {
 
-    public PotionBat(int par1, boolean par2, int par3)
+    public PotionBat()
     {
-        super(par1, par2, par3);
-        setPotionName("Bat");
+        super(new ResourceLocation("totemic:bat"), false, 0xF2F2F0);
+        setPotionName("totemic.potion.bat");
         setIconIndex(0, 0);
     }
 

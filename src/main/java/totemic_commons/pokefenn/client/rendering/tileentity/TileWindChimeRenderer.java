@@ -4,14 +4,10 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.client.rendering.model.ModelWindChime;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
@@ -20,30 +16,55 @@ import totemic_commons.pokefenn.tileentity.music.TileWindChime;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class TileWindChimeRenderer extends TileEntitySpecialRenderer
+public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChime>
 {
     private final ModelWindChime modelWindChime = new ModelWindChime();
 
     @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double d, double d1, double d2, float f)
+    public void renderTileEntityAt(TileWindChime tile, double x, double y, double z, float partialTick, int destroyStage)
     {
         GL11.glPushMatrix();
 
-        GL11.glTranslated(d, d1, d2);
-        TileWindChime tile = (TileWindChime) tileEntity;
+        GL11.glTranslated(x, y, z);
 
-        render(tile, tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, ModBlocks.windChime);
+        GL11.glTranslatef(0.5F, 1.47F, 0.5F);
+        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        bindTexture(Resources.TEXTURE_WIND_CHIME);
+
+        if(tile.isPlaying())
+        {
+            if(tile.getWorld().getTotalWorldTime() % 2L == 0)
+            {
+                modelWindChime.chime1.rotateAngleX = getRotationThingy();
+                modelWindChime.chime1.rotateAngleZ = getRotationThingy();
+
+                modelWindChime.chime2.rotateAngleX = getRotationThingy();
+                modelWindChime.chime2.rotateAngleZ = getRotationThingy();
+
+                modelWindChime.chime3.rotateAngleX = getRotationThingy();
+                modelWindChime.chime3.rotateAngleZ = getRotationThingy();
+
+                modelWindChime.chime4.rotateAngleX = getRotationThingy();
+                modelWindChime.chime4.rotateAngleZ = getRotationThingy();
+            }
+        } else
+        {
+            resetRotations();
+        }
+
+        this.modelWindChime.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+
         GL11.glPopMatrix();
     }
 
-    public void render(TileWindChime tileEntity, World world, int i, int j, int k, Block block)
+    /*public void render(TileWindChime tileEntity, World world, int i, int j, int k, Block block)
     {
-        Tessellator tessellator = Tessellator.instance;
+
         float f = block.getMixedBrightnessForBlock(world, i, j, k);
         int l = world.getLightBrightnessForSkyBlocks(i, j, k, 0);
         int l1 = l % 65536;
         int l2 = l / 65536;
-        tessellator.setColorOpaque_F(f, f, f);
+        tes.setColorOpaque_F(f, f, f);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, l1, l2);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5F, 1.47F, 0.5F);
@@ -83,7 +104,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
 
                 modelWindChime.chime4.rotateAngleX = (-sinerp) * 90F;
                 modelWindChime.chime4.rotateAngleZ = (-sinerp) * 90F;
-                */
+                * /
 
             }
         } else
@@ -94,7 +115,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         this.modelWindChime.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
         GL11.glPopMatrix();
-    }
+    }*/
 
     public void resetRotations()
     {

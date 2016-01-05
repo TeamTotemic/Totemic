@@ -11,6 +11,10 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
 public class CommonProxy
 {
+    public void preInit()
+    {
+
+    }
 
     public void registerTileEntities()
     {
@@ -22,9 +26,6 @@ public class CommonProxy
         GameRegistry.registerTileEntity(TileTipi.class, Strings.TIPI_NAME);
     }
 
-    public void initRendering()
-    {
-
-    }
+    public void initRendering() {}
 
 }

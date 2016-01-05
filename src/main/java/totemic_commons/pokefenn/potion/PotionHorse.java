@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.potion;
 
 import net.minecraft.potion.Potion;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,10 +12,10 @@ import net.minecraft.potion.Potion;
 public class PotionHorse extends Potion
 {
 
-    public PotionHorse(int par1, boolean par2, int par3)
+    public PotionHorse()
     {
-        super(par1, par2, par3);
-        setPotionName("Horse");
+        super(new ResourceLocation("totemic:horse"), false, 0x614C07);
+        setPotionName("totemic.potion.horse");
         setIconIndex(0, 0);
     }
 

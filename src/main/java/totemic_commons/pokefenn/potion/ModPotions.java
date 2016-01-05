@@ -17,8 +17,8 @@ public class ModPotions
 
     public static void init()
     {
-        batPotion = new PotionBat(ConfigurationSettings.POTION_ID_BAT, false, 0xF2F2F0);
-        horsePotion = new PotionHorse(ConfigurationSettings.POTION_ID_HORSE, false, 0x614C07);
-        spiderPotion = new PotionSpider(ConfigurationSettings.POTION_ID_SPIDER, false, 0x524354);
+        batPotion = new PotionBat();
+        horsePotion = new PotionHorse();
+        spiderPotion = new PotionSpider();
     }
 }

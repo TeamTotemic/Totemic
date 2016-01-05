@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.potion;
 
 import net.minecraft.potion.Potion;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * Created by Pokefenn.
@@ -8,10 +9,10 @@ import net.minecraft.potion.Potion;
  */
 public class PotionSpider extends Potion
 {
-    protected PotionSpider(int par1, boolean par2, int par3)
+    protected PotionSpider()
     {
-        super(par1, par2, par3);
-        setPotionName("Spider");
+        super(new ResourceLocation("totemic:spider"), false, 0x524354);
+        setPotionName("totemic.potion.spider");
         setIconIndex(0, 0);
     }
 }

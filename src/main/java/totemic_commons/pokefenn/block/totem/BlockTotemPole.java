@@ -82,11 +82,6 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     //TODO: JSON model
-    @Override
-    public int getRenderType()
-    {
-        return -1;
-    }
 
     @Override
     public int quantityDropped(Random rand)

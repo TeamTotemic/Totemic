@@ -87,11 +87,6 @@ public class BlockDrum extends BlockTileTotemic
     }
 
     //TODO: JSON model
-    @Override
-    public int getRenderType()
-    {
-        return -1;
-    }
 
     @Override
     public boolean isOpaqueCube()

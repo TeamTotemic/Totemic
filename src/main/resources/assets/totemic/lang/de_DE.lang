@@ -42,6 +42,11 @@ tile.dummyTotemicTipi.name=Tipi
 #Entity localizations
 entity.totemic.buffalo.name=Büffel
 
+#Potion effect localizations
+totemic.potion.bat=Fledermaus
+totemic.potion.horse=Pferd
+totemic.potion.spider=Spinne
+
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 

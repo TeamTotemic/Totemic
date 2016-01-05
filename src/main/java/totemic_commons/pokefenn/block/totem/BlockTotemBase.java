@@ -134,9 +134,4 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     //TODO: JSON model
-    @Override
-    public int getRenderType()
-    {
-        return -1;
-    }
 }
