@@ -43,4 +43,9 @@ public abstract class BlockTileTotemic extends BlockContainer
         }
     }
 
+    @Override
+    public int getRenderType()
+    {
+        return 3;
+    }
 }

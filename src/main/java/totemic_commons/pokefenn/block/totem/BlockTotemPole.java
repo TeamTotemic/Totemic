@@ -79,6 +79,12 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
         return false;
     }
 
+    @Override
+    public boolean isFullCube()
+    {
+        return false;
+    }
+
     //TODO: JSON model
 
     @Override

@@ -47,6 +47,12 @@ public class BlockTotemTorch extends BlockTileTotemic
     }
 
     @Override
+    public boolean isFullCube()
+    {
+        return false;
+    }
+
+    @Override
     public TileEntity createNewTileEntity(World var1, int var2)
     {
         return new TileTotemTorch();

@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.client.rendering.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import totemic_commons.pokefenn.client.rendering.model.ModelTipi;
@@ -24,7 +25,8 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer<TileTipi>
         GL11.glTranslated(x, y, z);
         GL11.glScaled(2.85, 2.85, 2.85);
         GL11.glTranslatef(0.18F, 1.55F, 0.18F);
-        //GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
+        int dir = tile.getBlockMetadata();
+        GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
         GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
         bindTexture(Resources.TEXTURE_TIPI);
         this.modelTipi.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
@@ -56,7 +58,5 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer<TileTipi>
 
         GL11.glPopMatrix();
     }*/
-
-
 
 }

@@ -10,6 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.block.tipi.BlockTipi;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -36,8 +37,10 @@ public class ItemTipi extends ItemBlock
             return false;
         }
 
-        int height = 6;
-        int radius = 2;
+        final int height = 6;
+        final int radius = 2;
+
+        //Check if placeable
         for(int i = -radius; i <= radius; i++)
             for(int j = 1; j <= height; j++)
                 for(int k = -radius; k <= radius; k++)
@@ -48,23 +51,25 @@ public class ItemTipi extends ItemBlock
                 }
 
         EnumFacing dir = EnumFacing.fromAngle(player.rotationYaw);
-        world.setBlockState(pos.up(4), ModBlocks.dummyTipi.getDefaultState(), 2);
-        world.setBlockState(pos.up(5), ModBlocks.dummyTipi.getDefaultState(), 2);
-        world.setBlockState(pos.up(6), ModBlocks.dummyTipi.getDefaultState()/* meta 1 FIXME*/, 2);
 
+        //Place dummy blocks
         for(int i = 0; i < 2; i++)
         {
-            for(EnumFacing direction : EnumFacing.HORIZONTALS)
+            for(EnumFacing blockDir : EnumFacing.HORIZONTALS)
             {
-                world.setBlockState(pos.add(direction.getDirectionVec()).up(i+1), ModBlocks.dummyTipi.getDefaultState(), 2);
+                if(blockDir == dir.getOpposite())
+                    continue;
+                world.setBlockState(pos.add(blockDir.getDirectionVec()).up(i+1), ModBlocks.dummyTipi.getDefaultState(), 2);
             }
-            world.setBlockToAir(pos.up(i+1));
-            if(world.getBlockState(pos.add(dir.getDirectionVec()).up(i+1)).getBlock() == ModBlocks.dummyTipi)
-                world.setBlockToAir(pos.add(dir.getDirectionVec()).up(i+1));
         }
-        world.setBlockState(pos.up(), ModBlocks.tipi.getDefaultState()/*meta FIXME*/, 2);
-        stack.stackSize--;
+        world.setBlockState(pos.up(4), ModBlocks.dummyTipi.getDefaultState(), 2);
+        world.setBlockState(pos.up(5), ModBlocks.dummyTipi.getDefaultState(), 2);
+        world.setBlockState(pos.up(6), ModBlocks.dummyTipi.getDefaultState(), 2);
 
+        //Place Tipi block itself
+        world.setBlockState(pos.up(), ModBlocks.tipi.getDefaultState().withProperty(BlockTipi.FACING, dir), 2);
+
+        stack.stackSize--;
         return true;
     }
 }

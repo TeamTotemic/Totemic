@@ -91,6 +91,12 @@ public class BlockDummyTipi extends Block
     }
 
     @Override
+    public boolean isFullCube()
+    {
+        return false;
+    }
+
+    @Override
     public int quantityDropped(Random random)
     {
         return 0;

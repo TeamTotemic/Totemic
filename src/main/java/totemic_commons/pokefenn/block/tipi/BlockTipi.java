@@ -3,12 +3,13 @@ package totemic_commons.pokefenn.block.tipi;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
@@ -27,6 +28,8 @@ import totemic_commons.pokefenn.tileentity.TileTipi;
  */
 public class BlockTipi extends BlockTileTotemic
 {
+    public static final PropertyEnum<EnumFacing> FACING = PropertyEnum.create("facing", EnumFacing.class, EnumFacing.HORIZONTALS);
+
     public BlockTipi()
     {
         super(Material.cloth);
@@ -36,10 +39,10 @@ public class BlockTipi extends BlockTileTotemic
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack)
+    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        int dir = MathHelper.floor_double((entity.rotationYaw * 4F) / 360F + 0.5D) & 3;
-        //world.setBlockMetadataWithNotify(pos, dir, 0); FIXME
+        EnumFacing dir = EnumFacing.fromAngle(placer.rotationYaw);
+        return getDefaultState().withProperty(FACING, dir);
     }
 
     public boolean tipiSleep(World world, BlockPos pos, EntityPlayer player)
@@ -131,6 +134,24 @@ public class BlockTipi extends BlockTileTotemic
         return new TileTipi();
     }
 
+    @Override
+    protected BlockState createBlockState()
+    {
+        return new BlockState(this, FACING);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(FACING).getHorizontalIndex();
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return getDefaultState().withProperty(FACING, EnumFacing.HORIZONTALS[meta]);
+    }
+
     //TODO: OBJ or JSON model maybe?
     @Override
     public int getRenderType()
@@ -140,6 +161,12 @@ public class BlockTipi extends BlockTileTotemic
 
     @Override
     public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube()
     {
         return false;
     }

@@ -94,4 +94,9 @@ public class BlockDrum extends BlockTileTotemic
         return false;
     }
 
+    @Override
+    public boolean isFullCube()
+    {
+        return false;
+    }
 }
