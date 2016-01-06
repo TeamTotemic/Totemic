@@ -11,9 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.world.TotemTreeGeneration;
@@ -26,7 +26,7 @@ import totemic_commons.pokefenn.world.TotemTreeGeneration;
  */
 public class BlockCedarSapling extends BlockSapling
 {
-    private static TotemTreeGeneration treeGen = new TotemTreeGeneration(true);
+    private static final TotemTreeGeneration treeGen = new TotemTreeGeneration(true);
 
     public BlockCedarSapling()
     {
@@ -37,16 +37,11 @@ public class BlockCedarSapling extends BlockSapling
     }
 
     @Override
-    public void grow(World world, BlockPos pos, IBlockState state, Random random)
+    public void generateTree(World world, BlockPos pos, IBlockState state, Random rand)
     {
-        if(!world.isRemote)
-        {
-            if(treeGen.growTree(world, random, pos))
-            {
-                world.setBlockToAir(pos);
-                world.setBlockState(pos, ModBlocks.cedarLog.getDefaultState(), 4);
-            }
-        }
+        if (!TerrainGen.saplingGrowTree(world, rand, pos))
+            return;
+        treeGen.growTree(world, rand, pos);
     }
 
     @Override

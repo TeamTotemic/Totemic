@@ -18,12 +18,6 @@ public class TotemTreeGeneration extends WorldGenerator
         super(doNotify);
     }
 
-    public TotemTreeGeneration()
-    {
-        super();
-    }
-
-
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)
     {
@@ -49,7 +43,7 @@ public class TotemTreeGeneration extends WorldGenerator
         return true;
     }
 
-    public boolean growTree(World world, Random rand, BlockPos pos)
+    public boolean growTree(World world, Random rand, final BlockPos pos)
     {
         final int treeHeight = rand.nextInt(3) + 7, worldHeight = world.getHeight();
         Block block;
@@ -122,7 +116,7 @@ public class TotemTreeGeneration extends WorldGenerator
 
                             if(((xPos != center | zPos != center) || rand.nextInt(2) != 0 && var12 != 0) && (block == null || block.isLeaves(world, p) || block.isAir(world, p) || block.canBeReplacedByLeaves(world, p)))
                             {
-                                this.setBlockAndNotifyAdequately(world, p, ModBlocks.totemLeaves.getDefaultState());
+                                setBlockAndNotifyAdequately(world, p, ModBlocks.totemLeaves.getDefaultState());
                             }
                         }
                     }
@@ -131,11 +125,7 @@ public class TotemTreeGeneration extends WorldGenerator
                 for(yOffset = 0; yOffset < treeHeight; ++yOffset)
                 {
                     block = world.getBlockState(pos.up(yOffset)).getBlock();
-
-                    if(block == null || block.isAir(world, pos.up(yOffset)) || block.isLeaves(world, pos.up(yOffset)) || block.isReplaceable(world, pos.up(yOffset)))
-                    {
-                        this.setBlockAndNotifyAdequately(world, pos.up(yOffset), ModBlocks.cedarLog.getDefaultState());
-                    }
+                    setBlockAndNotifyAdequately(world, pos.up(yOffset), ModBlocks.cedarLog.getDefaultState());
                 }
 
                 return true;
