@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y": { "model": "totemic:cedarLog" },
+        "axis=z": { "model": "totemic:cedarLogSide" },
+        "axis=x": { "model": "totemic:cedarLogSide", "y": 90 },
+        "axis=none": { "model": "totemic:cedarLogBark" }
+    }
+}

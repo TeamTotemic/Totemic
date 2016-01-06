@@ -23,6 +23,7 @@ public class BlockCedarStripped extends BlockLog
         setHardness(1.5F);
         setCreativeTab(Totemic.tabsTotem);
         setTickRandomly(true);
+        setDefaultState(getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));
     }
 
     @Override

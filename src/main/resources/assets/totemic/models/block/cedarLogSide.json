@@ -1,0 +1,7 @@
+{
+    "parent": "block/column_side",
+    "textures": {
+        "end": "totemic:blocks/cedarWoodTopAndBot",
+        "side": "totemic:blocks/cedarWoodSide"
+    }
+}

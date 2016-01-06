@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "axis=y": { "model": "totemic:redCedarStripped" },
+        "axis=z": { "model": "totemic:redCedarStrippedSide" },
+        "axis=x": { "model": "totemic:redCedarStrippedSide", "y": 90 },
+        "axis=none": { "model": "totemic:redCedarStrippedBark" }
+    }
+}

@@ -20,6 +20,7 @@ public class BlockCedarLog extends BlockLog
         setUnlocalizedName(Strings.CEDAR_LOG_NAME);
         setHardness(2F);
         setCreativeTab(Totemic.tabsTotem);
+        setDefaultState(getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));
     }
 
     @Override

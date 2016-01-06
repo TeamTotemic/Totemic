@@ -62,12 +62,12 @@ public final class Totemic
 
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
         potionIncrease();
-        proxy.preInit();
         ModPotions.init();
         HandlerInitiation.init();
         ModBlocks.init();
         ModItems.init();
         HandlerInitiation.instrumentItems();
+        proxy.preInit();
     }
 
     @EventHandler
