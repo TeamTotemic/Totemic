@@ -12,10 +12,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.network.PacketBase;
+import totemic_commons.pokefenn.network.SynchronizedPacketBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
-public class PacketTotemMusic extends PacketBase<PacketTotemMusic>
+public class PacketTotemMusic extends SynchronizedPacketBase<PacketTotemMusic>
 {
     private BlockPos pos;
     private boolean isCeremony;

@@ -2,8 +2,9 @@ package totemic_commons.pokefenn.network.client;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -44,13 +45,12 @@ public class PacketWindChime extends PacketBase<PacketWindChime>
     @SideOnly(Side.CLIENT)
     protected void handleClient(MessageContext ctx)
     {
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        World world = Minecraft.getMinecraft().theWorld;
 
-        if(player.worldObj.getTileEntity(pos) instanceof TileWindChime)
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof TileWindChime)
         {
-            TileWindChime tileWindChime = (TileWindChime) player.worldObj.getTileEntity(pos);
-
-            tileWindChime.setPlaying(true);
+            ((TileWindChime) tile).setPlaying(true);
         }
     }
 }

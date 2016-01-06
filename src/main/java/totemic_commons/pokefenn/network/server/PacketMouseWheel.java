@@ -5,9 +5,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
-import totemic_commons.pokefenn.network.PacketBase;
+import totemic_commons.pokefenn.network.SynchronizedPacketBase;
 
-public class PacketMouseWheel extends PacketBase<PacketMouseWheel>
+public class PacketMouseWheel extends SynchronizedPacketBase<PacketMouseWheel>
 {
     private boolean direction;
 

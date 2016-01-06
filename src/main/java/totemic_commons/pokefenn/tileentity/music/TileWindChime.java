@@ -80,7 +80,7 @@ public class TileWindChime extends TileTotemic implements ITickable
                 cooldownPassed = 0;
             }
 
-            Random rand = new Random();
+            Random rand = worldObj.rand;
 
             if(!isPlaying && worldObj.getTotalWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
             {

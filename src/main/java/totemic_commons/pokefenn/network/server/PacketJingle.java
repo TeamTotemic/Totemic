@@ -7,14 +7,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import totemic_commons.pokefenn.item.equipment.music.ItemJingleDress;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketBase;
+import totemic_commons.pokefenn.network.SynchronizedPacketBase;
 import totemic_commons.pokefenn.util.ItemUtil;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketJingle extends PacketBase<PacketJingle>
+public class PacketJingle extends SynchronizedPacketBase<PacketJingle>
 {
     private float motionAbs;
 

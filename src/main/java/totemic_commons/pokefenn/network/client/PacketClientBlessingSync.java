@@ -7,13 +7,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.blessing.BlessingHandler;
-import totemic_commons.pokefenn.network.PacketBase;
+import totemic_commons.pokefenn.network.SynchronizedPacketBase;
 
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketClientBlessingSync extends PacketBase<PacketClientBlessingSync>
+public class PacketClientBlessingSync extends SynchronizedPacketBase<PacketClientBlessingSync>
 {
     private int blessing;
 
