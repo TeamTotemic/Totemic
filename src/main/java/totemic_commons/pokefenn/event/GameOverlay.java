@@ -49,8 +49,7 @@ public class GameOverlay
 
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
                 wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-                wr.color(80, 180, 70, 128); //Background
-                RenderHelper.addQuad(wr, 0, 0, 0, w, h);
+                RenderHelper.addQuad(wr, 0, 0, 0, w, h, 0x50B44680); //Background
                 tes.draw();
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
 
@@ -74,13 +73,11 @@ public class GameOverlay
 
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
                     wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-                    wr.color(80, 255, 200, 80);
-                    RenderHelper.addQuad(wr, 11, 11, 0, barWidth, 7);
-                    RenderHelper.addQuad(wr, 11, 21, 0, barWidth, 7);
+                    RenderHelper.addQuad(wr, 11, 11, 0, barWidth, 7, 0x50FFC850);
+                    RenderHelper.addQuad(wr, 11, 21, 0, barWidth, 7, 0x50FFC850);
 
-                    wr.color(60, 60, 255, 160);
-                    RenderHelper.addQuad(wr, 11, 11, 0, musicW, 7);
-                    RenderHelper.addQuad(wr, 11, 21, 0, timeW, 7);
+                    RenderHelper.addQuad(wr, 11, 11, 0, musicW, 7, 0x3C3CFFA0);
+                    RenderHelper.addQuad(wr, 11, 21, 0, timeW, 7, 0x3C3CFFA0);
                     tes.draw();
                     GL11.glEnable(GL11.GL_TEXTURE_2D);
                 }
@@ -100,19 +97,17 @@ public class GameOverlay
 
     private void drawNote(WorldRenderer wr)
     {
-        wr.color(0, 255, 0, 200);
-        wr.pos(1 + 0, 10 + 0, 0).tex(16.0 / 32, 0.0 / 32);
-        wr.pos(1 + 0, 10 + 9, 0).tex(16.0 / 32, 8.0 / 32);
-        wr.pos(1 + 9, 10 + 9, 0).tex(24.0 / 32, 8.0 / 32);
-        wr.pos(1 + 9, 10 + 0, 0).tex(24.0 / 32, 0.0 / 32);
+        wr.pos(1 + 0, 10 + 0, 0).tex(16.0 / 32, 0.0 / 32).color(0, 255, 0, 200).endVertex();
+        wr.pos(1 + 0, 10 + 9, 0).tex(16.0 / 32, 8.0 / 32).color(0, 255, 0, 200).endVertex();
+        wr.pos(1 + 9, 10 + 9, 0).tex(24.0 / 32, 8.0 / 32).color(0, 255, 0, 200).endVertex();
+        wr.pos(1 + 9, 10 + 0, 0).tex(24.0 / 32, 0.0 / 32).color(0, 255, 0, 200).endVertex();
     }
 
     private void drawClock(WorldRenderer wr)
     {
-        wr.color(255, 255, 255, 200);
-        wr.pos(1 + 0, 20 + 0, 0).tex(0.0 / 32, 0.0 / 32);
-        wr.pos(1 + 0, 20 + 9, 0).tex(0.0 / 32, 16.0 / 32);
-        wr.pos(1 + 9, 20 + 9, 0).tex(16.0 / 32, 16.0 / 32);
-        wr.pos(1 + 9, 20 + 0, 0).tex(16.0 / 32, 0.0 / 32);
+        wr.pos(1 + 0, 20 + 0, 0).tex( 0.0 / 32,  0.0 / 32).color(255, 255, 255, 200).endVertex();
+        wr.pos(1 + 0, 20 + 9, 0).tex( 0.0 / 32, 16.0 / 32).color(255, 255, 255, 200).endVertex();
+        wr.pos(1 + 9, 20 + 9, 0).tex(16.0 / 32, 16.0 / 32).color(255, 255, 255, 200).endVertex();
+        wr.pos(1 + 9, 20 + 0, 0).tex(16.0 / 32,  0.0 / 32).color(255, 255, 255, 200).endVertex();
     }
 }
