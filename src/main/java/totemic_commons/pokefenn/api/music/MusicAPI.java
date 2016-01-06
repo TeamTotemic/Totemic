@@ -54,6 +54,10 @@ public interface MusicAPI
      * @param spreadY how much the cloud is spread out in y-direction
      * @param spreadZ how much the cloud is spread out in z-direction
      * @param vel the velocity of the particles
+     *
+     * @deprecated the whole reason why this method existed in the 1.7.10 version was that
+     * WorldServer.func_147487_a() was not deobfuscated and it was hard to figure out the
+     * meaning of all the parameters.
      */
     @Deprecated
     public void particlePacket(World world, EnumParticleTypes type, double x, double y, double z, int num,

@@ -16,27 +16,23 @@ import totemic_commons.pokefenn.api.TotemicAPI;
 public class TotemEffectPotion extends TotemEffect
 {
     public final Potion potion;
-    public final boolean isPositive;
     public final int interval;
     public final int defaultTime;
     public final int amplifier;
 
-    public TotemEffectPotion(String modid, String baseName, int horizontal, int vertical, int tier, Potion potion, boolean isPositive, int interval, int defaultTime, int amplifier)
-    {
-        super(modid, baseName, horizontal, vertical, tier);
-        this.potion = Objects.requireNonNull(potion);
-        this.isPositive = isPositive;
-        this.interval = interval;
-        this.defaultTime = defaultTime;
-        this.amplifier = amplifier;
-    }
-
     /**
-     * Alternative constructor for positive potion effects
+     * @param potion the potion effect
+     * @param interval the time in ticks until the potion effect is renewed
+     * @param defaultTime the default duration of the effect, will be modified depending on the properties of the Totem pole
+     * @param amplifier the default amplifier of the effect, will be modified depending on the properties of the Totem pole
      */
     public TotemEffectPotion(String modid, String baseName, int horizontal, int vertical, int tier, Potion potion, int interval, int defaultTime, int amplifier)
     {
-        this(modid, baseName, horizontal, vertical, tier, potion, true, interval, defaultTime, amplifier);
+        super(modid, baseName, horizontal, vertical, tier);
+        this.potion = Objects.requireNonNull(potion);
+        this.interval = interval;
+        this.defaultTime = defaultTime;
+        this.amplifier = amplifier;
     }
 
     @Override
@@ -50,7 +46,7 @@ public class TotemEffectPotion extends TotemEffect
 
             for(EntityPlayer entity : getPlayersInRange(world, pos, horizontal, vertical))
             {
-                TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, isPositive, defaultTime, amplifier, melodyAmount, totemWoodBonus, repetitionBonus);
+                TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, defaultTime, amplifier, melodyAmount, totemWoodBonus, repetitionBonus);
             }
         }
     }

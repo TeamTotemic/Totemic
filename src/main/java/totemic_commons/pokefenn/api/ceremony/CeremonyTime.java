@@ -4,6 +4,7 @@ package totemic_commons.pokefenn.api.ceremony;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
+@Deprecated
 public class CeremonyTime
 {
     //These values are just suggestions. You do not necessarily have to use them.

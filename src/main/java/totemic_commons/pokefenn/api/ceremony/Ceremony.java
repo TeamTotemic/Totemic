@@ -24,8 +24,8 @@ public abstract class Ceremony
      * @param modid             your mod ID
      * @param name              the base name of your Ceremony. Will be prefixed by the mod id and ":".
      * @param musicNeeded       the amount of music needed to start the ceremony
-     * @param maxStartupTime    the maximum time that starting the ceremony may take
-     * @param effectTime        the maximum time the ceremony effect will last, or 0 if it is instant
+     * @param maxStartupTime    the maximum time in ticks that starting the ceremony may take
+     * @param effectTime        the maximum time in ticks the ceremony effect will last, or 0 if it is instant
      * @param musicPer5         if the effect is not instant, how much melody per 5 seconds it will consume
      * @param instruments       the music instruments for selecting the ceremony. Has to be NUM_SELECTORS instruments.
      */

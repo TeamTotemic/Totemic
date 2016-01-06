@@ -33,8 +33,8 @@ public class TotemEffectCow extends TotemEffect
             {
                 if(entity instanceof EntityPlayer)
                 {
-                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.resistance, true, 50, 0, melodyAmount, totemWoodBonus, repetitionBonus);
-                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.moveSlowdown, false, 150, 1, melodyAmount, totemWoodBonus, repetitionBonus);
+                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.resistance, 50, 0, melodyAmount, totemWoodBonus, repetitionBonus);
+                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.moveSlowdown, 150, 1, melodyAmount, totemWoodBonus, repetitionBonus);
                 }
             }
         }
