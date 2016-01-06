@@ -14,8 +14,7 @@ public final class ModEntities
 {
     public static void init()
     {
-        EntityList.stringToClassMapping.put("totemic." + Strings.BUFFALO_NAME, EntityBuffalo.class);
-        EntityRegistry.registerModEntity(EntityBuffalo.class, Strings.BUFFALO_NAME, 0, Totemic.instance, 80, 5, true);
+        EntityRegistry.registerModEntity(EntityBuffalo.class, Strings.BUFFALO_NAME, 0, Totemic.instance, 80, 5, true, 0x2a1c12, 0x885f3e);
         //EntityRegistry.addSpawn(EntityBuffalo.class, 1000, 2, 4, EnumCreatureType.creature); //No biomes to spawn in
     }
 }

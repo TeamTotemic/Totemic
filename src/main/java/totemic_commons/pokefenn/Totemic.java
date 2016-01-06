@@ -55,13 +55,14 @@ public final class Totemic
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
+        logger.info("Totemic is Loading");
         //Initialize API by reflection
         ReflectionHelper.setPrivateValue(TotemicAPI.class, null, api, "instance");
 
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
         potionIncrease();
-        logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
-        logger.info("Totemic is Loading");
+        proxy.preInit();
         ModPotions.init();
         HandlerInitiation.init();
         ModBlocks.init();
