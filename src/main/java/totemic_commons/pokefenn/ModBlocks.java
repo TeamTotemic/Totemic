@@ -5,7 +5,10 @@ import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -87,14 +90,20 @@ public final class ModBlocks
         totemLeaves.setGraphicsLevel(true); //TODO: Fix fast graphics
     }
 
+    @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     public static void setItemModels()
     {
         setDefaultModel(cedarLog);
         setDefaultModel(totemSapling);
         setDefaultModel(totemLeaves);
+        setDefaultModel(windChime);
         setDefaultModel(redCedarPlank);
         setDefaultModel(redCedarStripped);
+        setDefaultModel(tipi);
+
+        ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(tipi), 0, TileTipi.class);
+        ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(windChime), 0, TileWindChime.class);
     }
 
     @SideOnly(Side.CLIENT)

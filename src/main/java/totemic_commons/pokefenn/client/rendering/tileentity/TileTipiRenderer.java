@@ -21,15 +21,24 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer<TileTipi>
     {
         GL11.glPushMatrix();
 
-        GL11.glTranslated(x, y, z);
-        GL11.glScaled(2.85, 2.85, 2.85);
-        GL11.glTranslatef(0.18F, 1.55F, 0.18F);
-        int dir = tile.getBlockMetadata();
-        GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
-        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        if(tile != null) //Block rendering
+        {
+            GL11.glTranslated(x, y, z);
+            GL11.glScalef(2.85F, 2.85F, 2.85F);
+            GL11.glTranslatef(0.18F, 1.55F, 0.18F);
+            int dir = tile.getBlockMetadata();
+            GL11.glRotatef(dir * (-90F), 0F, 1F, 0F);
+            GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        }
+        else //Item rendering
+        {
+            GL11.glTranslatef(0.5F, 0.9F, 0.5F);
+            GL11.glScalef(0.67F, 0.67F, 0.67F);
+            GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+        }
 
         bindTexture(Resources.TEXTURE_TIPI);
-        this.modelTipi.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        this.modelTipi.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
         GL11.glPopMatrix();
     }

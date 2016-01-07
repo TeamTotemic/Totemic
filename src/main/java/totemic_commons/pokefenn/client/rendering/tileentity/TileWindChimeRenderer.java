@@ -5,7 +5,6 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import totemic_commons.pokefenn.client.rendering.model.ModelWindChime;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
@@ -23,54 +22,68 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
     {
         GL11.glPushMatrix();
 
-        GL11.glTranslated(x, y, z);
-
-        GL11.glTranslatef(0.5F, 1.47F, 0.5F);
-        GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
-        bindTexture(Resources.TEXTURE_WIND_CHIME);
-
-        if(tile.isPlaying())
+        if(tile != null) //Block render
         {
-            if(tile.getWorld().getTotalWorldTime() % 2L == 0)
+            GL11.glTranslated(x, y, z);
+
+            GL11.glTranslatef(0.5F, 1.47F, 0.5F);
+            GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+
+            if(tile.isPlaying())
             {
-                modelWindChime.chime1.rotateAngleX = getRotationThingy();
-                modelWindChime.chime1.rotateAngleZ = getRotationThingy();
-
-                modelWindChime.chime2.rotateAngleX = getRotationThingy();
-                modelWindChime.chime2.rotateAngleZ = getRotationThingy();
-
-                modelWindChime.chime3.rotateAngleX = getRotationThingy();
-                modelWindChime.chime3.rotateAngleZ = getRotationThingy();
-
-                modelWindChime.chime4.rotateAngleX = getRotationThingy();
-                modelWindChime.chime4.rotateAngleZ = getRotationThingy();
-
-                //TODO
-                /*
-                modelWindChime.chime1.rotateAngleX = (-sinerp) * 90F;
-                modelWindChime.chime1.rotateAngleZ = (-sinerp) * 90F;
-
-                modelWindChime.chime2.rotateAngleX = (-sinerp) * 90F;
-                modelWindChime.chime2.rotateAngleZ = (-sinerp) * 90F;
-
-                modelWindChime.chime3.rotateAngleX = (-sinerp) * 90F;
-                modelWindChime.chime3.rotateAngleZ = (-sinerp) * 90F;
-
-                modelWindChime.chime4.rotateAngleX = (-sinerp) * 90F;
-                modelWindChime.chime4.rotateAngleZ = (-sinerp) * 90F;
-                */
+                if(getWorld().getTotalWorldTime() % 2L == 0)
+                    setRotations();
             }
-        } else
+            else
+            {
+                resetRotations();
+            }
+        }
+        else //Item render
         {
+            GL11.glTranslatef(0.5F, 1.85F, 0.5F);
+            GL11.glScalef(1.3F, 1.3F, 1.3F);
+            GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
             resetRotations();
         }
 
-        this.modelWindChime.render((Entity) null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        bindTexture(Resources.TEXTURE_WIND_CHIME);
+        this.modelWindChime.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
         GL11.glPopMatrix();
     }
 
-    public void resetRotations()
+    private void setRotations()
+    {
+        modelWindChime.chime1.rotateAngleX = getRotationThingy();
+        modelWindChime.chime1.rotateAngleZ = getRotationThingy();
+
+        modelWindChime.chime2.rotateAngleX = getRotationThingy();
+        modelWindChime.chime2.rotateAngleZ = getRotationThingy();
+
+        modelWindChime.chime3.rotateAngleX = getRotationThingy();
+        modelWindChime.chime3.rotateAngleZ = getRotationThingy();
+
+        modelWindChime.chime4.rotateAngleX = getRotationThingy();
+        modelWindChime.chime4.rotateAngleZ = getRotationThingy();
+
+        //TODO
+        /*
+        modelWindChime.chime1.rotateAngleX = (-sinerp) * 90F;
+        modelWindChime.chime1.rotateAngleZ = (-sinerp) * 90F;
+
+        modelWindChime.chime2.rotateAngleX = (-sinerp) * 90F;
+        modelWindChime.chime2.rotateAngleZ = (-sinerp) * 90F;
+
+        modelWindChime.chime3.rotateAngleX = (-sinerp) * 90F;
+        modelWindChime.chime3.rotateAngleZ = (-sinerp) * 90F;
+
+        modelWindChime.chime4.rotateAngleX = (-sinerp) * 90F;
+        modelWindChime.chime4.rotateAngleZ = (-sinerp) * 90F;
+        */
+    }
+
+    private void resetRotations()
     {
         modelWindChime.chime1.rotateAngleX = 0.0F;
         modelWindChime.chime1.rotateAngleZ = 0.0F;
@@ -85,7 +98,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
         modelWindChime.chime4.rotateAngleZ = 0.0F;
     }
 
-    public float getRotationThingy()
+    private float getRotationThingy()
     {
         Random random = getWorld().rand;
         int multiplier;
