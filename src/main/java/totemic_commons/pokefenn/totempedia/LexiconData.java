@@ -11,6 +11,8 @@
  */
 package totemic_commons.pokefenn.totempedia;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicRegistry;
 import totemic_commons.pokefenn.lib.Totempedia;
@@ -22,6 +24,7 @@ import totemic_commons.pokefenn.totempedia.page.PageText;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
+@SideOnly(Side.CLIENT)
 public final class LexiconData
 {
 

@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.totempedia.page;
 
 import java.util.Objects;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -13,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.util.TotemUtil;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 
@@ -35,6 +37,9 @@ public class PageCeremony extends PageRecipe
     @Override
     public void renderScreen(IGuiLexiconEntry gui, int mx, int my)
     {
+        relativeMouseX = mx;
+        relativeMouseY = my;
+
         TextureManager render = Minecraft.getMinecraft().renderEngine;
         FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
         MusicInstrument[] instruments = ceremony.getInstruments();
@@ -49,6 +54,9 @@ public class PageCeremony extends PageRecipe
             renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, item0, false);
             renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, item1, false);
         }
+
+        if(tooltipStack != null)
+            RenderHelper.renderTooltip(mx, my, tooltipStack.getTooltip(Minecraft.getMinecraft().thePlayer, false));
 
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -73,5 +81,9 @@ public class PageCeremony extends PageRecipe
         GL11.glColor4f(1F, 1F, 1F, 1F);
         ((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
         GL11.glDisable(GL11.GL_BLEND);
+
+        tooltipStack = tooltipContainerStack = null;
+        tooltipEntry = false;
+        mouseDownLastTick = Mouse.isButtonDown(0);
     }
 }

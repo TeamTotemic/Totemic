@@ -9,6 +9,7 @@ import totemic_commons.pokefenn.client.rendering.tileentity.TileWindChimeRendere
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
+import totemic_commons.pokefenn.totempedia.LexiconData;
 
 public class ClientProxy extends CommonProxy
 {
@@ -20,6 +21,13 @@ public class ClientProxy extends CommonProxy
         ModBlocks.setStateMappers();
         ModBlocks.setItemModels();
         ModItems.setItemModels();
+    }
+
+    @Override
+    public void init()
+    {
+        super.init();
+        LexiconData.init();
     }
 
     @Override

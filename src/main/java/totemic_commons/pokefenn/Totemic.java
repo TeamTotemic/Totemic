@@ -79,7 +79,7 @@ public final class Totemic
         proxy.initRendering();
         ModEntities.init();
         CraftingRecipes.init();
-        LexiconData.init();
+        proxy.init();
         proxy.registerTileEntities();
         ModEvents.init();
         Compatibility.sendIMCMessages();

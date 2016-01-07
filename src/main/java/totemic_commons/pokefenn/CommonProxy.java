@@ -16,6 +16,11 @@ public class CommonProxy
 
     }
 
+    public void init()
+    {
+
+    }
+
     public void registerTileEntities()
     {
         GameRegistry.registerTileEntity(TileTotemBase.class, Strings.TILE_TOTEM_INTELLIGENCE);
