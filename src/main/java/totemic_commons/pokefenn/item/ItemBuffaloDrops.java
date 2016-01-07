@@ -2,6 +2,8 @@ package totemic_commons.pokefenn.item;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,11 +22,12 @@ public class ItemBuffaloDrops extends ItemTotemic
     {
         hide, teeth/*, horn, hair, hoof, dung*/;
 
-        public final String name;
+        private final String fullName = "buffalo" + StringUtils.capitalize(name());
 
-        private Type()
+        @Override
+        public String toString()
         {
-            this.name = "buffalo" + Character.toUpperCase(toString().charAt(0)) + toString().substring(1);
+            return fullName;
         }
     }
 
@@ -37,8 +40,8 @@ public class ItemBuffaloDrops extends ItemTotemic
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        Type type = Type.values()[MathHelper.clamp_int(itemStack.getItemDamage(), 0, Type.values().length - 1)];
-        return "item." + Strings.RESOURCE_PREFIX + type.name;
+        int index = MathHelper.clamp_int(itemStack.getItemDamage(), 0, Type.values().length - 1);
+        return "item." + Strings.RESOURCE_PREFIX + Type.values()[index].toString();
     }
 
     @Override

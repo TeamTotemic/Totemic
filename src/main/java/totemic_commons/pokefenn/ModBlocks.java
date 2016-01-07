@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,6 +23,8 @@ import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTipi;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.tileentity.TileTipi;
+import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 
 public final class ModBlocks
 {

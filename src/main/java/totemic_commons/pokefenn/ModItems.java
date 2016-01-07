@@ -76,11 +76,25 @@ public final class ModItems
         setDefaultModel(ceremonialRattle);
         setDefaultModel(totempedia);
         setDefaultModel(flute);
+        setModel(flute, 1, flute.getRegistryName());
+
+        for(ItemTotemicItems.Type t: ItemTotemicItems.Type.values())
+            setModel(subItems, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());
+
+        for(ItemBuffaloDrops.Type t: ItemBuffaloDrops.Type.values())
+            setModel(buffaloItems, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void setModel(Item item, int meta, String modelName)
+    {
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(modelName, "inventory"));
     }
 
     @SideOnly(Side.CLIENT)
     public static void setDefaultModel(Item item)
     {
-        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+        setModel(item, 0, item.getRegistryName());
     }
+
 }

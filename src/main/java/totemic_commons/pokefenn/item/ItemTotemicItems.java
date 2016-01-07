@@ -19,11 +19,10 @@ import totemic_commons.pokefenn.lib.Strings;
  */
 public class ItemTotemicItems extends ItemTotemic
 {
-
-    private static final String[] ITEMS_NAMES = {"nuggetIron", "bellsIron"};
-
-    public static final int nuggetIron = 0;
-    public static final int bellsIron = 1;
+    public enum Type
+    {
+        nuggetIron, bellsIron;
+    }
 
     public ItemTotemicItems()
     {
@@ -37,22 +36,15 @@ public class ItemTotemicItems extends ItemTotemic
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-
-        StringBuilder unlocalizedName = new StringBuilder();
-        int meta = MathHelper.clamp_int(itemStack.getItemDamage(), 0, ITEMS_NAMES.length - 1);
-
-        unlocalizedName.append("item.");
-        unlocalizedName.append(Strings.RESOURCE_PREFIX);
-        unlocalizedName.append(ITEMS_NAMES[meta]);
-
-        return unlocalizedName.toString();
+        int index = MathHelper.clamp_int(itemStack.getItemDamage(), 0, Type.values().length - 1);
+        return "item." + Strings.RESOURCE_PREFIX + Type.values()[index].toString();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item id, CreativeTabs creativeTab, List<ItemStack> list)
     {
-        for(int meta = 0; meta < ITEMS_NAMES.length; ++meta)
+        for(int meta = 0; meta < Type.values().length; ++meta)
             list.add(new ItemStack(id, 1, meta));
     }
 }

@@ -34,7 +34,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
  */
 public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsage
 {
-    public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("woodVariant", WoodVariant.class);
+    public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);
 
     public BlockTotemBase()
     {
