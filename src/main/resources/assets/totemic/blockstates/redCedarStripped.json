@@ -1,8 +1,13 @@
 {
+    "forge_marker": 1,
     "variants": {
         "axis=y": { "model": "totemic:redCedarStripped" },
         "axis=z": { "model": "totemic:redCedarStrippedSide" },
         "axis=x": { "model": "totemic:redCedarStrippedSide", "y": 90 },
-        "axis=none": { "model": "totemic:redCedarStrippedBark" }
+        "axis=none": { "model": "totemic:redCedarStrippedBark" },
+        "inventory": {
+            "model": "totemic:redCedarStripped",
+            "transform": "forge:default-block"
+        }
     }
 }

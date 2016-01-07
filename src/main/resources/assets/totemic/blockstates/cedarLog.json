@@ -1,8 +1,13 @@
 {
+    "forge_marker": 1,
     "variants": {
         "axis=y": { "model": "totemic:cedarLog" },
         "axis=z": { "model": "totemic:cedarLogSide" },
         "axis=x": { "model": "totemic:cedarLogSide", "y": 90 },
-        "axis=none": { "model": "totemic:cedarLogBark" }
+        "axis=none": { "model": "totemic:cedarLogBark" },
+        "inventory": {
+            "model": "totemic:cedarLog",
+            "transform": "forge:default-block"
+        }
     }
 }

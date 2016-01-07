@@ -1,8 +1,15 @@
 package totemic_commons.pokefenn;
 
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import totemic_commons.pokefenn.item.*;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import totemic_commons.pokefenn.item.ItemBuffaloDrops;
+import totemic_commons.pokefenn.item.ItemTotemicFood;
+import totemic_commons.pokefenn.item.ItemTotemicItems;
+import totemic_commons.pokefenn.item.ItemTotempedia;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
@@ -13,7 +20,6 @@ import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModItems
 {
-
     public static Item totemWhittlingKnife;
     public static Item totemicStaff;
     public static Item subItems;
@@ -58,4 +64,23 @@ public final class ModItems
         GameRegistry.registerItem(flute, Strings.FLUTE_NAME);
     }
 
+    @SideOnly(Side.CLIENT)
+    public static void setItemModels()
+    {
+        setDefaultModel(totemWhittlingKnife);
+        setDefaultModel(totemicStaff);
+        setDefaultModel(jingleDress);
+        setDefaultModel(barkStripper);
+        setDefaultModel(buffaloMeat);
+        setDefaultModel(buffaloCookedMeat);
+        setDefaultModel(ceremonialRattle);
+        setDefaultModel(totempedia);
+        setDefaultModel(flute);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void setDefaultModel(Item item)
+    {
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+    }
 }
