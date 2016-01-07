@@ -3,7 +3,8 @@ package totemic_commons.pokefenn.block.tipi;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -28,14 +29,18 @@ import totemic_commons.pokefenn.tileentity.TileTipi;
  */
 public class BlockTipi extends BlockTileTotemic
 {
-    public static final PropertyEnum<EnumFacing> FACING = PropertyEnum.create("facing", EnumFacing.class, EnumFacing.HORIZONTALS);
+    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static final PropertyBool OCCUPIED = PropertyBool.create("occupied");
 
     public BlockTipi()
     {
         super(Material.cloth);
         setUnlocalizedName(Strings.TIPI_NAME);
         setBlockBounds(0, 0, 0, 0, 0, 0);
+        setHardness(0.2F);
+        setStepSound(soundTypeCloth);
         setCreativeTab(Totemic.tabsTotem);
+        setDefaultState(blockState.getBaseState().withProperty(OCCUPIED, false));
     }
 
     @Override
@@ -49,6 +54,7 @@ public class BlockTipi extends BlockTileTotemic
     {
         if(!world.isRemote)
         {
+            pos = pos.up();
             if(world.getBiomeGenForCoords(pos) != BiomeGenBase.hell)
             {
                 if(world.provider.canRespawnHere())
@@ -136,7 +142,7 @@ public class BlockTipi extends BlockTileTotemic
     @Override
     protected BlockState createBlockState()
     {
-        return new BlockState(this, FACING);
+        return new BlockState(this, FACING, OCCUPIED);
     }
 
     @Override

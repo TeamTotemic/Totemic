@@ -26,6 +26,7 @@ public class BlockDummyTipi extends Block
         super(Material.cloth);
         setUnlocalizedName(Strings.DUMMY_TIPI_NAME);
         setHardness(0.2F);
+        setStepSound(soundTypeCloth);
     }
 
     @Override
