@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.world;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -56,7 +55,7 @@ public class TotemTreeGeneration extends WorldGenerator
 
             block = world.getBlockState(pos.down()).getBlock();
 
-            if((block != null && block.canSustainPlant(world, pos.down(), EnumFacing.UP, ((BlockSapling) ModBlocks.totemSapling))) && pos.getY() < worldHeight - treeHeight - 1)
+            if((block != null && block.canSustainPlant(world, pos.down(), EnumFacing.UP, ModBlocks.totemSapling)) && pos.getY() < worldHeight - treeHeight - 1)
             {
                 for(yOffset = pos.getY() + 1; yOffset <= pos.getY() + 1 + treeHeight; ++yOffset)
                 {
@@ -114,7 +113,7 @@ public class TotemTreeGeneration extends WorldGenerator
 
                             block = world.getBlockState(p).getBlock();
 
-                            if(((xPos != center | zPos != center) || rand.nextInt(2) != 0 && var12 != 0) && (block == null || block.isLeaves(world, p) || block.isAir(world, p) || block.canBeReplacedByLeaves(world, p)))
+                            if(((xPos != center | zPos != center) || rand.nextInt(2) != 0 && var12 != 0) && (block == null || block.isLeaves(world, p) || block.isAir(world, p)))
                             {
                                 setBlockAndNotifyAdequately(world, p, ModBlocks.totemLeaves.getDefaultState());
                             }
