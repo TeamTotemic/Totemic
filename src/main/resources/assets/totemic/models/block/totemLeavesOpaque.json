@@ -1,6 +1,6 @@
 {
     "parent": "block/leaves",
     "textures": {
-        "all": "totemic:blocks/cedarLeavesTransparent"
+        "all": "totemic:blocks/cedarLeavesOpaque"
     }
 }

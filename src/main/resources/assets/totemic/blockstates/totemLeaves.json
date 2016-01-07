@@ -1,7 +1,8 @@
 {
     "forge_marker": 1,
     "variants": {
-        "normal": { "model": "totemic:totemLeaves" },
+        "transparent=true": { "model": "totemic:totemLeaves" },
+        "transparent=false": { "model": "totemic:totemLeavesOpaque" },
         "inventory": {
             "model": "totemic:totemLeaves",
             "transform": "forge:default-block"
