@@ -23,9 +23,6 @@ import totemic_commons.pokefenn.util.TotemUtil;
  */
 public class ItemRattle extends ItemMusic
 {
-    //This int will hold the amount of nearby poles, which are sticks and buffalo heads. Each pole will increase the music made.
-    //public int headPoles;
-
     public ItemRattle()
     {
         super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.rattle);

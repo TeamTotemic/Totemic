@@ -1,8 +1,9 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import static totemic_commons.pokefenn.Totemic.logger;
+
 import java.util.Arrays;
 
-import gnu.trove.iterator.TObjectIntIterator;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import net.minecraft.block.Block;
@@ -34,7 +35,6 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.event.GameOverlay;
-import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketTotemMusic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
@@ -605,6 +605,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
                 MusicInstrument instr = Totemic.api.registry().getInstrument(key);
                 if(instr != null)
                     ceremonyMusic.put(instr, ceremonyMusicTag.getInteger(key));
+                else
+                    logger.warn("Could not instrument {}", key);
             }
             recalculateMelody();
 
@@ -641,11 +643,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
         if(isCeremony)
         {
             NBTTagCompound ceremonyMusicTag = new NBTTagCompound();
-            for(TObjectIntIterator<MusicInstrument> it = ceremonyMusic.iterator(); it.hasNext();)
-            {
-                it.advance();
-                ceremonyMusicTag.setInteger(it.key().getName(), it.value());
-            }
+            ceremonyMusic.forEachEntry((instr, amount) -> {
+                ceremonyMusicTag.setInteger(instr.getName(), amount);
+                return true;
+            });
             tag.setTag("ceremonyMusic", ceremonyMusicTag);
             if(startupCeremony != null)
                 tag.setString("tryingCeremonyID", startupCeremony.getName());

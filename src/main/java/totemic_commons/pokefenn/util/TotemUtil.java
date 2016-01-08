@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.util;
 
+import java.util.Comparator;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
@@ -67,21 +69,9 @@ public class TotemUtil
      */
     public static MusicAcceptor getClosestAcceptor(WorldServer world, double x, double y, double z, int horizontalRadius, int verticalRadius)
     {
-        MusicAcceptor closest = null;
-        double closestDist = Double.POSITIVE_INFINITY;
-        for(TileEntity tile: EntityUtil.getTileEntitiesInRange(world, new BlockPos(x, y, z), horizontalRadius, verticalRadius))
-        {
-            if(tile instanceof MusicAcceptor)
-            {
-                double dist = tile.getDistanceSq(x, y, z);
-                if(dist < closestDist)
-                {
-                    closest = (MusicAcceptor) tile;
-                    closestDist = dist;
-                }
-            }
-        }
-        return closest;
+        return (MusicAcceptor)EntityUtil.getTileEntitiesInRange(world, new BlockPos(x, y, z), horizontalRadius, verticalRadius).stream()
+                .filter(te -> te instanceof MusicAcceptor)
+                .min(Comparator.comparing(te -> te.getDistanceSq(x, y, z))).orElse(null);
     }
 
     /**

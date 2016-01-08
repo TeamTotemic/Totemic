@@ -76,7 +76,7 @@ public class BlockWindChime extends BlockTileTotemic
     @Override
     public int getRenderType()
     {
-        return -1;
+        return 2;
     }
 
     @Override

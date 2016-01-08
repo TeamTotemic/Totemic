@@ -91,7 +91,8 @@ public class ItemFlute extends ItemMusic
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
+    public String getUnlocalizedName(ItemStack stack)
+    {
         if(stack.getItemDamage() == 1)
             return "item.totemic:fluteInfused";
         else
@@ -100,18 +101,26 @@ public class ItemFlute extends ItemMusic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list) {
+    public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list)
+    {
         list.add(new ItemStack(item, 1, 0));
         list.add(new ItemStack(item, 1, 1));
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean hasEffect(ItemStack stack)
+    {
         return stack.getItemDamage() == 1;
     }
 
-    public void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
+    {
+        return slotChanged;
+    }
+
+    private void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
     {
         TotemUtil.particlePacket(world, EnumParticleTypes.NOTE, x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
 
@@ -120,6 +129,5 @@ public class ItemFlute extends ItemMusic
             TotemUtil.particlePacket(world, EnumParticleTypes.FIREWORKS_SPARK, x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
         }
     }
-
 
 }
