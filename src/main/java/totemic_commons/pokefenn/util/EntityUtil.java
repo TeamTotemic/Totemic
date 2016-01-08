@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
@@ -13,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.chunk.Chunk;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,16 +36,43 @@ public class EntityUtil
         return getEntitiesInRange(world, pos.getX(), pos.getY(), pos.getZ(), horizontalRadius, verticalRadius);
     }
 
-    @Deprecated
-    public static List<TileEntity> getTileEntitiesIn(WorldServer world, int minX, int minY, int minZ, int maxX, int maxY, int maxZ)
-    {
-        return world.getTileEntitiesIn(minX, minY, minZ, maxX, maxY, maxZ);
-    }
-
     public static List<TileEntity> getTileEntitiesInRange(WorldServer world, BlockPos pos, int horizontalRadius, int verticalRadius)
     {
-        return world.getTileEntitiesIn(pos.getX() - horizontalRadius, pos.getY() - verticalRadius, pos.getZ() - horizontalRadius,
-                pos.getX() + horizontalRadius, pos.getY() + verticalRadius, pos.getZ() + horizontalRadius);
+        /*return world.getTileEntitiesIn(pos.getX() - horizontalRadius, pos.getY() - verticalRadius, pos.getZ() - horizontalRadius,
+                pos.getX() + horizontalRadius + 1, pos.getY() + verticalRadius + 1, pos.getZ() + horizontalRadius + 1);*/
+        //Forge is currently breaking this method, so we need to replace it temporarily until Forge fixes it
+        //TODO: Remove once fixed
+        int minX = pos.getX() - horizontalRadius;
+        int minY = pos.getY() - verticalRadius;
+        int minZ = pos.getZ() - horizontalRadius;
+        int maxX = pos.getX() + horizontalRadius + 1;
+        int maxY = pos.getY() + verticalRadius + 1;
+        int maxZ = pos.getZ() + horizontalRadius + 1;
+        List<TileEntity> list = new ArrayList<>();
+
+        for(int cx = (minX >> 4); cx <= (maxX >> 4); cx++)
+            for(int cz = (minZ >> 4); cz <= (maxZ >> 4); cz++)
+            {
+                Chunk chunk = world.getChunkFromChunkCoords(cx, cz);
+                if(chunk != null && !chunk.isEmpty())
+                {
+                    for(TileEntity entity : chunk.getTileEntityMap().values())
+                    {
+                        if(!entity.isInvalid())
+                        {
+                            BlockPos tilepos = entity.getPos();
+                            if(tilepos.getX() >= minX && tilepos.getY() >= minY && tilepos.getZ() >= minZ &&
+                               tilepos.getX() <  maxX && tilepos.getY() <  maxY && tilepos.getZ() <  maxZ)
+                            {
+                                list.add(entity);
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        return list;
     }
 
     public static void spawnEntity(World world, double xPos, double yPos, double zPos, Entity entity)
