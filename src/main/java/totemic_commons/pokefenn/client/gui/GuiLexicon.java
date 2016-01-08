@@ -19,6 +19,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -113,7 +114,7 @@ public class GuiLexicon extends GuiScreen
 
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 
-        GL11.glColor4f(1F, 1F, 1F, 1F);
+        GlStateManager.color(1F, 1F, 1F, 1F);
         drawTexturedModalRect(x + l / 2 + 3, y - 1, 54, 180, 6, 11);
         if(drawLeft)
             drawTexturedModalRect(x - l / 2 - 9, y - 1, 61, 180, 6, 11);
