@@ -109,6 +109,12 @@ public class BlockTipi extends BlockTileTotemic
         return true;
     }
 
+    @Override
+    public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        BlockDummyTipi.breakTipi(world, pos);
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public Item getItem(World world, BlockPos pos) {

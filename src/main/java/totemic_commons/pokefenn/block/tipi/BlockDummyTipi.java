@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -32,29 +31,29 @@ public class BlockDummyTipi extends Block
     @Override
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        int range = 2;
-        int vertRange = 7;
+        //find main Tipi block
+        int range = 1;
+        int height = 5;
         for(int i = -range; i <= range; i++)
-            for(int j = -vertRange; j <= vertRange; j++)
+            for(int j = 0; j >= -height; j--) //search downwards
                 for(int k = -range; k <= range; k++)
                 {
                     BlockPos p = pos.add(i, j, k);
                     IBlockState s = world.getBlockState(p);
-                    if(s.getBlock() == ModBlocks.dummyTipi /* && metadata == 1 FIXME */)
+                    if(s.getBlock() == ModBlocks.tipi)
                     {
-                        world.setBlockToAir(p);
-                        BlockDummyTipi.breakUnderTipi(world, p);
-                        break;
+                        BlockDummyTipi.breakTipi(world, p);
+                        return;
                     }
                 }
     }
 
-    public static void breakUnderTipi(World world, BlockPos pos)
+    public static void breakTipi(World world, BlockPos pos)
     {
-        int vertRadius = 7;
+        int height = 5;
         int radius = 2;
         for(int i = -radius; i <= radius; i++)
-            for(int j = -vertRadius; j <= vertRadius; j++)
+            for(int j = 0; j <= height; j++)
                 for(int k = -radius; k <= radius; k++)
                 {
                     BlockPos p = pos.add(i, j, k);
