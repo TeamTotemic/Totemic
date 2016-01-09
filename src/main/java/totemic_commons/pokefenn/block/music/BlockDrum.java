@@ -28,7 +28,7 @@ public class BlockDrum extends BlockTileTotemic
     {
         super(Material.wood);
         setUnlocalizedName(Strings.DRUM_NAME);
-        setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 0.8F, 0.8F);
+        setBlockBounds(3F/16, 0F/16, 3F/16, 13F/16, 13F/16, 13F/16);
         setStepSound(soundTypeWood);
     }
 
@@ -85,8 +85,6 @@ public class BlockDrum extends BlockTileTotemic
 
         return true;
     }
-
-    //TODO: JSON model
 
     @Override
     public boolean isOpaqueCube()
