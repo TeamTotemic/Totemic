@@ -22,7 +22,7 @@ public class BlockTotemTorch extends BlockTileTotemic
     public BlockTotemTorch()
     {
         super(Material.wood);
-        setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 1.3F, 0.7F);
+        setBlockBounds(5F/16, 0.0F, 5F/16, 11F/16, 1.3F, 11F/16);
         setUnlocalizedName(Strings.TOTEM_TORCH_NAME);
         setLightLevel(1F);
         setStepSound(soundTypeWood);
@@ -37,8 +37,6 @@ public class BlockTotemTorch extends BlockTileTotemic
         for(int i = 0; i < 16; i++)
             world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, 0, 0, 0);
     }
-
-    //TODO: Replace TESR by JSON model
 
     @Override
     public boolean isOpaqueCube()

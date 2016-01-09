@@ -1,0 +1,10 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "normal": { "model": "totemic:totemTorch" },
+        "inventory": {
+            "model": "totemic:totemTorch",
+            "transform": "forge:default-block"
+        }
+    }
+}

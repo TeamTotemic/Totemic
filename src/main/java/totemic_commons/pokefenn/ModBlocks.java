@@ -92,6 +92,7 @@ public final class ModBlocks
         setDefaultModel(cedarLog);
         setDefaultModel(totemSapling);
         setDefaultModel(totemLeaves);
+        setDefaultModel(totemTorch);
         setDefaultModel(drum);
         setDefaultModel(windChime);
         setDefaultModel(redCedarPlank);
