@@ -10,6 +10,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
@@ -54,19 +55,20 @@ public class BlockCedarLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockAccess iba, BlockPos pos, EnumFacing side)
     {
-        return !isOpaqueCube() || super.shouldSideBeRendered(iba, pos, side);
+        return Minecraft.isFancyGraphicsEnabled() || super.shouldSideBeRendered(iba, pos, side);
     }
 
     @Override
     public boolean isOpaqueCube()
     {
-        return !Minecraft.isFancyGraphicsEnabled();
+        return Blocks.leaves.isOpaqueCube();
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public EnumWorldBlockLayer getBlockLayer()
     {
-        return !isOpaqueCube() ? EnumWorldBlockLayer.CUTOUT_MIPPED : EnumWorldBlockLayer.SOLID;
+        return Minecraft.isFancyGraphicsEnabled() ? EnumWorldBlockLayer.CUTOUT_MIPPED : EnumWorldBlockLayer.SOLID;
     }
 
     @Override
