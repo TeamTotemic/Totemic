@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.lib;
 
+import java.util.Locale;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockNewLog;
 import net.minecraft.block.BlockOldLog;
@@ -47,6 +49,6 @@ public enum WoodVariant implements IStringSerializable
     @Override
     public String getName()
     {
-        return toString();
+        return toString().toLowerCase(Locale.ENGLISH);
     }
 }

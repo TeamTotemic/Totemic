@@ -2,8 +2,10 @@ package totemic_commons.pokefenn;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -23,6 +25,7 @@ import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTipi;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 
@@ -98,6 +101,15 @@ public final class ModBlocks
         setDefaultModel(redCedarPlank);
         setDefaultModel(redCedarStripped);
         setDefaultModel(tipi);
+
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(totemBase), stack -> {
+            int meta = MathHelper.clamp_int(stack.getItemDamage(), 0, WoodVariant.values().length-1);
+            return new ModelResourceLocation(totemBase.getRegistryName(), "wood=" + WoodVariant.values()[meta].getName());
+        });
+        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(totemPole), stack -> {
+            int meta = MathHelper.clamp_int(stack.getItemDamage(), 0, WoodVariant.values().length-1);
+            return new ModelResourceLocation(totemPole.getRegistryName(), "wood=" + WoodVariant.values()[meta].getName());
+        });
 
         ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(tipi), 0, TileTipi.class);
         ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(windChime), 0, TileWindChime.class);
