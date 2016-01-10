@@ -23,6 +23,7 @@ import totemic_commons.pokefenn.block.tipi.BlockDummyTipi;
 import totemic_commons.pokefenn.block.tipi.BlockTipi;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
+import totemic_commons.pokefenn.item.ItemBlockVariants;
 import totemic_commons.pokefenn.item.ItemTipi;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
@@ -61,8 +62,8 @@ public final class ModBlocks
         dummyTipi = new BlockDummyTipi();
 
         GameRegistry.registerBlock(cedarLog, Strings.CEDAR_LOG_NAME);
-        GameRegistry.registerBlock(totemBase, Strings.TOTEM_BASE_NAME);
-        GameRegistry.registerBlock(totemPole, Strings.TOTEM_POLE_NAME);
+        GameRegistry.registerBlock(totemBase, ItemBlockVariants.class, Strings.TOTEM_BASE_NAME);
+        GameRegistry.registerBlock(totemPole, ItemBlockVariants.class, Strings.TOTEM_POLE_NAME);
         GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);
         GameRegistry.registerBlock(totemLeaves, Strings.TOTEM_LEAVES_NAME);
         GameRegistry.registerBlock(totemTorch, Strings.TOTEM_TORCH_NAME);

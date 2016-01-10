@@ -152,6 +152,4 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     {
         return false;
     }
-
-    //TODO: JSON model
 }
