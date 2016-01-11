@@ -16,6 +16,17 @@ public abstract class TotemEffect
      * @param name          the base name of your totem effect. Will be prefixed by the mod ID and ":".
      * @param horizontal    the minimum horizontal range
      * @param vertical      the minimum vertical range
+     */
+    public TotemEffect(String modid, String name, int horizontal, int vertical)
+    {
+        this(modid, name, horizontal, vertical, 1);
+    }
+
+    /**
+     * @param modid         your mod ID
+     * @param name          the base name of your totem effect. Will be prefixed by the mod ID and ":".
+     * @param horizontal    the minimum horizontal range
+     * @param vertical      the minimum vertical range
      * @param tier          currently unused, for now just use 1
      */
     public TotemEffect(String modid, String name, int horizontal, int vertical, int tier)
