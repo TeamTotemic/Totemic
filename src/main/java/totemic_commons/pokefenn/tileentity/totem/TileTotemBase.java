@@ -20,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -37,7 +38,6 @@ import totemic_commons.pokefenn.event.GameOverlay;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketTotemMusic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created with IntelliJ IDEA.
@@ -275,7 +275,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
                 currentCeremony = startupCeremony;
                 startupCeremony = null;
                 isDoingEndingEffect = currentCeremony.getEffectTime() != Ceremony.INSTANT;
-                TotemUtil.particlePacket(worldObj, EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
+                ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
                 markForUpdate();
                 markDirty();
             } else
@@ -353,7 +353,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
                 MusicInstrument[] ids = ceremony.getInstruments();
                 if(ids[0] == musicSelector[0] && ids[1] == musicSelector[1])
                 {
-                    TotemUtil.particlePacket(worldObj, EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
+                    ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
                     startupCeremony = ceremony;
                     resetSelector();
                     markForUpdate();
@@ -362,7 +362,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
                 }
             }
             //No match found
-            TotemUtil.particlePacket(worldObj, EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
+            ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
         }
     }
@@ -510,7 +510,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
     {
         if(ceremonyStartupTimer > trying.getMaxStartupTime())
         {
-            TotemUtil.particlePacket(worldObj, EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
+            ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
         }
 

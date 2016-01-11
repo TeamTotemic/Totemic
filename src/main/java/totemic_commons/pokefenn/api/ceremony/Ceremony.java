@@ -26,13 +26,6 @@ public abstract class Ceremony
             MEDIUM_STUPID_LONG = 90 * 20,
             STUPIDLY_LONG = 120 * 20;
 
-    //These are the maximum amounts of music that can be reached with vanilla Totemic instruments:
-    //150: Flute + Drum only
-    //210: Flute + Drum + full Wind Chime
-    //240: Flute + Drum + Rattle
-    //340: Flute + Drum + Rattle + Jingle Dress
-    //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
-
     protected final String name;
     protected final int musicNeeded;
     protected final int maxStartupTime;

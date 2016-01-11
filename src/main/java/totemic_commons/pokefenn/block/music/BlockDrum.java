@@ -55,15 +55,15 @@ public class BlockDrum extends BlockTileTotemic
             {
                 tileDrum.canPlay = false;
                 TotemUtil.playMusic(world, pos, HandlerInitiation.drum, 0, 0);
-                TotemUtil.particlePacket(world, EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
+                world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
                 world.markBlockForUpdate(pos);
             }
         } else
         {
             tileDrum.canPlay = false;
             TotemUtil.playMusicForSelector(world, pos, HandlerInitiation.drum, 0);
-            TotemUtil.particlePacket(world, EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
-            TotemUtil.particlePacket(world, EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
+            world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
+            world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
             world.markBlockForUpdate(pos);
         }
 

@@ -33,12 +33,4 @@ public class MusicApiImpl implements MusicAPI
     {
         TotemUtil.addMusic(tile, instr, musicAmount, musicMaximum);
     }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public void particlePacket(World world, EnumParticleTypes type, double x, double y, double z, int num,
-            double spreadX, double spreadY, double spreadZ, double vel)
-    {
-        TotemUtil.particlePacket(world, type, x, y, z, num, spreadX, spreadY, spreadZ, vel);
-    }
 }
