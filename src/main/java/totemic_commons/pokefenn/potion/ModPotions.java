@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.potion;
 
 import net.minecraft.potion.Potion;
-import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 
 /**
  * Created with IntelliJ IDEA.

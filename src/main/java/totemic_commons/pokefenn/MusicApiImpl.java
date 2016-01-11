@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn;
 
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.MusicAPI;

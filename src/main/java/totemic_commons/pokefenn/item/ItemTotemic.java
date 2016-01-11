@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.item;
 
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 

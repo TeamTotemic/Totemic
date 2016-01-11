@@ -87,12 +87,12 @@ public class EntityUpdate
 
                 player.fallDistance = 0.0F;
 
-                if(player.motionY < -0.14999999999999999D)
+                if(player.motionY < -0.15)
                 {
-                    player.motionY = -0.14999999999999999D;
+                    player.motionY = -0.15;
                 }
 
-                player.motionY = 0.20000000000000001D;
+                player.motionY = 0.2;
 
             }
         }

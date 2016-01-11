@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -7,7 +8,10 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import totemic_commons.pokefenn.compat.Compatibility;
 import totemic_commons.pokefenn.entity.ModEntities;
-import totemic_commons.pokefenn.event.ModEvents;
+import totemic_commons.pokefenn.event.EntityFall;
+import totemic_commons.pokefenn.event.EntitySpawn;
+import totemic_commons.pokefenn.event.EntityUpdate;
+import totemic_commons.pokefenn.event.PlayerInteract;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.GuiHandler;
 import totemic_commons.pokefenn.network.PacketHandler;
@@ -39,7 +43,7 @@ public class CommonProxy
         ModEntities.init();
         CraftingRecipes.init();
         registerTileEntities();
-        ModEvents.init();
+        registerEventHandlers();
         Compatibility.sendIMCMessages();
     }
 
@@ -56,5 +60,14 @@ public class CommonProxy
         GameRegistry.registerTileEntity(TileDrum.class, Strings.DRUM_NAME);
         GameRegistry.registerTileEntity(TileWindChime.class, Strings.WIND_CHIME_NAME);
         GameRegistry.registerTileEntity(TileTipi.class, Strings.TIPI_NAME);
+    }
+
+    protected void registerEventHandlers()
+    {
+        MinecraftForge.EVENT_BUS.register(new EntityUpdate());
+        //MinecraftForge.EVENT_BUS.register(new EntityHurt());
+        MinecraftForge.EVENT_BUS.register(new EntityFall());
+        MinecraftForge.EVENT_BUS.register(new PlayerInteract());
+        MinecraftForge.EVENT_BUS.register(new EntitySpawn());
     }
 }

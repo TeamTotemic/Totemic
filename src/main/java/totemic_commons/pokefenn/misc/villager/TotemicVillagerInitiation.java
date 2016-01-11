@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.misc.villager;
 
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
-
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)

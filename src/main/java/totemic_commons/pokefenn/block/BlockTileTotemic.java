@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.block;
 
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,7 +19,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 28/01/14
  * Time: 12:33
  */
-public abstract class BlockTileTotemic extends BlockContainer
+public abstract class BlockTileTotemic extends Block implements ITileEntityProvider
 {
     public BlockTileTotemic(Material material)
     {
@@ -41,11 +42,5 @@ public abstract class BlockTileTotemic extends BlockContainer
             ((TileTotemic) tile).setOrientation(EnumFacing.fromAngle(entityLiving.rotationYaw));
             world.markBlockForUpdate(pos);
         }
-    }
-
-    @Override
-    public int getRenderType()
-    {
-        return 3;
     }
 }

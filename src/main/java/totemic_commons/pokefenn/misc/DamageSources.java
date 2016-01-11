@@ -8,9 +8,9 @@ import net.minecraft.util.DamageSource;
  */
 public class DamageSources
 {
-    public static DamageSource huntingKnife = new DamageSource("huntingKnife");
+    public static final DamageSource huntingKnife = new DamageSource("huntingKnife");
 
-    public static DamageSource vigor = new DamageSource("Satchel of Fragile Vigor");
+    public static final DamageSource vigor = new DamageSource("Satchel of Fragile Vigor");
 
-    public static DamageSource baseDart = new DamageSource("Blowdart");
+    public static final DamageSource baseDart = new DamageSource("Blowdart").setProjectile();
 }

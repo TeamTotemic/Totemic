@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.entity.boss;
 
-import java.util.Random;
-
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.Entity;
@@ -24,9 +22,9 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
 {
     private static final Predicate<Entity> attackEntitySelector = e -> e instanceof EntityPlayer;
 
-    public EntityEfreet(World par1World)
+    public EntityEfreet(World world)
     {
-        super(par1World);
+        super(world);
         this.isImmuneToFire = true;
         this.setHealth(this.getMaxHealth());
         this.experienceValue = 75;
@@ -44,21 +42,19 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
     {
         super.onUpdate();
 
-        Random rand = new Random();
-
-        if(!this.worldObj.isRemote)
+        if(!worldObj.isRemote)
         {
             if(this.isBurning())
             {
-                if(this.worldObj.getTotalWorldTime() % 30L == 0)
+                if(worldObj.getTotalWorldTime() % 30L == 0)
                     if(rand.nextBoolean())
                         this.heal(rand.nextInt(3));
             }
         }
 
-        if(this.worldObj.isRemote)
+        if(worldObj.isRemote)
         {
-            if(this.worldObj.getTotalWorldTime() % 10L == 0)
+            if(worldObj.getTotalWorldTime() % 10L == 0)
                 for(int i = 1; i < 10; i++)
                     worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.1F, 0.1F, 0.1F);
         }
@@ -93,9 +89,9 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
         this.worldObj.spawnEntityInWorld(entityFireball);
     }
 
-    private void fireball2(int par1, EntityLivingBase par2EntityLivingBase)
+    private void fireball2(int par1, EntityLivingBase entity)
     {
-        this.spawnFireball(par1, par2EntityLivingBase.posX, par2EntityLivingBase.posY + par2EntityLivingBase.getEyeHeight() * 0.5D, par2EntityLivingBase.posZ, par1 == 0 && this.rand.nextFloat() < 0.001F);
+        this.spawnFireball(par1, entity.posX, entity.posY + entity.getEyeHeight() * 0.5D, entity.posZ, par1 == 0 && rand.nextFloat() < 0.001F);
     }
 
     private double yPosWorkingOut(int par1)

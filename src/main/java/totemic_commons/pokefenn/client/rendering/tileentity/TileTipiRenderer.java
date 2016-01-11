@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.client.rendering.tileentity;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import totemic_commons.pokefenn.client.rendering.model.ModelTipi;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.TileTipi;

@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -9,6 +10,7 @@ import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTipiRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileWindChimeRenderer;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
+import totemic_commons.pokefenn.event.GameOverlay;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.totempedia.LexiconData;
@@ -31,6 +33,13 @@ public class ClientProxy extends CommonProxy
         super.init(event);
         initTESRs();
         LexiconData.init();
+    }
+
+    @Override
+    protected void registerEventHandlers()
+    {
+        super.registerEventHandlers();
+        MinecraftForge.EVENT_BUS.register(new GameOverlay());
     }
 
     private void initTESRs()
