@@ -1,0 +1,64 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "wood=oak": {
+            "model": "totemic:totemBase",
+            "textures": {
+                "base": "totemic:blocks/totemBaseOak",
+                "pole": "totemic:blocks/totemPoleOak",
+                "particle": "blocks/log_oak"
+            }
+        },
+        "wood=spruce": {
+            "model": "totemic:totemBase",
+            "textures": {
+                "base": "totemic:blocks/totemBaseSpruce",
+                "pole": "totemic:blocks/totemPoleSpruce",
+                "particle": "blocks/log_spruce"
+            }
+        },
+        "wood=birch": {
+            "model": "totemic:totemBase",
+            "textures": {
+                "base": "totemic:blocks/totemBaseBirch",
+                "pole": "totemic:blocks/totemPoleBirch",
+                "particle": "blocks/log_birch"
+            }
+        },
+        "wood=jungle": {
+            "model": "totemic:totemBase",
+            "textures": {
+                "base": "totemic:blocks/totemBaseJungle",
+                "pole": "totemic:blocks/totemPoleJungle",
+                "particle": "blocks/log_jungle"
+            }
+        },
+        "wood=acacia": {
+            "model": "totemic:totemBase",
+            "textures": {
+                "base": "totemic:blocks/totemBaseAcacia",
+                "pole": "totemic:blocks/totemPoleAcacia",
+                "particle": "blocks/log_acacia"
+            }
+        },
+        "wood=dark_oak": {
+            "model": "totemic:totemBase",
+            "textures": {
+                "base": "totemic:blocks/totemBaseDarkOak",
+                "pole": "totemic:blocks/totemPoleDarkOak",
+                "particle": "blocks/log_big_oak"
+            }
+        },
+        "wood=cedar": {
+            "model": "totemic:totemBase",
+            "textures": {
+                "base": "totemic:blocks/totemBaseCedar",
+                "pole": "totemic:blocks/totemPoleCedar",
+                "particle": "totemic:blocks/cedarWoodSide"
+            }
+        }
+    }
+}
