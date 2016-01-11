@@ -7,7 +7,6 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicRegistry;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
-import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.api.totem.TotemEffectPotion;
@@ -71,19 +70,19 @@ public class HandlerInitiation
         //340: Flute + Drum + Rattle + Jingle Dress
         //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
 
-        fluteCeremony = reg.addCeremony(new CeremonyFluteInfusion("totemic", "flute", 140, CeremonyTime.MEDIUM,
+        fluteCeremony = reg.addCeremony(new CeremonyFluteInfusion("totemic", "flute", 140, Ceremony.MEDIUM,
                 flute, flute));
-        rainDance = reg.addCeremony(new CeremonyRain(true, "totemic", "rainDance", 180, CeremonyTime.MEDIUM,
+        rainDance = reg.addCeremony(new CeremonyRain(true, "totemic", "rainDance", 180, Ceremony.MEDIUM,
                 rattle, flute));
-        drought = reg.addCeremony(new CeremonyRain(false, "totemic", "drought", 180, CeremonyTime.MEDIUM,
+        drought = reg.addCeremony(new CeremonyRain(false, "totemic", "drought", 180, Ceremony.MEDIUM,
                 flute, rattle));
         /*ghostDance = reg.addCeremony(new CeremonyGhostDance("totemic", "ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
                 rattle, rattle));*/
-        zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 220, CeremonyTime.LONG, CeremonyTime.SHORT_MEDIUM, 6,
+        zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 220, Ceremony.LONG, Ceremony.SHORT_MEDIUM, 6,
                 flute, drum));
-        warDance = reg.addCeremony(new CeremonyWarDance("totemic", "warDance", 120, CeremonyTime.SHORT_MEDIUM,
+        warDance = reg.addCeremony(new CeremonyWarDance("totemic", "warDance", 120, Ceremony.SHORT_MEDIUM,
                 drum, drum));
-        buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic", "buffaloDance", 150, CeremonyTime.SHORT_MEDIUM,
+        buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic", "buffaloDance", 150, Ceremony.SHORT_MEDIUM,
                 drum, windChime));
     }
 

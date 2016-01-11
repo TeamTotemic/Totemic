@@ -29,7 +29,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
-import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
@@ -275,7 +274,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
             {
                 currentCeremony = startupCeremony;
                 startupCeremony = null;
-                isDoingEndingEffect = currentCeremony.getEffectTime() != CeremonyTime.INSTANT;
+                isDoingEndingEffect = currentCeremony.getEffectTime() != Ceremony.INSTANT;
                 TotemUtil.particlePacket(worldObj, EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
                 markForUpdate();
                 markDirty();
@@ -302,7 +301,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
         if(currentCeremony != null)
         {
             currentCeremony.effect(worldObj, pos);
-            if(currentCeremony.getEffectTime() == CeremonyTime.INSTANT)
+            if(currentCeremony.getEffectTime() == Ceremony.INSTANT)
                 resetAfterCeremony(true);
             else
                 ceremonyEffectTimer++;
@@ -326,7 +325,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
 
     public void doCeremonyEffect(Ceremony cer)
     {
-        if(cer.getEffectTime() == CeremonyTime.INSTANT)
+        if(cer.getEffectTime() == Ceremony.INSTANT)
         {
             cer.effect(worldObj, pos);
             resetAfterCeremony(true);

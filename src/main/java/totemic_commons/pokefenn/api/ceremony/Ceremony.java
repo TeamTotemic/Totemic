@@ -12,6 +12,27 @@ public abstract class Ceremony
     /** The number of music instruments for selecting a ceremony */
     public static final int NUM_SELECTORS = 2;
 
+    /**
+     * Suggested time values in ticks for maxStartupTime.
+     * These are guidelines that do not have to be used.
+     */
+    public static final int INSTANT = 0,
+            VERY_SHORT = 5 * 20,
+            SHORT = 15 * 20,
+            SHORT_MEDIUM = 22 * 20,
+            MEDIUM = 30 * 20,
+            LONG = 45 * 20,
+            EXTRA_LONG = 60 * 20,
+            MEDIUM_STUPID_LONG = 90 * 20,
+            STUPIDLY_LONG = 120 * 20;
+
+    //These are the maximum amounts of music that can be reached with vanilla Totemic instruments:
+    //150: Flute + Drum only
+    //210: Flute + Drum + full Wind Chime
+    //240: Flute + Drum + Rattle
+    //340: Flute + Drum + Rattle + Jingle Dress
+    //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
+
     protected final String name;
     protected final int musicNeeded;
     protected final int maxStartupTime;
@@ -24,7 +45,7 @@ public abstract class Ceremony
      * @param modid             your mod ID
      * @param name              the base name of your Ceremony. Will be prefixed by the mod id and ":".
      * @param musicNeeded       the amount of music needed to start the ceremony
-     * @param maxStartupTime    the maximum time in ticks that starting the ceremony may take
+     * @param maxStartupTime    the maximum time in ticks that starting the ceremony may take. See above for suggested values.
      * @param effectTime        the maximum time in ticks the ceremony effect will last, or 0 if it is instant
      * @param musicPer5         if the effect is not instant, how much melody per 5 seconds it will consume
      * @param instruments       the music instruments for selecting the ceremony. Has to be NUM_SELECTORS instruments.
