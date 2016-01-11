@@ -606,7 +606,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
                 if(instr != null)
                     ceremonyMusic.put(instr, ceremonyMusicTag.getInteger(key));
                 else
-                    logger.warn("Could not instrument {}", key);
+                    logger.warn("Instrument {} does not exist", key);
             }
             recalculateMelody();
 

@@ -2,6 +2,8 @@ package totemic_commons.pokefenn;
 
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import totemic_commons.pokefenn.client.rendering.entity.BuffaloRendering;
 import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTipiRenderer;
@@ -14,9 +16,9 @@ import totemic_commons.pokefenn.totempedia.LexiconData;
 public class ClientProxy extends CommonProxy
 {
     @Override
-    public void preInit()
+    public void preInit(FMLPreInitializationEvent event)
     {
-        super.preInit();
+        super.preInit(event);
         RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, mgr -> new BuffaloRendering(mgr, new ModelBuffalo(), 0.5F));
         ModBlocks.setStateMappers();
         ModBlocks.setItemModels();
@@ -24,14 +26,14 @@ public class ClientProxy extends CommonProxy
     }
 
     @Override
-    public void init()
+    public void init(FMLInitializationEvent event)
     {
-        super.init();
+        super.init(event);
+        initTESRs();
         LexiconData.init();
     }
 
-    @Override
-    public void initRendering()
+    private void initTESRs()
     {
         ClientRegistry.bindTileEntitySpecialRenderer(TileWindChime.class, new TileWindChimeRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileTipi.class, new TileTipiRenderer());

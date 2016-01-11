@@ -1,7 +1,19 @@
 package totemic_commons.pokefenn;
 
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import totemic_commons.pokefenn.compat.Compatibility;
+import totemic_commons.pokefenn.entity.ModEntities;
+import totemic_commons.pokefenn.event.ModEvents;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.GuiHandler;
+import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.potion.ModPotions;
+import totemic_commons.pokefenn.recipe.CraftingRecipes;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
@@ -11,17 +23,32 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
 public class CommonProxy
 {
-    public void preInit()
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        ModPotions.init();
+        HandlerInitiation.init();
+        ModBlocks.init();
+        ModItems.init();
+        HandlerInitiation.instrumentItems();
+    }
+
+    public void init(FMLInitializationEvent event)
+    {
+        NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
+        PacketHandler.init();
+        ModEntities.init();
+        CraftingRecipes.init();
+        registerTileEntities();
+        ModEvents.init();
+        Compatibility.sendIMCMessages();
+    }
+
+    public void postInit(FMLPostInitializationEvent event)
     {
 
     }
 
-    public void init()
-    {
-
-    }
-
-    public void registerTileEntities()
+    private void registerTileEntities()
     {
         GameRegistry.registerTileEntity(TileTotemBase.class, Strings.TILE_TOTEM_INTELLIGENCE);
         GameRegistry.registerTileEntity(TileTotemPole.class, Strings.TILE_TOTEM_SOCKET);
@@ -30,7 +57,4 @@ public class CommonProxy
         GameRegistry.registerTileEntity(TileWindChime.class, Strings.WIND_CHIME_NAME);
         GameRegistry.registerTileEntity(TileTipi.class, Strings.TIPI_NAME);
     }
-
-    public void initRendering() {}
-
 }
