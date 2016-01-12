@@ -12,12 +12,12 @@ buildscript {
 }
 
 plugins {
-    id 'com.matthewprenger.cursegradle' version '1.0.4'
+    id 'com.matthewprenger.cursegradle' version '1.0.7'
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.8.9-0.6.4.1"
+version = "1.8.9-0.6.5"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 

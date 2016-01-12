@@ -6,7 +6,6 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import totemic_commons.pokefenn.client.rendering.entity.BuffaloRendering;
-import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileTipiRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileWindChimeRenderer;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
@@ -21,7 +20,7 @@ public class ClientProxy extends CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
-        RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, mgr -> new BuffaloRendering(mgr, new ModelBuffalo(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, BuffaloRendering::new);
         ModBlocks.setStateMappers();
         ModBlocks.setItemModels();
         ModItems.setItemModels();

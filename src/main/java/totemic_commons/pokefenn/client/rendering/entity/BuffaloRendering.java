@@ -1,9 +1,9 @@
 package totemic_commons.pokefenn.client.rendering.entity;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 
 /**
@@ -12,9 +12,9 @@ import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
  */
 public class BuffaloRendering extends RenderLiving<EntityBuffalo>
 {
-    public BuffaloRendering(RenderManager renderMgr, ModelBase model, float shadowSize)
+    public BuffaloRendering(RenderManager renderMgr)
     {
-        super(renderMgr, model, shadowSize);
+        super(renderMgr, new ModelBuffalo(), 0.75F);
     }
 
     @Override

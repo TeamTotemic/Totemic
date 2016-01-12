@@ -1,13 +1,10 @@
 package totemic_commons.pokefenn;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -105,26 +102,13 @@ public final class ModBlocks
         setDefaultModel(redCedarStripped);
         setDefaultModel(tipi);
 
-        //For some reason, using Lambdas here results in an AbstractMethodError
-        //in the obfuscated environment. Looks like a ForgeGradle bug.
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(totemBase), new ItemMeshDefinition()
+        for(int i = 0; i < WoodVariant.values().length; i++)
         {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack)
-            {
-                int meta = MathHelper.clamp_int(stack.getItemDamage(), 0, WoodVariant.values().length-1);
-                return new ModelResourceLocation(totemBase.getRegistryName(), "wood=" + WoodVariant.values()[meta].getName());
-            }
-        });
-        ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(totemPole), new ItemMeshDefinition()
-        {
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack)
-            {
-                int meta = MathHelper.clamp_int(stack.getItemDamage(), 0, WoodVariant.values().length-1);
-                return new ModelResourceLocation(totemPole.getRegistryName(), "wood=" + WoodVariant.values()[meta].getName());
-            }
-        });
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(totemBase), i,
+                    new ModelResourceLocation(totemBase.getRegistryName(), "wood=" + WoodVariant.values()[i].getName()));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(totemPole), i,
+                    new ModelResourceLocation(totemPole.getRegistryName(), "wood=" + WoodVariant.values()[i].getName()));
+        }
 
         ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(tipi), 0, TileTipi.class);
         ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(windChime), 0, TileWindChime.class);
