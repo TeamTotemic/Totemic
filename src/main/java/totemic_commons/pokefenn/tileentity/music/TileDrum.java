@@ -1,9 +1,6 @@
 package totemic_commons.pokefenn.tileentity.music;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.ITickable;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
@@ -13,14 +10,8 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  */
 public class TileDrum extends TileTotemic implements ITickable
 {
-    public int currentTime;
-    public boolean canPlay;
-
-    public TileDrum()
-    {
-        currentTime = 0;
-        canPlay = true;
-    }
+    public int currentTime = 0;
+    public boolean canPlay = true;
 
     @Override
     public void update()
@@ -43,20 +34,6 @@ public class TileDrum extends TileTotemic implements ITickable
                 canPlay = true;
             }
         }
-    }
-
-    @Override
-    public Packet getDescriptionPacket()
-    {
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-        this.writeToNBT(nbttagcompound);
-        return new S35PacketUpdateTileEntity(pos, 0, nbttagcompound);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
-    {
-        readFromNBT(pkt.getNbtCompound());
     }
 
     @Override

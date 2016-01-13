@@ -22,20 +22,11 @@ import totemic_commons.pokefenn.util.TotemUtil;
  */
 public class TileWindChime extends TileTotemic implements ITickable
 {
-    private boolean isPlaying;
-    public int currentTime;
-    public int cooldownPassed;
-    public boolean canPlay;
-    public float currentRotation;
-
-    public TileWindChime()
-    {
-        isPlaying = false;
-        currentTime = 0;
-        cooldownPassed = 0;
-        canPlay = true;
-        currentRotation = 0;
-    }
+    private boolean isPlaying = false;
+    public int currentTime = 0;
+    public int cooldownPassed = 0;
+    public boolean canPlay = true;
+    public float currentRotation = 0;
 
     @Override
     public void update()
@@ -129,9 +120,9 @@ public class TileWindChime extends TileTotemic implements ITickable
     @Override
     public Packet getDescriptionPacket()
     {
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-        this.writeToNBT(nbttagcompound);
-        return new S35PacketUpdateTileEntity(pos, 0, nbttagcompound);
+        NBTTagCompound tag = new NBTTagCompound();
+        this.writeToNBT(tag);
+        return new S35PacketUpdateTileEntity(pos, 0, tag);
     }
 
     @Override
@@ -141,20 +132,20 @@ public class TileWindChime extends TileTotemic implements ITickable
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    public void writeToNBT(NBTTagCompound tag)
     {
-        super.writeToNBT(nbtTagCompound);
-        nbtTagCompound.setInteger("currentTime", currentTime);
-        nbtTagCompound.setBoolean("isPlaying", isPlaying);
-        nbtTagCompound.setFloat("currentRotation", currentRotation);
+        super.writeToNBT(tag);
+        tag.setInteger("currentTime", currentTime);
+        tag.setBoolean("isPlaying", isPlaying);
+        tag.setFloat("currentRotation", currentRotation);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    public void readFromNBT(NBTTagCompound tag)
     {
-        super.readFromNBT(nbtTagCompound);
-        currentTime = nbtTagCompound.getInteger("currentTime");
-        isPlaying = nbtTagCompound.getBoolean("isPlaying");
-        currentRotation = nbtTagCompound.getFloat("currentRotation");
+        super.readFromNBT(tag);
+        currentTime = tag.getInteger("currentTime");
+        isPlaying = tag.getBoolean("isPlaying");
+        currentRotation = tag.getFloat("currentRotation");
     }
 }
