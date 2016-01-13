@@ -8,6 +8,7 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -36,7 +37,8 @@ public class BlockCedarStripped extends BlockLog
                 Material mat = world.getBlockState(pos.down()).getBlock().getMaterial();
                 if(mat == Material.ground || mat == Material.grass)
                 {
-                    world.setBlockState(pos, getDefaultState());
+                    world.setBlockState(pos, ModBlocks.cedarLog.getDefaultState()
+                            .withProperty(LOG_AXIS, state.getValue(LOG_AXIS)));
                 }
             }
         }
