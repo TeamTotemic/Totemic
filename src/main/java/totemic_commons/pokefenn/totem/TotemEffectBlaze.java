@@ -8,6 +8,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -26,7 +27,7 @@ public class TotemEffectBlaze extends TotemEffect
     }
 
     @Override
-    public void effect(World world, BlockPos pos, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(World world, BlockPos pos, TotemBase totem, int horizontal, int vertical)
     {
         if(world.isRemote)
             return;
@@ -45,7 +46,7 @@ public class TotemEffectBlaze extends TotemEffect
                             ((EntityPlayer) entity).heal(2);
                     }
 
-                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.fireResistance, 50, 0, melodyAmount, totemWoodBonus, repetitionBonus);
+                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.fireResistance, 50, 0, totem);
                 }
             }
         }

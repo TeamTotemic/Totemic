@@ -38,18 +38,15 @@ public abstract class TotemEffect
     }
 
     /**
-     * Performs the totem effect at the given Totem base position.
+     * Performs the totem effect at the given Totem base position.<p>
      * Note: The horizontal and vertical ranges given as parameters to this method
-     * can be different from the base ranges passed to the constructor.
+     * can be different from the base ranges passed to the constructor.<p>
      * This gets called on the server and the client.
-     * @param poleSize          the height of the totem pole
-     * @param horizontal        the total horizontal range with bonuses
-     * @param vertical          the total vertical range with bonuses
-     * @param melodyAmount      the amount of musical melody the totem pole has
-     * @param totemWoodBonus    a number dependent on the wood type the pole is made of
-     * @param repetitionBonus   the number of totem pole blocks in the totem that are carved with this effect
+     * @param totem the Totem Base tile entity
+     * @param horizontal the total horizontal range with bonuses
+     * @param vertical the total vertical range with bonuses
      */
-    public abstract void effect(World world, BlockPos pos, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus);
+    public abstract void effect(World world, BlockPos pos, TotemBase totem, int horizontal, int vertical);
 
     public final String getName()
     {

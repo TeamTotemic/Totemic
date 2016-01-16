@@ -32,6 +32,7 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.event.GameOverlay;
@@ -45,7 +46,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 29/01/14
  * Time: 20:22
  */
-public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickable
+public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBase, ITickable
 {
     public static final int MAX_HEIGHT = 5;
     public static final int MAX_EFFECT_MUSIC = 128;
@@ -143,8 +144,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
                 if(effect != null)
                 {
                     int[] ranges = getRanges(effect);
-                    effect.effect(worldObj, pos, totemPoleSize, ranges[0], ranges[1],
-                            musicForTotemEffect, totemWoodBonus, repetitionBonus.get(effect));
+                    effect.effect(worldObj, pos, this, ranges[0], ranges[1]);
                 }
             }
         }
@@ -707,5 +707,35 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, ITickab
     public boolean canMusicSelect()
     {
         return !isDoingStartup() && !isDoingCeremonyEffect();
+    }
+
+    @Override
+    public int getTotemEffectMusic()
+    {
+        return musicForTotemEffect;
+    }
+
+    @Override
+    public int getPoleSize()
+    {
+        return totemPoleSize;
+    }
+
+    @Override
+    public int getRepetition(TotemEffect effect)
+    {
+        return repetitionBonus.get(effect);
+    }
+
+    @Override
+    public TotemEffect[] getEffects()
+    {
+        return effects;
+    }
+
+    @Override
+    public int getWoodBonus()
+    {
+        return totemWoodBonus;
     }
 }

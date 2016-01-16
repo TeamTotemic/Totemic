@@ -10,6 +10,7 @@ import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 
@@ -29,13 +30,15 @@ public class TotemEffectOcelot extends TotemEffect
     private final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");
 
     @Override
-    public void effect(World world, BlockPos pos, int poleSize, int horizontal, int vertical, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void effect(World world, BlockPos pos, TotemBase totem, int horizontal, int vertical)
     {
         if(world.isRemote)
             return;
 
         try
         {
+            int repetitionBonus = totem.getRepetition(this);
+
             for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, horizontal, vertical))
             {
                 if(entity instanceof EntityCreeper)
@@ -45,7 +48,7 @@ public class TotemEffectOcelot extends TotemEffect
                     if(repetitionBonus < 5)
                     {
                         Random random = new Random();
-                        if(random.nextInt(4 + repetitionBonus + (melodyAmount / 16)) == 1)
+                        if(random.nextInt(4 + repetitionBonus + (totem.getTotemEffectMusic() / 16)) == 1)
                         {
                             return;
                         }

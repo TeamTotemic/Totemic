@@ -13,30 +13,30 @@ public interface TotemEffectAPI
 {
     /**
      * Calculates how long a potion effect from a Totem Pole should last by default.
-     * The value is calculated based on the parameters to this method.
+     * The value is calculated based on the properties of the Totem Base.
      * @param baseTime the base time
      * @param isBad whether the effect is bad for the player
-     * @param melodyAmount the amount of musical melody the totem pole where the effect originates has
+     * @param totem the Totem Base tile entity where the effect originates
      * @return the default time how long a potion effect from a Totem effect lasts
      */
-    public int getDefaultPotionTime(int baseTime, boolean isBad, Random rand, int melodyAmount, int totemWoodBonus, int repetitionBonus);
+    public int getDefaultPotionTime(int baseTime, boolean isBad, Random rand, TotemBase totem);
 
     /**
      * Calculates how strong a potion effect from a Totem Pole should be by default.
-     * The value is calculated based on the parameters to this method.
+     * The value is calculated based on the properties of the Totem Base.
      * @param baseStrength the base strength
      * @param isBad whether the effect is bad for the player
-     * @param melodyAmount the amount of musical melody the totem pole where the effect originates has
+     * @param totem the Totem Base tile entity where the effect originates
      * @return the default strength of a potion effect from a Totem effect
      */
-    public int getDefaultPotionStrength(int baseStrength, boolean isBad, Random rand, int melodyAmount, int totemWoodBonus, int repetitionBonus);
+    public int getDefaultPotionStrength(int baseStrength, boolean isBad, Random rand, TotemBase totem);
 
     /**
      * Adds a potion effect to the player, whose time and strength
      * are calculated from getDefaultPotionTime() and getDefaultPotionStrength()
      * @param baseTime the base time
      * @param baseStrength the base strength
-     * @param melodyAmount the amount of musical melody the totem pole where the effect originates has
+     * @param totem the Totem Base tile entity where the effect originates
      */
-    public void addPotionEffect(EntityPlayer player, Potion potion, int baseTime, int baseStrength, int melodyAmount, int totemWoodBonus, int repetitionBonus);
+    public void addPotionEffect(EntityPlayer player, Potion potion, int baseTime, int baseStrength, TotemBase totem);
 }
