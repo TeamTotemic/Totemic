@@ -2,7 +2,7 @@ package totemic_commons.pokefenn.totem;
 
 import java.util.Random;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import totemic_commons.pokefenn.api.totem.TotemBase;
@@ -11,30 +11,29 @@ import totemic_commons.pokefenn.api.totem.TotemEffectAPI;
 public class TotemEffectApiImpl implements TotemEffectAPI
 {
     @Override
-    public int getDefaultPotionTime(int baseTime, boolean isBad, Random rand, TotemBase totem)
+    public int getDefaultPotionTime(int baseTime, boolean isBad, Random rand, TotemBase totem, int repetition)
     {
         if(isBad)
-            return baseTime - (totemWoodBonus * 8) - (repetitionBonus * 7) - (melodyAmount / 32);
+            return baseTime - (totem.getWoodBonus() * 8) - (repetition * 7) - (totem.getTotemEffectMusic() / 32);
         else
-            return baseTime + (repetitionBonus * 10) + rand.nextInt(41) + melodyAmount + (totemWoodBonus * 10);
+            return baseTime + (repetition * 10) + rand.nextInt(41) + totem.getTotemEffectMusic() + (totem.getWoodBonus() * 10);
     }
 
     @Override
-    public int getDefaultPotionStrength(int baseStrength, boolean isBad, Random rand, int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public int getDefaultPotionStrength(int baseStrength, boolean isBad, Random rand, TotemBase totem, int repetition)
     {
        if(isBad)
-           return baseStrength - (melodyAmount > 112 ? 1 : 0);
+           return baseStrength - (totem.getTotemEffectMusic() > 112 ? 1 : 0);
        else
-           return baseStrength + (repetitionBonus >= 5 || melodyAmount > 112 ? 1 : 0);
+           return baseStrength + (repetition >= 5 || totem.getTotemEffectMusic() > 112 ? 1 : 0);
     }
 
     @Override
-    public void addPotionEffect(EntityPlayer player, Potion potion, int defaultTime, int defaultStrength,
-            int melodyAmount, int totemWoodBonus, int repetitionBonus)
+    public void addPotionEffect(EntityLivingBase entity, Potion potion, int baseTime, int baseStrength, TotemBase totem, int repetition)
     {
-        player.addPotionEffect(new PotionEffect(potion.id,
-                getDefaultPotionTime(defaultTime, potion.isBadEffect(), player.getRNG(), melodyAmount, totemWoodBonus, repetitionBonus),
-                getDefaultPotionStrength(defaultStrength, potion.isBadEffect(), player.getRNG(), melodyAmount, totemWoodBonus, repetitionBonus),
+        entity.addPotionEffect(new PotionEffect(potion.id,
+                getDefaultPotionTime(baseTime, potion.isBadEffect(), entity.getRNG(), totem, repetition),
+                getDefaultPotionStrength(baseStrength, potion.isBadEffect(), entity.getRNG(), totem, repetition),
                 true, false));
     }
 }

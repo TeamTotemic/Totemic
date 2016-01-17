@@ -27,34 +27,32 @@ public class TotemEffectOcelot extends TotemEffect
         super(modid, baseName, horizontal, vertical, tier);
     }
 
-    private final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");
+    private static final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");
 
     @Override
-    public void effect(World world, BlockPos pos, TotemBase totem, int horizontal, int vertical)
+    public void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical)
     {
         if(world.isRemote)
             return;
 
         try
         {
-            int repetitionBonus = totem.getRepetition(this);
-
             for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, horizontal, vertical))
             {
                 if(entity instanceof EntityCreeper)
                 {
                     int ignited = (Integer) timeSinceIgnited.get(entity);
 
-                    if(repetitionBonus < 5)
+                    if(repetition < 5)
                     {
                         Random random = new Random();
-                        if(random.nextInt(4 + repetitionBonus + (totem.getTotemEffectMusic() / 16)) == 1)
+                        if(random.nextInt(4 + repetition + (totem.getTotemEffectMusic() / 16)) == 1)
                         {
                             return;
                         }
                     }
 
-                    if(ignited > 20 - repetitionBonus)
+                    if(ignited > 20 - repetition)
                     {
                         timeSinceIgnited.setInt(entity, 0);
                         ((EntityCreeper)entity).setCreeperState(-1);

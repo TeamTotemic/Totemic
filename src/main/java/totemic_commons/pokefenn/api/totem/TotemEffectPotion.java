@@ -36,17 +36,16 @@ public class TotemEffectPotion extends TotemEffect
     }
 
     @Override
-    public void effect(World world, BlockPos pos, TotemBase totem, int horizontal, int vertical)
+    public void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical)
     {
         if(world.isRemote)
             return;
 
         if(world.getTotalWorldTime() % interval == 0)
         {
-
             for(EntityPlayer entity : getPlayersInRange(world, pos, horizontal, vertical))
             {
-                TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, defaultTime, amplifier, totem);
+                TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, defaultTime, amplifier, totem, repetition);
             }
         }
     }

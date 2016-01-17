@@ -27,14 +27,13 @@ public class TotemEffectBlaze extends TotemEffect
     }
 
     @Override
-    public void effect(World world, BlockPos pos, TotemBase totem, int horizontal, int vertical)
+    public void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical)
     {
         if(world.isRemote)
             return;
 
         if(world.getTotalWorldTime() % 60L == 0)
         {
-
             for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, getHorizontalRange(), getVerticalRange()))
             {
                 if(entity instanceof EntityPlayer)
@@ -46,7 +45,7 @@ public class TotemEffectBlaze extends TotemEffect
                             ((EntityPlayer) entity).heal(2);
                     }
 
-                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.fireResistance, 50, 0, totem);
+                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.fireResistance, 50, 0, totem, repetition);
                 }
             }
         }

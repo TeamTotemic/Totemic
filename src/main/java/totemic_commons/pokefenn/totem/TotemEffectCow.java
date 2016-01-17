@@ -23,7 +23,7 @@ public class TotemEffectCow extends TotemEffect
     }
 
     @Override
-    public void effect(World world, BlockPos pos, TotemBase totem, int horizontal, int vertical)
+    public void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical)
     {
         if(world.isRemote)
             return;
@@ -34,8 +34,8 @@ public class TotemEffectCow extends TotemEffect
             {
                 if(entity instanceof EntityPlayer)
                 {
-                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.resistance, 50, 0, totem);
-                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.moveSlowdown, 150, 1, totem);
+                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.resistance, 50, 0, totem, repetition);
+                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.moveSlowdown, 150, 1, totem, repetition);
                 }
             }
         }

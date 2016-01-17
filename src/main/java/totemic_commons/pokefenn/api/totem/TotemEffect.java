@@ -43,10 +43,11 @@ public abstract class TotemEffect
      * can be different from the base ranges passed to the constructor.<p>
      * This gets called on the server and the client.
      * @param totem the Totem Base tile entity
+     * @param repetition how many Totem Pole blocks in the pole are carved with this effect
      * @param horizontal the total horizontal range with bonuses
      * @param vertical the total vertical range with bonuses
      */
-    public abstract void effect(World world, BlockPos pos, TotemBase totem, int horizontal, int vertical);
+    public abstract void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical);
 
     public final String getName()
     {
