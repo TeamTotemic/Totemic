@@ -29,21 +29,17 @@ public abstract class Ceremony
     protected final String name;
     protected final int musicNeeded;
     protected final int maxStartupTime;
-    protected final int effectTime;
-    protected final int musicPer5;
     protected final MusicInstrument[] instruments;
 
     /**
      * Creates a new ceremony
-     * @param modid             your mod ID
-     * @param name              the base name of your Ceremony. Will be prefixed by the mod id and ":".
-     * @param musicNeeded       the amount of music needed to start the ceremony
-     * @param maxStartupTime    the maximum time in ticks that starting the ceremony may take. See above for suggested values.
-     * @param effectTime        the maximum time in ticks the ceremony effect will last, or 0 if it is instant
-     * @param musicPer5         if the effect is not instant, how much melody per 5 seconds it will consume
-     * @param instruments       the music instruments for selecting the ceremony. Has to be NUM_SELECTORS instruments.
+     * @param modid your mod ID
+     * @param name the base name of your Ceremony. Will be prefixed by the mod id and ":".
+     * @param musicNeeded the amount of music needed to start the ceremony
+     * @param maxStartupTime the maximum time in ticks that starting the ceremony may take. See above for suggested values.
+     * @param instruments the music instruments for selecting the ceremony. Has to be NUM_SELECTORS instruments.
      */
-    public Ceremony(String modid, String name, int musicNeeded, int maxStartupTime, int effectTime, int musicPer5, MusicInstrument... instruments)
+    public Ceremony(String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
         if(instruments.length != NUM_SELECTORS)
             throw new IllegalArgumentException("Wrong number of musical selectors (" + instruments.length + ")");
@@ -53,22 +49,7 @@ public abstract class Ceremony
         this.name = modid + ":" + name;
         this.musicNeeded = musicNeeded;
         this.maxStartupTime = maxStartupTime;
-        this.effectTime = effectTime;
-        this.musicPer5 = musicPer5;
         this.instruments = instruments;
-    }
-
-    /**
-     * Creates a new ceremony with an instant effect
-     * @param modid             your mod ID
-     * @param name              the base name of your Ceremony. Will be prefixed by the mod id and ":".
-     * @param musicNeeded       the amount of music needed to start the ceremony
-     * @param maxStartupTime    the maximum time that starting the ceremony may take
-     * @param instruments       the music instruments for selecting the ceremony. Has to be NUM_SELECTORS instruments.
-     */
-    public Ceremony(String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
-    {
-        this(modid, name, musicNeeded, maxStartupTime, 0, 0, instruments);
     }
 
     /**
@@ -84,38 +65,57 @@ public abstract class Ceremony
     }
 
     /**
-     * @return the unlocalized name of the Ceremony, which is given by "totemic.ceremony." followed by the name
+     * @return the unlocalized name of the Ceremony, which by default
+     * is given by "totemic.ceremony." followed by the name
      */
     public String getUnlocalizedName()
     {
         return "totemic.ceremony." + name;
     }
 
+    /**
+     * @return the localized name of the Ceremony
+     */
     public String getLocalizedName()
     {
         return StatCollector.translateToLocal(getUnlocalizedName());
     }
 
+    /**
+     * @return the amount of music needed to start the Ceremony
+     */
     public int getMusicNeeded()
     {
         return musicNeeded;
     }
 
+    /**
+     * @return the maximum time in ticks that a player has to start up the Ceremony
+     */
     public int getMaxStartupTime()
     {
         return maxStartupTime;
     }
 
+    /**
+     * @return the maximum time in ticks the Ceremony effect will last, or 0 if it is instant
+     */
     public int getEffectTime()
     {
-        return effectTime;
+        return INSTANT;
     }
 
+    /**
+     * @return how much melody per 5 seconds the Ceremony effect will consume in case the effect is not instant
+     */
     public int getMusicPer5()
     {
-        return musicPer5;
+        return 0;
     }
 
+    /**
+     * @return an array of music instruments for selecting the ceremony
+     */
     public MusicInstrument[] getInstruments()
     {
         return instruments;

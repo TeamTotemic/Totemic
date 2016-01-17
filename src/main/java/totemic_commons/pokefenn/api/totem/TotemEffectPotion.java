@@ -26,9 +26,9 @@ public class TotemEffectPotion extends TotemEffect
      * @param defaultTime the default duration of the effect, will be modified depending on the properties of the Totem pole
      * @param amplifier the default amplifier of the effect, will be modified depending on the properties of the Totem pole
      */
-    public TotemEffectPotion(String modid, String baseName, int horizontal, int vertical, int tier, Potion potion, int interval, int defaultTime, int amplifier)
+    public TotemEffectPotion(String modid, String baseName, int horizontal, int vertical, Potion potion, int interval, int defaultTime, int amplifier)
     {
-        super(modid, baseName, horizontal, vertical, tier);
+        super(modid, baseName, horizontal, vertical);
         this.potion = Objects.requireNonNull(potion);
         this.interval = interval;
         this.defaultTime = defaultTime;

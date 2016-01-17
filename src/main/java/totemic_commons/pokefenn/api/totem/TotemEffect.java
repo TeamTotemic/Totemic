@@ -9,32 +9,18 @@ public abstract class TotemEffect
     protected final String name;
     protected final int baseHorizontal;
     protected final int baseVertical;
-    protected final int tier;
 
     /**
-     * @param modid         your mod ID
-     * @param name          the base name of your totem effect. Will be prefixed by the mod ID and ":".
-     * @param horizontal    the minimum horizontal range
-     * @param vertical      the minimum vertical range
+     * @param modid your mod ID
+     * @param name the base name of your totem effect. Will be prefixed by the mod ID and ":".
+     * @param horizontal the minimum horizontal range
+     * @param vertical the minimum vertical range
      */
     public TotemEffect(String modid, String name, int horizontal, int vertical)
-    {
-        this(modid, name, horizontal, vertical, 1);
-    }
-
-    /**
-     * @param modid         your mod ID
-     * @param name          the base name of your totem effect. Will be prefixed by the mod ID and ":".
-     * @param horizontal    the minimum horizontal range
-     * @param vertical      the minimum vertical range
-     * @param tier          currently unused, for now just use 1
-     */
-    public TotemEffect(String modid, String name, int horizontal, int vertical, int tier)
     {
         this.name = modid + ":" + name;
         this.baseHorizontal = horizontal;
         this.baseVertical = vertical;
-        this.tier = tier;
     }
 
     /**
@@ -55,31 +41,36 @@ public abstract class TotemEffect
     }
 
     /**
-     * @return the unlocalized name of the Totem Effect, which is given by "totemic.totem." followed by the name
+     * @return the unlocalized name of the Effect, which by default
+     * is given by "totemic.totem." followed by the name
      */
     public String getUnlocalizedName()
     {
         return "totemic.totem." + name;
     }
 
+    /**
+     * @return the localized name of the Effect
+     */
     public String getLocalizedName()
     {
         return StatCollector.translateToLocal(getUnlocalizedName());
     }
 
+    /**
+     * @return the minimum horizontal range of the Effect
+     */
     public int getHorizontalRange()
     {
         return baseHorizontal;
     }
 
+    /**
+     * @return the minimum vertical range of the Effect
+     */
     public int getVerticalRange()
     {
         return baseVertical;
-    }
-
-    public int getTier()
-    {
-        return tier;
     }
 
     @Override

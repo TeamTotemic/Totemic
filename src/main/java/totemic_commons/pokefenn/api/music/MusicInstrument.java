@@ -11,11 +11,11 @@ public class MusicInstrument
     protected ItemStack itemStack = null;
 
     /**
-     * @param modid         your mod ID
-     * @param name          the base name of your music instrument. Will be prefixed by the mod ID and ":".
-     * @param baseOutput    the base music output every time the instrument is played
-     * @param musicMaximum  the maximum amount of music that a Totem can take from this instrument
-     * @param baseRange     the base range at which the instrument has an effect
+     * @param modid your mod ID
+     * @param name the base name of your music instrument. Will be prefixed by the mod ID and ":".
+     * @param baseOutput the base music output every time the instrument is played
+     * @param musicMaximum the maximum amount of music that a Totem Base can take from this instrument
+     * @param baseRange the base range at which the instrument has an effect
      */
     public MusicInstrument(String modid, String name, int baseOutput, int musicMaximum, int baseRange)
     {
@@ -42,21 +42,33 @@ public class MusicInstrument
         this.itemStack = itemStack;
     }
 
+    /**
+     * @return the name of the instrument
+     */
     public final String getName()
     {
         return name;
     }
 
+    /**
+     * @return the base music output every time the instrument is played
+     */
     public int getBaseOutput()
     {
         return baseOutput;
     }
 
+    /**
+     * @return the maximum amount of music that a Totem Base can take from this instrument
+     */
     public int getMusicMaximum()
     {
         return musicMaximum;
     }
 
+    /**
+     * @return the base range at which the instrument has an effect
+     */
     public int getBaseRange()
     {
         return baseRange;

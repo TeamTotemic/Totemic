@@ -17,9 +17,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectCow extends TotemEffect
 {
 
-    public TotemEffectCow(String modid, String baseName, int horizontal, int vertical, int tier)
+    public TotemEffectCow(String modid, String baseName, int horizontal, int vertical)
     {
-        super(modid, baseName, horizontal, vertical, tier);
+        super(modid, baseName, horizontal, vertical);
     }
 
     @Override

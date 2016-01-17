@@ -22,9 +22,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class TotemEffectOcelot extends TotemEffect
 {
-    public TotemEffectOcelot(String modid, String baseName, int horizontal, int vertical, int tier)
+    public TotemEffectOcelot(String modid, String baseName, int horizontal, int vertical)
     {
-        super(modid, baseName, horizontal, vertical, tier);
+        super(modid, baseName, horizontal, vertical);
     }
 
     private static final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");

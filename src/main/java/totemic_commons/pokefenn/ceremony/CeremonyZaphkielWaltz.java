@@ -23,10 +23,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class CeremonyZaphkielWaltz extends Ceremony
 {
 
-    public CeremonyZaphkielWaltz(String modid, String name, int musicNeeded, int maxStartupTime, int effectTime,
-            int musicPer5, MusicInstrument... instruments)
+    public CeremonyZaphkielWaltz(String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
-        super(modid, name, musicNeeded, maxStartupTime, effectTime, musicPer5, instruments);
+        super(modid, name, musicNeeded, maxStartupTime, instruments);
     }
 
     @Override
@@ -86,6 +85,18 @@ public class CeremonyZaphkielWaltz extends Ceremony
                         }
                     }
         }
+    }
+
+    @Override
+    public int getEffectTime()
+    {
+        return SHORT_MEDIUM;
+    }
+
+    @Override
+    public int getMusicPer5()
+    {
+        return 6;
     }
 
     private void spawnParticles(World world, double x, double y, double z)

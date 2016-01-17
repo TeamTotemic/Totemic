@@ -21,9 +21,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectBlaze extends TotemEffect
 {
 
-    public TotemEffectBlaze(String modid, String baseName, int vertical, int horizontal, int tier)
+    public TotemEffectBlaze(String modid, String baseName, int vertical, int horizontal)
     {
-        super(modid, baseName, horizontal, vertical, tier);
+        super(modid, baseName, horizontal, vertical);
     }
 
     @Override
