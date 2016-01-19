@@ -24,14 +24,14 @@ public class EntityUtil
 {
 
     //Code from @WayofTime
-    public static List<Entity> getEntitiesInRange(World world, double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
+    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
     {
-        return world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius));
+        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius));
     }
 
-    public static List<Entity> getEntitiesInRange(World world, BlockPos pos, double horizontalRadius, double verticalRadius)
+    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, double horizontalRadius, double verticalRadius)
     {
-        return getEntitiesInRange(world, pos.getX(), pos.getY(), pos.getZ(), horizontalRadius, verticalRadius);
+        return getEntitiesInRange(clazz, world, pos.getX(), pos.getY(), pos.getZ(), horizontalRadius, verticalRadius);
     }
 
     public static List<TileEntity> getTileEntitiesInRange(WorldServer world, BlockPos pos, int horizontalRadius, int verticalRadius)

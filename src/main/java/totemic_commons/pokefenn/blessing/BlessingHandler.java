@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.blessing;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -32,16 +31,10 @@ public class BlessingHandler
 
     public static void increaseBlessingNearby(int amount, World world, BlockPos pos, int range)
     {
-        if(EntityUtil.getEntitiesInRange(world, pos, range, range) != null)
+        for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, range, range))
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, range, range))
-            {
-                if(entity instanceof EntityPlayer)
-                {
-                    String player = ((EntityPlayer) entity).getName();
-                    increaseBlessing(amount, player, world, pos);
-                }
-            }
+            String player = entity.getName();
+            increaseBlessing(amount, player, world, pos);
         }
     }
 

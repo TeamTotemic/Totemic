@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.ceremony;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -26,11 +25,8 @@ public class CeremonyGhostDance extends Ceremony
         if(world.isRemote)
             return;
 
-        for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, 8, 8))
-        if(entity instanceof EntityPlayer)
-        {
-            BlessingHandler.increaseBlessing(2, ((EntityPlayer) entity).getName(), world, pos);
-        }
+        for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
+            BlessingHandler.increaseBlessing(2, entity.getName(), world, pos);
 
     }
 }

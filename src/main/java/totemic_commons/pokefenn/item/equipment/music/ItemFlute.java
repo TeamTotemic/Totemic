@@ -69,21 +69,24 @@ public class ItemFlute extends ItemMusic
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
                 PacketHandler.sendAround(new PacketSound(player, "flute"), player);
             }
+
             if(itemStack.getItemDamage() == 1 && !player.isSneaking())
-                for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
+            {
+                for(EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, player.posX, player.posY, player.posZ, 2, 2))
                 {
                     if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
                     {
                         if(temptedEntities.contains(entity))
                             continue;
 
-                        double d = (entity instanceof EntityAnimal) ? 1 : 0.5;
-                        ((EntityLiving) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, d, this, false));
+                        double speed = (entity instanceof EntityAnimal) ? 1 : 0.5;
+                        entity.targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, speed, this, false));
 
                         temptedEntities.add(entity);
                     }
 
                 }
+            }
 
             tag.setInteger(Strings.INSTR_TIME_KEY, time);
         }

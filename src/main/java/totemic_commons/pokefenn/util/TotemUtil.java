@@ -136,7 +136,6 @@ public class TotemUtil
 
     /**
      * Sends a packet to the client, spawning a cloud of particles at the given block location
-     * @see TotemUtil#particlePacket
      */
     public static void musicParticleAtBlocks(WorldServer world, EnumParticleTypes type, BlockPos pos)
     {

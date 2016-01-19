@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.ceremony;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -28,15 +26,15 @@ public class CeremonyBuffaloDance extends Ceremony
             return;
 
         int buffalos = 0;
-        for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, 8, 8))
+        for(EntityCow entity : EntityUtil.getEntitiesInRange(EntityCow.class, world, pos, 8, 8))
         {
             if(buffalos < 2)
             {
-                if(entity instanceof EntityCow && !(entity instanceof EntityBuffalo))
+                if(!(entity instanceof EntityBuffalo))
                 {
                     buffalos++;
                     EntityBuffalo buffalo = new EntityBuffalo(world);
-                    float health = ((EntityLivingBase)entity).getHealth() / ((EntityLivingBase)entity).getMaxHealth() * buffalo.getMaxHealth();
+                    float health = entity.getHealth() / entity.getMaxHealth() * buffalo.getMaxHealth();
                     buffalo.setHealth(health);
                     EntityUtil.spawnEntity(world, entity.posX, entity.posY, entity.posZ, buffalo);
                     entity.setDead();

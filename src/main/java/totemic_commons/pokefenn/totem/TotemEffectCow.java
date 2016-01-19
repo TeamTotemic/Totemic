@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.totem;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.BlockPos;
@@ -30,13 +29,10 @@ public class TotemEffectCow extends TotemEffect
 
         if(world.getTotalWorldTime() % 60L == 0)
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, pos, horizontal, vertical))
+            for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, horizontal, vertical))
             {
-                if(entity instanceof EntityPlayer)
-                {
-                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.resistance, 50, 0, totem, repetition);
-                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.moveSlowdown, 150, 1, totem, repetition);
-                }
+                Totemic.api.totemEffect().addPotionEffect(entity, Potion.resistance, 50, 0, totem, repetition);
+                Totemic.api.totemEffect().addPotionEffect(entity, Potion.moveSlowdown, 150, 1, totem, repetition);
             }
         }
     }

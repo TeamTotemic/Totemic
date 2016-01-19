@@ -59,6 +59,22 @@ public abstract class Ceremony
      */
     public abstract void effect(World world, BlockPos pos);
 
+    /**
+     * @return the maximum time in ticks the Ceremony effect will last, or 0 if it is instant
+     */
+    public int getEffectTime()
+    {
+        return INSTANT;
+    }
+
+    /**
+     * @return how much melody per 5 seconds the Ceremony effect will consume in case the effect is not instant
+     */
+    public int getMusicPer5()
+    {
+        return 0;
+    }
+
     public final String getName()
     {
         return name;
@@ -95,22 +111,6 @@ public abstract class Ceremony
     public int getMaxStartupTime()
     {
         return maxStartupTime;
-    }
-
-    /**
-     * @return the maximum time in ticks the Ceremony effect will last, or 0 if it is instant
-     */
-    public int getEffectTime()
-    {
-        return INSTANT;
-    }
-
-    /**
-     * @return how much melody per 5 seconds the Ceremony effect will consume in case the effect is not instant
-     */
-    public int getMusicPer5()
-    {
-        return 0;
     }
 
     /**
