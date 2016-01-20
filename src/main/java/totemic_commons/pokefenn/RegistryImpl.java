@@ -6,6 +6,7 @@ import totemic_commons.pokefenn.api.TotemicRegistry;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
+import totemic_commons.pokefenn.util.MathsUtil;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
@@ -75,11 +76,19 @@ public class RegistryImpl implements TotemicRegistry
         if(ceremonies.containsKey(ceremony.getName()))
             throw new IllegalArgumentException("Duplicate Ceremony entry for ID " + ceremony.getName());
         //Search for ambiguous selectors
+        //The selectors for ceremonies have to be prefix-free in order to ensure
+        //that every ceremony can actually be selected
         for(Ceremony other: ceremonies.values())
         {
-            if(Arrays.equals(ceremony.getInstruments(), other.getInstruments()))
-                throw new IllegalArgumentException("Could not add Ceremony " + ceremony.getName() + " because " + other.getName() +
-                        " has the same musical selectors: " + Arrays.toString(ceremony.getInstruments()));
+            if(MathsUtil.isPrefix(ceremony.getInstruments(), other.getInstruments()))
+                throw new IllegalArgumentException(String.format(
+                    "Could not add Ceremony %1$s because its selectors are prefixing the selectors of %2$s. This would make selecting %2$s impossible.\n%3$s prefixes %4$s",
+                    ceremony.getName(), other.getName(), Arrays.toString(ceremony.getInstruments()), Arrays.toString(other.getInstruments())));
+
+            if(MathsUtil.isPrefix(other.getInstruments(), ceremony.getInstruments()))
+                throw new IllegalArgumentException(String.format(
+                    "Could not add Ceremony %1$s because its selectors are prefixed by the selectors of %2$s. This would make selecting %1$s impossible.\n%3$s is prefixed by %4$s",
+                    ceremony.getName(), other.getName(), Arrays.toString(ceremony.getInstruments()), Arrays.toString(other.getInstruments())));
         }
 
         ceremonies.put(ceremony.getName(), ceremony);
