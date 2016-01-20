@@ -62,7 +62,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public int totemWoodBonus = 0;
 
     public boolean isCeremony = false;
-    public final MusicInstrument[] musicSelector = new MusicInstrument[Ceremony.NUM_SELECTORS];
+    public final MusicInstrument[] musicSelector = new MusicInstrument[Ceremony.MAX_SELECTORS];
     public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75f);
     public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75f);
     public int totalCeremonyMelody = 0;
@@ -344,27 +344,43 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         }
     }
 
-    public void selectorHandling()
+    private void selectorHandling()
     {
-        if(musicSelector[0] != null && musicSelector[1] != null)
+        for(int i = 0; i < Ceremony.MIN_SELECTORS; i++)
+            if(musicSelector[i] == null)
+                return; //less than minimum possible number of instruments
+
+        for(Ceremony ceremony : Totemic.api.registry().getCeremonies().values())
         {
-            for(Ceremony ceremony : Totemic.api.registry().getCeremonies().values())
+            if(selectorsMatch(ceremony.getInstruments()))
             {
-                MusicInstrument[] ids = ceremony.getInstruments();
-                if(ids[0] == musicSelector[0] && ids[1] == musicSelector[1])
-                {
-                    ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
-                    startupCeremony = ceremony;
-                    resetSelector();
-                    markForUpdate();
-                    markDirty();
-                    return;
-                }
+                ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
+                startupCeremony = ceremony;
+                resetSelector();
+                markForUpdate();
+                markDirty();
+                return;
             }
-            //No match found
+        }
+
+        //No match found - but only reset if the maximum number of selectors is exhausted
+        if(musicSelector[Ceremony.MAX_SELECTORS - 1] != null)
+        {
             ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
         }
+    }
+
+    private boolean selectorsMatch(MusicInstrument[] instrs)
+    {
+        for(int i = 0; i < instrs.length; i++)
+        {
+            if(musicSelector[i] != instrs[i])
+                return false;
+        }
+        //Since the ceremony selectors are prefix-free,
+        //we don't have to check whether the remaining selectors are null
+        return true;
     }
 
     public void deprecateMelody()
@@ -476,7 +492,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         totalCeremonyMelody = 0;
         timesPlayed.clear();
         if(doResetMusicSelector)
-            Arrays.fill(musicSelector, null);
+            resetSelector();
         markForUpdate();
         markDirty();
     }

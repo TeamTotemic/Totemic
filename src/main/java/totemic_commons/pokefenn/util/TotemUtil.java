@@ -52,14 +52,15 @@ public class TotemUtil
 
         MusicInstrument[] musicSelectorArray = tile.musicSelector;
 
-        if(musicSelectorArray[0] == null)
+        //Add the new selector at the end of the array
+        for(int i = 0; i < musicSelectorArray.length; i++)
         {
-            musicSelectorArray[0] = instr;
-            musicParticleAtBlocks(world, EnumParticleTypes.NOTE, tile.getPos());
-        } else if(musicSelectorArray[1] == null)
-        {
-            musicSelectorArray[1] = instr;
-            musicParticleAtBlocks(world, EnumParticleTypes.NOTE, tile.getPos());
+            if(musicSelectorArray[i] == null)
+            {
+                musicSelectorArray[i] = instr;
+                musicParticleAtBlocks(world, EnumParticleTypes.NOTE, tile.getPos());
+                break;
+            }
         }
         world.markBlockForUpdate(tile.getPos());
     }

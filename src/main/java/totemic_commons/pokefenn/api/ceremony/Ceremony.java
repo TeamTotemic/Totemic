@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.api.ceremony;
 
-import java.util.Objects;
+import org.apache.commons.lang3.Validate;
 
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
@@ -9,8 +9,10 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 
 public abstract class Ceremony
 {
-    /** The number of music instruments for selecting a ceremony */
-    public static final int NUM_SELECTORS = 2;
+    /** The minimum number of music instruments for selecting a ceremony */
+    public static final int MIN_SELECTORS = 2;
+    /** The maximum number of music instruments for selecting a ceremony */
+    public static final int MAX_SELECTORS = 4;
 
     /**
      * Suggested time values in ticks for maxStartupTime.
@@ -37,14 +39,14 @@ public abstract class Ceremony
      * @param name the base name of your Ceremony. Will be prefixed by the mod id and ":".
      * @param musicNeeded the amount of music needed to start the ceremony
      * @param maxStartupTime the maximum time in ticks that starting the ceremony may take. See above for suggested values.
-     * @param instruments the music instruments for selecting the ceremony. Has to be NUM_SELECTORS instruments.
+     * @param instruments the music instruments for selecting the ceremony. The count has to be
+     * between MIN_SELECTORS and MAX_SELECTORS.
      */
     public Ceremony(String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
-        if(instruments.length != NUM_SELECTORS)
-            throw new IllegalArgumentException("Wrong number of musical selectors (" + instruments.length + ")");
-        for(MusicInstrument instr: instruments)
-            Objects.requireNonNull(instr);
+        Validate.inclusiveBetween(MIN_SELECTORS, MAX_SELECTORS, instruments.length,
+                "Wrong number of musical selectors: Must be between " + MIN_SELECTORS + " and " + MAX_SELECTORS);
+        Validate.noNullElements(instruments);
 
         this.name = modid + ":" + name;
         this.musicNeeded = musicNeeded;
