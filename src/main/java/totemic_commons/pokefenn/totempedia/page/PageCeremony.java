@@ -42,17 +42,15 @@ public class PageCeremony extends PageRecipe
 
         TextureManager render = Minecraft.getMinecraft().renderEngine;
         FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
-        MusicInstrument[] instruments = ceremony.getInstruments();
         String musicNeeded = TotemUtil.getMusicNeededLocalized(ceremony.getMusicNeeded());
-        //String time = Integer.toString(ceremony.getCeremonyActivation().getMaximumStartupTime().getTime() / 20);
+        MusicInstrument[] instruments = ceremony.getInstruments();
 
-        ItemStack item0 = instruments[0].getItem();
-        ItemStack item1 = instruments[1].getItem();
-
-        if(item0 != null && item1 != null)
+        int instrLeft = gui.getLeft() + gui.getWidth() / 2 - 10 * instruments.length;
+        for(int i = 0; i < instruments.length; i++)
         {
-            renderItem(gui, gui.getLeft() + gui.getWidth() / 2 - 20, gui.getTop() + 31, item0, false);
-            renderItem(gui, gui.getLeft() + gui.getWidth() / 2, gui.getTop() + 31, item1, false);
+            ItemStack item = instruments[i].getItem();
+            if(item != null)
+                renderItem(gui, instrLeft + 20 * i, gui.getTop() + 31, item, false);
         }
 
         if(tooltipStack != null)

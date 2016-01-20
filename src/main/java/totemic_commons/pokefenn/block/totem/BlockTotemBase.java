@@ -96,23 +96,23 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
             if(tileTotemBase.isDoingStartup())
             {
                 Ceremony trying = tileTotemBase.startupCeremony;
-                player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing startup"));
+                player.addChatComponentMessage(new ChatComponentText("The Totem Pole is doing a Ceremony startup"));
                 player.addChatComponentMessage(new ChatComponentText(trying.getLocalizedName()));
             }
-            if(tileTotemBase.isDoingCeremonyEffect())
+            else if(tileTotemBase.isDoingCeremonyEffect())
             {
-                player.addChatComponentMessage(new ChatComponentText("The Totem Base is doing its effect"));
+                player.addChatComponentMessage(new ChatComponentText("The Totem Pole is doing a Ceremony effect"));
                 player.addChatComponentMessage(new ChatComponentText(tileTotemBase.currentCeremony.getLocalizedName()));
             }
 
-            if(!tileTotemBase.isDoingCeremonyEffect() && !player.isSneaking())
+            /*if(!tileTotemBase.isDoingCeremonyEffect() && !player.isSneaking())
             {
                 if(tileTotemBase.canMusicSelect() && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingCeremonyEffect() && !tileTotemBase.isDoingStartup())
                 {
                     player.addChatComponentMessage(new ChatComponentText("No Musical selection"));
                     return true;
                 }
-            }
+            }*/
         }
         return true;
     }
