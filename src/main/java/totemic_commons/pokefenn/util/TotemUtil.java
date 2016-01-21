@@ -1,14 +1,12 @@
 package totemic_commons.pokefenn.util;
 
 import java.util.Comparator;
-import java.util.List;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
@@ -47,21 +45,6 @@ public class TotemUtil
         return welp + unlocalized;
     }
 
-    private static void setSelectors(TileTotemBase tile, MusicInstrument instr)
-    {
-        List<MusicInstrument> musicSelector = tile.musicSelector;
-        //Add the new selector at the end
-        if(musicSelector.size() < Ceremony.MAX_SELECTORS)
-        {
-            tile.isCeremony = true;
-            musicSelector.add(instr);
-
-            WorldServer world = (WorldServer) tile.getWorld();
-            musicParticleAtBlocks(world, EnumParticleTypes.NOTE, tile.getPos());
-            world.markBlockForUpdate(tile.getPos());
-        }
-    }
-
     /**
      * Returns the closest music acceptor from that position, or null if there is none in range
      */
@@ -85,7 +68,7 @@ public class TotemUtil
         MusicAcceptor tile = getClosestAcceptor((WorldServer) world, x, y ,z, radius, radius);
         if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
         {
-            setSelectors((TileTotemBase) tile, instr);
+            ((TileTotemBase) tile).addSelector(instr);
         }
     }
 

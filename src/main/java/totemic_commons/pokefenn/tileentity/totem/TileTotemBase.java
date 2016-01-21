@@ -136,7 +136,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         }
     }
 
-    public void totemEffect()
+    private void totemEffect()
     {
         if(totemPoleSize > 0)
         {
@@ -151,7 +151,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         }
     }
 
-    public void spawnParticles()
+    private void spawnParticles()
     {
         for(int i = 0; i < musicForTotemEffect / 16; i++)
         {
@@ -161,7 +161,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         }
     }
 
-    public void spawnParticlesCeremony()
+    private void spawnParticlesCeremony()
     {
         for(int i = 0; i < totalCeremonyMelody / 16; i++)
         {
@@ -172,7 +172,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     }
 
-    public void calculateTotemWoodBonus()
+    private void calculateTotemWoodBonus()
     {
         IBlockState state = worldObj.getBlockState(pos);
         BiomeGenBase biomeGenBase = worldObj.getBiomeGenForCoords(pos);
@@ -257,13 +257,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         }
     }
 
-    public void doCeremonyCode()
+    private void doCeremonyCode()
     {
-        if(!isDoingStartup())
-        {
-            selectorHandling();
-        }
-
         if(worldObj.getTotalWorldTime() % 20L == 0)
         {
             recalculateMelody();
@@ -297,7 +292,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     }
 
     @SideOnly(Side.CLIENT)
-    public void doCeremonyClient()
+    private void doCeremonyClient()
     {
         if(currentCeremony != null)
         {
@@ -324,7 +319,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         }
     }
 
-    public void doCeremonyEffect(Ceremony cer)
+    private void doCeremonyEffect(Ceremony cer)
     {
         if(cer.getEffectTime() == Ceremony.INSTANT)
         {
@@ -345,8 +340,18 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         }
     }
 
-    private void selectorHandling()
+    public void addSelector(MusicInstrument instr)
     {
+        if(!canMusicSelect())
+            return;
+
+        isCeremony = true;
+        musicSelector.add(instr);
+
+        ((WorldServer) worldObj).spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
+        markForUpdate();
+        markDirty();
+
         if(musicSelector.size() < Ceremony.MIN_SELECTORS)
             return; //less than minimum possible number of instruments
 
@@ -357,8 +362,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
                 ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
                 startupCeremony = ceremony;
                 resetSelector();
-                markForUpdate();
-                markDirty();
                 return;
             }
         }
@@ -376,7 +379,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         return musicSelector.size() == instrs.length && musicSelector.equals(Arrays.asList(instrs));
     }
 
-    public void deprecateMelody()
+    private void deprecateMelody()
     {
         if(musicForTotemEffect > 0)
         {
@@ -495,7 +498,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         musicSelector.clear();
     }
 
-    public boolean drainCeremonyMelody(Ceremony cer)
+    private boolean drainCeremonyMelody(Ceremony cer)
     {
         continueTimer++;
         if(continueTimer > 20 * 5)
@@ -515,7 +518,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         return totalCeremonyMelody >= (trying.getMusicNeeded() - (dancingEfficiency / 4));
     }
 
-    public void startupMain(Ceremony trying)
+    private void startupMain(Ceremony trying)
     {
         if(ceremonyStartupTimer > trying.getMaxStartupTime())
         {
@@ -529,7 +532,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         }
     }
 
-    public void danceLikeAMonkey(Ceremony trying)
+    private void danceLikeAMonkey(Ceremony trying)
     {
         //TODO
         if(worldObj.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 8) != null)
@@ -739,7 +742,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @Override
     public TotemEffect[] getEffects()
     {
-        return effects;
+        return effects.clone();
     }
 
     @Override
