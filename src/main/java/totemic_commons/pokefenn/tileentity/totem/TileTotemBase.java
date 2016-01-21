@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.tileentity.totem;
 
 import static totemic_commons.pokefenn.Totemic.logger;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import gnu.trove.map.TObjectIntMap;
@@ -62,7 +63,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public int totemWoodBonus = 0;
 
     public boolean isCeremony = false;
-    public final MusicInstrument[] musicSelector = new MusicInstrument[Ceremony.MAX_SELECTORS];
+    public final ArrayList<MusicInstrument> musicSelector = new ArrayList<>(Ceremony.MAX_SELECTORS);
     public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75f);
     public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75f);
     public int totalCeremonyMelody = 0;
@@ -346,9 +347,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     private void selectorHandling()
     {
-        for(int i = 0; i < Ceremony.MIN_SELECTORS; i++)
-            if(musicSelector[i] == null)
-                return; //less than minimum possible number of instruments
+        if(musicSelector.size() < Ceremony.MIN_SELECTORS)
+            return; //less than minimum possible number of instruments
 
         for(Ceremony ceremony : Totemic.api.registry().getCeremonies().values())
         {
@@ -363,8 +363,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             }
         }
 
-        //No match found - but only reset if the maximum number of selectors is exhausted
-        if(musicSelector[Ceremony.MAX_SELECTORS - 1] != null)
+        //No match found - but only reset if the maximum number of selectors is reached
+        if(musicSelector.size() >= Ceremony.MAX_SELECTORS)
         {
             ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
@@ -373,14 +373,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     private boolean selectorsMatch(MusicInstrument[] instrs)
     {
-        for(int i = 0; i < instrs.length; i++)
-        {
-            if(musicSelector[i] != instrs[i])
-                return false;
-        }
-        //Since the ceremony selectors are prefix-free,
-        //we don't have to check whether the remaining selectors are null
-        return true;
+        return musicSelector.size() == instrs.length && musicSelector.equals(Arrays.asList(instrs));
     }
 
     public void deprecateMelody()
@@ -499,7 +492,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     public void resetSelector()
     {
-        Arrays.fill(musicSelector, null);
+        musicSelector.clear();
     }
 
     public boolean drainCeremonyMelody(Ceremony cer)
