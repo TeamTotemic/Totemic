@@ -25,6 +25,7 @@ public class CeremonyRain extends Ceremony
         if(!world.isRemote && world.isRaining() != doRain)
         {
             world.getWorldInfo().setRaining(doRain);
+            world.getWorldInfo().setRainTime(0);
         }
     }
 }
