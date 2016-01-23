@@ -20,9 +20,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectBlaze extends TotemEffect
 {
 
-    public TotemEffectBlaze(String modid, String baseName, int vertical, int horizontal)
+    public TotemEffectBlaze(String baseName, int vertical, int horizontal)
     {
-        super(modid, baseName, horizontal, vertical);
+        super( baseName, horizontal, vertical);
     }
 
     @Override

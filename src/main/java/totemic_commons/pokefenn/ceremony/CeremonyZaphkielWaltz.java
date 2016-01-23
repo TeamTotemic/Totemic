@@ -22,9 +22,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class CeremonyZaphkielWaltz extends Ceremony
 {
 
-    public CeremonyZaphkielWaltz(String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
+    public CeremonyZaphkielWaltz(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
-        super(modid, name, musicNeeded, maxStartupTime, instruments);
+        super(name, musicNeeded, maxStartupTime, instruments);
     }
 
     @Override

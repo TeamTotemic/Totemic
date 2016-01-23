@@ -15,9 +15,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class CeremonyFluteInfusion extends Ceremony
 {
-    public CeremonyFluteInfusion(String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
+    public CeremonyFluteInfusion(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
-        super(modid, name, musicNeeded, maxStartupTime, instruments);
+        super(name, musicNeeded, maxStartupTime, instruments);
     }
 
     @Override

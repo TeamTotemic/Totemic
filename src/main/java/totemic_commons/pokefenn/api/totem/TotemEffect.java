@@ -11,14 +11,13 @@ public abstract class TotemEffect
     protected final int baseVertical;
 
     /**
-     * @param modid your mod ID
-     * @param name the base name of your totem effect. Will be prefixed by the mod ID and ":".
+     * @param name a unique name for the Totem Effect
      * @param horizontal the minimum horizontal range
      * @param vertical the minimum vertical range
      */
-    public TotemEffect(String modid, String name, int horizontal, int vertical)
+    public TotemEffect(String name, int horizontal, int vertical)
     {
-        this.name = modid + ":" + name;
+        this.name = name;
         this.baseHorizontal = horizontal;
         this.baseVertical = vertical;
     }
@@ -35,6 +34,9 @@ public abstract class TotemEffect
      */
     public abstract void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical);
 
+    /**
+     * @return the Totem Effect's name
+     */
     public final String getName()
     {
         return name;

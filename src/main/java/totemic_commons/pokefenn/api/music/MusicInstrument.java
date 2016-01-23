@@ -2,31 +2,30 @@ package totemic_commons.pokefenn.api.music;
 
 import net.minecraft.item.ItemStack;
 
-public class MusicInstrument
+public final class MusicInstrument
 {
-    protected final String name;
-    protected final int baseOutput;
-    protected final int musicMaximum;
-    protected final int baseRange;
-    protected ItemStack itemStack = null;
+    private final String name;
+    private final int baseOutput;
+    private final int musicMaximum;
+    private final int baseRange;
+    private ItemStack itemStack = null;
 
     /**
-     * @param modid your mod ID
-     * @param name the base name of your music instrument. Will be prefixed by the mod ID and ":".
+     * @param name a unique name for the instrument
      * @param baseOutput the base music output every time the instrument is played
      * @param musicMaximum the maximum amount of music that a Totem Base can take from this instrument
      * @param baseRange the base range at which the instrument has an effect
      */
-    public MusicInstrument(String modid, String name, int baseOutput, int musicMaximum, int baseRange)
+    public MusicInstrument(String name, int baseOutput, int musicMaximum, int baseRange)
     {
-        this.name = modid + ":" + name;
+        this.name = name;
         this.baseOutput = baseOutput;
         this.musicMaximum = musicMaximum;
         this.baseRange = baseRange;
     }
 
     /**
-     * @return the item stack associated with this instrument
+     * @return the item stack associated with this instrument, if any
      */
     public ItemStack getItem()
     {

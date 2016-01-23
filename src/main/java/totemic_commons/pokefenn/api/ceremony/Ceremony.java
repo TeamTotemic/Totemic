@@ -35,20 +35,19 @@ public abstract class Ceremony
 
     /**
      * Creates a new ceremony
-     * @param modid your mod ID
-     * @param name the base name of your Ceremony. Will be prefixed by the mod id and ":".
+     * @param name a unique name for the Ceremony
      * @param musicNeeded the amount of music needed to start the ceremony
      * @param maxStartupTime the maximum time in ticks that starting the ceremony may take. See above for suggested values.
      * @param instruments the music instruments for selecting the ceremony. The count has to be
      * between MIN_SELECTORS and MAX_SELECTORS.
      */
-    public Ceremony(String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
+    public Ceremony(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
         Validate.inclusiveBetween(MIN_SELECTORS, MAX_SELECTORS, instruments.length,
                 "Wrong number of musical selectors: Must be between " + MIN_SELECTORS + " and " + MAX_SELECTORS);
         Validate.noNullElements(instruments);
 
-        this.name = modid + ":" + name;
+        this.name = name;
         this.musicNeeded = musicNeeded;
         this.maxStartupTime = maxStartupTime;
         this.instruments = instruments;
@@ -62,6 +61,7 @@ public abstract class Ceremony
     public abstract void effect(World world, BlockPos pos);
 
     /**
+     * Override this if your Ceremony effect is not instant
      * @return the maximum time in ticks the Ceremony effect will last, or 0 if it is instant
      */
     public int getEffectTime()
@@ -70,6 +70,7 @@ public abstract class Ceremony
     }
 
     /**
+     * Override this if your Ceremony effect is not instant
      * @return how much melody per 5 seconds the Ceremony effect will consume in case the effect is not instant
      */
     public int getMusicPer5()
@@ -77,6 +78,9 @@ public abstract class Ceremony
         return 0;
     }
 
+    /**
+     * @return the Ceremony's name
+     */
     public final String getName()
     {
         return name;
