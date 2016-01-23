@@ -107,20 +107,13 @@ public class TotemUtil
     {
         TileEntity te = (TileEntity) tile;
         WorldServer world = (WorldServer) te.getWorld();
+        BlockPos pos = te.getPos();
 
         int added = tile.addMusic(instr, musicAmount);
         if(added > 0)
-            musicParticleAtBlocks(world, EnumParticleTypes.NOTE, te.getPos());
+            world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
         else
-            musicParticleAtBlocks(world, EnumParticleTypes.CLOUD, te.getPos());
-    }
-
-    /**
-     * Sends a packet to the client, spawning a cloud of particles at the given block location
-     */
-    public static void musicParticleAtBlocks(WorldServer world, EnumParticleTypes type, BlockPos pos)
-    {
-        world.spawnParticle(type, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
+            world.spawnParticle(EnumParticleTypes.CLOUD, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
     }
 
 }
