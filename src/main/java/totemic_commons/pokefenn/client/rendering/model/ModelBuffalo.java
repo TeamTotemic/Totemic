@@ -5,10 +5,9 @@
 // - ZeuX
 package totemic_commons.pokefenn.client.rendering.model;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
@@ -184,15 +183,15 @@ public class ModelBuffalo extends ModelBase
     {
         float scale = 1.0F + 0.5F * ((EntityBuffalo)entity).getRelativeAge();
 
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0, 1.5F * (1.0F - scale), 0);
-        GL11.glScalef(scale, scale, scale);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0, 1.5F * (1.0F - scale), 0);
+        GlStateManager.scale(scale, scale, scale);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
         if(isChild)
         {
-            GL11.glPushMatrix();
-            GL11.glTranslatef(0.0F, 6.0F * f5, 4.0F * f5);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(0.0F, 6.0F * f5, 4.0F * f5);
         }
 
         head.render(f5);
@@ -208,9 +207,9 @@ public class ModelBuffalo extends ModelBase
         if(isChild)
         {
             float childScale = 0.5F;
-            GL11.glPopMatrix();
-            GL11.glScalef(childScale, childScale, childScale);
-            GL11.glTranslatef(0.0F, 24.0F * f5, 0.0F);
+            GlStateManager.popMatrix();
+            GlStateManager.scale(childScale, childScale, childScale);
+            GlStateManager.translate(0.0F, 24.0F * f5, 0.0F);
         }
 
         tailhairs.render(f5);
@@ -226,7 +225,7 @@ public class ModelBuffalo extends ModelBase
         tail.render(f5);
         body.render(f5);
 
-        GL11.glPopMatrix();
+        GlStateManager.popMatrix();
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)

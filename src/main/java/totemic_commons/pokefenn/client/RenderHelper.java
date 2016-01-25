@@ -48,9 +48,8 @@ public class RenderHelper
         if(tooltipData.isEmpty())
             return;
 
-        boolean lighting = GL11.glGetBoolean(GL11.GL_LIGHTING);
-        if(lighting)
-            net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+        GL11.glPushAttrib(GL11.GL_LIGHTING_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
 
         int var5 = 0;
         int var6;
@@ -88,10 +87,8 @@ public class RenderHelper
                 var7 += 2;
             var7 += 10;
         }
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
 
-        if(!lighting)
-            net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+        GL11.glPopAttrib();
         GL11.glColor4f(1F, 1F, 1F, 1F);
     }
 

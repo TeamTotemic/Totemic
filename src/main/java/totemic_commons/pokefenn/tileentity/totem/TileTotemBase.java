@@ -82,6 +82,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @Override
     public void update()
     {
+        //I would like to use onLoad() instead, but I can't
+        //because the chunk is not yet loaded when it is called.
+        //Waiting for a potential fix on Forge's side.
         if(firstTick)
         {
             calculateTotemWoodBonus();

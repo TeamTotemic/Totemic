@@ -2,8 +2,7 @@ package totemic_commons.pokefenn.client.rendering.tileentity;
 
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import totemic_commons.pokefenn.client.rendering.model.ModelWindChime;
 import totemic_commons.pokefenn.lib.Resources;
@@ -20,14 +19,12 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
     @Override
     public void renderTileEntityAt(TileWindChime tile, double x, double y, double z, float partialTick, int destroyStage)
     {
-        GL11.glPushMatrix();
+        GlStateManager.pushMatrix();
 
-        if(tile != null) //Block render
+        if(tile != null) //Block rendering
         {
-            GL11.glTranslated(x, y, z);
-
-            GL11.glTranslatef(0.5F, 1.47F, 0.5F);
-            GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.translate(x + 0.5, y + 1.47, z + 0.5);
+            GlStateManager.rotate(180F, 0.0F, 0.0F, 1.0F);
 
             if(tile.isPlaying())
             {
@@ -39,18 +36,18 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
                 resetRotations();
             }
         }
-        else //Item render
+        else //Item rendering
         {
-            GL11.glTranslatef(0.5F, 1.85F, 0.5F);
-            GL11.glScalef(1.3F, 1.3F, 1.3F);
-            GL11.glRotatef(180F, 0.0F, 0.0F, 1.0F);
+            GlStateManager.translate(0.5F, 1.85F, 0.5F);
+            GlStateManager.scale(1.3F, 1.3F, 1.3F);
+            GlStateManager.rotate(180F, 0.0F, 0.0F, 1.0F);
             resetRotations();
         }
 
         bindTexture(Resources.TEXTURE_WIND_CHIME);
         this.modelWindChime.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
-        GL11.glPopMatrix();
+        GlStateManager.popMatrix();
     }
 
     private void setRotations()
