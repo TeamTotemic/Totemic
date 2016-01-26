@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.entity.boss;
 
-import static totemic_commons.pokefenn.Totemic.logger;
+import java.util.Arrays;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import scala.actors.threadpool.Arrays;
+import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 
 public class EntityBaykok extends EntityMob implements IBossDisplayData, IRangedAttackMob
 {
@@ -54,15 +54,27 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     }
 
     @Override
-    public void attackEntityWithRangedAttack(EntityLivingBase entity, float var2)
+    public void attackEntityWithRangedAttack(EntityLivingBase entity, float distanceFactor)
     {
-        //TODO
-        logger.info("Attacking {}, {}", entity, var2);
+        float velocity = 2.0F + 1.0F * distanceFactor;
+        //FIXME: Arrows that are very fast will aim too high and miss on medium distances
+        EntityInvisArrow arrow = new EntityInvisArrow(worldObj, this, entity, velocity, 3 - worldObj.getDifficulty().getDifficultyId());
+        arrow.setDamage(3.0 * distanceFactor + 1.0 * rand.nextGaussian() + 0.4 * worldObj.getDifficulty().getDifficultyId());
+
+        playSound("random.bow", 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
+        worldObj.spawnEntityInWorld(arrow);
     }
 
     @Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
         setCurrentItemOrArmor(0, new ItemStack(Items.bow)); //TODO
+    }
+
+    @Override
+    protected void despawnEntity()
+    {
+        //No despawning
+        entityAge = 0;
     }
 }
