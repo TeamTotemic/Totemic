@@ -6,6 +6,11 @@ import net.minecraft.world.World;
 
 public class EntityInvisArrow extends EntityArrow
 {
+    public EntityInvisArrow(World world)
+    {
+        super(world);
+    }
+
     public EntityInvisArrow(World world, EntityLivingBase shooter, EntityLivingBase target, float velocity, float inaccuracy)
     {
         super(world, shooter, target, velocity, inaccuracy);

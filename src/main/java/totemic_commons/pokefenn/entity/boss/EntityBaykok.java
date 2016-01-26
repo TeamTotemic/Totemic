@@ -58,7 +58,7 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     {
         float velocity = 2.0F + 1.0F * distanceFactor;
         //FIXME: Arrows that are very fast will aim too high and miss on medium distances
-        EntityInvisArrow arrow = new EntityInvisArrow(worldObj, this, entity, velocity, 3 - worldObj.getDifficulty().getDifficultyId());
+        EntityInvisArrow arrow = new EntityInvisArrow(worldObj, this, entity, velocity, 11 - 3 * worldObj.getDifficulty().getDifficultyId());
         arrow.setDamage(3.0 * distanceFactor + 1.0 * rand.nextGaussian() + 0.4 * worldObj.getDifficulty().getDifficultyId());
 
         playSound("random.bow", 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
