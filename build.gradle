@@ -17,12 +17,17 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
 version = "1.8.9-0.6.5"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.8.9-11.15.0.1690"
+    version = "1.8.9-11.15.1.1723"
     runDir = "run"
 
     mappings = "stable_20"
@@ -41,17 +46,17 @@ repositories {
         url "http://mobiusstrip.eu/maven"
     }
     maven {
-        name "Chickenbones"
-        url "http://chickenbones.net/maven"
+        name "tterrag Repo"
+        url "http://maven.tterrag.com/"
     }
 }
 
 dependencies {
     provided "mcp.mobius.waila:Waila:1.6.0-B3_1.8.8:dev"
+    shade "chylex.javacheck:JavaChecker:v2.0-b3"
 }
 
-processResources
-{
+processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
@@ -67,6 +72,25 @@ processResources
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+
+// Shade Java 8 checker
+reobf {
+    jar {
+        extraLines "PK: chylex/javacheck totemic_commons/shade/javacheck"
+    }
+}
+
+jar {
+    configurations.shade.each { dep ->
+        from(project.zipTree(dep)) {
+            exclude 'META-INF', 'META-INF/**'
+        }
+    }
+
+    manifest {
+        attributes 'TweakClass': 'totemic_commons.shade.javacheck.Java8Checker'
     }
 }
 
