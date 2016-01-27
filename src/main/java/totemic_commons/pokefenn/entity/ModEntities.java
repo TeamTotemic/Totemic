@@ -19,6 +19,6 @@ public final class ModEntities
         //EntityRegistry.addSpawn(EntityBuffalo.class, 1000, 2, 4, EnumCreatureType.creature); //No biomes to spawn in
 
         EntityRegistry.registerModEntity(EntityBaykok.class, Strings.BAYKOK_NAME, 1, Totemic.instance, 80, 3, true, 0xFFFFFF, 0xFFFFFF); //TODO: Egg colors
-        EntityRegistry.registerModEntity(EntityInvisArrow.class, Strings.INVIS_ARROW_NAME, 2, Totemic.instance, 64, 20, false);
+        EntityRegistry.registerModEntity(EntityInvisArrow.class, Strings.INVIS_ARROW_NAME, 2, Totemic.instance, 64, 20, true);
     }
 }
