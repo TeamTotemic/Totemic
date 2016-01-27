@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 
 public class EntityBaykok extends EntityMob implements IBossDisplayData, IRangedAttackMob
@@ -67,7 +68,25 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     @Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
-        setCurrentItemOrArmor(0, new ItemStack(Items.bow)); //TODO
+        setCurrentItemOrArmor(0, new ItemStack(ModItems.baykokBow));
+    }
+
+    @Override
+    protected void dropFewItems(boolean byPlayer, int looting)
+    {
+        dropItem(ModItems.baykokBow, 1);
+
+        int n = 2 + rand.nextInt(5 + looting);
+        for(int i = 0; i < n; i++)
+            dropItem(Items.bone, 1);
+
+        n = rand.nextInt(3 + looting);
+        for(int i = 0; i < n; i++)
+            dropItem(Items.rotten_flesh, 1);
+
+        n = 2 + rand.nextInt(5 + looting);
+        for(int i = 0; i < n; i++)
+            dropItem(Items.arrow, 1);
     }
 
     @Override
