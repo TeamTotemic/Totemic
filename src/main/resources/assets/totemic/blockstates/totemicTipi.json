@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "totemic:dummyTipi" },
+        "facing=east":  { "model": "totemic:dummyTipi" },
+        "facing=south": { "model": "totemic:dummyTipi" },
+        "facing=west":  { "model": "totemic:dummyTipi" }
+    }
+}
