@@ -2,8 +2,8 @@ package totemic_commons.pokefenn.block.tipi;
 
 import java.util.Random;
 
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -29,8 +29,7 @@ import totemic_commons.pokefenn.tileentity.TileTipi;
  */
 public class BlockTipi extends BlockTileTotemic
 {
-    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    public static final PropertyBool OCCUPIED = PropertyBool.create("occupied");
+    public static final PropertyDirection FACING = BlockDirectional.FACING;
 
     public BlockTipi()
     {
@@ -40,7 +39,6 @@ public class BlockTipi extends BlockTileTotemic
         setHardness(0.2F);
         setStepSound(soundTypeCloth);
         setCreativeTab(Totemic.tabsTotem);
-        setDefaultState(blockState.getBaseState().withProperty(OCCUPIED, false));
     }
 
     @Override
@@ -77,7 +75,7 @@ public class BlockTipi extends BlockTileTotemic
 
                     if(entityplayer1 != null)
                     {
-                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
+                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied"));
                         return true;
                     }
 
@@ -90,10 +88,10 @@ public class BlockTipi extends BlockTileTotemic
                     {
                         if(enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
                         {
-                            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
+                            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep"));
                         } else if(enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
                         {
-                            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+                            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe"));
                         }
 
                         return true;
@@ -117,7 +115,8 @@ public class BlockTipi extends BlockTileTotemic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Item getItem(World world, BlockPos pos) {
+    public Item getItem(World world, BlockPos pos)
+    {
         return Item.getItemFromBlock(this);
     }
 
@@ -140,6 +139,11 @@ public class BlockTipi extends BlockTileTotemic
     }
 
     @Override
+    public void setBedOccupied(IBlockAccess world, BlockPos pos, EntityPlayer player, boolean occupied)
+    {
+    }
+
+    @Override
     public TileEntity createNewTileEntity(World var1, int var2)
     {
         return new TileTipi();
@@ -148,7 +152,7 @@ public class BlockTipi extends BlockTileTotemic
     @Override
     protected BlockState createBlockState()
     {
-        return new BlockState(this, FACING, OCCUPIED);
+        return new BlockState(this, FACING);
     }
 
     @Override
