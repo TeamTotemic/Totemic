@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 
 public class EntityBaykok extends EntityMob implements IBossDisplayData, IRangedAttackMob
@@ -57,8 +58,7 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     public void attackEntityWithRangedAttack(EntityLivingBase entity, float distanceFactor)
     {
         float velocity = 2.0F + 1.0F * distanceFactor;
-        //FIXME: Arrows that are very fast will aim too high and miss on medium distances
-        EntityInvisArrow arrow = new EntityInvisArrow(worldObj, this, entity, velocity, 11 - 3 * worldObj.getDifficulty().getDifficultyId());
+        EntityInvisArrow arrow = new EntityInvisArrow(worldObj, this, entity, velocity, 4.5F - worldObj.getDifficulty().getDifficultyId());
         arrow.setDamage(3.0 * distanceFactor + 1.0 * rand.nextGaussian() + 0.4 * worldObj.getDifficulty().getDifficultyId());
 
         playSound("random.bow", 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
@@ -68,7 +68,25 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     @Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
-        setCurrentItemOrArmor(0, new ItemStack(Items.bow)); //TODO
+        setCurrentItemOrArmor(0, new ItemStack(ModItems.baykokBow));
+    }
+
+    @Override
+    protected void dropFewItems(boolean byPlayer, int looting)
+    {
+        dropItem(ModItems.baykokBow, 1);
+
+        int n = 2 + rand.nextInt(5 + looting);
+        for(int i = 0; i < n; i++)
+            dropItem(Items.bone, 1);
+
+        n = rand.nextInt(3 + looting);
+        for(int i = 0; i < n; i++)
+            dropItem(Items.rotten_flesh, 1);
+
+        n = 2 + rand.nextInt(5 + looting);
+        for(int i = 0; i < n; i++)
+            dropItem(Items.arrow, 1);
     }
 
     @Override
