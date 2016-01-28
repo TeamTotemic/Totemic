@@ -76,7 +76,7 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     {
         dropItem(ModItems.baykokBow, 1);
 
-        int n = 2 + rand.nextInt(5 + looting);
+        int n = 2 + rand.nextInt(7 + looting);
         for(int i = 0; i < n; i++)
             dropItem(Items.bone, 1);
 
@@ -84,7 +84,7 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
         for(int i = 0; i < n; i++)
             dropItem(Items.rotten_flesh, 1);
 
-        n = 2 + rand.nextInt(5 + looting);
+        n = 3 + rand.nextInt(8 + looting);
         for(int i = 0; i < n; i++)
             dropItem(Items.arrow, 1);
     }

@@ -8,10 +8,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import totemic_commons.pokefenn.compat.Compatibility;
 import totemic_commons.pokefenn.entity.ModEntities;
-import totemic_commons.pokefenn.event.EntityFall;
-import totemic_commons.pokefenn.event.EntitySpawn;
-import totemic_commons.pokefenn.event.EntityUpdate;
-import totemic_commons.pokefenn.event.PlayerInteract;
+import totemic_commons.pokefenn.event.*;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.GuiHandler;
 import totemic_commons.pokefenn.network.PacketHandler;
@@ -63,7 +60,7 @@ public class CommonProxy
     protected void registerEventHandlers()
     {
         MinecraftForge.EVENT_BUS.register(new EntityUpdate());
-        //MinecraftForge.EVENT_BUS.register(new EntityHurt());
+        MinecraftForge.EVENT_BUS.register(new EntityHurt());
         MinecraftForge.EVENT_BUS.register(new EntityFall());
         MinecraftForge.EVENT_BUS.register(new PlayerInteract());
         MinecraftForge.EVENT_BUS.register(new EntitySpawn());
