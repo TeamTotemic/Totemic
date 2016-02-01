@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.ResourceLocation;
+import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 
 public class InvisArrowRendering extends RenderArrow
 {
@@ -17,9 +18,8 @@ public class InvisArrowRendering extends RenderArrow
     @Override
     public void doRender(EntityArrow entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        //FIXME: Doesn't work like that client side. shootingEntity needs to somehow be synchronized.
-        /*if(entity.shootingEntity == Minecraft.getMinecraft().thePlayer)
-            super.doRender(entity, x, y, z, entityYaw, partialTicks);*/
+        if(((EntityInvisArrow)entity).isShotByPlayer())
+            super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
     @Override
