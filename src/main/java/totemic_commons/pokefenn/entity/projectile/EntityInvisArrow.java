@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityInvisArrow extends EntityArrow
 {
+    //Only set when the shooter is a player
     private static final int SHOOTER_DATAWATCHER = 17;
 
     @SideOnly(Side.CLIENT)
@@ -48,6 +49,16 @@ public class EntityInvisArrow extends EntityArrow
             this.setLocationAndAngles(shooter.posX + xdir, this.posY, shooter.posZ + zdir, yaw, pitch);
             double yoff = xzdist * 0.125; //lower y-offset than vanilla arrows for very fast arrows
             this.setThrowableHeading(dx, dy + yoff, dz, velocity, inaccuracy);
+        }
+    }
+
+    public EntityInvisArrow(World world, EntityLivingBase shooter, float velocity)
+    {
+        super(world, shooter, velocity);
+
+        if(shooter instanceof EntityPlayer)
+        {
+            dataWatcher.updateObject(SHOOTER_DATAWATCHER, shooter.getEntityId());
         }
     }
 
