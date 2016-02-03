@@ -18,8 +18,17 @@ public class CeremonyBaykok extends Ceremony
     @Override
     public void effect(World world, BlockPos pos, int time)
     {
+        if(world.isRemote || time != getEffectTime() - 1)
+            return;
+
+        world.playBroadcastSound(1013, pos, 0); //Wither spawn sound
         BlockPos spos = pos.offset(EnumFacing.getHorizontal(world.rand.nextInt(4)));
         EntityUtil.spawnEntity(world, spos.getX() + 0.5, spos.getY(), spos.getZ() + 0.5, new EntityBaykok(world));
     }
 
+    @Override
+    public int getEffectTime()
+    {
+        return 3 * 20;
+    }
 }
