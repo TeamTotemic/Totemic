@@ -63,6 +63,12 @@ public class BlockCedarSapling extends BlockSapling
         return getDefaultState().withProperty(STAGE, meta);
     }
 
+    @Override
+    public int damageDropped(IBlockState state)
+    {
+        return 0;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
