@@ -24,7 +24,7 @@ item.totemic:buffaloHide.name=Büffelleder
 item.totemic:buffaloTeeth.name=Büffelzähne
 item.totemic:buffaloMeat.name=Rohes Büffelfleisch
 item.totemic:buffaloCookedMeat.name=Gebratenes Büffelfleisch
-item.totemic:baykokBow.name=Baykok's Bogen
+item.totemic:baykokBow.name=Baykoks Bogen
 
 # Block localizations
 tile.cedarLog.name=Rotes Zedernholz
@@ -71,6 +71,7 @@ totemic.ceremony.totemic:potion=Göttliche Elixiere
 totemic.ceremony.totemic:buffaloDance=Mandan-Büffeltanz
 totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel-Walzer
 totemic.ceremony.totemic:warDance=Kriegstanz
+totemic.ceremony.totemic:baykokSummon=Glocken des Todes
 
 #Totem effect names
 totemic.totem.totemic:horse=Pferd
@@ -208,6 +209,11 @@ totemic.entry.fluteInfusion=Flötenverzauberung
 totemic.page.fluteInfusion0=Die &4Flötenverzauberung&0 ist ein Weg, eine normale &1Flöte&0 mit musikalischer Energie zu verzaubern, um ihr spezielle Eigenschaften zu verleihen. Leg die Flöte einfach auf den Boden, bevor du die Zeremonie durchführst.
 totemic.page.fluteInfusion1=Die Melodie einer verzauberten Flöte ist deutlich stärker als ein normaler Flötenklang, so sehr, dass &1Tiere&0 und &1Dorfbewohner&0 sie nicht widerstehen können und von ihr angezogen werden. Ihr Effekt an Totempfählen ist ebenfalls stärker.
 totemic.page.fluteInfusion2=&oStärker als Twilicane&r
+
+totemic.entry.baykokSummon=Glocken des Todes
+totemic.page.baykokSummon0=Die &4Glocken des Todes&0 sind eine Zeremonie, die den Geist &4Baykok&0 herbeiruft. Verusche nicht diese Zeremonie, bis du bereit bist, gegen ihn zu kämpfen.<br>&4Baykok&0 ist ein grausamer Nachtgeist, der wie ein Skelett erscheint. Er jagd unbarmherzig nach Kriegern und ist ein Meister im Bogenschießen, er greift mit unsichtbaren Pfeilen an. Baykok lähmt seine Opfer und verspeist ihre Leber. 
+totemic.page.baykokSummon1=Schaffst du es, &4Baykok&0 zu besiegen, kannst du seinen Bogen kriegen. Mit &1Baykoks Bogen&0 kannst du wie er auch unsichtbare und lähmende Pfeile verschießen (du kannst deine eigenen Pfeile sehen). Sein Bogen leichter zu verzaubern und stärker als ein gewöhnlicher Bogen.
+totemic.page.baykokSummon2=&oDu hast den Bogen überspannt...&r
 
 totemic.entry.totemicStaff=Totemstab
 totemic.page.totemicStaff0=Der &1Totemstab&0 kann an verschiedenen Blöcken benutzt werden, um Informationen über sie zu liefern.<br>Außerdem kann man mit ihm durch Linksklick auf eine Totembasis Zeremonien und Selektionen abbrechen.

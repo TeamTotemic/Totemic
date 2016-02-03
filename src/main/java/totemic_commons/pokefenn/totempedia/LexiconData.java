@@ -54,6 +54,7 @@ public final class LexiconData
     public static LexiconEntry buffaloDance;
     public static LexiconEntry zaphkielWaltz;
     public static LexiconEntry fluteInfusion;
+    public static LexiconEntry baykokSummon;
 
     public static LexiconEntry creatingTotems;
     public static LexiconEntry totemEffects;
@@ -135,6 +136,9 @@ public final class LexiconData
 
         fluteInfusion = new BLexiconEntry(Totempedia.FLUTE_INFUSION, categoryCeremony);
         fluteInfusion.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", HandlerInitiation.fluteCeremony));
+
+        baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony);
+        baykokSummon.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", HandlerInitiation.baykokSummon));
 
         //Tools
         totemicStaff = new BLexiconEntry(Totempedia.TOTEMIC_STAFF, categoryTools);
