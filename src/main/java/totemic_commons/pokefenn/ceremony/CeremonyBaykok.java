@@ -16,7 +16,7 @@ public class CeremonyBaykok extends Ceremony
     }
 
     @Override
-    public void effect(World world, BlockPos pos)
+    public void effect(World world, BlockPos pos, int time)
     {
         BlockPos spos = pos.offset(EnumFacing.getHorizontal(world.rand.nextInt(4)));
         EntityUtil.spawnEntity(world, spos.getX() + 0.5, spos.getY(), spos.getZ() + 0.5, new EntityBaykok(world));

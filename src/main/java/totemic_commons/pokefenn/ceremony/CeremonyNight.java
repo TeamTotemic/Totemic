@@ -17,7 +17,7 @@ public class CeremonyNight extends Ceremony
     }
 
     @Override
-    public void effect(World world, BlockPos pos)
+    public void effect(World world, BlockPos pos, int time)
     {
         if(!world.isRemote && world.isDaytime())
         {

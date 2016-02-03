@@ -57,8 +57,12 @@ public abstract class Ceremony
      * Performs the ceremony effect at the given Totem Base position.
      * If the ceremony is not instant, this will be called each tick.
      * This gets called on the server and the client.
+     * @param world the world
+     * @param pos the position of the Totem Base where the effect happens
+     * @param time time in ticks how long the effect lasted so far.<br>
+     * Note: This value might not be always accurate on the client side due to potential lag and latency.
      */
-    public abstract void effect(World world, BlockPos pos);
+    public abstract void effect(World world, BlockPos pos, int time);
 
     /**
      * Override this if your Ceremony effect is not instant

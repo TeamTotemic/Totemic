@@ -20,7 +20,7 @@ public class CeremonyRain extends Ceremony
     }
 
     @Override
-    public void effect(World world, BlockPos pos)
+    public void effect(World world, BlockPos pos, int time)
     {
         if(!world.isRemote && world.isRaining() != doRain)
         {

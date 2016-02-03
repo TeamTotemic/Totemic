@@ -28,7 +28,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
     }
 
     @Override
-    public void effect(World world, BlockPos pos)
+    public void effect(World world, BlockPos pos, int time)
     {
         int radius = 6;
 

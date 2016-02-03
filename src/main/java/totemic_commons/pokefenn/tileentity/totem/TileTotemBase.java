@@ -299,7 +299,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         if(currentCeremony != null)
         {
-            currentCeremony.effect(worldObj, pos);
+            currentCeremony.effect(worldObj, pos, ceremonyEffectTimer);
             if(currentCeremony.getEffectTime() == Ceremony.INSTANT)
                 resetAfterCeremony(true);
             else
@@ -326,15 +326,15 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         if(cer.getEffectTime() == Ceremony.INSTANT)
         {
-            cer.effect(worldObj, pos);
+            cer.effect(worldObj, pos, 0);
             resetAfterCeremony(true);
         }
         else
         {
-            ceremonyEffectTimer++;
-            if(ceremonyEffectTimer <= cer.getEffectTime() && drainCeremonyMelody(cer))
+            if(ceremonyEffectTimer < cer.getEffectTime() && drainCeremonyMelody(cer))
             {
-                cer.effect(worldObj, pos);
+                cer.effect(worldObj, pos, ceremonyEffectTimer);
+                ceremonyEffectTimer++;
             }
             else
             {

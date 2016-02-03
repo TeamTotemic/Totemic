@@ -21,7 +21,7 @@ public class CeremonyWarDance extends Ceremony
     }
 
     @Override
-    public void effect(World world, BlockPos pos)
+    public void effect(World world, BlockPos pos, int time)
     {
         if(world.isRemote)
             return;
