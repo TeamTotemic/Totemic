@@ -97,10 +97,10 @@ public class GameOverlay
 
     private void drawNote(WorldRenderer wr)
     {
-        wr.pos(1 + 0, 10 + 0, 0).tex(16.0 / 32, 0.0 / 32).color(0, 255, 0, 200).endVertex();
-        wr.pos(1 + 0, 10 + 9, 0).tex(16.0 / 32, 8.0 / 32).color(0, 255, 0, 200).endVertex();
-        wr.pos(1 + 9, 10 + 9, 0).tex(24.0 / 32, 8.0 / 32).color(0, 255, 0, 200).endVertex();
-        wr.pos(1 + 9, 10 + 0, 0).tex(24.0 / 32, 0.0 / 32).color(0, 255, 0, 200).endVertex();
+        wr.pos(1 + 0, 10 + 0, 0).tex(16.0 / 32, 0.0 / 32).color(255, 255, 255, 200).endVertex();
+        wr.pos(1 + 0, 10 + 9, 0).tex(16.0 / 32, 8.0 / 32).color(255, 255, 255, 200).endVertex();
+        wr.pos(1 + 9, 10 + 9, 0).tex(24.0 / 32, 8.0 / 32).color(255, 255, 255, 200).endVertex();
+        wr.pos(1 + 9, 10 + 0, 0).tex(24.0 / 32, 0.0 / 32).color(255, 255, 255, 200).endVertex();
     }
 
     private void drawClock(WorldRenderer wr)
