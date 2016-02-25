@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -35,8 +36,10 @@ public class GameOverlay
             {
                 int w = 117;
                 int h = 30;
-                float x = (event.resolution.getScaledWidth() - w) / 2 + ConfigurationSettings.CEREMONY_HUD_X;
-                float y = (event.resolution.getScaledHeight() - h) / 2 + ConfigurationSettings.CEREMONY_HUD_Y;
+                double texW = 128;
+                double texH = 64;
+                float hudX = (event.resolution.getScaledWidth() - w) / 2 + ConfigurationSettings.CEREMONY_HUD_X;
+                float hudY = (event.resolution.getScaledHeight() - h) / 2 + ConfigurationSettings.CEREMONY_HUD_Y;
                 Tessellator tes = Tessellator.getInstance();
                 WorldRenderer wr = tes.getWorldRenderer();
                 Minecraft mc = Minecraft.getMinecraft();
@@ -46,15 +49,16 @@ public class GameOverlay
                 GL11.glEnable(GL11.GL_BLEND);
                 GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 GL11.glPushMatrix();
-                GL11.glTranslatef(x, y, 0);
+                GL11.glTranslatef(hudX, hudY, 0);
 
-                GL11.glDisable(GL11.GL_TEXTURE_2D);
-                wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-                RenderHelper.addQuad(wr, 0, 0, 0, w, h, 0x50B44680); //Background
+                //Background
+                mc.renderEngine.bindTexture(hudTexture);
+                wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+                RenderHelper.addQuad(wr, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
                 tes.draw();
-                GL11.glEnable(GL11.GL_TEXTURE_2D);
 
-                int barWidth = 104;
+                int barW = 104;
+                int barH = 7;
 
                 if(activeTotem.isDoingStartup())
                 {
@@ -63,22 +67,18 @@ public class GameOverlay
                     int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
                     font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
 
+                    GlStateManager.color(1, 1, 1);
                     mc.renderEngine.bindTexture(hudTexture);
-                    wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
-                    drawNote(wr);
-                    drawClock(wr);
-                    tes.draw();
 
-                    float musicW = activeTotem.totalCeremonyMelody / (float)cer.getMusicNeeded() * barWidth;
-                    float timeW = Math.min(activeTotem.ceremonyStartupTimer / (float)cer.getMaxStartupTime(), 1.0f) * barWidth;
+                    wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+                    RenderHelper.addQuad(wr, 1, 10, 0,  9, 9,  16 / texW, 48 / texH,   8 / texW,  8 / texH); //Note
+                    RenderHelper.addQuad(wr, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
 
-                    GL11.glDisable(GL11.GL_TEXTURE_2D);
-                    wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-                    RenderHelper.addQuad(wr, 11, 11, 0, barWidth, 7, 0x50FFC850);
-                    RenderHelper.addQuad(wr, 11, 21, 0, barWidth, 7, 0x50FFC850);
+                    float musicW = activeTotem.totalCeremonyMelody / (float)cer.getMusicNeeded() * barW;
+                    float timeW = Math.min(activeTotem.ceremonyStartupTimer / (float)cer.getMaxStartupTime(), 1.0f) * barW;
 
-                    RenderHelper.addQuad(wr, 11, 11, 0, musicW, 7, 0x3C3CFFA0);
-                    RenderHelper.addQuad(wr, 11, 21, 0, timeW, 7, 0x3C3CFFA0);
+                    RenderHelper.addQuad(wr, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar
+                    RenderHelper.addQuad(wr, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar
                     tes.draw();
                 }
                 else if(activeTotem.isDoingEndingEffect)
@@ -93,21 +93,5 @@ public class GameOverlay
                 GL11.glPopAttrib();
             }
         }
-    }
-
-    private void drawNote(WorldRenderer wr)
-    {
-        wr.pos(1 + 0, 10 + 0, 0).tex(16.0 / 32, 0.0 / 32).color(255, 255, 255, 200).endVertex();
-        wr.pos(1 + 0, 10 + 9, 0).tex(16.0 / 32, 8.0 / 32).color(255, 255, 255, 200).endVertex();
-        wr.pos(1 + 9, 10 + 9, 0).tex(24.0 / 32, 8.0 / 32).color(255, 255, 255, 200).endVertex();
-        wr.pos(1 + 9, 10 + 0, 0).tex(24.0 / 32, 0.0 / 32).color(255, 255, 255, 200).endVertex();
-    }
-
-    private void drawClock(WorldRenderer wr)
-    {
-        wr.pos(1 + 0, 20 + 0, 0).tex( 0.0 / 32,  0.0 / 32).color(255, 255, 255, 200).endVertex();
-        wr.pos(1 + 0, 20 + 9, 0).tex( 0.0 / 32, 16.0 / 32).color(255, 255, 255, 200).endVertex();
-        wr.pos(1 + 9, 20 + 9, 0).tex(16.0 / 32, 16.0 / 32).color(255, 255, 255, 200).endVertex();
-        wr.pos(1 + 9, 20 + 0, 0).tex(16.0 / 32,  0.0 / 32).color(255, 255, 255, 200).endVertex();
     }
 }

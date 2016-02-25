@@ -191,7 +191,10 @@ public class RenderHelper
         GL11.glPopMatrix();
     }
 
-    public static void addQuad(WorldRenderer wr, double x, double y, double z, double w, double h, int color)
+    /**
+     * Adds an untextured quad to the WorldRenderer. Needs the POSITION_COLOR vertex format.
+     */
+    public static void addColoredQuad(WorldRenderer wr, double x, double y, double z, double w, double h, int color)
     {
         float r = (color >> 24 & 255) / 255.0F;
         float g = (color >> 16 & 255) / 255.0F;
@@ -201,5 +204,17 @@ public class RenderHelper
         wr.pos(x, y + h, z).color(r, g, b, a).endVertex();
         wr.pos(x + w, y + h, z).color(r, g, b, a).endVertex();
         wr.pos(x + w, y, z).color(r, g, b, a).endVertex();
+    }
+
+    /**
+     * Adds a textured quad to the WorldRenderer. Needs the POSITION_TEX vertex format.
+     */
+    public static void addQuad(WorldRenderer wr, double x, double y, double z, double w, double h, double u, double v,
+            double texW, double texH)
+    {
+        wr.pos(x + 0, y + 0, z).tex(u + 0,    v + 0).endVertex();
+        wr.pos(x + 0, y + h, z).tex(u + 0,    v + texH).endVertex();
+        wr.pos(x + w, y + h, z).tex(u + texW, v + texH).endVertex();
+        wr.pos(x + w, y + 0, z).tex(u + texW, v + 0).endVertex();
     }
 }
