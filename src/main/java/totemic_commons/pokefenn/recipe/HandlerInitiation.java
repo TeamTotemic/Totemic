@@ -29,7 +29,7 @@ public class HandlerInitiation
     public static Ceremony zaphkielWaltz;
     public static Ceremony warDance;
     public static Ceremony buffaloDance;
-    public static Ceremony baykokSummon;
+    //public static Ceremony baykokSummon;
 
     public static TotemEffect horseTotem;
     public static TotemEffect squidTotem;
@@ -85,8 +85,8 @@ public class HandlerInitiation
                 drum, drum));
         buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
                 drum, windChime));
-        baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic:baykokSummon", 260,  40 * 20,
-                windChime, flute)); //Subject to change?
+        /*baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic:baykokSummon", 260,  40 * 20,
+                windChime, flute)); //Subject to change?*/
     }
 
     private static void totemRegistry()
