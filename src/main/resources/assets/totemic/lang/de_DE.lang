@@ -24,7 +24,7 @@ item.totemic:buffaloHide.name=Büffelleder
 item.totemic:buffaloTeeth.name=Büffelzähne
 item.totemic:buffaloMeat.name=Rohes Büffelfleisch
 item.totemic:buffaloCookedMeat.name=Gebratenes Büffelfleisch
-item.totemic:baykokBow.name=Baykoks Bogen (WIP)
+item.totemic:baykokBow.name=Baykoks Bogen
 
 # Block localizations
 tile.cedarLog.name=Rotes Zedernholz
@@ -42,7 +42,7 @@ tile.dummyTotemicTipi.name=Tipi
 
 #Entity localizations
 entity.totemic.buffalo.name=Büffel
-entity.totemic.baykok.name=Baykok (WIP)
+entity.totemic.baykok.name=Baykok
 
 #Potion effect localizations
 totemic.potion.bat=Fledermaus
