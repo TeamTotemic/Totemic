@@ -167,13 +167,6 @@ public class BlockTipi extends BlockTileTotemic
         return getDefaultState().withProperty(FACING, EnumFacing.HORIZONTALS[meta]);
     }
 
-    //TODO: OBJ or JSON model maybe?
-    @Override
-    public int getRenderType()
-    {
-        return 2;
-    }
-
     @Override
     public boolean isOpaqueCube()
     {

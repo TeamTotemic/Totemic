@@ -1,8 +1,50 @@
 {
+    "forge_marker": 1,
     "variants": {
-        "facing=north": { "model": "totemic:dummyTipi" },
-        "facing=east":  { "model": "totemic:dummyTipi" },
-        "facing=south": { "model": "totemic:dummyTipi" },
-        "facing=west":  { "model": "totemic:dummyTipi" }
+        "facing=north": {
+            "model": "totemic:tipi.obj",
+            "transform": {
+                "rotation": {"y": 180},
+                "translation": [0, 0.95, 0],
+                "scale": [2.85, 2.85, 2.85]
+            }
+        },
+        "facing=east": {
+            "model": "totemic:tipi.obj",
+            "transform": {
+                "rotation": {"y": 90},
+                "translation": [0, 0.95, 0],
+                "scale": [2.85, 2.85, 2.85]
+            }
+        },
+        "facing=south": {
+            "model": "totemic:tipi.obj",
+            "transform": {
+                "translation": [0, 0.95, 0],
+                "scale": [2.85, 2.85, 2.85]
+            }
+        },
+        "facing=west": {
+            "model": "totemic:tipi.obj",
+            "transform": {
+                "rotation": {"y": 270},
+                "translation": [0, 0.95, 0],
+                "scale": [2.85, 2.85, 2.85]
+            }
+        },
+        "inventory": {
+            "model": "totemic:tipi.obj",
+            "transform": {
+                "thirdperson": {
+                    "rotation": [{"x": 10}, {"y": -45}, {"z": 170 }],
+                    "translation": [0, 0.09375, -0.171875],
+                    "scale": [0.375, 0.375, 0.375]
+                },
+                "gui": {
+                    "translation": [0, -0.125, 0],
+                    "scale": [0.65, 0.65, 0.65]
+                }
+            }
+        }
     }
 }

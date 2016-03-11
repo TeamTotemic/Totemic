@@ -17,11 +17,11 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer<TileTipi>
     @Override
     public void renderTileEntityAt(TileTipi tile, double x, double y, double z, float partialTick, int destroyStage)
     {
-        GlStateManager.pushMatrix();
+        /*GlStateManager.pushMatrix();
 
         if(tile != null) //Block rendering
         {
-            GlStateManager.translate(x, y, z);
+            GlStateManager.translate(x+3, y, z);
             GlStateManager.scale(2.85F, 2.85F, 2.85F);
             GlStateManager.translate(0.18F, 1.55F, 0.18F);
             int dir = tile.getBlockMetadata();
@@ -38,7 +38,7 @@ public class TileTipiRenderer extends TileEntitySpecialRenderer<TileTipi>
         bindTexture(Resources.TEXTURE_TIPI);
         this.modelTipi.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
-        GlStateManager.popMatrix();
+        GlStateManager.popMatrix();*/
     }
 
 }

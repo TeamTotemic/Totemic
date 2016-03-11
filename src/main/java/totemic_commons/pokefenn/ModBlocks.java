@@ -110,7 +110,7 @@ public final class ModBlocks
                     new ModelResourceLocation(totemPole.getRegistryName(), "wood=" + WoodVariant.values()[i].getName()));
         }
 
-        ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(tipi), 0, TileTipi.class);
+        //ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(tipi), 0, TileTipi.class);
         ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(windChime), 0, TileWindChime.class);
     }
 
