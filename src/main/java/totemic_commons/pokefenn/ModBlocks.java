@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -26,8 +25,6 @@ import totemic_commons.pokefenn.item.ItemBlockVariants;
 import totemic_commons.pokefenn.item.ItemTipi;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
-import totemic_commons.pokefenn.tileentity.TileTipi;
-import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 
 public final class ModBlocks
 {
@@ -88,7 +85,6 @@ public final class ModBlocks
         ModelLoader.setCustomStateMapper(totemLeaves, new Builder().ignore(BlockCedarLeaves.CHECK_DECAY, BlockCedarLeaves.DECAYABLE).build());
     }
 
-    @SuppressWarnings("deprecation")
     @SideOnly(Side.CLIENT)
     public static void setItemModels()
     {
@@ -109,9 +105,6 @@ public final class ModBlocks
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(totemPole), i,
                     new ModelResourceLocation(totemPole.getRegistryName(), "wood=" + WoodVariant.values()[i].getName()));
         }
-
-        //ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(tipi), 0, TileTipi.class);
-        ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(windChime), 0, TileWindChime.class);
     }
 
     @SideOnly(Side.CLIENT)

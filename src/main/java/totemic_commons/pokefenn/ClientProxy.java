@@ -9,13 +9,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import totemic_commons.pokefenn.client.rendering.entity.BaykokRendering;
 import totemic_commons.pokefenn.client.rendering.entity.BuffaloRendering;
 import totemic_commons.pokefenn.client.rendering.entity.InvisArrowRendering;
-import totemic_commons.pokefenn.client.rendering.tileentity.TileTipiRenderer;
 import totemic_commons.pokefenn.client.rendering.tileentity.TileWindChimeRenderer;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 import totemic_commons.pokefenn.entity.boss.EntityBaykok;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 import totemic_commons.pokefenn.event.GameOverlay;
-import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.totempedia.LexiconData;
 
@@ -52,6 +50,5 @@ public class ClientProxy extends CommonProxy
     private void initTESRs()
     {
         ClientRegistry.bindTileEntitySpecialRenderer(TileWindChime.class, new TileWindChimeRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileTipi.class, new TileTipiRenderer());
     }
 }

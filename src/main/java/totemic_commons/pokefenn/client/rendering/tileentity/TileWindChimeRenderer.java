@@ -20,27 +20,16 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
     public void renderTileEntityAt(TileWindChime tile, double x, double y, double z, float partialTick, int destroyStage)
     {
         GlStateManager.pushMatrix();
+        GlStateManager.translate(x + 0.5, y + 1.47, z + 0.5);
+        GlStateManager.rotate(180F, 0.0F, 0.0F, 1.0F);
 
-        if(tile != null) //Block rendering
+        if(tile.isPlaying())
         {
-            GlStateManager.translate(x + 0.5, y + 1.47, z + 0.5);
-            GlStateManager.rotate(180F, 0.0F, 0.0F, 1.0F);
-
-            if(tile.isPlaying())
-            {
-                if(getWorld().getTotalWorldTime() % 2L == 0)
-                    setRotations();
-            }
-            else
-            {
-                resetRotations();
-            }
+            if(getWorld().getTotalWorldTime() % 2L == 0)
+                setRotations();
         }
-        else //Item rendering
+        else
         {
-            GlStateManager.translate(0.5F, 1.85F, 0.5F);
-            GlStateManager.scale(1.3F, 1.3F, 1.3F);
-            GlStateManager.rotate(180F, 0.0F, 0.0F, 1.0F);
             resetRotations();
         }
 
