@@ -95,4 +95,22 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
         //No despawning
         entityAge = 0;
     }
+
+    @Override
+    protected String getLivingSound()
+    {
+        return "mob.skeleton.say";
+    }
+
+    @Override
+    protected String getHurtSound()
+    {
+        return "mob.skeleton.hurt";
+    }
+
+    @Override
+    protected String getDeathSound()
+    {
+        return "mob.skeleton.death";
+    }
 }

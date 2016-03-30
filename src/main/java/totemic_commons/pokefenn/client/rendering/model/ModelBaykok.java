@@ -46,7 +46,7 @@ public class ModelBaykok extends ModelBase
         this.setRotateAngle(righthand, -0.28623399732707F, -0.0F, 0.0F);
         this.torso2 = new ModelRenderer(this, 47, 56);
         this.torso2.setRotationPoint(0.0F, 1.0F, 0.0F);
-        this.torso2.addBox(-4.0F, -7.0F, -1.0F, 8, 6, 4, 0.0F);
+        this.torso2.addBox(-4.0F, -7.0F, -1.0F, 8, 5, 4, 0.0F);
         this.setRotateAngle(torso2, 0.08726646259971647F, -0.0F, 0.0F);
         this.rightarm = new ModelRenderer(this, 18, 53);
         this.rightarm.setRotationPoint(-6.0F, -6.0F, 0.0F);
