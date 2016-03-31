@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.client.rendering.model;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -32,7 +34,7 @@ public class ModelBaykok extends ModelBase
     {
         this.textureWidth = 256;
         this.textureHeight = 256;
-        this.rightleg = new ModelRenderer(this, 99, 125);
+        this.rightleg = new ModelRenderer(this, 99, 110);
         this.rightleg.setRotationPoint(-1.0F, 9.0F, 1.0F);
         this.rightleg.addBox(-2.5F, 0.0F, -1.5F, 3, 8, 3, 0.0F);
         this.setRotateAngle(rightleg, -0.27925267815589905F, -0.0F, 0.06981316953897475F);
@@ -61,7 +63,6 @@ public class ModelBaykok extends ModelBase
         this.rightfoot.setRotationPoint(-1.0F, 9.0F, 1.0F);
         this.rightfoot.addBox(-3.0F, 7.0F, -3.5F, 3, 8, 3, 0.0F);
         this.leftfoot = new ModelRenderer(this, 99, 125);
-        this.leftfoot.mirror = true;
         this.leftfoot.setRotationPoint(1.0F, 9.0F, 1.0F);
         this.leftfoot.addBox(0.0F, 7.0F, -3.5F, 3, 8, 3, 0.0F);
         this.pelvis = new ModelRenderer(this, 47, 82);
@@ -74,15 +75,14 @@ public class ModelBaykok extends ModelBase
         this.setRotateAngle(torso1, 0.08726646259971647F, -0.0F, 0.0F);
         this.shoulder2 = new ModelRenderer(this, 18, 43);
         this.shoulder2.setRotationPoint(-5.0F, -6.0F, 0.0F);
-        this.shoulder2.addBox(-3.0F, -2.0F, -1.6F, 4, 2, 4, 0.0F);
+        this.shoulder2.addBox(-3.0F, -2.0F, -1.6F, 3, 2, 4, 0.0F);
         this.setRotateAngle(shoulder2, 0.08726646259971647F, -0.0F, 0.0F);
         this.shoulder1 = new ModelRenderer(this, 18, 43);
         this.shoulder1.mirror = true;
-        this.shoulder1.setRotationPoint(7.0F, -6.0F, 0.0F);
-        this.shoulder1.addBox(-3.0F, -2.0F, -1.6F, 4, 2, 4, 0.0F);
+        this.shoulder1.setRotationPoint(8.0F, -6.0F, 0.0F);
+        this.shoulder1.addBox(-3.0F, -2.0F, -1.6F, 3, 2, 4, 0.0F);
         this.setRotateAngle(shoulder1, 0.08726646259971647F, -0.0F, 0.0F);
         this.leftleg = new ModelRenderer(this, 99, 110);
-        this.leftleg.mirror = true;
         this.leftleg.setRotationPoint(1.0F, 9.0F, 1.0F);
         this.leftleg.addBox(-0.5F, 0.0F, -1.5F, 3, 8, 3, 0.0F);
         this.setRotateAngle(leftleg, -0.27925267815589905F, -0.0F, -0.06981316953897475F);
@@ -104,6 +104,9 @@ public class ModelBaykok extends ModelBase
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
+        GL11.glPushAttrib(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_ENABLE_BIT);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_CULL_FACE);
         this.rightleg.render(f5);
         this.clavicle.render(f5);
         this.righthand.render(f5);
@@ -120,6 +123,7 @@ public class ModelBaykok extends ModelBase
         this.neck.render(f5);
         this.head.render(f5);
         this.lefthand.render(f5);
+        GL11.glPopAttrib();
     }
 
     /**
