@@ -13,22 +13,31 @@ import net.minecraft.util.MathHelper;
  */
 public class ModelBaykok extends ModelBase
 {
-    public ModelRenderer leftfoot;
-    public ModelRenderer leftleg;
-    public ModelRenderer rightleg;
-    public ModelRenderer rightfoot;
-    public ModelRenderer pelvis;
-    public ModelRenderer torso1;
-    public ModelRenderer neck;
-    public ModelRenderer righthand;
-    public ModelRenderer torso2;
-    public ModelRenderer clavicle;
-    public ModelRenderer shoulder2;
-    public ModelRenderer rightarm;
-    public ModelRenderer leftarm;
-    public ModelRenderer shoulder1;
-    public ModelRenderer lefthand;
-    public ModelRenderer head;
+    private ModelRenderer leftfoot;
+    private ModelRenderer leftleg;
+    private ModelRenderer rightleg;
+    private ModelRenderer rightfoot;
+    private ModelRenderer pelvis;
+    private ModelRenderer torso1;
+    private ModelRenderer neck;
+    private ModelRenderer righthand;
+    private ModelRenderer torso2;
+    private ModelRenderer clavicle;
+    private ModelRenderer shoulder2;
+    private ModelRenderer rightarm;
+    private ModelRenderer leftarm;
+    private ModelRenderer shoulder1;
+    private ModelRenderer lefthand;
+    private ModelRenderer head;
+    private ModelRenderer leftfootbone;
+    private ModelRenderer rightfootbone;
+    private ModelRenderer leftlegbone;
+    private ModelRenderer rightlegbone;
+    private ModelRenderer claviclebone;
+    private ModelRenderer leftarmbone;
+    private ModelRenderer rightarmbone;
+    private ModelRenderer lefthandbone;
+    private ModelRenderer righthandbone;
 
     public ModelBaykok()
     {
@@ -99,30 +108,78 @@ public class ModelBaykok extends ModelBase
         this.lefthand.setRotationPoint(7.0F, -6.0F, 0.0F);
         this.lefthand.addBox(-2.0F, 6.0F, 0.9F, 3, 8, 4, 0.0F);
         this.setRotateAngle(lefthand, -0.28623399732707F, -0.0F, 0.0F);
+        this.leftfootbone = new ModelRenderer(this, 120, 125);
+        this.leftfootbone.setRotationPoint(1.0F, 9.0F, 1.0F);
+        this.leftfootbone.addBox(0.5F, 7.0F, -3.0F, 2, 8, 2, 0.0F);
+        this.rightfootbone = new ModelRenderer(this, 120, 125);
+        this.rightfootbone.setRotationPoint(-1.0F, 9.0F, 1.0F);
+        this.rightfootbone.addBox(-2.5F, 7.0F, -3.0F, 2, 8, 2, 0.0F);
+        this.leftlegbone = new ModelRenderer(this, 120, 110);
+        this.leftlegbone.setRotationPoint(1.0F, 9.0F, 1.0F);
+        this.leftlegbone.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F);
+        this.setRotateAngle(leftlegbone, -0.2792526803190927F, 0.0F, -0.06981317007977318F);
+        this.rightlegbone = new ModelRenderer(this, 120, 110);
+        this.rightlegbone.setRotationPoint(-1.0F, 9.0F, 1.0F);
+        this.rightlegbone.addBox(-2.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F);
+        this.setRotateAngle(rightlegbone, -0.2792526803190927F, 0.0F, 0.06981317007977318F);
+        this.claviclebone = new ModelRenderer(this, 145, 47);
+        this.claviclebone.setRotationPoint(0.0F, 1.0F, 0.0F);
+        this.claviclebone.addBox(-7.5F, -8.5F, 0.0F, 15, 1, 2, 0.0F);
+        this.setRotateAngle(claviclebone, 0.08726646259971647F, -0.0F, 0.0F);
+        this.leftarmbone = new ModelRenderer(this, 120, 53);
+        this.leftarmbone.mirror = true;
+        this.leftarmbone.setRotationPoint(7.0F, -6.0F, 0.0F);
+        this.leftarmbone.addBox(-1.5F, -0.5F, -0.6F, 2, 8, 2, 0.0F);
+        this.setRotateAngle(leftarmbone, 0.08726646259971647F, -0.0F, 0.0F);
+        this.rightarmbone = new ModelRenderer(this, 120, 53);
+        this.rightarmbone.setRotationPoint(-6.0F, -6.0F, 0.0F);
+        this.rightarmbone.addBox(-1.5F, -0.5F, -0.6F, 2, 8, 2, 0.0F);
+        this.setRotateAngle(rightarmbone, 0.08726646259971647F, -0.0F, 0.0F);
+        this.lefthandbone = new ModelRenderer(this, 120, 69);
+        this.lefthandbone.mirror = true;
+        this.lefthandbone.setRotationPoint(7.0F, -6.0F, 0.0F);
+        this.lefthandbone.addBox(-1.5F, 6.5F, 1.9F, 2, 7, 2, 0.0F);
+        this.setRotateAngle(lefthandbone, -0.28623399732707F, -0.0F, 0.0F);
+        this.righthandbone = new ModelRenderer(this, 120, 69);
+        this.righthandbone.setRotationPoint(-6.0F, -6.0F, 0.0F);
+        this.righthandbone.addBox(-1.5F, 6.5F, 1.9F, 2, 7, 2, 0.0F);
+        this.setRotateAngle(righthandbone, -0.28623399732707F, -0.0F, 0.0F);
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         GL11.glPushAttrib(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_ENABLE_BIT);
-        GL11.glEnable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_CULL_FACE);
-        this.rightleg.render(f5);
-        this.clavicle.render(f5);
-        this.righthand.render(f5);
-        this.torso2.render(f5);
-        this.rightarm.render(f5);
-        this.leftarm.render(f5);
-        this.rightfoot.render(f5);
+        //The bones have to be rendered first due to the translucenct skin
+        this.leftfootbone.render(f5);
+        this.rightfootbone.render(f5);
+        this.leftlegbone.render(f5);
+        this.rightlegbone.render(f5);
+        this.claviclebone.render(f5);
+        this.leftarmbone.render(f5);
+        this.rightarmbone.render(f5);
+        this.lefthandbone.render(f5);
+        this.righthandbone.render(f5);
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         this.leftfoot.render(f5);
+        this.rightfoot.render(f5);
+        this.leftleg.render(f5);
+        this.rightleg.render(f5);
         this.pelvis.render(f5);
         this.torso1.render(f5);
-        this.shoulder2.render(f5);
+        this.torso2.render(f5);
+        this.clavicle.render(f5);
         this.shoulder1.render(f5);
-        this.leftleg.render(f5);
-        this.neck.render(f5);
-        this.head.render(f5);
+        this.shoulder2.render(f5);
         this.lefthand.render(f5);
+        this.righthand.render(f5);
+        this.leftarm.render(f5);
+        this.rightarm.render(f5);
+        this.head.render(f5);
+        this.neck.render(f5);
         GL11.glPopAttrib();
     }
 
@@ -146,29 +203,32 @@ public class ModelBaykok extends ModelBase
 
         float leftarmX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
         this.shoulder1.rotateAngleX = leftarmX + 0.08726646259971647F;
-        this.leftarm.rotateAngleX = leftarmX + 0.08726646259971647F;
-        this.lefthand.rotateAngleX = leftarmX - 0.28623399732707F;
+        this.leftarm.rotateAngleX = this.leftarmbone.rotateAngleX = leftarmX + 0.08726646259971647F;
+        this.lefthand.rotateAngleX = this.lefthandbone.rotateAngleX = leftarmX - 0.28623399732707F;
 
-        this.shoulder1.rotateAngleZ = this.leftarm.rotateAngleZ = this.lefthand.rotateAngleZ = 0.0F;
+        this.shoulder1.rotateAngleZ = this.leftarm.rotateAngleZ = this.leftarmbone.rotateAngleZ
+                = this.lefthand.rotateAngleZ = this.lefthandbone.rotateAngleZ = 0.0F;
 
         float rightarmX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 2.0F * f1 * 0.5F;
         this.shoulder2.rotateAngleX = rightarmX + 0.08726646259971647F;
-        this.rightarm.rotateAngleX = rightarmX + 0.08726646259971647F;
-        this.righthand.rotateAngleX = rightarmX - 0.28623399732707F;
+        this.rightarm.rotateAngleX = this.rightarmbone.rotateAngleX = rightarmX + 0.08726646259971647F;
+        this.righthand.rotateAngleX = this.righthandbone.rotateAngleX = rightarmX - 0.28623399732707F;
 
-        this.shoulder2.rotateAngleZ = this.rightarm.rotateAngleZ = this.righthand.rotateAngleZ  = 0.0F;
+        this.shoulder2.rotateAngleZ = this.rightarm.rotateAngleZ = this.rightarmbone.rotateAngleZ
+                = this.righthand.rotateAngleZ = this.righthandbone.rotateAngleZ = 0.0F;
 
         float leftlegX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-        this.leftleg.rotateAngleX = leftlegX - 0.27925267815589905F;
-        this.leftfoot.rotateAngleX = leftlegX;
+        this.leftleg.rotateAngleX = this.leftlegbone.rotateAngleX = leftlegX - 0.27925267815589905F;
+        this.leftfoot.rotateAngleX = this.leftfootbone.rotateAngleX = leftlegX;
 
-        this.leftleg.rotateAngleY = this.leftfoot.rotateAngleY
-                = 0.0F;
+        this.leftleg.rotateAngleY = this.leftlegbone.rotateAngleY
+                = this.leftfoot.rotateAngleY = this.leftfootbone.rotateAngleY = 0.0F;
 
         float rightlegX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-        this.rightleg.rotateAngleX = rightlegX - 0.27925267815589905F;
-        this.rightfoot.rotateAngleX = rightlegX;
+        this.rightleg.rotateAngleX = this.rightlegbone.rotateAngleX = rightlegX - 0.27925267815589905F;
+        this.rightfoot.rotateAngleX = this.rightfootbone.rotateAngleX = rightlegX;
 
-        this.rightleg.rotateAngleY = this.rightfoot.rotateAngleY = 0.0F;
+        this.rightleg.rotateAngleY = this.rightlegbone.rotateAngleY
+                = this.rightfoot.rotateAngleY = this.rightfootbone.rotateAngleY = 0.0F;
     }
 }
