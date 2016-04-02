@@ -2,8 +2,9 @@ package totemic_commons.pokefenn.client.rendering.model;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
@@ -11,7 +12,7 @@ import net.minecraft.util.MathHelper;
  * ModelBaykok - TechneToTabulaImporter
  * Created using Tabula 5.1.0
  */
-public class ModelBaykok extends ModelBase
+public class ModelBaykok extends ModelBiped //This must be ModelBiped, else LayerHeldItem does not work
 {
     private ModelRenderer leftfoot;
     private ModelRenderer leftleg;
@@ -45,6 +46,8 @@ public class ModelBaykok extends ModelBase
 
     public ModelBaykok()
     {
+        this.aimedBow = true;
+
         this.textureWidth = 256;
         this.textureHeight = 256;
         this.rightleg = new ModelRenderer(this, 99, 110);
@@ -234,7 +237,7 @@ public class ModelBaykok extends ModelBase
         this.shoulder1.rotateAngleZ = this.leftarm.rotateAngleZ = this.leftarmbone.rotateAngleZ
                 = this.lefthand.rotateAngleZ = this.lefthandbone.rotateAngleZ = 0.0F;
 
-        float rightarmX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 2.0F * f1 * 0.5F;
+        float rightarmX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 2.0F * f1 * 0.5F - (float)Math.PI * 0.2F;
         this.shoulder2.rotateAngleX = rightarmX + 0.08726646259971647F;
         this.rightarm.rotateAngleX = this.rightarmbone.rotateAngleX = rightarmX + 0.08726646259971647F;
         this.righthand.rotateAngleX = this.righthandbone.rotateAngleX = rightarmX - 0.28623399732707F;
@@ -255,5 +258,12 @@ public class ModelBaykok extends ModelBase
 
         this.rightleg.rotateAngleY = this.rightlegbone.rotateAngleY
                 = this.rightfoot.rotateAngleY = this.rightfootbone.rotateAngleY = 0.0F;
+    }
+
+    @Override
+    public void postRenderArm(float scale)
+    {
+        this.righthand.postRender(scale);
+        GlStateManager.translate(-0.075F, 0.25F, 0.09F);
     }
 }

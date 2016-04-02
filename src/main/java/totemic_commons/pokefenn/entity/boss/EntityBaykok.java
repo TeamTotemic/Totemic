@@ -113,4 +113,10 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     {
         return "mob.skeleton.death";
     }
+
+    @Override
+    protected float getSoundPitch()
+    {
+        return super.getSoundPitch() - 0.15F;
+    }
 }
