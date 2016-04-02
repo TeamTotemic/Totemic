@@ -38,6 +38,10 @@ public class ModelBaykok extends ModelBase
     private ModelRenderer rightarmbone;
     private ModelRenderer lefthandbone;
     private ModelRenderer righthandbone;
+    private ModelRenderer skull;
+    private ModelRenderer spine;
+    private ModelRenderer pelvisbone;
+    private ModelRenderer ribs;
 
     public ModelBaykok()
     {
@@ -116,11 +120,11 @@ public class ModelBaykok extends ModelBase
         this.rightfootbone.addBox(-2.5F, 7.0F, -3.0F, 2, 8, 2, 0.0F);
         this.leftlegbone = new ModelRenderer(this, 120, 110);
         this.leftlegbone.setRotationPoint(1.0F, 9.0F, 1.0F);
-        this.leftlegbone.addBox(0.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F);
+        this.leftlegbone.addBox(0.0F, -1.0F, -1.0F, 2, 9, 2, 0.0F);
         this.setRotateAngle(leftlegbone, -0.2792526803190927F, 0.0F, -0.06981317007977318F);
         this.rightlegbone = new ModelRenderer(this, 120, 110);
         this.rightlegbone.setRotationPoint(-1.0F, 9.0F, 1.0F);
-        this.rightlegbone.addBox(-2.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F);
+        this.rightlegbone.addBox(-2.0F, -1.0F, -1.0F, 2, 9, 2, 0.0F);
         this.setRotateAngle(rightlegbone, -0.2792526803190927F, 0.0F, 0.06981317007977318F);
         this.claviclebone = new ModelRenderer(this, 145, 47);
         this.claviclebone.setRotationPoint(0.0F, 1.0F, 0.0F);
@@ -144,14 +148,32 @@ public class ModelBaykok extends ModelBase
         this.righthandbone.setRotationPoint(-6.0F, -6.0F, 0.0F);
         this.righthandbone.addBox(-1.5F, 6.5F, 1.9F, 2, 7, 2, 0.0F);
         this.setRotateAngle(righthandbone, -0.28623399732707F, -0.0F, 0.0F);
+        this.skull = new ModelRenderer(this, 120, 20);
+        this.skull.setRotationPoint(0.0F, -9.0F, -0.5F);
+        this.skull.addBox(-2.5F, -5.5F, -1.0F, 5, 5, 5, 0.0F);
+        this.setRotateAngle(skull, 0.08726646259971647F, -0.0F, 0.0F);
+        this.spine = new ModelRenderer(this, 95, 37);
+        this.spine.setRotationPoint(0.0F, 1.0F, -0.5F);
+        this.spine.addBox(-1.0F, -10.0F, 1.0F, 2, 16, 2, 0.0F);
+        this.setRotateAngle(spine, 0.08726646259971647F, -0.0F, 0.0F);
+        this.pelvisbone = new ModelRenderer(this, 120, 82);
+        this.pelvisbone.setRotationPoint(0.0F, 5.0F, 0.0F);
+        this.pelvisbone.addBox(-3.0F, 1.3F, 0.0F, 6, 2, 3, 0.0F);
+        this.setRotateAngle(pelvisbone, -0.13962634015954636F, -0.0F, 0.0F);
+        this.ribs = new ModelRenderer(this, 145, 56);
+        this.ribs.setRotationPoint(0.0F, 1.0F, 0.0F);
+        this.ribs.addBox(-3.5F, -7.0F, -0.6F, 7, 11, 3, 0.0F);
+        this.setRotateAngle(ribs, 0.08726646259971647F, -0.0F, 0.0F);
+
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         GL11.glPushAttrib(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_ENABLE_BIT);
-        GL11.glEnable(GL11.GL_CULL_FACE);
         //The bones have to be rendered first due to the translucenct skin
+        this.ribs.render(f5);
+        GL11.glEnable(GL11.GL_CULL_FACE);
         this.leftfootbone.render(f5);
         this.rightfootbone.render(f5);
         this.leftlegbone.render(f5);
@@ -161,6 +183,9 @@ public class ModelBaykok extends ModelBase
         this.rightarmbone.render(f5);
         this.lefthandbone.render(f5);
         this.righthandbone.render(f5);
+        this.skull.render(f5);
+        this.spine.render(f5);
+        this.pelvisbone.render(f5);
 
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -198,8 +223,8 @@ public class ModelBaykok extends ModelBase
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-        this.head.rotateAngleX = f4 / (180F / (float)Math.PI) + 0.08726646259971647F;
-        this.head.rotateAngleY = f3 / (180F / (float)Math.PI);
+        this.head.rotateAngleX = this.skull.rotateAngleX = f4 / (180F / (float)Math.PI) + 0.08726646259971647F;
+        this.head.rotateAngleY = this.skull.rotateAngleY = f3 / (180F / (float)Math.PI);
 
         float leftarmX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
         this.shoulder1.rotateAngleX = leftarmX + 0.08726646259971647F;
