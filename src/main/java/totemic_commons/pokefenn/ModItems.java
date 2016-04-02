@@ -81,6 +81,7 @@ public final class ModItems
         setDefaultModel(totempedia);
         setDefaultModel(flute);
         setModel(flute, 1, flute.getRegistryName());
+        setDefaultModel(baykokBow);
 
         for(ItemTotemicItems.Type t: ItemTotemicItems.Type.values())
             setModel(subItems, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());

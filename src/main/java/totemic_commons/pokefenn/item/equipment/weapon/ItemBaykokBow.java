@@ -22,6 +22,7 @@ public class ItemBaykokBow extends ItemBow
     {
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BAYKOK_BOW_NAME);
         setCreativeTab(Totemic.tabsTotem);
+        setMaxDamage(576);
     }
 
     @Override
@@ -97,5 +98,11 @@ public class ItemBaykokBow extends ItemBow
     public int getItemEnchantability()
     {
         return 5;
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack stack)
+    {
+        return true;
     }
 }
