@@ -61,6 +61,7 @@ public final class LexiconData
 
     public static LexiconEntry totemicStaff;
     public static LexiconEntry barkStripper;
+    public static LexiconEntry baykokBow;
     //public static LexiconEntry blowDart;
 
     public static LexiconEntry tipi;
@@ -146,6 +147,9 @@ public final class LexiconData
 
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
         barkStripper.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.barkStripper));
+
+        baykokBow = new BLexiconEntry(Totempedia.BAYKOK_BOW, categoryTools);
+        baykokBow.setLexiconPages(new PageText("0"));
 
         //Misc
         tipi = new BLexiconEntry(Totempedia.TIPI, categoryMisc);

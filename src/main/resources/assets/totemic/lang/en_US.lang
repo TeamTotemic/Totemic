@@ -228,6 +228,9 @@ totemic.page.barkStripper2=
 #totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
 #totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
 
+totemic.entry.baykokBow=Baykok's Bow
+totemic.page.baykokBow0=&4Baykok's Bow&0 is a powerful bow that can only be obtained by slaying the spirit &4Baykok&0. Baykok can be summoned with the &4Chimes of Death&0 Ceremony.<br>Arrows fired from this bow are invisible to anyone but you, slow their targets and deal much more damage. The bow is also more easily enchantable and more durable than a mundane bow.
+
 totemic.entry.tipi=Tipi
 totemic.page.tipi0=The &1Tipi&0 is a type of tent, shaped like a cone. It consists of a wooden frame with a tarp out of either Buffalo hide or textile. It can be placed on a flat surface of dirt or grass, and you can sleep inside it.
 totemic.page.tipi1=

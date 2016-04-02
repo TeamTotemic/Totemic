@@ -42,6 +42,7 @@ public class Totempedia
 
     public static final String TOTEMIC_STAFF = "totemicStaff";
     public static final String TOOL_BARK_STRIPPER = "barkStripper";
+    public static final String BAYKOK_BOW = "baykokBow";
     public static final String BLOW_DART = "blowDart";
 
     public static final String TIPI = "tipi";
