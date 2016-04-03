@@ -75,18 +75,18 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     protected void dropFewItems(boolean byPlayer, int looting)
     {
         dropItem(ModItems.baykokBow, 1);
+        dropItem(Items.bone, 2 + rand.nextInt(7 + looting));
+        dropItem(Items.rotten_flesh, rand.nextInt(3 + looting));
+        dropItem(Items.arrow, 3 + rand.nextInt(8 + looting));
 
-        int n = 2 + rand.nextInt(7 + looting);
-        for(int i = 0; i < n; i++)
-            dropItem(Items.bone, 1);
-
-        n = rand.nextInt(3 + looting);
-        for(int i = 0; i < n; i++)
-            dropItem(Items.rotten_flesh, 1);
-
-        n = 3 + rand.nextInt(8 + looting);
-        for(int i = 0; i < n; i++)
-            dropItem(Items.arrow, 1);
+        if(byPlayer)
+        {
+            dropItem(Items.emerald, rand.nextInt(3 + looting));
+            if(rand.nextInt(100) < 40 + 7*looting)
+                entityDropItem(new ItemStack(Items.golden_apple, 1, 1), 0);
+            if(rand.nextInt(100) < 25 + 4*looting)
+                entityDropItem(new ItemStack(Items.skull, 1, 1), 0);
+        }
     }
 
     @Override
