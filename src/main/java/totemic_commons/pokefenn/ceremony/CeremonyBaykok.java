@@ -6,7 +6,6 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.entity.boss.EntityBaykok;
-import totemic_commons.pokefenn.util.EntityUtil;
 
 public class CeremonyBaykok extends Ceremony
 {
@@ -23,12 +22,15 @@ public class CeremonyBaykok extends Ceremony
 
         world.playBroadcastSound(1013, pos, 0); //Wither spawn sound
         BlockPos spos = pos.offset(EnumFacing.getHorizontal(world.rand.nextInt(4)));
-        EntityUtil.spawnEntity(world, spos.getX() + 0.5, spos.getY(), spos.getZ() + 0.5, new EntityBaykok(world));
+        EntityBaykok baykok = new EntityBaykok(world);
+        baykok.setPosition(spos.getX() + 0.5, spos.getY(), spos.getZ() + 0.5);
+        baykok.onInitialSpawn(world.getDifficultyForLocation(spos), null);
+        world.spawnEntityInWorld(baykok);
     }
 
     @Override
     public int getEffectTime()
     {
-        return 3 * 20;
+        return 4 * 20;
     }
 }
