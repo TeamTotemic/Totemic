@@ -85,7 +85,7 @@ public class HandlerInitiation
                 drum, drum));
         buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
                 drum, windChime));
-        baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic:baykokSummon", 260,  40 * 20,
+        baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic:baykokSummon", 255,  40 * 20,
                 windChime, flute)); //Subject to change?
     }
 

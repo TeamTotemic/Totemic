@@ -2,7 +2,6 @@ package totemic_commons.pokefenn.client.rendering.entity;
 
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.projectile.EntityArrow;
