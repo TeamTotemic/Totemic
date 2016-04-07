@@ -3,8 +3,8 @@ package totemic_commons.pokefenn.util;
 import java.util.Comparator;
 
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;

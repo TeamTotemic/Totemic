@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.compat.waila;
 
-import mcp.mobius.waila.api.IWailaRegistrar;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 
 /**

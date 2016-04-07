@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.block;
 
 import net.minecraft.block.BlockLog;
-import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;

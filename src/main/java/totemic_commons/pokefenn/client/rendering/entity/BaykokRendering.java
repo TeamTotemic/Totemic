@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.client.rendering.entity;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
-import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.util.ResourceLocation;
 import totemic_commons.pokefenn.client.rendering.model.ModelBaykok;
 import totemic_commons.pokefenn.entity.boss.EntityBaykok;

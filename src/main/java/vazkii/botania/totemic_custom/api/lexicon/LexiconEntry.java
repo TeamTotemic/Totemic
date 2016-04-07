@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.util.StatCollector;
-
 public class LexiconEntry implements Comparable<LexiconEntry>
 {
 

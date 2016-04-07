@@ -22,7 +22,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBookmark;

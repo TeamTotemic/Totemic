@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.api.totem;
 
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public abstract class TotemEffect

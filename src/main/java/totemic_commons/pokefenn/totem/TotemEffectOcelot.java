@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
 import java.util.Random;
 
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import totemic_commons.pokefenn.api.totem.TotemBase;

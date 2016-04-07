@@ -14,9 +14,6 @@ package totemic_commons.pokefenn.client.gui.button;
 import java.util.Arrays;
 import java.util.List;
 
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
-
 public class GuiButtonBackWithShift extends GuiButtonBack
 {
 

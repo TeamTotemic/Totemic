@@ -1,7 +1,5 @@
 package vazkii.botania.totemic_custom.api.lexicon;
 
-import net.minecraft.util.EnumChatFormatting;
-
 public class KnowledgeType
 {
 

@@ -22,15 +22,15 @@ configurations {
     compile.extendsFrom shade
 }
 
-version = "1.8.9-0.7"
+version = "1.9-0.7"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.8.9-11.15.1.1723"
+    version = "1.9-12.16.0.1854-1.9"
     runDir = "run"
 
-    mappings = "stable_20"
+    mappings = "snapshot_20160312"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     replaceIn "Totemic.java"
@@ -41,19 +41,19 @@ sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
 repositories {
-    maven {
+    /*maven {
         name "Mobiusstrip"
         url "http://mobiusstrip.eu/maven"
-    }
-    maven {
+    }*/
+    /*maven {
         name "tterrag Repo"
         url "http://maven.tterrag.com/"
-    }
+    }*/
 }
 
 dependencies {
-    provided "mcp.mobius.waila:Waila:1.6.0-B3_1.8.8:dev"
-    shade "chylex.javacheck:JavaChecker:v2.0-b3"
+    //provided "mcp.mobius.waila:Waila:1.6.0-B3_1.8.8:dev"
+    //shade "chylex.javacheck:JavaChecker:v2.0-b3"
 }
 
 processResources {
@@ -76,7 +76,7 @@ processResources {
 }
 
 // Shade Java 8 checker
-reobf {
+/*reobf {
     jar {
         extraLines "PK: chylex/javacheck totemic_commons/shade/javacheck"
     }
@@ -92,7 +92,7 @@ jar {
     manifest {
         attributes 'TweakClass': 'totemic_commons.shade.javacheck.Java8Checker'
     }
-}
+}*/
 
 task deobfJar(type: Jar) {
     from(sourceSets.main.output) {
@@ -122,8 +122,8 @@ curseforge {
     project {
         id = '237541'
         changelog  = ''
-        releaseType = 'beta'
-        addGameVersion '1.8.9'
+        releaseType = 'alpha'
+        addGameVersion '1.9'
         addGameVersion 'Java 8'
 
         addArtifact deobfJar

@@ -18,8 +18,6 @@ import java.util.List;
 import org.lwjgl.input.Mouse;
 
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBack;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonInvisible;

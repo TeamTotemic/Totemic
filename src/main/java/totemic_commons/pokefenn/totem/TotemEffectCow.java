@@ -2,7 +2,7 @@ package totemic_commons.pokefenn.totem;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemBase;
