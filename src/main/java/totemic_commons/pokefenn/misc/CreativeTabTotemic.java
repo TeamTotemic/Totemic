@@ -28,9 +28,9 @@ public class CreativeTabTotemic extends CreativeTabs
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void displayAllReleventItems(List<ItemStack> list)
+    public void displayAllRelevantItems(List<ItemStack> list)
     {
-        super.displayAllReleventItems(list);
+        super.displayAllRelevantItems(list);
 
         list.add(getEgg("totemic." + Strings.BUFFALO_NAME));
         list.add(getEgg("totemic." + Strings.BAYKOK_NAME));

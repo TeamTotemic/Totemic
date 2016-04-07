@@ -3,15 +3,21 @@ package totemic_commons.pokefenn.block.totem;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -37,8 +43,8 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
         super(Material.wood);
         setUnlocalizedName(Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
-        setBlockBounds(0.1875F, 0.0F, 0.1875F, 0.8125F, 1.0F, 0.8125F);
-        setStepSound(soundTypeWood);
+        setStepSound(SoundType.WOOD);
+        fullBlock = false;
     }
 
     @Override
@@ -56,29 +62,17 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public boolean onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
+    public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
     {
         if(!world.isRemote)
         {
             TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(pos);
             if(tileTotemSocket.getTotemEffect() != null)
             {
-                player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", tileTotemSocket.getTotemEffect().getLocalizedName()));
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", tileTotemSocket.getTotemEffect().getLocalizedName()));
             }
         }
-        return true;
-    }
-
-    @Override
-    public boolean isOpaqueCube()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube()
-    {
-        return false;
+        return EnumActionResult.SUCCESS;
     }
 
     @Override
@@ -88,9 +82,9 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, WOOD);
+        return new BlockStateContainer(this, WOOD);
     }
 
     @Override
@@ -109,5 +103,11 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     public TileEntity createNewTileEntity(World var1, int var2)
     {
         return new TileTotemPole();
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return new AxisAlignedBB(0.1875F, 0.0F, 0.1875F, 0.8125F, 1.0F, 0.8125F);
     }
 }

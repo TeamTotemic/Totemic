@@ -1,22 +1,13 @@
 package totemic_commons.pokefenn.compat.waila;
 
-import java.util.List;
-
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
-
 /**
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class WailaTotemBase implements IWailaDataProvider
+public class WailaTotemBase //implements IWailaDataProvider
 {
-    @Override
+    //TODO
+    /*@Override
     public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config)
     {
         return null;
@@ -61,5 +52,5 @@ public class WailaTotemBase implements IWailaDataProvider
     public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, BlockPos pos) {
         te.writeToNBT(tag);
         return tag;
-    }
+    }*/
 }

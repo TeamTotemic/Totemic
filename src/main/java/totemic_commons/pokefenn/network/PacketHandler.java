@@ -54,7 +54,7 @@ public class PacketHandler
 
     public static void sendAround(IMessage packet, Entity ent)
     {
-        sendAround(packet, ent.worldObj.provider.getDimensionId(), ent.posX, ent.posY, ent.posZ);
+        sendAround(packet, ent.worldObj.provider.getDimension(), ent.posX, ent.posY, ent.posZ);
     }
 
     public static void sendAround(IMessage packet, int dim, BlockPos pos)
@@ -69,7 +69,7 @@ public class PacketHandler
 
     public static void sendAround(IMessage packet, TileEntity tile)
     {
-        sendAround(packet, tile.getWorld().provider.getDimensionId(), tile.getPos());
+        sendAround(packet, tile.getWorld().provider.getDimension(), tile.getPos());
     }
 
 }

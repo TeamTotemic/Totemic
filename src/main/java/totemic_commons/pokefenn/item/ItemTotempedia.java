@@ -2,6 +2,9 @@ package totemic_commons.pokefenn.item;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
@@ -23,11 +26,11 @@ public class ItemTotempedia extends ItemTotemic implements ILexicon
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
     {
         player.openGui(Totemic.instance, 0, world, 0, 0, 0);
 
-        return itemStack;
+        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 
 }

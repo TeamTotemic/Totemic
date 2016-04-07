@@ -3,11 +3,12 @@ package totemic_commons.pokefenn.item.equipment.music;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -31,7 +32,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 {
     public ItemJingleDress()
     {
-        super(EquipmentMaterials.jingleDress, 0, 2);
+        super(EquipmentMaterials.jingleDress, 0, EntityEquipmentSlot.LEGS);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.JINGLE_DRESS_NAME);
         setCreativeTab(Totemic.tabsTotem);
     }
@@ -75,7 +76,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
             if(world.getTotalWorldTime() % 20L == 0 && tag != null)
             {
                 int time = tag.getInteger(Strings.INSTR_TIME_KEY);
-                if(time >= 3 || (player.isPotionActive(Potion.moveSpeed) && time >= 2))
+                if(time >= 3 || (player.isPotionActive(MobEffects.moveSpeed) && time >= 2))
                 {
                     playMusic(world, player, itemStack, false/*player.isSneaking()*/);
                     tag.setInteger(Strings.INSTR_TIME_KEY, 0);
@@ -105,7 +106,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
     {
-        return EquipmentMaterials.totemArmour.getDamageReductionAmount(slot);
+        return EquipmentMaterials.jingleDress.getDamageReductionAmount(EntityEquipmentSlot.values()[slot]);
     }
 
     public int getBonusMusic()

@@ -5,10 +5,7 @@ import com.google.common.base.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -20,7 +17,7 @@ import net.minecraft.world.World;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class EntityEfreet extends EntityMob implements IBossDisplayData, IRangedAttackMob
+public class EntityEfreet extends EntityMob implements IRangedAttackMob
 {
     private static final Predicate<Entity> attackEntitySelector = e -> e instanceof EntityPlayer;
 
@@ -32,7 +29,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
         this.experienceValue = 75;
 
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIArrowAttack(this, 1.0D, 40, 20.0F));
+        this.tasks.addTask(2, new EntityAIAttackRanged(this, 1.0D, 40, 20.0F));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 0, false, false, attackEntitySelector));
         this.targetTasks.addTask(3, new EntityAIWander(this, 1));

@@ -31,7 +31,7 @@ public class TotemEffectApiImpl implements TotemEffectAPI
     @Override
     public void addPotionEffect(EntityLivingBase entity, Potion potion, int baseTime, int baseStrength, TotemBase totem, int repetition)
     {
-        entity.addPotionEffect(new PotionEffect(potion.id,
+        entity.addPotionEffect(new PotionEffect(potion,
                 getDefaultPotionTime(baseTime, potion.isBadEffect(), entity.getRNG(), totem, repetition),
                 getDefaultPotionStrength(baseStrength, potion.isBadEffect(), entity.getRNG(), totem, repetition),
                 true, false));

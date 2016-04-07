@@ -6,6 +6,7 @@ import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
 /**
@@ -46,7 +47,7 @@ public class ModelBaykok extends ModelBiped //This must be ModelBiped, else Laye
 
     public ModelBaykok()
     {
-        this.aimedBow = true;
+        this.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
 
         this.textureWidth = 256;
         this.textureHeight = 256;
@@ -261,9 +262,14 @@ public class ModelBaykok extends ModelBiped //This must be ModelBiped, else Laye
     }
 
     @Override
-    public void postRenderArm(float scale)
+    public void postRenderArm(float scale, EnumHandSide side)
     {
-        this.righthand.postRender(scale);
-        GlStateManager.translate(-0.075F, 0.25F, 0.09F);
+        if(side == EnumHandSide.RIGHT)
+        {
+            this.righthand.postRender(scale);
+            GlStateManager.translate(-0.075F, 0.25F, 0.09F);
+        }
+        else
+            super.postRenderArm(scale, side);
     }
 }

@@ -11,14 +11,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Biomes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
@@ -176,9 +179,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     private void calculateTotemWoodBonus()
     {
         IBlockState state = worldObj.getBlockState(pos);
-        BiomeGenBase biomeGenBase = worldObj.getBiomeGenForCoords(pos);
-        if(biomeGenBase == null) //assume some default if that happens
-            biomeGenBase = BiomeGenBase.plains;
+        BiomeGenBase biome = worldObj.getBiomeGenForCoords(pos);
+        if(biome == null) //assume some default if that happens
+            biome = Biomes.plains;
 
         totemWoodBonus = 0;
 
@@ -192,13 +195,13 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         case SPRUCE:
             //TODO better numbers, just temp for now.
             //spruce effect
-            if(biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.COLD)
+            if(biome.getTempCategory() == BiomeGenBase.TempCategory.COLD)
             {
-                if(biomeGenBase.getEnableSnow())
+                if(biome.getEnableSnow())
                 {
                     totemWoodBonus += 3;
                 }
-                if(biomeGenBase.temperature < 0.4F)
+                if(biome.getTemperature() < 0.4F)
                 {
                     totemWoodBonus += 2;
                 }
@@ -207,7 +210,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
         case BIRCH:
             //birch effect
-            if(BiomeDictionary.isBiomeOfType(biomeGenBase, Type.FOREST))
+            if(BiomeDictionary.isBiomeOfType(biome, Type.FOREST))
             {
                 totemWoodBonus += 2;
             }
@@ -215,9 +218,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
         case JUNGLE:
             //jungle effect
-            if(biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.WARM && !biomeGenBase.getEnableSnow())
+            if(biome.getTempCategory() == BiomeGenBase.TempCategory.WARM && !biome.getEnableSnow())
             {
-                if(biomeGenBase.temperature > 1.0F)
+                if(biome.getTemperature() > 1.0F)
                 {
                     totemWoodBonus += 4;
                 }
@@ -226,11 +229,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
         case ACACIA:
             //acacia effect
-            if(biomeGenBase.getTempCategory() == BiomeGenBase.TempCategory.WARM)
+            if(biome.getTempCategory() == BiomeGenBase.TempCategory.WARM)
             {
                 totemWoodBonus += 3;
             }
-            if(BiomeDictionary.isBiomeOfType(biomeGenBase, Type.SPARSE))
+            if(BiomeDictionary.isBiomeOfType(biome, Type.SPARSE))
             {
                 totemWoodBonus += 2;
             }
@@ -238,7 +241,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
         case DARK_OAK:
             //dark oak effect
-            if(BiomeDictionary.isBiomeOfType(biomeGenBase, Type.SPOOKY))
+            if(BiomeDictionary.isBiomeOfType(biome, Type.SPOOKY))
             {
                 totemWoodBonus += 4;
             }
@@ -247,7 +250,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         case CEDAR:
             //cedar effect
             totemWoodBonus += 5;
-            if(BiomeDictionary.isBiomeOfType(biomeGenBase, Type.MAGICAL))
+            if(BiomeDictionary.isBiomeOfType(biome, Type.MAGICAL))
             {
                 totemWoodBonus += 2;
             }
@@ -393,22 +396,22 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         if(i < 10)
         {
-            return StatCollector.translateToLocal("totemic.melodyName.incrediblyLow");
+            return I18n.translateToLocal("totemic.melodyName.incrediblyLow");
         } else if(i >= 10 && i < 32)
         {
-            return StatCollector.translateToLocal("totemic.melodyName.weak");
+            return I18n.translateToLocal("totemic.melodyName.weak");
         } else if(i >= 32 && i < 64)
         {
-            return StatCollector.translateToLocal("totemic.melodyName.low");
+            return I18n.translateToLocal("totemic.melodyName.low");
         } else if(i >= 64 && i < 96)
         {
-            return StatCollector.translateToLocal("totemic.melodyName.sufficient");
+            return I18n.translateToLocal("totemic.melodyName.sufficient");
         } else if(i >= 96 && i < 115)
         {
-            return StatCollector.translateToLocal("totemic.melodyName.high");
+            return I18n.translateToLocal("totemic.melodyName.high");
         } else
         {
-            return StatCollector.translateToLocal("totemic.melodyName.maximum");
+            return I18n.translateToLocal("totemic.melodyName.maximum");
         }
     }
 
@@ -536,7 +539,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     private void danceLikeAMonkey(Ceremony trying)
     {
         //TODO
-        if(worldObj.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 8) != null)
+        /*if(worldObj.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 8) != null)
         {
             EntityPlayer player = worldObj.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 8);
 
@@ -545,7 +548,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
                 {
                     dancingEfficiency++;
                 }
-        }
+        }*/
     }
 
     protected void calculateEffects()
@@ -579,15 +582,15 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     }
 
     @Override
-    public Packet getDescriptionPacket()
+    public Packet<?> getDescriptionPacket()
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         this.writeToNBT(nbttagcompound);
-        return new S35PacketUpdateTileEntity(pos, 0, nbttagcompound);
+        return new SPacketUpdateTileEntity(pos, 0, nbttagcompound);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         readFromNBT(pkt.getNbtCompound());
     }

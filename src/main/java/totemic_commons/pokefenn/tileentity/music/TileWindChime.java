@@ -2,9 +2,11 @@ package totemic_commons.pokefenn.tileentity.music;
 
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
@@ -96,7 +98,8 @@ public class TileWindChime extends TileTotemic implements ITickable
             if(isPlaying)
                 if(worldObj.getTotalWorldTime() % 50L == 0 && rand.nextInt(2) == 0)
                 {
-                    int bonus = worldObj.getBlockState(pos.up()).getBlock().isLeaves(worldObj, pos.up())
+                    IBlockState upState = worldObj.getBlockState(pos.up());
+                    int bonus = upState.getBlock().isLeaves(upState, worldObj, pos.up())
                             ? worldObj.rand.nextInt(3) : 0;
                     TotemUtil.playMusic(worldObj, pos, HandlerInitiation.windChime, 0, bonus);
                 }
@@ -117,15 +120,15 @@ public class TileWindChime extends TileTotemic implements ITickable
     }
 
     @Override
-    public Packet getDescriptionPacket()
+    public Packet<?> getDescriptionPacket()
     {
         NBTTagCompound tag = new NBTTagCompound();
         this.writeToNBT(tag);
-        return new S35PacketUpdateTileEntity(pos, 0, tag);
+        return new SPacketUpdateTileEntity(pos, 0, tag);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         readFromNBT(pkt.getNbtCompound());
     }

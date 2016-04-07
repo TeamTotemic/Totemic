@@ -3,16 +3,23 @@ package totemic_commons.pokefenn.block.totem;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -41,8 +48,8 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
         super(Material.wood);
         setUnlocalizedName(Strings.TOTEM_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
-        setBlockBounds(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
-        setStepSound(soundTypeWood);
+        setStepSound(SoundType.WOOD);
+        fullBlock = false;
     }
 
     @Override
@@ -72,7 +79,7 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
         {
             TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(pos);
             if(tileTotemBase != null)
-                if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemicStaff && tileTotemBase.isCeremony)
+                if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ModItems.totemicStaff && tileTotemBase.isCeremony)
                 {
                     tileTotemBase.resetAfterCeremony(true);
                     ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
@@ -87,23 +94,24 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public boolean onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack stack)
+    public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
     {
         if(world.isRemote)
-            return true;
+            return EnumActionResult.SUCCESS;
         TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(pos);
         if(tileTotemBase != null)
         {
             if(tileTotemBase.isDoingStartup())
             {
                 Ceremony trying = tileTotemBase.startupCeremony;
-                player.addChatComponentMessage(new ChatComponentText("The Totem Pole is doing a Ceremony startup"));
-                player.addChatComponentMessage(new ChatComponentText(trying.getLocalizedName()));
+                //TODO: Localize
+                player.addChatComponentMessage(new TextComponentString("The Totem Pole is doing a Ceremony startup"));
+                player.addChatComponentMessage(new TextComponentTranslation(trying.getUnlocalizedName()));
             }
             else if(tileTotemBase.isDoingCeremonyEffect())
             {
-                player.addChatComponentMessage(new ChatComponentText("The Totem Pole is doing a Ceremony effect"));
-                player.addChatComponentMessage(new ChatComponentText(tileTotemBase.currentCeremony.getLocalizedName()));
+                player.addChatComponentMessage(new TextComponentString("The Totem Pole is doing a Ceremony effect"));
+                player.addChatComponentMessage(new TextComponentTranslation(tileTotemBase.currentCeremony.getUnlocalizedName()));
             }
 
             /*if(!tileTotemBase.isDoingCeremonyEffect() && !player.isSneaking())
@@ -115,13 +123,13 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
                 }
             }*/
         }
-        return true;
+        return EnumActionResult.SUCCESS;
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, WOOD);
+        return new BlockStateContainer(this, WOOD);
     }
 
     @Override
@@ -143,14 +151,8 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube()
-    {
-        return false;
+        return new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
     }
 }

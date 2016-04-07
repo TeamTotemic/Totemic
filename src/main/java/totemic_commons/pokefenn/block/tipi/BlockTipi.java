@@ -3,20 +3,23 @@ package totemic_commons.pokefenn.block.tipi;
 import java.util.Random;
 
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Biomes;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
@@ -36,9 +39,8 @@ public class BlockTipi extends BlockTileTotemic
     {
         super(Material.cloth);
         setUnlocalizedName(Strings.TIPI_NAME);
-        setBlockBounds(0, 0, 0, 0, 0, 0);
         setHardness(0.2F);
-        setStepSound(soundTypeCloth);
+        setStepSound(SoundType.CLOTH);
         setCreativeTab(Totemic.tabsTotem);
     }
 
@@ -54,7 +56,7 @@ public class BlockTipi extends BlockTileTotemic
         if(!world.isRemote)
         {
             pos = pos.up();
-            if(world.getBiomeGenForCoords(pos) != BiomeGenBase.hell)
+            if(world.getBiomeGenForCoords(pos) != Biomes.hell)
             {
                 if(world.provider.canRespawnHere())
                 {
@@ -76,7 +78,7 @@ public class BlockTipi extends BlockTileTotemic
 
                     if(entityplayer1 != null)
                     {
-                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied"));
+                        player.addChatComponentMessage(new TextComponentTranslation("tile.bed.occupied"));
                         return true;
                     }
 
@@ -89,20 +91,20 @@ public class BlockTipi extends BlockTileTotemic
                     {
                         if(enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
                         {
-                            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep"));
+                            player.addChatComponentMessage(new TextComponentTranslation("tile.bed.noSleep"));
                         } else if(enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
                         {
-                            player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe"));
+                            player.addChatComponentMessage(new TextComponentTranslation("tile.bed.notSafe"));
                         }
 
                         return true;
                     }
                 } else
                 {
-                    player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("totemicmisc.tipi.nether")));
+                    player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.tipi.nether"));
                 }
             } else
-                player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("totemicmisc.tipi.cantSleep")));
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.tipi.cantSleep"));
 
         }
         return true;
@@ -114,27 +116,21 @@ public class BlockTipi extends BlockTileTotemic
         BlockDummyTipi.breakTipi(world, pos);
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public Item getItem(World world, BlockPos pos)
-    {
-        return Item.getItemFromBlock(this);
-    }
-
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
         return Item.getItemFromBlock(this);
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state)
     {
         return null;
     }
 
     @Override
-    public boolean isBed(IBlockAccess world, BlockPos pos, Entity player)
+    public boolean isBed(IBlockState state, IBlockAccess world, BlockPos pos, Entity player)
     {
         return true;
     }
@@ -151,9 +147,9 @@ public class BlockTipi extends BlockTileTotemic
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, FACING);
+        return new BlockStateContainer(this, FACING);
     }
 
     @Override
@@ -169,14 +165,8 @@ public class BlockTipi extends BlockTileTotemic
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube()
-    {
-        return false;
+        return new AxisAlignedBB(0, 0, 0, 0, 0, 0);
     }
 }

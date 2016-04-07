@@ -4,6 +4,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -12,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class EntityInvisArrow extends EntityArrow
 {
     //Only set when the shooter is a player
-    private static final int SHOOTER_DATAWATCHER = 17;
+    private static final DataParameter<Integer> SHOOTER_DATAWATCHER = EntityDataManager.createKey(EntityInvisArrow.class, DataSerializers.VARINT    );
 
     @SideOnly(Side.CLIENT)
     private boolean shotByPlayer;
@@ -24,14 +29,15 @@ public class EntityInvisArrow extends EntityArrow
 
     public EntityInvisArrow(World world, EntityLivingBase shooter, EntityLivingBase target, float velocity, float inaccuracy)
     {
+        //TODO: Copy code from EntityArrow
         super(world);
-        this.renderDistanceWeight = 10.0D;
+        //this.renderDistanceWeight = 10.0D;
         this.shootingEntity = shooter;
 
         if(shooter instanceof EntityPlayer)
         {
-            this.canBePickedUp = 1;
-            dataWatcher.updateObject(SHOOTER_DATAWATCHER, shooter.getEntityId());
+            this.canBePickedUp = PickupStatus.ALLOWED;
+            dataWatcher.set(SHOOTER_DATAWATCHER, shooter.getEntityId());
         }
 
         this.posY = shooter.posY + shooter.getEyeHeight() - 0.1;
@@ -58,7 +64,7 @@ public class EntityInvisArrow extends EntityArrow
 
         if(shooter instanceof EntityPlayer)
         {
-            dataWatcher.updateObject(SHOOTER_DATAWATCHER, shooter.getEntityId());
+            dataWatcher.set(SHOOTER_DATAWATCHER, shooter.getEntityId());
         }
     }
 
@@ -66,18 +72,17 @@ public class EntityInvisArrow extends EntityArrow
     protected void entityInit()
     {
         super.entityInit();
-        dataWatcher.addObject(SHOOTER_DATAWATCHER, 0);
+        dataWatcher.register(SHOOTER_DATAWATCHER, 0);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void onDataWatcherUpdate(int dataID)
+    public void notifyDataManagerChange(DataParameter<?> key)
     {
-        super.onDataWatcherUpdate(dataID);
-        if(dataID == SHOOTER_DATAWATCHER)
+        super.notifyDataManagerChange(key);
+        if(key == SHOOTER_DATAWATCHER)
         {
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-            if(dataWatcher.getWatchableObjectInt(SHOOTER_DATAWATCHER) == player.getEntityId())
+            if(dataWatcher.get(SHOOTER_DATAWATCHER) == player.getEntityId())
             {
                 shotByPlayer = true;
             }
@@ -88,5 +93,11 @@ public class EntityInvisArrow extends EntityArrow
     public boolean isShotByPlayer()
     {
         return shotByPlayer;
+    }
+
+    @Override
+    protected ItemStack getArrowStack()
+    {
+        return new ItemStack(Items.arrow);
     }
 }

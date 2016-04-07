@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.network.server;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
@@ -36,9 +37,9 @@ public class PacketMouseWheel extends SynchronizedPacketBase<PacketMouseWheel>
     @Override
     protected void handleServer(EntityPlayerMP player, MessageContext ctx)
     {
-        if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.totemWhittlingKnife)
+        if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ModItems.totemWhittlingKnife)
         {
-            player.setCurrentItemOrArmor(0, ItemTotemWhittlingKnife.changeIndex(player.getHeldItem(), direction ? 1 : -1));
+            player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemTotemWhittlingKnife.changeIndex(player.getHeldItemMainhand(), direction ? 1 : -1));
         }
     }
 

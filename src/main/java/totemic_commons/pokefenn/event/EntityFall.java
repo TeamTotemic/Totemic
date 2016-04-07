@@ -13,11 +13,11 @@ public class EntityFall
 {
 
     @SubscribeEvent()
-    public void onLivingFall(LivingFallEvent entity)
+    public void onLivingFall(LivingFallEvent event)
     {
-        if(entity.entityLiving instanceof EntityPlayer && entity.entityLiving.isPotionActive(ModPotions.batPotion.id))
+        if(event.getEntityLiving() instanceof EntityPlayer && event.getEntityLiving().isPotionActive(ModPotions.batPotion))
         {
-            entity.setCanceled(true);
+            event.setCanceled(true);
         }
     }
 }

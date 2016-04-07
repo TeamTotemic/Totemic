@@ -24,6 +24,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -93,7 +94,7 @@ public class PageCraftingRecipe extends PageRecipe
             ((GuiScreen) gui).drawTexturedModalRect(iconX, iconY, 240, 0, 16, 16);
 
             if(mx >= iconX && my >= iconY && mx < iconX + 16 && my < iconY + 16)
-                RenderHelper.renderTooltip(mx, my, Arrays.asList(StatCollector.translateToLocal("totemicmisc.shapeless")));
+                RenderHelper.renderTooltip(mx, my, Arrays.asList(I18n.translateToLocal("totemicmisc.shapeless")));
 
             iconY += 20;
         }
@@ -106,7 +107,7 @@ public class PageCraftingRecipe extends PageRecipe
             ((GuiScreen) gui).drawTexturedModalRect(iconX, iconY, 240, 16, 16, 16);
 
             if(mx >= iconX && my >= iconY && mx < iconX + 16 && my < iconY + 16)
-                RenderHelper.renderTooltip(mx, my, Arrays.asList(StatCollector.translateToLocal("totemicmisc.oredict")));
+                RenderHelper.renderTooltip(mx, my, Arrays.asList(I18n.translateToLocal("totemicmisc.oredict")));
         }
         GL11.glDisable(GL11.GL_BLEND);
     }

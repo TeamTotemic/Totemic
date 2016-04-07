@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
+import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -28,8 +28,8 @@ public class CeremonyWarDance extends Ceremony
 
         for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
         {
-            entity.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 20 * (60 * 3), 1));
-            entity.addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 20 * (60 + 30), 1));
+            entity.addPotionEffect(new PotionEffect(MobEffects.damageBoost, 20 * (60 * 3), 1));
+            entity.addPotionEffect(new PotionEffect(MobEffects.moveSpeed, 20 * (60 + 30), 1));
         }
     }
 }

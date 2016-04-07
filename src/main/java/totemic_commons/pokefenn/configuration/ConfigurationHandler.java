@@ -49,7 +49,7 @@ public final class ConfigurationHandler
     @SubscribeEvent
     public void onConfigChanged(ConfigChangedEvent event)
     {
-        if(event.modID.equals(Totemic.MOD_ID))
+        if(event.getModID().equals(Totemic.MOD_ID))
             try
             {
                 loadValues();

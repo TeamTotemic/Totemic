@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.event;
 
-import net.minecraft.potion.Potion;
+import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -16,10 +16,10 @@ public class EntityHurt
     @SubscribeEvent
     public void onLivingAttack(LivingAttackEvent event)
     {
-        if(event.source.getSourceOfDamage() instanceof EntityInvisArrow)
+        if(event.getSource().getSourceOfDamage() instanceof EntityInvisArrow)
         {
-            if(!(event.entityLiving instanceof EntityBaykok))
-                event.entityLiving.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 20, 1));
+            if(!(event.getEntityLiving() instanceof EntityBaykok))
+                event.getEntityLiving().addPotionEffect(new PotionEffect(MobEffects.moveSlowdown, 20, 1));
         }
     }
 }

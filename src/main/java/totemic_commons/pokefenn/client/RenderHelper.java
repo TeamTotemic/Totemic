@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 /**
@@ -107,7 +108,7 @@ public class RenderHelper
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glShadeModel(GL11.GL_SMOOTH);
         Tessellator tes = Tessellator.getInstance();
-        WorldRenderer wr = tes.getWorldRenderer();
+        VertexBuffer wr = tes.getBuffer();
         wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
         wr.pos(x2, y1, z).color(g1, b1, a1, r1).endVertex();
         wr.pos(x1, y1, z).color(g1, b1, a1, r1).endVertex();
@@ -125,7 +126,7 @@ public class RenderHelper
         float tx = 0.00390625F;
         float ty = 0.00390625F;
         Tessellator tes = Tessellator.getInstance();
-        WorldRenderer wr = tes.getWorldRenderer();
+        VertexBuffer wr = tes.getBuffer();
         wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
         wr.pos(x + 0, y + h, z).tex((u + 0) * tx, (v + h) * ty).endVertex();
         wr.pos(x + w, y + h, z).tex((u + w) * tx, (v + h) * ty).endVertex();
@@ -137,7 +138,7 @@ public class RenderHelper
     public static void renderStar(int color, float xScale, float yScale, float zScale, long seed)
     {
         Tessellator tes = Tessellator.getInstance();
-        WorldRenderer wr = tes.getWorldRenderer();
+        VertexBuffer wr = tes.getBuffer();
 
         int ticks = (int) (Minecraft.getMinecraft().theWorld.getTotalWorldTime() % 200);
         if(ticks >= 100)
@@ -193,7 +194,7 @@ public class RenderHelper
     /**
      * Adds an untextured quad to the WorldRenderer. Needs the POSITION_COLOR vertex format.
      */
-    public static void addColoredQuad(WorldRenderer wr, double x, double y, double z, double w, double h, int color)
+    public static void addColoredQuad(VertexBuffer wr, double x, double y, double z, double w, double h, int color)
     {
         float r = (color >> 24 & 255) / 255.0F;
         float g = (color >> 16 & 255) / 255.0F;
@@ -208,7 +209,7 @@ public class RenderHelper
     /**
      * Adds a textured quad to the WorldRenderer. Needs the POSITION_TEX vertex format.
      */
-    public static void addQuad(WorldRenderer wr, double x, double y, double z, double w, double h, double u, double v,
+    public static void addQuad(VertexBuffer wr, double x, double y, double z, double w, double h, double u, double v,
             double texW, double texH)
     {
         wr.pos(x + 0, y + 0, z).tex(u + 0,    v + 0).endVertex();

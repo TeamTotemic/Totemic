@@ -1,19 +1,10 @@
 package totemic_commons.pokefenn.item.equipment.weapon;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 import totemic_commons.pokefenn.lib.Strings;
 
 public class ItemBaykokBow extends ItemBow
@@ -26,14 +17,15 @@ public class ItemBaykokBow extends ItemBow
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityPlayer playerIn, int timeLeft)
+    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase player, int timeLeft)
     {
-        boolean infinity = playerIn.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0;
+        //TODO: Copy code from ItemBow
+        /*boolean infinity = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.infinity, stack) > 0;
 
-        if(infinity || playerIn.inventory.hasItem(Items.arrow))
+        if(infinity || player.inventory.hasItem(Items.arrow))
         {
             int chargeTicks = this.getMaxItemUseDuration(stack) - timeLeft;
-            ArrowLooseEvent event = new ArrowLooseEvent(playerIn, stack, chargeTicks);
+            ArrowLooseEvent event = new ArrowLooseEvent(player, stack, chargeTicks);
             if(MinecraftForge.EVENT_BUS.post(event))
                 return;
             chargeTicks = event.charge;
@@ -46,7 +38,7 @@ public class ItemBaykokBow extends ItemBow
             if(charge > 1.0F)
                 charge = 1.0F;
 
-            EntityArrow arrow = new EntityInvisArrow(worldIn, playerIn, charge * 2.0F);
+            EntityArrow arrow = new EntityInvisArrow(world, player, charge * 2.0F);
             arrow.setDamage(2.5);
 
             if(charge == 1.0F)
@@ -73,8 +65,8 @@ public class ItemBaykokBow extends ItemBow
                 arrow.setFire(100);
             }
 
-            stack.damageItem(1, playerIn);
-            worldIn.playSoundAtEntity(playerIn, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
+            stack.damageItem(1, player);
+            world.playSoundAtEntity(player, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
 
             if(infinity)
             {
@@ -82,16 +74,16 @@ public class ItemBaykokBow extends ItemBow
             }
             else
             {
-                playerIn.inventory.consumeInventoryItem(Items.arrow);
+                player.inventory.consumeInventoryItem(Items.arrow);
             }
 
-            playerIn.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);
+            player.triggerAchievement(StatList.objectUseStats[Item.getIdFromItem(this)]);
 
-            if(!worldIn.isRemote)
+            if(!world.isRemote)
             {
-                worldIn.spawnEntityInWorld(arrow);
+                world.spawnEntityInWorld(arrow);
             }
-        }
+        }*/
     }
 
     @Override

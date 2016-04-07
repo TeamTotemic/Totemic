@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.item.equipment.armour;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -16,7 +17,7 @@ public class ItemWarBonnet extends ItemArmor implements ISpecialArmor
 {
     public ItemWarBonnet()
     {
-        super(EquipmentMaterials.warBonnet, 0, 0);
+        super(EquipmentMaterials.warBonnet, 0, EntityEquipmentSlot.HEAD);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class ItemWarBonnet extends ItemArmor implements ISpecialArmor
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
     {
-        return EquipmentMaterials.warBonnet.getDamageReductionAmount(0);
+        return EquipmentMaterials.warBonnet.getDamageReductionAmount(EntityEquipmentSlot.HEAD);
     }
 
     @Override

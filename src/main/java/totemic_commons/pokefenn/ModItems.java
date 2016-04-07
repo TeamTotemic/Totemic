@@ -80,7 +80,7 @@ public final class ModItems
         setDefaultModel(ceremonialRattle);
         setDefaultModel(totempedia);
         setDefaultModel(flute);
-        setModel(flute, 1, flute.getRegistryName());
+        setModel(flute, 1, flute.getRegistryName().toString());
         setDefaultModel(baykokBow);
 
         for(ItemTotemicItems.Type t: ItemTotemicItems.Type.values())
@@ -99,7 +99,7 @@ public final class ModItems
     @SideOnly(Side.CLIENT)
     public static void setDefaultModel(Item item)
     {
-        setModel(item, 0, item.getRegistryName());
+        setModel(item, 0, item.getRegistryName().toString());
     }
 
 }

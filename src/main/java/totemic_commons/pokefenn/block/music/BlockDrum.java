@@ -1,12 +1,17 @@
 package totemic_commons.pokefenn.block.music;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
@@ -28,8 +33,8 @@ public class BlockDrum extends BlockTileTotemic
     {
         super(Material.wood);
         setUnlocalizedName(Strings.DRUM_NAME);
-        setBlockBounds(3F/16, 0F/16, 3F/16, 13F/16, 13F/16, 13F/16);
-        setStepSound(soundTypeWood);
+        setStepSound(SoundType.WOOD);
+        fullBlock = false;
     }
 
     @Override
@@ -71,7 +76,8 @@ public class BlockDrum extends BlockTileTotemic
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+            ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileDrum tileDrum = (TileDrum) world.getTileEntity(pos);
 
@@ -87,14 +93,8 @@ public class BlockDrum extends BlockTileTotemic
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube()
-    {
-        return false;
+        return new AxisAlignedBB(3F/16, 0F/16, 3F/16, 13F/16, 13F/16, 13F/16);
     }
 }

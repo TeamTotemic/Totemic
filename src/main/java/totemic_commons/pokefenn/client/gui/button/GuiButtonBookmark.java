@@ -5,6 +5,8 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
 
@@ -27,12 +29,12 @@ public class GuiButtonBookmark extends GuiButton
 
         List<String> tooltip = new ArrayList<>();
         if(displayString.equals("+"))
-            tooltip.add(StatCollector.translateToLocal("totemicmisc.clickToAdd"));
+            tooltip.add(I18n.translateToLocal("totemicmisc.clickToAdd"));
         else
         {
-            tooltip.add(String.format(StatCollector.translateToLocal("totemicmisc.bookmark"), id - GuiLexicon.BOOKMARK_START + 1));
-            tooltip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("totemicmisc.clickToSee"));
-            tooltip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("totemicmisc.shiftToRemove"));
+            tooltip.add(String.format(I18n.translateToLocal("totemicmisc.bookmark"), id - GuiLexicon.BOOKMARK_START + 1));
+            tooltip.add(TextFormatting.GRAY + I18n.translateToLocal("totemicmisc.clickToSee"));
+            tooltip.add(TextFormatting.GRAY + I18n.translateToLocal("totemicmisc.shiftToRemove"));
         }
 
         int tooltipY = (tooltip.size() + 1) * 5;

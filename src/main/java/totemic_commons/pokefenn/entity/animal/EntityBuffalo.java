@@ -9,7 +9,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
@@ -26,13 +28,12 @@ public class EntityBuffalo extends EntityCow
     public static final int MAX_AGE = 10 * 60 * 20;
     public static final float MIN_HP = 15, MAX_HP = 35;
 
-    private static final int AGE_DATAWATCHER = 16;
+    private static final DataParameter<Integer> AGE_DATAWATCHER = EntityDataManager.createKey(EntityBuffalo.class, DataSerializers.VARINT);
 
     public EntityBuffalo(World world)
     {
         super(world);
         setSize(1.35F, 1.95F);
-        ((PathNavigateGround)this.getNavigator()).setAvoidsWater(true);
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         tasks.addTask(2, new EntityAIMate(this, 1.0D));
@@ -48,15 +49,15 @@ public class EntityBuffalo extends EntityCow
     protected void entityInit()
     {
         super.entityInit();
-        dataWatcher.addObject(AGE_DATAWATCHER, 0);
+        dataWatcher.register(AGE_DATAWATCHER, 0);
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(MAX_HP);
-        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.15);
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MAX_HP);
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15);
     }
 
     @Override
@@ -74,7 +75,7 @@ public class EntityBuffalo extends EntityCow
 
                 float oldMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, (age - interval) / (float)MAX_AGE);
                 float newMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, age / (float)MAX_AGE);
-                getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newMaxHP);
+                getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(newMaxHP);
                 setHealth(getHealth() * newMaxHP / oldMaxHP);
             }
         }
@@ -82,7 +83,7 @@ public class EntityBuffalo extends EntityCow
 
     public int getBuffaloAge()
     {
-        return Math.min(dataWatcher.getWatchableObjectInt(AGE_DATAWATCHER), MAX_AGE);
+        return Math.min(dataWatcher.get(AGE_DATAWATCHER), MAX_AGE);
     }
 
     public float getRelativeAge()
@@ -92,19 +93,7 @@ public class EntityBuffalo extends EntityCow
 
     public void setBuffaloAge(int age)
     {
-        dataWatcher.updateObject(AGE_DATAWATCHER, age);
-    }
-
-    @Override
-    protected String getHurtSound()
-    {
-        return "mob.cow.hurt";
-    }
-
-    @Override
-    protected String getDeathSound()
-    {
-        return "mob.cow.hurt";
+        dataWatcher.set(AGE_DATAWATCHER, age);
     }
 
     @Override

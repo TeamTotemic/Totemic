@@ -14,9 +14,9 @@ public class EntitySpawn
     @SubscribeEvent
     public void onEntityJoin(EntityJoinWorldEvent event)
     {
-        if(event.entity instanceof EntitySkeleton)
+        if(event.getEntity() instanceof EntitySkeleton)
         {
-            EntitySkeleton entity = (EntitySkeleton)event.entity;
+            EntitySkeleton entity = (EntitySkeleton)event.getEntity();
             entity.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(entity, EntityBuffalo.class, true));
         }
     }

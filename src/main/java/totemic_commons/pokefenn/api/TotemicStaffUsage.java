@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.api;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -20,8 +21,7 @@ public interface TotemicStaffUsage
      * @param world the world
      * @param player the player who clicked
      * @param itemStack the Totemic Staff that was clicked
-     * @return true if something happened
      */
-    public boolean onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack);
+    public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack);
 
 }

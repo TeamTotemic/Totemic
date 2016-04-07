@@ -3,7 +3,7 @@ package totemic_commons.pokefenn.totem;
 import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
+import net.minecraft.init.MobEffects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.Totemic;
@@ -42,7 +42,7 @@ public class TotemEffectBlaze extends TotemEffect
                         entity.heal(2);
                 }
 
-                Totemic.api.totemEffect().addPotionEffect(entity, Potion.fireResistance, 50, 0, totem, repetition);
+                Totemic.api.totemEffect().addPotionEffect(entity, MobEffects.fireResistance, 50, 0, totem, repetition);
             }
         }
 

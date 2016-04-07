@@ -19,9 +19,9 @@ public class EntityUpdate
     public void onEntityUpdate(LivingEvent.LivingUpdateEvent event)
     {
 
-        if(event.entityLiving instanceof EntityPlayer)
+        if(event.getEntityLiving() instanceof EntityPlayer)
         {
-            EntityPlayer player = (EntityPlayer) event.entityLiving;
+            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
             if(player.isPotionActive(ModPotions.batPotion) && player.isSneaking() && !player.onGround)
             {

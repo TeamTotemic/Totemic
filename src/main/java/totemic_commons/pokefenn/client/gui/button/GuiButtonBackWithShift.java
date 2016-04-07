@@ -14,6 +14,9 @@ package totemic_commons.pokefenn.client.gui.button;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
+
 public class GuiButtonBackWithShift extends GuiButtonBack
 {
 
@@ -25,7 +28,7 @@ public class GuiButtonBackWithShift extends GuiButtonBack
     @Override
     public List<String> getTooltip()
     {
-        return Arrays.asList(StatCollector.translateToLocal("totemicmisc.back"), EnumChatFormatting.GRAY + StatCollector.translateToLocal("totemicmisc.clickToIndex"));
+        return Arrays.asList(I18n.translateToLocal("totemicmisc.back"), TextFormatting.GRAY + I18n.translateToLocal("totemicmisc.clickToIndex"));
     }
 
 }

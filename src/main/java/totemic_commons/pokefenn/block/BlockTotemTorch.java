@@ -3,10 +3,13 @@ package totemic_commons.pokefenn.block;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,17 +25,17 @@ public class BlockTotemTorch extends Block
     public BlockTotemTorch()
     {
         super(Material.wood);
-        setBlockBounds(5F/16, 0.0F, 5F/16, 11F/16, 1.3F, 11F/16);
         setUnlocalizedName(Strings.TOTEM_TORCH_NAME);
         setLightLevel(1F);
-        setStepSound(soundTypeWood);
+        setStepSound(SoundType.WOOD);
         setHardness(0.05F);
         setCreativeTab(Totemic.tabsTotem);
+        fullBlock = false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         for(int i = 0; i < 2; i++)
             world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, 0, 0, 0);
@@ -41,14 +44,8 @@ public class BlockTotemTorch extends Block
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube()
-    {
-        return false;
+        return new AxisAlignedBB(5F/16, 0.0F, 5F/16, 11F/16, 1.3F, 11F/16);
     }
 }

@@ -4,11 +4,16 @@ import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -42,7 +47,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         if(i < totemList.size())
             return totemList.get(i).getLocalizedName();
         else if(i == totemList.size())
-            return StatCollector.translateToLocal("tile.totemBase.name");
+            return I18n.translateToLocal("tile.totemBase.name");
         else
             return "";
     }
@@ -60,43 +65,45 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4)
     {
-        list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip1"));
-        list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip2"));
-        list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip3") + " " + getCurrentlyCarving(getCarvingIndex(stack)));
+        list.add(I18n.translateToLocal("item.totemic:totemWhittlingKnife.tooltip1"));
+        list.add(I18n.translateToLocal("item.totemic:totemWhittlingKnife.tooltip2"));
+        list.add(I18n.translateToLocal("item.totemic:totemWhittlingKnife.tooltip3") + " " + getCurrentlyCarving(getCarvingIndex(stack)));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public String getItemStackDisplayName(ItemStack stack) {
-        return StatCollector.translateToLocalFormatted(getUnlocalizedName() + ".display", getCurrentlyCarving(getCarvingIndex(stack)));
+        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".display", getCurrentlyCarving(getCarvingIndex(stack)));
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
     {
         if(player.isSneaking())
-            return changeIndex(itemStack, 1);
+            return new ActionResult<>(EnumActionResult.SUCCESS, changeIndex(itemStack, 1));
         else
-            return itemStack;
+            return new ActionResult<>(EnumActionResult.FAIL, itemStack);
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
+            EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if(player.isSneaking())
         {
-            player.setCurrentItemOrArmor(0, onItemRightClick(stack, world, player));
-            return true;
+            EntityEquipmentSlot slot = hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.MAINHAND : EntityEquipmentSlot.OFFHAND;
+            player.setItemStackToSlot(slot, onItemRightClick(stack, world, player, hand).getResult());
+            return EnumActionResult.SUCCESS;
         }
         else
         {
             if(world.isRemote)
-                return true;
+                return EnumActionResult.SUCCESS;
 
             IBlockState state = world.getBlockState(pos);
             WoodVariant wood = WoodVariant.fromLog(state);
             if(wood == null)
-                return false;
+                return EnumActionResult.FAIL;
 
             int index = getCarvingIndex(stack);
             if(index == totemList.size())
@@ -113,10 +120,10 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                 world.markBlockForUpdate(pos);
             }
             else
-                return false;
+                return EnumActionResult.FAIL;
             stack.damageItem(1, player);
 
-            return true;
+            return EnumActionResult.SUCCESS;
         }
     }
 

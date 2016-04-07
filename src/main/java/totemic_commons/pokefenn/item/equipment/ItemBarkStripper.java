@@ -6,7 +6,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
@@ -29,10 +31,11 @@ public class ItemBarkStripper extends ItemTotemic
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
+            EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if(player.isSneaking())
-            return false;
+            return EnumActionResult.FAIL;
 
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
@@ -58,9 +61,9 @@ public class ItemBarkStripper extends ItemTotemic
 
                 tag.setInteger(Strings.INSTR_TIME_KEY, time);
             }
-            return true;
+            return EnumActionResult.SUCCESS;
         }
-        return false;
+        return EnumActionResult.FAIL;
     }
 
 }

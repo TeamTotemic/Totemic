@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.api.ceremony;
 import org.apache.commons.lang3.Validate;
 
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
@@ -103,7 +104,7 @@ public abstract class Ceremony
      */
     public String getLocalizedName()
     {
-        return StatCollector.translateToLocal(getUnlocalizedName());
+        return I18n.translateToLocal(getUnlocalizedName());
     }
 
     /**

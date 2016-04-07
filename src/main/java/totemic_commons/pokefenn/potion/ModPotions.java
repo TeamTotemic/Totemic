@@ -1,6 +1,8 @@
 package totemic_commons.pokefenn.potion;
 
 import net.minecraft.potion.Potion;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,8 +18,8 @@ public class ModPotions
 
     public static void init()
     {
-        batPotion = new PotionBat();
-        horsePotion = new PotionHorse();
-        spiderPotion = new PotionSpider();
+        batPotion = GameRegistry.register(new PotionBat(), new ResourceLocation("totemic:bat"));
+        horsePotion = GameRegistry.register(new PotionHorse(), new ResourceLocation("totemic:horse"));
+        spiderPotion = GameRegistry.register(new PotionSpider(), new ResourceLocation("totemic:spider"));
     }
 }

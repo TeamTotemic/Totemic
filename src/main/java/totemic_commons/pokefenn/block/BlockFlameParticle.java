@@ -28,7 +28,7 @@ public class BlockFlameParticle extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random rand)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         int currentInput = world.getRedstonePower(pos, null);
 

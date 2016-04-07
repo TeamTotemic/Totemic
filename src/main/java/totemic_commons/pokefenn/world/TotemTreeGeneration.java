@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.world;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -28,7 +29,8 @@ public class TotemTreeGeneration extends WorldGenAbstractTree
         if(!canTreeGrow(world, pos, treeHeight))
             return false;
 
-        world.getBlockState(pos.down()).getBlock().onPlantGrow(world, pos.down(), pos);
+        IBlockState state = world.getBlockState(pos.down());
+        state.getBlock().onPlantGrow(state, world, pos.down(), pos);
 
         for(int curY = pos.getY() - 7 + treeHeight; curY <= pos.getY() + treeHeight; ++curY)
         {
@@ -49,10 +51,11 @@ public class TotemTreeGeneration extends WorldGenAbstractTree
 
                     BlockPos p = new BlockPos(curX, curY, curZ);
 
-                    Block block = world.getBlockState(p).getBlock();
+                    IBlockState s = world.getBlockState(p);
+                    Block block = s.getBlock();
 
                     if((xOffset != radius || zOffset != radius || rand.nextInt(2) != 0 && var12 != 0)
-                            && (block == null || block.isLeaves(world, p) || block.isAir(world, p)))
+                            && (block == null || block.isLeaves(s, world, p) || block.isAir(s, world, p)))
                     {
                         setBlockAndNotifyAdequately(world, p, ModBlocks.totemLeaves.getDefaultState());
                     }
@@ -73,8 +76,9 @@ public class TotemTreeGeneration extends WorldGenAbstractTree
         if(pos.getY() < 1 || pos.getY() + treeHeight + 1 > world.getHeight())
             return false;
 
-        Block block = world.getBlockState(pos.down()).getBlock();
-        if(block == null || !block.canSustainPlant(world, pos.down(), EnumFacing.UP, ModBlocks.totemSapling))
+        IBlockState state = world.getBlockState(pos.down());
+        Block block = state.getBlock();
+        if(block == null || !block.canSustainPlant(state, world, pos.down(), EnumFacing.UP, ModBlocks.totemSapling))
             return false;
 
         for(int yOffset = pos.getY() + 1; yOffset <= pos.getY() + 1 + treeHeight; ++yOffset)

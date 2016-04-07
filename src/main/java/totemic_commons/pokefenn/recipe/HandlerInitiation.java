@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.recipe;
 
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
@@ -94,7 +94,7 @@ public class HandlerInitiation
         TotemicRegistry reg = Totemic.api.registry();
 
         horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", 4, 4, ModPotions.horsePotion, 80, 60, 0));
-        squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", 4, 4, Potion.waterBreathing, 80, 60, 0));
+        squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", 4, 4, MobEffects.waterBreathing, 80, 60, 0));
         blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze", 4, 4));
         ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic:ocelot", 4, 4));
         batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", 8, 8, ModPotions.batPotion, 10, 20, 0));

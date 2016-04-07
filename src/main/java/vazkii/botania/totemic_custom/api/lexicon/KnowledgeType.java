@@ -1,16 +1,18 @@
 package vazkii.botania.totemic_custom.api.lexicon;
 
+import net.minecraft.util.text.Style;
+
 public class KnowledgeType
 {
 
     public final String id;
-    public final EnumChatFormatting color;
+    public final Style style;
     public final boolean autoUnlock;
 
-    public KnowledgeType(String id, EnumChatFormatting color, boolean autoUnlock)
+    public KnowledgeType(String id, Style color, boolean autoUnlock)
     {
         this.id = id;
-        this.color = color;
+        this.style = color;
         this.autoUnlock = autoUnlock;
     }
 

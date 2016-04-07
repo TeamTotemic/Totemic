@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.util.text.translation.I18n;
+
 public class LexiconEntry implements Comparable<LexiconEntry>
 {
 
@@ -76,7 +78,7 @@ public class LexiconEntry implements Comparable<LexiconEntry>
 
     public final String getNameForSorting()
     {
-        return (priority ? 0 : 1) + StatCollector.translateToLocal(getUnlocalizedName());
+        return (priority ? 0 : 1) + I18n.translateToLocal(getUnlocalizedName());
     }
 
     @Override

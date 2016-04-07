@@ -4,7 +4,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
@@ -35,7 +39,7 @@ public class ItemRattle extends ItemMusic
         if(!world.isRemote && entity instanceof EntityPlayer && !(entity instanceof FakePlayer))
         {
             EntityPlayer player = (EntityPlayer) entity;
-            MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
+            RayTraceResult block = EntityUtil.raytraceFromEntity(world, player, true, 5);
             if(block == null)
             {
                 NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
@@ -65,10 +69,11 @@ public class ItemRattle extends ItemMusic
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
+    {
         if(!player.isSwingInProgress)
             player.swingItem();
-        return stack;
+        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 
     public void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)

@@ -6,9 +6,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
@@ -29,8 +33,8 @@ public class BlockWindChime extends BlockTileTotemic
     {
         super(Material.iron);
         setUnlocalizedName(Strings.WIND_CHIME_NAME);
-        setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
         setHardness(1.5F);
+        fullBlock = false;
     }
 
     @Override
@@ -42,8 +46,9 @@ public class BlockWindChime extends BlockTileTotemic
     @Override
     public boolean canPlaceBlockAt(World world, BlockPos pos)
     {
+        IBlockState upState = world.getBlockState(pos.up());
         return world.isAirBlock(pos.down())
-                && (world.isSideSolid(pos.up(), EnumFacing.DOWN) || world.getBlockState(pos.up()).getBlock().isLeaves(world, pos.up()));
+                && (world.isSideSolid(pos.up(), EnumFacing.DOWN) || upState.getBlock().isLeaves(upState, world, pos.up()));
     }
 
     public void breakStuffs(World world, BlockPos pos)
@@ -59,7 +64,8 @@ public class BlockWindChime extends BlockTileTotemic
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
+            ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(pos);
 
@@ -75,21 +81,15 @@ public class BlockWindChime extends BlockTileTotemic
     }
 
     @Override
-    public int getRenderType()
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return 2;
+        return new AxisAlignedBB(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public EnumBlockRenderType getRenderType(IBlockState state)
     {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube()
-    {
-        return false;
+        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override

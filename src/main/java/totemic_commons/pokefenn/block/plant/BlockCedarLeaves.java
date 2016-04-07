@@ -7,11 +7,13 @@ import java.util.Random;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -51,28 +53,29 @@ public class BlockCedarLeaves extends BlockLeaves
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess iba, BlockPos pos, EnumFacing side)
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess iba, BlockPos pos, EnumFacing side)
     {
-        return Minecraft.isFancyGraphicsEnabled() || super.shouldSideBeRendered(iba, pos, side);
+        return Minecraft.isFancyGraphicsEnabled() || super.shouldSideBeRendered(state, iba, pos, side);
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube(IBlockState state)
     {
-        return Blocks.leaves.isOpaqueCube();
+        //BlockLeaves.isOpaqueCube doesn't use the argument, so we should be safe from NPEs
+        return Blocks.leaves.isOpaqueCube(null);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumWorldBlockLayer getBlockLayer()
+    public BlockRenderLayer getBlockLayer()
     {
-        return Minecraft.isFancyGraphicsEnabled() ? EnumWorldBlockLayer.CUTOUT_MIPPED : EnumWorldBlockLayer.SOLID;
+        return Minecraft.isFancyGraphicsEnabled() ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, CHECK_DECAY, DECAYABLE, TRANSPARENT);
+        return new BlockStateContainer(this, CHECK_DECAY, DECAYABLE, TRANSPARENT);
     }
 
     @Override
@@ -98,7 +101,7 @@ public class BlockCedarLeaves extends BlockLeaves
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        return state.withProperty(TRANSPARENT, !isOpaqueCube());
+        return state.withProperty(TRANSPARENT, !isOpaqueCube(state));
     }
 
     @Override

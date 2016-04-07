@@ -16,6 +16,8 @@ import org.lwjgl.input.Mouse;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBackWithShift;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonPage;
@@ -40,9 +42,9 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
         this.entry = entry;
         this.parent = parent;
 
-        title = StatCollector.translateToLocal(entry.getUnlocalizedName());
+        title = I18n.translateToLocal(entry.getUnlocalizedName());
         if(entry instanceof IAddonEntry)
-            subtitle = StatCollector.translateToLocal(((IAddonEntry) entry).getSubtitle());
+            subtitle = I18n.translateToLocal(((IAddonEntry) entry).getSubtitle());
         else subtitle = null;
     }
 
@@ -85,7 +87,7 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
     @Override
     String getTitle()
     {
-        return String.format("%s " + EnumChatFormatting.ITALIC + "(%s/%s)", title, page + 1, entry.pages.size());
+        return String.format("%s " + TextFormatting.ITALIC + "(%s/%s)", title, page + 1, entry.pages.size());
     }
 
     @Override

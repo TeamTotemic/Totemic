@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -33,7 +34,7 @@ public class BlockCedarStripped extends BlockLog
         {
             if(random.nextInt(20) == 0) //about once every 15-20 minutes
             {
-                Material mat = world.getBlockState(pos.down()).getBlock().getMaterial();
+                Material mat = world.getBlockState(pos.down()).getBlock().getMaterial(state);
                 if(mat == Material.ground || mat == Material.grass)
                 {
                     world.setBlockState(pos, ModBlocks.cedarLog.getDefaultState()
@@ -44,9 +45,9 @@ public class BlockCedarStripped extends BlockLog
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, LOG_AXIS);
+        return new BlockStateContainer(this, LOG_AXIS);
     }
 
     @Override

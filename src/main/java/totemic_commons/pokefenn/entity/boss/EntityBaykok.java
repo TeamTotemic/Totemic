@@ -10,14 +10,17 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 
-public class EntityBaykok extends EntityMob implements IBossDisplayData, IRangedAttackMob
+public class EntityBaykok extends EntityMob implements IRangedAttackMob
 {
     public EntityBaykok(World world)
     {
@@ -27,23 +30,24 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
 
         ((PathNavigateGround)getNavigator()).setCanSwim(true);
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(2, new EntityAIArrowAttack(this, 1.0, 10, 30, 40.0F));
+        tasks.addTask(2, new EntityAIAttackRanged(this, 1.0, 10, 30, 40.0F));
         tasks.addTask(5, new EntityAIWander(this, 1.0));
         tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(7, new EntityAILookIdle(this));
         targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, false, false));
 
-        Arrays.fill(equipmentDropChances, 0.0F);
+        Arrays.fill(inventoryHandsDropChances, 0.0F);
+        Arrays.fill(inventoryArmorDropChances, 0.0F);
     }
 
     @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(200);
-        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5);
-        getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40);
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200);
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5);
+        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40);
     }
 
     @Override
@@ -60,14 +64,14 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
         EntityInvisArrow arrow = new EntityInvisArrow(worldObj, this, entity, velocity, 4.5F - worldObj.getDifficulty().getDifficultyId());
         arrow.setDamage(2.0 * distanceFactor + 1.0 + 0.25 * rand.nextGaussian() + 0.4 * worldObj.getDifficulty().getDifficultyId());
 
-        playSound("random.bow", 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
+        playSound(SoundEvents.entity_skeleton_shoot, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
         worldObj.spawnEntityInWorld(arrow);
     }
 
     @Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
-        setCurrentItemOrArmor(0, new ItemStack(ModItems.baykokBow));
+        setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.baykokBow));
     }
 
     @Override
@@ -92,21 +96,21 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     }
 
     @Override
-    protected String getLivingSound()
+    protected SoundEvent getAmbientSound()
     {
-        return "mob.skeleton.say";
+        return SoundEvents.entity_skeleton_ambient;
     }
 
     @Override
-    protected String getHurtSound()
+    protected SoundEvent getHurtSound()
     {
-        return "mob.skeleton.hurt";
+        return SoundEvents.entity_skeleton_hurt;
     }
 
     @Override
-    protected String getDeathSound()
+    protected SoundEvent getDeathSound()
     {
-        return "mob.skeleton.death";
+        return SoundEvents.entity_skeleton_death;
     }
 
     @Override

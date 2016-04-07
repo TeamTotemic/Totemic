@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.block;
 
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
@@ -29,9 +30,9 @@ public class BlockCedarLog extends BlockLog
     }
 
     @Override
-    protected BlockState createBlockState()
+    protected BlockStateContainer createBlockState()
     {
-        return new BlockState(this, LOG_AXIS);
+        return new BlockStateContainer(this, LOG_AXIS);
     }
 
     @Override

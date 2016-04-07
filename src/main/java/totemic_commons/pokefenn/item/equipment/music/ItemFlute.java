@@ -16,6 +16,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -46,17 +49,17 @@ public class ItemFlute extends ItemMusic
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
     {
         if(!world.isRemote)
         {
-            NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
+            NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
             int time = tag.getInteger(Strings.INSTR_TIME_KEY);
 
             time++;
             if(time >= 5 && !player.isSneaking())
             {
-                int bonusMusic = (itemStack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
+                int bonusMusic = (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
                 time = 0;
                 TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, bonusMusic);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
@@ -70,7 +73,7 @@ public class ItemFlute extends ItemMusic
                 PacketHandler.sendAround(new PacketSound(player, "flute"), player);
             }
 
-            if(itemStack.getItemDamage() == 1 && !player.isSneaking())
+            if(stack.getItemDamage() == 1 && !player.isSneaking())
             {
                 for(EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, player.posX, player.posY, player.posZ, 2, 2))
                 {
@@ -90,7 +93,7 @@ public class ItemFlute extends ItemMusic
 
             tag.setInteger(Strings.INSTR_TIME_KEY, time);
         }
-        return itemStack;
+        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 
     @Override

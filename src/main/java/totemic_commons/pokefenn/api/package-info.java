@@ -1,9 +1,8 @@
 /**
  * The Totemic API.
  * This should provide some functionality for extending Totemic.
- * Since this is the first port to 1.8, expect breaking changes to the API.
  */
-@API(apiVersion = "0.3.0", owner = Totemic.MOD_ID, provides = "totemic|API")
+@API(apiVersion = "0.4.0", owner = Totemic.MOD_ID, provides = "totemic|API")
 package totemic_commons.pokefenn.api;
 
 import net.minecraftforge.fml.common.API;

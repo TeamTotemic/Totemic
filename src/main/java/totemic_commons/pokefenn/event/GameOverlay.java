@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -26,7 +27,7 @@ public class GameOverlay
     @SubscribeEvent
     public void renderHUD(RenderGameOverlayEvent.Post event)
     {
-        if(event.type == ElementType.ALL)
+        if(event.getType() == ElementType.ALL)
         {
             if(activeTotem != null && (!activeTotem.isCeremony || activeTotem.isInvalid()))
                 activeTotem = null;
@@ -37,10 +38,10 @@ public class GameOverlay
                 int h = 30;
                 double texW = 128;
                 double texH = 64;
-                float hudX = (event.resolution.getScaledWidth() - w) / 2 + ConfigurationSettings.CEREMONY_HUD_X;
-                float hudY = (event.resolution.getScaledHeight() - h) / 2 + ConfigurationSettings.CEREMONY_HUD_Y;
+                float hudX = (event.getResolution().getScaledWidth() - w) / 2 + ConfigurationSettings.CEREMONY_HUD_X;
+                float hudY = (event.getResolution().getScaledHeight() - h) / 2 + ConfigurationSettings.CEREMONY_HUD_Y;
                 Tessellator tes = Tessellator.getInstance();
-                WorldRenderer wr = tes.getWorldRenderer();
+                VertexBuffer wr = tes.getBuffer();
                 Minecraft mc = Minecraft.getMinecraft();
                 FontRenderer font = mc.fontRendererObj;
 
