@@ -6,7 +6,6 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
-import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 
 /**
  * Created by Pokefenn.
@@ -16,7 +15,7 @@ public class ItemWarBonnet extends ItemArmor implements ISpecialArmor
 {
     public ItemWarBonnet()
     {
-        super(EquipmentMaterials.warBonnet, 0, 0);
+        super(/*EquipmentMaterials.warBonnet*/ArmorMaterial.LEATHER, 0, 0);
     }
 
     @Override
@@ -28,7 +27,7 @@ public class ItemWarBonnet extends ItemArmor implements ISpecialArmor
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
     {
-        return EquipmentMaterials.warBonnet.getDamageReductionAmount(0);
+        return getArmorMaterial().getDamageReductionAmount(0);
     }
 
     @Override

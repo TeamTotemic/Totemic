@@ -43,8 +43,7 @@ public final class Totemic
         logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
         logger.info("Totemic is entering preinitialization stage");
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
-        //Initialize API by reflection
-        ReflectionHelper.setPrivateValue(TotemicAPI.class, null, api, "instance");
+        ReflectionHelper.setPrivateValue(TotemicAPI.class, null, api, "instance"); //The instance field is private, need reflection
         proxy.preInit(event);
     }
 
@@ -58,6 +57,7 @@ public final class Totemic
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
+        logger.info("Totemic is entering postinitialization stage");
         proxy.postInit(event);
     }
 }

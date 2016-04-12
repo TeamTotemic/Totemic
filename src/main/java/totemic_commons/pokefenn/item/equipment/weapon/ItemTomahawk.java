@@ -6,7 +6,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -17,7 +16,7 @@ public class ItemTomahawk extends ItemSword
 {
     public ItemTomahawk()
     {
-        super(EquipmentMaterials.tomahawk);
+        super(/*EquipmentMaterials.tomahawk*/ToolMaterial.IRON);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOMAHAWK_NAME);
         setCreativeTab(Totemic.tabsTotem);
     }

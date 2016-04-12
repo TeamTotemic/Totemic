@@ -105,7 +105,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     @Override
     public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
     {
-        return EquipmentMaterials.totemArmour.getDamageReductionAmount(slot);
+        return getArmorMaterial().getDamageReductionAmount(slot);
     }
 
     public int getBonusMusic()
