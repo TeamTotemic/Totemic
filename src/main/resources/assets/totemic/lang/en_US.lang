@@ -107,6 +107,8 @@ totemicmisc.tipi.nether=You can not sleep in the nether
 totemicmisc.activeEffect=Active Totem Effect: %s
 totemicmisc.startup=Starting up
 totemicmisc.activeCeremony=Active Ceremony
+totemicmisc.isDoingStartup=The Totem Pole is doing a Ceremony startup
+totemicmisc.isDoingCeremony=The Totem Pole is doing a Ceremony effect
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.

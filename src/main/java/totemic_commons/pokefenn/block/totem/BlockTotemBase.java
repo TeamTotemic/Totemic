@@ -13,7 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -99,13 +99,13 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
             if(tileTotemBase.isDoingStartup())
             {
                 Ceremony trying = tileTotemBase.startupCeremony;
-                player.addChatComponentMessage(new ChatComponentText("The Totem Pole is doing a Ceremony startup"));
-                player.addChatComponentMessage(new ChatComponentText(trying.getLocalizedName()));
+                player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.isDoingStartup"));
+                player.addChatComponentMessage(new ChatComponentTranslation(trying.getUnlocalizedName()));
             }
             else if(tileTotemBase.isDoingCeremonyEffect())
             {
-                player.addChatComponentMessage(new ChatComponentText("The Totem Pole is doing a Ceremony effect"));
-                player.addChatComponentMessage(new ChatComponentText(tileTotemBase.currentCeremony.getLocalizedName()));
+                player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.isDoingCeremony"));
+                player.addChatComponentMessage(new ChatComponentTranslation(tileTotemBase.currentCeremony.getUnlocalizedName()));
             }
 
             /*if(!tileTotemBase.isDoingCeremonyEffect() && !player.isSneaking())

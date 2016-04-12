@@ -107,6 +107,8 @@ totemicmisc.tipi.nether=Du kannst nicht im Nether schlafen
 totemicmisc.activeEffect=Aktiver Totemeffekt: %s
 totemicmisc.startup=Anlaufen
 totemicmisc.activeCeremony=Aktive Zeremonie
+totemicmisc.isDoingStartup=Der Totempfahl beginnt eine Zeremonie
+totemicmisc.isDoingCeremony=Der Totempfahl führt eine Zeremonie aus
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=Die Totempedia, ein Leitfaden für all deine Totem-Bedürfnisse.
