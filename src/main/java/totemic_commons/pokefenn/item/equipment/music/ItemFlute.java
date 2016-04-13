@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -46,51 +47,76 @@ public class ItemFlute extends ItemMusic
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
         if(!world.isRemote)
         {
-            NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
-            int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+            NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
+            if(tag.getInteger(Strings.INSTR_COOLDOWN_KEY) == 0)
+            {
+                playMusic(stack, (WorldServer) world, player);
+                tag.setInteger(Strings.INSTR_COOLDOWN_KEY, 20);
 
-            time++;
-            if(time >= 5 && !player.isSneaking())
-            {
-                int bonusMusic = (itemStack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
-                time = 0;
-                TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, bonusMusic);
-                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                PacketHandler.sendAround(new PacketSound(player, "flute"), player);
-            }
-            if(time >= 5 && player.isSneaking())
-            {
-                time = 0;
-                TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
-                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                PacketHandler.sendAround(new PacketSound(player, "flute"), player);
+                tag.removeTag(Strings.INSTR_TIME_KEY); //Remove legacy NBT tag
             }
 
-            if(itemStack.getItemDamage() == 1 && !player.isSneaking())
-            {
-                for(EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, player.posX, player.posY, player.posZ, 2, 2))
-                {
-                    if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
-                    {
-                        if(temptedEntities.contains(entity))
-                            continue;
-
-                        double speed = (entity instanceof EntityAnimal) ? 1 : 0.5;
-                        entity.targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, speed, this, false));
-
-                        temptedEntities.add(entity);
-                    }
-
-                }
-            }
-
-            tag.setInteger(Strings.INSTR_TIME_KEY, time);
+            if(stack.getItemDamage() == 1 && !player.isSneaking())
+                temptEntities(world, player.posX, player.posY, player.posZ);
         }
-        return itemStack;
+        return stack;
+    }
+
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isSelected)
+    {
+        if(!world.isRemote && slot < InventoryPlayer.getHotbarSize())
+        {
+            NBTTagCompound tag = stack.getTagCompound();
+            if(tag == null)
+                return;
+
+            int cooldown = tag.getInteger(Strings.INSTR_COOLDOWN_KEY);
+            if(cooldown > 0)
+            {
+                cooldown--;
+                tag.setInteger(Strings.INSTR_COOLDOWN_KEY, cooldown);
+            }
+        }
+    }
+
+    private void playMusic(ItemStack stack, WorldServer world, EntityPlayer player)
+    {
+        if(!player.isSneaking())
+        {
+            int bonusMusic = (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
+            TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, bonusMusic);
+            particlesAllAround(world, player.posX, player.posY, player.posZ, false);
+            PacketHandler.sendAround(new PacketSound(player, "flute"), player);
+        }
+        else
+        {
+            TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
+            particlesAllAround(world, player.posX, player.posY, player.posZ, true);
+            PacketHandler.sendAround(new PacketSound(player, "flute"), player);
+        }
+    }
+
+    private void temptEntities(World world, double x, double y, double z)
+    {
+        for(EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, x, y, z, 2, 2))
+        {
+            if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
+            {
+                if(temptedEntities.contains(entity))
+                    continue;
+
+                double speed = (entity instanceof EntityAnimal) ? 1 : 0.5;
+                entity.targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, speed, this, false));
+
+                temptedEntities.add(entity);
+            }
+
+        }
     }
 
     @Override

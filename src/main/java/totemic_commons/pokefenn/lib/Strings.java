@@ -54,6 +54,7 @@ public final class Strings
     //ItemStack NBT keys
     public static final String KNIFE_TOTEM_KEY = "totem";
     public static final String INSTR_TIME_KEY = "time";
+    public static final String INSTR_COOLDOWN_KEY = "cooldown";
 
     //Old NBT stuff
     public static final String NBT_TE_STATE_KEY = "teState";
