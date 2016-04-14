@@ -13,22 +13,14 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
-import totemic_commons.pokefenn.util.ItemUtil;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created by Pokefenn.
@@ -42,7 +34,7 @@ public class ItemFlute extends ItemMusic
 
     public ItemFlute()
     {
-        super(Strings.FLUTE_NAME, HandlerInitiation.flute);
+        super(Strings.FLUTE_NAME);
         setMaxStackSize(1);
     }
 
@@ -51,54 +43,12 @@ public class ItemFlute extends ItemMusic
     {
         if(!world.isRemote)
         {
-            NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
-            if(tag.getInteger(Strings.INSTR_COOLDOWN_KEY) == 0)
-            {
-                playMusic(stack, (WorldServer) world, player);
-                tag.setInteger(Strings.INSTR_COOLDOWN_KEY, 20);
-
-                tag.removeTag(Strings.INSTR_TIME_KEY); //Remove legacy NBT tag
-            }
+            useInstrument(stack, player, HandlerInitiation.flute, 20, "flute");
 
             if(stack.getItemDamage() == 1 && !player.isSneaking())
                 temptEntities(world, player.posX, player.posY, player.posZ);
         }
         return stack;
-    }
-
-    @Override
-    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isSelected)
-    {
-        if(!world.isRemote && slot < InventoryPlayer.getHotbarSize())
-        {
-            NBTTagCompound tag = stack.getTagCompound();
-            if(tag == null)
-                return;
-
-            int cooldown = tag.getInteger(Strings.INSTR_COOLDOWN_KEY);
-            if(cooldown > 0)
-            {
-                cooldown--;
-                tag.setInteger(Strings.INSTR_COOLDOWN_KEY, cooldown);
-            }
-        }
-    }
-
-    private void playMusic(ItemStack stack, WorldServer world, EntityPlayer player)
-    {
-        if(!player.isSneaking())
-        {
-            int bonusMusic = (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
-            TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, bonusMusic);
-            particlesAllAround(world, player.posX, player.posY, player.posZ, false);
-            PacketHandler.sendAround(new PacketSound(player, "flute"), player);
-        }
-        else
-        {
-            TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
-            particlesAllAround(world, player.posX, player.posY, player.posZ, true);
-            PacketHandler.sendAround(new PacketSound(player, "flute"), player);
-        }
     }
 
     private void temptEntities(World world, double x, double y, double z)
@@ -117,6 +67,12 @@ public class ItemFlute extends ItemMusic
             }
 
         }
+    }
+
+    @Override
+    protected int getBonusMusic(ItemStack stack, Entity entity)
+    {
+        return (stack.getItemDamage() == 1) ? entity.worldObj.rand.nextInt(3) : 0;
     }
 
     @Override
@@ -142,21 +98,4 @@ public class ItemFlute extends ItemMusic
     {
         return stack.getItemDamage() == 1;
     }
-
-    @Override
-    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
-    {
-        return slotChanged;
-    }
-
-    private void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
-    {
-        world.spawnParticle(EnumParticleTypes.NOTE, x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
-
-        if(firework)
-        {
-            world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
-        }
-    }
-
 }
