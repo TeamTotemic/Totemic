@@ -15,7 +15,7 @@ public class ItemRattle extends ItemMusic
 {
     public ItemRattle()
     {
-        super(Strings.CEREMONY_RATTLE_NAME);
+        super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.rattle, "rattle");
         setMaxStackSize(1);
     }
 
@@ -23,7 +23,7 @@ public class ItemRattle extends ItemMusic
     public boolean onEntitySwing(EntityLivingBase entity, ItemStack stack)
     {
         if(!entity.worldObj.isRemote)
-            useInstrument(stack, entity, HandlerInitiation.rattle, 16, "rattle");
+            useInstrument(stack, entity, 16, 0, 0);
         return false;
     }
 

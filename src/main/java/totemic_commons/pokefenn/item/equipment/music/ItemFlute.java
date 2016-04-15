@@ -34,7 +34,7 @@ public class ItemFlute extends ItemMusic
 
     public ItemFlute()
     {
-        super(Strings.FLUTE_NAME);
+        super(Strings.FLUTE_NAME, HandlerInitiation.flute, "flute");
         setMaxStackSize(1);
     }
 
@@ -43,7 +43,7 @@ public class ItemFlute extends ItemMusic
     {
         if(!world.isRemote)
         {
-            useInstrument(stack, player, HandlerInitiation.flute, 20, "flute");
+            useInstrument(stack, player, 20, 0, (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0);
 
             if(stack.getItemDamage() == 1 && !player.isSneaking())
                 temptEntities(world, player.posX, player.posY, player.posZ);
@@ -67,12 +67,6 @@ public class ItemFlute extends ItemMusic
             }
 
         }
-    }
-
-    @Override
-    protected int getBonusMusic(ItemStack stack, Entity entity)
-    {
-        return (stack.getItemDamage() == 1) ? entity.worldObj.rand.nextInt(3) : 0;
     }
 
     @Override
