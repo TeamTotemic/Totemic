@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.api.ceremony;
 
 import org.apache.commons.lang3.Validate;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -37,7 +38,8 @@ public abstract class Ceremony
      * Creates a new ceremony
      * @param name a unique name for the Ceremony
      * @param musicNeeded the amount of music needed to start the ceremony
-     * @param maxStartupTime the maximum time in ticks that starting the ceremony may take. See above for suggested values.
+     * @param maxStartupTime the maximum time in ticks that starting the ceremony may take. See above for suggested values.<br>
+     * This value will be adjusted depending on difficulty, see {@link #getAdjustedMaxStartupTime}.
      * @param instruments the music instruments for selecting the ceremony. The count has to be
      * between MIN_SELECTORS and MAX_SELECTORS.
      */
@@ -116,11 +118,33 @@ public abstract class Ceremony
     }
 
     /**
-     * @return the maximum time in ticks that a player has to start up the Ceremony
+     * @return the maximum time in ticks that a player has to start up the Ceremony, without accounting for difficulty
      */
     public int getMaxStartupTime()
     {
         return maxStartupTime;
+    }
+
+    /**
+     * By default, the time is 10% longer on Peaceful and Easy, and 10% shorter on Hard difficulty.
+     *
+     * @return the maximum time in ticks that a player has to start up the Ceremony, depending on the Minecraft difficulty
+     */
+    public int getAdjustedMaxStartupTime()
+    {
+        switch(MinecraftServer.getServer().getDifficulty())
+        {
+        case PEACEFUL:
+        case EASY:
+            return (int) (1.1F * getMaxStartupTime());
+
+        case NORMAL:
+        default:
+            return getMaxStartupTime();
+
+        case HARD:
+            return (int) (0.9F * getMaxStartupTime());
+        }
     }
 
     /**

@@ -75,7 +75,7 @@ public class GameOverlay
                     RenderHelper.addQuad(wr, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
 
                     float musicW = activeTotem.totalCeremonyMelody / (float)cer.getMusicNeeded() * barW;
-                    float timeW = Math.min(activeTotem.ceremonyStartupTimer / (float)cer.getMaxStartupTime(), 1.0f) * barW;
+                    float timeW = Math.min(activeTotem.ceremonyStartupTimer / (float)cer.getAdjustedMaxStartupTime(), 1.0f) * barW;
 
                     RenderHelper.addQuad(wr, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar
                     RenderHelper.addQuad(wr, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar

@@ -523,7 +523,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     private void startupMain(Ceremony trying)
     {
-        if(ceremonyStartupTimer > trying.getMaxStartupTime())
+        if(ceremonyStartupTimer > trying.getAdjustedMaxStartupTime())
         {
             ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
