@@ -52,15 +52,15 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public static final int MAX_HEIGHT = 5;
     public static final int MAX_EFFECT_MUSIC = 128;
 
-    public boolean firstTick = true;
-    public int tier = 1;
-    public int dancingEfficiency = 0;
+    private boolean firstTick = true;
+    private int tier = 1;
+    private int dancingEfficiency = 0;
     public int musicForTotemEffect = 0;
-    public int totemPoleSize = 0;
-    public boolean musicChanged = false;
-    public final TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
-    public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.registry().getTotems().size(), 0.75f);
-    public int totemWoodBonus = 0;
+    private int totemPoleSize = 0;
+    private boolean musicChanged = false;
+    private final TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
+    private final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.registry().getTotems().size(), 0.75f);
+    private int totemWoodBonus = 0;
 
     public boolean isCeremony = false;
     public final ArrayList<MusicInstrument> musicSelector = new ArrayList<>(Ceremony.MAX_SELECTORS);
