@@ -72,7 +72,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
                         }
                         else if(s.getBlock() instanceof IGrowable && s.getBlock().getTickRandomly())
                         {
-                            if(world.rand.nextInt(3) == 0)
+                            if(world.rand.nextInt(4) < 3)
                             {
                                 if(!world.isRemote)
                                     s.getBlock().updateTick(world, p, world.getBlockState(p), world.rand);

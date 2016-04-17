@@ -31,8 +31,8 @@ public class TotemEffectCow extends TotemEffect
         {
             for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, horizontal, vertical))
             {
-                Totemic.api.totemEffect().addPotionEffect(entity, Potion.resistance, 50, 0, totem, repetition);
-                Totemic.api.totemEffect().addPotionEffect(entity, Potion.moveSlowdown, 150, 1, totem, repetition);
+                Totemic.api.totemEffect().addPotionEffect(entity, Potion.resistance, 50, 1, totem, repetition);
+                Totemic.api.totemEffect().addPotionEffect(entity, Potion.moveSlowdown, 150, 0, totem, repetition);
             }
         }
     }
