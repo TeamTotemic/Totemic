@@ -29,7 +29,7 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
 
         ((PathNavigateGround)getNavigator()).setCanSwim(true);
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(2, new EntityAIArrowAttack(this, 1.0, 10, 30, 40.0F));
+        tasks.addTask(2, new EntityAIArrowAttack(this, 1.0, 12, 30, 40.0F));
         tasks.addTask(5, new EntityAIWander(this, 1.0));
         tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(7, new EntityAILookIdle(this));
@@ -44,7 +44,7 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     {
         super.applyEntityAttributes();
         getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(200);
-        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5);
+        getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4);
         getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40);
     }
 
