@@ -33,7 +33,7 @@ public class TotemEffectBlaze extends TotemEffect
 
         if(world.getTotalWorldTime() % 60L == 0)
         {
-            for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, getHorizontalRange(), getVerticalRange()))
+            for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, horizontal, vertical))
             {
                 if(entity.isBurning())
                 {
