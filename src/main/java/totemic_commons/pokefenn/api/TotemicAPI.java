@@ -28,16 +28,16 @@ public final class TotemicAPI
         /**
          * Provides access to Totemic's registries
          */
-        public TotemicRegistry registry();
+        TotemicRegistry registry();
 
         /**
          * Provides access to functionality commonly used by music instrument blocks and items
          */
-        public MusicAPI music();
+        MusicAPI music();
 
         /**
          * Provides access to functionality commonly used for implementing Totem effects
          */
-        public TotemEffectAPI totemEffect();
+        TotemEffectAPI totemEffect();
     }
 }

@@ -665,15 +665,15 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     }
 
     @Override
-    public int addMusic(MusicInstrument instr, int amount)
+    public boolean addMusic(MusicInstrument instr, int amount)
     {
-        int added;
+        boolean added;
         if(!isCeremony)
         {
             timesPlayed.adjustOrPutValue(instr, 1, 1);
             int prevVal = musicForTotemEffect;
             musicForTotemEffect = Math.min(prevVal + amount / 2, MAX_EFFECT_MUSIC);
-            added = musicForTotemEffect - prevVal;
+            added = musicForTotemEffect > prevVal;
         }
         else if(isDoingStartup())
         {
@@ -682,12 +682,12 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             amount = getDiminishedMusic(instr, amount);
             int newVal = Math.min(prevVal + amount, instr.getMusicMaximum());
             ceremonyMusic.put(instr, newVal);
-            added = newVal - prevVal;
+            added = newVal > prevVal;
         }
         else
-            added = 0;
+            added = false;
 
-        if(added != 0)
+        if(added)
             musicChanged = true;
         return added;
     }

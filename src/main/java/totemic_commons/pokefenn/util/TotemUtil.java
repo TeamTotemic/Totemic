@@ -109,8 +109,7 @@ public class TotemUtil
         WorldServer world = (WorldServer) te.getWorld();
         BlockPos pos = te.getPos();
 
-        int added = tile.addMusic(instr, musicAmount);
-        if(added > 0)
+        if(tile.addMusic(instr, musicAmount))
             world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
         else
             world.spawnParticle(EnumParticleTypes.CLOUD, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);

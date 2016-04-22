@@ -14,7 +14,6 @@ import net.minecraft.world.World;
  */
 public interface TotemicStaffUsage
 {
-
     /**
      * Gets called when a player right-clicks the block with a Totemic Staff
      * @param world the world
@@ -22,6 +21,5 @@ public interface TotemicStaffUsage
      * @param itemStack the Totemic Staff that was clicked
      * @return true if something happened
      */
-    public boolean onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack);
-
+    boolean onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack);
 }
