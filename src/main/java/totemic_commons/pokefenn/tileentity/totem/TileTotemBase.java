@@ -198,11 +198,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             {
                 if(biomeGenBase.getEnableSnow())
                 {
-                    totemWoodBonus += 3;
+                    totemWoodBonus += 2;
                 }
                 if(biomeGenBase.temperature < 0.4F)
                 {
-                    totemWoodBonus += 2;
+                    totemWoodBonus += 3;
                 }
             }
             break;
@@ -419,40 +419,36 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         int horiz = totem.getHorizontalRange();
         int vert = totem.getVerticalRange();
 
-        if(musicForTotemEffect > 10 && musicForTotemEffect < 32)
+        if(musicForTotemEffect >= 10 && musicForTotemEffect < 32)
         {
             horiz += 1;
             vert += 1;
-        } else if(musicForTotemEffect > 32 && musicForTotemEffect < 64)
+        } else if(musicForTotemEffect >= 32 && musicForTotemEffect < 64)
         {
             horiz += 2;
             vert += 2;
-        } else if(musicForTotemEffect > 64 && musicForTotemEffect < 96)
+        } else if(musicForTotemEffect >= 64 && musicForTotemEffect < 96)
         {
             horiz += 3;
             vert += 3;
-        } else if(musicForTotemEffect > 96 && musicForTotemEffect < 115)
+        } else if(musicForTotemEffect >= 96 && musicForTotemEffect < 115)
         {
             horiz += 4;
             vert += 4;
-        } else if(musicForTotemEffect > 115)
+        } else if(musicForTotemEffect >= 115)
         {
-            horiz += 6;
-            vert += 6;
+            horiz += 5;
+            vert += 5;
         }
 
-        //FIXME: These are always zero
-        //horiz += totemWoodBonus / 5;
-        //vert += totemWoodBonus / 5;
+        horiz += totemWoodBonus / 3;
+        vert += totemWoodBonus / 3;
 
         if(totemPoleSize == 5)
         {
             horiz += 2;
             vert += 2;
         }
-
-        //horiz += totemPoleSize / 8;
-        //vert += totemPoleSize / 8;
 
         return new int[] {horiz, vert};
     }
