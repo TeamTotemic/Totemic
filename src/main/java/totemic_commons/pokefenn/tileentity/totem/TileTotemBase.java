@@ -53,7 +53,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public static final int MAX_EFFECT_MUSIC = 128;
 
     private boolean firstTick = true;
-    private int tier = 1;
     private int dancingEfficiency = 0;
     public int musicForTotemEffect = 0;
     private int totemPoleSize = 0;
@@ -82,9 +81,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @Override
     public void update()
     {
-        //I would like to use onLoad() instead, but I can't
-        //because the chunk is not yet loaded when it is called.
-        //Waiting for a potential fix on Forge's side.
+        //Can't use onLoad() because the chunk is not yet loaded when it is called
         if(firstTick)
         {
             calculateTotemWoodBonus();
@@ -566,8 +563,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     protected int calculateTotemPoleAmount()
     {
-        int y = 0;
-        for(; y < MAX_HEIGHT; y++)
+        int y;
+        for(y = 0; y < MAX_HEIGHT; y++)
         {
             Block block = worldObj.getBlockState(pos.up(1+y)).getBlock();
             if(block != ModBlocks.totemPole)
@@ -595,7 +592,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         super.readFromNBT(tag);
 
-        tier = tag.getInteger("tier");
         dancingEfficiency = tag.getInteger("dancingEfficiency");
         musicForTotemEffect = tag.getInteger("musicForTotemEffect");
         totemPoleSize = tag.getInteger("totemPoleSize");
@@ -639,7 +635,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         super.writeToNBT(tag);
 
-        tag.setInteger("tier", tier);
         tag.setInteger("dancingEfficiency", dancingEfficiency);
         tag.setInteger("musicForTotemEffect", musicForTotemEffect);
         tag.setInteger("totemPoleSize", totemPoleSize);
