@@ -17,6 +17,7 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
@@ -516,7 +517,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     private void startupMain(Ceremony trying)
     {
-        if(ceremonyStartupTimer > trying.getAdjustedMaxStartupTime())
+        if(ceremonyStartupTimer > trying.getAdjustedMaxStartupTime(MinecraftServer.getServer().getDifficulty()))
         {
             ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);

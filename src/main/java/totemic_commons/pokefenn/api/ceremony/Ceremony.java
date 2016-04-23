@@ -2,9 +2,9 @@ package totemic_commons.pokefenn.api.ceremony;
 
 import org.apache.commons.lang3.Validate;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
@@ -128,11 +128,11 @@ public abstract class Ceremony
     /**
      * By default, the time is 10% longer on Peaceful and Easy, and 10% shorter on Hard difficulty.
      *
-     * @return the maximum time in ticks that a player has to start up the Ceremony, depending on the Minecraft difficulty
+     * @return the maximum time in ticks that a player has to start up the Ceremony, depending on difficulty
      */
-    public int getAdjustedMaxStartupTime()
+    public int getAdjustedMaxStartupTime(EnumDifficulty diff)
     {
-        switch(MinecraftServer.getServer().getDifficulty())
+        switch(diff)
         {
         case PEACEFUL:
         case EASY:
