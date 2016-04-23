@@ -30,6 +30,8 @@ public class GameOverlay
     {
         if(event.type == ElementType.ALL)
         {
+            Minecraft.getMinecraft().mcProfiler.startSection("totemicHUD");
+
             if(activeTotem != null && (!activeTotem.isCeremony || activeTotem.isInvalid()))
                 activeTotem = null;
 
@@ -93,6 +95,8 @@ public class GameOverlay
                 GL11.glPopMatrix();
                 GL11.glPopAttrib();
             }
+
+            Minecraft.getMinecraft().mcProfiler.endSection();
         }
     }
 }
