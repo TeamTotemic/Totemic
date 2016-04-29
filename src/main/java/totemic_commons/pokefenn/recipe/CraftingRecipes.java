@@ -92,10 +92,10 @@ public class CraftingRecipes
         OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.redCedarPlank, 1, 0));
         OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.nuggetIron.ordinal()));
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.bellsIron.ordinal()));
-        OreDictionary.registerOre("listAllmeatraw", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.buffaloMeat.ordinal()));
-        OreDictionary.registerOre("listAllbeefraw", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.buffaloMeat.ordinal()));
-        OreDictionary.registerOre("listAllmeatcooked", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.buffaloCookedMeat.ordinal()));
-        OreDictionary.registerOre("listAllbeefcooked", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.buffaloCookedMeat.ordinal()));
+        OreDictionary.registerOre("listAllmeatraw", new ItemStack(ModItems.buffaloMeat);
+        OreDictionary.registerOre("listAllbeefraw", new ItemStack(ModItems.buffaloMeat);
+        OreDictionary.registerOre("listAllmeatcooked", new ItemStack(ModItems.buffaloCookedMeat);
+        OreDictionary.registerOre("listAllbeefcooked", new ItemStack(ModItems.buffaloCookedMeat);
         OreDictionary.registerOre("hideBuffalo", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()));
         OreDictionary.registerOre("teethBuffalo", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.teeth.ordinal()));
     }
