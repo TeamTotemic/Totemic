@@ -7,8 +7,8 @@ package totemic_commons.pokefenn.api.music;
 public interface MusicAcceptor
 {
     /**
-     * Adds up to amount music of the given instrument
-     * @return how much music was actually added
+     * Adds up to the given amount music of the given instrument to the acceptor
+     * @return true if any music was added
      */
-    public int addMusic(MusicInstrument instr, int amount);
+    boolean addMusic(MusicInstrument instr, int amount);
 }

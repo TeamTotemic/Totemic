@@ -18,6 +18,7 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
@@ -53,15 +54,14 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public static final int MAX_HEIGHT = 5;
     public static final int MAX_EFFECT_MUSIC = 128;
 
-    public boolean firstTick = true;
-    public int tier = 1;
-    public int dancingEfficiency = 0;
+    private boolean firstTick = true;
+    private int dancingEfficiency = 0;
     public int musicForTotemEffect = 0;
-    public int totemPoleSize = 0;
-    public boolean musicChanged = false;
-    public final TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
-    public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.registry().getTotems().size(), 0.75f);
-    public int totemWoodBonus = 0;
+    private int totemPoleSize = 0;
+    private boolean musicChanged = false;
+    private final TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
+    private final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.registry().getTotems().size(), 0.75f);
+    private int totemWoodBonus = 0;
 
     public boolean isCeremony = false;
     public final ArrayList<MusicInstrument> musicSelector = new ArrayList<>(Ceremony.MAX_SELECTORS);
@@ -83,9 +83,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @Override
     public void update()
     {
-        //I would like to use onLoad() instead, but I can't
-        //because the chunk is not yet loaded when it is called.
-        //Waiting for a potential fix on Forge's side.
+        //Can't use onLoad() because the chunk is not yet loaded when it is called
         if(firstTick)
         {
             calculateTotemWoodBonus();
@@ -199,11 +197,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             {
                 if(biome.getEnableSnow())
                 {
-                    totemWoodBonus += 3;
+                    totemWoodBonus += 2;
                 }
                 if(biome.getTemperature() < 0.4F)
                 {
-                    totemWoodBonus += 2;
+                    totemWoodBonus += 3;
                 }
             }
             break;
@@ -420,40 +418,36 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         int horiz = totem.getHorizontalRange();
         int vert = totem.getVerticalRange();
 
-        if(musicForTotemEffect > 10 && musicForTotemEffect < 32)
+        if(musicForTotemEffect >= 10 && musicForTotemEffect < 32)
         {
             horiz += 1;
             vert += 1;
-        } else if(musicForTotemEffect > 32 && musicForTotemEffect < 64)
+        } else if(musicForTotemEffect >= 32 && musicForTotemEffect < 64)
         {
             horiz += 2;
             vert += 2;
-        } else if(musicForTotemEffect > 64 && musicForTotemEffect < 96)
+        } else if(musicForTotemEffect >= 64 && musicForTotemEffect < 96)
         {
             horiz += 3;
             vert += 3;
-        } else if(musicForTotemEffect > 96 && musicForTotemEffect < 115)
+        } else if(musicForTotemEffect >= 96 && musicForTotemEffect < 115)
         {
             horiz += 4;
             vert += 4;
-        } else if(musicForTotemEffect > 115)
+        } else if(musicForTotemEffect >= 115)
         {
-            horiz += 6;
-            vert += 6;
+            horiz += 5;
+            vert += 5;
         }
 
-        //FIXME: These are always zero
-        //horiz += totemWoodBonus / 5;
-        //vert += totemWoodBonus / 5;
+        horiz += totemWoodBonus / 3;
+        vert += totemWoodBonus / 3;
 
         if(totemPoleSize == 5)
         {
             horiz += 2;
             vert += 2;
         }
-
-        //horiz += totemPoleSize / 8;
-        //vert += totemPoleSize / 8;
 
         return new int[] {horiz, vert};
     }
@@ -524,7 +518,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     private void startupMain(Ceremony trying)
     {
-        if(ceremonyStartupTimer > trying.getMaxStartupTime())
+        if(ceremonyStartupTimer > trying.getAdjustedMaxStartupTime(MinecraftServer.getServer().getDifficulty()))
         {
             ((WorldServer)worldObj).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
             resetAfterCeremony(true);
@@ -571,8 +565,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     protected int calculateTotemPoleAmount()
     {
-        int y = 0;
-        for(; y < MAX_HEIGHT; y++)
+        int y;
+        for(y = 0; y < MAX_HEIGHT; y++)
         {
             Block block = worldObj.getBlockState(pos.up(1+y)).getBlock();
             if(block != ModBlocks.totemPole)
@@ -600,7 +594,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         super.readFromNBT(tag);
 
-        tier = tag.getInteger("tier");
         dancingEfficiency = tag.getInteger("dancingEfficiency");
         musicForTotemEffect = tag.getInteger("musicForTotemEffect");
         totemPoleSize = tag.getInteger("totemPoleSize");
@@ -644,7 +637,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         super.writeToNBT(tag);
 
-        tag.setInteger("tier", tier);
         tag.setInteger("dancingEfficiency", dancingEfficiency);
         tag.setInteger("musicForTotemEffect", musicForTotemEffect);
         tag.setInteger("totemPoleSize", totemPoleSize);
@@ -675,15 +667,15 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     }
 
     @Override
-    public int addMusic(MusicInstrument instr, int amount)
+    public boolean addMusic(MusicInstrument instr, int amount)
     {
-        int added;
+        boolean added;
         if(!isCeremony)
         {
             timesPlayed.adjustOrPutValue(instr, 1, 1);
             int prevVal = musicForTotemEffect;
             musicForTotemEffect = Math.min(prevVal + amount / 2, MAX_EFFECT_MUSIC);
-            added = musicForTotemEffect - prevVal;
+            added = musicForTotemEffect > prevVal;
         }
         else if(isDoingStartup())
         {
@@ -692,12 +684,12 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             amount = getDiminishedMusic(instr, amount);
             int newVal = Math.min(prevVal + amount, instr.getMusicMaximum());
             ceremonyMusic.put(instr, newVal);
-            added = newVal - prevVal;
+            added = newVal > prevVal;
         }
         else
-            added = 0;
+            added = false;
 
-        if(added != 0)
+        if(added)
             musicChanged = true;
         return added;
     }

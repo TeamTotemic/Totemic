@@ -15,7 +15,7 @@ public interface MusicAPI
      * @param bonusRadius additional radius
      * @param bonusMusicAmount additional music amount
      */
-    public void playMusic(World world, double x, double y, double z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount);
+    void playMusic(World world, double x, double y, double z, MusicInstrument instr, int bonusRadius, int bonusMusicAmount);
 
     /**
      * Plays music from an instrument located at the given position to the closest nearby Totem Base to select a ceremony.
@@ -24,17 +24,17 @@ public interface MusicAPI
      * @param instr the instrument
      * @param bonusRadius additional radius
      */
-    public void playMusicForSelector(World world, double x, double y, double z, MusicInstrument instr, int bonusRadius);
+    void playMusicForSelector(World world, double x, double y, double z, MusicInstrument instr, int bonusRadius);
 
     /**
      * Finds the closest MusicAcceptor within range.
      * Note that this method may only be called on the server side.
      * @return the closest MusicAcceptor from that position, or null if there is none in range
      */
-    public MusicAcceptor getClosestAcceptor(World world, double x, double y, double z, int horizontalRadius, int verticalRadius);
+    MusicAcceptor getClosestAcceptor(World world, double x, double y, double z, int horizontalRadius, int verticalRadius);
 
     /**
      * Adds music to the given music acceptor tile entity and spawns particles at its location
      */
-    public void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum);
+    void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum);
 }

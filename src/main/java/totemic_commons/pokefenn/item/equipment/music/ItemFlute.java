@@ -15,22 +15,15 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
-import totemic_commons.pokefenn.util.ItemUtil;
-import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
  * Created by Pokefenn.
@@ -44,7 +37,7 @@ public class ItemFlute extends ItemMusic
 
     public ItemFlute()
     {
-        super(Strings.FLUTE_NAME, HandlerInitiation.flute);
+        super(Strings.FLUTE_NAME, HandlerInitiation.flute, "flute");
         setMaxStackSize(1);
     }
 
@@ -53,47 +46,30 @@ public class ItemFlute extends ItemMusic
     {
         if(!world.isRemote)
         {
-            NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
-            int time = tag.getInteger(Strings.INSTR_TIME_KEY);
-
-            time++;
-            if(time >= 5 && !player.isSneaking())
-            {
-                int bonusMusic = (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
-                time = 0;
-                TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, bonusMusic);
-                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                PacketHandler.sendAround(new PacketSound(player, "flute"), player);
-            }
-            if(time >= 5 && player.isSneaking())
-            {
-                time = 0;
-                TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
-                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                PacketHandler.sendAround(new PacketSound(player, "flute"), player);
-            }
+            useInstrument(stack, player, 20, 0, (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0);
 
             if(stack.getItemDamage() == 1 && !player.isSneaking())
-            {
-                for(EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, player.posX, player.posY, player.posZ, 2, 2))
-                {
-                    if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
-                    {
-                        if(temptedEntities.contains(entity))
-                            continue;
-
-                        double speed = (entity instanceof EntityAnimal) ? 1 : 0.5;
-                        entity.targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, speed, this, false));
-
-                        temptedEntities.add(entity);
-                    }
-
-                }
-            }
-
-            tag.setInteger(Strings.INSTR_TIME_KEY, time);
+                temptEntities(world, player.posX, player.posY, player.posZ);
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+    }
+
+    private void temptEntities(World world, double x, double y, double z)
+    {
+        for(EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, x, y, z, 2, 2))
+        {
+            if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
+            {
+                if(temptedEntities.contains(entity))
+                    continue;
+
+                double speed = (entity instanceof EntityAnimal) ? 1 : 0.5;
+                entity.targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, speed, this, false));
+
+                temptedEntities.add(entity);
+            }
+
+        }
     }
 
     @Override
@@ -119,21 +95,4 @@ public class ItemFlute extends ItemMusic
     {
         return stack.getItemDamage() == 1;
     }
-
-    @Override
-    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
-    {
-        return slotChanged;
-    }
-
-    private void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
-    {
-        world.spawnParticle(EnumParticleTypes.NOTE, x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
-
-        if(firework)
-        {
-            world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
-        }
-    }
-
 }

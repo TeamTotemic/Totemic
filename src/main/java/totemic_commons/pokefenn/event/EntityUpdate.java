@@ -23,7 +23,8 @@ public class EntityUpdate
         {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
-            if(player.isPotionActive(ModPotions.batPotion) && player.isSneaking() && !player.onGround)
+            if(player.isPotionActive(ModPotions.batPotion) && !player.capabilities.isCreativeMode
+                    && player.isSneaking() && !player.onGround)
             {
                 player.moveFlying(0.0F, 0.5F, 0.1F);
             }

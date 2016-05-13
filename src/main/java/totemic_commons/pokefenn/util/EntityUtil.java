@@ -49,7 +49,7 @@ public class EntityUtil
     public static void dropItem(World world, double xPos, double yPos, double zPos, ItemStack itemStack)
     {
         EntityItem item = new EntityItem(world, xPos, yPos, zPos, itemStack);
-        item.setPickupDelay(10);
+        item.setDefaultPickupDelay();
         world.spawnEntityInWorld(item);
     }
 

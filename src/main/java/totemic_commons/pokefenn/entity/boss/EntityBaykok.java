@@ -26,11 +26,12 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     {
         super(world);
         experienceValue = 65;
+        setSize(0.75F, 2.25F);
         setHealth(getMaxHealth());
 
         ((PathNavigateGround)getNavigator()).setCanSwim(true);
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(2, new EntityAIAttackRanged(this, 1.0, 10, 30, 40.0F));
+        tasks.addTask(2, new EntityAIAttackRanged(this, 1.0, 12, 30, 40.0F));
         tasks.addTask(5, new EntityAIWander(this, 1.0));
         tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         tasks.addTask(7, new EntityAILookIdle(this));
@@ -46,7 +47,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     {
         super.applyEntityAttributes();
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5);
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4);
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40);
     }
 

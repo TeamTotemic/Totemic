@@ -17,7 +17,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -104,13 +103,12 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
             if(tileTotemBase.isDoingStartup())
             {
                 Ceremony trying = tileTotemBase.startupCeremony;
-                //TODO: Localize
-                player.addChatComponentMessage(new TextComponentString("The Totem Pole is doing a Ceremony startup"));
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"));
                 player.addChatComponentMessage(new TextComponentTranslation(trying.getUnlocalizedName()));
             }
             else if(tileTotemBase.isDoingCeremonyEffect())
             {
-                player.addChatComponentMessage(new TextComponentString("The Totem Pole is doing a Ceremony effect"));
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
                 player.addChatComponentMessage(new TextComponentTranslation(tileTotemBase.currentCeremony.getUnlocalizedName()));
             }
 

@@ -20,9 +20,9 @@ import totemic_commons.pokefenn.util.EntityUtil;
 public class TotemEffectBlaze extends TotemEffect
 {
 
-    public TotemEffectBlaze(String baseName, int vertical, int horizontal)
+    public TotemEffectBlaze(String name, int vertical, int horizontal)
     {
-        super( baseName, horizontal, vertical);
+        super(name, horizontal, vertical);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class TotemEffectBlaze extends TotemEffect
 
         if(world.getTotalWorldTime() % 60L == 0)
         {
-            for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, getHorizontalRange(), getVerticalRange()))
+            for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, horizontal, vertical))
             {
                 if(entity.isBurning())
                 {

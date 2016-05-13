@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 
 /**
@@ -19,7 +18,7 @@ public class ItemHuntingKnife extends ItemSword
 {
     public ItemHuntingKnife()
     {
-        super(EquipmentMaterials.huntingKnife);
+        super(/*EquipmentMaterials.huntingKnife*/ToolMaterial.IRON);
         setCreativeTab(Totemic.tabsTotem);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.HUNTING_KNIFE_NAME);
     }

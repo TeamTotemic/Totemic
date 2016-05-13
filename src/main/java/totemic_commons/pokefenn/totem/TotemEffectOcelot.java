@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.totem;
 import static totemic_commons.pokefenn.Totemic.logger;
 
 import java.lang.reflect.Field;
-import java.util.Random;
 
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.math.BlockPos;
@@ -39,15 +38,6 @@ public class TotemEffectOcelot extends TotemEffect
             for(EntityCreeper entity : EntityUtil.getEntitiesInRange(EntityCreeper.class, world, pos, horizontal, vertical))
             {
                 int ignited = (Integer) timeSinceIgnited.get(entity);
-
-                if(repetition < 5)
-                {
-                    Random random = new Random();
-                    if(random.nextInt(4 + repetition + (totem.getTotemEffectMusic() / 16)) == 1)
-                    {
-                        return;
-                    }
-                }
 
                 if(ignited > 20 - repetition)
                 {
