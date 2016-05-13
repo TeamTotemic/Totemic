@@ -117,7 +117,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
                 tile.effect = totemList.get(getCarvingIndex(stack));
                 tile.markDirty();
-                world.markBlockForUpdate(pos);
+                //world.markBlockForUpdate(pos); FIXME
             }
             else
                 return EnumActionResult.FAIL;

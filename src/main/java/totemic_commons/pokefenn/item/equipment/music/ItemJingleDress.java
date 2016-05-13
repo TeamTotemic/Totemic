@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -43,11 +42,11 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         return new ArmorProperties(1, 1, 0);
     }
 
-    @Override
+    /*@Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
     {
         return "totemic:textures/armour/jingleDress.png";
-    }
+    }*/
 
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)

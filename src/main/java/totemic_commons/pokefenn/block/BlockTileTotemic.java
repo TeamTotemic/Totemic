@@ -40,7 +40,7 @@ public abstract class BlockTileTotemic extends Block implements ITileEntityProvi
             }
 
             ((TileTotemic) tile).setOrientation(EnumFacing.fromAngle(entityLiving.rotationYaw));
-            world.markBlockForUpdate(pos);
+            //world.markBlockForUpdate(pos); FIXME
         }
     }
 }

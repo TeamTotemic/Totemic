@@ -18,7 +18,6 @@ public class BaykokRendering extends RenderLiving<EntityBaykok>
     @Override
     public void doRender(EntityBaykok entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        BossStatus.setBossStatus(entity, false);
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 

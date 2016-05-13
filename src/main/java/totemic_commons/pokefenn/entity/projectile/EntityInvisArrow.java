@@ -60,7 +60,8 @@ public class EntityInvisArrow extends EntityArrow
 
     public EntityInvisArrow(World world, EntityLivingBase shooter, float velocity)
     {
-        super(world, shooter, velocity);
+        super(world, shooter/*, velocity*/);
+        //FIXME: veloctiy
 
         if(shooter instanceof EntityPlayer)
         {

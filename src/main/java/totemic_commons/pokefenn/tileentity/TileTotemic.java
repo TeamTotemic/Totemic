@@ -43,7 +43,7 @@ public class TileTotemic extends TileEntity
 
     public void markForUpdate()
     {
-        worldObj.markBlockForUpdate(pos);
+        //worldObj.markBlockForUpdate(pos); FIXME
     }
 
     @Override

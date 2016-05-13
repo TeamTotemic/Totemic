@@ -9,12 +9,15 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
@@ -22,6 +25,8 @@ import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 
 public class EntityBaykok extends EntityMob implements IRangedAttackMob
 {
+    private final BossInfoServer bossInfo = (BossInfoServer)new BossInfoServer(getDisplayName(), BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS).setDarkenSky(true);
+
     public EntityBaykok(World world)
     {
         super(world);
@@ -56,6 +61,13 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     {
         setEquipmentBasedOnDifficulty(difficulty);
         return super.onInitialSpawn(difficulty, livingdata);
+    }
+
+    @Override
+    protected void updateAITasks()
+    {
+        super.updateAITasks();
+        bossInfo.setPercent(getHealth() / getMaxHealth());
     }
 
     @Override
@@ -118,5 +130,19 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     protected float getSoundPitch()
     {
         return super.getSoundPitch() - 0.15F;
+    }
+
+    @Override
+    public void setBossVisibleTo(EntityPlayerMP player)
+    {
+        super.setBossVisibleTo(player);
+        bossInfo.addPlayer(player);
+    }
+
+    @Override
+    public void setBossNonVisibleTo(EntityPlayerMP player)
+    {
+        super.setBossNonVisibleTo(player);
+        bossInfo.removePlayer(player);
     }
 }

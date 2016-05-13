@@ -61,7 +61,7 @@ public class BlockDrum extends BlockTileTotemic
                 tileDrum.canPlay = false;
                 TotemUtil.playMusic(world, pos, HandlerInitiation.drum, 0, 0);
                 world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
-                world.markBlockForUpdate(pos);
+                //world.markBlockForUpdate(pos); FIXME
             }
         } else
         {
@@ -69,7 +69,7 @@ public class BlockDrum extends BlockTileTotemic
             TotemUtil.playMusicForSelector(world, pos, HandlerInitiation.drum, 0);
             world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
             world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
-            world.markBlockForUpdate(pos);
+            //world.markBlockForUpdate(pos); FIXME
         }
 
         PacketHandler.sendAround(new PacketSound(pos, "drum"), world.getTileEntity(pos));

@@ -43,7 +43,7 @@ public class PacketJingle extends SynchronizedPacketBase<PacketJingle>
     @Override
     protected void handleServer(EntityPlayerMP player, MessageContext ctx)
     {
-        ItemStack armor = player.getCurrentArmor(1);
+        ItemStack armor = player.inventory.armorItemInSlot(1);
 
         if(armor != null && armor.getItem() instanceof ItemJingleDress)
         {

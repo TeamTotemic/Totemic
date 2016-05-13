@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.network.client;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -53,6 +52,7 @@ public class PacketSound extends SynchronizedPacketBase<PacketSound>
     @SideOnly(Side.CLIENT)
     protected void handleClient(MessageContext ctx)
     {
-        Minecraft.getMinecraft().theWorld.playSound(pos.getX(), pos.getY(), pos.getZ(), "totemic:" + type, 1.0F, 1.0F, false);
+        //Minecraft.getMinecraft().theWorld.playSound(pos.getX(), pos.getY(), pos.getZ(), "totemic:" + type, 1.0F, 1.0F, false);
+        //FIXME
     }
 }
