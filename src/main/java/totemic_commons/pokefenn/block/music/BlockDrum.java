@@ -97,4 +97,16 @@ public class BlockDrum extends BlockTileTotemic
     {
         return new AxisAlignedBB(3F/16, 0F/16, 3F/16, 13F/16, 13F/16, 13F/16);
     }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 }

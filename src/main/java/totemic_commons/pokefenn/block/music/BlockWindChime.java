@@ -87,6 +87,18 @@ public class BlockWindChime extends BlockTileTotemic
     }
 
     @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;

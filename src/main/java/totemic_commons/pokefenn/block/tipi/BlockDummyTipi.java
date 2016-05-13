@@ -91,4 +91,15 @@ public class BlockDummyTipi extends Block
         return 0;
     }
 
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 }

@@ -48,4 +48,16 @@ public class BlockTotemTorch extends Block
     {
         return new AxisAlignedBB(5F/16, 0.0F, 5F/16, 11F/16, 1.3F, 11F/16);
     }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 }

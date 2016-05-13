@@ -153,4 +153,16 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     {
         return new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
     }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 }
