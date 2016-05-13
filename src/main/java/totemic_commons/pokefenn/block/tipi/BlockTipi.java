@@ -2,7 +2,7 @@ package totemic_commons.pokefenn.block.tipi;
 
 import java.util.Random;
 
-import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -33,7 +33,7 @@ import totemic_commons.pokefenn.tileentity.TileTipi;
  */
 public class BlockTipi extends BlockTileTotemic
 {
-    public static final PropertyDirection FACING = BlockDirectional.FACING;
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
     public BlockTipi()
     {
