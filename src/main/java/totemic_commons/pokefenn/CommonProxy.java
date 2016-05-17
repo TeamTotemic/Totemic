@@ -29,6 +29,7 @@ public class CommonProxy
         ModBlocks.init();
         ModItems.init();
         HandlerInitiation.instrumentItems();
+        ModSounds.init();
     }
 
     public void init(FMLInitializationEvent event)

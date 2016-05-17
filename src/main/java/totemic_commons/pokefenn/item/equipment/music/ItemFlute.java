@@ -21,6 +21,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import totemic_commons.pokefenn.ModSounds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -37,7 +38,7 @@ public class ItemFlute extends ItemMusic
 
     public ItemFlute()
     {
-        super(Strings.FLUTE_NAME, HandlerInitiation.flute, "flute");
+        super(Strings.FLUTE_NAME, HandlerInitiation.flute, ModSounds.flute);
         setMaxStackSize(1);
     }
 

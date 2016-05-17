@@ -9,8 +9,10 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.ModSounds;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
@@ -46,8 +48,8 @@ public class TileWindChime extends TileTotemic implements ITickable
 
             if(isPlaying && worldObj.getTotalWorldTime() % 40L == 0)
             {
-                //worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), "totemic:windChime", 1.0F, 1.0F, false);
-                //FIXME
+                worldObj.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        ModSounds.windChime, SoundCategory.BLOCKS, 1.0f, 1.0f, true);
                 worldObj.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.8, pos.getZ() + 0.5, 0, 0, 0);
             }
         }
@@ -58,7 +60,7 @@ public class TileWindChime extends TileTotemic implements ITickable
             //This is for how long it can play
             if(currentTime >= 20 * 12)
             {
-                isPlaying = false;
+                setPlaying(false);
                 currentTime = 0;
             }
         }

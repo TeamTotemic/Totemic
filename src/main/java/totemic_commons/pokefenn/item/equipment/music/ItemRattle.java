@@ -7,6 +7,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModSounds;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 
@@ -18,7 +19,7 @@ public class ItemRattle extends ItemMusic
 {
     public ItemRattle()
     {
-        super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.rattle, "rattle");
+        super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.rattle, ModSounds.rattle);
         setMaxStackSize(1);
     }
 

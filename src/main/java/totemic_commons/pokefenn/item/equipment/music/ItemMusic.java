@@ -7,13 +7,13 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.util.ItemUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -26,13 +26,18 @@ import totemic_commons.pokefenn.util.TotemUtil;
 public abstract class ItemMusic extends ItemTotemic
 {
     public final MusicInstrument instrument;
-    public final String soundName;
+    public final SoundEvent sound;
 
-    public ItemMusic(String name, MusicInstrument instrument, String soundName)
+    /**
+     * @param name unlocalized name
+     * @param instrument the corresponding music instrument
+     * @param sound the sound to play whenever the instrument is played
+     */
+    public ItemMusic(String name, MusicInstrument instrument, SoundEvent sound)
     {
         super(name);
         this.instrument = Objects.requireNonNull(instrument);
-        this.soundName = soundName;
+        this.sound = sound;
     }
 
     /**
@@ -80,8 +85,8 @@ public abstract class ItemMusic extends ItemTotemic
             particlesAllAround(world, entity.posX, entity.posY, entity.posZ, true);
         }
 
-        if(soundName != null)
-            PacketHandler.sendAround(new PacketSound(entity, soundName), entity);
+        if(sound != null)
+            TotemUtil.playSound(entity, sound, SoundCategory.PLAYERS, 1.0f, 1.0f);
     }
 
     /**

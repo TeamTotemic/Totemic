@@ -1,6 +1,6 @@
 {
-	"windChime": {"category": "block", "sounds": ["windChime"]},
-	"rattle": {"category": "block", "sounds": ["rattle"]},
-	"flute": {"category": "block", "sounds": ["flute1", "flute2"]},
-	"drum": {"category": "block", "sounds": ["drum"]}
+    "windChime": {"category": "block", "sounds": ["totemic:windChime"]},
+    "rattle": {"category": "players", "sounds": ["totemic:rattle"]},
+    "flute": {"category": "players", "sounds": ["totemic:flute1", "totemic:flute2"]},
+    "drum": {"category": "block", "sounds": ["totemic:drum"]}
 }
