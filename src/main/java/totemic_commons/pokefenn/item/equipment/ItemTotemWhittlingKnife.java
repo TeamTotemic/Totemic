@@ -112,12 +112,12 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             }
             else if(index < totemList.size())
             {
-                world.setBlockState(pos, ModBlocks.totemPole.getDefaultState().withProperty(BlockTotemPole.WOOD, wood), 3);
+                world.setBlockState(pos, ModBlocks.totemPole.getDefaultState().withProperty(BlockTotemPole.WOOD, wood), 0);
                 TileTotemPole tile = (TileTotemPole)world.getTileEntity(pos);
 
                 tile.effect = totemList.get(getCarvingIndex(stack));
                 tile.markDirty();
-                //world.markBlockForUpdate(pos); FIXME
+                world.notifyBlockUpdate(pos, state, state, 3);
             }
             else
                 return EnumActionResult.FAIL;

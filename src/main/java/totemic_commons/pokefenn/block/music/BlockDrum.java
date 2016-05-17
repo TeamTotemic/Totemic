@@ -54,6 +54,7 @@ public class BlockDrum extends BlockTileTotemic
 
     public void playDaMusicu(WorldServer world, BlockPos pos, EntityPlayer player, TileDrum tileDrum, boolean isSneaking)
     {
+        IBlockState state = world.getBlockState(pos);
         if(!isSneaking)
         {
             if(!(player instanceof FakePlayer))
@@ -61,7 +62,7 @@ public class BlockDrum extends BlockTileTotemic
                 tileDrum.canPlay = false;
                 TotemUtil.playMusic(world, pos, HandlerInitiation.drum, 0, 0);
                 world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
-                //world.markBlockForUpdate(pos); FIXME
+                world.notifyBlockUpdate(pos, state, state, 7);
             }
         } else
         {
@@ -69,7 +70,7 @@ public class BlockDrum extends BlockTileTotemic
             TotemUtil.playMusicForSelector(world, pos, HandlerInitiation.drum, 0);
             world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
             world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
-            //world.markBlockForUpdate(pos); FIXME
+            world.notifyBlockUpdate(pos, state, state, 7);
         }
 
         PacketHandler.sendAround(new PacketSound(pos, "drum"), world.getTileEntity(pos));

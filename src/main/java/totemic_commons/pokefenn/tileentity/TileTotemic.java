@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.tileentity;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -43,7 +44,8 @@ public class TileTotemic extends TileEntity
 
     public void markForUpdate()
     {
-        //worldObj.markBlockForUpdate(pos); FIXME
+        IBlockState state = worldObj.getBlockState(pos);
+        worldObj.notifyBlockUpdate(pos, state, state, 3);
     }
 
     @Override
