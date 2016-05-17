@@ -6,7 +6,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import totemic_commons.pokefenn.compat.Compatibility;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.event.*;
 import totemic_commons.pokefenn.lib.Strings;
@@ -40,7 +39,6 @@ public class CommonProxy
         CraftingRecipes.init();
         registerTileEntities();
         registerEventHandlers();
-        Compatibility.sendIMCMessages();
     }
 
     public void postInit(FMLPostInitializationEvent event)
