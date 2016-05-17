@@ -53,8 +53,6 @@ public abstract class ItemMusic extends ItemTotemic
         {
             playMusic(stack, entity, bonusRadius, bonusMusic);
             tag.setInteger(Strings.INSTR_COOLDOWN_KEY, cooldown);
-
-            tag.removeTag(Strings.INSTR_TIME_KEY); //Remove legacy NBT tag. TODO: Remove in a later version
         }
     }
 
