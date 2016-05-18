@@ -56,7 +56,7 @@ public class ClientProxy extends CommonProxy
         try
         {
             if(Loader.isModLoaded("Botania") && new Random().nextInt(8) == 0)
-                Display.setTitle("Floweycraft 1.8.9"); //HAHAHAHAHAHAHAHAHAHAHA...
+                Display.setTitle(Display.getTitle().replace("Minecraft", "Floweycraft")); //HAHAHAHAHAHAHAHAHAHAHA...
         }
         catch(Exception e)
         {
