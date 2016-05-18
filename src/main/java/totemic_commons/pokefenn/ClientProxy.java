@@ -1,10 +1,19 @@
 package totemic_commons.pokefenn;
 
+import static totemic_commons.pokefenn.Totemic.logger;
+
+import java.util.Random;
+
+import org.apache.logging.log4j.Level;
+import org.lwjgl.opengl.Display;
+
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import totemic_commons.pokefenn.client.rendering.entity.BaykokRendering;
 import totemic_commons.pokefenn.client.rendering.entity.BuffaloRendering;
@@ -40,20 +49,20 @@ public class ClientProxy extends CommonProxy
         LexiconData.init();
     }
 
-    /*@Override
+    @Override
     public void postInit(FMLPostInitializationEvent event)
     {
         super.postInit(event);
         try
         {
             if(Loader.isModLoaded("Botania") && new Random().nextInt(8) == 0)
-                Display.setTitle("Floweycraft 1.8.9"); //HAHAHAHAHAHAHAHAHAHAHA...
+                Display.setTitle(Display.getTitle().replace("Minecraft", "Floweycraft")); //HAHAHAHAHAHAHAHAHAHAHA...
         }
         catch(Exception e)
         {
             logger.catching(Level.WARN, e);
         }
-    }*/
+    }
 
     @Override
     protected void registerEventHandlers()
