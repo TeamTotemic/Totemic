@@ -1,4 +1,5 @@
 {
+    "parent": "block/block",
     "elements": [
         {
             "__comment": "chime1",
@@ -133,11 +134,15 @@
     ],
     "textures": { "all": "totemic:models/windChime" },
     "display": {
-        "thirdperson": {
-            "translation": [1, 0, 0]
+        "thirdperson_righthand": {
+            "rotation": [75, 45, 0],
+            "translation": [0, 1.25, 0],
+            "scale": [0.375, 0.375, 0.375]
 		},
         "gui": {
-            "scale": [1.4, 1.4, 1.4]
+            "rotation": [30, 225, 0],
+            "translation": [0, 0, 0],
+            "scale":[0.875, 0.875, 0.875]
         }
 	}
 }
