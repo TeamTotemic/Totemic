@@ -10,6 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
 public class CreativeTabTotemic extends CreativeTabs
@@ -32,15 +33,17 @@ public class CreativeTabTotemic extends CreativeTabs
     {
         super.displayAllRelevantItems(list);
 
-        list.add(getEgg("totemic." + Strings.BUFFALO_NAME));
-        list.add(getEgg("totemic." + Strings.BAYKOK_NAME));
+        list.add(getEgg(Totemic.MOD_ID + "." + Strings.BUFFALO_NAME));
+        list.add(getEgg(Totemic.MOD_ID + "." + Strings.BAYKOK_NAME));
     }
 
     public static ItemStack getEgg(String entityName)
     {
         ItemStack stack = new ItemStack(Items.spawn_egg);
+        NBTTagCompound entityTag = new NBTTagCompound();
+        entityTag.setString("id", entityName);
         NBTTagCompound eggTag = new NBTTagCompound();
-        eggTag.setString("entity_name", entityName);
+        eggTag.setTag("EntityTag", entityTag);
         stack.setTagCompound(eggTag);
         return stack;
     }
