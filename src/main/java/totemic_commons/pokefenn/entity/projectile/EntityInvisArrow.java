@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.entity.projectile;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
@@ -12,10 +11,12 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import totemic_commons.pokefenn.util.EntityUtil;
 
 public class EntityInvisArrow extends EntityArrow
 {
     //Only set when the shooter is a player
+    //FIXME: This is problematic and doesn't work
     private static final DataParameter<Integer> SHOOTER_DATAWATCHER = EntityDataManager.createKey(EntityInvisArrow.class, DataSerializers.VARINT);
 
     @SideOnly(Side.CLIENT)
@@ -46,10 +47,9 @@ public class EntityInvisArrow extends EntityArrow
     public void notifyDataManagerChange(DataParameter<?> key)
     {
         super.notifyDataManagerChange(key);
-        if(key == SHOOTER_DATAWATCHER)
+        if(worldObj.isRemote && key == SHOOTER_DATAWATCHER)
         {
-            EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-            if(dataWatcher.get(SHOOTER_DATAWATCHER) == player.getEntityId())
+            if(dataWatcher.get(SHOOTER_DATAWATCHER) == EntityUtil.getClientPlayer().getEntityId())
             {
                 shotByPlayer = true;
             }

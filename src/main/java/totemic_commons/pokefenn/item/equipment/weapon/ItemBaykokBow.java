@@ -48,27 +48,27 @@ public class ItemBaykokBow extends ItemBow
 
         int chargeTicks = this.getMaxItemUseDuration(stack) - timeLeft;
         chargeTicks = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, world, player, chargeTicks, arrow != null || infinity);
-        if (chargeTicks < 0) return;
+        if(chargeTicks < 0) return;
 
-        if (arrow != null || infinity)
+        if(arrow != null || infinity)
         {
             if (arrow == null)
                 arrow = new ItemStack(Items.arrow);
 
             float charge = func_185059_b(chargeTicks);
 
-            if (charge >= 0.1D)
+            if(charge >= 0.1D)
             {
                 boolean flag1 = infinity && arrow.getItem() instanceof ItemArrow; //Forge: Fix consuming custom arrows.
 
-                if (!world.isRemote)
+                if(!world.isRemote)
                 {
                     //ItemArrow itemarrow = ((ItemArrow)(arrow.getItem() instanceof ItemArrow ? arrow.getItem() : Items.arrow));
                     EntityArrow entityarrow = new EntityInvisArrow(world, player);//itemarrow.makeTippedArrow(world, arrow, player);
                     entityarrow.setDamage(2.5);
                     entityarrow.func_184547_a(player, player.rotationPitch, player.rotationYaw, 0.0F, charge * 3.0F, 1.0F);
 
-                    if (charge == 1.0F)
+                    if(charge == 1.0F)
                         entityarrow.setIsCritical(true);
 
                     int power = EnchantmentHelper.getEnchantmentLevel(Enchantments.power, stack);
@@ -76,7 +76,7 @@ public class ItemBaykokBow extends ItemBow
                         entityarrow.setDamage(entityarrow.getDamage() + power * 0.5D + 0.5D);
 
                     int punch = EnchantmentHelper.getEnchantmentLevel(Enchantments.punch, stack);
-                    if (punch > 0)
+                    if(punch > 0)
                         entityarrow.setKnockbackStrength(punch);
 
                     if(EnchantmentHelper.getEnchantmentLevel(Enchantments.flame, stack) > 0)
@@ -84,7 +84,7 @@ public class ItemBaykokBow extends ItemBow
 
                     stack.damageItem(1, player);
 
-                    if (flag1)
+                    if(flag1)
                         entityarrow.canBePickedUp = EntityArrow.PickupStatus.CREATIVE_ONLY;
 
                     world.spawnEntityInWorld(entityarrow);

@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.util;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +14,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created with IntelliJ IDEA.
@@ -87,6 +90,15 @@ public class EntityUtil
     public static IBlockState getBlockFromPosition(RayTraceResult movingObjectPosition, World world)
     {
         return world.getBlockState(movingObjectPosition.getBlockPos());
+    }
+
+    /**
+     * Returns the client player. Useful if loading the class EntityPlayerSP causes problems.
+     */
+    @SideOnly(Side.CLIENT)
+    public static EntityPlayer getClientPlayer()
+    {
+        return Minecraft.getMinecraft().thePlayer;
     }
 
 }
