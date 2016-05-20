@@ -39,7 +39,7 @@ public class CeremonyFluteInfusion extends Ceremony
         for(EntityPlayer player : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 5, 5))
         {
             InventoryPlayer inv = player.inventory;
-            for(int i = 0; i < inv.mainInventory.length; i++)
+            for(int i = 0; i < inv.getSizeInventory(); i++)
             {
                 ItemStack stack = inv.getStackInSlot(i);
                 if(stack != null && stack.getItem() == ModItems.flute)
