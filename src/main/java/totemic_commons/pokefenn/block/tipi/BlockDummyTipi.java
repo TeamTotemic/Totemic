@@ -23,11 +23,11 @@ public class BlockDummyTipi extends Block
 {
     public BlockDummyTipi()
     {
-        super(Material.cloth);
+        super(Material.CLOTH);
         setRegistryName(Strings.DUMMY_TIPI_NAME);
         setUnlocalizedName(Strings.DUMMY_TIPI_NAME);
         setHardness(0.2F);
-        setStepSound(SoundType.CLOTH);
+        setSoundType(SoundType.CLOTH);
     }
 
     @Override

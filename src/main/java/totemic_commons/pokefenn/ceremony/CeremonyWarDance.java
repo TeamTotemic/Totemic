@@ -28,8 +28,8 @@ public class CeremonyWarDance extends Ceremony
 
         for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
         {
-            entity.addPotionEffect(new PotionEffect(MobEffects.damageBoost, 20 * (60 * 3), 1));
-            entity.addPotionEffect(new PotionEffect(MobEffects.moveSpeed, 20 * (60 + 30), 1));
+            entity.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 20 * (60 * 3), 1));
+            entity.addPotionEffect(new PotionEffect(MobEffects.SPEED, 20 * (60 + 30), 1));
         }
     }
 }

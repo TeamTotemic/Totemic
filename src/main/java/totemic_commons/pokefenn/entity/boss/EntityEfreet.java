@@ -68,7 +68,7 @@ public class EntityEfreet extends EntityMob implements IRangedAttackMob
 
     private void spawnFireball(int par1, double par2, double par4, double par6, boolean par8)
     {
-        this.worldObj.playAuxSFXAtEntity(null, 1014, this.getPosition(), 0);
+        //this.worldObj.playAuxSFXAtEntity(null, 1014, this.getPosition(), 0);
         double xPosWorkingOut = this.xPosWorkingOut(par1);
         double yPosWorkingOut = this.yPosWorkingOut(par1);
         double zPosworkingOut = this.zPosworkingOut(par1);

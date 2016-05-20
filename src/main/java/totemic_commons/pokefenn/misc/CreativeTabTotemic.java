@@ -39,7 +39,7 @@ public class CreativeTabTotemic extends CreativeTabs
 
     public static ItemStack getEgg(String entityName)
     {
-        ItemStack stack = new ItemStack(Items.spawn_egg);
+        ItemStack stack = new ItemStack(Items.SPAWN_EGG);
         NBTTagCompound entityTag = new NBTTagCompound();
         entityTag.setString("id", entityName);
         NBTTagCompound eggTag = new NBTTagCompound();

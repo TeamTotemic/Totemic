@@ -11,29 +11,24 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class TileTipi extends TileTotemic
 {
-    public int colour;
-    public boolean hasCatcher;
-
-    public TileTipi()
-    {
-        colour = 0;
-        hasCatcher = false;
-    }
+    //public int colour = 0;
+    //public boolean hasCatcher = false;
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
-        super.writeToNBT(nbtTagCompound);
-        nbtTagCompound.setInteger("colour", colour);
-        nbtTagCompound.setBoolean("hasCatcher", hasCatcher);
+        tag = super.writeToNBT(tag);
+        //tag.setInteger("colour", colour);
+        //tag.setBoolean("hasCatcher", hasCatcher);
+        return tag;
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
         super.readFromNBT(nbtTagCompound);
-        colour = nbtTagCompound.getInteger("colour");
-        hasCatcher = nbtTagCompound.getBoolean("hasCatcher");
+        //colour = nbtTagCompound.getInteger("colour");
+        //hasCatcher = nbtTagCompound.getBoolean("hasCatcher");
     }
 
     @SideOnly(Side.CLIENT)

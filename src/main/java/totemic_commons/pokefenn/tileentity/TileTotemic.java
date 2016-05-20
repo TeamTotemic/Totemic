@@ -65,15 +65,16 @@ public class TileTotemic extends TileEntity
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
-        super.writeToNBT(nbtTagCompound);
+        tag = super.writeToNBT(tag);
 
-        nbtTagCompound.setByte(Strings.NBT_TE_DIRECTION_KEY, (byte) orientation.ordinal());
+        tag.setByte(Strings.NBT_TE_DIRECTION_KEY, (byte) orientation.ordinal());
 
         if(this.hasCustomName())
         {
-            nbtTagCompound.setString(Strings.NBT_TE_CUSTOM_NAME, customName);
+            tag.setString(Strings.NBT_TE_CUSTOM_NAME, customName);
         }
+        return tag;
     }
 }

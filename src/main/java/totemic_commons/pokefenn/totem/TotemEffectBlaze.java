@@ -42,7 +42,7 @@ public class TotemEffectBlaze extends TotemEffect
                         entity.heal(2);
                 }
 
-                Totemic.api.totemEffect().addPotionEffect(entity, MobEffects.fireResistance, 50, 0, totem, repetition);
+                Totemic.api.totemEffect().addPotionEffect(entity, MobEffects.FIRE_RESISTANCE, 50, 0, totem, repetition);
             }
         }
 

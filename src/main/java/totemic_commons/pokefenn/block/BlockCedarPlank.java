@@ -14,11 +14,11 @@ public class BlockCedarPlank extends Block
 {
     public BlockCedarPlank()
     {
-        super(Material.wood);
+        super(Material.WOOD);
         setRegistryName(Strings.RED_CEDAR_PLANK_NAME);
         setUnlocalizedName(Strings.RED_CEDAR_PLANK_NAME);
         setHardness(2F);
-        setStepSound(SoundType.WOOD);
+        setSoundType(SoundType.WOOD);
         setCreativeTab(Totemic.tabsTotem);
     }
 

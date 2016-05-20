@@ -2,7 +2,6 @@ package totemic_commons.pokefenn.tileentity.totem;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraftforge.common.util.Constants;
 import totemic_commons.pokefenn.Totemic;
@@ -25,7 +24,7 @@ public class TileTotemPole extends TileTotemic
     }
 
     @Override
-    public Packet<?> getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         this.writeToNBT(nbttagcompound);
@@ -47,11 +46,12 @@ public class TileTotemPole extends TileTotemic
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
-        super.writeToNBT(nbtTagCompound);
+        tag = super.writeToNBT(tag);
         if(effect != null)
-            nbtTagCompound.setString("effect", effect.getName());
+            tag.setString("effect", effect.getName());
+        return tag;
     }
 
 }

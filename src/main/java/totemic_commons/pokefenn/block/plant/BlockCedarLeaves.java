@@ -63,7 +63,7 @@ public class BlockCedarLeaves extends BlockLeaves
     public boolean isOpaqueCube(IBlockState state)
     {
         //BlockLeaves.isOpaqueCube doesn't use the argument, so we should be safe from NPEs
-        return Blocks.leaves.isOpaqueCube(null);
+        return Blocks.LEAVES.isOpaqueCube(null);
     }
 
     @Override

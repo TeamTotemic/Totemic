@@ -44,11 +44,11 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
 
     public BlockTotemBase()
     {
-        super(Material.wood);
+        super(Material.WOOD);
         setRegistryName(Strings.TOTEM_BASE_NAME);
         setUnlocalizedName(Strings.TOTEM_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
-        setStepSound(SoundType.WOOD);
+        setSoundType(SoundType.WOOD);
     }
 
     @Override

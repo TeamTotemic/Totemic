@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
@@ -123,7 +122,7 @@ public class TileWindChime extends TileTotemic implements ITickable
     }
 
     @Override
-    public Packet<?> getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound tag = new NBTTagCompound();
         this.writeToNBT(tag);
@@ -137,12 +136,13 @@ public class TileWindChime extends TileTotemic implements ITickable
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tag)
+    public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
-        super.writeToNBT(tag);
+        tag = super.writeToNBT(tag);
         tag.setInteger("currentTime", currentTime);
         tag.setBoolean("isPlaying", isPlaying);
         tag.setFloat("currentRotation", currentRotation);
+        return tag;
     }
 
     @Override

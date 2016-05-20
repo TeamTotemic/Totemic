@@ -37,7 +37,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
             for(EntityItem entity : EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius))
             {
                 EntityItem item = entity;
-                if(item.getEntityItem().getItem() == Items.egg)
+                if(item.getEntityItem().getItem() == Items.EGG)
                 {
                     if(world.rand.nextInt(4) == 0)
                     {
@@ -65,7 +65,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
                     {
                         BlockPos p = pos.add(i, j, k);
                         IBlockState s = world.getBlockState(p);
-                        if(s.getBlock() == Blocks.sapling)
+                        if(s.getBlock() == Blocks.SAPLING)
                         {
                             world.setBlockState(p, ModBlocks.totemSapling.getDefaultState(), 3);
                             spawnParticles(world, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5);

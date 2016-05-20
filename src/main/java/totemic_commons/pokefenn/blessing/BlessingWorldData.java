@@ -24,8 +24,9 @@ public class BlessingWorldData extends WorldSavedData
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
-        nbtTagCompound.setInteger("blessing", blessing);
+        tag.setInteger("blessing", blessing);
+        return tag;
     }
 }

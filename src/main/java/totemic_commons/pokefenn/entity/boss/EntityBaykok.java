@@ -84,7 +84,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
         arrow.setThrowableHeading(dx, dy + 0.125 * xzdist, dz, velocity, inaccuracy);
         arrow.setDamage(2.0 * distanceFactor + 1.0 + 0.25 * rand.nextGaussian() + 0.4 * worldObj.getDifficulty().getDifficultyId());
 
-        playSound(SoundEvents.entity_skeleton_shoot, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
+        playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
         worldObj.spawnEntityInWorld(arrow);
     }
 
@@ -98,14 +98,14 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     protected void dropFewItems(boolean byPlayer, int looting)
     {
         dropItem(ModItems.baykokBow, 1);
-        dropItem(Items.bone, 2 + rand.nextInt(7 + looting));
-        dropItem(Items.rotten_flesh, rand.nextInt(3 + looting));
-        dropItem(Items.arrow, 3 + rand.nextInt(8 + looting));
+        dropItem(Items.BONE, 2 + rand.nextInt(7 + looting));
+        dropItem(Items.ROTTEN_FLESH, rand.nextInt(3 + looting));
+        dropItem(Items.ARROW, 3 + rand.nextInt(8 + looting));
 
         if(rand.nextInt(100) < 25 + 4*looting)
-            entityDropItem(new ItemStack(Items.skull, 1, 1), 0);
+            entityDropItem(new ItemStack(Items.SKULL, 1, 1), 0);
         else
-            entityDropItem(new ItemStack(Items.skull, 1, 0), 0);
+            entityDropItem(new ItemStack(Items.SKULL, 1, 0), 0);
     }
 
     @Override
@@ -118,19 +118,19 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return SoundEvents.entity_skeleton_ambient;
+        return SoundEvents.ENTITY_SKELETON_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound()
     {
-        return SoundEvents.entity_skeleton_hurt;
+        return SoundEvents.ENTITY_SKELETON_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return SoundEvents.entity_skeleton_death;
+        return SoundEvents.ENTITY_SKELETON_DEATH;
     }
 
     @Override
@@ -140,16 +140,16 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     }
 
     @Override
-    public void setBossVisibleTo(EntityPlayerMP player)
+    public void addTrackingPlayer(EntityPlayerMP player)
     {
-        super.setBossVisibleTo(player);
+        super.addTrackingPlayer(player);
         bossInfo.addPlayer(player);
     }
 
     @Override
-    public void setBossNonVisibleTo(EntityPlayerMP player)
+    public void removeTrackingPlayer(EntityPlayerMP player)
     {
-        super.setBossNonVisibleTo(player);
+        super.removeTrackingPlayer(player);
         bossInfo.removePlayer(player);
     }
 }

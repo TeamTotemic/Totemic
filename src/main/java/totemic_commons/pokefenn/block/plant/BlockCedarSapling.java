@@ -36,7 +36,7 @@ public class BlockCedarSapling extends BlockSapling
         setRegistryName(Strings.TOTEM_SAPLING_NAME);
         setUnlocalizedName(Strings.TOTEM_SAPLING_NAME);
         setCreativeTab(Totemic.tabsTotem);
-        setStepSound(SoundType.PLANT);
+        setSoundType(SoundType.PLANT);
     }
 
     @Override

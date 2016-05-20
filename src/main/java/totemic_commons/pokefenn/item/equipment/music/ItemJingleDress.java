@@ -76,7 +76,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
             if(world.getTotalWorldTime() % 20L == 0 && tag != null)
             {
                 int time = tag.getInteger(Strings.INSTR_TIME_KEY);
-                if(time >= 3 || (player.isPotionActive(MobEffects.moveSpeed) && time >= 2))
+                if(time >= 3 || (player.isPotionActive(MobEffects.SPEED) && time >= 2))
                 {
                     playMusic(world, player, itemStack, false/*player.isSneaking()*/);
                     tag.setInteger(Strings.INSTR_TIME_KEY, 0);

@@ -37,7 +37,7 @@ public class EntityBuffalo extends EntityCow
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         tasks.addTask(2, new EntityAIMate(this, 1.0D));
-        tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.wheat, false));
+        tasks.addTask(3, new EntityAITempt(this, 1.25D, Items.WHEAT, false));
         tasks.addTask(4, new EntityAIFollowParent(this, 1.25D));
         tasks.addTask(5, new EntityAIWander(this, 1.0D));
         tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -49,7 +49,7 @@ public class EntityBuffalo extends EntityCow
     protected void entityInit()
     {
         super.entityInit();
-        dataWatcher.register(AGE_DATAWATCHER, 0);
+        dataManager.register(AGE_DATAWATCHER, 0);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class EntityBuffalo extends EntityCow
 
     public int getBuffaloAge()
     {
-        return Math.min(dataWatcher.get(AGE_DATAWATCHER), MAX_AGE);
+        return Math.min(dataManager.get(AGE_DATAWATCHER), MAX_AGE);
     }
 
     public float getRelativeAge()
@@ -93,7 +93,7 @@ public class EntityBuffalo extends EntityCow
 
     public void setBuffaloAge(int age)
     {
-        dataWatcher.set(AGE_DATAWATCHER, age);
+        dataManager.set(AGE_DATAWATCHER, age);
     }
 
     @Override

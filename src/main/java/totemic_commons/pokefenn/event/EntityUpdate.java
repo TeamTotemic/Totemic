@@ -26,7 +26,7 @@ public class EntityUpdate
             if(player.isPotionActive(ModPotions.batPotion) && !player.capabilities.isCreativeMode
                     && player.isSneaking() && !player.onGround)
             {
-                player.moveFlying(0.0F, 0.5F, 0.1F);
+                player.moveRelative(0.0F, 0.5F, 0.1F);
             }
 
             if(player.isPotionActive(ModPotions.spiderPotion))

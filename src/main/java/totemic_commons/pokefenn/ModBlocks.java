@@ -81,12 +81,12 @@ public final class ModBlocks
         GameRegistry.register(new ItemTipi(tipi).setRegistryName(tipi.getRegistryName()));
         GameRegistry.register(dummyTipi);
 
-        Blocks.fire.setFireInfo(cedarLog, 5, 5);
-        Blocks.fire.setFireInfo(redCedarStripped, 5, 10);
-        Blocks.fire.setFireInfo(redCedarPlank, 5, 20);
-        Blocks.fire.setFireInfo(totemLeaves, 30, 60);
-        Blocks.fire.setFireInfo(totemBase, 5, 5);
-        Blocks.fire.setFireInfo(totemPole, 5, 5);
+        Blocks.FIRE.setFireInfo(cedarLog, 5, 5);
+        Blocks.FIRE.setFireInfo(redCedarStripped, 5, 10);
+        Blocks.FIRE.setFireInfo(redCedarPlank, 5, 20);
+        Blocks.FIRE.setFireInfo(totemLeaves, 30, 60);
+        Blocks.FIRE.setFireInfo(totemBase, 5, 5);
+        Blocks.FIRE.setFireInfo(totemPole, 5, 5);
     }
 
     @SideOnly(Side.CLIENT)

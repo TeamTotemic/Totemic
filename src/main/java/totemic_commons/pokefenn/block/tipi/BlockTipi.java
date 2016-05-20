@@ -11,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayer.SleepResult;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -37,11 +38,11 @@ public class BlockTipi extends BlockTileTotemic
 
     public BlockTipi()
     {
-        super(Material.cloth);
+        super(Material.CLOTH);
         setRegistryName(Strings.TIPI_NAME);
         setUnlocalizedName(Strings.TIPI_NAME);
         setHardness(0.2F);
-        setStepSound(SoundType.CLOTH);
+        setSoundType(SoundType.CLOTH);
         setCreativeTab(Totemic.tabsTotem);
     }
 
@@ -57,7 +58,7 @@ public class BlockTipi extends BlockTileTotemic
         if(!world.isRemote)
         {
             pos = pos.up();
-            if(world.getBiomeGenForCoords(pos) != Biomes.hell)
+            if(world.getBiomeGenForCoords(pos) != Biomes.HELL)
             {
                 if(world.provider.canRespawnHere())
                 {
@@ -83,17 +84,17 @@ public class BlockTipi extends BlockTileTotemic
                         return true;
                     }
 
-                    EntityPlayer.EnumStatus enumstatus = player.trySleep(pos);
+                    SleepResult sleepresult = player.trySleep(pos);
 
-                    if(enumstatus == EntityPlayer.EnumStatus.OK)
+                    if(sleepresult == SleepResult.OK)
                     {
                         return true;
                     } else
                     {
-                        if(enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
+                        if(sleepresult == SleepResult.NOT_POSSIBLE_NOW)
                         {
                             player.addChatComponentMessage(new TextComponentTranslation("tile.bed.noSleep"));
-                        } else if(enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
+                        } else if(sleepresult == SleepResult.NOT_SAFE)
                         {
                             player.addChatComponentMessage(new TextComponentTranslation("tile.bed.notSafe"));
                         }

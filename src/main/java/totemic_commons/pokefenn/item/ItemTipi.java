@@ -37,7 +37,7 @@ public class ItemTipi extends ItemBlock
     {
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
-        if(block.getMaterial(state) != Material.ground && !block.getUnlocalizedName().contains("dirt") && !block.getUnlocalizedName().contains("grass"))
+        if(block.getMaterial(state) != Material.GROUND && !block.getUnlocalizedName().contains("dirt") && !block.getUnlocalizedName().contains("grass"))
         {
             return EnumActionResult.FAIL;
         }
@@ -74,7 +74,7 @@ public class ItemTipi extends ItemBlock
         //Place Tipi block itself
         world.setBlockState(pos.up(), ModBlocks.tipi.getDefaultState().withProperty(BlockTipi.FACING, dir), 2);
 
-        world.playSound(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, this.block.getStepSound().getPlaceSound(), SoundCategory.BLOCKS, (this.block.getStepSound().getVolume() + 1.0F) / 2.0F, this.block.getStepSound().getPitch() * 0.8F, true);
+        world.playSound(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, this.block.getSoundType().getPlaceSound(), SoundCategory.BLOCKS, (this.block.getSoundType().getVolume() + 1.0F) / 2.0F, this.block.getSoundType().getPitch() * 0.8F, true);
         stack.stackSize--;
         return EnumActionResult.SUCCESS;
     }

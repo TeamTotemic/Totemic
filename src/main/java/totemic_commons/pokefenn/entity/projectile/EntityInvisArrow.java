@@ -32,7 +32,7 @@ public class EntityInvisArrow extends EntityArrow
         super(world, shooter);
         if(shooter instanceof EntityPlayer)
         {
-            dataWatcher.set(SHOOTER_DATAWATCHER, shooter.getEntityId());
+            dataManager.set(SHOOTER_DATAWATCHER, shooter.getEntityId());
         }
     }
 
@@ -40,7 +40,7 @@ public class EntityInvisArrow extends EntityArrow
     protected void entityInit()
     {
         super.entityInit();
-        dataWatcher.register(SHOOTER_DATAWATCHER, 0);
+        dataManager.register(SHOOTER_DATAWATCHER, 0);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EntityInvisArrow extends EntityArrow
         super.notifyDataManagerChange(key);
         if(worldObj.isRemote && key == SHOOTER_DATAWATCHER)
         {
-            if(dataWatcher.get(SHOOTER_DATAWATCHER) == EntityUtil.getClientPlayer().getEntityId())
+            if(dataManager.get(SHOOTER_DATAWATCHER) == EntityUtil.getClientPlayer().getEntityId())
             {
                 shotByPlayer = true;
             }
@@ -65,6 +65,6 @@ public class EntityInvisArrow extends EntityArrow
     @Override
     protected ItemStack getArrowStack()
     {
-        return new ItemStack(Items.arrow);
+        return new ItemStack(Items.ARROW);
     }
 }

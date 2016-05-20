@@ -27,14 +27,14 @@ public class BlockWindChime extends BlockTileTotemic
 {
     public BlockWindChime()
     {
-        super(Material.iron);
+        super(Material.IRON);
         setRegistryName(Strings.WIND_CHIME_NAME);
         setUnlocalizedName(Strings.WIND_CHIME_NAME);
         setHardness(1.5F);
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighbor)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbor)
     {
         breakStuffs(world, pos);
     }

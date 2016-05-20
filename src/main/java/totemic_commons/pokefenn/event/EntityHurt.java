@@ -19,7 +19,7 @@ public class EntityHurt
         if(event.getSource().getSourceOfDamage() instanceof EntityInvisArrow)
         {
             if(!(event.getEntityLiving() instanceof EntityBaykok))
-                event.getEntityLiving().addPotionEffect(new PotionEffect(MobEffects.moveSlowdown, 20, 1));
+                event.getEntityLiving().addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 20, 1));
         }
     }
 }

@@ -44,7 +44,7 @@ public class ItemBaykokBow extends ItemBow
             return;
 
         EntityPlayer player = (EntityPlayer)entity;
-        boolean infinity = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.infinity, stack) > 0;
+        boolean infinity = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
         ItemStack arrow = getArrow(player);
 
         int chargeTicks = this.getMaxItemUseDuration(stack) - timeLeft;
@@ -54,9 +54,9 @@ public class ItemBaykokBow extends ItemBow
         if(arrow != null || infinity)
         {
             if (arrow == null)
-                arrow = new ItemStack(Items.arrow);
+                arrow = new ItemStack(Items.ARROW);
 
-            float charge = func_185059_b(chargeTicks);
+            float charge = getArrowVelocity(chargeTicks);
 
             if(charge >= 0.1D)
             {
@@ -67,31 +67,31 @@ public class ItemBaykokBow extends ItemBow
                     //ItemArrow itemarrow = ((ItemArrow)(arrow.getItem() instanceof ItemArrow ? arrow.getItem() : Items.arrow));
                     EntityArrow entityarrow = new EntityInvisArrow(world, player);//itemarrow.makeTippedArrow(world, arrow, player);
                     entityarrow.setDamage(2.5);
-                    entityarrow.func_184547_a(player, player.rotationPitch, player.rotationYaw, 0.0F, charge * 3.0F, 1.0F);
+                    entityarrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, charge * 3.0F, 1.0F);
 
                     if(charge == 1.0F)
                         entityarrow.setIsCritical(true);
 
-                    int power = EnchantmentHelper.getEnchantmentLevel(Enchantments.power, stack);
+                    int power = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
                     if(power > 0)
                         entityarrow.setDamage(entityarrow.getDamage() + power * 0.5D + 0.5D);
 
-                    int punch = EnchantmentHelper.getEnchantmentLevel(Enchantments.punch, stack);
+                    int punch = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
                     if(punch > 0)
                         entityarrow.setKnockbackStrength(punch);
 
-                    if(EnchantmentHelper.getEnchantmentLevel(Enchantments.flame, stack) > 0)
+                    if(EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0)
                         entityarrow.setFire(100);
 
                     stack.damageItem(1, player);
 
                     if(flag1)
-                        entityarrow.canBePickedUp = EntityArrow.PickupStatus.CREATIVE_ONLY;
+                        entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
 
                     world.spawnEntityInWorld(entityarrow);
                 }
 
-                world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.entity_arrow_shoot, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
+                world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
 
                 if(!flag1)
                 {
@@ -101,7 +101,7 @@ public class ItemBaykokBow extends ItemBow
                         player.inventory.deleteStack(arrow);
                 }
 
-                player.addStat(StatList.func_188057_b(this));
+                player.addStat(StatList.getObjectUseStats(this));
             }
         }
     }

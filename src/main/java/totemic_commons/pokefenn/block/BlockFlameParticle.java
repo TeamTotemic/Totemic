@@ -21,7 +21,7 @@ public class BlockFlameParticle extends Block
 {
     public BlockFlameParticle()
     {
-        super(Material.rock);
+        super(Material.ROCK);
         setUnlocalizedName(Strings.FLAME_PARTICLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
     }
@@ -46,7 +46,7 @@ public class BlockFlameParticle extends Block
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, Entity entity)
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
         if(!entity.isImmuneToFire())
             if(!entity.isBurning())

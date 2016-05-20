@@ -37,11 +37,12 @@ public class TileDrum extends TileTotemic implements ITickable
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
-        super.writeToNBT(nbtTagCompound);
-        nbtTagCompound.setInteger("currentTime", currentTime);
-        nbtTagCompound.setBoolean("canPlay", canPlay);
+        tag = super.writeToNBT(tag);
+        tag.setInteger("currentTime", currentTime);
+        tag.setBoolean("canPlay", canPlay);
+        return tag;
     }
 
     @Override

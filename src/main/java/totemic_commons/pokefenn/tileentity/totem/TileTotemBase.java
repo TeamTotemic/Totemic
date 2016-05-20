@@ -16,14 +16,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.WorldServer;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.util.Constants;
@@ -176,9 +175,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     private void calculateTotemWoodBonus()
     {
         IBlockState state = worldObj.getBlockState(pos);
-        BiomeGenBase biome = worldObj.getBiomeGenForCoords(pos);
+        Biome biome = worldObj.getBiomeGenForCoords(pos);
         if(biome == null) //assume some default if that happens
-            biome = Biomes.plains;
+            biome = Biomes.PLAINS;
 
         totemWoodBonus = 0;
 
@@ -192,7 +191,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         case SPRUCE:
             //TODO better numbers, just temp for now.
             //spruce effect
-            if(biome.getTempCategory() == BiomeGenBase.TempCategory.COLD)
+            if(biome.getTempCategory() == Biome.TempCategory.COLD)
             {
                 if(biome.getEnableSnow())
                 {
@@ -215,7 +214,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
         case JUNGLE:
             //jungle effect
-            if(biome.getTempCategory() == BiomeGenBase.TempCategory.WARM && !biome.getEnableSnow())
+            if(biome.getTempCategory() == Biome.TempCategory.WARM && !biome.getEnableSnow())
             {
                 if(biome.getTemperature() > 1.0F)
                 {
@@ -226,7 +225,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
         case ACACIA:
             //acacia effect
-            if(biome.getTempCategory() == BiomeGenBase.TempCategory.WARM)
+            if(biome.getTempCategory() == Biome.TempCategory.WARM)
             {
                 totemWoodBonus += 3;
             }
@@ -575,7 +574,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     }
 
     @Override
-    public Packet<?> getDescriptionPacket()
+    public SPacketUpdateTileEntity getUpdatePacket()
     {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         this.writeToNBT(nbttagcompound);
@@ -632,9 +631,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tag)
+    public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
-        super.writeToNBT(tag);
+        tag = super.writeToNBT(tag);
 
         tag.setInteger("dancingEfficiency", dancingEfficiency);
         tag.setInteger("musicForTotemEffect", musicForTotemEffect);
@@ -663,6 +662,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             tag.setInteger("continueTimer", continueTimer);
             tag.setBoolean("isDoingEndingEffect", isDoingEndingEffect);
         }
+        return tag;
     }
 
     @Override
