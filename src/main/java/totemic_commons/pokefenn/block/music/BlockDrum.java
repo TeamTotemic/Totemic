@@ -32,9 +32,9 @@ public class BlockDrum extends BlockTileTotemic
     public BlockDrum()
     {
         super(Material.wood);
+        setRegistryName(Strings.DRUM_NAME);
         setUnlocalizedName(Strings.DRUM_NAME);
         setStepSound(SoundType.WOOD);
-        fullBlock = false;
     }
 
     @Override

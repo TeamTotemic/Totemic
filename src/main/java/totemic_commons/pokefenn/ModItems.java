@@ -54,18 +54,18 @@ public final class ModItems
         flute = new ItemFlute();
         baykokBow = new ItemBaykokBow();
 
-        GameRegistry.registerItem(totemWhittlingKnife, Strings.TOTEM_WHITTLING_KNIFE_NAME);
-        GameRegistry.registerItem(totemicStaff, Strings.TOTEMIC_STAFF_NAME);
-        GameRegistry.registerItem(subItems, Strings.SUB_ITEMS_NAME);
-        GameRegistry.registerItem(jingleDress, Strings.JINGLE_DRESS_NAME);
-        GameRegistry.registerItem(barkStripper, Strings.BARK_STRIPPER_NAME);
-        GameRegistry.registerItem(buffaloItems, Strings.BUFFALO_ITEMS_NAME);
-        GameRegistry.registerItem(buffaloMeat, Strings.BUFFALO_MEAT_NAME);
-        GameRegistry.registerItem(buffaloCookedMeat, Strings.BUFFALO_COOKED_MEAT_NAME);
-        GameRegistry.registerItem(ceremonialRattle, Strings.CEREMONY_RATTLE_NAME);
-        GameRegistry.registerItem(totempedia, Strings.TOTEMPEDIA_NAME);
-        GameRegistry.registerItem(flute, Strings.FLUTE_NAME);
-        GameRegistry.registerItem(baykokBow, Strings.BAYKOK_BOW_NAME);
+        GameRegistry.register(totemWhittlingKnife);
+        GameRegistry.register(totemicStaff);
+        GameRegistry.register(subItems);
+        GameRegistry.register(jingleDress);
+        GameRegistry.register(barkStripper);
+        GameRegistry.register(buffaloItems);
+        GameRegistry.register(buffaloMeat);
+        GameRegistry.register(buffaloCookedMeat);
+        GameRegistry.register(ceremonialRattle);
+        GameRegistry.register(totempedia);
+        GameRegistry.register(flute);
+        GameRegistry.register(baykokBow);
     }
 
     @SideOnly(Side.CLIENT)

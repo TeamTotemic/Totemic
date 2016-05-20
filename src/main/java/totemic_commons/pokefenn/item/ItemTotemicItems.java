@@ -27,6 +27,7 @@ public class ItemTotemicItems extends ItemTotemic
     public ItemTotemicItems()
     {
         super("");
+        setRegistryName(Strings.SUB_ITEMS_NAME);
         setHasSubtypes(true);
         setMaxStackSize(64);
         setCreativeTab(Totemic.tabsTotem);

@@ -38,6 +38,7 @@ public class BlockTipi extends BlockTileTotemic
     public BlockTipi()
     {
         super(Material.cloth);
+        setRegistryName(Strings.TIPI_NAME);
         setUnlocalizedName(Strings.TIPI_NAME);
         setHardness(0.2F);
         setStepSound(SoundType.CLOTH);

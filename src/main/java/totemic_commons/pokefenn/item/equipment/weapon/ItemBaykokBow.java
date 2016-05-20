@@ -30,6 +30,7 @@ public class ItemBaykokBow extends ItemBow
 
     public ItemBaykokBow()
     {
+        setRegistryName(Strings.BAYKOK_BOW_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BAYKOK_BOW_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setMaxDamage(576);

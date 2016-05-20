@@ -28,9 +28,9 @@ public class BlockWindChime extends BlockTileTotemic
     public BlockWindChime()
     {
         super(Material.iron);
+        setRegistryName(Strings.WIND_CHIME_NAME);
         setUnlocalizedName(Strings.WIND_CHIME_NAME);
         setHardness(1.5F);
-        fullBlock = false;
     }
 
     @Override

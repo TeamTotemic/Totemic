@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -23,7 +24,6 @@ import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemBlockVariants;
 import totemic_commons.pokefenn.item.ItemTipi;
-import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 
 public final class ModBlocks
@@ -57,18 +57,29 @@ public final class ModBlocks
         tipi = new BlockTipi();
         dummyTipi = new BlockDummyTipi();
 
-        GameRegistry.registerBlock(cedarLog, Strings.CEDAR_LOG_NAME);
-        GameRegistry.registerBlock(totemBase, ItemBlockVariants.class, Strings.TOTEM_BASE_NAME);
-        GameRegistry.registerBlock(totemPole, ItemBlockVariants.class, Strings.TOTEM_POLE_NAME);
-        GameRegistry.registerBlock(totemSapling, Strings.TOTEM_SAPLING_NAME);
-        GameRegistry.registerBlock(totemLeaves, Strings.TOTEM_LEAVES_NAME);
-        GameRegistry.registerBlock(totemTorch, Strings.TOTEM_TORCH_NAME);
-        GameRegistry.registerBlock(drum, Strings.DRUM_NAME);
-        GameRegistry.registerBlock(windChime, Strings.WIND_CHIME_NAME);
-        GameRegistry.registerBlock(redCedarPlank, Strings.RED_CEDAR_PLANK_NAME);
-        GameRegistry.registerBlock(redCedarStripped, Strings.RED_CEDAR_STRIPPED_NAME);
-        GameRegistry.registerBlock(tipi, ItemTipi.class, Strings.TIPI_NAME);
-        GameRegistry.registerBlock(dummyTipi, Strings.DUMMY_TIPI_NAME);
+        GameRegistry.register(cedarLog);
+        GameRegistry.register(new ItemBlock(cedarLog).setRegistryName(cedarLog.getRegistryName()));
+        GameRegistry.register(totemBase);
+        GameRegistry.register(new ItemBlockVariants(totemBase).setRegistryName(totemBase.getRegistryName()));
+        GameRegistry.register(totemPole);
+        GameRegistry.register(new ItemBlockVariants(totemPole).setRegistryName(totemPole.getRegistryName()));
+        GameRegistry.register(totemSapling);
+        GameRegistry.register(new ItemBlock(totemSapling).setRegistryName(totemSapling.getRegistryName()));
+        GameRegistry.register(totemLeaves);
+        GameRegistry.register(new ItemBlock(totemLeaves).setRegistryName(totemLeaves.getRegistryName()));
+        GameRegistry.register(totemTorch);
+        GameRegistry.register(new ItemBlock(totemTorch).setRegistryName(totemTorch.getRegistryName()));
+        GameRegistry.register(drum);
+        GameRegistry.register(new ItemBlock(drum).setRegistryName(drum.getRegistryName()));
+        GameRegistry.register(windChime);
+        GameRegistry.register(new ItemBlock(windChime).setRegistryName(windChime.getRegistryName()));
+        GameRegistry.register(redCedarPlank);
+        GameRegistry.register(new ItemBlock(redCedarPlank).setRegistryName(redCedarPlank.getRegistryName()));
+        GameRegistry.register(redCedarStripped);
+        GameRegistry.register(new ItemBlock(redCedarStripped).setRegistryName(redCedarStripped.getRegistryName()));
+        GameRegistry.register(tipi);
+        GameRegistry.register(new ItemTipi(tipi).setRegistryName(tipi.getRegistryName()));
+        GameRegistry.register(dummyTipi);
 
         Blocks.fire.setFireInfo(cedarLog, 5, 5);
         Blocks.fire.setFireInfo(redCedarStripped, 5, 10);

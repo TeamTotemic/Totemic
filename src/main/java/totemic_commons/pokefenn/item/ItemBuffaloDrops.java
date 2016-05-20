@@ -34,6 +34,7 @@ public class ItemBuffaloDrops extends ItemTotemic
     public ItemBuffaloDrops()
     {
         super("");
+        setRegistryName(Strings.BUFFALO_ITEMS_NAME);
         setHasSubtypes(true);
     }
 

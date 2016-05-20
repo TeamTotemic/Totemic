@@ -25,12 +25,12 @@ public class BlockTotemTorch extends Block
     public BlockTotemTorch()
     {
         super(Material.wood);
+        setRegistryName(Strings.TOTEM_TORCH_NAME);
         setUnlocalizedName(Strings.TOTEM_TORCH_NAME);
         setLightLevel(1F);
         setStepSound(SoundType.WOOD);
         setHardness(0.05F);
         setCreativeTab(Totemic.tabsTotem);
-        fullBlock = false;
     }
 
     @Override

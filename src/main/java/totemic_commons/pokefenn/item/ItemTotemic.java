@@ -15,8 +15,10 @@ public class ItemTotemic extends Item
     public ItemTotemic(String name, boolean creativeTab)
     {
         setNoRepair();
-        if(!name.isEmpty())
+        if(!name.isEmpty()) {
+            setRegistryName(name);
             setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
+        }
         if(creativeTab)
             setCreativeTab(Totemic.tabsTotem);
     }

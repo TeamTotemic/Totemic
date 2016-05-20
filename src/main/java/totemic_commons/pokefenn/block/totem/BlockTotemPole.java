@@ -41,10 +41,10 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     public BlockTotemPole()
     {
         super(Material.wood);
+        setRegistryName(Strings.TOTEM_POLE_NAME);
         setUnlocalizedName(Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setStepSound(SoundType.WOOD);
-        fullBlock = false;
     }
 
     @Override
