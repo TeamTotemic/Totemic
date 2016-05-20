@@ -176,8 +176,8 @@ totemic.page.flute1=Durch Schleichen kann sie benutzt werden, um &4Zeremonien&0 
 totemic.page.flute2=
 
 totemic.entry.rattle=Rassel
-totemic.page.rattle0=Die &1Zeremonielle Rassel&0 ist ein Instrument, das als Rückgrat von Zeremonien diente solange Totemisten bekannt sind. Die &1Rassel&0 produziert &4Melodie&0, wenn sie mit der Hand geschüttelt wird. Es ist derzeit nicht bekannt, ob sie andere Vorzüge hat, es wird aber vermutet. Wie alle Instrumente kann sie während des Schleichens gespielt werden um Zeremonien zu aktivieren.
-totemic.page.rattle1=
+totemic.page.rattle0=Die &1Zeremonielle Rassel&0 ist ein Instrument, das als Rückgrat von Zeremonien diente solange Totemisten bekannt sind. Die &1Rassel&0 produziert &4Melodie&0, wenn sie mit der Hand geschüttelt wird.<br>Sie kann beidhändig benutzt werden: Wenn du die Rassel in der rechten Hand hälst, kannst du ein anderes Instrument in der linken Hand halten und beide gleichzeitig spielen.
+totemic.page.rattle1=Wie alle Instrumente kann sie während des Schleichens gespielt werden um Zeremonien zu aktivieren.
 totemic.page.rattle2=
 
 totemic.entry.performingCeremonies=Durchführung von Zeremonien

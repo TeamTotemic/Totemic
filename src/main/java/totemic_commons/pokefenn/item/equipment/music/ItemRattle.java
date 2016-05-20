@@ -34,8 +34,8 @@ public class ItemRattle extends ItemMusic
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
     {
-        /*if(!player.isSwingInProgress)
-            player.swingItem(); FIXME */
-        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        if(!player.isSwingInProgress)
+            player.swingArm(hand);
+        return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 }

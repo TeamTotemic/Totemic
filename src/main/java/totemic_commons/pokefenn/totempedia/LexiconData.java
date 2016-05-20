@@ -109,7 +109,7 @@ public final class LexiconData
         flute.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.flute));
 
         rattle = new BLexiconEntry(Totempedia.RATTLE, categoryInstruments);
-        rattle.setLexiconPages(new PageText("0"), /*new PageText("1"),*/ new PageCraftingRecipe("2", CraftingRecipes.ceremonialRattle));
+        rattle.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.ceremonialRattle));
 
         jingleDress = new BLexiconEntry(Totempedia.JINGLE_DRESS, categoryInstruments);
         jingleDress.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.jingleDress),

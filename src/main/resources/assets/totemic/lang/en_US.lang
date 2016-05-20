@@ -176,8 +176,8 @@ totemic.page.flute1=The &1Flute&0 can be infused in the &4Ceremony of Flute Imbu
 totemic.page.flute2=
 
 totemic.entry.rattle=Rattle
-totemic.page.rattle0=The &1Ceremonial Rattle&0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The &1Rattle&0 produces &4Musical Melody&0 whenever it has been shook with the hand. It is currently unknown if it has any other bonuses, but it believed to one day. And like all instruments, it can be played while sneaking so as to activate ceremonies.
-totemic.page.rattle1=
+totemic.page.rattle0=The &1Ceremonial Rattle&0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The &1Rattle&0 produces &4Musical Melody&0 whenever it has been shook with the hand.<br>It can be used in dual wield: if you hold the Rattle in your right hand, you can have another instrument in your left hand and play both at the same time.
+totemic.page.rattle1=Like all instruments, it can be played while sneaking so as to activate ceremonies.
 totemic.page.rattle2=
 
 totemic.entry.performingCeremonies=Performing Ceremonies
