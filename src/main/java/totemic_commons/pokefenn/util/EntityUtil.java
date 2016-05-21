@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
@@ -13,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -37,10 +38,41 @@ public class EntityUtil
         return getEntitiesInRange(clazz, world, pos.getX(), pos.getY(), pos.getZ(), horizontalRadius, verticalRadius);
     }
 
-    public static List<TileEntity> getTileEntitiesInRange(WorldServer world, BlockPos pos, int horizontalRadius, int verticalRadius)
+    public static List<TileEntity> getTileEntitiesInRange(World world, BlockPos pos, int horizontalRadius, int verticalRadius)
     {
-        return world.getTileEntitiesIn(pos.getX() - horizontalRadius, pos.getY() - verticalRadius, pos.getZ() - horizontalRadius,
-                pos.getX() + horizontalRadius + 1, pos.getY() + verticalRadius + 1, pos.getZ() + horizontalRadius + 1);
+        return getTileEntitiesIn(world, pos.add(-horizontalRadius, -verticalRadius, -horizontalRadius),
+                pos.add(horizontalRadius + 1, verticalRadius + 1, horizontalRadius + 1));
+    }
+
+    //This method no longer exists in Minecraft 1.9. Had to take it from 1.8.9.
+    public static List<TileEntity> getTileEntitiesIn(World world, BlockPos min, BlockPos max)
+    {
+        List<TileEntity> list = new ArrayList<>();
+        for(int x = (min.getX() & ~0x0F); x < max.getX(); x += 16)
+            for(int z = (min.getZ() & ~0x0F); z < max.getZ(); z += 16) // & ~0xF Floors it by 16. Yay bitmath!
+            {
+                if(!world.isBlockLoaded(new BlockPos(x, 0, z), true))
+                    continue; //Prevent loading extra chunks
+
+                Chunk chunk = world.getChunkFromChunkCoords(x >> 4, z >> 4);
+                if(chunk != null && !chunk.isEmpty())
+                {
+                    for(TileEntity tile : chunk.getTileEntityMap().values())
+                    {
+                        if(!tile.isInvalid())
+                        {
+                            BlockPos pos = tile.getPos();
+                            if(pos.getX() >= min.getX() && pos.getY() >= min.getY() && pos.getZ() >= min.getZ() &&
+                               pos.getX() <  max.getX() && pos.getY() <  max.getY() && pos.getZ() <  max.getZ())
+                            {
+                                list.add(tile);
+                            }
+
+                        }
+                    }
+                }
+            }
+        return list;
     }
 
     public static void spawnEntity(World world, double xPos, double yPos, double zPos, Entity entity)
