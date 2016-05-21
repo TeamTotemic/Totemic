@@ -26,7 +26,7 @@ import totemic_commons.pokefenn.lib.Strings;
 
 public class ItemBaykokBow extends ItemBow
 {
-    private static final Method getArrowMethod = ReflectionHelper.findMethod(ItemBow.class, null, new String[] {"func_185060_a"}, EntityPlayer.class);
+    private static final Method findAmmoMethod = ReflectionHelper.findMethod(ItemBow.class, null, new String[] {"func_185060_a", "findAmmo"}, EntityPlayer.class);
 
     public ItemBaykokBow()
     {
@@ -45,15 +45,16 @@ public class ItemBaykokBow extends ItemBow
 
         EntityPlayer player = (EntityPlayer)entity;
         boolean infinity = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
-        ItemStack arrow = getArrow(player);
+        ItemStack arrow = findAmmo(player);
 
         int chargeTicks = this.getMaxItemUseDuration(stack) - timeLeft;
         chargeTicks = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, world, player, chargeTicks, arrow != null || infinity);
-        if(chargeTicks < 0) return;
+        if(chargeTicks < 0)
+            return;
 
         if(arrow != null || infinity)
         {
-            if (arrow == null)
+            if(arrow == null)
                 arrow = new ItemStack(Items.ARROW);
 
             float charge = getArrowVelocity(chargeTicks);
@@ -106,11 +107,11 @@ public class ItemBaykokBow extends ItemBow
         }
     }
 
-    private ItemStack getArrow(EntityPlayer player)
+    protected ItemStack findAmmo(EntityPlayer player)
     {
         try
         {
-            return (ItemStack)getArrowMethod.invoke(this, player);
+            return (ItemStack)findAmmoMethod.invoke(this, player);
         }
         catch(ReflectiveOperationException e)
         {
