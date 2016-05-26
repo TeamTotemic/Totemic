@@ -72,7 +72,8 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
     @Override
     @SideOnly(Side.CLIENT)
-    public String getItemStackDisplayName(ItemStack stack) {
+    public String getItemStackDisplayName(ItemStack stack)
+    {
         return I18n.translateToLocalFormatted(getUnlocalizedName() + ".display", getCurrentlyCarving(getCarvingIndex(stack)));
     }
 

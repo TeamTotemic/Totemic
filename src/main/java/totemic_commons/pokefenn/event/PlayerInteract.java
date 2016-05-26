@@ -32,7 +32,7 @@ public class PlayerInteract
             Block block = state.getBlock();
             if(block != null)
             {
-                if(block.getMaterial(state) == Material.GROUND || block.getUnlocalizedName().contains("dirt") || block.getUnlocalizedName().contains("grass"))
+                if(state.getMaterial() == Material.GROUND || block.getUnlocalizedName().contains("dirt") || block.getUnlocalizedName().contains("grass"))
                 {
                     ModBlocks.tipi.tipiSleep(world, event.getPos(), event.getEntityPlayer());
                 }
