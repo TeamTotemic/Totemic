@@ -45,7 +45,7 @@ public class TileWindChime extends TileTotemic implements ITickable
 
             if(isPlaying && worldObj.getTotalWorldTime() % 40L == 0)
             {
-                worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), "totemic:windChime", 1.0F, 1.0F, false);
+                worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), "totemic:windChime", 0.5F, 1.0F, true);
                 worldObj.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.8, pos.getZ() + 0.5, 0, 0, 0);
             }
         }
