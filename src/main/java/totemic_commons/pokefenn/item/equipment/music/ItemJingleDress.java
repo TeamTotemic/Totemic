@@ -43,12 +43,6 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         return new ArmorProperties(1, 1, 0);
     }
 
-    /*@Override
-    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-    {
-        return "totemic:textures/armour/jingleDress.png";
-    }*/
-
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
     {
