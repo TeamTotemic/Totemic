@@ -120,6 +120,6 @@ public abstract class ItemMusic extends ItemTotemic
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
     {
-        return slotChanged;
+        return slotChanged || !ItemStack.areItemsEqual(oldStack, newStack);
     }
 }
