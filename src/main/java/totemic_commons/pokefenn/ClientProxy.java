@@ -87,7 +87,7 @@ public class ClientProxy extends CommonProxy
             {
                 return ColorizerFoliage.getFoliageColorPine();
             }
-        }, ModBlocks.totemLeaves);
+        }, ModBlocks.cedarLeaves);
     }
 
     private void initTESRs()

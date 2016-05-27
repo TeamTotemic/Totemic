@@ -43,7 +43,7 @@ public class BlockCedarLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune)
     {
-        return Item.getItemFromBlock(ModBlocks.totemSapling);
+        return Item.getItemFromBlock(ModBlocks.cedarSapling);
     }
 
     @Override
