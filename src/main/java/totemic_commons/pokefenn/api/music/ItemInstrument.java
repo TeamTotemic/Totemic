@@ -1,48 +1,50 @@
-package totemic_commons.pokefenn.item.equipment.music;
+package totemic_commons.pokefenn.api.music;
 
 import java.util.Objects;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.item.ItemTotemic;
-import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.util.ItemUtil;
-import totemic_commons.pokefenn.util.TotemUtil;
+import totemic_commons.pokefenn.api.TotemicAPI;
 
 /**
  * Base class for simple music instrument items.
  *
- * Keeps track of a cooldown timer in the item stack's NBT
- * to ensure that the item is not used too often.
+ * <p>This class keeps track of a cooldown timer in the item stack's NBT
+ * to ensure that the instrument is not played too often. This cooldown timer
+ * is counted down each tick as long as the item is in the player's hotbar, using {@link #onUpdate}.
  */
-public abstract class ItemMusic extends ItemTotemic
+public abstract class ItemInstrument extends Item
 {
-    public final MusicInstrument instrument;
-    public final String soundName;
+    /**
+     * The NBT key for the cooldown timer
+     */
+    public static final String INSTR_COOLDOWN_KEY = "cooldown";
+
+    protected final MusicInstrument instrument;
+    protected final String soundName;
 
     /**
-     * @param name unlocalized name
      * @param instrument the corresponding music instrument
      * @param sound the sound to play whenever the instrument is played. Can be null.
      */
-    public ItemMusic(String name, MusicInstrument instrument, String soundName)
+    public ItemInstrument(MusicInstrument instrument, String soundName)
     {
-        super(name);
         this.instrument = Objects.requireNonNull(instrument);
         this.soundName = soundName;
     }
 
     /**
-     * If the instrument is off cooldown, plays music and puts it on cooldown.
+     * Plays music and puts the instrument on the specified cooldown.
+     * Does nothing if the instrument is currently on cooldown.
      *
-     * Call this method when your item is being used in some way (e.g. onItemRightClick).
-     * The cooldown is stored in the item stack's NBT data, and the onUpdate method is used to tick the cooldown down.
+     * <p>Call this method when your item is being used in some way (e.g. from onItemRightClick).
+     * It is not automatically called.
      * @param stack the item stack of the instrument
      * @param entity the entity that used the instrument
      * @param cooldown the cooldown in ticks after the instrument has been played
@@ -51,16 +53,19 @@ public abstract class ItemMusic extends ItemTotemic
      */
     protected void useInstrument(ItemStack stack, Entity entity, int cooldown, int bonusRadius, int bonusMusic)
     {
-        NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
-        if(tag.getInteger(Strings.INSTR_COOLDOWN_KEY) == 0)
+        if(!stack.hasTagCompound())
+            stack.setTagCompound(new NBTTagCompound());
+        NBTTagCompound tag = stack.getTagCompound();
+
+        if(tag.getInteger(INSTR_COOLDOWN_KEY) == 0)
         {
             playMusic(stack, entity, bonusRadius, bonusMusic);
-            tag.setInteger(Strings.INSTR_COOLDOWN_KEY, cooldown);
+            tag.setInteger(INSTR_COOLDOWN_KEY, cooldown);
         }
     }
 
     /**
-     * Plays music from this instrument
+     * Plays music from this instrument, regardless of cooldown
      * @param stack the item stack of the instrument
      * @param entity the entity that used the instrument
      * @param bonusRadius additional radius
@@ -74,27 +79,27 @@ public abstract class ItemMusic extends ItemTotemic
         WorldServer world = (WorldServer) entity.worldObj;
         if(!entity.isSneaking())
         {
-            TotemUtil.playMusic(world, entity.posX, entity.posY, entity.posZ, instrument, bonusRadius, bonusMusic);
-            particlesAllAround(world, entity.posX, entity.posY, entity.posZ, false);
+            TotemicAPI.get().music().playMusic(world, entity.posX, entity.posY, entity.posZ, instrument, bonusRadius, bonusMusic);
+            spawnParticles(world, entity.posX, entity.posY, entity.posZ, false);
         }
         else
         {
-            TotemUtil.playMusicForSelector(world, entity.posX, entity.posY, entity.posZ, instrument, bonusRadius);
-            particlesAllAround(world, entity.posX, entity.posY, entity.posZ, true);
+            TotemicAPI.get().music().playMusicForSelector(world, entity.posX, entity.posY, entity.posZ, instrument, bonusRadius);
+            spawnParticles(world, entity.posX, entity.posY, entity.posZ, true);
         }
 
         if(soundName != null)
-            TotemUtil.playSound(entity, soundName, 1.0f, 1.0f);
+            entity.worldObj.playSoundEffect(entity.posX, entity.posY, entity.posZ, soundName, 1.0F, 1.0F);
     }
 
     /**
      * Spwans music particles at the given location
      */
-    protected void particlesAllAround(WorldServer world, double x, double y, double z, boolean firework)
+    protected void spawnParticles(WorldServer world, double x, double y, double z, boolean firework)
     {
-        world.spawnParticle(EnumParticleTypes.NOTE, x, y + 1.2D, z, 6, 0.5D, 0.0D, 0.5D, 0.0D);
+        world.spawnParticle(EnumParticleTypes.NOTE, x, y + 1.2, z, 6, 0.5, 0.0, 0.5, 0.0);
         if(firework)
-            world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y + 1.2D, z, 8, 0.5D, 0.0D, 0.5D, 0.0D);
+            world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, x, y + 1.2, z, 8, 0.5, 0.0, 0.5, 0.0);
     }
 
     @Override
@@ -106,11 +111,11 @@ public abstract class ItemMusic extends ItemTotemic
             if(tag == null)
                 return;
 
-            int cooldown = tag.getInteger(Strings.INSTR_COOLDOWN_KEY);
+            int cooldown = tag.getInteger(INSTR_COOLDOWN_KEY);
             if(cooldown > 0)
             {
                 cooldown--;
-                tag.setInteger(Strings.INSTR_COOLDOWN_KEY, cooldown);
+                tag.setInteger(INSTR_COOLDOWN_KEY, cooldown);
             }
         }
     }
