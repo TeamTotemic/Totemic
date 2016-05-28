@@ -56,7 +56,7 @@ public class TileWindChime extends TileTotemic implements ITickable
             //This is for how long it can play
             if(currentTime >= 20 * 12)
             {
-                isPlaying = false;
+                setPlaying(false);
                 currentTime = 0;
             }
         }

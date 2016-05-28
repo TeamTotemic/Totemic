@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.util;
 
 import java.util.Comparator;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
@@ -95,6 +96,12 @@ public class TotemUtil
         }
     }
 
+    /**
+     * Plays music at the given position to nearby music acceptors
+     * @param instr the instrument
+     * @param bonusRadius additional radius
+     * @param bonusMusicAmount additional music amount
+     */
     public static void playMusic(World world, BlockPos pos, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
     {
         playMusic(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, instr, bonusRadius, bonusMusicAmount);
@@ -115,4 +122,20 @@ public class TotemUtil
             world.spawnParticle(EnumParticleTypes.CLOUD, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
     }
 
+    /**
+     * Plays a sound at the entity's location. If the entity is a player, they will also hear it.
+     */
+    public static void playSound(Entity entity, String soundName, float volume, float pitch)
+    {
+        //Can't use entity.playSound here, otherwise if entity is a player they will hear nothing
+        entity.worldObj.playSoundEffect(entity.posX, entity.posY, entity.posZ, soundName, volume, pitch);
+    }
+
+    /**
+     * Plays a sound at the given location
+     */
+    public static void playSound(World world, BlockPos pos, String soundName, float volume, float pitch)
+    {
+        world.playSoundEffect(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, soundName, volume, pitch);
+    }
 }

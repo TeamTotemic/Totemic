@@ -34,7 +34,7 @@ public class ItemFlute extends ItemMusic
 
     public ItemFlute()
     {
-        super(Strings.FLUTE_NAME, HandlerInitiation.flute, "flute");
+        super(Strings.FLUTE_NAME, HandlerInitiation.flute, "totemic:flute");
         setMaxStackSize(1);
     }
 

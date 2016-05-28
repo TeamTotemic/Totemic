@@ -15,7 +15,7 @@ public class ItemRattle extends ItemMusic
 {
     public ItemRattle()
     {
-        super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.rattle, "rattle");
+        super(Strings.CEREMONY_RATTLE_NAME, HandlerInitiation.rattle, "totemic:rattle");
         setMaxStackSize(1);
     }
 

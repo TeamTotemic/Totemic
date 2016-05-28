@@ -12,8 +12,6 @@ import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.util.ItemUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -28,6 +26,11 @@ public abstract class ItemMusic extends ItemTotemic
     public final MusicInstrument instrument;
     public final String soundName;
 
+    /**
+     * @param name unlocalized name
+     * @param instrument the corresponding music instrument
+     * @param sound the sound to play whenever the instrument is played. Can be null.
+     */
     public ItemMusic(String name, MusicInstrument instrument, String soundName)
     {
         super(name);
@@ -81,7 +84,7 @@ public abstract class ItemMusic extends ItemTotemic
         }
 
         if(soundName != null)
-            PacketHandler.sendAround(new PacketSound(entity, soundName), entity);
+            TotemUtil.playSound(entity, soundName, 1.0f, 1.0f);
     }
 
     /**
