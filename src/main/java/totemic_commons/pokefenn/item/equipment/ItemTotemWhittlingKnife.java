@@ -52,7 +52,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         NBTTagCompound tag = stack.getTagCompound();
         if(tag == null)
-            return 0;
+            return totemList.size();
         else
             return MathHelper.clamp_int(tag.getInteger(Strings.KNIFE_TOTEM_KEY), 0, totemList.size());
     }
@@ -63,7 +63,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip1"));
         list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip2"));
-        list.add(StatCollector.translateToLocal("item.totemic:totemWhittlingKnife.tooltip3") + " " + getCurrentlyCarving(getCarvingIndex(stack)));
+        list.add(StatCollector.translateToLocalFormatted("item.totemic:totemWhittlingKnife.tooltip3", getCurrentlyCarving(getCarvingIndex(stack))));
     }
 
     @Override
