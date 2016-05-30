@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.totem;
+package totemic_commons.pokefenn.apiimpl.totem;
 
 import java.util.Random;
 

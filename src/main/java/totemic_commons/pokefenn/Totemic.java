@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import totemic_commons.pokefenn.api.TotemicAPI;
+import totemic_commons.pokefenn.apiimpl.ApiImpl;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.misc.CreativeTabTotemic;
 
