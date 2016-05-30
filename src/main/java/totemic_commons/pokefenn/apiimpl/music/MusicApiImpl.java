@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn;
+package totemic_commons.pokefenn.apiimpl.music;
 
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
