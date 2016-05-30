@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,7 +18,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -65,12 +65,12 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     @Override
     public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
     {
-        if(!world.isRemote)
+        if(world.isRemote)
         {
             TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(pos);
             if(tileTotemSocket.getTotemEffect() != null)
             {
-                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.translateToLocal(tileTotemSocket.getTotemEffect().getUnlocalizedName())));
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.format(tileTotemSocket.getTotemEffect().getUnlocalizedName())));
             }
         }
         return EnumActionResult.SUCCESS;

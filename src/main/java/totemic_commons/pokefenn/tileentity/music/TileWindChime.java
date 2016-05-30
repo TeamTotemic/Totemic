@@ -124,9 +124,13 @@ public class TileWindChime extends TileTotemic implements ITickable
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()
     {
-        NBTTagCompound tag = new NBTTagCompound();
-        this.writeToNBT(tag);
-        return new SPacketUpdateTileEntity(pos, 0, tag);
+        return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        return writeToNBT(new NBTTagCompound());
     }
 
     @Override
