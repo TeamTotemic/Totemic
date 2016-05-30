@@ -15,7 +15,7 @@ import java.util.List;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.client.FontHelper;
@@ -47,7 +47,7 @@ public class PageText extends LexiconPage
         FontRenderer renderer = Minecraft.getMinecraft().fontRendererObj;
         boolean unicode = renderer.getUnicodeFlag();
         renderer.setUnicodeFlag(true);
-        String text = I18n.translateToLocal(unlocalizedText).replaceAll("&", "\u00a7");
+        String text = I18n.format(unlocalizedText).replaceAll("&", "\u00a7");
         String[] textEntries = text.split("<br>");
 
         String lastFormat = "";

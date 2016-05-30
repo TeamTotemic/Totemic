@@ -17,6 +17,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -69,7 +70,7 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
             TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(pos);
             if(tileTotemSocket.getTotemEffect() != null)
             {
-                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", tileTotemSocket.getTotemEffect().getLocalizedName()));
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.translateToLocal(tileTotemSocket.getTotemEffect().getUnlocalizedName())));
             }
         }
         return EnumActionResult.SUCCESS;

@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
@@ -66,8 +67,9 @@ public class GameOverlay
                 {
                     Ceremony cer = activeTotem.startupCeremony;
 
-                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
-                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
+                    String locName = I18n.format(cer.getUnlocalizedName());
+                    int nameX = (w - font.getStringWidth(locName)) / 2;
+                    font.drawString(locName, nameX, 1, 0xC8000000);
 
                     GlStateManager.color(1, 1, 1);
                     mc.renderEngine.bindTexture(hudTexture);
@@ -87,8 +89,9 @@ public class GameOverlay
                 {
                     Ceremony cer = activeTotem.currentCeremony;
 
-                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
-                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
+                    String locName = I18n.format(cer.getUnlocalizedName());
+                    int nameX = (w - font.getStringWidth(locName)) / 2;
+                    font.drawString(locName, nameX, 1, 0xC8000000);
                 }
 
                 GL11.glPopMatrix();

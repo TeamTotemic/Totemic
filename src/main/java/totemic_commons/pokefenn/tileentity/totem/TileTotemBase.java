@@ -20,7 +20,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -385,29 +384,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         {
             if(worldObj.getTotalWorldTime() % 47L == 0)
                 musicForTotemEffect--;
-        }
-    }
-
-    public static String getMusicName(int i)
-    {
-        if(i < 10)
-        {
-            return I18n.translateToLocal("totemic.melodyName.incrediblyLow");
-        } else if(i >= 10 && i < 32)
-        {
-            return I18n.translateToLocal("totemic.melodyName.weak");
-        } else if(i >= 32 && i < 64)
-        {
-            return I18n.translateToLocal("totemic.melodyName.low");
-        } else if(i >= 64 && i < 96)
-        {
-            return I18n.translateToLocal("totemic.melodyName.sufficient");
-        } else if(i >= 96 && i < 115)
-        {
-            return I18n.translateToLocal("totemic.melodyName.high");
-        } else
-        {
-            return I18n.translateToLocal("totemic.melodyName.maximum");
         }
     }
 

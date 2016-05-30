@@ -11,7 +11,6 @@
  */
 package totemic_commons.pokefenn.client.gui.button;
 
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,7 +18,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
 
@@ -49,7 +48,7 @@ public class GuiButtonBack extends GuiButton
 
     public List<String> getTooltip()
     {
-        return Arrays.asList(I18n.translateToLocal("totemicmisc.back"));
+        return Arrays.asList(I18n.format("totemicmisc.back"));
     }
 
 }

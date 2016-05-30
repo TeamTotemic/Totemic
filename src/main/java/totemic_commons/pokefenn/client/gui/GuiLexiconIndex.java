@@ -18,8 +18,8 @@ import java.util.List;
 import org.lwjgl.input.Mouse;
 
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBack;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonInvisible;
@@ -42,7 +42,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
     public GuiLexiconIndex(LexiconCategory category)
     {
         this.category = category;
-        title = I18n.translateToLocal(category.getUnlocalizedName());
+        title = I18n.format(category.getUnlocalizedName());
         parent = new GuiLexicon();
     }
 
@@ -86,7 +86,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
             GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i - page * 12);
             LexiconEntry entry = i >= entriesToDisplay.size() ? null : entriesToDisplay.get(i);
             if(entry != null)
-                button.displayString = "" + (entry.isPriority() ? TextFormatting.ITALIC : "") + I18n.translateToLocal(entry.getUnlocalizedName());
+                button.displayString = "" + (entry.isPriority() ? TextFormatting.ITALIC : "") + I18n.format(entry.getUnlocalizedName());
             else button.displayString = "";
         }
     }
