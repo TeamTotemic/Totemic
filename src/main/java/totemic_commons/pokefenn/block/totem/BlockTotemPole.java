@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -60,12 +61,12 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     @Override
     public boolean onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
     {
-        if(!world.isRemote)
+        if(world.isRemote)
         {
             TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(pos);
             if(tileTotemSocket.getTotemEffect() != null)
             {
-                player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", tileTotemSocket.getTotemEffect().getLocalizedName()));
+                player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", StatCollector.translateToLocal(tileTotemSocket.getTotemEffect().getUnlocalizedName())));
             }
         }
         return true;

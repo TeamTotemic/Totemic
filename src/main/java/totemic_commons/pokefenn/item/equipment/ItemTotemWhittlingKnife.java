@@ -41,7 +41,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     public String getCurrentlyCarving(int i)
     {
         if(i < totemList.size())
-            return totemList.get(i).getLocalizedName();
+            return StatCollector.translateToLocal(totemList.get(i).getUnlocalizedName());
         else if(i == totemList.size())
             return StatCollector.translateToLocal("tile.totemBase.name");
         else

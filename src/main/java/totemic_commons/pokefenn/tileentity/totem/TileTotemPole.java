@@ -39,11 +39,11 @@ public class TileTotemPole extends TileTotemic
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    public void readFromNBT(NBTTagCompound tag)
     {
-        super.readFromNBT(nbtTagCompound);
-        if(nbtTagCompound.hasKey("effect", Constants.NBT.TAG_STRING))
-            effect = Totemic.api.registry().getTotem(nbtTagCompound.getString("effect"));
+        super.readFromNBT(tag);
+        if(tag.hasKey("effect", Constants.NBT.TAG_STRING))
+            effect = Totemic.api.registry().getTotem(tag.getString("effect"));
     }
 
     @Override

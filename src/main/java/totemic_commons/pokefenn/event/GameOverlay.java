@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -67,8 +68,9 @@ public class GameOverlay
                 {
                     Ceremony cer = activeTotem.startupCeremony;
 
-                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
-                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
+                    String locName = StatCollector.translateToLocal(cer.getUnlocalizedName());
+                    int nameX = (w - font.getStringWidth(locName)) / 2;
+                    font.drawString(locName, nameX, 1, 0xC8000000);
 
                     GlStateManager.color(1, 1, 1);
                     mc.renderEngine.bindTexture(hudTexture);
@@ -88,8 +90,9 @@ public class GameOverlay
                 {
                     Ceremony cer = activeTotem.currentCeremony;
 
-                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
-                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
+                    String locName = StatCollector.translateToLocal(cer.getUnlocalizedName());
+                    int nameX = (w - font.getStringWidth(locName)) / 2;
+                    font.drawString(locName, nameX, 1, 0xC8000000);
                 }
 
                 GL11.glPopMatrix();

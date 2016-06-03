@@ -53,7 +53,9 @@ public abstract class TotemEffect
 
     /**
      * @return the localized name of the Effect
+     * @deprecated Translate manually with I18n or StatCollector instead.
      */
+    @Deprecated
     public String getLocalizedName()
     {
         return StatCollector.translateToLocal(getUnlocalizedName());
