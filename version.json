@@ -1,6 +1,7 @@
 {
     "homepage": "http://minecraft.curseforge.com/projects/totemic",
     "promos": {
-        "1.8.9-latest": "0.7.1"
+        "1.8.9-latest": "1.8.9-0.7.2",
+        "1.9.4-latest": "1.9.4-0.7.4"
     }
 }
