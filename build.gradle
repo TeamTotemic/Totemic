@@ -27,7 +27,7 @@ group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.9.4-12.17.0.1922-1.9.4"
+    version = "1.9.4-12.17.0.1940"
     runDir = "run"
 
     mappings = "snapshot_20160518"
@@ -115,7 +115,6 @@ curseforge {
         id = '237541'
         changelog  = ''
         releaseType = 'alpha'
-        addGameVersion '1.9.4'
 
         addArtifact deobfJar
         addArtifact apiZip
