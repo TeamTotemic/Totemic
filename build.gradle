@@ -22,7 +22,7 @@ configurations {
     compile.extendsFrom shade
 }
 
-version = "1.8.9-0.7.1"
+version = "1.8.9-0.7.2"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
@@ -42,17 +42,12 @@ targetCompatibility = '1.8'
 
 repositories {
     maven {
-        name "Mobiusstrip"
-        url "http://mobiusstrip.eu/maven"
-    }
-    maven {
         name "tterrag Repo"
         url "http://maven.tterrag.com/"
     }
 }
 
 dependencies {
-    provided "mcp.mobius.waila:Waila:1.6.0-B3_1.8.8:dev"
     shade "chylex.javacheck:JavaChecker:v2.0-b3"
 }
 
