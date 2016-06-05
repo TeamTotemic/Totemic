@@ -22,12 +22,12 @@ configurations {
     compile.extendsFrom shade
 }
 
-version = "1.9.4-0.7.3"
+version = "1.9.4-0.7.4"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.9.4-12.17.0.1940"
+    version = "1.9.4-12.17.0.1953"
     runDir = "run"
 
     mappings = "snapshot_20160518"
