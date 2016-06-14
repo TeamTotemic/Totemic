@@ -17,11 +17,6 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-configurations {
-    shade
-    compile.extendsFrom shade
-}
-
 version = "1.9.4-0.7.4"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
@@ -45,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    //shade "chylex.javacheck:JavaChecker:v2.0-b3"
+
 }
 
 processResources {
@@ -66,25 +61,6 @@ processResources {
         exclude 'mcmod.info'
     }
 }
-
-// Shade Java 8 checker
-/*reobf {
-    jar {
-        extraLines "PK: chylex/javacheck totemic_commons/shade/javacheck"
-    }
-}
-
-jar {
-    configurations.shade.each { dep ->
-        from(project.zipTree(dep)) {
-            exclude 'META-INF', 'META-INF/**'
-        }
-    }
-
-    manifest {
-        attributes 'TweakClass': 'totemic_commons.shade.javacheck.Java8Checker'
-    }
-}*/
 
 task deobfJar(type: Jar) {
     from(sourceSets.main.output) {
