@@ -21,7 +21,7 @@ import totemic_commons.pokefenn.misc.CreativeTabTotemic;
 
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, acceptedMinecraftVersions = "[1.9.4,1.10)",
         dependencies = "required-after:Forge@[12.17.0.1953,)", guiFactory = "totemic_commons.pokefenn.configuration.TotemicGuiFactory",
-        updateJSON = "https://raw.githubusercontent.com/TeamTotemic/Totemic/master/version.json")
+        updateJSON = "https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json")
 public final class Totemic
 {
     public static final String MOD_ID = "totemic";
