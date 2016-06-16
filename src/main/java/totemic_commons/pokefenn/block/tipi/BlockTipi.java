@@ -35,7 +35,7 @@ public class BlockTipi extends BlockTileTotemic
     {
         super(Material.cloth);
         setUnlocalizedName(Strings.TIPI_NAME);
-        setBlockBounds(0, 0, 0, 0, 0, 0);
+        setBlockBounds(0, 0, 0, 1, 0.0625F, 1);
         setHardness(0.2F);
         setStepSound(soundTypeCloth);
         setCreativeTab(Totemic.tabsTotem);
@@ -48,11 +48,10 @@ public class BlockTipi extends BlockTileTotemic
         return getDefaultState().withProperty(FACING, dir);
     }
 
-    public boolean tipiSleep(World world, BlockPos pos, EntityPlayer player)
+    private boolean tipiSleep(World world, BlockPos pos, EntityPlayer player)
     {
         if(!world.isRemote)
         {
-            pos = pos.up();
             if(world.getBiomeGenForCoords(pos) != BiomeGenBase.hell)
             {
                 if(world.provider.canRespawnHere())
@@ -105,6 +104,13 @@ public class BlockTipi extends BlockTileTotemic
 
         }
         return true;
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
+            EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        return tipiSleep(world, pos, player);
     }
 
     @Override
