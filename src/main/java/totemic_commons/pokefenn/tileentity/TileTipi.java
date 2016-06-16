@@ -1,9 +1,6 @@
 package totemic_commons.pokefenn.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Created by Pokefenn.
@@ -29,13 +26,6 @@ public class TileTipi extends TileTotemic
         super.readFromNBT(nbtTagCompound);
         //colour = nbtTagCompound.getInteger("colour");
         //hasCatcher = nbtTagCompound.getBoolean("hasCatcher");
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public AxisAlignedBB getRenderBoundingBox()
-    {
-        return new AxisAlignedBB(pos.add(-1, -1, -1), pos.add(2, 6, 2));
     }
 
 }

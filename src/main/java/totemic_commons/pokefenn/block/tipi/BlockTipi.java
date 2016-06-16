@@ -14,8 +14,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -53,11 +55,10 @@ public class BlockTipi extends BlockTileTotemic
         return getDefaultState().withProperty(FACING, dir);
     }
 
-    public boolean tipiSleep(World world, BlockPos pos, EntityPlayer player)
+    private boolean tipiSleep(World world, BlockPos pos, EntityPlayer player)
     {
         if(!world.isRemote)
         {
-            pos = pos.up();
             if(world.getBiomeGenForCoords(pos) != Biomes.HELL)
             {
                 if(world.provider.canRespawnHere())
@@ -110,6 +111,13 @@ public class BlockTipi extends BlockTileTotemic
 
         }
         return true;
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
+            EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    {
+        return tipiSleep(world, pos, player);
     }
 
     @Override
@@ -169,7 +177,7 @@ public class BlockTipi extends BlockTileTotemic
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(0, 0, 0, 0, 0, 0);
+        return new AxisAlignedBB(0, 0, 0, 1, 0.0625, 1);
     }
 
     @Override
