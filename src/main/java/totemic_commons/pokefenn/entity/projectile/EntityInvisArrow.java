@@ -18,12 +18,10 @@ import totemic_commons.pokefenn.util.EntityUtil;
 
 public class EntityInvisArrow extends EntityArrow
 {
-    //Only set when the shooter is a player
-    //FIXME: This is problematic and doesn't work
-    private static final DataParameter<Integer> SHOOTER_DATAWATCHER = EntityDataManager.createKey(EntityInvisArrow.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SHOOTING_PLAYER = EntityDataManager.createKey(EntityInvisArrow.class, DataSerializers.VARINT);
 
     @SideOnly(Side.CLIENT)
-    private boolean shotByPlayer;
+    private boolean shotByLocalPlayer;
 
     public EntityInvisArrow(World world)
     {
@@ -35,7 +33,7 @@ public class EntityInvisArrow extends EntityArrow
         super(world, shooter);
         if(shooter instanceof EntityPlayer)
         {
-            dataManager.set(SHOOTER_DATAWATCHER, shooter.getEntityId());
+            dataManager.set(SHOOTING_PLAYER, shooter.getEntityId());
         }
     }
 
@@ -50,26 +48,26 @@ public class EntityInvisArrow extends EntityArrow
     protected void entityInit()
     {
         super.entityInit();
-        dataManager.register(SHOOTER_DATAWATCHER, 0);
+        dataManager.register(SHOOTING_PLAYER, 0);
     }
 
     @Override
     public void notifyDataManagerChange(DataParameter<?> key)
     {
         super.notifyDataManagerChange(key);
-        if(worldObj.isRemote && key == SHOOTER_DATAWATCHER)
+        if(worldObj.isRemote && SHOOTING_PLAYER.equals(key))
         {
-            if(dataManager.get(SHOOTER_DATAWATCHER) == EntityUtil.getClientPlayer().getEntityId())
+            if(dataManager.get(SHOOTING_PLAYER) == EntityUtil.getClientPlayer().getEntityId())
             {
-                shotByPlayer = true;
+                shotByLocalPlayer = true;
             }
         }
     }
 
     @SideOnly(Side.CLIENT)
-    public boolean isShotByPlayer()
+    public boolean isShotByLocalPlayer()
     {
-        return shotByPlayer;
+        return shotByLocalPlayer;
     }
 
     @Override
