@@ -28,4 +28,9 @@ public class TileTipi extends TileTotemic
         //hasCatcher = nbtTagCompound.getBoolean("hasCatcher");
     }
 
+    @Override
+    public boolean canRenderBreaking()
+    {
+        return true; //This fixes the weird breaking animation caused by the oversized model
+    }
 }
