@@ -78,7 +78,7 @@ public class ItemBaykokBow extends ItemBow
                     }
 
                     entityarrow.setDamage(2.5);
-                    entityarrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, charge * 3.0F, 1.0F);
+                    entityarrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, charge * 4.0F, 1.0F);
 
                     if(charge == 1.0F)
                         entityarrow.setIsCritical(true);
