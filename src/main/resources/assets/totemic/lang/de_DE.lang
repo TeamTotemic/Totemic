@@ -231,7 +231,7 @@ totemic.page.barkStripper2=
 #totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
 
 totemic.entry.baykokBow=Baykoks Bogen
-totemic.page.baykokBow0=&4Baykoks Bogen&0 ist ein mächtiger Bogen, den man nur durch Töten des Geistes &4Baykok&0 erhält. Baykok kann mit der Zeremonie &4Glocken des Todes&0 beschwört werden.<br>Pfeile, die von diesem Bogen geschossen werden, sind für alle außer dir selbst unsichtbar, verlangsamen ihr Ziel und verursachen viel mehr Schaden als normale Pfeile. Der Bogen lässt sich außerdem leichter verzaubern und ist beständiger als ein gewöhnlicher Bogen.
+totemic.page.baykokBow0=&4Baykoks Bogen&0 ist ein mächtiger Bogen, den man nur durch Töten des Geistes &4Baykok&0 erhält. Baykok kann mit der Zeremonie &4Glocken des Todes&0 beschwört werden.<br>Pfeile, die von diesem Bogen geschossen werden, verursachen mehr Schaden, und wenn sie nicht getränkt sind, werden sie unsichtbar. Der Bogen lässt sich außerdem leichter verzaubern und ist beständiger als ein gewöhnlicher Bogen.
 
 totemic.entry.tipi=Tipi
 totemic.page.tipi0=Der &1Tipi&0 ist kegelförmiger Zelt. Es besteht aus einem hölzernen Gerüst mit einer Plane aus Büffelleder oder Textil. Er kann auf einer flachen Oberfläche aus Erde oder Gras platziert werden, und man kann darin schlafen.
