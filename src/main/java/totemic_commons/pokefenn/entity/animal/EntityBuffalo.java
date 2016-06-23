@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.entity.animal;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -12,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
@@ -124,6 +127,13 @@ public class EntityBuffalo extends EntityCow
 
         int age = tag.getInteger("buffaloAge");
         setBuffaloAge(age);
+    }
+
+    @Override
+    @Nullable
+    protected ResourceLocation getLootTable()
+    {
+        return null;
     }
 
     @Override
