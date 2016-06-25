@@ -103,7 +103,9 @@ public abstract class Ceremony
 
     /**
      * @return the localized name of the Ceremony
+     * @deprecated Translate manually with I18n or StatCollector instead.
      */
+    @Deprecated
     public String getLocalizedName()
     {
         return StatCollector.translateToLocal(getUnlocalizedName());

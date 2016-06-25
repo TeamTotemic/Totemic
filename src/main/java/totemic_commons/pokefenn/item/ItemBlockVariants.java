@@ -11,6 +11,7 @@ public class ItemBlockVariants extends ItemBlock
     public ItemBlockVariants(Block block)
     {
         super(block);
+        setHasSubtypes(true);
     }
 
     @Override

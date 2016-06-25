@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn;
+package totemic_commons.pokefenn.apiimpl;
 
 import java.util.*;
 

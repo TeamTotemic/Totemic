@@ -18,6 +18,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.music.ItemInstrument;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -26,7 +28,7 @@ import totemic_commons.pokefenn.util.EntityUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class ItemFlute extends ItemMusic
+public class ItemFlute extends ItemInstrument
 {
     //Entities that have been tempted by the infused flute get stored in this weak set
     //so as to avoid adding the same AI task multiple times
@@ -34,7 +36,9 @@ public class ItemFlute extends ItemMusic
 
     public ItemFlute()
     {
-        super(Strings.FLUTE_NAME, HandlerInitiation.flute, "flute");
+        super(HandlerInitiation.flute, "totemic:flute");
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.FLUTE_NAME);
+        setCreativeTab(Totemic.tabsTotem);
         setMaxStackSize(1);
     }
 

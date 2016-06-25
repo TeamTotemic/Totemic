@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.lib;
 
 import net.minecraft.util.ResourceLocation;
-import totemic_commons.pokefenn.util.ResourceLocationHelper;
+import totemic_commons.pokefenn.Totemic;
 
 public class Resources
 {
@@ -19,6 +19,6 @@ public class Resources
     public static final String CEREMONY_HUD = PREFIX_GUI + "ceremonyHUD.png";
 
     //Models
-    public static final ResourceLocation TEXTURE_WIND_CHIME = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "windChime.png");
-    public static final ResourceLocation TEXTURE_TIPI = ResourceLocationHelper.getResourceLocation(MODEL_SHEET_LOCATION + "tipi.png");
+    public static final ResourceLocation TEXTURE_WIND_CHIME = new ResourceLocation(Totemic.MOD_ID, MODEL_SHEET_LOCATION + "windChime.png");
+    public static final ResourceLocation TEXTURE_TIPI = new ResourceLocation(Totemic.MOD_ID, MODEL_SHEET_LOCATION + "tipi.png");
 }

@@ -97,6 +97,12 @@ public class BlockDummyTipi extends Block
     }
 
     @Override
+    public int getMobilityFlag()
+    {
+        return 2;
+    }
+
+    @Override
     public int quantityDropped(Random random)
     {
         return 0;

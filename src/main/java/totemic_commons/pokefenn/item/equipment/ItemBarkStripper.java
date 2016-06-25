@@ -49,7 +49,7 @@ public class ItemBarkStripper extends ItemTotemic
                     time = 0;
                     //Random random = world.rand;
 
-                    world.setBlockState(pos, ModBlocks.redCedarStripped.getDefaultState()
+                    world.setBlockState(pos, ModBlocks.cedarLogStripped.getDefaultState()
                             .withProperty(BlockLog.LOG_AXIS, state.getValue(BlockLog.LOG_AXIS)));
                     //EntityItem bark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 1 + random.nextInt(3), ItemTotemicItems.cedarBark));
                     //world.spawnEntityInWorld(bark);

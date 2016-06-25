@@ -22,12 +22,12 @@ configurations {
     compile.extendsFrom shade
 }
 
-version = "1.8.9-0.7.1"
+version = "1.8.9-0.7.3"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.8.9-11.15.1.1723"
+    version = "1.8.9-11.15.1.1902-1.8.9"
     runDir = "run"
 
     mappings = "stable_20"
@@ -42,17 +42,12 @@ targetCompatibility = '1.8'
 
 repositories {
     maven {
-        name "Mobiusstrip"
-        url "http://mobiusstrip.eu/maven"
-    }
-    maven {
         name "tterrag Repo"
         url "http://maven.tterrag.com/"
     }
 }
 
 dependencies {
-    provided "mcp.mobius.waila:Waila:1.6.0-B3_1.8.8:dev"
     shade "chylex.javacheck:JavaChecker:v2.0-b3"
 }
 
@@ -123,8 +118,6 @@ curseforge {
         id = '237541'
         changelog  = ''
         releaseType = 'beta'
-        addGameVersion '1.8.9'
-        addGameVersion 'Java 8'
 
         addArtifact deobfJar
         addArtifact apiZip

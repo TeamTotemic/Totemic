@@ -52,21 +52,6 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
 
         modelWindChime.chime4.rotateAngleX = getRotationThingy();
         modelWindChime.chime4.rotateAngleZ = getRotationThingy();
-
-        //TODO
-        /*
-        modelWindChime.chime1.rotateAngleX = (-sinerp) * 90F;
-        modelWindChime.chime1.rotateAngleZ = (-sinerp) * 90F;
-
-        modelWindChime.chime2.rotateAngleX = (-sinerp) * 90F;
-        modelWindChime.chime2.rotateAngleZ = (-sinerp) * 90F;
-
-        modelWindChime.chime3.rotateAngleX = (-sinerp) * 90F;
-        modelWindChime.chime3.rotateAngleZ = (-sinerp) * 90F;
-
-        modelWindChime.chime4.rotateAngleX = (-sinerp) * 90F;
-        modelWindChime.chime4.rotateAngleZ = (-sinerp) * 90F;
-        */
     }
 
     private void resetRotations()
