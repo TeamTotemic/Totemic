@@ -76,8 +76,8 @@ public class CraftingRecipes
 
     static void shapelessRecipes()
     {
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 5, 0), ModBlocks.redCedarStripped);
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.redCedarPlank, 3, 0), ModBlocks.cedarLog);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedarPlank, 5, 0), ModBlocks.cedarLogStripped);
+        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedarPlank, 3, 0), ModBlocks.cedarLog);
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.subItems, 9, ItemTotemicItems.Type.nuggetIron.ordinal()), "ingotIron"));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.LEATHER), new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()));
 
@@ -87,9 +87,9 @@ public class CraftingRecipes
     static void oreDictionary()
     {
         OreDictionary.registerOre("cropVine", new ItemStack(Blocks.VINE));
-        OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.totemLeaves, 1));
+        OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.cedarLeaves, 1));
         OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedarLog, 1, 0));
-        OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.redCedarPlank, 1, 0));
+        OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.cedarPlank, 1, 0));
         OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.nuggetIron.ordinal()));
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.bellsIron.ordinal()));
         OreDictionary.registerOre("listAllmeatraw", new ItemStack(ModItems.buffaloMeat));
@@ -102,7 +102,7 @@ public class CraftingRecipes
 
     static void furnaceRecipes()
     {
-        GameRegistry.addSmelting(ModBlocks.redCedarStripped, new ItemStack(Items.COAL, 1, 1), 0.5F);
+        GameRegistry.addSmelting(ModBlocks.cedarLogStripped, new ItemStack(Items.COAL, 1, 1), 0.5F);
         GameRegistry.addSmelting(ModBlocks.cedarLog, new ItemStack(Items.COAL, 1, 1), 0.5F);
         GameRegistry.addSmelting(ModItems.buffaloMeat, new ItemStack(ModItems.buffaloCookedMeat), 0.35F);
     }

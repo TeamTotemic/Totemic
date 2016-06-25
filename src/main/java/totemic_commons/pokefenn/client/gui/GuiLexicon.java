@@ -20,9 +20,9 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBookmark;
@@ -129,7 +129,7 @@ public class GuiLexicon extends GuiScreen
     {
         boolean unicode = fontRendererObj.getUnicodeFlag();
         fontRendererObj.setUnicodeFlag(true);
-        fontRendererObj.drawSplitString(String.format(I18n.translateToLocal("totemic.gui.lexicon.header")), left + 18, top + 14, 110, 0);
+        fontRendererObj.drawSplitString(I18n.format("totemic.gui.lexicon.header"), left + 18, top + 14, 110, 0);
         fontRendererObj.setUnicodeFlag(unicode);
     }
 
@@ -226,7 +226,7 @@ public class GuiLexicon extends GuiScreen
             GuiButtonInvisible button = (GuiButtonInvisible) buttonList.get(i);
             LexiconCategory category = i_ >= categoryList.size() ? null : categoryList.get(i_);
             if(category != null)
-                button.displayString = I18n.translateToLocal(category.getUnlocalizedName());
+                button.displayString = I18n.format(category.getUnlocalizedName());
             else button.displayString = "";
         }
     }

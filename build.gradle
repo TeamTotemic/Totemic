@@ -17,17 +17,12 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-configurations {
-    shade
-    compile.extendsFrom shade
-}
-
-version = "1.9.4-0.7.2"
+version = "1.9.4-0.7.6"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.9.4-12.17.0.1909-1.9.4"
+    version = "1.9.4-12.17.0.1953"
     runDir = "run"
 
     mappings = "snapshot_20160518"
@@ -45,7 +40,7 @@ repositories {
 }
 
 dependencies {
-    //shade "chylex.javacheck:JavaChecker:v2.0-b3"
+
 }
 
 processResources {
@@ -66,25 +61,6 @@ processResources {
         exclude 'mcmod.info'
     }
 }
-
-// Shade Java 8 checker
-/*reobf {
-    jar {
-        extraLines "PK: chylex/javacheck totemic_commons/shade/javacheck"
-    }
-}
-
-jar {
-    configurations.shade.each { dep ->
-        from(project.zipTree(dep)) {
-            exclude 'META-INF', 'META-INF/**'
-        }
-    }
-
-    manifest {
-        attributes 'TweakClass': 'totemic_commons.shade.javacheck.Java8Checker'
-    }
-}*/
 
 task deobfJar(type: Jar) {
     from(sourceSets.main.output) {
@@ -115,7 +91,6 @@ curseforge {
         id = '237541'
         changelog  = ''
         releaseType = 'alpha'
-        addGameVersion '1.9.4'
 
         addArtifact deobfJar
         addArtifact apiZip

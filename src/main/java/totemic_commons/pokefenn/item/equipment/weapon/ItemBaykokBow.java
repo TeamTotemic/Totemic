@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
@@ -39,7 +40,6 @@ public class ItemBaykokBow extends ItemBow
     @Override
     public void onPlayerStoppedUsing(ItemStack stack, World world, EntityLivingBase entity, int timeLeft)
     {
-        //TODO: Make it work properly with all types of arrows
         if(!(entity instanceof EntityPlayer))
             return;
 
@@ -48,7 +48,7 @@ public class ItemBaykokBow extends ItemBow
         ItemStack arrow = findAmmo(player);
 
         int chargeTicks = this.getMaxItemUseDuration(stack) - timeLeft;
-        chargeTicks = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, world, player, chargeTicks, arrow != null || infinity);
+        chargeTicks = ForgeEventFactory.onArrowLoose(stack, world, player, chargeTicks, arrow != null || infinity);
         if(chargeTicks < 0)
             return;
 
@@ -65,10 +65,20 @@ public class ItemBaykokBow extends ItemBow
 
                 if(!world.isRemote)
                 {
-                    //ItemArrow itemarrow = ((ItemArrow)(arrow.getItem() instanceof ItemArrow ? arrow.getItem() : Items.arrow));
-                    EntityArrow entityarrow = new EntityInvisArrow(world, player);//itemarrow.makeTippedArrow(world, arrow, player);
+                    ItemArrow itemarrow = ((ItemArrow)(arrow.getItem() instanceof ItemArrow ? arrow.getItem() : Items.ARROW));
+                    EntityArrow entityarrow;
+
+                    if(itemarrow == Items.ARROW) //Mundane arrows will become invisible
+                    {
+                        entityarrow = new EntityInvisArrow(world, player);
+                    }
+                    else
+                    {
+                        entityarrow = itemarrow.createArrow(world, arrow, entity);
+                    }
+
                     entityarrow.setDamage(2.5);
-                    entityarrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, charge * 3.0F, 1.0F);
+                    entityarrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, charge * 4.0F, 1.0F);
 
                     if(charge == 1.0F)
                         entityarrow.setIsCritical(true);

@@ -8,13 +8,17 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
+import totemic_commons.pokefenn.item.equipment.weapon.ItemBaykokBow;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
@@ -66,8 +70,9 @@ public class GameOverlay
                 {
                     Ceremony cer = activeTotem.startupCeremony;
 
-                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
-                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
+                    String locName = I18n.format(cer.getUnlocalizedName());
+                    int nameX = (w - font.getStringWidth(locName)) / 2;
+                    font.drawString(locName, nameX, 1, 0xC8000000);
 
                     GlStateManager.color(1, 1, 1);
                     mc.renderEngine.bindTexture(hudTexture);
@@ -87,8 +92,9 @@ public class GameOverlay
                 {
                     Ceremony cer = activeTotem.currentCeremony;
 
-                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
-                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
+                    String locName = I18n.format(cer.getUnlocalizedName());
+                    int nameX = (w - font.getStringWidth(locName)) / 2;
+                    font.drawString(locName, nameX, 1, 0xC8000000);
                 }
 
                 GL11.glPopMatrix();
@@ -96,6 +102,24 @@ public class GameOverlay
             }
 
             mc.mcProfiler.endSection();
+        }
+    }
+
+    @SubscribeEvent
+    public void onFOVUpdate(FOVUpdateEvent event)
+    {
+        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        if(player.isHandActive() && player.getActiveItemStack() != null && player.getActiveItemStack().getItem() instanceof ItemBaykokBow)
+        {
+            int bowTicks = player.getItemInUseMaxCount();
+            float modifier = bowTicks / 20.0F;
+
+            if (modifier > 1.0F)
+                modifier = 1.0F;
+            else
+                modifier = modifier * modifier;
+
+            event.setNewfov(event.getFov() * (1.0F - 0.15F * modifier));
         }
     }
 }

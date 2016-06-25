@@ -43,12 +43,6 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         return new ArmorProperties(1, 1, 0);
     }
 
-    /*@Override
-    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
-    {
-        return "totemic:textures/armour/jingleDress.png";
-    }*/
-
     @Override
     public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
     {
@@ -72,14 +66,17 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
                     PacketHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
         } else
         {
-            NBTTagCompound tag = itemStack.getTagCompound();
-            if(world.getTotalWorldTime() % 20L == 0 && tag != null)
+            if(world.getTotalWorldTime() % 20L == 0)
             {
-                int time = tag.getInteger(Strings.INSTR_TIME_KEY);
-                if(time >= 3 || (player.isPotionActive(MobEffects.SPEED) && time >= 2))
+                NBTTagCompound tag = itemStack.getTagCompound();
+                if(tag != null)
                 {
-                    playMusic(world, player, itemStack, false/*player.isSneaking()*/);
-                    tag.setInteger(Strings.INSTR_TIME_KEY, 0);
+                    int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+                    if(time >= 3 || (player.isPotionActive(MobEffects.SPEED) && time >= 2))
+                    {
+                        playMusic(world, player, itemStack, false);
+                        tag.setInteger(Strings.INSTR_TIME_KEY, 0);
+                    }
                 }
             }
         }
@@ -90,10 +87,6 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         if(!isSneaking)
         {
             TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, HandlerInitiation.jingleDress, 0, 0);
-            particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
-        } else //DEAD CODE
-        {
-            TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, HandlerInitiation.jingleDress, 0);
             particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
         }
     }

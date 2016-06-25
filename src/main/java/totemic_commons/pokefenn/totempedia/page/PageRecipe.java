@@ -21,9 +21,9 @@ import org.lwjgl.opengl.GL12;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.client.RenderHelper;
@@ -82,12 +82,12 @@ public class PageRecipe extends LexiconPage
 
             if(tooltipEntry)
             {
-                RenderHelper.renderTooltipOrange(mx, my + tooltipY, Arrays.asList(TextFormatting.GRAY + I18n.translateToLocal("totemicmisc.clickToRecipe")));
+                RenderHelper.renderTooltipOrange(mx, my + tooltipY, Arrays.asList(TextFormatting.GRAY + I18n.format("totemicmisc.clickToRecipe")));
                 tooltipY += 18;
             }
 
             if(tooltipContainerStack != null)
-                RenderHelper.renderTooltipGreen(mx, my + tooltipY, Arrays.asList(TextFormatting.AQUA + I18n.translateToLocal("totemicmisc.craftingContainer"), tooltipContainerStack.getDisplayName()));
+                RenderHelper.renderTooltipGreen(mx, my + tooltipY, Arrays.asList(TextFormatting.AQUA + I18n.format("totemicmisc.craftingContainer"), tooltipContainerStack.getDisplayName()));
         }
 
         tooltipStack = tooltipContainerStack = null;

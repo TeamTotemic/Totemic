@@ -35,7 +35,7 @@ public class BlockCedarStripped extends BlockLog
         {
             if(random.nextInt(20) == 0) //about once every 15-20 minutes
             {
-                Material mat = world.getBlockState(pos.down()).getBlock().getMaterial(state);
+                Material mat = world.getBlockState(pos.down()).getMaterial();
                 if(mat == Material.GROUND || mat == Material.GRASS)
                 {
                     world.setBlockState(pos, ModBlocks.cedarLog.getDefaultState()

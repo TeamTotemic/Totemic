@@ -31,60 +31,59 @@ public final class ModBlocks
     public static BlockCedarLog cedarLog;
     public static BlockTotemBase totemBase;
     public static BlockTotemPole totemPole;
-    public static BlockCedarSapling totemSapling;
-    public static BlockCedarLeaves totemLeaves;
+    public static BlockCedarSapling cedarSapling;
+    public static BlockCedarLeaves cedarLeaves;
     public static BlockTotemTorch totemTorch;
-    //public static Block flameParticle;
     public static BlockWindChime windChime;
     public static BlockDrum drum;
-    public static BlockCedarPlank redCedarPlank;
-    public static BlockCedarStripped redCedarStripped;
+    public static BlockCedarPlank cedarPlank;
+    public static BlockCedarStripped cedarLogStripped;
     public static BlockTipi tipi;
     public static BlockDummyTipi dummyTipi;
 
     public static void init()
     {
         cedarLog = new BlockCedarLog();
+        cedarLogStripped = new BlockCedarStripped();
+        cedarPlank = new BlockCedarPlank();
+        cedarSapling = new BlockCedarSapling();
+        cedarLeaves = new BlockCedarLeaves();
         totemBase = new BlockTotemBase();
         totemPole = new BlockTotemPole();
-        totemSapling = new BlockCedarSapling();
-        totemLeaves = new BlockCedarLeaves();
         totemTorch = new BlockTotemTorch();
         drum = new BlockDrum();
         windChime = new BlockWindChime();
-        redCedarPlank = new BlockCedarPlank();
-        redCedarStripped = new BlockCedarStripped();
         tipi = new BlockTipi();
         dummyTipi = new BlockDummyTipi();
 
         GameRegistry.register(cedarLog);
         GameRegistry.register(new ItemBlock(cedarLog).setRegistryName(cedarLog.getRegistryName()));
+        GameRegistry.register(cedarLogStripped);
+        GameRegistry.register(new ItemBlock(cedarLogStripped).setRegistryName(cedarLogStripped.getRegistryName()));
+        GameRegistry.register(cedarPlank);
+        GameRegistry.register(new ItemBlock(cedarPlank).setRegistryName(cedarPlank.getRegistryName()));
+        GameRegistry.register(cedarSapling);
+        GameRegistry.register(new ItemBlock(cedarSapling).setRegistryName(cedarSapling.getRegistryName()));
+        GameRegistry.register(cedarLeaves);
+        GameRegistry.register(new ItemBlock(cedarLeaves).setRegistryName(cedarLeaves.getRegistryName()));
         GameRegistry.register(totemBase);
         GameRegistry.register(new ItemBlockVariants(totemBase).setRegistryName(totemBase.getRegistryName()));
         GameRegistry.register(totemPole);
         GameRegistry.register(new ItemBlockVariants(totemPole).setRegistryName(totemPole.getRegistryName()));
-        GameRegistry.register(totemSapling);
-        GameRegistry.register(new ItemBlock(totemSapling).setRegistryName(totemSapling.getRegistryName()));
-        GameRegistry.register(totemLeaves);
-        GameRegistry.register(new ItemBlock(totemLeaves).setRegistryName(totemLeaves.getRegistryName()));
         GameRegistry.register(totemTorch);
         GameRegistry.register(new ItemBlock(totemTorch).setRegistryName(totemTorch.getRegistryName()));
         GameRegistry.register(drum);
         GameRegistry.register(new ItemBlock(drum).setRegistryName(drum.getRegistryName()));
         GameRegistry.register(windChime);
         GameRegistry.register(new ItemBlock(windChime).setRegistryName(windChime.getRegistryName()));
-        GameRegistry.register(redCedarPlank);
-        GameRegistry.register(new ItemBlock(redCedarPlank).setRegistryName(redCedarPlank.getRegistryName()));
-        GameRegistry.register(redCedarStripped);
-        GameRegistry.register(new ItemBlock(redCedarStripped).setRegistryName(redCedarStripped.getRegistryName()));
         GameRegistry.register(tipi);
         GameRegistry.register(new ItemTipi(tipi).setRegistryName(tipi.getRegistryName()));
         GameRegistry.register(dummyTipi);
 
         Blocks.FIRE.setFireInfo(cedarLog, 5, 5);
-        Blocks.FIRE.setFireInfo(redCedarStripped, 5, 10);
-        Blocks.FIRE.setFireInfo(redCedarPlank, 5, 20);
-        Blocks.FIRE.setFireInfo(totemLeaves, 30, 60);
+        Blocks.FIRE.setFireInfo(cedarLogStripped, 5, 10);
+        Blocks.FIRE.setFireInfo(cedarPlank, 5, 20);
+        Blocks.FIRE.setFireInfo(cedarLeaves, 30, 60);
         Blocks.FIRE.setFireInfo(totemBase, 5, 5);
         Blocks.FIRE.setFireInfo(totemPole, 5, 5);
     }
@@ -92,21 +91,21 @@ public final class ModBlocks
     @SideOnly(Side.CLIENT)
     public static void setStateMappers()
     {
-        ModelLoader.setCustomStateMapper(totemSapling, new Builder().ignore(BlockCedarSapling.TYPE, BlockCedarSapling.STAGE).build());
-        ModelLoader.setCustomStateMapper(totemLeaves, new Builder().ignore(BlockCedarLeaves.CHECK_DECAY, BlockCedarLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(cedarSapling, new Builder().ignore(BlockCedarSapling.TYPE, BlockCedarSapling.STAGE).build());
+        ModelLoader.setCustomStateMapper(cedarLeaves, new Builder().ignore(BlockCedarLeaves.CHECK_DECAY, BlockCedarLeaves.DECAYABLE).build());
     }
 
     @SideOnly(Side.CLIENT)
     public static void setItemModels()
     {
         setDefaultModel(cedarLog);
-        setDefaultModel(totemSapling);
-        setDefaultModel(totemLeaves);
+        setDefaultModel(cedarLogStripped);
+        setDefaultModel(cedarPlank);
+        setDefaultModel(cedarSapling);
+        setDefaultModel(cedarLeaves);
         setDefaultModel(totemTorch);
         setDefaultModel(drum);
         setDefaultModel(windChime);
-        setDefaultModel(redCedarPlank);
-        setDefaultModel(redCedarStripped);
         setDefaultModel(tipi);
 
         for(int i = 0; i < WoodVariant.values().length; i++)

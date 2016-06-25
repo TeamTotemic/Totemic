@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.util.text.translation.I18n;
+import net.minecraft.client.resources.I18n;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
 
@@ -45,7 +45,7 @@ public class GuiButtonPage extends GuiButton
             drawTexturedModalRect(xPosition, yPosition, k == 2 ? 18 : 0, right ? 180 : 190, 18, 10);
 
             if(k == 2)
-                RenderHelper.renderTooltip(par2, par3, Arrays.asList(I18n.translateToLocal(right ? "totemicmisc.nextPage" : "totemicmisc.prevPage")));
+                RenderHelper.renderTooltip(par2, par3, Arrays.asList(I18n.format(right ? "totemicmisc.nextPage" : "totemicmisc.prevPage")));
         }
     }
 

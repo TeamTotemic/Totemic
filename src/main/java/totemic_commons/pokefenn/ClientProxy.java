@@ -7,6 +7,12 @@ import java.util.Random;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.opengl.Display;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -47,6 +53,7 @@ public class ClientProxy extends CommonProxy
         super.init(event);
         initTESRs();
         LexiconData.init();
+        registerBlockColors();
     }
 
     @Override
@@ -69,6 +76,18 @@ public class ClientProxy extends CommonProxy
     {
         super.registerEventHandlers();
         MinecraftForge.EVENT_BUS.register(new GameOverlay());
+    }
+
+    private void registerBlockColors()
+    {
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor()
+        {
+            @Override
+            public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex)
+            {
+                return ColorizerFoliage.getFoliageColorPine();
+            }
+        }, ModBlocks.cedarLeaves);
     }
 
     private void initTESRs()

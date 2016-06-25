@@ -19,7 +19,7 @@ public class InvisArrowRendering extends RenderArrow<EntityInvisArrow>
     @Override
     public void doRender(EntityInvisArrow entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        if(entity.isShotByPlayer())
+        if(entity.isShotByLocalPlayer())
         {
             GL11.glPushAttrib(GL11.GL_COLOR_BUFFER_BIT);
             GL11.glEnable(GL11.GL_BLEND);

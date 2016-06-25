@@ -26,9 +26,13 @@ public class TileTotemPole extends TileTotemic
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()
     {
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-        this.writeToNBT(nbttagcompound);
-        return new SPacketUpdateTileEntity(pos, 0, nbttagcompound);
+        return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        return writeToNBT(new NBTTagCompound());
     }
 
     @Override
@@ -38,11 +42,11 @@ public class TileTotemPole extends TileTotemic
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    public void readFromNBT(NBTTagCompound tag)
     {
-        super.readFromNBT(nbtTagCompound);
-        if(nbtTagCompound.hasKey("effect", Constants.NBT.TAG_STRING))
-            effect = Totemic.api.registry().getTotem(nbtTagCompound.getString("effect"));
+        super.readFromNBT(tag);
+        if(tag.hasKey("effect", Constants.NBT.TAG_STRING))
+            effect = Totemic.api.registry().getTotem(tag.getString("effect"));
     }
 
     @Override

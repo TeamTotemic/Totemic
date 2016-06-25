@@ -48,7 +48,7 @@ public class TileWindChime extends TileTotemic implements ITickable
             if(isPlaying && worldObj.getTotalWorldTime() % 40L == 0)
             {
                 worldObj.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        ModSounds.windChime, SoundCategory.BLOCKS, 1.0f, 1.0f, true);
+                        ModSounds.windChime, SoundCategory.BLOCKS, 0.5f, 1.0f, true);
                 worldObj.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.8, pos.getZ() + 0.5, 0, 0, 0);
             }
         }
@@ -124,9 +124,13 @@ public class TileWindChime extends TileTotemic implements ITickable
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()
     {
-        NBTTagCompound tag = new NBTTagCompound();
-        this.writeToNBT(tag);
-        return new SPacketUpdateTileEntity(pos, 0, tag);
+        return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        return writeToNBT(new NBTTagCompound());
     }
 
     @Override

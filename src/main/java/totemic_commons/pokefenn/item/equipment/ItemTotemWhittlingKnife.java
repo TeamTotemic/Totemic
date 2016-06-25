@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.item.equipment;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -13,14 +14,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.RegistryImpl;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
+import totemic_commons.pokefenn.apiimpl.RegistryImpl;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTotemic;
@@ -45,9 +45,9 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     public String getCurrentlyCarving(int i)
     {
         if(i < totemList.size())
-            return totemList.get(i).getLocalizedName();
+            return I18n.format(totemList.get(i).getUnlocalizedName());
         else if(i == totemList.size())
-            return I18n.translateToLocal("tile.totemBase.name");
+            return I18n.format("tile.totemBase.name");
         else
             return "";
     }
@@ -56,7 +56,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         NBTTagCompound tag = stack.getTagCompound();
         if(tag == null)
-            return 0;
+            return totemList.size();
         else
             return MathHelper.clamp_int(tag.getInteger(Strings.KNIFE_TOTEM_KEY), 0, totemList.size());
     }
@@ -65,15 +65,16 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4)
     {
-        list.add(I18n.translateToLocal("item.totemic:totemWhittlingKnife.tooltip1"));
-        list.add(I18n.translateToLocal("item.totemic:totemWhittlingKnife.tooltip2"));
-        list.add(I18n.translateToLocal("item.totemic:totemWhittlingKnife.tooltip3") + " " + getCurrentlyCarving(getCarvingIndex(stack)));
+        list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip1"));
+        list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip2"));
+        list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip3", getCurrentlyCarving(getCarvingIndex(stack))));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public String getItemStackDisplayName(ItemStack stack) {
-        return I18n.translateToLocalFormatted(getUnlocalizedName() + ".display", getCurrentlyCarving(getCarvingIndex(stack)));
+    public String getItemStackDisplayName(ItemStack stack)
+    {
+        return I18n.format(getUnlocalizedName() + ".display", getCurrentlyCarving(getCarvingIndex(stack)));
     }
 
     @Override
@@ -117,7 +118,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
                 tile.effect = totemList.get(getCarvingIndex(stack));
                 tile.markDirty();
-                world.notifyBlockUpdate(pos, state, state, 3);
+                tile.markForUpdate();
             }
             else
                 return EnumActionResult.FAIL;
