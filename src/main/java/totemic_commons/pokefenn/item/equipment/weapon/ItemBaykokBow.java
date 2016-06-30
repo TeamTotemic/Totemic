@@ -17,6 +17,7 @@ import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -35,6 +36,21 @@ public class ItemBaykokBow extends ItemBow
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BAYKOK_BOW_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setMaxDamage(576);
+        addPropertyOverride(new ResourceLocation("pull"), (stack, world, entity) -> {
+            if(entity == null)
+                return 0.0F;
+            else
+            {
+                ItemStack activeStack = entity.getActiveItemStack();
+                if(activeStack != null && activeStack.getItem() == this)
+                    return (stack.getMaxItemUseDuration() - entity.getItemInUseCount()) / 20.0F;
+                else
+                    return 0.0F;
+            }
+        });
+        addPropertyOverride(new ResourceLocation("pulling"), (stack, world, entity) -> {
+            return entity != null && entity.isHandActive() && entity.getActiveItemStack() == stack ? 1.0F : 0.0F;
+        });
     }
 
     @Override
