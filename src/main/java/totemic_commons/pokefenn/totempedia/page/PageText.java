@@ -12,7 +12,7 @@ package totemic_commons.pokefenn.totempedia.page;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
