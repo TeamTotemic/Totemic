@@ -135,104 +135,104 @@ totemic.category.ceremonies=Zeremonien
 totemic.category.instruments=Musikinstrumente
 
 totemic.entry.cedarTree=Der Rote Zedernbaum
-totemic.page.cedarTree0=Der &1Rote Zedernbaum&0 ist ein großer Baum mit magischen Eigenschaften, sein Holz eignet sich besonders zum Schnitzen von Totempfählen. Man erhält ihn, indem man Setzlinge gewöhnlicher Bäume in der &4Zaphkiel-Walzer-Zeremonie&0 mit musikalischer Energie erfüllt.<br>Rote Zedernholzstämme können genutzt werden wie normales Holz, und man kann ihre Rinde mit einem &4Entrinder&0 entfernen.
+totemic.page.cedarTree0=Der §1Rote Zedernbaum§0 ist ein großer Baum mit magischen Eigenschaften, sein Holz eignet sich besonders zum Schnitzen von Totempfählen. Man erhält ihn, indem man Setzlinge gewöhnlicher Bäume in der §4Zaphkiel-Walzer-Zeremonie§0 mit musikalischer Energie erfüllt.<br>Rote Zedernholzstämme können genutzt werden wie normales Holz, und man kann ihre Rinde mit einem §4Entrinder§0 entfernen.
 totemic.page.cedarTree1=
 
 totemic.entry.buffaloBasic=Büffel
-totemic.page.buffaloBasic0=Der mächtige Büffel, ein Tier das im ganzen Land bekannt ist für die Resourcen das es geben kann. Sie sind besonders stämmig und haben viele Lebenspunkte. Durch exzessive Jagd sind sie beinahe ausgestorben, aber sie können durch die &4Mandan-Büffeltanz&0-Zeremonie 'geschaffen' werden.
+totemic.page.buffaloBasic0=Der mächtige Büffel, ein Tier das im ganzen Land bekannt ist für die Resourcen das es geben kann. Sie sind besonders stämmig und haben viele Lebenspunkte. Durch exzessive Jagd sind sie beinahe ausgestorben, aber sie können durch die §4Mandan-Büffeltanz§0-Zeremonie 'geschaffen' werden.
 totemic.page.buffaloBasic1=
 
 totemic.entry.creatingTotems=Totempfähle
-totemic.page.creatingTotems0=Ein Totempfahl ist leicht zu erzeugen. Zunächst benötigst du ein &1Totem-Schnitzmesser&0, damit kannst du Totempfähle aus beliebigen Arten von Holzstämmen schnitzen. Das Messer kann verschiedene Muster von &4Totempfählen&0 zeichnen, welche zu unterschiedlichen Effekten führen. Rechtsklick oder Mausrad während des Schleichens verändert, welches Muster geschnitzt wird.  
-totemic.page.creatingTotems1=Das Totemschnitzmesser wird auch benutzt, um die &1Totembasis&0 zu schnitzen. Jeder Totempfahl benötigt eine Basis unten und kann bis zu 6 Meter hoch sein.<br>Totempfähle geben normalerweise positive &4Effekte&0 zu nahen Spielern. Die Effekte hängen vom Schnitzmuster ab. Ein Totempfahl kann verschiedene Muster auf unterschiedlichen Höhen haben.
+totemic.page.creatingTotems0=Ein Totempfahl ist leicht zu erzeugen. Zunächst benötigst du ein §1Totem-Schnitzmesser§0, damit kannst du Totempfähle aus beliebigen Arten von Holzstämmen schnitzen. Das Messer kann verschiedene Muster von §4Totempfählen§0 zeichnen, welche zu unterschiedlichen Effekten führen. Rechtsklick oder Mausrad während des Schleichens verändert, welches Muster geschnitzt wird.  
+totemic.page.creatingTotems1=Das Totemschnitzmesser wird auch benutzt, um die §1Totembasis§0 zu schnitzen. Jeder Totempfahl benötigt eine Basis unten und kann bis zu 6 Meter hoch sein.<br>Totempfähle geben normalerweise positive §4Effekte§0 zu nahen Spielern. Die Effekte hängen vom Schnitzmuster ab. Ein Totempfahl kann verschiedene Muster auf unterschiedlichen Höhen haben.
 totemic.page.creatingTotems2=
 
 totemic.entry.totemEffects=Totemeffekte
-totemic.page.totemEffects0=Diese Effekte können in einen Totempfahl eingeschnitzt werden:<br>&1Pferd&0: Gibt dir Schnelligkeit<br>&1Titntenfisch&0: Gibt dir Unterwasseratmung<br>&1Lohe&0: Gibt dir Feuerresistenz<br>&1Ozelot&0: Verhindert, dass Creeper explodieren
-totemic.page.totemEffects1=&1Fledermaus&0: Negiert Fallschaden und lässt dich vorwärts bewegen wenn du in der Luft schleichst<br>&1Spinne&0: Lässt dich Wände hochklettern wie eine Spinne<br>&1Kuh&0: Gibt dir Schadensresistenz, aber verlangsamt dich auch
+totemic.page.totemEffects0=Diese Effekte können in einen Totempfahl eingeschnitzt werden:<br>§1Pferd§0: Gibt dir Schnelligkeit<br>§1Titntenfisch§0: Gibt dir Unterwasseratmung<br>§1Lohe§0: Gibt dir Feuerresistenz<br>§1Ozelot§0: Verhindert, dass Creeper explodieren
+totemic.page.totemEffects1=§1Fledermaus§0: Negiert Fallschaden und lässt dich vorwärts bewegen wenn du in der Luft schleichst<br>§1Spinne§0: Lässt dich Wände hochklettern wie eine Spinne<br>§1Kuh§0: Gibt dir Schadensresistenz, aber verlangsamt dich auch
 
 totemic.entry.instruments=Instrumente
-totemic.page.instruments0=Mit Instrumenten kann man &4Musikalische Energie&0 erzeugen, welche &1Totempfähle&0 antreibt. Spielt man ein Instrument während man schleicht, gelangt seine Melodie in nahe Verbraucher. Jedes Instrument erzeugt &4Melodie&0 auf unterschiedliche Arten und Weisen, beispielsweise wie stark die Melodie ist, wie weit sie hörbar ist und wie viel davon ein Totempfahl annehmen kann.
+totemic.page.instruments0=Mit Instrumenten kann man §4Musikalische Energie§0 erzeugen, welche §1Totempfähle§0 antreibt. Spielt man ein Instrument während man schleicht, gelangt seine Melodie in nahe Verbraucher. Jedes Instrument erzeugt §4Melodie§0 auf unterschiedliche Arten und Weisen, beispielsweise wie stark die Melodie ist, wie weit sie hörbar ist und wie viel davon ein Totempfahl annehmen kann.
 totemic.page.instruments1=
 
 totemic.entry.windChime=Windspiel
-totemic.page.windChime0=Das &1Windspiel&0 ist ein Instrument, das im Wind flattert und so &4Melodie&0 erzeugt. Das &1Windspiel&0 muss an einem Block hängen und einen Block Platz nach unten haben. Das &1Windspiel&0 erzeugt nicht sehr viel &4Melodie&0, aber es benötigt kein Eingreifen durch Spieler.
-totemic.page.windChime1=&1Windspiele&0 können auch an Zweigen von Bäumen hängen, und man glaubt sogar, dass sie dadurch mehr &4Melodie&0 erzeugen. Da die Melodie von &1Windspielen&0 so einfach zu erhalten ist, dauert es nicht lange, bis ein Totempfahl mit seiner &4Melodie&0 gesättigt ist.
+totemic.page.windChime0=Das §1Windspiel§0 ist ein Instrument, das im Wind flattert und so §4Melodie§0 erzeugt. Das §1Windspiel§0 muss an einem Block hängen und einen Block Platz nach unten haben. Das §1Windspiel§0 erzeugt nicht sehr viel §4Melodie§0, aber es benötigt kein Eingreifen durch Spieler.
+totemic.page.windChime1=§1Windspiele§0 können auch an Zweigen von Bäumen hängen, und man glaubt sogar, dass sie dadurch mehr §4Melodie§0 erzeugen. Da die Melodie von §1Windspielen§0 so einfach zu erhalten ist, dauert es nicht lange, bis ein Totempfahl mit seiner §4Melodie§0 gesättigt ist.
 totemic.page.windChime2=
 
 totemic.entry.drum=Trommel
-totemic.page.drum0=Die &1Trommel&0 ist ein Instrument, das einfach durch Schlagen mit der Hand gespielt werden kann. Trommelschläge sind normalerweise konstant und ein unverzichtbarer Teil jeder Zeremonie. Deswegen ist ihre Melodie besonders melodisch. So wie die meisten Instrumente kann während des Schleichens gespielt werden, um &4Zeremonien&0 auszuwählen.
+totemic.page.drum0=Die §1Trommel§0 ist ein Instrument, das einfach durch Schlagen mit der Hand gespielt werden kann. Trommelschläge sind normalerweise konstant und ein unverzichtbarer Teil jeder Zeremonie. Deswegen ist ihre Melodie besonders melodisch. So wie die meisten Instrumente kann während des Schleichens gespielt werden, um §4Zeremonien§0 auszuwählen.
 totemic.page.drum1=
 
 totemic.entry.jingleDress=Glockenkleid
-totemic.page.jingleDress0=Das &1Glockenkleid&0, ein besonders glanzvolles Kleidungsstück fpr einen &4Totemist&0. Es ist ein Laubkleid geziert mit Glocken. Durch Umherlaufen erzeugt es Musik. Man sagt, je schneller man läuft desto mehr Musik erzeugt es, und ein Geschwindigkeitstrank erhöht es noch mehr!
-totemic.page.jingleDress1=Die Melodie dieses Instruments ist höchst melodisch, es erzeugt also eine große Menge Melodie wenn es korrekt gespielt wird, und &1Totempfähle&0 können auch eine große Menge dieser Melodie aufnehmen,
+totemic.page.jingleDress0=Das §1Glockenkleid§0, ein besonders glanzvolles Kleidungsstück fpr einen §4Totemist§0. Es ist ein Laubkleid geziert mit Glocken. Durch Umherlaufen erzeugt es Musik. Man sagt, je schneller man läuft desto mehr Musik erzeugt es, und ein Geschwindigkeitstrank erhöht es noch mehr!
+totemic.page.jingleDress1=Die Melodie dieses Instruments ist höchst melodisch, es erzeugt also eine große Menge Melodie wenn es korrekt gespielt wird, und §1Totempfähle§0 können auch eine große Menge dieser Melodie aufnehmen,
 totemic.page.jingleDress2=
 totemic.page.jingleDress3=
 
 totemic.entry.flute=Flöte
-totemic.page.flute0=Manchmal ist eine &1Flöte&0 eines der simpelsten und effektivsten Instrumente. Anders als andere Instrumente kann man die &1Flöte&0 ohne weitere Schwierigkeiten spielen. Da sie so simpel ist, ist sie nicht dafür bekannt, besonders melodisch zu sein, das heißt &4Totempfähle&0 können nicht besonders viel ihrer Melodie aufnehmen.
-totemic.page.flute1=Durch Schleichen kann sie benutzt werden, um &4Zeremonien&0 an nahen &4Totempfählen&0 auszuwählen.<br>Die &1Flöte&0 kann in der &4Zeremonie der Flötenverzauberung&0 mit speziellen Eigenschaften verzaubert werden.
+totemic.page.flute0=Manchmal ist eine §1Flöte§0 eines der simpelsten und effektivsten Instrumente. Anders als andere Instrumente kann man die §1Flöte§0 ohne weitere Schwierigkeiten spielen. Da sie so simpel ist, ist sie nicht dafür bekannt, besonders melodisch zu sein, das heißt §4Totempfähle§0 können nicht besonders viel ihrer Melodie aufnehmen.
+totemic.page.flute1=Durch Schleichen kann sie benutzt werden, um §4Zeremonien§0 an nahen §4Totempfählen§0 auszuwählen.<br>Die §1Flöte§0 kann in der §4Zeremonie der Flötenverzauberung§0 mit speziellen Eigenschaften verzaubert werden.
 totemic.page.flute2=
 
 totemic.entry.rattle=Rassel
-totemic.page.rattle0=Die &1Zeremonielle Rassel&0 ist ein Instrument, das als Rückgrat von Zeremonien diente solange Totemisten bekannt sind. Die &1Rassel&0 produziert &4Melodie&0, wenn sie mit der Hand geschüttelt wird.<br>Sie kann beidhändig benutzt werden: Wenn du die Rassel in der rechten Hand hälst, kannst du ein anderes Instrument in der linken Hand halten und beide gleichzeitig spielen.
+totemic.page.rattle0=Die §1Zeremonielle Rassel§0 ist ein Instrument, das als Rückgrat von Zeremonien diente solange Totemisten bekannt sind. Die §1Rassel§0 produziert §4Melodie§0, wenn sie mit der Hand geschüttelt wird.<br>Sie kann beidhändig benutzt werden: Wenn du die Rassel in der rechten Hand hälst, kannst du ein anderes Instrument in der linken Hand halten und beide gleichzeitig spielen.
 totemic.page.rattle1=Wie alle Instrumente kann sie während des Schleichens gespielt werden um Zeremonien zu aktivieren.
 totemic.page.rattle2=
 
 totemic.entry.performingCeremonies=Durchführung von Zeremonien
-totemic.page.performingCeremonies0=&4Zeremonien&0 sind ein Weg für Totemisten, um durch Musik all ihre Kräfte über eine gewisse Zeit zusammenzunehmen, um sie dann in einem Stoß freizusetzen und Effekte zu erzeugen. Das Zentrum einer &4Zeremonie&0 ist eine &1Totembasis&0, alle Musik und andere Dinge sind um den &1Totempfahl&0 zentriert, und dort werden die Effekte freigesetzt.
-totemic.page.performingCeremonies1=Um eine &4Zeremonie&0 durchzuführen, musst du einige Dinge tun. Um eine &4Zeremonie&0 auszuwählen und einzuleiten, musst du bis zu 4 Instrumente im Selektor-Modus nahe einem &1Totempfahl&0 spielen, jede Zeremonie hat eine andere Folge von Instrumenten. Um Instrumente im Selektor-Modus zu spielen, spiele sie während du schleichst. Nachdem du die passenden Instrumente gespielt hast,
-totemic.page.performingCeremonies2=beginnt die &4Anlaufphase&0. Während der &1Totempfahl&0 in dieser Anlaufphase ist, akzeptiert er Musik aus der Umgebung und speichert sie. Dies wird &4Musikalische Energie&0 genannt, und dies ist, was man benötigt, um den Effekt der &4Zeremonie&0 zu aktivieren. Wenn die gesamte &4Musikalische Energie&0 den Grenzwert überschreitet, den man für die &4Zeremonie&0 benötigt, wird der Effekt aktiviert.
-totemic.page.performingCeremonies3=Jedes Instrument kann nur begrenzt gespielt werden, man kann also nicht eine komplette Zeremonie mit nur einem Instrument spielen. Außerdem hast du nur eine begrenzte Zeit zur Verfügung, um die Zeremonie zum Laufen zu bringen, also musst du schnell genug sein mit den Instrumenten. Einige &4Zeremonien&0 haben sofortige Effekte, andere dauern über eine gewisse Zeit an.
-totemic.page.performingCeremonies4=Die Effekte verbrauchen die &4Musikalische Energie&0 über die Zeit. Die Effekte können nur eine gweisse Zeit andauern und hören dann auf.
+totemic.page.performingCeremonies0=§4Zeremonien§0 sind ein Weg für Totemisten, um durch Musik all ihre Kräfte über eine gewisse Zeit zusammenzunehmen, um sie dann in einem Stoß freizusetzen und Effekte zu erzeugen. Das Zentrum einer §4Zeremonie§0 ist eine §1Totembasis§0, alle Musik und andere Dinge sind um den §1Totempfahl§0 zentriert, und dort werden die Effekte freigesetzt.
+totemic.page.performingCeremonies1=Um eine §4Zeremonie§0 durchzuführen, musst du einige Dinge tun. Um eine §4Zeremonie§0 auszuwählen und einzuleiten, musst du bis zu 4 Instrumente im Selektor-Modus nahe einem §1Totempfahl§0 spielen, jede Zeremonie hat eine andere Folge von Instrumenten. Um Instrumente im Selektor-Modus zu spielen, spiele sie während du schleichst. Nachdem du die passenden Instrumente gespielt hast,
+totemic.page.performingCeremonies2=beginnt die §4Anlaufphase§0. Während der §1Totempfahl§0 in dieser Anlaufphase ist, akzeptiert er Musik aus der Umgebung und speichert sie. Dies wird §4Musikalische Energie§0 genannt, und dies ist, was man benötigt, um den Effekt der §4Zeremonie§0 zu aktivieren. Wenn die gesamte §4Musikalische Energie§0 den Grenzwert überschreitet, den man für die §4Zeremonie§0 benötigt, wird der Effekt aktiviert.
+totemic.page.performingCeremonies3=Jedes Instrument kann nur begrenzt gespielt werden, man kann also nicht eine komplette Zeremonie mit nur einem Instrument spielen. Außerdem hast du nur eine begrenzte Zeit zur Verfügung, um die Zeremonie zum Laufen zu bringen, also musst du schnell genug sein mit den Instrumenten. Einige §4Zeremonien§0 haben sofortige Effekte, andere dauern über eine gewisse Zeit an.
+totemic.page.performingCeremonies4=Die Effekte verbrauchen die §4Musikalische Energie§0 über die Zeit. Die Effekte können nur eine gweisse Zeit andauern und hören dann auf.
 
 totemic.entry.rainDance=Regentanz
-totemic.page.rainDance0=Mit dem &4Regentanz&0 kannst du eine Regenflut über das Land bringen. Wird der Regen zu viel, kann er über den &4Trockenheitstanz&0 wieder entfernt werden. Da die Effekte dieser Zeremonie sehr potent sind, kann sie etwas schwer durchzuführen sein.
-totemic.page.rainDance1=&oWie ein Politoed&r.
+totemic.page.rainDance0=Mit dem §4Regentanz§0 kannst du eine Regenflut über das Land bringen. Wird der Regen zu viel, kann er über den §4Trockenheitstanz§0 wieder entfernt werden. Da die Effekte dieser Zeremonie sehr potent sind, kann sie etwas schwer durchzuführen sein.
+totemic.page.rainDance1=§oWie ein Politoed§r.
 
 totemic.entry.drought=Trockenheitstanz
-totemic.page.drought0=Der &4Trockenheitstanz&0 klart den Himmel auf und beendet jeden Regen, der das Land heimsucht. Er ist das Gegenteil des &4Regentanzes&0.
-totemic.page.drought1=&oNinetails, nicht Kurama!&r
+totemic.page.drought0=Der §4Trockenheitstanz§0 klart den Himmel auf und beendet jeden Regen, der das Land heimsucht. Er ist das Gegenteil des §4Regentanzes§0.
+totemic.page.drought1=§oNinetails, nicht Kurama!§r
 
 totemic.entry.warDance=Kriegszeremonie
-totemic.page.warDance0=Die &4Kriegstanz-Zeremonie&0 ist eine Zeremonie, die deine Sinne für einen Krieg stärkt und Adrenalin in deinen gesamten Körper bringt. Nach der Durchführung bringt die &4Zeremonie&0 Geschwindigkeit und Stärke für eine Weile, um in den Kampf zu stürmen.
-totemic.page.warDance1=&oEin verwickeltes Schachspiel&r
+totemic.page.warDance0=Die §4Kriegstanz-Zeremonie§0 ist eine Zeremonie, die deine Sinne für einen Krieg stärkt und Adrenalin in deinen gesamten Körper bringt. Nach der Durchführung bringt die §4Zeremonie§0 Geschwindigkeit und Stärke für eine Weile, um in den Kampf zu stürmen.
+totemic.page.warDance1=§oEin verwickeltes Schachspiel§r
 
 totemic.entry.buffaloDance=Mandan-Büffeltanz
-totemic.page.buffaloDance0=Als der Weiße Mann das Land übernahm, tötete er fast alle &1Büffel&0, die einst in großen Herden daherzogen. Aber nicht alle Hoffnung ist verloren. Die &4Mandan-Büffeltanz-Zeremonie&0 kann Kühen Kraft geben und sie in Büffel verwandeln, allerdings schwächere als die einheimischen. Aber mit der Zeit wachsen sie größer und stärker.
-totemic.page.buffaloDance1=&oVermeide rote Tücher&r
+totemic.page.buffaloDance0=Als der Weiße Mann das Land übernahm, tötete er fast alle §1Büffel§0, die einst in großen Herden daherzogen. Aber nicht alle Hoffnung ist verloren. Die §4Mandan-Büffeltanz-Zeremonie§0 kann Kühen Kraft geben und sie in Büffel verwandeln, allerdings schwächere als die einheimischen. Aber mit der Zeit wachsen sie größer und stärker.
+totemic.page.buffaloDance1=§oVermeide rote Tücher§r
 
 totemic.entry.zaphkielWaltz=Zaphkiel-Walzer
-totemic.page.zaphkielWaltz0=Der &4Zaphkiel-Walzer&0 ist eine starke Wachstumszeremonie. Für eine kurze Weile wachen Pflanzen in der Umgebung und Küken in Eiern sehr viel schneller. Außerdem verwandelt der Walzer gewöhnliche Setzlinge in &4Rote Zedernsetzlinge&0.
-totemic.page.zaphkielWaltz1=&oGothisch elegant&r
+totemic.page.zaphkielWaltz0=Der §4Zaphkiel-Walzer§0 ist eine starke Wachstumszeremonie. Für eine kurze Weile wachen Pflanzen in der Umgebung und Küken in Eiern sehr viel schneller. Außerdem verwandelt der Walzer gewöhnliche Setzlinge in §4Rote Zedernsetzlinge§0.
+totemic.page.zaphkielWaltz1=§oGothisch elegant§r
 
 totemic.entry.fluteInfusion=Flötenverzauberung
-totemic.page.fluteInfusion0=Die &4Flötenverzauberung&0 ist ein Weg, eine normale &1Flöte&0 mit musikalischer Energie zu verzaubern, um ihr spezielle Eigenschaften zu verleihen. Flöten in deinem Inventar oder auf dem Boden werden durch diese Zeremonie verzaubert.
-totemic.page.fluteInfusion1=Die Melodie einer verzauberten Flöte ist deutlich stärker als ein normaler Flötenklang, so sehr, dass &1Tiere&0 und &1Dorfbewohner&0 sie nicht widerstehen können und von ihr angezogen werden. Ihr Effekt an Totempfählen ist ebenfalls stärker.
-totemic.page.fluteInfusion2=&oStärker als Twilicane&r
+totemic.page.fluteInfusion0=Die §4Flötenverzauberung§0 ist ein Weg, eine normale §1Flöte§0 mit musikalischer Energie zu verzaubern, um ihr spezielle Eigenschaften zu verleihen. Flöten in deinem Inventar oder auf dem Boden werden durch diese Zeremonie verzaubert.
+totemic.page.fluteInfusion1=Die Melodie einer verzauberten Flöte ist deutlich stärker als ein normaler Flötenklang, so sehr, dass §1Tiere§0 und §1Dorfbewohner§0 sie nicht widerstehen können und von ihr angezogen werden. Ihr Effekt an Totempfählen ist ebenfalls stärker.
+totemic.page.fluteInfusion2=§oStärker als Twilicane§r
 
 totemic.entry.baykokSummon=Glocken des Todes
-totemic.page.baykokSummon0=Die &4Glocken des Todes&0 sind eine Zeremonie, die den Geist &4Baykok&0 herbeiruft. Verusche nicht diese Zeremonie, bis du bereit bist, gegen ihn zu kämpfen.<br>&4Baykok&0 ist ein grausamer Nachtgeist, der wie ein Skelett erscheint. Er jagd unbarmherzig nach Kriegern und ist ein Meister im Bogenschießen, er greift mit unsichtbaren Pfeilen an. Baykok lähmt seine Opfer und verspeist ihre Leber. 
-totemic.page.baykokSummon1=Schaffst du es, &4Baykok&0 zu besiegen, kannst du seinen Bogen kriegen. Mit &1Baykoks Bogen&0 kannst du wie er auch unsichtbare und lähmende Pfeile verschießen (du kannst deine eigenen Pfeile sehen). Sein Bogen leichter zu verzaubern und stärker als ein gewöhnlicher Bogen.
-totemic.page.baykokSummon2=&oDu hast den Bogen überspannt...&r
+totemic.page.baykokSummon0=Die §4Glocken des Todes§0 sind eine Zeremonie, die den Geist §4Baykok§0 herbeiruft. Verusche nicht diese Zeremonie, bis du bereit bist, gegen ihn zu kämpfen.<br>§4Baykok§0 ist ein grausamer Nachtgeist, der wie ein Skelett erscheint. Er jagd unbarmherzig nach Kriegern und ist ein Meister im Bogenschießen, er greift mit unsichtbaren Pfeilen an. Baykok lähmt seine Opfer und verspeist ihre Leber. 
+totemic.page.baykokSummon1=Schaffst du es, §4Baykok§0 zu besiegen, kannst du seinen Bogen kriegen. Mit §1Baykoks Bogen§0 kannst du wie er auch unsichtbare und lähmende Pfeile verschießen (du kannst deine eigenen Pfeile sehen). Sein Bogen leichter zu verzaubern und stärker als ein gewöhnlicher Bogen.
+totemic.page.baykokSummon2=§oDu hast den Bogen überspannt...§r
 
 totemic.entry.totemicStaff=Totemstab
-totemic.page.totemicStaff0=Der &1Totemstab&0 kann an verschiedenen Blöcken benutzt werden, um Informationen über sie zu liefern.<br>Außerdem kann man mit ihm durch Linksklick auf eine Totembasis Zeremonien und Selektionen abbrechen.
-totemic.page.totemicStaff1=&oGarantiert kein Schraubenschlüssel&r
+totemic.page.totemicStaff0=Der §1Totemstab§0 kann an verschiedenen Blöcken benutzt werden, um Informationen über sie zu liefern.<br>Außerdem kann man mit ihm durch Linksklick auf eine Totembasis Zeremonien und Selektionen abbrechen.
+totemic.page.totemicStaff1=§oGarantiert kein Schraubenschlüssel§r
 
 totemic.entry.barkStripper=Entrinder
-totemic.page.barkStripper0=Mit dem &1Entrinder&0 kannst du die Rinde von &1Rotem Zedernholz&0 entfernen und das blanke Holz des Baumes zum Vorschein bringen. Durch Rechtsklicken auf den Baumstamm entfernt es nach ein paar Sekunden die Rinde.
-totemic.page.barkStripper1=Das &1Entrindete Zedernholz&0 ist ergiebiger zur Hestellung von Brettern, und kann in einem Ofen zu Holzkohle verarbeitet werden.<br>Wird entrindetes Zedernholz auf Gras liegen gelassen, wächst die Rinde langsam nach.
+totemic.page.barkStripper0=Mit dem §1Entrinder§0 kannst du die Rinde von §1Rotem Zedernholz§0 entfernen und das blanke Holz des Baumes zum Vorschein bringen. Durch Rechtsklicken auf den Baumstamm entfernt es nach ein paar Sekunden die Rinde.
+totemic.page.barkStripper1=Das §1Entrindete Zedernholz§0 ist ergiebiger zur Hestellung von Brettern, und kann in einem Ofen zu Holzkohle verarbeitet werden.<br>Wird entrindetes Zedernholz auf Gras liegen gelassen, wächst die Rinde langsam nach.
 totemic.page.barkStripper2=
 
 #TODO
-#totemic.page.barkStripper0=The &1Bark Stripper&0 is a way for you to collect the bark from your &1Red Cedar Logs&0 and reveal stripped wood from the tree. To do so, just hold the &1Bark Stripper&0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
-#totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The &1Red Cedar Stripped Log&0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
+#totemic.page.barkStripper0=The §1Bark Stripper§0 is a way for you to collect the bark from your §1Red Cedar Logs§0 and reveal stripped wood from the tree. To do so, just hold the §1Bark Stripper§0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
+#totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The §1Red Cedar Stripped Log§0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
 
 totemic.entry.baykokBow=Baykoks Bogen
-totemic.page.baykokBow0=&4Baykoks Bogen&0 ist ein mächtiger Bogen, den man nur durch Töten des Geistes &4Baykok&0 erhält. Baykok kann mit der Zeremonie &4Glocken des Todes&0 beschwört werden.<br>Pfeile, die von diesem Bogen geschossen werden, verursachen mehr Schaden, und wenn sie nicht getränkt sind, werden sie unsichtbar. Der Bogen lässt sich außerdem leichter verzaubern und ist beständiger als ein gewöhnlicher Bogen.
+totemic.page.baykokBow0=§4Baykoks Bogen§0 ist ein mächtiger Bogen, den man nur durch Töten des Geistes §4Baykok§0 erhält. Baykok kann mit der Zeremonie §4Glocken des Todes§0 beschwört werden.<br>Pfeile, die von diesem Bogen geschossen werden, verursachen mehr Schaden, und wenn sie nicht getränkt sind, werden sie unsichtbar. Der Bogen lässt sich außerdem leichter verzaubern und ist beständiger als ein gewöhnlicher Bogen.
 
 totemic.entry.tipi=Tipi
-totemic.page.tipi0=Der &1Tipi&0 ist kegelförmiger Zelt. Es besteht aus einem hölzernen Gerüst mit einer Plane aus Büffelleder oder Textil. Er kann auf einer flachen Oberfläche aus Erde oder Gras platziert werden, und man kann darin schlafen.
+totemic.page.tipi0=Der §1Tipi§0 ist kegelförmiger Zelt. Es besteht aus einem hölzernen Gerüst mit einer Plane aus Büffelleder oder Textil. Er kann auf einer flachen Oberfläche aus Erde oder Gras platziert werden, und man kann darin schlafen.
 totemic.page.tipi1=

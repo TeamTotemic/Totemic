@@ -30,8 +30,8 @@ public class PageText extends LexiconPage
     @SideOnly(Side.CLIENT)
     public void renderScreen(IGuiLexiconEntry gui, int mx, int my)
     {
-        int width = gui.getWidth() - 30;
-        int x = gui.getLeft() + 14;
+        int width = gui.getWidth() - 34;
+        int x = gui.getLeft() + 18;
         int y = gui.getTop() + 2;
 
         renderText(x, y, width, gui.getHeight(), getUnlocalizedName());
@@ -43,15 +43,15 @@ public class PageText extends LexiconPage
         FontRenderer renderer = Minecraft.getMinecraft().fontRendererObj;
         boolean unicode = renderer.getUnicodeFlag();
         renderer.setUnicodeFlag(true);
-        String text = I18n.format(unlocalizedText).replaceAll("&", "\u00a7");
+        String text = I18n.format(unlocalizedText);
         String[] textEntries = text.split("<br>");
 
-        for(String s : textEntries)
+        for(String entry : textEntries)
         {
-            for(String s1 : renderer.listFormattedStringToWidth(s, width)) // This method handles both format and line wraps, no need to write one yourself. Fix lines going off the edge.
+            for(String line : renderer.listFormattedStringToWidth(entry, width)) // This method handles both format and line wraps, no need to write one yourself. Fix lines going off the edge.
             {
                 y += 10;
-                renderer.drawString(s1, x, y, 0);
+                renderer.drawString(line, x, y, 0);
             }
 
             y += 10;
