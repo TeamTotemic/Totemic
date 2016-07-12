@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.api.totem;
 
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 public abstract class TotemEffect
@@ -49,16 +48,6 @@ public abstract class TotemEffect
     public String getUnlocalizedName()
     {
         return "totemic.totem." + name;
-    }
-
-    /**
-     * @return the localized name of the Effect
-     * @deprecated Translate manually with I18n or StatCollector instead.
-     */
-    @Deprecated
-    public String getLocalizedName()
-    {
-        return StatCollector.translateToLocal(getUnlocalizedName());
     }
 
     /**
