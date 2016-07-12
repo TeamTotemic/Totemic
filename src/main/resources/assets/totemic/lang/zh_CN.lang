@@ -2,9 +2,9 @@
 
 # Item localizations
 item.totemic:totemicStaff.name=图腾权杖
-item.totemic:totemicStaff.tooltip=你的图腾需要它!
+item.totemic:totemicStaff.tooltip=你的图腾需要它！
 item.totemic:totemWhittlingKnife.name=图腾刻刀
-item.totemic:totemWhittlingKnife.display=图腾刻刀 (%s)
+item.totemic:totemWhittlingKnife.display=图腾刻刀（%s）
 item.totemic:totemWhittlingKnife.tooltip1=制作各种雕刻品必不可少的道具
 item.totemic:totemWhittlingKnife.tooltip2=按住Shift右击或滚动滚轮以改变雕刻的图纹
 item.totemic:totemWhittlingKnife.tooltip3=正在雕刻：%s
@@ -193,11 +193,11 @@ totemic.page.rainDance1=§o就像牛蛙君一样§r。
 
 totemic.entry.drought=干旱仪式
 totemic.page.drought0=§4干旱仪式§0将会终止所有的风暴，让天空放晴。其实这个仪式正好和§4祈雨舞仪式§0相反。
-totemic.page.drought1=§o是九尾鞭，不是九喇嘛!§r
+totemic.page.drought1=§o是九尾鞭，不是九喇嘛！§r
 
 totemic.entry.warDance=战争仪式
 totemic.page.warDance0=§4战争仪式§0会激发人类原始的战争意识，你全身上下的肾上腺素。当这个§4仪式§0执行完毕后执行者会在长时间内获得速度和力量的增益效果，这样他们就能勇猛的冲进战场。
-totemic.page.warDance1=§o一盘很大的棋!§r
+totemic.page.warDance1=§o一盘很大的棋！§r
 
 totemic.entry.buffaloDance=曼丹野牛舞
 totemic.page.buffaloDance0=在白人践踏这片土地后，曾经遍布大平原的§1野牛§0也逐渐被屠杀殆尽。然而，他们还没有斩断最后一线希望：§4曼丹野牛舞§0仪式可以赋予附近的牛以力量，使他们成为真正的野牛。虽然这些获得新生的野牛的力量仍不及曾经的那些野牛，但随着时间的流逝，他们会成长起来的。
@@ -214,7 +214,7 @@ totemic.page.fluteInfusion2=§o比暮光杖更强！§r
 
 totemic.entry.baykokSummon=丧钟仪式
 totemic.page.baykokSummon0=§4丧钟仪式§0正是用于召唤名唤§4贝柯克§0的恶灵的仪式。谨记，发动此仪式前，务必保证万无一失。<br>§4贝柯克§0本身是一只化身为骷髅形态的恶灵，精通弓箭，用隐形的箭头无情地杀死所有与他为敌的人。在麻痹他的猎物后，他还会直接吞噬猎物的肝脏。
-totemic.page.baykokSummon1=若你成功击杀§4贝柯克§0，你便可以得到他使用的弓，以及其它各种战利品。这把弓可以射出能麻痹敌人的隐形箭(只有你能看到你发射出的箭)。与普通的弓相比，这把弓力量更强，也更容易附魔。
+totemic.page.baykokSummon1=若你成功击杀§4贝柯克§0，你便可以得到他使用的弓，以及其它各种战利品。这把弓可以射出能麻痹敌人的隐形箭（只有你能看到你发射出的箭）。与普通的弓相比，这把弓力量更强，也更容易附魔。
 totemic.page.baykokSummon2=§o你的末日到了§r
 
 totemic.entry.totemicStaff=图腾权杖
