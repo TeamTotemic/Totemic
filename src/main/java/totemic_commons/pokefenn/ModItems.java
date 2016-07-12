@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn;
 
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -81,7 +82,12 @@ public final class ModItems
         setDefaultModel(totempedia);
         setDefaultModel(flute);
         setModel(flute, 1, flute.getRegistryName());
+
         setDefaultModel(baykokBow);
+        ModelBakery.registerItemVariants(baykokBow,
+                new ModelResourceLocation(Strings.RESOURCE_PREFIX + "baykokBow_pulling_0", "inventory"),
+                new ModelResourceLocation(Strings.RESOURCE_PREFIX + "baykokBow_pulling_1", "inventory"),
+                new ModelResourceLocation(Strings.RESOURCE_PREFIX + "baykokBow_pulling_2", "inventory"));
 
         for(ItemTotemicItems.Type t: ItemTotemicItems.Type.values())
             setModel(subItems, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());

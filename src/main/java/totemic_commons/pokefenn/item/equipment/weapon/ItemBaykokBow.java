@@ -1,5 +1,6 @@
 package totemic_commons.pokefenn.item.equipment.weapon;
 
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +13,8 @@ import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 import totemic_commons.pokefenn.lib.Strings;
@@ -104,5 +107,26 @@ public class ItemBaykokBow extends ItemBow
     public boolean hasEffect(ItemStack stack)
     {
         return true;
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public ModelResourceLocation getModel(ItemStack stack, EntityPlayer player, int useRemaining)
+    {
+        if(player.getItemInUse() != null)
+        {
+            int ticksUsed = stack.getMaxItemUseDuration() - useRemaining;
+
+            if(ticksUsed >= 18)
+                return new ModelResourceLocation(Strings.RESOURCE_PREFIX + "baykokBow_pulling_2", "inventory");
+            else if(ticksUsed > 13)
+                return new ModelResourceLocation(Strings.RESOURCE_PREFIX + "baykokBow_pulling_1", "inventory");
+            else if(ticksUsed > 0)
+                return new ModelResourceLocation(Strings.RESOURCE_PREFIX + "baykokBow_pulling_0", "inventory");
+            else
+                return null;
+        }
+        else
+            return null;
     }
 }
