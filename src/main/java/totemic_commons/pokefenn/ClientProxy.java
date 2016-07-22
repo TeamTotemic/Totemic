@@ -29,6 +29,7 @@ import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 import totemic_commons.pokefenn.entity.boss.EntityBaykok;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 import totemic_commons.pokefenn.event.GameOverlay;
+import totemic_commons.pokefenn.event.PlayerRender;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.totempedia.LexiconData;
 
@@ -76,6 +77,7 @@ public class ClientProxy extends CommonProxy
     {
         super.registerEventHandlers();
         MinecraftForge.EVENT_BUS.register(new GameOverlay());
+        MinecraftForge.EVENT_BUS.register(new PlayerRender());
     }
 
     private void registerBlockColors()
