@@ -27,18 +27,22 @@ public class PlayerRender
     @SubscribeEvent
     public void onPlayerRender(RenderPlayerEvent.Post event)
     {
-        AbstractClientPlayer player = (AbstractClientPlayer) event.getEntityPlayer();
-        //if(ljfaUUID.equals(player.getUniqueID()) && annaSkinId.equals(player.getLocationSkin().getResourcePath()))
+        AbstractClientPlayer player = (AbstractClientPlayer)event.getEntityPlayer();
+        if(ljfaUUID.equals(player.getUniqueID()) && annaSkinId.equals(player.getLocationSkin().getResourcePath()))
         {
             float yaw = player.prevRotationYawHead + (player.rotationYawHead - player.prevRotationYawHead) * event.getPartialRenderTick();
             float pitch = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * event.getPartialRenderTick();
-            float pitchZ = (float) Math.toDegrees(event.getRenderer().getMainModel().bipedHead.rotateAngleZ);
+            float pitchZ = (float)Math.toDegrees(event.getRenderer().getMainModel().bipedHead.rotateAngleZ);
 
             GlStateManager.pushMatrix();
+            if(player.isSneaking())
+                GlStateManager.translate(0, -0.25F, 0);
             GlStateManager.translate(event.getX(), event.getY() + 1.4071875F, event.getZ()); // 1.501 * 0.9375
             GlStateManager.rotate(pitchZ, 0, 0, 1);
             GlStateManager.rotate(yaw - 90, 0, -1, 0);
             GlStateManager.rotate(pitch + 180, 0, 0, 1);
+            if(player.inventory.armorItemInSlot(3) != null)
+                GlStateManager.translate(0.01F, -0.04F, 0);
 
             if(annaHatDisplayList == 0)
                 createAnnaHatDisplayList();
@@ -54,7 +58,7 @@ public class PlayerRender
         GL11.glNewList(annaHatDisplayList, GL11.GL_COMPILE);
 
         float scale = 1 / 64F;
-        float offset = (float) (7 * Math.sin(Math.toRadians(45)) + 7 / 2F) * scale;
+        float offset = (float)(7 * Math.sin(Math.toRadians(45)) + 7 / 2F) * scale;
 
         GL11.glTranslatef(15 * scale - offset, -0.7F, 15 * scale - offset);
         GL11.glRotatef(-25, 1, 0, -1);
@@ -78,11 +82,11 @@ public class PlayerRender
         buf.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_NORMAL);
         for(int i = 0; i <= points; i++)
         {
-            float angle = 2 * (float)Math.PI * (i + 0.5f)/points;
+            float angle = 2 * (float)Math.PI * (i + 0.5F)/points;
             float cos = (float)Math.cos(angle);
             float sin = (float)Math.sin(angle);
-            buf.pos(inner * cos, 0,      inner * sin).normal(0.95f * cos, -0.31225f, 0.95f * sin).endVertex();
-            buf.pos(inner * cos, height, inner * sin).normal(0.95f * cos, -0.31225f, 0.95f * sin).endVertex();
+            buf.pos(inner * cos, 0,      inner * sin).normal(0.95F * cos, -0.31225F, 0.95F * sin).endVertex();
+            buf.pos(inner * cos, height, inner * sin).normal(0.95F * cos, -0.31225F, 0.95F * sin).endVertex();
         }
         tes.draw();
 
@@ -90,7 +94,7 @@ public class PlayerRender
         buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_NORMAL);
         buf.pos(0, 0, 0).normal(0, -1, 0).endVertex();
         for(int i = 0; i <= points; i++) {
-            float angle = 2 * (float)Math.PI * (i + 0.5f) / points;
+            float angle = 2 * (float)Math.PI * (i + 0.5F) / points;
             buf.pos(inner * Math.cos(angle), 0, inner * Math.sin(angle)).normal(0, -1, 0).endVertex();
         }
         tes.draw();
@@ -99,7 +103,7 @@ public class PlayerRender
         buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_NORMAL);
         buf.pos(0, height, 0).normal(0, -1, 0).endVertex();
         for(int i = 0; i <= points; i++) {
-            float angle = 2 * (float)Math.PI * (i + 0.5f)/points;
+            float angle = 2 * (float)Math.PI * (i + 0.5F)/points;
             buf.pos(outer * Math.cos(angle), height, outer * Math.sin(angle)).normal(0, -1, 0).endVertex();
         }
         tes.draw();
@@ -108,7 +112,7 @@ public class PlayerRender
         buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_NORMAL);
         buf.pos(0, height, 0).normal(0, 1, 0).endVertex();
         for(int i = 0; i <= points; i++) {
-            float angle = 2 * (float)Math.PI * -(i + 0.5f)/points;
+            float angle = 2 * (float)Math.PI * -(i + 0.5F)/points;
             buf.pos(outer * Math.cos(angle), height, outer * Math.sin(angle)).normal(0, 1, 0).endVertex();
         }
         tes.draw();
