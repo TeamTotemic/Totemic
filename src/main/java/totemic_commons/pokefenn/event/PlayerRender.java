@@ -19,7 +19,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class PlayerRender
 {
-    private static final UUID ljfaUUID = UUID.fromString("462b56b5-3047-4efd-901c-e1ecc062af30");
+    // At some point, this might ought to be loaded from a file.
+    // But not here :)
+    private static final UUID[] annaHatUUIDs = new UUID[] {
+        UUID.fromString("462b56b5-3047-4efd-901c-e1ecc062af30"), // "ljfa" - ljfa
+        UUID.fromString("b79043e0-b35e-4c3e-988f-42a63a2929ce")  // "asdd444" - gamemanj
+    }
     private static final String annaSkinId = "skins/4797da64c116258ba4aa30eb2cedddac4c1867e7ed8bec4907b2148f2219a81";
 
     private int annaHatDisplayList = 0;
@@ -28,7 +33,8 @@ public class PlayerRender
     public void onPlayerRender(RenderPlayerEvent.Post event)
     {
         AbstractClientPlayer player = (AbstractClientPlayer)event.getEntityPlayer();
-        if(ljfaUUID.equals(player.getUniqueID()) && annaSkinId.equals(player.getLocationSkin().getResourcePath()))
+        
+        if (playerAllowedAnnaHat(player.getUniqueID()) && annaSkinId.equals(player.getLocationSkin().getResourcePath()))
         {
             float yaw = player.prevRotationYawHead + (player.rotationYawHead - player.prevRotationYawHead) * event.getPartialRenderTick();
             float pitch = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * event.getPartialRenderTick();
@@ -124,4 +130,14 @@ public class PlayerRender
 
         GL11.glEndList();
     }
+
+    // Check if the player is allowed an Anna Hat (if they have the right skin)
+    private static boolean playerAllowedAnnaHat(UUID playerUUID)
+    {
+        for (UUID uuid : annaHatUUIDs)
+            if (uuid.equals(playerUUID)
+                return true;
+        return false;
+    }
+
 }
