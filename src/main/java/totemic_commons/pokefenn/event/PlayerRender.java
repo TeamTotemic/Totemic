@@ -66,6 +66,7 @@ public class PlayerRender
         GL11.glScalef(scale, scale, scale);
 
         GL11.glColor3f(0.5F, 0, 0);
+        GL11.glPushAttrib(GL11.GL_ENABLE_BIT | GL11.GL_TRANSFORM_BIT);
         GL11.glShadeModel(GL11.GL_SMOOTH);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
@@ -93,7 +94,8 @@ public class PlayerRender
         //Cylinder top
         buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_NORMAL);
         buf.pos(0, 0, 0).normal(0, -1, 0).endVertex();
-        for(int i = 0; i <= points; i++) {
+        for(int i = 0; i <= points; i++)
+        {
             float angle = 2 * (float)Math.PI * (i + 0.5F) / points;
             buf.pos(inner * Math.cos(angle), 0, inner * Math.sin(angle)).normal(0, -1, 0).endVertex();
         }
@@ -102,7 +104,8 @@ public class PlayerRender
         //Outer part
         buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_NORMAL);
         buf.pos(0, height, 0).normal(0, -1, 0).endVertex();
-        for(int i = 0; i <= points; i++) {
+        for(int i = 0; i <= points; i++)
+        {
             float angle = 2 * (float)Math.PI * (i + 0.5F)/points;
             buf.pos(outer * Math.cos(angle), height, outer * Math.sin(angle)).normal(0, -1, 0).endVertex();
         }
@@ -111,15 +114,14 @@ public class PlayerRender
         //Bottom
         buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_NORMAL);
         buf.pos(0, height, 0).normal(0, 1, 0).endVertex();
-        for(int i = 0; i <= points; i++) {
+        for(int i = 0; i <= points; i++)
+        {
             float angle = 2 * (float)Math.PI * -(i + 0.5F)/points;
             buf.pos(outer * Math.cos(angle), height, outer * Math.sin(angle)).normal(0, 1, 0).endVertex();
         }
         tes.draw();
 
-        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glShadeModel(GL11.GL_FLAT);
+        GL11.glPopAttrib();
         GL11.glColor3f(1, 1, 1);
 
         GL11.glEndList();
