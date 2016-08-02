@@ -15,15 +15,17 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.network.SynchronizedPacketBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
-public class PacketCeremonyMusic extends SynchronizedPacketBase<PacketCeremonyMusic>
+public class PacketCeremonyStartup extends SynchronizedPacketBase<PacketCeremonyStartup>
 {
     private BlockPos pos;
+    private int startupTime = 0;
     private String[] instruments = null;
     private int[] values = null;
 
-    public PacketCeremonyMusic(BlockPos pos, TObjectIntMap<MusicInstrument> ceremonyMusic)
+    public PacketCeremonyStartup(BlockPos pos, TObjectIntMap<MusicInstrument> ceremonyMusic, int startupTime)
     {
         this.pos = pos;
+        this.startupTime = startupTime;
         this.instruments = new String[ceremonyMusic.size()];
         this.values = new int[ceremonyMusic.size()];
         TObjectIntIterator<MusicInstrument> it = ceremonyMusic.iterator();
@@ -35,12 +37,14 @@ public class PacketCeremonyMusic extends SynchronizedPacketBase<PacketCeremonyMu
         }
     }
 
-    public PacketCeremonyMusic() {}
+    public PacketCeremonyStartup() {}
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
         pos = BlockPos.fromLong(buf.readLong());
+        startupTime = buf.readInt();
+
         int len = buf.readByte();
         instruments = new String[len];
         values = new int[len];
@@ -55,6 +59,8 @@ public class PacketCeremonyMusic extends SynchronizedPacketBase<PacketCeremonyMu
     public void toBytes(ByteBuf buf)
     {
         buf.writeLong(pos.toLong());
+        buf.writeInt(startupTime);
+
         buf.writeByte(instruments.length);
         for(int i = 0; i < instruments.length; i++)
         {
@@ -72,6 +78,7 @@ public class PacketCeremonyMusic extends SynchronizedPacketBase<PacketCeremonyMu
         {
             TileTotemBase totem = (TileTotemBase)tile;
 
+            totem.ceremonyStartupTimer = startupTime;
             totem.ceremonyMusic.clear();
             for(int i = 0; i < instruments.length; i++)
                 totem.ceremonyMusic.put(Totemic.api.registry().getInstrument(instruments[i]), values[i]);
