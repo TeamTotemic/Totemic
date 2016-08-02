@@ -384,7 +384,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         if(musicForTotemEffect > 0)
         {
             if(worldObj.getTotalWorldTime() % 47L == 0)
+            {
                 musicForTotemEffect--;
+                musicChanged = true;
+                markDirty();
+            }
         }
     }
 
@@ -670,7 +674,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             added = false;
 
         if(added)
+        {
             musicChanged = true;
+            markDirty();
+        }
         return added;
     }
 
