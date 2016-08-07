@@ -55,6 +55,12 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
+    public int quantityDropped(Random rand)
+    {
+        return 0;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
@@ -74,12 +80,6 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
             }
         }
         return EnumActionResult.SUCCESS;
-    }
-
-    @Override
-    public int quantityDropped(Random rand)
-    {
-        return 0;
     }
 
     @Override

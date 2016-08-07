@@ -46,7 +46,7 @@ public class TotemEffectOcelot extends TotemEffect
                 }
             }
         }
-        catch(IllegalAccessException e)
+        catch(ReflectiveOperationException e)
         {
             logger.error("Could not perform Ocelot Totem effect", e);
         }

@@ -25,21 +25,15 @@ public class CeremonyBuffaloDance extends Ceremony
         if(world.isRemote)
             return;
 
-        int buffalos = 0;
-        for(EntityCow entity : EntityUtil.getEntitiesInRange(EntityCow.class, world, pos, 8, 8))
-        {
-            if(buffalos < 2)
-            {
-                if(!(entity instanceof EntityBuffalo))
-                {
-                    buffalos++;
-                    EntityBuffalo buffalo = new EntityBuffalo(world);
-                    float health = entity.getHealth() / entity.getMaxHealth() * buffalo.getMaxHealth();
-                    buffalo.setHealth(health);
-                    EntityUtil.spawnEntity(world, entity.posX, entity.posY, entity.posZ, buffalo);
-                    entity.setDead();
-                }
-            }
-        }
+        EntityUtil.getEntitiesInRange(EntityCow.class, world, pos, 8, 8).stream()
+            .limit(2)
+            .filter(entity -> !(entity instanceof EntityBuffalo))
+            .forEach(entity -> {
+                EntityBuffalo buffalo = new EntityBuffalo(world);
+                float health = entity.getHealth() / entity.getMaxHealth() * buffalo.getMaxHealth();
+                buffalo.setHealth(health);
+                EntityUtil.spawnEntity(world, entity.posX, entity.posY, entity.posZ, buffalo);
+                entity.setDead();
+            });
     }
 }
