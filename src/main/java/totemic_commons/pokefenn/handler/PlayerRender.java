@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.event;
+package totemic_commons.pokefenn.handler;
 
 import java.util.UUID;
 
