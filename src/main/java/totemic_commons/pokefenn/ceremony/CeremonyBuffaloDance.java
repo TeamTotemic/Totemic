@@ -26,8 +26,8 @@ public class CeremonyBuffaloDance extends Ceremony
             return;
 
         EntityUtil.getEntitiesInRange(EntityCow.class, world, pos, 8, 8).stream()
-            .limit(2)
             .filter(entity -> !(entity instanceof EntityBuffalo))
+            .limit(2)
             .forEach(entity -> {
                 EntityBuffalo buffalo = new EntityBuffalo(world);
                 float health = entity.getHealth() / entity.getMaxHealth() * buffalo.getMaxHealth();
