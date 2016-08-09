@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.network;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -20,15 +19,15 @@ import totemic_commons.pokefenn.network.server.PacketMouseWheel;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class PacketHandler
+public class NetworkHandler
 {
 
     private static int id;
-    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Totemic.MOD_ID);
+    public static final SimpleNetworkWrapper wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(Totemic.MOD_ID);
 
     private static <T extends IMessage & IMessageHandler<T, R>, R extends IMessage> void registerPacket(Class<T> clazz, Side side)
     {
-        INSTANCE.registerMessage(clazz, clazz, id++, side);
+        wrapper.registerMessage(clazz, clazz, id++, side);
     }
 
     public static void init()
@@ -40,34 +39,29 @@ public class PacketHandler
         registerPacket(PacketTotemEffectMusic.class, Side.CLIENT);
     }
 
-    public static void sendToClient(IMessage packet, EntityPlayerMP player)
-    {
-        INSTANCE.sendTo(packet, player);
-    }
-
-    public static void sendAround(IMessage packet, int dim, double x, double y, double z)
-    {
-        INSTANCE.sendToAllAround(packet, new NetworkRegistry.TargetPoint(dim, x, y, z, 64));
-    }
-
-    public static void sendAround(IMessage packet, Entity ent)
-    {
-        sendAround(packet, ent.worldObj.provider.getDimension(), ent.posX, ent.posY, ent.posZ);
-    }
-
-    public static void sendAround(IMessage packet, int dim, BlockPos pos)
-    {
-        sendAround(packet, dim, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-    }
-
     public static void sendToServer(IMessage packet)
     {
-        INSTANCE.sendToServer(packet);
+        wrapper.sendToServer(packet);
     }
 
-    public static void sendAround(IMessage packet, TileEntity tile)
+    public static void sendToClient(IMessage packet, EntityPlayerMP player)
     {
-        sendAround(packet, tile.getWorld().provider.getDimension(), tile.getPos());
+        wrapper.sendTo(packet, player);
+    }
+
+    public static void sendAround(IMessage packet, int dim, double x, double y, double z, double range)
+    {
+        wrapper.sendToAllAround(packet, new NetworkRegistry.TargetPoint(dim, x, y, z, range));
+    }
+
+    public static void sendAround(IMessage packet, int dim, BlockPos pos, double range)
+    {
+        sendAround(packet, dim, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, range);
+    }
+
+    public static void sendAround(IMessage packet, TileEntity tile, double range)
+    {
+        sendAround(packet, tile.getWorld().provider.getDimension(), tile.getPos(), range);
     }
 
 }

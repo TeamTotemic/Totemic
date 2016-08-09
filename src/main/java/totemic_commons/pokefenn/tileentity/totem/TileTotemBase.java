@@ -36,7 +36,7 @@ import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.handler.GameOverlay;
-import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
@@ -277,7 +277,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
             if(worldObj.getTotalWorldTime() % 20L == 0)
             {
-                PacketHandler.sendAround(new PacketCeremonyStartup(pos, ceremonyMusic, ceremonyStartupTimer), this);
+                NetworkHandler.sendAround(new PacketCeremonyStartup(pos, ceremonyMusic, ceremonyStartupTimer), this, 16);
             }
         }
 
@@ -436,7 +436,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         if(musicChanged)
         {
-            PacketHandler.sendAround(new PacketTotemEffectMusic(pos, musicForTotemEffect), this);
+            NetworkHandler.sendAround(new PacketTotemEffectMusic(pos, musicForTotemEffect), this, 32);
         }
         musicChanged = false;
     }
