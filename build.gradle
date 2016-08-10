@@ -22,7 +22,7 @@ configurations {
     compile.extendsFrom shade
 }
 
-version = "1.8.9-0.7.4"
+version = "1.8.9-0.7.5"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 

@@ -10,7 +10,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
@@ -107,7 +107,7 @@ public class TileWindChime extends TileTotemic implements ITickable
     public void setPlaying(boolean playing)
     {
         if(!this.isPlaying && playing && !worldObj.isRemote)
-            PacketHandler.sendAround(new PacketWindChime(pos), this);
+            NetworkHandler.sendAround(new PacketWindChime(pos), this, 32);
         this.isPlaying = playing;
         markDirty();
     }
