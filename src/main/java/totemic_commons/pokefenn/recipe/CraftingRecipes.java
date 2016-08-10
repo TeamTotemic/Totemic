@@ -94,10 +94,14 @@ public class CraftingRecipes
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.bellsIron.ordinal()));
         OreDictionary.registerOre("listAllmeatraw", new ItemStack(ModItems.buffaloMeat));
         OreDictionary.registerOre("listAllbeefraw", new ItemStack(ModItems.buffaloMeat));
+        OreDictionary.registerOre("listAllbuffaloraw", new ItemStack(ModItems.buffaloMeat));
         OreDictionary.registerOre("listAllmeatcooked", new ItemStack(ModItems.buffaloCookedMeat));
         OreDictionary.registerOre("listAllbeefcooked", new ItemStack(ModItems.buffaloCookedMeat));
+        OreDictionary.registerOre("listAllbuffalocooked", new ItemStack(ModItems.buffaloCookedMeat));
         OreDictionary.registerOre("hideBuffalo", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()));
+        OreDictionary.registerOre("hide", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()));
         OreDictionary.registerOre("teethBuffalo", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.teeth.ordinal()));
+        OreDictionary.registerOre("teeth", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.teeth.ordinal()));
     }
 
     static void furnaceRecipes()
