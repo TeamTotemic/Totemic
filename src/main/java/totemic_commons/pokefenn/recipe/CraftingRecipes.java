@@ -91,6 +91,7 @@ public class CraftingRecipes
         OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedarLog, 1, 0));
         OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.cedarPlank, 1, 0));
         OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.nuggetIron.ordinal()));
+        OreDictionary.registerOre("ironNugget", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.nuggetIron.ordinal()));
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.bellsIron.ordinal()));
         OreDictionary.registerOre("listAllmeatraw", new ItemStack(ModItems.buffaloMeat));
         OreDictionary.registerOre("listAllbeefraw", new ItemStack(ModItems.buffaloMeat));
