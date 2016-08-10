@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.event;
+package totemic_commons.pokefenn.handler;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;

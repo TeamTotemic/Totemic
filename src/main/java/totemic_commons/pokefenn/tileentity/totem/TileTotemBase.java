@@ -37,7 +37,7 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
-import totemic_commons.pokefenn.event.GameOverlay;
+import totemic_commons.pokefenn.handler.GameOverlay;
 import totemic_commons.pokefenn.network.PacketHandler;
 import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;

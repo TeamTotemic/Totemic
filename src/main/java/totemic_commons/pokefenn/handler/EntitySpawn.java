@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.event;
+package totemic_commons.pokefenn.handler;
 
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.EntitySkeleton;

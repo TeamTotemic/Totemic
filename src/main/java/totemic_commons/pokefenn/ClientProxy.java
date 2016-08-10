@@ -22,8 +22,8 @@ import totemic_commons.pokefenn.client.rendering.tileentity.TileWindChimeRendere
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 import totemic_commons.pokefenn.entity.boss.EntityBaykok;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
-import totemic_commons.pokefenn.event.GameOverlay;
-import totemic_commons.pokefenn.event.PlayerRender;
+import totemic_commons.pokefenn.handler.GameOverlay;
+import totemic_commons.pokefenn.handler.PlayerRender;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.totempedia.LexiconData;
 

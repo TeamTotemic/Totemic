@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import totemic_commons.pokefenn.entity.ModEntities;
-import totemic_commons.pokefenn.event.*;
+import totemic_commons.pokefenn.handler.*;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.GuiHandler;
 import totemic_commons.pokefenn.network.PacketHandler;
