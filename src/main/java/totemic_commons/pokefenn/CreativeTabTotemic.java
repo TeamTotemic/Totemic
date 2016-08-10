@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn.misc;
+package totemic_commons.pokefenn;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.lib.Strings;
 
 public class CreativeTabTotemic extends CreativeTabs

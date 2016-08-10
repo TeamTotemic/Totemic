@@ -17,7 +17,6 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.apiimpl.ApiImpl;
 import totemic_commons.pokefenn.configuration.ConfigurationHandler;
-import totemic_commons.pokefenn.misc.CreativeTabTotemic;
 
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, acceptedMinecraftVersions = "[1.8.9,1.9)",
         dependencies = "required-after:Forge@[11.15.1.1722,);", guiFactory = "totemic_commons.pokefenn.configuration.TotemicGuiFactory",
