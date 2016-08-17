@@ -8,8 +8,6 @@ item.totemic:totemWhittlingKnife.display=Totemschnitzmesser (%s)
 item.totemic:totemWhittlingKnife.tooltip1=Ein Messer für all deine Schnitzerei
 item.totemic:totemWhittlingKnife.tooltip2=Schleichen+Rechts oder Mausrad zum Ändern des Musters
 item.totemic:totemWhittlingKnife.tooltip3=Momentanes Schnitzmuster: %s
-item.totemic:paintBrush.name=Totem-Farbpinsel
-item.totemic:infusedStick.name=Zedernstock
 item.totemic:totempedia.name=Totempedia
 item.totemic:flute.name=Flöte
 item.totemic:fluteInfused.name=Verzauberte Flöte
@@ -52,19 +50,8 @@ totemic.potion.spider=Spinne
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 
-totemic.timeState.instant=Sofort
-totemic.timeState.overTime=Über die Zeit
-
-totemic.melodyName.incrediblyLow=Geringfügige Melodie
-totemic.melodyName.weak=Ungenügende Melodie
-totemic.melodyName.low=Dürftige Melodie
-totemic.melodyName.sufficient=Reichlich Melodie
-totemic.melodyName.high=Höchst melodisch
-totemic.melodyName.maximum=Platzend vor Melodie
-
 #Ceremony names
 totemic.ceremony.totemic:flute=Flötenverzauberung
-totemic.ceremony.totemic:ghostDance=Geistertanz
 totemic.ceremony.totemic:rainDance=Regentanz
 totemic.ceremony.totemic:drought=Trockenheitstanz
 totemic.ceremony.totemic:potion=Göttliche Elixiere
@@ -83,11 +70,6 @@ totemic.totem.totemic:spider=Spinne
 totemic.totem.totemic:cow=Kuh
 
 #Music values
-totemic.music.lowMelody=Wenig Melodie
-totemic.music.mediumMelody=Mittlere Melodiemenge
-totemic.music.highMelody=Viel Melodie
-totemic.music.veryHighMelody=Sehr viel Melodie
-
 totemic.musicNeeded.none=Keine Musik benötigt
 totemic.musicNeeded.little=Sehr wenig Musik
 totemic.musicNeeded.littleMedium=Wenig Musik
@@ -96,11 +78,6 @@ totemic.musicNeeded.mediumLarge=Mittelgroße Musikmenge
 totemic.musicNeeded.large=Große Musikmenge
 totemic.musicNeeded.crazyLarge=Sehr große Musikmenge
 
-totemicmisc.timeForCeremony=Anlaufzeit:
-totemicmisc.seconds= Sekunden
-totemicmisc.overTime=Über die Zeit:
-totemicmisc.capitalFalse=Falsch
-totemicmisc.capitalTrue=Wahr
 totemicmisc.musicSelector=Musikalische Selektion
 totemicmisc.tipi.cantSleep=Du kannst nicht in einem Tipi schlafen ohne unter freiem Himmel zu sein
 totemicmisc.tipi.nether=Du kannst nicht im Nether schlafen

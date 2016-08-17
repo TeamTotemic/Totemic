@@ -12,7 +12,6 @@ item.totemic:barkStripper.name=Собиратель коры
 item.totemic:jingleDress.name=Звонкое платье
 item.totemic:ceremonialRattle.name=Трещотка
 
-
 # Block localizations
 tile.cedarLog.name=Древесина красного кедра
 tile.totemBase.name=Основание тотема
@@ -28,31 +27,16 @@ tile.redCedarStripped.name=Очищенная древесина красног�
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 
-totemic.timeState.instant=Мгновенное
-totemic.timeState.overTime=Со временем
-
-totemic.melodyName.incrediblyLow=Неполная мелодия
-totemic.melodyName.weak=Незначительная мелодия
-totemic.melodyName.low=Скудная мелодия
-totemic.melodyName.sufficient=Обильная мелодия
-totemic.melodyName.high=Очень обильная мелодия
-totemic.melodyName.maximum=Разрывная мелодия
-
 #Ceremony names
-totemic.ceremony.flute=Ceremony of Flute Imbuation
+totemic.ceremony.flute=Flute Imbuation
 totemic.ceremony.ghostDance=Призрачный танец
 totemic.ceremony.rainDance=Дождевой танец
 totemic.ceremony.drought=Церемония засухи
 totemic.ceremony.potion=Церемония божественных элексиров
 totemic.ceremony.buffaloDance=Танец буйволов Манданов
 
-totemicmisc.timeForCeremony=Время начала:
-totemicmisc.seconds= секунд
-totemicmisc.overTime=В течении времени:
-totemicmisc.capitalFalse=False
-totemicmisc.capitalTrue=True
 totemicmisc.musicSelector=Musical Selectors
-totemicmisc.tipi.cantSleep=You can not sleep in a tipi without being in the open fields
+totemicmisc.tipi.cantSleep=You cannot sleep in a tipi without being in the open fields
 totemicmisc.tipi.nether=Вы не можете спать в Нижнем мире
 
 #Totempedia Localisations
