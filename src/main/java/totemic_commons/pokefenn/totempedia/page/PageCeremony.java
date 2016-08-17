@@ -42,7 +42,6 @@ public class PageCeremony extends PageRecipe
 
         TextureManager render = Minecraft.getMinecraft().renderEngine;
         FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
-        String musicNeeded = TotemUtil.getMusicNeededLocalized(ceremony.getMusicNeeded());
         MusicInstrument[] instruments = ceremony.getInstruments();
 
         int instrLeft = gui.getLeft() + gui.getWidth() / 2 - 10 * instruments.length;
@@ -56,21 +55,19 @@ public class PageCeremony extends PageRecipe
         if(tooltipStack != null)
             RenderHelper.renderTooltip(mx, my, tooltipStack.getTooltip(Minecraft.getMinecraft().thePlayer, false));
 
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        String text = StatCollector.translateToLocal("totemicmisc.musicSelector");
+        font.drawString(text, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(text) / 2, gui.getTop() + 14, 0x999999);
 
-        PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 3, gui.getTop() + 90, font.getStringWidth(musicNeeded), 150, musicNeeded);
+        boolean unicode = font.getUnicodeFlag();
+        font.setUnicodeFlag(true);
 
-        font.drawString(StatCollector.translateToLocal("totemicmisc.musicSelector"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.musicSelector")) / 2, gui.getTop() + 14, 0x66000000);
-        /*font.drawString(musicNeeded, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(musicNeeded) / 2, gui.getTop() + 90, 0x66000000);
-        font.drawString(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds"), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.timeForCeremony") + time + StatCollector.translateToLocal("totemicmisc.seconds")) / 2, gui.getTop() + 105, 0x66000000);
-        font.drawString(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME ? StatCollector.translateToLocal("totemicmisc.capitalTrue") : StatCollector.translateToLocal("totemicmisc.capitalFalse")), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal("totemicmisc.overTime") + " " + (ceremony.getCeremonyActivation().getTimeState() == TimeStateEnum.OVER_TIME)) / 2, gui.getTop() + 120, 0x66000000);
-        //font.drawString(StatCollector.translateToLocal(reference), gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(reference)) / 2, gui.getTop() + 161, 0x66000000);
-        */
+        text = StatCollector.translateToLocal(TotemUtil.getMusicNeeded(ceremony.getMusicNeeded()));
+        font.drawString(text, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(text) / 2, gui.getTop() + 90, 0x000000);
 
-        PageText.renderText(gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(StatCollector.translateToLocal(getUnlocalizedName())) / 3, gui.getTop() + 150, 150, 150, StatCollector.translateToLocal(getUnlocalizedName()));
+        text = StatCollector.translateToLocal(getUnlocalizedName());
+        font.drawString(text, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(text) / 2, gui.getTop() + 150, 0x000000);
 
-        GL11.glDisable(GL11.GL_BLEND);
+        font.setUnicodeFlag(unicode);
 
         render.bindTexture(ceremonyOverlay);
 
