@@ -8,8 +8,6 @@ item.totemic:totemWhittlingKnife.display=Totem Whittling Knife (%s)
 item.totemic:totemWhittlingKnife.tooltip1=A knife for all your whittlin' needs
 item.totemic:totemWhittlingKnife.tooltip2=Sneak+Right Click or Scroll to change carving
 item.totemic:totemWhittlingKnife.tooltip3=Currently Carving: %s
-item.totemic:paintBrush.name=Totemist Paint Brush
-item.totemic:infusedStick.name=Cedar Stick
 item.totemic:totempedia.name=Totempedia
 item.totemic:flute.name=Flute
 item.totemic:fluteInfused.name=Infused Flute
@@ -52,19 +50,8 @@ totemic.potion.spider=Spider
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 
-totemic.timeState.instant=Instant
-totemic.timeState.overTime=Over time
-
-totemic.melodyName.incrediblyLow=Insufficient Melody
-totemic.melodyName.weak=Insignificant Melody
-totemic.melodyName.low=Meager Melody
-totemic.melodyName.sufficient=Plentiful Melody
-totemic.melodyName.high=Highly Melodic
-totemic.melodyName.maximum=Bursting with Melody
-
 #Ceremony names
 totemic.ceremony.totemic:flute=Flute Imbuation
-totemic.ceremony.totemic:ghostDance=Ghost Dance
 totemic.ceremony.totemic:rainDance=Rain Dance
 totemic.ceremony.totemic:drought=Drought Ceremony
 totemic.ceremony.totemic:potion=Divine Elixirs
@@ -83,11 +70,6 @@ totemic.totem.totemic:spider=Spider
 totemic.totem.totemic:cow=Cow
 
 #Music values
-totemic.music.lowMelody=Low Melody
-totemic.music.mediumMelody=Medium Melody
-totemic.music.highMelody=High Melody
-totemic.music.veryHighMelody=Very High Melody
-
 totemic.musicNeeded.none=No Music required
 totemic.musicNeeded.little=Little Music amount
 totemic.musicNeeded.littleMedium=Medium little Music amount
@@ -96,14 +78,9 @@ totemic.musicNeeded.mediumLarge=Medium large Music amount
 totemic.musicNeeded.large=Large Music amount
 totemic.musicNeeded.crazyLarge=Crazy large Music amount
 
-totemicmisc.timeForCeremony=Startup time:
-totemicmisc.seconds= Seconds
-totemicmisc.overTime=Over Time:
-totemicmisc.capitalFalse=False
-totemicmisc.capitalTrue=True
 totemicmisc.musicSelector=Musical Selectors
-totemicmisc.tipi.cantSleep=You can not sleep in a Tipi without being in the open fields
-totemicmisc.tipi.nether=You can not sleep in the nether
+totemicmisc.tipi.cantSleep=You cannot sleep in a Tipi without being in the open fields
+totemicmisc.tipi.nether=You cannot sleep in the Nether
 totemicmisc.activeEffect=Active Totem Effect: %s
 totemicmisc.startup=Starting up
 totemicmisc.activeCeremony=Active Ceremony

@@ -8,8 +8,6 @@ item.totemic:totemWhittlingKnife.display=图腾刻刀（%s）
 item.totemic:totemWhittlingKnife.tooltip1=制作各种雕刻品必不可少的道具
 item.totemic:totemWhittlingKnife.tooltip2=按住Shift右击或滚动滚轮以改变雕刻的图纹
 item.totemic:totemWhittlingKnife.tooltip3=正在雕刻：%s
-item.totemic:paintBrush.name=图腾研究者的漆刷
-item.totemic:infusedStick.name=红柏木棍
 item.totemic:totempedia.name=图腾百科全书
 item.totemic:flute.name=长笛
 item.totemic:fluteInfused.name=蕴魔长笛
@@ -52,16 +50,6 @@ totemic.potion.spider=蜘蛛
 # Creative Tab localizations
 itemGroup.Totemic=图腾
 
-totemic.timeState.instant=瞬间
-totemic.timeState.overTime=持续
-
-totemic.melodyName.incrediblyLow=不足的旋律
-totemic.melodyName.weak=无关的旋律
-totemic.melodyName.low=贫弱的旋律
-totemic.melodyName.sufficient=充实的旋律
-totemic.melodyName.high=丰富的旋律
-totemic.melodyName.maximum=爆发的旋律
-
 #Ceremony names
 totemic.ceremony.totemic:flute=魔域长笛
 totemic.ceremony.totemic:ghostDance=幽灵舞蹈
@@ -83,11 +71,6 @@ totemic.totem.totemic:spider=蜘蛛
 totemic.totem.totemic:cow=牛
 
 #Music values
-totemic.music.lowMelody=单调的旋律
-totemic.music.mediumMelody=普通的旋律
-totemic.music.highMelody=优美的旋律
-totemic.music.veryHighMelody=非常富饶的旋律
-
 totemic.musicNeeded.none=不需要演奏音乐
 totemic.musicNeeded.little=需要演奏一小段音乐
 totemic.musicNeeded.littleMedium=需要演奏一段音乐
@@ -96,11 +79,6 @@ totemic.musicNeeded.mediumLarge=需要演奏较长篇幅的音乐
 totemic.musicNeeded.large=需要演奏大量音乐
 totemic.musicNeeded.crazyLarge=需要弹个不停
 
-totemicmisc.timeForCeremony=执行时间:
-totemicmisc.seconds=秒
-totemicmisc.overTime=持续:
-totemicmisc.capitalFalse=否
-totemicmisc.capitalTrue=是
 totemicmisc.musicSelector=音乐选择器
 totemicmisc.tipi.cantSleep=你不能在非开阔地的印第安帐篷里睡觉
 totemicmisc.tipi.nether=你不能在下界睡觉
