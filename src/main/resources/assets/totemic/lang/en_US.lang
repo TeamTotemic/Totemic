@@ -68,6 +68,7 @@ totemic.totem.totemic:ocelot=Ocelot
 totemic.totem.totemic:bat=Bat
 totemic.totem.totemic:spider=Spider
 totemic.totem.totemic:cow=Cow
+totemic.totem.totemic:rabbit=Rabbit
 
 #Music values
 totemic.musicNeeded.none=No Music required
