@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -63,7 +63,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         {
             if(world.getTotalWorldTime() % 20L == 0)
                 if(player.motionX != 0 || player.motionZ != 0)
-                    PacketHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
+                    NetworkHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
         } else
         {
             if(world.getTotalWorldTime() % 20L == 0)

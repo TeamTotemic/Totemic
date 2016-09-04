@@ -23,29 +23,29 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 public class TotemUtil
 {
     /**
-     * @return a localized representation of the music amount needed to start a ceremony (from "none" up to "crazy large")
+     * @return an unlocalized string representation of the music amount needed
+     * to start a ceremony (from "none" up to "crazy large")
      */
-    public static String getMusicNeededLocalized(int music)
+    public static String getMusicNeeded(int music)
     {
-        String welp = "totemic.musicNeeded.";
-        String unlocalized = "";
+        String amount;
 
         if(music == 0)
-            unlocalized = "none";
+            amount = "none";
         else if(music <= 120)
-            unlocalized = "little";
+            amount = "little";
         else if(music <= 150)
-            unlocalized = "littleMedium";
+            amount = "littleMedium";
         else if(music <= 180)
-            unlocalized = "medium";
+            amount = "medium";
         else if(music <= 210)
-            unlocalized = "mediumLarge";
+            amount = "mediumLarge";
         else if(music <= 240)
-            unlocalized = "large";
+            amount = "large";
         else
-            unlocalized = "crazyLarge";
+            amount = "crazyLarge";
 
-        return welp + unlocalized;
+        return "totemic.musicNeeded." + amount;
     }
 
     /**

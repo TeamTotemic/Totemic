@@ -25,6 +25,7 @@ public class ModelBuffalo extends ModelBase
     private ModelRenderer leg4;
     private ModelRenderer hoof4;
     private ModelRenderer back;
+    private ModelRenderer udder;
     private ModelRenderer tail;
     private ModelRenderer body;
     private ModelRenderer head;
@@ -62,7 +63,7 @@ public class ModelBuffalo extends ModelBase
         leg1.mirror = true;
         setRotation(leg1, 0.1396263F, 0F, 0F);
         leg1.mirror = false;
-        leg3 = new ModelRenderer(this, 1, 111);
+        leg3 = new ModelRenderer(this, 0, 111);
         leg3.addBox(-1F, 0F, -3F, 4, 8, 4);
         leg3.setRotationPoint(4F, 10F, 10F);
         leg3.setTextureSize(128, 128);
@@ -106,6 +107,12 @@ public class ModelBuffalo extends ModelBase
         back.setTextureSize(128, 128);
         back.mirror = true;
         setRotation(back, 1.48353F, 0F, 0F);
+        udder = new ModelRenderer(this, 78, 47);
+        udder.addBox(-3.5F, 4F, -9.5F, 7, 5, 1);
+        udder.setRotationPoint(0F, 7F, 2F);
+        udder.setTextureSize(128, 128);
+        udder.mirror = true;
+        setRotation(udder, 1.48353F, 0F, 0F);
         tail = new ModelRenderer(this, 40, 100);
         tail.addBox(-1F, 0F, -9.5F, 2, 1, 8);
         tail.setRotationPoint(0F, 7F, 12F);
@@ -222,6 +229,7 @@ public class ModelBuffalo extends ModelBase
         leg4.render(f5);
         hoof4.render(f5);
         back.render(f5);
+        udder.render(f5);
         tail.render(f5);
         body.render(f5);
 

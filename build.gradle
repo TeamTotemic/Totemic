@@ -12,17 +12,17 @@ buildscript {
 }
 
 plugins {
-    id 'com.matthewprenger.cursegradle' version '1.0.7'
+    id 'com.matthewprenger.cursegradle' version '1.0.8'
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.9.4-0.7.6"
+version = "1.9.4-0.7.9"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.9.4-12.17.0.1953"
+    version = "1.9.4-12.17.0.1976"
     runDir = "run"
 
     mappings = "snapshot_20160518"
@@ -91,6 +91,8 @@ curseforge {
         id = '237541'
         changelog  = ''
         releaseType = 'alpha'
+        addGameVersion '1.10'
+        addGameVersion '1.10.2'
 
         addArtifact deobfJar
         addArtifact apiZip

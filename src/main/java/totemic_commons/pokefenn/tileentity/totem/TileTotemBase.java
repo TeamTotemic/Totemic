@@ -35,9 +35,10 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
-import totemic_commons.pokefenn.event.GameOverlay;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketTotemMusic;
+import totemic_commons.pokefenn.handler.GameOverlay;
+import totemic_commons.pokefenn.network.NetworkHandler;
+import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
+import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 /**
@@ -93,29 +94,25 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             calculateEffects();
         }
 
-        deprecateMelody();
+        diminishMelody();
 
         if(!worldObj.isRemote) //SERVER
         {
-            if(!isCeremony)
-                if(worldObj.getTotalWorldTime() % (20L * 30) == 0)
-                {
-                    timesPlayed.clear();
-                }
-
             if(isCeremony)
             {
                 doCeremonyCode();
             }
-
-            if(!isCeremony)
+            else
             {
+                if(worldObj.getTotalWorldTime() % (20L * 30) == 0)
+                {
+                    timesPlayed.clear();
+                }
                 totemEffect();
-            }
-
-            if(worldObj.getTotalWorldTime() % 20L == 0)
-            {
-                syncMelody();
+                if(worldObj.getTotalWorldTime() % 20L == 0)
+                {
+                    syncMelody();
+                }
             }
         }
         else //CLIENT
@@ -277,6 +274,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
                 startupMain(startupCeremony);
 
             ceremonyStartupTimer++;
+
+            if(worldObj.getTotalWorldTime() % 20L == 0)
+            {
+                NetworkHandler.sendAround(new PacketCeremonyStartup(pos, ceremonyMusic, ceremonyStartupTimer), this, 16);
+            }
         }
 
         if(currentCeremony != null)
@@ -378,12 +380,16 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         return musicSelector.size() == instrs.length && musicSelector.equals(Arrays.asList(instrs));
     }
 
-    private void deprecateMelody()
+    private void diminishMelody()
     {
         if(musicForTotemEffect > 0)
         {
             if(worldObj.getTotalWorldTime() % 47L == 0)
+            {
                 musicForTotemEffect--;
+                musicChanged = true;
+                markDirty();
+            }
         }
     }
 
@@ -430,10 +436,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         if(musicChanged)
         {
-            if(isCeremony)
-                PacketHandler.sendAround(new PacketTotemMusic(pos, ceremonyMusic), this);
-            else
-                PacketHandler.sendAround(new PacketTotemMusic(pos, musicForTotemEffect), this);
+            NetworkHandler.sendAround(new PacketTotemEffectMusic(pos, musicForTotemEffect), this, 32);
         }
         musicChanged = false;
     }
@@ -669,7 +672,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             added = false;
 
         if(added)
+        {
             musicChanged = true;
+            markDirty();
+        }
         return added;
     }
 

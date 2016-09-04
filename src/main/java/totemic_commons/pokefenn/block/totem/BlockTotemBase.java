@@ -52,15 +52,15 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return Item.getItemFromBlock(this);
-    }
-
-    @Override
     public int damageDropped(IBlockState state)
     {
         return getMetaFromState(state);
+    }
+
+    @Override
+    public int quantityDropped(Random rand)
+    {
+        return 0;
     }
 
     @Override
@@ -87,12 +87,6 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public int quantityDropped(Random rand)
-    {
-        return 0;
-    }
-
-    @Override
     public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
     {
         if(world.isRemote)
@@ -111,15 +105,6 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
                 player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
                 player.addChatComponentMessage(new TextComponentTranslation(tileTotemBase.currentCeremony.getUnlocalizedName()));
             }
-
-            /*if(!tileTotemBase.isDoingCeremonyEffect() && !player.isSneaking())
-            {
-                if(tileTotemBase.canMusicSelect() && tileTotemBase.musicSelector[0] == null && tileTotemBase.musicSelector[1] == null && !tileTotemBase.isDoingCeremonyEffect() && !tileTotemBase.isDoingStartup())
-                {
-                    player.addChatComponentMessage(new ChatComponentText("No Musical selection"));
-                    return true;
-                }
-            }*/
         }
         return EnumActionResult.SUCCESS;
     }

@@ -7,13 +7,13 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import totemic_commons.pokefenn.entity.ModEntities;
-import totemic_commons.pokefenn.event.EntityFall;
-import totemic_commons.pokefenn.event.EntitySpawn;
-import totemic_commons.pokefenn.event.EntityUpdate;
-import totemic_commons.pokefenn.event.PlayerInteract;
+import totemic_commons.pokefenn.handler.EntityFall;
+import totemic_commons.pokefenn.handler.EntitySpawn;
+import totemic_commons.pokefenn.handler.EntityUpdate;
+import totemic_commons.pokefenn.handler.PlayerInteract;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.GuiHandler;
-import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.recipe.CraftingRecipes;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
@@ -38,7 +38,7 @@ public class CommonProxy
     public void init(FMLInitializationEvent event)
     {
         NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
-        PacketHandler.init();
+        NetworkHandler.init();
         ModEntities.init();
         CraftingRecipes.init();
         registerTileEntities();

@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.api.ceremony;
 import org.apache.commons.lang3.Validate;
 
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -99,16 +98,6 @@ public abstract class Ceremony
     public String getUnlocalizedName()
     {
         return "totemic.ceremony." + name;
-    }
-
-    /**
-     * @return the localized name of the Ceremony
-     * @deprecated Translate manually with I18n instead.
-     */
-    @Deprecated
-    public String getLocalizedName()
-    {
-        return I18n.translateToLocal(getUnlocalizedName());
     }
 
     /**

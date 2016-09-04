@@ -17,6 +17,7 @@ import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -35,6 +36,21 @@ public class ItemBaykokBow extends ItemBow
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BAYKOK_BOW_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setMaxDamage(576);
+        addPropertyOverride(new ResourceLocation("pull"), (stack, world, entity) -> {
+            if(entity == null)
+                return 0.0F;
+            else
+            {
+                ItemStack activeStack = entity.getActiveItemStack();
+                if(activeStack != null && activeStack.getItem() == this)
+                    return (stack.getMaxItemUseDuration() - entity.getItemInUseCount()) / 20.0F;
+                else
+                    return 0.0F;
+            }
+        });
+        addPropertyOverride(new ResourceLocation("pulling"), (stack, world, entity) -> {
+            return entity != null && entity.isHandActive() && entity.getActiveItemStack() == stack ? 1.0F : 0.0F;
+        });
     }
 
     @Override
@@ -77,7 +93,9 @@ public class ItemBaykokBow extends ItemBow
                         entityarrow = itemarrow.createArrow(world, arrow, entity);
                     }
 
-                    entityarrow.setDamage(2.5);
+                    if(entityarrow.getDamage() < 2.5)
+                        entityarrow.setDamage(2.5);
+
                     entityarrow.setAim(player, player.rotationPitch, player.rotationYaw, 0.0F, charge * 4.0F, 1.0F);
 
                     if(charge == 1.0F)

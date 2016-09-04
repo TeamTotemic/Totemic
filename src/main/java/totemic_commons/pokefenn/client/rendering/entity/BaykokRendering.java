@@ -16,12 +16,6 @@ public class BaykokRendering extends RenderLiving<EntityBaykok>
     }
 
     @Override
-    public void doRender(EntityBaykok entity, double x, double y, double z, float entityYaw, float partialTicks)
-    {
-        super.doRender(entity, x, y, z, entityYaw, partialTicks);
-    }
-
-    @Override
     protected ResourceLocation getEntityTexture(EntityBaykok entity)
     {
         return new ResourceLocation("totemic:textures/models/baykok.png");
