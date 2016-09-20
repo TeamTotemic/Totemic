@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.network.SynchronizedPacketBase;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
 
 public class PacketTotemEffectMusic extends SynchronizedPacketBase<PacketTotemEffectMusic>
 {
@@ -42,9 +42,9 @@ public class PacketTotemEffectMusic extends SynchronizedPacketBase<PacketTotemEf
     protected void handleClient(MessageContext ctx)
     {
         TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(pos);
-        if(tile instanceof TileTotemBase)
+        if(tile instanceof TileTotemBase_old)
         {
-            ((TileTotemBase)tile).musicForTotemEffect = effectMusic;
+            ((TileTotemBase_old)tile).musicForTotemEffect = effectMusic;
         }
     }
 }

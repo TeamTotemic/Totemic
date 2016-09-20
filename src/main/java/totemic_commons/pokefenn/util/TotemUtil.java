@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
 
 /**
  * Created with IntelliJ IDEA.
@@ -67,9 +67,9 @@ public class TotemUtil
         int radius = instr.getBaseRange() + bonusRadius;
 
         MusicAcceptor tile = getClosestAcceptor((WorldServer) world, x, y ,z, radius, radius);
-        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canMusicSelect())
+        if(tile instanceof TileTotemBase_old && ((TileTotemBase_old) tile).canMusicSelect())
         {
-            ((TileTotemBase) tile).addSelector(instr);
+            ((TileTotemBase_old) tile).addSelector(instr);
         }
     }
 

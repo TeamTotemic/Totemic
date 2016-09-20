@@ -49,7 +49,7 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  * Date: 29/01/14
  * Time: 20:22
  */
-public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBase, ITickable
+public class TileTotemBase_old extends TileTotemic implements MusicAcceptor, TotemBase, ITickable
 {
     public static final int MAX_HEIGHT = 5;
     public static final int MAX_EFFECT_MUSIC = 128;
@@ -75,7 +75,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public int continueTimer = 0;
     public boolean isDoingEndingEffect = false;
 
-    public TileTotemBase()
+    public TileTotemBase_old()
     {
 
     }

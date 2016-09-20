@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.network.SynchronizedPacketBase;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
 
 public class PacketCeremonyStartup extends SynchronizedPacketBase<PacketCeremonyStartup>
 {
@@ -74,9 +74,9 @@ public class PacketCeremonyStartup extends SynchronizedPacketBase<PacketCeremony
     protected void handleClient(MessageContext ctx)
     {
         TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(pos);
-        if(tile instanceof TileTotemBase)
+        if(tile instanceof TileTotemBase_old)
         {
-            TileTotemBase totem = (TileTotemBase)tile;
+            TileTotemBase_old totem = (TileTotemBase_old)tile;
 
             totem.ceremonyStartupTimer = startupTime;
             totem.ceremonyMusic.clear();

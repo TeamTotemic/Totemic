@@ -21,11 +21,11 @@ import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.item.equipment.weapon.ItemBaykokBow;
 import totemic_commons.pokefenn.lib.Resources;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
 
 public class GameOverlay
 {
-    public static TileTotemBase activeTotem = null;
+    public static TileTotemBase_old activeTotem = null;
 
     private static final ResourceLocation hudTexture = new ResourceLocation(Resources.CEREMONY_HUD);
 
