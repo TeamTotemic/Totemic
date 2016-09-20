@@ -30,7 +30,7 @@ import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
 
 /**
  * Created with IntelliJ IDEA.
@@ -76,7 +76,7 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     {
         if(!world.isRemote)
         {
-            TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(pos);
+            TileTotemBase_old tileTotemBase = (TileTotemBase_old) world.getTileEntity(pos);
             if(tileTotemBase != null)
                 if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ModItems.totemicStaff && tileTotemBase.isCeremony)
                 {
@@ -91,7 +91,7 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     {
         if(world.isRemote)
             return EnumActionResult.SUCCESS;
-        TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(pos);
+        TileTotemBase_old tileTotemBase = (TileTotemBase_old) world.getTileEntity(pos);
         if(tileTotemBase != null)
         {
             if(tileTotemBase.isDoingStartup())
@@ -130,7 +130,7 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     @Override
     public TileEntity createNewTileEntity(World var1, int var2)
     {
-        return new TileTotemBase();
+        return new TileTotemBase_old();
     }
 
     @Override
