@@ -184,52 +184,52 @@ public class ModelBuffalo extends ModelBase
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        float scale = 1.0F + 0.5F * ((EntityBuffalo)entity).getRelativeAge();
+        float ageScale = 1.0F + 0.5F * ((EntityBuffalo)entity).getRelativeAge();
 
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0, 1.5F * (1.0F - scale), 0);
-        GlStateManager.scale(scale, scale, scale);
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        GlStateManager.translate(0, 1.5F * (1.0F - ageScale), 0);
+        GlStateManager.scale(ageScale, ageScale, ageScale);
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
 
         if(isChild)
         {
             GlStateManager.pushMatrix();
-            GlStateManager.translate(0.0F, 6.0F * f5, 4.0F * f5);
+            GlStateManager.translate(0.0F, 6.0F * scale, 4.0F * scale);
         }
 
-        head.render(f5);
-        hornbase1.render(f5);
-        hornbase2.render(f5);
-        horn1.render(f5);
-        horn2.render(f5);
-        horn3.render(f5);
-        horn4.render(f5);
-        horn5.render(f5);
-        horn6.render(f5);
+        head.render(scale);
+        hornbase1.render(scale);
+        hornbase2.render(scale);
+        horn1.render(scale);
+        horn2.render(scale);
+        horn3.render(scale);
+        horn4.render(scale);
+        horn5.render(scale);
+        horn6.render(scale);
 
         if(isChild)
         {
             float childScale = 0.5F;
             GlStateManager.popMatrix();
             GlStateManager.scale(childScale, childScale, childScale);
-            GlStateManager.translate(0.0F, 24.0F * f5, 0.0F);
+            GlStateManager.translate(0.0F, 24.0F * scale, 0.0F);
         }
 
-        tailhairs.render(f5);
-        hoof1.render(f5);
-        leg1.render(f5);
-        leg3.render(f5);
-        hoof3.render(f5);
-        leg2.render(f5);
-        hoof2.render(f5);
-        leg4.render(f5);
-        hoof4.render(f5);
-        back.render(f5);
-        udder.render(f5);
-        tail.render(f5);
-        body.render(f5);
+        tailhairs.render(scale);
+        hoof1.render(scale);
+        leg1.render(scale);
+        leg3.render(scale);
+        hoof3.render(scale);
+        leg2.render(scale);
+        hoof2.render(scale);
+        leg4.render(scale);
+        hoof4.render(scale);
+        back.render(scale);
+        udder.render(scale);
+        tail.render(scale);
+        body.render(scale);
 
         GlStateManager.popMatrix();
     }
@@ -242,24 +242,24 @@ public class ModelBuffalo extends ModelBase
     }
 
     @Override
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, Entity entity)
     {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
 
-        head.rotateAngleX = f4 / (180F / (float)Math.PI) + ((float)Math.PI / 2F);
+        head.rotateAngleX = headPitch / (180F / (float)Math.PI) + ((float)Math.PI / 2F);
         hornbase1.rotateAngleX = hornbase2.rotateAngleX = horn1.rotateAngleX = horn2.rotateAngleX = horn3.rotateAngleX
                 = horn4.rotateAngleX = horn5.rotateAngleX = horn6.rotateAngleX = head.rotateAngleX;
 
         head.rotateAngleY = hornbase1.rotateAngleY = hornbase2.rotateAngleY = horn1.rotateAngleY = horn2.rotateAngleY = horn3.rotateAngleY
-                = horn4.rotateAngleY = horn5.rotateAngleY = horn6.rotateAngleY = f3 / (180F / (float)Math.PI);
+                = horn4.rotateAngleY = horn5.rotateAngleY = horn6.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
 
-        hoof1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        hoof1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         leg1.rotateAngleX = hoof1.rotateAngleX + ((float)Math.PI * 8F / 180F);
-        hoof2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+        hoof2.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         leg2.rotateAngleX = hoof2.rotateAngleX + ((float)Math.PI * 8F / 180F);
 
-        leg3.rotateAngleX = hoof3.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-        leg4.rotateAngleX = hoof4.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
+        leg3.rotateAngleX = hoof3.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        leg4.rotateAngleX = hoof4.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
     }
 
 }
