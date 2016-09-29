@@ -24,7 +24,7 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     {
         super(world);
         experienceValue = 65;
-        setSize(0.75F, 2.25F);
+        setSize(0.55F, 2.25F);
         setHealth(getMaxHealth());
 
         ((PathNavigateGround)getNavigator()).setCanSwim(true);
