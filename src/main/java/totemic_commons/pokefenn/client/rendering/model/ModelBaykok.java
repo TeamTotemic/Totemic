@@ -13,12 +13,12 @@ import net.minecraft.util.MathHelper;
 // TODO: Make proper use of ModelBiped
 public class ModelBaykok extends ModelBiped
 {
+    private ModelRenderer head;
     private ModelRenderer headdress1;
     private ModelRenderer headdress2;
     private ModelRenderer headdress3;
     private ModelRenderer headdress4;
     private ModelRenderer headdress5;
-    private ModelRenderer head;
     private ModelRenderer ribs;
     private ModelRenderer quiver;
     private ModelRenderer leftarm;
@@ -35,42 +35,47 @@ public class ModelBaykok extends ModelBiped
         textureWidth = 128;
         textureHeight = 128;
 
-        headdress1 = new ModelRenderer(this, 0, 70);
-        headdress1.addBox(-0.5F, -14F, -1F, 2, 6, 2);
-        headdress1.setRotationPoint(0F, 0F, 0F);
-        headdress1.setTextureSize(128, 128);
-        headdress1.mirror = true;
-        setRotation(headdress1, -0.1745329F, 0F, -0.4712389F);
-        headdress2 = new ModelRenderer(this, 0, 70);
-        headdress2.addBox(-1F, -14F, -1F, 2, 6, 2);
-        headdress2.setRotationPoint(0F, 0F, 0F);
-        headdress2.setTextureSize(128, 128);
-        headdress2.mirror = true;
-        setRotation(headdress2, -0.1745329F, 0F, -0.2268928F);
-        headdress3 = new ModelRenderer(this, 0, 70);
-        headdress3.addBox(-1F, -14F, -1F, 2, 6, 2);
-        headdress3.setRotationPoint(0F, 0F, 0F);
-        headdress3.setTextureSize(128, 128);
-        headdress3.mirror = true;
-        setRotation(headdress3, -0.1745329F, 0F, 0F);
-        headdress4 = new ModelRenderer(this, 0, 70);
-        headdress4.addBox(-1F, -14F, -1F, 2, 6, 2);
-        headdress4.setRotationPoint(0F, 0F, 0F);
-        headdress4.setTextureSize(128, 128);
-        headdress4.mirror = true;
-        setRotation(headdress4, -0.1745329F, 0F, 0.2268928F);
-        headdress5 = new ModelRenderer(this, 0, 70);
-        headdress5.addBox(-1.5F, -14F, -1F, 2, 6, 2);
-        headdress5.setRotationPoint(0F, 0F, 0F);
-        headdress5.setTextureSize(128, 128);
-        headdress5.mirror = true;
-        setRotation(headdress5, -0.1745329F, 0F, 0.4712389F);
         head = new ModelRenderer(this, 0, 0);
         head.addBox(-4F, -9F, -4F, 8, 8, 8);
         head.setRotationPoint(0F, 0F, 0F);
         head.setTextureSize(128, 128);
         head.mirror = true;
         setRotation(head, 0F, 0F, 0F);
+        headdress1 = new ModelRenderer(this, 0, 70);
+        headdress1.addBox(-0.5F, -14F, -1F, 2, 6, 2);
+        headdress1.setRotationPoint(0F, 0F, 0F);
+        headdress1.setTextureSize(128, 128);
+        headdress1.mirror = true;
+        setRotation(headdress1, -0.1745329F, 0F, -0.4712389F);
+        head.addChild(headdress1);
+        headdress2 = new ModelRenderer(this, 0, 70);
+        headdress2.addBox(-1F, -14F, -1F, 2, 6, 2);
+        headdress2.setRotationPoint(0F, 0F, 0F);
+        headdress2.setTextureSize(128, 128);
+        headdress2.mirror = true;
+        setRotation(headdress2, -0.1745329F, 0F, -0.2268928F);
+        head.addChild(headdress2);
+        headdress3 = new ModelRenderer(this, 0, 70);
+        headdress3.addBox(-1F, -14F, -1F, 2, 6, 2);
+        headdress3.setRotationPoint(0F, 0F, 0F);
+        headdress3.setTextureSize(128, 128);
+        headdress3.mirror = true;
+        setRotation(headdress3, -0.1745329F, 0F, 0F);
+        head.addChild(headdress3);
+        headdress4 = new ModelRenderer(this, 0, 70);
+        headdress4.addBox(-1F, -14F, -1F, 2, 6, 2);
+        headdress4.setRotationPoint(0F, 0F, 0F);
+        headdress4.setTextureSize(128, 128);
+        headdress4.mirror = true;
+        setRotation(headdress4, -0.1745329F, 0F, 0.2268928F);
+        head.addChild(headdress4);
+        headdress5 = new ModelRenderer(this, 0, 70);
+        headdress5.addBox(-1.5F, -14F, -1F, 2, 6, 2);
+        headdress5.setRotationPoint(0F, 0F, 0F);
+        headdress5.setTextureSize(128, 128);
+        headdress5.mirror = true;
+        setRotation(headdress5, -0.1745329F, 0F, 0.4712389F);
+        head.addChild(headdress5);
         ribs = new ModelRenderer(this, 16, 98);
         ribs.addBox(-3F, -1F, -2F, 6, 8, 4);
         ribs.setRotationPoint(0F, 0F, 0F);
@@ -124,11 +129,6 @@ public class ModelBaykok extends ModelBiped
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
-        headdress1.render(scale);
-        headdress2.render(scale);
-        headdress3.render(scale);
-        headdress4.render(scale);
-        headdress5.render(scale);
         head.render(scale);
         ribs.render(scale);
         quiver.render(scale);
@@ -145,10 +145,8 @@ public class ModelBaykok extends ModelBiped
     {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
 
-        head.rotateAngleX = headdress1.rotateAngleX = headdress2.rotateAngleX = headdress3.rotateAngleX
-                = headdress4.rotateAngleX = headdress5.rotateAngleX = headPitch / (180F / (float)Math.PI);
-        head.rotateAngleY = headdress1.rotateAngleY = headdress2.rotateAngleY = headdress3.rotateAngleY
-                = headdress4.rotateAngleY = headdress5.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
+        head.rotateAngleX = headPitch / (180F / (float)Math.PI);
+        head.rotateAngleY = netHeadYaw / (180F / (float)Math.PI);
 
         leftarm.rotateAngleX = ((float)Math.PI / 2F);
         leftarm.rotateAngleY = 0.35F;
