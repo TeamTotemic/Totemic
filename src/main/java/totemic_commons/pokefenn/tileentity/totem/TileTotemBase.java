@@ -48,7 +48,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         totemEffectList.clear();
         totemEffects.clear();
 
-        while(true)
+        while(totemPoleHeight < MAX_HEIGHT)
         {
             TileEntity tile = worldObj.getTileEntity(pos.up(totemPoleHeight + 1));
             if(tile instanceof TileTotemPole)

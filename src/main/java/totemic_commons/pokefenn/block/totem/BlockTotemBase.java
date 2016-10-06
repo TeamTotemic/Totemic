@@ -26,6 +26,7 @@ import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
 
 /**
@@ -124,9 +125,9 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public TileEntity createNewTileEntity(World var1, int var2)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
-        return new TileTotemBase_old();
+        return new TileTotemBase();
     }
 
     @Override
