@@ -25,7 +25,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     private TotemState state = new StateTotemEffect(this);
 
-    private int totemPoleHeight = 0;
     private final List<TotemEffect> totemEffectList = new ArrayList<>(MAX_HEIGHT);
     private final TObjectIntMap<TotemEffect> totemEffects = new TObjectIntHashMap<>(Totemic.api.registry().getTotems().size());
 
@@ -44,20 +43,17 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     private void calculateTotemEffects()
     {
-        totemPoleHeight = 0;
         totemEffectList.clear();
         totemEffects.clear();
 
-        while(totemPoleHeight < MAX_HEIGHT)
+        for(int i = 0; i < MAX_HEIGHT; i++)
         {
-            TileEntity tile = worldObj.getTileEntity(pos.up(totemPoleHeight + 1));
+            TileEntity tile = worldObj.getTileEntity(pos.up(i + 1));
             if(tile instanceof TileTotemPole)
             {
                 TotemEffect effect = ((TileTotemPole) tile).getTotemEffect();
                 totemEffectList.add(effect);
                 totemEffects.adjustOrPutValue(effect, 1, 1);
-
-                totemPoleHeight++;
             }
             else
                 break;
@@ -84,7 +80,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @Override
     public int getPoleSize()
     {
-        return totemPoleHeight;
+        return totemEffectList.size();
     }
 
     @Override
