@@ -1,10 +1,18 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import gnu.trove.map.TObjectIntMap;
+import gnu.trove.map.hash.TObjectIntHashMap;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
+import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
@@ -14,15 +22,53 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public static final int MAX_EFFECT_MUSIC = 128;
 
     private boolean firstTick = true;
-    private final TotemEffect[] totemEffects = new TotemEffect[MAX_HEIGHT];
-    private int totemPoleHeight = 0;
-    private WoodVariant wood;
+
+    private TotemState state = new StateTotemEffect(this);
+
+    private final List<TotemEffect> totemEffectList = new ArrayList<>(MAX_HEIGHT);
+    private final TObjectIntMap<TotemEffect> totemEffects = new TObjectIntHashMap<>(Totemic.api.registry().getTotems().size());
 
     @Override
     public void update()
     {
-        // TODO Auto-generated method stub
+        if(firstTick)
+        {
+            calculateTotemEffects();
+            firstTick = false;
+        }
 
+        if(state != null)
+            state.update();
+    }
+
+    private void calculateTotemEffects()
+    {
+        totemEffectList.clear();
+        totemEffects.clear();
+
+        for(int i = 0; i < MAX_HEIGHT; i++)
+        {
+            TileEntity tile = worldObj.getTileEntity(pos.up(i + 1));
+            if(tile instanceof TileTotemPole)
+            {
+                TotemEffect effect = ((TileTotemPole) tile).getTotemEffect();
+                totemEffectList.add(effect);
+                if(effect != null)
+                    totemEffects.adjustOrPutValue(effect, 1, 1);
+            }
+            else
+                break;
+        }
+    }
+
+    public WoodVariant getWoodType()
+    {
+        return worldObj.getBlockState(pos).getValue(BlockTotemBase.WOOD);
+    }
+
+    public TObjectIntMap<TotemEffect> getTotemEffectMap()
+    {
+        return totemEffects;
     }
 
     @Override
@@ -35,22 +81,19 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @Override
     public int getPoleSize()
     {
-        // TODO Auto-generated method stub
-        return 0;
+        return totemEffectList.size();
     }
 
     @Override
     public int getRepetition(TotemEffect effect)
     {
-        // TODO Auto-generated method stub
-        return 0;
+        return totemEffects.get(effect);
     }
 
     @Override
     public TotemEffect[] getEffects()
     {
-        // TODO Auto-generated method stub
-        return null;
+        return totemEffectList.toArray(new TotemEffect[0]);
     }
 
     @Override

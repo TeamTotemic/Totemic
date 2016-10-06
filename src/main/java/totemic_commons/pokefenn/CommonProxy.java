@@ -20,7 +20,7 @@ import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
 public class CommonProxy
@@ -52,7 +52,7 @@ public class CommonProxy
 
     private void registerTileEntities()
     {
-        GameRegistry.registerTileEntity(TileTotemBase_old.class, Strings.TILE_TOTEM_INTELLIGENCE);
+        GameRegistry.registerTileEntity(TileTotemBase.class, Strings.TILE_TOTEM_INTELLIGENCE);
         GameRegistry.registerTileEntity(TileTotemPole.class, Strings.TILE_TOTEM_SOCKET);
         GameRegistry.registerTileEntity(TileDrum.class, Strings.DRUM_NAME);
         GameRegistry.registerTileEntity(TileWindChime.class, Strings.WIND_CHIME_NAME);
