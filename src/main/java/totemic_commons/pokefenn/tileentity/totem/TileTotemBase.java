@@ -53,7 +53,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             {
                 TotemEffect effect = ((TileTotemPole) tile).getTotemEffect();
                 totemEffectList.add(effect);
-                totemEffects.adjustOrPutValue(effect, 1, 1);
+                if(effect != null)
+                    totemEffects.adjustOrPutValue(effect, 1, 1);
             }
             else
                 break;
