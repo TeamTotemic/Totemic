@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.block.totem;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -10,6 +11,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,6 +29,7 @@ import totemic_commons.pokefenn.api.TotemicStaffUsage;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
 /**
@@ -49,6 +52,50 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
+    public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
+    {
+        if(world.isRemote)
+        {
+            TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(pos);
+            if(tileTotemSocket.getEffect() != null)
+            {
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.format(tileTotemSocket.getEffect().getUnlocalizedName())));
+            }
+        }
+        return EnumActionResult.SUCCESS;
+    }
+
+    //FIXME: This method of notifying is not working correctly on the client side yet
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityLiving, ItemStack itemStack)
+    {
+        super.onBlockPlacedBy(world, pos, state, entityLiving, itemStack);
+        notifyTotemBase(world, pos);
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        super.breakBlock(world, pos, state);
+        notifyTotemBase(world, pos);
+    }
+
+    private void notifyTotemBase(World world, BlockPos pos)
+    {
+        for(int i = 0; i < TileTotemBase.MAX_HEIGHT; i++)
+        {
+            Block block = world.getBlockState(pos.down(i + 1)).getBlock();
+            if(block instanceof BlockTotemBase)
+            {
+                ((TileTotemBase) world.getTileEntity(pos.down(i + 1))).onPoleChange();
+                break;
+            }
+            else if(!(block instanceof BlockTotemPole))
+                break;
+        }
+    }
+
+    @Override
     public int damageDropped(IBlockState state)
     {
         return getMetaFromState(state);
@@ -66,20 +113,6 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     {
         for(int i = 0; i < WoodVariant.values().length; i++)
             list.add(new ItemStack(item, 1, i));
-    }
-
-    @Override
-    public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
-    {
-        if(world.isRemote)
-        {
-            TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(pos);
-            if(tileTotemSocket.getTotemEffect() != null)
-            {
-                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.format(tileTotemSocket.getTotemEffect().getUnlocalizedName())));
-            }
-        }
-        return EnumActionResult.SUCCESS;
     }
 
     @Override

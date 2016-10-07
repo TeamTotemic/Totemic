@@ -537,7 +537,7 @@ public class TileTotemBase_old extends TileTotemic implements MusicAcceptor, Tot
     {
         TileEntity tileEntity = this.worldObj.getTileEntity(pos.up(1 + yOffset));
 
-        return tileEntity instanceof TileTotemPole ? (((TileTotemPole) tileEntity).getTotemEffect()) : null;
+        return tileEntity instanceof TileTotemPole ? (((TileTotemPole) tileEntity).getEffect()) : null;
     }
 
     protected int calculateTotemPoleAmount()

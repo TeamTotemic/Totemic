@@ -16,11 +16,17 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
  */
 public class TileTotemPole extends TileTotemic
 {
-    public TotemEffect effect = null;
+    private TotemEffect effect = null;
 
-    public TotemEffect getTotemEffect()
+    public TotemEffect getEffect()
     {
         return effect;
+    }
+
+    public void setEffect(TotemEffect effect)
+    {
+        this.effect = effect;
+        markDirty();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import static totemic_commons.pokefenn.Totemic.logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             TileEntity tile = worldObj.getTileEntity(pos.up(i + 1));
             if(tile instanceof TileTotemPole)
             {
-                TotemEffect effect = ((TileTotemPole) tile).getTotemEffect();
+                TotemEffect effect = ((TileTotemPole) tile).getEffect();
                 totemEffectList.add(effect);
                 if(effect != null)
                     totemEffects.adjustOrPutValue(effect, 1, 1);
@@ -59,6 +61,12 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             else
                 break;
         }
+    }
+
+    public void onPoleChange()
+    {
+        calculateTotemEffects();
+        logger.trace("Totem pole changed at {}", pos);
     }
 
     public WoodVariant getWoodType()

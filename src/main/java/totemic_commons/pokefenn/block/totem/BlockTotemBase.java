@@ -53,26 +53,6 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return getMetaFromState(state);
-    }
-
-    @Override
-    public int quantityDropped(Random rand)
-    {
-        return 0;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
-    {
-        for(int i = 0; i < WoodVariant.values().length; i++)
-            list.add(new ItemStack(item, 1, i));
-    }
-
-    @Override
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
     {
         if(!world.isRemote)
@@ -108,6 +88,26 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
             }
         }
         return EnumActionResult.SUCCESS;
+    }
+
+    @Override
+    public int damageDropped(IBlockState state)
+    {
+        return getMetaFromState(state);
+    }
+
+    @Override
+    public int quantityDropped(Random rand)
+    {
+        return 0;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    {
+        for(int i = 0; i < WoodVariant.values().length; i++)
+            list.add(new ItemStack(item, 1, i));
     }
 
     @Override
