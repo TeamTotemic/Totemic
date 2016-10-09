@@ -69,6 +69,8 @@ totemic.totem.totemic:bat=Bat
 totemic.totem.totemic:spider=Spider
 totemic.totem.totemic:cow=Cow
 totemic.totem.totemic:rabbit=Rabbit
+totemic.totem.totemic:pig=Pig
+totemic.totem.totemic:wolf=Wolf
 
 #Music values
 totemic.musicNeeded.none=No Music required
@@ -127,7 +129,7 @@ totemic.page.creatingTotems2=
 
 totemic.entry.totemEffects=Totem Effects
 totemic.page.totemEffects0=These are the different effects you can carve on a Totem pole:<br>§1Horse§0: Gives you a speed boost<br>§1Squid§0: Gives you Water Breathing<br>§1Blaze§0: Gives you Fire Resistance<br>§1Ocelot§0: Prevents Creepers from exploding
-totemic.page.totemEffects1=§1Bat§0: Negates fall damage and lets you move forward when you sneak mid-air<br>§1Spider§0: Lets you climb walls like a spider<br>§1Cow§0: Gives you resistance to damage, but also slows you down<br>§1Rabbit§0: Brings you good luck
+totemic.page.totemEffects1=§1Bat§0: Negates fall damage and lets you move forward when you sneak mid-air<br>§1Spider§0: Lets you climb walls like a spider<br>§1Cow§0: Gives you resistance to damage, but also slows you down<br>§1Rabbit§0: Gives you a jump boost<br>§1Pig§0: Gives you good luck<br>§1Wolf§0: Gives you strength
 
 totemic.entry.instruments=Instruments
 totemic.page.instruments0=Instruments are a way to create §4Musical Melody§0, which is the life of §1Totem Poles§0. When an instrument is played, their melody will seep into any receivers. Every instrument produces §4Musical Melody§0 in different ways, such as how strong the melody is, how far it goes and how much a Totem can accept.
