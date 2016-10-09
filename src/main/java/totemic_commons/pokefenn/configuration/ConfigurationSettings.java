@@ -4,4 +4,5 @@ public final class ConfigurationSettings
 {
     public static int CEREMONY_HUD_X;
     public static int CEREMONY_HUD_Y;
+    public static boolean FLOWEY_EASTEREGG;
 }
