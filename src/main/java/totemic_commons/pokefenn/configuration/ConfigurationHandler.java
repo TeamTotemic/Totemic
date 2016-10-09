@@ -42,8 +42,9 @@ public final class ConfigurationHandler
 
     private static void loadValues()
     {
-        ConfigurationSettings.CEREMONY_HUD_X = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionX", 0, "horizontal position of the ceremony HUD (offset from center of the screen)").getInt();
-        ConfigurationSettings.CEREMONY_HUD_Y = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionY", -70, "vertical position of the ceremony HUD (offset from center of the screen)").getInt();
+        ConfigurationSettings.CEREMONY_HUD_X = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionX", 0, "Horizontal position of the ceremony HUD (offset from center of the screen)").getInt();
+        ConfigurationSettings.CEREMONY_HUD_Y = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionY", -70, "Vertical position of the ceremony HUD (offset from center of the screen)").getInt();
+        ConfigurationSettings.FLOWEY_EASTEREGG = conf.get(CATEGORY_CLIENT, "enableFloweyEasteregg", true, "Enables an occasional \"special interaction\" with Botania").getBoolean();
     }
 
     @SubscribeEvent
