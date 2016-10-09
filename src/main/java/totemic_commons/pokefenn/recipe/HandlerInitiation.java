@@ -38,6 +38,8 @@ public class HandlerInitiation
     public static TotemEffect batTotem;
     public static TotemEffect spiderTotem;
     public static TotemEffect cowTotem;
+    public static TotemEffect rabbitTotem;
+    public static TotemEffect wolfTotem;
 
     public static MusicInstrument flute;
     public static MusicInstrument drum;
@@ -100,6 +102,8 @@ public class HandlerInitiation
         batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", 9, 9, ModPotions.batPotion, 10, 20, 0));
         spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", 6, 6, ModPotions.spiderPotion, 60, 50, 0));
         cowTotem = reg.addTotem(new TotemEffectCow("totemic:cow", 6, 6));
+        rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", 6, 6, Potion.jump, 80, 60, 0));
+        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", 6, 6, Potion.damageBoost, 80, 60, 0));
     }
 
     private static void instruments()
