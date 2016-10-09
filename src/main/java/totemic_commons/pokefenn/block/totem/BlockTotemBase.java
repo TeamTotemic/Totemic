@@ -31,6 +31,7 @@ import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
 
 /**
  * Created with IntelliJ IDEA.
@@ -49,6 +50,44 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
         setUnlocalizedName(Strings.TOTEM_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setSoundType(SoundType.WOOD);
+    }
+
+    @Override
+    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
+    {
+        if(!world.isRemote)
+        {
+            TileTotemBase_old tileTotemBase = (TileTotemBase_old) world.getTileEntity(pos);
+            if(tileTotemBase != null)
+                if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ModItems.totemicStaff && tileTotemBase.isCeremony)
+                {
+                    tileTotemBase.resetAfterCeremony(true);
+                    ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
+                }
+        }
+    }
+
+    @Override
+    public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
+    {
+        if(world.isRemote)
+            return EnumActionResult.SUCCESS;
+        TileTotemBase_old tileTotemBase = (TileTotemBase_old) world.getTileEntity(pos);
+        if(tileTotemBase != null)
+        {
+            if(tileTotemBase.isDoingStartup())
+            {
+                Ceremony trying = tileTotemBase.startupCeremony;
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"));
+                player.addChatComponentMessage(new TextComponentTranslation(trying.getUnlocalizedName()));
+            }
+            else if(tileTotemBase.isDoingCeremonyEffect())
+            {
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
+                player.addChatComponentMessage(new TextComponentTranslation(tileTotemBase.currentCeremony.getUnlocalizedName()));
+            }
+        }
+        return EnumActionResult.SUCCESS;
     }
 
     @Override
@@ -72,44 +111,6 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
-    {
-        if(!world.isRemote)
-        {
-            TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(pos);
-            if(tileTotemBase != null)
-                if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ModItems.totemicStaff && tileTotemBase.isCeremony)
-                {
-                    tileTotemBase.resetAfterCeremony(true);
-                    ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
-                }
-        }
-    }
-
-    @Override
-    public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack)
-    {
-        if(world.isRemote)
-            return EnumActionResult.SUCCESS;
-        TileTotemBase tileTotemBase = (TileTotemBase) world.getTileEntity(pos);
-        if(tileTotemBase != null)
-        {
-            if(tileTotemBase.isDoingStartup())
-            {
-                Ceremony trying = tileTotemBase.startupCeremony;
-                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"));
-                player.addChatComponentMessage(new TextComponentTranslation(trying.getUnlocalizedName()));
-            }
-            else if(tileTotemBase.isDoingCeremonyEffect())
-            {
-                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
-                player.addChatComponentMessage(new TextComponentTranslation(tileTotemBase.currentCeremony.getUnlocalizedName()));
-            }
-        }
-        return EnumActionResult.SUCCESS;
-    }
-
-    @Override
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, WOOD);
@@ -128,7 +129,7 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public TileEntity createNewTileEntity(World var1, int var2)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileTotemBase();
     }

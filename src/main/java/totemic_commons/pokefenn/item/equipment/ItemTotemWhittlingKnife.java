@@ -101,8 +101,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             if(world.isRemote)
                 return EnumActionResult.SUCCESS;
 
-            IBlockState state = world.getBlockState(pos);
-            WoodVariant wood = WoodVariant.fromLog(state);
+            WoodVariant wood = WoodVariant.fromLog(world.getBlockState(pos));
             if(wood == null)
                 return EnumActionResult.FAIL;
 
@@ -116,12 +115,14 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                 world.setBlockState(pos, ModBlocks.totemPole.getDefaultState().withProperty(BlockTotemPole.WOOD, wood), 0);
                 TileTotemPole tile = (TileTotemPole)world.getTileEntity(pos);
 
-                tile.effect = totemList.get(getCarvingIndex(stack));
-                tile.markDirty();
+                tile.setEffect(totemList.get(index));
                 tile.markForUpdate();
             }
             else
                 return EnumActionResult.FAIL;
+
+            IBlockState state = world.getBlockState(pos);
+            state.getBlock().onBlockPlacedBy(world, pos, state, player, stack);
             stack.damageItem(1, player);
 
             return EnumActionResult.SUCCESS;
