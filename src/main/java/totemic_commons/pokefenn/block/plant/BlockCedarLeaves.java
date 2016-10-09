@@ -108,7 +108,7 @@ public class BlockCedarLeaves extends BlockLeaves
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
-        return Collections.singletonList(item);
+        return Collections.singletonList(new ItemStack(this));
     }
 
     @Override
