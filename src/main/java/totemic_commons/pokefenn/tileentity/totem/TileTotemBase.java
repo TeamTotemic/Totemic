@@ -83,8 +83,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @Override
     public int getTotemEffectMusic()
     {
-        // TODO Auto-generated method stub
-        return 0;
+        if(state instanceof StateTotemEffect)
+            return ((StateTotemEffect) state).getMusicAmount();
+        else
+            return 0;
     }
 
     @Override
@@ -115,8 +117,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @Override
     public boolean addMusic(MusicInstrument instr, int amount)
     {
-        // TODO Auto-generated method stub
-        return false;
+        boolean added = state.addMusic(instr, amount);
+        if(added)
+            markDirty();
+        return added;
     }
 
 }

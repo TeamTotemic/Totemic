@@ -1,6 +1,9 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
-public abstract class TotemState
+import net.minecraft.util.ITickable;
+import totemic_commons.pokefenn.api.music.MusicAcceptor;
+
+public abstract class TotemState implements ITickable, MusicAcceptor
 {
     protected final TileTotemBase tile;
 
@@ -8,6 +11,4 @@ public abstract class TotemState
     {
         this.tile = tile;
     }
-
-    public abstract void update();
 }
