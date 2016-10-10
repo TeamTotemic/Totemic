@@ -5,8 +5,9 @@ import static totemic_commons.pokefenn.Totemic.logger;
 import java.util.ArrayList;
 import java.util.List;
 
-import gnu.trove.map.TObjectIntMap;
-import gnu.trove.map.hash.TObjectIntHashMap;
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Multiset;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import totemic_commons.pokefenn.Totemic;
@@ -28,7 +29,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     private TotemState state = new StateTotemEffect(this);
 
     private final List<TotemEffect> totemEffectList = new ArrayList<>(MAX_HEIGHT);
-    private final TObjectIntMap<TotemEffect> totemEffects = new TObjectIntHashMap<>(Totemic.api.registry().getTotems().size());
+    private final Multiset<TotemEffect> totemEffects = HashMultiset.create(Totemic.api.registry().getTotems().size());
 
     @Override
     public void update()
@@ -56,7 +57,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
                 TotemEffect effect = ((TileTotemPole) tile).getEffect();
                 totemEffectList.add(effect);
                 if(effect != null)
-                    totemEffects.adjustOrPutValue(effect, 1, 1);
+                    totemEffects.add(effect);
             }
             else
                 break;
@@ -74,7 +75,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         return worldObj.getBlockState(pos).getValue(BlockTotemBase.WOOD);
     }
 
-    public TObjectIntMap<TotemEffect> getTotemEffectMap()
+    public Multiset<TotemEffect> getTotemEffectSet()
     {
         return totemEffects;
     }
@@ -95,7 +96,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @Override
     public int getRepetition(TotemEffect effect)
     {
-        return totemEffects.get(effect);
+        return totemEffects.count(effect);
     }
 
     @Override

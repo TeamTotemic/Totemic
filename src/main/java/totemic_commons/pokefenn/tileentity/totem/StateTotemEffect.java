@@ -10,11 +10,10 @@ public class StateTotemEffect extends TotemState
     @Override
     public void update()
     {
-        tile.getTotemEffectMap().forEachEntry((effect, repetition) -> {
-            int horizontal = effect.getHorizontalRange(); //TODO
-            int vertical = effect.getVerticalRange();
-            effect.effect(tile.getWorld(), tile.getPos(), tile, repetition, horizontal, vertical);
-            return true;
+        tile.getTotemEffectSet().entrySet().forEach(e -> {
+            int horizontal = e.getElement().getHorizontalRange(); //TODO
+            int vertical = e.getElement().getVerticalRange();
+            e.getElement().effect(tile.getWorld(), tile.getPos(), tile, e.getCount(), horizontal, vertical);
         });
     }
 }
