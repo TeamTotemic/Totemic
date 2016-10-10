@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
 public class StateTotemEffect extends TotemState
@@ -25,6 +27,20 @@ public class StateTotemEffect extends TotemState
         {
             musicAmount--;
             tile.markDirty();
+        }
+
+        if(tile.getWorld().isRemote && tile.getWorld().getTotalWorldTime() % 40 == 0)
+            spawnParticles();
+    }
+
+    private void spawnParticles()
+    {
+        for(int i = 0; i < musicAmount / 16; i++)
+        {
+            float xoff = 2 * tile.getWorld().rand.nextFloat() - 1;
+            float zoff = 2 * tile.getWorld().rand.nextFloat() - 1;
+            BlockPos pos = tile.getPos();
+            tile.getWorld().spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5 + xoff, pos.getY(), pos.getZ() + 0.5 + zoff, 0, 0.5, 0);
         }
     }
 
