@@ -40,8 +40,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             firstTick = false;
         }
 
-        if(state != null)
-            state.update();
+        state.update();
     }
 
     private void calculateTotemEffects()
@@ -68,6 +67,21 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         calculateTotemEffects();
         logger.trace("Totem pole changed at {}", pos);
+    }
+
+    public TotemState getState()
+    {
+        return state;
+    }
+
+    public void setState(TotemState state)
+    {
+        if(state != this.state)
+        {
+            this.state = state;
+            markForUpdate();
+            markDirty();
+        }
     }
 
     public WoodVariant getWoodType()
@@ -123,4 +137,13 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         return added;
     }
 
+    public boolean canSelect()
+    {
+        return state.canSelect();
+    }
+
+    public void addSelector(MusicInstrument instr)
+    {
+        state.addSelector(instr);
+    }
 }

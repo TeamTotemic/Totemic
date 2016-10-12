@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 /**
  * Created with IntelliJ IDEA.
@@ -53,7 +53,7 @@ public class TotemUtil
      */
     public static MusicAcceptor getClosestAcceptor(WorldServer world, double x, double y, double z, int horizontalRadius, int verticalRadius)
     {
-        return (MusicAcceptor)EntityUtil.getTileEntitiesInRange(world, new BlockPos(x, y, z), horizontalRadius, verticalRadius).stream()
+        return (MusicAcceptor) EntityUtil.getTileEntitiesInRange(world, new BlockPos(x, y, z), horizontalRadius, verticalRadius).stream()
                 .filter(te -> te instanceof MusicAcceptor)
                 .min(Comparator.comparing(te -> te.getDistanceSq(x, y, z))).orElse(null);
     }
@@ -69,9 +69,9 @@ public class TotemUtil
         int radius = instr.getBaseRange() + bonusRadius;
 
         MusicAcceptor tile = getClosestAcceptor((WorldServer) world, x, y ,z, radius, radius);
-        if(tile instanceof TileTotemBase_old && ((TileTotemBase_old) tile).canMusicSelect())
+        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canSelect())
         {
-            ((TileTotemBase_old) tile).addSelector(instr);
+            ((TileTotemBase) tile).addSelector(instr);
         }
     }
 
