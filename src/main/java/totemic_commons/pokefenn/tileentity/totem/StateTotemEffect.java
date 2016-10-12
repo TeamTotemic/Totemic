@@ -52,6 +52,18 @@ public class StateTotemEffect extends TotemState
         return musicAmount > previous;
     }
 
+    @Override
+    public boolean canSelect()
+    {
+        return true;
+    }
+
+    @Override
+    public void addSelector(MusicInstrument instr)
+    {
+        tile.setState(new StateSelection(tile));
+    }
+
     public int getMusicAmount()
     {
         return musicAmount;
