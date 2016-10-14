@@ -1,11 +1,14 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
 public class StateTotemEffect extends TotemState
 {
+    public static final int ID = 0;
+
     private int musicAmount = 0;
 
     public StateTotemEffect(TileTotemBase tile)
@@ -67,5 +70,23 @@ public class StateTotemEffect extends TotemState
     public int getMusicAmount()
     {
         return musicAmount;
+    }
+
+    @Override
+    public int getID()
+    {
+        return ID;
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag)
+    {
+        tag.setInteger("musicForTotemEffect", musicAmount);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag)
+    {
+        musicAmount = tag.getInteger("musicForTotemEffect");
     }
 }

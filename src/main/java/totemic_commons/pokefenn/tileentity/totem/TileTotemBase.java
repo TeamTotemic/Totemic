@@ -8,6 +8,7 @@ import java.util.List;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import totemic_commons.pokefenn.Totemic;
@@ -145,5 +146,29 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public void addSelector(MusicInstrument instr)
     {
         state.addSelector(instr);
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound tag)
+    {
+        tag = super.writeToNBT(tag);
+
+        tag.setByte("state", (byte) state.getID());
+        state.writeToNBT(tag);
+
+        return tag;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag)
+    {
+        super.readFromNBT(tag);
+
+        if(tag.hasKey("state", 99))
+            state = TotemState.fromID(tag.getByte("state"), this);
+        else
+            state = new StateTotemEffect(this);
+
+        state.readFromNBT(tag);
     }
 }
