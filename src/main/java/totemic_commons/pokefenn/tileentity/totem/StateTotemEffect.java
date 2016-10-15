@@ -8,6 +8,7 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 public class StateTotemEffect extends TotemState
 {
     public static final int ID = 0;
+    public static final int MAX_EFFECT_MUSIC = 128;
 
     private int musicAmount = 0;
 
@@ -51,7 +52,7 @@ public class StateTotemEffect extends TotemState
     public boolean addMusic(MusicInstrument instr, int amount)
     {
         int previous = musicAmount;
-        musicAmount = Math.min(previous + amount / 2, TileTotemBase.MAX_EFFECT_MUSIC);
+        musicAmount = Math.min(previous + amount / 2, MAX_EFFECT_MUSIC);
         return musicAmount > previous;
     }
 

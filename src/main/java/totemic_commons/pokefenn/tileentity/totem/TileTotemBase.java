@@ -9,6 +9,8 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import totemic_commons.pokefenn.Totemic;
@@ -23,7 +25,6 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
 public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBase, ITickable
 {
     public static final int MAX_HEIGHT = 5;
-    public static final int MAX_EFFECT_MUSIC = 128;
 
     private boolean firstTick = true;
 
@@ -170,5 +171,23 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             state = new StateTotemEffect(this);
 
         state.readFromNBT(tag);
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        return writeToNBT(new NBTTagCompound());
+    }
+
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()
+    {
+        return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        readFromNBT(pkt.getNbtCompound());
     }
 }
