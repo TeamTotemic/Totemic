@@ -1,24 +1,38 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.world.WorldServer;
+import totemic_commons.pokefenn.Totemic;
+import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
 public class StateSelection extends TotemState
 {
     public static final int ID = 1;
 
+    private final List<MusicInstrument> selectors = new ArrayList<>(Ceremony.MAX_SELECTORS);
+
     public StateSelection(TileTotemBase tile)
     {
         super(tile);
-        // TODO Auto-generated constructor stub
+    }
+
+    public StateSelection(TileTotemBase tile, MusicInstrument firstSelector)
+    {
+        this(tile);
+        addSelector(firstSelector);
     }
 
     @Override
     public void update()
-    {
-        // TODO Auto-generated method stub
-
-    }
+    { }
 
     @Override
     public boolean canSelect()
@@ -29,8 +43,36 @@ public class StateSelection extends TotemState
     @Override
     public void addSelector(MusicInstrument instr)
     {
-        // TODO Auto-generated method stub
-        super.addSelector(instr);
+        selectors.add(instr);
+
+        BlockPos pos = tile.getPos();
+        WorldServer world = (WorldServer) tile.getWorld();
+
+        world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
+        tile.markDirty();
+
+        if(selectors.size() >= Ceremony.MIN_SELECTORS)
+        {
+            Optional<Ceremony> match = Totemic.api.registry().getCeremonies().values().stream()
+                .filter(cer -> selectorsMatch(cer.getInstruments()))
+                .findAny();
+
+            if(match.isPresent())
+            {
+                world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
+                //TODO: Switch state to Startup
+            }
+            else if(selectors.size() >= Ceremony.MAX_SELECTORS) //No match found - only reset if the maximum number of selectors is reached
+            {
+                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
+                tile.setState(new StateTotemEffect(tile));
+            }
+        }
+    }
+
+    private boolean selectorsMatch(MusicInstrument[] instrs)
+    {
+        return selectors.size() == instrs.length && selectors.equals(Arrays.asList(instrs));
     }
 
     @Override
@@ -47,15 +89,9 @@ public class StateSelection extends TotemState
 
     @Override
     public void writeToNBT(NBTTagCompound tag)
-    {
-        // TODO Auto-generated method stub
-
-    }
+    { }
 
     @Override
     public void readFromNBT(NBTTagCompound tag)
-    {
-        // TODO Auto-generated method stub
-
-    }
+    { }
 }
