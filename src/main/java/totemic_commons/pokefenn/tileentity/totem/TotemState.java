@@ -15,10 +15,10 @@ public abstract class TotemState implements ITickable, MusicAcceptor
         {
         case StateTotemEffect.ID:
             return new StateTotemEffect(tile);
-
         case StateSelection.ID:
             return new StateSelection(tile);
-
+        case StateStartup.ID:
+            return new StateStartup(tile);
         default:
             throw new IllegalArgumentException("Invalid Totem Base state");
         }
