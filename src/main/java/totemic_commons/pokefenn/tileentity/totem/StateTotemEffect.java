@@ -3,7 +3,11 @@ package totemic_commons.pokefenn.tileentity.totem;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.network.NetworkHandler;
+import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 
 public class StateTotemEffect extends TotemState
 {
@@ -11,6 +15,7 @@ public class StateTotemEffect extends TotemState
     public static final int MAX_EFFECT_MUSIC = 128;
 
     private int musicAmount = 0;
+    private boolean musicAdded = false;
 
     public StateTotemEffect(TileTotemBase tile)
     {
@@ -33,10 +38,17 @@ public class StateTotemEffect extends TotemState
             tile.markDirty();
         }
 
+        if(musicAdded && !tile.getWorld().isRemote && tile.getWorld().getTotalWorldTime() % 20 == 0)
+        {
+            NetworkHandler.sendAround(new PacketTotemEffectMusic(tile.getPos(), musicAmount), tile, 32);
+            musicAdded = false;
+        }
+
         if(tile.getWorld().isRemote && tile.getWorld().getTotalWorldTime() % 40 == 0)
             spawnParticles();
     }
 
+    @SideOnly(Side.CLIENT)
     private void spawnParticles()
     {
         for(int i = 0; i < musicAmount / 16; i++)
@@ -53,7 +65,13 @@ public class StateTotemEffect extends TotemState
     {
         int previous = musicAmount;
         musicAmount = Math.min(previous + amount / 2, MAX_EFFECT_MUSIC);
-        return musicAmount > previous;
+        if(musicAmount > previous)
+        {
+            musicAdded = true;
+            return true;
+        }
+        else
+            return false;
     }
 
     @Override
@@ -71,6 +89,11 @@ public class StateTotemEffect extends TotemState
     public int getMusicAmount()
     {
         return musicAmount;
+    }
+
+    public void setMusicAmount(int amount)
+    {
+        this.musicAmount = amount;
     }
 
     @Override

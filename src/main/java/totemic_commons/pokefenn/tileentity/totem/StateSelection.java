@@ -43,12 +43,11 @@ public class StateSelection extends TotemState
     @Override
     public void addSelector(MusicInstrument instr)
     {
-        selectors.add(instr);
-
         BlockPos pos = tile.getPos();
         WorldServer world = (WorldServer) tile.getWorld();
 
         world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
+        selectors.add(instr);
         tile.markDirty();
 
         if(selectors.size() >= Ceremony.MIN_SELECTORS)
