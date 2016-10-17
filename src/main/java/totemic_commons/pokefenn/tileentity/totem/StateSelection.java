@@ -59,7 +59,7 @@ public class StateSelection extends TotemState
             if(match.isPresent())
             {
                 world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
-                //TODO: Switch state to Startup
+                tile.setState(new StateStartup(tile, match.get()));
             }
             else if(selectors.size() >= Ceremony.MAX_SELECTORS) //No match found - only reset if the maximum number of selectors is reached
             {
