@@ -8,12 +8,16 @@ import java.util.List;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -148,6 +152,21 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public void addSelector(MusicInstrument instr)
     {
         state.addSelector(instr);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void setCeremonyOverlay()
+    {
+        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        if(getDistanceSq(player.posX, player.posY, player.posZ) <= 8*8)
+        {
+            //GameOverlay.activeTotem = this;
+        }
+        else
+        {
+            //if(GameOverlay.activeTotem == this)
+                //GameOverlay.activeTotem = null;
+        }
     }
 
     @Override

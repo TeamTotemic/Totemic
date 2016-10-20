@@ -16,6 +16,8 @@ import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
@@ -23,6 +25,7 @@ import totemic_commons.pokefenn.item.equipment.weapon.ItemBaykokBow;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
 
+@SideOnly(Side.CLIENT)
 public class GameOverlay
 {
     public static TileTotemBase_old activeTotem = null;

@@ -1,16 +1,14 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import static totemic_commons.pokefenn.Totemic.logger;
+
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -55,12 +53,12 @@ public class StateStartup extends TotemState
             else
             {
                 ((WorldServer) world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
-                //TODO: Switch state to ceremony effect
+                tile.setState(new StateCeremonyEffect(tile, ceremony));
             }
         }
         else
         {
-            setCeremonyOverlay();
+            tile.setCeremonyOverlay();
         }
 
         time++;
@@ -69,21 +67,6 @@ public class StateStartup extends TotemState
     private boolean canStartCeremony()
     {
         return totalMusic >= ceremony.getMusicNeeded();
-    }
-
-    @SideOnly(Side.CLIENT)
-    private void setCeremonyOverlay()
-    {
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-        if(tile.getDistanceSq(player.posX, player.posY, player.posZ) <= 8*8)
-        {
-            //GameOverlay.activeTotem = tile;
-        }
-        else
-        {
-            //if(GameOverlay.activeTotem == tile)
-                //GameOverlay.activeTotem = null;
-        }
     }
 
     @Override
@@ -116,15 +99,51 @@ public class StateStartup extends TotemState
     @Override
     public void writeToNBT(NBTTagCompound tag)
     {
-        // TODO Auto-generated method stub
-
+        tag.setString("ceremony", ceremony.getName());
+        tag.setInteger("time", time);
+        tag.setTag("ceremonyMusic", writeInstrumentMap(music));
+        tag.setTag("timesPlayed", writeInstrumentMap(timesPlayed));
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tag)
     {
-        // TODO Auto-generated method stub
+        ceremony = Totemic.api.registry().getCeremony(tag.getString("ceremony"));
+        if(ceremony == null)
+        {
+            logger.warn("Unknown ceremony: {}", tag.getString("ceremony"));
+            tile.setState(new StateTotemEffect(tile));
+        }
 
+        time = tag.getInteger("time");
+
+        readInstrumentMap(music, tag.getCompoundTag("ceremonyMusic"));
+        totalMusic = 0;
+        music.forEachValue(amount -> { totalMusic += amount; return true; });
+
+        readInstrumentMap(timesPlayed, tag.getCompoundTag("timesPlayed"));
     }
 
+    private static NBTTagCompound writeInstrumentMap(TObjectIntMap<MusicInstrument> map)
+    {
+        NBTTagCompound tag = new NBTTagCompound();
+        map.forEachEntry((instr, amount) -> {
+            tag.setInteger(instr.getName(), amount);
+            return true;
+        });
+        return tag;
+    }
+
+    private static void readInstrumentMap(TObjectIntMap<MusicInstrument> map, NBTTagCompound tag)
+    {
+        map.clear();
+        for(String key: tag.getKeySet())
+        {
+            MusicInstrument instr = Totemic.api.registry().getInstrument(key);
+            if(instr != null)
+                map.put(instr, tag.getInteger(key));
+            else
+                logger.warn("Unknown music instrument: {}", key);
+        }
+    }
 }
