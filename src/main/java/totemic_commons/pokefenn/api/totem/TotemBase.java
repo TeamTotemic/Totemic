@@ -23,12 +23,14 @@ public interface TotemBase
 
     /**
      * @return an array of all Totem Effects that are active at the Totem Base
+     * @deprecated Will be removed or replaced. Use {@link #getRepetition(TotemEffect)} instead if possible.
      */
+    @Deprecated
     TotemEffect[] getEffects();
 
     /**
-     * This number is dependent on the wood the Totem Pole is made of and the biome where the pole is located.
-     * It normally ranges between 0 and about 7. Highr numbers give bonuses to effects.
+     * @deprecated Always returns 0 at the moment. Will probably be replaced.
      */
+    @Deprecated
     int getWoodBonus();
 }
