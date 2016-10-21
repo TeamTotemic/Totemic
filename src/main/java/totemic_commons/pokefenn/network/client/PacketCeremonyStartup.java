@@ -10,10 +10,10 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.network.SynchronizedPacketBase;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
+import totemic_commons.pokefenn.tileentity.totem.StateStartup;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 public class PacketCeremonyStartup extends SynchronizedPacketBase<PacketCeremonyStartup>
 {
@@ -74,15 +74,16 @@ public class PacketCeremonyStartup extends SynchronizedPacketBase<PacketCeremony
     protected void handleClient(MessageContext ctx)
     {
         TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(pos);
-        if(tile instanceof TileTotemBase_old)
+        if(tile instanceof TileTotemBase)
         {
-            TileTotemBase_old totem = (TileTotemBase_old)tile;
+            TileTotemBase totem = (TileTotemBase) tile;
+            if(totem.getState() instanceof StateStartup)
+            {
+                StateStartup state = (StateStartup) totem.getState();
 
-            totem.ceremonyStartupTimer = startupTime;
-            totem.ceremonyMusic.clear();
-            for(int i = 0; i < instruments.length; i++)
-                totem.ceremonyMusic.put(Totemic.api.registry().getInstrument(instruments[i]), values[i]);
-            totem.recalculateMelody();
+                state.setTime(startupTime);
+                state.setMusic(instruments, values);
+            }
         }
     }
 }
