@@ -12,6 +12,8 @@ import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.network.NetworkHandler;
+import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
 
 public class StateStartup extends TotemState
 {
@@ -49,6 +51,9 @@ public class StateStartup extends TotemState
                     ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
                     tile.setState(new StateTotemEffect(tile));
                 }
+
+                if(time % 20 == 0)
+                    NetworkHandler.sendAround(new PacketCeremonyStartup(pos, music, time), tile, 16);
             }
             else
             {
@@ -157,8 +162,30 @@ public class StateStartup extends TotemState
         return time;
     }
 
+    public void setTime(int time)
+    {
+        this.time = time;
+    }
+
     public int getMusicAmount()
     {
         return totalMusic;
+    }
+
+    public void setMusic(String[] instruments, int[] values)
+    {
+        music.clear();
+        totalMusic = 0;
+        for(int i = 0; i < instruments.length; i++)
+        {
+            MusicInstrument instr = Totemic.api.registry().getInstrument(instruments[i]);
+            if(instr != null)
+            {
+                music.put(instr, values[i]);
+                totalMusic += values[i];
+            }
+            else
+                logger.warn("Unknown music instrument: {}", instruments[i]);
+        }
     }
 }

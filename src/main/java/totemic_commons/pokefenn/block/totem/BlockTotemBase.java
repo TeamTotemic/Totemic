@@ -30,8 +30,10 @@ import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
+import totemic_commons.pokefenn.tileentity.totem.StateCeremonyEffect;
+import totemic_commons.pokefenn.tileentity.totem.StateStartup;
+import totemic_commons.pokefenn.tileentity.totem.StateTotemEffect;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase_old;
 
 /**
  * Created with IntelliJ IDEA.
@@ -57,11 +59,11 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     {
         if(!world.isRemote)
         {
-            TileTotemBase_old tileTotemBase = (TileTotemBase_old) world.getTileEntity(pos);
-            if(tileTotemBase != null)
-                if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ModItems.totemicStaff && tileTotemBase.isCeremony)
+            TileTotemBase tile = (TileTotemBase) world.getTileEntity(pos);
+            if(tile != null)
+                if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ModItems.totemicStaff && !(tile.getState() instanceof StateTotemEffect))
                 {
-                    tileTotemBase.resetAfterCeremony(true);
+                    tile.setState(new StateTotemEffect(tile));
                     ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
                 }
         }
@@ -72,19 +74,20 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
     {
         if(world.isRemote)
             return EnumActionResult.SUCCESS;
-        TileTotemBase_old tileTotemBase = (TileTotemBase_old) world.getTileEntity(pos);
-        if(tileTotemBase != null)
+        TileTotemBase tile = (TileTotemBase) world.getTileEntity(pos);
+        if(tile != null)
         {
-            if(tileTotemBase.isDoingStartup())
+            if(tile.getState() instanceof StateStartup)
             {
-                Ceremony trying = tileTotemBase.startupCeremony;
+                Ceremony ceremony = ((StateStartup) tile.getState()).getCeremony();
                 player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"));
-                player.addChatComponentMessage(new TextComponentTranslation(trying.getUnlocalizedName()));
+                player.addChatComponentMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
             }
-            else if(tileTotemBase.isDoingCeremonyEffect())
+            else if(tile.getState() instanceof StateCeremonyEffect)
             {
+                Ceremony ceremony = ((StateCeremonyEffect) tile.getState()).getCeremony();
                 player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
-                player.addChatComponentMessage(new TextComponentTranslation(tileTotemBase.currentCeremony.getUnlocalizedName()));
+                player.addChatComponentMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
             }
         }
         return EnumActionResult.SUCCESS;
