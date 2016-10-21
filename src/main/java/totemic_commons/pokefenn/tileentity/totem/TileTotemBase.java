@@ -23,6 +23,7 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
+import totemic_commons.pokefenn.handler.GameOverlay;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
@@ -159,12 +160,12 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         EntityPlayer player = Minecraft.getMinecraft().thePlayer;
         if(getDistanceSq(player.posX, player.posY, player.posZ) <= 8*8)
         {
-            //GameOverlay.activeTotem = this;
+            GameOverlay.activeTotem = this;
         }
         else
         {
-            //if(GameOverlay.activeTotem == this)
-                //GameOverlay.activeTotem = null;
+            if(GameOverlay.activeTotem == this)
+                GameOverlay.activeTotem = null;
         }
     }
 
