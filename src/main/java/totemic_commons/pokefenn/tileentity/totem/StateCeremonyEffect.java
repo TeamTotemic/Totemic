@@ -79,4 +79,13 @@ public class StateCeremonyEffect extends TotemState
         time = tag.getInteger("time");
     }
 
+    public Ceremony getCeremony()
+    {
+        return ceremony;
+    }
+
+    public int getTime()
+    {
+        return time;
+    }
 }

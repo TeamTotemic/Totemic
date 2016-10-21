@@ -146,4 +146,19 @@ public class StateStartup extends TotemState
                 logger.warn("Unknown music instrument: {}", key);
         }
     }
+
+    public Ceremony getCeremony()
+    {
+        return ceremony;
+    }
+
+    public int getTime()
+    {
+        return time;
+    }
+
+    public int getMusicAmount()
+    {
+        return totalMusic;
+    }
 }

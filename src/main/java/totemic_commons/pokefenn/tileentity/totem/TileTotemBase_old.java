@@ -9,7 +9,6 @@ import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -37,7 +36,6 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
-import totemic_commons.pokefenn.handler.GameOverlay;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
@@ -310,7 +308,7 @@ public class TileTotemBase_old extends TileTotemic implements MusicAcceptor, Tot
             ceremonyStartupTimer++;
         }
 
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        /*EntityPlayer player = Minecraft.getMinecraft().thePlayer;
         if(getDistanceSq(player.posX, player.posY, player.posZ) <= 8*8)
         {
             GameOverlay.activeTotem = this;
@@ -319,7 +317,7 @@ public class TileTotemBase_old extends TileTotemic implements MusicAcceptor, Tot
         {
             if(GameOverlay.activeTotem == this)
                 GameOverlay.activeTotem = null;
-        }
+        }*/
     }
 
     private void doCeremonyEffect(Ceremony cer)
