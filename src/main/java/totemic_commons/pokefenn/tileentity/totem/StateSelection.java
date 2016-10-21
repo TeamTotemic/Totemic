@@ -1,11 +1,15 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import static totemic_commons.pokefenn.Totemic.logger;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
@@ -88,9 +92,23 @@ public class StateSelection extends TotemState
 
     @Override
     public void writeToNBT(NBTTagCompound tag)
-    { }
+    {
+        NBTTagList selectorsTag = new NBTTagList();
+        selectors.forEach(instr -> selectorsTag.appendTag(new NBTTagString(instr.getName())));
+        tag.setTag("selectors", selectorsTag);
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound tag)
-    { }
+    {
+        NBTTagList selectorsTag = tag.getTagList("selectors", 8);
+        for(int i = 0; i < selectorsTag.tagCount(); i++)
+        {
+            MusicInstrument instr = Totemic.api.registry().getInstrument(selectorsTag.getStringTagAt(i));
+            if(instr != null)
+                selectors.add(instr);
+            else
+                logger.warn("Unknown music instrument: {}", selectorsTag.getStringTagAt(i));
+        }
+    }
 }
