@@ -33,7 +33,7 @@ public class ItemTotemicStaff extends ItemTotemic
 
     @Override
     @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack par1ItemStack)
+    public EnumRarity getRarity(ItemStack stack)
     {
         return EnumRarity.UNCOMMON;
     }
