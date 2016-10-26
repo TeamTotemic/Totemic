@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
+import totemic_commons.pokefenn.network.client.PacketTotemPoleChange;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.network.server.PacketMouseWheel;
@@ -33,10 +34,11 @@ public class NetworkHandler
     public static void init()
     {
         registerPacket(PacketJingle.class, Side.SERVER);
-        registerPacket(PacketWindChime.class, Side.CLIENT);
         registerPacket(PacketMouseWheel.class, Side.SERVER);
+        registerPacket(PacketWindChime.class, Side.CLIENT);
         registerPacket(PacketCeremonyStartup.class, Side.CLIENT);
         registerPacket(PacketTotemEffectMusic.class, Side.CLIENT);
+        registerPacket(PacketTotemPoleChange.class, Side.CLIENT);
     }
 
     public static void sendToServer(IMessage packet)

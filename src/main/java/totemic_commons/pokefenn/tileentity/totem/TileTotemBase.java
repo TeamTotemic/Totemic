@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
-import static totemic_commons.pokefenn.Totemic.logger;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +24,8 @@ import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.handler.GameOverlay;
 import totemic_commons.pokefenn.lib.WoodVariant;
+import totemic_commons.pokefenn.network.NetworkHandler;
+import totemic_commons.pokefenn.network.client.PacketTotemPoleChange;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBase, ITickable
@@ -73,8 +73,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     public void onPoleChange()
     {
+        if(!worldObj.isRemote)
+            NetworkHandler.sendAround(new PacketTotemPoleChange(pos), this, 64);
+
         calculateTotemEffects();
-        logger.trace("Totem pole changed at {}", pos);
     }
 
     public TotemState getState()
@@ -130,9 +132,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     }
 
     @Override
+    @Deprecated
     public int getWoodBonus()
     {
-        // TODO Auto-generated method stub
+        // TODO Figure out what to do with that
         return 0;
     }
 
