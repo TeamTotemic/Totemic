@@ -25,13 +25,15 @@ public class StateTotemEffect extends TotemState
     @Override
     public void update()
     {
+        int rangeBonus = getRangeBonus();
+
         tile.getTotemEffectSet().entrySet().forEach(e -> {
-            int horizontal = e.getElement().getHorizontalRange(); //TODO
-            int vertical = e.getElement().getVerticalRange();
+            int horizontal = e.getElement().getHorizontalRange() + rangeBonus;
+            int vertical = e.getElement().getVerticalRange() + rangeBonus;
             e.getElement().effect(tile.getWorld(), tile.getPos(), tile, e.getCount(), horizontal, vertical);
         });
 
-        //Diminish melody over time
+        //Diminish melody over time, about 5 minutes to fully deplete
         if(musicAmount > 0 && tile.getWorld().getTotalWorldTime() % 47 == 0)
         {
             musicAmount--;
@@ -46,6 +48,29 @@ public class StateTotemEffect extends TotemState
 
         if(tile.getWorld().isRemote && tile.getWorld().getTotalWorldTime() % 40 == 0)
             spawnParticles();
+    }
+
+    private int getRangeBonus()
+    {
+        int bonus = 0;
+
+        if(musicAmount >= 10)
+            bonus += 1;
+        else if(musicAmount >= 32)
+            bonus += 2;
+        else if(musicAmount >= 64)
+            bonus += 3;
+        else if(musicAmount >= 96)
+            bonus += 4;
+        else if(musicAmount >= 115)
+            bonus += 5;
+
+        //bonus += tile.getWoodBonus() / 3;
+
+        if(tile.getPoleSize() >= 5)
+            bonus += 2;
+
+        return bonus;
     }
 
     @SideOnly(Side.CLIENT)
