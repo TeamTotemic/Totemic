@@ -7,28 +7,24 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import totemic_commons.pokefenn.network.PacketBase;
-import totemic_commons.pokefenn.tileentity.music.TileWindChime;
+import totemic_commons.pokefenn.network.SynchronizedPacketBase;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
-public class PacketWindChime extends PacketBase<PacketWindChime>
+public class PacketTotemPoleChange extends SynchronizedPacketBase<PacketTotemPoleChange>
 {
     private BlockPos pos;
 
-    public PacketWindChime() {}
-
-    public PacketWindChime(BlockPos pos)
+    public PacketTotemPoleChange(BlockPos pos)
     {
         this.pos = pos;
     }
 
+    public PacketTotemPoleChange() {}
+
     @Override
     public void fromBytes(ByteBuf buf)
     {
-        this.pos = BlockPos.fromLong(buf.readLong());
+        pos = BlockPos.fromLong(buf.readLong());
     }
 
     @Override
@@ -42,9 +38,9 @@ public class PacketWindChime extends PacketBase<PacketWindChime>
     protected void handleClient(MessageContext ctx)
     {
         TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(pos);
-        if(tile instanceof TileWindChime)
+        if(tile instanceof TileTotemBase)
         {
-            ((TileWindChime) tile).setPlaying(true);
+            ((TileTotemBase) tile).onPoleChange();
         }
     }
 }

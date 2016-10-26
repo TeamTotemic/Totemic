@@ -65,19 +65,20 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
         return EnumActionResult.SUCCESS;
     }
 
-    //FIXME: This method of notifying is not working correctly on the client side yet
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityLiving, ItemStack itemStack)
     {
         super.onBlockPlacedBy(world, pos, state, entityLiving, itemStack);
-        notifyTotemBase(world, pos);
+        if(!world.isRemote)
+            notifyTotemBase(world, pos);
     }
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
         super.breakBlock(world, pos, state);
-        notifyTotemBase(world, pos);
+        if(!world.isRemote)
+            notifyTotemBase(world, pos);
     }
 
     private void notifyTotemBase(World world, BlockPos pos)
