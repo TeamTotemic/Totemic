@@ -13,6 +13,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
@@ -158,5 +159,11 @@ public class ItemBaykokBow extends ItemBow
     public boolean hasEffect(ItemStack stack)
     {
         return true;
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack)
+    {
+        return EnumRarity.RARE;
     }
 }
