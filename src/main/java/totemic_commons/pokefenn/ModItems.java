@@ -21,23 +21,18 @@ import totemic_commons.pokefenn.lib.Strings;
 
 public final class ModItems
 {
-    public static Item totemWhittlingKnife;
-    public static Item totemicStaff;
-    public static Item subItems;
-    public static Item totems;
-    public static Item infusedTotemicStaff;
-    public static Item totempedia;
-    public static Item potion;
-    public static Item test;
-    public static Item huntingKnife;
-    public static Item jingleDress;
-    public static Item barkStripper;
-    public static Item buffaloItems;
-    public static Item buffaloMeat;
-    public static Item buffaloCookedMeat;
-    public static Item ceremonialRattle;
-    public static Item flute;
-    public static Item baykokBow;
+    public static ItemTotemWhittlingKnife totemWhittlingKnife;
+    public static ItemTotemicStaff totemicStaff;
+    public static ItemTotemicItems subItems;
+    public static ItemTotempedia totempedia;
+    public static ItemJingleDress jingleDress;
+    public static ItemBarkStripper barkStripper;
+    public static ItemBuffaloDrops buffaloItems;
+    public static ItemTotemicFood buffaloMeat;
+    public static ItemTotemicFood buffaloCookedMeat;
+    public static ItemRattle ceremonialRattle;
+    public static ItemFlute flute;
+    public static ItemBaykokBow baykokBow;
 
     public static void init()
     {

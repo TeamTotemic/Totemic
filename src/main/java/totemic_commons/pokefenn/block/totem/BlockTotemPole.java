@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -26,7 +27,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicStaffUsage;
-import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
@@ -38,7 +38,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
  * Date: 02/02/14
  * Time: 13:03
  */
-public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsage
+public class BlockTotemPole extends Block implements ITileEntityProvider, TotemicStaffUsage
 {
     public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);
 
@@ -48,6 +48,7 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
         setRegistryName(Strings.TOTEM_POLE_NAME);
         setUnlocalizedName(Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
+        setHardness(2);
         setSoundType(SoundType.WOOD);
     }
 
@@ -56,10 +57,10 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     {
         if(world.isRemote)
         {
-            TileTotemPole tileTotemSocket = (TileTotemPole) world.getTileEntity(pos);
-            if(tileTotemSocket.getEffect() != null)
+            TileTotemPole pole = (TileTotemPole) world.getTileEntity(pos);
+            if(pole.getEffect() != null)
             {
-                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.format(tileTotemSocket.getEffect().getUnlocalizedName())));
+                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.format(pole.getEffect().getUnlocalizedName())));
             }
         }
         return EnumActionResult.SUCCESS;
@@ -135,7 +136,7 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     }
 
     @Override
-    public TileEntity createNewTileEntity(World var1, int var2)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileTotemPole();
     }

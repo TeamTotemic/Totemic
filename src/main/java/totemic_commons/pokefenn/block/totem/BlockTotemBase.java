@@ -3,6 +3,8 @@ package totemic_commons.pokefenn.block.totem;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -27,7 +29,6 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicStaffUsage;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
-import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.StateCeremonyEffect;
@@ -41,7 +42,7 @@ import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
  * Date: 29/01/14
  * Time: 20:20
  */
-public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsage
+public class BlockTotemBase extends Block implements ITileEntityProvider, TotemicStaffUsage
 {
     public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);
 
@@ -51,6 +52,7 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
         setRegistryName(Strings.TOTEM_BASE_NAME);
         setUnlocalizedName(Strings.TOTEM_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
+        setHardness(2);
         setSoundType(SoundType.WOOD);
     }
 
