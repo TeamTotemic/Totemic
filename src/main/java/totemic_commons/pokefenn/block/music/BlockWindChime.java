@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.block.music;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,7 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import totemic_commons.pokefenn.block.BlockTileTotemic;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
@@ -21,7 +22,7 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class BlockWindChime extends BlockTileTotemic
+public class BlockWindChime extends Block implements ITileEntityProvider
 {
     public BlockWindChime()
     {
@@ -29,6 +30,7 @@ public class BlockWindChime extends BlockTileTotemic
         setUnlocalizedName(Strings.WIND_CHIME_NAME);
         setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
         setHardness(1.5F);
+        setCreativeTab(Totemic.tabsTotem);
     }
 
     @Override
@@ -91,7 +93,7 @@ public class BlockWindChime extends BlockTileTotemic
     }
 
     @Override
-    public TileEntity createNewTileEntity(World var1, int var2)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileWindChime();
     }

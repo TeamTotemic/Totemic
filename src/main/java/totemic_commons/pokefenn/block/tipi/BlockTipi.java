@@ -2,7 +2,9 @@ package totemic_commons.pokefenn.block.tipi;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
@@ -19,7 +21,6 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.block.BlockTileTotemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 
@@ -27,7 +28,7 @@ import totemic_commons.pokefenn.tileentity.TileTipi;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class BlockTipi extends BlockTileTotemic
+public class BlockTipi extends Block implements ITileEntityProvider
 {
     public static final PropertyDirection FACING = BlockDirectional.FACING;
 
@@ -150,7 +151,7 @@ public class BlockTipi extends BlockTileTotemic
     }
 
     @Override
-    public TileEntity createNewTileEntity(World var1, int var2)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileTipi();
     }

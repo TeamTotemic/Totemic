@@ -9,7 +9,7 @@ public class ItemTotemicFood extends ItemFood
     public ItemTotemicFood(String name, int amount, float saturation, boolean feedsWolf)
     {
         super(amount, saturation, feedsWolf);
-        if(!name.equals(""))
+        if(!name.isEmpty())
             setUnlocalizedName(Strings.RESOURCE_PREFIX + name);
         setCreativeTab(Totemic.tabsTotem);
     }

@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.block.music;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +12,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
-import totemic_commons.pokefenn.block.BlockTileTotemic;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
@@ -20,20 +22,16 @@ import totemic_commons.pokefenn.util.TotemUtil;
  * Created by Pokefenn.
  * Licensed under MIT (If this is one of my Mods)
  */
-public class BlockDrum extends BlockTileTotemic
+public class BlockDrum extends Block implements ITileEntityProvider
 {
     public BlockDrum()
     {
         super(Material.wood);
         setUnlocalizedName(Strings.DRUM_NAME);
         setBlockBounds(3F/16, 0F/16, 3F/16, 13F/16, 13F/16, 13F/16);
+        setHardness(2);
         setStepSound(soundTypeWood);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World var1, int var2)
-    {
-        return new TileDrum();
+        setCreativeTab(Totemic.tabsTotem);
     }
 
     @Override
@@ -94,5 +92,11 @@ public class BlockDrum extends BlockTileTotemic
     public boolean isFullCube()
     {
         return false;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta)
+    {
+        return new TileDrum();
     }
 }

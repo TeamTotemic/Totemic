@@ -12,7 +12,6 @@ public final class Strings
     public static final String TOTEM_SAPLING_NAME = "totemSapling";
     public static final String TOTEM_LEAVES_NAME = "totemLeaves";
     public static final String TOTEM_TORCH_NAME = "totemTorch";
-    public static final String FLAME_PARTICLE_NAME = "flameParticleBlock";
     public static final String DRUM_NAME = "totemDrum";
     public static final String WIND_CHIME_NAME = "windChime";
     public static final String RED_CEDAR_PLANK_NAME = "redCedarPlank";
@@ -26,14 +25,8 @@ public final class Strings
     public static final String TOTEMS_NAME = "totems";
     public static final String SUB_ITEMS_NAME = "subItems";
     public static final String TOTEMPEDIA_NAME = "totempedia";
-    public static final String HEI_TIKI_NAME = "heiTiki";
-    public static final String HERCULESE_BAUBLES_NAME = "herculeseBauble";
-    public static final String TOTEM_BEAD_BELT_NAME = "totemBeadBelt";
-    public static final String HUNTING_KNIFE_NAME = "huntingKnife";
-    public static final String BLOW_DART_NAME = "blowGun";
     public static final String JINGLE_DRESS_NAME = "jingleDress";
     public static final String BARK_STRIPPER_NAME = "barkStripper";
-    public static final String TOMAHAWK_NAME = "tomahawk";
     public static final String CEREMONY_RATTLE_NAME = "ceremonialRattle";
     public static final String BUFFALO_ITEMS_NAME = "buffaloItems";
     public static final String BUFFALO_MEAT_NAME = "buffaloMeat";
@@ -54,9 +47,4 @@ public final class Strings
     //ItemStack NBT keys
     public static final String KNIFE_TOTEM_KEY = "totem";
     public static final String INSTR_TIME_KEY = "time";
-
-    //Old NBT stuff
-    public static final String NBT_TE_STATE_KEY = "teState";
-    public static final String NBT_TE_CUSTOM_NAME = "CustomName";
-    public static final String NBT_TE_DIRECTION_KEY = "teDirection";
 }
