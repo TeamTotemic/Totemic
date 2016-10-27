@@ -20,7 +20,7 @@ public class CeremonyBaykok extends Ceremony
         if(world.isRemote || time != getEffectTime() - 1)
             return;
 
-        world.playBroadcastSound(1013, pos, 0); //Wither spawn sound
+        world.playBroadcastSound(1023, pos, 0); //Wither spawn sound
         BlockPos spos = pos.offset(EnumFacing.getHorizontal(world.rand.nextInt(4)));
         EntityBaykok baykok = new EntityBaykok(world);
         baykok.setPosition(spos.getX() + 0.5, spos.getY(), spos.getZ() + 0.5);
