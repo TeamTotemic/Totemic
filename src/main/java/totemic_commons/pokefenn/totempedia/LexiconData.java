@@ -27,7 +27,6 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 @SideOnly(Side.CLIENT)
 public final class LexiconData
 {
-
     public static LexiconCategory categoryBasics;
     //public static LexiconCategory categoryDevices;
     public static LexiconCategory categoryTools;

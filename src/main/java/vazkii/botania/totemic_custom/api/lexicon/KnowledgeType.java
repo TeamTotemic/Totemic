@@ -4,7 +4,6 @@ import net.minecraft.util.text.Style;
 
 public class KnowledgeType
 {
-
     public final String id;
     public final Style style;
     public final boolean autoUnlock;

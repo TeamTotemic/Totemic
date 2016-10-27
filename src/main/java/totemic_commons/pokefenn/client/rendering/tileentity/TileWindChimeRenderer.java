@@ -8,10 +8,6 @@ import totemic_commons.pokefenn.client.rendering.model.ModelWindChime;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChime>
 {
     private final ModelWindChime modelWindChime = new ModelWindChime();
@@ -41,17 +37,17 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
 
     private void setRotations()
     {
-        modelWindChime.chime1.rotateAngleX = getRotationThingy();
-        modelWindChime.chime1.rotateAngleZ = getRotationThingy();
+        modelWindChime.chime1.rotateAngleX = getRandomAngle();
+        modelWindChime.chime1.rotateAngleZ = getRandomAngle();
 
-        modelWindChime.chime2.rotateAngleX = getRotationThingy();
-        modelWindChime.chime2.rotateAngleZ = getRotationThingy();
+        modelWindChime.chime2.rotateAngleX = getRandomAngle();
+        modelWindChime.chime2.rotateAngleZ = getRandomAngle();
 
-        modelWindChime.chime3.rotateAngleX = getRotationThingy();
-        modelWindChime.chime3.rotateAngleZ = getRotationThingy();
+        modelWindChime.chime3.rotateAngleX = getRandomAngle();
+        modelWindChime.chime3.rotateAngleZ = getRandomAngle();
 
-        modelWindChime.chime4.rotateAngleX = getRotationThingy();
-        modelWindChime.chime4.rotateAngleZ = getRotationThingy();
+        modelWindChime.chime4.rotateAngleX = getRandomAngle();
+        modelWindChime.chime4.rotateAngleZ = getRandomAngle();
     }
 
     private void resetRotations()
@@ -69,7 +65,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
         modelWindChime.chime4.rotateAngleZ = 0.0F;
     }
 
-    private float getRotationThingy()
+    private float getRandomAngle()
     {
         Random random = getWorld().rand;
         int multiplier;

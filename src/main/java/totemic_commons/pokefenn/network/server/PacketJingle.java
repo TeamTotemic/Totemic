@@ -10,18 +10,11 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.SynchronizedPacketBase;
 import totemic_commons.pokefenn.util.ItemUtil;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class PacketJingle extends SynchronizedPacketBase<PacketJingle>
 {
     private float motionAbs;
 
-    public PacketJingle()
-    {
-
-    }
+    public PacketJingle() {}
 
     public PacketJingle(double motionX, double motionZ)
     {

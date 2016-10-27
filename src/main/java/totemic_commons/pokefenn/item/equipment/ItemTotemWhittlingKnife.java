@@ -31,7 +31,7 @@ import totemic_commons.pokefenn.util.ItemUtil;
 
 public class ItemTotemWhittlingKnife extends ItemTotemic
 {
-    private static final List<TotemEffect> totemList = ((RegistryImpl)Totemic.api.registry()).getTotemList();
+    private static final List<TotemEffect> totemList = ((RegistryImpl) Totemic.api.registry()).getTotemList();
 
     public ItemTotemWhittlingKnife()
     {
@@ -140,5 +140,3 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     }
 
 }
-
-

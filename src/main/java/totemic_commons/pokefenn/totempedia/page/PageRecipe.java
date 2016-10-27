@@ -34,10 +34,9 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconRecipeMappings;
 
 public class PageRecipe extends LexiconPage
 {
-
-    int relativeMouseX, relativeMouseY;
-    ItemStack tooltipStack, tooltipContainerStack;
-    boolean tooltipEntry;
+    protected int relativeMouseX, relativeMouseY;
+    protected ItemStack tooltipStack, tooltipContainerStack;
+    protected boolean tooltipEntry;
 
     static boolean mouseDownLastTick = false;
 

@@ -16,10 +16,6 @@ import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.lib.Strings;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class BlockDummyTipi extends Block
 {
     public BlockDummyTipi()

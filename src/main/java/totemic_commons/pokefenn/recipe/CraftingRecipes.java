@@ -38,7 +38,7 @@ public class CraftingRecipes
         furnaceRecipes();
     }
 
-    static void shapedRecipes()
+    private static void shapedRecipes()
     {
         GameRegistry.addRecipe(totemicStaff = new ShapedOreRecipe(ModItems.totemicStaff,
                 " ls", " s ", "s l", ('s'), "stickWood", ('l'), "treeLeaves"));
@@ -74,7 +74,7 @@ public class CraftingRecipes
                 " l ", "bhb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron", ('h'), "hideBuffalo"));
     }
 
-    static void shapelessRecipes()
+    private static void shapelessRecipes()
     {
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedarPlank, 5, 0), ModBlocks.cedarLogStripped);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedarPlank, 3, 0), ModBlocks.cedarLog);
@@ -84,7 +84,7 @@ public class CraftingRecipes
         //Music
     }
 
-    static void oreDictionary()
+    private static void oreDictionary()
     {
         OreDictionary.registerOre("cropVine", new ItemStack(Blocks.VINE));
         OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.cedarLeaves, 1));
@@ -102,7 +102,7 @@ public class CraftingRecipes
         OreDictionary.registerOre("teethBuffalo", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.teeth.ordinal()));
     }
 
-    static void furnaceRecipes()
+    private static void furnaceRecipes()
     {
         GameRegistry.addSmelting(ModBlocks.cedarLogStripped, new ItemStack(Items.COAL, 1, 1), 0.5F);
         GameRegistry.addSmelting(ModBlocks.cedarLog, new ItemStack(Items.COAL, 1, 1), 0.5F);

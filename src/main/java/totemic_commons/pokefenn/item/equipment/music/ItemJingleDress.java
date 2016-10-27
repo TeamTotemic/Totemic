@@ -23,10 +23,6 @@ import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.TotemUtil;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 {
     public ItemJingleDress()
@@ -61,10 +57,12 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     {
         if(world.isRemote)
         {
+            //TODO: Replace with something that is less potentially exploitable
             if(world.getTotalWorldTime() % 20L == 0)
                 if(player.motionX != 0 || player.motionZ != 0)
                     NetworkHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
-        } else
+        }
+        else
         {
             if(world.getTotalWorldTime() % 20L == 0)
             {

@@ -13,10 +13,6 @@ import totemic_commons.pokefenn.api.music.ItemInstrument;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class ItemRattle extends ItemInstrument
 {
     public ItemRattle()

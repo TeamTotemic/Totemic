@@ -10,10 +10,6 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.server.PacketMouseWheel;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class PlayerInteract
 {
     @SubscribeEvent

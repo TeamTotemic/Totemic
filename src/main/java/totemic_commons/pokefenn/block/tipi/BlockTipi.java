@@ -31,10 +31,6 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class BlockTipi extends Block implements ITileEntityProvider
 {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -64,23 +60,19 @@ public class BlockTipi extends Block implements ITileEntityProvider
             {
                 if(world.provider.canRespawnHere())
                 {
-                    EntityPlayer entityplayer1 = null;
+                    EntityPlayer otherPlayer = null;
 
-                    for(Object playerEntity : world.playerEntities)
+                    for(EntityPlayer playerEntity : world.playerEntities)
                     {
-                        EntityPlayer entityplayer2 = (EntityPlayer) playerEntity;
-
-                        if(entityplayer2.isPlayerSleeping())
+                        if(playerEntity.isPlayerSleeping())
                         {
-                            BlockPos playerPos = new BlockPos(entityplayer2.posX, entityplayer2.posY, entityplayer2.posZ);
+                            BlockPos playerPos = new BlockPos(playerEntity.posX, playerEntity.posY, playerEntity.posZ);
                             if(playerPos.equals(pos))
-                            {
-                                entityplayer1 = entityplayer2;
-                            }
+                                otherPlayer = playerEntity;
                         }
                     }
 
-                    if(entityplayer1 != null)
+                    if(otherPlayer != null)
                     {
                         player.addChatComponentMessage(new TextComponentTranslation("tile.bed.occupied"));
                         return true;
@@ -89,25 +81,21 @@ public class BlockTipi extends Block implements ITileEntityProvider
                     SleepResult sleepresult = player.trySleep(pos);
 
                     if(sleepresult == SleepResult.OK)
-                    {
                         return true;
-                    } else
+                    else
                     {
                         if(sleepresult == SleepResult.NOT_POSSIBLE_NOW)
-                        {
                             player.addChatComponentMessage(new TextComponentTranslation("tile.bed.noSleep"));
-                        } else if(sleepresult == SleepResult.NOT_SAFE)
-                        {
+                        else if(sleepresult == SleepResult.NOT_SAFE)
                             player.addChatComponentMessage(new TextComponentTranslation("tile.bed.notSafe"));
-                        }
 
                         return true;
                     }
-                } else
-                {
-                    player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.tipi.nether"));
                 }
-            } else
+                else
+                    player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.tipi.nether"));
+            }
+            else
                 player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.tipi.cantSleep"));
 
         }

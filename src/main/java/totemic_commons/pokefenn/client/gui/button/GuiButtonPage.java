@@ -11,7 +11,7 @@
  */
 package totemic_commons.pokefenn.client.gui.button;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import org.lwjgl.opengl.GL11;
 
@@ -23,8 +23,7 @@ import totemic_commons.pokefenn.client.gui.GuiLexicon;
 
 public class GuiButtonPage extends GuiButton
 {
-
-    boolean right;
+    private boolean right;
 
     public GuiButtonPage(int par1, int par2, int par3, boolean right)
     {
@@ -33,19 +32,19 @@ public class GuiButtonPage extends GuiButton
     }
 
     @Override
-    public void drawButton(Minecraft par1Minecraft, int par2, int par3)
+    public void drawButton(Minecraft mc, int par2, int par3)
     {
         if(enabled)
         {
             hovered = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
             int k = getHoverState(hovered);
 
-            par1Minecraft.renderEngine.bindTexture(GuiLexicon.texture);
+            mc.renderEngine.bindTexture(GuiLexicon.texture);
             GL11.glColor4f(1F, 1F, 1F, 1F);
             drawTexturedModalRect(xPosition, yPosition, k == 2 ? 18 : 0, right ? 180 : 190, 18, 10);
 
             if(k == 2)
-                RenderHelper.renderTooltip(par2, par3, Arrays.asList(I18n.format(right ? "totemicmisc.nextPage" : "totemicmisc.prevPage")));
+                RenderHelper.renderTooltip(par2, par3, Collections.singletonList(I18n.format(right ? "totemicmisc.nextPage" : "totemicmisc.prevPage")));
         }
     }
 

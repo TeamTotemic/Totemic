@@ -45,7 +45,8 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
         title = I18n.format(entry.getUnlocalizedName());
         if(entry instanceof IAddonEntry)
             subtitle = I18n.format(((IAddonEntry) entry).getSubtitle());
-        else subtitle = null;
+        else
+            subtitle = null;
     }
 
     @Override
@@ -191,7 +192,8 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
             {
                 nextPage();
                 swiped = true;
-            } else if(swipe > 0.5)
+            }
+            else if(swipe > 0.5)
             {
                 prevPage();
                 swiped = true;

@@ -18,10 +18,6 @@ import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class TileWindChime extends TileTotemic implements ITickable
 {
     private boolean isPlaying = false;

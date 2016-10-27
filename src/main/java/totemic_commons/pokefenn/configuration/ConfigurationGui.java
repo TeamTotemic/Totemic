@@ -1,7 +1,7 @@
 package totemic_commons.pokefenn.configuration;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
@@ -11,7 +11,6 @@ import totemic_commons.pokefenn.Totemic;
 
 public class ConfigurationGui extends GuiConfig
 {
-
     public ConfigurationGui(GuiScreen parent)
     {
         super(parent, getConfigElements(), Totemic.MOD_ID, false, false, "Totemic configuration");
@@ -19,11 +18,8 @@ public class ConfigurationGui extends GuiConfig
 
     private static List<IConfigElement> getConfigElements()
     {
-        List<IConfigElement> list = new ArrayList<>();
-
-        for(String cat: ConfigurationHandler.conf.getCategoryNames())
-            list.add(new ConfigElement(ConfigurationHandler.conf.getCategory(cat)));
-
-        return list;
+        return ConfigurationHandler.conf.getCategoryNames().stream()
+                .map(cat -> new ConfigElement(ConfigurationHandler.conf.getCategory(cat)))
+                .collect(Collectors.toList());
     }
 }

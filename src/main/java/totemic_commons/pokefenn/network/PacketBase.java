@@ -10,8 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Base class for simple packets.
  * The packet handling methods are run on the network thread.
- *
- * @author ljfa
  */
 public abstract class PacketBase<T extends PacketBase<T>> implements IMessage, IMessageHandler<T, IMessage>
 {

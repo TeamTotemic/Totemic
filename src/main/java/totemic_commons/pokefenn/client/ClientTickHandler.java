@@ -6,10 +6,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class ClientTickHandler
 {
     public static int ticksWithLexicaOpen = 0;
@@ -22,7 +18,6 @@ public class ClientTickHandler
         {
             GuiScreen gui = Minecraft.getMinecraft().currentScreen;
 
-
             int ticksToOpen = 10;
             if(gui instanceof GuiLexicon)
             {
@@ -32,7 +27,8 @@ public class ClientTickHandler
                     ticksWithLexicaOpen++;
                 if(pageFlipTicks > 0)
                     pageFlipTicks--;
-            } else
+            }
+            else
             {
                 pageFlipTicks = 0;
                 if(ticksWithLexicaOpen > 0)

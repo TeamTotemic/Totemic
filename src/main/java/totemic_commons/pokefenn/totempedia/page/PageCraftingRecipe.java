@@ -12,6 +12,7 @@
 package totemic_commons.pokefenn.totempedia.page;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
@@ -38,12 +39,11 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconRecipeMappings;
 
 public class PageCraftingRecipe extends PageRecipe
 {
-
     private static final ResourceLocation craftingOverlay = new ResourceLocation(Resources.GUI_CRAFTING_OVERLAY);
 
-    List<IRecipe> recipes;
-    int ticksElapsed = 0;
-    int recipeAt = 0;
+    private List<IRecipe> recipes;
+    private int ticksElapsed = 0;
+    private int recipeAt = 0;
 
     boolean oreDictRecipe, shapelessRecipe;
 
@@ -94,7 +94,7 @@ public class PageCraftingRecipe extends PageRecipe
             ((GuiScreen) gui).drawTexturedModalRect(iconX, iconY, 240, 0, 16, 16);
 
             if(mx >= iconX && my >= iconY && mx < iconX + 16 && my < iconY + 16)
-                RenderHelper.renderTooltip(mx, my, Arrays.asList(I18n.format("totemicmisc.shapeless")));
+                RenderHelper.renderTooltip(mx, my, Collections.singletonList(I18n.format("totemicmisc.shapeless")));
 
             iconY += 20;
         }
@@ -107,7 +107,7 @@ public class PageCraftingRecipe extends PageRecipe
             ((GuiScreen) gui).drawTexturedModalRect(iconX, iconY, 240, 16, 16, 16);
 
             if(mx >= iconX && my >= iconY && mx < iconX + 16 && my < iconY + 16)
-                RenderHelper.renderTooltip(mx, my, Arrays.asList(I18n.format("totemicmisc.oredict")));
+                RenderHelper.renderTooltip(mx, my, Collections.singletonList(I18n.format("totemicmisc.oredict")));
         }
         GL11.glDisable(GL11.GL_BLEND);
     }
@@ -137,7 +137,8 @@ public class PageCraftingRecipe extends PageRecipe
             for(int y = 0; y < shaped.recipeHeight; y++)
                 for(int x = 0; x < shaped.recipeWidth; x++)
                     renderItemAtGridPos(gui, 1 + x, 1 + y, shaped.recipeItems[y * shaped.recipeWidth + x], true);
-        } else if(recipe instanceof ShapedOreRecipe)
+        }
+        else if(recipe instanceof ShapedOreRecipe)
         {
             ShapedOreRecipe shaped = (ShapedOreRecipe) recipe;
             int width = (Integer) ReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 4);
@@ -152,7 +153,8 @@ public class PageCraftingRecipe extends PageRecipe
                 }
 
             oreDictRecipe = true;
-        } else if(recipe instanceof ShapelessRecipes)
+        }
+        else if(recipe instanceof ShapelessRecipes)
         {
             ShapelessRecipes shapeless = (ShapelessRecipes) recipe;
 
@@ -171,25 +173,24 @@ public class PageCraftingRecipe extends PageRecipe
             }
 
             shapelessRecipe = true;
-        } else if(recipe instanceof ShapelessOreRecipe)
+        }
+        else if(recipe instanceof ShapelessOreRecipe)
         {
             ShapelessOreRecipe shapeless = (ShapelessOreRecipe) recipe;
 
             drawGrid:
-            {
-                for(int y = 0; y < 3; y++)
-                    for(int x = 0; x < 3; x++)
-                    {
-                        int index = y * 3 + x;
+            for(int y = 0; y < 3; y++)
+                for(int x = 0; x < 3; x++)
+                {
+                    int index = y * 3 + x;
 
-                        if(index >= shapeless.getRecipeSize())
-                            break drawGrid;
+                    if(index >= shapeless.getRecipeSize())
+                        break drawGrid;
 
-                        Object input = shapeless.getInput().get(index);
-                        if(input != null)
-                            renderItemAtGridPos(gui, 1 + x, 1 + y, input instanceof ItemStack ? (ItemStack) input : ((List<ItemStack>) input).get(0), true);
-                    }
-            }
+                    Object input = shapeless.getInput().get(index);
+                    if(input != null)
+                        renderItemAtGridPos(gui, 1 + x, 1 + y, input instanceof ItemStack ? (ItemStack) input : ((List<ItemStack>) input).get(0), true);
+                }
 
             shapelessRecipe = true;
             oreDictRecipe = true;

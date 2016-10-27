@@ -4,12 +4,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 28/02/14
- * Time: 15:48
- */
 public class ModPotions
 {
     public static Potion batPotion;

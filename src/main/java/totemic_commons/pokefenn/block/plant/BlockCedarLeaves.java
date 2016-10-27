@@ -23,12 +23,6 @@ import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 16/02/14
- * Time: 17:48
- */
 public class BlockCedarLeaves extends BlockLeaves
 {
     public static final PropertyBool TRANSPARENT = PropertyBool.create("transparent");

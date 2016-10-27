@@ -6,9 +6,6 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 
-/**
- * @author ljfa
- */
 public class EntitySpawn
 {
     @SubscribeEvent

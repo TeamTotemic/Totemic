@@ -19,12 +19,10 @@ import net.minecraft.client.resources.I18n;
 
 public class LexiconEntry implements Comparable<LexiconEntry>
 {
-
     public final String unlocalizedName;
     public final LexiconCategory category;
 
-
-    public List<LexiconPage> pages = new ArrayList<LexiconPage>();
+    public List<LexiconPage> pages = new ArrayList<>();
     private boolean priority = false;
 
     /**
@@ -76,14 +74,17 @@ public class LexiconEntry implements Comparable<LexiconEntry>
         pages.add(page);
     }
 
-    public final String getNameForSorting()
+    public String getLocalizedName()
     {
-        return (priority ? 0 : 1) + I18n.format(getUnlocalizedName());
+        return I18n.format(getUnlocalizedName());
     }
 
     @Override
     public int compareTo(LexiconEntry o)
     {
-        return getNameForSorting().compareTo(o.getNameForSorting());
+        if(priority != o.priority)
+            return priority ? -1 : 1;
+        else
+            return getLocalizedName().compareTo(o.getLocalizedName());
     }
 }

@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
  */
 public final class LexiconRecipeMappings
 {
-
     private static Map<String, EntryData> mappings = new HashMap<>();
 
     /**

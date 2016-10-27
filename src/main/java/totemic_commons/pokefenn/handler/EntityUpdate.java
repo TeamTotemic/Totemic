@@ -2,16 +2,11 @@ package totemic_commons.pokefenn.handler;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import totemic_commons.pokefenn.potion.ModPotions;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 08/03/14
- * Time: 17:52
- */
 public class EntityUpdate
 {
 
@@ -53,48 +48,21 @@ public class EntityUpdate
     private void climb(EntityPlayer player)
     {
         //Code from joshiejack :)
-        if(!player.isOnLadder())
+        if(player.isCollidedHorizontally && !player.isOnLadder())
         {
             final float factor = 0.15F;
 
-            if(player.isSneaking() && player.isCollidedHorizontally)
+            if(player.isSneaking())
             {
                 player.motionY = 0;
-                return;
             }
-
-            if(player.isCollidedHorizontally)
+            else
             {
-
-                if(player.motionX < (-factor))
-                {
-                    player.motionX = -factor;
-                }
-
-                if(player.motionX > factor)
-                {
-                    player.motionX = factor;
-                }
-
-                if(player.motionZ < (-factor))
-                {
-                    player.motionZ = -factor;
-                }
-
-                if(player.motionZ > factor)
-                {
-                    player.motionZ = factor;
-                }
+                player.motionX = MathHelper.clamp_double(player.motionX, -factor, factor);
+                player.motionY = 0.2;
+                player.motionZ = MathHelper.clamp_double(player.motionZ, -factor, factor);
 
                 player.fallDistance = 0.0F;
-
-                if(player.motionY < -0.15)
-                {
-                    player.motionY = -0.15;
-                }
-
-                player.motionY = 0.2;
-
             }
         }
     }

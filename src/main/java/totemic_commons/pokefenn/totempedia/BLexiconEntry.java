@@ -19,7 +19,6 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconPage;
 
 public class BLexiconEntry extends LexiconEntry
 {
-
     public BLexiconEntry(String unlocalizedName, LexiconCategory category)
     {
         super(unlocalizedName, category);

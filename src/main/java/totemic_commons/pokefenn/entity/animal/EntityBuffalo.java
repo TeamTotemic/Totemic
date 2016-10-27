@@ -20,10 +20,6 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
 import totemic_commons.pokefenn.util.MathsUtil;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class EntityBuffalo extends EntityCow
 {
     public boolean isSheared = false;
@@ -76,8 +72,8 @@ public class EntityBuffalo extends EntityCow
                 age += interval;
                 setBuffaloAge(age);
 
-                float oldMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, (age - interval) / (float)MAX_AGE);
-                float newMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, age / (float)MAX_AGE);
+                float oldMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, (age - interval) / (float) MAX_AGE);
+                float newMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, age / (float) MAX_AGE);
                 getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(newMaxHP);
                 setHealth(getHealth() * newMaxHP / oldMaxHP);
             }
@@ -156,7 +152,8 @@ public class EntityBuffalo extends EntityCow
             if(isBurning())
             {
                 dropItem(ModItems.buffaloCookedMeat, 1);
-            } else
+            }
+            else
             {
                 dropItem(ModItems.buffaloMeat, 1);
             }

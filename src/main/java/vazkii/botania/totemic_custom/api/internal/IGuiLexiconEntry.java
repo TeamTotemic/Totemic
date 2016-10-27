@@ -11,6 +11,8 @@
  */
 package vazkii.botania.totemic_custom.api.internal;
 
+import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
+
 /**
  * Internal interface for the Lexicon Entry GUI. This contains
  * everything that can be accessed from it. It's safe to cast
@@ -18,39 +20,38 @@ package vazkii.botania.totemic_custom.api.internal;
  */
 public interface IGuiLexiconEntry
 {
-
     /**
      * Gets the entry currently portrayed in this gui.
      */
-    public vazkii.botania.totemic_custom.api.lexicon.LexiconEntry getEntry();
+    LexiconEntry getEntry();
 
     /**
      * Gets the current page the lexicon GUI is browsing.
      */
-    public int getPageOn();
+    int getPageOn();
 
     /**
      * Gets the leftmost part of the GUI.
      */
-    public int getLeft();
+    int getLeft();
 
     /**
      * Gets the topmost part of the GUI.
      */
-    public int getTop();
+    int getTop();
 
     /**
      * Gets the GUI's width.
      */
-    public int getWidth();
+    int getWidth();
 
     /**
      * Gets the GUI's height
      */
-    public int getHeight();
+    int getHeight();
 
     /**
      * Gets the GUI's Z level for rendering.
      */
-    public float getZLevel();
+    float getZLevel();
 }

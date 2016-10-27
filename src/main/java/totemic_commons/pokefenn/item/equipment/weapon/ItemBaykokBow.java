@@ -60,7 +60,7 @@ public class ItemBaykokBow extends ItemBow
         if(!(entity instanceof EntityPlayer))
             return;
 
-        EntityPlayer player = (EntityPlayer)entity;
+        EntityPlayer player = (EntityPlayer) entity;
         boolean infinity = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
         ItemStack arrow = findAmmo(player);
 
@@ -76,7 +76,7 @@ public class ItemBaykokBow extends ItemBow
 
             float charge = getArrowVelocity(chargeTicks);
 
-            if(charge >= 0.1D)
+            if(charge >= 0.1)
             {
                 boolean flag1 = infinity && arrow.getItem() instanceof ItemArrow; //Forge: Fix consuming custom arrows.
 

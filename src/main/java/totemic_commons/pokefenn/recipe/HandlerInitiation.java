@@ -16,10 +16,6 @@ import totemic_commons.pokefenn.totem.TotemEffectBlaze;
 import totemic_commons.pokefenn.totem.TotemEffectCow;
 import totemic_commons.pokefenn.totem.TotemEffectOcelot;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class HandlerInitiation
 {
     public static Ceremony ghostDance;

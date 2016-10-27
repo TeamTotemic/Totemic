@@ -16,9 +16,8 @@ import java.util.List;
 
 public final class LexiconCategory
 {
-
     public final String unlocalizedName;
-    public final List<LexiconEntry> entries = new ArrayList<LexiconEntry>();
+    public final List<LexiconEntry> entries = new ArrayList<>();
 
     /**
      * @param unlocalizedName The unlocalized name of this category. This will be localized by the client display.

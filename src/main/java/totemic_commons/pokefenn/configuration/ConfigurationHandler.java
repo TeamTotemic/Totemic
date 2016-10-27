@@ -29,10 +29,12 @@ public final class ConfigurationHandler
         {
             conf.load();
             loadValues();
-        } catch(Exception e)
+        }
+        catch(Exception e)
         {
             logger.catching(Level.ERROR, e);
-        } finally
+        }
+        finally
         {
             conf.save();
         }
@@ -54,7 +56,8 @@ public final class ConfigurationHandler
             try
             {
                 loadValues();
-            } finally
+            }
+            finally
             {
                 conf.save();
             }

@@ -9,15 +9,17 @@ import totemic_commons.pokefenn.entity.boss.EntityBaykok;
 
 public class BaykokRendering extends RenderLiving<EntityBaykok>
 {
+    private static final ResourceLocation baykokTexture = new ResourceLocation("totemic:textures/models/baykok.png");
+
     public BaykokRendering(RenderManager renderMgr)
     {
-        super(renderMgr, new ModelBaykok(), 0.5f);
+        super(renderMgr, new ModelBaykok(), 0.5F);
         addLayer(new LayerHeldItem(this));
     }
 
     @Override
     protected ResourceLocation getEntityTexture(EntityBaykok entity)
     {
-        return new ResourceLocation("totemic:textures/models/baykok.png");
+        return baykokTexture;
     }
 }

@@ -17,7 +17,6 @@ import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 
 public abstract class LexiconPage
 {
-
     public String unlocalizedName;
 
     public LexiconPage(String unlocalizedName)

@@ -24,8 +24,7 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconPage;
 
 public class PageImage extends LexiconPage
 {
-
-    ResourceLocation resource;
+    private ResourceLocation resource;
 
     public PageImage(String unlocalizedName, String resource)
     {

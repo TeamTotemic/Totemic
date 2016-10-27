@@ -6,12 +6,6 @@ import net.minecraft.block.state.IBlockState;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 09/12/13
- * Time: 14:35
- */
 public class BlockCedarLog extends BlockLog
 {
     public BlockCedarLog()

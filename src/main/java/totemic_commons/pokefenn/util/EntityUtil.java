@@ -18,15 +18,8 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 20/01/14
- * Time: 14:22
- */
 public class EntityUtil
 {
-
     //Code from @WayofTime
     public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
     {

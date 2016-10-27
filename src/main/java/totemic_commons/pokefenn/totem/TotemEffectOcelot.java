@@ -12,12 +12,6 @@ import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 27/01/14
- * Time: 14:27
- */
 public class TotemEffectOcelot extends TotemEffect
 {
     public TotemEffectOcelot(String name, int horizontal, int vertical)

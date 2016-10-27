@@ -4,17 +4,12 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class ModelWindChime extends ModelBase
 {
 
     /**
      * Thanks to CyanideX for the model! :D
      */
-
     public ModelRenderer connector1;
     public ModelRenderer base;
     public ModelRenderer hook;

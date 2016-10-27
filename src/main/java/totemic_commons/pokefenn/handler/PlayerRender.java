@@ -58,7 +58,7 @@ public class PlayerRender
         GL11.glNewList(annaHatDisplayList, GL11.GL_COMPILE);
 
         float scale = 1 / 64F;
-        float offset = (float)(7 * Math.sin(Math.toRadians(45)) + 7 / 2F) * scale;
+        float offset = (float) (7 * Math.sin(Math.toRadians(45)) + 7 / 2F) * scale;
 
         GL11.glTranslatef(15 * scale - offset, -0.7F, 15 * scale - offset);
         GL11.glRotatef(-25, 1, 0, -1);
@@ -83,9 +83,9 @@ public class PlayerRender
         buf.begin(GL11.GL_QUAD_STRIP, DefaultVertexFormats.POSITION_NORMAL);
         for(int i = 0; i <= points; i++)
         {
-            float angle = 2 * (float)Math.PI * (i + 0.5F)/points;
-            float cos = (float)Math.cos(angle);
-            float sin = (float)Math.sin(angle);
+            float angle = 2 * (float) Math.PI * (i + 0.5F)/points;
+            float cos = (float) Math.cos(angle);
+            float sin = (float) Math.sin(angle);
             buf.pos(inner * cos, 0,      inner * sin).normal(0.95F * cos, -0.31225F, 0.95F * sin).endVertex();
             buf.pos(inner * cos, height, inner * sin).normal(0.95F * cos, -0.31225F, 0.95F * sin).endVertex();
         }
@@ -96,7 +96,7 @@ public class PlayerRender
         buf.pos(0, 0, 0).normal(0, -1, 0).endVertex();
         for(int i = 0; i <= points; i++)
         {
-            float angle = 2 * (float)Math.PI * (i + 0.5F) / points;
+            float angle = 2 * (float) Math.PI * (i + 0.5F) / points;
             buf.pos(inner * Math.cos(angle), 0, inner * Math.sin(angle)).normal(0, -1, 0).endVertex();
         }
         tes.draw();
@@ -106,7 +106,7 @@ public class PlayerRender
         buf.pos(0, height, 0).normal(0, -1, 0).endVertex();
         for(int i = 0; i <= points; i++)
         {
-            float angle = 2 * (float)Math.PI * (i + 0.5F)/points;
+            float angle = 2 * (float) Math.PI * (i + 0.5F)/points;
             buf.pos(outer * Math.cos(angle), height, outer * Math.sin(angle)).normal(0, -1, 0).endVertex();
         }
         tes.draw();
@@ -116,7 +116,7 @@ public class PlayerRender
         buf.pos(0, height, 0).normal(0, 1, 0).endVertex();
         for(int i = 0; i <= points; i++)
         {
-            float angle = 2 * (float)Math.PI * -(i + 0.5F)/points;
+            float angle = 2 * (float) Math.PI * -(i + 0.5F)/points;
             buf.pos(outer * Math.cos(angle), height, outer * Math.sin(angle)).normal(0, 1, 0).endVertex();
         }
         tes.draw();
