@@ -59,8 +59,8 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
             if(tile != null)
                 if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ModItems.totemicStaff && !(tile.getState() instanceof StateTotemEffect))
                 {
-                    tile.setState(new StateTotemEffect(tile));
                     ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
+                    tile.setState(new StateTotemEffect(tile));
                 }
         }
     }
