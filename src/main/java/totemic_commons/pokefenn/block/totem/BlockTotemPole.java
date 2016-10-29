@@ -48,10 +48,8 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
         if(world.isRemote)
         {
             TileTotemPole pole = (TileTotemPole) world.getTileEntity(pos);
-            if(pole.getEffect() != null)
-            {
-                player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", StatCollector.translateToLocal(pole.getEffect().getUnlocalizedName())));
-            }
+            String name = pole.getEffect() != null ? pole.getEffect().getUnlocalizedName() : "totemicmisc.noEffect";
+            player.addChatComponentMessage(new ChatComponentTranslation("totemicmisc.activeEffect", StatCollector.translateToLocal(name)));
         }
         return true;
     }
