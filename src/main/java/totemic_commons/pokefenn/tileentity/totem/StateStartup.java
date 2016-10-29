@@ -15,7 +15,7 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
 
-public class StateStartup extends TotemState
+public final class StateStartup extends TotemState
 {
     public static final int ID = 2;
 
@@ -50,6 +50,7 @@ public class StateStartup extends TotemState
                 {
                     ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
                     tile.setState(new StateTotemEffect(tile));
+                    tile.getState().update();
                 }
 
                 if(time % 20 == 0)
@@ -59,6 +60,7 @@ public class StateStartup extends TotemState
             {
                 ((WorldServer) world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
                 tile.setState(new StateCeremonyEffect(tile, ceremony));
+                tile.getState().update();
             }
         }
         else

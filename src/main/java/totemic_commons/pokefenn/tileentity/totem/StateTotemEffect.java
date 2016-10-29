@@ -9,7 +9,7 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 
-public class StateTotemEffect extends TotemState
+public final class StateTotemEffect extends TotemState
 {
     public static final int ID = 0;
     public static final int MAX_EFFECT_MUSIC = 128;

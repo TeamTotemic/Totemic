@@ -17,7 +17,7 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
-public class StateSelection extends TotemState
+public final class StateSelection extends TotemState
 {
     public static final int ID = 1;
 

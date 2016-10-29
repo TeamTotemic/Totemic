@@ -7,7 +7,7 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
-public class StateCeremonyEffect extends TotemState
+public final class StateCeremonyEffect extends TotemState
 {
     public static final int ID = 3;
 
