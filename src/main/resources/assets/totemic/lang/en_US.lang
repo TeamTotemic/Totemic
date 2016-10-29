@@ -72,6 +72,13 @@ totemic.totem.totemic:rabbit=Rabbit
 totemic.totem.totemic:pig=Pig
 totemic.totem.totemic:wolf=Wolf
 
+#Music Instrument names
+totemic.instrument.totemic:flute=Flute
+totemic.instrument.totemic:drum=Drum
+totemic.instrument.totemic:windChime=Wind Chime
+totemic.instrument.totemic:jingleDress=Jingle Dress
+totemic.instrument.totemic:rattle=Rattle
+
 #Music values
 totemic.musicNeeded.none=No Music required
 totemic.musicNeeded.little=Little Music amount
@@ -85,8 +92,12 @@ totemicmisc.musicSelector=Musical Selectors
 totemicmisc.tipi.cantSleep=You cannot sleep in a Tipi without being in the open fields
 totemicmisc.tipi.nether=You cannot sleep in the Nether
 totemicmisc.activeEffect=Active Totem Effect: %s
+totemicmisc.noEffect=None
 totemicmisc.startup=Starting up
 totemicmisc.activeCeremony=Active Ceremony
+totemicmisc.isDoingNoCeremony=The Totem Pole is not doing a Ceremony
+totemicmisc.isDoingSelection=The Totem Pole is waiting for a Ceremony to be selected
+totemicmisc.selection=Selection: %s
 totemicmisc.isDoingStartup=The Totem Pole is doing a Ceremony startup
 totemicmisc.isDoingCeremony=The Totem Pole is doing a Ceremony effect
 

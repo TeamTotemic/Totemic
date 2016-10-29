@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.block.totem;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -10,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -31,10 +33,7 @@ import totemic_commons.pokefenn.api.TotemicStaffUsage;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
-import totemic_commons.pokefenn.tileentity.totem.StateCeremonyEffect;
-import totemic_commons.pokefenn.tileentity.totem.StateStartup;
-import totemic_commons.pokefenn.tileentity.totem.StateTotemEffect;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.totem.*;
 
 public class BlockTotemBase extends Block implements ITileEntityProvider, TotemicStaffUsage
 {
@@ -71,21 +70,32 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
         if(world.isRemote)
             return EnumActionResult.SUCCESS;
         TileTotemBase tile = (TileTotemBase) world.getTileEntity(pos);
-        if(tile != null)
+
+        if(tile.getState() instanceof StateTotemEffect)
         {
-            if(tile.getState() instanceof StateStartup)
-            {
-                Ceremony ceremony = ((StateStartup) tile.getState()).getCeremony();
-                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"));
-                player.addChatComponentMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
-            }
-            else if(tile.getState() instanceof StateCeremonyEffect)
-            {
-                Ceremony ceremony = ((StateCeremonyEffect) tile.getState()).getCeremony();
-                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
-                player.addChatComponentMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
-            }
+            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingNoCeremony"));
         }
+        else if(tile.getState() instanceof StateSelection)
+        {
+            String selectors = ((StateSelection) tile.getState()).getSelectors().stream()
+                    .map(instr -> I18n.format(instr.getUnlocalizedName()))
+                    .collect(Collectors.joining(", "));
+            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingSelection"));
+            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.selection", selectors));
+        }
+        else if(tile.getState() instanceof StateStartup)
+        {
+            Ceremony ceremony = ((StateStartup) tile.getState()).getCeremony();
+            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"));
+            player.addChatComponentMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
+        }
+        else if(tile.getState() instanceof StateCeremonyEffect)
+        {
+            Ceremony ceremony = ((StateCeremonyEffect) tile.getState()).getCeremony();
+            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
+            player.addChatComponentMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
+        }
+
         return EnumActionResult.SUCCESS;
     }
 

@@ -50,6 +50,15 @@ public final class MusicInstrument
     }
 
     /**
+     * @return the unlocalized name of the Instrument, which
+     * is given by "totemic.instrument." followed by the name
+     */
+    public String getUnlocalizedName()
+    {
+        return "totemic.instrument." + name;
+    }
+
+    /**
      * @return the base music output every time the instrument is played
      */
     public int getBaseOutput()

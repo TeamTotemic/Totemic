@@ -6,10 +6,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-/*
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 /**
  * An interface for blocks that react when they are right-clicked with a Totemic Staff
  */
@@ -21,5 +17,5 @@ public interface TotemicStaffUsage
      * @param player the player who clicked
      * @param itemStack the Totemic Staff that was clicked
      */
-    public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack);
+    EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, ItemStack itemStack);
 }

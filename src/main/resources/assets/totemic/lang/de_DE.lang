@@ -70,6 +70,13 @@ totemic.totem.totemic:spider=Spinne
 totemic.totem.totemic:cow=Kuh
 totemic.totem.totemic:rabbit=Kaninchen
 
+#Music Instrument names
+totemic.instrument.totemic:flute=Flöte
+totemic.instrument.totemic:drum=Trommel
+totemic.instrument.totemic:windChime=Windspiel
+totemic.instrument.totemic:jingleDress=Glockenkleid
+totemic.instrument.totemic:rattle=Rassel
+
 #Music values
 totemic.musicNeeded.none=Keine Musik benötigt
 totemic.musicNeeded.little=Sehr wenig Musik
@@ -83,8 +90,12 @@ totemicmisc.musicSelector=Musikalische Selektion
 totemicmisc.tipi.cantSleep=Du kannst nicht in einem Tipi schlafen ohne unter freiem Himmel zu sein
 totemicmisc.tipi.nether=Du kannst nicht im Nether schlafen
 totemicmisc.activeEffect=Aktiver Totemeffekt: %s
+totemicmisc.noEffect=Keiner
 totemicmisc.startup=Anlaufen
 totemicmisc.activeCeremony=Aktive Zeremonie
+totemicmisc.isDoingNoCeremony=Der Totempfahl führt keine Zeremonie aus
+totemicmisc.isDoingSelection=Der Totempfahl wartet, dass eine Zeremonie ausgewählt wird
+totemicmisc.selection=Auswahl: %s
 totemicmisc.isDoingStartup=Der Totempfahl beginnt eine Zeremonie
 totemicmisc.isDoingCeremony=Der Totempfahl führt eine Zeremonie aus
 

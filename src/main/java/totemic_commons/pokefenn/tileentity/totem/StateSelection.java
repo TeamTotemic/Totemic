@@ -2,10 +2,7 @@ package totemic_commons.pokefenn.tileentity.totem;
 
 import static totemic_commons.pokefenn.Totemic.logger;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -110,5 +107,10 @@ public final class StateSelection extends TotemState
             else
                 logger.warn("Unknown music instrument: {}", selectorsTag.getStringTagAt(i));
         }
+    }
+
+    public List<MusicInstrument> getSelectors()
+    {
+        return Collections.unmodifiableList(selectors);
     }
 }
