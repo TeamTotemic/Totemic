@@ -20,7 +20,6 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconPage;
 
 public class PageText extends LexiconPage
 {
-
     public PageText(String unlocalizedName)
     {
         super(unlocalizedName);

@@ -66,10 +66,12 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     {
         if(world.isRemote)
         {
+            //TODO: Replace with something that is less potentially exploitable
             if(world.getTotalWorldTime() % 20L == 0)
                 if(player.motionX != 0 || player.motionZ != 0)
                     NetworkHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
-        } else
+        }
+        else
         {
             NBTTagCompound tag = itemStack.getTagCompound();
             if(world.getTotalWorldTime() % 20L == 0 && tag != null)

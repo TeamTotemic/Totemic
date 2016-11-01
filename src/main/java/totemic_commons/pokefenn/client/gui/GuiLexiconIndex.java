@@ -87,7 +87,8 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
             LexiconEntry entry = i >= entriesToDisplay.size() ? null : entriesToDisplay.get(i);
             if(entry != null)
                 button.displayString = "" + (entry.isPriority() ? EnumChatFormatting.ITALIC : "") + StatCollector.translateToLocal(entry.getUnlocalizedName());
-            else button.displayString = "";
+            else
+                button.displayString = "";
         }
     }
 
@@ -151,7 +152,8 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
             {
                 nextPage();
                 swiped = true;
-            } else if(swipe > 0.5)
+            }
+            else if(swipe > 0.5)
             {
                 prevPage();
                 swiped = true;

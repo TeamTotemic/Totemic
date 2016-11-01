@@ -12,7 +12,7 @@ import totemic_commons.pokefenn.potion.ModPotions;
 public class EntityFall
 {
 
-    @SubscribeEvent()
+    @SubscribeEvent
     public void onLivingFall(LivingFallEvent entity)
     {
         if(entity.entityLiving instanceof EntityPlayer && entity.entityLiving.isPotionActive(ModPotions.batPotion.id))

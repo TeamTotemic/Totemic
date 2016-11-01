@@ -12,7 +12,7 @@
 package totemic_commons.pokefenn.client.gui.button;
 
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.lwjgl.opengl.GL11;
@@ -25,7 +25,6 @@ import totemic_commons.pokefenn.client.gui.GuiLexicon;
 
 public class GuiButtonBack extends GuiButton
 {
-
     public GuiButtonBack(int par1, int par2, int par3)
     {
         super(par1, par2, par3, 18, 9, "");
@@ -49,7 +48,7 @@ public class GuiButtonBack extends GuiButton
 
     public List<String> getTooltip()
     {
-        return Arrays.asList(StatCollector.translateToLocal("totemicmisc.back"));
+        return Collections.singletonList(StatCollector.translateToLocal("totemicmisc.back"));
     }
 
 }

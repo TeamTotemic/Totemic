@@ -8,11 +8,9 @@ import net.minecraftforge.fml.client.IModGuiFactory;
 
 public class TotemicGuiFactory implements IModGuiFactory
 {
-
     @Override
     public void initialize(Minecraft minecraftInstance)
     {
-
     }
 
     @Override

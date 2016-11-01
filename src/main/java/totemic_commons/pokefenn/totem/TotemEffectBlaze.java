@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.totem;
 
-import java.util.Random;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.BlockPos;
@@ -37,8 +35,7 @@ public class TotemEffectBlaze extends TotemEffect
             {
                 if(entity.isBurning())
                 {
-                    Random rand = new Random();
-                    if(rand.nextBoolean())
+                    if(world.rand.nextBoolean())
                         entity.heal(2);
                 }
 
@@ -47,5 +44,4 @@ public class TotemEffectBlaze extends TotemEffect
         }
 
     }
-
 }

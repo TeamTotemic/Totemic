@@ -12,8 +12,7 @@ import totemic_commons.pokefenn.client.gui.GuiLexicon;
 
 public class GuiButtonBookmark extends GuiButton
 {
-
-    GuiLexicon gui = new GuiLexicon();
+    private GuiLexicon gui = new GuiLexicon();
 
     public GuiButtonBookmark(int par1, int par2, int par3, GuiLexicon gui, String str)
     {

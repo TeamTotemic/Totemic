@@ -40,7 +40,7 @@ public class BlockDrum extends Block implements ITileEntityProvider
         TileDrum tileDrum = (TileDrum) world.getTileEntity(pos);
 
         if(!world.isRemote && tileDrum.canPlay)
-            playDaMusicu((WorldServer)world, pos, player, tileDrum, player.isSneaking());
+            playDaMusicu((WorldServer) world, pos, player, tileDrum, player.isSneaking());
     }
 
     public void playDaMusicu(WorldServer world, BlockPos pos, EntityPlayer player, TileDrum tileDrum, boolean isSneaking)
@@ -54,7 +54,8 @@ public class BlockDrum extends Block implements ITileEntityProvider
                 world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
                 world.markBlockForUpdate(pos);
             }
-        } else
+        }
+        else
         {
             tileDrum.canPlay = false;
             TotemUtil.playMusicForSelector(world, pos, HandlerInitiation.drum, 0);

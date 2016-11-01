@@ -22,7 +22,6 @@ public class ClientTickHandler
         {
             GuiScreen gui = Minecraft.getMinecraft().currentScreen;
 
-
             int ticksToOpen = 10;
             if(gui instanceof GuiLexicon)
             {
@@ -32,7 +31,8 @@ public class ClientTickHandler
                     ticksWithLexicaOpen++;
                 if(pageFlipTicks > 0)
                     pageFlipTicks--;
-            } else
+            }
+            else
             {
                 pageFlipTicks = 0;
                 if(ticksWithLexicaOpen > 0)

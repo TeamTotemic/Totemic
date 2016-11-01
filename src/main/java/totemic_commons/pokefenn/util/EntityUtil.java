@@ -22,7 +22,6 @@ import net.minecraft.world.WorldServer;
  */
 public class EntityUtil
 {
-
     //Code from @WayofTime
     public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
     {

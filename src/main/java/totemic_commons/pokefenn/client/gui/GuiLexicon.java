@@ -162,7 +162,8 @@ public class GuiLexicon extends GuiScreen
         {
             if(!bookmarks.contains(this))
                 bookmarks.add(this);
-        } else
+        }
+        else
         {
             if(isShiftKeyDown())
                 bookmarks.remove(i);
@@ -227,7 +228,8 @@ public class GuiLexicon extends GuiScreen
             LexiconCategory category = i_ >= categoryList.size() ? null : categoryList.get(i_);
             if(category != null)
                 button.displayString = StatCollector.translateToLocal(category.getUnlocalizedName());
-            else button.displayString = "";
+            else
+                button.displayString = "";
         }
     }
 

@@ -16,7 +16,6 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 
 public class WIPLexiconEntry extends BLexiconEntry implements IAddonEntry
 {
-
     public WIPLexiconEntry(String unlocalizedName, LexiconCategory category)
     {
         super(unlocalizedName, category);

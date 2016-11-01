@@ -18,14 +18,11 @@ public class PacketJingle extends SynchronizedPacketBase<PacketJingle>
 {
     private float motionAbs;
 
-    public PacketJingle()
-    {
-
-    }
+    public PacketJingle() {}
 
     public PacketJingle(double motionX, double motionZ)
     {
-        this.motionAbs = (float)Math.sqrt(motionX*motionX + motionZ*motionZ);
+        this.motionAbs = (float) Math.sqrt(motionX*motionX + motionZ*motionZ);
     }
 
     @Override
@@ -64,7 +61,7 @@ public class PacketJingle extends SynchronizedPacketBase<PacketJingle>
             if(plusTime != 0)
             {
                 NBTTagCompound tag = ItemUtil.getOrCreateTag(armor);
-                tag.setByte(Strings.INSTR_TIME_KEY, (byte)(plusTime + tag.getByte(Strings.INSTR_TIME_KEY)));
+                tag.setByte(Strings.INSTR_TIME_KEY, (byte) (plusTime + tag.getByte(Strings.INSTR_TIME_KEY)));
             }
         }
     }

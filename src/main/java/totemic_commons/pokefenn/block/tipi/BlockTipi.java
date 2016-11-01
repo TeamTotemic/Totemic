@@ -57,23 +57,21 @@ public class BlockTipi extends Block implements ITileEntityProvider
             {
                 if(world.provider.canRespawnHere())
                 {
-                    EntityPlayer entityplayer1 = null;
+                    EntityPlayer otherPlayer = null;
 
-                    for(Object playerEntity : world.playerEntities)
+                    for(EntityPlayer playerEntity : world.playerEntities)
                     {
-                        EntityPlayer entityplayer2 = (EntityPlayer) playerEntity;
-
-                        if(entityplayer2.isPlayerSleeping())
+                        if(playerEntity.isPlayerSleeping())
                         {
-                            BlockPos playerPos = new BlockPos(entityplayer2.posX, entityplayer2.posY, entityplayer2.posZ);
+                            BlockPos playerPos = new BlockPos(playerEntity.posX, playerEntity.posY, playerEntity.posZ);
                             if(playerPos.equals(pos))
                             {
-                                entityplayer1 = entityplayer2;
+                                otherPlayer = playerEntity;
                             }
                         }
                     }
 
-                    if(entityplayer1 != null)
+                    if(otherPlayer != null)
                     {
                         player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied"));
                         return true;
@@ -84,23 +82,21 @@ public class BlockTipi extends Block implements ITileEntityProvider
                     if(enumstatus == EntityPlayer.EnumStatus.OK)
                     {
                         return true;
-                    } else
+                    }
+                    else
                     {
                         if(enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW)
-                        {
                             player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep"));
-                        } else if(enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
-                        {
+                        else if(enumstatus == EntityPlayer.EnumStatus.NOT_SAFE)
                             player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe"));
-                        }
 
                         return true;
                     }
-                } else
-                {
-                    player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("totemicmisc.tipi.nether")));
                 }
-            } else
+                else
+                    player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("totemicmisc.tipi.nether")));
+            }
+            else
                 player.addChatComponentMessage(new ChatComponentText(StatCollector.translateToLocal("totemicmisc.tipi.cantSleep")));
 
         }

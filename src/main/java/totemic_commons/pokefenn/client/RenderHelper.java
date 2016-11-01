@@ -17,7 +17,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
  */
 public class RenderHelper
 {
-
     public static void renderTooltip(int x, int y, List<String> tooltipData)
     {
         int color = 0x505000ff;

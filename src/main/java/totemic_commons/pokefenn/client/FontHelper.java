@@ -15,12 +15,12 @@ public final class FontHelper
 
     public static boolean isFormatColor(char ch)
     {
-        return ch >= 48 && ch <= 57 || ch >= 97 && ch <= 102 || ch >= 65 && ch <= 70;
+        return ch >= '0' && ch <= '9' || ch >= 'a' && ch <= 'f' || ch >= 'A' && ch <= 'F';
     }
 
     public static boolean isFormatSpecial(char ch)
     {
-        return ch >= 107 && ch <= 111 || ch >= 75 && ch <= 79 || ch == 114 || ch == 82;
+        return ch >= 'k' && ch <= 'o' || ch >= 'K' && ch <= 'O' || ch == 'r' || ch == 'R';
     }
 
     public static String getFormatFromString(String str)
@@ -29,16 +29,16 @@ public final class FontHelper
         int i = -1;
         int j = str.length();
 
-        while((i = str.indexOf(167, i + 1)) != -1)
+        while((i = str.indexOf('§', i + 1)) != -1)
         {
             if(i < j - 1)
             {
                 char c0 = str.charAt(i + 1);
 
                 if(isFormatColor(c0))
-                    s1 = "\u00a7" + c0;
+                    s1 = "§" + c0;
                 else if(isFormatSpecial(c0))
-                    s1 = s1 + "\u00a7" + c0;
+                    s1 = s1 + "§" + c0;
             }
         }
 

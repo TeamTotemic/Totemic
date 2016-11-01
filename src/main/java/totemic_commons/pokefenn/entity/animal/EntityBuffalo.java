@@ -32,7 +32,7 @@ public class EntityBuffalo extends EntityCow
     {
         super(world);
         setSize(1.35F, 1.95F);
-        ((PathNavigateGround)this.getNavigator()).setAvoidsWater(true);
+        ((PathNavigateGround) this.getNavigator()).setAvoidsWater(true);
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(1, new EntityAIPanic(this, 2.0D));
         tasks.addTask(2, new EntityAIMate(this, 1.0D));
@@ -72,8 +72,8 @@ public class EntityBuffalo extends EntityCow
                 age += interval;
                 setBuffaloAge(age);
 
-                float oldMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, (age - interval) / (float)MAX_AGE);
-                float newMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, age / (float)MAX_AGE);
+                float oldMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, (age - interval) / (float) MAX_AGE);
+                float newMaxHP = MathsUtil.lerp(MIN_HP, MAX_HP, age / (float) MAX_AGE);
                 getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(newMaxHP);
                 setHealth(getHealth() * newMaxHP / oldMaxHP);
             }
@@ -157,7 +157,8 @@ public class EntityBuffalo extends EntityCow
             if(isBurning())
             {
                 dropItem(ModItems.buffaloCookedMeat, 1);
-            } else
+            }
+            else
             {
                 dropItem(ModItems.buffaloMeat, 1);
             }

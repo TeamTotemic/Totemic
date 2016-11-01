@@ -12,7 +12,6 @@ import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 
 public class ModelBuffalo extends ModelBase
 {
-    // fields
     private ModelRenderer head;
     private ModelRenderer body;
     private ModelRenderer back;

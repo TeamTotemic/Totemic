@@ -4,7 +4,6 @@ import net.minecraft.util.EnumChatFormatting;
 
 public class KnowledgeType
 {
-
     public final String id;
     public final EnumChatFormatting color;
     public final boolean autoUnlock;
