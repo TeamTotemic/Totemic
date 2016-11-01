@@ -68,6 +68,9 @@ totemic.totem.totemic:ocelot=Ozelot
 totemic.totem.totemic:bat=Fledermaus
 totemic.totem.totemic:spider=Spinne
 totemic.totem.totemic:cow=Kuh
+totemic.totem.totemic:rabbit=Kaninchen
+totemic.totem.totemic:pig=Schwein
+totemic.totem.totemic:wolf=Wolf
 
 #Music Instrument names
 totemic.instrument.totemic:flute=Flöte
@@ -137,7 +140,8 @@ totemic.page.creatingTotems2=
 
 totemic.entry.totemEffects=Totemeffekte
 totemic.page.totemEffects0=Diese Effekte können in einen Totempfahl eingeschnitzt werden:<br>§1Pferd§0: Gibt dir Schnelligkeit<br>§1Titntenfisch§0: Gibt dir Unterwasseratmung<br>§1Lohe§0: Gibt dir Feuerresistenz<br>§1Ozelot§0: Verhindert, dass Creeper explodieren
-totemic.page.totemEffects1=§1Fledermaus§0: Negiert Fallschaden und lässt dich vorwärts bewegen wenn du in der Luft schleichst<br>§1Spinne§0: Lässt dich Wände hochklettern wie eine Spinne<br>§1Kuh§0: Gibt dir Schadensresistenz, aber verlangsamt dich auch
+totemic.page.totemEffects1=§1Fledermaus§0: Negiert Fallschaden und lässt dich vorwärts bewegen wenn du in der Luft schleichst<br>§1Spinne§0: Lässt dich Wände hochklettern wie eine Spinne<br>§1Kuh§0: Gibt dir Schadensresistenz, aber verlangsamt dich auch<br>§1Kaninchen§0: Lässt dich höher springen
+totemic.page.totemEffects2=§1Schwein§0: Bringt dir Glück<br>§1Wolf§0: Gibt dir Stärke
 
 totemic.entry.instruments=Instrumente
 totemic.page.instruments0=Mit Instrumenten kann man §4Musikalische Energie§0 erzeugen, welche §1Totempfähle§0 antreibt. Spielt man ein Instrument während man schleicht, gelangt seine Melodie in nahe Verbraucher. Jedes Instrument erzeugt §4Melodie§0 auf unterschiedliche Arten und Weisen, beispielsweise wie stark die Melodie ist, wie weit sie hörbar ist und wie viel davon ein Totempfahl annehmen kann.
