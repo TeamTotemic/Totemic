@@ -50,7 +50,7 @@ public final class StateCeremonyEffect extends TotemState
     @Override
     public boolean addMusic(MusicInstrument instr, int amount)
     {
-        return false;
+        return true; //TODO: Implement melody draining
     }
 
     @Override

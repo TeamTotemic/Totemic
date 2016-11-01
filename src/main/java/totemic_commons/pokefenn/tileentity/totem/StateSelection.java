@@ -19,6 +19,7 @@ public final class StateSelection extends TotemState
     public static final int ID = 1;
 
     private final List<MusicInstrument> selectors = new ArrayList<>(Ceremony.MAX_SELECTORS);
+    private int time = 0; //Time since last selection
 
     public StateSelection(TileTotemBase tile)
     {
@@ -33,7 +34,10 @@ public final class StateSelection extends TotemState
 
     @Override
     public void update()
-    { }
+    {
+        if(time++ >= 60 * 20)
+            tile.setState(new StateTotemEffect(tile));
+    }
 
     @Override
     public boolean canSelect()
@@ -49,6 +53,7 @@ public final class StateSelection extends TotemState
 
         world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
         selectors.add(instr);
+        time = 0;
         tile.markDirty();
 
         if(selectors.size() >= Ceremony.MIN_SELECTORS)
