@@ -28,12 +28,6 @@ import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 02/02/14
- * Time: 13:03
- */
 public class BlockTotemPole extends Block implements ITileEntityProvider, TotemicStaffUsage
 {
     public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);

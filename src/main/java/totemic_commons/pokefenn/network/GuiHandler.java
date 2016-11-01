@@ -6,10 +6,6 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
 import vazkii.botania.totemic_custom.api.lexicon.ILexicon;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class GuiHandler implements IGuiHandler
 {
     @Override

@@ -4,10 +4,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class TileDrum extends TileTotemic implements ITickable
 {
     public int currentTime = 0;

@@ -15,10 +15,6 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
 import totemic_commons.pokefenn.util.MathsUtil;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class EntityBuffalo extends EntityCow
 {
     public boolean isSheared = false;

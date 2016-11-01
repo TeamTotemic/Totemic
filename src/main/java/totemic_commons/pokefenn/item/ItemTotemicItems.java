@@ -11,12 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 08/12/13
- * Time: 19:19
- */
 public class ItemTotemicItems extends ItemTotemic
 {
     public enum Type

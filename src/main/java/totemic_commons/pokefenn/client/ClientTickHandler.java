@@ -6,10 +6,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class ClientTickHandler
 {
     public static int ticksWithLexicaOpen = 0;

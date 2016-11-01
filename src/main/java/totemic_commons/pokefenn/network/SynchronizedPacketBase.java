@@ -11,8 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Base class for simple thread-safe packets.
  * The packet handling methods are executed on the client or server thread.
- *
- * @author ljfa
  */
 public abstract class SynchronizedPacketBase<T extends SynchronizedPacketBase<T>> extends PacketBase<T>
 {

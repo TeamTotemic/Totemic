@@ -11,9 +11,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
 import totemic_commons.pokefenn.ModBlocks;
 
-/**
- * @author ljfa
- */
 public enum WoodVariant implements IStringSerializable
 {
     OAK(Blocks.log.getDefaultState().withProperty(BlockOldLog.VARIANT, EnumType.OAK)),

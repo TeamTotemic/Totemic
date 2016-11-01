@@ -10,10 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.network.PacketBase;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class PacketWindChime extends PacketBase<PacketWindChime>
 {
     private BlockPos pos;

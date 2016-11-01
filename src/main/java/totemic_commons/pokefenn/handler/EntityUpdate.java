@@ -7,12 +7,6 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import totemic_commons.pokefenn.potion.ModPotions;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 08/03/14
- * Time: 17:52
- */
 public class EntityUpdate
 {
 

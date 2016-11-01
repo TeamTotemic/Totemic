@@ -32,12 +32,6 @@ import totemic_commons.pokefenn.tileentity.totem.StateStartup;
 import totemic_commons.pokefenn.tileentity.totem.StateTotemEffect;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 29/01/14
- * Time: 20:20
- */
 public class BlockTotemBase extends Block implements ITileEntityProvider, TotemicStaffUsage
 {
     public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);

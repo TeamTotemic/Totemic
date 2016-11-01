@@ -4,12 +4,6 @@ import net.minecraft.item.Item;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 28/01/14
- * Time: 12:35
- */
 public class ItemTotemic extends Item
 {
     public ItemTotemic(String name, boolean creativeTab)

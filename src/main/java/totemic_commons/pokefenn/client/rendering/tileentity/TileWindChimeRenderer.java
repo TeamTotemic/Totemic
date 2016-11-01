@@ -8,10 +8,6 @@ import totemic_commons.pokefenn.client.rendering.model.ModelWindChime;
 import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChime>
 {
     private final ModelWindChime modelWindChime = new ModelWindChime();

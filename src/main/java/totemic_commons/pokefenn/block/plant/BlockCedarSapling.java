@@ -18,12 +18,6 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.world.TotemTreeGeneration;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 12/02/14
- * Time: 12:55
- */
 public class BlockCedarSapling extends BlockSapling
 {
     private static final TotemTreeGeneration treeGen = new TotemTreeGeneration(true);

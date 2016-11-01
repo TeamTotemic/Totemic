@@ -14,12 +14,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 20/01/14
- * Time: 14:22
- */
 public class EntityUtil
 {
     //Code from @WayofTime

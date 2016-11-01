@@ -1,9 +1,5 @@
 package totemic_commons.pokefenn.util;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class MathsUtil
 {
     public static float lerp(float start, float end, float value)

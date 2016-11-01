@@ -3,10 +3,6 @@ package totemic_commons.pokefenn.item.equipment;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class EquipmentMaterials
 {
     //public static final ArmorMaterial totemArmour = EnumHelper.addArmorMaterial("totemArmour", "totemArmour", 100, new int[]{1, 4, 3, 1}, 18);

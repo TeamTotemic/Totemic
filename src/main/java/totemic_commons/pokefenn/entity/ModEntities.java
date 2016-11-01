@@ -7,10 +7,6 @@ import totemic_commons.pokefenn.entity.boss.EntityBaykok;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 import totemic_commons.pokefenn.lib.Strings;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public final class ModEntities
 {
     public static void init()

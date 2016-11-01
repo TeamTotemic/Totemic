@@ -7,12 +7,6 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import vazkii.botania.totemic_custom.api.lexicon.ILexicon;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 19/02/14
- * Time: 12:49
- */
 public class ItemTotempedia extends ItemTotemic implements ILexicon
 {
 

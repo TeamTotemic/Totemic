@@ -9,12 +9,6 @@ import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 25/01/14
- * Time: 21:42
- */
 public class TotemEffectBlaze extends TotemEffect
 {
 

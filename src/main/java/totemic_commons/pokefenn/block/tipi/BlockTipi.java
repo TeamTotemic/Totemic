@@ -24,10 +24,6 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class BlockTipi extends Block implements ITileEntityProvider
 {
     public static final PropertyDirection FACING = BlockDirectional.FACING;

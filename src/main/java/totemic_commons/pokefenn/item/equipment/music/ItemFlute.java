@@ -24,10 +24,6 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class ItemFlute extends ItemInstrument
 {
     //Entities that have been tempted by the infused flute get stored in this weak set

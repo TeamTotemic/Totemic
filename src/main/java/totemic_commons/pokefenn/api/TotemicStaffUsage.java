@@ -5,10 +5,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 
-/*
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 /**
  * An interface for blocks that react when they are right-clicked with a Totemic Staff
  */

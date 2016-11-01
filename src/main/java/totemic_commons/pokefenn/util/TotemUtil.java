@@ -12,12 +12,6 @@ import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 06/02/14
- * Time: 17:07
- */
 public class TotemUtil
 {
     /**

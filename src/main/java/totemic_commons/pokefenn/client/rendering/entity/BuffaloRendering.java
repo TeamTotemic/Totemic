@@ -6,10 +6,6 @@ import net.minecraft.util.ResourceLocation;
 import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
 public class BuffaloRendering extends RenderLiving<EntityBuffalo>
 {
     private static final ResourceLocation buffaloTexture = new ResourceLocation("totemic:textures/models/buffalo.png");
