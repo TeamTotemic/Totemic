@@ -127,7 +127,8 @@ totemic.page.creatingTotems2=
 
 totemic.entry.totemEffects=图腾效果
 totemic.page.totemEffects0=雕刻图腾柱可以使它赋予你各种效果：<br>§1马§0：带来速度提升的效果<br>§1鱿鱼§0：带来水下呼吸的能力<br>§1烈焰人§0：带来火焰抗性<br>§1豹猫§0：带来阻止爬行者爆炸的效果
-totemic.page.totemEffects1=§1蝙蝠§0：让你免疫掉落伤害，让你可以在半空中潜行向前滑行<br>§1蜘蛛§0：让你能够像一只蜘蛛一样爬墙<br>§1牛§0：带来减轻伤害的效果，但会让你的身体变沉<br>§1Rabbit§0: Brings you good luck
+totemic.page.totemEffects1=§1蝙蝠§0：让你免疫掉落伤害，让你可以在半空中潜行向前滑行<br>§1蜘蛛§0：让你能够像一只蜘蛛一样爬墙<br>§1牛§0：带来减轻伤害的效果，但会让你的身体变沉<br>§1Rabbit§0: Gives you a jump boost
+totemic.page.totemEffects2=§1Pig§0: Brings you good luck<br>§1Wolf§0: Gives you strength
 
 totemic.entry.instruments=乐器
 totemic.page.instruments0=乐器可以奏出§4音乐旋律§0，这些旋律是§1图腾基座§0的生命。当乐器奏响时，它们的旋律会浸入任何接收者内。每种乐器奏出的§4音乐旋律§0都有所不同，比如说在于其强度、传递范围、以及图腾可接收的量。

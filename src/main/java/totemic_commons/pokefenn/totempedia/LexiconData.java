@@ -91,7 +91,7 @@ public final class LexiconData
         creatingTotems.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.totemWhittlingKnife));
 
         totemEffects = new BLexiconEntry(Totempedia.TOTEM_EFFECTS, categoryTotems);
-        totemEffects.setLexiconPages(new PageText("0"), new PageText("1"));
+        totemEffects.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));
 
         //Instruments
         instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryInstruments);
