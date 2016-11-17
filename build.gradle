@@ -17,12 +17,12 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.9.4-0.7.9.1"
+version = "1.10.2-0.7.9"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.9.4-12.17.0.2051"
+    version = "1.10.2-12.18.2.2099"
     runDir = "run"
 
     mappings = "snapshot_20160518"
@@ -91,7 +91,6 @@ curseforge {
         id = '237541'
         changelog  = ''
         releaseType = 'beta'
-        addGameVersion '1.10'
         addGameVersion '1.10.2'
 
         addArtifact deobfJar
