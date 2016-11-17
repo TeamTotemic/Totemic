@@ -23,6 +23,7 @@ import totemic_commons.pokefenn.block.tipi.BlockTipi;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemBlockVariants;
+import totemic_commons.pokefenn.item.ItemTipi;
 import totemic_commons.pokefenn.lib.WoodVariant;
 
 public final class ModBlocks
@@ -76,7 +77,7 @@ public final class ModBlocks
         GameRegistry.register(windChime);
         GameRegistry.register(makeItem(windChime));
         GameRegistry.register(tipi);
-        GameRegistry.register(makeItem(tipi));
+        GameRegistry.register(new ItemTipi(tipi).setRegistryName(tipi.getRegistryName()));
         GameRegistry.register(dummyTipi);
 
         Blocks.FIRE.setFireInfo(cedarLog, 5, 5);
