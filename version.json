@@ -2,8 +2,8 @@
     "homepage": "http://minecraft.curseforge.com/projects/totemic",
     "promos": {
         "1.8.9-latest": "1.8.9-0.7.6",
-        "1.9.4-latest": "1.9.4-0.7.9",
-        "1.10-latest": "1.9.4-0.7.9",
-        "1.10.2-latest": "1.9.4-0.7.9"
+        "1.9.4-latest": "1.9.4-0.7.9.1",
+        "1.10-latest": "1.9.4-0.7.9.1",
+        "1.10.2-latest": "1.9.4-0.7.9.1"
     }
 }
