@@ -25,6 +25,7 @@ public class TotemicGuiFactory implements IModGuiFactory
         return null;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element)
     {

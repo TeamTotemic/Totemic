@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.item;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -70,7 +71,8 @@ public class ItemTipi extends ItemBlock
         //Place Tipi block itself
         world.setBlockState(pos.up(), ModBlocks.tipi.getDefaultState().withProperty(BlockTipi.FACING, dir), 2);
 
-        world.playSound(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, this.block.getSoundType().getPlaceSound(), SoundCategory.BLOCKS, (this.block.getSoundType().getVolume() + 1.0F) / 2.0F, this.block.getSoundType().getPitch() * 0.8F, true);
+        SoundType sound = this.block.getSoundType(world.getBlockState(pos.up()), world, pos.up(), player);
+        world.playSound(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, sound.getPlaceSound(), SoundCategory.BLOCKS, (sound.getVolume() + 1.0F) / 2.0F, sound.getPitch() * 0.8F, true);
         stack.stackSize--;
         return EnumActionResult.SUCCESS;
     }
