@@ -87,7 +87,7 @@ public class EntityUtil
     }
 
     //Code from Vazkii who borrowed it from mDiyo
-    public static RayTraceResult raytraceFromEntity(World world, Entity player, boolean par3, double range)
+    public static RayTraceResult raytraceFromEntity(World world, Entity player, boolean stopOnLiquid, double range)
     {
         float f = 1.0F;
         float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
@@ -108,7 +108,7 @@ public class EntityUtil
         if(player instanceof EntityPlayerMP)
             d3 = ((EntityPlayerMP) player).interactionManager.getBlockReachDistance();
         Vec3d vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
-        return world.rayTraceBlocks(vec3, vec31, par3);
+        return world.rayTraceBlocks(vec3, vec31, stopOnLiquid);
 
     }
 

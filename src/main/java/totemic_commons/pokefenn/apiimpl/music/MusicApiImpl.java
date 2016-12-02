@@ -24,7 +24,7 @@ public class MusicApiImpl implements MusicAPI
     @Override
     public MusicAcceptor getClosestAcceptor(World world, double x, double y, double z, int horizontalRadius, int verticalRadius)
     {
-        return TotemUtil.getClosestAcceptor((WorldServer) world, x, y, z, horizontalRadius, verticalRadius);
+        return TotemUtil.getClosestAcceptor((WorldServer) world, x, y, z, horizontalRadius, verticalRadius).orElse(null);
     }
 
     @Override

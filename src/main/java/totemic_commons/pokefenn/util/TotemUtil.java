@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.util;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
@@ -43,13 +44,14 @@ public class TotemUtil
     }
 
     /**
-     * Returns the closest music acceptor from that position, or null if there is none in range
+     * Returns the closest music acceptor from that position, if there is any in range
      */
-    public static MusicAcceptor getClosestAcceptor(WorldServer world, double x, double y, double z, int horizontalRadius, int verticalRadius)
+    public static Optional<MusicAcceptor> getClosestAcceptor(WorldServer world, double x, double y, double z, int horizontalRadius, int verticalRadius)
     {
-        return (MusicAcceptor) EntityUtil.getTileEntitiesInRange(world, new BlockPos(x, y, z), horizontalRadius, verticalRadius).stream()
+        return EntityUtil.getTileEntitiesInRange(world, new BlockPos(x, y, z), horizontalRadius, verticalRadius).stream()
                 .filter(te -> te instanceof MusicAcceptor)
-                .min(Comparator.comparing(te -> te.getDistanceSq(x, y, z))).orElse(null);
+                .min(Comparator.comparing(te -> te.getDistanceSq(x, y, z)))
+                .map(te -> (MusicAcceptor) te);
     }
 
     /**
@@ -62,11 +64,9 @@ public class TotemUtil
     {
         int radius = instr.getBaseRange() + bonusRadius;
 
-        MusicAcceptor tile = getClosestAcceptor((WorldServer) world, x, y ,z, radius, radius);
-        if(tile instanceof TileTotemBase && ((TileTotemBase) tile).canSelect())
-        {
-            ((TileTotemBase) tile).addSelector(instr);
-        }
+        getClosestAcceptor((WorldServer) world, x, y ,z, radius, radius)
+            .filter(tile -> tile instanceof TileTotemBase && ((TileTotemBase) tile).canSelect())
+            .ifPresent(tile -> ((TileTotemBase) tile).addSelector(instr));
     }
 
     public static void playMusicForSelector(World world, BlockPos pos, MusicInstrument instr, int bonusRadius)
@@ -84,12 +84,11 @@ public class TotemUtil
     {
         int radius = instr.getBaseRange() + bonusRadius;
 
-        MusicAcceptor tile = getClosestAcceptor((WorldServer) world, x, y, z, radius, radius);
-        if(tile != null)
-        {
-            int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
-            addMusic(tile, instr, shiftedMusic, instr.getMusicMaximum());
-        }
+        getClosestAcceptor((WorldServer) world, x, y, z, radius, radius)
+            .ifPresent(tile -> {
+                int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
+                addMusic(tile, instr, shiftedMusic, instr.getMusicMaximum());
+            });
     }
 
     /**
