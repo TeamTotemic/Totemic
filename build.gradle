@@ -22,10 +22,10 @@ group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.10.2-12.18.2.2099"
+    version = "1.10.2-12.18.3.2185"
     runDir = "run"
 
-    mappings = "snapshot_20160518"
+    mappings = "snapshot_20161111"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     replaceIn "Totemic.java"
@@ -91,7 +91,6 @@ curseforge {
         id = '237541'
         changelog  = ''
         releaseType = 'beta'
-        addGameVersion '1.10.2'
 
         addArtifact deobfJar
         addArtifact apiZip

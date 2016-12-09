@@ -56,7 +56,7 @@ public class BlockTipi extends Block implements ITileEntityProvider
     {
         if(!world.isRemote)
         {
-            if(world.getBiomeGenForCoords(pos) != Biomes.HELL)
+            if(world.getBiome(pos) != Biomes.HELL)
             {
                 if(world.provider.canRespawnHere())
                 {
