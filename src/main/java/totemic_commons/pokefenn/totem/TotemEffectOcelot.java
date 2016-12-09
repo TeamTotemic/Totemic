@@ -14,26 +14,26 @@ import totemic_commons.pokefenn.util.EntityUtil;
 
 public class TotemEffectOcelot extends TotemEffect
 {
-    public TotemEffectOcelot(String name, int horizontal, int vertical)
+    public TotemEffectOcelot(String name)
     {
-        super(name, horizontal, vertical);
+        super(name);
     }
 
     private static final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");
 
     @Override
-    public void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical)
+    public void effect(World world, BlockPos pos, TotemBase totem, int repetition)
     {
         if(world.isRemote)
             return;
 
         try
         {
-            for(EntityCreeper entity : EntityUtil.getEntitiesInRange(EntityCreeper.class, world, pos, horizontal, vertical))
+            for(EntityCreeper entity : EntityUtil.getEntitiesInRange(EntityCreeper.class, world, pos, 6, 6))
             {
                 int ignited = (Integer) timeSinceIgnited.get(entity);
 
-                if(ignited > 20 - repetition)
+                if(ignited > 15)
                 {
                     timeSinceIgnited.setInt(entity, 0);
                     entity.setCreeperState(-1);

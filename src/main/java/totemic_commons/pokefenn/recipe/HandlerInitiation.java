@@ -92,16 +92,16 @@ public class HandlerInitiation
     {
         TotemicRegistry reg = Totemic.api.registry();
 
-        horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", 6, 6, ModPotions.horsePotion, 80, 60, 0));
-        squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", 6, 6, MobEffects.WATER_BREATHING, 80, 60, 0));
-        blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze", 6, 6));
-        ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic:ocelot", 6, 6));
-        batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", 9, 9, ModPotions.batPotion, 10, 20, 0));
-        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", 6, 6, ModPotions.spiderPotion, 60, 50, 0));
-        cowTotem = reg.addTotem(new TotemEffectCow("totemic:cow", 6, 6));
-        rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", 6, 6, MobEffects.JUMP_BOOST, 80, 60, 0));
-        pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", 6, 6, MobEffects.LUCK, 80, 60, 0));
-        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", 6, 6, MobEffects.STRENGTH, 80, 60, 0));
+        horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", 6, 6, ModPotions.horsePotion, 80, 0));
+        squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", 6, 6, MobEffects.WATER_BREATHING, 80, 0));
+        blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze"));
+        ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic:ocelot"));
+        batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", 9, 9, ModPotions.batPotion, 10, 0));
+        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", 6, 6, ModPotions.spiderPotion, 60, 0));
+        cowTotem = reg.addTotem(new TotemEffectCow("totemic:cow"));
+        rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", 6, 6, MobEffects.JUMP_BOOST, 80, 0));
+        pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", 6, 6, MobEffects.LUCK, 80, 0));
+        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", 6, 6, MobEffects.STRENGTH, 80, 0));
     }
 
     private static void instruments()

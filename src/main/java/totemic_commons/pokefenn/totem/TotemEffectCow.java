@@ -11,21 +11,20 @@ import totemic_commons.pokefenn.util.EntityUtil;
 
 public class TotemEffectCow extends TotemEffect
 {
-
-    public TotemEffectCow(String name, int horizontal, int vertical)
+    public TotemEffectCow(String name)
     {
-        super(name, horizontal, vertical);
+        super(name);
     }
 
     @Override
-    public void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical)
+    public void effect(World world, BlockPos pos, TotemBase totem, int repetition)
     {
         if(world.isRemote)
             return;
 
         if(world.getTotalWorldTime() % 60L == 0)
         {
-            for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, horizontal, vertical))
+            for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 6, 6))
             {
                 Totemic.api.totemEffect().addPotionEffect(entity, MobEffects.RESISTANCE, 50, 1, totem, repetition);
                 Totemic.api.totemEffect().addPotionEffect(entity, MobEffects.SLOWNESS, 150, 0, totem, repetition);

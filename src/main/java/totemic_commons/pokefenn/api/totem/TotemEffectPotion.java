@@ -16,37 +16,41 @@ import totemic_commons.pokefenn.api.TotemicAPI;
 public class TotemEffectPotion extends TotemEffect
 {
     public final Potion potion;
+    public final int horizontalRange;
+    public final int verticalRange;
     public final int interval;
-    public final int defaultTime;
     public final int amplifier;
 
     /**
-     * @see TotemEffect#TotemEffect
+     * @param name a unique name for the Totem Effect
+     * @param horizontal the horizontal range of the effect
+     * @param vertical the vertical range of the effect
      * @param potion the potion effect
      * @param interval the time in ticks until the potion effect is renewed
-     * @param defaultTime the default duration of the effect, will be modified depending on the properties of the Totem pole
-     * @param amplifier the default amplifier of the effect, will be modified depending on the properties of the Totem pole
+     * @param amplifier the amplifier of the effect
      */
-    public TotemEffectPotion(String name, int horizontal, int vertical, Potion potion, int interval, int defaultTime, int amplifier)
+    public TotemEffectPotion(String name, int horizontal, int vertical, Potion potion, int interval, int amplifier)
     {
-        super(name, horizontal, vertical);
+        super(name);
         this.potion = Objects.requireNonNull(potion);
+        this.horizontalRange = horizontal;
+        this.verticalRange = vertical;
         this.interval = interval;
-        this.defaultTime = defaultTime;
         this.amplifier = amplifier;
     }
 
     @Override
-    public void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical)
+    public void effect(World world, BlockPos pos, TotemBase totem, int repetition)
     {
         if(world.isRemote)
             return;
 
         if(world.getTotalWorldTime() % interval == 0)
         {
-            for(EntityPlayer entity : getPlayersInRange(world, pos, horizontal, vertical))
+            int time = interval + 20;
+            for(EntityPlayer entity : getPlayersInRange(world, pos, horizontalRange, verticalRange))
             {
-                TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, defaultTime, amplifier, totem, repetition);
+                TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, time, amplifier, totem, repetition);
             }
         }
     }
