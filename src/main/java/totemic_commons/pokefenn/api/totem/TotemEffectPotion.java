@@ -3,8 +3,10 @@ package totemic_commons.pokefenn.api.totem;
 import java.util.List;
 import java.util.Objects;
 
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -23,6 +25,25 @@ public class TotemEffectPotion extends TotemEffect
 
     /**
      * @param name a unique name for the Totem Effect
+     * @param portable whether this Totem Effect can be used with a Medicine Bag
+     * @param horizontal the horizontal range of the effect
+     * @param vertical the vertical range of the effect
+     * @param potion the potion effect
+     * @param interval the time in ticks until the potion effect is renewed
+     * @param amplifier the amplifier of the effect
+     */
+    public TotemEffectPotion(String name, boolean portable, int horizontal, int vertical, Potion potion, int interval, int amplifier)
+    {
+        super(name, portable);
+        this.potion = Objects.requireNonNull(potion);
+        this.horizontalRange = horizontal;
+        this.verticalRange = vertical;
+        this.interval = interval;
+        this.amplifier = amplifier;
+    }
+
+    /**
+     * @param name a unique name for the Totem Effect
      * @param horizontal the horizontal range of the effect
      * @param vertical the vertical range of the effect
      * @param potion the potion effect
@@ -31,12 +52,7 @@ public class TotemEffectPotion extends TotemEffect
      */
     public TotemEffectPotion(String name, int horizontal, int vertical, Potion potion, int interval, int amplifier)
     {
-        super(name);
-        this.potion = Objects.requireNonNull(potion);
-        this.horizontalRange = horizontal;
-        this.verticalRange = vertical;
-        this.interval = interval;
-        this.amplifier = amplifier;
+        this(name, true, horizontal, vertical, potion, interval, amplifier);
     }
 
     @Override
@@ -52,6 +68,19 @@ public class TotemEffectPotion extends TotemEffect
             {
                 TotemicAPI.get().totemEffect().addPotionEffect(entity, potion, time, amplifier, totem, repetition);
             }
+        }
+    }
+
+    @Override
+    public void effect(EntityLivingBase entity)
+    {
+        if(entity.worldObj.isRemote)
+            return;
+
+        if(entity.worldObj.getTotalWorldTime() % interval == 0)
+        {
+            int time = interval + 20;
+            entity.addPotionEffect(new PotionEffect(potion, time, amplifier, true, false));
         }
     }
 

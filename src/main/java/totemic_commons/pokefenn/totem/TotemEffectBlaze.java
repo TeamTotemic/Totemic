@@ -13,7 +13,7 @@ public class TotemEffectBlaze extends TotemEffect
 {
     public TotemEffectBlaze(String name)
     {
-        super(name);
+        super(name, true);
     }
 
     @Override

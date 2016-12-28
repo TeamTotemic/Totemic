@@ -13,7 +13,7 @@ public class TotemEffectCow extends TotemEffect
 {
     public TotemEffectCow(String name)
     {
-        super(name);
+        super(name, true);
     }
 
     @Override
