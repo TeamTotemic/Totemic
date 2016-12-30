@@ -23,6 +23,8 @@ item.totemic:buffaloTeeth.name=Buffalo Tooth
 item.totemic:buffaloMeat.name=Raw Buffalo Meat
 item.totemic:buffaloCookedMeat.name=Cooked Buffalo Meat
 item.totemic:baykokBow.name=Baykok's Bow
+item.totemic:medicineBag.name=Medicine Bag
+item.totemic:medicineBag.display=Medicine Bag (%s)
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log

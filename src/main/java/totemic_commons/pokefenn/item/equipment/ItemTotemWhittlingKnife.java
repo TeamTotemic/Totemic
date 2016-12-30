@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
@@ -92,8 +91,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         if(player.isSneaking())
         {
-            EntityEquipmentSlot slot = hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.MAINHAND : EntityEquipmentSlot.OFFHAND;
-            player.setItemStackToSlot(slot, onItemRightClick(stack, world, player, hand).getResult());
+            player.setHeldItem(hand, onItemRightClick(stack, world, player, hand).getResult());
             return EnumActionResult.SUCCESS;
         }
         else

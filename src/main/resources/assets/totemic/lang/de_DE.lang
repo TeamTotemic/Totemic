@@ -23,6 +23,8 @@ item.totemic:buffaloTeeth.name=Büffelzahn
 item.totemic:buffaloMeat.name=Rohes Büffelfleisch
 item.totemic:buffaloCookedMeat.name=Gebratenes Büffelfleisch
 item.totemic:baykokBow.name=Baykoks Bogen
+item.totemic:medicineBag.name=Medizinbeutel
+item.totemic:medicineBag.display=Medizinbeutel (%s)
 
 # Block localizations
 tile.cedarLog.name=Rotes Zedernholz
