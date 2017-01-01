@@ -25,6 +25,9 @@ item.totemic:buffaloCookedMeat.name=Gebratenes Büffelfleisch
 item.totemic:baykokBow.name=Baykoks Bogen
 item.totemic:medicineBag.name=Medizinbeutel
 item.totemic:medicineBag.display=Medizinbeutel (%s)
+item.totemic:medicineBag.tooltip=Schleichen+Rechts auf einen Totempfahl zum Setzen des Effekts
+item.totemic:medicineBag.tooltipClosed=Geschlossen
+item.totemic:medicineBag.tooltipOpen=Offen
 
 # Block localizations
 tile.cedarLog.name=Rotes Zedernholz
@@ -102,6 +105,7 @@ totemicmisc.isDoingSelection=Der Totempfahl wartet, dass eine Zeremonie ausgewä
 totemicmisc.selection=Auswahl: %s
 totemicmisc.isDoingStartup=Der Totempfahl beginnt eine Zeremonie
 totemicmisc.isDoingCeremony=Der Totempfahl führt eine Zeremonie aus
+totemicmisc.effectNotPortable=Der Effekt %s kann nicht in einem Medizinbeutel getragen werden
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=Die Totempedia, ein Leitfaden für all deine Totem-Bedürfnisse.
