@@ -2,8 +2,5 @@
  * The Totemic API.
  * This should provide some functionality for extending Totemic.
  */
-@API(apiVersion = "2.1.0", owner = Totemic.MOD_ID, provides = "totemic|API")
+@net.minecraftforge.fml.common.API(apiVersion = "2.1.1", owner = "totemic", provides = "totemic|API")
 package totemic_commons.pokefenn.api;
-
-import net.minecraftforge.fml.common.API;
-import totemic_commons.pokefenn.Totemic;
