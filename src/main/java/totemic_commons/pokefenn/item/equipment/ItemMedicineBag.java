@@ -7,7 +7,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -22,7 +21,10 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.tileentity.totem.StateTotemEffect;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
+import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.ItemUtil;
 
 public class ItemMedicineBag extends ItemTotemic
@@ -53,18 +55,39 @@ public class ItemMedicineBag extends ItemTotemic
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
     {
+        if(!world.isRemote && world.getTotalWorldTime() % 20 == 0)
+            tryCharge(stack, world, entity.getPosition());
+
         if(stack.getMetadata() != 0)
         {
-            NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
             int charge = getCharge(stack);
             if(charge > 0)
             {
                 getEffect(stack).ifPresent(eff -> eff.effect((EntityPlayer) entity));
-                tag.setInteger(Strings.MED_BAG_CHARGE_KEY, charge - 1);
+                --charge;
+                stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, charge);
             }
             else
             {
                 stack.setItemDamage(0);
+            }
+        }
+    }
+
+    private void tryCharge(ItemStack stack, World world, BlockPos pos)
+    {
+        int charge = getCharge(stack);
+        if(charge < MAX_CHARGE)
+        {
+            int effectCount = EntityUtil.getTileEntitiesInRange(world, pos, 6, 6).stream()
+                    .filter(tile -> tile instanceof TileTotemBase && ((TileTotemBase) tile).getState() instanceof StateTotemEffect)
+                    .mapToInt(tile -> ((TileTotemBase) tile).getRepetition(getEffect(stack).orElse(null)))
+                    .max()
+                    .orElse(0);
+            if(effectCount > 0)
+            {
+                charge = Math.min(charge + 10 * 20 * effectCount, MAX_CHARGE);
+                stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, charge);
             }
         }
     }
@@ -145,7 +168,12 @@ public class ItemMedicineBag extends ItemTotemic
     {
         String key;
         if(getEffect(stack).isPresent())
-            key = (stack.getMetadata() == 0) ? "item.totemic:medicineBag.tooltipClosed" : "item.totemic:medicineBag.tooltipOpen";
+        {
+            if(getCharge(stack) > 0)
+                key = (stack.getMetadata() == 0) ? "item.totemic:medicineBag.tooltipClosed" : "item.totemic:medicineBag.tooltipOpen"; //TODO: This is probably temporary until we have textures for the bag
+            else
+                key = "item.totemic:medicineBag.tooltipEmpty";
+        }
         else
             key = "item.totemic:medicineBag.tooltip";
         tooltip.add(I18n.format(key));

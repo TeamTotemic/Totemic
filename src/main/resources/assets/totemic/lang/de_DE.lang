@@ -28,6 +28,7 @@ item.totemic:medicineBag.display=Medizinbeutel (%s)
 item.totemic:medicineBag.tooltip=Schleichen+Rechts auf einen Totempfahl zum Setzen des Effekts
 item.totemic:medicineBag.tooltipClosed=Geschlossen
 item.totemic:medicineBag.tooltipOpen=Offen
+item.totemic:medicineBag.tooltipEmpty=Leer
 
 # Block localizations
 tile.cedarLog.name=Rotes Zedernholz
