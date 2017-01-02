@@ -7,6 +7,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -132,7 +133,9 @@ public class ItemMedicineBag extends ItemTotemic
                     }
 
                     ItemStack newStack = stack.copy();
-                    ItemUtil.getOrCreateTag(newStack).setString(Strings.MED_BAG_TOTEM_KEY, effect.getName());
+                    NBTTagCompound tag = ItemUtil.getOrCreateTag(newStack);
+                    tag.setString(Strings.MED_BAG_TOTEM_KEY, effect.getName());
+                    tag.setInteger(Strings.MED_BAG_CHARGE_KEY, 0);
                     player.setHeldItem(hand, newStack);
                     return EnumActionResult.SUCCESS;
                 }
