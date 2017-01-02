@@ -7,6 +7,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -26,6 +27,8 @@ import totemic_commons.pokefenn.util.ItemUtil;
 
 public class ItemMedicineBag extends ItemTotemic
 {
+    public static final int MAX_CHARGE = 5 * 60 * 20;
+
     public ItemMedicineBag()
     {
         super(Strings.MEDICINE_BAG_NAME);
@@ -39,13 +42,30 @@ public class ItemMedicineBag extends ItemTotemic
                 .map(tag -> Totemic.api.registry().getTotem(tag.getString(Strings.MED_BAG_TOTEM_KEY)));
     }
 
+    public static int getCharge(ItemStack stack)
+    {
+        if(stack.hasTagCompound())
+            return stack.getTagCompound().getInteger(Strings.MED_BAG_CHARGE_KEY);
+        else
+            return 0;
+    }
+
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
     {
         if(stack.getMetadata() != 0)
         {
-            ItemUtil.getOrCreateTag(stack);
-            getEffect(stack).ifPresent(eff -> eff.effect((EntityPlayer) entity));
+            NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
+            int charge = getCharge(stack);
+            if(charge > 0)
+            {
+                getEffect(stack).ifPresent(eff -> eff.effect((EntityPlayer) entity));
+                tag.setInteger(Strings.MED_BAG_CHARGE_KEY, charge - 1);
+            }
+            else
+            {
+                stack.setItemDamage(0);
+            }
         }
     }
 
@@ -99,6 +119,18 @@ public class ItemMedicineBag extends ItemTotemic
     }
 
     @Override
+    public boolean showDurabilityBar(ItemStack stack)
+    {
+        return true;
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack)
+    {
+        return 1.0 - getCharge(stack) / (double) MAX_CHARGE;
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public String getItemStackDisplayName(ItemStack stack)
     {
@@ -117,5 +149,17 @@ public class ItemMedicineBag extends ItemTotemic
         else
             key = "item.totemic:medicineBag.tooltip";
         tooltip.add(I18n.format(key));
+    }
+
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
+    {
+        return slotChanged || !ItemStack.areItemsEqual(oldStack, newStack);
+    }
+
+    @Override
+    public boolean shouldCauseBlockBreakReset(ItemStack oldStack, ItemStack newStack)
+    {
+        return !ItemStack.areItemsEqual(oldStack, newStack);
     }
 }
