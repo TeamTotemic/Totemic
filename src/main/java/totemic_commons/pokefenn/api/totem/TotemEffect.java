@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.api.totem;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -12,7 +12,7 @@ public abstract class TotemEffect
     /**
      * @param name a unique name for the Totem Effect
      * @param portable whether this Totem Effect can be used with a Medicine Bag.
-     * In this case, override {@link #effect(EntityLivingBase)}.
+     * In this case, override {@link #effect(World, EntityPlayer, int)}.
      */
     public TotemEffect(String name, boolean portable)
     {
@@ -29,11 +29,12 @@ public abstract class TotemEffect
     public abstract void effect(World world, BlockPos pos, TotemBase totem, int repetition);
 
     /**
-     * Performs the Totem effect to the given entity, if applicable.
+     * Performs the Totem effect to the given player, if applicable.
      * Override this method to make your effect work with Medicine Bags.<p>
      * This gets called on the server and the client.
+     * @param charge time in ticks until the Medicine Bag is depleted
      */
-    public void effect(EntityLivingBase entity)
+    public void effect(World world, EntityPlayer entity, int charge)
     { }
 
     /**

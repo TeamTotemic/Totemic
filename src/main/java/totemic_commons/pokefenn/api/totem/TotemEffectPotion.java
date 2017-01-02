@@ -3,7 +3,6 @@ package totemic_commons.pokefenn.api.totem;
 import java.util.List;
 import java.util.Objects;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -72,12 +71,12 @@ public class TotemEffectPotion extends TotemEffect
     }
 
     @Override
-    public void effect(EntityLivingBase entity)
+    public void effect(World world, EntityPlayer entity, int charge)
     {
-        if(entity.worldObj.isRemote)
+        if(world.isRemote)
             return;
 
-        if(entity.worldObj.getTotalWorldTime() % interval == 0)
+        if(world.getTotalWorldTime() % interval == 0)
         {
             int time = interval + 20;
             entity.addPotionEffect(new PotionEffect(potion, time, amplifier, true, false));

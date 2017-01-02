@@ -64,9 +64,8 @@ public class ItemMedicineBag extends ItemTotemic
             int charge = getCharge(stack);
             if(charge > 0)
             {
-                getEffect(stack).ifPresent(eff -> eff.effect((EntityPlayer) entity));
-                --charge;
-                stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, charge);
+                getEffect(stack).ifPresent(eff -> eff.effect(world, (EntityPlayer) entity, charge));
+                stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, charge - 1);
             }
             else
             {
@@ -80,16 +79,15 @@ public class ItemMedicineBag extends ItemTotemic
         int charge = getCharge(stack);
         if(charge < MAX_CHARGE)
         {
-            int effectCount = EntityUtil.getTileEntitiesInRange(world, pos, 6, 6).stream()
-                    .filter(tile -> tile instanceof TileTotemBase && ((TileTotemBase) tile).getState() instanceof StateTotemEffect)
-                    .mapToInt(tile -> ((TileTotemBase) tile).getRepetition(getEffect(stack).orElse(null)))
-                    .max()
-                    .orElse(0);
-            if(effectCount > 0)
-            {
-                charge = Math.min(charge + 10 * 20 * effectCount, MAX_CHARGE);
-                stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, charge);
-            }
+            getEffect(stack).ifPresent(effect -> {
+                if(EntityUtil.getTileEntitiesInRange(world, pos, 6, 6).stream()
+                        .filter(tile -> tile instanceof TileTotemBase)
+                        .map(tile -> (TileTotemBase) tile)
+                        .anyMatch(tile -> tile.getState() instanceof StateTotemEffect && tile.getTotemEffectSet().contains(effect)))
+                {
+                    stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, Math.min(charge + 20 * 20, MAX_CHARGE));
+                }
+            });
         }
     }
 
