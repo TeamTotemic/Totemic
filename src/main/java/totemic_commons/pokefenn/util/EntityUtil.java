@@ -31,16 +31,17 @@ public class EntityUtil
         return getEntitiesInRange(clazz, world, pos.getX(), pos.getY(), pos.getZ(), horizontalRadius, verticalRadius);
     }
 
-    public static List<TileEntity> getTileEntitiesInRange(World world, BlockPos pos, int horizontalRadius, int verticalRadius)
+    public static <T extends TileEntity> List<T> getTileEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, int horizontalRadius, int verticalRadius)
     {
-        return getTileEntitiesIn(world, pos.add(-horizontalRadius, -verticalRadius, -horizontalRadius),
+        return getTileEntitiesIn(clazz, world, pos.add(-horizontalRadius, -verticalRadius, -horizontalRadius),
                 pos.add(horizontalRadius + 1, verticalRadius + 1, horizontalRadius + 1));
     }
 
-    //This method no longer exists in Minecraft 1.9. Had to take it from 1.8.9.
-    public static List<TileEntity> getTileEntitiesIn(World world, BlockPos min, BlockPos max)
+    //This method no longer exists in later Minecraft versions. Had to take it from Minecraft 1.8.9.
+    @SuppressWarnings("unchecked")
+    public static <T extends TileEntity> List<T> getTileEntitiesIn(Class<? extends T> clazz, World world, BlockPos min, BlockPos max)
     {
-        List<TileEntity> list = new ArrayList<>();
+        List<T> list = new ArrayList<>();
         for(int x = (min.getX() & ~0x0F); x < max.getX(); x += 16)
             for(int z = (min.getZ() & ~0x0F); z < max.getZ(); z += 16) // & ~0xF Floors it by 16. Yay bitmath!
             {
@@ -52,13 +53,13 @@ public class EntityUtil
                 {
                     for(TileEntity tile : chunk.getTileEntityMap().values())
                     {
-                        if(!tile.isInvalid())
+                        if(clazz.isInstance(tile) && !tile.isInvalid())
                         {
                             BlockPos pos = tile.getPos();
                             if(pos.getX() >= min.getX() && pos.getY() >= min.getY() && pos.getZ() >= min.getZ() &&
                                pos.getX() <  max.getX() && pos.getY() <  max.getY() && pos.getZ() <  max.getZ())
                             {
-                                list.add(tile);
+                                list.add((T) tile);
                             }
 
                         }

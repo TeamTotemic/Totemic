@@ -48,7 +48,7 @@ public class TotemUtil
      */
     public static Optional<MusicAcceptor> getClosestAcceptor(WorldServer world, double x, double y, double z, int horizontalRadius, int verticalRadius)
     {
-        return EntityUtil.getTileEntitiesInRange(world, new BlockPos(x, y, z), horizontalRadius, verticalRadius).stream()
+        return EntityUtil.getTileEntitiesInRange(TileEntity.class, world, new BlockPos(x, y, z), horizontalRadius, verticalRadius).stream()
                 .filter(te -> te instanceof MusicAcceptor)
                 .min(Comparator.comparing(te -> te.getDistanceSq(x, y, z)))
                 .map(te -> (MusicAcceptor) te);
