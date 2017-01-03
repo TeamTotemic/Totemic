@@ -19,7 +19,7 @@ public interface TotemEffectAPI
      * @param totem the Totem Base tile entity where the effect originates
      * @param repetition the number of Totem Pole blocks in the pole that are carved with this effect
      * @return the default time how long a potion effect from a Totem effect lasts
-     * @deprecated Will likely be removed or repaced with something more flexible
+     * @deprecated Replaced by suitable methods in {@link TotemEffectPotion}. Will be removed.
      */
     @Deprecated
     int getDefaultPotionTime(int baseTime, boolean isBad, Random rand, TotemBase totem, int repetition);
@@ -32,7 +32,7 @@ public interface TotemEffectAPI
      * @param totem the Totem Base tile entity where the effect originates
      * @param repetition the number of Totem Pole blocks in the pole that are carved with this effect
      * @return the default strength of a potion effect from a Totem effect
-     * @deprecated Will likely be removed or repaced with something more flexible
+     * @deprecated Replaced by suitable methods in {@link TotemEffectPotion}. Will be removed.
      */
     @Deprecated
     int getDefaultPotionStrength(int baseStrength, boolean isBad, Random rand, TotemBase totem, int repetition);
@@ -44,7 +44,7 @@ public interface TotemEffectAPI
      * @param baseStrength the base strength
      * @param totem the Totem Base tile entity where the effect originates
      * @param repetition the number of Totem Pole blocks in the pole that are carved with this effect
-     * @deprecated Will likely be removed or repaced with something more flexible
+     * @deprecated Replaced by suitable methods in {@link TotemEffectPotion}. Will be removed.
      */
     @Deprecated
     void addPotionEffect(EntityLivingBase entity, Potion potion, int baseTime, int baseStrength, TotemBase totem, int repetition);

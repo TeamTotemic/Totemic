@@ -125,20 +125,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     }
 
     @Override
-    public TotemEffect[] getEffects()
-    {
-        return totemEffectList.toArray(new TotemEffect[0]);
-    }
-
-    @Override
-    @Deprecated
-    public int getWoodBonus()
-    {
-        // TODO Figure out what to do with that
-        return 0;
-    }
-
-    @Override
     public boolean addMusic(MusicInstrument instr, int amount)
     {
         boolean added = state.addMusic(instr, amount);
