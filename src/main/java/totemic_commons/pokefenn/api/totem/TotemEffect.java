@@ -12,7 +12,7 @@ public abstract class TotemEffect
     /**
      * @param name a unique name for the Totem Effect
      * @param portable whether this Totem Effect can be used with a Medicine Bag.
-     * In this case, override {@link #effect(World, EntityPlayer, int)}.
+     * In this case, override {@link #medicineBagEffect}.
      */
     public TotemEffect(String name, boolean portable)
     {
@@ -24,7 +24,7 @@ public abstract class TotemEffect
      * Performs the Totem effect at the given Totem base position.<p>
      * This gets called on the server and the client.
      * @param totem the Totem Base tile entity
-     * @param repetition how many Totem Pole blocks in the pole are carved with this effect
+     * @param repetition the number of Totem Pole blocks that are carved with this effect
      */
     public abstract void effect(World world, BlockPos pos, TotemBase totem, int repetition);
 
@@ -34,7 +34,7 @@ public abstract class TotemEffect
      * This gets called on the server and the client.
      * @param charge time in ticks until the Medicine Bag is depleted
      */
-    public void effect(World world, EntityPlayer entity, int charge)
+    public void medicineBagEffect(World world, EntityPlayer player, int charge)
     { }
 
     /**

@@ -92,16 +92,16 @@ public class HandlerInitiation
     {
         TotemicRegistry reg = Totemic.api.registry();
 
-        horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", 6, 6, ModPotions.horsePotion, 80, 0));
-        squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", 6, 6, MobEffects.WATER_BREATHING, 80, 0));
+        horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", ModPotions.horsePotion));
+        squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", MobEffects.WATER_BREATHING));
         blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze"));
         ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic:ocelot"));
-        batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", 9, 9, ModPotions.batPotion, 10, 0));
-        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", 6, 6, ModPotions.spiderPotion, 60, 0));
+        batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", true, 9, 9, ModPotions.batPotion, 10));
+        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", true, 6, 6, ModPotions.spiderPotion, 60));
         cowTotem = reg.addTotem(new TotemEffectCow("totemic:cow"));
-        rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", 6, 6, MobEffects.JUMP_BOOST, 80, 0));
-        pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", 6, 6, MobEffects.LUCK, 80, 0));
-        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", 6, 6, MobEffects.STRENGTH, 80, 0));
+        rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", MobEffects.JUMP_BOOST));
+        pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", MobEffects.LUCK));
+        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", MobEffects.STRENGTH));
     }
 
     private static void instruments()

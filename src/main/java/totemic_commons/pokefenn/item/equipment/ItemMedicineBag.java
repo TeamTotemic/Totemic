@@ -64,7 +64,7 @@ public class ItemMedicineBag extends ItemTotemic
             int charge = getCharge(stack);
             if(charge > 0)
             {
-                getEffect(stack).ifPresent(eff -> eff.effect(world, (EntityPlayer) entity, charge));
+                getEffect(stack).ifPresent(eff -> eff.medicineBagEffect(world, (EntityPlayer) entity, charge));
                 stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, charge - 1);
             }
             else
@@ -114,30 +114,33 @@ public class ItemMedicineBag extends ItemTotemic
             return result.getType();
         }
         else
-        {
-            TileEntity tile = world.getTileEntity(pos);
-            if(tile instanceof TileTotemPole)
-            {
-                TotemEffect effect = ((TileTotemPole) tile).getEffect();
-                if(effect != null)
-                {
-                    if(!effect.isPortable())
-                    {
-                        if(player.worldObj.isRemote)
-                            player.addChatMessage(new TextComponentTranslation("totemicmisc.effectNotPortable", I18n.format(effect.getUnlocalizedName())));
-                        return EnumActionResult.FAIL;
-                    }
+            return trySetEffect(stack, player, world, pos, hand);
+    }
 
-                    ItemStack newStack = stack.copy();
-                    NBTTagCompound tag = ItemUtil.getOrCreateTag(newStack);
-                    tag.setString(Strings.MED_BAG_TOTEM_KEY, effect.getName());
-                    tag.setInteger(Strings.MED_BAG_CHARGE_KEY, 0);
-                    player.setHeldItem(hand, newStack);
-                    return EnumActionResult.SUCCESS;
+    private EnumActionResult trySetEffect(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand)
+    {
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof TileTotemPole)
+        {
+            TotemEffect effect = ((TileTotemPole) tile).getEffect();
+            if(effect != null)
+            {
+                if(!effect.isPortable())
+                {
+                    if(world.isRemote)
+                        player.addChatMessage(new TextComponentTranslation("totemicmisc.effectNotPortable", I18n.format(effect.getUnlocalizedName())));
+                    return EnumActionResult.FAIL;
                 }
+
+                ItemStack newStack = stack.copy();
+                NBTTagCompound tag = ItemUtil.getOrCreateTag(newStack);
+                tag.setString(Strings.MED_BAG_TOTEM_KEY, effect.getName());
+                tag.setInteger(Strings.MED_BAG_CHARGE_KEY, 0);
+                player.setHeldItem(hand, newStack);
+                return EnumActionResult.SUCCESS;
             }
-            return EnumActionResult.FAIL;
         }
+        return EnumActionResult.FAIL;
     }
 
     @Override
