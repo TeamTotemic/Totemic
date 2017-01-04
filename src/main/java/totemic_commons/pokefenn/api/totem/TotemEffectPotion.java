@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
- * Default implementation of a Totem Effect that adds a potion effect to nearby players
+ * Default implementation of a Totem Effect that adds a potion effect
  */
 public class TotemEffectPotion extends TotemEffect
 {
@@ -98,12 +98,21 @@ public class TotemEffectPotion extends TotemEffect
     }
 
     /**
-     * Returns how much time in ticks the potion effect should linger after leaving the range or closing the Medicine Bag.<p>
+     * Returns how many ticks the potion effect should linger after leaving the range or closing the Medicine Bag.<p>
      * The default value is 20 ticks.
      */
     protected int getLingeringTime()
     {
         return 20;
+    }
+
+    /**
+     * Applies the potion effect to the given player
+     * @param isMedicineBag whether the effect comes from a Medicine Bag
+     */
+    protected void applyTo(boolean isMedicineBag, EntityPlayer player, int time, int amplifier)
+    {
+        player.addPotionEffect(new PotionEffect(potion, time, amplifier, true, false));
     }
 
     @Override
@@ -120,7 +129,7 @@ public class TotemEffectPotion extends TotemEffect
             int amplifier = getAmplifier(world, pos, totem, repetition);
 
             for(EntityPlayer player: getPlayersInRange(world, pos, horizontal, vertical))
-                player.addPotionEffect(new PotionEffect(potion, time, amplifier, true, false));
+                applyTo(false, player, time, amplifier);
         }
     }
 
@@ -134,7 +143,7 @@ public class TotemEffectPotion extends TotemEffect
         {
             int time = interval + getLingeringTime();
             int amplifier = getAmplifierForMedicineBag(world, player, charge);
-            player.addPotionEffect(new PotionEffect(potion, time, amplifier, true, false));
+            applyTo(true, player, time, amplifier);
         }
     }
 
