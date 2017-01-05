@@ -20,81 +20,81 @@ public class TotemEffectPotion extends TotemEffect
      * */
     protected final Potion potion;
     /**
-     * The base horizontal range of the effect.
-     * In general, the range will be larger, see {@link #getHorizontalRange}.
+     * The base range of the effect.
+     * In general, the range will be larger, see {@link #getHorizontalRange} and {@link #getVerticalRange}.
      */
-    protected final int baseHorizontalRange;
-    /**
-     * The base vertical range of the effect.
-     * In general, the range might be larger, see {@link #getVerticalRange}.
-     */
-    protected final int baseVerticalRange;
+    protected final int baseRange;
     /**
      * The time in ticks until the potion effect is renewed
      */
     protected final int interval;
+    /**
+     * The base amplifier of the potion effect.
+     * In general, the amplifier will be larger, see {@link #getAmplifier} and {@link #getAmplifierForMedicineBag}.
+     */
+    protected final int baseAmplifier;
 
     /**
      * @param name a unique name for the Totem Effect
      * @param portable whether this Totem Effect can be used with a Medicine Bag
-     * @param baseHorizontal the base horizontal range of the effect
-     * @param baseVertical the base vertical range of the effect
+     * @param baseRange the base range of the effect
      * @param potion the potion effect
      * @param interval the time in ticks until the potion effect is renewed
+     * @param baseAmplifier the base amplifier of the potion effect
      */
-    public TotemEffectPotion(String name, boolean portable, int baseHorizontal, int baseVertical, Potion potion, int interval)
+    public TotemEffectPotion(String name, boolean portable, int baseRange, Potion potion, int interval, int baseAmplifier)
     {
         super(name, portable);
         this.potion = Objects.requireNonNull(potion);
-        this.baseHorizontalRange = baseHorizontal;
-        this.baseVerticalRange = baseVertical;
+        this.baseRange = baseRange;
         this.interval = interval;
+        this.baseAmplifier = baseAmplifier;
     }
 
     /**
-     * Constructs a TotemEffectPotion that is portable, with a default base range of 6 meters and a default interval of 80 ticks.
+     * Constructs a TotemEffectPotion that is portable, with a default base range of 6 meters, interval of 80 ticks and base amplifier of 0.
      * @param name a unique name for the Totem Effect
      * @param potion the potion effect
      */
     public TotemEffectPotion(String name, Potion potion)
     {
-        this(name, true, 6, 6, potion, 80);
+        this(name, true, 6, potion, 80, 0);
     }
 
     /**
      * Returns the horizontal range of this effect.<p>
-     * The default value ranges between 0 and 5 above {@link #baseHorizontalRange}, depending on the height of the Totem Pole and the amount of music.
+     * The default value ranges between 0 and 5 above {@link #baseRange}, depending on the height of the Totem Pole and the amount of music.
      */
     protected int getHorizontalRange(World world, BlockPos pos, TotemBase totem, int repetition)
     {
-        return baseHorizontalRange + totem.getTotemEffectMusic() / 32 + (totem.getPoleSize() >= 5 ? 1 : 0);
+        return baseRange + totem.getTotemEffectMusic() / 32 + (totem.getPoleSize() >= 5 ? 1 : 0);
     }
 
     /**
      * Returns the vertical range of this effect.<p>
-     * The default value is equal to {@link #baseVerticalRange}.
+     * The default value is equal to {@link #getHorizontalRange}.
      */
     protected int getVerticalRange(World world, BlockPos pos, TotemBase totem, int repetition)
     {
-        return baseVerticalRange;
+        return getHorizontalRange(world, pos, totem, repetition);
     }
 
     /**
      * Returns the amplifier that should be used for this effect.<p>
-     * The default value ranges between 0 and 3, depending on the repetition and the amount of music in the Totem Base.
+     * The default value ranges between 0 and 3 above {@link #baseAmplifier}, depending on the repetition and the amount of music in the Totem Base.
      */
     protected int getAmplifier(World world, BlockPos pos, TotemBase totem, int repetition)
     {
-        return (repetition - 1) / 2 + (totem.getTotemEffectMusic() > 96 ? 1 : 0);
+        return baseAmplifier + (repetition - 1) / 2 + (totem.getTotemEffectMusic() > 96 ? 1 : 0);
     }
 
     /**
      * Returns the amplifier that should be used for this effect, when it is used with a Medicine Bag.<p>
-     * The default value is 0.
+     * The default value is equal to {@link #baseAmplifier}.
      */
     protected int getAmplifierForMedicineBag(World world, EntityPlayer entity, int charge)
     {
-        return 0;
+        return baseAmplifier;
     }
 
     /**
@@ -150,7 +150,7 @@ public class TotemEffectPotion extends TotemEffect
     /**
      * @return a list of players within the given range of the given position
      */
-    protected static List<EntityPlayer> getPlayersInRange(World world, BlockPos pos, int horizontal, int vertical)
+    public static List<EntityPlayer> getPlayersInRange(World world, BlockPos pos, int horizontal, int vertical)
     {
         return world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(
                 pos.getX() - 0.5F, pos.getY() - 0.5f, pos.getZ() - 0.5f,

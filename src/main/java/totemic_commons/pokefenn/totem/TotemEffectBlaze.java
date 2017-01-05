@@ -8,7 +8,7 @@ public class TotemEffectBlaze extends TotemEffectPotion
 {
     public TotemEffectBlaze(String name)
     {
-        super(name, true, 6, 6, MobEffects.FIRE_RESISTANCE, 60);
+        super(name, true, 6, MobEffects.FIRE_RESISTANCE, 60, 0);
     }
 
     @Override
