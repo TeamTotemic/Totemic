@@ -4,6 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * Base class for all Totem Effects
+ */
 public abstract class TotemEffect
 {
     protected final String name;

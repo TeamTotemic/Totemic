@@ -7,12 +7,22 @@ package totemic_commons.pokefenn.api.totem;
 public interface TotemBase
 {
     /**
-     * @return the amount of music for Totem Effects. The maximum value is 128.
+     * The maximum amount of music for Totem Effects that a pole can have
+     */
+    static final int MAX_TOTEM_EFFECT_MUSIC = 128;
+
+    /**
+     * The maximum number of Totem Pole blocks above the base that a pole can have
+     */
+    static final int MAX_POLE_SIZE = 5;
+
+    /**
+     * @return the amount of music for Totem Effects
      */
     int getTotemEffectMusic();
 
     /**
-     * @return the total number of Totem Pole blocks above the base. The maximum value is 5.
+     * @return the total number of Totem Pole blocks above the base
      */
     int getPoleSize();
 

@@ -15,6 +15,11 @@ import net.minecraft.world.World;
  */
 public class TotemEffectPotion extends TotemEffect
 {
+    /** The default value for the base range */
+    public static final int DEFAULT_BASE_RANGE = 6;
+    /**  The default value for the interval time */
+    public static final int DEFAULT_INTERVAL = 80;
+
     /**
      * The potion effect
      * */
@@ -35,6 +40,16 @@ public class TotemEffectPotion extends TotemEffect
     protected final int baseAmplifier;
 
     /**
+     * Constructs a TotemEffectPotion with default values
+     * @param name a unique name for the Totem Effect
+     * @param potion the potion effect
+     */
+    public TotemEffectPotion(String name, Potion potion)
+    {
+        this(name, true, DEFAULT_BASE_RANGE, potion, DEFAULT_INTERVAL, 0);
+    }
+
+    /**
      * @param name a unique name for the Totem Effect
      * @param portable whether this Totem Effect can be used with a Medicine Bag
      * @param baseRange the base range of the effect
@@ -52,22 +67,12 @@ public class TotemEffectPotion extends TotemEffect
     }
 
     /**
-     * Constructs a TotemEffectPotion that is portable, with a default base range of 6 meters, interval of 80 ticks and base amplifier of 0.
-     * @param name a unique name for the Totem Effect
-     * @param potion the potion effect
-     */
-    public TotemEffectPotion(String name, Potion potion)
-    {
-        this(name, true, 6, potion, 80, 0);
-    }
-
-    /**
      * Returns the horizontal range of this effect.<p>
      * The default value ranges between 0 and 5 above {@link #baseRange}, depending on the height of the Totem Pole and the amount of music.
      */
     protected int getHorizontalRange(World world, BlockPos pos, TotemBase totem, int repetition)
     {
-        return baseRange + totem.getTotemEffectMusic() / 32 + (totem.getPoleSize() >= 5 ? 1 : 0);
+        return baseRange + totem.getTotemEffectMusic() / 32 + (totem.getPoleSize() >= TotemBase.MAX_POLE_SIZE ? 1 : 0);
     }
 
     /**
