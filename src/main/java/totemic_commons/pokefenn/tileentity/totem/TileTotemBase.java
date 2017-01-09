@@ -29,13 +29,11 @@ import totemic_commons.pokefenn.tileentity.TileTotemic;
 
 public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBase, ITickable
 {
-    public static final int MAX_HEIGHT = 5;
-
     private boolean firstTick = true;
 
     private TotemState state = new StateTotemEffect(this);
 
-    private final List<TotemEffect> totemEffectList = new ArrayList<>(MAX_HEIGHT);
+    private final List<TotemEffect> totemEffectList = new ArrayList<>(MAX_POLE_SIZE);
     private final Multiset<TotemEffect> totemEffects = HashMultiset.create(Totemic.api.registry().getTotems().size());
 
     @Override
@@ -55,7 +53,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         totemEffectList.clear();
         totemEffects.clear();
 
-        for(int i = 0; i < MAX_HEIGHT; i++)
+        for(int i = 0; i < MAX_POLE_SIZE; i++)
         {
             TileEntity tile = worldObj.getTileEntity(pos.up(i + 1));
             if(tile instanceof TileTotemPole)

@@ -27,6 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicStaffUsage;
+import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
@@ -76,7 +77,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
 
     private void notifyTotemBase(World world, BlockPos pos)
     {
-        for(int i = 0; i < TileTotemBase.MAX_HEIGHT; i++)
+        for(int i = 0; i < TotemBase.MAX_POLE_SIZE; i++)
         {
             Block block = world.getBlockState(pos.down(i + 1)).getBlock();
             if(block instanceof BlockTotemBase)
