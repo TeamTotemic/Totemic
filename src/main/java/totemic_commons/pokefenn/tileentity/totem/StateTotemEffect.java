@@ -6,13 +6,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 
 public final class StateTotemEffect extends TotemState
 {
     public static final int ID = 0;
-    public static final int MAX_EFFECT_MUSIC = 128;
 
     private int musicAmount = 0;
     private boolean musicAdded = false;
@@ -60,7 +60,7 @@ public final class StateTotemEffect extends TotemState
     public boolean addMusic(MusicInstrument instr, int amount)
     {
         int previous = musicAmount;
-        musicAmount = Math.min(previous + amount / 2, MAX_EFFECT_MUSIC);
+        musicAmount = Math.min(previous + amount / 2, TotemBase.MAX_TOTEM_EFFECT_MUSIC);
         if(musicAmount > previous)
         {
             musicAdded = true;

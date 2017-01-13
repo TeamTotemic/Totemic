@@ -8,6 +8,7 @@ import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -29,7 +30,8 @@ public class TotemEffectOcelot extends TotemEffect
 
         try
         {
-            for(EntityCreeper entity : EntityUtil.getEntitiesInRange(EntityCreeper.class, world, pos, 6, 6))
+            int range = Totemic.api.totemEffect().getDefaultRange(this, totem, repetition);
+            for(EntityCreeper entity : EntityUtil.getEntitiesInRange(EntityCreeper.class, world, pos, range, range))
             {
                 int ignited = (Integer) timeSinceIgnited.get(entity);
 

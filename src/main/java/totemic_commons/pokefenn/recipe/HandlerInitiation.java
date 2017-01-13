@@ -97,7 +97,7 @@ public class HandlerInitiation
         blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze"));
         ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic:ocelot"));
         batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", true, 9, ModPotions.batPotion, 10, 0));
-        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", true, 6, ModPotions.spiderPotion, 60, 0));
+        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", ModPotions.spiderPotion));
         cowTotem = reg.addTotem(new TotemEffectCow("totemic:cow"));
         rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", MobEffects.JUMP_BOOST));
         pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", MobEffects.LUCK));

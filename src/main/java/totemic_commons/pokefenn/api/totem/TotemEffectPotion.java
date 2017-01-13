@@ -9,14 +9,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.api.TotemicAPI;
 
 /**
  * Default implementation of a Totem Effect that adds a potion effect
  */
 public class TotemEffectPotion extends TotemEffect
 {
-    /** The default value for the base range */
-    public static final int DEFAULT_BASE_RANGE = 6;
     /**  The default value for the interval time */
     public static final int DEFAULT_INTERVAL = 80;
 
@@ -46,13 +45,13 @@ public class TotemEffectPotion extends TotemEffect
      */
     public TotemEffectPotion(String name, Potion potion)
     {
-        this(name, true, DEFAULT_BASE_RANGE, potion, DEFAULT_INTERVAL, 0);
+        this(name, true, TotemEffectAPI.DEFAULT_BASE_RANGE, potion, DEFAULT_INTERVAL, 0);
     }
 
     /**
      * @param name a unique name for the Totem Effect
      * @param portable whether this Totem Effect can be used with a Medicine Bag
-     * @param baseRange the base range of the effect
+     * @param baseRange the base range of the effect. See {@link TotemEffectAPI#DEFAULT_BASE_RANGE}.
      * @param potion the potion effect
      * @param interval the time in ticks until the potion effect is renewed
      * @param baseAmplifier the base amplifier of the potion effect
@@ -67,12 +66,12 @@ public class TotemEffectPotion extends TotemEffect
     }
 
     /**
-     * Returns the horizontal range of this effect.<p>
-     * The default value ranges between 0 and 5 above {@link #baseRange}, depending on the height of the Totem Pole and the amount of music.
+     * Returns the horizontal range of this effect.
+     * @see TotemEffectAPI#getDefaultRange(TotemEffect, int, TotemBase, int)
      */
     protected int getHorizontalRange(World world, BlockPos pos, TotemBase totem, int repetition)
     {
-        return baseRange + totem.getTotemEffectMusic() / 32 + (totem.getPoleSize() >= TotemBase.MAX_POLE_SIZE ? 1 : 0);
+        return TotemicAPI.get().totemEffect().getDefaultRange(this, baseRange, totem, repetition);
     }
 
     /**
