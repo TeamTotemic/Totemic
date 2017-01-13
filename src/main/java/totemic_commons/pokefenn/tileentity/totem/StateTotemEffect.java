@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import com.google.common.collect.Multiset;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -7,6 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemBase;
+import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 
@@ -25,7 +28,8 @@ public final class StateTotemEffect extends TotemState
     @Override
     public void update()
     {
-        tile.getTotemEffectSet().entrySet().forEach(entry -> entry.getElement().effect(tile.getWorld(), tile.getPos(), tile, entry.getCount()));
+        for(Multiset.Entry<TotemEffect> entry: tile.getTotemEffectSet().entrySet())
+            entry.getElement().effect(tile.getWorld(), tile.getPos(), tile, entry.getCount());
 
         //Diminish melody over time, about 5 minutes to fully deplete
         if(musicAmount > 0 && tile.getWorld().getTotalWorldTime() % 47 == 0)

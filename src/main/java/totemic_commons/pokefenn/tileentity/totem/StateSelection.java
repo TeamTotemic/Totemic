@@ -96,7 +96,8 @@ public final class StateSelection extends TotemState
     public void writeToNBT(NBTTagCompound tag)
     {
         NBTTagList selectorsTag = new NBTTagList();
-        selectors.forEach(instr -> selectorsTag.appendTag(new NBTTagString(instr.getName())));
+        for(MusicInstrument instr: selectors)
+            selectorsTag.appendTag(new NBTTagString(instr.getName()));
         tag.setTag("selectors", selectorsTag);
     }
 

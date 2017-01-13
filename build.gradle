@@ -77,8 +77,6 @@ task apiZip(type: Zip) {
     classifier = 'api'
 }
 
-apiZip.mustRunAfter deobfJar
-
 artifacts {
     archives deobfJar
     archives apiZip

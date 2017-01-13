@@ -141,7 +141,7 @@ public abstract class Ceremony
     /**
      * @return an array of music instruments for selecting the ceremony
      */
-    public MusicInstrument[] getInstruments()
+    public final MusicInstrument[] getInstruments()
     {
         return instruments;
     }
