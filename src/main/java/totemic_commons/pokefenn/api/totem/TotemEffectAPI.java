@@ -7,7 +7,7 @@ import net.minecraft.potion.Potion;
 
 /**
  * Provides access to functionality commonly used for Totem Effects.
- * Use <tt>TotemicAPI.get().totemEffect()</tt> to get an instance of this interface.
+ * Use {@code TotemicAPI.get().totemEffect()} to get an instance of this interface.
  */
 public interface TotemEffectAPI
 {

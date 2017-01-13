@@ -1,10 +1,12 @@
 package totemic_commons.pokefenn.api.music;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.world.World;
 
 /**
  * Provides access to music-related functionality which is commonly used by music instrument blocks and items.
- * Use <tt>TotemicAPI.get().music()</tt> to get an instance of this interface.
+ * Use {@code TotemicAPI.get().music()} to get an instance of this interface.
  */
 public interface MusicAPI
 {
@@ -31,6 +33,7 @@ public interface MusicAPI
      * Note that this method may only be called on the server side.
      * @return the closest MusicAcceptor from that position, or null if there is none in range
      */
+    @Nullable
     MusicAcceptor getClosestAcceptor(World world, double x, double y, double z, int horizontalRadius, int verticalRadius);
 
     /**

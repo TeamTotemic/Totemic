@@ -20,7 +20,7 @@ public class TotemEffectOcelot extends TotemEffect
         super(name, false);
     }
 
-    private static final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d", "bq");
+    private static final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d");
 
     @Override
     public void effect(World world, BlockPos pos, TotemBase totem, int repetition)

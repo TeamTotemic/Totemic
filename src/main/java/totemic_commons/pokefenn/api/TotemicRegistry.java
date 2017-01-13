@@ -3,6 +3,8 @@ package totemic_commons.pokefenn.api;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
@@ -11,7 +13,7 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
 /**
  * Provides access to Totemic's registries.
- * Use <tt>TotemicAPI.get().registry()</tt> to get an instance of this interface.
+ * Use {@code TotemicAPI.get().registry()} to get an instance of this interface.
  */
 public interface TotemicRegistry
 {
@@ -25,6 +27,7 @@ public interface TotemicRegistry
      * Gets a totem effect by its unlocalized name
      * @param name the unlocalized name, including the mod ID
      */
+    @Nullable
     TotemEffect getTotem(String name);
 
     /**
@@ -42,6 +45,7 @@ public interface TotemicRegistry
      * Gets a music instrument by its unlocalized name
      * @param name the unlocalized name, including the mod ID
      */
+    @Nullable
     MusicInstrument getInstrument(String name);
 
     /**
@@ -59,6 +63,7 @@ public interface TotemicRegistry
      * Gets a ceremony by its unlocalized name
      * @param name the unlocalized name, including the mod ID
      */
+    @Nullable
     Ceremony getCeremony(String name);
 
     /**
