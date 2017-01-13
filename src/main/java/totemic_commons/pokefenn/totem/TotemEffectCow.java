@@ -2,35 +2,20 @@ package totemic_commons.pokefenn.totem;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.api.totem.TotemBase;
-import totemic_commons.pokefenn.api.totem.TotemEffect;
-import totemic_commons.pokefenn.util.EntityUtil;
+import net.minecraft.potion.PotionEffect;
+import totemic_commons.pokefenn.api.totem.TotemEffectPotion;
 
-public class TotemEffectCow extends TotemEffect
+public class TotemEffectCow extends TotemEffectPotion
 {
-
-    public TotemEffectCow(String name, int horizontal, int vertical)
+    public TotemEffectCow(String name)
     {
-        super(name, horizontal, vertical);
+        super(name, true, 6, MobEffects.RESISTANCE, 80, 1);
     }
 
     @Override
-    public void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical)
+    protected void applyTo(boolean isMedicineBag, EntityPlayer player, int time, int amplifier)
     {
-        if(world.isRemote)
-            return;
-
-        if(world.getTotalWorldTime() % 60L == 0)
-        {
-            for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, horizontal, vertical))
-            {
-                Totemic.api.totemEffect().addPotionEffect(entity, MobEffects.RESISTANCE, 50, 1, totem, repetition);
-                Totemic.api.totemEffect().addPotionEffect(entity, MobEffects.SLOWNESS, 150, 0, totem, repetition);
-            }
-        }
+        super.applyTo(isMedicineBag, player, time, amplifier);
+        player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, time, 0, true, false));
     }
-
 }

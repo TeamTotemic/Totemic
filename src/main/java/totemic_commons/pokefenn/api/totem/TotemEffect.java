@@ -1,37 +1,44 @@
 package totemic_commons.pokefenn.api.totem;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * Base class for all Totem Effects
+ */
 public abstract class TotemEffect
 {
     protected final String name;
-    protected final int baseHorizontal;
-    protected final int baseVertical;
+    protected final boolean portable;
 
     /**
      * @param name a unique name for the Totem Effect
-     * @param horizontal the minimum horizontal range
-     * @param vertical the minimum vertical range
+     * @param portable whether this Totem Effect can be used with a Medicine Bag.
+     * In this case, override {@link #medicineBagEffect}.
      */
-    public TotemEffect(String name, int horizontal, int vertical)
+    public TotemEffect(String name, boolean portable)
     {
         this.name = name;
-        this.baseHorizontal = horizontal;
-        this.baseVertical = vertical;
+        this.portable = portable;
     }
 
     /**
-     * Performs the totem effect at the given Totem base position.<p>
-     * Note: The horizontal and vertical ranges given as parameters to this method
-     * can be different from the base ranges passed to the constructor.<p>
+     * Performs the Totem effect at the given Totem base position.<p>
      * This gets called on the server and the client.
      * @param totem the Totem Base tile entity
-     * @param repetition how many Totem Pole blocks in the pole are carved with this effect
-     * @param horizontal the total horizontal range with bonuses
-     * @param vertical the total vertical range with bonuses
+     * @param repetition the number of Totem Pole blocks that are carved with this effect
      */
-    public abstract void effect(World world, BlockPos pos, TotemBase totem, int repetition, int horizontal, int vertical);
+    public abstract void effect(World world, BlockPos pos, TotemBase totem, int repetition);
+
+    /**
+     * Performs the Totem effect to the given player, if applicable.
+     * Override this method to make your effect work with Medicine Bags.<p>
+     * This gets called on the server and the client.
+     * @param charge time in ticks until the Medicine Bag is depleted
+     */
+    public void medicineBagEffect(World world, EntityPlayer player, int charge)
+    { }
 
     /**
      * @return the Totem Effect's name
@@ -42,28 +49,20 @@ public abstract class TotemEffect
     }
 
     /**
+     * @return whether this Totem Effect can be used with a Medicine Bag
+     */
+    public final boolean isPortable()
+    {
+        return portable;
+    }
+
+    /**
      * @return the unlocalized name of the Effect, which by default
      * is given by "totemic.totem." followed by the name
      */
     public String getUnlocalizedName()
     {
         return "totemic.totem." + name;
-    }
-
-    /**
-     * @return the minimum horizontal range of the Effect
-     */
-    public int getHorizontalRange()
-    {
-        return baseHorizontal;
-    }
-
-    /**
-     * @return the minimum vertical range of the Effect
-     */
-    public int getVerticalRange()
-    {
-        return baseVertical;
     }
 
     @Override

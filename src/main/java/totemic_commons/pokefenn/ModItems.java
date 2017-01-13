@@ -11,6 +11,7 @@ import totemic_commons.pokefenn.item.ItemTotemicFood;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 import totemic_commons.pokefenn.item.ItemTotempedia;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
+import totemic_commons.pokefenn.item.equipment.ItemMedicineBag;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
 import totemic_commons.pokefenn.item.equipment.music.ItemFlute;
@@ -33,6 +34,7 @@ public final class ModItems
     public static ItemRattle ceremonialRattle;
     public static ItemFlute flute;
     public static ItemBaykokBow baykokBow;
+    public static ItemMedicineBag medicineBag;
 
     public static void init()
     {
@@ -48,6 +50,7 @@ public final class ModItems
         totempedia = new ItemTotempedia();
         flute = new ItemFlute();
         baykokBow = new ItemBaykokBow();
+        medicineBag = new ItemMedicineBag();
 
         GameRegistry.register(totemWhittlingKnife);
         GameRegistry.register(totemicStaff);
@@ -61,6 +64,7 @@ public final class ModItems
         GameRegistry.register(totempedia);
         GameRegistry.register(flute);
         GameRegistry.register(baykokBow);
+        GameRegistry.register(medicineBag);
     }
 
     @SideOnly(Side.CLIENT)
@@ -77,6 +81,7 @@ public final class ModItems
         setDefaultModel(flute);
         setModel(flute, 1, flute.getRegistryName().toString());
         setDefaultModel(baykokBow);
+        setDefaultModel(medicineBag);
 
         for(ItemTotemicItems.Type t: ItemTotemicItems.Type.values())
             setModel(subItems, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());

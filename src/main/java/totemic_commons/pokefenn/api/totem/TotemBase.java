@@ -7,6 +7,16 @@ package totemic_commons.pokefenn.api.totem;
 public interface TotemBase
 {
     /**
+     * The maximum amount of music for Totem Effects that a pole can have
+     */
+    static final int MAX_TOTEM_EFFECT_MUSIC = 128;
+
+    /**
+     * The maximum number of Totem Pole blocks above the base that a pole can have
+     */
+    static final int MAX_POLE_SIZE = 5;
+
+    /**
      * @return the amount of music for Totem Effects
      */
     int getTotemEffectMusic();
@@ -20,17 +30,4 @@ public interface TotemBase
      * @return the number of Totem Pole blocks that are carved with the specified effect
      */
     int getRepetition(TotemEffect effect);
-
-    /**
-     * @return an array of all Totem Effects that are active at the Totem Base
-     * @deprecated Will be removed or replaced. Use {@link #getRepetition(TotemEffect)} instead if possible.
-     */
-    @Deprecated
-    TotemEffect[] getEffects();
-
-    /**
-     * @deprecated Always returns 0 at the moment. Will probably be replaced.
-     */
-    @Deprecated
-    int getWoodBonus();
 }

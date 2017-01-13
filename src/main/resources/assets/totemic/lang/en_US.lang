@@ -23,6 +23,12 @@ item.totemic:buffaloTeeth.name=Buffalo Tooth
 item.totemic:buffaloMeat.name=Raw Buffalo Meat
 item.totemic:buffaloCookedMeat.name=Cooked Buffalo Meat
 item.totemic:baykokBow.name=Baykok's Bow
+item.totemic:medicineBag.name=Medicine Bag
+item.totemic:medicineBag.display=Medicine Bag (%s)
+item.totemic:medicineBag.tooltip=Sneak+Right Click on a Totem Pole to set the effect
+item.totemic:medicineBag.tooltipClosed=Closed
+item.totemic:medicineBag.tooltipOpen=Open
+item.totemic:medicineBag.tooltipEmpty=Empty
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log
@@ -100,6 +106,7 @@ totemicmisc.isDoingSelection=The Totem Pole is waiting for a Ceremony to be sele
 totemicmisc.selection=Selection: %s
 totemicmisc.isDoingStartup=The Totem Pole is doing a Ceremony startup
 totemicmisc.isDoingCeremony=The Totem Pole is doing a Ceremony effect
+totemicmisc.effectNotPortable=The effect %s cannot be carried in a Medicine Bag
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.

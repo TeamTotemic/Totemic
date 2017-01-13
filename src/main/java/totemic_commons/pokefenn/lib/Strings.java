@@ -34,6 +34,7 @@ public final class Strings
     public static final String FLUTE_NAME = "flute";
     public static final String TIPI_ITEM_NAME = "tipiItem";
     public static final String BAYKOK_BOW_NAME = "baykokBow";
+    public static final String MEDICINE_BAG_NAME = "medicineBag";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
@@ -47,4 +48,6 @@ public final class Strings
     //ItemStack NBT keys
     public static final String KNIFE_TOTEM_KEY = "totem";
     public static final String INSTR_TIME_KEY = "time";
+    public static final String MED_BAG_TOTEM_KEY = "totem";
+    public static final String MED_BAG_CHARGE_KEY = "charge";
 }

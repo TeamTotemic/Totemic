@@ -6,13 +6,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 
 public final class StateTotemEffect extends TotemState
 {
     public static final int ID = 0;
-    public static final int MAX_EFFECT_MUSIC = 128;
 
     private int musicAmount = 0;
     private boolean musicAdded = false;
@@ -25,13 +25,7 @@ public final class StateTotemEffect extends TotemState
     @Override
     public void update()
     {
-        int rangeBonus = getRangeBonus();
-
-        tile.getTotemEffectSet().entrySet().forEach(e -> {
-            int horizontal = e.getElement().getHorizontalRange() + rangeBonus;
-            int vertical = e.getElement().getVerticalRange() + rangeBonus;
-            e.getElement().effect(tile.getWorld(), tile.getPos(), tile, e.getCount(), horizontal, vertical);
-        });
+        tile.getTotemEffectSet().entrySet().forEach(entry -> entry.getElement().effect(tile.getWorld(), tile.getPos(), tile, entry.getCount()));
 
         //Diminish melody over time, about 5 minutes to fully deplete
         if(musicAmount > 0 && tile.getWorld().getTotalWorldTime() % 47 == 0)
@@ -50,29 +44,6 @@ public final class StateTotemEffect extends TotemState
             spawnParticles();
     }
 
-    private int getRangeBonus()
-    {
-        int bonus = 0;
-
-        if(musicAmount >= 10)
-            bonus += 1;
-        else if(musicAmount >= 32)
-            bonus += 2;
-        else if(musicAmount >= 64)
-            bonus += 3;
-        else if(musicAmount >= 96)
-            bonus += 4;
-        else if(musicAmount >= 115)
-            bonus += 5;
-
-        //bonus += tile.getWoodBonus() / 3;
-
-        if(tile.getPoleSize() >= 5)
-            bonus += 2;
-
-        return bonus;
-    }
-
     @SideOnly(Side.CLIENT)
     private void spawnParticles()
     {
@@ -89,7 +60,7 @@ public final class StateTotemEffect extends TotemState
     public boolean addMusic(MusicInstrument instr, int amount)
     {
         int previous = musicAmount;
-        musicAmount = Math.min(previous + amount / 2, MAX_EFFECT_MUSIC);
+        musicAmount = Math.min(previous + amount / 2, TotemBase.MAX_TOTEM_EFFECT_MUSIC);
         if(musicAmount > previous)
         {
             musicAdded = true;
