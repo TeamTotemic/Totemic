@@ -14,12 +14,12 @@ public final class StateCeremonyEffect extends TotemState
     private Ceremony ceremony;
     private int time = 0;
 
-    public StateCeremonyEffect(TileTotemBase tile)
+    StateCeremonyEffect(TileTotemBase tile)
     {
         super(tile);
     }
 
-    public StateCeremonyEffect(TileTotemBase tile, Ceremony ceremony)
+    StateCeremonyEffect(TileTotemBase tile, Ceremony ceremony)
     {
         this(tile);
         this.ceremony = ceremony;
@@ -54,20 +54,20 @@ public final class StateCeremonyEffect extends TotemState
     }
 
     @Override
-    public int getID()
+    int getID()
     {
         return ID;
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tag)
+    void writeToNBT(NBTTagCompound tag)
     {
         tag.setString("ceremony", ceremony.getName());
         tag.setInteger("time", time);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tag)
+    void readFromNBT(NBTTagCompound tag)
     {
         ceremony = Totemic.api.registry().getCeremony(tag.getString("ceremony"));
         if(ceremony == null)

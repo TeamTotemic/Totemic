@@ -41,7 +41,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     }
 
     @SideOnly(Side.CLIENT)
-    public String getCurrentlyCarving(int i)
+    private String getCarvingName(int i)
     {
         if(i < totemList.size())
             return I18n.format(totemList.get(i).getUnlocalizedName());
@@ -66,14 +66,14 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip1"));
         list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip2"));
-        list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip3", getCurrentlyCarving(getCarvingIndex(stack))));
+        list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip3", getCarvingName(getCarvingIndex(stack))));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return I18n.format(getUnlocalizedName() + ".display", getCurrentlyCarving(getCarvingIndex(stack)));
+        return I18n.format(getUnlocalizedName() + ".display", getCarvingName(getCarvingIndex(stack)));
     }
 
     @Override

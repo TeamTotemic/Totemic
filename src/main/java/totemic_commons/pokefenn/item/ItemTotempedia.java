@@ -12,7 +12,6 @@ import vazkii.botania.totemic_custom.api.lexicon.ILexicon;
 
 public class ItemTotempedia extends ItemTotemic implements ILexicon
 {
-
     public ItemTotempedia()
     {
         super(Strings.TOTEMPEDIA_NAME);
@@ -26,5 +25,4 @@ public class ItemTotempedia extends ItemTotemic implements ILexicon
 
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
-
 }

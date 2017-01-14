@@ -25,12 +25,12 @@ public final class StateStartup extends TotemState
     private int totalMusic = 0;
     private final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75F);
 
-    public StateStartup(TileTotemBase tile)
+    StateStartup(TileTotemBase tile)
     {
         super(tile);
     }
 
-    public StateStartup(TileTotemBase tile, Ceremony ceremony)
+    StateStartup(TileTotemBase tile, Ceremony ceremony)
     {
         this(tile);
         this.ceremony = ceremony;
@@ -98,13 +98,13 @@ public final class StateStartup extends TotemState
     }
 
     @Override
-    public int getID()
+    int getID()
     {
         return ID;
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tag)
+    void writeToNBT(NBTTagCompound tag)
     {
         tag.setString("ceremony", ceremony.getName());
         tag.setInteger("time", time);
@@ -113,7 +113,7 @@ public final class StateStartup extends TotemState
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tag)
+    void readFromNBT(NBTTagCompound tag)
     {
         ceremony = Totemic.api.registry().getCeremony(tag.getString("ceremony"));
         if(ceremony == null)

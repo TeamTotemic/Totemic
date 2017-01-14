@@ -20,7 +20,7 @@ public final class StateTotemEffect extends TotemState
     private int musicAmount = 0;
     private boolean musicAdded = false;
 
-    public StateTotemEffect(TileTotemBase tile)
+    StateTotemEffect(TileTotemBase tile)
     {
         super(tile);
     }
@@ -75,7 +75,7 @@ public final class StateTotemEffect extends TotemState
     }
 
     @Override
-    public boolean canSelect()
+    boolean canSelect()
     {
         return true;
     }
@@ -97,19 +97,19 @@ public final class StateTotemEffect extends TotemState
     }
 
     @Override
-    public int getID()
+    int getID()
     {
         return ID;
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tag)
+    void writeToNBT(NBTTagCompound tag)
     {
         tag.setInteger("musicForTotemEffect", musicAmount);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tag)
+    void readFromNBT(NBTTagCompound tag)
     {
         musicAmount = tag.getInteger("musicForTotemEffect");
     }

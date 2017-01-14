@@ -8,12 +8,6 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Pokefenn
- * Date: 02/02/14
- * Time: 13:04
- */
 public class TileTotemPole extends TileTotemic
 {
     private TotemEffect effect = null;

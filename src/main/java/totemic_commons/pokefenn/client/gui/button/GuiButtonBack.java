@@ -45,7 +45,7 @@ public class GuiButtonBack extends GuiButton
             RenderHelper.renderTooltip(par2, par3 + tooltipY, tooltip);
     }
 
-    public List<String> getTooltip()
+    protected List<String> getTooltip()
     {
         return Collections.singletonList(I18n.format("totemicmisc.back"));
     }

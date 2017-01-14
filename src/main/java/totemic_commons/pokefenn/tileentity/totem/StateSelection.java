@@ -21,12 +21,12 @@ public final class StateSelection extends TotemState
     private final List<MusicInstrument> selectors = new ArrayList<>(Ceremony.MAX_SELECTORS);
     private int time = 0; //Time since last selection
 
-    public StateSelection(TileTotemBase tile)
+    StateSelection(TileTotemBase tile)
     {
         super(tile);
     }
 
-    public StateSelection(TileTotemBase tile, MusicInstrument firstSelector)
+    StateSelection(TileTotemBase tile, MusicInstrument firstSelector)
     {
         this(tile);
         addSelector(firstSelector);
@@ -40,13 +40,13 @@ public final class StateSelection extends TotemState
     }
 
     @Override
-    public boolean canSelect()
+    boolean canSelect()
     {
         return true;
     }
 
     @Override
-    public void addSelector(MusicInstrument instr)
+    void addSelector(MusicInstrument instr)
     {
         BlockPos pos = tile.getPos();
         WorldServer world = (WorldServer) tile.getWorld();
@@ -87,13 +87,13 @@ public final class StateSelection extends TotemState
     }
 
     @Override
-    public int getID()
+    int getID()
     {
         return ID;
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tag)
+    void writeToNBT(NBTTagCompound tag)
     {
         NBTTagList selectorsTag = new NBTTagList();
         for(MusicInstrument instr: selectors)
@@ -102,7 +102,7 @@ public final class StateSelection extends TotemState
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tag)
+    void readFromNBT(NBTTagCompound tag)
     {
         NBTTagList selectorsTag = tag.getTagList("selectors", 8);
         for(int i = 0; i < selectorsTag.tagCount(); i++)

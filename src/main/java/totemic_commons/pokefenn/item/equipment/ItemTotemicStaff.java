@@ -51,6 +51,4 @@ public class ItemTotemicStaff extends ItemTotemic
         }
         return EnumActionResult.FAIL;
     }
-
-
 }

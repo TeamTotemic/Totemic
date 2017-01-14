@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.block.music;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -34,19 +36,6 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbor)
     {
-        breakStuffs(world, pos);
-    }
-
-    @Override
-    public boolean canPlaceBlockAt(World world, BlockPos pos)
-    {
-        IBlockState upState = world.getBlockState(pos.up());
-        return world.isAirBlock(pos.down())
-                && (world.isSideSolid(pos.up(), EnumFacing.DOWN) || upState.getBlock().isLeaves(upState, world, pos.up()));
-    }
-
-    public void breakStuffs(World world, BlockPos pos)
-    {
         if(!world.isRemote)
         {
             if(!canPlaceBlockAt(world, pos))
@@ -58,8 +47,16 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     }
 
     @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
+    {
+        IBlockState upState = world.getBlockState(pos.up());
+        return world.isAirBlock(pos.down())
+                && (world.isSideSolid(pos.up(), EnumFacing.DOWN) || upState.getBlock().isLeaves(upState, world, pos.up()));
+    }
+
+    @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-            ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+            @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(pos);
 

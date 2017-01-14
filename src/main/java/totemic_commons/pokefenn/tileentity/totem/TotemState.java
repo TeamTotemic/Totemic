@@ -5,11 +5,11 @@ import net.minecraft.util.ITickable;
 import totemic_commons.pokefenn.api.music.MusicAcceptor;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 
-public abstract class TotemState implements ITickable, MusicAcceptor
+abstract class TotemState implements ITickable, MusicAcceptor
 {
     protected final TileTotemBase tile;
 
-    public static TotemState fromID(int id, TileTotemBase tile)
+    static TotemState fromID(int id, TileTotemBase tile)
     {
         switch(id)
         {
@@ -26,21 +26,21 @@ public abstract class TotemState implements ITickable, MusicAcceptor
         }
     }
 
-    public TotemState(TileTotemBase tile)
+    TotemState(TileTotemBase tile)
     {
         this.tile = tile;
     }
 
-    public boolean canSelect()
+    boolean canSelect()
     {
         return false;
     }
 
-    public void addSelector(MusicInstrument instr) { }
+    void addSelector(MusicInstrument instr) { }
 
-    public abstract int getID();
+    abstract int getID();
 
-    public abstract void writeToNBT(NBTTagCompound tag);
+    abstract void writeToNBT(NBTTagCompound tag);
 
-    public abstract void readFromNBT(NBTTagCompound tag);
+    abstract void readFromNBT(NBTTagCompound tag);
 }

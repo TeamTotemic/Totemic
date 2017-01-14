@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.block.music;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -73,7 +75,7 @@ public class BlockDrum extends Block implements ITileEntityProvider
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-            ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+            @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileDrum tileDrum = (TileDrum) world.getTileEntity(pos);
 

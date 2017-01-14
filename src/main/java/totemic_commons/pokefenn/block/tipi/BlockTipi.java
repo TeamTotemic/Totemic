@@ -2,6 +2,8 @@ package totemic_commons.pokefenn.block.tipi;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
@@ -104,7 +106,7 @@ public class BlockTipi extends Block implements ITileEntityProvider
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
-            EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+            EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         return tipiSleep(world, pos, player);
     }

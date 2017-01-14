@@ -25,7 +25,7 @@ public class GuiButtonBackWithShift extends GuiButtonBack
     }
 
     @Override
-    public List<String> getTooltip()
+    protected List<String> getTooltip()
     {
         return Arrays.asList(I18n.format("totemicmisc.back"), TextFormatting.GRAY + I18n.format("totemicmisc.clickToIndex"));
     }

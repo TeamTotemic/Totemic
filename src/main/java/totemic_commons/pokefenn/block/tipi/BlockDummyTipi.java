@@ -47,7 +47,7 @@ public class BlockDummyTipi extends Block
                 }
     }
 
-    public static void breakTipi(World world, BlockPos pos)
+    static void breakTipi(World world, BlockPos pos)
     {
         int height = 5;
         int radius = 2;

@@ -140,7 +140,7 @@ public class ItemBaykokBow extends ItemBow
     {
         try
         {
-            return (ItemStack)findAmmoMethod.invoke(this, player);
+            return (ItemStack) findAmmoMethod.invoke(this, player);
         }
         catch(ReflectiveOperationException e)
         {

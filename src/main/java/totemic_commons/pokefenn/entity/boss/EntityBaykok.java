@@ -2,6 +2,8 @@ package totemic_commons.pokefenn.entity.boss;
 
 import java.util.Arrays;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -35,7 +37,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
         setSize(0.55F, 2.25F);
         setHealth(getMaxHealth());
 
-        ((PathNavigateGround)getNavigator()).setCanSwim(true);
+        ((PathNavigateGround) getNavigator()).setCanSwim(true);
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(2, new EntityAIAttackRanged(this, 1.0, 12, 30, 40.0F));
         tasks.addTask(5, new EntityAIWander(this, 1.0));
@@ -58,7 +60,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     }
 
     @Override
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata)
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         setEquipmentBasedOnDifficulty(difficulty);
         return super.onInitialSpawn(difficulty, livingdata);

@@ -81,7 +81,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         return state;
     }
 
-    public void setState(TotemState state)
+    void setState(TotemState state)
     {
         if(state != this.state)
         {
@@ -139,6 +139,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public void addSelector(MusicInstrument instr)
     {
         state.addSelector(instr);
+    }
+
+    public void resetState()
+    {
+        setState(new StateTotemEffect(this));
     }
 
     @SideOnly(Side.CLIENT)

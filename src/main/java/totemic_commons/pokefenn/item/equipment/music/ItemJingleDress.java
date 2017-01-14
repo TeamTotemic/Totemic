@@ -80,7 +80,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         }
     }
 
-    public void playMusic(World world, EntityPlayer player, ItemStack itemStack, boolean isSneaking)
+    private void playMusic(World world, EntityPlayer player, ItemStack itemStack, boolean isSneaking)
     {
         if(!isSneaking)
         {
@@ -89,7 +89,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         }
     }
 
-    public void particlesAllAround(WorldServer world, double x, double y, double z)
+    private void particlesAllAround(WorldServer world, double x, double y, double z)
     {
         world.spawnParticle(EnumParticleTypes.NOTE, x, y + 0.4D, z, 6, 0.5D, 0.2D, 0.5D, 0.0D);
     }

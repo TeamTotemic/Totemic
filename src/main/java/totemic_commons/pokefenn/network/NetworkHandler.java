@@ -18,7 +18,6 @@ import totemic_commons.pokefenn.network.server.PacketMouseWheel;
 
 public class NetworkHandler
 {
-
     private static int id;
     public static final SimpleNetworkWrapper wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(Totemic.MOD_ID);
 
