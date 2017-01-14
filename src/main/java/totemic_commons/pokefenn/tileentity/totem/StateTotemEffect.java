@@ -12,10 +12,11 @@ import totemic_commons.pokefenn.api.totem.TotemBase;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase.State;
 
 public final class StateTotemEffect extends TotemState
 {
+    public static final int ID = 0;
+
     private int musicAmount = 0;
     private boolean musicAdded = false;
 
@@ -96,9 +97,9 @@ public final class StateTotemEffect extends TotemState
     }
 
     @Override
-    TileTotemBase.State getID()
+    int getID()
     {
-        return State.TOTEM_EFFECT;
+        return ID;
     }
 
     @Override

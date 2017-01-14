@@ -6,10 +6,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase.State;
 
 public final class StateCeremonyEffect extends TotemState
 {
+    public static final int ID = 3;
+
     private Ceremony ceremony;
     private int time = 0;
 
@@ -53,9 +54,9 @@ public final class StateCeremonyEffect extends TotemState
     }
 
     @Override
-    TileTotemBase.State getID()
+    int getID()
     {
-        return State.CEREMONY_EFFECT;
+        return ID;
     }
 
     @Override

@@ -13,10 +13,11 @@ import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase.State;
 
 public final class StateSelection extends TotemState
 {
+    public static final int ID = 1;
+
     private final List<MusicInstrument> selectors = new ArrayList<>(Ceremony.MAX_SELECTORS);
     private int time = 0; //Time since last selection
 
@@ -86,9 +87,9 @@ public final class StateSelection extends TotemState
     }
 
     @Override
-    TileTotemBase.State getID()
+    int getID()
     {
-        return State.SELECTION;
+        return ID;
     }
 
     @Override

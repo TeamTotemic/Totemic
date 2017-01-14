@@ -14,10 +14,11 @@ import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
-import totemic_commons.pokefenn.tileentity.totem.TileTotemBase.State;
 
 public final class StateStartup extends TotemState
 {
+    public static final int ID = 2;
+
     private Ceremony ceremony;
     private int time = 0;
     private final TObjectIntMap<MusicInstrument> music = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75F);
@@ -49,7 +50,7 @@ public final class StateStartup extends TotemState
                 {
                     ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
                     tile.setState(new StateTotemEffect(tile));
-                    tile.getStateObj().update();
+                    tile.getState().update();
                 }
 
                 if(time % 20 == 0)
@@ -59,7 +60,7 @@ public final class StateStartup extends TotemState
             {
                 ((WorldServer) world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
                 tile.setState(new StateCeremonyEffect(tile, ceremony));
-                tile.getStateObj().update();
+                tile.getState().update();
             }
         }
         else
@@ -97,9 +98,9 @@ public final class StateStartup extends TotemState
     }
 
     @Override
-    TileTotemBase.State getID()
+    int getID()
     {
-        return State.STARTUP;
+        return ID;
     }
 
     @Override

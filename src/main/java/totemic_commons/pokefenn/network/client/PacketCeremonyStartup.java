@@ -77,9 +77,9 @@ public class PacketCeremonyStartup extends SynchronizedPacketBase<PacketCeremony
         if(tile instanceof TileTotemBase)
         {
             TileTotemBase totem = (TileTotemBase) tile;
-            if(totem.getStateObj() instanceof StateStartup)
+            if(totem.getState() instanceof StateStartup)
             {
-                StateStartup state = (StateStartup) totem.getStateObj();
+                StateStartup state = (StateStartup) totem.getState();
 
                 state.setTime(startupTime);
                 state.setMusic(instruments, values);

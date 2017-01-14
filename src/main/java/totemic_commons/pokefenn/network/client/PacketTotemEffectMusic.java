@@ -46,8 +46,8 @@ public class PacketTotemEffectMusic extends SynchronizedPacketBase<PacketTotemEf
         if(tile instanceof TileTotemBase)
         {
             TileTotemBase totem = (TileTotemBase) tile;
-            if(totem.getStateObj() instanceof StateTotemEffect)
-                ((StateTotemEffect) totem.getStateObj()).setMusicAmount(effectMusic);
+            if(totem.getState() instanceof StateTotemEffect)
+                ((StateTotemEffect) totem.getState()).setMusicAmount(effectMusic);
         }
     }
 }
