@@ -25,6 +25,7 @@ import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.tileentity.totem.StateCeremonyEffect;
 import totemic_commons.pokefenn.tileentity.totem.StateStartup;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase.State;
 
 @SideOnly(Side.CLIENT)
 public class GameOverlay
@@ -44,7 +45,7 @@ public class GameOverlay
 
         if(activeTotem != null)
         {
-            if(activeTotem.isInvalid() || !(activeTotem.getState() instanceof StateStartup || activeTotem.getState() instanceof StateCeremonyEffect))
+            if(activeTotem.isInvalid() || !(activeTotem.getState() == State.STARTUP || activeTotem.getState() == State.CEREMONY_EFFECT))
                 activeTotem = null;
         }
 
@@ -75,9 +76,9 @@ public class GameOverlay
             int barW = 104;
             int barH = 7;
 
-            if(activeTotem.getState() instanceof StateStartup)
+            if(activeTotem.getStateObj() instanceof StateStartup)
             {
-                StateStartup state = (StateStartup) activeTotem.getState();
+                StateStartup state = (StateStartup) activeTotem.getStateObj();
                 Ceremony cer = state.getCeremony();
 
                 String locName = I18n.format(cer.getUnlocalizedName());
@@ -98,9 +99,9 @@ public class GameOverlay
                 RenderHelper.addQuad(wr, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar
                 tes.draw();
             }
-            else if(activeTotem.getState() instanceof StateCeremonyEffect)
+            else if(activeTotem.getStateObj() instanceof StateCeremonyEffect)
             {
-                StateCeremonyEffect state = (StateCeremonyEffect) activeTotem.getState();
+                StateCeremonyEffect state = (StateCeremonyEffect) activeTotem.getStateObj();
                 Ceremony cer = state.getCeremony();
 
                 String locName = I18n.format(cer.getUnlocalizedName());

@@ -9,17 +9,17 @@ abstract class TotemState implements ITickable, MusicAcceptor
 {
     protected final TileTotemBase tile;
 
-    static TotemState fromID(int id, TileTotemBase tile)
+    static TotemState fromID(TileTotemBase.State id, TileTotemBase tile)
     {
         switch(id)
         {
-        case StateTotemEffect.ID:
+        case TOTEM_EFFECT:
             return new StateTotemEffect(tile);
-        case StateSelection.ID:
+        case SELECTION:
             return new StateSelection(tile);
-        case StateStartup.ID:
+        case STARTUP:
             return new StateStartup(tile);
-        case StateCeremonyEffect.ID:
+        case CEREMONY_EFFECT:
             return new StateCeremonyEffect(tile);
         default:
             throw new IllegalArgumentException("Invalid Totem Base state");
@@ -38,7 +38,7 @@ abstract class TotemState implements ITickable, MusicAcceptor
 
     void addSelector(MusicInstrument instr) { }
 
-    abstract int getID();
+    abstract TileTotemBase.State getID();
 
     abstract void writeToNBT(NBTTagCompound tag);
 

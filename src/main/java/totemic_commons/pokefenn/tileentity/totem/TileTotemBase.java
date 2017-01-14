@@ -76,7 +76,12 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         calculateTotemEffects();
     }
 
-    public TotemState getState()
+    public State getState()
+    {
+        return getStateObj().getID();
+    }
+
+    public TotemState getStateObj()
     {
         return state;
     }
@@ -166,7 +171,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     {
         tag = super.writeToNBT(tag);
 
-        tag.setByte("state", (byte) state.getID());
+        tag.setByte("state", (byte) state.getID().ordinal());
         state.writeToNBT(tag);
 
         return tag;
@@ -178,7 +183,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         super.readFromNBT(tag);
 
         if(tag.hasKey("state", 99))
-            state = TotemState.fromID(tag.getByte("state"), this);
+            state = TotemState.fromID(State.values()[tag.getByte("state")], this);
         else
             state = new StateTotemEffect(this);
 
@@ -201,5 +206,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
     {
         readFromNBT(pkt.getNbtCompound());
+    }
+
+    public enum State
+    {
+        TOTEM_EFFECT, SELECTION, STARTUP, CEREMONY_EFFECT;
     }
 }

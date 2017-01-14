@@ -22,8 +22,8 @@ import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.tileentity.totem.StateTotemEffect;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
+import totemic_commons.pokefenn.tileentity.totem.TileTotemBase.State;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemPole;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.ItemUtil;
@@ -81,7 +81,7 @@ public class ItemMedicineBag extends ItemTotemic
         {
             getEffect(stack).ifPresent(effect -> {
                 if(EntityUtil.getTileEntitiesInRange(TileTotemBase.class, world, pos, 6, 6).stream()
-                        .anyMatch(tile -> tile.getState() instanceof StateTotemEffect && tile.getTotemEffectSet().contains(effect)))
+                        .anyMatch(tile -> tile.getState() == State.TOTEM_EFFECT && tile.getTotemEffectSet().contains(effect)))
                 {
                     stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, Math.min(charge + 20 * 20, MAX_CHARGE));
                 }
