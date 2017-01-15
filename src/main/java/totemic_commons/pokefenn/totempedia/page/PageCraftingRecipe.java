@@ -45,7 +45,7 @@ public class PageCraftingRecipe extends PageRecipe
     private int ticksElapsed = 0;
     private int recipeAt = 0;
 
-    boolean oreDictRecipe, shapelessRecipe;
+    private boolean oreDictRecipe, shapelessRecipe;
 
     public PageCraftingRecipe(String unlocalizedName, List<IRecipe> recipes)
     {
