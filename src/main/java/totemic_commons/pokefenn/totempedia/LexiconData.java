@@ -57,6 +57,7 @@ public final class LexiconData
 
     public static LexiconEntry creatingTotems;
     public static LexiconEntry totemEffects;
+    public static LexiconEntry medicineBag;
 
     public static LexiconEntry totemicStaff;
     public static LexiconEntry barkStripper;
@@ -92,6 +93,9 @@ public final class LexiconData
 
         totemEffects = new BLexiconEntry(Totempedia.TOTEM_EFFECTS, categoryTotems);
         totemEffects.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));
+
+        medicineBag = new BLexiconEntry(Totempedia.MEDICINE_BAG, categoryTotems);
+        medicineBag.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.medicineBag));
 
         //Instruments
         instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryInstruments);

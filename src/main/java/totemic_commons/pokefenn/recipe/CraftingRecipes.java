@@ -16,6 +16,7 @@ import totemic_commons.pokefenn.item.ItemTotemicItems;
 public class CraftingRecipes
 {
     public static IRecipe totemWhittlingKnife;
+    public static IRecipe medicineBag;
 
     public static IRecipe totemicStaff;
     public static IRecipe barkStripper;
@@ -44,6 +45,8 @@ public class CraftingRecipes
                 " ls", " s ", "s l", ('s'), "stickWood", ('l'), "treeLeaves"));
         GameRegistry.addRecipe(totemWhittlingKnife = new ShapedOreRecipe(ModItems.totemWhittlingKnife,
                 "  i", " sf", "s  ", ('s'), "stickWood", ('i'), "ingotIron", ('f'), Items.FLINT));
+        GameRegistry.addRecipe(medicineBag = new ShapedOreRecipe(ModItems.medicineBag,
+                "pst", "hdh", " h ", ('p'), ModBlocks.cedarPlank, ('s'), "string", ('t'), "teethBuffalo", ('h'), "hideBuffalo", ('d'), "gemDiamond"));
 
         //Generic
         GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.totemTorch,

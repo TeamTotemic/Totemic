@@ -35,6 +35,7 @@ public class Totempedia
 
     public static final String CREATING_TOTEMS = "creatingTotems";
     public static final String TOTEM_EFFECTS = "totemEffects";
+    public static final String MEDICINE_BAG = "medicineBag";
 
     public static final String TOTEMIC_STAFF = "totemicStaff";
     public static final String TOOL_BARK_STRIPPER = "barkStripper";

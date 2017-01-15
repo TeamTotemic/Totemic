@@ -150,6 +150,11 @@ totemic.page.totemEffects0=Diese Effekte können in einen Totempfahl eingeschnit
 totemic.page.totemEffects1=§1Fledermaus§0: Negiert Fallschaden und lässt dich vorwärts bewegen wenn du in der Luft schleichst<br>§1Spinne§0: Lässt dich Wände hochklettern wie eine Spinne<br>§1Kuh§0: Gibt dir Schadensresistenz, aber verlangsamt dich auch<br>§1Kaninchen§0: Lässt dich höher springen
 totemic.page.totemEffects2=§1Schwein§0: Bringt dir Glück<br>§1Wolf§0: Gibt dir Stärke
 
+totemic.entry.medicineBag=Medizinbeutel
+totemic.page.medicineBag0=Mit dem §1Medizinbeutel§0 kannst du einen §4Totemeffekt§0 unterwegs mitnehmen, so dass du ihn für begrenzte Zeit benutzen kannst, wenn du keinen Totempfahl in der Nähe hast.<br>Wenn du deinen Medizinbeutel hergestellt hast, Schleichen+rechtsklicke ihn auf einen Totempfahl, der mit dem Effekt geschnitzt ist, den du mithemhen willst.
+totemic.page.medicineBag1=Dann kannst du den Beutel rechtsklicken, um ihn zu öffnen und seinen Effekt zu benutzen, oder zu schließen.<br>Der Beutel muss nach einingen Minuten Benutzung wieder aufgeladen werden. Dazu musst du nur nahe einem Totempfahl stehen, der mit dem Effekt des Beutels geschnitzt ist.
+totemic.page.medicineBag2=
+
 totemic.entry.instruments=Instrumente
 totemic.page.instruments0=Mit Instrumenten kann man §4Musikalische Energie§0 erzeugen, welche §1Totempfähle§0 antreibt. Spielt man ein Instrument während man schleicht, gelangt seine Melodie in nahe Verbraucher. Jedes Instrument erzeugt §4Melodie§0 auf unterschiedliche Arten und Weisen, beispielsweise wie stark die Melodie ist, wie weit sie hörbar ist und wie viel davon ein Totempfahl annehmen kann.
 totemic.page.instruments1=
