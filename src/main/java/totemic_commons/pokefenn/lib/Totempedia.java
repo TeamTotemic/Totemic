@@ -43,4 +43,5 @@ public class Totempedia
     public static final String BLOW_DART = "blowDart";
 
     public static final String TIPI = "tipi";
+    public static final String TOTEM_TORCH = "totemTorch";
 }

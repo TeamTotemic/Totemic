@@ -65,6 +65,7 @@ public final class LexiconData
     //public static LexiconEntry blowDart;
 
     public static LexiconEntry tipi;
+    public static LexiconEntry totemTorch;
 
     public static void init()
     {
@@ -157,5 +158,8 @@ public final class LexiconData
         //Misc
         tipi = new BLexiconEntry(Totempedia.TIPI, categoryMisc);
         tipi.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.tipiWool, CraftingRecipes.tipiHide));
+
+        totemTorch = new BLexiconEntry(Totempedia.TOTEM_TORCH, categoryMisc);
+        totemTorch.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.totemTorch));
     }
 }

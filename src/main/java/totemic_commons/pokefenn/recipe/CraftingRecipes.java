@@ -20,6 +20,7 @@ public class CraftingRecipes
 
     public static IRecipe totemicStaff;
     public static IRecipe barkStripper;
+    public static IRecipe totemTorch;
 
     public static IRecipe drum;
     public static IRecipe windChime;
@@ -49,7 +50,7 @@ public class CraftingRecipes
                 "pst", "hdh", " h ", ('p'), ModBlocks.cedarPlank, ('s'), "string", ('t'), "teethBuffalo", ('h'), "hideBuffalo", ('d'), "gemDiamond"));
 
         //Generic
-        GameRegistry.addRecipe(new ShapedOreRecipe(ModBlocks.totemTorch,
+        GameRegistry.addRecipe(totemTorch = new ShapedOreRecipe(new ItemStack(ModBlocks.totemTorch, 2),
                 "sfs", "sws", " s ", ('s'), "stickWood", ('w'), "logWood", ('f'), Blocks.TORCH));
         GameRegistry.addRecipe(barkStripper = new ShapedOreRecipe(ModItems.barkStripper,
                 "iii", "s s", "s s", ('i'), "ingotIron", ('s'), "stickWood"));
