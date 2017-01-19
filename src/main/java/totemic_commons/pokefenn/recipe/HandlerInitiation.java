@@ -85,14 +85,14 @@ public class HandlerInitiation
         buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
                 drum, windChime));
         baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic:baykokSummon", 255,  40 * 20,
-                windChime, flute)); //Subject to change?
+                windChime, flute));
     }
 
     private static void totemRegistry()
     {
         TotemicRegistry reg = Totemic.api.registry();
 
-        horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", 6, 6, ModPotions.horsePotion, 80, 60, 0));
+        horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", 6, 6, MobEffects.SPEED, 80, 60, 0));
         squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", 6, 6, MobEffects.WATER_BREATHING, 80, 60, 0));
         blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze", 6, 6));
         ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic:ocelot", 6, 6));
