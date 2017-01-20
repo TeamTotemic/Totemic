@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.handler;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -25,6 +26,17 @@ public class EntityUpdate
 
             if(player.isPotionActive(ModPotions.spiderPotion))
             {
+                PotionEffect pot = player.getActivePotionEffect(ModPotions.spiderPotion);
+                if(pot.getDuration() > 10)
+                {
+                    if(player.isSneaking())
+                        player.stepHeight = 0.60001F;
+                    else
+                        player.stepHeight = 1F;
+                }
+                else
+                    player.stepHeight = 0.6F;
+
                 climb(player);
             }
         }
