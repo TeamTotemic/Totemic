@@ -81,7 +81,8 @@ public final class ModItems
         setDefaultModel(flute);
         setModel(flute, 1, flute.getRegistryName().toString());
         setDefaultModel(baykokBow);
-        setDefaultModel(medicineBag);
+        setModel(medicineBag, 0, medicineBag.getRegistryName().toString() + "_closed");
+        setModel(medicineBag, 1, medicineBag.getRegistryName().toString() + "_open");
 
         for(ItemTotemicItems.Type t: ItemTotemicItems.Type.values())
             setModel(subItems, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());

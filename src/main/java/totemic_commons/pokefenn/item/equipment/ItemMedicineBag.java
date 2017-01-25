@@ -171,7 +171,7 @@ public class ItemMedicineBag extends ItemTotemic
         if(getEffect(stack).isPresent())
         {
             if(getCharge(stack) > 0)
-                key = (stack.getMetadata() == 0) ? "item.totemic:medicineBag.tooltipClosed" : "item.totemic:medicineBag.tooltipOpen"; //TODO: This is probably temporary until we have textures for the bag
+                key = (stack.getMetadata() == 0) ? "item.totemic:medicineBag.tooltipClosed" : "item.totemic:medicineBag.tooltipOpen";
             else
                 key = "item.totemic:medicineBag.tooltipEmpty";
         }
