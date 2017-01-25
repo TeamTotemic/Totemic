@@ -17,7 +17,7 @@ import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
 
 public final class StateStartup extends TotemState
 {
-    public static final int ID = 2;
+    static final int ID = 2;
 
     private Ceremony ceremony;
     private int time = 0;

@@ -62,7 +62,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced)
     {
         list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip1"));
         list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip2"));

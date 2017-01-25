@@ -15,7 +15,7 @@ import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 
 public final class StateTotemEffect extends TotemState
 {
-    public static final int ID = 0;
+    static final int ID = 0;
 
     private int musicAmount = 0;
     private boolean musicAdded = false;

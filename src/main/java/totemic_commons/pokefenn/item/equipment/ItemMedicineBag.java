@@ -36,7 +36,6 @@ public class ItemMedicineBag extends ItemTotemic
     {
         super(Strings.MEDICINE_BAG_NAME);
         setMaxStackSize(1);
-        setHasSubtypes(true);
     }
 
     public static Optional<TotemEffect> getEffect(ItemStack stack)

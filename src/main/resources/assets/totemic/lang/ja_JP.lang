@@ -141,7 +141,7 @@ totemic.page.creatingTotems2=
 totemic.entry.totemEffects=トーテム効果
 totemic.page.totemEffects0=トーテムポールにはいろいろな効果を刻みつけられる。<br>§1ウマ§0: 速度ブースト<br>§1イカ§0: 水中呼吸を付与<br>§1ブレイズ§0: 火耐性を付与<br>§1オセロット§0: クリーパーの爆発を阻害
 totemic.page.totemEffects1=§1コウモリ§0: 落下ダメージ無効、空中でスニークすると前進<br>§1クモ§0: クモのような壁登り能力<br>§1ウシ§0: 移動速度を代償にダメージ耐性を付与<br>§1ウサギ§0: ジャンプ力ブースト
-totemic.page.totemEffects2=§1ブタ§0: 幸運を授ける<br>§1オオカミ§0: 力を授ける
+totemic.page.totemEffects2=§1ブタ§0: 幸運を授ける<br>§1オオカミ§0: 力を授ける<br>§1Buffalo§0: Makes you mine faster
 
 totemic.entry.instruments=楽器
 totemic.page.instruments0=楽器は§1トーテムポール§0の命である§4音楽の調べ§0を生み出す方法である。楽器が奏でられると、それを受け取ったものに旋律が染み込んでゆく。楽器は§4音楽の調べ§0を異なった方法で発し、それによって旋律がどれだけ強いか、どれだけ遠くに届くかやどれだけトーテムが受け入れられるかといった点が変わる。
