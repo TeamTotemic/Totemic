@@ -39,7 +39,7 @@ public class HandlerInitiation
     public static TotemEffect wolfTotem;
     public static TotemEffect buffaloTotem;
     public static TotemEffect endermanTotem;
-	public static TotemEffect bearTotem;
+    public static TotemEffect bearTotem;
 
     public static MusicInstrument flute;
     public static MusicInstrument drum;
