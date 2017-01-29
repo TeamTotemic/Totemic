@@ -38,7 +38,7 @@ public class HandlerInitiation
     public static TotemEffect pigTotem;
     public static TotemEffect wolfTotem;
     public static TotemEffect buffaloTotem;
-    public static TotemEffect bearTotem;
+    public static TotemEffect endermanTotem;
 
     public static MusicInstrument flute;
     public static MusicInstrument drum;
@@ -103,14 +103,14 @@ public class HandlerInitiation
         cowTotem = reg.addTotem(new TotemEffectCow("totemic:cow"));
         rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", MobEffects.JUMP_BOOST));
         pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", MobEffects.LUCK));
-        wolfTotem = reg.addTotem(
-                new TotemEffectPotion("totemic:wolf", MobEffects.NIGHT_VISION)
+        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", MobEffects.STRENGTH));
+        buffaloTotem = reg.addTotem(new TotemEffectPotion("totemic:buffalo", MobEffects.HASTE));
+        endermanTotem = reg.addTotem(
+                new TotemEffectPotion("totemic:enderman", MobEffects.NIGHT_VISION)
                 {
                     @Override
                     protected int getLingeringTime() { return 210; }
                 });
-        buffaloTotem = reg.addTotem(new TotemEffectPotion("totemic:buffalo", MobEffects.HASTE));
-        bearTotem = reg.addTotem(new TotemEffectPotion("totemic:bear", MobEffects.STRENGTH));
     }
 
     private static void instruments()
