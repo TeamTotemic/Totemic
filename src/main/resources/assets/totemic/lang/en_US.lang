@@ -79,6 +79,7 @@ totemic.totem.totemic:pig=Pig
 totemic.totem.totemic:wolf=Wolf
 totemic.totem.totemic:buffalo=Buffalo
 totemic.totem.totemic:enderman=Enderman
+totemic.totem.totemic:bear=Bear
 
 #Music Instrument names
 totemic.instrument.totemic:flute=Flute
@@ -150,7 +151,7 @@ totemic.page.creatingTotems2=
 totemic.entry.totemEffects=Totem Effects
 totemic.page.totemEffects0=These are the different effects you can carve on a Totem pole:<br>§1Horse§0: Gives you a speed boost<br>§1Squid§0: Gives you Water Breathing<br>§1Blaze§0: Gives you Fire Resistance<br>§1Ocelot§0: Prevents Creepers from exploding
 totemic.page.totemEffects1=§1Bat§0: Negates fall damage and lets you move forward when you sneak mid-air<br>§1Spider§0: Lets you climb walls like a spider<br>§1Cow§0: Gives you resistance to damage, but also slows you down<br>§1Rabbit§0: Gives you a jump boost
-totemic.page.totemEffects2=§1Pig§0: Brings you good luck<br>§1Wolf§0: Gives you strength<br>§1Buffalo§0: Makes you mine faster<br>§1Enderman§0: Gives you night vision
+totemic.page.totemEffects2=§1Pig§0: Brings you good luck<br>§1Wolf§0: Gives you strength<br>§1Buffalo§0: Makes you mine faster<br>§1Enderman§0: Gives you night vision<br>§1Bear§0: Provides a non-regenerable health boost
 
 totemic.entry.medicineBag=Medicine Bag
 totemic.page.medicineBag0=The §1Medicine Bag§0 allows you to carry a §4Totem effect§0 with you, so you can use its benefits for a limited time without having to be near a Totem Pole.<br>Once you have crafted your Medicine Bag, Sneak+Right click it on a Totem Pole block carved with the effect you want to have. Then you can right click the bag to open it and release its effect, or to close it.

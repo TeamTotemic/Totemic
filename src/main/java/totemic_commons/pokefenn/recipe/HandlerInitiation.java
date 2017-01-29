@@ -39,6 +39,7 @@ public class HandlerInitiation
     public static TotemEffect wolfTotem;
     public static TotemEffect buffaloTotem;
     public static TotemEffect endermanTotem;
+	public static TotemEffect bearTotem;
 
     public static MusicInstrument flute;
     public static MusicInstrument drum;
@@ -104,6 +105,7 @@ public class HandlerInitiation
         rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", MobEffects.JUMP_BOOST));
         pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", MobEffects.LUCK));
         wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", MobEffects.STRENGTH));
+        bearTotem = reg.addTotem(new TotemEffectPotion("totemic:bear", MobEffects.ABSORPTION));
         buffaloTotem = reg.addTotem(new TotemEffectPotion("totemic:buffalo", MobEffects.HASTE));
         endermanTotem = reg.addTotem(
                 new TotemEffectPotion("totemic:enderman", MobEffects.NIGHT_VISION)
