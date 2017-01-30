@@ -2,6 +2,8 @@ package totemic_commons.pokefenn.api.totem;
 
 import java.util.Random;
 
+import com.google.common.annotations.Beta;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 
@@ -9,6 +11,7 @@ import net.minecraft.potion.Potion;
  * Provides access to functionality commonly used for Totem Effects.
  * Use {@code TotemicAPI.get().totemEffect()} to get an instance of this interface.
  */
+@Beta
 public interface TotemEffectAPI
 {
     /**

@@ -3,6 +3,8 @@ package totemic_commons.pokefenn.api.totem;
 import java.util.List;
 import java.util.Objects;
 
+import com.google.common.annotations.Beta;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -14,6 +16,7 @@ import totemic_commons.pokefenn.api.TotemicAPI;
 /**
  * Default implementation of a Totem Effect that adds a potion effect
  */
+@Beta
 public class TotemEffectPotion extends TotemEffect
 {
     /**  The default value for the interval time */
