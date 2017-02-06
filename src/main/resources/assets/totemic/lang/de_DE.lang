@@ -148,9 +148,9 @@ totemic.page.creatingTotems1=Das Totemschnitzmesser wird auch benutzt, um die §
 totemic.page.creatingTotems2=
 
 totemic.entry.totemEffects=Totemeffekte
-totemic.page.totemEffects0=Diese Effekte können in einen Totempfahl eingeschnitzt werden:<br>§1Pferd§0: Gibt dir Schnelligkeit<br>§1Titntenfisch§0: Gibt dir Unterwasseratmung<br>§1Lohe§0: Gibt dir Feuerresistenz<br>§1Ozelot§0: Verhindert, dass Creeper explodieren
-totemic.page.totemEffects1=§1Fledermaus§0: Negiert Fallschaden und lässt dich vorwärts bewegen wenn du in der Luft schleichst<br>§1Spinne§0: Lässt dich Wände hochklettern wie eine Spinne<br>§1Kuh§0: Gibt dir Schadensresistenz, aber verlangsamt dich auch<br>§1Kaninchen§0: Lässt dich höher springen
-totemic.page.totemEffects2=§1Schwein§0: Bringt dir Glück<br>§1Wolf§0: Gibt dir Stärke<br>§1Büffel§0: Lässt dich schneller Blöcke abbauen<br>§1Enderman§0: Gibt dir Nachtsicht
+totemic.page.totemEffects0=Diese Effekte können in einen Totempfahl eingeschnitzt werden:<br>§1Fledermaus§0: Negiert Fallschaden und lässt dich weiter springen wenn du in der Luft schleichst<br>§1Lohe§0: Gibt dir Feuerresistenz<br>§1Büffel§0: Lässt dich schneller Blöcke abbauen
+totemic.page.totemEffects1=§1Kuh§0: Gibt dir Schadensresistenz, aber verlangsamt dich auch<br>§1Enderman§0: Gibt dir Nachtsicht<br>§1Pferd§0: Gibt dir Schnelligkeit<br>§1Ozelot§0: Verhindert, dass Creeper explodieren<br>§1Schwein§0: Bringt dir Glück<br>§1Kaninchen§0: Lässt dich höher springen
+totemic.page.totemEffects2=§1Spinne§0: Lässt dich Wände hochklettern wie eine Spinne<br>§1Tintenfisch§0: Gibt dir Unterwasseratmung<br>§1Wolf§0: Gibt dir Stärke
 
 totemic.entry.medicineBag=Medizinbeutel
 totemic.page.medicineBag0=Mit dem §1Medizinbeutel§0 kannst du einen §4Totemeffekt§0 unterwegs mitnehmen, so dass du ihn für begrenzte Zeit benutzen kannst, wenn du keinen Totempfahl in der Nähe hast.<br>Wenn du deinen Medizinbeutel hergestellt hast, Schleichen+rechtsklicke ihn auf einen Totempfahl, der mit dem Effekt geschnitzt ist, den du mithemhen willst.

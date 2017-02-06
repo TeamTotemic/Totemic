@@ -27,18 +27,18 @@ public class HandlerInitiation
     public static Ceremony buffaloDance;
     public static Ceremony baykokSummon;
 
-    public static TotemEffect horseTotem;
-    public static TotemEffect squidTotem;
-    public static TotemEffect blazeTotem;
-    public static TotemEffect ocelotTotem;
     public static TotemEffect batTotem;
-    public static TotemEffect spiderTotem;
-    public static TotemEffect cowTotem;
-    public static TotemEffect rabbitTotem;
-    public static TotemEffect pigTotem;
-    public static TotemEffect wolfTotem;
+    public static TotemEffect blazeTotem;
     public static TotemEffect buffaloTotem;
+    public static TotemEffect cowTotem;
     public static TotemEffect endermanTotem;
+    public static TotemEffect horseTotem;
+    public static TotemEffect ocelotTotem;
+    public static TotemEffect pigTotem;
+    public static TotemEffect rabbitTotem;
+    public static TotemEffect spiderTotem;
+    public static TotemEffect squidTotem;
+    public static TotemEffect wolfTotem;
 
     public static MusicInstrument flute;
     public static MusicInstrument drum;
@@ -94,23 +94,23 @@ public class HandlerInitiation
     {
         TotemicRegistry reg = Totemic.api.registry();
 
-        horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", MobEffects.SPEED));
-        squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", MobEffects.WATER_BREATHING));
-        blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze"));
-        ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic:ocelot"));
         batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", true, 9, ModPotions.batPotion, 10, 0));
-        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", ModPotions.spiderPotion));
-        cowTotem = reg.addTotem(new TotemEffectCow("totemic:cow"));
-        rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", MobEffects.JUMP_BOOST));
-        pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", MobEffects.LUCK));
-        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", MobEffects.STRENGTH));
+        blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze"));
         buffaloTotem = reg.addTotem(new TotemEffectPotion("totemic:buffalo", MobEffects.HASTE));
+        cowTotem = reg.addTotem(new TotemEffectCow("totemic:cow"));
         endermanTotem = reg.addTotem(
                 new TotemEffectPotion("totemic:enderman", MobEffects.NIGHT_VISION)
                 {
                     @Override
                     protected int getLingeringTime() { return 210; }
                 });
+        horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", MobEffects.SPEED));
+        ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic:ocelot"));
+        pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", MobEffects.LUCK));
+        rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", MobEffects.JUMP_BOOST));
+        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", ModPotions.spiderPotion));
+        squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", MobEffects.WATER_BREATHING));
+        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", MobEffects.STRENGTH));
     }
 
     private static void instruments()
