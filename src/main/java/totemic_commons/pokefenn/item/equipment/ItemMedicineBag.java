@@ -63,8 +63,10 @@ public class ItemMedicineBag extends ItemTotemic
             int charge = getCharge(stack);
             if(charge > 0)
             {
-                getEffect(stack).ifPresent(eff -> eff.medicineBagEffect(world, (EntityPlayer) entity, charge));
-                stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, charge - 1);
+                getEffect(stack).ifPresent(eff -> {
+                    eff.medicineBagEffect(world, (EntityPlayer) entity, charge);
+                    stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, charge - 1);
+                });
             }
             else
             {
@@ -91,7 +93,7 @@ public class ItemMedicineBag extends ItemTotemic
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
     {
-        if(getEffect(stack).isPresent())
+        if(getEffect(stack).isPresent() && getCharge(stack) > 0)
         {
             stack.setItemDamage((stack.getMetadata() == 0) ? 1 : 0);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
