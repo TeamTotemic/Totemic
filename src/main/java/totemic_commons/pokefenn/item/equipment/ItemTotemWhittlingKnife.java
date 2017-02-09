@@ -30,6 +30,8 @@ import totemic_commons.pokefenn.util.ItemUtil;
 
 public class ItemTotemWhittlingKnife extends ItemTotemic
 {
+    public static final String KNIFE_TOTEM_KEY = "totem";
+
     private static final List<TotemEffect> totemList = ((RegistryImpl) Totemic.api.registry()).getTotemList();
 
     public ItemTotemWhittlingKnife()
@@ -57,7 +59,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         if(tag == null)
             return totemList.size();
         else
-            return MathHelper.clamp_int(tag.getInteger(Strings.KNIFE_TOTEM_KEY), 0, totemList.size());
+            return MathHelper.clamp_int(tag.getInteger(KNIFE_TOTEM_KEY), 0, totemList.size());
     }
 
     @Override
@@ -133,7 +135,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         int newIndex = (i + getCarvingIndex(stack)) % (totemList.size() + 1);
         if(newIndex < 0)
             newIndex += totemList.size() + 1;
-        ItemUtil.getOrCreateTag(stack).setInteger(Strings.KNIFE_TOTEM_KEY, newIndex);
+        ItemUtil.getOrCreateTag(stack).setInteger(KNIFE_TOTEM_KEY, newIndex);
         return stack;
     }
 

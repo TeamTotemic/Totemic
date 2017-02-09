@@ -46,8 +46,5 @@ public final class Strings
     public static final String INVIS_ARROW_NAME = "invis_arrow";
 
     //ItemStack NBT keys
-    public static final String KNIFE_TOTEM_KEY = "totem";
     public static final String INSTR_TIME_KEY = "time";
-    public static final String MED_BAG_TOTEM_KEY = "totem";
-    public static final String MED_BAG_CHARGE_KEY = "charge";
 }

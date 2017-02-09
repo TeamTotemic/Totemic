@@ -31,6 +31,8 @@ import totemic_commons.pokefenn.util.ItemUtil;
 public class ItemMedicineBag extends ItemTotemic
 {
     public static final int MAX_CHARGE = 5 * 60 * 20;
+    public static final String MED_BAG_TOTEM_KEY = "totem";
+    public static final String MED_BAG_CHARGE_KEY = "charge";
 
     public ItemMedicineBag()
     {
@@ -41,13 +43,13 @@ public class ItemMedicineBag extends ItemTotemic
     public static Optional<TotemEffect> getEffect(ItemStack stack)
     {
         return Optional.ofNullable(stack.getTagCompound())
-                .map(tag -> Totemic.api.registry().getTotem(tag.getString(Strings.MED_BAG_TOTEM_KEY)));
+                .map(tag -> Totemic.api.registry().getTotem(tag.getString(MED_BAG_TOTEM_KEY)));
     }
 
     public static int getCharge(ItemStack stack)
     {
         if(stack.hasTagCompound())
-            return stack.getTagCompound().getInteger(Strings.MED_BAG_CHARGE_KEY);
+            return stack.getTagCompound().getInteger(MED_BAG_CHARGE_KEY);
         else
             return 0;
     }
@@ -65,7 +67,7 @@ public class ItemMedicineBag extends ItemTotemic
             {
                 getEffect(stack).ifPresent(eff -> {
                     eff.medicineBagEffect(world, (EntityPlayer) entity, charge);
-                    stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, charge - 1);
+                    stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, charge - 1);
                 });
             }
             else
@@ -84,7 +86,7 @@ public class ItemMedicineBag extends ItemTotemic
                 if(EntityUtil.getTileEntitiesInRange(TileTotemBase.class, world, pos, 6, 6).stream()
                         .anyMatch(tile -> tile.getState() instanceof StateTotemEffect && tile.getTotemEffectSet().contains(effect)))
                 {
-                    stack.getTagCompound().setInteger(Strings.MED_BAG_CHARGE_KEY, Math.min(charge + 20 * 20, MAX_CHARGE));
+                    stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, Math.min(charge + 20 * 20, MAX_CHARGE));
                 }
             });
         }
@@ -135,8 +137,8 @@ public class ItemMedicineBag extends ItemTotemic
 
                 ItemStack newStack = stack.copy();
                 NBTTagCompound tag = ItemUtil.getOrCreateTag(newStack);
-                tag.setString(Strings.MED_BAG_TOTEM_KEY, effect.getName());
-                tag.setInteger(Strings.MED_BAG_CHARGE_KEY, 0);
+                tag.setString(MED_BAG_TOTEM_KEY, effect.getName());
+                tag.setInteger(MED_BAG_CHARGE_KEY, 0);
                 player.setHeldItem(hand, newStack);
                 return EnumActionResult.SUCCESS;
             }
