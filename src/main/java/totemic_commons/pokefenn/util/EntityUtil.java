@@ -3,6 +3,10 @@ package totemic_commons.pokefenn.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
+import com.google.common.base.Predicate;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -20,15 +24,24 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityUtil
 {
-    //Code from @WayofTime
-    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
+    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontal, double vertical)
     {
-        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius));
+        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(posX - horizontal, posY - vertical, posZ - horizontal, posX + horizontal, posY + vertical, posZ + horizontal));
     }
 
-    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, double horizontalRadius, double verticalRadius)
+    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontal, double vertical, @Nullable Predicate<? super T> filter)
     {
-        return getEntitiesInRange(clazz, world, pos.getX(), pos.getY(), pos.getZ(), horizontalRadius, verticalRadius);
+        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(posX - horizontal, posY - vertical, posZ - horizontal, posX + horizontal, posY + vertical, posZ + horizontal));
+    }
+
+    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, double horizontal, double vertical)
+    {
+        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(pos).expand(horizontal - 1, vertical - 1, horizontal - 1));
+    }
+
+    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, double horizontal, double vertical, @Nullable Predicate<? super T> filter)
+    {
+        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(pos).expand(horizontal - 1, vertical - 1, horizontal - 1), filter);
     }
 
     public static <T extends TileEntity> List<T> getTileEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, int horizontalRadius, int verticalRadius)
