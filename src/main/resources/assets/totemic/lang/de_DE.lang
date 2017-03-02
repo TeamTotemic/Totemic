@@ -29,6 +29,7 @@ item.totemic:medicineBag.tooltip=Schleichen+Rechts auf einen Totempfahl zum Setz
 item.totemic:medicineBag.tooltipClosed=Geschlossen
 item.totemic:medicineBag.tooltipOpen=Offen
 item.totemic:medicineBag.tooltipEmpty=Leer
+item.totemic:medicineBag.tooltipCharge=Ladung: %d
 
 # Block localizations
 tile.cedarLog.name=Rotes Zedernholz

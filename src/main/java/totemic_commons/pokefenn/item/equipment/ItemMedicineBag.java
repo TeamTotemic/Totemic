@@ -182,6 +182,9 @@ public class ItemMedicineBag extends ItemTotemic
         else
             key = "item.totemic:medicineBag.tooltip";
         tooltip.add(I18n.format(key));
+
+        if(advanced)
+            tooltip.add(I18n.format("item.totemic:medicineBag.tooltipCharge", getCharge(stack)));
     }
 
     @Override

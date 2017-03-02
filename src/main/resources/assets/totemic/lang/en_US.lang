@@ -29,6 +29,7 @@ item.totemic:medicineBag.tooltip=Sneak+Right Click on a Totem Pole to set the ef
 item.totemic:medicineBag.tooltipClosed=Closed
 item.totemic:medicineBag.tooltipOpen=Open
 item.totemic:medicineBag.tooltipEmpty=Empty
+item.totemic:medicineBag.tooltipCharge=Charge: %d
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log
