@@ -98,9 +98,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         }
         else
         {
-            if(world.isRemote)
-                return EnumActionResult.SUCCESS;
-
             IBlockState state = world.getBlockState(pos);
             WoodVariant wood = WoodVariant.fromLog(state);
             if(wood == null)
