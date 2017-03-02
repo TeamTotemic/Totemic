@@ -2,6 +2,8 @@ package totemic_commons.pokefenn.lib;
 
 import java.util.Locale;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockNewLog;
 import net.minecraft.block.BlockOldLog;
@@ -31,6 +33,7 @@ public enum WoodVariant implements IStringSerializable
     /**
      * @return The variant for the specified log block, or {@code null} if it is not a log in this enum
      */
+    @Nullable
     public static WoodVariant fromLog(IBlockState log)
     {
         Block block = log.getBlock();
