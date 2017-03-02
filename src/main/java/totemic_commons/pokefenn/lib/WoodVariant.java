@@ -28,7 +28,9 @@ public enum WoodVariant implements IStringSerializable
         this.log = log;
     }
 
-    /** @return The variant for the specified log block, or null if it is not a log */
+    /**
+     * @return The variant for the specified log block, or {@code null} if it is not a log in this enum
+     */
     public static WoodVariant fromLog(IBlockState log)
     {
         Block block = log.getBlock();
