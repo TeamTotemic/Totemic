@@ -37,26 +37,24 @@ public class ItemBarkStripper extends ItemTotemic
         Block block = state.getBlock();
         if(block instanceof BlockCedarLog)
         {
-            if(!world.isRemote)
+            NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
+            int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+
+            time++;
+            if(time >= 5)
             {
-                NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
-                int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+                time = 0;
+                //Random random = world.rand;
 
-                time++;
-                if(time >= 5)
-                {
-                    time = 0;
-                    //Random random = world.rand;
-
-                    world.setBlockState(pos, ModBlocks.cedarLogStripped.getDefaultState()
-                            .withProperty(BlockLog.LOG_AXIS, state.getValue(BlockLog.LOG_AXIS)));
-                    //EntityItem bark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 1 + random.nextInt(3), ItemTotemicItems.cedarBark));
-                    //world.spawnEntityInWorld(bark);
-                    stack.damageItem(1, player);
-                }
-
-                tag.setInteger(Strings.INSTR_TIME_KEY, time);
+                world.setBlockState(pos, ModBlocks.cedarLogStripped.getDefaultState()
+                        .withProperty(BlockLog.LOG_AXIS, state.getValue(BlockLog.LOG_AXIS)));
+                //EntityItem bark = new EntityItem(world, block.blockX, block.blockY, block.blockZ, new ItemStack(ModItems.subItems, 1 + random.nextInt(3), ItemTotemicItems.cedarBark));
+                //world.spawnEntityInWorld(bark);
+                stack.damageItem(1, player);
             }
+
+            tag.setInteger(Strings.INSTR_TIME_KEY, time);
+
             return EnumActionResult.SUCCESS;
         }
         return EnumActionResult.FAIL;
