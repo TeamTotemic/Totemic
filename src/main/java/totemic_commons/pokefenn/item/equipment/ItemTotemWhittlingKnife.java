@@ -40,8 +40,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     {
         super(Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setMaxStackSize(1);
-        setContainerItem(this);
-        setMaxDamage(254);
+        setMaxDamage(250);
     }
 
     @SideOnly(Side.CLIENT)

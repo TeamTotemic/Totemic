@@ -8,7 +8,6 @@ public class ItemTotemic extends Item
 {
     public ItemTotemic(String name, boolean creativeTab)
     {
-        setNoRepair();
         if(!name.isEmpty()) {
             setRegistryName(name);
             setUnlocalizedName(Strings.RESOURCE_PREFIX + name);

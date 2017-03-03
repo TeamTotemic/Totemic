@@ -23,7 +23,7 @@ public class ItemBarkStripper extends ItemTotemic
     {
         super(Strings.BARK_STRIPPER_NAME);
         setMaxStackSize(1);
-        setMaxDamage(126);
+        setMaxDamage(131);
     }
 
     @Override
