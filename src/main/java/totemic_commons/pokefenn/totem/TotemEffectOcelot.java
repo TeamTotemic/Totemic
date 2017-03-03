@@ -17,7 +17,7 @@ public class TotemEffectOcelot extends TotemEffect
 {
     public TotemEffectOcelot(String name)
     {
-        super(name, false);
+        super(name, false, 1);
     }
 
     private static final Field timeSinceIgnited = ReflectionHelper.findField(EntityCreeper.class, "timeSinceIgnited", "field_70833_d");

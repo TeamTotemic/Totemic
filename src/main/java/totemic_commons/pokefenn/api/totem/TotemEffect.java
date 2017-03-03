@@ -12,23 +12,50 @@ import net.minecraft.world.World;
 @Beta
 public abstract class TotemEffect
 {
+    /**
+     * The Totem Effect's name
+     */
     protected final String name;
+    /**
+     * Whether this Totem Effect can be used with a Medicine Bag
+     */
     protected final boolean portable;
+    /**
+     * The time in ticks between applications of the effect
+     */
+    protected final int interval;
 
     /**
      * @param name a unique name for the Totem Effect
      * @param portable whether this Totem Effect can be used with a Medicine Bag.
      * In this case, override {@link #medicineBagEffect}.
+     * @param interval the time in ticks between applications of the effect
      */
-    public TotemEffect(String name, boolean portable)
+    public TotemEffect(String name, boolean portable, int interval)
     {
+        if(interval < 1)
+            throw new IllegalArgumentException("The interval must be positive");
         this.name = name;
         this.portable = portable;
+        this.interval = interval;
+    }
+
+    /**
+     * @param name a unique name for the Totem Effect
+     * @param portable whether this Totem Effect can be used with a Medicine Bag.
+     * In this case, override {@link #medicineBagEffect}.
+     * @deprecated Use the other constructor instead. Keep in mind that the {@link #effect}
+     * and {@link #medicineBagEffect} methods will only be called every {@link #interval} ticks.
+     */
+    @Deprecated
+    public TotemEffect(String name, boolean portable)
+    {
+        this(name, portable, 1);
     }
 
     /**
      * Performs the Totem effect at the given Totem base position.<p>
-     * This gets called on the server and the client.
+     * This gets called every {@link #interval} ticks on the server and the client.
      * @param totem the Totem Base tile entity
      * @param repetition the number of Totem Pole blocks that are carved with this effect
      */
@@ -37,7 +64,7 @@ public abstract class TotemEffect
     /**
      * Performs the Totem effect to the given player, if applicable.
      * Override this method to make your effect work with Medicine Bags.<p>
-     * This gets called on the server and the client.
+     * This gets called every {@link #interval} ticks on the server and the client.
      * @param charge time in ticks until the Medicine Bag is depleted
      */
     public void medicineBagEffect(World world, EntityPlayer player, int charge)
@@ -57,6 +84,14 @@ public abstract class TotemEffect
     public final boolean isPortable()
     {
         return portable;
+    }
+
+    /**
+     * @return the time in ticks between applications of the effect
+     */
+    public final int getInterval()
+    {
+        return interval;
     }
 
     /**

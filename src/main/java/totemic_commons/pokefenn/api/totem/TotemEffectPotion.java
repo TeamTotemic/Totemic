@@ -24,17 +24,13 @@ public class TotemEffectPotion extends TotemEffect
 
     /**
      * The potion effect
-     * */
+     */
     protected final Potion potion;
     /**
      * The base range of the effect.
      * In general, the range will be larger, see {@link #getHorizontalRange} and {@link #getVerticalRange}.
      */
     protected final int baseRange;
-    /**
-     * The time in ticks until the potion effect is renewed
-     */
-    protected final int interval;
     /**
      * The base amplifier of the potion effect.
      * In general, the amplifier will be larger, see {@link #getAmplifier} and {@link #getAmplifierForMedicineBag}.
@@ -61,10 +57,9 @@ public class TotemEffectPotion extends TotemEffect
      */
     public TotemEffectPotion(String name, boolean portable, int baseRange, Potion potion, int interval, int baseAmplifier)
     {
-        super(name, portable);
+        super(name, portable, interval);
         this.potion = Objects.requireNonNull(potion);
         this.baseRange = baseRange;
-        this.interval = interval;
         this.baseAmplifier = baseAmplifier;
     }
 
@@ -128,16 +123,13 @@ public class TotemEffectPotion extends TotemEffect
         if(world.isRemote)
             return;
 
-        if(world.getTotalWorldTime() % interval == 0)
-        {
-            int horizontal = getHorizontalRange(world, pos, totem, repetition);
-            int vertical = getVerticalRange(world, pos, totem, repetition);
-            int time = interval + getLingeringTime();
-            int amplifier = getAmplifier(world, pos, totem, repetition);
+        int horizontal = getHorizontalRange(world, pos, totem, repetition);
+        int vertical = getVerticalRange(world, pos, totem, repetition);
+        int time = interval + getLingeringTime();
+        int amplifier = getAmplifier(world, pos, totem, repetition);
 
-            for(EntityPlayer player: getPlayersInRange(world, pos, horizontal, vertical))
-                applyTo(false, player, time, amplifier);
-        }
+        for(EntityPlayer player: getPlayersInRange(world, pos, horizontal, vertical))
+            applyTo(false, player, time, amplifier);
     }
 
     @Override
@@ -146,12 +138,9 @@ public class TotemEffectPotion extends TotemEffect
         if(world.isRemote)
             return;
 
-        if(world.getTotalWorldTime() % interval == 0)
-        {
-            int time = interval + getLingeringTime();
-            int amplifier = getAmplifierForMedicineBag(world, player, charge);
-            applyTo(true, player, time, amplifier);
-        }
+        int time = interval + getLingeringTime();
+        int amplifier = getAmplifierForMedicineBag(world, player, charge);
+        applyTo(true, player, time, amplifier);
     }
 
     /**

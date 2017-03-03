@@ -5,6 +5,7 @@ import com.google.common.collect.Multiset;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -28,23 +29,29 @@ public final class StateTotemEffect extends TotemState
     @Override
     public void update()
     {
+        World world = tile.getWorld();
+
         for(Multiset.Entry<TotemEffect> entry: tile.getTotemEffectSet().entrySet())
-            entry.getElement().effect(tile.getWorld(), tile.getPos(), tile, entry.getCount());
+        {
+            TotemEffect effect = entry.getElement();
+            if(world.getTotalWorldTime() % effect.getInterval() == 0)
+                effect.effect(world, tile.getPos(), tile, entry.getCount());
+        }
 
         //Diminish melody over time, about 5 minutes to fully deplete
-        if(musicAmount > 0 && tile.getWorld().getTotalWorldTime() % 47 == 0)
+        if(musicAmount > 0 && world.getTotalWorldTime() % 47 == 0)
         {
             musicAmount--;
             tile.markDirty();
         }
 
-        if(musicAdded && !tile.getWorld().isRemote && tile.getWorld().getTotalWorldTime() % 20 == 0)
+        if(musicAdded && !world.isRemote && world.getTotalWorldTime() % 20 == 0)
         {
             NetworkHandler.sendAround(new PacketTotemEffectMusic(tile.getPos(), musicAmount), tile, 32);
             musicAdded = false;
         }
 
-        if(tile.getWorld().isRemote && tile.getWorld().getTotalWorldTime() % 40 == 0)
+        if(world.isRemote && world.getTotalWorldTime() % 40 == 0)
             spawnParticles();
     }
 

@@ -66,8 +66,11 @@ public class ItemMedicineBag extends ItemTotemic
             if(charge > 0)
             {
                 getEffect(stack).ifPresent(eff -> {
-                    eff.medicineBagEffect(world, (EntityPlayer) entity, charge);
-                    stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, charge - 1);
+                    if(world.getTotalWorldTime() % eff.getInterval() == 0)
+                    {
+                        eff.medicineBagEffect(world, (EntityPlayer) entity, charge);
+                        stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, Math.max(charge - eff.getInterval(), 0));
+                    }
                 });
             }
             else
