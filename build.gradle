@@ -17,7 +17,7 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.10.2-0.8.0"
+version = "1.10.2-0.8.1"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
@@ -88,7 +88,7 @@ curseforge {
     project {
         id = '237541'
         changelog  = ''
-        releaseType = 'alpha'
+        releaseType = 'beta'
 
         addArtifact deobfJar
         addArtifact apiZip
