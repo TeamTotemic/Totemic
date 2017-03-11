@@ -119,7 +119,7 @@ public class GameOverlay
     public void onFOVUpdate(FOVUpdateEvent event)
     {
         EntityPlayer player = Minecraft.getMinecraft().player;
-        if(player.isHandActive() && player.getActiveItemStack() != null && player.getActiveItemStack().getItem() instanceof ItemBaykokBow)
+        if(player.isHandActive() && player.getActiveItemStack().getItem() instanceof ItemBaykokBow)
         {
             int bowTicks = player.getItemInUseMaxCount();
             float modifier = bowTicks / 20.0F;

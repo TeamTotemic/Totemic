@@ -41,7 +41,7 @@ public class PlayerRender
             GlStateManager.rotate(pitchZ, 0, 0, 1);
             GlStateManager.rotate(yaw - 90, 0, -1, 0);
             GlStateManager.rotate(pitch + 180, 0, 0, 1);
-            if(player.inventory.armorItemInSlot(3) != null)
+            if(!player.inventory.armorItemInSlot(3).isEmpty())
                 GlStateManager.translate(0.01F, -0.04F, 0);
 
             if(annaHatDisplayList == 0)

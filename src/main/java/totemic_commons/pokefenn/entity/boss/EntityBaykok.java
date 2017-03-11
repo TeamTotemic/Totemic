@@ -59,6 +59,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40);
     }
 
+    @Nullable
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {

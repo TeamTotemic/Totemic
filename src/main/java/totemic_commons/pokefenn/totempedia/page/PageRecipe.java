@@ -60,7 +60,7 @@ public class PageRecipe extends LexiconPage
         int y = gui.getTop() + height - 40;
         PageText.renderText(x, y, width, height, getUnlocalizedName());
 
-        if(tooltipStack != null)
+        if(!tooltipStack.isEmpty())
         {
             List<String> tooltipData = tooltipStack.getTooltip(Minecraft.getMinecraft().player, false);
             List<String> parsedTooltip = new ArrayList<>();
@@ -85,11 +85,11 @@ public class PageRecipe extends LexiconPage
                 tooltipY += 18;
             }
 
-            if(tooltipContainerStack != null)
+            if(!tooltipContainerStack.isEmpty())
                 RenderHelper.renderTooltipGreen(mx, my + tooltipY, Arrays.asList(TextFormatting.AQUA + I18n.format("totemicmisc.craftingContainer"), tooltipContainerStack.getDisplayName()));
         }
 
-        tooltipStack = tooltipContainerStack = null;
+        tooltipStack = tooltipContainerStack = ItemStack.EMPTY;
         tooltipEntry = false;
         GL11.glDisable(GL11.GL_BLEND);
         mouseDownLastTick = Mouse.isButtonDown(0);
@@ -103,7 +103,7 @@ public class PageRecipe extends LexiconPage
     @SideOnly(Side.CLIENT)
     public void renderItemAtAngle(IGuiLexiconEntry gui, int angle, ItemStack stack)
     {
-        if(stack == null || stack.getItem() == null)
+        if(stack.isEmpty())
             return;
 
         ItemStack workStack = stack.copy();
@@ -122,20 +122,18 @@ public class PageRecipe extends LexiconPage
     @SideOnly(Side.CLIENT)
     public void renderItemAtGridPos(IGuiLexiconEntry gui, int x, int y, ItemStack stack, boolean accountForContainer)
     {
-        if(stack == null || stack.getItem() == null)
+        if(stack.isEmpty())
             return;
-        stack = stack.copy();
 
-        if(stack.getItemDamage() == Short.MAX_VALUE)
-            stack.setItemDamage(0);
+        ItemStack workStack = stack.copy();
+
+        if(workStack.getItemDamage() == Short.MAX_VALUE || workStack.getItemDamage() == -1)
+            workStack.setItemDamage(0);
 
         int xPos = gui.getLeft() + x * 29 + 7 + (y == 0 && x == 3 ? 10 : 0);
         int yPos = gui.getTop() + y * 29 + 24 - (y == 0 ? 7 : 0);
-        ItemStack stack1 = stack.copy();
-        if(stack1.getItemDamage() == -1)
-            stack1.setItemDamage(0);
 
-        renderItem(gui, xPos, yPos, stack1, accountForContainer);
+        renderItem(gui, xPos, yPos, workStack, accountForContainer);
     }
 
     @SideOnly(Side.CLIENT)
@@ -175,7 +173,7 @@ public class PageRecipe extends LexiconPage
             if(accountForContainer)
             {
                 ItemStack containerStack = stack.getItem().getContainerItem(stack);
-                if(containerStack != null && containerStack.getItem() != null)
+                if(!containerStack.isEmpty())
                     tooltipContainerStack = containerStack;
             }
         }

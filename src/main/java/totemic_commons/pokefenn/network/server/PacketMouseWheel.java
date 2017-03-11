@@ -37,7 +37,7 @@ public class PacketMouseWheel extends SynchronizedPacketBase<PacketMouseWheel>
     @Override
     protected void handleServer(EntityPlayerMP player, MessageContext ctx)
     {
-        if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ModItems.totemWhittlingKnife)
+        if(player.getHeldItemMainhand().getItem() == ModItems.totemWhittlingKnife)
         {
             player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemTotemWhittlingKnife.changeIndex(player.getHeldItemMainhand(), direction));
         }

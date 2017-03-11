@@ -21,7 +21,7 @@ public class GuiHandler implements IGuiHandler
         {
             GuiLexicon lex = GuiLexicon.currentOpenLexicon;
             GuiLexicon.stackUsed = player.getHeldItemMainhand();
-            if(GuiLexicon.stackUsed == null || !(GuiLexicon.stackUsed.getItem() instanceof ILexicon))
+            if(!(GuiLexicon.stackUsed.getItem() instanceof ILexicon))
                 return null;
             return lex;
         }

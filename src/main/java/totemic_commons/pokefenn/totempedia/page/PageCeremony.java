@@ -44,11 +44,11 @@ public class PageCeremony extends PageRecipe
         for(int i = 0; i < instruments.length; i++)
         {
             ItemStack item = instruments[i].getItem();
-            if(item != null)
+            if(!item.isEmpty())
                 renderItem(gui, instrLeft + 20 * i, gui.getTop() + 31, item, false);
         }
 
-        if(tooltipStack != null)
+        if(!tooltipStack.isEmpty())
             RenderHelper.renderTooltip(mx, my, tooltipStack.getTooltip(Minecraft.getMinecraft().player, false));
 
         String text = I18n.format("totemicmisc.musicSelector");
@@ -73,7 +73,7 @@ public class PageCeremony extends PageRecipe
         ((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
         GL11.glDisable(GL11.GL_BLEND);
 
-        tooltipStack = tooltipContainerStack = null;
+        tooltipStack = tooltipContainerStack = ItemStack.EMPTY;
         tooltipEntry = false;
         mouseDownLastTick = Mouse.isButtonDown(0);
     }

@@ -38,7 +38,7 @@ public class PacketJingle extends SynchronizedPacketBase<PacketJingle>
     {
         ItemStack armor = player.inventory.armorInventory.get(1);
 
-        if(armor != null && armor.getItem() instanceof ItemJingleDress)
+        if(armor.getItem() instanceof ItemJingleDress)
         {
             int plusTime = 0;
 

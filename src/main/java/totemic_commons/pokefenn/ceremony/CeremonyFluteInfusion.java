@@ -37,8 +37,7 @@ public class CeremonyFluteInfusion extends Ceremony
             InventoryPlayer inv = player.inventory;
             for(int i = 0; i < inv.getSizeInventory(); i++)
             {
-                ItemStack stack = inv.getStackInSlot(i);
-                if(stack != null && stack.getItem() == ModItems.flute)
+                if(inv.getStackInSlot(i).getItem() == ModItems.flute)
                     inv.setInventorySlotContents(i, new ItemStack(ModItems.flute, 1, 1));
             }
             player.inventoryContainer.detectAndSendChanges();

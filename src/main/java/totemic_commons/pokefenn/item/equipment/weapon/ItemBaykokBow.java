@@ -38,20 +38,13 @@ public class ItemBaykokBow extends ItemBow
         setCreativeTab(Totemic.tabsTotem);
         setMaxDamage(576);
         addPropertyOverride(new ResourceLocation("pull"), (stack, world, entity) -> {
-            if(entity == null)
-                return 0.0F;
+            if(entity != null && entity.getActiveItemStack().getItem() == this)
+                return (stack.getMaxItemUseDuration() - entity.getItemInUseCount()) / 20.0F;
             else
-            {
-                ItemStack activeStack = entity.getActiveItemStack();
-                if(activeStack != null && activeStack.getItem() == this)
-                    return (stack.getMaxItemUseDuration() - entity.getItemInUseCount()) / 20.0F;
-                else
-                    return 0.0F;
-            }
+                return 0.0F;
         });
-        addPropertyOverride(new ResourceLocation("pulling"), (stack, world, entity) -> {
-            return entity != null && entity.isHandActive() && entity.getActiveItemStack() == stack ? 1.0F : 0.0F;
-        });
+        addPropertyOverride(new ResourceLocation("pulling"), (stack, world, entity) ->
+            (entity != null && entity.isHandActive() && entity.getActiveItemStack() == stack) ? 1.0F : 0.0F);
     }
 
     @Override
@@ -65,13 +58,13 @@ public class ItemBaykokBow extends ItemBow
         ItemStack arrow = findAmmo(player);
 
         int chargeTicks = this.getMaxItemUseDuration(stack) - timeLeft;
-        chargeTicks = ForgeEventFactory.onArrowLoose(stack, world, player, chargeTicks, arrow != null || infinity);
+        chargeTicks = ForgeEventFactory.onArrowLoose(stack, world, player, chargeTicks, !arrow.isEmpty() || infinity);
         if(chargeTicks < 0)
             return;
 
-        if(arrow != null || infinity)
+        if(!arrow.isEmpty() || infinity)
         {
-            if(arrow == null)
+            if(arrow.isEmpty())
                 arrow = new ItemStack(Items.ARROW);
 
             float charge = getArrowVelocity(chargeTicks);
@@ -145,7 +138,7 @@ public class ItemBaykokBow extends ItemBow
         catch(ReflectiveOperationException e)
         {
             logger.catching(Level.ERROR, e);
-            return null;
+            return ItemStack.EMPTY;
         }
     }
 

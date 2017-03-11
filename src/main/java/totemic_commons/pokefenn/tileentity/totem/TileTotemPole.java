@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.tileentity.totem;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -12,6 +14,7 @@ public class TileTotemPole extends TileTotemic
 {
     private TotemEffect effect = null;
 
+    @Nullable
     public TotemEffect getEffect()
     {
         return effect;

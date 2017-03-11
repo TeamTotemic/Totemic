@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.api.music;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.item.ItemStack;
 
 public final class MusicInstrument
@@ -10,7 +8,7 @@ public final class MusicInstrument
     private final int baseOutput;
     private final int musicMaximum;
     private final int baseRange;
-    private ItemStack itemStack = null;
+    private ItemStack itemStack = ItemStack.EMPTY;
 
     /**
      * @param name a unique name for the instrument
@@ -27,9 +25,8 @@ public final class MusicInstrument
     }
 
     /**
-     * @return the item stack associated with this instrument, if any
+     * @return the item stack associated with this instrument
      */
-    @Nullable
     public ItemStack getItem()
     {
         return itemStack;
@@ -39,7 +36,7 @@ public final class MusicInstrument
      * Sets the item stack that is associated with this instrument. This will be
      * displayed on the Totempedia on ceremony pages.
      */
-    public void setItem(@Nullable ItemStack itemStack)
+    public void setItem(ItemStack itemStack)
     {
         this.itemStack = itemStack;
     }
