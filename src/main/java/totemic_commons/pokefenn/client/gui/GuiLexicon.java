@@ -33,7 +33,7 @@ public class GuiLexicon extends GuiScreen
 {
 
     public static GuiLexicon currentOpenLexicon = new GuiLexicon();
-    public static ItemStack stackUsed;
+    public static ItemStack stackUsed = ItemStack.EMPTY;
 
     public static final int BOOKMARK_START = 1337;
     public static List<GuiLexicon> bookmarks = new ArrayList<>();
