@@ -103,7 +103,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         ItemStack stack = player.getHeldItem(hand);
         if(player.isSneaking())
         {
-            player.setHeldItem(hand, onItemRightClick(stack, world, player, hand).getResult()); //FIXME
+            player.setHeldItem(hand, changeIndex(stack, true));
             return EnumActionResult.SUCCESS;
         }
         else

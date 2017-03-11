@@ -96,10 +96,8 @@ public class ItemMedicineBag extends ItemTotemic
         }
     }
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
+    private ActionResult<ItemStack> openOrClose(ItemStack stack)
     {
-        ItemStack stack = player.getHeldItem(hand);
         if(getEffect(stack).isPresent() && getCharge(stack) > 0)
         {
             stack.setItemDamage((stack.getMetadata() == 0) ? 1 : 0);
@@ -110,13 +108,19 @@ public class ItemMedicineBag extends ItemTotemic
     }
 
     @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
+    {
+        return openOrClose(player.getHeldItem(hand));
+    }
+
+    @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack stack = player.getHeldItem(hand);
         if(!player.isSneaking())
         {
-            ItemStack newStack = player.isCreative() ? stack.copy() : stack; //Workaround for creative mode, otherwise Minecraft will reset the item damage
-            ActionResult<ItemStack> result = onItemRightClick(newStack, world, player, hand); //FIXME
+            ItemStack copyStack = player.isCreative() ? stack.copy() : stack; //Workaround for creative mode, otherwise Minecraft will reset the item damage
+            ActionResult<ItemStack> result = openOrClose(copyStack);
             if(result.getType() == EnumActionResult.SUCCESS)
                 player.setHeldItem(hand, result.getResult());
             return result.getType();
