@@ -17,15 +17,15 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.10.2-0.8.1"
+version = "1.11.2-0.8.1"
 group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.10.2-12.18.3.2185"
+    version = "1.11.2-13.20.0.2228"
     runDir = "run"
 
-    mappings = "snapshot_20161111"
+    mappings = "snapshot_20161220"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     replaceIn "Totemic.java"
@@ -88,7 +88,7 @@ curseforge {
     project {
         id = '237541'
         changelog  = ''
-        releaseType = 'beta'
+        releaseType = 'alpha'
 
         addArtifact deobfJar
         addArtifact apiZip
