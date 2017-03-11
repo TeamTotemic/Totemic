@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
@@ -18,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -44,8 +44,9 @@ public class ItemFlute extends ItemInstrument
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack stack = player.getHeldItem(hand);
         if(!world.isRemote)
         {
             useInstrument(stack, player, 20, 0, (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0);
@@ -85,7 +86,7 @@ public class ItemFlute extends ItemInstrument
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list)
+    public void getSubItems(Item item, CreativeTabs tabs, NonNullList<ItemStack> list)
     {
         list.add(new ItemStack(item, 1, 0));
         list.add(new ItemStack(item, 1, 1));

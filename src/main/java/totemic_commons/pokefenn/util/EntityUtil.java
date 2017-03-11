@@ -85,14 +85,14 @@ public class EntityUtil
     public static void spawnEntity(World world, double xPos, double yPos, double zPos, Entity entity)
     {
         entity.setPosition(xPos, yPos, zPos);
-        world.spawnEntityInWorld(entity);
+        world.spawnEntity(entity);
     }
 
     public static void dropItem(World world, double xPos, double yPos, double zPos, ItemStack itemStack)
     {
         EntityItem item = new EntityItem(world, xPos, yPos, zPos, itemStack);
         item.setDefaultPickupDelay();
-        world.spawnEntityInWorld(item);
+        world.spawnEntity(item);
     }
 
     public static void dropItem(World world, double xPos, double yPos, double zPos, Item item)
@@ -137,7 +137,7 @@ public class EntityUtil
     @SideOnly(Side.CLIENT)
     public static EntityPlayer getClientPlayer()
     {
-        return Minecraft.getMinecraft().thePlayer;
+        return Minecraft.getMinecraft().player;
     }
 
 }

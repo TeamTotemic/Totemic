@@ -1,12 +1,10 @@
 package totemic_commons.pokefenn;
 
-import java.util.List;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.lib.Strings;
@@ -20,14 +18,14 @@ public class CreativeTabTotemic extends CreativeTabs
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Item getTabIconItem()
+    public ItemStack getTabIconItem()
     {
-        return Item.getItemFromBlock(ModBlocks.tipi);
+        return new ItemStack(ModBlocks.tipi);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void displayAllRelevantItems(List<ItemStack> list)
+    public void displayAllRelevantItems(NonNullList<ItemStack> list)
     {
         super.displayAllRelevantItems(list);
 

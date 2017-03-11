@@ -55,7 +55,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
         for(int i = 0; i < MAX_POLE_SIZE; i++)
         {
-            TileEntity tile = worldObj.getTileEntity(pos.up(i + 1));
+            TileEntity tile = world.getTileEntity(pos.up(i + 1));
             if(tile instanceof TileTotemPole)
             {
                 TotemEffect effect = ((TileTotemPole) tile).getEffect();
@@ -70,7 +70,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     public void onPoleChange()
     {
-        if(!worldObj.isRemote)
+        if(!world.isRemote)
             NetworkHandler.sendAround(new PacketTotemPoleChange(pos), this, 64);
 
         calculateTotemEffects();
@@ -93,7 +93,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     public WoodVariant getWoodType()
     {
-        return worldObj.getBlockState(pos).getValue(BlockTotemBase.WOOD);
+        return world.getBlockState(pos).getValue(BlockTotemBase.WOOD);
     }
 
     public Multiset<TotemEffect> getTotemEffectSet()
@@ -149,7 +149,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     @SideOnly(Side.CLIENT)
     public void setCeremonyOverlay()
     {
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        EntityPlayer player = Minecraft.getMinecraft().player;
         if(getDistanceSq(player.posX, player.posY, player.posZ) <= 8*8)
         {
             GameOverlay.activeTotem = this;

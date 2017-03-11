@@ -42,7 +42,7 @@ public class PacketTotemEffectMusic extends SynchronizedPacketBase<PacketTotemEf
     @Override
     protected void handleClient(MessageContext ctx)
     {
-        TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(pos);
+        TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(pos);
         if(tile instanceof TileTotemBase)
         {
             TileTotemBase totem = (TileTotemBase) tile;

@@ -123,7 +123,7 @@ public class TotemUtil
     public static void playSound(Entity entity, SoundEvent sound, SoundCategory category, float volume, float pitch)
     {
         //Can't use entity.playSound here, otherwise if entity is a player they will hear nothing
-        entity.worldObj.playSound(null, entity.posX, entity.posY, entity.posZ, sound, category, volume, pitch);
+        entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, category, volume, pitch);
     }
 
     /**

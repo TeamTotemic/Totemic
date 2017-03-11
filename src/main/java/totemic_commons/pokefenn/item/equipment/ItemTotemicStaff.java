@@ -41,13 +41,12 @@ public class ItemTotemicStaff extends ItemTotemic
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
-            EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         Block block = world.getBlockState(pos).getBlock();
         if(block instanceof TotemicStaffUsage)
         {
-            return ((TotemicStaffUsage) block).onTotemicStaffRightClick(world, pos, player, stack);
+            return ((TotemicStaffUsage) block).onTotemicStaffRightClick(world, pos, player, player.getHeldItem(hand));
         }
         return EnumActionResult.FAIL;
     }

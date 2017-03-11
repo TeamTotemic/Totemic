@@ -27,14 +27,15 @@ public class ItemRattle extends ItemInstrument
     @Override
     public boolean onEntitySwing(EntityLivingBase entity, ItemStack stack)
     {
-        if(!entity.worldObj.isRemote)
+        if(!entity.world.isRemote)
             useInstrument(stack, entity, 16, 0, 0);
         return false;
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack stack = player.getHeldItem(hand);
         if(!player.isSwingInProgress)
             player.swingArm(hand);
         return new ActionResult<>(EnumActionResult.PASS, stack);

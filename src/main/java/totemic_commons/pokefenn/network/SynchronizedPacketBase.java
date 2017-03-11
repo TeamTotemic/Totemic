@@ -26,7 +26,7 @@ public abstract class SynchronizedPacketBase<T extends SynchronizedPacketBase<T>
 
     protected void enqueueServer(EntityPlayerMP player, MessageContext ctx)
     {
-        ((WorldServer) player.worldObj).addScheduledTask(() -> handleServer(player, ctx));
+        ((WorldServer) player.world).addScheduledTask(() -> handleServer(player, ctx));
     }
 
     @SideOnly(Side.CLIENT)

@@ -73,7 +73,7 @@ public class PacketCeremonyStartup extends SynchronizedPacketBase<PacketCeremony
     @SideOnly(Side.CLIENT)
     protected void handleClient(MessageContext ctx)
     {
-        TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(pos);
+        TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(pos);
         if(tile instanceof TileTotemBase)
         {
             TileTotemBase totem = (TileTotemBase) tile;

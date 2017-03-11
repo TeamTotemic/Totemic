@@ -118,16 +118,16 @@ public class ItemBaykokBow extends ItemBow
                     if(flag1)
                         entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
 
-                    world.spawnEntityInWorld(entityarrow);
+                    world.spawnEntity(entityarrow);
                 }
 
                 world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
 
                 if(!flag1)
                 {
-                    --arrow.stackSize;
+                    arrow.shrink(1);
 
-                    if(arrow.stackSize == 0)
+                    if(arrow.isEmpty())
                         player.inventory.deleteStack(arrow);
                 }
 

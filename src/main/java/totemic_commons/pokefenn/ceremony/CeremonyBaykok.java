@@ -25,7 +25,7 @@ public class CeremonyBaykok extends Ceremony
         EntityBaykok baykok = new EntityBaykok(world);
         baykok.setPosition(spos.getX() + 0.5, spos.getY(), spos.getZ() + 0.5);
         baykok.onInitialSpawn(world.getDifficultyForLocation(spos), null);
-        world.spawnEntityInWorld(baykok);
+        world.spawnEntity(baykok);
     }
 
     @Override

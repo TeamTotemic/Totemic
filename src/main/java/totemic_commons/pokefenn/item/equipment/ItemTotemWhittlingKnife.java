@@ -88,21 +88,22 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
+        ItemStack stack = player.getHeldItem(hand);
         if(player.isSneaking())
-            return new ActionResult<>(EnumActionResult.SUCCESS, changeIndex(itemStack, true));
+            return new ActionResult<>(EnumActionResult.SUCCESS, changeIndex(stack, true));
         else
-            return new ActionResult<>(EnumActionResult.FAIL, itemStack);
+            return new ActionResult<>(EnumActionResult.FAIL, stack);
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
-            EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        ItemStack stack = player.getHeldItem(hand);
         if(player.isSneaking())
         {
-            player.setHeldItem(hand, onItemRightClick(stack, world, player, hand).getResult());
+            player.setHeldItem(hand, onItemRightClick(stack, world, player, hand).getResult()); //FIXME
             return EnumActionResult.SUCCESS;
         }
         else

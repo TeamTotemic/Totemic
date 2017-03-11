@@ -7,7 +7,7 @@ public class TileTotemic extends TileEntity
 {
     public void markForUpdate()
     {
-        IBlockState state = worldObj.getBlockState(pos);
-        worldObj.notifyBlockUpdate(pos, state, state, 3);
+        IBlockState state = world.getBlockState(pos);
+        world.notifyBlockUpdate(pos, state, state, 3);
     }
 }

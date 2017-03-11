@@ -1,12 +1,11 @@
 package totemic_commons.pokefenn.item;
 
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -37,13 +36,13 @@ public class ItemBuffaloDrops extends ItemTotemic
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        int index = MathHelper.clamp_int(itemStack.getItemDamage(), 0, Type.values().length - 1);
+        int index = MathHelper.clamp(itemStack.getItemDamage(), 0, Type.values().length - 1);
         return "item." + Strings.RESOURCE_PREFIX + Type.values()[index].toString();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item id, CreativeTabs creativeTab, List<ItemStack> list)
+    public void getSubItems(Item id, CreativeTabs creativeTab, NonNullList<ItemStack> list)
     {
         for(int meta = 0; meta < Type.values().length; ++meta)
             list.add(new ItemStack(id, 1, meta));

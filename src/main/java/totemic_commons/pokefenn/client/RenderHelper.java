@@ -135,7 +135,7 @@ public class RenderHelper
         Tessellator tes = Tessellator.getInstance();
         VertexBuffer wr = tes.getBuffer();
 
-        int ticks = (int) (Minecraft.getMinecraft().theWorld.getTotalWorldTime() % 200);
+        int ticks = (int) (Minecraft.getMinecraft().world.getTotalWorldTime() % 200);
         if(ticks >= 100)
             ticks = 200 - ticks - 1;
 

@@ -1,5 +1,7 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -34,15 +36,15 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     }
 
     @Override
-    public ArmorProperties getProperties(EntityLivingBase player, ItemStack armor, DamageSource source, double damage, int slot)
+    public ArmorProperties getProperties(EntityLivingBase player, @Nonnull ItemStack armor, DamageSource source, double damage, int slot)
     {
         return new ArmorProperties(1, 1, 0);
     }
 
     @Override
-    public void damageArmor(EntityLivingBase entity, ItemStack stack, DamageSource source, int damage, int slot)
+    public void damageArmor(EntityLivingBase entity, @Nonnull ItemStack stack, DamageSource source, int damage, int slot)
     {
-        stack.damageItem(entity.worldObj.rand.nextInt(4), entity);
+        stack.damageItem(entity.world.rand.nextInt(4), entity);
     }
 
     @Override
@@ -95,7 +97,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     }
 
     @Override
-    public int getArmorDisplay(EntityPlayer player, ItemStack armor, int slot)
+    public int getArmorDisplay(EntityPlayer player, @Nonnull ItemStack armor, int slot)
     {
         return getArmorMaterial().getDamageReductionAmount(EntityEquipmentSlot.values()[slot]);
     }

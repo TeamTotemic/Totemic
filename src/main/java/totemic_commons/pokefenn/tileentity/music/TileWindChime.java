@@ -29,7 +29,7 @@ public class TileWindChime extends TileTotemic implements ITickable
     @Override
     public void update()
     {
-        if(worldObj.isRemote)
+        if(world.isRemote)
         {
 
             if(isPlaying)
@@ -41,11 +41,11 @@ public class TileWindChime extends TileTotemic implements ITickable
             else if(currentRotation >= 4F)
                 currentRotation = 4F;
 
-            if(isPlaying && worldObj.getTotalWorldTime() % 40L == 0)
+            if(isPlaying && world.getTotalWorldTime() % 40L == 0)
             {
-                worldObj.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
                         ModSounds.windChime, SoundCategory.BLOCKS, 0.5f, 1.0f, true);
-                worldObj.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.8, pos.getZ() + 0.5, 0, 0, 0);
+                world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.8, pos.getZ() + 0.5, 0, 0, 0);
             }
         }
 
@@ -60,7 +60,7 @@ public class TileWindChime extends TileTotemic implements ITickable
             }
         }
 
-        if(!worldObj.isRemote)
+        if(!world.isRemote)
         {
             if(!canPlay)
                 cooldownPassed++;
@@ -70,9 +70,9 @@ public class TileWindChime extends TileTotemic implements ITickable
                 cooldownPassed = 0;
             }
 
-            Random rand = worldObj.rand;
+            Random rand = world.rand;
 
-            if(!isPlaying && worldObj.getTotalWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
+            if(!isPlaying && world.getTotalWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
             {
                 setPlaying(true);
                 int radius = 2;
@@ -82,11 +82,11 @@ public class TileWindChime extends TileTotemic implements ITickable
                         for(int k = -radius; k <= radius; k++)
                         {
                             BlockPos p = pos.add(i, j, k);
-                            if(worldObj.getBlockState(p).getBlock() == ModBlocks.windChime)
+                            if(world.getBlockState(p).getBlock() == ModBlocks.windChime)
                             {
                                 if(rand.nextInt(3) == 0)
                                 {
-                                    TileWindChime tileWindChime = (TileWindChime) worldObj.getTileEntity(p);
+                                    TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(p);
                                     tileWindChime.setPlaying(true);
                                 }
                             }
@@ -94,19 +94,19 @@ public class TileWindChime extends TileTotemic implements ITickable
             }
 
             if(isPlaying)
-                if(worldObj.getTotalWorldTime() % 50L == 0 && rand.nextInt(2) == 0)
+                if(world.getTotalWorldTime() % 50L == 0 && rand.nextInt(2) == 0)
                 {
-                    IBlockState upState = worldObj.getBlockState(pos.up());
-                    int bonus = upState.getBlock().isLeaves(upState, worldObj, pos.up())
-                            ? worldObj.rand.nextInt(3) : 0;
-                    TotemUtil.playMusic(worldObj, pos, HandlerInitiation.windChime, 0, bonus);
+                    IBlockState upState = world.getBlockState(pos.up());
+                    int bonus = upState.getBlock().isLeaves(upState, world, pos.up())
+                            ? world.rand.nextInt(3) : 0;
+                    TotemUtil.playMusic(world, pos, HandlerInitiation.windChime, 0, bonus);
                 }
         }
     }
 
     public void setPlaying(boolean playing)
     {
-        if(!this.isPlaying && playing && !worldObj.isRemote)
+        if(!this.isPlaying && playing && !world.isRemote)
             NetworkHandler.sendAround(new PacketWindChime(pos), this, 32);
         this.isPlaying = playing;
         markDirty();

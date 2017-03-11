@@ -18,7 +18,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -48,7 +47,7 @@ public class BlockTipi extends Block implements ITileEntityProvider
     }
 
     @Override
-    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         EnumFacing dir = EnumFacing.fromAngle(placer.rotationYaw);
         return getDefaultState().withProperty(FACING, dir);
@@ -76,7 +75,7 @@ public class BlockTipi extends Block implements ITileEntityProvider
 
                     if(otherPlayer != null)
                     {
-                        player.addChatComponentMessage(new TextComponentTranslation("tile.bed.occupied"));
+                        player.sendMessage(new TextComponentTranslation("tile.bed.occupied"));
                         return true;
                     }
 
@@ -87,18 +86,18 @@ public class BlockTipi extends Block implements ITileEntityProvider
                     else
                     {
                         if(sleepresult == SleepResult.NOT_POSSIBLE_NOW)
-                            player.addChatComponentMessage(new TextComponentTranslation("tile.bed.noSleep"));
+                            player.sendMessage(new TextComponentTranslation("tile.bed.noSleep"));
                         else if(sleepresult == SleepResult.NOT_SAFE)
-                            player.addChatComponentMessage(new TextComponentTranslation("tile.bed.notSafe"));
+                            player.sendMessage(new TextComponentTranslation("tile.bed.notSafe"));
 
                         return true;
                     }
                 }
                 else
-                    player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.tipi.nether"));
+                    player.sendMessage(new TextComponentTranslation("totemicmisc.tipi.nether"));
             }
             else
-                player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.tipi.cantSleep"));
+                player.sendMessage(new TextComponentTranslation("totemicmisc.tipi.cantSleep"));
 
         }
         return true;
@@ -106,7 +105,7 @@ public class BlockTipi extends Block implements ITileEntityProvider
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player,
-            EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+            EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         return tipiSleep(world, pos, player);
     }
@@ -125,13 +124,13 @@ public class BlockTipi extends Block implements ITileEntityProvider
 
     @SideOnly(Side.CLIENT)
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return null;
     }
 
     @Override
-    public boolean isBed(IBlockState state, IBlockAccess world, BlockPos pos, Entity player)
+    public boolean isBed(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity player)
     {
         return true;
     }

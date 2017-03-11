@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.block.totem;
 
-import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -19,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -73,27 +73,27 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
 
         if(tile.getState() instanceof StateTotemEffect)
         {
-            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingNoCeremony"));
+            player.sendMessage(new TextComponentTranslation("totemicmisc.isDoingNoCeremony"));
         }
         else if(tile.getState() instanceof StateSelection)
         {
             String selectors = ((StateSelection) tile.getState()).getSelectors().stream()
                     .map(instr -> I18n.format(instr.getUnlocalizedName()))
                     .collect(Collectors.joining(", "));
-            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingSelection"));
-            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.selection", selectors));
+            player.sendMessage(new TextComponentTranslation("totemicmisc.isDoingSelection"));
+            player.sendMessage(new TextComponentTranslation("totemicmisc.selection", selectors));
         }
         else if(tile.getState() instanceof StateStartup)
         {
             Ceremony ceremony = ((StateStartup) tile.getState()).getCeremony();
-            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"));
-            player.addChatComponentMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
+            player.sendMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"));
+            player.sendMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
         }
         else if(tile.getState() instanceof StateCeremonyEffect)
         {
             Ceremony ceremony = ((StateCeremonyEffect) tile.getState()).getCeremony();
-            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
-            player.addChatComponentMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
+            player.sendMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
+            player.sendMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
         }
 
         return EnumActionResult.SUCCESS;
@@ -113,7 +113,7 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(int i = 0; i < WoodVariant.values().length; i++)
             list.add(new ItemStack(item, 1, i));

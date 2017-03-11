@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.block.totem;
 
-import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -18,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -54,7 +54,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
         {
             TileTotemPole pole = (TileTotemPole) world.getTileEntity(pos);
             String name = pole.getEffect() != null ? pole.getEffect().getUnlocalizedName() : "totemicmisc.noEffect";
-            player.addChatComponentMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.format(name)));
+            player.sendMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.format(name)));
         }
         return EnumActionResult.SUCCESS;
     }
@@ -104,7 +104,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(int i = 0; i < WoodVariant.values().length; i++)
             list.add(new ItemStack(item, 1, i));

@@ -51,7 +51,7 @@ public class GuiLexicon extends GuiScreen
     {
         super.initGui();
 
-        title = Minecraft.getMinecraft().thePlayer.getHeldItemMainhand().getDisplayName();
+        title = Minecraft.getMinecraft().player.getHeldItemMainhand().getDisplayName();
         currentOpenLexicon = this;
 
         left = width / 2 - guiWidth / 2;

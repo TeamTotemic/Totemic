@@ -49,7 +49,7 @@ public class PageCeremony extends PageRecipe
         }
 
         if(tooltipStack != null)
-            RenderHelper.renderTooltip(mx, my, tooltipStack.getTooltip(Minecraft.getMinecraft().thePlayer, false));
+            RenderHelper.renderTooltip(mx, my, tooltipStack.getTooltip(Minecraft.getMinecraft().player, false));
 
         String text = I18n.format("totemicmisc.musicSelector");
         font.drawString(text, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(text) / 2, gui.getTop() + 14, 0x999999);

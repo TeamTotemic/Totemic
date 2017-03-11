@@ -92,7 +92,7 @@ public class GameOverlay
                 RenderHelper.addQuad(wr, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
 
                 float musicW = state.getMusicAmount() / (float)cer.getMusicNeeded() * barW;
-                float timeW = Math.min(state.getTime() / (float)cer.getAdjustedMaxStartupTime(mc.theWorld.getDifficulty()), 1.0f) * barW;
+                float timeW = Math.min(state.getTime() / (float)cer.getAdjustedMaxStartupTime(mc.world.getDifficulty()), 1.0f) * barW;
 
                 RenderHelper.addQuad(wr, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar
                 RenderHelper.addQuad(wr, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar
@@ -118,7 +118,7 @@ public class GameOverlay
     @SubscribeEvent
     public void onFOVUpdate(FOVUpdateEvent event)
     {
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+        EntityPlayer player = Minecraft.getMinecraft().player;
         if(player.isHandActive() && player.getActiveItemStack() != null && player.getActiveItemStack().getItem() instanceof ItemBaykokBow)
         {
             int bowTicks = player.getItemInUseMaxCount();

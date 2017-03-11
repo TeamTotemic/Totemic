@@ -39,13 +39,13 @@ public class CeremonyZaphkielWaltz extends Ceremony
                     {
                         EntityChicken chicken = new EntityChicken(world);
                         chicken.setPosition(entity.posX, entity.posY, entity.posZ);
-                        world.spawnEntityInWorld(chicken);
-                        if(item.getEntityItem().stackSize == 1)
+                        world.spawnEntity(chicken);
+                        if(item.getEntityItem().getCount() == 1)
                             item.setDead();
                         else
                         {
                             ItemStack stack = item.getEntityItem().copy();
-                            stack.stackSize--;
+                            stack.shrink(1);
                             item.setEntityItemStack(stack);
                         }
                     }

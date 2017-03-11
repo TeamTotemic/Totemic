@@ -27,12 +27,12 @@ public class ItemBarkStripper extends ItemTotemic
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos,
-            EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if(player.isSneaking())
             return EnumActionResult.FAIL;
 
+        ItemStack stack = player.getHeldItem(hand);
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
         if(block instanceof BlockCedarLog)

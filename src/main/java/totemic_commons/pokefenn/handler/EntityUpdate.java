@@ -58,9 +58,9 @@ public class EntityUpdate
             }
             else
             {
-                player.motionX = MathHelper.clamp_double(player.motionX, -factor, factor);
+                player.motionX = MathHelper.clamp(player.motionX, -factor, factor);
                 player.motionY = 0.2;
-                player.motionZ = MathHelper.clamp_double(player.motionZ, -factor, factor);
+                player.motionZ = MathHelper.clamp(player.motionZ, -factor, factor);
 
                 player.fallDistance = 0.0F;
             }

@@ -76,18 +76,18 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
     {
-        EntityInvisArrow arrow = new EntityInvisArrow(worldObj, this);
+        EntityInvisArrow arrow = new EntityInvisArrow(world, this);
         double dx = target.posX - this.posX;
         double dy = target.getEntityBoundingBox().minY + target.height / 3.0F - arrow.posY;
         double dz = target.posZ - this.posZ;
-        double xzdist = MathHelper.sqrt_double(dx*dx + dz*dz);
+        double xzdist = MathHelper.sqrt(dx*dx + dz*dz);
         float velocity = 2.0F + 1.0F * distanceFactor;
-        float inaccuracy = 4.5F - worldObj.getDifficulty().getDifficultyId();
+        float inaccuracy = 4.5F - world.getDifficulty().getDifficultyId();
         arrow.setThrowableHeading(dx, dy + 0.125 * xzdist, dz, velocity, inaccuracy);
-        arrow.setDamage(2.0 * distanceFactor + 1.0 + 0.25 * rand.nextGaussian() + 0.4 * worldObj.getDifficulty().getDifficultyId());
+        arrow.setDamage(2.0 * distanceFactor + 1.0 + 0.25 * rand.nextGaussian() + 0.4 * world.getDifficulty().getDifficultyId());
 
         playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
-        worldObj.spawnEntityInWorld(arrow);
+        world.spawnEntity(arrow);
     }
 
     @Override

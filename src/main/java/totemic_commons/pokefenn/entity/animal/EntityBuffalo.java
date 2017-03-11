@@ -65,7 +65,7 @@ public class EntityBuffalo extends EntityCow
         super.onLivingUpdate();
 
         final int interval = 5;
-        if(!worldObj.isRemote && (worldObj.getTotalWorldTime() % interval == 0) && !isChild())
+        if(!world.isRemote && (world.getTotalWorldTime() % interval == 0) && !isChild())
         {
             int age = getBuffaloAge();
             if(age < MAX_AGE) {
@@ -172,8 +172,8 @@ public class EntityBuffalo extends EntityCow
             if(!isSheared && itemstack.getItem() instanceof ItemShears)
             {
                 itemstack.damageItem(1, player);
-                EntityItem entityItem = new EntityItem(worldObj, posX, posY, posZ, new ItemStack(ModItems.buffaloItems, 2 + rand.nextInt(3), ItemBuffaloDrops.hair));
-                worldObj.spawnEntityInWorld(entityItem);
+                EntityItem entityItem = new EntityItem(world, posX, posY, posZ, new ItemStack(ModItems.buffaloItems, 2 + rand.nextInt(3), ItemBuffaloDrops.hair));
+                world.spawnEntityInWorld(entityItem);
 
                 return true;
             }
@@ -186,14 +186,14 @@ public class EntityBuffalo extends EntityCow
     @Override
     public EntityBuffalo createChild(EntityAgeable var1)
     {
-        return new EntityBuffalo(worldObj);
+        return new EntityBuffalo(world);
     }
 
     @Override
     protected int getExperiencePoints(EntityPlayer player)
     {
         int bonus = (3 * getBuffaloAge()) / MAX_AGE;
-        return 2 + bonus + worldObj.rand.nextInt(3 + bonus);
+        return 2 + bonus + world.rand.nextInt(3 + bonus);
     }
 
     @Override

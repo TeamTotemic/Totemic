@@ -55,7 +55,7 @@ public class EntityInvisArrow extends EntityArrow
     public void notifyDataManagerChange(DataParameter<?> key)
     {
         super.notifyDataManagerChange(key);
-        if(worldObj.isRemote && SHOOTING_PLAYER.equals(key))
+        if(world.isRemote && SHOOTING_PLAYER.equals(key))
         {
             if(dataManager.get(SHOOTING_PLAYER) == EntityUtil.getClientPlayer().getEntityId())
             {

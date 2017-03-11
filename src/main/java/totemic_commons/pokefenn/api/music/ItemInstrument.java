@@ -77,10 +77,10 @@ public abstract class ItemInstrument extends Item
      */
     protected void playMusic(ItemStack stack, Entity entity, int bonusRadius, int bonusMusic)
     {
-        if(entity.worldObj.isRemote)
+        if(entity.world.isRemote)
             return;
 
-        WorldServer world = (WorldServer) entity.worldObj;
+        WorldServer world = (WorldServer) entity.world;
         if(!entity.isSneaking())
         {
             TotemicAPI.get().music().playMusic(world, entity.posX, entity.posY, entity.posZ, instrument, bonusRadius, bonusMusic);
@@ -93,7 +93,7 @@ public abstract class ItemInstrument extends Item
         }
 
         if(sound != null)
-            entity.worldObj.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
     }
 
     /**

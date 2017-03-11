@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.block.music;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -34,7 +32,7 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbor)
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbor, BlockPos fromPos)
     {
         if(!world.isRemote)
         {
@@ -56,7 +54,7 @@ public class BlockWindChime extends Block implements ITileEntityProvider
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
-            @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+            EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(pos);
 

@@ -17,7 +17,7 @@ public class TileDrum extends TileTotemic implements ITickable
          * Also a drum beater item so when you hit the drum it pounces extra music.
          */
 
-        if(!worldObj.isRemote)
+        if(!world.isRemote)
         {
             if(!canPlay)
             {
