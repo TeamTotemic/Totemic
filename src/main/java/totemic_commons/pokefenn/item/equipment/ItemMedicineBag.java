@@ -14,6 +14,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -165,6 +166,12 @@ public class ItemMedicineBag extends ItemTotemic
     public double getDurabilityForDisplay(ItemStack stack)
     {
         return 1.0 - getCharge(stack) / (double) MAX_CHARGE;
+    }
+
+    @Override
+    public int getRGBDurabilityForDisplay(ItemStack stack)
+    {
+        return MathHelper.hsvToRGB(getCharge(stack) / (float) MAX_CHARGE / 3.0F, 1.0F, 1.0F);
     }
 
     @Override
