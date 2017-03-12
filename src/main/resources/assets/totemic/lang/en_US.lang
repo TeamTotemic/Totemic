@@ -46,8 +46,8 @@ tile.totemicTipi.name=Tipi
 tile.dummyTotemicTipi.name=Tipi
 
 #Entity localizations
-entity.totemic.buffalo.name=Buffalo
-entity.totemic.baykok.name=Baykok
+entity.totemic:buffalo.name=Buffalo
+entity.totemic:baykok.name=Baykok
 
 #Potion effect localizations
 totemic.potion.bat=Bat

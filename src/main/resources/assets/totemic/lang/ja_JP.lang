@@ -39,8 +39,8 @@ tile.totemicTipi.name=ティピー
 tile.dummyTotemicTipi.name=ティピー
 
 #Entity localizations
-entity.totemic.buffalo.name=バッファロー
-entity.totemic.baykok.name=ベイコック
+entity.totemic:buffalo.name=バッファロー
+entity.totemic:baykok.name=ベイコック
 
 #Potion effect localizations
 totemic.potion.bat=コウモリ

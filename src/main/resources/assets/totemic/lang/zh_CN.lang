@@ -39,8 +39,8 @@ tile.totemicTipi.name=印第安帐篷
 tile.dummyTotemicTipi.name=印第安帐篷
 
 #Entity localizations
-entity.totemic.buffalo.name=野牛
-entity.totemic.baykok.name=贝柯克
+entity.totemic:buffalo.name=野牛
+entity.totemic:baykok.name=贝柯克
 
 #Potion effect localizations
 totemic.potion.bat=蝙蝠
