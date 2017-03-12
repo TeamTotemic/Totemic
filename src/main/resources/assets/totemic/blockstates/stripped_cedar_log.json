@@ -1,0 +1,15 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "axis": {
+            "y": { "model": "totemic:stripped_cedar_log" },
+            "z": { "model": "totemic:stripped_cedar_log", "x": 90 },
+            "x": { "model": "totemic:stripped_cedar_log", "x": 90, "y": 90 },
+            "none": { "model": "totemic:stripped_cedar_log_bark" }
+        },
+        "inventory": {
+            "model": "totemic:stripped_cedar_log",
+            "transform": "forge:default-block"
+        }
+    }
+}

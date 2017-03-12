@@ -1,0 +1,60 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "totemic:totem_base",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "wood": {
+            "oak": {
+                "textures": {
+                    "base": "totemic:blocks/totem_base_oak",
+                    "pole": "totemic:blocks/totem_pole_oak",
+                    "particle": "blocks/log_oak"
+                }
+            },
+            "spruce": {
+                "textures": {
+                    "base": "totemic:blocks/totem_base_spruce",
+                    "pole": "totemic:blocks/totem_pole_spruce",
+                    "particle": "blocks/log_spruce"
+                }
+            },
+            "birch": {
+                "textures": {
+                    "base": "totemic:blocks/totem_base_birch",
+                    "pole": "totemic:blocks/totem_pole_birch",
+                    "particle": "blocks/log_birch"
+                }
+            },
+            "jungle": {
+                "textures": {
+                    "base": "totemic:blocks/totem_base_jungle",
+                    "pole": "totemic:blocks/totem_pole_jungle",
+                    "particle": "blocks/log_jungle"
+                }
+            },
+            "acacia": {
+                "textures": {
+                    "base": "totemic:blocks/totem_base_acacia",
+                    "pole": "totemic:blocks/totem_pole_acacia",
+                    "particle": "blocks/log_acacia"
+                }
+            },
+            "dark_oak": {
+                "textures": {
+                    "base": "totemic:blocks/totem_base_dark_oak",
+                    "pole": "totemic:blocks/totem_pole_dark_oak",
+                    "particle": "blocks/log_big_oak"
+                }
+            },
+            "cedar": {
+                "textures": {
+                    "base": "totemic:blocks/totem_base_cedar",
+                    "pole": "totemic:blocks/totem_pole_cedar",
+                    "particle": "totemic:blocks/cedar_log"
+                }
+            }
+        }
+    }
+}

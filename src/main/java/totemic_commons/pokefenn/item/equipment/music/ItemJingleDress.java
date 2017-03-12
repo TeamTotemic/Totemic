@@ -31,7 +31,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 
     public ItemJingleDress()
     {
-        super(EquipmentMaterials.jingleDress, 0, EntityEquipmentSlot.LEGS);
+        super(EquipmentMaterials.JINGLE_DRESS, 0, EntityEquipmentSlot.LEGS);
         setRegistryName(Strings.JINGLE_DRESS_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.JINGLE_DRESS_NAME);
         setCreativeTab(Totemic.tabsTotem);

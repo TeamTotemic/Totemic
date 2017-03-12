@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "totemic:blocks/cedar_leaves_opaque"
+    }
+}

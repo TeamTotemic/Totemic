@@ -9,7 +9,7 @@ public final class ModSounds
     public static final SoundEvent flute = createSound("flute");
     public static final SoundEvent rattle = createSound("rattle");
     public static final SoundEvent drum = createSound("drum");
-    public static final SoundEvent windChime = createSound("windChime");
+    public static final SoundEvent windChime = createSound("wind_chime");
 
     public static void init()
     {

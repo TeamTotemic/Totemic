@@ -1,0 +1,104 @@
+{
+    "parent": "block/block",
+    "elements": [
+        {
+            "__comment": "Base",
+            "from": [7, 0, 7],
+            "to": [9, 15, 9],
+            "faces": {
+                "down":  {"uv": [2, 0, 3, 1], "texture": "#torch", "cullface": "down"},
+                "up":    {"uv": [1, 0, 2, 1], "texture": "#torch"},
+                "north": {"uv": [1, 1, 2, 8.5], "texture": "#torch"},
+                "south": {"uv": [3, 1, 4, 8.5], "texture": "#torch"},
+                "west":  {"uv": [2, 1, 3, 8.5], "texture": "#torch"},
+                "east":  {"uv": [0, 1, 1, 8.5], "texture": "#torch"}
+            }
+        },
+        {
+            "__comment": "Light Base",
+            "from": [5, 13, 5],
+            "to": [11, 14, 11],
+            "faces": {
+                "down":  {"uv": [6, 0, 9, 3], "texture": "#torch"},
+                "up":    {"uv": [3, 0, 6, 3], "texture": "#torch"},
+                "north": {"uv": [3, 3, 6, 3.5], "texture": "#torch"},
+                "south": {"uv": [9, 3, 12, 3.5], "texture": "#torch"},
+                "west":  {"uv": [6, 3, 9, 3.5], "texture": "#torch"},
+                "east":  {"uv": [0, 3, 3, 3.5], "texture": "#torch"}
+            }
+        },
+        {
+            "__comment": "Pole 1",
+            "from": [10, 14, 5],
+            "to": [11, 19, 6],
+            "faces": {
+                "north": {"uv": [0.5, 0.5, 1, 3], "texture": "#torch"},
+                "south": {"uv": [1.5, 0.5, 2, 3], "texture": "#torch"},
+                "west":  {"uv": [1, 0.5, 1.5, 3], "texture": "#torch"},
+                "east":  {"uv": [0, 0.5, 0.5, 3], "texture": "#torch"}
+            }
+        },
+        {
+            "__comment": "Pole 2",
+            "from": [10, 14, 10],
+            "to": [11, 19, 11],
+            "faces": {
+                "north": {"uv": [0.5, 0.5, 1, 3], "texture": "#torch"},
+                "south": {"uv": [1.5, 0.5, 2, 3], "texture": "#torch"},
+                "west":  {"uv": [1, 0.5, 1.5, 3], "texture": "#torch"},
+                "east":  {"uv": [0, 0.5, 0.5, 3], "texture": "#torch"}
+            }
+        },
+        {
+            "__comment": "Pole 3",
+            "from": [5, 14, 5],
+            "to": [6, 19, 6],
+            "faces": {
+                "north": {"uv": [0.5, 0.5, 1, 3], "texture": "#torch"},
+                "south": {"uv": [1.5, 0.5, 2, 3], "texture": "#torch"},
+                "west":  {"uv": [1, 0.5, 1.5, 3], "texture": "#torch"},
+                "east":  {"uv": [0, 0.5, 0.5, 3], "texture": "#torch"}
+            }
+        },
+        {
+            "__comment": "Pole 4",
+            "from": [5, 14, 10],
+            "to": [6, 19, 11],
+            "faces": {
+                "north": {"uv": [0.5, 0.5, 1, 3], "texture": "#torch"},
+                "south": {"uv": [1.5, 0.5, 2, 3], "texture": "#torch"},
+                "west":  {"uv": [1, 0.5, 1.5, 3], "texture": "#torch"},
+                "east":  {"uv": [0, 0.5, 0.5, 3], "texture": "#torch"}
+            }
+        },
+        {
+            "__comment": "Light Top",
+            "from": [5, 19, 5],
+            "to": [11, 20, 11],
+            "faces": {
+                "down":  {"uv": [6, 0, 9, 3], "texture": "#torch"},
+                "up":    {"uv": [3, 0, 6, 3], "texture": "#torch"},
+                "north": {"uv": [3, 3, 6, 3.5], "texture": "#torch"},
+                "south": {"uv": [9, 3, 12, 3.5], "texture": "#torch"},
+                "west":  {"uv": [6, 3, 9, 3.5], "texture": "#torch"},
+                "east":  {"uv": [0, 3, 3, 3.5], "texture": "#torch"}
+            }
+        },
+        {
+            "__comment": "Top",
+            "from": [7, 20, 7],
+            "to": [9, 21, 9],
+            "faces": {
+                "up":    {"uv": [1, 0, 2, 1], "texture": "#torch"},
+                "north": {"uv": [1, 1, 2, 1.5], "texture": "#torch"},
+                "south": {"uv": [3, 1, 4, 1.5], "texture": "#torch"},
+                "west":  {"uv": [2, 1, 3, 1.5], "texture": "#torch"},
+                "east":  {"uv": [0, 1, 1, 1.5], "texture": "#torch"}
+            }
+        }
+    ],
+    "textures": {
+        "torch": "totemic:blocks/totem_torch",
+        "particle": "blocks/log_oak"
+    }
+}

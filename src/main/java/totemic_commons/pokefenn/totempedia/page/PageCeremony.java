@@ -15,12 +15,13 @@ import net.minecraft.util.ResourceLocation;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.client.RenderHelper;
+import totemic_commons.pokefenn.lib.Resources;
 import totemic_commons.pokefenn.util.TotemUtil;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 
 public class PageCeremony extends PageRecipe
 {
-    public ResourceLocation ceremonyOverlay = new ResourceLocation("totemic:textures/gui/ceremonyOverlay.png");
+    private static final ResourceLocation ceremonyOverlay = new ResourceLocation(Resources.GUI_CEREMONY_OVERLAY);
 
     public Ceremony ceremony;
 

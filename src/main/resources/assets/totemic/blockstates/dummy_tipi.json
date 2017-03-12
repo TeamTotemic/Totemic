@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "normal":    { "model": "totemic:dummy_tipi" },
+        "inventory": { "model": "totemic:dummy_tipi" }
+    }
+}

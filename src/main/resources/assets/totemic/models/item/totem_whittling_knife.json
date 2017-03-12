@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "totemic:items/totem_whittling_knife"
+    }
+}

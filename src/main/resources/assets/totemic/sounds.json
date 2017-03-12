@@ -1,5 +1,5 @@
 {
-    "windChime": {"category": "block", "sounds": ["totemic:windChime"]},
+    "wind_chime": {"category": "block", "sounds": ["totemic:wind_chime"]},
     "rattle": {"category": "players", "sounds": ["totemic:rattle"]},
     "flute": {"category": "players", "sounds": ["totemic:flute1", "totemic:flute2"]},
     "drum": {"category": "block", "sounds": ["totemic:drum"]}

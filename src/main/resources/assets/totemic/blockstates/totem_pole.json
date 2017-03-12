@@ -1,0 +1,53 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "totemic:totem_pole",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "wood": {
+            "oak": {
+                "textures": {
+                    "pole": "totemic:blocks/totem_pole_oak",
+                    "particle": "blocks/log_oak"
+                }
+            },
+            "spruce": {
+                "textures": {
+                    "pole": "totemic:blocks/totem_pole_spruce",
+                    "particle": "blocks/log_spruce"
+                }
+            },
+            "birch": {
+                "textures": {
+                    "pole": "totemic:blocks/totem_pole_birch",
+                    "particle": "blocks/log_birch"
+                }
+            },
+            "jungle": {
+                "textures": {
+                    "pole": "totemic:blocks/totem_pole_jungle",
+                    "particle": "blocks/log_jungle"
+                }
+            },
+            "acacia": {
+                "textures": {
+                    "pole": "totemic:blocks/totem_pole_acacia",
+                    "particle": "blocks/log_acacia"
+                }
+            },
+            "dark_oak": {
+                "textures": {
+                    "pole": "totemic:blocks/totem_pole_dark_oak",
+                    "particle": "blocks/log_big_oak"
+                }
+            },
+            "cedar": {
+                "textures": {
+                    "pole": "totemic:blocks/totem_pole_cedar",
+                    "particle": "totemic:blocks/cedar_log"
+                }
+            }
+        }
+    }
+}
