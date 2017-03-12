@@ -184,16 +184,16 @@ public class ItemMedicineBag extends ItemTotemic
         if(getEffect(stack).isPresent())
         {
             if(getCharge(stack) > 0)
-                key = (stack.getMetadata() == 0) ? "item.totemic:medicineBag.tooltipClosed" : "item.totemic:medicineBag.tooltipOpen";
+                key = (stack.getMetadata() == 0) ? "tooltipClosed" : "tooltipOpen";
             else
-                key = "item.totemic:medicineBag.tooltipEmpty";
+                key = "tooltipEmpty";
         }
         else
-            key = "item.totemic:medicineBag.tooltip";
-        tooltip.add(I18n.format(key));
+            key = "tooltip";
+        tooltip.add(I18n.format(getUnlocalizedName() + "." + key));
 
         if(advanced)
-            tooltip.add(I18n.format("item.totemic:medicineBag.tooltipCharge", getCharge(stack)));
+            tooltip.add(I18n.format(getUnlocalizedName() + ".tooltipCharge", getCharge(stack)));
     }
 
     @Override

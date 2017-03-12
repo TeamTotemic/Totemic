@@ -27,6 +27,8 @@ import totemic_commons.pokefenn.util.TotemUtil;
 
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 {
+    public static final String TIME_KEY = "time";
+
     public ItemJingleDress()
     {
         super(EquipmentMaterials.jingleDress, 0, EntityEquipmentSlot.LEGS);
@@ -71,11 +73,11 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
                 NBTTagCompound tag = itemStack.getTagCompound();
                 if(tag != null)
                 {
-                    int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+                    int time = tag.getInteger(TIME_KEY);
                     if(time >= 3 || (player.isPotionActive(MobEffects.SPEED) && time >= 2))
                     {
                         playMusic(world, player, itemStack, false);
-                        tag.setInteger(Strings.INSTR_TIME_KEY, 0);
+                        tag.setInteger(TIME_KEY, 0);
                     }
                 }
             }

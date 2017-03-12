@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.item;
 
-import org.apache.commons.lang3.StringUtils;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +15,7 @@ public class ItemBuffaloDrops extends ItemTotemic
     {
         hide, teeth/*, horn, hair, hoof, dung*/;
 
-        private final String fullName = "buffalo" + StringUtils.capitalize(name());
+        private final String fullName = "buffalo_" + name();
 
         @Override
         public String toString()

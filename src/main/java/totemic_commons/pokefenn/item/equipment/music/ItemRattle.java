@@ -18,8 +18,8 @@ public class ItemRattle extends ItemInstrument
     public ItemRattle()
     {
         super(HandlerInitiation.rattle, ModSounds.rattle);
-        setRegistryName(Strings.CEREMONY_RATTLE_NAME);
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CEREMONY_RATTLE_NAME);
+        setRegistryName(Strings.RATTLE_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.RATTLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setMaxStackSize(1);
     }

@@ -30,7 +30,7 @@ public class ItemTotemicStaff extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced)
     {
-        list.add(I18n.format("item.totemic:totemicStaff.tooltip"));
+        list.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
     @Override

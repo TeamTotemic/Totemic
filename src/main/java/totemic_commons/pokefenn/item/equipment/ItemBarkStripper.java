@@ -19,6 +19,8 @@ import totemic_commons.pokefenn.util.ItemUtil;
 
 public class ItemBarkStripper extends ItemTotemic
 {
+    public static final String TIME_KEY = "time";
+
     public ItemBarkStripper()
     {
         super(Strings.BARK_STRIPPER_NAME);
@@ -38,7 +40,7 @@ public class ItemBarkStripper extends ItemTotemic
         if(block instanceof BlockCedarLog)
         {
             NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
-            int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+            int time = tag.getInteger(TIME_KEY);
 
             time++;
             if(time >= 5)
@@ -53,7 +55,7 @@ public class ItemBarkStripper extends ItemTotemic
                 stack.damageItem(1, player);
             }
 
-            tag.setInteger(Strings.INSTR_TIME_KEY, time);
+            tag.setInteger(TIME_KEY, time);
 
             return EnumActionResult.SUCCESS;
         }

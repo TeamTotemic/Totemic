@@ -46,7 +46,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     private static String getCarvingName(@Nullable TotemEffect effect)
     {
-        return I18n.format((effect != null) ? effect.getUnlocalizedName() : "tile.totemBase.name");
+        return I18n.format((effect != null) ? effect.getUnlocalizedName() : ModBlocks.totemBase.getUnlocalizedName() + ".name");
     }
 
     @Nullable
@@ -75,9 +75,9 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced)
     {
-        list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip1"));
-        list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip2"));
-        list.add(I18n.format("item.totemic:totemWhittlingKnife.tooltip3", getCarvingName(getCarvingEffect(stack))));
+        list.add(I18n.format(getUnlocalizedName() + ".tooltip1"));
+        list.add(I18n.format(getUnlocalizedName() + ".tooltip2"));
+        list.add(I18n.format(getUnlocalizedName() + ".tooltip3", getCarvingName(getCarvingEffect(stack))));
     }
 
     @Override

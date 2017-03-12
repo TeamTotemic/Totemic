@@ -30,7 +30,7 @@ public class BlockDrum extends Block implements ITileEntityProvider
     {
         super(Material.WOOD);
         setRegistryName(Strings.DRUM_NAME);
-        setUnlocalizedName(Strings.DRUM_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.DRUM_NAME);
         setHardness(2);
         setSoundType(SoundType.WOOD);
         setCreativeTab(Totemic.tabsTotem);

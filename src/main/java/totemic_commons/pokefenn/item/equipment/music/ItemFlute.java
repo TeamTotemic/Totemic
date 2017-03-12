@@ -79,9 +79,9 @@ public class ItemFlute extends ItemInstrument
     public String getUnlocalizedName(ItemStack stack)
     {
         if(stack.getItemDamage() == 1)
-            return "item.totemic:fluteInfused";
+            return "item." + Strings.RESOURCE_PREFIX + "infused_flute";
         else
-            return "item.totemic:flute";
+            return "item." + Strings.RESOURCE_PREFIX + "flute";
     }
 
     @SideOnly(Side.CLIENT)

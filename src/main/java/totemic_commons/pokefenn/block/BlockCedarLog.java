@@ -11,7 +11,7 @@ public class BlockCedarLog extends BlockLog
     public BlockCedarLog()
     {
         setRegistryName(Strings.CEDAR_LOG_NAME);
-        setUnlocalizedName(Strings.CEDAR_LOG_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CEDAR_LOG_NAME);
         setHardness(2F);
         setCreativeTab(Totemic.tabsTotem);
         setDefaultState(getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));

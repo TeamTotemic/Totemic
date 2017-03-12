@@ -40,7 +40,7 @@ public class BlockTipi extends Block implements ITileEntityProvider
     {
         super(Material.CLOTH);
         setRegistryName(Strings.TIPI_NAME);
-        setUnlocalizedName(Strings.TIPI_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TIPI_NAME);
         setHardness(0.2F);
         setSoundType(SoundType.CLOTH);
         setCreativeTab(Totemic.tabsTotem);

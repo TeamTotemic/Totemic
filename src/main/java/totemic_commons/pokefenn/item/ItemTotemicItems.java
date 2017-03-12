@@ -14,7 +14,7 @@ public class ItemTotemicItems extends ItemTotemic
 {
     public enum Type
     {
-        nuggetIron, bellsIron;
+        iron_nugget, iron_bells;
     }
 
     public ItemTotemicItems()

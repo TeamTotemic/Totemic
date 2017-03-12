@@ -26,7 +26,7 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     {
         super(Material.IRON);
         setRegistryName(Strings.WIND_CHIME_NAME);
-        setUnlocalizedName(Strings.WIND_CHIME_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.WIND_CHIME_NAME);
         setHardness(1.5F);
         setCreativeTab(Totemic.tabsTotem);
     }

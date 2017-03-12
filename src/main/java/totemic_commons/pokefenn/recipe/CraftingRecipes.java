@@ -56,7 +56,7 @@ public class CraftingRecipes
                 "iii", "s s", "s s", ('i'), "ingotIron", ('s'), "stickWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(ModItems.totempedia,
                 "bpb", "bpb", "bpb", ('b'), "logWood", ('p'), Items.PAPER));
-        GameRegistry.addRecipe(bellsIron = new ShapedOreRecipe(new ItemStack(ModItems.subItems, 3, ItemTotemicItems.Type.bellsIron.ordinal()),
+        GameRegistry.addRecipe(bellsIron = new ShapedOreRecipe(new ItemStack(ModItems.subItems, 3, ItemTotemicItems.Type.iron_bells.ordinal()),
                 " n ", "nnn", " n ", ('n'), "nuggetIron"));
         GameRegistry.addRecipe(new ShapedOreRecipe(Items.IRON_INGOT,
                 "nnn", "nnn", "nnn", ('n'), "nuggetIron"));
@@ -82,7 +82,7 @@ public class CraftingRecipes
     {
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedarPlank, 5, 0), ModBlocks.cedarLogStripped);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedarPlank, 3, 0), ModBlocks.cedarLog);
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.subItems, 9, ItemTotemicItems.Type.nuggetIron.ordinal()), "ingotIron"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.subItems, 9, ItemTotemicItems.Type.iron_nugget.ordinal()), "ingotIron"));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.LEATHER), new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()));
 
         //Music
@@ -94,8 +94,8 @@ public class CraftingRecipes
         OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.cedarLeaves, 1));
         OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedarLog, 1, 0));
         OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.cedarPlank, 1, 0));
-        OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.nuggetIron.ordinal()));
-        OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.bellsIron.ordinal()));
+        OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.iron_nugget.ordinal()));
+        OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.Type.iron_bells.ordinal()));
         OreDictionary.registerOre("listAllmeatraw", new ItemStack(ModItems.buffaloMeat));
         OreDictionary.registerOre("listAllbeefraw", new ItemStack(ModItems.buffaloMeat));
         OreDictionary.registerOre("listAllbuffaloraw", new ItemStack(ModItems.buffaloMeat));

@@ -41,7 +41,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
     {
         super(Material.WOOD);
         setRegistryName(Strings.TOTEM_POLE_NAME);
-        setUnlocalizedName(Strings.TOTEM_POLE_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setHardness(2);
         setSoundType(SoundType.WOOD);

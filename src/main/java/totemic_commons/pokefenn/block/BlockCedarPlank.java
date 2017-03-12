@@ -11,8 +11,8 @@ public class BlockCedarPlank extends Block
     public BlockCedarPlank()
     {
         super(Material.WOOD);
-        setRegistryName(Strings.RED_CEDAR_PLANK_NAME);
-        setUnlocalizedName(Strings.RED_CEDAR_PLANK_NAME);
+        setRegistryName(Strings.CEDAR_PLANK_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CEDAR_PLANK_NAME);
         setHardness(2F);
         setSoundType(SoundType.WOOD);
         setCreativeTab(Totemic.tabsTotem);

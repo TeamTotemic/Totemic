@@ -31,8 +31,8 @@ public class BlockCedarLeaves extends BlockLeaves
 
     public BlockCedarLeaves()
     {
-        setRegistryName(Strings.TOTEM_LEAVES_NAME);
-        setUnlocalizedName(Strings.TOTEM_LEAVES_NAME);
+        setRegistryName(Strings.CEDAR_LEAVES_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CEDAR_LEAVES_NAME);
         setCreativeTab(Totemic.tabsTotem);
     }
 

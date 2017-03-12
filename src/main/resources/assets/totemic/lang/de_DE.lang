@@ -1,49 +1,48 @@
 # Key localizations
 
 # Item localizations
-item.totemic:totemicStaff.name=Totemstab
-item.totemic:totemicStaff.tooltip=Ein Stab für deine Totem-Bedürfnisse!
-item.totemic:totemWhittlingKnife.name=Totemschnitzmesser
-item.totemic:totemWhittlingKnife.display=Totemschnitzmesser (%s)
-item.totemic:totemWhittlingKnife.tooltip1=Ein Messer für all deine Schnitzerei
-item.totemic:totemWhittlingKnife.tooltip2=Schleichen+Rechts oder Mausrad zum Ändern des Musters
-item.totemic:totemWhittlingKnife.tooltip3=Momentanes Schnitzmuster: %s
+item.totemic:totemic_staff.name=Totemstab
+item.totemic:totemic_staff.tooltip=Ein Stab für deine Totem-Bedürfnisse!
+item.totemic:totem_whittling_knife.name=Totemschnitzmesser
+item.totemic:totem_whittling_knife.display=Totemschnitzmesser (%s)
+item.totemic:totem_whittling_knife.tooltip1=Ein Messer für all deine Schnitzerei
+item.totemic:totem_whittling_knife.tooltip2=Schleichen+Rechts oder Mausrad zum Ändern des Musters
+item.totemic:totem_whittling_knife.tooltip3=Momentanes Schnitzmuster: %s
 item.totemic:totempedia.name=Totempedia
 item.totemic:flute.name=Flöte
-item.totemic:fluteInfused.name=Verzauberte Flöte
-item.totemic:cedarBark.name=Rote Zedernrinde
-item.totemic:barkStripper.name=Entrinder
-item.totemic:jingleDress.name=Glockenkleid
-item.totemic:ceremonialRattle.name=Rassel
-item.totemic:tipiItem.name=Tipi
-item.totemic:nuggetIron.name=Eisennugget
-item.totemic:bellsIron.name=Eisenglocken
-item.totemic:buffaloHide.name=Büffelleder
-item.totemic:buffaloTeeth.name=Büffelzahn
-item.totemic:buffaloMeat.name=Rohes Büffelfleisch
-item.totemic:buffaloCookedMeat.name=Gebratenes Büffelfleisch
-item.totemic:baykokBow.name=Baykoks Bogen
-item.totemic:medicineBag.name=Medizinbeutel
-item.totemic:medicineBag.display=Medizinbeutel (%s)
-item.totemic:medicineBag.tooltip=Schleichen+Rechts auf einen Totempfahl zum Setzen des Effekts
-item.totemic:medicineBag.tooltipClosed=Geschlossen
-item.totemic:medicineBag.tooltipOpen=Offen
-item.totemic:medicineBag.tooltipEmpty=Leer
-item.totemic:medicineBag.tooltipCharge=Ladung: %d
+item.totemic:infused_flute.name=Verzauberte Flöte
+item.totemic:cedar_bark.name=Rote Zedernrinde
+item.totemic:bark_stripper.name=Entrinder
+item.totemic:jingle_dress.name=Glockenkleid
+item.totemic:rattle.name=Rassel
+item.totemic:tipi.name=Tipi
+item.totemic:iron_nugget.name=Eisennugget
+item.totemic:iron_bells.name=Eisenglocken
+item.totemic:buffalo_hide.name=Büffelleder
+item.totemic:buffalo_teeth.name=Büffelzahn
+item.totemic:buffalo_meat.name=Rohes Büffelfleisch
+item.totemic:cooked_buffalo_meat.name=Gebratenes Büffelfleisch
+item.totemic:baykok_bow.name=Baykoks Bogen
+item.totemic:medicine_bag.name=Medizinbeutel
+item.totemic:medicine_bag.display=Medizinbeutel (%s)
+item.totemic:medicine_bag.tooltip=Schleichen+Rechts auf einen Totempfahl zum Setzen des Effekts
+item.totemic:medicine_bag.tooltipClosed=Geschlossen
+item.totemic:medicine_bag.tooltipOpen=Offen
+item.totemic:medicine_bag.tooltipEmpty=Leer
+item.totemic:medicine_bag.tooltipCharge=Ladung: %d
 
 # Block localizations
-tile.cedarLog.name=Rotes Zedernholz
-tile.totemBase.name=Totembasis
-tile.totemPole.name=Totempfahl
-tile.totemSapling.name=Roter Zedernsetzling
-tile.totemLeaves.name=Zedernlaub
-tile.totemDrum.name=Totem-Trommel
-tile.windChime.name=Windspiel
-tile.totemTorch.name=Totem-Fackel
-tile.redCedarPlank.name=Zedernholzbretter
-tile.redCedarStripped.name=Entrindetes Zedernholz
-tile.totemicTipi.name=Tipi
-tile.dummyTotemicTipi.name=Tipi
+tile.totemic:cedar_log.name=Rotes Zedernholz
+tile.totemic:totem_base.name=Totembasis
+tile.totemic:totem_pole.name=Totempfahl
+tile.totemic:cedar_sapling.name=Roter Zedernsetzling
+tile.totemic:cedar_leaves.name=Zedernlaub
+tile.totemic:drum.name=Totem-Trommel
+tile.totemic:wind_chime.name=Windspiel
+tile.totemic:totem_torch.name=Totem-Fackel
+tile.totemic:cedar_plank.name=Zedernholzbretter
+tile.totemic:stripped_cedar_log.name=Entrindetes Zedernholz
+tile.totemic:tipi.name=Tipi
 
 #Entity localizations
 entity.totemic:buffalo.name=Büffel

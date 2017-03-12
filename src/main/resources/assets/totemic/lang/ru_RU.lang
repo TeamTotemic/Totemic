@@ -2,27 +2,27 @@
 
 # Item localizations
 item.totemic:totemicStaff.name=Тотемный посох
-item.totemic:totemWhittlingKnife.name=Нож для строгания тотема
-item.totemic:totemWhittlingKnife.display=Нож для строгания тотема (%s)
+item.totemic:totem_whittling_knife.name=Нож для строгания тотема
+item.totemic:totem_whittling_knife.display=Нож для строгания тотема (%s)
 item.totemic:totempedia.name=Тотемпедия
 item.totemic:flute.name=Флейта
-item.totemic:fluteInfused.name=Флейта
-item.totemic:cedarBark.name=Кора красного кедра
-item.totemic:barkStripper.name=Собиратель коры
-item.totemic:jingleDress.name=Звонкое платье
-item.totemic:ceremonialRattle.name=Трещотка
+item.totemic:infused_flute.name=Infused Flute
+item.totemic:cedar_bark.name=Кора красного кедра
+item.totemic:bark_stripper.name=Собиратель коры
+item.totemic:jingle_dress.name=Звонкое платье
+item.totemic:rattle.name=Трещотка
 
 # Block localizations
-tile.cedarLog.name=Древесина красного кедра
-tile.totemBase.name=Основание тотема
-tile.totemPole.name=Столб тотема
-tile.totemSapling.name=Саженец красного кедра
-tile.totemLeaves.name=Листва красного кедра
-tile.totemDrum.name=Барабан тотемиста
-tile.windChime.name=Музыкальная подвеска
-tile.totemTorch.name=Факел для тотема
-tile.redCedarPlank.name=Доски из красного кедра
-tile.redCedarStripped.name=Очищенная древесина красного кедра
+tile.totemic:cedar_log.name=Древесина красного кедра
+tile.totemic:totem_base.name=Основание тотема
+tile.totemic:totem_pole.name=Столб тотема
+tile.totemic:cedar_sapling.name=Саженец красного кедра
+tile.totemic:cedar_leaves.name=Листва красного кедра
+tile.totemic:drum.name=Барабан тотемиста
+tile.totemic:wind_chime.name=Музыкальная подвеска
+tile.totemic:totem_torch.name=Факел для тотема
+tile.totemic:cedar_plank.name=Доски из красного кедра
+tile.totemic:stripped_cedar_log.name=Очищенная древесина красного кедра
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

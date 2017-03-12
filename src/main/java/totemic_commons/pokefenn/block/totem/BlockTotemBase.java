@@ -43,7 +43,7 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
     {
         super(Material.WOOD);
         setRegistryName(Strings.TOTEM_BASE_NAME);
-        setUnlocalizedName(Strings.TOTEM_BASE_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setHardness(2);
         setSoundType(SoundType.WOOD);

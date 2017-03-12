@@ -1,42 +1,41 @@
 # Key localizations
 
 # Item localizations
-item.totemic:totemicStaff.name=トーテムの杖
-item.totemic:totemicStaff.tooltip=トーテム運用のための杖！
-item.totemic:totemWhittlingKnife.name=トーテム彫刻刀
-item.totemic:totemWhittlingKnife.display=トーテム彫刻刀 (%s)
-item.totemic:totemWhittlingKnife.tooltip1=あらゆる彫刻に使えるナイフ
-item.totemic:totemWhittlingKnife.tooltip2=スニーク+右クリックかスクロールで切り替え
-item.totemic:totemWhittlingKnife.tooltip3=現在の文様: %s
+item.totemic:totemic_staff.name=トーテムの杖
+item.totemic:totemic_staff.tooltip=トーテム運用のための杖！
+item.totemic:totem_whittling_knife.name=トーテム彫刻刀
+item.totemic:totem_whittling_knife.display=トーテム彫刻刀 (%s)
+item.totemic:totem_whittling_knife.tooltip1=あらゆる彫刻に使えるナイフ
+item.totemic:totem_whittling_knife.tooltip2=スニーク+右クリックかスクロールで切り替え
+item.totemic:totem_whittling_knife.tooltip3=現在の文様: %s
 item.totemic:totempedia.name=トーテムペディア
 item.totemic:flute.name=フルート
-item.totemic:fluteInfused.name=魔笛
-item.totemic:cedarBark.name=赤杉の皮
-item.totemic:barkStripper.name=樹皮剥ぎ
-item.totemic:jingleDress.name=ジングルドレス
-item.totemic:ceremonialRattle.name=マラカス
-item.totemic:tipiItem.name=ティピー
-item.totemic:nuggetIron.name=鉄塊
-item.totemic:bellsIron.name=鉄の鈴
-item.totemic:buffaloHide.name=バッファローの皮
-item.totemic:buffaloTeeth.name=バッファローの歯
-item.totemic:buffaloMeat.name=生のバッファロー肉
-item.totemic:buffaloCookedMeat.name=焼きバッファロー肉
-item.totemic:baykokBow.name=ベイコックの弓
+item.totemic:infused_flute.name=魔笛
+item.totemic:cedar_bark.name=赤杉の皮
+item.totemic:bark_stripper.name=樹皮剥ぎ
+item.totemic:jingle_dress.name=ジングルドレス
+item.totemic:rattle.name=マラカス
+item.totemic:tipi.name=ティピー
+item.totemic:iron_nugget.name=鉄塊
+item.totemic:iron_bells.name=鉄の鈴
+item.totemic:buffalo_hide.name=バッファローの皮
+item.totemic:buffalo_teeth.name=バッファローの歯
+item.totemic:buffalo_meat.name=生のバッファロー肉
+item.totemic:cooked_buffalo_meat.name=焼きバッファロー肉
+item.totemic:baykok_bow.name=ベイコックの弓
 
 # Block localizations
-tile.cedarLog.name=赤杉の原木
-tile.totemBase.name=トーテム台
-tile.totemPole.name=トーテムポール
-tile.totemSapling.name=赤杉の苗木
-tile.totemLeaves.name=赤杉の葉
-tile.totemDrum.name=トーテム術師のドラム
-tile.windChime.name=風鈴
-tile.totemTorch.name=トーテムトーチ
-tile.redCedarPlank.name=赤杉の木材
-tile.redCedarStripped.name=白木の赤杉の丸太
-tile.totemicTipi.name=ティピー
-tile.dummyTotemicTipi.name=ティピー
+tile.totemic:cedar_log.name=赤杉の原木
+tile.totemic:totem_base.name=トーテム台
+tile.totemic:totem_pole.name=トーテムポール
+tile.totemic:cedar_sapling.name=赤杉の苗木
+tile.totemic:cedar_leaves.name=赤杉の葉
+tile.totemic:drum.name=トーテム術師のドラム
+tile.totemic:wind_chime.name=風鈴
+tile.totemic:totem_torch.name=トーテムトーチ
+tile.totemic:cedar_plank.name=赤杉の木材
+tile.totemic:stripped_cedar_log.name=白木の赤杉の丸太
+tile.totemic:tipi.name=ティピー
 
 #Entity localizations
 entity.totemic:buffalo.name=バッファロー

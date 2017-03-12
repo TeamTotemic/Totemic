@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import totemic_commons.pokefenn.item.equipment.music.ItemJingleDress;
-import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.SynchronizedPacketBase;
 import totemic_commons.pokefenn.util.ItemUtil;
 
@@ -57,7 +56,7 @@ public class PacketJingle extends SynchronizedPacketBase<PacketJingle>
             if(plusTime != 0)
             {
                 NBTTagCompound tag = ItemUtil.getOrCreateTag(armor);
-                tag.setByte(Strings.INSTR_TIME_KEY, (byte)(plusTime + tag.getByte(Strings.INSTR_TIME_KEY)));
+                tag.setByte(ItemJingleDress.TIME_KEY, (byte)(plusTime + tag.getByte(ItemJingleDress.TIME_KEY)));
             }
         }
     }

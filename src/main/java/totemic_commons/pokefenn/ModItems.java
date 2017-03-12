@@ -45,7 +45,7 @@ public final class ModItems
         barkStripper = new ItemBarkStripper();
         buffaloItems = new ItemBuffaloDrops();
         buffaloMeat = new ItemTotemicFood(Strings.BUFFALO_MEAT_NAME, 3, 0.35F, true);
-        buffaloCookedMeat = new ItemTotemicFood(Strings.BUFFALO_COOKED_MEAT_NAME, 9, 0.9F, true);
+        buffaloCookedMeat = new ItemTotemicFood(Strings.COOKED_BUFFALO_MEAT_NAME, 9, 0.9F, true);
         ceremonialRattle = new ItemRattle();
         totempedia = new ItemTotempedia();
         flute = new ItemFlute();

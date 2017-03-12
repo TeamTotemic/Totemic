@@ -1,42 +1,41 @@
 # Key localizations
 
 # Item localizations
-item.totemic:totemicStaff.name=图腾权杖
-item.totemic:totemicStaff.tooltip=你的图腾需要它！
-item.totemic:totemWhittlingKnife.name=图腾刻刀
-item.totemic:totemWhittlingKnife.display=图腾刻刀（%s）
-item.totemic:totemWhittlingKnife.tooltip1=制作各种雕刻品必不可少的道具
-item.totemic:totemWhittlingKnife.tooltip2=按住Shift右击或滚动滚轮以改变雕刻的图纹
-item.totemic:totemWhittlingKnife.tooltip3=正在雕刻：%s
+item.totemic:totemic_staff.name=图腾权杖
+item.totemic:totemic_staff.tooltip=你的图腾需要它！
+item.totemic:totem_whittling_knife.name=图腾刻刀
+item.totemic:totem_whittling_knife.display=图腾刻刀（%s）
+item.totemic:totem_whittling_knife.tooltip1=制作各种雕刻品必不可少的道具
+item.totemic:totem_whittling_knife.tooltip2=按住Shift右击或滚动滚轮以改变雕刻的图纹
+item.totemic:totem_whittling_knife.tooltip3=正在雕刻：%s
 item.totemic:totempedia.name=图腾百科全书
 item.totemic:flute.name=长笛
-item.totemic:fluteInfused.name=蕴魔长笛
-item.totemic:cedarBark.name=红柏树皮
-item.totemic:barkStripper.name=剥皮器
-item.totemic:jingleDress.name=叮当舞装
-item.totemic:ceremonialRattle.name=摇响器
-item.totemic:tipiItem.name=印第安帐篷
-item.totemic:nuggetIron.name=铁粒
-item.totemic:bellsIron.name=铁铃
-item.totemic:buffaloHide.name=野牛牛皮
-item.totemic:buffaloTeeth.name=野牛牙齿
-item.totemic:buffaloMeat.name=野牛肉
-item.totemic:buffaloCookedMeat.name=烤野牛肉
-item.totemic:baykokBow.name=贝柯克之弓
+item.totemic:infused_flute.name=蕴魔长笛
+item.totemic:cedar_bark.name=红柏树皮
+item.totemic:bark_stripper.name=剥皮器
+item.totemic:jingle_dress.name=叮当舞装
+item.totemic:rattle.name=摇响器
+item.totemic:tipi.name=印第安帐篷
+item.totemic:iron_nugget.name=铁粒
+item.totemic:iron_bells.name=铁铃
+item.totemic:buffalo_hide.name=野牛牛皮
+item.totemic:buffalo_teeth.name=野牛牙齿
+item.totemic:buffalo_meat.name=野牛肉
+item.totemic:cooked_buffalo_meat.name=烤野牛肉
+item.totemic:baykok_bow.name=贝柯克之弓
 
 # Block localizations
-tile.cedarLog.name=红柏原木
-tile.totemBase.name=图腾基座
-tile.totemPole.name=图腾柱
-tile.totemSapling.name=红柏树苗
-tile.totemLeaves.name=红柏树叶
-tile.totemDrum.name=图腾族鼓
-tile.windChime.name=风铃
-tile.totemTorch.name=图腾火炬
-tile.redCedarPlank.name=红柏木板
-tile.redCedarStripped.name=剥皮的红柏原木
-tile.totemicTipi.name=印第安帐篷
-tile.dummyTotemicTipi.name=印第安帐篷
+tile.totemic:cedar_log.name=红柏原木
+tile.totemic:totem_base.name=图腾基座
+tile.totemic:totem_pole.name=图腾柱
+tile.totemic:cedar_sapling.name=红柏树苗
+tile.totemic:cedar_leaves.name=红柏树叶
+tile.totemic:drum.name=图腾族鼓
+tile.totemic:wind_chime.name=风铃
+tile.totemic:totem_torch.name=图腾火炬
+tile.totemic:cedar_plank.name=红柏木板
+tile.totemic:stripped_cedar_log.name=剥皮的红柏原木
+tile.totemic:tipi.name=印第安帐篷
 
 #Entity localizations
 entity.totemic:buffalo.name=野牛

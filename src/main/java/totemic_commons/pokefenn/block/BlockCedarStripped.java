@@ -16,8 +16,8 @@ public class BlockCedarStripped extends BlockLog
 {
     public BlockCedarStripped()
     {
-        setRegistryName(Strings.RED_CEDAR_STRIPPED_NAME);
-        setUnlocalizedName(Strings.RED_CEDAR_STRIPPED_NAME);
+        setRegistryName(Strings.STRIPPED_CEDAR_LOG_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.STRIPPED_CEDAR_LOG_NAME);
         setHardness(1.5F);
         setCreativeTab(Totemic.tabsTotem);
         setTickRandomly(true);
