@@ -34,10 +34,6 @@ public final class Strings
     public static final String BAYKOK_BOW_NAME = "baykok_bow";
     public static final String MEDICINE_BAG_NAME = "medicine_bag";
 
-    //TileEntites
-    public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
-    public static final String TILE_TOTEM_SOCKET = "tileTotemSocket";
-
     //Entities
     public static final String BUFFALO_NAME = "buffalo";
     public static final String BAYKOK_NAME = "baykok";

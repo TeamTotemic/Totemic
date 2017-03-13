@@ -52,11 +52,12 @@ public class CommonProxy
 
     private void registerTileEntities()
     {
-        GameRegistry.registerTileEntity(TileTotemBase.class, Strings.TILE_TOTEM_INTELLIGENCE);
-        GameRegistry.registerTileEntity(TileTotemPole.class, Strings.TILE_TOTEM_SOCKET);
-        GameRegistry.registerTileEntity(TileDrum.class, Strings.DRUM_NAME);
-        GameRegistry.registerTileEntity(TileWindChime.class, Strings.WIND_CHIME_NAME);
-        GameRegistry.registerTileEntity(TileTipi.class, Strings.TIPI_NAME);
+        //TODO: Remove legacy names at some point
+        GameRegistry.registerTileEntityWithAlternatives(TileTotemBase.class, Strings.RESOURCE_PREFIX + Strings.TOTEM_BASE_NAME, "tileTotemIntelligence");
+        GameRegistry.registerTileEntityWithAlternatives(TileTotemPole.class, Strings.RESOURCE_PREFIX + Strings.TOTEM_POLE_NAME, "tileTotemSocket");
+        GameRegistry.registerTileEntityWithAlternatives(TileDrum.class, Strings.RESOURCE_PREFIX + Strings.DRUM_NAME, "totemDrum");
+        GameRegistry.registerTileEntityWithAlternatives(TileWindChime.class, Strings.RESOURCE_PREFIX + Strings.WIND_CHIME_NAME, "windChime");
+        GameRegistry.registerTileEntityWithAlternatives(TileTipi.class, Strings.RESOURCE_PREFIX + Strings.TIPI_NAME, "totemicTipi");
     }
 
     protected void registerEventHandlers()
