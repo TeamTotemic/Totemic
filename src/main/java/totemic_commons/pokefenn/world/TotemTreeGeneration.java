@@ -57,7 +57,7 @@ public class TotemTreeGeneration extends WorldGenAbstractTree
                     if((xOffset != radius || zOffset != radius || rand.nextInt(2) != 0 && var12 != 0)
                             && (block == null || block.isLeaves(s, world, p) || block.isAir(s, world, p)))
                     {
-                        setBlockAndNotifyAdequately(world, p, ModBlocks.cedarLeaves.getDefaultState());
+                        setBlockAndNotifyAdequately(world, p, ModBlocks.cedar_leaves.getDefaultState());
                     }
                 }
             }
@@ -65,7 +65,7 @@ public class TotemTreeGeneration extends WorldGenAbstractTree
 
         for(int yOffset = 0; yOffset < treeHeight; ++yOffset)
         {
-            setBlockAndNotifyAdequately(world, pos.up(yOffset), ModBlocks.cedarLog.getDefaultState());
+            setBlockAndNotifyAdequately(world, pos.up(yOffset), ModBlocks.cedar_log.getDefaultState());
         }
 
         return true;
@@ -78,7 +78,7 @@ public class TotemTreeGeneration extends WorldGenAbstractTree
 
         IBlockState state = world.getBlockState(pos.down());
         Block block = state.getBlock();
-        if(block == null || !block.canSustainPlant(state, world, pos.down(), EnumFacing.UP, ModBlocks.cedarSapling))
+        if(block == null || !block.canSustainPlant(state, world, pos.down(), EnumFacing.UP, ModBlocks.cedar_sapling))
             return false;
 
         for(int yOffset = pos.getY() + 1; yOffset <= pos.getY() + 1 + treeHeight; ++yOffset)

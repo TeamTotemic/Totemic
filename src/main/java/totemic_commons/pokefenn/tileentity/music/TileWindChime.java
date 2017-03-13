@@ -82,7 +82,7 @@ public class TileWindChime extends TileTotemic implements ITickable
                         for(int k = -radius; k <= radius; k++)
                         {
                             BlockPos p = pos.add(i, j, k);
-                            if(world.getBlockState(p).getBlock() == ModBlocks.windChime)
+                            if(world.getBlockState(p).getBlock() == ModBlocks.wind_chime)
                             {
                                 if(rand.nextInt(3) == 0)
                                 {

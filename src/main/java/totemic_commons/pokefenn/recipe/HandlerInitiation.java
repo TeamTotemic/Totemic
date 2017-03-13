@@ -57,9 +57,9 @@ public class HandlerInitiation
     {
         flute.setItem(new ItemStack(ModItems.flute));
         drum.setItem(new ItemStack(ModBlocks.drum));
-        windChime.setItem(new ItemStack(ModBlocks.windChime));
-        jingleDress.setItem(new ItemStack(ModItems.jingleDress));
-        rattle.setItem(new ItemStack(ModItems.ceremonialRattle));
+        windChime.setItem(new ItemStack(ModBlocks.wind_chime));
+        jingleDress.setItem(new ItemStack(ModItems.jingle_dress));
+        rattle.setItem(new ItemStack(ModItems.rattle));
     }
 
     private static void ceremonyHandler()

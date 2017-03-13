@@ -94,13 +94,13 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     @Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
-        setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.baykokBow));
+        setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.baykok_bow));
     }
 
     @Override
     protected void dropFewItems(boolean byPlayer, int looting)
     {
-        dropItem(ModItems.baykokBow, 1);
+        dropItem(ModItems.baykok_bow, 1);
         dropItem(Items.BONE, 2 + rand.nextInt(7 + looting));
         dropItem(Items.ROTTEN_FLESH, rand.nextInt(3 + looting));
         dropItem(Items.ARROW, 3 + rand.nextInt(8 + looting));

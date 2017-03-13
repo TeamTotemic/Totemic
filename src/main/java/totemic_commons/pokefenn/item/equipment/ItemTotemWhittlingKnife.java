@@ -46,7 +46,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     private static String getCarvingName(@Nullable TotemEffect effect)
     {
-        return I18n.format((effect != null) ? effect.getUnlocalizedName() : ModBlocks.totemBase.getUnlocalizedName() + ".name");
+        return I18n.format((effect != null) ? effect.getUnlocalizedName() : ModBlocks.totem_base.getUnlocalizedName() + ".name");
     }
 
     @Nullable
@@ -113,7 +113,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             if(wood == null)
             {
                 //Fall back to oak if it is an unrecognized log type
-                if(state.getBlock().isWood(world, pos) && state.getBlock() != ModBlocks.cedarLogStripped)
+                if(state.getBlock().isWood(world, pos) && state.getBlock() != ModBlocks.stripped_cedar_log)
                     wood = WoodVariant.OAK;
                 else
                     return EnumActionResult.FAIL;
@@ -122,7 +122,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             TotemEffect effect = getCarvingEffect(stack);
             if(effect != null)
             {
-                world.setBlockState(pos, ModBlocks.totemPole.getDefaultState().withProperty(BlockTotemPole.WOOD, wood), 0);
+                world.setBlockState(pos, ModBlocks.totem_pole.getDefaultState().withProperty(BlockTotemPole.WOOD, wood), 0);
                 TileTotemPole tile = (TileTotemPole) world.getTileEntity(pos);
 
                 tile.setEffect(effect);
@@ -130,7 +130,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             }
             else
             {
-                world.setBlockState(pos, ModBlocks.totemBase.getDefaultState().withProperty(BlockTotemBase.WOOD, wood), 3);
+                world.setBlockState(pos, ModBlocks.totem_base.getDefaultState().withProperty(BlockTotemBase.WOOD, wood), 3);
             }
 
             state = world.getBlockState(pos);

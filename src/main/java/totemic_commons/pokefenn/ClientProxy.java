@@ -80,7 +80,7 @@ public class ClientProxy extends CommonProxy
     private void registerBlockColors()
     {
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(
-                (state, world, pos, tintIndex) -> ColorizerFoliage.getFoliageColorPine(), ModBlocks.cedarLeaves);
+                (state, world, pos, tintIndex) -> ColorizerFoliage.getFoliageColorPine(), ModBlocks.cedar_leaves);
     }
 
     private void initTESRs()

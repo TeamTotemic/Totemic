@@ -141,9 +141,9 @@ public class EntityBuffalo extends EntityCow
         int j = rand.nextInt(2 + bonus) + rand.nextInt(1 + looting);
         for(int k = 0; k < j; ++k)
         {
-            entityDropItem(new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()), 0F);
+            entityDropItem(new ItemStack(ModItems.buffalo_items, 1, ItemBuffaloDrops.Type.hide.ordinal()), 0F);
             if(rand.nextInt(3) < 2)
-                entityDropItem(new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.teeth.ordinal()), 0F);
+                entityDropItem(new ItemStack(ModItems.buffalo_items, 1, ItemBuffaloDrops.Type.teeth.ordinal()), 0F);
         }
 
         j = rand.nextInt(2 + bonus) + (bonus >= 2 ? 1 : 0) + rand.nextInt(2 + 2*looting);
@@ -151,11 +151,11 @@ public class EntityBuffalo extends EntityCow
         {
             if(isBurning())
             {
-                dropItem(ModItems.buffaloCookedMeat, 1);
+                dropItem(ModItems.cooked_buffalo_meat, 1);
             }
             else
             {
-                dropItem(ModItems.buffaloMeat, 1);
+                dropItem(ModItems.buffalo_meat, 1);
             }
         }
     }

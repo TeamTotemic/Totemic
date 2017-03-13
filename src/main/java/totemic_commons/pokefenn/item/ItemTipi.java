@@ -60,12 +60,12 @@ public class ItemTipi extends ItemBlock
             {
                 if(blockDir == dir.getOpposite())
                     continue;
-                world.setBlockState(pos.add(blockDir.getDirectionVec()).up(i+1), ModBlocks.dummyTipi.getDefaultState(), 2);
+                world.setBlockState(pos.add(blockDir.getDirectionVec()).up(i+1), ModBlocks.dummy_tipi.getDefaultState(), 2);
             }
         }
-        world.setBlockState(pos.up(4), ModBlocks.dummyTipi.getDefaultState(), 2);
-        world.setBlockState(pos.up(5), ModBlocks.dummyTipi.getDefaultState(), 2);
-        world.setBlockState(pos.up(6), ModBlocks.dummyTipi.getDefaultState(), 2);
+        world.setBlockState(pos.up(4), ModBlocks.dummy_tipi.getDefaultState(), 2);
+        world.setBlockState(pos.up(5), ModBlocks.dummy_tipi.getDefaultState(), 2);
+        world.setBlockState(pos.up(6), ModBlocks.dummy_tipi.getDefaultState(), 2);
 
         //Place Tipi block itself
         world.setBlockState(pos.up(), ModBlocks.tipi.getDefaultState().withProperty(BlockTipi.FACING, dir), 2);

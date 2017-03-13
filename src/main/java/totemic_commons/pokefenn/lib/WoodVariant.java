@@ -21,7 +21,7 @@ public enum WoodVariant implements IStringSerializable
     JUNGLE(Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, EnumType.JUNGLE)),
     ACACIA(Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, EnumType.ACACIA)),
     DARK_OAK(Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, EnumType.DARK_OAK)),
-    CEDAR(ModBlocks.cedarLog.getDefaultState());
+    CEDAR(ModBlocks.cedar_log.getDefaultState());
 
     public final IBlockState log;
 
@@ -42,7 +42,7 @@ public enum WoodVariant implements IStringSerializable
             return values()[meta & 3]; //oak - jungle
         else if(block == Blocks.LOG2)
             return values()[4 + (meta & 3)]; //acacia - dark oak
-        else if(block == ModBlocks.cedarLog)
+        else if(block == ModBlocks.cedar_log)
             return CEDAR;
         else
             return null;

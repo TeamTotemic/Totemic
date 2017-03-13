@@ -34,7 +34,7 @@ public class BlockCedarStripped extends BlockLog
                 Material mat = world.getBlockState(pos.down()).getMaterial();
                 if(mat == Material.GROUND || mat == Material.GRASS)
                 {
-                    world.setBlockState(pos, ModBlocks.cedarLog.getDefaultState()
+                    world.setBlockState(pos, ModBlocks.cedar_log.getDefaultState()
                             .withProperty(LOG_AXIS, state.getValue(LOG_AXIS)));
                 }
             }

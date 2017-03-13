@@ -58,7 +58,7 @@ public class BlockDummyTipi extends Block
                     BlockPos p = pos.add(i, j, k);
                     IBlockState s = world.getBlockState(p);
 
-                    if(s.getBlock() == ModBlocks.dummyTipi)
+                    if(s.getBlock() == ModBlocks.dummy_tipi)
                     {
                         world.setBlockToAir(p);
                     }

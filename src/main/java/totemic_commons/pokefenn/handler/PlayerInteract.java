@@ -22,7 +22,7 @@ public class PlayerInteract
         if(event.getDwheel() != 0)
         {
             EntityPlayer player = Minecraft.getMinecraft().player;
-            if(player.isSneaking() && player.getHeldItemMainhand().getItem() == ModItems.totemWhittlingKnife)
+            if(player.isSneaking() && player.getHeldItemMainhand().getItem() == ModItems.totem_whittling_knife)
             {
                 NetworkHandler.sendToServer(new PacketMouseWheel(event.getDwheel() > 0));
                 event.setCanceled(true);
