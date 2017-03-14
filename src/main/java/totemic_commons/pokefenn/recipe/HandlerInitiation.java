@@ -48,49 +48,13 @@ public class HandlerInitiation
 
     public static void init()
     {
-        totemRegistry();
+        totemEffects();
         instruments();
-        ceremonyHandler();
+        instrumentItems();
+        ceremonies();
     }
 
-    public static void instrumentItems()
-    {
-        flute.setItem(new ItemStack(ModItems.flute));
-        drum.setItem(new ItemStack(ModBlocks.drum));
-        windChime.setItem(new ItemStack(ModBlocks.wind_chime));
-        jingleDress.setItem(new ItemStack(ModItems.jingle_dress));
-        rattle.setItem(new ItemStack(ModItems.rattle));
-    }
-
-    private static void ceremonyHandler()
-    {
-        TotemicRegistry reg = Totemic.api.registry();
-        //Music amount landmarks:
-        //150: Flute + Drum only
-        //210: Flute + Drum + full Wind Chime
-        //240: Flute + Drum + Rattle
-        //340: Flute + Drum + Rattle + Jingle Dress
-        //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
-
-        fluteCeremony = reg.addCeremony(new CeremonyFluteInfusion("totemic:flute", 140, Ceremony.MEDIUM,
-                flute, flute));
-        rainDance = reg.addCeremony(new CeremonyRain(true, "totemic:rainDance", 180, Ceremony.MEDIUM,
-                rattle, flute));
-        drought = reg.addCeremony(new CeremonyRain(false, "totemic:drought", 180, Ceremony.MEDIUM,
-                flute, rattle));
-        /*ghostDance = reg.addCeremony(new CeremonyGhostDance("totemic:ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
-                rattle, rattle));*/
-        zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 220, Ceremony.LONG,
-                flute, drum));
-        warDance = reg.addCeremony(new CeremonyWarDance("totemic:warDance", 120, Ceremony.SHORT_MEDIUM,
-                drum, drum));
-        buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
-                drum, windChime));
-        baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic:baykokSummon", 255,  40 * 20,
-                windChime, flute));
-    }
-
-    private static void totemRegistry()
+    private static void totemEffects()
     {
         TotemicRegistry reg = Totemic.api.registry();
 
@@ -117,11 +81,45 @@ public class HandlerInitiation
     {
         TotemicRegistry reg = Totemic.api.registry();
 
-    	flute = reg.addInstrument(new MusicInstrument("totemic:flute", 5, 70, 5));
-    	drum = reg.addInstrument(new MusicInstrument("totemic:drum", 7, 80, 5));
-    	windChime = reg.addInstrument(new MusicInstrument("totemic:windChime", 7, 60, 5));
-    	jingleDress = reg.addInstrument(new MusicInstrument("totemic:jingleDress", 6, 100, 5));
-    	rattle = reg.addInstrument(new MusicInstrument("totemic:rattle", 6, 90, 5));
+        flute = reg.addInstrument(new MusicInstrument("totemic:flute", 5, 70, 5).setItem(new ItemStack(ModItems.flute)));
+        drum = reg.addInstrument(new MusicInstrument("totemic:drum", 7, 80, 5).setItem(new ItemStack(ModBlocks.drum)));
+        windChime = reg.addInstrument(new MusicInstrument("totemic:windChime", 7, 60, 5).setItem(new ItemStack(ModBlocks.wind_chime)));
+        jingleDress = reg.addInstrument(new MusicInstrument("totemic:jingleDress", 6, 100, 5).setItem(new ItemStack(ModItems.jingle_dress)));
+        rattle = reg.addInstrument(new MusicInstrument("totemic:rattle", 6, 90, 5).setItem(new ItemStack(ModItems.rattle)));
+    }
+
+    private static void instrumentItems()
+    {
+        ModItems.flute.setInstrument(flute);
+        ModItems.rattle.setInstrument(rattle);
+    }
+
+    private static void ceremonies()
+    {
+        TotemicRegistry reg = Totemic.api.registry();
+        //Music amount landmarks:
+        //150: Flute + Drum only
+        //210: Flute + Drum + full Wind Chime
+        //240: Flute + Drum + Rattle
+        //340: Flute + Drum + Rattle + Jingle Dress
+        //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
+
+        fluteCeremony = reg.addCeremony(new CeremonyFluteInfusion("totemic:flute", 140, Ceremony.MEDIUM,
+                flute, flute));
+        rainDance = reg.addCeremony(new CeremonyRain(true, "totemic:rainDance", 180, Ceremony.MEDIUM,
+                rattle, flute));
+        drought = reg.addCeremony(new CeremonyRain(false, "totemic:drought", 180, Ceremony.MEDIUM,
+                flute, rattle));
+        /*ghostDance = reg.addCeremony(new CeremonyGhostDance("totemic:ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
+                rattle, rattle));*/
+        zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 220, Ceremony.LONG,
+                flute, drum));
+        warDance = reg.addCeremony(new CeremonyWarDance("totemic:warDance", 120, Ceremony.SHORT_MEDIUM,
+                drum, drum));
+        buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
+                drum, windChime));
+        baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic:baykokSummon", 255,  40 * 20,
+                windChime, flute));
     }
 
 }

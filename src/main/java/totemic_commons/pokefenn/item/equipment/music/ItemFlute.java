@@ -25,7 +25,6 @@ import totemic_commons.pokefenn.ModSounds;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.ItemInstrument;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
 
 public class ItemFlute extends ItemInstrument
@@ -36,7 +35,8 @@ public class ItemFlute extends ItemInstrument
 
     public ItemFlute()
     {
-        super(HandlerInitiation.flute, ModSounds.flute);
+        setSound(ModSounds.flute);
+
         setRegistryName(Strings.FLUTE_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.FLUTE_NAME);
         setCreativeTab(Totemic.tabsTotem);

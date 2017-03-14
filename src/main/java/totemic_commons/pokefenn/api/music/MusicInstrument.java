@@ -36,9 +36,10 @@ public final class MusicInstrument
      * Sets the item stack that is associated with this instrument. This will be
      * displayed on the Totempedia on ceremony pages.
      */
-    public void setItem(ItemStack itemStack)
+    public MusicInstrument setItem(ItemStack itemStack)
     {
         this.itemStack = itemStack;
+        return this;
     }
 
     /**

@@ -30,8 +30,16 @@ public abstract class ItemInstrument extends Item
      */
     public static final String INSTR_COOLDOWN_KEY = "cooldown";
 
-    protected final MusicInstrument instrument;
-    protected final SoundEvent sound;
+    protected MusicInstrument instrument;
+    protected SoundEvent sound;
+
+    /**
+     * Constructs an ItemInstrument without specifying the instrument yet.
+     * This allows registering the item before registering music instruments,
+     * which is how Forge recommends it.
+     */
+    public ItemInstrument()
+    { }
 
     /**
      * @param instrument the corresponding music instrument
@@ -41,6 +49,35 @@ public abstract class ItemInstrument extends Item
     {
         this.instrument = Objects.requireNonNull(instrument);
         this.sound = sound;
+    }
+
+    /**
+     * @return the corresponding music instrument
+     */
+    public MusicInstrument getInstrument()
+    {
+        return instrument;
+    }
+
+    public ItemInstrument setInstrument(MusicInstrument instrument)
+    {
+        this.instrument = instrument;
+        return this;
+    }
+
+    /**
+     * @return the sound that plays when the instrument is played, if any
+     */
+    @Nullable
+    public SoundEvent getSound()
+    {
+        return sound;
+    }
+
+    public ItemInstrument setSound(@Nullable SoundEvent sound)
+    {
+        this.sound = sound;
+        return this;
     }
 
     /**

@@ -11,13 +11,13 @@ import totemic_commons.pokefenn.ModSounds;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.music.ItemInstrument;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 
 public class ItemRattle extends ItemInstrument
 {
     public ItemRattle()
     {
-        super(HandlerInitiation.rattle, ModSounds.rattle);
+        setSound(ModSounds.rattle);
+
         setRegistryName(Strings.RATTLE_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.RATTLE_NAME);
         setCreativeTab(Totemic.tabsTotem);

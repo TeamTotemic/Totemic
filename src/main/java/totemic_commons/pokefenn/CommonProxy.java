@@ -27,12 +27,11 @@ public class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent event)
     {
-        ModPotions.init();
-        HandlerInitiation.init();
         ModBlocks.init();
         ModItems.init();
-        HandlerInitiation.instrumentItems();
+        ModPotions.init();
         ModSounds.init();
+        HandlerInitiation.init();
     }
 
     public void init(FMLInitializationEvent event)
