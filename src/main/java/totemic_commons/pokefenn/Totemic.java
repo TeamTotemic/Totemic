@@ -34,7 +34,7 @@ public final class Totemic
     public static CommonProxy proxy;
 
     public static final ApiImpl api = new ApiImpl();
-    public static final CreativeTabs tabsTotem = new CreativeTabTotemic(CreativeTabs.getNextID(), MOD_NAME);
+    public static final CreativeTabs tabsTotem = new CreativeTabTotemic(MOD_ID);
     public static final Logger logger = LogManager.getLogger(MOD_NAME);
 
     @EventHandler

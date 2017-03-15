@@ -48,7 +48,7 @@ totemic.potion.horse=马
 totemic.potion.spider=蜘蛛
 
 # Creative Tab localizations
-itemGroup.Totemic=图腾
+itemGroup.totemic=图腾
 
 #Ceremony names
 totemic.ceremony.totemic:flute=魔域长笛

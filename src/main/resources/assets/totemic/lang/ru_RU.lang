@@ -25,7 +25,7 @@ tile.totemic:redCedarPlank.name=Доски из красного кедра
 tile.totemic:redCedarStripped.name=Очищенная древесина красного кедра
 
 # Creative Tab localizations
-itemGroup.Totemic=Totemic
+itemGroup.totemic=Totemic
 
 #Ceremony names
 totemic.ceremony.flute=Flute Imbuation
