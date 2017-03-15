@@ -5,7 +5,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import totemic_commons.pokefenn.potion.ModPotions;
+import totemic_commons.pokefenn.ModPotions;
 
 public class EntityUpdate
 {

@@ -3,7 +3,7 @@ package totemic_commons.pokefenn.handler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import totemic_commons.pokefenn.potion.ModPotions;
+import totemic_commons.pokefenn.ModPotions;
 
 public class EntityFall
 {

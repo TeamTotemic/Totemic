@@ -36,7 +36,7 @@ public final class Totemic
     public static final String MOD_NAME = "Totemic";
     public static final String MOD_VERSION = "${version}";
 
-    @Instance(MOD_ID)
+    @Instance
     public static Totemic instance;
 
     @SidedProxy(clientSide = "totemic_commons.pokefenn.ClientProxy", serverSide = "totemic_commons.pokefenn.CommonProxy")
@@ -78,7 +78,7 @@ public final class Totemic
             return;
         logger.info("Totemic is remapping legacy block/item names");
 
-        Map<String, String> mappings = new HashMap<>();
+        Map<String, String> mappings = new HashMap<>(32);
         mappings.put("cedarlog", Strings.CEDAR_LOG_NAME);
         mappings.put("totembase", Strings.TOTEM_BASE_NAME);
         mappings.put("totempole", Strings.TOTEM_POLE_NAME);
