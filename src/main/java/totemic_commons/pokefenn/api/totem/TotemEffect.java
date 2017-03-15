@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.api.totem;
 
-import com.google.common.annotations.Beta;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -9,7 +7,6 @@ import net.minecraft.world.World;
 /**
  * Base class for all Totem Effects
  */
-@Beta
 public abstract class TotemEffect
 {
     /**
@@ -38,19 +35,6 @@ public abstract class TotemEffect
         this.name = name;
         this.portable = portable;
         this.interval = interval;
-    }
-
-    /**
-     * @param name a unique name for the Totem Effect
-     * @param portable whether this Totem Effect can be used with a Medicine Bag.
-     * In this case, override {@link #medicineBagEffect}.
-     * @deprecated Use the other constructor instead. Keep in mind that the {@link #effect}
-     * and {@link #medicineBagEffect} methods will only be called every {@link #interval} ticks.
-     */
-    @Deprecated
-    public TotemEffect(String name, boolean portable)
-    {
-        this(name, portable, 1);
     }
 
     /**

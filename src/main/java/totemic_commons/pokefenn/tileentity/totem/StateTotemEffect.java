@@ -88,7 +88,7 @@ public final class StateTotemEffect extends TotemState
     }
 
     @Override
-    public void addSelector(MusicInstrument instr)
+    void addSelector(MusicInstrument instr)
     {
         tile.setState(new StateSelection(tile, instr));
     }
