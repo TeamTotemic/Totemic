@@ -47,7 +47,7 @@ totemic.potion.horse=ウマ
 totemic.potion.spider=クモ
 
 # Creative Tab localizations
-itemGroup.Totemic=Totemic
+itemGroup.totemic=Totemic
 
 #Ceremony names
 totemic.ceremony.totemic:flute=魔笛の儀式

@@ -54,7 +54,7 @@ totemic.potion.horse=Horse
 totemic.potion.spider=Spider
 
 # Creative Tab localizations
-itemGroup.Totemic=Totemic
+itemGroup.totemic=Totemic
 
 #Ceremony names
 totemic.ceremony.totemic:flute=Flute Imbuation

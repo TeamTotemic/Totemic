@@ -54,7 +54,7 @@ totemic.potion.horse=Pferd
 totemic.potion.spider=Spinne
 
 # Creative Tab localizations
-itemGroup.Totemic=Totemic
+itemGroup.totemic=Totemic
 
 #Ceremony names
 totemic.ceremony.totemic:flute=Flötenverzauberung

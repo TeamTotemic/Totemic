@@ -11,9 +11,9 @@ import totemic_commons.pokefenn.lib.Strings;
 
 public class CreativeTabTotemic extends CreativeTabs
 {
-    public CreativeTabTotemic(int id, String name)
+    public CreativeTabTotemic(String name)
     {
-        super(id, name);
+        super(name);
     }
 
     @SideOnly(Side.CLIENT)
