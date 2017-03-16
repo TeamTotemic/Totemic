@@ -1,15 +1,14 @@
 package totemic_commons.pokefenn;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import totemic_commons.pokefenn.item.ItemBuffaloDrops;
-import totemic_commons.pokefenn.item.ItemTotemicFood;
-import totemic_commons.pokefenn.item.ItemTotemicItems;
-import totemic_commons.pokefenn.item.ItemTotempedia;
+import totemic_commons.pokefenn.item.*;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
 import totemic_commons.pokefenn.item.equipment.ItemMedicineBag;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
@@ -19,6 +18,7 @@ import totemic_commons.pokefenn.item.equipment.music.ItemJingleDress;
 import totemic_commons.pokefenn.item.equipment.music.ItemRattle;
 import totemic_commons.pokefenn.item.equipment.weapon.ItemBaykokBow;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.lib.WoodVariant;
 
 public final class ModItems
 {
@@ -38,6 +38,8 @@ public final class ModItems
 
     public static void init()
     {
+        initItemBlocks();
+
         flute = new ItemFlute();
         rattle = new ItemRattle();
         jingle_dress = new ItemJingleDress();
@@ -67,9 +69,47 @@ public final class ModItems
         GameRegistry.register(medicine_bag);
     }
 
+    private static void initItemBlocks()
+    {
+        GameRegistry.register(makeItemBlock(ModBlocks.cedar_log));
+        GameRegistry.register(makeItemBlock(ModBlocks.stripped_cedar_log));
+        GameRegistry.register(makeItemBlock(ModBlocks.cedar_plank));
+        GameRegistry.register(makeItemBlock(ModBlocks.cedar_sapling));
+        GameRegistry.register(makeItemBlock(ModBlocks.cedar_leaves));
+        GameRegistry.register(new ItemBlockVariants(ModBlocks.totem_base).setRegistryName(ModBlocks.totem_base.getRegistryName()));
+        GameRegistry.register(new ItemBlockVariants(ModBlocks.totem_pole).setRegistryName(ModBlocks.totem_pole.getRegistryName()));
+        GameRegistry.register(makeItemBlock(ModBlocks.totem_torch));
+        GameRegistry.register(makeItemBlock(ModBlocks.drum));
+        GameRegistry.register(makeItemBlock(ModBlocks.wind_chime));
+        GameRegistry.register(new ItemTipi(ModBlocks.tipi).setRegistryName(ModBlocks.tipi.getRegistryName()));
+    }
+
+    private static ItemBlock makeItemBlock(Block block)
+    {
+        return (ItemBlock) new ItemBlock(block).setRegistryName(block.getRegistryName());
+    }
+
     @SideOnly(Side.CLIENT)
     public static void setItemModels()
     {
+        setDefaultModel(ModBlocks.cedar_log);
+        setDefaultModel(ModBlocks.stripped_cedar_log);
+        setDefaultModel(ModBlocks.cedar_plank);
+        setDefaultModel(ModBlocks.cedar_sapling);
+        setDefaultModel(ModBlocks.cedar_leaves);
+        setDefaultModel(ModBlocks.totem_torch);
+        setDefaultModel(ModBlocks.drum);
+        setDefaultModel(ModBlocks.wind_chime);
+        setDefaultModel(ModBlocks.tipi);
+
+        for(WoodVariant var: WoodVariant.values())
+        {
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.totem_base), var.ordinal(),
+                    new ModelResourceLocation(ModBlocks.totem_base.getRegistryName(), "wood=" + var.getName()));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.totem_pole), var.ordinal(),
+                    new ModelResourceLocation(ModBlocks.totem_pole.getRegistryName(), "wood=" + var.getName()));
+        }
+
         setDefaultModel(flute);
         setModel(flute, 1, flute.getRegistryName().toString());
         setDefaultModel(rattle);
@@ -92,15 +132,21 @@ public final class ModItems
     }
 
     @SideOnly(Side.CLIENT)
-    public static void setModel(Item item, int meta, String modelName)
+    private static void setModel(Item item, int meta, String modelName)
     {
         ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(modelName, "inventory"));
     }
 
     @SideOnly(Side.CLIENT)
-    public static void setDefaultModel(Item item)
+    private static void setDefaultModel(Item item)
     {
         setModel(item, 0, item.getRegistryName().toString());
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void setDefaultModel(Block block)
+    {
+        setDefaultModel(Item.getItemFromBlock(block));
     }
 
 }

@@ -29,15 +29,15 @@ public class CommonProxy
         ModPotions.init();
         ModSounds.init();
         ModContent.init();
+        ModEntities.init();
+        registerTileEntities();
     }
 
     public void init(FMLInitializationEvent event)
     {
         NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
         NetworkHandler.init();
-        ModEntities.init();
         CraftingRecipes.init();
-        registerTileEntities();
         registerEventHandlers();
     }
 
