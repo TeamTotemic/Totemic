@@ -26,7 +26,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -141,13 +140,11 @@ public class PageCraftingRecipe extends PageRecipe
         else if(recipe instanceof ShapedOreRecipe)
         {
             ShapedOreRecipe shaped = (ShapedOreRecipe) recipe;
-            int width = (Integer) ReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 4);
-            int height = (Integer) ReflectionHelper.getPrivateValue(ShapedOreRecipe.class, shaped, 5);
 
-            for(int y = 0; y < height; y++)
-                for(int x = 0; x < width; x++)
+            for(int y = 0; y < shaped.getHeight(); y++)
+                for(int x = 0; x < shaped.getWidth(); x++)
                 {
-                    Object input = shaped.getInput()[y * width + x];
+                    Object input = shaped.getInput()[y * shaped.getWidth() + x];
                     if(input != null)
                         renderItemAtGridPos(gui, 1 + x, 1 + y, input instanceof ItemStack ? (ItemStack) input : ((List<ItemStack>) input).get(0), true);
                 }
