@@ -46,7 +46,7 @@ public class ItemTotemicStaff extends ItemTotemic
         Block block = world.getBlockState(pos).getBlock();
         if(block instanceof TotemicStaffUsage)
         {
-            return ((TotemicStaffUsage) block).onTotemicStaffRightClick(world, pos, player, player.getHeldItem(hand));
+            return ((TotemicStaffUsage) block).onTotemicStaffRightClick(world, pos, player, hand, facing, hitX, hitY, hitZ);
         }
         return EnumActionResult.FAIL;
     }
