@@ -67,7 +67,7 @@ public abstract class Ceremony
 
     /**
      * Override this if your Ceremony effect is not instant
-     * @return the maximum time in ticks the Ceremony effect will last, or 0 if it is instant
+     * @return the maximum time in ticks the Ceremony effect will last
      */
     public int getEffectTime()
     {
@@ -75,8 +75,9 @@ public abstract class Ceremony
     }
 
     /**
-     * Override this if your Ceremony effect is not instant
-     * @return how much melody per 5 seconds the Ceremony effect will consume in case the effect is not instant
+     * Override this if your Ceremony effect is not instant and consumes music while the effect is active.
+     * <p>NB: This is currently not implemented, the value will be ignored.
+     * @return how much melody per 5 seconds the Ceremony effect will consume
      */
     public int getMusicPer5()
     {

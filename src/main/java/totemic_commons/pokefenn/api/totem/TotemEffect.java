@@ -1,7 +1,5 @@
 package totemic_commons.pokefenn.api.totem;
 
-import com.google.common.annotations.Beta;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -9,7 +7,6 @@ import net.minecraft.world.World;
 /**
  * Base class for all Totem Effects
  */
-@Beta
 public abstract class TotemEffect
 {
     /**

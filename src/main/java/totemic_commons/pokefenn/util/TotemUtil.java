@@ -87,7 +87,7 @@ public class TotemUtil
         getClosestAcceptor((WorldServer) world, x, y, z, radius, radius)
             .ifPresent(tile -> {
                 int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
-                addMusic(tile, instr, shiftedMusic, instr.getMusicMaximum());
+                addMusic(tile, instr, shiftedMusic);
             });
     }
 
@@ -105,7 +105,7 @@ public class TotemUtil
     /**
      * Adds music to the given music acceptor tile entity and spawns particles at its location
      */
-    public static void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum)
+    public static void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount)
     {
         TileEntity te = (TileEntity) tile;
         WorldServer world = (WorldServer) te.getWorld();
