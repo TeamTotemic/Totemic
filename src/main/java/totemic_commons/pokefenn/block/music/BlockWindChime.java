@@ -13,10 +13,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import totemic_commons.pokefenn.ModContent;
 import totemic_commons.pokefenn.ModSounds;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -62,7 +62,7 @@ public class BlockWindChime extends Block implements ITileEntityProvider
         {
             tileWindChime.canPlay = false;
             TotemUtil.playSound(world, pos, ModSounds.windChime, SoundCategory.PLAYERS, 1.0f, 1.0f);
-            TotemUtil.playMusicForSelector(world, pos, HandlerInitiation.windChime, 0);
+            TotemUtil.playMusicForSelector(world, pos, ModContent.windChime, 0);
             ((WorldServer) world).spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
             ((WorldServer) world).spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
         }

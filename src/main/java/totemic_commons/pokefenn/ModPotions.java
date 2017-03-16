@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import totemic_commons.pokefenn.potion.PotionBat;
 import totemic_commons.pokefenn.potion.PotionSpider;
 
-public class ModPotions
+public final class ModPotions
 {
     public static final Potion batPotion = new PotionBat();
     public static final Potion spiderPotion = new PotionSpider();

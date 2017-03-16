@@ -51,6 +51,6 @@ public enum WoodVariant implements IStringSerializable
     @Override
     public String getName()
     {
-        return toString().toLowerCase(Locale.ENGLISH);
+        return toString().toLowerCase(Locale.ROOT);
     }
 }

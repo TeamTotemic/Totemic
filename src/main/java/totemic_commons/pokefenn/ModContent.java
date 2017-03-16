@@ -1,11 +1,7 @@
-package totemic_commons.pokefenn.recipe;
+package totemic_commons.pokefenn;
 
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import totemic_commons.pokefenn.ModBlocks;
-import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.ModPotions;
-import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicRegistry;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -16,17 +12,8 @@ import totemic_commons.pokefenn.totem.TotemEffectBlaze;
 import totemic_commons.pokefenn.totem.TotemEffectCow;
 import totemic_commons.pokefenn.totem.TotemEffectOcelot;
 
-public class HandlerInitiation
+public final class ModContent
 {
-    public static Ceremony ghostDance;
-    public static Ceremony rainDance;
-    public static Ceremony drought;
-    public static Ceremony fluteCeremony;
-    public static Ceremony zaphkielWaltz;
-    public static Ceremony warDance;
-    public static Ceremony buffaloDance;
-    public static Ceremony baykokSummon;
-
     public static TotemEffect batTotem;
     public static TotemEffect blazeTotem;
     public static TotemEffect buffaloTotem;
@@ -45,6 +32,15 @@ public class HandlerInitiation
     public static MusicInstrument windChime;
     public static MusicInstrument jingleDress;
     public static MusicInstrument rattle;
+
+    public static Ceremony ghostDance;
+    public static Ceremony rainDance;
+    public static Ceremony drought;
+    public static Ceremony fluteCeremony;
+    public static Ceremony zaphkielWaltz;
+    public static Ceremony warDance;
+    public static Ceremony buffaloDance;
+    public static Ceremony baykokSummon;
 
     public static void init()
     {

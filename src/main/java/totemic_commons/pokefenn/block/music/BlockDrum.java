@@ -17,10 +17,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
+import totemic_commons.pokefenn.ModContent;
 import totemic_commons.pokefenn.ModSounds;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -53,7 +53,7 @@ public class BlockDrum extends Block implements ITileEntityProvider
             if(!(player instanceof FakePlayer))
             {
                 tileDrum.canPlay = false;
-                TotemUtil.playMusic(world, pos, HandlerInitiation.drum, 0, 0);
+                TotemUtil.playMusic(world, pos, ModContent.drum, 0, 0);
                 world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
                 world.notifyBlockUpdate(pos, state, state, 7);
             }
@@ -61,7 +61,7 @@ public class BlockDrum extends Block implements ITileEntityProvider
         else
         {
             tileDrum.canPlay = false;
-            TotemUtil.playMusicForSelector(world, pos, HandlerInitiation.drum, 0);
+            TotemUtil.playMusicForSelector(world, pos, ModContent.drum, 0);
             world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
             world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
             world.notifyBlockUpdate(pos, state, state, 7);

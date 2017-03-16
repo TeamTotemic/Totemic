@@ -10,11 +10,11 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import totemic_commons.pokefenn.ModContent;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModSounds;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -99,7 +99,7 @@ public class TileWindChime extends TileTotemic implements ITickable
                     IBlockState upState = world.getBlockState(pos.up());
                     int bonus = upState.getBlock().isLeaves(upState, world, pos.up())
                             ? world.rand.nextInt(3) : 0;
-                    TotemUtil.playMusic(world, pos, HandlerInitiation.windChime, 0, bonus);
+                    TotemUtil.playMusic(world, pos, ModContent.windChime, 0, bonus);
                 }
         }
     }

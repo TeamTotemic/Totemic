@@ -13,11 +13,11 @@ package totemic_commons.pokefenn.totempedia;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import totemic_commons.pokefenn.CraftingRecipes;
+import totemic_commons.pokefenn.ModContent;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicRegistry;
 import totemic_commons.pokefenn.lib.Totempedia;
-import totemic_commons.pokefenn.recipe.CraftingRecipes;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.totempedia.page.PageCeremony;
 import totemic_commons.pokefenn.totempedia.page.PageCraftingRecipe;
 import totemic_commons.pokefenn.totempedia.page.PageText;
@@ -125,25 +125,25 @@ public final class LexiconData
         performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"), new PageText("4"));
 
         rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony);
-        rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.rainDance));
+        rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.rainDance));
 
         droughtDance = new BLexiconEntry(Totempedia.DROUGHT_DANCE, categoryCeremony);
-        droughtDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.drought));
+        droughtDance.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.drought));
 
         warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony);
-        warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.warDance));
+        warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.warDance));
 
         buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony);
-        buffaloDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.buffaloDance));
+        buffaloDance.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.buffaloDance));
 
         zaphkielWaltz = new BLexiconEntry(Totempedia.ZAPHKIEL_WALTZ, categoryCeremony);
-        zaphkielWaltz.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.zaphkielWaltz));
+        zaphkielWaltz.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.zaphkielWaltz));
 
         fluteInfusion = new BLexiconEntry(Totempedia.FLUTE_INFUSION, categoryCeremony);
-        fluteInfusion.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", HandlerInitiation.fluteCeremony));
+        fluteInfusion.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.fluteCeremony));
 
         baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony);
-        baykokSummon.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", HandlerInitiation.baykokSummon));
+        baykokSummon.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.baykokSummon));
 
         //Tools
         totemicStaff = new BLexiconEntry(Totempedia.TOTEMIC_STAFF, categoryTools);

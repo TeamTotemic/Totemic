@@ -14,8 +14,6 @@ import totemic_commons.pokefenn.handler.PlayerInteract;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.GuiHandler;
 import totemic_commons.pokefenn.network.NetworkHandler;
-import totemic_commons.pokefenn.recipe.CraftingRecipes;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
 import totemic_commons.pokefenn.tileentity.music.TileWindChime;
@@ -30,7 +28,7 @@ public class CommonProxy
         ModItems.init();
         ModPotions.init();
         ModSounds.init();
-        HandlerInitiation.init();
+        ModContent.init();
     }
 
     public void init(FMLInitializationEvent event)

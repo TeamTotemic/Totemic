@@ -17,12 +17,12 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ISpecialArmor;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import totemic_commons.pokefenn.ModContent;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.NetworkHandler;
 import totemic_commons.pokefenn.network.server.PacketJingle;
-import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
@@ -88,7 +88,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     {
         if(!isSneaking)
         {
-            TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, HandlerInitiation.jingleDress, 0, 0);
+            TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, ModContent.jingleDress, 0, 0);
             particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
         }
     }

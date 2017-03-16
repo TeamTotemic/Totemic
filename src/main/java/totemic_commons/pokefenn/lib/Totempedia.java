@@ -1,6 +1,6 @@
 package totemic_commons.pokefenn.lib;
 
-public class Totempedia
+public final class Totempedia
 {
 
     public static final String CATEGORY_PREFIX = "totemic.category.";
