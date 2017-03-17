@@ -28,6 +28,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.TileTipi;
@@ -113,7 +114,26 @@ public class BlockTipi extends Block implements ITileEntityProvider
     @Override
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        BlockDummyTipi.breakTipi(world, pos);
+        int height = 5;
+        int radius = 2;
+        for(int i = -radius; i <= radius; i++)
+            for(int j = 0; j <= height; j++)
+                for(int k = -radius; k <= radius; k++)
+                {
+                    BlockPos p = pos.add(i, j, k);
+                    IBlockState s = world.getBlockState(p);
+
+                    if(s.getBlock() == ModBlocks.dummy_tipi)
+                    {
+                        world.setBlockToAir(p);
+                    }
+                    else if(s.getBlock() == ModBlocks.tipi)
+                    {
+                        if(!player.capabilities.isCreativeMode)
+                            s.getBlock().dropBlockAsItem(world, p, world.getBlockState(p), 0);
+                        world.setBlockToAir(p);
+                    }
+                }
     }
 
     @Override

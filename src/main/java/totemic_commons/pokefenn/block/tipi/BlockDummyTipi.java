@@ -41,31 +41,8 @@ public class BlockDummyTipi extends Block
                     IBlockState s = world.getBlockState(p);
                     if(s.getBlock() == ModBlocks.tipi)
                     {
-                        BlockDummyTipi.breakTipi(world, p);
+                        ModBlocks.tipi.onBlockHarvested(world, p, s, player);
                         return;
-                    }
-                }
-    }
-
-    static void breakTipi(World world, BlockPos pos)
-    {
-        int height = 5;
-        int radius = 2;
-        for(int i = -radius; i <= radius; i++)
-            for(int j = 0; j <= height; j++)
-                for(int k = -radius; k <= radius; k++)
-                {
-                    BlockPos p = pos.add(i, j, k);
-                    IBlockState s = world.getBlockState(p);
-
-                    if(s.getBlock() == ModBlocks.dummy_tipi)
-                    {
-                        world.setBlockToAir(p);
-                    }
-                    else if(s.getBlock() == ModBlocks.tipi)
-                    {
-                        s.getBlock().dropBlockAsItem(world, p, world.getBlockState(p), 0);
-                        world.setBlockToAir(p);
                     }
                 }
     }
