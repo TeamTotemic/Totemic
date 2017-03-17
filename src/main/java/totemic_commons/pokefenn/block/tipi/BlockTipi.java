@@ -127,10 +127,10 @@ public class BlockTipi extends Block implements ITileEntityProvider
                     {
                         world.setBlockToAir(p);
                     }
-                    else if(s.getBlock() == ModBlocks.tipi)
+                    else if(s.getBlock() == this)
                     {
                         if(!player.capabilities.isCreativeMode)
-                            s.getBlock().dropBlockAsItem(world, p, world.getBlockState(p), 0);
+                            dropBlockAsItem(world, p, s, 0);
                         world.setBlockToAir(p);
                     }
                 }

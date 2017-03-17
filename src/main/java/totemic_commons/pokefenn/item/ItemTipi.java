@@ -32,20 +32,24 @@ public class ItemTipi extends ItemBlock
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        IBlockState state = world.getBlockState(pos);
+        if(!world.getBlockState(pos).getBlock().isReplaceable(world, pos))
+            pos = pos.offset(facing);
+
+        IBlockState state = world.getBlockState(pos.down());
         Block block = state.getBlock();
         String name = block.getRegistryName().getResourcePath();
         if(state.getMaterial() != Material.GRASS && state.getMaterial() != Material.GROUND && !name.contains("grass") && !name.contains("dirt") || block == Blocks.TALLGRASS)
-        {
             return EnumActionResult.FAIL;
-        }
 
-        final int height = 6;
+        if(!player.canPlayerEdit(pos, facing, player.getHeldItem(hand)))
+            return EnumActionResult.FAIL;
+
+        final int height = 5;
         final int radius = 2;
 
         //Check if placeable
         for(int i = -radius; i <= radius; i++)
-            for(int j = 1; j <= height; j++)
+            for(int j = 0; j <= height; j++)
                 for(int k = -radius; k <= radius; k++)
                 {
                     BlockPos p = pos.add(i, j, k);
@@ -62,18 +66,18 @@ public class ItemTipi extends ItemBlock
             {
                 if(blockDir == dir.getOpposite())
                     continue;
-                world.setBlockState(pos.add(blockDir.getDirectionVec()).up(i+1), ModBlocks.dummy_tipi.getDefaultState(), 2);
+                world.setBlockState(pos.add(blockDir.getDirectionVec()).up(i), ModBlocks.dummy_tipi.getDefaultState(), 10);
             }
         }
-        world.setBlockState(pos.up(4), ModBlocks.dummy_tipi.getDefaultState(), 2);
-        world.setBlockState(pos.up(5), ModBlocks.dummy_tipi.getDefaultState(), 2);
-        world.setBlockState(pos.up(6), ModBlocks.dummy_tipi.getDefaultState(), 2);
+        world.setBlockState(pos.up(3), ModBlocks.dummy_tipi.getDefaultState(), 10);
+        world.setBlockState(pos.up(4), ModBlocks.dummy_tipi.getDefaultState(), 10);
+        world.setBlockState(pos.up(5), ModBlocks.dummy_tipi.getDefaultState(), 10);
 
         //Place Tipi block itself
-        world.setBlockState(pos.up(), ModBlocks.tipi.getDefaultState().withProperty(BlockTipi.FACING, dir), 2);
+        world.setBlockState(pos, ModBlocks.tipi.getDefaultState().withProperty(BlockTipi.FACING, dir), 11);
 
-        SoundType sound = this.block.getSoundType(world.getBlockState(pos.up()), world, pos.up(), player);
-        world.playSound(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, sound.getPlaceSound(), SoundCategory.BLOCKS, (sound.getVolume() + 1.0F) / 2.0F, sound.getPitch() * 0.8F, true);
+        SoundType sound = this.block.getSoundType(world.getBlockState(pos), world, pos, player);
+        world.playSound(player, pos, sound.getPlaceSound(), SoundCategory.BLOCKS, (sound.getVolume() + 1.0F) / 2.0F, sound.getPitch() * 0.8F);
         player.getHeldItem(hand).shrink(1);
         return EnumActionResult.SUCCESS;
     }
