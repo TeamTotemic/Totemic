@@ -5,6 +5,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -33,7 +34,8 @@ public class ItemTipi extends ItemBlock
     {
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
-        if(state.getMaterial() != Material.GROUND && !block.getUnlocalizedName().contains("dirt") && !block.getUnlocalizedName().contains("grass"))
+        String name = block.getRegistryName().getResourcePath();
+        if(state.getMaterial() != Material.GRASS && state.getMaterial() != Material.GROUND && !name.contains("grass") && !name.contains("dirt") || block == Blocks.TALLGRASS)
         {
             return EnumActionResult.FAIL;
         }
