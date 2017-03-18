@@ -56,14 +56,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         if(tag == null)
             return null;
 
-        //Legacy compatibility with old method of storing the totem effect
-        //TODO: Remove at some point
-        if(tag.hasKey(KNIFE_TOTEM_KEY, 99))
-        {
-            int index = tag.getInteger(KNIFE_TOTEM_KEY);
-            return (0 <= index && index < totemList.size()) ? totemList.get(index) : null;
-        }
-
         String name = tag.getString(KNIFE_TOTEM_KEY);
         if(!name.equals(TOTEM_BASE_PLACEHOLDER_NAME))
             return Totemic.api.registry().getTotem(name);
