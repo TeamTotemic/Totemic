@@ -22,7 +22,7 @@ public class BlockDummyTipi extends Block
     {
         super(Material.CLOTH);
         setRegistryName(Strings.DUMMY_TIPI_NAME);
-        setUnlocalizedName(Strings.DUMMY_TIPI_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.DUMMY_TIPI_NAME);
         setHardness(0.2F);
         setSoundType(SoundType.CLOTH);
     }

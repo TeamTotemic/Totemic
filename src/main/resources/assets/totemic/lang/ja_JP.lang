@@ -15,7 +15,7 @@ item.totemic:cedarBark.name=赤杉の皮
 item.totemic:barkStripper.name=樹皮剥ぎ
 item.totemic:jingleDress.name=ジングルドレス
 item.totemic:ceremonialRattle.name=マラカス
-item.totemic:tipiItem.name=ティピー
+item.totemic:tipi.name=ティピー
 item.totemic:nuggetIron.name=鉄塊
 item.totemic:bellsIron.name=鉄の鈴
 item.totemic:buffaloHide.name=バッファローの皮
@@ -25,18 +25,18 @@ item.totemic:buffaloCookedMeat.name=焼きバッファロー肉
 item.totemic:baykokBow.name=ベイコックの弓
 
 # Block localizations
-tile.cedarLog.name=赤杉の原木
-tile.totemBase.name=トーテム台
-tile.totemPole.name=トーテムポール
-tile.totemSapling.name=赤杉の苗木
-tile.totemLeaves.name=赤杉の葉
-tile.totemDrum.name=トーテム術師のドラム
-tile.windChime.name=風鈴
-tile.totemTorch.name=トーテムトーチ
-tile.redCedarPlank.name=赤杉の木材
-tile.redCedarStripped.name=白木の赤杉の丸太
-tile.totemicTipi.name=ティピー
-tile.dummyTotemicTipi.name=ティピー
+tile.totemic:cedarLog.name=赤杉の原木
+tile.totemic:totemBase.name=トーテム台
+tile.totemic:totemPole.name=トーテムポール
+tile.totemic:totemSapling.name=赤杉の苗木
+tile.totemic:totemLeaves.name=赤杉の葉
+tile.totemic:totemDrum.name=トーテム術師のドラム
+tile.totemic:windChime.name=風鈴
+tile.totemic:totemTorch.name=トーテムトーチ
+tile.totemic:redCedarPlank.name=赤杉の木材
+tile.totemic:redCedarStripped.name=白木の赤杉の丸太
+tile.totemic:totemicTipi.name=ティピー
+tile.totemic:dummyTotemicTipi.name=ティピー
 
 #Entity localizations
 entity.totemic.buffalo.name=バッファロー

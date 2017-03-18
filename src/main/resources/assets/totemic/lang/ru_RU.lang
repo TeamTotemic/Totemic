@@ -13,16 +13,16 @@ item.totemic:jingleDress.name=Звонкое платье
 item.totemic:ceremonialRattle.name=Трещотка
 
 # Block localizations
-tile.cedarLog.name=Древесина красного кедра
-tile.totemBase.name=Основание тотема
-tile.totemPole.name=Столб тотема
-tile.totemSapling.name=Саженец красного кедра
-tile.totemLeaves.name=Листва красного кедра
-tile.totemDrum.name=Барабан тотемиста
-tile.windChime.name=Музыкальная подвеска
-tile.totemTorch.name=Факел для тотема
-tile.redCedarPlank.name=Доски из красного кедра
-tile.redCedarStripped.name=Очищенная древесина красного кедра
+tile.totemic:cedarLog.name=Древесина красного кедра
+tile.totemic:totemBase.name=Основание тотема
+tile.totemic:totemPole.name=Столб тотема
+tile.totemic:totemSapling.name=Саженец красного кедра
+tile.totemic:totemLeaves.name=Листва красного кедра
+tile.totemic:totemDrum.name=Барабан тотемиста
+tile.totemic:windChime.name=Музыкальная подвеска
+tile.totemic:totemTorch.name=Факел для тотема
+tile.totemic:redCedarPlank.name=Доски из красного кедра
+tile.totemic:redCedarStripped.name=Очищенная древесина красного кедра
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

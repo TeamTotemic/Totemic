@@ -22,7 +22,7 @@ public class BlockTotemTorch extends Block
     {
         super(Material.WOOD);
         setRegistryName(Strings.TOTEM_TORCH_NAME);
-        setUnlocalizedName(Strings.TOTEM_TORCH_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_TORCH_NAME);
         setLightLevel(1F);
         setSoundType(SoundType.WOOD);
         setHardness(0.05F);

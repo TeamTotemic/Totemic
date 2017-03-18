@@ -15,7 +15,7 @@ item.totemic:cedarBark.name=Red Cedar Bark
 item.totemic:barkStripper.name=Bark Stripper
 item.totemic:jingleDress.name=Jingle Dress
 item.totemic:ceremonialRattle.name=Rattle
-item.totemic:tipiItem.name=Tipi
+item.totemic:tipi.name=Tipi
 item.totemic:nuggetIron.name=Iron Nugget
 item.totemic:bellsIron.name=Iron Bells
 item.totemic:buffaloHide.name=Buffalo Hide
@@ -32,18 +32,18 @@ item.totemic:medicineBag.tooltipEmpty=Empty
 item.totemic:medicineBag.tooltipCharge=Charge: %d
 
 # Block localizations
-tile.cedarLog.name=Red Cedar Log
-tile.totemBase.name=Totem Base
-tile.totemPole.name=Totem Pole
-tile.totemSapling.name=Red Cedar Sapling
-tile.totemLeaves.name=Red Cedar Leaves
-tile.totemDrum.name=Totemist Drum
-tile.windChime.name=Wind Chime
-tile.totemTorch.name=Totem Torch
-tile.redCedarPlank.name=Red Cedar Plank
-tile.redCedarStripped.name=Red Cedar Stripped Log
-tile.totemicTipi.name=Tipi
-tile.dummyTotemicTipi.name=Tipi
+tile.totemic:cedarLog.name=Red Cedar Log
+tile.totemic:totemBase.name=Totem Base
+tile.totemic:totemPole.name=Totem Pole
+tile.totemic:totemSapling.name=Red Cedar Sapling
+tile.totemic:totemLeaves.name=Red Cedar Leaves
+tile.totemic:totemDrum.name=Totemist Drum
+tile.totemic:windChime.name=Wind Chime
+tile.totemic:totemTorch.name=Totem Torch
+tile.totemic:redCedarPlank.name=Red Cedar Plank
+tile.totemic:redCedarStripped.name=Red Cedar Stripped Log
+tile.totemic:totemicTipi.name=Tipi
+tile.totemic:dummyTotemicTipi.name=Tipi
 
 #Entity localizations
 entity.totemic.buffalo.name=Buffalo

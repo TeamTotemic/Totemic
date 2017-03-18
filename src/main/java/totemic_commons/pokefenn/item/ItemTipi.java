@@ -23,7 +23,7 @@ public class ItemTipi extends ItemBlock
     public ItemTipi(Block block)
     {
         super(block);
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TIPI_ITEM_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TIPI_NAME);
         setNoRepair();
         setMaxStackSize(1);
         setCreativeTab(Totemic.tabsTotem);

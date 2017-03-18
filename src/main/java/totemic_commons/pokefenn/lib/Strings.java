@@ -32,7 +32,6 @@ public final class Strings
     public static final String BUFFALO_MEAT_NAME = "buffaloMeat";
     public static final String BUFFALO_COOKED_MEAT_NAME = "buffaloCookedMeat";
     public static final String FLUTE_NAME = "flute";
-    public static final String TIPI_ITEM_NAME = "tipiItem";
     public static final String BAYKOK_BOW_NAME = "baykokBow";
     public static final String MEDICINE_BAG_NAME = "medicineBag";
 
