@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.api.totem;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -49,9 +50,10 @@ public abstract class TotemEffect
      * Performs the Totem effect to the given player, if applicable.
      * Override this method to make your effect work with Medicine Bags.<p>
      * This gets called every {@link #interval} ticks on the server and the client.
+     * @param medicineBag the Medicine Bag item stack
      * @param charge time in ticks until the Medicine Bag is depleted
      */
-    public void medicineBagEffect(World world, EntityPlayer player, int charge)
+    public void medicineBagEffect(World world, EntityPlayer player, ItemStack medicineBag, int charge)
     { }
 
     /**

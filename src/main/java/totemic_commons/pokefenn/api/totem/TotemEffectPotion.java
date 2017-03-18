@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -130,7 +131,7 @@ public class TotemEffectPotion extends TotemEffect
     }
 
     @Override
-    public void medicineBagEffect(World world, EntityPlayer player, int charge)
+    public void medicineBagEffect(World world, EntityPlayer player, ItemStack medicineBag, int charge)
     {
         if(world.isRemote)
             return;
