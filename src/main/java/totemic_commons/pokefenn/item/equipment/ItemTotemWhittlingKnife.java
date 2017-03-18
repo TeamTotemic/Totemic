@@ -46,7 +46,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
     @SideOnly(Side.CLIENT)
     private static String getCarvingName(@Nullable TotemEffect effect)
     {
-        return I18n.format((effect != null) ? effect.getUnlocalizedName() : "tile.totemBase.name");
+        return I18n.format((effect != null) ? effect.getUnlocalizedName() : ModBlocks.totemBase.getUnlocalizedName() + ".name");
     }
 
     @Nullable
