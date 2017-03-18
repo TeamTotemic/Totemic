@@ -1,11 +1,15 @@
 package totemic_commons.pokefenn;
 
+import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ModFixs;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import totemic_commons.pokefenn.datafix.TotemicEntityID;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.handler.EntityFall;
 import totemic_commons.pokefenn.handler.EntitySpawn;
@@ -39,6 +43,7 @@ public class CommonProxy
         NetworkHandler.init();
         CraftingRecipes.init();
         registerEventHandlers();
+        registerDataFixers();
     }
 
     public void postInit(FMLPostInitializationEvent event)
@@ -54,6 +59,13 @@ public class CommonProxy
         GameRegistry.registerTileEntityWithAlternatives(TileDrum.class, Strings.RESOURCE_PREFIX + Strings.DRUM_NAME, "totemDrum");
         GameRegistry.registerTileEntityWithAlternatives(TileWindChime.class, Strings.RESOURCE_PREFIX + Strings.WIND_CHIME_NAME, "windChime");
         GameRegistry.registerTileEntityWithAlternatives(TileTipi.class, Strings.RESOURCE_PREFIX + Strings.TIPI_NAME, "totemicTipi");
+    }
+
+    //TODO: Remove at some point?
+    private void registerDataFixers()
+    {
+        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 900);
+        fixes.registerFix(FixTypes.ENTITY, new TotemicEntityID());
     }
 
     protected void registerEventHandlers()
