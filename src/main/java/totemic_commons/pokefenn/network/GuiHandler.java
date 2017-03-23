@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.network;
 import javax.annotation.Nullable;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
@@ -24,9 +25,14 @@ public class GuiHandler implements IGuiHandler
         if(ID == 0)
         {
             GuiLexicon lex = GuiLexicon.currentOpenLexicon;
-            GuiLexicon.stackUsed = player.getHeldItemMainhand();
-            if(!(GuiLexicon.stackUsed.getItem() instanceof ILexicon))
-                return null;
+            ItemStack stack = player.getHeldItemMainhand();
+            if(!(stack.getItem() instanceof ILexicon))
+            {
+                stack = player.getHeldItemOffhand();
+                if(!(stack.getItem() instanceof ILexicon))
+                    return null;
+            }
+            GuiLexicon.stackUsed = stack;
             return lex;
         }
         return null;
