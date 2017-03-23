@@ -20,7 +20,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
-import totemic_commons.pokefenn.apiimpl.RegistryImpl;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 import totemic_commons.pokefenn.item.ItemTotemic;
@@ -33,8 +32,6 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 {
     public static final String KNIFE_TOTEM_KEY = "totem";
     public static final String TOTEM_BASE_PLACEHOLDER_NAME = "";
-
-    private static final List<TotemEffect> totemList = ((RegistryImpl) Totemic.api.registry()).getTotemList();
 
     public ItemTotemWhittlingKnife()
     {
@@ -135,8 +132,9 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction)
     {
+        List<String> totemList = Totemic.api.registry().getTotemList();
         ItemStack stack = itemStack.copy();
-        int index = totemList.indexOf(getCarvingEffect(stack)); //TODO: Maybe optimize this?
+        int index = totemList.indexOf(ItemUtil.getOrCreateTag(stack).getString(KNIFE_TOTEM_KEY));
 
         //-1 represents the Totem Base
         if(index == -1)
@@ -150,8 +148,8 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                 index = -1;
         }
 
-        String name = (index != -1) ? totemList.get(index).getName() : TOTEM_BASE_PLACEHOLDER_NAME;
-        ItemUtil.getOrCreateTag(stack).setString(KNIFE_TOTEM_KEY, name);
+        String name = (index != -1) ? totemList.get(index) : TOTEM_BASE_PLACEHOLDER_NAME;
+        stack.getTagCompound().setString(KNIFE_TOTEM_KEY, name);
         return stack;
     }
 

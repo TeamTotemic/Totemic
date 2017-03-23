@@ -13,7 +13,7 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 public class RegistryImpl implements TotemicRegistry
 {
     private final Map<String, TotemEffect> totemEffects = new HashMap<>();
-    private final List<TotemEffect> totemList = new ArrayList<>();
+    private final List<String> totemList = new ArrayList<>();
 
     private final Map<String, MusicInstrument> instruments = new HashMap<>();
 
@@ -28,7 +28,7 @@ public class RegistryImpl implements TotemicRegistry
         if(totemEffects.containsKey(effect.getName()))
             throw new IllegalArgumentException("Duplicate Totem entry for ID " + effect.getName());
         totemEffects.put(effect.getName(), effect);
-        totemList.add(effect);
+        totemList.add(effect.getName());
         return effect;
     }
 
@@ -44,7 +44,7 @@ public class RegistryImpl implements TotemicRegistry
         return Collections.unmodifiableMap(totemEffects);
     }
 
-    public List<TotemEffect> getTotemList()
+    public List<String> getTotemList()
     {
         return Collections.unmodifiableList(totemList);
     }
