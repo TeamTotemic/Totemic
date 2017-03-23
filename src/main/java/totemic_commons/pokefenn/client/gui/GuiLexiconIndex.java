@@ -68,7 +68,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
 
         entriesToDisplay.clear();
         //ILexicon lex = (ILexicon) stackUsed.getItem();
-        for(LexiconEntry entry : category.entries)
+        for(LexiconEntry entry : category.getEntries())
         {
             entriesToDisplay.add(entry);
         }

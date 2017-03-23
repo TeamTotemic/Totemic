@@ -18,47 +18,50 @@ import net.minecraft.item.ItemStack;
 
 /**
  * This class contains mappings for which entry and page correspond to each
- * craftable ItemStack. Use the map method to map an ItemStack to a page in
- * an entry in the lexicon.
+ * craftable ItemStack.
+ *
+ * <p>Use the map method to map an ItemStack to a page in an entry in the
+ * lexicon.
  */
 public final class LexiconRecipeMappings
 {
-    private static Map<String, EntryData> mappings = new HashMap<>();
+    private static final Map<String, EntryData> mappings = new HashMap<>();
 
     /**
-     * Maps the given stack to the given page of the entry.
+     * Maps the given stack to the given page of the entry
      */
-    public static void map(ItemStack stack, LexiconEntry entry, int page, boolean force)
-    {
-        EntryData data = new EntryData(entry, page);
-        String str = stackToString(stack);
-
-        if(force || !mappings.containsKey(str))
-            mappings.put(str, data);
-    }
-
     public static void map(ItemStack stack, LexiconEntry entry, int page)
     {
         map(stack, entry, page, false);
     }
 
+    /**
+     * Maps the given stack to the given page of the entry
+     * @param force Add the mapping even if one already exists for this stack
+     */
+    public static void map(ItemStack stack, LexiconEntry entry, int page, boolean force)
+    {
+        String str = stackToString(stack);
+
+        if(force || !mappings.containsKey(str))
+            mappings.put(str, new EntryData(entry, page));
+    }
 
     public static EntryData getDataForStack(ItemStack stack)
     {
         return mappings.get(stackToString(stack));
     }
 
-    public static String stackToString(ItemStack stack)
+    private static String stackToString(ItemStack stack)
     {
         if(stack.hasTagCompound() && stack.getItem() instanceof IRecipeKeyProvider)
             return ((IRecipeKeyProvider) stack.getItem()).getKey(stack);
 
-        return stack.getUnlocalizedName() + "~" + stack.getItemDamage();
+        return stack.getItem().getRegistryName() + "~" + stack.getItemDamage();
     }
 
     public static class EntryData
     {
-
         public final LexiconEntry entry;
         public final int page;
 
@@ -67,6 +70,5 @@ public final class LexiconRecipeMappings
             this.entry = entry;
             this.page = page;
         }
-
     }
 }

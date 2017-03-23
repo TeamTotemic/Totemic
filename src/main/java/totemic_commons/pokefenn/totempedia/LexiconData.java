@@ -82,84 +82,84 @@ public final class LexiconData
 
         //Basics
         cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics);
-        cedarTree.setLexiconPages(new PageText("0")/*, new PageText("1")*/);
+        cedarTree.addPages(new PageText("0")/*, new PageText("1")*/);
 
         buffaloBasic = new BLexiconEntry(Totempedia.BUFFALO_BASIC, categoryBasics);
-        buffaloBasic.setLexiconPages(new PageText("0"));
+        buffaloBasic.addPages(new PageText("0"));
 
         //Totems and Effects
         creatingTotems = new BLexiconEntry(Totempedia.CREATING_TOTEMS, categoryTotems);
         creatingTotems.setPriority();
-        creatingTotems.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.totemWhittlingKnife));
+        creatingTotems.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.totemWhittlingKnife));
 
         totemEffects = new BLexiconEntry(Totempedia.TOTEM_EFFECTS, categoryTotems);
-        totemEffects.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));
+        totemEffects.addPages(new PageText("0"), new PageText("1"), new PageText("2"));
 
         medicineBag = new BLexiconEntry(Totempedia.MEDICINE_BAG, categoryTotems);
-        medicineBag.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.medicineBag));
+        medicineBag.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.medicineBag));
 
         //Instruments
         instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryInstruments);
         instruments.setPriority();
-        instruments.setLexiconPages(new PageText("0")/*, new PageText("1")*/);
+        instruments.addPages(new PageText("0")/*, new PageText("1")*/);
 
         windChime = new BLexiconEntry(Totempedia.WIND_CHIME, categoryInstruments);
-        windChime.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.windChime));
+        windChime.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.windChime));
 
         drum = new BLexiconEntry(Totempedia.DRUM, categoryInstruments);
-        drum.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.drum));
+        drum.addPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.drum));
 
         flute = new BLexiconEntry(Totempedia.FLUTE, categoryInstruments);
-        flute.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.flute));
+        flute.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.flute));
 
         rattle = new BLexiconEntry(Totempedia.RATTLE, categoryInstruments);
-        rattle.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.ceremonialRattle));
+        rattle.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.ceremonialRattle));
 
         jingleDress = new BLexiconEntry(Totempedia.JINGLE_DRESS, categoryInstruments);
-        jingleDress.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.jingleDress),
+        jingleDress.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.jingleDress),
                 new PageCraftingRecipe("3", CraftingRecipes.bellsIron));
 
         //Ceremonies
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
         performingCeremonies.setPriority();
-        performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"), new PageText("4"));
+        performingCeremonies.addPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"), new PageText("4"));
 
         rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony);
-        rainDance.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.rainDance));
+        rainDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.rainDance));
 
         droughtDance = new BLexiconEntry(Totempedia.DROUGHT_DANCE, categoryCeremony);
-        droughtDance.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.drought));
+        droughtDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.drought));
 
         warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony);
-        warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.warDance));
+        warDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.warDance));
 
         buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony);
-        buffaloDance.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.buffaloDance));
+        buffaloDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.buffaloDance));
 
         zaphkielWaltz = new BLexiconEntry(Totempedia.ZAPHKIEL_WALTZ, categoryCeremony);
-        zaphkielWaltz.setLexiconPages(new PageText("0"), new PageCeremony("1", ModContent.zaphkielWaltz));
+        zaphkielWaltz.addPages(new PageText("0"), new PageCeremony("1", ModContent.zaphkielWaltz));
 
         fluteInfusion = new BLexiconEntry(Totempedia.FLUTE_INFUSION, categoryCeremony);
-        fluteInfusion.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.fluteCeremony));
+        fluteInfusion.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.fluteCeremony));
 
         baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony);
-        baykokSummon.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.baykokSummon));
+        baykokSummon.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.baykokSummon));
 
         //Tools
         totemicStaff = new BLexiconEntry(Totempedia.TOTEMIC_STAFF, categoryTools);
-        totemicStaff.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.totemicStaff));
+        totemicStaff.addPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.totemicStaff));
 
         barkStripper = new BLexiconEntry(Totempedia.TOOL_BARK_STRIPPER, categoryTools);
-        barkStripper.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.barkStripper));
+        barkStripper.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.barkStripper));
 
         baykokBow = new BLexiconEntry(Totempedia.BAYKOK_BOW, categoryTools);
-        baykokBow.setLexiconPages(new PageText("0"));
+        baykokBow.addPages(new PageText("0"));
 
         //Misc
         tipi = new BLexiconEntry(Totempedia.TIPI, categoryMisc);
-        tipi.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.tipiWool, CraftingRecipes.tipiHide));
+        tipi.addPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.tipiWool, CraftingRecipes.tipiHide));
 
         totemTorch = new BLexiconEntry(Totempedia.TOTEM_TORCH, categoryMisc);
-        totemTorch.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.totemTorch));
+        totemTorch.addPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.totemTorch));
     }
 }

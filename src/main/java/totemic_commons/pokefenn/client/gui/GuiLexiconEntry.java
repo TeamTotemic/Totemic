@@ -88,7 +88,7 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
     @Override
     String getTitle()
     {
-        return String.format("%s " + TextFormatting.ITALIC + "(%s/%s)", title, page + 1, entry.pages.size());
+        return String.format("%s " + TextFormatting.ITALIC + "(%s/%s)", title, page + 1, entry.getPages().size());
     }
 
     @Override
@@ -124,7 +124,7 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
     public void updatePageButtons()
     {
         leftButton.enabled = page != 0;
-        rightButton.enabled = page + 1 < entry.pages.size();
+        rightButton.enabled = page + 1 < entry.getPages().size();
     }
 
     @Override
@@ -132,14 +132,14 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
     {
         super.drawScreen(par1, par2, par3);
 
-        LexiconPage page = entry.pages.get(this.page);
+        LexiconPage page = entry.getPages().get(this.page);
         page.renderScreen(this, par1, par2);
     }
 
     @Override
     public void updateScreen()
     {
-        LexiconPage page = entry.pages.get(this.page);
+        LexiconPage page = entry.getPages().get(this.page);
         page.updateScreen();
     }
 

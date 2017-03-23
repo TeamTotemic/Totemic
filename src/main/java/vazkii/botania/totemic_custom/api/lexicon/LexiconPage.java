@@ -44,7 +44,9 @@ public abstract class LexiconPage
     }
 
     /**
-     * Called when {@link LexiconEntry#setLexiconPages(LexiconPage...)} is called.
+     * Called when this page is added to a lexicon entry
+     * @param entry The entry this page has been added to
+     * @param index The page number
      */
     public void onPageAdded(LexiconEntry entry, int index)
     {

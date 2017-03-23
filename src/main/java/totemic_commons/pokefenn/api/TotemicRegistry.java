@@ -84,6 +84,9 @@ public interface TotemicRegistry
 
     /**
      * Adds a new Totempedia entry to the given category
+     * @deprecated Just use {@link LexiconCategory#addEntry} instead.
+     * The constructor {@link LexiconEntry#LexiconEntry(String, LexiconCategory)} automatically does that for you.
      */
+    @Deprecated
     void addLexiconEntry(LexiconCategory category, LexiconEntry entry);
 }

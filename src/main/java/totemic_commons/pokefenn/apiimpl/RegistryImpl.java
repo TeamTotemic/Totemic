@@ -20,7 +20,6 @@ public class RegistryImpl implements TotemicRegistry
     private final Map<String, Ceremony> ceremonies = new HashMap<>();
 
     private final List<LexiconCategory> categories = new ArrayList<>();
-    private final List<LexiconEntry> lexiconEntries = new ArrayList<>();
 
     @Override
     public TotemEffect addTotem(TotemEffect effect)
@@ -123,7 +122,6 @@ public class RegistryImpl implements TotemicRegistry
     @Override
     public void addLexiconEntry(LexiconCategory category, LexiconEntry entry)
     {
-        lexiconEntries.add(entry);
-        category.entries.add(entry);
+        category.addEntry(entry);
     }
 }

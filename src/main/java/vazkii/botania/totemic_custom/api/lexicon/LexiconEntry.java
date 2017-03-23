@@ -19,19 +19,29 @@ import net.minecraft.client.resources.I18n;
 
 public class LexiconEntry implements Comparable<LexiconEntry>
 {
-    public final String unlocalizedName;
-    public final LexiconCategory category;
+    private final String unlocalizedName;
 
-    public List<LexiconPage> pages = new ArrayList<>();
+    private final List<LexiconPage> pages = new ArrayList<>();
     private boolean priority = false;
 
     /**
-     * @param unlocalizedName The unlocalized name of this entry. This will be localized by the client display.
+     * Creates a new entry
+     * @param unlocalizedName The unlocalized name of this entry
+     */
+    public LexiconEntry(String unlocalizedName)
+    {
+        this.unlocalizedName = unlocalizedName;
+    }
+
+    /**
+     * Creates a new entry and automatically adds it to the given category
+     * @param unlocalizedName The unlocalized name of this entry
+     * @param category The category to which this entry should be added
      */
     public LexiconEntry(String unlocalizedName, LexiconCategory category)
     {
-        this.unlocalizedName = unlocalizedName;
-        this.category = category;
+        this(unlocalizedName);
+        category.addEntry(this);
     }
 
     /**
@@ -56,11 +66,12 @@ public class LexiconEntry implements Comparable<LexiconEntry>
     /**
      * Sets what pages you want this entry to have.
      */
-    public LexiconEntry setLexiconPages(LexiconPage... pages)
+    public LexiconEntry addPages(LexiconPage... pages)
     {
+        int firstIndex = this.pages.size();
         this.pages.addAll(Arrays.asList(pages));
 
-        for(int i = 0; i < this.pages.size(); i++)
+        for(int i = firstIndex; i < this.pages.size(); i++)
             this.pages.get(i).onPageAdded(this, i);
 
         return this;
@@ -72,6 +83,12 @@ public class LexiconEntry implements Comparable<LexiconEntry>
     public void addPage(LexiconPage page)
     {
         pages.add(page);
+        page.onPageAdded(this, pages.size() - 1);
+    }
+
+    public List<LexiconPage> getPages()
+    {
+        return pages;
     }
 
     public String getLocalizedName()
@@ -79,6 +96,14 @@ public class LexiconEntry implements Comparable<LexiconEntry>
         return I18n.format(getUnlocalizedName());
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @implSpec
+     * Override this if you want to change the order in which entries appear
+     * in a category in the Totempedia. By default, they are ordered by their
+     * localized names (but prioritized entries come first).
+     */
     @Override
     public int compareTo(LexiconEntry o)
     {

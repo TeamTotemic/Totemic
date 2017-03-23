@@ -14,7 +14,7 @@ package vazkii.botania.totemic_custom.api.lexicon;
 /**
  * Have a LexiconEntry implement this to signify it's an "Addon entry", as
  * in, one provided by an Addon. This allows it to draw a subtitle of
- * sorts, to prevent the [Mod tag here] nonsense that happened with thaumcraft
+ * sorts, to prevent the [Mod tag here] nonsense that happened with Thaumcraft
  * addons. It can also be used for other purposes, such as stating an
  * entry is WIP.
  */

@@ -13,8 +13,7 @@ public final class TotemicAPI
     /**
      * Returns an instance of the Totemic API.
      *
-     * Note that the API will be instantiated by Totemic during the preinitalization phase,
-     * so it is not safe to call this method until the initalization phase.
+     * <p>The API will be instantiated by Totemic during the preinitalization phase.
      */
     public static API get()
     {

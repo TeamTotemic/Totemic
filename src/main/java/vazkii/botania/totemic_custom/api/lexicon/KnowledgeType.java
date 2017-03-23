@@ -2,6 +2,9 @@ package vazkii.botania.totemic_custom.api.lexicon;
 
 import net.minecraft.util.text.Style;
 
+/**
+ * NB: Currently unused
+ */
 public class KnowledgeType
 {
     public final String id;
@@ -17,6 +20,6 @@ public class KnowledgeType
 
     public String getUnlocalizedName()
     {
-        return "botania.knowledge." + id;
+        return "totemic.knowledge." + id;
     }
 }

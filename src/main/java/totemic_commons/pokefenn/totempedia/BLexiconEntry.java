@@ -12,7 +12,6 @@
 package totemic_commons.pokefenn.totempedia;
 
 
-import totemic_commons.pokefenn.api.TotemicAPI;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconPage;
@@ -22,16 +21,15 @@ public class BLexiconEntry extends LexiconEntry
     public BLexiconEntry(String unlocalizedName, LexiconCategory category)
     {
         super(unlocalizedName, category);
-        TotemicAPI.get().registry().addLexiconEntry(category, this);
     }
 
     @Override
-    public LexiconEntry setLexiconPages(LexiconPage... pages)
+    public LexiconEntry addPages(LexiconPage... pages)
     {
         for(LexiconPage page : pages)
             page.unlocalizedName = "totemic.page." + getLazyUnlocalizedName() + page.unlocalizedName;
 
-        return super.setLexiconPages(pages);
+        return super.addPages(pages);
     }
 
     @Override

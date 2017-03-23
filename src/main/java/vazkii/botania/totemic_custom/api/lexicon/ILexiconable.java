@@ -11,6 +11,8 @@
  */
 package vazkii.botania.totemic_custom.api.lexicon;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -18,12 +20,15 @@ import net.minecraft.world.World;
 
 /**
  * Any block that implements this can be right clicked with
- * a Lexica Botania to open a entry page.
+ * a Totempedia to open a entry page.
+ *
+ * <p>NB: This functionality is not yet implemented
  */
 public interface ILexiconable
 {
     /**
-     * Gets the lexicon entry to open at this location. null works too.
+     * Gets the lexicon entry to open at this location. {@code null} works too.
      */
+    @Nullable
     LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player, ItemStack lexicon);
 }

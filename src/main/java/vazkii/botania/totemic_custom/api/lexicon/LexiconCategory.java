@@ -16,11 +16,11 @@ import java.util.List;
 
 public final class LexiconCategory
 {
-    public final String unlocalizedName;
-    public final List<LexiconEntry> entries = new ArrayList<>();
+    private final String unlocalizedName;
+    private final List<LexiconEntry> entries = new ArrayList<>();
 
     /**
-     * @param unlocalizedName The unlocalized name of this category. This will be localized by the client display.
+     * @param unlocalizedName The unlocalized name of this category
      */
     public LexiconCategory(String unlocalizedName)
     {
@@ -30,5 +30,21 @@ public final class LexiconCategory
     public String getUnlocalizedName()
     {
         return unlocalizedName;
+    }
+
+    /**
+     * @return The list of lexicon entries in this category
+     */
+    public List<LexiconEntry> getEntries()
+    {
+        return entries;
+    }
+
+    /**
+     * Adds a lexicon entry to this category
+     */
+    public void addEntry(LexiconEntry entry)
+    {
+        entries.add(entry);
     }
 }
