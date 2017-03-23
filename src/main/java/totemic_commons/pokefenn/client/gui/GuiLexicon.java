@@ -23,6 +23,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.client.ClientTickHandler;
 import totemic_commons.pokefenn.client.gui.button.GuiButtonBookmark;
@@ -51,7 +52,7 @@ public class GuiLexicon extends GuiScreen
     {
         super.initGui();
 
-        title = Minecraft.getMinecraft().thePlayer.getHeldItemMainhand().getDisplayName();
+        title = (stackUsed != null) ? stackUsed.getDisplayName() : ModItems.totempedia.getUnlocalizedName();
         currentOpenLexicon = this;
 
         left = width / 2 - guiWidth / 2;
