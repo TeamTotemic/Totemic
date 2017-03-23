@@ -8,7 +8,6 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.util.MathsUtil;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
-import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
 public class RegistryImpl implements TotemicRegistry
 {
@@ -117,11 +116,5 @@ public class RegistryImpl implements TotemicRegistry
     public List<LexiconCategory> getCategories()
     {
         return Collections.unmodifiableList(categories);
-    }
-
-    @Override
-    public void addLexiconEntry(LexiconCategory category, LexiconEntry entry)
-    {
-        category.addEntry(entry);
     }
 }

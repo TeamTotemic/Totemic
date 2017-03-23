@@ -40,11 +40,4 @@ public interface MusicAPI
      * Adds music to the given music acceptor tile entity and spawns particles at its location
      */
     void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount);
-
-    /**
-     * Adds music to the given music acceptor tile entity and spawns particles at its location
-     * @deprecated Use the other overload instead. The musicMaximum parameter serves no function.
-     */
-    @Deprecated
-    void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum);
 }

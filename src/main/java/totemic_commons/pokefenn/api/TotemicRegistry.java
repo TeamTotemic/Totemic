@@ -9,7 +9,6 @@ import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconCategory;
-import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
 
 /**
  * Provides access to Totemic's registries.
@@ -81,12 +80,4 @@ public interface TotemicRegistry
      * @return an immutable list of all Totempedia categories
      */
     List<LexiconCategory> getCategories();
-
-    /**
-     * Adds a new Totempedia entry to the given category
-     * @deprecated Just use {@link LexiconCategory#addEntry} instead.
-     * The constructor {@link LexiconEntry#LexiconEntry(String, LexiconCategory)} automatically does that for you.
-     */
-    @Deprecated
-    void addLexiconEntry(LexiconCategory category, LexiconEntry entry);
 }

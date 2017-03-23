@@ -32,10 +32,4 @@ public class MusicApiImpl implements MusicAPI
     {
         TotemUtil.addMusic(tile, instr, musicAmount);
     }
-
-    @Override
-    public void addMusic(MusicAcceptor tile, MusicInstrument instr, int musicAmount, int musicMaximum)
-    {
-        addMusic(tile, instr, musicAmount);
-    }
 }
