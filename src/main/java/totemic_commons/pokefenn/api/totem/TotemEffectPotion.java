@@ -3,7 +3,9 @@ package totemic_commons.pokefenn.api.totem;
 import java.util.List;
 import java.util.Objects;
 
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -90,11 +92,11 @@ public class TotemEffectPotion extends TotemEffect
 
     /**
      * Returns the amplifier that should be used for this effect, when it is used with a Medicine Bag.<p>
-     * The default value is equal to {@link #baseAmplifier}.
+     * The default value ranges between 0 and 2 above {@link #baseAmplifier}, depending on the Efficiency enchantment level of the Medicine Bag.
      */
     protected int getAmplifierForMedicineBag(World world, EntityPlayer entity, ItemStack medicineBag, int charge)
     {
-        return baseAmplifier;
+        return baseAmplifier + EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, medicineBag) / 2;
     }
 
     /**

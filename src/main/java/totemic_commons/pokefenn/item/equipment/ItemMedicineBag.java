@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -71,7 +74,19 @@ public class ItemMedicineBag extends ItemTotemic
                     {
                         eff.medicineBagEffect(world, (EntityPlayer) entity, stack, charge);
                         if(!world.isRemote)
-                            stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, Math.max(charge - eff.getInterval(), 0));
+                        {
+                            int cons = eff.getInterval();
+                            int unbreaking = EnchantmentHelper.getEnchantmentLevel(Enchantments.UNBREAKING, stack);
+                            if(unbreaking > 0)
+                            {
+                                double factor = cons / (unbreaking + 1.0);
+                                double sigma = Math.sqrt(cons * unbreaking) / (unbreaking + 1.0); //Standard deviation of binomial distribution
+                                //TODO: Probably replace Gaussian distribution with triangular
+                                // or maybe do it differently altogether
+                                cons = MathHelper.clamp((int) Math.round(factor + sigma * world.rand.nextGaussian()), 0, cons);
+                            }
+                            stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, Math.max(charge - cons, 0));
+                        }
                     }
                 });
             }
@@ -201,6 +216,24 @@ public class ItemMedicineBag extends ItemTotemic
 
         if(advanced)
             tooltip.add(I18n.format(getUnlocalizedName() + ".tooltipCharge", getCharge(stack)));
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment)
+    {
+        return enchantment == Enchantments.EFFICIENCY || enchantment == Enchantments.UNBREAKING || super.canApplyAtEnchantingTable(stack, enchantment);
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack stack)
+    {
+        return true;
+    }
+
+    @Override
+    public int getItemEnchantability()
+    {
+        return 8;
     }
 
     @Override
