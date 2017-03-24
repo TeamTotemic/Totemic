@@ -92,7 +92,7 @@ public class TotemEffectPotion extends TotemEffect
      * Returns the amplifier that should be used for this effect, when it is used with a Medicine Bag.<p>
      * The default value is equal to {@link #baseAmplifier}.
      */
-    protected int getAmplifierForMedicineBag(World world, EntityPlayer entity, int charge)
+    protected int getAmplifierForMedicineBag(World world, EntityPlayer entity, ItemStack medicineBag, int charge)
     {
         return baseAmplifier;
     }
@@ -137,7 +137,7 @@ public class TotemEffectPotion extends TotemEffect
             return;
 
         int time = interval + getLingeringTime();
-        int amplifier = getAmplifierForMedicineBag(world, player, charge);
+        int amplifier = getAmplifierForMedicineBag(world, player, medicineBag, charge);
         applyTo(true, player, time, amplifier);
     }
 
