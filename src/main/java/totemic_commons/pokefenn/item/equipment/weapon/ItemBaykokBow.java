@@ -55,7 +55,7 @@ public class ItemBaykokBow extends ItemBow
 
         EntityPlayer player = (EntityPlayer) entity;
         boolean infinity = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
-        ItemStack arrow = findAmmo(player);
+        ItemStack arrow = findAmmo0(player);
 
         int chargeTicks = this.getMaxItemUseDuration(stack) - timeLeft;
         chargeTicks = ForgeEventFactory.onArrowLoose(stack, world, player, chargeTicks, !arrow.isEmpty() || infinity);
@@ -129,7 +129,9 @@ public class ItemBaykokBow extends ItemBow
         }
     }
 
-    protected ItemStack findAmmo(EntityPlayer player)
+    //The name of this method must not be "findAmmo", otherwise if there is some Access Transformer
+    //that makes ItemBow.findAmmo protected or public, it will cause an infinite recursion
+    protected ItemStack findAmmo0(EntityPlayer player)
     {
         try
         {
