@@ -2,6 +2,8 @@ package totemic_commons.pokefenn.entity.boss;
 
 import java.util.Arrays;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -58,7 +60,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     }
 
     @Override
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata)
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         setEquipmentBasedOnDifficulty(difficulty);
         return super.onInitialSpawn(difficulty, livingdata);

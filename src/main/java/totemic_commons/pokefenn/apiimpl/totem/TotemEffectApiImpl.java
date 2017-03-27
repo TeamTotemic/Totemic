@@ -10,6 +10,7 @@ import totemic_commons.pokefenn.api.totem.TotemEffectAPI;
 
 public class TotemEffectApiImpl implements TotemEffectAPI
 {
+    @SuppressWarnings("deprecation")
     @Override
     public int getDefaultPotionTime(int baseTime, boolean isBad, Random rand, TotemBase totem, int repetition)
     {
