@@ -112,7 +112,7 @@ public class BlockTipi extends Block implements ITileEntityProvider
     @Override
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        BlockDummyTipi.breakTipi(world, pos);
+        BlockDummyTipi.breakTipi(world, pos, player);
     }
 
     @Override

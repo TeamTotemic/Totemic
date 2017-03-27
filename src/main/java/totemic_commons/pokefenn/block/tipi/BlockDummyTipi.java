@@ -41,13 +41,13 @@ public class BlockDummyTipi extends Block
                     IBlockState s = world.getBlockState(p);
                     if(s.getBlock() == ModBlocks.tipi)
                     {
-                        BlockDummyTipi.breakTipi(world, p);
+                        BlockDummyTipi.breakTipi(world, p, player);
                         return;
                     }
                 }
     }
 
-    public static void breakTipi(World world, BlockPos pos)
+    public static void breakTipi(World world, BlockPos pos, EntityPlayer player)
     {
         int height = 5;
         int radius = 2;
@@ -64,7 +64,8 @@ public class BlockDummyTipi extends Block
                     }
                     else if(s.getBlock() == ModBlocks.tipi)
                     {
-                        s.getBlock().dropBlockAsItem(world, p, world.getBlockState(p), 0);
+                        if(!player.capabilities.isCreativeMode)
+                            s.getBlock().dropBlockAsItem(world, p, world.getBlockState(p), 0);
                         world.setBlockToAir(p);
                     }
                 }
