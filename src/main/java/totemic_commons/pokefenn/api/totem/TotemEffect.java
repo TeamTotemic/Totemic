@@ -51,7 +51,7 @@ public abstract class TotemEffect
      * Override this method to make your effect work with Medicine Bags.<p>
      * This gets called every {@link #interval} ticks on the server and the client.
      * @param medicineBag the Medicine Bag item stack
-     * @param charge time in ticks until the Medicine Bag is depleted
+     * @param charge time in ticks until the Medicine Bag is depleted, or -1 if it is a Creative Medicine Bag
      */
     public void medicineBagEffect(World world, EntityPlayer player, ItemStack medicineBag, int charge)
     { }

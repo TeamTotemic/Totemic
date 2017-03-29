@@ -4,18 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -72,13 +72,13 @@ public class ItemMedicineBag extends ItemTotemic
         if(stack.getMetadata() != 0)
         {
             int charge = getCharge(stack);
-            if(charge > 0)
+            if(charge != 0)
             {
                 getEffect(stack).ifPresent(eff -> {
                     if(world.getTotalWorldTime() % eff.getInterval() == 0)
                     {
                         eff.medicineBagEffect(world, (EntityPlayer) entity, stack, charge);
-                        if(!world.isRemote)
+                        if(!world.isRemote && charge != -1)
                             stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, Math.max(charge - eff.getInterval(), 0));
                     }
                 });
@@ -90,7 +90,7 @@ public class ItemMedicineBag extends ItemTotemic
     {
         int charge = getCharge(stack);
         int maxCharge = getMaxCharge(stack);
-        if(charge < maxCharge)
+        if(charge < maxCharge && charge != -1)
         {
             getEffect(stack).ifPresent(effect -> {
                 if(EntityUtil.getTileEntitiesInRange(TileTotemBase.class, world, pos, 6, 6).stream()
@@ -153,7 +153,8 @@ public class ItemMedicineBag extends ItemTotemic
                 ItemStack newStack = stack.copy();
                 NBTTagCompound tag = ItemUtil.getOrCreateTag(newStack);
                 tag.setString(MED_BAG_TOTEM_KEY, effect.getName());
-                tag.setInteger(MED_BAG_CHARGE_KEY, 0);
+                if(tag.getInteger(MED_BAG_CHARGE_KEY) != -1)
+                    tag.setInteger(MED_BAG_CHARGE_KEY, 0);
                 player.setHeldItem(hand, newStack);
                 return EnumActionResult.SUCCESS;
             }
@@ -164,7 +165,7 @@ public class ItemMedicineBag extends ItemTotemic
     @Override
     public boolean showDurabilityBar(ItemStack stack)
     {
-        return true;
+        return getCharge(stack) != -1;
     }
 
     @Override
@@ -183,9 +184,10 @@ public class ItemMedicineBag extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public String getItemStackDisplayName(ItemStack stack)
     {
+        String key = (getCharge(stack) != -1) ? getUnlocalizedName() : (getUnlocalizedName() + ".creative");
         return getEffect(stack)
-                .map(eff -> I18n.format(getUnlocalizedName() + ".display", I18n.format(eff.getUnlocalizedName())))
-                .orElseGet(() -> super.getItemStackDisplayName(stack));
+                .map(eff -> I18n.format(key + ".display", I18n.format(eff.getUnlocalizedName())))
+                .orElseGet(() -> I18n.format(key + ".name"));
     }
 
     @Override
@@ -195,7 +197,7 @@ public class ItemMedicineBag extends ItemTotemic
         String key;
         if(getEffect(stack).isPresent())
         {
-            if(getCharge(stack) > 0)
+            if(getCharge(stack) != 0)
                 key = (stack.getMetadata() == 0) ? "tooltipClosed" : "tooltipOpen";
             else
                 key = "tooltipEmpty";
@@ -224,6 +226,15 @@ public class ItemMedicineBag extends ItemTotemic
     public int getItemEnchantability()
     {
         return 8;
+    }
+
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems)
+    {
+        subItems.add(new ItemStack(item));
+        ItemStack stack = new ItemStack(item);
+        stack.setTagInfo(MED_BAG_CHARGE_KEY, new NBTTagInt(-1));
+        subItems.add(stack);
     }
 
     @Override
