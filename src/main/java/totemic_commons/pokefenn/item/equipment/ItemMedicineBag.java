@@ -83,10 +83,6 @@ public class ItemMedicineBag extends ItemTotemic
                     }
                 });
             }
-            else
-            {
-                stack.setItemDamage(0);
-            }
         }
     }
 
@@ -108,7 +104,7 @@ public class ItemMedicineBag extends ItemTotemic
 
     private ActionResult<ItemStack> openOrClose(ItemStack stack)
     {
-        if(getEffect(stack).isPresent() && getCharge(stack) > 0)
+        if(getEffect(stack).isPresent())
         {
             stack.setItemDamage((stack.getMetadata() == 0) ? 1 : 0);
             return new ActionResult<>(EnumActionResult.SUCCESS, stack);
