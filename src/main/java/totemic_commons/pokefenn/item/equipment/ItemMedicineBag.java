@@ -34,7 +34,6 @@ import totemic_commons.pokefenn.util.ItemUtil;
 
 public class ItemMedicineBag extends ItemTotemic
 {
-    public static final int MAX_CHARGE = 5 * 60 * 20;
     public static final String MED_BAG_TOTEM_KEY = "totem";
     public static final String MED_BAG_CHARGE_KEY = "charge";
 
@@ -58,6 +57,12 @@ public class ItemMedicineBag extends ItemTotemic
             return 0;
     }
 
+    public static int getMaxCharge(ItemStack stack)
+    {
+        int unbreaking = EnchantmentHelper.getEnchantmentLevel(Enchantments.UNBREAKING, stack);
+        return (4 + 2 * unbreaking) * 60 * 20;
+    }
+
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
     {
@@ -74,19 +79,7 @@ public class ItemMedicineBag extends ItemTotemic
                     {
                         eff.medicineBagEffect(world, (EntityPlayer) entity, stack, charge);
                         if(!world.isRemote)
-                        {
-                            int cons = eff.getInterval();
-                            int unbreaking = EnchantmentHelper.getEnchantmentLevel(Enchantments.UNBREAKING, stack);
-                            if(unbreaking > 0)
-                            {
-                                double factor = cons / (unbreaking + 1.0);
-                                double sigma = Math.sqrt(cons * unbreaking) / (unbreaking + 1.0); //Standard deviation of binomial distribution
-                                //TODO: Probably replace Gaussian distribution with triangular
-                                // or maybe do it differently altogether
-                                cons = MathHelper.clamp((int) Math.round(factor + sigma * world.rand.nextGaussian()), 0, cons);
-                            }
-                            stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, Math.max(charge - cons, 0));
-                        }
+                            stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, Math.max(charge - eff.getInterval(), 0));
                     }
                 });
             }
@@ -100,13 +93,14 @@ public class ItemMedicineBag extends ItemTotemic
     private void tryCharge(ItemStack stack, World world, BlockPos pos)
     {
         int charge = getCharge(stack);
-        if(charge < MAX_CHARGE)
+        int maxCharge = getMaxCharge(stack);
+        if(charge < maxCharge)
         {
             getEffect(stack).ifPresent(effect -> {
                 if(EntityUtil.getTileEntitiesInRange(TileTotemBase.class, world, pos, 6, 6).stream()
                         .anyMatch(tile -> tile.getState() instanceof StateTotemEffect && tile.getTotemEffectSet().contains(effect)))
                 {
-                    stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, Math.min(charge + 20 * 20, MAX_CHARGE));
+                    stack.getTagCompound().setInteger(MED_BAG_CHARGE_KEY, Math.min(charge + maxCharge / 12, maxCharge));
                 }
             });
         }
@@ -180,13 +174,13 @@ public class ItemMedicineBag extends ItemTotemic
     @Override
     public double getDurabilityForDisplay(ItemStack stack)
     {
-        return 1.0 - getCharge(stack) / (double) MAX_CHARGE;
+        return 1.0 - Math.min((double) getCharge(stack) / getMaxCharge(stack), 1.0);
     }
 
     @Override
     public int getRGBDurabilityForDisplay(ItemStack stack)
     {
-        return MathHelper.hsvToRGB(getCharge(stack) / (float) MAX_CHARGE / 3.0F, 1.0F, 1.0F);
+        return MathHelper.hsvToRGB(Math.min((float) getCharge(stack) / getMaxCharge(stack), 1.0F) / 3.0F, 1.0F, 1.0F);
     }
 
     @Override
@@ -215,7 +209,7 @@ public class ItemMedicineBag extends ItemTotemic
         tooltip.add(I18n.format(getUnlocalizedName() + "." + key));
 
         if(advanced)
-            tooltip.add(I18n.format(getUnlocalizedName() + ".tooltipCharge", getCharge(stack)));
+            tooltip.add(I18n.format(getUnlocalizedName() + ".tooltipCharge", getCharge(stack), getMaxCharge(stack)));
     }
 
     @Override
