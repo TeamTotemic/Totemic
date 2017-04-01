@@ -37,6 +37,13 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
         setSize(0.55F, 2.25F);
         setHealth(getMaxHealth());
 
+        Arrays.fill(inventoryHandsDropChances, 0.0F);
+        Arrays.fill(inventoryArmorDropChances, 0.0F);
+    }
+
+    @Override
+    protected void initEntityAI()
+    {
         ((PathNavigateGround) getNavigator()).setCanSwim(true);
         tasks.addTask(0, new EntityAISwimming(this));
         tasks.addTask(2, new EntityAIAttackRanged(this, 1.0, 12, 30, 40.0F));
@@ -45,9 +52,6 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
         tasks.addTask(7, new EntityAILookIdle(this));
         targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, false, false));
-
-        Arrays.fill(inventoryHandsDropChances, 0.0F);
-        Arrays.fill(inventoryArmorDropChances, 0.0F);
     }
 
     @Override

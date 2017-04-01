@@ -8,7 +8,6 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
-import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 
 public class ModelBuffalo extends ModelBase
 {
@@ -185,11 +184,9 @@ public class ModelBuffalo extends ModelBase
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        float ageScale = 1.0F + 0.5F * ((EntityBuffalo)entity).getRelativeAge();
-
         GlStateManager.pushMatrix();
-        GlStateManager.translate(0, 1.5F * (1.0F - ageScale), 0);
-        GlStateManager.scale(ageScale, ageScale, ageScale);
+        GlStateManager.translate(0, -0.75F, 0);
+        GlStateManager.scale(1.5F, 1.5F, 1.5F);
         setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
 
         if(isChild)

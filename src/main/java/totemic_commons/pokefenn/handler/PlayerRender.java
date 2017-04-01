@@ -37,7 +37,7 @@ public class PlayerRender
             GlStateManager.pushMatrix();
             if(player.isSneaking())
                 GlStateManager.translate(0, -0.25F, 0);
-            GlStateManager.translate(event.getX(), event.getY() + 1.4071875F, event.getZ()); // 1.501 * 0.9375
+            GlStateManager.translate(event.getX(), event.getY() + 1.501F * 0.9375F, event.getZ());
             GlStateManager.rotate(pitchZ, 0, 0, 1);
             GlStateManager.rotate(yaw - 90, 0, -1, 0);
             GlStateManager.rotate(pitch + 180, 0, 0, 1);
