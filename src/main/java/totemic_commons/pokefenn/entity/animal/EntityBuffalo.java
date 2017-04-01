@@ -1,18 +1,14 @@
 package totemic_commons.pokefenn.entity.animal;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModItems;
-import totemic_commons.pokefenn.item.ItemBuffaloDrops;
+import totemic_commons.pokefenn.lib.Resources;
 
 public class EntityBuffalo extends EntityCow
 {
@@ -72,35 +68,9 @@ public class EntityBuffalo extends EntityCow
     }*/
 
     @Override
-    @Nullable
     protected ResourceLocation getLootTable()
     {
-        return null;
-    }
-
-    @Override
-    protected void dropFewItems(boolean hitByPlayer, int looting)
-    {
-        int j = rand.nextInt(5) + rand.nextInt(1 + looting);
-        for(int k = 0; k < j; ++k)
-        {
-            entityDropItem(new ItemStack(ModItems.buffalo_items, 1, ItemBuffaloDrops.Type.hide.ordinal()), 0F);
-            if(rand.nextInt(3) < 2)
-                entityDropItem(new ItemStack(ModItems.buffalo_items, 1, ItemBuffaloDrops.Type.teeth.ordinal()), 0F);
-        }
-
-        j = rand.nextInt(5) + 1 + rand.nextInt(2 + 2*looting);
-        for(int k = 0; k < j; ++k)
-        {
-            if(isBurning())
-            {
-                dropItem(ModItems.cooked_buffalo_meat, 1);
-            }
-            else
-            {
-                dropItem(ModItems.buffalo_meat, 1);
-            }
-        }
+        return Resources.LOOT_BUFFALO;
     }
 
     //TODO
