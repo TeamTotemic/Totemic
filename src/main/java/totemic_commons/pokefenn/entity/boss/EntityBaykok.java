@@ -12,11 +12,11 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.BossInfo;
@@ -25,6 +25,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
+import totemic_commons.pokefenn.lib.Resources;
 
 public class EntityBaykok extends EntityMob implements IRangedAttackMob
 {
@@ -102,17 +103,9 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     }
 
     @Override
-    protected void dropFewItems(boolean byPlayer, int looting)
+    protected ResourceLocation getLootTable()
     {
-        dropItem(ModItems.baykok_bow, 1);
-        dropItem(Items.BONE, 2 + rand.nextInt(7 + looting));
-        dropItem(Items.ROTTEN_FLESH, rand.nextInt(3 + looting));
-        dropItem(Items.ARROW, 3 + rand.nextInt(8 + looting));
-
-        if(rand.nextInt(100) < 25 + 4*looting)
-            entityDropItem(new ItemStack(Items.SKULL, 1, 1), 0);
-        else
-            entityDropItem(new ItemStack(Items.SKULL, 1, 0), 0);
+        return Resources.LOOT_BAYKOK;
     }
 
     @Override
