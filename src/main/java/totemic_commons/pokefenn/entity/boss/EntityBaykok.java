@@ -38,8 +38,9 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
         setSize(0.55F, 2.25F);
         setHealth(getMaxHealth());
 
-        Arrays.fill(inventoryHandsDropChances, 0.0F);
-        Arrays.fill(inventoryArmorDropChances, 0.0F);
+        //Even if set to 0.0, with looting there is still a slight chance of dropping
+        Arrays.fill(inventoryHandsDropChances, -1.0F);
+        Arrays.fill(inventoryArmorDropChances, -1.0F);
     }
 
     @Override
