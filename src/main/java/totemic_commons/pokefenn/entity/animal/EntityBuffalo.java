@@ -105,6 +105,6 @@ public class EntityBuffalo extends EntityCow
     @Override
     protected int getExperiencePoints(EntityPlayer player)
     {
-        return 5 + world.rand.nextInt(6);
+        return 2 + world.rand.nextInt(4);
     }
 }

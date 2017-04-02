@@ -14,6 +14,8 @@ import totemic_commons.pokefenn.util.EntityUtil;
 
 public class CeremonyBuffaloDance extends Ceremony
 {
+    private static final boolean ANIMANIA_LOADED = Loader.isModLoaded("animania");
+
     public CeremonyBuffaloDance(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
         super(name, musicNeeded, maxStartupTime, instruments);
@@ -31,6 +33,7 @@ public class CeremonyBuffaloDance extends Ceremony
                 EntityBuffalo buffalo = new EntityBuffalo(world);
                 float health = cow.getHealth() / cow.getMaxHealth() * buffalo.getMaxHealth();
                 buffalo.setHealth(health);
+                buffalo.setGrowingAge(-24000);
                 EntityUtil.spawnEntity(world, cow.posX, cow.posY, cow.posZ, buffalo);
                 cow.setDead();
             });
@@ -38,7 +41,7 @@ public class CeremonyBuffaloDance extends Ceremony
 
     private static List<? extends EntityAnimal> getCows(World world, BlockPos pos, int range)
     {
-        if(!Loader.isModLoaded("animania"))
+        if(!ANIMANIA_LOADED)
             return EntityUtil.getEntitiesInRange(EntityCow.class, world, pos, range, range, entity -> !(entity instanceof EntityBuffalo));
         else //Animania compatibility
             return EntityUtil.getEntitiesInRange(EntityAnimal.class, world, pos, range, range, entity ->
