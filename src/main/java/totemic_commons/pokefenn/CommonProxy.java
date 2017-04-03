@@ -29,7 +29,6 @@ public class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent event)
     {
-        ModItems.init();
         ModPotions.init();
         ModSounds.init();
         ModContent.init();

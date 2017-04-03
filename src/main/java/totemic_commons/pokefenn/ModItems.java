@@ -5,7 +5,10 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.IForgeRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.item.*;
@@ -20,6 +23,7 @@ import totemic_commons.pokefenn.item.equipment.weapon.ItemBaykokBow;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 
+@EventBusSubscriber(modid = Totemic.MOD_ID)
 public final class ModItems
 {
     public static ItemFlute flute;
@@ -36,52 +40,41 @@ public final class ModItems
     public static ItemBaykokBow baykok_bow;
     public static ItemMedicineBag medicine_bag;
 
-    public static void init()
+    @SubscribeEvent
+    public static void init(RegistryEvent.Register<Item> event)
     {
-        initItemBlocks();
+        initItemBlocks(event.getRegistry());
 
-        flute = new ItemFlute();
-        rattle = new ItemRattle();
-        jingle_dress = new ItemJingleDress();
-        totem_whittling_knife = new ItemTotemWhittlingKnife();
-        bark_stripper = new ItemBarkStripper();
-        totemic_staff = new ItemTotemicStaff();
-        sub_items = new ItemTotemicItems();
-        totempedia = new ItemTotempedia();
-        buffalo_items = new ItemBuffaloDrops();
-        buffalo_meat = new ItemTotemicFood(Strings.BUFFALO_MEAT_NAME, 3, 0.35F, true);
-        cooked_buffalo_meat = new ItemTotemicFood(Strings.COOKED_BUFFALO_MEAT_NAME, 9, 0.9F, true);
-        baykok_bow = new ItemBaykokBow();
-        medicine_bag = new ItemMedicineBag();
-
-        GameRegistry.register(flute);
-        GameRegistry.register(rattle);
-        GameRegistry.register(jingle_dress);
-        GameRegistry.register(totem_whittling_knife);
-        GameRegistry.register(bark_stripper);
-        GameRegistry.register(totemic_staff);
-        GameRegistry.register(sub_items);
-        GameRegistry.register(totempedia);
-        GameRegistry.register(buffalo_items);
-        GameRegistry.register(buffalo_meat);
-        GameRegistry.register(cooked_buffalo_meat);
-        GameRegistry.register(baykok_bow);
-        GameRegistry.register(medicine_bag);
+        event.getRegistry().registerAll(
+            flute = new ItemFlute(),
+            rattle = new ItemRattle(),
+            jingle_dress = new ItemJingleDress(),
+            totem_whittling_knife = new ItemTotemWhittlingKnife(),
+            bark_stripper = new ItemBarkStripper(),
+            totemic_staff = new ItemTotemicStaff(),
+            sub_items = new ItemTotemicItems(),
+            totempedia = new ItemTotempedia(),
+            buffalo_items = new ItemBuffaloDrops(),
+            buffalo_meat = new ItemTotemicFood(Strings.BUFFALO_MEAT_NAME, 3, 0.35F, true),
+            cooked_buffalo_meat = new ItemTotemicFood(Strings.COOKED_BUFFALO_MEAT_NAME, 9, 0.9F, true),
+            baykok_bow = new ItemBaykokBow(),
+            medicine_bag = new ItemMedicineBag());
     }
 
-    private static void initItemBlocks()
+    private static void initItemBlocks(IForgeRegistry<Item> registry)
     {
-        GameRegistry.register(makeItemBlock(ModBlocks.cedar_log));
-        GameRegistry.register(makeItemBlock(ModBlocks.stripped_cedar_log));
-        GameRegistry.register(makeItemBlock(ModBlocks.cedar_plank));
-        GameRegistry.register(makeItemBlock(ModBlocks.cedar_sapling));
-        GameRegistry.register(makeItemBlock(ModBlocks.cedar_leaves));
-        GameRegistry.register(new ItemBlockVariants(ModBlocks.totem_base).setRegistryName(ModBlocks.totem_base.getRegistryName()));
-        GameRegistry.register(new ItemBlockVariants(ModBlocks.totem_pole).setRegistryName(ModBlocks.totem_pole.getRegistryName()));
-        GameRegistry.register(makeItemBlock(ModBlocks.totem_torch));
-        GameRegistry.register(makeItemBlock(ModBlocks.drum));
-        GameRegistry.register(makeItemBlock(ModBlocks.wind_chime));
-        GameRegistry.register(new ItemTipi(ModBlocks.tipi).setRegistryName(ModBlocks.tipi.getRegistryName()));
+        registry.registerAll(
+            makeItemBlock(ModBlocks.cedar_log),
+            makeItemBlock(ModBlocks.stripped_cedar_log),
+            makeItemBlock(ModBlocks.cedar_plank),
+            makeItemBlock(ModBlocks.cedar_sapling),
+            makeItemBlock(ModBlocks.cedar_leaves),
+            new ItemBlockVariants(ModBlocks.totem_base).setRegistryName(ModBlocks.totem_base.getRegistryName()),
+            new ItemBlockVariants(ModBlocks.totem_pole).setRegistryName(ModBlocks.totem_pole.getRegistryName()),
+            makeItemBlock(ModBlocks.totem_torch),
+            makeItemBlock(ModBlocks.drum),
+            makeItemBlock(ModBlocks.wind_chime),
+            new ItemTipi(ModBlocks.tipi).setRegistryName(ModBlocks.tipi.getRegistryName()));
     }
 
     private static ItemBlock makeItemBlock(Block block)
