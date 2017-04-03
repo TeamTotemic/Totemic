@@ -8,7 +8,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.item.*;
@@ -24,46 +24,27 @@ import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.lib.WoodVariant;
 
 @EventBusSubscriber(modid = Totemic.MOD_ID)
+@ObjectHolder(Totemic.MOD_ID)
 public final class ModItems
 {
-    public static ItemFlute flute;
-    public static ItemRattle rattle;
-    public static ItemJingleDress jingle_dress;
-    public static ItemTotemWhittlingKnife totem_whittling_knife;
-    public static ItemBarkStripper bark_stripper;
-    public static ItemTotemicStaff totemic_staff;
-    public static ItemTotemicItems sub_items;
-    public static ItemTotempedia totempedia;
-    public static ItemBuffaloDrops buffalo_items;
-    public static ItemTotemicFood buffalo_meat;
-    public static ItemTotemicFood cooked_buffalo_meat;
-    public static ItemBaykokBow baykok_bow;
-    public static ItemMedicineBag medicine_bag;
+    public static final ItemFlute flute = null;
+    public static final ItemRattle rattle = null;
+    public static final ItemJingleDress jingle_dress = null;
+    public static final ItemTotemWhittlingKnife totem_whittling_knife = null;
+    public static final ItemBarkStripper bark_stripper = null;
+    public static final ItemTotemicStaff totemic_staff = null;
+    public static final ItemTotemicItems sub_items = null;
+    public static final ItemTotempedia totempedia = null;
+    public static final ItemBuffaloDrops buffalo_items = null;
+    public static final ItemTotemicFood buffalo_meat = null;
+    public static final ItemTotemicFood cooked_buffalo_meat = null;
+    public static final ItemBaykokBow baykok_bow = null;
+    public static final ItemMedicineBag medicine_bag = null;
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event)
     {
-        initItemBlocks(event.getRegistry());
-
         event.getRegistry().registerAll(
-            flute = new ItemFlute(),
-            rattle = new ItemRattle(),
-            jingle_dress = new ItemJingleDress(),
-            totem_whittling_knife = new ItemTotemWhittlingKnife(),
-            bark_stripper = new ItemBarkStripper(),
-            totemic_staff = new ItemTotemicStaff(),
-            sub_items = new ItemTotemicItems(),
-            totempedia = new ItemTotempedia(),
-            buffalo_items = new ItemBuffaloDrops(),
-            buffalo_meat = new ItemTotemicFood(Strings.BUFFALO_MEAT_NAME, 3, 0.35F, true),
-            cooked_buffalo_meat = new ItemTotemicFood(Strings.COOKED_BUFFALO_MEAT_NAME, 9, 0.9F, true),
-            baykok_bow = new ItemBaykokBow(),
-            medicine_bag = new ItemMedicineBag());
-    }
-
-    private static void initItemBlocks(IForgeRegistry<Item> registry)
-    {
-        registry.registerAll(
             makeItemBlock(ModBlocks.cedar_log),
             makeItemBlock(ModBlocks.stripped_cedar_log),
             makeItemBlock(ModBlocks.cedar_plank),
@@ -74,7 +55,21 @@ public final class ModItems
             makeItemBlock(ModBlocks.totem_torch),
             makeItemBlock(ModBlocks.drum),
             makeItemBlock(ModBlocks.wind_chime),
-            new ItemTipi(ModBlocks.tipi).setRegistryName(ModBlocks.tipi.getRegistryName()));
+            new ItemTipi(ModBlocks.tipi).setRegistryName(ModBlocks.tipi.getRegistryName()),
+
+            new ItemFlute(),
+            new ItemRattle(),
+            new ItemJingleDress(),
+            new ItemTotemWhittlingKnife(),
+            new ItemBarkStripper(),
+            new ItemTotemicStaff(),
+            new ItemTotemicItems(),
+            new ItemTotempedia(),
+            new ItemBuffaloDrops(),
+            new ItemTotemicFood(Strings.BUFFALO_MEAT_NAME, 3, 0.35F, true),
+            new ItemTotemicFood(Strings.COOKED_BUFFALO_MEAT_NAME, 9, 0.9F, true),
+            new ItemBaykokBow(),
+            new ItemMedicineBag());
     }
 
     private static ItemBlock makeItemBlock(Block block)

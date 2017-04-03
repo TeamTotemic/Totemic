@@ -6,6 +6,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.block.BlockCedarLog;
@@ -22,37 +23,38 @@ import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 
 @EventBusSubscriber(modid = Totemic.MOD_ID)
+@ObjectHolder(Totemic.MOD_ID)
 public final class ModBlocks
 {
-    public static BlockCedarLog cedar_log;
-    public static BlockCedarStripped stripped_cedar_log;
-    public static BlockCedarPlank cedar_plank;
-    public static BlockCedarSapling cedar_sapling;
-    public static BlockCedarLeaves cedar_leaves;
-    public static BlockTotemBase totem_base;
-    public static BlockTotemPole totem_pole;
-    public static BlockTotemTorch totem_torch;
-    public static BlockDrum drum;
-    public static BlockWindChime wind_chime;
-    public static BlockTipi tipi;
-    public static BlockDummyTipi dummy_tipi;
+    public static final BlockCedarLog cedar_log = null;
+    public static final BlockCedarStripped stripped_cedar_log = null;
+    public static final BlockCedarPlank cedar_plank = null;
+    public static final BlockCedarSapling cedar_sapling = null;
+    public static final BlockCedarLeaves cedar_leaves = null;
+    public static final BlockTotemBase totem_base = null;
+    public static final BlockTotemPole totem_pole = null;
+    public static final BlockTotemTorch totem_torch = null;
+    public static final BlockDrum drum = null;
+    public static final BlockWindChime wind_chime = null;
+    public static final BlockTipi tipi = null;
+    public static final BlockDummyTipi dummy_tipi = null;
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Block> event)
     {
         event.getRegistry().registerAll(
-            cedar_log = new BlockCedarLog(),
-            stripped_cedar_log = new BlockCedarStripped(),
-            cedar_plank = new BlockCedarPlank(),
-            cedar_sapling = new BlockCedarSapling(),
-            cedar_leaves = new BlockCedarLeaves(),
-            totem_base = new BlockTotemBase(),
-            totem_pole = new BlockTotemPole(),
-            totem_torch = new BlockTotemTorch(),
-            drum = new BlockDrum(),
-            wind_chime = new BlockWindChime(),
-            tipi = new BlockTipi(),
-            dummy_tipi = new BlockDummyTipi());
+            new BlockCedarLog(),
+            new BlockCedarStripped(),
+            new BlockCedarPlank(),
+            new BlockCedarSapling(),
+            new BlockCedarLeaves(),
+            new BlockTotemBase(),
+            new BlockTotemPole(),
+            new BlockTotemTorch(),
+            new BlockDrum(),
+            new BlockWindChime(),
+            new BlockTipi(),
+            new BlockDummyTipi());
     }
 
     @SideOnly(Side.CLIENT)
