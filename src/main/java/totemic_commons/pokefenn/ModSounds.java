@@ -2,8 +2,11 @@ package totemic_commons.pokefenn;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@EventBusSubscriber(modid = Totemic.MOD_ID)
 public final class ModSounds
 {
     public static final SoundEvent flute = createSound("flute");
@@ -11,12 +14,10 @@ public final class ModSounds
     public static final SoundEvent drum = createSound("drum");
     public static final SoundEvent windChime = createSound("wind_chime");
 
-    public static void init()
+    @SubscribeEvent
+    public static void init(RegistryEvent.Register<SoundEvent> event)
     {
-        GameRegistry.register(flute);
-        GameRegistry.register(rattle);
-        GameRegistry.register(drum);
-        GameRegistry.register(windChime);
+        event.getRegistry().registerAll(flute, rattle, drum, windChime);
     }
 
     private static SoundEvent createSound(String name)
