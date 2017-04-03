@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFood;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -36,8 +37,8 @@ public final class ModItems
     public static final ItemTotemicItems sub_items = null;
     public static final ItemTotempedia totempedia = null;
     public static final ItemBuffaloDrops buffalo_items = null;
-    public static final ItemTotemicFood buffalo_meat = null;
-    public static final ItemTotemicFood cooked_buffalo_meat = null;
+    public static final ItemFood buffalo_meat = null;
+    public static final ItemFood cooked_buffalo_meat = null;
     public static final ItemBaykokBow baykok_bow = null;
     public static final ItemMedicineBag medicine_bag = null;
 
@@ -66,8 +67,8 @@ public final class ModItems
             new ItemTotemicItems(),
             new ItemTotempedia(),
             new ItemBuffaloDrops(),
-            new ItemTotemicFood(Strings.BUFFALO_MEAT_NAME, 3, 0.35F, true),
-            new ItemTotemicFood(Strings.COOKED_BUFFALO_MEAT_NAME, 9, 0.9F, true),
+            new ItemFood(3, 0.35F, true).setRegistryName(Strings.BUFFALO_MEAT_NAME).setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.BUFFALO_MEAT_NAME).setCreativeTab(Totemic.tabsTotem),
+            new ItemFood(9, 0.9F, true).setRegistryName(Strings.COOKED_BUFFALO_MEAT_NAME).setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.COOKED_BUFFALO_MEAT_NAME).setCreativeTab(Totemic.tabsTotem),
             new ItemBaykokBow(),
             new ItemMedicineBag());
     }
