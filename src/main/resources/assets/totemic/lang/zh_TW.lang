@@ -23,15 +23,15 @@ item.totemic:buffalo_teeth.name=野牛牙齒
 item.totemic:buffalo_meat.name=野牛肉
 item.totemic:cooked_buffalo_meat.name=烤野牛肉
 item.totemic:baykok_bow.name=貝柯克之弓
-item.totemic:medicine_bag.name=Medicine Bag
-item.totemic:medicine_bag.display=Medicine Bag (%s)
-item.totemic:medicine_bag.creative.name=Creative Medicine Bag
-item.totemic:medicine_bag.creative.display=Creative Medicine Bag (%s)
-item.totemic:medicine_bag.tooltip=Sneak+Right Click on a Totem Pole to set the effect
-item.totemic:medicine_bag.tooltipClosed=Closed
-item.totemic:medicine_bag.tooltipOpen=Open
-item.totemic:medicine_bag.tooltipEmpty=Empty
-item.totemic:medicine_bag.tooltipCharge=Charge: %d / %d
+item.totemic:medicine_bag.name=藥草袋
+item.totemic:medicine_bag.display=藥草袋 (%s)
+item.totemic:medicine_bag.creative.name=創造模式藥草袋
+item.totemic:medicine_bag.creative.display=創造模式藥草袋 (%s)
+item.totemic:medicine_bag.tooltip=潛行右擊以對圖騰柱設置效果
+item.totemic:medicine_bag.tooltipClosed=關閉
+item.totemic:medicine_bag.tooltipOpen=開啟
+item.totemic:medicine_bag.tooltipEmpty=空
+item.totemic:medicine_bag.tooltipCharge=充能中：%d / %d
 
 # Block localizations
 tile.totemic:cedar_log.name=紅柏原木
@@ -55,7 +55,7 @@ totemic.potion.bat=蝙蝠
 totemic.potion.horse=馬
 totemic.potion.spider=蜘蛛
 
-# Creative Tab localizations
+#Creative Tab localizations
 itemGroup.totemic=圖騰
 
 #Ceremony names
@@ -101,16 +101,16 @@ totemic.musicNeeded.crazyLarge=需要彈個不停
 totemicmisc.musicSelector=音樂選擇器
 totemicmisc.tipi.cantSleep=你不能在非開闊地的印第安帳篷裡睡覺
 totemicmisc.tipi.nether=你不能在下界睡覺
-totemicmisc.activeEffect=已激活的圖騰效果：%s
+totemicmisc.activeEffect=已驅動的圖騰效果：%s
 totemicmisc.noEffect=None
-totemicmisc.startup=激活中
-totemicmisc.activeCeremony=激活儀式
-totemicmisc.isDoingNoCeremony=The Totem Pole is not doing a Ceremony
-totemicmisc.isDoingSelection=The Totem Pole is waiting for a Ceremony to be selected
+totemicmisc.startup=驅動中
+totemicmisc.activeCeremony=驅動儀式
+totemicmisc.isDoingNoCeremony=此圖騰柱並無儀式
+totemicmisc.isDoingSelection=此圖騰柱正在等待儀式選擇
 totemicmisc.selection=Selection: %s
-totemicmisc.isDoingStartup=該圖騰柱正在激活儀式
+totemicmisc.isDoingStartup=該圖騰柱正在驅動儀式
 totemicmisc.isDoingCeremony=該圖騰柱正在散發效果
-totemicmisc.effectNotPortable=The effect %s cannot be carried in a Medicine Bag
+totemicmisc.effectNotPortable=藥草袋無法攜帶 %s 效果
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=圖騰百科全書，圖騰所需的一切指引。
@@ -150,13 +150,13 @@ totemic.page.creatingTotems1=§1圖騰基座§0也需要用刻刀雕刻製作。
 totemic.page.creatingTotems2=
 
 totemic.entry.totemEffects=圖騰效果
-totemic.page.totemEffects0=雕刻圖騰柱可以使它賦予你各種效果：<br>§1蝙蝠§0：讓你免疫掉落傷害，讓你可以在半空中潛行向前滑行<br>§1烈焰人§0：帶來火焰抗性<br>§1Buffalo§0: Makes you mine faster<br>§1牛§0：帶來減輕傷害的效果，但會讓你的身體變沉<br>§1Enderman§0: Gives you night vision
-totemic.page.totemEffects1=§1馬§0：帶來速度提升的效果<br>§1豹貓§0：帶來阻止爬行者爆炸的效果<br>§1Pig§0: Brings you good luck<br>§1Rabbit§0: Gives you a jump boost<br>§1蜘蛛§0：讓你能夠像一隻蜘蛛一樣爬牆<br>§1魷魚§0：帶來水下呼吸的能力
-totemic.page.totemEffects2=§1Wolf§0: Gives you strength
+totemic.page.totemEffects0=雕刻圖騰柱可以使它賦予你各種效果：<br>§1蝙蝠§0：讓你免疫掉落傷害，讓你可以在半空中潛行向前滑行<br>§1烈焰人§0：帶來火焰抗性<br>§1野牛§0：使你挖礦更快速<br>§1牛§0：帶來減輕傷害的效果，但會讓你的身體變沉<br>§1終界使者§0：賦予夜視能力
+totemic.page.totemEffects1=§1馬§0：帶來速度提升的效果<br>§1豹貓§0：帶來阻止苦力怕爆炸的效果<br>§1豬§0：帶給你幸運<br>§1兔子§0：強化跳躍力<br>§1蜘蛛§0：讓你能夠像一隻蜘蛛一樣爬牆<br>§1魷魚§0：帶來水下呼吸的能力
+totemic.page.totemEffects2=§1狼§0：讓你變強
 
-totemic.entry.medicineBag=Medicine Bag
-totemic.page.medicineBag0=The §1Medicine Bag§0 allows you to carry a §4Totem effect§0 with you, so you can use its benefits for a limited time without having to be near a Totem Pole.<br>Once you have crafted your Medicine Bag, Sneak+Right click it on a Totem Pole block carved with the effect you want to have. Then you can right click the bag to open it and release its effect, or to close it.
-totemic.page.medicineBag1=The Medicine Bag will last for a few minutes before it depletes. To charge it, just stand near a Totem Pole that has your bag's effect carved into it.
+totemic.entry.medicineBag=藥草袋
+totemic.page.medicineBag0=§1藥草袋§0使你能攜帶§4圖騰效果§0，使你能在離開圖騰柱後的有限時間內持續獲得增益效果。<br>在你做好藥草袋後，潛行右擊你想要攜帶的圖騰柱。之後就能直接以右鍵開啟或關閉藥草袋的效果。
+totemic.page.medicineBag1=藥草袋在耗盡錢可以維持數分鐘。你只需站在圖騰柱效果範圍內就能將它充滿。
 totemic.page.medicineBag2=
 
 totemic.entry.instruments=樂器
@@ -184,14 +184,14 @@ totemic.page.flute1=§1長笛§0還可通過§4魔域長笛儀式§0蘊魔獲得
 totemic.page.flute2=
 
 totemic.entry.rattle=搖響器
-totemic.page.rattle0=§1搖響器§0，從圖騰族被人發現至今都是儀式中的骨幹樂器。無論何時用手握住§1搖響器§0都能製造出§4音樂旋律§0。現在我們還未得知它是否會產生更多儀式效果，但相信有一天我們能發現。和其它樂器一樣，它能在潛行時演奏以激活儀式。
-totemic.page.rattle1=像其它樂器一樣，當潛行時演奏可以激活儀式。
+totemic.page.rattle0=§1搖響器§0，從圖騰族被人發現至今都是儀式中的骨幹樂器。無論何時用手握住§1搖響器§0都能製造出§4音樂旋律§0。現在我們還未得知它是否會產生更多儀式效果，但相信有一天我們能發現。和其它樂器一樣，它能在潛行時演奏以驅動儀式。
+totemic.page.rattle1=像其它樂器一樣，當潛行時演奏可以驅動儀式。
 totemic.page.rattle2=
 
 totemic.entry.performingCeremonies=執行儀式
 totemic.page.performingCeremonies0=§4儀式§0能通過音樂的力量使圖騰族在一段時間內獲得力量，並通過一些操作來釋放特定的儀式效果。§4儀式§0的中心是一個§1圖騰基座§0，所有音樂或其它能量都會在§1圖騰柱§0上聚集，並在那裡釋放出儀式效果。
 totemic.page.performingCeremonies1=要執行一個§4儀式§0，必須注意幾件事。要想選擇並創建你的§4儀式§0，你必須在選擇模式下向§1圖騰柱§0演奏4種樂器，每個儀式樂器的演奏都有不同的順序。要在選擇模式下演奏多種樂器，只需要潛行並像往常一樣演奏它們。當你演奏完4種與§4儀式§0相應的樂器後，儀式將開始執行創建。
-totemic.page.performingCeremonies2=當儀式處於執行創建狀態時，§1圖騰柱§0會接收附近的音樂並儲存它們。這些音樂就叫做§4音樂旋律§0，它就是激活§4儀式§0所需的能量。當§4音樂旋律§0達到§4儀式§0所需旋律的閾值，儀式就執行完成並從圖騰產生儀式效果。每個樂器有各自演奏的上限程度，所以執行任何儀式都不能只由一個樂器來演奏。
+totemic.page.performingCeremonies2=當儀式處於執行創建狀態時，§1圖騰柱§0會接收附近的音樂並儲存它們。這些音樂就叫做§4音樂旋律§0，它就是驅動§4儀式§0所需的能量。當§4音樂旋律§0達到§4儀式§0所需旋律的閾值，儀式就執行完成並從圖騰產生儀式效果。每個樂器有各自演奏的上限程度，所以執行任何儀式都不能只由一個樂器來演奏。
 totemic.page.performingCeremonies3=而且，你只有有限的時間維持儀式的進行，所以你需要盡快完成彈奏所有的樂器。當你彈奏了足夠的§4音樂旋律§0，§4儀式§0將開始執行它的效果。有一些儀式只有瞬間的效果，而還有一些儀式則有持續的效果。
 totemic.page.performingCeremonies4=執行效果將會消耗§4音樂旋律§0。需要注意的是，效果僅會持續一段時間，時間結束後效果將停止。
 
@@ -235,8 +235,8 @@ totemic.page.barkStripper1=紅柏樹皮和剝皮的紅柏原木都有許多用�
 totemic.page.barkStripper2=
 
 #TODO
-#totemic.page.barkStripper0=The §1Bark Stripper§0 is a way for you to collect the bark from your §1Red Cedar Logs§0 and reveal stripped wood from the tree. To do so, just hold the §1Bark Stripper§0 in your hand, and right click on the log, after a few seconds it will finish stripping the bark from the log, revealing the stripped log and creating the bark.
-#totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The §1Red Cedar Stripped Log§0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
+#totemic.page.barkStripper0=§1剝皮器§0是採集§1紅柏原木§0樹皮，並獲得去皮原木的一種手段。握住§1剝皮器§0，對原木右擊，數秒後將完成去皮動作，獲得去皮原木與樹皮。
+#totemic.page.barkStripper1=樹皮與去皮原木都有不少用處。§1剝皮紅柏原木§0可以更高效的製成木材，且可放入熔爐製成木炭，而樹皮可以製成一些方塊零件，通常是做為強化用途。
 
 totemic.entry.baykokBow=貝柯克之弓
 totemic.page.baykokBow0=§4貝柯克之弓§0是一把無比強大的弓。它只可以通過斬殺惡靈§4貝柯克§0獲得。貝柯克可以通過§4喪鐘儀式§0生成。<br>這把弓發射的弓箭對他人是隱形的，而且能使目標遲緩並造成更大傷害。貝柯克之弓比普通的弓更耐久，也更容易獲得好的附魔。
@@ -245,6 +245,6 @@ totemic.entry.tipi=印第安帳篷
 totemic.page.tipi0=§1印第安帳篷§0有著圓錐體的外貌，屬於帳篷的一種。由木質框架覆上野牛皮或棉布製成的帆布組成。在平整土地或草地上架起後，你可以直接睡在裡面。
 totemic.page.tipi1=
 
-totemic.entry.totemTorch=Totem Torch
-totemic.page.totemTorch0=The §1Totem Torch§0 is simply a larger and more decorative version of a regular torch.
+totemic.entry.totemTorch=圖騰火炬
+totemic.page.totemTorch0=§1圖騰火炬§0單純只是更大、更精緻的火把。
 totemic.page.totemTorch1=
