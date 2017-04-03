@@ -1,9 +1,11 @@
 package totemic_commons.pokefenn;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
-import net.minecraft.init.Blocks;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.block.BlockCedarLog;
@@ -19,6 +21,7 @@ import totemic_commons.pokefenn.block.tipi.BlockTipi;
 import totemic_commons.pokefenn.block.totem.BlockTotemBase;
 import totemic_commons.pokefenn.block.totem.BlockTotemPole;
 
+@EventBusSubscriber(modid = Totemic.MOD_ID)
 public final class ModBlocks
 {
     public static BlockCedarLog cedar_log;
@@ -34,40 +37,22 @@ public final class ModBlocks
     public static BlockTipi tipi;
     public static BlockDummyTipi dummy_tipi;
 
-    public static void init()
+    @SubscribeEvent
+    public static void init(RegistryEvent.Register<Block> event)
     {
-        cedar_log = new BlockCedarLog();
-        stripped_cedar_log = new BlockCedarStripped();
-        cedar_plank = new BlockCedarPlank();
-        cedar_sapling = new BlockCedarSapling();
-        cedar_leaves = new BlockCedarLeaves();
-        totem_base = new BlockTotemBase();
-        totem_pole = new BlockTotemPole();
-        totem_torch = new BlockTotemTorch();
-        drum = new BlockDrum();
-        wind_chime = new BlockWindChime();
-        tipi = new BlockTipi();
-        dummy_tipi = new BlockDummyTipi();
-
-        GameRegistry.register(cedar_log);
-        GameRegistry.register(stripped_cedar_log);
-        GameRegistry.register(cedar_plank);
-        GameRegistry.register(cedar_sapling);
-        GameRegistry.register(cedar_leaves);
-        GameRegistry.register(totem_base);
-        GameRegistry.register(totem_pole);
-        GameRegistry.register(totem_torch);
-        GameRegistry.register(drum);
-        GameRegistry.register(wind_chime);
-        GameRegistry.register(tipi);
-        GameRegistry.register(dummy_tipi);
-
-        Blocks.FIRE.setFireInfo(cedar_log, 5, 5);
-        Blocks.FIRE.setFireInfo(stripped_cedar_log, 5, 10);
-        Blocks.FIRE.setFireInfo(cedar_plank, 5, 20);
-        Blocks.FIRE.setFireInfo(cedar_leaves, 30, 60);
-        Blocks.FIRE.setFireInfo(totem_base, 5, 5);
-        Blocks.FIRE.setFireInfo(totem_pole, 5, 5);
+        event.getRegistry().registerAll(
+            cedar_log = new BlockCedarLog(),
+            stripped_cedar_log = new BlockCedarStripped(),
+            cedar_plank = new BlockCedarPlank(),
+            cedar_sapling = new BlockCedarSapling(),
+            cedar_leaves = new BlockCedarLeaves(),
+            totem_base = new BlockTotemBase(),
+            totem_pole = new BlockTotemPole(),
+            totem_torch = new BlockTotemTorch(),
+            drum = new BlockDrum(),
+            wind_chime = new BlockWindChime(),
+            tipi = new BlockTipi(),
+            dummy_tipi = new BlockDummyTipi());
     }
 
     @SideOnly(Side.CLIENT)

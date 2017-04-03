@@ -6,6 +6,7 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
@@ -22,6 +23,7 @@ public class BlockCedarStripped extends BlockLog
         setCreativeTab(Totemic.tabsTotem);
         setTickRandomly(true);
         setDefaultState(getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));
+        Blocks.FIRE.setFireInfo(this, 5, 10);
     }
 
     @Override

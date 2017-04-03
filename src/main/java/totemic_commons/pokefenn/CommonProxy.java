@@ -9,8 +9,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import totemic_commons.pokefenn.datafix.TotemicEntityID;
 import totemic_commons.pokefenn.datafix.KnifeTotemIDToString;
+import totemic_commons.pokefenn.datafix.TotemicEntityID;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.handler.EntityFall;
 import totemic_commons.pokefenn.handler.EntitySpawn;
@@ -29,7 +29,6 @@ public class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent event)
     {
-        ModBlocks.init();
         ModItems.init();
         ModPotions.init();
         ModSounds.init();

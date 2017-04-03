@@ -13,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -45,6 +46,7 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
         setCreativeTab(Totemic.tabsTotem);
         setHardness(2);
         setSoundType(SoundType.WOOD);
+        Blocks.FIRE.setFireInfo(this, 5, 5);
     }
 
     @Override

@@ -3,6 +3,7 @@ package totemic_commons.pokefenn.block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Strings;
 
@@ -15,6 +16,7 @@ public class BlockCedarLog extends BlockLog
         setHardness(2F);
         setCreativeTab(Totemic.tabsTotem);
         setDefaultState(getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));
+        Blocks.FIRE.setFireInfo(this, 5, 5);
     }
 
     @Override

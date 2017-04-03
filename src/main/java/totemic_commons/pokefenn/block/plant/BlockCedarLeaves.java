@@ -34,6 +34,7 @@ public class BlockCedarLeaves extends BlockLeaves
         setRegistryName(Strings.CEDAR_LEAVES_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CEDAR_LEAVES_NAME);
         setCreativeTab(Totemic.tabsTotem);
+        Blocks.FIRE.setFireInfo(this, 30, 60);
     }
 
     @Override
