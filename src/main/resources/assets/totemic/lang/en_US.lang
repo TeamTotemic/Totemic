@@ -32,6 +32,9 @@ item.totemic:medicine_bag.tooltipClosed=Closed
 item.totemic:medicine_bag.tooltipOpen=Open
 item.totemic:medicine_bag.tooltipEmpty=Empty
 item.totemic:medicine_bag.tooltipCharge=Charge: %d / %d
+item.totemic:ceremony_cheat.name=Creative Ceremony Cheat
+item.totemic:ceremony_cheat.tooltip1=Use on a Totem Base to instantly
+item.totemic:ceremony_cheat.tooltip2=start up the selected Ceremony
 
 # Block localizations
 tile.totemic:cedar_log.name=Red Cedar Log

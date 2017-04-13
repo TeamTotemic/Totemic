@@ -33,6 +33,7 @@ public final class Strings
     public static final String COOKED_BUFFALO_MEAT_NAME = "cooked_buffalo_meat";
     public static final String BAYKOK_BOW_NAME = "baykok_bow";
     public static final String MEDICINE_BAG_NAME = "medicine_bag";
+    public static final String CEREMONY_CHEAT_NAME = "ceremony_cheat";
 
     //Entities
     public static final String BUFFALO_NAME = "buffalo";

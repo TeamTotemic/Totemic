@@ -32,6 +32,9 @@ item.totemic:medicine_bag.tooltipClosed=Geschlossen
 item.totemic:medicine_bag.tooltipOpen=Offen
 item.totemic:medicine_bag.tooltipEmpty=Leer
 item.totemic:medicine_bag.tooltipCharge=Ladung: %d / %d
+item.totemic:ceremony_cheat.name=Kreativmodus-Zeremoniencheat
+item.totemic:ceremony_cheat.tooltip1=Benutze an einer Totembasis, um sofort
+item.totemic:ceremony_cheat.tooltip2=die ausgewählte Zeremonie zu starten
 
 # Block localizations
 tile.totemic:cedar_log.name=Rotes Zedernholz

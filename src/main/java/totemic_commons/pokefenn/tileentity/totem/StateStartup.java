@@ -44,23 +44,16 @@ public final class StateStartup extends TotemState
 
         if(!world.isRemote)
         {
-            if(!canStartCeremony())
+            if(canStartCeremony())
             {
-                if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty()))
-                {
-                    ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
-                    tile.setState(new StateTotemEffect(tile));
-                    tile.getState().update();
-                }
-
-                if(time % 20 == 0)
-                    NetworkHandler.sendAround(new PacketCeremonyStartup(pos, music, time), tile, 16);
+                startCeremony();
             }
             else
             {
-                ((WorldServer) world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
-                tile.setState(new StateCeremonyEffect(tile, ceremony));
-                tile.getState().update();
+                if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty()))
+                    failCeremony();
+                else if(time % 20 == 0)
+                    NetworkHandler.sendAround(new PacketCeremonyStartup(pos, music, time), tile, 16);
             }
         }
         else
@@ -74,6 +67,22 @@ public final class StateStartup extends TotemState
     private boolean canStartCeremony()
     {
         return totalMusic >= ceremony.getMusicNeeded();
+    }
+
+    public void failCeremony()
+    {
+        BlockPos pos = tile.getPos();
+        ((WorldServer) tile.getWorld()).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
+        tile.setState(new StateTotemEffect(tile));
+        tile.getState().update();
+    }
+
+    public void startCeremony()
+    {
+        BlockPos pos = tile.getPos();
+        ((WorldServer) tile.getWorld()).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
+        tile.setState(new StateCeremonyEffect(tile, ceremony));
+        tile.getState().update();
     }
 
     @Override
