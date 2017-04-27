@@ -28,7 +28,7 @@ import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.lib.Strings;
 
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, acceptedMinecraftVersions = "[1.11.2,)",
-        dependencies = "required-after:forge@[13.20.0.2228,)", guiFactory = "totemic_commons.pokefenn.configuration.TotemicGuiFactory",
+        dependencies = "required-after:forge@[13.20.0.2284,)", guiFactory = "totemic_commons.pokefenn.configuration.TotemicGuiFactory",
         updateJSON = "https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json")
 public final class Totemic
 {
