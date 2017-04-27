@@ -29,7 +29,7 @@ import totemic_commons.pokefenn.lib.Strings;
 
 public class ItemBaykokBow extends ItemBow
 {
-    private static final Method findAmmoMethod = ReflectionHelper.findMethod(ItemBow.class, null, new String[] {"func_185060_a", "findAmmo"}, EntityPlayer.class);
+    private static final Method findAmmoMethod = ReflectionHelper.findMethod(ItemBow.class, "findAmmo", "func_185060_a", EntityPlayer.class);
 
     public ItemBaykokBow()
     {
