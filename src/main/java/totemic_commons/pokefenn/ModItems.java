@@ -114,6 +114,7 @@ public final class ModItems
         setDefaultModel(baykok_bow);
         setModel(medicine_bag, 0, medicine_bag.getRegistryName().toString() + "_closed");
         setModel(medicine_bag, 1, medicine_bag.getRegistryName().toString() + "_open");
+        setDefaultModel(ceremony_cheat);
 
         for(ItemTotemicItems.Type t: ItemTotemicItems.Type.values())
             setModel(sub_items, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());
