@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +10,10 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -20,15 +23,15 @@ import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent;
 import net.minecraftforge.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.Type;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import totemic_commons.pokefenn.api.TotemicAPI;
 import totemic_commons.pokefenn.apiimpl.ApiImpl;
-import totemic_commons.pokefenn.configuration.ConfigurationHandler;
 import totemic_commons.pokefenn.lib.Strings;
 
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, acceptedMinecraftVersions = "[1.11.2,)",
-        dependencies = "required-after:forge@[13.20.0.2284,)", guiFactory = "totemic_commons.pokefenn.configuration.TotemicGuiFactory",
+        dependencies = "required-after:forge@[13.20.0.2284,)",
         updateJSON = "https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json")
 public final class Totemic
 {
@@ -51,7 +54,7 @@ public final class Totemic
     {
         logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
         logger.info("Totemic is entering preinitialization stage");
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory(), "totemic.cfg"));
+        MinecraftForge.EVENT_BUS.register(this);
         ReflectionHelper.setPrivateValue(TotemicAPI.class, null, api, "instance"); //The instance field is private, need reflection
         proxy.preInit(event);
     }
@@ -68,6 +71,13 @@ public final class Totemic
     {
         logger.info("Totemic is entering postinitialization stage");
         proxy.postInit(event);
+    }
+
+    @SubscribeEvent
+    public void onConfigChanged(OnConfigChangedEvent event)
+    {
+        if(MOD_ID.equals(event.getModID()))
+            ConfigManager.sync(MOD_ID, Config.Type.INSTANCE);
     }
 
     //TODO: Remove at some point
