@@ -39,6 +39,7 @@ public class CommonProxy
         NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
         NetworkHandler.init();
         CraftingRecipes.init();
+        CapabilityMovementTracker.register();
         registerEventHandlers();
         registerDataFixers();
     }
