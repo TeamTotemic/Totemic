@@ -16,6 +16,7 @@ import totemic_commons.pokefenn.handler.EntityFall;
 import totemic_commons.pokefenn.handler.EntitySpawn;
 import totemic_commons.pokefenn.handler.EntityUpdate;
 import totemic_commons.pokefenn.handler.PlayerInteract;
+import totemic_commons.pokefenn.item.equipment.music.CapabilityJingleDressMovementTracker;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.network.GuiHandler;
 import totemic_commons.pokefenn.network.NetworkHandler;
@@ -39,7 +40,7 @@ public class CommonProxy
         NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
         NetworkHandler.init();
         CraftingRecipes.init();
-        CapabilityMovementTracker.register();
+        CapabilityJingleDressMovementTracker.register();
         registerEventHandlers();
         registerDataFixers();
     }

@@ -1,4 +1,4 @@
-package totemic_commons.pokefenn;
+package totemic_commons.pokefenn.item.equipment.music;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTBase;
@@ -9,7 +9,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
-public final class CapabilityMovementTracker
+public final class CapabilityJingleDressMovementTracker
 {
     @CapabilityInject(MovementTracker.class)
     public static final Capability<MovementTracker> CAPABILITY = null;
@@ -20,12 +20,27 @@ public final class CapabilityMovementTracker
         double getPrevPosY();
         double getPrevPosZ();
 
+        default double getVelocitySq(Entity entity)
+        {
+            double vx = entity.posX - getPrevPosX();
+            double vy = entity.posY - getPrevPosY();
+            double vz = entity.posZ - getPrevPosZ();
+            return vx*vx + vy*vy + vz*vz;
+        }
+
         void update(Entity entity);
     }
 
-    static class MovementTrackerImpl implements MovementTracker
+    public static class MovementTrackerImpl implements MovementTracker
     {
         double prevPosX, prevPosY, prevPosZ;
+
+        public MovementTrackerImpl() { }
+
+        public MovementTrackerImpl(Entity entity)
+        {
+            update(entity);
+        }
 
         @Override
         public double getPrevPosX() { return prevPosX; }
@@ -43,7 +58,7 @@ public final class CapabilityMovementTracker
         }
     }
 
-    static void register()
+    public static void register()
     {
         CapabilityManager.INSTANCE.register(MovementTracker.class, new Capability.IStorage<MovementTracker>()
         {

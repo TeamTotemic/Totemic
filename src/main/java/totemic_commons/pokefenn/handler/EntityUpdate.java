@@ -1,15 +1,10 @@
 package totemic_commons.pokefenn.handler;
 
-import static totemic_commons.pokefenn.Totemic.logger;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import totemic_commons.pokefenn.CapabilityMovementTracker;
-import totemic_commons.pokefenn.CapabilityMovementTracker.MovementTracker;
 import totemic_commons.pokefenn.ModPotions;
 
 public class EntityUpdate
@@ -43,19 +38,6 @@ public class EntityUpdate
                     player.stepHeight = 0.6F;
 
                 climb(player);
-            }
-
-            if(!player.world.isRemote)
-            {
-                MovementTracker tracker = player.getCapability(CapabilityMovementTracker.CAPABILITY, null);
-                double vx = player.posX - tracker.getPrevPosX();
-                double vy = player.posY - tracker.getPrevPosY();
-                double vz = player.posZ - tracker.getPrevPosZ();
-                Vec3d vec = new Vec3d(vx, vy, vz);
-                double forward = vec.dotProduct(player.getLookVec());
-                double total = Math.sqrt(vx*vx + vy*vy + vz*vz);
-                logger.info("Total velocity: {}, Forward velocity: {}", total, forward);
-                tracker.update(player);
             }
         }
     }

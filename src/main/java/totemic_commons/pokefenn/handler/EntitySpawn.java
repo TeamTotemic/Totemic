@@ -15,10 +15,11 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import totemic_commons.pokefenn.CapabilityMovementTracker;
-import totemic_commons.pokefenn.CapabilityMovementTracker.MovementTracker;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
+import totemic_commons.pokefenn.item.equipment.music.CapabilityJingleDressMovementTracker;
+import totemic_commons.pokefenn.item.equipment.music.CapabilityJingleDressMovementTracker.MovementTracker;
+import totemic_commons.pokefenn.item.equipment.music.CapabilityJingleDressMovementTracker.MovementTrackerImpl;
 
 public class EntitySpawn
 {
@@ -39,33 +40,33 @@ public class EntitySpawn
         {
             event.addCapability(new ResourceLocation(Totemic.MOD_ID, "movement_tracker"), new ICapabilitySerializable<NBTBase>()
             {
-                private final MovementTracker tracker = CapabilityMovementTracker.CAPABILITY.getDefaultInstance();
+                private final MovementTracker tracker = new MovementTrackerImpl(event.getObject());
 
                 @Override
                 public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing)
                 {
-                    return capability == CapabilityMovementTracker.CAPABILITY;
+                    return capability == CapabilityJingleDressMovementTracker.CAPABILITY;
                 }
 
                 @Override
                 @Nullable
                 public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
                 {
-                    if(capability == CapabilityMovementTracker.CAPABILITY)
-                        return CapabilityMovementTracker.CAPABILITY.cast(tracker);
+                    if(capability == CapabilityJingleDressMovementTracker.CAPABILITY)
+                        return CapabilityJingleDressMovementTracker.CAPABILITY.cast(tracker);
                     return null;
                 }
 
                 @Override
                 public NBTBase serializeNBT()
                 {
-                    return CapabilityMovementTracker.CAPABILITY.writeNBT(tracker, null);
+                    return CapabilityJingleDressMovementTracker.CAPABILITY.writeNBT(tracker, null);
                 }
 
                 @Override
                 public void deserializeNBT(NBTBase nbt)
                 {
-                    CapabilityMovementTracker.CAPABILITY.readNBT(tracker, null, nbt);
+                    CapabilityJingleDressMovementTracker.CAPABILITY.readNBT(tracker, null, nbt);
                 }
             });
         }
