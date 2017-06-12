@@ -1,15 +1,15 @@
 package totemic_commons.pokefenn.item.equipment.music;
 
-import static totemic_commons.pokefenn.Totemic.logger;
-
 import javax.annotation.Nonnull;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -20,8 +20,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.ModContent;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
-import totemic_commons.pokefenn.item.equipment.music.CapabilityJingleDressMovementTracker.MovementTracker;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.network.NetworkHandler;
+import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
@@ -58,7 +59,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        /*if(world.isRemote)
+        if(world.isRemote)
         {
             //TODO: Replace with something that is less potentially exploitable
             if(world.getTotalWorldTime() % 20L == 0)
@@ -80,13 +81,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
                     }
                 }
             }
-        }*/
-        if(world.isRemote)
-            return;
-        MovementTracker tracker = player.getCapability(CapabilityJingleDressMovementTracker.CAPABILITY, null);
-        double velSq = tracker.getVelocitySq(player);
-        logger.info(Math.sqrt(velSq));
-        tracker.update(player);
+        }
     }
 
     private void playMusic(World world, EntityPlayer player, ItemStack itemStack, boolean isSneaking)
