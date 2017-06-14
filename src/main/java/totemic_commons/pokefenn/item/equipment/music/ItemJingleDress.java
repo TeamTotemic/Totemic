@@ -21,8 +21,7 @@ import totemic_commons.pokefenn.ModContent;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.NetworkHandler;
-import totemic_commons.pokefenn.network.server.PacketJingle;
+import totemic_commons.pokefenn.util.ItemUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
@@ -59,38 +58,41 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if(world.isRemote)
+        if(!world.isRemote && world.getTotalWorldTime() % 20L == 0)
         {
-            //TODO: Replace with something that is less potentially exploitable
-            if(world.getTotalWorldTime() % 20L == 0)
-                if(player.motionX != 0 || player.motionZ != 0)
-                    NetworkHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
-        }
-        else
-        {
-            if(world.getTotalWorldTime() % 20L == 0)
+            NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
+            int time = tag.getByte(TIME_KEY);
+            int prevTime = time;
+
+            // "chasingPos" is used for rendering capes. It is pretty much the only way
+            // to get the player's movement speed on the server side.
+            double vx = player.posX - player.chasingPosX;
+            double vy = player.posY - player.chasingPosY;
+            double vz = player.posZ - player.chasingPosZ;
+            double velSq = vx*vx + vy*vy + vz*vz;
+            if(player.isPotionActive(MobEffects.SPEED))
+                velSq *= 1.25;
+
+            if(velSq >= 0.6)
+                time += 2;
+            else if(velSq >= 0.2)
+                time += 1;
+
+            if(time >= 3)
             {
-                NBTTagCompound tag = itemStack.getTagCompound();
-                if(tag != null)
-                {
-                    int time = tag.getInteger(TIME_KEY);
-                    if(time >= 3 || (player.isPotionActive(MobEffects.SPEED) && time >= 2))
-                    {
-                        playMusic(world, player, itemStack, false);
-                        tag.setInteger(TIME_KEY, 0);
-                    }
-                }
+                playMusic(world, player, itemStack);
+                time %= 3;
             }
+
+            if(time != prevTime)
+                tag.setByte(TIME_KEY, (byte) time);
         }
     }
 
-    private void playMusic(World world, EntityPlayer player, ItemStack itemStack, boolean isSneaking)
+    private void playMusic(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if(!isSneaking)
-        {
-            TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, ModContent.jingleDress, 0, 0);
-            particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
-        }
+        TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, ModContent.jingleDress, 0, 0);
+        particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
     }
 
     private void particlesAllAround(WorldServer world, double x, double y, double z)
@@ -102,11 +104,5 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     public int getArmorDisplay(EntityPlayer player, @Nonnull ItemStack armor, int slot)
     {
         return getArmorMaterial().getDamageReductionAmount(EntityEquipmentSlot.values()[slot]);
-    }
-
-    public int getBonusMusic()
-    {
-        //TODO
-        return 0;
     }
 }

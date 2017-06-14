@@ -13,7 +13,6 @@ import totemic_commons.pokefenn.network.client.PacketCeremonyStartup;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 import totemic_commons.pokefenn.network.client.PacketTotemPoleChange;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
-import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.network.server.PacketMouseWheel;
 
 public class NetworkHandler
@@ -28,7 +27,6 @@ public class NetworkHandler
 
     public static void init()
     {
-        registerPacket(PacketJingle.class, Side.SERVER);
         registerPacket(PacketMouseWheel.class, Side.SERVER);
         registerPacket(PacketWindChime.class, Side.CLIENT);
         registerPacket(PacketCeremonyStartup.class, Side.CLIENT);
