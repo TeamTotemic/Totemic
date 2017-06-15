@@ -79,8 +79,8 @@ public final class ModContent
 
         flute = reg.addInstrument(new MusicInstrument("totemic:flute", 5, 70, 5).setItem(new ItemStack(ModItems.flute)));
         drum = reg.addInstrument(new MusicInstrument("totemic:drum", 7, 80, 5).setItem(new ItemStack(ModBlocks.drum)));
-        windChime = reg.addInstrument(new MusicInstrument("totemic:windChime", 7, 60, 5).setItem(new ItemStack(ModBlocks.wind_chime)));
-        jingleDress = reg.addInstrument(new MusicInstrument("totemic:jingleDress", 6, 100, 5).setItem(new ItemStack(ModItems.jingle_dress)));
+        windChime = reg.addInstrument(new MusicInstrument("totemic:windChime", 6, 60, 5).setItem(new ItemStack(ModBlocks.wind_chime)));
+        jingleDress = reg.addInstrument(new MusicInstrument("totemic:jingleDress", 7, 100, 5).setItem(new ItemStack(ModItems.jingle_dress)));
         rattle = reg.addInstrument(new MusicInstrument("totemic:rattle", 6, 90, 5).setItem(new ItemStack(ModItems.rattle)));
     }
 
