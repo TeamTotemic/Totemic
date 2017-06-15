@@ -96,7 +96,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 
     private void particlesAllAround(WorldServer world, double x, double y, double z)
     {
-        world.spawnParticle(EnumParticleTypes.NOTE, x, y + 0.4D, z, 6, 0.5D, 0.2D, 0.5D, 0.0D);
+        world.spawnParticle(EnumParticleTypes.NOTE, x, y + 0.4D, z, 3, 0.5D, 0.2D, 0.5D, 0.0D);
     }
 
     @Override
