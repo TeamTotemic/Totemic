@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ISpecialArmor;
@@ -69,19 +70,17 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
             double vx = player.posX - player.chasingPosX;
             double vy = player.posY - player.chasingPosY;
             double vz = player.posZ - player.chasingPosZ;
-            double velSq = vx*vx + vy*vy + vz*vz;
+            double vel = Math.sqrt(vx*vx + vy*vy + vz*vz);
             if(player.isPotionActive(MobEffects.SPEED))
-                velSq *= 1.25;
+                vel *= 1.2;
 
-            if(velSq >= 0.6)
-                time += 2;
-            else if(velSq >= 0.2)
-                time += 1;
+            time += MathHelper.clamp(MathHelper.fastFloor(vel * 10.0), 0, 8);
 
-            if(time >= 3)
+            final int limit = 10;
+            if(time >= limit)
             {
                 playMusic(world, player, itemStack);
-                time %= 3;
+                time %= limit;
             }
 
             if(time != prevTime)
