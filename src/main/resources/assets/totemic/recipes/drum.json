@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EEE",
+    "LWL",
+    "WLW"
+  ],
+  "key": {
+    "E": {
+      "type": "forge:ore_dict",
+      "ore": "leather"
+    },
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "W": {
+      "item": "minecraft:wool",
+      "data": 32767
+    }
+  },
+  "result": {
+    "item": "totemic:drum"
+  }
+}

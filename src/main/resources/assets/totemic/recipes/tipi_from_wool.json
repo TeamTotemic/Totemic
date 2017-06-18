@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "tipi",
+  "pattern": [
+    " S ",
+    "SWS",
+    "W W"
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "W": {
+      "item": "minecraft:wool",
+      "data": 32767
+    }
+  },
+  "result": {
+    "item": "totemic:tipi"
+  }
+}

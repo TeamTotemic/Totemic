@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "STS",
+    "SWS",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "T": {
+      "type": "forge:ore_dict",
+      "ore": "torch"
+    }
+  },
+  "result": {
+    "item": "totemic:totem_torch",
+    "count": 2
+  }
+}

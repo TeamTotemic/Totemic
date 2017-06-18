@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " L ",
+    "BHB",
+    "LBL"
+  ],
+  "key": {
+    "L": {
+      "type": "forge:ore_dict",
+      "ore": "treeLeaves"
+    },
+    "B": {
+      "type": "forge:ore_dict",
+      "ore": "bellsIron"
+    },
+    "H": {
+      "type": "forge:ore_dict",
+      "ore": "hideBuffalo"
+    }
+  },
+  "result": {
+    "item": "totemic:jingle_dress"
+  }
+}

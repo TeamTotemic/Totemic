@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PST",
+    "HDH",
+    " H "
+  ],
+  "key": {
+    "P": {
+      "item": "totemic:cedar_plank"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "string"
+    },
+    "T": {
+      "type": "forge:ore_dict",
+      "ore": "teethBuffalo"
+    },
+    "H": {
+      "type": "forge:ore_dict",
+      "ore": "hideBuffalo"
+    },
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    }
+  },
+  "result": {
+    "item": "totemic:medicine_bag"
+  }
+}

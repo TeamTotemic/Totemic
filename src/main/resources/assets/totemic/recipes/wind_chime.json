@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IWI",
+    "TST",
+    "  T"
+  ],
+  "key": {
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "string"
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "T": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "totemic:wind_chime"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " WW",
+    " BW",
+    "S  "
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "logWood"
+    },
+    "B": {
+      "type": "forge:ore_dict",
+      "ore": "teethBuffalo"
+    }
+  },
+  "result": {
+    "item": "totemic:rattle"
+  }
+}

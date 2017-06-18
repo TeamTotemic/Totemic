@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "hideBuffalo"
+    }
+  ],
+  "result": {
+    "item": "minecraft:leather"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "S S",
+    "S S"
+  ],
+  "key": {
+    "I": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "totemic:bark_stripper"
+  }
+}
