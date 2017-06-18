@@ -6,11 +6,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 
+@Deprecated
 public final class CraftingRecipes
 {
     public static IRecipe totemWhittlingKnife;
@@ -40,7 +39,8 @@ public final class CraftingRecipes
 
     private static void shapedRecipes()
     {
-        GameRegistry.addRecipe(totemicStaff = new ShapedOreRecipe(ModItems.totemic_staff,
+        // FIXME: Make recipes work
+        /*GameRegistry.addRecipe(totemicStaff = new ShapedOreRecipe(ModItems.totemic_staff,
                 " ls", " s ", "s l", ('s'), "stickWood", ('l'), "treeLeaves"));
         GameRegistry.addRecipe(totemWhittlingKnife = new ShapedOreRecipe(ModItems.totem_whittling_knife,
                 "  i", " sf", "s  ", ('s'), "stickWood", ('i'), "ingotIron", ('f'), Items.FLINT));
@@ -73,15 +73,16 @@ public final class CraftingRecipes
         GameRegistry.addRecipe(ceremonialRattle = new ShapedOreRecipe(new ItemStack(ModItems.rattle, 1, 0),
                 " ww", " bw", "s  ", ('s'), "stickWood", ('w'), "logWood", ('b'), "teethBuffalo"));
         GameRegistry.addRecipe(jingleDress = new ShapedOreRecipe(new ItemStack(ModItems.jingle_dress, 1, 0),
-                " l ", "bhb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron", ('h'), "hideBuffalo"));
+                " l ", "bhb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron", ('h'), "hideBuffalo"));*/
     }
 
     private static void shapelessRecipes()
     {
-        GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedar_plank, 5, 0), ModBlocks.stripped_cedar_log);
+        // FIXME: Make recipes work
+        /*GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedar_plank, 5, 0), ModBlocks.stripped_cedar_log);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedar_plank, 3, 0), ModBlocks.cedar_log);
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.sub_items, 9, ItemTotemicItems.Type.iron_nugget.ordinal()), "ingotIron"));
-        GameRegistry.addShapelessRecipe(new ItemStack(Items.LEATHER), new ItemStack(ModItems.buffalo_items, 1, ItemBuffaloDrops.Type.hide.ordinal()));
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.LEATHER), new ItemStack(ModItems.buffalo_items, 1, ItemBuffaloDrops.Type.hide.ordinal()));*/
 
         //Music
     }

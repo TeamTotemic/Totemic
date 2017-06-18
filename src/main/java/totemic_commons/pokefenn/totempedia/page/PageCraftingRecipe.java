@@ -21,15 +21,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.lib.Resources;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
@@ -70,8 +65,9 @@ public class PageCraftingRecipe extends PageRecipe
     {
         oreDictRecipe = shapelessRecipe = false;
 
-        IRecipe recipe = recipes.get(recipeAt);
-        renderCraftingRecipe(gui, recipe);
+        // FIXME: Prevent IndexOutOfBoundsException for now
+        /*IRecipe recipe = recipes.get(recipeAt);
+        renderCraftingRecipe(gui, recipe);*/
 
 
         TextureManager render = Minecraft.getMinecraft().renderEngine;
@@ -125,11 +121,11 @@ public class PageCraftingRecipe extends PageRecipe
         ++ticksElapsed;
     }
 
-    @SuppressWarnings("unchecked")
     @SideOnly(Side.CLIENT)
     public void renderCraftingRecipe(IGuiLexiconEntry gui, IRecipe recipe)
     {
-        if(recipe instanceof ShapedRecipes)
+        // FIXME: Implement for new recipe system
+        /*if(recipe instanceof ShapedRecipes)
         {
             ShapedRecipes shaped = (ShapedRecipes) recipe;
 
@@ -193,6 +189,6 @@ public class PageCraftingRecipe extends PageRecipe
             oreDictRecipe = true;
         }
 
-        renderItemAtGridPos(gui, 2, 0, recipe.getRecipeOutput(), false);
+        renderItemAtGridPos(gui, 2, 0, recipe.getRecipeOutput(), false);*/
     }
 }
