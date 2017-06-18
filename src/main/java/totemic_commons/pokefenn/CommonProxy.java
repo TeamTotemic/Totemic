@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import totemic_commons.pokefenn.datafix.KnifeTotemIDToString;
 import totemic_commons.pokefenn.datafix.TotemicEntityID;
+import totemic_commons.pokefenn.datafix.VanillaIronNugget;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.handler.EntityFall;
 import totemic_commons.pokefenn.handler.EntitySpawn;
@@ -61,9 +62,10 @@ public class CommonProxy
     //TODO: Remove at some point?
     private void registerDataFixers()
     {
-        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 900);
+        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 901);
         fixes.registerFix(FixTypes.ENTITY, new TotemicEntityID());
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new KnifeTotemIDToString());
+        fixes.registerFix(FixTypes.ITEM_INSTANCE, new VanillaIronNugget());
     }
 
     protected void registerEventHandlers()
