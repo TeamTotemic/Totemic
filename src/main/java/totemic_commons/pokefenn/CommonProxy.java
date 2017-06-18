@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import totemic_commons.pokefenn.datafix.KnifeTotemIDToString;
 import totemic_commons.pokefenn.datafix.TotemicEntityID;
+import totemic_commons.pokefenn.datafix.VanillaIronNugget;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.handler.EntityFall;
 import totemic_commons.pokefenn.handler.EntitySpawn;
@@ -69,7 +70,6 @@ public class CommonProxy
         OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.cedar_leaves, 1));
         OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedar_log, 1, 0));
         OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.cedar_plank, 1, 0));
-        OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.sub_items, 1, ItemTotemicItems.Type.iron_nugget.ordinal()));
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.sub_items, 1, ItemTotemicItems.Type.iron_bells.ordinal()));
         OreDictionary.registerOre("listAllmeatraw", new ItemStack(ModItems.buffalo_meat));
         OreDictionary.registerOre("listAllbeefraw", new ItemStack(ModItems.buffalo_meat));
@@ -91,9 +91,10 @@ public class CommonProxy
     //TODO: Remove at some point?
     private void registerDataFixers()
     {
-        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 900);
+        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 1000);
         fixes.registerFix(FixTypes.ENTITY, new TotemicEntityID());
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new KnifeTotemIDToString());
+        fixes.registerFix(FixTypes.ITEM_INSTANCE, new VanillaIronNugget());
     }
 
     protected void registerEventHandlers()

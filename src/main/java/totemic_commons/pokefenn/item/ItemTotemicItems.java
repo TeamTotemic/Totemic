@@ -13,7 +13,8 @@ public class ItemTotemicItems extends ItemTotemic
 {
     public enum Type
     {
-        iron_nugget, iron_bells;
+        //Can't remove the first enum constant since the indices need to stay the same
+        @Deprecated _unused, iron_bells;
     }
 
     public ItemTotemicItems()
@@ -29,7 +30,7 @@ public class ItemTotemicItems extends ItemTotemic
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        int index = MathHelper.clamp(itemStack.getItemDamage(), 0, Type.values().length - 1);
+        int index = MathHelper.clamp(itemStack.getItemDamage(), 1, Type.values().length - 1);
         return "item." + Strings.RESOURCE_PREFIX + Type.values()[index].toString();
     }
 
@@ -37,7 +38,7 @@ public class ItemTotemicItems extends ItemTotemic
     @SideOnly(Side.CLIENT)
     public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> list)
     {
-        for(int meta = 0; meta < Type.values().length; ++meta)
+        for(int meta = 1; meta < Type.values().length; ++meta)
             list.add(new ItemStack(this, 1, meta));
     }
 }
