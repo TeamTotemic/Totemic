@@ -26,7 +26,7 @@ public class CeremonyFluteInfusion extends Ceremony
 
         for(EntityItem entity : EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, 5, 5))
         {
-            if(entity.getEntityItem().getItem() == ModItems.flute)
+            if(entity.getItem().getItem() == ModItems.flute)
             {
                 EntityUtil.dropItem(world, entity.posX, entity.posY, entity.posZ, new ItemStack(ModItems.flute, 1, 1));
                 entity.setDead();

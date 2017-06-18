@@ -3,14 +3,16 @@ package totemic_commons.pokefenn.item.equipment;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Enchantments;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
@@ -192,7 +194,7 @@ public class ItemMedicineBag extends ItemTotemic
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
     {
         String key;
         if(getEffect(stack).isPresent())
@@ -206,7 +208,7 @@ public class ItemMedicineBag extends ItemTotemic
             key = "tooltip";
         tooltip.add(I18n.format(getUnlocalizedName() + "." + key));
 
-        if(advanced)
+        if(flag.isAdvanced())
             tooltip.add(I18n.format(getUnlocalizedName() + ".tooltipCharge", getCharge(stack), getMaxCharge(stack)));
     }
 
@@ -229,10 +231,10 @@ public class ItemMedicineBag extends ItemTotemic
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
-        subItems.add(new ItemStack(item));
-        ItemStack stack = new ItemStack(item);
+        subItems.add(new ItemStack(this));
+        ItemStack stack = new ItemStack(this);
         stack.setTagInfo(MED_BAG_CHARGE_KEY, new NBTTagInt(-1));
         subItems.add(stack);
     }

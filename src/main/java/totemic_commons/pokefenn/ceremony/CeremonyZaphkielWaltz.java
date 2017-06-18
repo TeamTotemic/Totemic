@@ -33,20 +33,20 @@ public class CeremonyZaphkielWaltz extends Ceremony
             for(EntityItem entity : EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius))
             {
                 EntityItem item = entity;
-                if(item.getEntityItem().getItem() == Items.EGG)
+                if(item.getItem().getItem() == Items.EGG)
                 {
                     if(world.rand.nextInt(4) == 0)
                     {
                         EntityChicken chicken = new EntityChicken(world);
                         chicken.setPosition(entity.posX, entity.posY, entity.posZ);
                         world.spawnEntity(chicken);
-                        if(item.getEntityItem().getCount() == 1)
+                        if(item.getItem().getCount() == 1)
                             item.setDead();
                         else
                         {
-                            ItemStack stack = item.getEntityItem().copy();
+                            ItemStack stack = item.getItem().copy();
                             stack.shrink(1);
-                            item.setEntityItemStack(stack);
+                            item.setItem(stack);
                         }
                     }
                 }

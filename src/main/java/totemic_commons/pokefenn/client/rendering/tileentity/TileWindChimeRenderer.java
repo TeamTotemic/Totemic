@@ -13,7 +13,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
     private final ModelWindChime modelWindChime = new ModelWindChime();
 
     @Override
-    public void renderTileEntityAt(TileWindChime tile, double x, double y, double z, float partialTick, int destroyStage)
+    public void render(TileWindChime tile, double x, double y, double z, float partialTick, int destroyStage, float alpha)
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x + 0.5, y + 1.47, z + 0.5);

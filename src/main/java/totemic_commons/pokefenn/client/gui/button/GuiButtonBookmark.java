@@ -14,16 +14,16 @@ public class GuiButtonBookmark extends GuiButton
 {
     private GuiLexicon gui = new GuiLexicon();
 
-    public GuiButtonBookmark(int par1, int par2, int par3, GuiLexicon gui, String str)
+    public GuiButtonBookmark(int buttonId, int x, int y, GuiLexicon gui, String str)
     {
-        super(par1, par2, par3, gui.bookmarkWidth(str) + 5, 11, str);
+        super(buttonId, x, y, gui.bookmarkWidth(str) + 5, 11, str);
     }
 
     @Override
-    public void drawButton(Minecraft mc, int par2, int par3)
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
     {
-        gui.drawBookmark(xPosition, yPosition, displayString, false);
-        hovered = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
+        gui.drawBookmark(x, y, displayString, false);
+        hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
         int k = getHoverState(hovered);
 
         List<String> tooltip = new ArrayList<>();
@@ -38,7 +38,7 @@ public class GuiButtonBookmark extends GuiButton
 
         int tooltipY = (tooltip.size() + 1) * 5;
         if(k == 2)
-            RenderHelper.renderTooltip(par2, par3 + tooltipY, tooltip);
+            RenderHelper.renderTooltip(mouseX, mouseY + tooltipY, tooltip);
     }
 
 }

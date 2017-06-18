@@ -24,25 +24,25 @@ import totemic_commons.pokefenn.client.gui.GuiLexicon;
 
 public class GuiButtonBack extends GuiButton
 {
-    public GuiButtonBack(int par1, int par2, int par3)
+    public GuiButtonBack(int buttonId, int x, int y)
     {
-        super(par1, par2, par3, 18, 9, "");
+        super(buttonId, x, y, 18, 9, "");
     }
 
     @Override
-    public void drawButton(Minecraft par1Minecraft, int par2, int par3)
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
     {
-        hovered = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
+        hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
         int k = getHoverState(hovered);
 
-        par1Minecraft.renderEngine.bindTexture(GuiLexicon.texture);
+        mc.renderEngine.bindTexture(GuiLexicon.texture);
         GL11.glColor4f(1F, 1F, 1F, 1F);
-        drawTexturedModalRect(xPosition, yPosition, 36, k == 2 ? 180 : 189, 18, 9);
+        drawTexturedModalRect(x, y, 36, k == 2 ? 180 : 189, 18, 9);
 
         List<String> tooltip = getTooltip();
         int tooltipY = (tooltip.size() - 1) * 10;
         if(k == 2)
-            RenderHelper.renderTooltip(par2, par3 + tooltipY, tooltip);
+            RenderHelper.renderTooltip(mouseX, mouseY + tooltipY, tooltip);
     }
 
     protected List<String> getTooltip()

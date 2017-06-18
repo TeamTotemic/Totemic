@@ -16,6 +16,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
@@ -113,7 +114,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     protected void despawnEntity()
     {
         //No despawning
-        entityAge = 0;
+        idleTime = 0;
     }
 
     @Override
@@ -123,7 +124,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSrc)
     {
         return SoundEvents.ENTITY_SKELETON_HURT;
     }
@@ -152,5 +153,10 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     {
         super.removeTrackingPlayer(player);
         bossInfo.removePlayer(player);
+    }
+
+    @Override
+    public void setSwingingArms(boolean swingingArms)
+    {
     }
 }

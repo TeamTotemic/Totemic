@@ -12,7 +12,6 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -86,10 +85,10 @@ public class ItemFlute extends ItemInstrument
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(Item item, CreativeTabs tabs, NonNullList<ItemStack> list)
+    public void getSubItems(CreativeTabs tabs, NonNullList<ItemStack> list)
     {
-        list.add(new ItemStack(item, 1, 0));
-        list.add(new ItemStack(item, 1, 1));
+        list.add(new ItemStack(this, 1, 0));
+        list.add(new ItemStack(this, 1, 1));
     }
 
     @SideOnly(Side.CLIENT)

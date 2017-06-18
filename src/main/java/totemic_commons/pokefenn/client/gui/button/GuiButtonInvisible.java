@@ -17,21 +17,21 @@ import net.minecraft.client.gui.GuiButton;
 public class GuiButtonInvisible extends GuiButton
 {
 
-    public GuiButtonInvisible(int par1, int par2, int par3, int par4, int par5, String par6Str)
+    public GuiButtonInvisible(int buttonId, int x, int y, int width, int height, String buttonText)
     {
-        super(par1, par2, par3, par4, par5, par6Str);
+        super(buttonId, x, y, width, height, buttonText);
     }
 
     @Override
-    public void drawButton(Minecraft mc, int par2, int par3)
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
     {
-        hovered = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
+        hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
         int k = getHoverState(hovered);
 
-        boolean unicode = mc.fontRendererObj.getUnicodeFlag();
-        mc.fontRendererObj.setUnicodeFlag(true);
-        mc.fontRendererObj.drawString(displayString, xPosition + (k == 2 ? 5 : 0), yPosition + (height - 8) / 2, 0);
-        mc.fontRendererObj.setUnicodeFlag(unicode);
+        boolean unicode = mc.fontRenderer.getUnicodeFlag();
+        mc.fontRenderer.setUnicodeFlag(true);
+        mc.fontRenderer.drawString(displayString, x + (k == 2 ? 5 : 0), y + (height - 8) / 2, 0);
+        mc.fontRenderer.setUnicodeFlag(unicode);
     }
 
 }

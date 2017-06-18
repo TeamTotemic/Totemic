@@ -7,8 +7,8 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 public class RenderHelper
@@ -49,7 +49,7 @@ public class RenderHelper
         int var5 = 0;
         int var6;
         int var7;
-        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRendererObj;
+        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
         for(var6 = 0; var6 < tooltipData.size(); ++var6)
         {
             var7 = fontRenderer.getStringWidth(tooltipData.get(var6));
@@ -103,12 +103,12 @@ public class RenderHelper
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glShadeModel(GL11.GL_SMOOTH);
         Tessellator tes = Tessellator.getInstance();
-        VertexBuffer wr = tes.getBuffer();
-        wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-        wr.pos(x2, y1, z).color(g1, b1, a1, r1).endVertex();
-        wr.pos(x1, y1, z).color(g1, b1, a1, r1).endVertex();
-        wr.pos(x1, y2, z).color(g2, b2, a2, r2).endVertex();
-        wr.pos(x2, y2, z).color(g2, b2, a2, r2).endVertex();
+        BufferBuilder buf = tes.getBuffer();
+        buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+        buf.pos(x2, y1, z).color(g1, b1, a1, r1).endVertex();
+        buf.pos(x1, y1, z).color(g1, b1, a1, r1).endVertex();
+        buf.pos(x1, y2, z).color(g2, b2, a2, r2).endVertex();
+        buf.pos(x2, y2, z).color(g2, b2, a2, r2).endVertex();
         tes.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
@@ -121,19 +121,19 @@ public class RenderHelper
         float tx = 0.00390625F;
         float ty = 0.00390625F;
         Tessellator tes = Tessellator.getInstance();
-        VertexBuffer wr = tes.getBuffer();
-        wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        wr.pos(x + 0, y + h, z).tex((u + 0) * tx, (v + h) * ty).endVertex();
-        wr.pos(x + w, y + h, z).tex((u + w) * tx, (v + h) * ty).endVertex();
-        wr.pos(x + w, y + 0, z).tex((u + w) * tx, (v + 0) * ty).endVertex();
-        wr.pos(x + 0, y + 0, z).tex((u + 0) * tx, (v + 0) * ty).endVertex();
+        BufferBuilder buf = tes.getBuffer();
+        buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        buf.pos(x + 0, y + h, z).tex((u + 0) * tx, (v + h) * ty).endVertex();
+        buf.pos(x + w, y + h, z).tex((u + w) * tx, (v + h) * ty).endVertex();
+        buf.pos(x + w, y + 0, z).tex((u + w) * tx, (v + 0) * ty).endVertex();
+        buf.pos(x + 0, y + 0, z).tex((u + 0) * tx, (v + 0) * ty).endVertex();
         tes.draw();
     }
 
     public static void renderStar(int color, float xScale, float yScale, float zScale, long seed)
     {
         Tessellator tes = Tessellator.getInstance();
-        VertexBuffer wr = tes.getBuffer();
+        BufferBuilder buf = tes.getBuffer();
 
         int ticks = (int) (Minecraft.getMinecraft().world.getTotalWorldTime() % 200);
         if(ticks >= 100)
@@ -164,15 +164,15 @@ public class RenderHelper
             GL11.glRotatef(random.nextFloat() * 360F, 1F, 0F, 0F);
             GL11.glRotatef(random.nextFloat() * 360F, 0F, 1F, 0F);
             GL11.glRotatef(random.nextFloat() * 360F + f1 * 90F, 0F, 0F, 1F);
-            wr.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
+            buf.begin(GL11.GL_TRIANGLE_FAN, DefaultVertexFormats.POSITION_COLOR);
             float f3 = random.nextFloat() * 20F + 5F + f2 * 10F;
             float f4 = random.nextFloat() * 2F + 1F + f2 * 2F;
-            wr.pos(0, 0, 0).putColor4((color << 8) | (int) (255F * (1F - f2))); wr.endVertex();
+            buf.pos(0, 0, 0).putColor4((color << 8) | (int) (255F * (1F - f2))); buf.endVertex();
 
-            wr.pos(-0.866D * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex();
-            wr.pos(0.866D * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex();
-            wr.pos(0, f3, 1F * f4).color(0, 0, 0, 0).endVertex();
-            wr.pos(-0.866D * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex();
+            buf.pos(-0.866D * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex();
+            buf.pos(0.866D * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex();
+            buf.pos(0, f3, 1F * f4).color(0, 0, 0, 0).endVertex();
+            buf.pos(-0.866D * f4, f3, -0.5F * f4).color(0, 0, 0, 0).endVertex();
             tes.draw();
         }
 
@@ -189,27 +189,27 @@ public class RenderHelper
     /**
      * Adds an untextured quad to the WorldRenderer. Needs the POSITION_COLOR vertex format.
      */
-    public static void addColoredQuad(VertexBuffer wr, double x, double y, double z, double w, double h, int color)
+    public static void addColoredQuad(BufferBuilder buf, double x, double y, double z, double w, double h, int color)
     {
         float r = (color >> 24 & 255) / 255.0F;
         float g = (color >> 16 & 255) / 255.0F;
         float b = (color >> 8 & 255) / 255.0F;
         float a = (color & 255) / 255.0F;
-        wr.pos(x, y, z).color(r, g, b, a).endVertex();
-        wr.pos(x, y + h, z).color(r, g, b, a).endVertex();
-        wr.pos(x + w, y + h, z).color(r, g, b, a).endVertex();
-        wr.pos(x + w, y, z).color(r, g, b, a).endVertex();
+        buf.pos(x, y, z).color(r, g, b, a).endVertex();
+        buf.pos(x, y + h, z).color(r, g, b, a).endVertex();
+        buf.pos(x + w, y + h, z).color(r, g, b, a).endVertex();
+        buf.pos(x + w, y, z).color(r, g, b, a).endVertex();
     }
 
     /**
      * Adds a textured quad to the WorldRenderer. Needs the POSITION_TEX vertex format.
      */
-    public static void addQuad(VertexBuffer wr, double x, double y, double z, double w, double h, double u, double v,
+    public static void addQuad(BufferBuilder buf, double x, double y, double z, double w, double h, double u, double v,
             double texW, double texH)
     {
-        wr.pos(x + 0, y + 0, z).tex(u + 0,    v + 0).endVertex();
-        wr.pos(x + 0, y + h, z).tex(u + 0,    v + texH).endVertex();
-        wr.pos(x + w, y + h, z).tex(u + texW, v + texH).endVertex();
-        wr.pos(x + w, y + 0, z).tex(u + texW, v + 0).endVertex();
+        buf.pos(x + 0, y + 0, z).tex(u + 0,    v + 0).endVertex();
+        buf.pos(x + 0, y + h, z).tex(u + 0,    v + texH).endVertex();
+        buf.pos(x + w, y + h, z).tex(u + texW, v + texH).endVertex();
+        buf.pos(x + w, y + 0, z).tex(u + texW, v + 0).endVertex();
     }
 }

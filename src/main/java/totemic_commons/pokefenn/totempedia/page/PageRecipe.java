@@ -22,6 +22,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
@@ -63,7 +64,7 @@ public class PageRecipe extends LexiconPage
 
         if(!tooltipStack.isEmpty())
         {
-            List<String> tooltipData = tooltipStack.getTooltip(Minecraft.getMinecraft().player, false);
+            List<String> tooltipData = tooltipStack.getTooltip(Minecraft.getMinecraft().player, TooltipFlags.NORMAL);
             List<String> parsedTooltip = new ArrayList<>();
             boolean first = true;
 
@@ -150,7 +151,7 @@ public class PageRecipe extends LexiconPage
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         render.renderItemAndEffectIntoGUI(stack, xPos, yPos);
-        render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRendererObj, stack, xPos, yPos, null);
+        render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, stack, xPos, yPos, null);
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         GL11.glPopMatrix();
 

@@ -19,9 +19,9 @@ import net.minecraft.util.text.TextFormatting;
 
 public class GuiButtonBackWithShift extends GuiButtonBack
 {
-    public GuiButtonBackWithShift(int par1, int par2, int par3)
+    public GuiButtonBackWithShift(int buttonId, int x, int y)
     {
-        super(par1, par2, par3);
+        super(buttonId, x, y);
     }
 
     @Override

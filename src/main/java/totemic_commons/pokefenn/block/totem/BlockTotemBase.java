@@ -14,7 +14,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -113,10 +112,10 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(int i = 0; i < WoodVariant.values().length; i++)
-            list.add(new ItemStack(item, 1, i));
+            list.add(new ItemStack(this, 1, i));
     }
 
     @Override

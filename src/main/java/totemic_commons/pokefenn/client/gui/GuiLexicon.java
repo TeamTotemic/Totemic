@@ -82,7 +82,7 @@ public class GuiLexicon extends GuiScreen
         if(subtitle != null)
         {
             GL11.glScalef(0.5F, 0.5F, 1F);
-            drawCenteredString(fontRendererObj, subtitle, left * 2 + guiWidth, (top - getTitleHeight() + 11) * 2, 0x00FF00);
+            drawCenteredString(fontRenderer, subtitle, left * 2 + guiWidth, (top - getTitleHeight() + 11) * 2, 0x00FF00);
             GL11.glScalef(2F, 2F, 1F);
         }
 
@@ -99,8 +99,8 @@ public class GuiLexicon extends GuiScreen
 
     public void drawBookmark(int x, int y, String s, boolean drawLeft)
     {
-        // This function is called from the buttons so I can't use fontRendererObj
-        FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
+        // This function is called from the buttons so I can't use fontRenderer
+        FontRenderer font = Minecraft.getMinecraft().fontRenderer;
         boolean unicode = font.getUnicodeFlag();
         font.setUnicodeFlag(true);
         int l = font.getStringWidth(s.trim());
@@ -127,10 +127,10 @@ public class GuiLexicon extends GuiScreen
 
     void drawHeader()
     {
-        boolean unicode = fontRendererObj.getUnicodeFlag();
-        fontRendererObj.setUnicodeFlag(true);
-        fontRendererObj.drawSplitString(I18n.format("totemic.gui.lexicon.header"), left + 18, top + 14, 110, 0);
-        fontRendererObj.setUnicodeFlag(unicode);
+        boolean unicode = fontRenderer.getUnicodeFlag();
+        fontRenderer.setUnicodeFlag(true);
+        fontRenderer.drawSplitString(I18n.format("totemic.gui.lexicon.header"), left + 18, top + 14, 110, 0);
+        fontRenderer.setUnicodeFlag(unicode);
     }
 
     @Override
@@ -191,10 +191,10 @@ public class GuiLexicon extends GuiScreen
 
     public int bookmarkWidth(String b)
     {
-        boolean unicode = fontRendererObj.getUnicodeFlag();
-        fontRendererObj.setUnicodeFlag(true);
-        int width = fontRendererObj.getStringWidth(b) + 15;
-        fontRendererObj.setUnicodeFlag(unicode);
+        boolean unicode = fontRenderer.getUnicodeFlag();
+        fontRenderer.setUnicodeFlag(true);
+        int width = fontRenderer.getStringWidth(b) + 15;
+        fontRenderer.setUnicodeFlag(unicode);
         return width;
     }
 

@@ -2,7 +2,10 @@ package totemic_commons.pokefenn.item;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -11,6 +14,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.tileentity.totem.StateStartup;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
@@ -43,7 +48,8 @@ public class ItemCeremonyCheat extends ItemTotemic
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced)
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
     {
         tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip1"));
         tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip2"));

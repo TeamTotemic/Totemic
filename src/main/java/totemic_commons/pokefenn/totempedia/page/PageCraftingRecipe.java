@@ -135,7 +135,7 @@ public class PageCraftingRecipe extends PageRecipe
 
             for(int y = 0; y < shaped.recipeHeight; y++)
                 for(int x = 0; x < shaped.recipeWidth; x++)
-                    renderItemAtGridPos(gui, 1 + x, 1 + y, shaped.recipeItems[y * shaped.recipeWidth + x], true);
+                    renderItemAtGridPos(gui, 1 + x, 1 + y, shaped.recipeItems.get(y * shaped.recipeWidth + x), true);
         }
         else if(recipe instanceof ShapedOreRecipe)
         {

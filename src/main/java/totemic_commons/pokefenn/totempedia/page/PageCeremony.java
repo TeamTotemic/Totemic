@@ -10,6 +10,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
@@ -37,8 +38,9 @@ public class PageCeremony extends PageRecipe
         relativeMouseX = mx;
         relativeMouseY = my;
 
-        TextureManager render = Minecraft.getMinecraft().renderEngine;
-        FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
+        Minecraft mc = Minecraft.getMinecraft();
+        TextureManager render = mc.renderEngine;
+        FontRenderer font = mc.fontRenderer;
         MusicInstrument[] instruments = ceremony.getInstruments();
 
         int instrLeft = gui.getLeft() + gui.getWidth() / 2 - 10 * instruments.length;
@@ -50,7 +52,7 @@ public class PageCeremony extends PageRecipe
         }
 
         if(!tooltipStack.isEmpty())
-            RenderHelper.renderTooltip(mx, my, tooltipStack.getTooltip(Minecraft.getMinecraft().player, false));
+            RenderHelper.renderTooltip(mx, my, tooltipStack.getTooltip(mc.player, TooltipFlags.NORMAL));
 
         String text = I18n.format("totemicmisc.musicSelector");
         font.drawString(text, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(text) / 2, gui.getTop() + 14, 0x999999);

@@ -25,26 +25,26 @@ public class GuiButtonPage extends GuiButton
 {
     private boolean right;
 
-    public GuiButtonPage(int par1, int par2, int par3, boolean right)
+    public GuiButtonPage(int buttonId, int x, int y, boolean right)
     {
-        super(par1, par2, par3, 18, 10, "");
+        super(buttonId, x, y, 18, 10, "");
         this.right = right;
     }
 
     @Override
-    public void drawButton(Minecraft mc, int par2, int par3)
+    public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
     {
         if(enabled)
         {
-            hovered = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
+            hovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
             int k = getHoverState(hovered);
 
             mc.renderEngine.bindTexture(GuiLexicon.texture);
             GL11.glColor4f(1F, 1F, 1F, 1F);
-            drawTexturedModalRect(xPosition, yPosition, k == 2 ? 18 : 0, right ? 180 : 190, 18, 10);
+            drawTexturedModalRect(x, y, k == 2 ? 18 : 0, right ? 180 : 190, 18, 10);
 
             if(k == 2)
-                RenderHelper.renderTooltip(par2, par3, Collections.singletonList(I18n.format(right ? "totemicmisc.nextPage" : "totemicmisc.prevPage")));
+                RenderHelper.renderTooltip(mouseX, mouseY, Collections.singletonList(I18n.format(right ? "totemicmisc.nextPage" : "totemicmisc.prevPage")));
         }
     }
 

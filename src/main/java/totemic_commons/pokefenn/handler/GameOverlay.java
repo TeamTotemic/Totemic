@@ -4,9 +4,9 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -57,8 +57,8 @@ public class GameOverlay
             float hudX = (event.getResolution().getScaledWidth() - w) / 2 + ConfigClient.ceremonyHudPositionX;
             float hudY = (event.getResolution().getScaledHeight() - h) / 2 + ConfigClient.ceremonyHudPositionY;
             Tessellator tes = Tessellator.getInstance();
-            VertexBuffer wr = tes.getBuffer();
-            FontRenderer font = mc.fontRendererObj;
+            BufferBuilder buf = tes.getBuffer();
+            FontRenderer font = mc.fontRenderer;
 
             GL11.glPushAttrib(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_ENABLE_BIT);
             GL11.glEnable(GL11.GL_BLEND);
@@ -68,8 +68,8 @@ public class GameOverlay
 
             //Background
             mc.renderEngine.bindTexture(hudTexture);
-            wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-            RenderHelper.addQuad(wr, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
+            buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+            RenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
             tes.draw();
 
             int barW = 104;
@@ -87,15 +87,15 @@ public class GameOverlay
                 GlStateManager.color(1, 1, 1);
                 mc.renderEngine.bindTexture(hudTexture);
 
-                wr.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-                RenderHelper.addQuad(wr, 1, 10, 0,  9, 9,  16 / texW, 48 / texH,   8 / texW,  8 / texH); //Note
-                RenderHelper.addQuad(wr, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
+                buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+                RenderHelper.addQuad(buf, 1, 10, 0,  9, 9,  16 / texW, 48 / texH,   8 / texW,  8 / texH); //Note
+                RenderHelper.addQuad(buf, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
 
                 float musicW = state.getMusicAmount() / (float)cer.getMusicNeeded() * barW;
                 float timeW = Math.min(state.getTime() / (float)cer.getAdjustedMaxStartupTime(mc.world.getDifficulty()), 1.0f) * barW;
 
-                RenderHelper.addQuad(wr, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar
-                RenderHelper.addQuad(wr, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar
+                RenderHelper.addQuad(buf, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar
+                RenderHelper.addQuad(buf, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar
                 tes.draw();
             }
             else if(activeTotem.getState() instanceof StateCeremonyEffect)

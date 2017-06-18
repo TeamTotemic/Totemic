@@ -18,7 +18,7 @@ public abstract class SynchronizedPacketBase<T extends SynchronizedPacketBase<T>
     public IMessage onMessage(T message, MessageContext ctx)
     {
         if(ctx.side == Side.SERVER)
-            message.enqueueServer(ctx.getServerHandler().playerEntity, ctx);
+            message.enqueueServer(ctx.getServerHandler().player, ctx);
         else
             message.enqueueClient(ctx);
         return null;

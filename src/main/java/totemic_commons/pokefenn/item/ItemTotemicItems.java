@@ -1,7 +1,6 @@
 package totemic_commons.pokefenn.item;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
@@ -36,9 +35,9 @@ public class ItemTotemicItems extends ItemTotemic
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item id, CreativeTabs creativeTab, NonNullList<ItemStack> list)
+    public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> list)
     {
         for(int meta = 0; meta < Type.values().length; ++meta)
-            list.add(new ItemStack(id, 1, meta));
+            list.add(new ItemStack(this, 1, meta));
     }
 }

@@ -16,7 +16,7 @@ public abstract class PacketBase<T extends PacketBase<T>> implements IMessage, I
     @Override
     public IMessage onMessage(T message, MessageContext ctx) {
         if(ctx.side == Side.SERVER)
-            message.handleServer(ctx.getServerHandler().playerEntity, ctx);
+            message.handleServer(ctx.getServerHandler().player, ctx);
         else
             message.handleClient(ctx);
         return null;
