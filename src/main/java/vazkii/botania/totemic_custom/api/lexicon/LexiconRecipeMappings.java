@@ -20,8 +20,7 @@ import net.minecraft.item.ItemStack;
  * This class contains mappings for which entry and page correspond to each
  * craftable ItemStack.
  *
- * <p>Use the map method to map an ItemStack to a page in an entry in the
- * lexicon.
+ * <p>Use the {@link #map} method to map an ItemStack to a lexicon page.
  */
 public final class LexiconRecipeMappings
 {
@@ -54,10 +53,10 @@ public final class LexiconRecipeMappings
 
     private static String stackToString(ItemStack stack)
     {
-        if(stack.hasTagCompound() && stack.getItem() instanceof IRecipeKeyProvider)
+        if(stack.getItem() instanceof IRecipeKeyProvider)
             return ((IRecipeKeyProvider) stack.getItem()).getKey(stack);
 
-        return stack.getItem().getRegistryName() + "~" + stack.getItemDamage();
+        return stack.getItem().getRegistryName() + "@" + stack.getItemDamage();
     }
 
     public static class EntryData

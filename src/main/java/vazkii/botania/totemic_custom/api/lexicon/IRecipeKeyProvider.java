@@ -14,8 +14,11 @@ package vazkii.botania.totemic_custom.api.lexicon;
 import net.minecraft.item.ItemStack;
 
 /**
- * Have an Item implement this so that the method used for mapping it into
- * the lexicon recipe mappings isn't the typical id:meta key.
+ * Have an Item implement this to customize how {@link LexiconRecipeMappings}
+ * maps your item stacks to a string representation, rather than the default
+ * "name@meta". Useful if your item uses NBT tags.
+ *
+ * TODO: Make it usable as a Capability
  */
 public interface IRecipeKeyProvider
 {
