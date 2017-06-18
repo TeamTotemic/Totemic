@@ -116,8 +116,7 @@ public final class ModItems
         setModel(medicine_bag, 1, medicine_bag.getRegistryName().toString() + "_open");
         setDefaultModel(ceremony_cheat);
 
-        for(ItemTotemicItems.Type t: ItemTotemicItems.Type.values())
-            setModel(sub_items, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());
+        setModel(sub_items, 1, Strings.RESOURCE_PREFIX + ItemTotemicItems.Type.iron_bells.toString());
 
         for(ItemBuffaloDrops.Type t: ItemBuffaloDrops.Type.values())
             setModel(buffalo_items, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());

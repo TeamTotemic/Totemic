@@ -7,7 +7,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 
@@ -80,7 +79,6 @@ public final class CraftingRecipes
     {
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedar_plank, 5, 0), ModBlocks.stripped_cedar_log);
         GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.cedar_plank, 3, 0), ModBlocks.cedar_log);
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.sub_items, 9, ItemTotemicItems.Type.iron_nugget.ordinal()), "ingotIron"));
         GameRegistry.addShapelessRecipe(new ItemStack(Items.LEATHER), new ItemStack(ModItems.buffalo_items, 1, ItemBuffaloDrops.Type.hide.ordinal()));
 
         //Music
@@ -92,7 +90,6 @@ public final class CraftingRecipes
         OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.cedar_leaves, 1));
         OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedar_log, 1, 0));
         OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.cedar_plank, 1, 0));
-        OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.sub_items, 1, ItemTotemicItems.Type.iron_nugget.ordinal()));
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.sub_items, 1, ItemTotemicItems.Type.iron_bells.ordinal()));
         OreDictionary.registerOre("listAllmeatraw", new ItemStack(ModItems.buffalo_meat));
         OreDictionary.registerOre("listAllbeefraw", new ItemStack(ModItems.buffalo_meat));
