@@ -74,7 +74,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
             if(player.isPotionActive(MobEffects.SPEED))
                 vel *= 1.2;
 
-            time += MathHelper.clamp(MathHelper.fastFloor(vel * 10.0), 0, 8);
+            time += MathHelper.clamp((int) (vel * 10.0), 0, 8);
 
             final int limit = 10;
             if(time >= limit)
