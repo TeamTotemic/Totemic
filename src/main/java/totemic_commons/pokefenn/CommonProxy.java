@@ -33,13 +33,13 @@ public class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent event)
     {
-        ModContent.init();
         ModEntities.init();
         registerTileEntities();
     }
 
     public void init(FMLInitializationEvent event)
     {
+        ModContent.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
         NetworkHandler.init();
         oreDictionary();

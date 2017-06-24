@@ -36,8 +36,6 @@ public class ClientProxy extends CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
-        ModBlocks.setStateMappers();
-        ModItems.setItemModels();
         OBJLoader.INSTANCE.addDomain(Totemic.MOD_ID);
         RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, BuffaloRendering::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInvisArrow.class, InvisArrowRendering::new);
@@ -49,8 +47,10 @@ public class ClientProxy extends CommonProxy
     public void init(FMLInitializationEvent event)
     {
         super.init(event);
-        LexiconData.init();
+        ModBlocks.setStateMappers();
+        ModItems.setItemModels();
         registerBlockColors();
+        LexiconData.init();
     }
 
     @Override
