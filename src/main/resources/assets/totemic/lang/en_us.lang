@@ -37,7 +37,7 @@ item.totemic:ceremony_cheat.tooltip1=Use on a Totem Base to instantly
 item.totemic:ceremony_cheat.tooltip2=start up the selected Ceremony
 
 # Block localizations
-tile.totemic:cedar_log.name=Red Cedar Log
+tile.totemic:cedar_log.name=Red Cedar Wood
 tile.totemic:totem_base.name=Totem Base
 tile.totemic:totem_pole.name=Totem Pole
 tile.totemic:cedar_sapling.name=Red Cedar Sapling
@@ -46,7 +46,7 @@ tile.totemic:drum.name=Totemist Drum
 tile.totemic:wind_chime.name=Wind Chime
 tile.totemic:totem_torch.name=Totem Torch
 tile.totemic:cedar_plank.name=Red Cedar Plank
-tile.totemic:stripped_cedar_log.name=Red Cedar Stripped Log
+tile.totemic:stripped_cedar_log.name=Stripped Red Cedar Wood
 tile.totemic:tipi.name=Tipi
 
 #Entity localizations
