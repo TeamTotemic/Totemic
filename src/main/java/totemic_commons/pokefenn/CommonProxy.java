@@ -12,8 +12,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import totemic_commons.pokefenn.datafix.KnifeTotemIDToString;
-import totemic_commons.pokefenn.datafix.TotemicEntityID;
 import totemic_commons.pokefenn.datafix.VanillaIronNugget;
 import totemic_commons.pokefenn.entity.ModEntities;
 import totemic_commons.pokefenn.handler.EntityFall;
@@ -87,12 +85,9 @@ public class CommonProxy
         GameRegistry.addSmelting(ModItems.buffalo_meat, new ItemStack(ModItems.cooked_buffalo_meat), 0.35F);
     }
 
-    //TODO: Remove at some point?
     private void registerDataFixers()
     {
         ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 1000);
-        fixes.registerFix(FixTypes.ENTITY, new TotemicEntityID());
-        fixes.registerFix(FixTypes.ITEM_INSTANCE, new KnifeTotemIDToString());
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new VanillaIronNugget());
     }
 
