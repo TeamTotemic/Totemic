@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -80,8 +81,9 @@ public final class ModItems
         return (ItemBlock) new ItemBlock(block).setRegistryName(block.getRegistryName());
     }
 
+    @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public static void setItemModels()
+    public static void setItemModels(ModelRegistryEvent event)
     {
         setDefaultModel(ModBlocks.cedar_log);
         setDefaultModel(ModBlocks.stripped_cedar_log);

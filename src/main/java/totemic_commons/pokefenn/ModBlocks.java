@@ -2,6 +2,7 @@ package totemic_commons.pokefenn;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -57,8 +58,9 @@ public final class ModBlocks
             new BlockDummyTipi());
     }
 
+    @SubscribeEvent
     @SideOnly(Side.CLIENT)
-    public static void setStateMappers()
+    public static void setStateMappers(ModelRegistryEvent event)
     {
         ModelLoader.setCustomStateMapper(cedar_sapling, new Builder().ignore(BlockCedarSapling.TYPE, BlockCedarSapling.STAGE).build());
         ModelLoader.setCustomStateMapper(cedar_leaves, new Builder().ignore(BlockCedarLeaves.CHECK_DECAY, BlockCedarLeaves.DECAYABLE).build());
