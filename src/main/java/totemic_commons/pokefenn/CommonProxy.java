@@ -57,12 +57,11 @@ public class CommonProxy
 
     private void registerTileEntities()
     {
-        //TODO: Remove legacy names at some point
-        GameRegistry.registerTileEntityWithAlternatives(TileTotemBase.class, Strings.RESOURCE_PREFIX + Strings.TOTEM_BASE_NAME, "tileTotemIntelligence");
-        GameRegistry.registerTileEntityWithAlternatives(TileTotemPole.class, Strings.RESOURCE_PREFIX + Strings.TOTEM_POLE_NAME, "tileTotemSocket");
-        GameRegistry.registerTileEntityWithAlternatives(TileDrum.class, Strings.RESOURCE_PREFIX + Strings.DRUM_NAME, "totemDrum");
-        GameRegistry.registerTileEntityWithAlternatives(TileWindChime.class, Strings.RESOURCE_PREFIX + Strings.WIND_CHIME_NAME, "windChime");
-        GameRegistry.registerTileEntityWithAlternatives(TileTipi.class, Strings.RESOURCE_PREFIX + Strings.TIPI_NAME, "totemicTipi");
+        GameRegistry.registerTileEntity(TileTotemBase.class, Strings.RESOURCE_PREFIX + Strings.TOTEM_BASE_NAME);
+        GameRegistry.registerTileEntity(TileTotemPole.class, Strings.RESOURCE_PREFIX + Strings.TOTEM_POLE_NAME);
+        GameRegistry.registerTileEntity(TileDrum.class, Strings.RESOURCE_PREFIX + Strings.DRUM_NAME);
+        GameRegistry.registerTileEntity(TileWindChime.class, Strings.RESOURCE_PREFIX + Strings.WIND_CHIME_NAME);
+        GameRegistry.registerTileEntity(TileTipi.class, Strings.RESOURCE_PREFIX + Strings.TIPI_NAME);
     }
 
     private void oreDictionary()
