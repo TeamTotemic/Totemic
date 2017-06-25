@@ -22,7 +22,7 @@ group = "totemic_commons.pokefenn"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.12-14.21.0.2359"
+    version = "1.12-14.21.0.2363"
     runDir = "run"
 
     mappings = "snapshot_20170624"
