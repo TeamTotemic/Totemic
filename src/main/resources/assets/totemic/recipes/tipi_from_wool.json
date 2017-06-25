@@ -12,8 +12,7 @@
       "ore": "stickWood"
     },
     "W": {
-      "item": "minecraft:wool",
-      "data": 32767
+      "item": "#WOOL"
     }
   },
   "result": {

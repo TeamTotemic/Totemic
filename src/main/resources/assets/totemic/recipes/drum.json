@@ -15,8 +15,7 @@
       "ore": "logWood"
     },
     "W": {
-      "item": "minecraft:wool",
-      "data": 32767
+      "item": "#WOOL"
     }
   },
   "result": {
