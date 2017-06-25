@@ -67,18 +67,19 @@ task deobfJar(type: Jar) {
     }
 }
 
-// Create API library zip
-task apiZip(type: Zip) {
+// Create API source jar
+task apiSrcJar(type: Jar) {
     from(sourceSets.main.java) {
         include 'vazkii/**'
         include 'totemic_commons/pokefenn/api/**'
+        appendix = 'api'
     }
-    classifier = 'api'
+    classifier = 'sources'
 }
 
 artifacts {
     archives deobfJar
-    archives apiZip
+    archives apiSrcJar
 }
 
 curseforge {
@@ -90,6 +91,6 @@ curseforge {
         releaseType = 'alpha'
 
         addArtifact deobfJar
-        addArtifact apiZip
+        addArtifact apiSrcJar
     }
 }
