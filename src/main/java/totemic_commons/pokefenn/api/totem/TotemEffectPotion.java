@@ -148,6 +148,6 @@ public class TotemEffectPotion extends TotemEffect
      */
     public static List<EntityPlayer> getPlayersInRange(World world, BlockPos pos, int horizontal, int vertical)
     {
-        return world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos).expand(horizontal - 1, vertical - 1, horizontal - 1));
+        return world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos).grow(horizontal - 1, vertical - 1, horizontal - 1));
     }
 }

@@ -36,12 +36,12 @@ public class EntityUtil
 
     public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, double horizontal, double vertical)
     {
-        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(pos).expand(horizontal - 1, vertical - 1, horizontal - 1));
+        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(pos).grow(horizontal - 1, vertical - 1, horizontal - 1));
     }
 
     public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, double horizontal, double vertical, @Nullable Predicate<? super T> filter)
     {
-        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(pos).expand(horizontal - 1, vertical - 1, horizontal - 1), filter);
+        return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(pos).grow(horizontal - 1, vertical - 1, horizontal - 1), filter);
     }
 
     public static <T extends TileEntity> List<T> getTileEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, int horizontalRadius, int verticalRadius)
