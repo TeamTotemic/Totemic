@@ -13,8 +13,6 @@ package totemic_commons.pokefenn.client.gui;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -74,16 +72,17 @@ public class GuiLexicon extends GuiScreen
     @Override
     public void drawScreen(int par1, int par2, float par3)
     {
-        GL11.glColor4f(1F, 1F, 1F, 1F);
+        GlStateManager.color(1F, 1F, 1F, 1F);
         mc.renderEngine.bindTexture(texture);
         drawTexturedModalRect(left, top, 0, 0, guiWidth, guiHeight);
         drawBookmark(left + guiWidth / 2, top - getTitleHeight(), getTitle(), true);
         String subtitle = getSubtitle();
         if(subtitle != null)
         {
-            GL11.glScalef(0.5F, 0.5F, 1F);
+            GlStateManager.pushMatrix();
+            GlStateManager.scale(0.5F, 0.5F, 1F);
             drawCenteredString(fontRenderer, subtitle, left * 2 + guiWidth, (top - getTitleHeight() + 11) * 2, 0x00FF00);
-            GL11.glScalef(2F, 2F, 1F);
+            GlStateManager.popMatrix();
         }
 
         drawHeader();

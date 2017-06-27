@@ -46,7 +46,7 @@ public class PlayerRender
 
             if(annaHatDisplayList == 0)
                 createAnnaHatDisplayList();
-            GL11.glCallList(annaHatDisplayList);
+            GlStateManager.callList(annaHatDisplayList);
 
             GlStateManager.popMatrix();
         }

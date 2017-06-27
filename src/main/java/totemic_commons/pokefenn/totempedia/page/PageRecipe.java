@@ -16,10 +16,10 @@ import java.util.List;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
@@ -93,7 +93,7 @@ public class PageRecipe extends LexiconPage
 
         tooltipStack = tooltipContainerStack = ItemStack.EMPTY;
         tooltipEntry = false;
-        GL11.glDisable(GL11.GL_BLEND);
+        GlStateManager.disableBlend();
         mouseDownLastTick = Mouse.isButtonDown(0);
     }
 
@@ -144,16 +144,16 @@ public class PageRecipe extends LexiconPage
         RenderItem render = Minecraft.getMinecraft().getRenderItem();
         boolean mouseDown = Mouse.isButtonDown(0);
 
-        GL11.glPushMatrix();
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GlStateManager.pushMatrix();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
-        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableDepth();
         render.renderItemAndEffectIntoGUI(stack, xPos, yPos);
         render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, stack, xPos, yPos, null);
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
-        GL11.glPopMatrix();
+        GlStateManager.popMatrix();
 
         if(relativeMouseX >= xPos && relativeMouseY >= yPos && relativeMouseX <= xPos + 16 && relativeMouseY <= yPos + 16)
         {
@@ -179,8 +179,6 @@ public class PageRecipe extends LexiconPage
                     tooltipContainerStack = containerStack;
             }
         }
-
-        GL11.glDisable(GL11.GL_LIGHTING);
     }
 
 }

@@ -13,10 +13,9 @@ package totemic_commons.pokefenn.client.gui.button;
 
 import java.util.Collections;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
@@ -40,7 +39,7 @@ public class GuiButtonPage extends GuiButton
             int k = getHoverState(hovered);
 
             mc.renderEngine.bindTexture(GuiLexicon.texture);
-            GL11.glColor4f(1F, 1F, 1F, 1F);
+            GlStateManager.color(1F, 1F, 1F, 1F);
             drawTexturedModalRect(x, y, k == 2 ? 18 : 0, right ? 180 : 190, 18, 10);
 
             if(k == 2)

@@ -63,8 +63,8 @@ public class GameOverlay
             GL11.glPushAttrib(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_ENABLE_BIT);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            GL11.glPushMatrix();
-            GL11.glTranslatef(hudX, hudY, 0);
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(hudX, hudY, 0);
 
             //Background
             mc.renderEngine.bindTexture(hudTexture);
@@ -108,7 +108,7 @@ public class GameOverlay
                 font.drawString(locName, nameX, 1, 0xC8000000);
             }
 
-            GL11.glPopMatrix();
+            GlStateManager.popMatrix();
             GL11.glPopAttrib();
         }
 

@@ -14,10 +14,9 @@ package totemic_commons.pokefenn.client.gui.button;
 import java.util.Collections;
 import java.util.List;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.client.gui.GuiLexicon;
@@ -36,7 +35,7 @@ public class GuiButtonBack extends GuiButton
         int k = getHoverState(hovered);
 
         mc.renderEngine.bindTexture(GuiLexicon.texture);
-        GL11.glColor4f(1F, 1F, 1F, 1F);
+        GlStateManager.color(1F, 1F, 1F, 1F);
         drawTexturedModalRect(x, y, 36, k == 2 ? 180 : 189, 18, 9);
 
         List<String> tooltip = getTooltip();

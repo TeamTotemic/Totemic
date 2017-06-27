@@ -1,13 +1,13 @@
 package totemic_commons.pokefenn.client;
 
 import java.util.List;
-import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
@@ -44,7 +44,6 @@ public class RenderHelper
             return;
 
         GL11.glPushAttrib(GL11.GL_LIGHTING_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
 
         int var5 = 0;
         int var6;
@@ -84,7 +83,7 @@ public class RenderHelper
         }
 
         GL11.glPopAttrib();
-        GL11.glColor4f(1F, 1F, 1F, 1F);
+        GlStateManager.color(1F, 1F, 1F, 1F);
     }
 
     public static void drawGradientRect(int x1, int y1, float z, int x2, int y2, int color1, int color2)
@@ -97,11 +96,11 @@ public class RenderHelper
         float g2 = (color2 >> 16 & 255) / 255F;
         float b2 = (color2 >> 8 & 255) / 255F;
         float a2 = (color2 & 255) / 255F;
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_ALPHA_TEST);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        GL11.glShadeModel(GL11.GL_SMOOTH);
+        GlStateManager.disableTexture2D();
+        GlStateManager.disableAlpha();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        GlStateManager.shadeModel(GL11.GL_SMOOTH);
         Tessellator tes = Tessellator.getInstance();
         BufferBuilder buf = tes.getBuffer();
         buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
@@ -110,10 +109,10 @@ public class RenderHelper
         buf.pos(x1, y2, z).color(g2, b2, a2, r2).endVertex();
         buf.pos(x2, y2, z).color(g2, b2, a2, r2).endVertex();
         tes.draw();
-        GL11.glShadeModel(GL11.GL_FLAT);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glEnable(GL11.GL_ALPHA_TEST);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GlStateManager.shadeModel(GL11.GL_FLAT);
+        GlStateManager.disableBlend();
+        GlStateManager.enableAlpha();
+        GlStateManager.enableTexture2D();
     }
 
     public static void drawTexturedModalRect(int x, int y, float z, int u, int v, int w, int h)
@@ -130,7 +129,8 @@ public class RenderHelper
         tes.draw();
     }
 
-    public static void renderStar(int color, float xScale, float yScale, float zScale, long seed)
+    //Currently unused
+    /*public static void renderStar(int color, float xScale, float yScale, float zScale, long seed)
     {
         Tessellator tes = Tessellator.getInstance();
         BufferBuilder buf = tes.getBuffer();
@@ -184,7 +184,7 @@ public class RenderHelper
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glPopMatrix();
-    }
+    }*/
 
     /**
      * Adds an untextured quad to the WorldRenderer. Needs the POSITION_COLOR vertex format.
