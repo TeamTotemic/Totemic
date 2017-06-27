@@ -11,6 +11,7 @@
  */
 package totemic_commons.pokefenn.totempedia.page;
 
+import java.util.Collections;
 import java.util.Objects;
 
 import org.lwjgl.opengl.GL11;
@@ -18,6 +19,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -27,6 +29,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.lib.Resources;
 import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
 import vazkii.botania.totemic_custom.api.lexicon.LexiconEntry;
@@ -37,6 +40,9 @@ public class PageCraftingRecipe extends PageRecipe
     private static final ResourceLocation craftingOverlay = new ResourceLocation(Resources.GUI_CRAFTING_OVERLAY);
 
     private final IRecipe recipe;
+    private final int recipeWidth;
+    private final boolean shapelessRecipe;
+
     private int ticksElapsed = 0;
     private int recipeIndex = 0;
 
@@ -44,6 +50,22 @@ public class PageCraftingRecipe extends PageRecipe
     {
         super(unlocalizedName);
         this.recipe = Objects.requireNonNull(recipe);
+
+        if(recipe instanceof ShapedRecipes)
+        {
+            recipeWidth = ((ShapedRecipes) recipe).getWidth();
+            shapelessRecipe = false;
+        }
+        else if(recipe instanceof ShapedOreRecipe)
+        {
+            recipeWidth = ((ShapedOreRecipe) recipe).getWidth();
+            shapelessRecipe = false;
+        }
+        else
+        {
+            recipeWidth = 3;
+            shapelessRecipe = true;
+        }
     }
 
     public PageCraftingRecipe(String unlocalizedName, String recipe)
@@ -63,7 +85,6 @@ public class PageCraftingRecipe extends PageRecipe
     {
         renderCraftingRecipe(gui, recipe);
 
-
         TextureManager render = Minecraft.getMinecraft().renderEngine;
         render.bindTexture(craftingOverlay);
 
@@ -72,32 +93,17 @@ public class PageCraftingRecipe extends PageRecipe
         GL11.glColor4f(1F, 1F, 1F, 1F);
         ((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
 
-        int iconX = gui.getLeft() + 115;
-        int iconY = gui.getTop() + 12;
-
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
-        /*if(shapelessRecipe)
+        if(shapelessRecipe)
         {
+            int iconX = gui.getLeft() + 115;
+            int iconY = gui.getTop() + 12;
+
             ((GuiScreen) gui).drawTexturedModalRect(iconX, iconY, 240, 0, 16, 16);
 
             if(mx >= iconX && my >= iconY && mx < iconX + 16 && my < iconY + 16)
                 RenderHelper.renderTooltip(mx, my, Collections.singletonList(I18n.format("totemicmisc.shapeless")));
+        }
 
-            iconY += 20;
-        }*/
-
-        render.bindTexture(craftingOverlay);
-        GL11.glEnable(GL11.GL_BLEND);
-
-        /*if(oreDictRecipe)
-        {
-            ((GuiScreen) gui).drawTexturedModalRect(iconX, iconY, 240, 16, 16, 16);
-
-            if(mx >= iconX && my >= iconY && mx < iconX + 16 && my < iconY + 16)
-                RenderHelper.renderTooltip(mx, my, Collections.singletonList(I18n.format("totemicmisc.oredict")));
-        }*/
         GL11.glDisable(GL11.GL_BLEND);
     }
 
@@ -115,14 +121,6 @@ public class PageCraftingRecipe extends PageRecipe
     @SideOnly(Side.CLIENT)
     public void renderCraftingRecipe(IGuiLexiconEntry gui, IRecipe recipe)
     {
-        int width;
-        if(recipe instanceof ShapedRecipes)
-            width = ((ShapedRecipes) recipe).getWidth();
-        else if(recipe instanceof ShapedOreRecipe)
-            width = ((ShapedOreRecipe) recipe).getWidth();
-        else
-            width = 3;
-
         int x = 0;
         int y = 0;
         for(Ingredient ingredient: recipe.getIngredients())
@@ -134,7 +132,7 @@ public class PageCraftingRecipe extends PageRecipe
             }
 
             x++;
-            if(x >= width)
+            if(x >= recipeWidth)
             {
                 x = 0;
                 y++;
