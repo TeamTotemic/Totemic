@@ -111,7 +111,7 @@ public class PageCraftingRecipe extends PageRecipe
     @SideOnly(Side.CLIENT)
     public void updateScreen()
     {
-        if(ticksElapsed % 20 == 0)
+        if(ticksElapsed % 30 == 0)
         {
             recipeIndex++;
         }
