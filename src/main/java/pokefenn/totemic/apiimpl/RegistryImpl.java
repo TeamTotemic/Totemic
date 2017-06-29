@@ -78,15 +78,15 @@ public class RegistryImpl implements TotemicRegistry
         //that every ceremony can actually be selected
         for(Ceremony other: ceremonies.values())
         {
-            if(MathsUtil.isPrefix(ceremony.getInstruments(), other.getInstruments()))
+            if(MathsUtil.isPrefix(ceremony.getSelectors(), other.getSelectors()))
                 throw new IllegalArgumentException(String.format(
                     "Could not add Ceremony %1$s because its selectors are prefixing the selectors of %2$s. This would make selecting %2$s impossible.\n%3$s prefixes %4$s",
-                    ceremony.getName(), other.getName(), Arrays.toString(ceremony.getInstruments()), Arrays.toString(other.getInstruments())));
+                    ceremony.getName(), other.getName(), ceremony.getSelectors(), other.getSelectors()));
 
-            if(MathsUtil.isPrefix(other.getInstruments(), ceremony.getInstruments()))
+            if(MathsUtil.isPrefix(other.getSelectors(), ceremony.getSelectors()))
                 throw new IllegalArgumentException(String.format(
                     "Could not add Ceremony %1$s because its selectors are prefixed by the selectors of %2$s. This would make selecting %1$s impossible.\n%3$s is prefixed by %4$s",
-                    ceremony.getName(), other.getName(), Arrays.toString(ceremony.getInstruments()), Arrays.toString(other.getInstruments())));
+                    ceremony.getName(), other.getName(), ceremony.getSelectors(), other.getSelectors()));
         }
 
         ceremonies.put(ceremony.getName(), ceremony);

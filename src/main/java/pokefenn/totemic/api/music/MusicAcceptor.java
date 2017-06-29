@@ -3,6 +3,8 @@ package pokefenn.totemic.api.music;
 /**
  * An interface for tile entities that accept music
  * Currently only really implemented by TotemBase, but you may be able to get it working with other stuff.
+ *
+ * TODO: Make usable as Capability
  */
 public interface MusicAcceptor
 {

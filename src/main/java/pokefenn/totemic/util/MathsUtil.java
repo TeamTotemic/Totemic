@@ -1,5 +1,8 @@
 package pokefenn.totemic.util;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class MathsUtil
 {
     public static float lerp(float start, float end, float value)
@@ -13,19 +16,22 @@ public class MathsUtil
     }
 
     /**
-     * Checks whether arr1 is a prefix of arr2, i.e.
-     * the elements of arr1 appear in order at the beginning of arr2 (compared using ==).
+     * Checks whether list1 is a prefix of list2, i.e.
+     * the elements of list1 appear in order at the beginning of list2 (compared using ==).
      */
-    public static boolean isPrefix(Object[] arr1, Object[] arr2)
+    public static boolean isPrefix(List<?> list1, List<?> list2)
     {
-        if(arr1.length > arr2.length)
+        if(list1.size() > list2.size())
             return false;
 
-        for(int i = 0; i < arr1.length; i++)
+        Iterator<?> it1 = list1.iterator();
+        Iterator<?> it2 = list2.iterator();
+        while(it1.hasNext())
         {
-            if(arr1[i] != arr2[i])
+            if(it1.next() != it2.next())
                 return false;
         }
+
         return true;
     }
 }

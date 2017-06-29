@@ -1,5 +1,6 @@
 package pokefenn.totemic.totempedia.page;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.lwjgl.input.Mouse;
@@ -42,12 +43,12 @@ public class PageCeremony extends PageRecipe
         Minecraft mc = Minecraft.getMinecraft();
         TextureManager render = mc.renderEngine;
         FontRenderer font = mc.fontRenderer;
-        MusicInstrument[] instruments = ceremony.getInstruments();
+        List<MusicInstrument> instruments = ceremony.getSelectors();
 
-        int instrLeft = gui.getLeft() + gui.getWidth() / 2 - 10 * instruments.length;
-        for(int i = 0; i < instruments.length; i++)
+        int instrLeft = gui.getLeft() + gui.getWidth() / 2 - 10 * instruments.size();
+        for(int i = 0; i < instruments.size(); i++)
         {
-            ItemStack item = instruments[i].getItem();
+            ItemStack item = instruments.get(i).getItem();
             if(!item.isEmpty())
                 renderItem(gui, instrLeft + 20 * i, gui.getTop() + 31, item, false);
         }

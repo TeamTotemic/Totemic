@@ -1,6 +1,10 @@
 package pokefenn.totemic.api.ceremony;
 
+import java.util.List;
+
 import org.apache.commons.lang3.Validate;
+
+import com.google.common.collect.ImmutableList;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
@@ -31,7 +35,7 @@ public abstract class Ceremony
     protected final String name;
     protected final int musicNeeded;
     protected final int maxStartupTime;
-    protected final MusicInstrument[] instruments;
+    protected final List<MusicInstrument> selectors;
 
     /**
      * Creates a new ceremony
@@ -39,19 +43,19 @@ public abstract class Ceremony
      * @param musicNeeded the amount of music needed to start the ceremony
      * @param maxStartupTime the maximum time in ticks that starting the ceremony may take. See above for suggested values.<br>
      * This value will be adjusted depending on difficulty, see {@link #getAdjustedMaxStartupTime}.
-     * @param instruments the music instruments for selecting the ceremony. The count has to be
+     * @param selectors the music instruments for selecting the ceremony. The count has to be
      * between MIN_SELECTORS and MAX_SELECTORS.
      */
-    public Ceremony(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
+    public Ceremony(String name, int musicNeeded, int maxStartupTime, MusicInstrument... selectors)
     {
-        Validate.inclusiveBetween(MIN_SELECTORS, MAX_SELECTORS, instruments.length,
+        Validate.inclusiveBetween(MIN_SELECTORS, MAX_SELECTORS, selectors.length,
                 "Wrong number of musical selectors: Must be between " + MIN_SELECTORS + " and " + MAX_SELECTORS);
-        Validate.noNullElements(instruments);
+        Validate.noNullElements(selectors);
 
         this.name = name;
         this.musicNeeded = musicNeeded;
         this.maxStartupTime = maxStartupTime;
-        this.instruments = instruments;
+        this.selectors = ImmutableList.copyOf(selectors);
     }
 
     /**
@@ -140,11 +144,11 @@ public abstract class Ceremony
     }
 
     /**
-     * @return an array of music instruments for selecting the ceremony
+     * @return the list of music instruments for selecting the ceremony
      */
-    public final MusicInstrument[] getInstruments()
+    public final List<MusicInstrument> getSelectors()
     {
-        return instruments;
+        return selectors;
     }
 
     @Override

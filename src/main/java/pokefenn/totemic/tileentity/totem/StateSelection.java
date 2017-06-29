@@ -2,7 +2,10 @@ package pokefenn.totemic.tileentity.totem;
 
 import static pokefenn.totemic.Totemic.logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -59,7 +62,7 @@ public final class StateSelection extends TotemState
         if(selectors.size() >= Ceremony.MIN_SELECTORS)
         {
             Optional<Ceremony> match = Totemic.api.registry().getCeremonies().values().stream()
-                .filter(cer -> selectorsMatch(cer.getInstruments()))
+                .filter(this::selectorsMatch)
                 .findAny();
 
             if(match.isPresent())
@@ -75,9 +78,9 @@ public final class StateSelection extends TotemState
         }
     }
 
-    private boolean selectorsMatch(MusicInstrument[] instrs)
+    private boolean selectorsMatch(Ceremony cer)
     {
-        return selectors.size() == instrs.length && selectors.equals(Arrays.asList(instrs));
+        return cer.getSelectors().equals(selectors);
     }
 
     @Override
