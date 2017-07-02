@@ -233,10 +233,13 @@ public class ItemMedicineBag extends ItemTotemic
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems)
     {
-        subItems.add(new ItemStack(this));
-        ItemStack stack = new ItemStack(this);
-        stack.setTagInfo(MED_BAG_CHARGE_KEY, new NBTTagInt(-1));
-        subItems.add(stack);
+        if(isInCreativeTab(tab))
+        {
+            subItems.add(new ItemStack(this));
+            ItemStack stack = new ItemStack(this);
+            stack.setTagInfo(MED_BAG_CHARGE_KEY, new NBTTagInt(-1));
+            subItems.add(stack);
+        }
     }
 
     @Override

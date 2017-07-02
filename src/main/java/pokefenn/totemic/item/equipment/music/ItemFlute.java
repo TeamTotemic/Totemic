@@ -83,12 +83,14 @@ public class ItemFlute extends ItemInstrument
             return "item." + Strings.RESOURCE_PREFIX + "flute";
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(CreativeTabs tabs, NonNullList<ItemStack> list)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        list.add(new ItemStack(this, 1, 0));
-        list.add(new ItemStack(this, 1, 1));
+        if(isInCreativeTab(tab))
+        {
+            list.add(new ItemStack(this, 1, 0));
+            list.add(new ItemStack(this, 1, 1));
+        }
     }
 
     @SideOnly(Side.CLIENT)

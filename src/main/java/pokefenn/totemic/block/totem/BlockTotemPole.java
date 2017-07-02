@@ -25,8 +25,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicStaffUsage;
 import pokefenn.totemic.api.totem.TotemBase;
@@ -106,7 +104,6 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for(int i = 0; i < WoodVariant.values().length; i++)

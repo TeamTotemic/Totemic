@@ -4,8 +4,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.lib.Strings;
 
 public class ItemBuffaloDrops extends ItemTotemic
@@ -38,10 +36,12 @@ public class ItemBuffaloDrops extends ItemTotemic
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> list)
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        for(int meta = 0; meta < Type.values().length; ++meta)
-            list.add(new ItemStack(this, 1, meta));
+        if(isInCreativeTab(tab))
+        {
+            for(int meta = 0; meta < Type.values().length; ++meta)
+                list.add(new ItemStack(this, 1, meta));
+        }
     }
 }

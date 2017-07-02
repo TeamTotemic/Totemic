@@ -14,8 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.event.terraingen.TerrainGen;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.world.TotemTreeGeneration;
@@ -65,7 +63,6 @@ public class BlockCedarSapling extends BlockSapling
         return 0;
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
