@@ -70,8 +70,7 @@ task deobfJar(type: Jar) {
 // Create API source jar
 task apiSrcJar(type: Jar) {
     from(sourceSets.main.java) {
-        include 'vazkii/**'
-        include 'totemic_commons/pokefenn/api/**'
+        include 'pokefenn/totemic/api/**'
         appendix = 'api'
     }
     classifier = 'sources'
