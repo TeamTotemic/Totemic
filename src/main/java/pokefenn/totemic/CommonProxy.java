@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.datafix.VanillaIronNugget;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
 import pokefenn.totemic.entity.boss.EntityBaykok;
@@ -39,6 +40,7 @@ public class CommonProxy
     {
         registerEntities();
         registerTileEntities();
+        ModCriteriaTriggers.init();
     }
 
     public void init(FMLInitializationEvent event)

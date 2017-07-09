@@ -1,0 +1,142 @@
+package pokefenn.totemic.advancements.criterion;
+
+import java.util.*;
+
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
+
+import net.minecraft.advancements.ICriterionTrigger;
+import net.minecraft.advancements.PlayerAdvancements;
+import net.minecraft.advancements.critereon.AbstractCriterionInstance;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.JsonUtils;
+import net.minecraft.util.ResourceLocation;
+import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.ceremony.Ceremony;
+
+public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instance>
+{
+    private static final ResourceLocation ID = new ResourceLocation(Totemic.MOD_ID, "perform_ceremony");
+
+    private final Map<PlayerAdvancements, CeremonyTrigger.Listeners> listeners = new HashMap<>();
+
+    @Override
+    public ResourceLocation getId()
+    {
+        return ID;
+    }
+
+    @Override
+    public void addListener(PlayerAdvancements advancements, Listener<Instance> listener)
+    {
+        Listeners ls = listeners.get(advancements);
+        if(ls == null)
+        {
+            ls = new Listeners(advancements);
+            listeners.put(advancements, ls);
+        }
+        ls.add(listener);
+    }
+
+    @Override
+    public void removeListener(PlayerAdvancements advancements, Listener<Instance> listener)
+    {
+        Listeners ls = listeners.get(advancements);
+        if(ls != null)
+        {
+            ls.remove(listener);
+            if(ls.isEmpty())
+                listeners.remove(advancements);
+        }
+    }
+
+    @Override
+    public void removeAllListeners(PlayerAdvancements advancements)
+    {
+        listeners.remove(advancements);
+    }
+
+    @Override
+    public Instance deserializeInstance(JsonObject json, JsonDeserializationContext context)
+    {
+        String name = JsonUtils.getString(json, "ceremony");
+        Ceremony ceremony = Totemic.api.registry().getCeremony(name);
+        if(ceremony == null)
+            throw new JsonSyntaxException("Unknown ceremony: '" + name + "'");
+        else
+            return new Instance(ceremony);
+    }
+
+    public void trigger(EntityPlayerMP player, Ceremony ceremony)
+    {
+        Listeners ls = listeners.get(player.getAdvancements());
+        if(ls != null)
+            ls.trigger(ceremony);
+    }
+
+    static class Instance extends AbstractCriterionInstance
+    {
+        private final Ceremony ceremony;
+
+        Instance(Ceremony ceremony)
+        {
+            super(ID);
+            this.ceremony = ceremony;
+        }
+
+        boolean test(Ceremony ceremony)
+        {
+            return this.ceremony == ceremony;
+        }
+    }
+
+    static class Listeners
+    {
+        private final PlayerAdvancements playerAdvancements;
+        private final Set<ICriterionTrigger.Listener<CeremonyTrigger.Instance>> listeners = new HashSet<>();
+
+        public Listeners(PlayerAdvancements playerAdvancements)
+        {
+            this.playerAdvancements = playerAdvancements;
+        }
+
+        public boolean isEmpty()
+        {
+            return listeners.isEmpty();
+        }
+
+        public void add(ICriterionTrigger.Listener<CeremonyTrigger.Instance> listener)
+        {
+            listeners.add(listener);
+        }
+
+        public void remove(ICriterionTrigger.Listener<CeremonyTrigger.Instance> listener)
+        {
+            listeners.remove(listener);
+        }
+
+        public void trigger(Ceremony ceremony)
+        {
+            List<ICriterionTrigger.Listener<CeremonyTrigger.Instance>> passed = null;
+
+            for(ICriterionTrigger.Listener<CeremonyTrigger.Instance> listener: listeners)
+            {
+                if(listener.getCriterionInstance().test(ceremony))
+                {
+                    if(passed == null)
+                        passed = new ArrayList<>();
+                    passed.add(listener);
+                }
+            }
+
+            if (passed != null)
+            {
+                for(ICriterionTrigger.Listener<CeremonyTrigger.Instance> listener: passed)
+                {
+                    listener.grantCriterion(playerAdvancements);
+                }
+            }
+        }
+    }
+}
