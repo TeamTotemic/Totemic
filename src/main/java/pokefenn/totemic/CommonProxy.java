@@ -2,6 +2,7 @@ package pokefenn.totemic;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ModFixs;
@@ -10,10 +11,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import pokefenn.totemic.datafix.VanillaIronNugget;
-import pokefenn.totemic.entity.ModEntities;
+import pokefenn.totemic.entity.animal.EntityBuffalo;
+import pokefenn.totemic.entity.boss.EntityBaykok;
+import pokefenn.totemic.entity.projectile.EntityInvisArrow;
 import pokefenn.totemic.handler.EntityFall;
 import pokefenn.totemic.handler.EntitySpawn;
 import pokefenn.totemic.handler.EntityUpdate;
@@ -33,7 +37,7 @@ public class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent event)
     {
-        ModEntities.init();
+        registerEntities();
         registerTileEntities();
     }
 
@@ -51,6 +55,13 @@ public class CommonProxy
     public void postInit(FMLPostInitializationEvent event)
     {
 
+    }
+
+    private void registerEntities()
+    {
+        EntityRegistry.registerModEntity(new ResourceLocation(Totemic.MOD_ID, Strings.BUFFALO_NAME), EntityBuffalo.class, Strings.RESOURCE_PREFIX + Strings.BUFFALO_NAME, 0, Totemic.instance, 80, 5, true, 0x2A1C12, 0x885F3E);
+        EntityRegistry.registerModEntity(new ResourceLocation(Totemic.MOD_ID, Strings.BAYKOK_NAME), EntityBaykok.class, Strings.RESOURCE_PREFIX + Strings.BAYKOK_NAME, 1, Totemic.instance, 80, 3, true, 0xE0E0E0, 0xF8DAD2);
+        EntityRegistry.registerModEntity(new ResourceLocation(Totemic.MOD_ID, Strings.INVIS_ARROW_NAME), EntityInvisArrow.class, Strings.RESOURCE_PREFIX + Strings.INVIS_ARROW_NAME, 2, Totemic.instance, 64, 20, true);
     }
 
     private void registerTileEntities()
