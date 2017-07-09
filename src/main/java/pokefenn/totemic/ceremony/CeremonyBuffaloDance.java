@@ -4,8 +4,10 @@ import java.util.List;
 
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.Loader;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -35,7 +37,10 @@ public class CeremonyBuffaloDance extends Ceremony
                 buffalo.setHealth(health);
                 buffalo.setGrowingAge(-24000);
                 EntityUtil.spawnEntity(world, cow.posX, cow.posY, cow.posZ, buffalo);
+                if(cow.getLeashed())
+                    buffalo.setLeashedToEntity(cow.getLeashedToEntity(), true);
                 cow.setDead();
+                ((WorldServer) world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, cow.posX, cow.posY + 1.0, cow.posZ, 24, 0.6D, 0.5D, 0.6D, 1.0D);
             });
     }
 
