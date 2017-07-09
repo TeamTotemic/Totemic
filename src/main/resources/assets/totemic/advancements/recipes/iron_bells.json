@@ -6,15 +6,10 @@
     ]
   },
   "criteria": {
-    "has_buffalo_hide": {
-      "trigger": "minecraft:inventory_changed",
+    "has_jingle_dress_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "items": [
-          {
-            "item": "totemic:buffalo_items",
-            "data": 0
-          }
-        ]
+        "recipe": "totemic:jingle_dress"
       }
     },
     "has_the_recipe": {
@@ -26,7 +21,7 @@
   },
   "requirements": [
     [
-      "has_buffalo_hide",
+      "has_jingle_dress_recipe",
       "has_the_recipe"
     ]
   ]

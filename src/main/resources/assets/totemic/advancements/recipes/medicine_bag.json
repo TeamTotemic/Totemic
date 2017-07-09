@@ -6,15 +6,20 @@
     ]
   },
   "criteria": {
-    "has_buffalo_teeth": {
+    "has_cedar_plank": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "totemic:buffalo_items",
-            "data": 1
+            "item": "totemic:cedar_plank"
           }
         ]
+      }
+    },
+    "performed_zaphkiel_waltz": {
+      "trigger": "totemic:perform_ceremony",
+      "conditions": {
+        "ceremony": "totemic:zaphkielWaltz"
       }
     },
     "has_the_recipe": {
@@ -26,7 +31,8 @@
   },
   "requirements": [
     [
-      "has_buffalo_teeth",
+      "has_cedar_plank",
+      "performed_zaphkiel_waltz",
       "has_the_recipe"
     ]
   ]

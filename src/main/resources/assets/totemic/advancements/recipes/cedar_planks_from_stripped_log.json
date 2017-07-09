@@ -26,6 +26,12 @@
         ]
       }
     },
+    "performed_zaphkiel_waltz": {
+      "trigger": "totemic:perform_ceremony",
+      "conditions": {
+        "ceremony": "totemic:zaphkielWaltz"
+      }
+    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -37,6 +43,7 @@
     [
       "has_log",
       "has_stripped_log",
+      "performed_zaphkiel_waltz",
       "has_the_recipe"
     ]
   ]

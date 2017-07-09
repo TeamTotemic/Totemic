@@ -17,6 +17,12 @@
         ]
       }
     },
+    "performed_buffalo_dance": {
+      "trigger": "totemic:perform_ceremony",
+      "conditions": {
+        "ceremony": "totemic:buffaloDance"
+      }    
+    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -27,6 +33,7 @@
   "requirements": [
     [
       "has_buffalo_teeth",
+      "performed_buffalo_dance",
       "has_the_recipe"
     ]
   ]
