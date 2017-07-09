@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "tipi",
+  "group": "totemic:tipi",
   "pattern": [
     " S ",
     "SWS",

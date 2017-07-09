@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "cedar_planks",
+  "group": "totemic:cedar_planks",
   "ingredients": [
     {
       "item": "totemic:cedar_log"
