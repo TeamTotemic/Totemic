@@ -1,0 +1,33 @@
+{
+  "parent": "totemic:recipes/root",
+  "rewards": {
+    "recipes": [
+      "totemic:tipi_from_hide"
+    ]
+  },
+  "criteria": {
+    "has_buffalo_hide": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "totemic:buffalo_items",
+            "data": 0
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "totemic:tipi_from_hide"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_buffalo_hide",
+      "has_the_recipe"
+    ]
+  ]
+}

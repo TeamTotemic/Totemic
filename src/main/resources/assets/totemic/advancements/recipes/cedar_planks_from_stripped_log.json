@@ -1,0 +1,43 @@
+{
+  "parent": "totemic:recipes/root",
+  "rewards": {
+    "recipes": [
+      "totemic:cedar_planks_from_stripped_log"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "totemic:cedar_log"
+          }
+        ]
+      }
+    },
+    "has_stripped_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "totemic:stripped_cedar_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "totemic:cedar_planks_from_stripped_log"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_stripped_log",
+      "has_the_recipe"
+    ]
+  ]
+}

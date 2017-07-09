@@ -1,0 +1,32 @@
+{
+  "parent": "totemic:recipes/root",
+  "rewards": {
+    "recipes": [
+      "totemic:totemic_staff"
+    ]
+  },
+  "criteria": {
+    "has_totempedia": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "totemic:totempedia"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "totemic:totemic_staff"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_totempedia",
+      "has_the_recipe"
+    ]
+  ]
+}

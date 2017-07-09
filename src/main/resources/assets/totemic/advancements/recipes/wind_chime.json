@@ -1,0 +1,32 @@
+{
+  "parent": "totemic:recipes/root",
+  "rewards": {
+    "recipes": [
+      "totemic:wind_chime"
+    ]
+  },
+  "criteria": {
+    "has_totempedia": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "totemic:totempedia"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "totemic:wind_chime"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_totempedia",
+      "has_the_recipe"
+    ]
+  ]
+}

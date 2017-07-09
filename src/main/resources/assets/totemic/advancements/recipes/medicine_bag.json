@@ -1,0 +1,33 @@
+{
+  "parent": "totemic:recipes/root",
+  "rewards": {
+    "recipes": [
+      "totemic:medicine_bag"
+    ]
+  },
+  "criteria": {
+    "has_buffalo_teeth": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "totemic:buffalo_items",
+            "data": 1
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "totemic:medicine_bag"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_buffalo_teeth",
+      "has_the_recipe"
+    ]
+  ]
+}
