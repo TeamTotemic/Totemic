@@ -1,6 +1,9 @@
 package pokefenn.totemic.advancements.criterion;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -19,7 +22,7 @@ public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instan
 {
     private static final ResourceLocation ID = new ResourceLocation(Totemic.MOD_ID, "perform_ceremony");
 
-    private final Map<PlayerAdvancements, CeremonyTrigger.Listeners> listeners = new HashMap<>();
+    private final Map<PlayerAdvancements, Listeners> listeners = new HashMap<>();
 
     @Override
     public ResourceLocation getId()
@@ -30,13 +33,7 @@ public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instan
     @Override
     public void addListener(PlayerAdvancements advancements, Listener<Instance> listener)
     {
-        Listeners ls = listeners.get(advancements);
-        if(ls == null)
-        {
-            ls = new Listeners(advancements);
-            listeners.put(advancements, ls);
-        }
-        ls.add(listener);
+        listeners.computeIfAbsent(advancements, Listeners::new).add(listener);
     }
 
     @Override
@@ -94,7 +91,7 @@ public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instan
     static class Listeners
     {
         private final PlayerAdvancements playerAdvancements;
-        private final Set<ICriterionTrigger.Listener<CeremonyTrigger.Instance>> listeners = new HashSet<>();
+        private final Set<Listener<Instance>> listeners = new HashSet<>();
 
         public Listeners(PlayerAdvancements playerAdvancements)
         {
@@ -106,37 +103,21 @@ public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instan
             return listeners.isEmpty();
         }
 
-        public void add(ICriterionTrigger.Listener<CeremonyTrigger.Instance> listener)
+        public void add(Listener<Instance> listener)
         {
             listeners.add(listener);
         }
 
-        public void remove(ICriterionTrigger.Listener<CeremonyTrigger.Instance> listener)
+        public void remove(Listener<Instance> listener)
         {
             listeners.remove(listener);
         }
 
         public void trigger(Ceremony ceremony)
         {
-            List<ICriterionTrigger.Listener<CeremonyTrigger.Instance>> passed = null;
-
-            for(ICriterionTrigger.Listener<CeremonyTrigger.Instance> listener: listeners)
-            {
-                if(listener.getCriterionInstance().test(ceremony))
-                {
-                    if(passed == null)
-                        passed = new ArrayList<>();
-                    passed.add(listener);
-                }
-            }
-
-            if (passed != null)
-            {
-                for(ICriterionTrigger.Listener<CeremonyTrigger.Instance> listener: passed)
-                {
-                    listener.grantCriterion(playerAdvancements);
-                }
-            }
+            listeners.stream()
+                .filter(listener -> listener.getCriterionInstance().test(ceremony))
+                .forEach(listener -> listener.grantCriterion(playerAdvancements));
         }
     }
 }
