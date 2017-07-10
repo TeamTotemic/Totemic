@@ -53,7 +53,7 @@ public class BlockDrum extends Block implements ITileEntityProvider
             if(!(player instanceof FakePlayer))
             {
                 tileDrum.canPlay = false;
-                TotemUtil.playMusic(world, pos, ModContent.drum, 0, 0);
+                TotemUtil.playMusic(world, pos, player, ModContent.drum, 0, 0);
                 world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
                 world.notifyBlockUpdate(pos, state, state, 7);
             }
@@ -61,7 +61,7 @@ public class BlockDrum extends Block implements ITileEntityProvider
         else
         {
             tileDrum.canPlay = false;
-            TotemUtil.playMusicForSelector(world, pos, ModContent.drum, 0);
+            TotemUtil.playMusicForSelector(world, pos, player, ModContent.drum, 0);
             world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
             world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 2, 0.0, 0.0, 0.0, 0.0);
             world.notifyBlockUpdate(pos, state, state, 7);

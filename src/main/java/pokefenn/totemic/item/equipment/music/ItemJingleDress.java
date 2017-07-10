@@ -90,7 +90,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 
     private void playMusic(World world, EntityPlayer player, ItemStack itemStack)
     {
-        TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, ModContent.jingleDress, 0, 0);
+        TotemUtil.playMusic(player, ModContent.jingleDress, 0, 0);
         particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
     }
 

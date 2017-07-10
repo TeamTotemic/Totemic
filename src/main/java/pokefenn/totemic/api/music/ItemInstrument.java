@@ -120,12 +120,12 @@ public abstract class ItemInstrument extends Item
         WorldServer world = (WorldServer) entity.world;
         if(!entity.isSneaking())
         {
-            TotemicAPI.get().music().playMusic(world, entity.posX, entity.posY, entity.posZ, instrument, bonusRadius, bonusMusic);
+            TotemicAPI.get().music().playMusic(entity, instrument, bonusRadius, bonusMusic);
             spawnParticles(world, entity.posX, entity.posY, entity.posZ, false);
         }
         else
         {
-            TotemicAPI.get().music().playMusicForSelector(world, entity.posX, entity.posY, entity.posZ, instrument, bonusRadius);
+            TotemicAPI.get().music().playMusicForSelector(entity, instrument, bonusRadius);
             spawnParticles(world, entity.posX, entity.posY, entity.posZ, true);
         }
 

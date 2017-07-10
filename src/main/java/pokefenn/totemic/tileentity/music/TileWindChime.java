@@ -99,7 +99,7 @@ public class TileWindChime extends TileTotemic implements ITickable
                     IBlockState upState = world.getBlockState(pos.up());
                     int bonus = upState.getBlock().isLeaves(upState, world, pos.up())
                             ? world.rand.nextInt(3) : 0;
-                    TotemUtil.playMusic(world, pos, ModContent.windChime, 0, bonus);
+                    TotemUtil.playMusic(world, pos, null, ModContent.windChime, 0, bonus);
                 }
         }
     }
