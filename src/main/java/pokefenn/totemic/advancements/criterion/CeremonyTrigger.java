@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
@@ -117,6 +118,7 @@ public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instan
         {
             listeners.stream()
                 .filter(listener -> listener.getCriterionInstance().test(ceremony))
+                .collect(ImmutableList.toImmutableList()) //Need this intermediate list to avoid ConcurrentModificationException
                 .forEach(listener -> listener.grantCriterion(playerAdvancements));
         }
     }

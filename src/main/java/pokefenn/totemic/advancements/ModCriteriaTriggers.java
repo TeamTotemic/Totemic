@@ -13,22 +13,15 @@ public final class ModCriteriaTriggers
 
     public static void init()
     {
-        register(PERFORM_CEREMONY);
-    }
-
-    //TODO: Remove this once Forge supports registering your own criteria
-    private static final Method registerMethod = ReflectionHelper.findMethod(CriteriaTriggers.class, "register", "func_192118_a", ICriterionTrigger.class);
-
-    private static <T extends ICriterionTrigger<?>> T register(T criterion)
-    {
+        //TODO: Remove this once Forge supports registering your own criteria
+        Method registerMethod = ReflectionHelper.findMethod(CriteriaTriggers.class, "register", "func_192118_a", ICriterionTrigger.class);
         try
         {
-            registerMethod.invoke(null, criterion);
+            registerMethod.invoke(null, PERFORM_CEREMONY);
         }
         catch(ReflectiveOperationException e)
         {
             throw new RuntimeException(e);
         }
-        return criterion;
     }
 }
