@@ -1,7 +1,10 @@
 package pokefenn.totemic.tileentity.totem;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.Multiset;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -88,9 +91,9 @@ public final class StateTotemEffect extends TotemState
     }
 
     @Override
-    void addSelector(MusicInstrument instr)
+    void addSelector(@Nullable Entity entity, MusicInstrument instr)
     {
-        tile.setState(new StateSelection(tile, instr));
+        tile.setState(new StateSelection(tile, entity, instr));
     }
 
     public int getMusicAmount()

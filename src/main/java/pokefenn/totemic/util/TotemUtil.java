@@ -69,7 +69,7 @@ public class TotemUtil
 
         getClosestAcceptor((WorldServer) world, x, y ,z, radius, radius)
             .filter(tile -> tile instanceof TileTotemBase && ((TileTotemBase) tile).canSelect())
-            .ifPresent(tile -> ((TileTotemBase) tile).addSelector(instr));
+            .ifPresent(tile -> ((TileTotemBase) tile).addSelector(entity, instr));
     }
 
     public static void playMusicForSelector(World world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr, int bonusRadius)

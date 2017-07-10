@@ -2,14 +2,19 @@ package pokefenn.totemic.tileentity.totem;
 
 import static pokefenn.totemic.Totemic.logger;
 
+import javax.annotation.Nullable;
+
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.network.NetworkHandler;
@@ -20,6 +25,7 @@ public final class StateStartup extends TotemState
     static final int ID = 2;
 
     private Ceremony ceremony;
+    private Entity initiator;
     private int time = 0;
     private final TObjectIntMap<MusicInstrument> music = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75F);
     private int totalMusic = 0;
@@ -30,10 +36,11 @@ public final class StateStartup extends TotemState
         super(tile);
     }
 
-    StateStartup(TileTotemBase tile, Ceremony ceremony)
+    StateStartup(TileTotemBase tile, @Nullable Entity initiator, Ceremony ceremony)
     {
         this(tile);
         this.ceremony = ceremony;
+        this.initiator = initiator;
     }
 
     @Override
@@ -83,6 +90,9 @@ public final class StateStartup extends TotemState
         ((WorldServer) tile.getWorld()).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
         tile.setState(new StateCeremonyEffect(tile, ceremony));
         tile.getState().update();
+
+        if(initiator instanceof EntityPlayerMP)
+            ModCriteriaTriggers.PERFORM_CEREMONY.trigger((EntityPlayerMP) initiator, ceremony);
     }
 
     @Override
@@ -115,6 +125,9 @@ public final class StateStartup extends TotemState
     @Override
     void writeToNBT(NBTTagCompound tag)
     {
+        //TODO: Maybe also save the initiator to NBT if they're a player.
+        //However this is problematic since the list of players is generally
+        //not yet available when the tile entities are loaded.
         tag.setString("ceremony", ceremony.getName());
         tag.setInteger("time", time);
         tag.setTag("ceremonyMusic", writeInstrumentMap(music));

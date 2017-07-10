@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
@@ -28,6 +31,7 @@ public final class StateSelection extends TotemState
                 .getAsInt();
 
     private final List<MusicInstrument> selectors = new ArrayList<>(ACTUAL_MAX_SELECTORS);
+    private Entity initiator;
     private int time = 0; //Time since last selection
 
     StateSelection(TileTotemBase tile)
@@ -35,10 +39,11 @@ public final class StateSelection extends TotemState
         super(tile);
     }
 
-    StateSelection(TileTotemBase tile, MusicInstrument firstSelector)
+    StateSelection(TileTotemBase tile, @Nullable Entity initiator, MusicInstrument firstSelector)
     {
         this(tile);
-        addSelector(firstSelector);
+        this.initiator = initiator;
+        addSelector(initiator, firstSelector);
     }
 
     @Override
@@ -55,7 +60,7 @@ public final class StateSelection extends TotemState
     }
 
     @Override
-    void addSelector(MusicInstrument instr)
+    void addSelector(@Nullable Entity entity, MusicInstrument instr)
     {
         BlockPos pos = tile.getPos();
         WorldServer world = (WorldServer) tile.getWorld();
@@ -74,7 +79,7 @@ public final class StateSelection extends TotemState
             if(match.isPresent())
             {
                 world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
-                tile.setState(new StateStartup(tile, match.get()));
+                tile.setState(new StateStartup(tile, initiator, match.get()));
             }
             else if(selectors.size() >= ACTUAL_MAX_SELECTORS) //No match found - only reset if the maximum number of selectors is reached
             {

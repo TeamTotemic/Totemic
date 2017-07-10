@@ -1,5 +1,8 @@
 package pokefenn.totemic.tileentity.totem;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import pokefenn.totemic.api.music.MusicAcceptor;
@@ -36,7 +39,7 @@ abstract class TotemState implements ITickable, MusicAcceptor
         return false;
     }
 
-    void addSelector(MusicInstrument instr) { }
+    void addSelector(@Nullable Entity entity, MusicInstrument instr) { }
 
     abstract int getID();
 

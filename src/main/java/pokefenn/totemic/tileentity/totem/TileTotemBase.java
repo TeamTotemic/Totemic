@@ -3,10 +3,13 @@ package pokefenn.totemic.tileentity.totem;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -136,9 +139,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         return state.canSelect();
     }
 
-    public void addSelector(MusicInstrument instr)
+    public void addSelector(@Nullable Entity entity, MusicInstrument instr)
     {
-        state.addSelector(instr);
+        state.addSelector(entity, instr);
     }
 
     public void resetState()
