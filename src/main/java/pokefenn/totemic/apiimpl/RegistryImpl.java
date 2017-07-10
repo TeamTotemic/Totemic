@@ -2,6 +2,9 @@ package pokefenn.totemic.apiimpl;
 
 import java.util.*;
 
+import javax.annotation.Nullable;
+
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicRegistry;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.lexicon.LexiconCategory;
@@ -18,8 +21,6 @@ public class RegistryImpl implements TotemicRegistry
 
     private final Map<String, Ceremony> ceremonies = new HashMap<>();
 
-    private final List<LexiconCategory> categories = new ArrayList<>();
-
     @Override
     public TotemEffect addTotem(TotemEffect effect)
     {
@@ -31,6 +32,7 @@ public class RegistryImpl implements TotemicRegistry
     }
 
     @Override
+    @Nullable
     public TotemEffect getTotem(String name)
     {
         return totemEffects.get(name);
@@ -57,6 +59,7 @@ public class RegistryImpl implements TotemicRegistry
     }
 
     @Override
+    @Nullable
     public MusicInstrument getInstrument(String name)
     {
         return instruments.get(name);
@@ -94,6 +97,7 @@ public class RegistryImpl implements TotemicRegistry
     }
 
     @Override
+    @Nullable
     public Ceremony getCeremony(String name)
     {
         return ceremonies.get(name);
@@ -105,16 +109,17 @@ public class RegistryImpl implements TotemicRegistry
         return Collections.unmodifiableMap(ceremonies);
     }
 
+    @Deprecated
     @Override
     public LexiconCategory addCategory(LexiconCategory cat)
     {
-        categories.add(cat);
-        return cat;
+        return Totemic.api.lexicon().addCategory(cat);
     }
 
+    @Deprecated
     @Override
     public List<LexiconCategory> getCategories()
     {
-        return Collections.unmodifiableList(categories);
+        return Totemic.api.lexicon().getCategories();
     }
 }

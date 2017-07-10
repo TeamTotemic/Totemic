@@ -143,7 +143,7 @@ public class GuiLexicon extends GuiScreen
             if(i < 0)
                 return;
 
-            List<LexiconCategory> categoryList = TotemicAPI.get().registry().getCategories();
+            List<LexiconCategory> categoryList = TotemicAPI.get().lexicon().getCategories();
             LexiconCategory category = i >= categoryList.size() ? null : categoryList.get(i);
 
             if(category != null)
@@ -219,7 +219,7 @@ public class GuiLexicon extends GuiScreen
 
     void populateIndex()
     {
-        List<LexiconCategory> categoryList = TotemicAPI.get().registry().getCategories();
+        List<LexiconCategory> categoryList = TotemicAPI.get().lexicon().getCategories();
         for(int i = 3; i < 12; i++)
         {
             int i_ = i - 3;

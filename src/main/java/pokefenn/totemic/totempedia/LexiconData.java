@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.ModContent;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.api.TotemicRegistry;
+import pokefenn.totemic.api.lexicon.LexiconAPI;
 import pokefenn.totemic.api.lexicon.LexiconCategory;
 import pokefenn.totemic.api.lexicon.LexiconEntry;
 import pokefenn.totemic.lib.Strings;
@@ -69,7 +69,7 @@ public final class LexiconData
 
     public static void init()
     {
-        TotemicRegistry reg = Totemic.api.registry();
+        LexiconAPI reg = Totemic.api.lexicon();
 
         reg.addCategory(categoryBasics = new LexiconCategory(Totempedia.CATEGORY_BASICS));
         //reg.addCategory(categoryDevices = new LexiconCategory(Totempedia.CATEGORY_DEVICES));

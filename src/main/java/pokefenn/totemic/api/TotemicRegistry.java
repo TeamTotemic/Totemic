@@ -71,13 +71,14 @@ public interface TotemicRegistry
     Map<String, Ceremony> getCeremonies();
 
     /**
-     * Adds a new category to the Totempedia
-     * @return cat
+     * @deprecated Use the methods in {@link TotemicAPI.API#lexicon()} instead.
      */
+    @Deprecated
     LexiconCategory addCategory(LexiconCategory cat);
 
     /**
-     * @return an immutable list of all Totempedia categories
+     * @deprecated Use the methods in {@link TotemicAPI.API#lexicon()} instead.
      */
+    @Deprecated
     List<LexiconCategory> getCategories();
 }

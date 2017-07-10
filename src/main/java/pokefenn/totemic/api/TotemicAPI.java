@@ -1,5 +1,6 @@
 package pokefenn.totemic.api;
 
+import pokefenn.totemic.api.lexicon.LexiconAPI;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 
@@ -38,5 +39,10 @@ public final class TotemicAPI
          * Provides access to functionality commonly used for implementing Totem effects
          */
         TotemEffectAPI totemEffect();
+
+        /**
+         * Provides access to functionality for adding content to the Totempedia
+         */
+        LexiconAPI lexicon();
     }
 }
