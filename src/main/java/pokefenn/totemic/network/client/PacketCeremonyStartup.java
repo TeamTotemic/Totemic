@@ -1,8 +1,7 @@
 package pokefenn.totemic.network.client;
 
-import gnu.trove.iterator.TObjectIntIterator;
-import gnu.trove.map.TObjectIntMap;
 import io.netty.buffer.ByteBuf;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -22,19 +21,14 @@ public class PacketCeremonyStartup extends SynchronizedPacketBase<PacketCeremony
     private String[] instruments = null;
     private int[] values = null;
 
-    public PacketCeremonyStartup(BlockPos pos, TObjectIntMap<MusicInstrument> ceremonyMusic, int startupTime)
+    public PacketCeremonyStartup(BlockPos pos, Object2IntMap<MusicInstrument> music, int startupTime)
     {
         this.pos = pos;
         this.startupTime = startupTime;
-        this.instruments = new String[ceremonyMusic.size()];
-        this.values = new int[ceremonyMusic.size()];
-        TObjectIntIterator<MusicInstrument> it = ceremonyMusic.iterator();
-        for(int i = 0; i < ceremonyMusic.size(); i++)
-        {
-            it.advance();
-            this.instruments[i] = it.key().getName();
-            this.values[i] = it.value();
-        }
+        this.instruments = music.keySet().stream()
+                .map(MusicInstrument::getName)
+                .toArray(String[]::new);
+        this.values = music.values().toIntArray();
     }
 
     public PacketCeremonyStartup() {}

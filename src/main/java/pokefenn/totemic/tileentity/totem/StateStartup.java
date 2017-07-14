@@ -4,8 +4,9 @@ import static pokefenn.totemic.Totemic.logger;
 
 import javax.annotation.Nullable;
 
-import gnu.trove.map.TObjectIntMap;
-import gnu.trove.map.hash.TObjectIntHashMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,9 +28,9 @@ public final class StateStartup extends TotemState
     private Ceremony ceremony;
     private Entity initiator;
     private int time = 0;
-    private final TObjectIntMap<MusicInstrument> music = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75F);
+    private final Object2IntOpenHashMap<MusicInstrument> music = new Object2IntOpenHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75F);
     private int totalMusic = 0;
-    private final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75F);
+    private final Object2IntOpenHashMap<MusicInstrument> timesPlayed = new Object2IntOpenHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75F);
 
     StateStartup(TileTotemBase tile)
     {
@@ -98,10 +99,10 @@ public final class StateStartup extends TotemState
     @Override
     public boolean addMusic(MusicInstrument instr, int amount)
     {
-        timesPlayed.adjustOrPutValue(instr, 1, 1);
+        timesPlayed.addTo(instr, 1);
         amount = getDiminishedMusic(instr, amount);
 
-        int oldVal = music.get(instr);
+        int oldVal = music.getInt(instr);
         int newVal = Math.min(oldVal + amount, instr.getMusicMaximum());
         music.put(instr, newVal);
         totalMusic += (newVal - oldVal);
@@ -110,7 +111,7 @@ public final class StateStartup extends TotemState
 
     private int getDiminishedMusic(MusicInstrument instr, int amount)
     {
-        if(timesPlayed.get(instr) >= amount)
+        if(timesPlayed.getInt(instr) >= amount)
             return amount * 3 / 4;
         else
             return amount;
@@ -148,22 +149,21 @@ public final class StateStartup extends TotemState
 
         readInstrumentMap(music, tag.getCompoundTag("ceremonyMusic"));
         totalMusic = 0;
-        music.forEachValue(amount -> { totalMusic += amount; return true; });
+        for(int i: music.values())
+            totalMusic += i;
 
         readInstrumentMap(timesPlayed, tag.getCompoundTag("timesPlayed"));
     }
 
-    private static NBTTagCompound writeInstrumentMap(TObjectIntMap<MusicInstrument> map)
+    private static NBTTagCompound writeInstrumentMap(Object2IntMap<MusicInstrument> map)
     {
         NBTTagCompound tag = new NBTTagCompound();
-        map.forEachEntry((instr, amount) -> {
-            tag.setInteger(instr.getName(), amount);
-            return true;
-        });
+        for(Entry<MusicInstrument> entry: map.object2IntEntrySet())
+            tag.setInteger(entry.getKey().getName(), entry.getIntValue());
         return tag;
     }
 
-    private static void readInstrumentMap(TObjectIntMap<MusicInstrument> map, NBTTagCompound tag)
+    private static void readInstrumentMap(Object2IntMap<MusicInstrument> map, NBTTagCompound tag)
     {
         map.clear();
         for(String key: tag.getKeySet())
