@@ -1,17 +1,20 @@
 package pokefenn.totemic.api.totem;
 
+import java.util.Objects;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 /**
  * Base class for all Totem Effects
  */
-public abstract class TotemEffect
+public abstract class TotemEffect extends IForgeRegistryEntry.Impl<TotemEffect>
 {
     /**
-     * The Totem Effect's name
+     * The Totem Effect's name, which is used for localization
      */
     protected final String name;
     /**
@@ -24,7 +27,7 @@ public abstract class TotemEffect
     protected final int interval;
 
     /**
-     * @param name a unique name for the Totem Effect
+     * @param name the unlocalized name
      * @param portable whether this Totem Effect can be used with a Medicine Bag.
      * In this case, override {@link #medicineBagEffect}.
      * @param interval the time in ticks between applications of the effect
@@ -58,10 +61,12 @@ public abstract class TotemEffect
 
     /**
      * @return the Totem Effect's name
+     * @deprecated Use {@link #getRegistryName()} instead
      */
+    @Deprecated
     public final String getName()
     {
-        return name;
+        return Objects.toString(getRegistryName(), name);
     }
 
     /**
@@ -87,11 +92,5 @@ public abstract class TotemEffect
     public String getUnlocalizedName()
     {
         return "totemic.totem." + name;
-    }
-
-    @Override
-    public String toString()
-    {
-        return name;
     }
 }

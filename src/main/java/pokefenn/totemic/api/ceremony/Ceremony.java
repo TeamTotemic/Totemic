@@ -1,6 +1,7 @@
 package pokefenn.totemic.api.ceremony;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang3.Validate;
 
@@ -9,9 +10,10 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-public abstract class Ceremony
+public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
 {
     /** The minimum number of music instruments for selecting a ceremony */
     public static final int MIN_SELECTORS = 2;
@@ -39,7 +41,7 @@ public abstract class Ceremony
 
     /**
      * Creates a new ceremony
-     * @param name a unique name for the Ceremony
+     * @param name the unlocalized name
      * @param musicNeeded the amount of music needed to start the ceremony
      * @param maxStartupTime the maximum time in ticks that starting the ceremony may take. See above for suggested values.<br>
      * This value will be adjusted depending on difficulty, see {@link #getAdjustedMaxStartupTime}.
@@ -90,10 +92,12 @@ public abstract class Ceremony
 
     /**
      * @return the Ceremony's name
+     * @deprecated Use {@link #getRegistryName()} instead
      */
+    @Deprecated
     public final String getName()
     {
-        return name;
+        return Objects.toString(getRegistryName(), name);
     }
 
     /**
@@ -149,11 +153,5 @@ public abstract class Ceremony
     public final List<MusicInstrument> getSelectors()
     {
         return selectors;
-    }
-
-    @Override
-    public String toString()
-    {
-        return name;
     }
 }

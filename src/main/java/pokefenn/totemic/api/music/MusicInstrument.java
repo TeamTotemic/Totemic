@@ -1,8 +1,11 @@
 package pokefenn.totemic.api.music;
 
-import net.minecraft.item.ItemStack;
+import java.util.Objects;
 
-public final class MusicInstrument
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.registries.IForgeRegistryEntry;
+
+public final class MusicInstrument extends IForgeRegistryEntry.Impl<MusicInstrument>
 {
     private final String name;
     private final int baseOutput;
@@ -11,7 +14,7 @@ public final class MusicInstrument
     private ItemStack itemStack = ItemStack.EMPTY;
 
     /**
-     * @param name a unique name for the instrument
+     * @param name the unlocalized name
      * @param baseOutput the base music output every time the instrument is played
      * @param musicMaximum the maximum amount of music that a Totem Base can take from this instrument
      * @param baseRange the base range at which the instrument has an effect
@@ -44,10 +47,12 @@ public final class MusicInstrument
 
     /**
      * @return the name of the instrument
+     * @deprecated Use {@link #getRegistryName()} instead
      */
+    @Deprecated
     public final String getName()
     {
-        return name;
+        return Objects.toString(getRegistryName(), name);
     }
 
     /**
@@ -81,11 +86,5 @@ public final class MusicInstrument
     public int getBaseRange()
     {
         return baseRange;
-    }
-
-    @Override
-    public String toString()
-    {
-        return name;
     }
 }
