@@ -29,7 +29,7 @@
     "performed_zaphkiel_waltz": {
       "trigger": "totemic:perform_ceremony",
       "conditions": {
-        "ceremony": "totemic:zaphkielWaltz"
+        "ceremony": "totemic:zaphkiel_waltz"
       }
     },
     "has_the_recipe": {

@@ -20,7 +20,7 @@
     "performed_buffalo_dance": {
       "trigger": "totemic:perform_ceremony",
       "conditions": {
-        "ceremony": "totemic:buffaloDance"
+        "ceremony": "totemic:buffalo_dance"
       }    
     },
     "has_the_recipe": {
