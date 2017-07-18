@@ -35,7 +35,7 @@ public final class Totemic
     @SidedProxy(clientSide = "pokefenn.totemic.ClientProxy", serverSide = "pokefenn.totemic.CommonProxy")
     public static CommonProxy proxy;
 
-    public static final ApiImpl api = new ApiImpl();
+    public static final TotemicAPI.API api = new ApiImpl();
     public static final CreativeTabs tabsTotem = new CreativeTabTotemic(MOD_ID);
     public static final Logger logger = LogManager.getLogger(MOD_NAME);
 

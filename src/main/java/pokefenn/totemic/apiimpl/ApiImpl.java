@@ -12,6 +12,7 @@ public final class ApiImpl implements TotemicAPI.API
     private final TotemEffectApiImpl totemEffectApi = new TotemEffectApiImpl();
     private final LexiconApiImpl lexiconApi = new LexiconApiImpl();
 
+    @Deprecated
     @Override
     public RegistryImpl registry()
     {

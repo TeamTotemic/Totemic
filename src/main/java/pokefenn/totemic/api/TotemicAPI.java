@@ -1,5 +1,6 @@
 package pokefenn.totemic.api;
 
+import net.minecraftforge.event.RegistryEvent;
 import pokefenn.totemic.api.lexicon.LexiconAPI;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
@@ -27,7 +28,10 @@ public final class TotemicAPI
     {
         /**
          * Provides access to Totemic's registries
+         * @deprecated Instruments, Totem Effects and Ceremonies now use Forge's registry system.
+         * Use {@link RegistryEvent.Register} to register them.
          */
+        @Deprecated
         TotemicRegistry registry();
 
         /**

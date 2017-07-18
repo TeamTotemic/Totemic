@@ -21,6 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.ModBlocks;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.apiimpl.RegistryImpl;
 import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.block.totem.BlockTotemPole;
 import pokefenn.totemic.item.ItemTotemic;
@@ -133,7 +134,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction)
     {
-        List<String> totemList = Totemic.api.registry().getTotemList();
+        List<String> totemList = ((RegistryImpl) Totemic.api.registry()).getTotemList();
         ItemStack stack = itemStack.copy();
         int index = totemList.indexOf(ItemUtil.getOrCreateTag(stack).getString(KNIFE_TOTEM_KEY));
 
