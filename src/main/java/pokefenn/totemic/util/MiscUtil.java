@@ -34,4 +34,17 @@ public class MiscUtil
                 .map(s -> s.toLowerCase(Locale.ROOT))
                 .collect(Collectors.joining("_"));
     }
+
+    /**
+     * If the mod ID prefix is missing from the name, adds Totemic's prefix.<br>
+     * If the name is not lowercase, converts it from camel case to snake case.
+     */
+    public static String fixResourceName(String name)
+    {
+        int index = name.lastIndexOf(':');
+        String prefix = (index >= 0) ? name.substring(0, index) : "totemic";
+        String bareName = name.substring(index + 1);
+        String snakeCasedName = camelToSnakeCase(bareName);
+        return prefix.toLowerCase(Locale.ROOT) + ':' + snakeCasedName;
+    }
 }

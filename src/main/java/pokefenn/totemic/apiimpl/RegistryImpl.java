@@ -31,13 +31,21 @@ public class RegistryImpl implements TotemicRegistry
         static final IForgeRegistry<Ceremony> CEREMONIES = GameRegistry.findRegistry(Ceremony.class);
     }
 
-    private static String convertName(String name)
+    private static String checkAndFixName(String name, String description)
     {
-        int index = name.lastIndexOf(':');
-        String prefix = (index >= 0) ? name.substring(0, index) : "";
-        String bareName = name.substring(index + 1);
-        String snakeCasedName = MiscUtil.camelToSnakeCase(bareName);
-        return (index >= 0) ? (prefix.toLowerCase(Locale.ROOT) + ':' + snakeCasedName) : snakeCasedName;
+        if(!name.contains(":"))
+        {
+            logger.warn("The {} name '{}' is missing the mod ID. Prefixing with 'totemic:'.", description, name);
+            name = "totemic:" + name;
+        }
+
+        if(!name.equals(name.toLowerCase(Locale.ROOT)))
+        {
+            String oldName = name;
+            name = MiscUtil.fixResourceName(oldName);
+            logger.warn("The {} name is not lowercase, converting from camel to snake case: '{}' -> '{}'", description, oldName, name);
+        }
+        return name;
     }
 
     @Override
@@ -47,13 +55,7 @@ public class RegistryImpl implements TotemicRegistry
         {
             @SuppressWarnings("deprecation")
             String name = effect.getName();
-            if(!name.equals(name.toLowerCase(Locale.ROOT)))
-            {
-                String oldName = name;
-                name = convertName(oldName);
-                logger.warn("The Totem Effect name is not lowercase, converting from camel to snake case: '{}' -> '{}'", oldName, name);
-            }
-            effect.setRegistryName(name);
+            effect.setRegistryName(checkAndFixName(name, "Totem Effect"));
         }
 
         Lazy.TOTEM_EFFECTS.register(effect);
@@ -85,13 +87,7 @@ public class RegistryImpl implements TotemicRegistry
         {
             @SuppressWarnings("deprecation")
             String name = instrument.getName();
-            if(!name.equals(name.toLowerCase(Locale.ROOT)))
-            {
-                String oldName = name;
-                name = convertName(oldName);
-                logger.warn("The Music Instrument name is not lowercase, converting from camel to snake case: '{}' -> '{}'", oldName, name);
-            }
-            instrument.setRegistryName(name);
+            instrument.setRegistryName(checkAndFixName(name, "Music Instrument"));
         }
 
         Lazy.INSTRUMENTS.register(instrument);
@@ -137,13 +133,7 @@ public class RegistryImpl implements TotemicRegistry
         {
             @SuppressWarnings("deprecation")
             String name = ceremony.getName();
-            if(!name.equals(name.toLowerCase(Locale.ROOT)))
-            {
-                String oldName = name;
-                name = convertName(oldName);
-                logger.warn("The Ceremony name is not lowercase, converting from camel to snake case: '{}' -> '{}'", oldName, name);
-            }
-            ceremony.setRegistryName(name);
+            ceremony.setRegistryName(checkAndFixName(name, "Ceremony"));
         }
 
         Lazy.CEREMONIES.register(ceremony);
