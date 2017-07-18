@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
+import pokefenn.totemic.datafix.CamelCaseNamesItems;
 import pokefenn.totemic.datafix.CamelCaseNamesTiles;
 import pokefenn.totemic.datafix.VanillaIronNugget;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
@@ -104,6 +105,7 @@ public class CommonProxy
         ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 1010);
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new VanillaIronNugget());
         fixes.registerFix(FixTypes.BLOCK_ENTITY, new CamelCaseNamesTiles());
+        fixes.registerFix(FixTypes.ITEM_INSTANCE, new CamelCaseNamesItems());
     }
 
     protected void registerEventHandlers()
