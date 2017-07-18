@@ -54,6 +54,7 @@ public final class ModContent
     {
         TotemicRegistry reg = Totemic.api.registry();
 
+        reg.addTotem(new TotemEffectPotion("totemic:camelCaseTest", MobEffects.MINING_FATIGUE));
         batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", true, 9, ModPotions.batPotion, 10, 0));
         blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze"));
         buffaloTotem = reg.addTotem(new TotemEffectPotion("totemic:buffalo", MobEffects.HASTE));
