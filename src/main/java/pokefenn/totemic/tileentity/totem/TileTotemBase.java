@@ -89,8 +89,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         if(state != this.state)
         {
             this.state = state;
-            markForUpdate();
-            markDirty();
+            if(world != null) //prevent NPE when called during loading
+            {
+                markForUpdate();
+                markDirty();
+            }
         }
     }
 
