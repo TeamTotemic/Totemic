@@ -2,6 +2,12 @@ package pokefenn.totemic;
 
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry.AddCallback;
+import net.minecraftforge.registries.RegistryBuilder;
 import pokefenn.totemic.api.TotemicRegistry;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -12,6 +18,7 @@ import pokefenn.totemic.totem.TotemEffectBlaze;
 import pokefenn.totemic.totem.TotemEffectCow;
 import pokefenn.totemic.totem.TotemEffectOcelot;
 
+@EventBusSubscriber(modid = Totemic.MOD_ID)
 public final class ModContent
 {
     public static TotemEffect batTotem;
@@ -119,4 +126,16 @@ public final class ModContent
                 windChime, flute));
     }
 
+    @SubscribeEvent
+    public static void createRegistries(RegistryEvent.NewRegistry event)
+    {
+        //RegistryEvents are fired in alphabetic order.
+        //Instruments have to be registered before Ceremonies.
+        new RegistryBuilder<MusicInstrument>().setName(new ResourceLocation(Totemic.MOD_ID, "a_music_instruments")).setType(MusicInstrument.class).setMaxID(Byte.MAX_VALUE).disableSaving().create();
+        new RegistryBuilder<TotemEffect>().setName(new ResourceLocation(Totemic.MOD_ID, "b_totem_effects")).setType(TotemEffect.class).setMaxID(Byte.MAX_VALUE).disableSaving().create();
+        new RegistryBuilder<Ceremony>().setName(new ResourceLocation(Totemic.MOD_ID, "c_ceremonies")).setType(Ceremony.class).setMaxID(Byte.MAX_VALUE).disableSaving().add(
+                (AddCallback<Ceremony>)(owner, stage, id, obj, oldObj) -> {
+                    //TODO: Implement checking for prefixing selectors
+                }).create();
+    }
 }

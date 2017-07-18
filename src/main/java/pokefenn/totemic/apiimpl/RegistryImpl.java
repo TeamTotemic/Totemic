@@ -1,33 +1,33 @@
 package pokefenn.totemic.apiimpl;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicRegistry;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.lexicon.LexiconCategory;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemEffect;
-import pokefenn.totemic.util.MathsUtil;
 
 public class RegistryImpl implements TotemicRegistry
 {
-    private final Map<String, TotemEffect> totemEffects = new HashMap<>();
-    private final List<String> totemList = new ArrayList<>();
-
-    private final Map<String, MusicInstrument> instruments = new HashMap<>();
-
-    private final Map<String, Ceremony> ceremonies = new HashMap<>();
+    private static class Lazy
+    {
+        static final IForgeRegistry<MusicInstrument> INSTRUMENTS = GameRegistry.findRegistry(MusicInstrument.class);
+        static final IForgeRegistry<TotemEffect> TOTEM_EFFECTS = GameRegistry.findRegistry(TotemEffect.class);
+        static final IForgeRegistry<Ceremony> CEREMONIES = GameRegistry.findRegistry(Ceremony.class);
+    }
 
     @Override
     public TotemEffect addTotem(TotemEffect effect)
     {
-        if(totemEffects.containsKey(effect.getName()))
-            throw new IllegalArgumentException("Duplicate Totem entry for ID " + effect.getName());
-        totemEffects.put(effect.getName(), effect);
-        totemList.add(effect.getName());
+        Lazy.TOTEM_EFFECTS.register(effect);
         return effect;
     }
 
@@ -35,26 +35,27 @@ public class RegistryImpl implements TotemicRegistry
     @Nullable
     public TotemEffect getTotem(String name)
     {
-        return totemEffects.get(name);
+        return Lazy.TOTEM_EFFECTS.getValue(new ResourceLocation(name));
     }
 
     @Override
     public Map<String, TotemEffect> getTotems()
     {
-        return Collections.unmodifiableMap(totemEffects);
+        //FIXME
+        throw new UnsupportedOperationException();
+        //return Collections.unmodifiableMap(totemEffects);
     }
 
     public List<String> getTotemList()
     {
-        return Collections.unmodifiableList(totemList);
+        throw new UnsupportedOperationException();
+        //return Collections.unmodifiableList(totemList);
     }
 
     @Override
     public MusicInstrument addInstrument(MusicInstrument instrument)
     {
-        if(instruments.containsKey(instrument.getName()))
-            throw new IllegalArgumentException("Duplicate Music instrument entry for ID " + instrument.getName());
-        instruments.put(instrument.getName(), instrument);
+        Lazy.INSTRUMENTS.register(instrument);
         return instrument;
     }
 
@@ -62,19 +63,20 @@ public class RegistryImpl implements TotemicRegistry
     @Nullable
     public MusicInstrument getInstrument(String name)
     {
-        return instruments.get(name);
+        return Lazy.INSTRUMENTS.getValue(new ResourceLocation(name));
     }
 
     @Override
     public Map<String, MusicInstrument> getInstruments()
     {
-        return Collections.unmodifiableMap(instruments);
+        throw new UnsupportedOperationException();
+        //return Collections.unmodifiableMap(instruments);
     }
 
     @Override
     public Ceremony addCeremony(Ceremony ceremony)
     {
-        if(ceremonies.containsKey(ceremony.getName()))
+        /*if(ceremonies.containsKey(ceremony.getName()))
             throw new IllegalArgumentException("Duplicate Ceremony entry for ID " + ceremony.getName());
         //Search for ambiguous selectors
         //The selectors for ceremonies have to be prefix-free in order to ensure
@@ -92,7 +94,8 @@ public class RegistryImpl implements TotemicRegistry
                     ceremony.getName(), other.getName(), ceremony.getSelectors(), other.getSelectors()));
         }
 
-        ceremonies.put(ceremony.getName(), ceremony);
+        ceremonies.put(ceremony.getName(), ceremony);*/
+        Lazy.CEREMONIES.register(ceremony);
         return ceremony;
     }
 
@@ -100,13 +103,14 @@ public class RegistryImpl implements TotemicRegistry
     @Nullable
     public Ceremony getCeremony(String name)
     {
-        return ceremonies.get(name);
+        return Lazy.CEREMONIES.getValue(new ResourceLocation(name));
     }
 
     @Override
     public Map<String, Ceremony> getCeremonies()
     {
-        return Collections.unmodifiableMap(ceremonies);
+        throw new UnsupportedOperationException();
+        //return Collections.unmodifiableMap(ceremonies);
     }
 
     @Deprecated
