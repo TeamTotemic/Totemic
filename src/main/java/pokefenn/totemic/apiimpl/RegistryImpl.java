@@ -2,15 +2,18 @@ package pokefenn.totemic.apiimpl;
 
 import static pokefenn.totemic.Totemic.logger;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Nullable;
+
+import com.google.common.collect.Iterators;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicRegistry;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -67,15 +70,12 @@ public class RegistryImpl implements TotemicRegistry
     @Override
     public Map<String, TotemEffect> getTotems()
     {
-        //FIXME
-        throw new UnsupportedOperationException();
-        //return Collections.unmodifiableMap(totemEffects);
+        return wrapRegistry(Lazy.TOTEM_EFFECTS);
     }
 
     public List<String> getTotemList()
     {
-        throw new UnsupportedOperationException();
-        //return Collections.unmodifiableList(totemList);
+        return Lists.transform(Lazy.TOTEM_EFFECTS.getValues(), t -> t.getRegistryName().toString());
     }
 
     @Override
@@ -108,8 +108,7 @@ public class RegistryImpl implements TotemicRegistry
     @Override
     public Map<String, MusicInstrument> getInstruments()
     {
-        throw new UnsupportedOperationException();
-        //return Collections.unmodifiableMap(instruments);
+        return wrapRegistry(Lazy.INSTRUMENTS);
     }
 
     @Override
@@ -161,8 +160,7 @@ public class RegistryImpl implements TotemicRegistry
     @Override
     public Map<String, Ceremony> getCeremonies()
     {
-        throw new UnsupportedOperationException();
-        //return Collections.unmodifiableMap(ceremonies);
+        return wrapRegistry(Lazy.CEREMONIES);
     }
 
     @Deprecated
@@ -177,5 +175,36 @@ public class RegistryImpl implements TotemicRegistry
     public List<LexiconCategory> getCategories()
     {
         return Totemic.api.lexicon().getCategories();
+    }
+
+    private static <T extends IForgeRegistryEntry<T>> Map<String, T> wrapRegistry(IForgeRegistry<T> registry)
+    {
+        Set<String> keys = new AbstractSet<String>()
+        {
+            @Override
+            public Iterator<String> iterator()
+            {
+                return Iterators.transform(registry.getKeys().iterator(), ResourceLocation::toString);
+            }
+
+            @Override
+            public int size()
+            {
+                return registry.getKeys().size();
+            }
+
+            @Override
+            public boolean contains(Object o)
+            {
+                return registry.containsKey(new ResourceLocation((String) o));
+            }
+
+            @Override
+            public boolean remove(Object o)
+            {
+                throw new UnsupportedOperationException();
+            }
+        };
+        return Maps.asMap(keys, s -> registry.getValue(new ResourceLocation(s)));
     }
 }
