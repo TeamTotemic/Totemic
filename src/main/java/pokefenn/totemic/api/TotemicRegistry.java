@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import net.minecraftforge.event.RegistryEvent;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.lexicon.LexiconCategory;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -13,7 +14,11 @@ import pokefenn.totemic.api.totem.TotemEffect;
 /**
  * Provides access to Totemic's registries.
  * Use {@code TotemicAPI.get().registry()} to get an instance of this interface.
+ * @deprecated Instruments, Totem Effects and Ceremonies now use Forge's registry system.
+ * Use {@link RegistryEvent.Register} to register them.<br>
+ * Replaced by {@link TotemicRegistries}.
  */
+@Deprecated
 public interface TotemicRegistry
 {
     /**

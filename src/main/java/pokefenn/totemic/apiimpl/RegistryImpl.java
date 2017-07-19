@@ -11,10 +11,10 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.TotemicRegistry;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.lexicon.LexiconCategory;
@@ -22,15 +22,9 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.util.MiscUtil;
 
+@SuppressWarnings("deprecation")
 public class RegistryImpl implements TotemicRegistry
 {
-    private static class Lazy
-    {
-        static final IForgeRegistry<MusicInstrument> INSTRUMENTS = GameRegistry.findRegistry(MusicInstrument.class);
-        static final IForgeRegistry<TotemEffect> TOTEM_EFFECTS = GameRegistry.findRegistry(TotemEffect.class);
-        static final IForgeRegistry<Ceremony> CEREMONIES = GameRegistry.findRegistry(Ceremony.class);
-    }
-
     private static String checkAndFixName(String name, String description)
     {
         if(!name.contains(":"))
@@ -53,12 +47,11 @@ public class RegistryImpl implements TotemicRegistry
     {
         if(effect.getRegistryName() == null)
         {
-            @SuppressWarnings("deprecation")
             String name = effect.getName();
             effect.setRegistryName(checkAndFixName(name, "Totem Effect"));
         }
 
-        Lazy.TOTEM_EFFECTS.register(effect);
+        TotemicRegistries.totemEffects().register(effect);
         return effect;
     }
 
@@ -66,18 +59,18 @@ public class RegistryImpl implements TotemicRegistry
     @Nullable
     public TotemEffect getTotem(String name)
     {
-        return Lazy.TOTEM_EFFECTS.getValue(new ResourceLocation(name));
+        return TotemicRegistries.totemEffects().getValue(new ResourceLocation(name));
     }
 
     @Override
     public Map<String, TotemEffect> getTotems()
     {
-        return wrapRegistry(Lazy.TOTEM_EFFECTS);
+        return wrapRegistry(TotemicRegistries.totemEffects());
     }
 
     public List<String> getTotemList()
     {
-        return Lists.transform(Lazy.TOTEM_EFFECTS.getValues(), t -> t.getRegistryName().toString());
+        return Lists.transform(TotemicRegistries.totemEffects().getValues(), t -> t.getRegistryName().toString());
     }
 
     @Override
@@ -85,12 +78,11 @@ public class RegistryImpl implements TotemicRegistry
     {
         if(instrument.getRegistryName() == null)
         {
-            @SuppressWarnings("deprecation")
             String name = instrument.getName();
             instrument.setRegistryName(checkAndFixName(name, "Music Instrument"));
         }
 
-        Lazy.INSTRUMENTS.register(instrument);
+        TotemicRegistries.instruments().register(instrument);
         return instrument;
     }
 
@@ -98,13 +90,13 @@ public class RegistryImpl implements TotemicRegistry
     @Nullable
     public MusicInstrument getInstrument(String name)
     {
-        return Lazy.INSTRUMENTS.getValue(new ResourceLocation(name));
+        return TotemicRegistries.instruments().getValue(new ResourceLocation(name));
     }
 
     @Override
     public Map<String, MusicInstrument> getInstruments()
     {
-        return wrapRegistry(Lazy.INSTRUMENTS);
+        return wrapRegistry(TotemicRegistries.instruments());
     }
 
     @Override
@@ -131,12 +123,11 @@ public class RegistryImpl implements TotemicRegistry
         ceremonies.put(ceremony.getName(), ceremony);*/
         if(ceremony.getRegistryName() == null)
         {
-            @SuppressWarnings("deprecation")
             String name = ceremony.getName();
             ceremony.setRegistryName(checkAndFixName(name, "Ceremony"));
         }
 
-        Lazy.CEREMONIES.register(ceremony);
+        TotemicRegistries.ceremonies().register(ceremony);
         return ceremony;
     }
 
@@ -144,13 +135,13 @@ public class RegistryImpl implements TotemicRegistry
     @Nullable
     public Ceremony getCeremony(String name)
     {
-        return Lazy.CEREMONIES.getValue(new ResourceLocation(name));
+        return TotemicRegistries.ceremonies().getValue(new ResourceLocation(name));
     }
 
     @Override
     public Map<String, Ceremony> getCeremonies()
     {
-        return wrapRegistry(Lazy.CEREMONIES);
+        return wrapRegistry(TotemicRegistries.ceremonies());
     }
 
     @Deprecated

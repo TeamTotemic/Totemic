@@ -29,7 +29,8 @@ public final class TotemicAPI
         /**
          * Provides access to Totemic's registries
          * @deprecated Instruments, Totem Effects and Ceremonies now use Forge's registry system.
-         * Use {@link RegistryEvent.Register} to register them.
+         * Use {@link RegistryEvent.Register} to register them.<br>
+         * You can access the registries from {@link TotemicRegistries}.
          */
         @Deprecated
         TotemicRegistry registry();

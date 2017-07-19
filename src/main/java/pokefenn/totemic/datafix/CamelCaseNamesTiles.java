@@ -19,7 +19,7 @@ public class CamelCaseNamesTiles implements IFixableData
         return 1010;
     }
 
-    public static String checkAndFixName(String name, String description)
+    static String checkAndFixName(String name, String description)
     {
         if(!name.contains(":") || !name.equals(name.toLowerCase(Locale.ROOT)))
         {
@@ -30,7 +30,7 @@ public class CamelCaseNamesTiles implements IFixableData
         return name;
     }
 
-    private static NBTTagCompound fixCompoundKeys(NBTTagCompound tag, String description)
+    static NBTTagCompound fixCompoundKeys(NBTTagCompound tag, String description)
     {
         NBTTagCompound fixed = new NBTTagCompound();
         for(String name: tag.getKeySet())
