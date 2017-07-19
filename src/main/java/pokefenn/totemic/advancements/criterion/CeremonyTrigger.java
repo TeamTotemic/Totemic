@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
 
 public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instance>
@@ -59,7 +60,7 @@ public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instan
     public Instance deserializeInstance(JsonObject json, JsonDeserializationContext context)
     {
         String name = JsonUtils.getString(json, "ceremony");
-        Ceremony ceremony = Totemic.api.registry().getCeremony(name);
+        Ceremony ceremony = TotemicRegistries.ceremonies().getValue(new ResourceLocation(name));
         if(ceremony == null)
             throw new JsonSyntaxException("Unknown ceremony: '" + name + "'");
         else

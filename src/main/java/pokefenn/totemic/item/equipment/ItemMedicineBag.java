@@ -24,7 +24,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.item.ItemTotemic;
 import pokefenn.totemic.lib.Strings;
@@ -48,7 +48,7 @@ public class ItemMedicineBag extends ItemTotemic
     public static Optional<TotemEffect> getEffect(ItemStack stack)
     {
         return Optional.ofNullable(stack.getTagCompound())
-                .map(tag -> Totemic.api.registry().getTotem(tag.getString(MED_BAG_TOTEM_KEY)));
+                .map(tag -> TotemicRegistries.totemEffects().getValue(new ResourceLocation(tag.getString(MED_BAG_TOTEM_KEY))));
     }
 
     public static int getCharge(ItemStack stack)
@@ -154,7 +154,7 @@ public class ItemMedicineBag extends ItemTotemic
 
                 ItemStack newStack = stack.copy();
                 NBTTagCompound tag = ItemUtil.getOrCreateTag(newStack);
-                tag.setString(MED_BAG_TOTEM_KEY, effect.getName());
+                tag.setString(MED_BAG_TOTEM_KEY, effect.getRegistryName().toString());
                 if(tag.getInteger(MED_BAG_CHARGE_KEY) != -1)
                     tag.setInteger(MED_BAG_CHARGE_KEY, 0);
                 player.setHeldItem(hand, newStack);

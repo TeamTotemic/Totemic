@@ -18,7 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemBase;
@@ -37,7 +37,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     private TotemState state = new StateTotemEffect(this);
 
     private final List<TotemEffect> totemEffectList = new ArrayList<>(MAX_POLE_SIZE);
-    private final Multiset<TotemEffect> totemEffects = HashMultiset.create(Totemic.api.registry().getTotems().size());
+    private final Multiset<TotemEffect> totemEffects = HashMultiset.create(TotemicRegistries.totemEffects().getEntries().size());
 
     @Override
     public void update()

@@ -14,9 +14,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
-import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 
@@ -25,7 +26,7 @@ public final class StateSelection extends TotemState
     static final int ID = 1;
 
     private static final int ACTUAL_MAX_SELECTORS =
-            Totemic.api.registry().getCeremonies().values().stream()
+            TotemicRegistries.ceremonies().getValues().stream()
                 .mapToInt(cer -> cer.getSelectors().size())
                 .max()
                 .getAsInt();
@@ -72,7 +73,7 @@ public final class StateSelection extends TotemState
 
         if(selectors.size() >= Ceremony.MIN_SELECTORS)
         {
-            Optional<Ceremony> match = Totemic.api.registry().getCeremonies().values().stream()
+            Optional<Ceremony> match = TotemicRegistries.ceremonies().getValues().stream()
                 .filter(this::selectorsMatch)
                 .findAny();
 
@@ -111,7 +112,7 @@ public final class StateSelection extends TotemState
     {
         NBTTagList selectorsTag = new NBTTagList();
         for(MusicInstrument instr: selectors)
-            selectorsTag.appendTag(new NBTTagString(instr.getName()));
+            selectorsTag.appendTag(new NBTTagString(instr.getRegistryName().toString()));
         tag.setTag("selectors", selectorsTag);
     }
 
@@ -121,7 +122,7 @@ public final class StateSelection extends TotemState
         NBTTagList selectorsTag = tag.getTagList("selectors", 8);
         for(int i = 0; i < selectorsTag.tagCount(); i++)
         {
-            MusicInstrument instr = Totemic.api.registry().getInstrument(selectorsTag.getStringTagAt(i));
+            MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(selectorsTag.getStringTagAt(i)));
             if(instr != null)
                 selectors.add(instr);
             else

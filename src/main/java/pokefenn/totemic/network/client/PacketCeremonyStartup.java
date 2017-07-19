@@ -26,7 +26,7 @@ public class PacketCeremonyStartup extends SynchronizedPacketBase<PacketCeremony
         this.pos = pos;
         this.startupTime = startupTime;
         this.instruments = music.keySet().stream()
-                .map(MusicInstrument::getName)
+                .map(instr -> instr.getRegistryName().toString())
                 .toArray(String[]::new);
         this.values = music.values().toIntArray();
     }

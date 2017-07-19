@@ -4,24 +4,22 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.ImmutableList;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.ModBlocks;
-import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
-import pokefenn.totemic.apiimpl.RegistryImpl;
 import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.block.totem.BlockTotemPole;
 import pokefenn.totemic.item.ItemTotemic;
@@ -57,7 +55,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
         String name = tag.getString(KNIFE_TOTEM_KEY);
         if(!name.equals(TOTEM_BASE_PLACEHOLDER_NAME))
-            return Totemic.api.registry().getTotem(name);
+            return TotemicRegistries.totemEffects().getValue(new ResourceLocation(name));
         else
             return null;
     }
@@ -132,9 +130,18 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         }
     }
 
+    private static List<String> totemList;
+
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction)
     {
-        List<String> totemList = ((RegistryImpl) Totemic.api.registry()).getTotemList();
+        if(totemList == null)
+        {
+            totemList = TotemicRegistries.totemEffects().getKeys().stream()
+                    .map(ResourceLocation::toString)
+                    .sorted() //TODO: Possibly change the sorting order
+                    .collect(ImmutableList.toImmutableList());
+        }
+
         ItemStack stack = itemStack.copy();
         int index = totemList.indexOf(ItemUtil.getOrCreateTag(stack).getString(KNIFE_TOTEM_KEY));
 

@@ -11,11 +11,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.network.NetworkHandler;
@@ -28,9 +29,9 @@ public final class StateStartup extends TotemState
     private Ceremony ceremony;
     private Entity initiator;
     private int time = 0;
-    private final Object2IntOpenHashMap<MusicInstrument> music = new Object2IntOpenHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75F);
+    private final Object2IntOpenHashMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size(), 0.75F);
     private int totalMusic = 0;
-    private final Object2IntOpenHashMap<MusicInstrument> timesPlayed = new Object2IntOpenHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75F);
+    private final Object2IntOpenHashMap<MusicInstrument> timesPlayed = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size(), 0.75F);
 
     StateStartup(TileTotemBase tile)
     {
@@ -129,7 +130,7 @@ public final class StateStartup extends TotemState
         //TODO: Maybe also save the initiator to NBT if they're a player.
         //However this is problematic since the list of players is generally
         //not yet available when the tile entities are loaded.
-        tag.setString("ceremony", ceremony.getName());
+        tag.setString("ceremony", ceremony.getRegistryName().toString());
         tag.setInteger("time", time);
         tag.setTag("ceremonyMusic", writeInstrumentMap(music));
         tag.setTag("timesPlayed", writeInstrumentMap(timesPlayed));
@@ -138,7 +139,7 @@ public final class StateStartup extends TotemState
     @Override
     void readFromNBT(NBTTagCompound tag)
     {
-        ceremony = Totemic.api.registry().getCeremony(tag.getString("ceremony"));
+        ceremony = TotemicRegistries.ceremonies().getValue(new ResourceLocation(tag.getString("ceremony")));
         if(ceremony == null)
         {
             logger.warn("Unknown ceremony: {}", tag.getString("ceremony"));
@@ -159,7 +160,7 @@ public final class StateStartup extends TotemState
     {
         NBTTagCompound tag = new NBTTagCompound();
         for(Entry<MusicInstrument> entry: map.object2IntEntrySet())
-            tag.setInteger(entry.getKey().getName(), entry.getIntValue());
+            tag.setInteger(entry.getKey().getRegistryName().toString(), entry.getIntValue());
         return tag;
     }
 
@@ -168,7 +169,7 @@ public final class StateStartup extends TotemState
         map.clear();
         for(String key: tag.getKeySet())
         {
-            MusicInstrument instr = Totemic.api.registry().getInstrument(key);
+            MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(key));
             if(instr != null)
                 map.put(instr, tag.getInteger(key));
             else
@@ -202,7 +203,7 @@ public final class StateStartup extends TotemState
         totalMusic = 0;
         for(int i = 0; i < instruments.length; i++)
         {
-            MusicInstrument instr = Totemic.api.registry().getInstrument(instruments[i]);
+            MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(instruments[i]));
             if(instr != null)
             {
                 music.put(instr, values[i]);

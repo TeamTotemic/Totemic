@@ -5,8 +5,9 @@ import javax.annotation.Nullable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.Constants;
-import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.tileentity.TileTotemic;
 
@@ -49,7 +50,7 @@ public class TileTotemPole extends TileTotemic
     {
         super.readFromNBT(tag);
         if(tag.hasKey("effect", Constants.NBT.TAG_STRING))
-            effect = Totemic.api.registry().getTotem(tag.getString("effect"));
+            effect = TotemicRegistries.totemEffects().getValue(new ResourceLocation(tag.getString("effect")));
     }
 
     @Override
@@ -57,7 +58,7 @@ public class TileTotemPole extends TileTotemic
     {
         tag = super.writeToNBT(tag);
         if(effect != null)
-            tag.setString("effect", effect.getName());
+            tag.setString("effect", effect.getRegistryName().toString());
         return tag;
     }
 

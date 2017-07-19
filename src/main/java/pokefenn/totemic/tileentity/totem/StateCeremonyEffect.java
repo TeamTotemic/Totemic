@@ -3,7 +3,8 @@ package pokefenn.totemic.tileentity.totem;
 import static pokefenn.totemic.Totemic.logger;
 
 import net.minecraft.nbt.NBTTagCompound;
-import pokefenn.totemic.Totemic;
+import net.minecraft.util.ResourceLocation;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 
@@ -62,14 +63,14 @@ public final class StateCeremonyEffect extends TotemState
     @Override
     void writeToNBT(NBTTagCompound tag)
     {
-        tag.setString("ceremony", ceremony.getName());
+        tag.setString("ceremony", ceremony.getRegistryName().toString());
         tag.setInteger("time", time);
     }
 
     @Override
     void readFromNBT(NBTTagCompound tag)
     {
-        ceremony = Totemic.api.registry().getCeremony(tag.getString("ceremony"));
+        ceremony = TotemicRegistries.ceremonies().getValue(new ResourceLocation(tag.getString("ceremony")));
         if(ceremony == null)
         {
             logger.warn("Unknown ceremony: {}", tag.getString("ceremony"));
