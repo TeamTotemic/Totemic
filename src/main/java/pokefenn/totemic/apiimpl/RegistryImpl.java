@@ -102,25 +102,6 @@ public class RegistryImpl implements TotemicRegistry
     @Override
     public Ceremony addCeremony(Ceremony ceremony)
     {
-        /*if(ceremonies.containsKey(ceremony.getName()))
-            throw new IllegalArgumentException("Duplicate Ceremony entry for ID " + ceremony.getName());
-        //Search for ambiguous selectors
-        //The selectors for ceremonies have to be prefix-free in order to ensure
-        //that every ceremony can actually be selected
-        for(Ceremony other: ceremonies.values())
-        {
-            if(MathUtil.isPrefix(ceremony.getSelectors(), other.getSelectors()))
-                throw new IllegalArgumentException(String.format(
-                    "Could not add Ceremony %1$s because its selectors are prefixing the selectors of %2$s. This would make selecting %2$s impossible.\n%3$s prefixes %4$s",
-                    ceremony.getName(), other.getName(), ceremony.getSelectors(), other.getSelectors()));
-
-            if(MathUtil.isPrefix(other.getSelectors(), ceremony.getSelectors()))
-                throw new IllegalArgumentException(String.format(
-                    "Could not add Ceremony %1$s because its selectors are prefixed by the selectors of %2$s. This would make selecting %1$s impossible.\n%3$s is prefixed by %4$s",
-                    ceremony.getName(), other.getName(), ceremony.getSelectors(), other.getSelectors()));
-        }
-
-        ceremonies.put(ceremony.getName(), ceremony);*/
         if(ceremony.getRegistryName() == null)
         {
             String name = ceremony.getName();

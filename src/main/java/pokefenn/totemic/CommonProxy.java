@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
+import pokefenn.totemic.api.TotemicRegistries;
+import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.datafix.CamelCaseNamesItems;
 import pokefenn.totemic.datafix.CamelCaseNamesTiles;
 import pokefenn.totemic.datafix.VanillaIronNugget;
@@ -35,6 +37,7 @@ import pokefenn.totemic.tileentity.music.TileDrum;
 import pokefenn.totemic.tileentity.music.TileWindChime;
 import pokefenn.totemic.tileentity.totem.TileTotemBase;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
+import pokefenn.totemic.util.MiscUtil;
 
 public class CommonProxy
 {
@@ -57,7 +60,7 @@ public class CommonProxy
 
     public void postInit(FMLPostInitializationEvent event)
     {
-
+        checkCeremonySelectors();
     }
 
     private void registerEntities()
@@ -113,5 +116,22 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new EntityFall());
         MinecraftForge.EVENT_BUS.register(new PlayerInteract());
         MinecraftForge.EVENT_BUS.register(new EntitySpawn());
+    }
+
+    private void checkCeremonySelectors()
+    {
+        //Search for ambiguous selectors
+        //The selectors for ceremonies have to be prefix-free in order to ensure
+        //that every ceremony can actually be selected
+        for(Ceremony ceremony1: TotemicRegistries.ceremonies())
+            for(Ceremony ceremony2: TotemicRegistries.ceremonies())
+            {
+                if(ceremony1 != ceremony2 && MiscUtil.isPrefix(ceremony1.getSelectors(), ceremony2.getSelectors()))
+                {
+                    throw new IllegalStateException(String.format(
+                        "The selectors of Ceremony %1$s are prefixing the selectors of %2$s. This would make selecting %2$s impossible.\n%3$s prefixes %4$s",
+                        ceremony1.getRegistryName(), ceremony2.getRegistryName(), ceremony1.getSelectors(), ceremony2.getSelectors()));
+                }
+            }
     }
 }

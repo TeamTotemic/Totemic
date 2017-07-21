@@ -87,4 +87,10 @@ public final class MusicInstrument extends IForgeRegistryEntry.Impl<MusicInstrum
     {
         return baseRange;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.valueOf(getRegistryName());
+    }
 }
