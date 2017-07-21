@@ -65,7 +65,6 @@ public final class ModContent
     public static void totemEffects(RegistryEvent.Register<TotemEffect> event)
     {
         event.getRegistry().registerAll(
-            new TotemEffectPotion("camelCaseTest", MobEffects.MINING_FATIGUE).setRegistryName("camel_case_test"),
             batTotem = new TotemEffectPotion("totemic:bat", true, 9, ModPotions.batPotion, 10, 0).setRegistryName("bat"),
             blazeTotem = new TotemEffectBlaze("totemic:blaze").setRegistryName("blaze"),
             buffaloTotem = new TotemEffectPotion("totemic:buffalo", MobEffects.HASTE).setRegistryName("buffalo"),
