@@ -8,6 +8,8 @@ import pokefenn.totemic.api.totem.TotemEffect;
 
 /**
  * Provides access to Totemic's registries.
+ *
+ * <p>The registry events are fired in the following order: Music Instruments, Totem Effects, Ceremonies.
  */
 public final class TotemicRegistries
 {

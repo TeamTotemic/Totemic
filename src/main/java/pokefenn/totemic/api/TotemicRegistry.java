@@ -17,6 +17,10 @@ import pokefenn.totemic.api.totem.TotemEffect;
  * @deprecated Instruments, Totem Effects and Ceremonies now use Forge's registry system.
  * Use {@link RegistryEvent.Register} to register them.<br>
  * Replaced by {@link TotemicRegistries}.
+ * <p>Since Forge's registries require the registry names to be lowercase, attempts are
+ * made to automatically convert camelCased names into snake_case when they appear in
+ * save files, and also when registering through this interface to preserve binary compatibility.
+ * You should register your entries with snake cased names.
  */
 @Deprecated
 public interface TotemicRegistry

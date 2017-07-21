@@ -44,7 +44,9 @@ public abstract class ItemInstrument extends Item
     /**
      * @param instrument the corresponding music instrument
      * @param sound the sound to play whenever the instrument is played. Can be null.
+     * @deprecated Use {@link #setInstrument} and {@link #setSound}.
      */
+    @Deprecated
     public ItemInstrument(MusicInstrument instrument, @Nullable SoundEvent sound)
     {
         this.instrument = Objects.requireNonNull(instrument);
@@ -59,9 +61,12 @@ public abstract class ItemInstrument extends Item
         return instrument;
     }
 
+    /**
+     * Sets the corresponding music instrument
+     */
     public ItemInstrument setInstrument(MusicInstrument instrument)
     {
-        this.instrument = instrument;
+        this.instrument = Objects.requireNonNull(instrument);
         return this;
     }
 
@@ -74,6 +79,9 @@ public abstract class ItemInstrument extends Item
         return sound;
     }
 
+    /**
+     * Sets the sound to play whenever the instrument is played. Can be null.
+     */
     public ItemInstrument setSound(@Nullable SoundEvent sound)
     {
         this.sound = sound;
