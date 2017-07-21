@@ -9,6 +9,8 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.Streams;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -26,7 +28,7 @@ public final class StateSelection extends TotemState
     static final int ID = 1;
 
     private static final int ACTUAL_MAX_SELECTORS =
-            TotemicRegistries.ceremonies().getValues().stream()
+            Streams.stream(TotemicRegistries.ceremonies())
                 .mapToInt(cer -> cer.getSelectors().size())
                 .max()
                 .getAsInt();
@@ -73,7 +75,7 @@ public final class StateSelection extends TotemState
 
         if(selectors.size() >= Ceremony.MIN_SELECTORS)
         {
-            Optional<Ceremony> match = TotemicRegistries.ceremonies().getValues().stream()
+            Optional<Ceremony> match = Streams.stream(TotemicRegistries.ceremonies())
                 .filter(this::selectorsMatch)
                 .findAny();
 

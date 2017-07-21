@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Streams;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -130,15 +131,14 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         }
     }
 
-    private static List<String> totemList;
+    private static List<String> totemList; //Lazily created
 
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction)
     {
         if(totemList == null)
         {
-            totemList = TotemicRegistries.totemEffects().getKeys().stream()
-                    .map(ResourceLocation::toString)
-                    .sorted() //TODO: Possibly change the sorting order
+            totemList = Streams.stream(TotemicRegistries.totemEffects())
+                    .map(eff -> eff.getRegistryName().toString())
                     .collect(ImmutableList.toImmutableList());
         }
 
