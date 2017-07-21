@@ -8,7 +8,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry.AddCallback;
 import net.minecraftforge.registries.RegistryBuilder;
-import pokefenn.totemic.api.TotemicRegistry;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemEffect;
@@ -21,6 +20,12 @@ import pokefenn.totemic.totem.TotemEffectOcelot;
 @EventBusSubscriber(modid = Totemic.MOD_ID)
 public final class ModContent
 {
+    public static MusicInstrument flute;
+    public static MusicInstrument drum;
+    public static MusicInstrument windChime;
+    public static MusicInstrument jingleDress;
+    public static MusicInstrument rattle;
+
     public static TotemEffect batTotem;
     public static TotemEffect blazeTotem;
     public static TotemEffect buffaloTotem;
@@ -34,13 +39,7 @@ public final class ModContent
     public static TotemEffect squidTotem;
     public static TotemEffect wolfTotem;
 
-    public static MusicInstrument flute;
-    public static MusicInstrument drum;
-    public static MusicInstrument windChime;
-    public static MusicInstrument jingleDress;
-    public static MusicInstrument rattle;
-
-    public static Ceremony ghostDance;
+    //public static Ceremony ghostDance;
     public static Ceremony rainDance;
     public static Ceremony drought;
     public static Ceremony fluteCeremony;
@@ -49,81 +48,70 @@ public final class ModContent
     public static Ceremony buffaloDance;
     public static Ceremony baykokSummon;
 
-    public static void init()
+    @SubscribeEvent
+    public static void instruments(RegistryEvent.Register<MusicInstrument> event)
     {
-        totemEffects();
-        instruments();
-        instrumentItems();
-        ceremonies();
-    }
+        event.getRegistry().registerAll(
+            flute = new MusicInstrument("totemic:flute", 5, 70, 5).setItem(new ItemStack(ModItems.flute)).setRegistryName("flute"),
+            drum = new MusicInstrument("totemic:drum", 7, 80, 5).setItem(new ItemStack(ModBlocks.drum)).setRegistryName("drum"),
+            windChime = new MusicInstrument("totemic:windChime", 6, 60, 5).setItem(new ItemStack(ModBlocks.wind_chime)).setRegistryName("wind_chime"),
+            jingleDress = new MusicInstrument("totemic:jingleDress", 7, 100, 5).setItem(new ItemStack(ModItems.jingle_dress)).setRegistryName("jingle_dress"),
+            rattle = new MusicInstrument("totemic:rattle", 6, 90, 5).setItem(new ItemStack(ModItems.rattle)).setRegistryName("rattle"));
 
-    private static void totemEffects()
-    {
-        TotemicRegistry reg = Totemic.api.registry();
-
-        reg.addTotem(new TotemEffectPotion("camelCaseTest", MobEffects.MINING_FATIGUE));
-        batTotem = reg.addTotem(new TotemEffectPotion("totemic:bat", true, 9, ModPotions.batPotion, 10, 0));
-        blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic:blaze"));
-        buffaloTotem = reg.addTotem(new TotemEffectPotion("totemic:buffalo", MobEffects.HASTE));
-        cowTotem = reg.addTotem(new TotemEffectCow("totemic:cow"));
-        endermanTotem = reg.addTotem(
-                new TotemEffectPotion("totemic:enderman", MobEffects.NIGHT_VISION)
-                {
-                    @Override
-                    protected int getLingeringTime() { return 210; }
-                });
-        horseTotem = reg.addTotem(new TotemEffectPotion("totemic:horse", MobEffects.SPEED));
-        ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic:ocelot"));
-        pigTotem = reg.addTotem(new TotemEffectPotion("totemic:pig", MobEffects.LUCK));
-        rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic:rabbit", MobEffects.JUMP_BOOST));
-        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic:spider", ModPotions.spiderPotion));
-        squidTotem = reg.addTotem(new TotemEffectPotion("totemic:squid", MobEffects.WATER_BREATHING));
-        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic:wolf", MobEffects.STRENGTH));
-    }
-
-    private static void instruments()
-    {
-        TotemicRegistry reg = Totemic.api.registry();
-
-        flute = reg.addInstrument(new MusicInstrument("totemic:flute", 5, 70, 5).setItem(new ItemStack(ModItems.flute)));
-        drum = reg.addInstrument(new MusicInstrument("totemic:drum", 7, 80, 5).setItem(new ItemStack(ModBlocks.drum)));
-        windChime = reg.addInstrument(new MusicInstrument("totemic:windChime", 6, 60, 5).setItem(new ItemStack(ModBlocks.wind_chime)));
-        jingleDress = reg.addInstrument(new MusicInstrument("totemic:jingleDress", 7, 100, 5).setItem(new ItemStack(ModItems.jingle_dress)));
-        rattle = reg.addInstrument(new MusicInstrument("totemic:rattle", 6, 90, 5).setItem(new ItemStack(ModItems.rattle)));
-    }
-
-    private static void instrumentItems()
-    {
         ModItems.flute.setInstrument(flute);
         ModItems.rattle.setInstrument(rattle);
     }
 
-    private static void ceremonies()
+    @SubscribeEvent
+    public static void totemEffects(RegistryEvent.Register<TotemEffect> event)
     {
-        TotemicRegistry reg = Totemic.api.registry();
+        event.getRegistry().registerAll(
+            new TotemEffectPotion("camelCaseTest", MobEffects.MINING_FATIGUE).setRegistryName("camel_case_test"),
+            batTotem = new TotemEffectPotion("totemic:bat", true, 9, ModPotions.batPotion, 10, 0).setRegistryName("bat"),
+            blazeTotem = new TotemEffectBlaze("totemic:blaze").setRegistryName("blaze"),
+            buffaloTotem = new TotemEffectPotion("totemic:buffalo", MobEffects.HASTE).setRegistryName("buffalo"),
+            cowTotem = new TotemEffectCow("totemic:cow").setRegistryName("cow"),
+            endermanTotem =
+                    new TotemEffectPotion("totemic:enderman", MobEffects.NIGHT_VISION)
+                    {
+                        @Override
+                        protected int getLingeringTime() { return 210; }
+                    }.setRegistryName("enderman"),
+            horseTotem = new TotemEffectPotion("totemic:horse", MobEffects.SPEED).setRegistryName("horse"),
+            ocelotTotem = new TotemEffectOcelot("totemic:ocelot").setRegistryName("ocelot"),
+            pigTotem = new TotemEffectPotion("totemic:pig", MobEffects.LUCK).setRegistryName("pig"),
+            rabbitTotem = new TotemEffectPotion("totemic:rabbit", MobEffects.JUMP_BOOST).setRegistryName("rabbit"),
+            spiderTotem = new TotemEffectPotion("totemic:spider", ModPotions.spiderPotion).setRegistryName("spider"),
+            squidTotem = new TotemEffectPotion("totemic:squid", MobEffects.WATER_BREATHING).setRegistryName("squid"),
+            wolfTotem = new TotemEffectPotion("totemic:wolf", MobEffects.STRENGTH).setRegistryName("wolf"));
+    }
+
+    @SubscribeEvent
+    public static void ceremonies(RegistryEvent.Register<Ceremony> event)
+    {
         //Music amount landmarks:
         //150: Flute + Drum only
         //210: Flute + Drum + full Wind Chime
         //240: Flute + Drum + Rattle
         //340: Flute + Drum + Rattle + Jingle Dress
         //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
-
-        fluteCeremony = reg.addCeremony(new CeremonyFluteInfusion("totemic:flute", 140, Ceremony.MEDIUM,
-                flute, flute));
-        rainDance = reg.addCeremony(new CeremonyRain(true, "totemic:rainDance", 180, Ceremony.MEDIUM,
-                rattle, flute));
-        drought = reg.addCeremony(new CeremonyRain(false, "totemic:drought", 180, Ceremony.MEDIUM,
-                flute, rattle));
-        /*ghostDance = reg.addCeremony(new CeremonyGhostDance("totemic:ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
-                rattle, rattle));*/
-        zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 220, Ceremony.LONG,
-                flute, drum));
-        warDance = reg.addCeremony(new CeremonyWarDance("totemic:warDance", 120, Ceremony.SHORT_MEDIUM,
-                drum, drum));
-        buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
-                drum, windChime));
-        baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic:baykokSummon", 255,  40 * 20,
-                windChime, flute));
+        event.getRegistry().registerAll(
+            fluteCeremony = new CeremonyFluteInfusion("totemic:flute", 140, Ceremony.MEDIUM,
+                    flute, flute).setRegistryName("flute"),
+            rainDance = new CeremonyRain(true, "totemic:rainDance", 180, Ceremony.MEDIUM,
+                    rattle, flute).setRegistryName("rain_dance"),
+            drought = new CeremonyRain(false, "totemic:drought", 180, Ceremony.MEDIUM,
+                    flute, rattle).setRegistryName("drought"),
+            /*ghostDance = new CeremonyGhostDance("totemic:ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
+                    rattle, rattle).setRegistryName("ghost_dance"),*/
+            zaphkielWaltz = new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 220, Ceremony.LONG,
+                    flute, drum).setRegistryName("zaphkiel_waltz"),
+            warDance = new CeremonyWarDance("totemic:warDance", 120, Ceremony.SHORT_MEDIUM,
+                    drum, drum).setRegistryName("war_dance"),
+            buffaloDance = new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
+                    drum, windChime).setRegistryName("buffalo_dance"),
+            baykokSummon = new CeremonyBaykok("totemic:baykokSummon", 255,  40 * 20,
+                    windChime, flute).setRegistryName("baykok_summon"));
     }
 
     @SubscribeEvent

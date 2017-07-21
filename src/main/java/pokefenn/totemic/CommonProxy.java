@@ -47,7 +47,6 @@ public class CommonProxy
 
     public void init(FMLInitializationEvent event)
     {
-        ModContent.init();
         NetworkRegistry.INSTANCE.registerGuiHandler(Totemic.instance, new GuiHandler());
         NetworkHandler.init();
         oreDictionary();
