@@ -76,7 +76,7 @@ public class BlockTipi extends Block implements ITileEntityProvider
 
                     if(otherPlayer != null)
                     {
-                        player.sendMessage(new TextComponentTranslation("tile.bed.occupied"));
+                        player.sendStatusMessage(new TextComponentTranslation("tile.bed.occupied"), true);
                         return true;
                     }
 
@@ -87,18 +87,18 @@ public class BlockTipi extends Block implements ITileEntityProvider
                     else
                     {
                         if(sleepresult == SleepResult.NOT_POSSIBLE_NOW)
-                            player.sendMessage(new TextComponentTranslation("tile.bed.noSleep"));
+                            player.sendStatusMessage(new TextComponentTranslation("tile.bed.noSleep"), true);
                         else if(sleepresult == SleepResult.NOT_SAFE)
-                            player.sendMessage(new TextComponentTranslation("tile.bed.notSafe"));
+                            player.sendStatusMessage(new TextComponentTranslation("tile.bed.notSafe"), true);
 
                         return true;
                     }
                 }
                 else
-                    player.sendMessage(new TextComponentTranslation("totemicmisc.tipi.nether"));
+                    player.sendStatusMessage(new TextComponentTranslation("totemicmisc.tipi.nether"), true);
             }
             else
-                player.sendMessage(new TextComponentTranslation("totemicmisc.tipi.cantSleep"));
+                player.sendStatusMessage(new TextComponentTranslation("totemicmisc.tipi.cantSleep"), true);
 
         }
         return true;

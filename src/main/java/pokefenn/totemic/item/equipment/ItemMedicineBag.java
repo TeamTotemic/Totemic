@@ -148,7 +148,7 @@ public class ItemMedicineBag extends ItemTotemic
                 if(!effect.isPortable())
                 {
                     if(world.isRemote)
-                        player.sendMessage(new TextComponentTranslation("totemicmisc.effectNotPortable", I18n.format(effect.getUnlocalizedName())));
+                        player.sendStatusMessage(new TextComponentTranslation("totemicmisc.effectNotPortable", new TextComponentTranslation(effect.getUnlocalizedName())), true);
                     return EnumActionResult.FAIL;
                 }
 

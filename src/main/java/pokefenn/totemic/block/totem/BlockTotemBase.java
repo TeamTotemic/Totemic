@@ -64,13 +64,13 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
     @Override
     public EnumActionResult onTotemicStaffRightClick(World world, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if(world.isRemote)
+        if(!world.isRemote)
             return EnumActionResult.SUCCESS;
         TileTotemBase tile = (TileTotemBase) world.getTileEntity(pos);
 
         if(tile.getState() instanceof StateTotemEffect)
         {
-            player.sendMessage(new TextComponentTranslation("totemicmisc.isDoingNoCeremony"));
+            player.sendStatusMessage(new TextComponentTranslation("totemicmisc.isDoingNoCeremony"), true);
         }
         else if(tile.getState() instanceof StateSelection)
         {

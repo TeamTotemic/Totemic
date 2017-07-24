@@ -9,7 +9,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -55,7 +54,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
         {
             TileTotemPole pole = (TileTotemPole) world.getTileEntity(pos);
             String name = pole.getEffect() != null ? pole.getEffect().getUnlocalizedName() : "totemicmisc.noEffect";
-            player.sendMessage(new TextComponentTranslation("totemicmisc.activeEffect", I18n.format(name)));
+            player.sendStatusMessage(new TextComponentTranslation("totemicmisc.activeEffect", new TextComponentTranslation(name)), true);
         }
         return EnumActionResult.SUCCESS;
     }
