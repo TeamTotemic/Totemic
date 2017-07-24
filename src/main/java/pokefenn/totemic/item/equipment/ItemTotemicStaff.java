@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import pokefenn.totemic.ModBlocks;
 import pokefenn.totemic.api.TotemicStaffUsage;
 import pokefenn.totemic.item.ItemTotemic;
 import pokefenn.totemic.lib.Strings;
@@ -52,5 +53,11 @@ public class ItemTotemicStaff extends ItemTotemic
             return ((TotemicStaffUsage) block).onTotemicStaffRightClick(world, pos, player, hand, facing, hitX, hitY, hitZ);
         }
         return EnumActionResult.FAIL;
+    }
+
+    @Override
+    public boolean canDestroyBlockInCreative(World world, BlockPos pos, ItemStack stack, EntityPlayer player)
+    {
+        return world.getBlockState(pos).getBlock() != ModBlocks.totem_base && super.canDestroyBlockInCreative(world, pos, stack, player);
     }
 }
