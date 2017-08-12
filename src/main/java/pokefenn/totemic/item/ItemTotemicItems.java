@@ -11,7 +11,7 @@ public class ItemTotemicItems extends ItemTotemic
 {
     public enum Type
     {
-        //Can't remove the first enum constant since the indices need to stay the same
+        //Can't remove the first enum constant, the ordinals need to stay the same
         @Deprecated _unused, iron_bells;
     }
 

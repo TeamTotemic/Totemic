@@ -1,7 +1,6 @@
 package pokefenn.totemic.api.ceremony;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.apache.commons.lang3.Validate;
 
@@ -88,16 +87,6 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
     public int getMusicPer5()
     {
         return 0;
-    }
-
-    /**
-     * @return the Ceremony's name
-     * @deprecated Use {@link #getRegistryName()} instead
-     */
-    @Deprecated
-    public final String getName()
-    {
-        return Objects.toString(getRegistryName(), name);
     }
 
     /**

@@ -1,7 +1,5 @@
 package pokefenn.totemic.api.music;
 
-import java.util.Objects;
-
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 
@@ -43,16 +41,6 @@ public final class MusicInstrument extends IForgeRegistryEntry.Impl<MusicInstrum
     {
         this.itemStack = itemStack;
         return this;
-    }
-
-    /**
-     * @return the name of the instrument
-     * @deprecated Use {@link #getRegistryName()} instead
-     */
-    @Deprecated
-    public final String getName()
-    {
-        return Objects.toString(getRegistryName(), name);
     }
 
     /**

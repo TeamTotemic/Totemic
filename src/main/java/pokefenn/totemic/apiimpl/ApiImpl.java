@@ -7,17 +7,9 @@ import pokefenn.totemic.apiimpl.totem.TotemEffectApiImpl;
 
 public final class ApiImpl implements TotemicAPI.API
 {
-    private final RegistryImpl registry = new RegistryImpl();
     private final MusicApiImpl musicApi = new MusicApiImpl();
     private final TotemEffectApiImpl totemEffectApi = new TotemEffectApiImpl();
     private final LexiconApiImpl lexiconApi = new LexiconApiImpl();
-
-    @Deprecated
-    @Override
-    public RegistryImpl registry()
-    {
-        return registry;
-    }
 
     @Override
     public MusicApiImpl music()

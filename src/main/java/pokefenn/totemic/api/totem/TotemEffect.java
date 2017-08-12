@@ -1,7 +1,5 @@
 package pokefenn.totemic.api.totem;
 
-import java.util.Objects;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -58,16 +56,6 @@ public abstract class TotemEffect extends IForgeRegistryEntry.Impl<TotemEffect>
      */
     public void medicineBagEffect(World world, EntityPlayer player, ItemStack medicineBag, int charge)
     { }
-
-    /**
-     * @return the Totem Effect's name
-     * @deprecated Use {@link #getRegistryName()} instead
-     */
-    @Deprecated
-    public final String getName()
-    {
-        return Objects.toString(getRegistryName(), name);
-    }
 
     /**
      * @return whether this Totem Effect can be used with a Medicine Bag

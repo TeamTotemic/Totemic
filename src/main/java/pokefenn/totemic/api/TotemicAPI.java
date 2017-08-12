@@ -1,6 +1,5 @@
 package pokefenn.totemic.api;
 
-import net.minecraftforge.event.RegistryEvent;
 import pokefenn.totemic.api.lexicon.LexiconAPI;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
@@ -26,19 +25,6 @@ public final class TotemicAPI
 
     public interface API
     {
-        /**
-         * Provides access to Totemic's registries
-         * @deprecated Instruments, Totem Effects and Ceremonies now use Forge's registry system.
-         * Use {@link RegistryEvent.Register} to register them.<br>
-         * You can access the registries from {@link TotemicRegistries}.
-         * <p>Since Forge's registries require the registry names to be lowercase, attempts are
-         * made to automatically convert camelCased names into snake_case when they appear in
-         * save files, and also when registering through this interface to preserve binary compatibility.
-         * You should register your entries with snake cased names.
-         */
-        @Deprecated
-        TotemicRegistry registry();
-
         /**
          * Provides access to functionality commonly used by music instrument blocks and items
          */
