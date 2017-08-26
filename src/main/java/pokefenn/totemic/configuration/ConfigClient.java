@@ -2,9 +2,11 @@ package pokefenn.totemic.configuration;
 
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
+import net.minecraftforge.common.config.Config.LangKey;
 import pokefenn.totemic.Totemic;
 
 @Config(modid = Totemic.MOD_ID, category = "client")
+@LangKey("totemic.config.client")
 public final class ConfigClient
 {
     @Comment("Horizontal position of the ceremony HUD (offset from center of the screen)")

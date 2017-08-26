@@ -61,6 +61,12 @@ totemic.potion.spider=Spider
 # Creative Tab localizations
 itemGroup.totemic=Totemic
 
+#Config GUI localizations
+totemic.config.general=General
+totemic.config.general.tooltip=
+totemic.config.client=Client
+totemic.config.client.tooltip=Options that have no effects on servers
+
 #Ceremony names
 totemic.ceremony.totemic:flute=Flute Imbuation
 totemic.ceremony.totemic:rainDance=Rain Dance

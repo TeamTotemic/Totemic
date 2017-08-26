@@ -14,7 +14,7 @@ public class EntitySpawn
         if(event.getEntity() instanceof EntitySkeleton)
         {
             EntitySkeleton entity = (EntitySkeleton)event.getEntity();
-            entity.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(entity, EntityBuffalo.class, true));
+            entity.targetTasks.addTask(10, new EntityAINearestAttackableTarget<>(entity, EntityBuffalo.class, true));
         }
     }
 }
