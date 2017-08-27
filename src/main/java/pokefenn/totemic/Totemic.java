@@ -21,7 +21,7 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.ApiImpl;
 
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, acceptedMinecraftVersions = "[1.12,)",
-        dependencies = "required-after:forge@[14.21.0.2363,)",
+        dependencies = "required-after:forge@[14.21.1.2443,)",
         updateJSON = "https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json")
 public final class Totemic
 {
