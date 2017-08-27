@@ -17,7 +17,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
-import pokefenn.totemic.configuration.ConfigGeneral;
+import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.datafix.CamelCaseNamesItems;
 import pokefenn.totemic.datafix.CamelCaseNamesTiles;
 import pokefenn.totemic.datafix.VanillaIronNugget;
@@ -116,7 +116,7 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new EntityUpdate());
         MinecraftForge.EVENT_BUS.register(new EntityFall());
         MinecraftForge.EVENT_BUS.register(new PlayerInteract());
-        if(ConfigGeneral.skeletonsShouldAttackBuffalos)
+        if(ModConfig.general.skeletonsShouldAttackBuffalos)
             MinecraftForge.EVENT_BUS.register(new EntitySpawn());
     }
 

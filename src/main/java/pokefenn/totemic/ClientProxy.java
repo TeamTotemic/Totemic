@@ -21,7 +21,7 @@ import pokefenn.totemic.client.rendering.entity.BaykokRendering;
 import pokefenn.totemic.client.rendering.entity.BuffaloRendering;
 import pokefenn.totemic.client.rendering.entity.InvisArrowRendering;
 import pokefenn.totemic.client.rendering.tileentity.TileWindChimeRenderer;
-import pokefenn.totemic.configuration.ConfigClient;
+import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
 import pokefenn.totemic.entity.boss.EntityBaykok;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
@@ -57,7 +57,7 @@ public class ClientProxy extends CommonProxy
         super.postInit(event);
         try
         {
-            if(ConfigClient.enableFloweyEasteregg && Loader.isModLoaded("Botania") && new Random().nextInt(8) == 0)
+            if(ModConfig.client.enableFloweyEasteregg && Loader.isModLoaded("Botania") && new Random().nextInt(8) == 0)
                 Display.setTitle(Display.getTitle().replace("Minecraft", "Floweycraft")); //HAHAHAHAHAHAHAHAHAHAHA...
         }
         catch(Exception e)
