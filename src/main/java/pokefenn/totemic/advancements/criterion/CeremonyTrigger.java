@@ -1,11 +1,7 @@
 package pokefenn.totemic.advancements.criterion;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
@@ -74,17 +70,17 @@ public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instan
             ls.trigger(ceremony);
     }
 
-    static class Instance extends AbstractCriterionInstance
+    public static class Instance extends AbstractCriterionInstance
     {
         private final Ceremony ceremony;
 
-        Instance(Ceremony ceremony)
+        public Instance(Ceremony ceremony)
         {
             super(ID);
             this.ceremony = ceremony;
         }
 
-        boolean test(Ceremony ceremony)
+        public boolean test(Ceremony ceremony)
         {
             return this.ceremony == ceremony;
         }
@@ -117,10 +113,23 @@ public class CeremonyTrigger implements ICriterionTrigger<CeremonyTrigger.Instan
 
         public void trigger(Ceremony ceremony)
         {
-            listeners.stream()
-                .filter(listener -> listener.getCriterionInstance().test(ceremony))
-                .collect(ImmutableList.toImmutableList()) //Need this intermediate list to avoid ConcurrentModificationException
-                .forEach(listener -> listener.grantCriterion(playerAdvancements));
+            List<Listener<Instance>> list = null;
+
+            for(Listener<Instance> listener: listeners)
+            {
+                if(listener.getCriterionInstance().test(ceremony))
+                {
+                    if(list == null)
+                        list = new ArrayList<>();
+                    list.add(listener);
+                }
+            }
+
+            if(list != null)
+            {
+                for(Listener<Instance> listener: list)
+                    listener.grantCriterion(playerAdvancements);
+            }
         }
     }
 }
