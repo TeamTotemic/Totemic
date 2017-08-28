@@ -87,7 +87,8 @@ curseforge {
     project {
         id = '237541'
         changelog  = ''
-        releaseType = 'alpha'
+        releaseType = 'beta'
+        addGameVersion '1.12.1'
 
         addArtifact deobfJar
         addArtifact apiSrcJar
