@@ -78,20 +78,20 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
             String selectors = ((StateSelection) tile.getState()).getSelectors().stream()
                     .map(instr -> I18n.format(instr.getUnlocalizedName()))
                     .collect(Collectors.joining(", "));
-            player.sendMessage(new TextComponentTranslation("totemicmisc.isDoingSelection"));
-            player.sendMessage(new TextComponentTranslation("totemicmisc.selection", selectors));
+            player.sendStatusMessage(new TextComponentTranslation("totemicmisc.isDoingSelection"), false);
+            player.sendStatusMessage(new TextComponentTranslation("totemicmisc.selection", selectors), false);
         }
         else if(tile.getState() instanceof StateStartup)
         {
             Ceremony ceremony = ((StateStartup) tile.getState()).getCeremony();
-            player.sendMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"));
-            player.sendMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
+            player.sendStatusMessage(new TextComponentTranslation("totemicmisc.isDoingStartup"), false);
+            player.sendStatusMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()), false);
         }
         else if(tile.getState() instanceof StateCeremonyEffect)
         {
             Ceremony ceremony = ((StateCeremonyEffect) tile.getState()).getCeremony();
-            player.sendMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"));
-            player.sendMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()));
+            player.sendStatusMessage(new TextComponentTranslation("totemicmisc.isDoingCeremony"), false);
+            player.sendStatusMessage(new TextComponentTranslation(ceremony.getUnlocalizedName()), false);
         }
 
         return EnumActionResult.SUCCESS;
