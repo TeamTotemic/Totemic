@@ -25,11 +25,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import pokefenn.totemic.api.internal.IGuiLexiconEntry;
 import pokefenn.totemic.api.lexicon.LexiconEntry;
 import pokefenn.totemic.api.lexicon.LexiconRecipeMappings;
@@ -52,14 +51,9 @@ public class PageCraftingRecipe extends PageRecipe
         super(unlocalizedName);
         this.recipe = Objects.requireNonNull(recipe);
 
-        if(recipe instanceof ShapedRecipes)
+        if(recipe instanceof IShapedRecipe)
         {
-            recipeWidth = ((ShapedRecipes) recipe).getWidth();
-            shapelessRecipe = false;
-        }
-        else if(recipe instanceof ShapedOreRecipe)
-        {
-            recipeWidth = ((ShapedOreRecipe) recipe).getWidth();
+            recipeWidth = ((IShapedRecipe) recipe).getRecipeWidth();
             shapelessRecipe = false;
         }
         else
@@ -84,7 +78,7 @@ public class PageCraftingRecipe extends PageRecipe
     @SideOnly(Side.CLIENT)
     public void renderRecipe(IGuiLexiconEntry gui, int mx, int my)
     {
-        renderCraftingRecipe(gui, recipe);
+        renderCraftingRecipe(gui);
 
         TextureManager render = Minecraft.getMinecraft().renderEngine;
         render.bindTexture(craftingOverlay);
@@ -120,7 +114,7 @@ public class PageCraftingRecipe extends PageRecipe
     }
 
     @SideOnly(Side.CLIENT)
-    public void renderCraftingRecipe(IGuiLexiconEntry gui, IRecipe recipe)
+    private void renderCraftingRecipe(IGuiLexiconEntry gui)
     {
         int x = 0;
         int y = 0;
