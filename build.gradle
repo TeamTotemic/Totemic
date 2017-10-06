@@ -30,6 +30,7 @@ minecraft {
 
     replaceIn "Totemic.java"
     replace "\${version}", project.version
+    replace '@FINGERPRINT@', project.findProperty('signSHA1')
 }
 
 sourceCompatibility = targetCompatibility = '1.8'
@@ -76,6 +77,27 @@ task apiSrcJar(type: Jar) {
     classifier = 'sources'
 }
 
+task signJar(type: SignJar, dependsOn: reobfJar) {
+
+    // Skips if the keyStore property is missing.
+    onlyIf {
+        project.hasProperty('keyStore')
+    }
+
+    // findProperty allows us to reference the property without it existing.
+    // Using project.propName would cause the script to fail validation if
+    // the property did not exist.
+    keyStore = project.findProperty('keyStore')
+    alias = project.findProperty('keyStoreAlias')
+    storePass = project.findProperty('keyStorePass')
+    keyPass = project.findProperty('keyStoreKeyPass')
+    inputFile = jar.archivePath
+    outputFile = jar.archivePath
+}
+
+// Runs this task automatically when build is ran.
+build.dependsOn signJar
+
 artifacts {
     archives deobfJar
     archives apiSrcJar
@@ -88,7 +110,6 @@ curseforge {
         id = '237541'
         changelog  = ''
         releaseType = 'beta'
-        addGameVersion '1.12.1'
 
         addArtifact deobfJar
         addArtifact apiSrcJar
