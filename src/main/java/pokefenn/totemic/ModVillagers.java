@@ -39,6 +39,8 @@ public final class ModVillagers
                          new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.wind_chime), new PriceInfo(3, 4)),
                          new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.tipi), new PriceInfo(2, 3)),
                          new ListItemForEmeralds(ModItems.totemic_staff, new PriceInfo(1, 1)),
+                         new ListItemForEmeralds(Items.IRON_NUGGET, new PriceInfo(1, 1)),         
+                         new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.cedar_sapling), new PriceInfo(1, 1)),                      
                          new ListItemForEmeralds(ModItems.cooked_buffalo_meat, new PriceInfo(-6, -4)),
 
                          new ItemAndEmeraldToItem(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(10, 10), Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(10, 10)),
