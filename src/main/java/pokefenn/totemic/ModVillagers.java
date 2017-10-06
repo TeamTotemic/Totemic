@@ -26,10 +26,11 @@ public final class ModVillagers
         event.getRegistry().register(totemicProf);
 
         new VillagerCareer(totemicProf, "totemist")
-            .addTrade(1, new EmeraldForItems(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(20, 26)),
-                         new EmeraldForItems(Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(12, 16)),
+            .addTrade(1, new EmeraldForItems(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(24, 32)),
+                         new EmeraldForItems(Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(14, 20)),
                          new EmeraldsForItemsWithMeta(new ItemStack(ModItems.buffalo_items, 1, 0), new PriceInfo(9, 12)),
                          new EmeraldsForItemsWithMeta(new ItemStack(ModItems.buffalo_items, 1, 1), new PriceInfo(6, 8)),
+                         new EmeraldForItems(ModItems.buffalo_meat, new PriceInfo(14,  18)),
                          new EmeraldForItems(ModItems.medicine_bag, new PriceInfo(1, 1)),
                          new EmeraldsForItemsWithMeta(new ItemStack(ModItems.baykok_bow), new PriceInfo(-3, -2)),
 
@@ -38,8 +39,18 @@ public final class ModVillagers
                          new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.wind_chime), new PriceInfo(3, 4)),
                          new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.tipi), new PriceInfo(2, 3)),
                          new ListItemForEmeralds(ModItems.totemic_staff, new PriceInfo(1, 1)),
+                         new ListItemForEmeralds(ModItems.cooked_buffalo_meat, new PriceInfo(-6, -4)),
 
-                         new ItemAndEmeraldToItem(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(10, 10), Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(10, 10)));
+                         new ItemAndEmeraldToItem(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(10, 10), Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(10, 10)),
+                         makeItemAndEmeraldToItemWithMeta(new ItemStack(ModItems.flute, 1, 0), new PriceInfo(1, 1), new ItemStack(ModItems.flute, 1, 1), new PriceInfo(1, 1)));
+    }
+
+    static ITradeList makeItemAndEmeraldToItemWithMeta(ItemStack buying, PriceInfo buyingPriceInfo, ItemStack selling, PriceInfo sellingPriceInfo)
+    {
+        ItemAndEmeraldToItem trade = new ItemAndEmeraldToItem(buying.getItem(), buyingPriceInfo, selling.getItem(), sellingPriceInfo);
+        trade.buyingItemStack = buying;
+        trade.sellingItemstack = selling;
+        return trade;
     }
 
     static class EmeraldsForItemsWithMeta implements ITradeList
