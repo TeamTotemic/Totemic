@@ -4,6 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.datafix.FixTypes;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ModFixs;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -13,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicRegistries;
@@ -30,6 +32,7 @@ import pokefenn.totemic.handler.EntityUpdate;
 import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.item.ItemBuffaloDrops;
 import pokefenn.totemic.item.ItemTotemicItems;
+import pokefenn.totemic.lib.Resources;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.network.GuiHandler;
 import pokefenn.totemic.network.NetworkHandler;
@@ -39,6 +42,7 @@ import pokefenn.totemic.tileentity.music.TileWindChime;
 import pokefenn.totemic.tileentity.totem.TileTotemBase;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
 import pokefenn.totemic.util.MiscUtil;
+import pokefenn.totemic.world.ComponentTotemistPlot;
 
 public class CommonProxy
 {
@@ -56,6 +60,7 @@ public class CommonProxy
         oreDictionary();
         furnaceRecipes();
         registerEventHandlers();
+        registerStructures();
         registerDataFixers();
     }
 
@@ -101,6 +106,12 @@ public class CommonProxy
         GameRegistry.addSmelting(ModBlocks.stripped_cedar_log, new ItemStack(Items.COAL, 1, 1), 0.5F);
         GameRegistry.addSmelting(ModBlocks.cedar_log, new ItemStack(Items.COAL, 1, 1), 0.5F);
         GameRegistry.addSmelting(ModItems.buffalo_meat, new ItemStack(ModItems.cooked_buffalo_meat), 0.35F);
+    }
+
+    private void registerStructures()
+    {
+        VillagerRegistry.instance().registerVillageCreationHandler(new ComponentTotemistPlot.CreationHandler());
+        MapGenStructureIO.registerStructureComponent(ComponentTotemistPlot.class, Resources.PREFIX_MOD + "ViTo");
     }
 
     private void registerDataFixers()

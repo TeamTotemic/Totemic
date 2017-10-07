@@ -19,13 +19,14 @@ import pokefenn.totemic.lib.Resources;
 @EventBusSubscriber(modid = Totemic.MOD_ID)
 public final class ModVillagers
 {
+    public static final VillagerProfession profTotemist = new VillagerProfession(Resources.PREFIX_MOD + "totemist", "", ""); //TODO: Textures
+
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VillagerProfession> event)
     {
-        VillagerProfession totemicProf = new VillagerProfession(Resources.PREFIX_MOD + "totemist", "", ""); //TODO: Textures
-        event.getRegistry().register(totemicProf);
+        event.getRegistry().register(profTotemist);
 
-        new VillagerCareer(totemicProf, "totemist")
+        new VillagerCareer(profTotemist, "totemist")
             .addTrade(1, new EmeraldForItems(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(24, 32)),
                          new EmeraldForItems(Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(14, 20)),
                          new EmeraldsForItemsWithMeta(new ItemStack(ModItems.buffalo_items, 1, 0), new PriceInfo(9, 12)),
