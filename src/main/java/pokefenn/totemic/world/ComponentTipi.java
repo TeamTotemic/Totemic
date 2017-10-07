@@ -21,25 +21,25 @@ import pokefenn.totemic.ModBlocks;
 import pokefenn.totemic.ModVillagers;
 import pokefenn.totemic.block.tipi.BlockTipi;
 
-public class ComponentTotemistPlot extends StructureVillagePieces.Village
+public class ComponentTipi extends StructureVillagePieces.Village
 {
-    public ComponentTotemistPlot()
+    public ComponentTipi()
     {
     }
 
-    public ComponentTotemistPlot(Start start, int type, Random rand, StructureBoundingBox bb, EnumFacing facing)
+    public ComponentTipi(Start start, int type, Random rand, StructureBoundingBox bb, EnumFacing facing)
     {
         super(start, type);
         this.setCoordBaseMode(facing);
         this.boundingBox = bb;
     }
 
-    public static ComponentTotemistPlot createPiece(StructureVillagePieces.Start startPiece, List<StructureComponent> pieces,
+    public static ComponentTipi createPiece(StructureVillagePieces.Start startPiece, List<StructureComponent> pieces,
             Random random, int strucMinX, int strucMinY, int strucMinZ, EnumFacing facing, int type)
     {
-        StructureBoundingBox bb = StructureBoundingBox.getComponentToAddBoundingBox(strucMinX, strucMinY, strucMinZ, 0, 0, 0, 9, 7, 12, facing);
+        StructureBoundingBox bb = StructureBoundingBox.getComponentToAddBoundingBox(strucMinX, strucMinY, strucMinZ, 0, 0, 0, 5, 6, 5, facing);
         if(canVillageGoDeeper(bb) && StructureComponent.findIntersecting(pieces, bb) == null)
-            return new ComponentTotemistPlot(startPiece, type, random, bb, facing);
+            return new ComponentTipi(startPiece, type, random, bb, facing);
         else
             return null;
     }
@@ -52,22 +52,26 @@ public class ComponentTotemistPlot extends StructureVillagePieces.Village
             averageGroundLvl = getAverageGroundLevel(world, bb);
             if(averageGroundLvl < 0)
                 return true;
-            boundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 7 - 1, 0);
+            boundingBox.offset(0, averageGroundLvl - boundingBox.maxY + 6 - 1, 0);
         }
 
-        IBlockState block = getBiomeSpecificBlockState(Blocks.COBBLESTONE.getDefaultState());
-        setBlockState(world, block, 0, 0, 0, bb);
-        setBlockState(world, block, 9, 0, 0, bb);
-        setBlockState(world, block, 0, 7, 0, bb);
-        setBlockState(world, block, 9, 7, 0, bb);
-        setBlockState(world, block, 0, 0, 12, bb);
-        setBlockState(world, block, 9, 0, 12, bb);
-        setBlockState(world, block, 0, 7, 12, bb);
-        setBlockState(world, block, 9, 7, 12, bb);
+        fillWithAir(world, bb, 0, 0, 0,  4, 5, 4);
 
-        placeTipi(world, 5, 0, 6, EnumFacing.NORTH, bb);
+        placeTipi(world, 2, 0, 2, EnumFacing.NORTH, bb);
+        setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 0, 0, 0, bb);
+        setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 4, 0, 0, bb);
 
-        spawnVillagers(world, bb, 5, 1, 9, 2);
+        IBlockState ground = (structureType != 1) ? Blocks.DIRT.getDefaultState() : Blocks.SAND.getDefaultState();
+        for(int i = 0; i < 5; i++)
+            for(int j = 0; j < 5; j++)
+            {
+                clearCurrentPositionBlocksUpwards(world, j, 6, i, bb);
+                replaceAirAndLiquidDownwards(world, ground, j, -1, i, bb);
+                if(getBlockStateFromPos(world, j, -1, i, bb).getBlock() == Blocks.DIRT)
+                    setBlockState(world, getBiomeSpecificBlockState(Blocks.GRASS.getDefaultState()), j, -1, i, bb);
+            }
+
+        spawnVillagers(world, bb, 2, 1, 1,  1);
         return true;
     }
 
@@ -103,20 +107,20 @@ public class ComponentTotemistPlot extends StructureVillagePieces.Village
         @Override
         public PieceWeight getVillagePieceWeight(Random random, int size)
         {
-            return new PieceWeight(ComponentTotemistPlot.class, 3, MathHelper.getInt(random, 2 + size, 5 + size*3));
+            return new PieceWeight(ComponentTipi.class, 3, MathHelper.getInt(random, 2 + size, 5 + size*3));
         }
 
         @Override
         public Class<?> getComponentClass()
         {
-            return ComponentTotemistPlot.class;
+            return ComponentTipi.class;
         }
 
         @Override
         public Village buildComponent(PieceWeight villagePiece, Start startPiece, List<StructureComponent> pieces,
                 Random random, int strucMinX, int strucMinY, int strucMinZ, EnumFacing facing, int type)
         {
-            return ComponentTotemistPlot.createPiece(startPiece, pieces, random, strucMinX, strucMinY, strucMinZ, facing, type);
+            return ComponentTipi.createPiece(startPiece, pieces, random, strucMinX, strucMinY, strucMinZ, facing, type);
         }
     }
 }
