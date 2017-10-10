@@ -42,6 +42,7 @@ import pokefenn.totemic.tileentity.music.TileWindChime;
 import pokefenn.totemic.tileentity.totem.TileTotemBase;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
 import pokefenn.totemic.util.MiscUtil;
+import pokefenn.totemic.world.ComponentMedicineWheel;
 import pokefenn.totemic.world.ComponentTipi;
 
 public class CommonProxy
@@ -111,7 +112,9 @@ public class CommonProxy
     private void registerStructures()
     {
         VillagerRegistry.instance().registerVillageCreationHandler(new ComponentTipi.CreationHandler());
-        MapGenStructureIO.registerStructureComponent(ComponentTipi.class, Resources.PREFIX_MOD + "ViTo");
+        MapGenStructureIO.registerStructureComponent(ComponentTipi.class, Resources.PREFIX_MOD + "ViTi");
+        VillagerRegistry.instance().registerVillageCreationHandler(new ComponentMedicineWheel.CreationHandler());
+        MapGenStructureIO.registerStructureComponent(ComponentMedicineWheel.class, Resources.PREFIX_MOD + "ViCer");
     }
 
     private void registerDataFixers()

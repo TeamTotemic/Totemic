@@ -37,7 +37,7 @@ public class ComponentTipi extends StructureVillagePieces.Village
     public static ComponentTipi createPiece(StructureVillagePieces.Start startPiece, List<StructureComponent> pieces,
             Random random, int strucMinX, int strucMinY, int strucMinZ, EnumFacing facing, int type)
     {
-        StructureBoundingBox bb = StructureBoundingBox.getComponentToAddBoundingBox(strucMinX, strucMinY, strucMinZ, 0, 0, 0, 5, 6, 5, facing);
+        StructureBoundingBox bb = StructureBoundingBox.getComponentToAddBoundingBox(strucMinX, strucMinY, strucMinZ, 0, 0, 0,  5, 6, 5, facing);
         if(canVillageGoDeeper(bb) && StructureComponent.findIntersecting(pieces, bb) == null)
             return new ComponentTipi(startPiece, type, random, bb, facing);
         else
@@ -62,13 +62,14 @@ public class ComponentTipi extends StructureVillagePieces.Village
         setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 4, 0, 0, bb);
 
         IBlockState ground = (structureType != 1) ? Blocks.DIRT.getDefaultState() : Blocks.SAND.getDefaultState();
-        for(int i = 0; i < 5; i++)
-            for(int j = 0; j < 5; j++)
+        IBlockState grass = getBiomeSpecificBlockState(Blocks.GRASS.getDefaultState());
+        for(int z = 0; z < 5; z++)
+            for(int x = 0; x < 5; x++)
             {
-                clearCurrentPositionBlocksUpwards(world, j, 6, i, bb);
-                replaceAirAndLiquidDownwards(world, ground, j, -1, i, bb);
-                if(getBlockStateFromPos(world, j, -1, i, bb).getBlock() == Blocks.DIRT)
-                    setBlockState(world, getBiomeSpecificBlockState(Blocks.GRASS.getDefaultState()), j, -1, i, bb);
+                clearCurrentPositionBlocksUpwards(world, x, 6, z, bb);
+                replaceAirAndLiquidDownwards(world, ground, x, -1, z, bb);
+                if(getBlockStateFromPos(world, x, -1, z, bb).getBlock() == Blocks.DIRT)
+                    setBlockState(world, grass, x, -1, z, bb);
             }
 
         spawnVillagers(world, bb, 2, 1, 1,  1);
