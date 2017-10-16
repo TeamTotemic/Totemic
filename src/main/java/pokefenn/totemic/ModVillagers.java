@@ -19,7 +19,9 @@ import pokefenn.totemic.lib.Resources;
 @EventBusSubscriber(modid = Totemic.MOD_ID)
 public final class ModVillagers
 {
-    public static final VillagerProfession profTotemist = new VillagerProfession(Resources.PREFIX_MOD + "totemist", "", ""); //TODO: Textures
+    public static final VillagerProfession profTotemist = new VillagerProfession(Resources.PREFIX_MOD + "totemist",
+            Resources.PREFIX_MOD + "textures/entity/totemic_villager.png",
+            Resources.PREFIX_MOD + "textures/entity/totemic_zombie_villager.png");
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VillagerProfession> event)
