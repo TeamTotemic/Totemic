@@ -4,12 +4,13 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.rendering.model.ModelBaykok;
 import pokefenn.totemic.entity.boss.EntityBaykok;
 
 public class BaykokRendering extends RenderLiving<EntityBaykok>
 {
-    private static final ResourceLocation baykokTexture = new ResourceLocation("totemic:textures/models/baykok.png");
+    private static final ResourceLocation baykokTexture = new ResourceLocation(Totemic.MOD_ID, "textures/entity/baykok.png");
 
     public BaykokRendering(RenderManager renderMgr)
     {

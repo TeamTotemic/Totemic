@@ -5,11 +5,13 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
-import pokefenn.totemic.lib.Resources;
 
 public class InvisArrowRendering extends RenderArrow<EntityInvisArrow>
 {
+    private static final ResourceLocation baykokArrowTexture = new ResourceLocation(Totemic.MOD_ID, "textures/entity/baykok_arrow.png");
+
     public InvisArrowRendering(RenderManager renderMgr)
     {
         super(renderMgr);
@@ -31,6 +33,6 @@ public class InvisArrowRendering extends RenderArrow<EntityInvisArrow>
     @Override
     protected ResourceLocation getEntityTexture(EntityInvisArrow entity)
     {
-        return Resources.TEXTURE_BAYKOK_ARROW;
+        return baykokArrowTexture;
     }
 }

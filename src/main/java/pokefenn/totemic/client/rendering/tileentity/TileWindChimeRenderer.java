@@ -4,12 +4,14 @@ import java.util.Random;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.util.ResourceLocation;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.rendering.model.ModelWindChime;
-import pokefenn.totemic.lib.Resources;
 import pokefenn.totemic.tileentity.music.TileWindChime;
 
 public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChime>
 {
+    private static final ResourceLocation textureWindChime = new ResourceLocation(Totemic.MOD_ID, "textures/models/wind_chime.png");
     private final ModelWindChime modelWindChime = new ModelWindChime();
 
     @Override
@@ -29,7 +31,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer<TileWindChi
             resetRotations();
         }
 
-        bindTexture(Resources.TEXTURE_WIND_CHIME);
+        bindTexture(textureWindChime);
         this.modelWindChime.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 
         GlStateManager.popMatrix();

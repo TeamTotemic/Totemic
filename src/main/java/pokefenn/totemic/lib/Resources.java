@@ -16,11 +16,6 @@ public final class Resources
     //GUI overlay
     public static final String CEREMONY_HUD = PREFIX_GUI + "ceremony_hud.png";
 
-    //Models
-    public static final ResourceLocation TEXTURE_BAYKOK_ARROW = new ResourceLocation(Totemic.MOD_ID, MODEL_SHEET_LOCATION + "baykok_arrow.png");
-    public static final ResourceLocation TEXTURE_WIND_CHIME = new ResourceLocation(Totemic.MOD_ID, MODEL_SHEET_LOCATION + "wind_chime.png");
-    public static final ResourceLocation TEXTURE_TIPI = new ResourceLocation(Totemic.MOD_ID, MODEL_SHEET_LOCATION + "tipi.png");
-
     //Loot tables
     public static final ResourceLocation LOOT_BUFFALO = new ResourceLocation(Totemic.MOD_ID, "entities/buffalo");
     public static final ResourceLocation LOOT_BAYKOK = new ResourceLocation(Totemic.MOD_ID, "entities/baykok");
