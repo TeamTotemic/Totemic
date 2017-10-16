@@ -108,7 +108,7 @@ public class ComponentTipi extends StructureVillagePieces.Village
         @Override
         public PieceWeight getVillagePieceWeight(Random random, int size)
         {
-            return new PieceWeight(ComponentTipi.class, 3, MathHelper.getInt(random, 2 + size, 5 + size*3));
+            return new PieceWeight(ComponentTipi.class, 15, MathHelper.getInt(random, 1 + size, 2 + size));
         }
 
         @Override

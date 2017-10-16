@@ -194,7 +194,7 @@ public class ComponentMedicineWheel extends StructureVillagePieces.Village
         @Override
         public PieceWeight getVillagePieceWeight(Random random, int size)
         {
-            return new PieceWeight(ComponentMedicineWheel.class, 3, MathHelper.getInt(random, 2 + size, 5 + size*3));
+            return new PieceWeight(ComponentMedicineWheel.class, 15, MathHelper.getInt(random, 0 + size, 1 + size));
         }
 
         @Override
