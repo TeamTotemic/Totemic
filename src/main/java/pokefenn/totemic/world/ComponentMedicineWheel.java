@@ -114,10 +114,13 @@ public class ComponentMedicineWheel extends StructureVillagePieces.Village
         setBlockState(world, ModBlocks.cedar_log.getDefaultState().withProperty(BlockCedarLog.LOG_AXIS, EnumAxis.Z), 4, 3, 7, bb);
         setBlockState(world, ModBlocks.wind_chime.getDefaultState(), 4, 2, 7, bb);
 
-        setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 1, 0, 1, bb);
-        setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 7, 0, 1, bb);
-        setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 7, 0, 7, bb);
-        setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 1, 0, 7, bb);
+        if(!isZombieInfested)
+        {
+            setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 1, 0, 1, bb);
+            setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 7, 0, 1, bb);
+            setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 7, 0, 7, bb);
+            setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 1, 0, 7, bb);
+        }
 
         //Clear above and make ground level
         IBlockState ground = (structureType != 1) ? Blocks.DIRT.getDefaultState() : Blocks.SAND.getDefaultState();

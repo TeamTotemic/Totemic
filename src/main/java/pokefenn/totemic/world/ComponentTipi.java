@@ -58,8 +58,11 @@ public class ComponentTipi extends StructureVillagePieces.Village
         fillWithAir(world, bb, 0, 0, 0,  4, 5, 4);
 
         placeTipi(world, 2, 0, 2, EnumFacing.NORTH, bb);
-        setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 0, 0, 0, bb);
-        setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 4, 0, 0, bb);
+        if(!isZombieInfested)
+        {
+            setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 0, 0, 0, bb);
+            setBlockState(world, ModBlocks.totem_torch.getDefaultState(), 4, 0, 0, bb);
+        }
 
         IBlockState ground = (structureType != 1) ? Blocks.DIRT.getDefaultState() : Blocks.SAND.getDefaultState();
         IBlockState grass = getBiomeSpecificBlockState(Blocks.GRASS.getDefaultState());
