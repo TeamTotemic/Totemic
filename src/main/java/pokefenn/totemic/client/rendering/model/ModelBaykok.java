@@ -31,96 +31,100 @@ public class ModelBaykok extends ModelBiped
 
     public ModelBaykok()
     {
+        this(0.0F, false);
+    }
+
+    public ModelBaykok(float modelSize, boolean isArmor)
+    {
+        super(modelSize, 0.0F, 64, isArmor ? 32 : 64);
+
         rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
 
-        textureWidth = 64;
-        textureHeight = 64;
-
         head = new ModelRenderer(this, 0, 0);
-        head.addBox(-4F, -9F, -4F, 8, 8, 8);
+        head.addBox(-4F, -9F, -4F, 8, 8, 8, modelSize);
         head.setRotationPoint(0F, 0F, 0F);
         head.setTextureSize(64, 64);
         head.mirror = true;
         setRotation(head, 0F, 0F, 0F);
         headdress1 = new ModelRenderer(this, 32, 0);
-        headdress1.addBox(-0.5F, -14F, -1F, 2, 6, 2);
+        headdress1.addBox(-0.5F, -14F, -1F, 2, 6, 2, modelSize);
         headdress1.setRotationPoint(0F, 0F, 0F);
         headdress1.setTextureSize(64, 64);
         headdress1.mirror = true;
         setRotation(headdress1, -0.1745329F, 0F, -0.4712389F);
         head.addChild(headdress1);
         headdress2 = new ModelRenderer(this, 32, 0);
-        headdress2.addBox(-1F, -14F, -1F, 2, 6, 2);
+        headdress2.addBox(-1F, -14F, -1F, 2, 6, 2, modelSize);
         headdress2.setRotationPoint(0F, 0F, 0F);
         headdress2.setTextureSize(64, 64);
         headdress2.mirror = true;
         setRotation(headdress2, -0.1745329F, 0F, -0.2268928F);
         head.addChild(headdress2);
         headdress3 = new ModelRenderer(this, 32, 0);
-        headdress3.addBox(-1F, -14F, -1F, 2, 6, 2);
+        headdress3.addBox(-1F, -14F, -1F, 2, 6, 2, modelSize);
         headdress3.setRotationPoint(0F, 0F, 0F);
         headdress3.setTextureSize(64, 64);
         headdress3.mirror = true;
         setRotation(headdress3, -0.1745329F, 0F, 0F);
         head.addChild(headdress3);
         headdress4 = new ModelRenderer(this, 32, 0);
-        headdress4.addBox(-1F, -14F, -1F, 2, 6, 2);
+        headdress4.addBox(-1F, -14F, -1F, 2, 6, 2, modelSize);
         headdress4.setRotationPoint(0F, 0F, 0F);
         headdress4.setTextureSize(64, 64);
         headdress4.mirror = true;
         setRotation(headdress4, -0.1745329F, 0F, 0.2268928F);
         head.addChild(headdress4);
         headdress5 = new ModelRenderer(this, 32, 0);
-        headdress5.addBox(-1.5F, -14F, -1F, 2, 6, 2);
+        headdress5.addBox(-1.5F, -14F, -1F, 2, 6, 2, modelSize);
         headdress5.setRotationPoint(0F, 0F, 0F);
         headdress5.setTextureSize(64, 64);
         headdress5.mirror = true;
         setRotation(headdress5, -0.1745329F, 0F, 0.4712389F);
         head.addChild(headdress5);
         ribs = new ModelRenderer(this, 0, 16);
-        ribs.addBox(-3F, -1F, -2F, 6, 8, 4);
+        ribs.addBox(-3F, -1F, -2F, 6, 8, 4, modelSize);
         ribs.setRotationPoint(0F, 0F, 0F);
         ribs.setTextureSize(64, 64);
         ribs.mirror = true;
         setRotation(ribs, 0F, 0F, 0F);
         quiver = new ModelRenderer(this, 24, 20);
-        quiver.addBox(-5F, -2F, 2F, 4, 11, 2);
+        quiver.addBox(-5F, -2F, 2F, 4, 11, 2, modelSize);
         quiver.setRotationPoint(0F, 0F, 0F);
         quiver.setTextureSize(64, 64);
         quiver.mirror = true;
         setRotation(quiver, 0F, 0F, -0.5235988F);
         leftarm = new ModelRenderer(this, 42, 0);
-        leftarm.addBox(-2F, -11F, -0.5F, 3, 13, 3);
+        leftarm.addBox(-2F, -11F, -0.5F, 3, 13, 3, modelSize);
         leftarm.setRotationPoint(5F, 2F, 0F);
         leftarm.setTextureSize(64, 64);
         leftarm.mirror = true;
         setRotation(leftarm, 1.570796F, 0F, 0F);
         rightarm = new ModelRenderer(this, 42, 0);
-        rightarm.addBox(-1F, -11F, -0.5F, 3, 13, 3);
+        rightarm.addBox(-1F, -11F, -0.5F, 3, 13, 3, modelSize);
         rightarm.setRotationPoint(-5F, 2F, 0F);
         rightarm.setTextureSize(64, 64);
         rightarm.mirror = true;
         setRotation(rightarm, 1.570796F, 0F, 0F);
         spine = new ModelRenderer(this, 0, 28);
-        spine.addBox(-1.5F, 7F, -2F, 3, 5, 4);
+        spine.addBox(-1.5F, 7F, -2F, 3, 5, 4, modelSize);
         spine.setRotationPoint(0F, 0F, 0F);
         spine.setTextureSize(64, 64);
         spine.mirror = true;
         setRotation(spine, 0F, 0F, 0F);
         pelvis = new ModelRenderer(this, 0, 37);
-        pelvis.addBox(-4F, 11F, -2F, 8, 1, 4);
+        pelvis.addBox(-4F, 11F, -2F, 8, 1, 4, modelSize);
         pelvis.setRotationPoint(0F, 0F, 0F);
         pelvis.setTextureSize(64, 64);
         pelvis.mirror = true;
         setRotation(pelvis, 0F, 0F, 0F);
         leftleg = new ModelRenderer(this, 42, 16);
-        leftleg.addBox(-1F, 0F, -1.5F, 3, 12, 3);
+        leftleg.addBox(-1F, 0F, -1.5F, 3, 12, 3, modelSize);
         leftleg.setRotationPoint(2F, 12F, 0F);
         leftleg.setTextureSize(64, 64);
         leftleg.mirror = true;
         setRotation(leftleg, 0F, 0F, 0F);
         rightleg = new ModelRenderer(this, 42, 16);
-        rightleg.addBox(-2F, 0F, -1.5F, 3, 12, 3);
+        rightleg.addBox(-2F, 0F, -1.5F, 3, 12, 3, modelSize);
         rightleg.setRotationPoint(-2F, 12F, 0F);
         rightleg.setTextureSize(64, 64);
         rightleg.mirror = true;
