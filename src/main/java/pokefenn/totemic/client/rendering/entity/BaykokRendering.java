@@ -16,14 +16,14 @@ public class BaykokRendering extends RenderBiped<EntityBaykok>
     {
         super(renderMgr, new ModelBaykok(), 0.5F);
         addLayer(new LayerBipedArmor(this)
-                {
-                    @Override
-                    protected void initArmor()
-                    {
-                        modelLeggings = new ModelBaykok(0.5F, true);
-                        modelArmor = new ModelBaykok(1.0F, true);
-                    }
-                });
+        {
+            @Override
+            protected void initArmor()
+            {
+                modelLeggings = new ModelBaykok(0.5F, true);
+                modelArmor = new ModelBaykok(1.0F, true);
+            }
+        });
     }
 
     @Override

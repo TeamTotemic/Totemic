@@ -23,12 +23,12 @@ public class ModelBaykok extends ModelBiped
         rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
 
         bipedHead = new ModelRenderer(this, 0, 0);
-        bipedHead.addBox(-4F, -9F, -4F, 8, 8, 8, modelSize);
-        bipedHead.setRotationPoint(0F, 0F, 0F);
+        bipedHead.addBox(-4F, -8F, -4F, 8, 8, 8, modelSize);
+        bipedHead.setRotationPoint(0F, -1F, 0F);
         bipedHead.mirror = true;
         setRotation(bipedHead, 0F, 0F, 0F);
         bipedHeadwear = new ModelRenderer(this, 0, 0);
-        bipedHeadwear.setRotationPoint(0F, 0F, 0F);
+        bipedHeadwear.setRotationPoint(0F, -1F, 0F);
         bipedHeadwear.mirror = true;
         setRotation(bipedHeadwear, 0F, 0F, 0F);
 
@@ -126,6 +126,10 @@ public class ModelBaykok extends ModelBiped
 
         bipedRightArm.rotateAngleX = -((float)Math.PI / 2F);
         bipedRightArm.rotateAngleY = -0.1F;
+
+        //super.setRotationAngles changes rotation points. This corrects for that.
+        bipedHead.rotationPointY += -1F;
+        bipedHeadwear.rotationPointY = bipedHead.rotationPointY;
     }
 
     @Override
