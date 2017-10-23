@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -25,6 +26,7 @@ import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import pokefenn.totemic.ModItems;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
 import pokefenn.totemic.lib.Resources;
 
@@ -102,6 +104,9 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
         setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ModItems.baykok_bow));
+
+        if(Totemic.isHalloweenTime)
+            setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(Blocks.PUMPKIN));
     }
 
     @Override
