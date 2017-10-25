@@ -21,7 +21,7 @@ public final class ModVillagers
 {
     public static final VillagerProfession profTotemist = new VillagerProfession(Resources.PREFIX_MOD + "totemist",
             Resources.PREFIX_MOD + "textures/entity/totemic_villager.png",
-            Resources.PREFIX_MOD + "textures/entity/totemic_zombie_villager.png");
+            "minecraft:textures/entity/zombie_villager/zombie_villager.png"); //TODO: Totemist zombie villager texture
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VillagerProfession> event)
