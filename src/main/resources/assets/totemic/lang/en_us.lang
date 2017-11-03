@@ -122,6 +122,10 @@ totemicmisc.isDoingStartup=The Totem Pole is doing a Ceremony startup
 totemicmisc.isDoingCeremony=The Totem Pole is doing a Ceremony effect
 totemicmisc.effectNotPortable=The effect %s cannot be carried in a Medicine Bag
 
+#Waila tooltips
+totemic.waila.ceremonyStartup=Ceremony Startup: %s
+totemic.waila.ceremonyEffect=Ceremony Effect: %s
+
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.
 
