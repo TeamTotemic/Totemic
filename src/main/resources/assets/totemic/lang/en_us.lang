@@ -52,7 +52,7 @@ tile.totemic:tipi.name=Tipi
 #Entity localizations
 entity.totemic:buffalo.name=Buffalo
 entity.totemic:baykok.name=Baykok
-entity.Villager.totemist=Totemist
+entity.Villager.totemist=Medicine Man
 
 #Potion effect localizations
 totemic.potion.bat=Bat
