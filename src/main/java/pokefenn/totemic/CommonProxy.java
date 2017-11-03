@@ -30,6 +30,8 @@ import pokefenn.totemic.handler.EntityFall;
 import pokefenn.totemic.handler.EntitySpawn;
 import pokefenn.totemic.handler.EntityUpdate;
 import pokefenn.totemic.handler.PlayerInteract;
+import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.ItemBuffaloDrops;
 import pokefenn.totemic.item.ItemTotemicItems;
 import pokefenn.totemic.lib.Resources;

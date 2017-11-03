@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.lib.Strings;
 
 public class CreativeTabTotemic extends CreativeTabs

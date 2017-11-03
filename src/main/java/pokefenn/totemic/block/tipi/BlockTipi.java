@@ -31,8 +31,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.ModBlocks;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.tileentity.TileTipi;
 

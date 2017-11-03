@@ -1,4 +1,4 @@
-package pokefenn.totemic;
+package pokefenn.totemic.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.item.*;
 import pokefenn.totemic.item.equipment.ItemBarkStripper;
 import pokefenn.totemic.item.equipment.ItemMedicineBag;

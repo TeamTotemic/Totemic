@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import pokefenn.totemic.ModItems;
+import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.equipment.ItemTotemWhittlingKnife;
 import pokefenn.totemic.network.SynchronizedPacketBase;
 

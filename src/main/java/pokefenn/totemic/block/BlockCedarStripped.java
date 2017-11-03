@@ -9,8 +9,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import pokefenn.totemic.ModBlocks;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.lib.Strings;
 
 public class BlockCedarStripped extends BlockLog

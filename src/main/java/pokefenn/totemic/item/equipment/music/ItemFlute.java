@@ -20,9 +20,9 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.ModSounds;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.ItemInstrument;
+import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.util.EntityUtil;
 

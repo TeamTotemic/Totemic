@@ -17,8 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.ModBlocks;
 import pokefenn.totemic.api.TotemicStaffUsage;
+import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.item.ItemTotemic;
 import pokefenn.totemic.lib.Strings;
 

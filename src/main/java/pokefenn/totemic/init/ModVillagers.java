@@ -1,4 +1,4 @@
-package pokefenn.totemic;
+package pokefenn.totemic.init;
 
 import java.util.Random;
 
@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.lib.Resources;
 
 @EventBusSubscriber(modid = Totemic.MOD_ID)

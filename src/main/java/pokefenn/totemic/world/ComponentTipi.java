@@ -17,9 +17,9 @@ import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Village;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
-import pokefenn.totemic.ModBlocks;
-import pokefenn.totemic.ModVillagers;
 import pokefenn.totemic.block.tipi.BlockTipi;
+import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModVillagers;
 
 public class ComponentTipi extends StructureVillagePieces.Village
 {

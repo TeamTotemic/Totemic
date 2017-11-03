@@ -27,6 +27,7 @@ import pokefenn.totemic.entity.boss.EntityBaykok;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
 import pokefenn.totemic.handler.GameOverlay;
 import pokefenn.totemic.handler.PlayerRender;
+import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.tileentity.music.TileWindChime;
 import pokefenn.totemic.totempedia.LexiconData;
 

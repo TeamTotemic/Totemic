@@ -8,7 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
-import pokefenn.totemic.ModBlocks;
+import pokefenn.totemic.init.ModBlocks;
 
 public enum WoodVariant implements IStringSerializable
 {

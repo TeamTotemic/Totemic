@@ -7,9 +7,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import pokefenn.totemic.ModSounds;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.ItemInstrument;
+import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
 
 public class ItemRattle extends ItemInstrument

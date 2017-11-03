@@ -1,4 +1,4 @@
-package pokefenn.totemic;
+package pokefenn.totemic.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.BlockCedarLog;
 import pokefenn.totemic.block.BlockCedarPlank;
 import pokefenn.totemic.block.BlockCedarStripped;

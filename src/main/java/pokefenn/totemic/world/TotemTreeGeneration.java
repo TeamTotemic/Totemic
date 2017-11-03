@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import pokefenn.totemic.ModBlocks;
+import pokefenn.totemic.init.ModBlocks;
 
 public class TotemTreeGeneration extends WorldGenAbstractTree
 {

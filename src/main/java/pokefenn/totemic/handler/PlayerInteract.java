@@ -8,8 +8,8 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.ModBlocks;
-import pokefenn.totemic.ModItems;
+import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.network.NetworkHandler;
 import pokefenn.totemic.network.server.PacketMouseWheel;
 

@@ -13,9 +13,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import pokefenn.totemic.ModBlocks;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.tipi.BlockTipi;
+import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.lib.Strings;
 
 public class ItemTipi extends ItemBlock

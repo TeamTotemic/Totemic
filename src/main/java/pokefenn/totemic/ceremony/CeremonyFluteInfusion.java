@@ -6,9 +6,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import pokefenn.totemic.ModItems;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.util.EntityUtil;
 
 public class CeremonyFluteInfusion extends Ceremony

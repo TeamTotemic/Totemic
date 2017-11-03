@@ -20,13 +20,13 @@ import net.minecraft.world.gen.structure.StructureVillagePieces.Village;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
-import pokefenn.totemic.ModBlocks;
-import pokefenn.totemic.ModVillagers;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.BlockCedarLog;
 import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.block.totem.BlockTotemPole;
+import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModVillagers;
 import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
 

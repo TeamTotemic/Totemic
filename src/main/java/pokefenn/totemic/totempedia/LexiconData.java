@@ -13,11 +13,11 @@ package pokefenn.totemic.totempedia;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.ModContent;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.lexicon.LexiconAPI;
 import pokefenn.totemic.api.lexicon.LexiconCategory;
 import pokefenn.totemic.api.lexicon.LexiconEntry;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.lib.Totempedia;
 import pokefenn.totemic.totempedia.page.PageCeremony;

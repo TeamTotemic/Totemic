@@ -25,9 +25,9 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import pokefenn.totemic.ModItems;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
+import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.lib.Resources;
 
 public class EntityBaykok extends EntityMob implements IRangedAttackMob
