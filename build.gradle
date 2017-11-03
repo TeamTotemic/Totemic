@@ -22,10 +22,10 @@ group = "pokefenn.totemic"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.12.2-14.23.0.2491"
+    version = "1.12.2-14.23.0.2528"
     runDir = "run"
 
-    mappings = "snapshot_20170624"
+    mappings = "snapshot_20171003"
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     replaceIn "Totemic.java"

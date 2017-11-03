@@ -93,7 +93,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
         double xzdist = MathHelper.sqrt(dx*dx + dz*dz);
         float velocity = 2.0F + 1.0F * distanceFactor;
         float inaccuracy = 4.5F - world.getDifficulty().getDifficultyId();
-        arrow.setThrowableHeading(dx, dy + 0.125 * xzdist, dz, velocity, inaccuracy);
+        arrow.shoot(dx, dy + 0.125 * xzdist, dz, velocity, inaccuracy);
         arrow.setDamage(2.0 * distanceFactor + 1.0 + 0.25 * rand.nextGaussian() + 0.4 * world.getDifficulty().getDifficultyId());
 
         playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));

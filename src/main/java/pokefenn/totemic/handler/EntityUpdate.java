@@ -48,7 +48,7 @@ public class EntityUpdate
     private void climb(EntityPlayer player)
     {
         //Code from joshiejack :)
-        if(player.isCollidedHorizontally && !player.isOnLadder())
+        if(player.collidedHorizontally && !player.isOnLadder())
         {
             final float factor = 0.15F;
 

@@ -38,7 +38,7 @@ public class CeremonyBuffaloDance extends Ceremony
                 buffalo.setGrowingAge(-24000);
                 EntityUtil.spawnEntity(world, cow.posX, cow.posY, cow.posZ, buffalo);
                 if(cow.getLeashed())
-                    buffalo.setLeashedToEntity(cow.getLeashedToEntity(), true);
+                    buffalo.setLeashHolder(cow.getLeashHolder(), true);
                 cow.setDead();
                 ((WorldServer) world).spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, cow.posX, cow.posY + 1.0, cow.posZ, 24, 0.6D, 0.5D, 0.6D, 1.0D);
             });
