@@ -36,11 +36,13 @@ minecraft {
 sourceCompatibility = targetCompatibility = '1.8'
 
 repositories {
-
+    maven {
+        url "http://tehnut.info/maven"
+    }
 }
 
 dependencies {
-
+    deobfCompile "mcp.mobius.waila:Hwyla:1.8.21-B36_1.12"
 }
 
 processResources {
