@@ -1,7 +1,5 @@
 package pokefenn.totemic;
 
-import java.util.Calendar;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,16 +37,6 @@ public final class Totemic
     public static final CreativeTabs tabsTotem = new CreativeTabTotemic(MOD_ID);
     public static final Logger logger = LogManager.getLogger(MOD_NAME);
 
-    public static final boolean isHalloweenTime;
-
-    static
-    {
-        Calendar calendar = Calendar.getInstance();
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        isHalloweenTime = (month == Calendar.OCTOBER && day >= 30) || (month == Calendar.NOVEMBER && day == 1);
-    }
-
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -71,8 +59,6 @@ public final class Totemic
     {
         logger.info("Totemic is entering postinitialization stage");
         proxy.postInit(event);
-        if(isHalloweenTime)
-            logger.info("Happy Halloween!");
     }
 
     @SubscribeEvent
