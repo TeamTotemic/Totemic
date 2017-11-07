@@ -80,7 +80,6 @@ task apiSrcJar(type: Jar) {
 }
 
 task signJar(type: SignJar, dependsOn: reobfJar) {
-
     // Skips if the keyStore property is missing.
     onlyIf {
         project.hasProperty('keyStore')
@@ -98,7 +97,12 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
 }
 
 // Runs this task automatically when build is ran.
-build.dependsOn signJar
+//build.dependsOn signJar
+// FIXME: Got it to work with curseForge, but maybe this is not the proper way of doing it?
+reobfJar.doLast {
+    println "Signing the jar..."
+    signJar.execute()
+}
 
 artifacts {
     archives deobfJar
