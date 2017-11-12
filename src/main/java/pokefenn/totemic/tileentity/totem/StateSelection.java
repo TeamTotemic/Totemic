@@ -12,16 +12,20 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Streams;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.WorldServer;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.util.EntityUtil;
 
 public final class StateSelection extends TotemState
 {
@@ -82,7 +86,10 @@ public final class StateSelection extends TotemState
             if(match.isPresent())
             {
                 world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
-                tile.setState(new StateStartup(tile, initiator, match.get()));
+                Ceremony cer = match.get();
+                if(cer == ModContent.baykokSummon || cer == ModContent.buffaloDance || cer == ModContent.rainDance || cer == ModContent.drought || cer == ModContent.zaphkielWaltz)
+                    showBTMMessage(cer);
+                tile.setState(new StateStartup(tile, initiator, cer));
             }
             else if(selectors.size() >= ACTUAL_MAX_SELECTORS) //No match found - only reset if the maximum number of selectors is reached
             {
@@ -90,6 +97,12 @@ public final class StateSelection extends TotemState
                 tile.setState(new StateTotemEffect(tile));
             }
         }
+    }
+
+    private void showBTMMessage(Ceremony ceremony)
+    {
+        for(EntityPlayer player: EntityUtil.getEntitiesInRange(EntityPlayer.class, tile.getWorld(), tile.getPos(), 8, 8))
+            player.sendStatusMessage(new TextComponentString("This Ceremony has no effect on BTM Moon, but you can still try to activate it."), false);
     }
 
     private boolean selectorsMatch(Ceremony cer)
