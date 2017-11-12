@@ -2,13 +2,12 @@ package pokefenn.totemic.ceremony;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Loader;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 public class CeremonyBuffaloDance extends Ceremony
 {
-    private static final boolean ANIMANIA_LOADED = Loader.isModLoaded("animania");
+    //private static final boolean ANIMANIA_LOADED = Loader.isModLoaded("animania");
 
     public CeremonyBuffaloDance(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
