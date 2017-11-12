@@ -11,7 +11,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
@@ -20,8 +19,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
@@ -30,7 +27,7 @@ import pokefenn.totemic.lib.Resources;
 
 public class EntityBaykok extends EntityMob implements IRangedAttackMob
 {
-    private final BossInfoServer bossInfo = (BossInfoServer)new BossInfoServer(getDisplayName(), BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS).setDarkenSky(true);
+    //private final BossInfoServer bossInfo = (BossInfoServer)new BossInfoServer(getDisplayName(), BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS).setDarkenSky(true);
 
     public EntityBaykok(World world)
     {
@@ -74,12 +71,12 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
         return super.onInitialSpawn(difficulty, livingdata);
     }
 
-    @Override
+    /*@Override
     protected void updateAITasks()
     {
         super.updateAITasks();
         bossInfo.setPercent(getHealth() / getMaxHealth());
-    }
+    }*/
 
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
@@ -141,7 +138,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
         return super.getSoundPitch() - 0.15F;
     }
 
-    @Override
+    /*@Override
     public void addTrackingPlayer(EntityPlayerMP player)
     {
         super.addTrackingPlayer(player);
@@ -153,7 +150,7 @@ public class EntityBaykok extends EntityMob implements IRangedAttackMob
     {
         super.removeTrackingPlayer(player);
         bossInfo.removePlayer(player);
-    }
+    }*/
 
     @Override
     public void setSwingingArms(boolean swingingArms)
