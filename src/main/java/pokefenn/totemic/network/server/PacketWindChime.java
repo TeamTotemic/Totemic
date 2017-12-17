@@ -4,13 +4,12 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.network.PacketBase;
 import pokefenn.totemic.tileentity.music.TileWindChime;
 
-public class PacketWindChime extends PacketBase<PacketWindChime>
+public class PacketWindChime implements IMessage
 {
     private BlockPos pos;
 
@@ -33,14 +32,17 @@ public class PacketWindChime extends PacketBase<PacketWindChime>
         buf.writeLong(pos.toLong());
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    protected void handleClient(MessageContext ctx)
+    public static class Handler implements IMessageHandler<PacketWindChime, IMessage>
     {
-        TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(pos);
-        if(tile instanceof TileWindChime)
+        @Override
+        public IMessage onMessage(PacketWindChime msg, MessageContext ctx)
         {
-            ((TileWindChime) tile).setPlaying(true);
+            TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(msg.pos);
+            if(tile instanceof TileWindChime)
+            {
+                ((TileWindChime) tile).setPlaying(true);
+            }
+            return null;
         }
     }
 }

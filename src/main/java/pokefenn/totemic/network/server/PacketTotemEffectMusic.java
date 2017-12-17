@@ -4,14 +4,12 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.network.SynchronizedPacketBase;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import pokefenn.totemic.network.CSynchronizedMessageHandler;
 import pokefenn.totemic.tileentity.totem.StateTotemEffect;
 import pokefenn.totemic.tileentity.totem.TileTotemBase;
 
-public class PacketTotemEffectMusic extends SynchronizedPacketBase<PacketTotemEffectMusic>
+public class PacketTotemEffectMusic implements IMessage
 {
     private BlockPos pos;
     private int effectMusic = 0;
@@ -38,16 +36,18 @@ public class PacketTotemEffectMusic extends SynchronizedPacketBase<PacketTotemEf
         buf.writeInt(effectMusic);
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    protected void handleClient(MessageContext ctx)
+    public static class Handler extends CSynchronizedMessageHandler<PacketTotemEffectMusic>
     {
-        TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(pos);
-        if(tile instanceof TileTotemBase)
+        @Override
+        protected void handleClient(PacketTotemEffectMusic msg)
         {
-            TileTotemBase totem = (TileTotemBase) tile;
-            if(totem.getState() instanceof StateTotemEffect)
-                ((StateTotemEffect) totem.getState()).setMusicAmount(effectMusic);
+            TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(msg.pos);
+            if(tile instanceof TileTotemBase)
+            {
+                TileTotemBase totem = (TileTotemBase) tile;
+                if(totem.getState() instanceof StateTotemEffect)
+                    ((StateTotemEffect) totem.getState()).setMusicAmount(msg.effectMusic);
+            }
         }
     }
 }

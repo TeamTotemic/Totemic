@@ -10,25 +10,28 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.network.client.PacketMouseWheel;
-import pokefenn.totemic.network.server.*;
+import pokefenn.totemic.network.server.PacketCeremonyStartup;
+import pokefenn.totemic.network.server.PacketTotemEffectMusic;
+import pokefenn.totemic.network.server.PacketTotemPoleChange;
+import pokefenn.totemic.network.server.PacketWindChime;
 
 public class NetworkHandler
 {
     private static int id;
     public static final SimpleNetworkWrapper wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(Totemic.MOD_ID);
 
-    private static <T extends IMessage & IMessageHandler<T, R>, R extends IMessage> void registerPacket(Class<T> clazz, Side side)
+    private static <T extends IMessage, R extends IMessage> void registerPacket(Class<? extends IMessageHandler<T, R>> handlerClass, Class<T> messageClass, Side side)
     {
-        wrapper.registerMessage(clazz, clazz, id++, side);
+        wrapper.registerMessage(handlerClass, messageClass, id++, side);
     }
 
     public static void init()
     {
-        registerPacket(PacketMouseWheel.class, Side.SERVER);
-        registerPacket(PacketWindChime.class, Side.CLIENT);
-        registerPacket(PacketCeremonyStartup.class, Side.CLIENT);
-        registerPacket(PacketTotemEffectMusic.class, Side.CLIENT);
-        registerPacket(PacketTotemPoleChange.class, Side.CLIENT);
+        registerPacket(PacketMouseWheel.Handler.class, PacketMouseWheel.class, Side.SERVER);
+        registerPacket(PacketWindChime.Handler.class, PacketWindChime.class, Side.CLIENT);
+        registerPacket(PacketCeremonyStartup.Handler.class, PacketCeremonyStartup.class, Side.CLIENT);
+        registerPacket(PacketTotemEffectMusic.Handler.class, PacketTotemEffectMusic.class, Side.CLIENT);
+        registerPacket(PacketTotemPoleChange.Handler.class, PacketTotemPoleChange.class, Side.CLIENT);
     }
 
     public static void sendToServer(IMessage packet)

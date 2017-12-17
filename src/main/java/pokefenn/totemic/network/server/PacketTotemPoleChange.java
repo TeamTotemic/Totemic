@@ -4,13 +4,11 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.network.SynchronizedPacketBase;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import pokefenn.totemic.network.CSynchronizedMessageHandler;
 import pokefenn.totemic.tileentity.totem.TileTotemBase;
 
-public class PacketTotemPoleChange extends SynchronizedPacketBase<PacketTotemPoleChange>
+public class PacketTotemPoleChange implements IMessage
 {
     private BlockPos pos;
 
@@ -33,14 +31,16 @@ public class PacketTotemPoleChange extends SynchronizedPacketBase<PacketTotemPol
         buf.writeLong(pos.toLong());
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    protected void handleClient(MessageContext ctx)
+    public static class Handler extends CSynchronizedMessageHandler<PacketTotemPoleChange>
     {
-        TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(pos);
-        if(tile instanceof TileTotemBase)
+        @Override
+        protected void handleClient(PacketTotemPoleChange msg)
         {
-            ((TileTotemBase) tile).onPoleChange();
+            TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(msg.pos);
+            if(tile instanceof TileTotemBase)
+            {
+                ((TileTotemBase) tile).onPoleChange();
+            }
         }
     }
 }

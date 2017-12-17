@@ -3,12 +3,12 @@ package pokefenn.totemic.network.client;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.equipment.ItemTotemWhittlingKnife;
-import pokefenn.totemic.network.SynchronizedPacketBase;
+import pokefenn.totemic.network.SSynchronizedMessageHandler;
 
-public class PacketMouseWheel extends SynchronizedPacketBase<PacketMouseWheel>
+public class PacketMouseWheel implements IMessage
 {
     private boolean direction;
 
@@ -34,13 +34,15 @@ public class PacketMouseWheel extends SynchronizedPacketBase<PacketMouseWheel>
         buf.writeBoolean(direction);
     }
 
-    @Override
-    protected void handleServer(EntityPlayerMP player, MessageContext ctx)
+    public static class Handler extends SSynchronizedMessageHandler<PacketMouseWheel>
     {
-        if(player.getHeldItemMainhand().getItem() == ModItems.totem_whittling_knife)
+        @Override
+        protected void handleServer(PacketMouseWheel msg, EntityPlayerMP player)
         {
-            player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemTotemWhittlingKnife.changeIndex(player.getHeldItemMainhand(), direction));
+            if(player.getHeldItemMainhand().getItem() == ModItems.totem_whittling_knife)
+            {
+                player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemTotemWhittlingKnife.changeIndex(player.getHeldItemMainhand(), msg.direction));
+            }
         }
     }
-
 }
