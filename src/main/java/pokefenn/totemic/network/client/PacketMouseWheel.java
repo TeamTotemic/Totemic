@@ -1,4 +1,4 @@
-package pokefenn.totemic.network.server;
+package pokefenn.totemic.network.client;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;

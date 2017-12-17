@@ -20,7 +20,7 @@ import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.network.NetworkHandler;
-import pokefenn.totemic.network.client.PacketCeremonyStartup;
+import pokefenn.totemic.network.server.PacketCeremonyStartup;
 
 public final class StateStartup extends TotemState
 {

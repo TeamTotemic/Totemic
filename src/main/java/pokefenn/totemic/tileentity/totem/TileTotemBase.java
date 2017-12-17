@@ -27,7 +27,7 @@ import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.handler.GameOverlay;
 import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.network.NetworkHandler;
-import pokefenn.totemic.network.client.PacketTotemPoleChange;
+import pokefenn.totemic.network.server.PacketTotemPoleChange;
 import pokefenn.totemic.tileentity.TileTotemic;
 
 public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBase, ITickable

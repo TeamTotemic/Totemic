@@ -1,4 +1,4 @@
-package pokefenn.totemic.network.client;
+package pokefenn.totemic.network.server;
 
 import io.netty.buffer.ByteBuf;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;

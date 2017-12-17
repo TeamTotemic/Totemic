@@ -15,7 +15,7 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemBase;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.network.NetworkHandler;
-import pokefenn.totemic.network.client.PacketTotemEffectMusic;
+import pokefenn.totemic.network.server.PacketTotemEffectMusic;
 
 public final class StateTotemEffect extends TotemState
 {

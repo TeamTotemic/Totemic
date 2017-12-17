@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.network.NetworkHandler;
-import pokefenn.totemic.network.server.PacketMouseWheel;
+import pokefenn.totemic.network.client.PacketMouseWheel;
 
 public class PlayerInteract
 {

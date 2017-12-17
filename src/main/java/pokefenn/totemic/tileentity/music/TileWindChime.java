@@ -14,7 +14,7 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.network.NetworkHandler;
-import pokefenn.totemic.network.client.PacketWindChime;
+import pokefenn.totemic.network.server.PacketWindChime;
 import pokefenn.totemic.tileentity.TileTotemic;
 import pokefenn.totemic.util.TotemUtil;
 

@@ -9,11 +9,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.network.client.PacketCeremonyStartup;
-import pokefenn.totemic.network.client.PacketTotemEffectMusic;
-import pokefenn.totemic.network.client.PacketTotemPoleChange;
-import pokefenn.totemic.network.client.PacketWindChime;
-import pokefenn.totemic.network.server.PacketMouseWheel;
+import pokefenn.totemic.network.client.PacketMouseWheel;
+import pokefenn.totemic.network.server.*;
 
 public class NetworkHandler
 {
