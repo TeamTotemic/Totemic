@@ -2,6 +2,7 @@ package pokefenn.totemic.handler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -10,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
+import pokefenn.totemic.item.equipment.ItemTotemWhittlingKnife;
 import pokefenn.totemic.network.NetworkHandler;
 import pokefenn.totemic.network.client.PacketMouseWheel;
 
@@ -27,7 +29,9 @@ public class PlayerInteract
             EntityPlayer player = Minecraft.getMinecraft().player;
             if(player.isSneaking() && player.getHeldItemMainhand().getItem() == ModItems.totem_whittling_knife)
             {
-                NetworkHandler.sendToServer(new PacketMouseWheel(event.getDwheel() > 0));
+                boolean direction = (event.getDwheel() > 0);
+                NetworkHandler.sendToServer(new PacketMouseWheel(direction));
+                player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, ItemTotemWhittlingKnife.changeIndex(player.getHeldItemMainhand(), direction));
                 event.setCanceled(true);
             }
         }
