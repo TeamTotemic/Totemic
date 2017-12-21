@@ -36,6 +36,16 @@ public class PacketTotemEffectMusic implements IMessage
         buf.writeInt(effectMusic);
     }
 
+    public BlockPos getPos()
+    {
+        return pos;
+    }
+
+    public int getEffectMusic()
+    {
+        return effectMusic;
+    }
+
     public static class Handler extends CSynchronizedMessageHandler<PacketTotemEffectMusic>
     {
         @Override
@@ -46,7 +56,7 @@ public class PacketTotemEffectMusic implements IMessage
             {
                 TileTotemBase totem = (TileTotemBase) tile;
                 if(totem.getState() instanceof StateTotemEffect)
-                    ((StateTotemEffect) totem.getState()).setMusicAmount(msg.effectMusic);
+                    ((StateTotemEffect) totem.getState()).handleMusicPacket(msg);
             }
         }
     }

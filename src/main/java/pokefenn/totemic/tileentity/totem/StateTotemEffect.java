@@ -101,9 +101,9 @@ public final class StateTotemEffect extends TotemState
         return musicAmount;
     }
 
-    public void setMusicAmount(int amount)
+    public void handleMusicPacket(PacketTotemEffectMusic msg)
     {
-        this.musicAmount = amount;
+        musicAmount = msg.getEffectMusic();
     }
 
     @Override
