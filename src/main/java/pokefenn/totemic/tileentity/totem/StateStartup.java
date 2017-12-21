@@ -20,6 +20,7 @@ import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.network.NetworkHandler;
+import pokefenn.totemic.network.server.PacketCeremonyStartupFull;
 import pokefenn.totemic.network.server.PacketCeremonyStartupMusic;
 
 public final class StateStartup extends TotemState
@@ -49,7 +50,7 @@ public final class StateStartup extends TotemState
     public void update()
     {
         World world = tile.getWorld();
-        //BlockPos pos = tile.getPos();
+        BlockPos pos = tile.getPos();
 
         if(!world.isRemote)
         {
@@ -63,8 +64,8 @@ public final class StateStartup extends TotemState
             }
             else
             {
-                /*if(time % 20 == 0)
-                NetworkHandler.sendAround(new PacketCeremonyStartup(pos, music, time), tile, 16);*/
+                if(time % 100 == 0)
+                    NetworkHandler.sendAround(new PacketCeremonyStartupFull(pos, time, music), tile, 16);
             }
         }
         else
@@ -207,5 +208,22 @@ public final class StateStartup extends TotemState
         int oldVal = music.getInt(msg.getInstrument());
         music.put(msg.getInstrument(), msg.getAmount());
         totalMusic += (msg.getAmount() - oldVal);
+    }
+
+    public void handleFullPacket(PacketCeremonyStartupFull msg)
+    {
+        time = msg.getStartupTime();
+
+        music.clear();
+        totalMusic = 0;
+        for(int i = 0; i < msg.getCount(); i++)
+        {
+            MusicInstrument instr = msg.getInstrument(i);
+            int value = msg.getValue(i);
+            music.put(instr, value);
+            totalMusic += value;
+        }
+
+        logger.info("Full packet handled @ {}", tile.getPos());
     }
 }

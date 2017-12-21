@@ -27,21 +27,6 @@ public class PacketCeremonyStartupMusic implements IMessage
 
     public PacketCeremonyStartupMusic() {}
 
-    public BlockPos getPos()
-    {
-        return pos;
-    }
-
-    public MusicInstrument getInstrument()
-    {
-        return instrument;
-    }
-
-    public int getAmount()
-    {
-        return amount;
-    }
-
     @Override
     public void fromBytes(ByteBuf buf)
     {
@@ -56,6 +41,21 @@ public class PacketCeremonyStartupMusic implements IMessage
         buf.writeLong(pos.toLong());
         buf.writeByte(((ForgeRegistry<MusicInstrument>) TotemicRegistries.instruments()).getID(instrument));
         buf.writeShort(amount);
+    }
+
+    public BlockPos getPos()
+    {
+        return pos;
+    }
+
+    public MusicInstrument getInstrument()
+    {
+        return instrument;
+    }
+
+    public int getAmount()
+    {
+        return amount;
     }
 
     public static class Handler extends CSynchronizedMessageHandler<PacketCeremonyStartupMusic>
