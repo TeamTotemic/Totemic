@@ -2,7 +2,14 @@ package pokefenn.totemic.tileentity.totem;
 
 import static pokefenn.totemic.Totemic.logger;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.WeakHashMap;
+
 import javax.annotation.Nullable;
+
+import com.google.common.base.Predicates;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
@@ -22,6 +29,7 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.network.NetworkHandler;
 import pokefenn.totemic.network.server.PacketCeremonyStartupFull;
 import pokefenn.totemic.network.server.PacketCeremonyStartupMusic;
+import pokefenn.totemic.util.EntityUtil;
 
 public final class StateStartup extends TotemState
 {
@@ -33,6 +41,8 @@ public final class StateStartup extends TotemState
     private final Object2IntOpenHashMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size(), 0.75F);
     private int totalMusic = 0;
     private final Object2IntOpenHashMap<MusicInstrument> timesPlayed = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size(), 0.75F);
+    //Weak set used to detect when new players enter the range so we send a synchronization packet
+    private final Set<EntityPlayerMP> playersInRange = Collections.newSetFromMap(new WeakHashMap<>());
 
     StateStartup(TileTotemBase tile)
     {
@@ -64,7 +74,24 @@ public final class StateStartup extends TotemState
             }
             else
             {
-                if(time % 100 == 0)
+                if(time % 20 == 0)
+                {
+                    //Detect when a new player has moved into range and send an update packet.
+                    //We have to use the predicate to also include players in Spectator mode.
+                    List<EntityPlayerMP> players = EntityUtil.getEntitiesInRange(EntityPlayerMP.class, tile.getWorld(), tile.getPos(), 16, 16, Predicates.alwaysTrue());
+                    playersInRange.retainAll(players); //Remove players that went out of range
+                    for(EntityPlayerMP player: players)
+                    {
+                        if(!playersInRange.contains(player))
+                        {
+                            if(time != 0)
+                                NetworkHandler.sendToClient(new PacketCeremonyStartupFull(pos, time, music), player);
+                            playersInRange.add(player);
+                        }
+                    }
+                }
+
+                if(time != 0 && time % 100 == 0)
                     NetworkHandler.sendAround(new PacketCeremonyStartupFull(pos, time, music), tile, 16);
             }
         }
@@ -223,7 +250,5 @@ public final class StateStartup extends TotemState
             music.put(instr, value);
             totalMusic += value;
         }
-
-        logger.info("Full packet handled @ {}", tile.getPos());
     }
 }
