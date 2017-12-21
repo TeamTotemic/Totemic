@@ -20,7 +20,7 @@ import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.network.NetworkHandler;
-import pokefenn.totemic.network.server.PacketCeremonyStartup;
+import pokefenn.totemic.network.server.PacketCeremonyStartupMusic;
 
 public final class StateStartup extends TotemState
 {
@@ -49,7 +49,7 @@ public final class StateStartup extends TotemState
     public void update()
     {
         World world = tile.getWorld();
-        BlockPos pos = tile.getPos();
+        //BlockPos pos = tile.getPos();
 
         if(!world.isRemote)
         {
@@ -57,12 +57,14 @@ public final class StateStartup extends TotemState
             {
                 startCeremony();
             }
+            else if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty()))
+            {
+                failCeremony();
+            }
             else
             {
-                if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty()))
-                    failCeremony();
-                else if(time % 20 == 0)
-                    NetworkHandler.sendAround(new PacketCeremonyStartup(pos, music, time), tile, 16);
+                /*if(time % 20 == 0)
+                NetworkHandler.sendAround(new PacketCeremonyStartup(pos, music, time), tile, 16);*/
             }
         }
         else
@@ -105,9 +107,12 @@ public final class StateStartup extends TotemState
 
         int oldVal = music.getInt(instr);
         int newVal = Math.min(oldVal + amount, instr.getMusicMaximum());
+        if(newVal == oldVal)
+            return false;
         music.put(instr, newVal);
         totalMusic += (newVal - oldVal);
-        return newVal > oldVal;
+        NetworkHandler.sendAround(new PacketCeremonyStartupMusic(tile.getPos(), instr, newVal), tile, 16);
+        return true;
     }
 
     private int getDiminishedMusic(MusicInstrument instr, int amount)
@@ -197,20 +202,10 @@ public final class StateStartup extends TotemState
         return totalMusic;
     }
 
-    public void setMusic(String[] instruments, int[] values)
+    public void handleMusicPacket(PacketCeremonyStartupMusic msg)
     {
-        music.clear();
-        totalMusic = 0;
-        for(int i = 0; i < instruments.length; i++)
-        {
-            MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(instruments[i]));
-            if(instr != null)
-            {
-                music.put(instr, values[i]);
-                totalMusic += values[i];
-            }
-            else
-                logger.warn("Unknown music instrument: {}", instruments[i]);
-        }
+        int oldVal = music.getInt(msg.getInstrument());
+        music.put(msg.getInstrument(), msg.getAmount());
+        totalMusic += (msg.getAmount() - oldVal);
     }
 }
