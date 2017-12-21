@@ -17,7 +17,7 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-0.9.1"
+version = "1.12.2-0.9.2"
 group = "pokefenn.totemic"
 archivesBaseName = "Totemic"
 
@@ -96,13 +96,8 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
     outputFile = jar.archivePath
 }
 
-// Runs this task automatically when build is ran.
-//build.dependsOn signJar
-// FIXME: Got it to work with curseForge, but maybe this is not the proper way of doing it?
-reobfJar.doLast {
-    println "Signing the jar..."
-    signJar.execute()
-}
+// Runs this task automatically when reobfJar is ran.
+reobfJar.finalizedBy signJar
 
 artifacts {
     archives deobfJar
