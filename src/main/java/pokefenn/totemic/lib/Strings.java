@@ -25,6 +25,7 @@ public final class Strings
     public static final String FLUTE_NAME = "flute";
     public static final String RATTLE_NAME = "rattle";
     public static final String JINGLE_DRESS_NAME = "jingle_dress";
+    public static final String EAGLE_BONE_WHISTLE_NAME = "eagle_bone_whistle";
     public static final String TOTEM_WHITTLING_KNIFE_NAME = "totem_whittling_knife";
     public static final String BARK_STRIPPER_NAME = "bark_stripper";
     public static final String TOTEMIC_STAFF_NAME = "totemic_staff";

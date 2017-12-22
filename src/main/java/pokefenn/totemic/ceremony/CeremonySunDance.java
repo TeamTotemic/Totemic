@@ -9,11 +9,11 @@ import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.util.EntityUtil;
 
-public class CeremonyWarDance extends Ceremony
+public class CeremonySunDance extends Ceremony
 {
-    public CeremonyWarDance(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
+    public CeremonySunDance(String name, int musicNeeded, int maxStartupTime, MusicInstrument... selectors)
     {
-        super(name, musicNeeded, maxStartupTime, instruments);
+        super(name, musicNeeded, maxStartupTime, selectors);
     }
 
     @Override
@@ -22,10 +22,9 @@ public class CeremonyWarDance extends Ceremony
         if(world.isRemote)
             return;
 
-        for(EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
+        for(EntityPlayer player : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
         {
-            entity.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 20 * (60 * 3), 1));
-            entity.addPotionEffect(new PotionEffect(MobEffects.SPEED, 20 * (60 * 3), 1));
+            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 20 * 10, 3));
         }
     }
 }

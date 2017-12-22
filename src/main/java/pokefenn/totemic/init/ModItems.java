@@ -19,6 +19,7 @@ import pokefenn.totemic.item.equipment.ItemBarkStripper;
 import pokefenn.totemic.item.equipment.ItemMedicineBag;
 import pokefenn.totemic.item.equipment.ItemTotemWhittlingKnife;
 import pokefenn.totemic.item.equipment.ItemTotemicStaff;
+import pokefenn.totemic.item.equipment.music.ItemEagleBoneWhistle;
 import pokefenn.totemic.item.equipment.music.ItemFlute;
 import pokefenn.totemic.item.equipment.music.ItemJingleDress;
 import pokefenn.totemic.item.equipment.music.ItemRattle;
@@ -33,6 +34,7 @@ public final class ModItems
     public static final ItemFlute flute = null;
     public static final ItemRattle rattle = null;
     public static final ItemJingleDress jingle_dress = null;
+    public static final ItemEagleBoneWhistle eagle_bone_whistle = null;
     public static final ItemTotemWhittlingKnife totem_whittling_knife = null;
     public static final ItemBarkStripper bark_stripper = null;
     public static final ItemTotemicStaff totemic_staff = null;
@@ -64,6 +66,7 @@ public final class ModItems
             new ItemFlute(),
             new ItemRattle(),
             new ItemJingleDress(),
+            new ItemEagleBoneWhistle(),
             new ItemTotemWhittlingKnife(),
             new ItemBarkStripper(),
             new ItemTotemicStaff(),
@@ -108,6 +111,7 @@ public final class ModItems
         setModel(flute, 1, flute.getRegistryName().toString());
         setDefaultModel(rattle);
         setDefaultModel(jingle_dress);
+        setDefaultModel(eagle_bone_whistle);
         setDefaultModel(totem_whittling_knife);
         setDefaultModel(bark_stripper);
         setDefaultModel(totemic_staff);

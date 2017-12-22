@@ -25,6 +25,7 @@ public final class ModContent
     public static MusicInstrument windChime;
     public static MusicInstrument jingleDress;
     public static MusicInstrument rattle;
+    public static MusicInstrument eagleBoneWhistle;
 
     public static TotemEffect batTotem;
     public static TotemEffect blazeTotem;
@@ -47,6 +48,7 @@ public final class ModContent
     public static Ceremony warDance;
     public static Ceremony buffaloDance;
     public static Ceremony baykokSummon;
+    public static Ceremony sunDance;
 
     @SubscribeEvent
     public static void instruments(RegistryEvent.Register<MusicInstrument> event)
@@ -56,10 +58,12 @@ public final class ModContent
             drum = new MusicInstrument("totemic:drum", 7, 80, 5).setItem(new ItemStack(ModBlocks.drum)).setRegistryName("drum"),
             windChime = new MusicInstrument("totemic:windChime", 6, 60, 5).setItem(new ItemStack(ModBlocks.wind_chime)).setRegistryName("wind_chime"),
             jingleDress = new MusicInstrument("totemic:jingleDress", 7, 100, 5).setItem(new ItemStack(ModItems.jingle_dress)).setRegistryName("jingle_dress"),
-            rattle = new MusicInstrument("totemic:rattle", 6, 90, 5).setItem(new ItemStack(ModItems.rattle)).setRegistryName("rattle"));
+            rattle = new MusicInstrument("totemic:rattle", 6, 90, 5).setItem(new ItemStack(ModItems.rattle)).setRegistryName("rattle"),
+            eagleBoneWhistle = new MusicInstrument("totemic:eagleBoneWhistle", 8, 110, 5).setItem(new ItemStack(ModItems.eagle_bone_whistle)).setRegistryName("eagle_bone_whistle"));
 
         ModItems.flute.setInstrument(flute);
         ModItems.rattle.setInstrument(rattle);
+        ModItems.eagle_bone_whistle.setInstrument(eagleBoneWhistle);
     }
 
     @SubscribeEvent
@@ -89,11 +93,14 @@ public final class ModContent
     public static void ceremonies(RegistryEvent.Register<Ceremony> event)
     {
         //Music amount landmarks:
-        //150: Flute + Drum only
+        //150: Flute + Drum
         //210: Flute + Drum + full Wind Chime
         //240: Flute + Drum + Rattle
         //340: Flute + Drum + Rattle + Jingle Dress
+        //350: Flute + Drum + Rattle + Eagle-Bone Whistle
         //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
+        //450: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
+        //510: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
         event.getRegistry().registerAll(
             fluteCeremony = new CeremonyFluteInfusion("totemic:flute", 140, Ceremony.MEDIUM,
                     flute, flute).setRegistryName("flute"),
@@ -101,16 +108,16 @@ public final class ModContent
                     rattle, flute).setRegistryName("rain_dance"),
             drought = new CeremonyRain(false, "totemic:drought", 180, Ceremony.MEDIUM,
                     flute, rattle).setRegistryName("drought"),
-            /*ghostDance = new CeremonyGhostDance("totemic:ghostDance", 340, CeremonyTime.SHORT_MEDIUM,
-                    rattle, rattle).setRegistryName("ghost_dance"),*/
             zaphkielWaltz = new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 220, Ceremony.LONG,
-                    flute, drum).setRegistryName("zaphkiel_waltz"),
+                    rattle, drum).setRegistryName("zaphkiel_waltz"),
             warDance = new CeremonyWarDance("totemic:warDance", 120, Ceremony.SHORT_MEDIUM,
                     drum, drum).setRegistryName("war_dance"),
             buffaloDance = new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
                     drum, windChime).setRegistryName("buffalo_dance"),
-            baykokSummon = new CeremonyBaykok("totemic:baykokSummon", 255,  40 * 20,
-                    windChime, flute).setRegistryName("baykok_summon"));
+            baykokSummon = new CeremonyBaykok("totemic:baykokSummon", 430,  40 * 20,
+                    windChime, eagleBoneWhistle).setRegistryName("baykok_summon"),
+            sunDance = new CeremonySunDance("totemic:sunDance", 410, Ceremony.LONG,
+                    drum, eagleBoneWhistle).setRegistryName("sun_dance"));
     }
 
     @SubscribeEvent
