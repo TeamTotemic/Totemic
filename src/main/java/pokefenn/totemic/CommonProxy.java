@@ -2,17 +2,19 @@ package pokefenn.totemic;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ModFixs;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -51,7 +53,7 @@ public class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent event)
     {
-        registerEntities();
+        MinecraftForge.EVENT_BUS.register(this);
         registerTileEntities();
         ModCriteriaTriggers.init();
     }
@@ -72,11 +74,13 @@ public class CommonProxy
         checkCeremonySelectors();
     }
 
-    private void registerEntities()
+    @SubscribeEvent
+    public void registerEntities(RegistryEvent.Register<EntityEntry> event)
     {
-        EntityRegistry.registerModEntity(new ResourceLocation(Totemic.MOD_ID, Strings.BUFFALO_NAME), EntityBuffalo.class, Strings.RESOURCE_PREFIX + Strings.BUFFALO_NAME, 0, Totemic.instance, 80, 3, true, 0x2A1C12, 0x885F3E);
-        EntityRegistry.registerModEntity(new ResourceLocation(Totemic.MOD_ID, Strings.BAYKOK_NAME), EntityBaykok.class, Strings.RESOURCE_PREFIX + Strings.BAYKOK_NAME, 1, Totemic.instance, 80, 3, true, 0xE0E0E0, 0xF8DAD2);
-        EntityRegistry.registerModEntity(new ResourceLocation(Totemic.MOD_ID, Strings.INVIS_ARROW_NAME), EntityInvisArrow.class, Strings.RESOURCE_PREFIX + Strings.INVIS_ARROW_NAME, 2, Totemic.instance, 64, 20, true);
+        event.getRegistry().registerAll(
+            EntityEntryBuilder.create().entity(EntityBuffalo.class).id(Strings.BUFFALO_NAME, 0).name(Strings.RESOURCE_PREFIX + Strings.BUFFALO_NAME).tracker(80, 3, true).egg(0x2A1C12, 0x885F3E).build(),
+            EntityEntryBuilder.create().entity(EntityBaykok.class).id(Strings.BAYKOK_NAME, 1).name(Strings.RESOURCE_PREFIX + Strings.BAYKOK_NAME).tracker(80, 3, true).egg(0xE0E0E0, 0xF8DAD2).build(),
+            EntityEntryBuilder.create().entity(EntityInvisArrow.class).id(Strings.INVIS_ARROW_NAME, 2).name(Strings.RESOURCE_PREFIX + Strings.INVIS_ARROW_NAME).tracker(64, 20, true).build());
     }
 
     private void registerTileEntities()

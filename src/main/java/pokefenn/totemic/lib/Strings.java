@@ -1,5 +1,7 @@
 package pokefenn.totemic.lib;
 
+import javax.annotation.Nonnull;
+
 public final class Strings
 {
     //Misc
@@ -36,7 +38,7 @@ public final class Strings
     public static final String CEREMONY_CHEAT_NAME = "ceremony_cheat";
 
     //Entities
-    public static final String BUFFALO_NAME = "buffalo";
-    public static final String BAYKOK_NAME = "baykok";
-    public static final String INVIS_ARROW_NAME = "invis_arrow";
+    @Nonnull public static final String BUFFALO_NAME = "buffalo";
+    @Nonnull public static final String BAYKOK_NAME = "baykok";
+    @Nonnull public static final String INVIS_ARROW_NAME = "invis_arrow";
 }
