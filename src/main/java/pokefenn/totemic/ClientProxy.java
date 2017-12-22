@@ -1,27 +1,17 @@
 package pokefenn.totemic;
 
-import static pokefenn.totemic.Totemic.logger;
-
-import java.util.Random;
-
-import org.apache.logging.log4j.Level;
-import org.lwjgl.opengl.Display;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import pokefenn.totemic.client.rendering.entity.BaykokRendering;
 import pokefenn.totemic.client.rendering.entity.BuffaloRendering;
 import pokefenn.totemic.client.rendering.entity.InvisArrowRendering;
 import pokefenn.totemic.client.rendering.tileentity.TileWindChimeRenderer;
-import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
 import pokefenn.totemic.entity.boss.EntityBaykok;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
@@ -50,21 +40,6 @@ public class ClientProxy extends CommonProxy
         super.init(event);
         registerBlockColors();
         LexiconData.init();
-    }
-
-    @Override
-    public void postInit(FMLPostInitializationEvent event)
-    {
-        super.postInit(event);
-        try
-        {
-            if(ModConfig.client.enableFloweyEasteregg && Loader.isModLoaded("Botania") && new Random().nextInt(8) == 0)
-                Display.setTitle(Display.getTitle().replace("Minecraft", "Floweycraft")); //HAHAHAHAHAHAHAHAHAHAHA...
-        }
-        catch(Exception e)
-        {
-            logger.catching(Level.WARN, e);
-        }
     }
 
     @Override

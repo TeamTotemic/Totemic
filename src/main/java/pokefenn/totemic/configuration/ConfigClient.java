@@ -9,7 +9,4 @@ public class ConfigClient
 
     @Comment("Vertical position of the ceremony HUD (offset from center of the screen)")
     public int ceremonyHudPositionY = -70;
-
-    @Comment("Enables an occasional \"special interaction\" with Botania")
-    public boolean enableFloweyEasteregg = true;
 }
