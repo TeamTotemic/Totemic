@@ -19,4 +19,5 @@ public final class Resources
     //Loot tables
     public static final ResourceLocation LOOT_BUFFALO = new ResourceLocation(Totemic.MOD_ID, "entities/buffalo");
     public static final ResourceLocation LOOT_BAYKOK = new ResourceLocation(Totemic.MOD_ID, "entities/baykok");
+    public static final ResourceLocation LOOT_BALD_EAGLE = new ResourceLocation(Totemic.MOD_ID, "entities/bald_eagle");
 }

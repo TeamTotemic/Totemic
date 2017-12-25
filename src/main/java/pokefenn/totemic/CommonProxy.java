@@ -25,6 +25,7 @@ import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.datafix.CamelCaseNamesItems;
 import pokefenn.totemic.datafix.CamelCaseNamesTiles;
 import pokefenn.totemic.datafix.VanillaIronNugget;
+import pokefenn.totemic.entity.animal.EntityBaldEagle;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
 import pokefenn.totemic.entity.boss.EntityBaykok;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
@@ -80,7 +81,8 @@ public class CommonProxy
         event.getRegistry().registerAll(
             EntityEntryBuilder.create().entity(EntityBuffalo.class).id(Strings.BUFFALO_NAME, 0).name(Strings.RESOURCE_PREFIX + Strings.BUFFALO_NAME).tracker(80, 3, true).egg(0x2A1C12, 0x885F3E).build(),
             EntityEntryBuilder.create().entity(EntityBaykok.class).id(Strings.BAYKOK_NAME, 1).name(Strings.RESOURCE_PREFIX + Strings.BAYKOK_NAME).tracker(80, 3, true).egg(0xE0E0E0, 0xF8DAD2).build(),
-            EntityEntryBuilder.create().entity(EntityInvisArrow.class).id(Strings.INVIS_ARROW_NAME, 2).name(Strings.RESOURCE_PREFIX + Strings.INVIS_ARROW_NAME).tracker(64, 20, true).build());
+            EntityEntryBuilder.create().entity(EntityInvisArrow.class).id(Strings.INVIS_ARROW_NAME, 2).name(Strings.RESOURCE_PREFIX + Strings.INVIS_ARROW_NAME).tracker(64, 20, true).build(),
+            EntityEntryBuilder.create().entity(EntityBaldEagle.class).id(Strings.BALD_EAGLE_NAME, 3).name(Strings.RESOURCE_PREFIX + Strings.BALD_EAGLE_NAME).tracker(80, 3, true).egg(0x875E3E, 0xF5F5DE).build());
     }
 
     private void registerTileEntities()

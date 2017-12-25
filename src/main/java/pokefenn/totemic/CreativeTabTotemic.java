@@ -30,8 +30,9 @@ public class CreativeTabTotemic extends CreativeTabs
     {
         super.displayAllRelevantItems(list);
 
-        list.add(getEgg(Totemic.MOD_ID + ":" + Strings.BUFFALO_NAME));
-        list.add(getEgg(Totemic.MOD_ID + ":" + Strings.BAYKOK_NAME));
+        list.add(getEgg(Strings.RESOURCE_PREFIX + Strings.BUFFALO_NAME));
+        list.add(getEgg(Strings.RESOURCE_PREFIX + Strings.BALD_EAGLE_NAME));
+        list.add(getEgg(Strings.RESOURCE_PREFIX + Strings.BAYKOK_NAME));
     }
 
     public static ItemStack getEgg(String entityName)

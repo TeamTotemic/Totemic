@@ -42,4 +42,5 @@ public final class Strings
     @Nonnull public static final String BUFFALO_NAME = "buffalo";
     @Nonnull public static final String BAYKOK_NAME = "baykok";
     @Nonnull public static final String INVIS_ARROW_NAME = "invis_arrow";
+    @Nonnull public static final String BALD_EAGLE_NAME = "bald_eagle";
 }
