@@ -47,6 +47,7 @@ public final class ModContent
     public static Ceremony zaphkielWaltz;
     public static Ceremony warDance;
     public static Ceremony buffaloDance;
+    public static Ceremony eagleDance;
     public static Ceremony baykokSummon;
     public static Ceremony sunDance;
 
@@ -114,6 +115,8 @@ public final class ModContent
                     drum, drum).setRegistryName("war_dance"),
             buffaloDance = new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
                     drum, windChime).setRegistryName("buffalo_dance"),
+            eagleDance = new CeremonyEagleDance("totemic:eagleDance", 255, Ceremony.LONG,
+                    windChime, rattle).setRegistryName("eagle_dance"),
             baykokSummon = new CeremonyBaykok("totemic:baykokSummon", 430,  40 * 20,
                     windChime, eagleBoneWhistle).setRegistryName("baykok_summon"),
             sunDance = new CeremonySunDance("totemic:sunDance", 410, Ceremony.LONG,
