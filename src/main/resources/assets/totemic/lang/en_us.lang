@@ -15,8 +15,9 @@ item.totemic:cedar_bark.name=Red Cedar Bark
 item.totemic:bark_stripper.name=Bark Stripper
 item.totemic:jingle_dress.name=Jingle Dress
 item.totemic:rattle.name=Rattle
+item.totemic:eagle_bone_whistle.name=Eagle-Bone Whistle
 item.totemic:tipi.name=Tipi
-item.totemic:iron_nugget.name=Iron Nugget
+item.totemic:eagle_bone.name=Eagle Bone
 item.totemic:iron_bells.name=Iron Bells
 item.totemic:buffalo_hide.name=Buffalo Hide
 item.totemic:buffalo_teeth.name=Buffalo Tooth
@@ -52,6 +53,7 @@ tile.totemic:tipi.name=Tipi
 #Entity localizations
 entity.totemic:buffalo.name=Buffalo
 entity.totemic:baykok.name=Baykok
+entity.totemic:bald_eagle.name=Bald Eagle
 entity.Villager.totemist=Medicine Man
 
 #Potion effect localizations
@@ -72,11 +74,12 @@ totemic.config.client.tooltip=Options that have no effects on servers
 totemic.ceremony.totemic:flute=Flute Imbuation
 totemic.ceremony.totemic:rainDance=Rain Dance
 totemic.ceremony.totemic:drought=Drought Ceremony
-totemic.ceremony.totemic:potion=Divine Elixirs
 totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
 totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel Waltz
 totemic.ceremony.totemic:warDance=War Dance
 totemic.ceremony.totemic:baykokSummon=Chimes of Death
+totemic.ceremony.totemic:eagleDance=Eagle Dance
+totemic.ceremony.totemic:sunDance=Sun Dance
 
 #Totem effect names
 totemic.totem.totemic:horse=Horse
@@ -98,6 +101,7 @@ totemic.instrument.totemic:drum=Drum
 totemic.instrument.totemic:windChime=Wind Chime
 totemic.instrument.totemic:jingleDress=Jingle Dress
 totemic.instrument.totemic:rattle=Rattle
+totemic.instrument.totemic:eagleBoneWhistle=Eagle-Bone Whistle
 
 #Music values
 totemic.musicNeeded.none=No Music required

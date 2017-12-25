@@ -15,8 +15,9 @@ item.totemic:cedar_bark.name=Rote Zedernrinde
 item.totemic:bark_stripper.name=Entrinder
 item.totemic:jingle_dress.name=Glockenkleid
 item.totemic:rattle.name=Rassel
+item.totemic:eagle_bone_whistle.name=Adlerknochenpfeife
 item.totemic:tipi.name=Tipi
-item.totemic:iron_nugget.name=Eisennugget
+item.totemic:eagle_bone.name=Adlerknochen
 item.totemic:iron_bells.name=Eisenglocken
 item.totemic:buffalo_hide.name=Büffelleder
 item.totemic:buffalo_teeth.name=Büffelzahn
@@ -52,6 +53,7 @@ tile.totemic:tipi.name=Tipi
 #Entity localizations
 entity.totemic:buffalo.name=Büffel
 entity.totemic:baykok.name=Baykok
+entity.totemic:bald_eagle.name=Weißkopfseeadler
 entity.Villager.totemist=Medizinmann
 
 #Potion effect localizations
@@ -66,11 +68,12 @@ itemGroup.totemic=Totemic
 totemic.ceremony.totemic:flute=Flötenverzauberung
 totemic.ceremony.totemic:rainDance=Regentanz
 totemic.ceremony.totemic:drought=Trockenheitstanz
-totemic.ceremony.totemic:potion=Göttliche Elixiere
 totemic.ceremony.totemic:buffaloDance=Mandan-Büffeltanz
 totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel-Walzer
 totemic.ceremony.totemic:warDance=Kriegstanz
 totemic.ceremony.totemic:baykokSummon=Glocken des Todes
+totemic.ceremony.totemic:eagleDance=Adlertanz
+totemic.ceremony.totemic:sunDance=Sonnentanz
 
 #Totem effect names
 totemic.totem.totemic:horse=Pferd
@@ -92,6 +95,7 @@ totemic.instrument.totemic:drum=Trommel
 totemic.instrument.totemic:windChime=Windspiel
 totemic.instrument.totemic:jingleDress=Glockenkleid
 totemic.instrument.totemic:rattle=Rassel
+totemic.instrument.totemic:eagleBoneWhistle=Adlerknochenpfeife
 
 #Music values
 totemic.musicNeeded.none=Keine Musik benötigt
