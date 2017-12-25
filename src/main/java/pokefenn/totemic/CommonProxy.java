@@ -127,7 +127,7 @@ public class CommonProxy
 
     private void registerDataFixers()
     {
-        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 1010);
+        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 1011);
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new VanillaIronNugget());
         fixes.registerFix(FixTypes.BLOCK_ENTITY, new CamelCaseNamesTiles());
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new CamelCaseNamesItems());

@@ -1,0 +1,40 @@
+{
+  "parent": "totemic:recipes/root",
+  "rewards": {
+    "recipes": [
+      "totemic:eagle_bone_whistle"
+    ]
+  },
+  "criteria": {
+    "has_bone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "totemic:sub_items",
+            "data": 0
+          }
+        ]
+      }
+    },
+    "performed_eagle_dance": {
+      "trigger": "totemic:perform_ceremony",
+      "conditions": {
+        "ceremony": "totemic:eagle_dance"
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "totemic:eagle_bone_whistle"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bone",
+      "performed_eagle_dance",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    " BF"
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "string"
+    },
+    "B": {
+      "item": "totemic:sub_items",
+      "data": 0
+    },
+    "F": {
+      "type": "forge:ore_dict",
+      "ore": "feather"
+    }
+  },
+  "result": {
+    "item": "totemic:eagle_bone_whistle"
+  }
+}

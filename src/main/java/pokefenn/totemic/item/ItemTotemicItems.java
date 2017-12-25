@@ -11,8 +11,7 @@ public class ItemTotemicItems extends ItemTotemic
 {
     public enum Type
     {
-        //Can't remove the first enum constant, the ordinals need to stay the same
-        @Deprecated _unused, iron_bells;
+        eagle_bone, iron_bells;
     }
 
     public ItemTotemicItems()
@@ -24,11 +23,10 @@ public class ItemTotemicItems extends ItemTotemic
         setCreativeTab(Totemic.tabsTotem);
     }
 
-
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        int index = MathHelper.clamp(itemStack.getItemDamage(), 1, Type.values().length - 1);
+        int index = MathHelper.clamp(itemStack.getItemDamage(), 0, Type.values().length - 1);
         return "item." + Strings.RESOURCE_PREFIX + Type.values()[index].toString();
     }
 
@@ -37,7 +35,7 @@ public class ItemTotemicItems extends ItemTotemic
     {
         if(isInCreativeTab(tab))
         {
-            for(int meta = 1; meta < Type.values().length; ++meta)
+            for(int meta = 0; meta < Type.values().length; meta++)
                 list.add(new ItemStack(this, 1, meta));
         }
     }
