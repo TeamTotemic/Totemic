@@ -12,16 +12,15 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityFlying;
 import net.minecraft.entity.passive.EntityShoulderRiding;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateFlying;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 import pokefenn.totemic.lib.Resources;
 
 public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlying
@@ -106,6 +105,46 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
         }
 
         this.flap += this.flapping * 2.0F;
+    }
+
+    @Override
+    public boolean processInteract(EntityPlayer player, EnumHand hand)
+    {
+        ItemStack stack = player.getHeldItem(hand);
+        if(!isTamed() && stack.getItem() == Items.FISH)
+        {
+            if(!player.capabilities.isCreativeMode)
+                stack.shrink(1);
+
+            /*if (!this.isSilent())
+            {
+                this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+            }*/
+
+            if(!world.isRemote)
+            {
+                if(rand.nextInt(10) == 0 && !ForgeEventFactory.onAnimalTame(this, player))
+                {
+                    setTamedBy(player);
+                    playTameEffect(true);
+                    world.setEntityState(this, (byte) 7);
+                }
+                else
+                {
+                    playTameEffect(false);
+                    world.setEntityState(this, (byte) 6);
+                }
+            }
+
+            return true;
+        }
+        else
+        {
+            if(!world.isRemote && !isFlying() && isTamed() && isOwner(player))
+                aiSit.setSitting(!isSitting());
+
+            return super.processInteract(player, hand);
+        }
     }
 
     @Override
@@ -223,5 +262,10 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
     protected ResourceLocation getLootTable()
     {
         return Resources.LOOT_BALD_EAGLE;
+    }
+
+    public boolean isFlying()
+    {
+        return !this.onGround;
     }
 }
