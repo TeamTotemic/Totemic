@@ -59,7 +59,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if(!world.isRemote && world.getTotalWorldTime() % 20L == 0)
+        if(!world.isRemote && !player.isSpectator() && world.getTotalWorldTime() % 20L == 0)
         {
             NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
             int time = tag.getByte(TIME_KEY);

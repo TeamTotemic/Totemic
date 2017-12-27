@@ -27,7 +27,7 @@ public class ItemRattle extends ItemInstrument
     @Override
     public boolean onEntitySwing(EntityLivingBase entity, ItemStack stack)
     {
-        if(!entity.world.isRemote)
+        if(!entity.world.isRemote && !(entity instanceof EntityPlayer && ((EntityPlayer)entity).isSpectator()))
             useInstrument(stack, entity, 16, 0, 0);
         return false;
     }
