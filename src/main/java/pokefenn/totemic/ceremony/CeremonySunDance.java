@@ -24,7 +24,8 @@ public class CeremonySunDance extends Ceremony
 
         for(EntityPlayer player : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
         {
-            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 20 * 10, 3));
+            player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 10 * 20, 3));
+            player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 5 * 60 * 20, 3));
         }
     }
 }
