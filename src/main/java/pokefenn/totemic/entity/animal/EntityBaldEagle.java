@@ -1,5 +1,7 @@
 package pokefenn.totemic.entity.animal;
 
+import java.util.UUID;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
@@ -13,6 +15,7 @@ import net.minecraft.entity.passive.EntityFlying;
 import net.minecraft.entity.passive.EntityShoulderRiding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemFishFood.FishType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateFlying;
@@ -44,12 +47,13 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
         aiSit = new EntityAISit(this);
         tasks.addTask(0, new EntityAIPanic(this, 1.25D));
         tasks.addTask(0, new EntityAISwimming(this));
-        tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        tasks.addTask(2, this.aiSit);
-        tasks.addTask(2, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
-        tasks.addTask(2, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
-        tasks.addTask(3, new EntityAILandOnOwnersShoulder(this));
-        tasks.addTask(3, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
+        tasks.addTask(1, new EntityAIMate(this, 1.0D));
+        tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        tasks.addTask(3, this.aiSit);
+        tasks.addTask(3, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
+        tasks.addTask(3, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
+        tasks.addTask(4, new EntityAILandOnOwnersShoulder(this));
+        tasks.addTask(4, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
     }
 
     @Override
@@ -150,7 +154,7 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
     @Override
     public boolean isBreedingItem(ItemStack stack)
     {
-        return false;
+        return stack.getItem() == Items.FISH && stack.getMetadata() == FishType.SALMON.getMetadata();
     }
 
     @Override
@@ -164,14 +168,38 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
     @Override
     public boolean canMateWith(EntityAnimal otherAnimal)
     {
-        return false;
+        if(otherAnimal == this)
+            return false;
+        else if(!isTamed())
+            return false;
+        else if(!(otherAnimal instanceof EntityBaldEagle))
+            return false;
+        else
+        {
+            EntityBaldEagle otherEagle = (EntityBaldEagle) otherAnimal;
+            if(!otherEagle.isTamed())
+                return false;
+            else if(otherEagle.isSitting())
+                return false;
+            else
+                return isInLove() && otherEagle.isInLove();
+        }
     }
 
     @Override
     @Nullable
     public EntityAgeable createChild(EntityAgeable ageable)
     {
-        return null;
+        EntityBaldEagle child = new EntityBaldEagle(world);
+
+        UUID uuid = getOwnerId();
+        if(uuid != null)
+        {
+            child.setOwnerId(uuid);
+            child.setTamed(true);
+        }
+
+        return child;
     }
 
     @Override
