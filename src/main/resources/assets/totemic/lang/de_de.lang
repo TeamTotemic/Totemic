@@ -196,6 +196,10 @@ totemic.page.rattle0=Die §1Zeremonielle Rassel§0 ist ein Instrument, das als R
 totemic.page.rattle1=Wie alle Instrumente kann sie während des Schleichens gespielt werden um Zeremonien zu aktivieren.
 totemic.page.rattle2=
 
+totemic.entry.eagleBoneWhistle=Adlerknochenpfeife
+totemic.page.eagleBoneWhistle0=Die §1Adlerknochenpfeife§0 wird aus den Knochen eines heiligen §4Weißkopfseeadlers§0 hergestellt. Sie ist ein sehr mächtiges Instrument und ein Muss für die fortgeschritteneren Zeremonien.
+totemic.page.eagleBoneWhistle1=
+
 totemic.entry.performingCeremonies=Durchführung von Zeremonien
 totemic.page.performingCeremonies0=§4Zeremonien§0 sind ein Weg für Totemisten, um durch Musik all ihre Kräfte über eine gewisse Zeit zusammenzunehmen, um sie dann in einem Stoß freizusetzen und Effekte zu erzeugen. Das Zentrum einer §4Zeremonie§0 ist eine §1Totembasis§0, alle Musik und andere Dinge sind um den §1Totempfahl§0 zentriert, und dort werden die Effekte freigesetzt.
 totemic.page.performingCeremonies1=Um eine §4Zeremonie§0 durchzuführen, musst du einige Dinge tun. Um eine §4Zeremonie§0 auszuwählen und einzuleiten, musst du bis zu 4 Instrumente im Selektor-Modus nahe einem §1Totempfahl§0 spielen, jede Zeremonie hat eine andere Folge von Instrumenten. Um Instrumente im Selektor-Modus zu spielen, spiele sie während du schleichst. Nachdem du die passenden Instrumente gespielt hast,
@@ -219,6 +223,10 @@ totemic.entry.buffaloDance=Mandan-Büffeltanz
 totemic.page.buffaloDance0=Als der Weiße Mann das Land übernahm, tötete er fast alle §1Büffel§0, die einst in großen Herden daherzogen. Aber nicht alle Hoffnung ist verloren. Die §4Mandan-Büffeltanz-Zeremonie§0 kann Kühen Kraft geben und sie in Büffel verwandeln, allerdings schwächere als die einheimischen. Aber mit der Zeit wachsen sie größer und stärker.
 totemic.page.buffaloDance1=§oVermeide rote Tücher§r
 
+totemic.entry.eagleDance=Adlertanz
+totemic.page.eagleDance0=Der §1Weißkopfseeadler§0 ist ein heiliger Vogel, seine Federn und Knochen sind sehr wichtig für einige Zeremonien. Manche sagen, sie sind spirituelle Boten zwischen Menschen und Göttern. Da sie beinahe ausgestorben sind, können sie nicht in der Wildnis gefunden werden; ähnlich wie Büffel müssen sie durch die §4Adlertanz§0-Zeremonie erschaffen werden. Diese Zeremonie verzaubert Papageie und verwandelt sie in Weißkopfseeadler. 
+totemic.page.eagleDance1=§oWelcome to 'Murica!§r
+
 totemic.entry.zaphkielWaltz=Zaphkiel-Walzer
 totemic.page.zaphkielWaltz0=Der §4Zaphkiel-Walzer§0 ist eine starke Wachstumszeremonie. Für eine kurze Weile wachen Pflanzen in der Umgebung und Küken in Eiern sehr viel schneller. Außerdem verwandelt der Walzer gewöhnliche Setzlinge in §4Rote Zedernsetzlinge§0.
 totemic.page.zaphkielWaltz1=§oGothisch elegant§r
@@ -232,6 +240,10 @@ totemic.entry.baykokSummon=Glocken des Todes
 totemic.page.baykokSummon0=Die §4Glocken des Todes§0 sind eine Zeremonie, die den Geist §4Baykok§0 herbeiruft. Verusche nicht diese Zeremonie, bis du bereit bist, gegen ihn zu kämpfen.<br>§4Baykok§0 ist ein grausamer Nachtgeist, der wie ein Skelett erscheint. Er jagd unbarmherzig nach Kriegern und ist ein Meister im Bogenschießen, er greift mit unsichtbaren Pfeilen an. Baykok lähmt seine Opfer und verspeist ihre Leber. 
 totemic.page.baykokSummon1=Schaffst du es, §4Baykok§0 zu besiegen, kannst du seinen Bogen kriegen. Mit §1Baykoks Bogen§0 kannst du wie er auch unsichtbare und lähmende Pfeile verschießen (du kannst deine eigenen Pfeile sehen). Sein Bogen leichter zu verzaubern und stärker als ein gewöhnlicher Bogen.
 totemic.page.baykokSummon2=§oDu hast den Bogen überspannt...§r
+
+totemic.entry.sunDance=Sonnentanz
+totemic.page.sunDance0=Der §4Sonnentanz§0 ist eine der heiligsten Zeremonien und nicht leicht zu verrichten. Er heilt dich und beschützt dich eine Weile lang vor Schaden.<br>§o(WIP: Es ist geplant, dass diese Zeremonie eventuell benötigt, dass man hungert oder Schaden nimmt.)§r
+totemic.page.sunDance1=§oPurification in progress§r
 
 totemic.entry.totemicStaff=Totemstab
 totemic.page.totemicStaff0=Der §1Totemstab§0 kann an verschiedenen Blöcken benutzt werden, um Informationen über sie zu liefern.<br>Außerdem kann man mit ihm durch Linksklick auf eine Totembasis Zeremonien und Selektionen abbrechen.
