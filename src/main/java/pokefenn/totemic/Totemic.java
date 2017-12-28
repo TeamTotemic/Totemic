@@ -40,8 +40,8 @@ public final class Totemic
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        logger.info("Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
-        logger.info("Totemic is entering preinitialization stage");
+        logger.info("[TOTEMIC]: Moma had a cow, Moma had a chicken... Dad was proud, he didn't care how!");
+        logger.info("[TOTEMIC]: Totemic is entering preinitialization stage");
         MinecraftForge.EVENT_BUS.register(this);
         ReflectionHelper.setPrivateValue(TotemicAPI.class, null, api, "instance"); //The instance field is private, need reflection
         proxy.preInit(event);
@@ -50,14 +50,14 @@ public final class Totemic
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        logger.info("Totemic is entering initialization stage");
+        logger.info("[TOTEMIC]: Totemic is entering initialization stage");
         proxy.init(event);
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        logger.info("Totemic is entering postinitialization stage");
+        logger.info("[TOTEMIC]: Totemic is entering postinitialization stage");
         proxy.postInit(event);
     }
 
