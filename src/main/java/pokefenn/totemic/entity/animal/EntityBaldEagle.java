@@ -25,6 +25,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Resources;
 
 public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlying
@@ -205,24 +206,21 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
     @Nullable
     protected SoundEvent getAmbientSound()
     {
-        // TODO Auto-generated method stub
-        return super.getAmbientSound();
+        return ModSounds.baldEagleAmbient;
     }
 
     @Override
     @Nullable
     protected SoundEvent getHurtSound(DamageSource damageSource)
     {
-        // TODO Auto-generated method stub
-        return super.getHurtSound(damageSource);
+        return ModSounds.baldEagleHurt;
     }
 
     @Override
     @Nullable
     protected SoundEvent getDeathSound()
     {
-        // TODO Auto-generated method stub
-        return super.getDeathSound();
+        return ModSounds.baldEagleDeath;
     }
 
     @Override
@@ -242,12 +240,6 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
     protected boolean makeFlySound()
     {
         return true;
-    }
-
-    @Override
-    protected float getSoundPitch()
-    {
-        return (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F;
     }
 
     @Override

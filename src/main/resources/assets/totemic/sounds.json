@@ -1,6 +1,30 @@
 {
-    "wind_chime": {"category": "block", "sounds": ["totemic:wind_chime"]},
-    "rattle": {"category": "players", "sounds": ["totemic:rattle"]},
-    "flute": {"category": "players", "sounds": ["totemic:flute1", "totemic:flute2"]},
-    "drum": {"category": "block", "sounds": ["totemic:drum"]}
+    "wind_chime": {
+        "sounds": ["totemic:wind_chime"]
+    },
+    "rattle": {
+        "sounds": ["totemic:rattle"]
+    },
+    "flute": {
+        "sounds": ["totemic:flute1", "totemic:flute2"]
+    },
+    "drum": {
+        "sounds": ["totemic:drum"]
+    },
+    "bald_eagle.ambient": {
+        "sounds": [
+            {"name": "totemic:bald_eagle/idle1", "volume": 0.5},
+            {"name": "totemic:bald_eagle/idle2", "volume": 0.5}
+        ]
+    },
+    "bald_eagle.hurt": {
+        "sounds": [
+            {"name": "totemic:bald_eagle/hurt", "volume": 0.7}
+        ]
+    },
+    "bald_eagle.death": {
+        "sounds": [
+            {"name": "totemic:bald_eagle/death", "volume": 0.7}
+        ]
+    }
 }
