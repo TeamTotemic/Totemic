@@ -15,6 +15,7 @@ import net.minecraft.entity.passive.EntityFlying;
 import net.minecraft.entity.passive.EntityShoulderRiding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFishFood.FishType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigate;
@@ -120,10 +121,8 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
             if(!player.capabilities.isCreativeMode)
                 stack.shrink(1);
 
-            /*if (!this.isSilent())
-            {
-                this.world.playSound((EntityPlayer)null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
-            }*/
+            if(!isSilent())
+                world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_PARROT_EAT, getSoundCategory(), 1.0F, 1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F);
 
             if(!world.isRemote)
             {
@@ -229,15 +228,14 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
     @Override
     protected void playStepSound(BlockPos pos, Block block)
     {
-        // TODO Auto-generated method stub
-        super.playStepSound(pos, block);
+        playSound(SoundEvents.ENTITY_PARROT_STEP, 0.15F, 1.0F);
     }
 
     @Override
-    protected float playFlySound(float p_191954_1_)
+    protected float playFlySound(float distance)
     {
-        // TODO Auto-generated method stub
-        return super.playFlySound(p_191954_1_);
+        playSound(SoundEvents.ENTITY_PARROT_FLY, 0.15F, 1.0F);
+        return distance + this.flapSpeed / 2.0F;
     }
 
     @Override
