@@ -36,7 +36,7 @@ public final class StateStartup extends TotemState
     static final int ID = 2;
 
     private Ceremony ceremony;
-    private Entity initiator;
+    //private Entity initiator;
     private int time = 0;
     private final Object2IntOpenHashMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size(), 0.75F);
     private int totalMusic = 0;
@@ -53,7 +53,7 @@ public final class StateStartup extends TotemState
     {
         this(tile);
         this.ceremony = ceremony;
-        this.initiator = initiator;
+        //this.initiator = initiator;
     }
 
     @Override
@@ -123,8 +123,8 @@ public final class StateStartup extends TotemState
         tile.setState(new StateCeremonyEffect(tile, ceremony));
         tile.getState().update();
 
-        if(initiator instanceof EntityPlayerMP)
-            ModCriteriaTriggers.PERFORM_CEREMONY.trigger((EntityPlayerMP) initiator, ceremony);
+        for(EntityPlayerMP player: EntityUtil.getEntitiesInRange(EntityPlayerMP.class, tile.getWorld(), tile.getPos(), 8, 8))
+            ModCriteriaTriggers.PERFORM_CEREMONY.trigger(player, ceremony);
     }
 
     @Override
