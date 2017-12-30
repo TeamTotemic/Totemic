@@ -6,7 +6,7 @@
         "sounds": ["totemic:rattle"]
     },
     "flute": {
-        "sounds": ["totemic:flute1", "totemic:flute2"]
+        "sounds": ["totemic:flute1", "totemic:flute2", "totemic:flute3"]
     },
     "drum": {
         "sounds": ["totemic:drum"]
