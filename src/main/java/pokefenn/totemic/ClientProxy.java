@@ -8,10 +8,12 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import pokefenn.totemic.client.rendering.entity.BaldEagleRendering;
 import pokefenn.totemic.client.rendering.entity.BaykokRendering;
 import pokefenn.totemic.client.rendering.entity.BuffaloRendering;
 import pokefenn.totemic.client.rendering.entity.InvisArrowRendering;
 import pokefenn.totemic.client.rendering.tileentity.TileWindChimeRenderer;
+import pokefenn.totemic.entity.animal.EntityBaldEagle;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
 import pokefenn.totemic.entity.boss.EntityBaykok;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
@@ -31,6 +33,7 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, BuffaloRendering::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInvisArrow.class, InvisArrowRendering::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBaykok.class, BaykokRendering::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityBaldEagle.class, BaldEagleRendering::new);
         initTESRs();
     }
 
