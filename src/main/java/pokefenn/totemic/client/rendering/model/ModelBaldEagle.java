@@ -2,6 +2,7 @@ package pokefenn.totemic.client.rendering.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
@@ -78,13 +79,34 @@ public class ModelBaldEagle extends ModelBase
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        this.head.render(scale);
-        this.leftLeg.render(scale);
-        this.rightWing.render(scale);
-        this.tailFeathers.render(scale);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0, -0.75F, 0);
+        GlStateManager.scale(1.5F, 1.5F, 1.5F);
+
+        if(isChild)
+        {
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(0.0F, 8F * scale, 0.5F * scale);
+            GlStateManager.scale(0.75F, 0.75F, 0.75F);
+            this.head.render(scale);
+            GlStateManager.popMatrix();
+
+            GlStateManager.scale(0.5F, 0.5F, 0.5F);
+            GlStateManager.translate(0.0F, 24.0F * scale, 0.0F);
+        }
+        else
+        {
+            this.head.render(scale);
+        }
+
         this.torso.render(scale);
+        this.rightWing.render(scale);
         this.leftWing.render(scale);
+        this.tailFeathers.render(scale);
+        this.leftLeg.render(scale);
         this.rightLeg.render(scale);
+
+        GlStateManager.popMatrix();
     }
 
     @Override
