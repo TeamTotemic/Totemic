@@ -89,20 +89,20 @@ public class ModelWindChime extends ModelBase
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5);
-        connector1.render(f5);
-        base.render(f5);
-        hook.render(f5);
-        chime1.render(f5);
-        connector2.render(f5);
-        connector3.render(f5);
-        connector4.render(f5);
-        chime2.render(f5);
-        chime3.render(f5);
-        chime4.render(f5);
+        super.render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+        connector1.render(scale);
+        base.render(scale);
+        hook.render(scale);
+        chime1.render(scale);
+        connector2.render(scale);
+        connector3.render(scale);
+        connector4.render(scale);
+        chime2.render(scale);
+        chime3.render(scale);
+        chime4.render(scale);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -112,8 +112,8 @@ public class ModelWindChime extends ModelBase
         model.rotateAngleZ = z;
     }
 
-    private void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+    private void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) null);
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, null);
     }
 }
