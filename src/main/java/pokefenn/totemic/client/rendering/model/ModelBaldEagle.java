@@ -53,7 +53,7 @@ public class ModelBaldEagle extends ModelBase
         this.mouth.addBox(-0.5F, -1.0F, -0.5F, 2, 2, 1, 0.0F);
         this.tailFeathers = new ModelRenderer(this, 0, 20);
         this.tailFeathers.setRotationPoint(0.0F, 21.07F, 1.16F);
-        this.tailFeathers.addBox(-1.5F, -1.0F, -1.0F, 3, 5, 1, 0.0F);
+        this.tailFeathers.addBox(-1.5F, -0.2F, -1.0F, 3, 5, 1, 0.0F);
         this.setRotation(tailFeathers, 1.083151333787681F, 0.0F, 0.0F);
         this.beak = new ModelRenderer(this, 0, 3);
         this.beak.setRotationPoint(-0.5F, -1.65F, -1.65F);
