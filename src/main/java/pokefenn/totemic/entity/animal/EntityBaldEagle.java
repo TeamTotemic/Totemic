@@ -6,13 +6,12 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityFlying;
-import net.minecraft.entity.passive.EntityShoulderRiding;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -28,7 +27,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Resources;
 
-public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlying
+public class EntityBaldEagle extends EntityTameable implements EntityFlying
 {
     public float flap;
     public float flapSpeed;
@@ -54,7 +53,6 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
         tasks.addTask(3, this.aiSit);
         tasks.addTask(3, new EntityAIFollowOwnerFlying(this, 1.0D, 5.0F, 1.0F));
         tasks.addTask(3, new EntityAIWanderAvoidWaterFlying(this, 1.0D));
-        tasks.addTask(4, new EntityAILandOnOwnersShoulder(this));
         tasks.addTask(4, new EntityAIFollow(this, 1.0D, 3.0F, 7.0F));
     }
 
@@ -246,19 +244,6 @@ public class EntityBaldEagle extends EntityShoulderRiding implements EntityFlyin
     public SoundCategory getSoundCategory()
     {
         return SoundCategory.NEUTRAL;
-    }
-
-    @Override
-    public boolean canBePushed()
-    {
-        return true;
-    }
-
-    @Override
-    protected void collideWithEntity(Entity entity)
-    {
-        if(!(entity instanceof EntityPlayer))
-            super.collideWithEntity(entity);
     }
 
     @Override
