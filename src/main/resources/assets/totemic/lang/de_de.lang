@@ -17,7 +17,6 @@ item.totemic:jingle_dress.name=Glockenkleid
 item.totemic:rattle.name=Rassel
 item.totemic:eagle_bone_whistle.name=Adlerknochenpfeife
 item.totemic:tipi.name=Tipi
-item.totemic:eagle_bone.name=Adlerknochen
 item.totemic:iron_bells.name=Eisenglocken
 item.totemic:buffalo_hide.name=Büffelleder
 item.totemic:buffalo_teeth.name=Büffelzahn
@@ -36,6 +35,8 @@ item.totemic:medicine_bag.tooltipCharge=Ladung: %d / %d
 item.totemic:ceremony_cheat.name=Kreativmodus-Zeremoniencheat
 item.totemic:ceremony_cheat.tooltip1=Benutze an einer Totembasis, um sofort
 item.totemic:ceremony_cheat.tooltip2=die ausgewählte Zeremonie zu starten
+item.totemic:eagle_bone.name=Adlerknochen
+item.totemic:eagle_feather.name=Adlerfeder
 
 # Block localizations
 tile.totemic:cedar_log.name=Rotes Zedernholz

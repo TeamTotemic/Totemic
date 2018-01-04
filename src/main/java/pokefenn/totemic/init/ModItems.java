@@ -46,6 +46,7 @@ public final class ModItems
     public static final ItemBaykokBow baykok_bow = null;
     public static final ItemMedicineBag medicine_bag = null;
     public static final ItemCeremonyCheat ceremony_cheat = null;
+    public static final ItemEagleDrops eagle_drops = null;
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event)
@@ -77,7 +78,8 @@ public final class ModItems
             new ItemFood(9, 0.9F, true).setRegistryName(Strings.COOKED_BUFFALO_MEAT_NAME).setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.COOKED_BUFFALO_MEAT_NAME).setCreativeTab(Totemic.tabsTotem),
             new ItemBaykokBow(),
             new ItemMedicineBag(),
-            new ItemCeremonyCheat());
+            new ItemCeremonyCheat(),
+            new ItemEagleDrops());
     }
 
     private static ItemBlock makeItemBlock(Block block)

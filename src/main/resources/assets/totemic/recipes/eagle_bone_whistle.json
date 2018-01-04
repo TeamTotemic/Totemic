@@ -10,12 +10,12 @@
       "ore": "string"
     },
     "B": {
-      "item": "totemic:sub_items",
+      "item": "totemic:eagle_drops",
       "data": 0
     },
     "F": {
-      "type": "forge:ore_dict",
-      "ore": "feather"
+      "item": "totemic:eagle_drops",
+      "data": 1
     }
   },
   "result": {

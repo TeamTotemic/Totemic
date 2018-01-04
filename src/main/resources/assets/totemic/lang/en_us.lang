@@ -17,7 +17,6 @@ item.totemic:jingle_dress.name=Jingle Dress
 item.totemic:rattle.name=Rattle
 item.totemic:eagle_bone_whistle.name=Eagle-Bone Whistle
 item.totemic:tipi.name=Tipi
-item.totemic:eagle_bone.name=Eagle Bone
 item.totemic:iron_bells.name=Iron Bells
 item.totemic:buffalo_hide.name=Buffalo Hide
 item.totemic:buffalo_teeth.name=Buffalo Tooth
@@ -36,6 +35,8 @@ item.totemic:medicine_bag.tooltipCharge=Charge: %d / %d
 item.totemic:ceremony_cheat.name=Creative Ceremony Cheat
 item.totemic:ceremony_cheat.tooltip1=Use on a Totem Base to instantly
 item.totemic:ceremony_cheat.tooltip2=start up the selected Ceremony
+item.totemic:eagle_bone.name=Eagle Bone
+item.totemic:eagle_feather.name=Eagle Feather
 
 # Block localizations
 tile.totemic:cedar_log.name=Red Cedar Wood
