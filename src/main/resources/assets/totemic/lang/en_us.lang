@@ -145,6 +145,7 @@ totemicmisc.clickToIndex=Shift+Click to return to index
 totemicmisc.clickToRecipe=Shift+Click to see recipe
 totemicmisc.shapeless=Shapeless
 totemicmisc.oredict=Ore Dictionary
+totemic.gui.lexicon.wip=Work In Progress
 
 totemic.category.basics=Totemic Basics
 totemic.category.devices=Devices

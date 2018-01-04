@@ -122,7 +122,7 @@ public final class LexiconData
         jingleDress.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "jingle_dress"),
                 new PageCraftingRecipe("3", Strings.RESOURCE_PREFIX + "iron_bells"));
 
-        eagleBoneWhistle = new BLexiconEntry(Totempedia.EAGLE_BONE_WHISTLE, categoryInstruments);
+        eagleBoneWhistle = new WIPLexiconEntry(Totempedia.EAGLE_BONE_WHISTLE, categoryInstruments);
         eagleBoneWhistle.addPages(new PageText("0"), new PageCraftingRecipe("1", Strings.RESOURCE_PREFIX + "eagle_bone_whistle"));
 
         //Ceremonies
@@ -142,7 +142,7 @@ public final class LexiconData
         buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony);
         buffaloDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.buffaloDance));
 
-        eagleDance = new BLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony);
+        eagleDance = new WIPLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony);
         eagleDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.eagleDance));
 
         zaphkielWaltz = new BLexiconEntry(Totempedia.ZAPHKIEL_WALTZ, categoryCeremony);
@@ -154,7 +154,7 @@ public final class LexiconData
         baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony);
         baykokSummon.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.baykokSummon));
 
-        sunDance = new BLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony);
+        sunDance = new WIPLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony);
         sunDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.sunDance));
 
         //Tools
