@@ -129,6 +129,9 @@ public final class ModItems
 
         for(ItemBuffaloDrops.Type t: ItemBuffaloDrops.Type.values())
             setModel(buffalo_items, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());
+
+        for(ItemEagleDrops.Type t: ItemEagleDrops.Type.values())
+            setModel(eagle_drops, t.ordinal(), Strings.RESOURCE_PREFIX + t.toString());
     }
 
     @SideOnly(Side.CLIENT)
