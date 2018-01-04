@@ -154,7 +154,7 @@ totemic.entry.buffaloBasic=Büffel
 totemic.page.buffaloBasic0=Der mächtige Büffel, ein Tier das im ganzen Land bekannt ist für die Resourcen das es geben kann. Sie sind besonders stämmig und haben viele Lebenspunkte. Durch exzessive Jagd sind sie beinahe ausgestorben, aber sie können durch die §4Mandan-Büffeltanz§0-Zeremonie 'geschaffen' werden.
 totemic.page.buffaloBasic1=
 
-totemic.entry.creatingTotems=Totempfähle
+totemic.entry.creatingTotems=§oTotempfähle
 totemic.page.creatingTotems0=Ein Totempfahl ist leicht zu erzeugen. Zunächst benötigst du ein §1Totem-Schnitzmesser§0, damit kannst du Totempfähle aus beliebigen Arten von Holzstämmen schnitzen. Das Messer kann verschiedene Muster von §4Totempfählen§0 zeichnen, welche zu unterschiedlichen Effekten führen. Rechtsklick oder Mausrad während des Schleichens verändert, welches Muster geschnitzt wird.  
 totemic.page.creatingTotems1=Das Totemschnitzmesser wird auch benutzt, um die §1Totembasis§0 zu schnitzen. Jeder Totempfahl benötigt eine Basis unten und kann bis zu 6 Meter hoch sein.<br>Totempfähle geben normalerweise positive §4Effekte§0 zu nahen Spielern. Die Effekte hängen vom Schnitzmuster ab. Ein Totempfahl kann verschiedene Muster auf unterschiedlichen Höhen haben.
 totemic.page.creatingTotems2=
@@ -169,7 +169,7 @@ totemic.page.medicineBag0=Mit dem §1Medizinbeutel§0 kannst du einen §4Totemef
 totemic.page.medicineBag1=Dann kannst du den Beutel rechtsklicken, um ihn zu öffnen und seinen Effekt zu benutzen, oder zu schließen.<br>Der Beutel muss nach einingen Minuten Benutzung wieder aufgeladen werden. Dazu musst du nur nahe einem Totempfahl stehen, der mit dem Effekt des Beutels geschnitzt ist.
 totemic.page.medicineBag2=
 
-totemic.entry.instruments=Instrumente
+totemic.entry.instruments=§oInstrumente
 totemic.page.instruments0=Mit Instrumenten kann man §4Musikalische Energie§0 erzeugen, welche §1Totempfähle§0 antreibt. Spielt man ein Instrument während man schleicht, gelangt seine Melodie in nahe Verbraucher. Jedes Instrument erzeugt §4Melodie§0 auf unterschiedliche Arten und Weisen, beispielsweise wie stark die Melodie ist, wie weit sie hörbar ist und wie viel davon ein Totempfahl annehmen kann.
 totemic.page.instruments1=
 
@@ -202,7 +202,7 @@ totemic.entry.eagleBoneWhistle=Adlerknochenpfeife
 totemic.page.eagleBoneWhistle0=Die §1Adlerknochenpfeife§0 wird aus den Knochen eines heiligen §4Weißkopfseeadlers§0 hergestellt. Sie ist ein sehr mächtiges Instrument und ein Muss für die fortgeschritteneren Zeremonien.
 totemic.page.eagleBoneWhistle1=
 
-totemic.entry.performingCeremonies=Durchführung von Zeremonien
+totemic.entry.performingCeremonies=§oDurchführung von Zeremonien
 totemic.page.performingCeremonies0=§4Zeremonien§0 sind ein Weg für Totemisten, um durch Musik all ihre Kräfte über eine gewisse Zeit zusammenzunehmen, um sie dann in einem Stoß freizusetzen und Effekte zu erzeugen. Das Zentrum einer §4Zeremonie§0 ist eine §1Totembasis§0, alle Musik und andere Dinge sind um den §1Totempfahl§0 zentriert, und dort werden die Effekte freigesetzt.
 totemic.page.performingCeremonies1=Um eine §4Zeremonie§0 durchzuführen, musst du einige Dinge tun. Um eine §4Zeremonie§0 auszuwählen und einzuleiten, musst du bis zu 4 Instrumente im Selektor-Modus nahe einem §1Totempfahl§0 spielen, jede Zeremonie hat eine andere Folge von Instrumenten. Um Instrumente im Selektor-Modus zu spielen, spiele sie während du schleichst. Nachdem du die passenden Instrumente gespielt hast,
 totemic.page.performingCeremonies2=beginnt die §4Anlaufphase§0. Während der §1Totempfahl§0 in dieser Anlaufphase ist, akzeptiert er Musik aus der Umgebung und speichert sie. Dies wird §4Musikalische Energie§0 genannt, und dies ist, was man benötigt, um den Effekt der §4Zeremonie§0 zu aktivieren. Wenn die gesamte §4Musikalische Energie§0 den Grenzwert überschreitet, den man für die §4Zeremonie§0 benötigt, wird der Effekt aktiviert.
@@ -245,7 +245,7 @@ totemic.page.baykokSummon2=§oDu hast den Bogen überspannt...§r
 
 totemic.entry.sunDance=Sonnentanz
 totemic.page.sunDance0=Der §4Sonnentanz§0 ist eine der heiligsten Zeremonien und nicht leicht zu verrichten. Er heilt dich und beschützt dich eine Weile lang vor Schaden.<br>§o(WIP: Es ist geplant, dass diese Zeremonie eventuell benötigt, dass man hungert oder Schaden nimmt.)§r
-totemic.page.sunDance1=§oPurification in progress§r
+totemic.page.sunDance1=§oHeile sie, mit Feuer von oben§r
 
 totemic.entry.totemicStaff=Totemstab
 totemic.page.totemicStaff0=Der §1Totemstab§0 kann an verschiedenen Blöcken benutzt werden, um Informationen über sie zu liefern.<br>Außerdem kann man mit ihm durch Linksklick auf eine Totembasis Zeremonien und Selektionen abbrechen.

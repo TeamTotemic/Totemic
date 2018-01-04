@@ -144,7 +144,7 @@ totemic.entry.buffaloBasic=野牛
 totemic.page.buffaloBasic0=強壯威猛的野牛，它可提供的豐富資源與其威力聞名於這片大陸。野牛們極為強健，並且有很高的生命值。由於不斷的狩獵，野牛已經瀕臨滅絕了，然而你仍可以使用§4曼丹野牛舞§0生成它。
 totemic.page.buffaloBasic1=
 
-totemic.entry.creatingTotems=圖騰柱
+totemic.entry.creatingTotems=§o圖騰柱
 totemic.page.creatingTotems0=製作一個圖騰柱再簡單不過了。首先你需要製作一把§1圖騰刻刀§0。這將是你在圖騰柱上進行雕刻的工具。
 totemic.page.creatingTotems1=§1圖騰基座§0也需要用刻刀雕刻製作。你可以把圖騰柱建造至6格高。但別忘了在最底下放上圖騰基座。<br>通常圖騰柱會給予所有附近玩家一些有益的§4效果§0，至於是何種效果則需要根據雕刻的圖紋來決定。一個圖騰柱的每格都能擁有不同的圖紋。
 totemic.page.creatingTotems2=
@@ -159,7 +159,7 @@ totemic.page.medicineBag0=§1藥草袋§0使你能攜帶§4圖騰效果§0，使
 totemic.page.medicineBag1=藥草袋在耗盡錢可以維持數分鐘。你只需站在圖騰柱效果範圍內就能將它充滿。
 totemic.page.medicineBag2=
 
-totemic.entry.instruments=樂器
+totemic.entry.instruments=§o樂器
 totemic.page.instruments0=樂器可以奏出§4音樂旋律§0，這些旋律是§1圖騰基座§0的生命。當樂器奏響時，它們的旋律會浸入任何接收者內。每種樂器奏出的§4音樂旋律§0都有所不同，比如說在於其強度、傳遞範圍、以及圖騰可接收的量。
 totemic.page.instruments1=
 
@@ -188,7 +188,7 @@ totemic.page.rattle0=§1搖響器§0，從圖騰族被人發現至今都是儀�
 totemic.page.rattle1=像其它樂器一樣，當潛行時演奏可以驅動儀式。
 totemic.page.rattle2=
 
-totemic.entry.performingCeremonies=執行儀式
+totemic.entry.performingCeremonies=§o執行儀式
 totemic.page.performingCeremonies0=§4儀式§0能通過音樂的力量使圖騰族在一段時間內獲得力量，並通過一些操作來釋放特定的儀式效果。§4儀式§0的中心是一個§1圖騰基座§0，所有音樂或其它能量都會在§1圖騰柱§0上聚集，並在那裡釋放出儀式效果。
 totemic.page.performingCeremonies1=要執行一個§4儀式§0，必須注意幾件事。要想選擇並創建你的§4儀式§0，你必須在選擇模式下向§1圖騰柱§0演奏4種樂器，每個儀式樂器的演奏都有不同的順序。要在選擇模式下演奏多種樂器，只需要潛行並像往常一樣演奏它們。當你演奏完4種與§4儀式§0相應的樂器後，儀式將開始執行創建。
 totemic.page.performingCeremonies2=當儀式處於執行創建狀態時，§1圖騰柱§0會接收附近的音樂並儲存它們。這些音樂就叫做§4音樂旋律§0，它就是驅動§4儀式§0所需的能量。當§4音樂旋律§0達到§4儀式§0所需旋律的閾值，儀式就執行完成並從圖騰產生儀式效果。每個樂器有各自演奏的上限程度，所以執行任何儀式都不能只由一個樂器來演奏。

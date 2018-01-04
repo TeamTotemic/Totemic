@@ -22,7 +22,8 @@ public class LexiconEntry implements Comparable<LexiconEntry>
     private final String unlocalizedName;
 
     private final List<LexiconPage> pages = new ArrayList<>();
-    private boolean priority = false;
+    private int sortIndex = 0;
+    @Deprecated private boolean priority = false;
 
     /**
      * Creates a new entry
@@ -45,14 +46,31 @@ public class LexiconEntry implements Comparable<LexiconEntry>
     }
 
     /**
-     * Sets this page as prioritized, as in, will appear before others in the lexicon.
+     * Sets the sorting index of this entry. Entries with smaller index are listed first.
      */
+    public LexiconEntry setSortIndex(int index)
+    {
+        sortIndex = index;
+        return this;
+    }
+
+    public int getSortIndex()
+    {
+        return sortIndex;
+    }
+
+    /**
+     * Sets this page as prioritized, as in, will appear before others in the lexicon.
+     * @deprecated Use {@link #setSortIndex} instead, and set the italic font manually in the localization.
+     */
+    @Deprecated
     public LexiconEntry setPriority()
     {
         priority = true;
         return this;
     }
 
+    @Deprecated
     public boolean isPriority()
     {
         return priority;
@@ -109,6 +127,8 @@ public class LexiconEntry implements Comparable<LexiconEntry>
     {
         if(priority != o.priority)
             return priority ? -1 : 1;
+        else if(sortIndex != o.sortIndex)
+            return (sortIndex < o.sortIndex) ? -1 : 1;
         else
             return getLocalizedName().compareTo(o.getLocalizedName());
     }

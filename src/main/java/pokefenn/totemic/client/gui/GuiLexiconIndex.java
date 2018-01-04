@@ -78,6 +78,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
         populateIndex();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     void populateIndex()
     {

@@ -164,7 +164,7 @@ totemic.entry.buffaloBasic=Buffaloes
 totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for all of the resources it can grant. They are incredibly sturdy and have a very large amount of health. Hunting has left them nearly extinct, but they can still be 'created' with the §4Mandan Buffalo Dance§0 Ceremony. 
 totemic.page.buffaloBasic1=
 
-totemic.entry.creatingTotems=Totem Poles
+totemic.entry.creatingTotems=§oTotem Poles
 totemic.page.creatingTotems0=Creating a Totem Pole is a very simple thing to do. First you must create a §1Totem Whittling Knife§0, this will be what you use to carve out your Totem Poles out of any kind of wood logs. The knife can carve different patterns of §4Totem Poles§0, which will lead to different effects. Right clicking or scrolling while sneaking will change which pattern will be carved.
 totemic.page.creatingTotems1=You also use the Totem Whittling Knife to carve out the §1Totem Base§0. Each Totem Pole needs one Totem Base at the bottom and can be up to 6 meters high.<br>Totem Poles will by default give beneficial §4effects§0 to all nearby players. The effects depend on the carving pattern. A Totem Pole can have different carvings on different heights.
 totemic.page.creatingTotems2=
@@ -179,7 +179,7 @@ totemic.page.medicineBag0=The §1Medicine Bag§0 allows you to carry a §4Totem 
 totemic.page.medicineBag1=The Medicine Bag will last for a few minutes before it depletes. To charge it, just stand near a Totem Pole that has your bag's effect carved into it.
 totemic.page.medicineBag2=
 
-totemic.entry.instruments=Instruments
+totemic.entry.instruments=§oInstruments
 totemic.page.instruments0=Instruments are a way to create §4Musical Melody§0, which is the life of §1Totem Poles§0. When an instrument is played, their melody will seep into any receivers. Every instrument produces §4Musical Melody§0 in different ways, such as how strong the melody is, how far it goes and how much a Totem can accept.
 totemic.page.instruments1=
 
@@ -212,7 +212,7 @@ totemic.entry.eagleBoneWhistle=Eagle-Bone Whistle
 totemic.page.eagleBoneWhistle0=The §1Eagle-Bone Whistle§0 is made from the bones of a sacred §4Bald Eagle§0. It is a very powerful instrument and a necessity for the more advanced Ceremonies.
 totemic.page.eagleBoneWhistle1=
 
-totemic.entry.performingCeremonies=Performing Ceremonies
+totemic.entry.performingCeremonies=§oPerforming Ceremonies
 totemic.page.performingCeremonies0=§4Ceremonies§0 are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The center of a §4Ceremony§0 is a §1Totem Base§0, all music and other things are centered to the §1Totem Pole§0 and it is where the effects are released from.
 totemic.page.performingCeremonies1=To perform a §4Ceremony§0, there are a few things you must do. To select and initiate your §4Ceremony§0, you must play up to 4 Instruments in their selector mode to a §1Totem Pole§0, every ceremony has a unique sequence of Instruments. To play an Instrument in selector mode, just play it normally while sneaking. When you have played the corresponding instruments for a §4Ceremony§0,
 totemic.page.performingCeremonies2=the §4startup§0 will initiate. While it is in this startup mode, the §1Totem Pole§0 will accept all nearby music and store it. This is called §4Musical Melody§0 and it is what is needed for the §4Ceremonies§0 effect to activate. When the total §4Musical Melody§0 hits the threshold of the §4Ceremonies§0 Melody requirement, it will activate the effect. Each instrument can only be played up to a certain point,
@@ -255,7 +255,7 @@ totemic.page.baykokSummon2=§oyou're gonna have a bad time§r
 
 totemic.entry.sunDance=Sun Dance
 totemic.page.sunDance0=The §4Sun Dance§0 is one of the most sacred Ceremonies and not easy to perform. It will heal you and protect you from damage for a while.<br>§o(WIP: In the future, this Ceremony might require you to starve or take damage.)§r
-totemic.page.sunDance1=§oPurification in progress§r
+totemic.page.sunDance1=§oKneeling, my god is the sun§r
 
 totemic.entry.totemicStaff=Totemic Staff
 totemic.page.totemicStaff0=The §1Totemic Staff§0 can be used on various blocks to give you information about them.<br>Also, left-clicking it on a Totem Base will cancel ceremonies and musical selections on it.
