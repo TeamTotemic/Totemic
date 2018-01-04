@@ -36,6 +36,7 @@ import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.ItemBuffaloDrops;
+import pokefenn.totemic.item.ItemEagleDrops;
 import pokefenn.totemic.item.ItemTotemicItems;
 import pokefenn.totemic.lib.Resources;
 import pokefenn.totemic.lib.Strings;
@@ -108,6 +109,8 @@ public class CommonProxy
         OreDictionary.registerOre("listAllbuffalocooked", new ItemStack(ModItems.cooked_buffalo_meat));
         OreDictionary.registerOre("hideBuffalo", new ItemStack(ModItems.buffalo_items, 1, ItemBuffaloDrops.Type.hide.ordinal()));
         OreDictionary.registerOre("teethBuffalo", new ItemStack(ModItems.buffalo_items, 1, ItemBuffaloDrops.Type.teeth.ordinal()));
+        OreDictionary.registerOre("bone", new ItemStack(ModItems.eagle_drops, 1, ItemEagleDrops.Type.bone.ordinal()));
+        OreDictionary.registerOre("feather", new ItemStack(ModItems.eagle_drops, 1, ItemEagleDrops.Type.feather.ordinal()));
     }
 
     private void furnaceRecipes()
