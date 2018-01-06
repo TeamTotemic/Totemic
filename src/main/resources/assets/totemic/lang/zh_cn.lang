@@ -15,8 +15,8 @@ item.totemic:cedar_bark.name=红柏树皮
 item.totemic:bark_stripper.name=剥皮器
 item.totemic:jingle_dress.name=叮噹舞装
 item.totemic:rattle.name=摇响器
+item.totemic:eagle_bone_whistle.name=鹰骨笛
 item.totemic:tipi.name=印第安帐篷
-item.totemic:iron_nugget.name=铁粒
 item.totemic:iron_bells.name=铁铃
 item.totemic:buffalo_hide.name=野牛牛皮
 item.totemic:buffalo_teeth.name=野牛牙齿
@@ -24,14 +24,19 @@ item.totemic:buffalo_meat.name=野牛肉
 item.totemic:cooked_buffalo_meat.name=烤野牛肉
 item.totemic:baykok_bow.name=贝柯克之弓
 item.totemic:medicine_bag.name=药草袋
-item.totemic:medicine_bag.display=药草袋 (%s)
+item.totemic:medicine_bag.display=药草袋（%s）
 item.totemic:medicine_bag.creative.name=创造模式药草袋
-item.totemic:medicine_bag.creative.display=创造模式药草袋 (%s)
+item.totemic:medicine_bag.creative.display=创造模式药草袋（%s）
 item.totemic:medicine_bag.tooltip=潜行右击以对图腾柱设置效果
 item.totemic:medicine_bag.tooltipClosed=关闭
 item.totemic:medicine_bag.tooltipOpen=开启
 item.totemic:medicine_bag.tooltipEmpty=空
 item.totemic:medicine_bag.tooltipCharge=充能中：%d / %d
+item.totemic:ceremony_cheat.name=创造模式仪式工具
+item.totemic:ceremony_cheat.tooltip1=用于在图腾基座上立即使用
+item.totemic:ceremony_cheat.tooltip2=启用所选仪式
+item.totemic:eagle_bone.name=鹰骨
+item.totemic:eagle_feather.name=鹰羽
 
 # Block localizations
 tile.totemic:cedar_log.name=红柏原木
@@ -49,6 +54,8 @@ tile.totemic:tipi.name=印第安帐篷
 #Entity localizations
 entity.totemic:buffalo.name=野牛
 entity.totemic:baykok.name=贝柯克
+entity.totemic:bald_eagle.name=白头鹰雕
+entity.Villager.totemist=药学家
 
 #Potion effect localizations
 totemic.potion.bat=蝙蝠
@@ -58,15 +65,22 @@ totemic.potion.spider=蜘蛛
 #Creative Tab localizations
 itemGroup.totemic=图腾
 
+#Config GUI localizations
+totemic.config.general=General
+totemic.config.general.tooltip=
+totemic.config.client=Client
+totemic.config.client.tooltip=Options that have no effects on servers
+
 #Ceremony names
 totemic.ceremony.totemic:flute=魔域长笛
 totemic.ceremony.totemic:rainDance=祈雨舞蹈
 totemic.ceremony.totemic:drought=乾旱仪式
-totemic.ceremony.totemic:potion=神圣炼金剂
 totemic.ceremony.totemic:buffaloDance=曼丹野牛舞
 totemic.ceremony.totemic:zaphkielWaltz=沙法尔圆舞
 totemic.ceremony.totemic:warDance=战争仪式
 totemic.ceremony.totemic:baykokSummon=丧钟仪式
+totemic.ceremony.totemic:eagleDance=鹰之舞
+totemic.ceremony.totemic:sunDance=日舞
 
 #Totem effect names
 totemic.totem.totemic:horse=马
@@ -80,7 +94,7 @@ totemic.totem.totemic:rabbit=兔子
 totemic.totem.totemic:pig=猪
 totemic.totem.totemic:wolf=狼
 totemic.totem.totemic:buffalo=野牛
-totemic.totem.totemic:enderman=终界使者
+totemic.totem.totemic:enderman=末影人
 
 #Music Instrument names
 totemic.instrument.totemic:flute=长笛
@@ -88,6 +102,7 @@ totemic.instrument.totemic:drum=鼓
 totemic.instrument.totemic:windChime=风铃
 totemic.instrument.totemic:jingleDress=叮噹舞装
 totemic.instrument.totemic:rattle=摇响器
+totemic.instrument.totemic:eagleBoneWhistle=鹰骨笛
 
 #Music values
 totemic.musicNeeded.none=不需要演奏音乐
@@ -112,20 +127,25 @@ totemicmisc.isDoingStartup=该图腾柱正在驱动仪式
 totemicmisc.isDoingCeremony=该图腾柱正在散发效果
 totemicmisc.effectNotPortable=药草袋无法携带 %s 效果
 
+#Waila tooltips
+totemic.waila.ceremonyStartup=仪式启动： %s
+totemic.waila.ceremonyEffect=仪式效果： %s
+
 #Totempedia Localisations
 totemic.gui.lexicon.header=图腾百科全书，图腾所需的一切指引。
 
-totemicmisc.clickToAdd=点击添加书籤
+totemicmisc.clickToAdd=点击添加书签
 totemicmisc.back=返回
 totemicmisc.clickToSee=点击打开
-totemicmisc.shiftToRemove=按住Shift单击以移除书籤
+totemicmisc.shiftToRemove=按住Shift单击以移除书签
 totemicmisc.nextPage=下一页
 totemicmisc.prevPage=上一页
-totemicmisc.bookmark=书籤
+totemicmisc.bookmark=书签
 totemicmisc.clickToIndex=点击返回目录
 totemicmisc.clickToRecipe=按住Shift单击以显示配方
 totemicmisc.shapeless=无序
 totemicmisc.oredict=矿物辞典
+totemic.gui.lexicon.wip=工作正在进行
 
 totemic.category.basics=图腾基础
 totemic.category.devices=装置
@@ -188,6 +208,10 @@ totemic.page.rattle0=§1摇响器§0，从图腾族被人发现至今都是仪�
 totemic.page.rattle1=像其它乐器一样，当潜行时演奏可以驱动仪式。
 totemic.page.rattle2=
 
+totemic.entry.eagleBoneWhistle=鹰骨笛
+totemic.page.eagleBoneWhistle0=§1鹰骨笛§0由§4白头鹰雕§0的骨头制成。这是一个非常强大的乐器，也是高级仪式所需要的。
+totemic.page.eagleBoneWhistle1=
+
 totemic.entry.performingCeremonies=§o执行仪式
 totemic.page.performingCeremonies0=§4仪式§0能通过音乐的力量使图腾族在一段时间内获得力量，并通过一些操作来释放特定的仪式效果。§4仪式§0的中心是一个§1图腾基座§0，所有音乐或其它能量都会在§1图腾柱§0上聚集，并在那里释放出仪式效果。
 totemic.page.performingCeremonies1=要执行一个§4仪式§0，必须注意几件事。要想选择并创建你的§4仪式§0，你必须在选择模式下向§1图腾柱§0演奏4种乐器，每个仪式乐器的演奏都有不同的顺序。要在选择模式下演奏多种乐器，只需要潜行并像往常一样演奏它们。当你演奏完4种与§4仪式§0相应的乐器後，仪式将开始执行创建。
@@ -211,6 +235,10 @@ totemic.entry.buffaloDance=曼丹野牛舞
 totemic.page.buffaloDance0=在白人践踏这片土地後，曾经遍佈大平原的§1野牛§0也逐渐被屠杀殆尽。然而，他们还没有斩断最後一线希望：§4曼丹野牛舞§0仪式可以赋予附近的牛以力量，使他们成为真正的野牛。虽然这些获得新生的野牛的力量仍不及曾经的那些野牛，但随著时间的流逝，他们会成长起来的。
 totemic.page.buffaloDance1=§o别用红布§r
 
+totemic.entry.eagleDance=鹰之舞
+totemic.page.eagleDance0=§1白头鹰雕§0是一种神圣的鸟，它的羽毛以及骨骼对某些仪式有着举足轻重的作用。有人说它们是人与神之间的灵性信使。但由于它们濒临灭绝，它们在野外是无法找到的；类似野牛，它们必须由§4鹰之舞§0仪式进行创造。这个仪式会将能力注入到附近的鹦鹉之中，使它们变成白头鹰雕。
+totemic.page.eagleDance1=§o这不是秃鹰§r
+
 totemic.entry.zaphkielWaltz=沙法尔圆舞
 totemic.page.zaphkielWaltz0=§4沙法尔圆舞§0是一种强力的生长仪式。仪式发动後，短时间内，附近的作物都会快速生长，同时鸡也会以更快的速度产卵。同时，这个仪式会把普通的树苗转化为§4红柏树苗§0。
 totemic.page.zaphkielWaltz1=§o哥特式的优雅§r
@@ -224,6 +252,10 @@ totemic.entry.baykokSummon=丧钟仪式
 totemic.page.baykokSummon0=§4丧钟仪式§0正是用於召唤名唤§4贝柯克§0的恶灵的仪式。谨记，发动此仪式前，务必保證万无一失。<br>§4贝柯克§0本身是一只化身为骷髅形态的恶灵，精通弓箭，用隐形的箭头无情地杀死所有与他为敌的人。在麻痹他的猎物後，他还会直接吞噬猎物的肝脏。
 totemic.page.baykokSummon1=若你成功击杀§4贝柯克§0，你便可以得到他使用的弓，以及其它各种战利品。这把弓可以射出能麻痹敌人的隐形箭（只有你能看到你发射出的箭）。与普通的弓相比，这把弓力量更强，也更容易附魔。
 totemic.page.baykokSummon2=§o你的末日到了§r
+
+totemic.entry.sunDance=日舞
+totemic.page.sunDance0=§4日舞§0是最神圣的仪式之一，这个仪式不容易实现。它会治疗你，并赋予你一段时间的伤害吸收效果。<br>§o（未完成：今后，这个仪式可能将会需要你饿死或者受伤才可以进行。）§r
+totemic.page.sunDance1=§o净化心灵§r
 
 totemic.entry.totemicStaff=图腾权杖
 totemic.page.totemicStaff0=图腾权杖可以告诉你一些方块的信息。<br>另外，左击图腾基座可以取消当前的仪式和音乐。
