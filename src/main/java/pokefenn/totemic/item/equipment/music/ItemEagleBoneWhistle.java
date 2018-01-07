@@ -9,12 +9,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.ItemInstrument;
+import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
 
 public class ItemEagleBoneWhistle extends ItemInstrument
 {
     public ItemEagleBoneWhistle()
     {
+        setSound(ModSounds.eagleBoneWhistle);
         setRegistryName(Strings.EAGLE_BONE_WHISTLE_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.EAGLE_BONE_WHISTLE_NAME);
         setCreativeTab(Totemic.tabsTotem);

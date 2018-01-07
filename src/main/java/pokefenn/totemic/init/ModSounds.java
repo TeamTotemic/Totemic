@@ -14,6 +14,7 @@ public final class ModSounds
     public static final SoundEvent rattle = createSound("rattle");
     public static final SoundEvent drum = createSound("drum");
     public static final SoundEvent windChime = createSound("wind_chime");
+    public static final SoundEvent eagleBoneWhistle = createSound("eagle_bone_whistle");
     public static final SoundEvent baldEagleAmbient = createSound("bald_eagle.ambient");
     public static final SoundEvent baldEagleHurt = createSound("bald_eagle.hurt");
     public static final SoundEvent baldEagleDeath = createSound("bald_eagle.death");
@@ -21,7 +22,8 @@ public final class ModSounds
     @SubscribeEvent
     public static void init(RegistryEvent.Register<SoundEvent> event)
     {
-        event.getRegistry().registerAll(flute, rattle, drum, windChime, baldEagleAmbient, baldEagleHurt);
+        event.getRegistry().registerAll(flute, rattle, drum, windChime, eagleBoneWhistle,
+                baldEagleAmbient, baldEagleHurt, baldEagleDeath);
     }
 
     private static SoundEvent createSound(String name)

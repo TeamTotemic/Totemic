@@ -19,3 +19,6 @@ Credits:
 =======
 The Flute sounds were cut from [overblow.mp3](https://freesound.org/people/kerri/sounds/37144/) by Kerri Lake,
 used under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+
+The Eagle-Bone Whistle sounds were cut from [this sample](https://freesound.org/people/Petrucio/sounds/276977/)
+by SpawnofSirius.
