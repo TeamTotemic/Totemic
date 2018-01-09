@@ -199,7 +199,7 @@ totemic.page.rattle1=Wie alle Instrumente kann sie während des Schleichens gesp
 totemic.page.rattle2=
 
 totemic.entry.eagleBoneWhistle=Adlerknochenpfeife
-totemic.page.eagleBoneWhistle0=Die §1Adlerknochenpfeife§0 wird aus den Knochen eines heiligen §4Weißkopfseeadlers§0 hergestellt. Sie ist ein sehr mächtiges Instrument und ein Muss für die fortgeschritteneren Zeremonien.
+totemic.page.eagleBoneWhistle0=Die §1Adlerknochenpfeife§0 wird aus den Knochen eines §4Weißkopfseeadlers§0 hergestellt, und ist deswegen sehr kraftvoll. Sie ist ein Muss für fortgeschrittenere Zermeonien, und gilt eher als zeremonielles Objekt statt als Musikinstrument.
 totemic.page.eagleBoneWhistle1=
 
 totemic.entry.performingCeremonies=§oDurchführung von Zeremonien
@@ -226,8 +226,9 @@ totemic.page.buffaloDance0=Als der Weiße Mann das Land übernahm, tötete er fa
 totemic.page.buffaloDance1=§oVermeide rote Tücher§r
 
 totemic.entry.eagleDance=Adlertanz
-totemic.page.eagleDance0=Der §1Weißkopfseeadler§0 ist ein heiliger Vogel, seine Federn und Knochen sind sehr wichtig für einige Zeremonien. Manche sagen, sie sind spirituelle Boten zwischen Menschen und Göttern. Da sie beinahe ausgestorben sind, können sie nicht in der Wildnis gefunden werden; ähnlich wie Büffel müssen sie durch die §4Adlertanz§0-Zeremonie erschaffen werden. Diese Zeremonie verzaubert Papageie und verwandelt sie in Weißkopfseeadler. 
-totemic.page.eagleDance1=§oWelcome to 'Murica!§r
+totemic.page.eagleDance0=Der §1Weißkopfseeadler§0 ist ein heiliger Vogel, manche sagen, sie seien spirituelle Boten zwischen Menschen und Göttern. Ihre Federn und Knochen sind wichtige zeremonielle Gegenstände und werden für die §1Adlerknochenpfeife§0 benötigt.<br>Da sie beinahe ausgestorben sind, können sie nicht in der Wildnis gefunden werden; ähnlich wie Büffel müssen sie durch die §4Adlertanz§0-Zeremonie 
+totemic.page.eagleDance1=erschaffen werden. Diese Zeremonie verzaubert §1Papageien§0 und verwandelt sie in Weißkopfseeadler. Sie können mit jeder Art von rohem Fisch gezähmt und mit Lachs gezüchtet werden.
+totemic.page.eagleDance2=§oWelcome to 'Murica!§r
 
 totemic.entry.zaphkielWaltz=Zaphkiel-Walzer
 totemic.page.zaphkielWaltz0=Der §4Zaphkiel-Walzer§0 ist eine starke Wachstumszeremonie. Für eine kurze Weile wachen Pflanzen in der Umgebung und Küken in Eiern sehr viel schneller. Außerdem verwandelt der Walzer gewöhnliche Setzlinge in §4Rote Zedernsetzlinge§0.
@@ -244,7 +245,7 @@ totemic.page.baykokSummon1=Schaffst du es, §4Baykok§0 zu besiegen, kannst du s
 totemic.page.baykokSummon2=§oDu hast den Bogen überspannt...§r
 
 totemic.entry.sunDance=Sonnentanz
-totemic.page.sunDance0=Der §4Sonnentanz§0 ist eine der heiligsten Zeremonien und nicht leicht zu verrichten. Er heilt dich und beschützt dich eine Weile lang vor Schaden.<br>§o(WIP: Es ist geplant, dass diese Zeremonie eventuell benötigt, dass man hungert oder Schaden nimmt.)§r
+totemic.page.sunDance0=Der §4Sonnentanz§0 ist eine der heiligsten Zeremonien und nicht leicht zu verrichten. Er heilt jeden in der Nähe und beschützt sie eine Weile lang vor Schaden.<br>§o(WIP: Es ist geplant, dass diese Zeremonie eventuell benötigt, dass man hungert oder Schaden nimmt.)§r
 totemic.page.sunDance1=§oHeile sie, mit Feuer von oben§r
 
 totemic.entry.totemicStaff=Totemstab

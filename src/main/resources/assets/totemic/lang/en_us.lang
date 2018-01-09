@@ -209,7 +209,7 @@ totemic.page.rattle1=Like all instruments, it can be played while sneaking so as
 totemic.page.rattle2=
 
 totemic.entry.eagleBoneWhistle=Eagle-Bone Whistle
-totemic.page.eagleBoneWhistle0=The §1Eagle-Bone Whistle§0 is made from the bones of a sacred §4Bald Eagle§0. It is a very powerful instrument and a necessity for the more advanced Ceremonies.
+totemic.page.eagleBoneWhistle0=The §1Eagle-Bone Whistle§0 is made from the bones of a §4Bald Eagle§0, and as such it is very powerful. It is a necessity for more advanced Ceremonies, and actually considered more of a ceremonial object than a music instrument. 
 totemic.page.eagleBoneWhistle1=
 
 totemic.entry.performingCeremonies=§oPerforming Ceremonies
@@ -236,8 +236,9 @@ totemic.page.buffaloDance0=As the White Man came and took over the lands, he mur
 totemic.page.buffaloDance1=§oAvoid using red rags§r
 
 totemic.entry.eagleDance=Eagle Dance
-totemic.page.eagleDance0=The §1Bald Eagle§0 is a sacred bird, its feathers and bones are important for some Ceremonies. Some say they are spiritual messengers between humans and gods. Since they have gone almost extinct, they are not found in the wild; similarly to Buffalos they have to be created by the §4Eagle Dance§0 Ceremony. This Ceremony will infuse nearby Parrots and turn them into Bald Eagles. 
-totemic.page.eagleDance1=§oNot actually bald§r
+totemic.page.eagleDance0=The §1Bald Eagle§0 is a sacred bird, some say they are spiritual messengers between humans and gods. Its feathers and bones are important ceremonial items and are used to make the §1Eagle-Bone Whistle§0.<br>Since they have gone almost extinct, they are not found in the wild; similarly to Buffalos they have to be created by the §4Eagle Dance§0 Ceremony. This Ceremony will infuse
+totemic.page.eagleDance1=nearby §1Parrots§0 and turn them into Bald Eagles. Once transformed, they can be tamed with any kind of raw fish and bred with Salmon.
+totemic.page.eagleDance2=§oWelcome to 'Murica!§r
 
 totemic.entry.zaphkielWaltz=Zaphkiel Waltz
 totemic.page.zaphkielWaltz0=The §4Zaphkiel Waltz§0 is a strong growth ceremony. For a short while, nearby plants will grow at a much faster rate than usual, and chickens will grow out of their eggs quickly. Additionally, the Zaphkiel Waltz will transform mundane saplings into §4Red Cedar Saplings§0.
@@ -254,7 +255,7 @@ totemic.page.baykokSummon1=If you manage to defeat §4Baykok§0, you will be abl
 totemic.page.baykokSummon2=§oyou're gonna have a bad time§r
 
 totemic.entry.sunDance=Sun Dance
-totemic.page.sunDance0=The §4Sun Dance§0 is one of the most sacred Ceremonies and not easy to perform. It will heal you and protect you from damage for a while.<br>§o(WIP: In the future, this Ceremony might require you to starve or take damage.)§r
+totemic.page.sunDance0=The §4Sun Dance§0 is one of the most sacred Ceremonies and not easy to perform. It will heal everyone nearby and protect them from damage for a while.<br>§o(WIP: In the future, this Ceremony might require you to starve or take damage.)§r
 totemic.page.sunDance1=§oKneeling, my god is the sun§r
 
 totemic.entry.totemicStaff=Totemic Staff
