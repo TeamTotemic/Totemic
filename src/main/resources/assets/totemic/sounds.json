@@ -16,8 +16,8 @@
     },
     "bald_eagle.ambient": {
         "sounds": [
-            {"name": "totemic:bald_eagle/idle1", "volume": 0.5},
-            {"name": "totemic:bald_eagle/idle2", "volume": 0.5}
+            {"name": "totemic:bald_eagle/idle1", "volume": 0.4},
+            {"name": "totemic:bald_eagle/idle2", "volume": 0.4}
         ]
     },
     "bald_eagle.hurt": {

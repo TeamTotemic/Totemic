@@ -83,7 +83,7 @@ public class CommonProxy
             EntityEntryBuilder.create().entity(EntityBuffalo.class).id(Strings.BUFFALO_NAME, 0).name(Strings.RESOURCE_PREFIX + Strings.BUFFALO_NAME).tracker(80, 3, true).egg(0x2A1C12, 0x885F3E).build(),
             EntityEntryBuilder.create().entity(EntityBaykok.class).id(Strings.BAYKOK_NAME, 1).name(Strings.RESOURCE_PREFIX + Strings.BAYKOK_NAME).tracker(80, 3, true).egg(0xE0E0E0, 0xF8DAD2).build(),
             EntityEntryBuilder.create().entity(EntityInvisArrow.class).id(Strings.INVIS_ARROW_NAME, 2).name(Strings.RESOURCE_PREFIX + Strings.INVIS_ARROW_NAME).tracker(64, 20, true).build(),
-            EntityEntryBuilder.create().entity(EntityBaldEagle.class).id(Strings.BALD_EAGLE_NAME, 3).name(Strings.RESOURCE_PREFIX + Strings.BALD_EAGLE_NAME).tracker(80, 3, true).egg(0x875E3E, 0xF5F5DE).build());
+            EntityEntryBuilder.create().entity(EntityBaldEagle.class).id(Strings.BALD_EAGLE_NAME, 3).name(Strings.RESOURCE_PREFIX + Strings.BALD_EAGLE_NAME).tracker(80, 3, true).egg(0x4B4136, 0xF5E6A3).build());
     }
 
     private void registerTileEntities()
@@ -130,7 +130,7 @@ public class CommonProxy
 
     private void registerDataFixers()
     {
-        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 1010);
+        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 1011);
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new VanillaIronNugget());
         fixes.registerFix(FixTypes.BLOCK_ENTITY, new CamelCaseNamesTiles());
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new CamelCaseNamesItems());

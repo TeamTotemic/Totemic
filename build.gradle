@@ -110,7 +110,7 @@ curseforge {
     project {
         id = '237541'
         changelog  = ''
-        releaseType = 'beta'
+        releaseType = 'alpha'
 
         addArtifact deobfJar
         addArtifact apiSrcJar
