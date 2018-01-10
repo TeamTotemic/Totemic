@@ -13,6 +13,7 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -60,7 +61,7 @@ public class ItemFlute extends ItemInstrument
     {
         for(EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, x, y, z, 2, 2))
         {
-            if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
+            if((entity instanceof EntityAnimal && entity.getNavigator() instanceof PathNavigateGround) || entity instanceof EntityVillager)
             {
                 if(temptedEntities.contains(entity))
                     continue;
