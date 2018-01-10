@@ -209,7 +209,7 @@ totemic.page.rattle1=像其它乐器一样，当潜行时演奏可以驱动仪�
 totemic.page.rattle2=
 
 totemic.entry.eagleBoneWhistle=鹰骨笛
-totemic.page.eagleBoneWhistle0=§1鹰骨笛§0由§4白头鹰雕§0的骨头制成。这是一个非常强大的乐器，也是高级仪式所需要的。
+totemic.page.eagleBoneWhistle0=§1鹰骨笛§0是由§4白头鹰雕§0的骨头制成。这是一个非常强大的乐器，也是高级仪式所需要的。不过实际上它更看重的是使用对象。
 totemic.page.eagleBoneWhistle1=
 
 totemic.entry.performingCeremonies=§o执行仪式
@@ -236,8 +236,9 @@ totemic.page.buffaloDance0=在白人践踏这片土地後，曾经遍佈大平�
 totemic.page.buffaloDance1=§o别用红布§r
 
 totemic.entry.eagleDance=鹰之舞
-totemic.page.eagleDance0=§1白头鹰雕§0是一种神圣的鸟，它的羽毛以及骨骼对某些仪式有着举足轻重的作用。有人说它们是人与神之间的灵性信使。但由于它们濒临灭绝，它们在野外是无法找到的；类似野牛，它们必须由§4鹰之舞§0仪式进行创造。这个仪式会将能力注入到附近的鹦鹉之中，使它们变成白头鹰雕。
-totemic.page.eagleDance1=§o这不是秃鹰§r
+totemic.page.eagleDance0=§1白头鹰雕§0是一种神圣的鸟，它的羽毛以及骨骼对某些仪式有着举足轻重的作用。有人说它们是人与神之间的灵性信使。但由于它们濒临灭绝，它们在野外是无法找到的；类似野牛，它们必须由§4鹰之舞§0仪式进行创造。这个仪式会将能力注入
+totemic.page.eagleDance1=附近的§1鹦鹉§0中，来使它们变成白头鹰雕。一旦转化，它们便可用任何鱼类以及面包进行驯服，
+totemic.page.eagleDance2=§o欢迎我们的乡下人！§r
 
 totemic.entry.zaphkielWaltz=沙法尔圆舞
 totemic.page.zaphkielWaltz0=§4沙法尔圆舞§0是一种强力的生长仪式。仪式发动後，短时间内，附近的作物都会快速生长，同时鸡也会以更快的速度产卵。同时，这个仪式会把普通的树苗转化为§4红柏树苗§0。
@@ -254,7 +255,7 @@ totemic.page.baykokSummon1=若你成功击杀§4贝柯克§0，你便可以得�
 totemic.page.baykokSummon2=§o你的末日到了§r
 
 totemic.entry.sunDance=日舞
-totemic.page.sunDance0=§4日舞§0是最神圣的仪式之一，这个仪式不容易实现。它会治疗你，并赋予你一段时间的伤害吸收效果。<br>§o（未完成：今后，这个仪式可能将会需要你饿死或者受伤才可以进行。）§r
+totemic.page.sunDance0=§4日舞§0是最神圣的仪式之一，这个仪式不容易实现。它会治疗附近的人，并赋予它们一段时间的伤害吸收效果。<br>§o（未完成：今后，这个仪式可能将会需要你饿死或者受伤才可以进行。）§r
 totemic.page.sunDance1=§o净化心灵§r
 
 totemic.entry.totemicStaff=图腾权杖
