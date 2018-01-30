@@ -122,10 +122,13 @@ public class CommonProxy
 
     private void registerStructures()
     {
-        VillagerRegistry.instance().registerVillageCreationHandler(new ComponentTipi.CreationHandler());
         MapGenStructureIO.registerStructureComponent(ComponentTipi.class, Resources.PREFIX_MOD + "ViTi");
-        VillagerRegistry.instance().registerVillageCreationHandler(new ComponentMedicineWheel.CreationHandler());
+        if(ModConfig.general.enableVillageTipi)
+            VillagerRegistry.instance().registerVillageCreationHandler(new ComponentTipi.CreationHandler());
+
         MapGenStructureIO.registerStructureComponent(ComponentMedicineWheel.class, Resources.PREFIX_MOD + "ViCer");
+        if(ModConfig.general.enableVillageMedicineWheel)
+            VillagerRegistry.instance().registerVillageCreationHandler(new ComponentMedicineWheel.CreationHandler());
     }
 
     private void registerDataFixers()
