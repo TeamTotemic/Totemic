@@ -17,7 +17,7 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-0.10.0"
+version = "1.12.2-0.10.1"
 group = "pokefenn.totemic"
 archivesBaseName = "Totemic"
 
