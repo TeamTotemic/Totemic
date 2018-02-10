@@ -12,17 +12,17 @@ buildscript {
 }
 
 plugins {
-    id 'com.matthewprenger.cursegradle' version '1.0.9'
+    id 'com.matthewprenger.cursegradle' version '1.0.10'
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-0.10.1"
+version = "1.12.2-0.10.2"
 group = "pokefenn.totemic"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.12.2-14.23.1.2555"
+    version = "1.12.2-14.23.2.2611"
     runDir = "run"
 
     mappings = "snapshot_20171003"
@@ -42,7 +42,7 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "mcp.mobius.waila:Hwyla:1.8.21-B36_1.12"
+    deobfCompile "mcp.mobius.waila:Hwyla:1.8.23-B38_1.12"
 }
 
 processResources {
@@ -110,7 +110,7 @@ curseforge {
     project {
         id = '237541'
         changelog  = ''
-        releaseType = 'alpha'
+        releaseType = 'beta'
 
         addArtifact deobfJar
         addArtifact apiSrcJar
