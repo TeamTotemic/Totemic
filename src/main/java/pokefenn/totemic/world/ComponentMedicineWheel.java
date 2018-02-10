@@ -1,5 +1,6 @@
 package pokefenn.totemic.world;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -93,7 +94,7 @@ public class ComponentMedicineWheel extends StructureVillagePieces.Village
 
         //Create Totem Pole
         setBlockState(world, ModBlocks.totem_base.getDefaultState().withProperty(BlockTotemBase.WOOD, poleWood), 4, 0, 4, bb);
-        List<TotemEffect> totemList = TotemicRegistries.totemEffects().getValues();
+        List<TotemEffect> totemList = new ArrayList<>(TotemicRegistries.totemEffects().getValuesCollection());
         for(int i = 0; i < 5; i++)
         {
             int x = 4, y = 1+i, z = 4;

@@ -102,7 +102,9 @@ public class BlockCedarLeaves extends BlockLeaves
         return state.withProperty(TRANSPARENT, !isOpaqueCube(state));
     }
 
+    @SuppressWarnings("null")
     @Override
+    @Nonnull
     public List<ItemStack> onSheared(@Nonnull ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         return Collections.singletonList(new ItemStack(this));
