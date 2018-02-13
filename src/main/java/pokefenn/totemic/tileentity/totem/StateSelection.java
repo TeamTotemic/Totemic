@@ -79,7 +79,7 @@ public final class StateSelection extends TotemState
                 .filter(this::selectorsMatch)
                 .findAny();
 
-            if(match.isPresent())
+            if(match.isPresent() && match.get().canSelect(world, pos))
             {
                 world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
                 tile.setState(new StateStartup(tile, initiator, match.get()));

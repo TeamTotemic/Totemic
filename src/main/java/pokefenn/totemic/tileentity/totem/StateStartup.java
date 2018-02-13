@@ -65,9 +65,12 @@ public final class StateStartup extends TotemState implements StartupContext
 
         if(!world.isRemote)
         {
-            if(canStartCeremony())
+            if(totalMusic >= ceremony.getMusicNeeded())
             {
-                startCeremony();
+                if(ceremony.onStartupFinish(world, pos, this))
+                    startCeremony();
+                else
+                    failCeremony();
             }
             else if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty()))
             {
@@ -75,6 +78,8 @@ public final class StateStartup extends TotemState implements StartupContext
             }
             else
             {
+                ceremony.onStartup(world, pos, this);
+
                 if(time % 20 == 0)
                 {
                     //Detect when a new player has moved into range and send an update packet.
@@ -104,14 +109,10 @@ public final class StateStartup extends TotemState implements StartupContext
         time++;
     }
 
-    private boolean canStartCeremony()
-    {
-        return totalMusic >= ceremony.getMusicNeeded();
-    }
-
-    public void failCeremony()
+    private void failCeremony()
     {
         BlockPos pos = tile.getPos();
+        ceremony.onStartupFail(tile.getWorld(), pos, this);
         ((WorldServer) tile.getWorld()).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
         tile.setState(new StateTotemEffect(tile));
         tile.getState().update();
@@ -150,6 +151,13 @@ public final class StateStartup extends TotemState implements StartupContext
             return amount * 3 / 4;
         else
             return amount;
+    }
+
+    @Override
+    void resetState()
+    {
+        ceremony.onStartupCancel(tile.getWorld(), tile.getPos(), this);
+        super.resetState();
     }
 
     @Override

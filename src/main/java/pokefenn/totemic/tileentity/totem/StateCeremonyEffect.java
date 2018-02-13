@@ -35,7 +35,10 @@ public final class StateCeremonyEffect extends TotemState implements EffectConte
         if(!tile.getWorld().isRemote)
         {
             if(time >= ceremony.getEffectTime())
+            {
+                ceremony.onEffectEnd(tile.getWorld(), tile.getPos(), this);
                 tile.setState(new StateTotemEffect(tile));
+            }
         }
         else
         {
@@ -53,6 +56,13 @@ public final class StateCeremonyEffect extends TotemState implements EffectConte
     public boolean addMusic(MusicInstrument instr, int amount)
     {
         return true; //TODO: Implement melody draining
+    }
+
+    @Override
+    void resetState()
+    {
+        ceremony.onEffectCancel(tile.getWorld(), tile.getPos(), this);
+        super.resetState();
     }
 
     @Override

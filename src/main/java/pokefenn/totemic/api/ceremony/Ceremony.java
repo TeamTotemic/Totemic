@@ -91,6 +91,7 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
 
     /**
      * Called when the player has successfully finished the startup and before the ceremony effect begins.
+     * <p>Note that this method is bypassed when the player uses the Ceremony Cheat item.
      * @param context an object providing information about the progress and state of the startup phase.
      * @return {@code true} if the ceremony effect should begin.
      */
