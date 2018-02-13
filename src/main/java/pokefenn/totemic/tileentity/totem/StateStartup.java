@@ -74,6 +74,7 @@ public final class StateStartup extends TotemState implements StartupContext
             }
             else if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty()))
             {
+                ceremony.onStartupFail(world, pos, this);
                 failCeremony();
             }
             else
@@ -112,7 +113,6 @@ public final class StateStartup extends TotemState implements StartupContext
     private void failCeremony()
     {
         BlockPos pos = tile.getPos();
-        ceremony.onStartupFail(tile.getWorld(), pos, this);
         ((WorldServer) tile.getWorld()).spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
         tile.setState(new StateTotemEffect(tile));
         tile.getState().update();
