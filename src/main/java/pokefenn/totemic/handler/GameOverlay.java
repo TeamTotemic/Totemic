@@ -91,7 +91,7 @@ public class GameOverlay
                 RenderHelper.addQuad(buf, 1, 10, 0,  9, 9,  16 / texW, 48 / texH,   8 / texW,  8 / texH); //Note
                 RenderHelper.addQuad(buf, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
 
-                float musicW = state.getMusicAmount() / (float)cer.getMusicNeeded() * barW;
+                float musicW = state.getTotalMusic() / (float)cer.getMusicNeeded() * barW;
                 float timeW = Math.min(state.getTime() / (float)cer.getAdjustedMaxStartupTime(mc.world.getDifficulty()), 1.0f) * barW;
 
                 RenderHelper.addQuad(buf, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar

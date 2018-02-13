@@ -25,13 +25,14 @@ import net.minecraft.world.WorldServer;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.network.NetworkHandler;
 import pokefenn.totemic.network.server.PacketCeremonyStartupFull;
 import pokefenn.totemic.network.server.PacketCeremonyStartupMusic;
 import pokefenn.totemic.util.EntityUtil;
 
-public final class StateStartup extends TotemState
+public final class StateStartup extends TotemState implements StartupContext
 {
     static final int ID = 2;
 
@@ -215,6 +216,7 @@ public final class StateStartup extends TotemState
         return ceremony;
     }
 
+    @Override
     public int getTime()
     {
         return time;
@@ -225,9 +227,16 @@ public final class StateStartup extends TotemState
         this.time = time;
     }
 
-    public int getMusicAmount()
+    @Override
+    public int getTotalMusic()
     {
         return totalMusic;
+    }
+
+    @Override
+    public int getMusic(MusicInstrument instrument)
+    {
+        return music.getInt(instrument);
     }
 
     public void handleMusicPacket(PacketCeremonyStartupMusic msg)

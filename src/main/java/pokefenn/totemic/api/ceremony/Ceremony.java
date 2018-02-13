@@ -60,6 +60,70 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
     }
 
     /**
+     * Called when this Ceremony has been selected and before the startup begins.
+     * @return {@code true} if the startup phase should begin.
+     */
+    public boolean canSelect(World world, BlockPos pos)
+    {
+        return true;
+    }
+
+    /**
+     * Called every tick during the startup phase.
+     * @param context an object providing information about the progress and state of the startup phase.
+     */
+    public void onStartup(World world, BlockPos pos, StartupContext context)
+    { }
+
+    /**
+     * Called when the startup has been canceled by the player by left-clicking the Totem Base with a Totemic Staff.
+     * @param context an object providing information about the progress and state of the startup phase.
+     */
+    public void onStartupCancel(World world, BlockPos pos, StartupContext context)
+    { }
+
+    /**
+     * Called when the player was not successful in completing the startup.
+     * @param context an object providing information about the progress and state of the startup phase.
+     */
+    public void onStartupFail(World world, BlockPos pos, StartupContext context)
+    { }
+
+    /**
+     * Called when the player has successfully finished the startup and before the ceremony effect begins.
+     * @param context an object providing information about the progress and state of the startup phase.
+     * @return {@code true} if the ceremony effect should begin.
+     */
+    public boolean onStartupFinish(World world, BlockPos pos, StartupContext context)
+    {
+        return true;
+    }
+
+    /**
+     * Called when the ceremony effect has been canceled by the player by left-clicking the Totem Base with a Totemic Staff.
+     * @param context an object providing information about the ceremony's state during the ceremony effect phase.
+     */
+    public void onEffectCancel(World world, BlockPos pos, EffectContext context)
+    { }
+
+    /**
+     * Called after the ceremony effect has ended.
+     * @param context an object providing information about the ceremony's state during the ceremony effect phase.
+     */
+    public void onEffectEnd(World world, BlockPos pos, EffectContext context)
+    { }
+
+    /**
+     * Performs the ceremony effect at the given Totem Base position. If the ceremony is not instant, this will be called each tick.
+     * <p><b>This method will be made abstract in a future release! Please override this method instead of the deprecated overload below.</b>
+     * @param context an object providing information about the ceremony's state during the ceremony effect phase.
+     */
+    public /*abstract*/ void effect(World world, BlockPos pos, EffectContext context)
+    {
+        effect(world, pos, context.getTime());
+    }
+
+    /**
      * Performs the ceremony effect at the given Totem Base position.
      * If the ceremony is not instant, this will be called each tick.
      * This gets called on the server and the client.
@@ -67,8 +131,11 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
      * @param pos the position of the Totem Base where the effect happens
      * @param time time in ticks how long the effect lasted so far.<br>
      * Note: This value might not be always accurate on the client side due to potential lag and latency.
+     * @deprecated Override {@link #effect(World, BlockPos, EffectContext)} instead.
      */
-    public abstract void effect(World world, BlockPos pos, int time);
+    @Deprecated
+    public void effect(World world, BlockPos pos, int time)
+    { }
 
     /**
      * Override this if your Ceremony effect is not instant

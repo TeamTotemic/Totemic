@@ -6,9 +6,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.ceremony.EffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-public final class StateCeremonyEffect extends TotemState
+public final class StateCeremonyEffect extends TotemState implements EffectContext
 {
     static final int ID = 3;
 
@@ -29,7 +30,7 @@ public final class StateCeremonyEffect extends TotemState
     @Override
     public void update()
     {
-        ceremony.effect(tile.getWorld(), tile.getPos(), time);
+        ceremony.effect(tile.getWorld(), tile.getPos(), this);
 
         if(!tile.getWorld().isRemote)
         {
@@ -85,6 +86,7 @@ public final class StateCeremonyEffect extends TotemState
         return ceremony;
     }
 
+    @Override
     public int getTime()
     {
         return time;
