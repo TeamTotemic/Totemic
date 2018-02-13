@@ -67,7 +67,7 @@ public final class StateStartup extends TotemState implements StartupContext
         {
             if(totalMusic >= ceremony.getMusicNeeded())
             {
-                if(ceremony.onStartupFinish(world, pos, this))
+                if(ceremony.canStartEffect(world, pos, this))
                     startCeremony();
                 else
                     failCeremony();
@@ -151,13 +151,6 @@ public final class StateStartup extends TotemState implements StartupContext
             return amount * 3 / 4;
         else
             return amount;
-    }
-
-    @Override
-    void resetState()
-    {
-        ceremony.onStartupCancel(tile.getWorld(), tile.getPos(), this);
-        super.resetState();
     }
 
     @Override

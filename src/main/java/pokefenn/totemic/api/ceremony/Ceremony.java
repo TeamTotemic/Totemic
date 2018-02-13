@@ -76,13 +76,6 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
     { }
 
     /**
-     * Called when the startup has been canceled by the player by left-clicking the Totem Base with a Totemic Staff.
-     * @param context an object providing information about the progress and state of the startup phase.
-     */
-    public void onStartupCancel(World world, BlockPos pos, StartupContext context)
-    { }
-
-    /**
      * Called when the player was not successful in completing the startup.
      * @param context an object providing information about the progress and state of the startup phase.
      */
@@ -95,17 +88,10 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
      * @param context an object providing information about the progress and state of the startup phase.
      * @return {@code true} if the ceremony effect should begin.
      */
-    public boolean onStartupFinish(World world, BlockPos pos, StartupContext context)
+    public boolean canStartEffect(World world, BlockPos pos, StartupContext context)
     {
         return true;
     }
-
-    /**
-     * Called when the ceremony effect has been canceled by the player by left-clicking the Totem Base with a Totemic Staff.
-     * @param context an object providing information about the ceremony's state during the ceremony effect phase.
-     */
-    public void onEffectCancel(World world, BlockPos pos, EffectContext context)
-    { }
 
     /**
      * Called after the ceremony effect has ended.

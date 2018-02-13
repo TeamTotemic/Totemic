@@ -96,10 +96,6 @@ public final class StateTotemEffect extends TotemState
         tile.setState(new StateSelection(tile, entity, instr));
     }
 
-    @Override
-    void resetState()
-    { }
-
     public int getMusicAmount()
     {
         return musicAmount;

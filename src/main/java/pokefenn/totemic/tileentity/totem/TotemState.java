@@ -41,11 +41,6 @@ abstract class TotemState implements ITickable, MusicAcceptor
 
     void addSelector(@Nullable Entity entity, MusicInstrument instr) { }
 
-    void resetState()
-    {
-        tile.setState(new StateTotemEffect(tile));
-    }
-
     abstract int getID();
 
     abstract void writeToNBT(NBTTagCompound tag);

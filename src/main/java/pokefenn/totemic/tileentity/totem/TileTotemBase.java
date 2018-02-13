@@ -149,7 +149,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
 
     public void resetState()
     {
-        state.resetState();
+        setState(new StateTotemEffect(this));
     }
 
     @SideOnly(Side.CLIENT)

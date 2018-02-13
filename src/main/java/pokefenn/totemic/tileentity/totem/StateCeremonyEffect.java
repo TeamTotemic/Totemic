@@ -59,13 +59,6 @@ public final class StateCeremonyEffect extends TotemState implements EffectConte
     }
 
     @Override
-    void resetState()
-    {
-        ceremony.onEffectCancel(tile.getWorld(), tile.getPos(), this);
-        super.resetState();
-    }
-
-    @Override
     int getID()
     {
         return ID;
