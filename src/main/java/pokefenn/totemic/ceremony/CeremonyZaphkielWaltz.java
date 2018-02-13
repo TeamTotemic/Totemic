@@ -11,6 +11,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.ceremony.EffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.util.EntityUtil;
@@ -24,7 +25,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
     }
 
     @Override
-    public void effect(World world, BlockPos pos, int time)
+    public void effect(World world, BlockPos pos, EffectContext context)
     {
         int radius = 6;
 
@@ -53,7 +54,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
             }
         }
 
-        if(world.getTotalWorldTime() % 5L == 0)
+        if(context.getTime() % 5L == 0)
         {
             for(int i = -radius; i <= radius; i++)
                 for(int j = -radius; j <= radius; j++)

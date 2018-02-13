@@ -70,6 +70,8 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
 
     /**
      * Called every tick during the startup phase.
+     * <p>Note: This method is currently only called on the server side. Expect it to also be called on the client
+     * side in the future.
      * @param context an object providing information about the progress and state of the startup phase.
      */
     public void onStartup(World world, BlockPos pos, StartupContext context)
@@ -77,6 +79,8 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
 
     /**
      * Called when the player was not successful in completing the startup.
+     * <p>Note: This method is currently only called on the server side. Expect it to also be called on the client
+     * side in the future.
      * @param context an object providing information about the progress and state of the startup phase.
      */
     public void onStartupFail(World world, BlockPos pos, StartupContext context)
@@ -95,6 +99,8 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
 
     /**
      * Called after the ceremony effect has ended.
+     * <p>Note: This method is currently only called on the server side. Expect it to also be called on the client
+     * side in the future.
      * @param context an object providing information about the ceremony's state during the ceremony effect phase.
      */
     public void onEffectEnd(World world, BlockPos pos, EffectContext context)
