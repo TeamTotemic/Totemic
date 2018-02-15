@@ -6,7 +6,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import pokefenn.totemic.api.ceremony.Ceremony;
-import pokefenn.totemic.api.ceremony.EffectContext;
+import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.util.EntityUtil;
 
@@ -18,7 +18,7 @@ public class CeremonySunDance extends Ceremony
     }
 
     @Override
-    public void effect(World world, BlockPos pos, EffectContext context)
+    public void effect(World world, BlockPos pos, CeremonyEffectContext context)
     {
         if(world.isRemote)
             return;

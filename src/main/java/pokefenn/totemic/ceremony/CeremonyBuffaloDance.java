@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.Loader;
 import pokefenn.totemic.api.ceremony.Ceremony;
-import pokefenn.totemic.api.ceremony.EffectContext;
+import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
 import pokefenn.totemic.util.EntityUtil;
@@ -25,7 +25,7 @@ public class CeremonyBuffaloDance extends Ceremony
     }
 
     @Override
-    public void effect(World world, BlockPos pos, EffectContext context)
+    public void effect(World world, BlockPos pos, CeremonyEffectContext context)
     {
         if(world.isRemote)
             return;

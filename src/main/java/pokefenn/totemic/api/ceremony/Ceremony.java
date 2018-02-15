@@ -103,7 +103,7 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
      * side in the future.
      * @param context an object providing information about the ceremony's state during the ceremony effect phase.
      */
-    public void onEffectEnd(World world, BlockPos pos, EffectContext context)
+    public void onEffectEnd(World world, BlockPos pos, CeremonyEffectContext context)
     { }
 
     /**
@@ -111,7 +111,7 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
      * <p><b>This method will be made abstract in a future release! Please override this method instead of the deprecated overload below.</b>
      * @param context an object providing information about the ceremony's state during the ceremony effect phase.
      */
-    public /*abstract*/ void effect(World world, BlockPos pos, EffectContext context)
+    public /*abstract*/ void effect(World world, BlockPos pos, CeremonyEffectContext context)
     {
         effect(world, pos, context.getTime());
     }
@@ -124,7 +124,7 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
      * @param pos the position of the Totem Base where the effect happens
      * @param time time in ticks how long the effect lasted so far.<br>
      * Note: This value might not be always accurate on the client side due to potential lag and latency.
-     * @deprecated Override {@link #effect(World, BlockPos, EffectContext)} instead.
+     * @deprecated Override {@link #effect(World, BlockPos, CeremonyEffectContext)} instead.
      */
     @Deprecated
     public void effect(World world, BlockPos pos, int time)

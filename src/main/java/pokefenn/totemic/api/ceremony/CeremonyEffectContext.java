@@ -4,7 +4,7 @@ package pokefenn.totemic.api.ceremony;
  * This interface provides details about a Ceremony's state during the ceremony effect phase.
  * Instances of this are passed to {@link Ceremony} methods.
  */
-public interface EffectContext
+public interface CeremonyEffectContext
 {
     /**
      * @return the time in ticks how long the ceremony effect lasted so far.<br>
