@@ -29,7 +29,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
     {
         int radius = 6;
 
-        if(!world.isRemote && world.getTotalWorldTime() % 20L == 0)
+        if(!world.isRemote && context.getTime() % 20 == 0)
         {
             for(EntityItem entity : EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius))
             {
@@ -54,7 +54,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
             }
         }
 
-        if(context.getTime() % 5L == 0)
+        if(context.getTime() % 5 == 0)
         {
             for(int i = -radius; i <= radius; i++)
                 for(int j = -radius; j <= radius; j++)
