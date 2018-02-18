@@ -255,7 +255,8 @@ totemic.page.baykokSummon1=若你成功击杀§4贝柯克§0，你便可以得�
 totemic.page.baykokSummon2=§o你的末日到了§r
 
 totemic.entry.sunDance=日舞
-totemic.page.sunDance0=§4日舞§0是最神圣的仪式之一，这个仪式不容易实现。它会治疗附近的人，并赋予它们一段时间的伤害吸收效果。<br>§o（未完成：今后，这个仪式可能将会需要你饿死或者受伤才可以进行。）§r
+#totemic.page.sunDance0=§4日舞§0是最神圣的仪式之一，这个仪式不容易实现。它会治疗附近的人，并赋予它们一段时间的伤害吸收效果。<br>§o（未完成：今后，这个仪式可能将会需要你饿死或者受伤才可以进行。）§r
+totemic.page.sunDance0=The §4Sun Dance§0 is one of the most sacred Ceremonies and also the most painful one to perform: You will be faced with a §1near-death experience§0. If you pull through, you and everyone nearby will be healed and protected from damage for a while.<br>The Sun Dance will not reduce your health below half a heart.
 totemic.page.sunDance1=§o净化心灵§r
 
 totemic.entry.totemicStaff=图腾权杖

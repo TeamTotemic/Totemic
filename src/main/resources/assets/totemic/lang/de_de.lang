@@ -247,7 +247,7 @@ totemic.page.baykokSummon1=Schaffst du es, §4Baykok§0 zu besiegen, kannst du s
 totemic.page.baykokSummon2=§oDu hast den Bogen überspannt...§r
 
 totemic.entry.sunDance=Sonnentanz
-totemic.page.sunDance0=Der §4Sonnentanz§0 ist eine der heiligsten Zeremonien und nicht leicht zu verrichten. Er heilt jeden in der Nähe und beschützt sie eine Weile lang vor Schaden.<br>§o(WIP: Es ist geplant, dass diese Zeremonie eventuell benötigt, dass man hungert oder Schaden nimmt.)§r
+totemic.page.sunDance0=Der §4Sonnentanz§0 ist eine der heiligsten Zeremonien und auch die schmerzhafteste: Du erlebst eine §1Nahtoderfahrung§0. Wenn du ihn durchziehst, wirst du und jeder in der Nähe geheilt und einige Zeit lang vor Schaden geschützt.<br>Der Sonnentanz reduziert deine Lebenspunkte nicht unter ein halbes Herz. 
 totemic.page.sunDance1=§oHeile sie, mit Feuer von oben§r
 
 totemic.entry.totemicStaff=Totemstab

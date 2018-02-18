@@ -257,7 +257,7 @@ totemic.page.baykokSummon1=If you manage to defeat §4Baykok§0, you will be abl
 totemic.page.baykokSummon2=§oyou're gonna have a bad time§r
 
 totemic.entry.sunDance=Sun Dance
-totemic.page.sunDance0=The §4Sun Dance§0 is one of the most sacred Ceremonies and not easy to perform. It will heal everyone nearby and protect them from damage for a while.<br>§o(WIP: In the future, this Ceremony might require you to starve or take damage.)§r
+totemic.page.sunDance0=The §4Sun Dance§0 is one of the most sacred Ceremonies and also the most painful one to perform: You will be faced with a §1near-death experience§0. If you pull through, you and everyone nearby will be healed and protected from damage for a while.<br>The Sun Dance will not reduce your health below half a heart.
 totemic.page.sunDance1=§oKneeling, my god is the sun§r
 
 totemic.entry.totemicStaff=Totemic Staff
