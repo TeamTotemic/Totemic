@@ -127,6 +127,8 @@ totemicmisc.isDoingStartup=The Totem Pole is doing a Ceremony startup
 totemicmisc.isDoingCeremony=The Totem Pole is doing a Ceremony effect
 totemicmisc.effectNotPortable=The effect %s cannot be carried in a Medicine Bag
 
+death.attack.totemic.sunDance=%1$s sacrificed themselves to the Sun God. This is not supposed to happen.
+
 #Waila tooltips
 totemic.waila.ceremonyStartup=Ceremony Startup: %s
 totemic.waila.ceremonyEffect=Ceremony Effect: %s

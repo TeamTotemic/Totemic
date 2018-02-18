@@ -14,6 +14,8 @@ import pokefenn.totemic.util.EntityUtil;
 
 public class CeremonySunDance extends Ceremony
 {
+    private static final DamageSource SUN_DANCE_DMG = new DamageSource("totemic.sunDance").setDamageBypassesArmor().setDamageIsAbsolute().setMagicDamage();
+
     public CeremonySunDance(String name, int musicNeeded, int maxStartupTime, MusicInstrument... selectors)
     {
         super(name, musicNeeded, maxStartupTime, selectors);
@@ -27,7 +29,7 @@ public class CeremonySunDance extends Ceremony
             for(EntityPlayer player : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
             {
                 if(player.getHealth() > 1)
-                    player.attackEntityFrom(DamageSource.MAGIC, 1);
+                    player.attackEntityFrom(SUN_DANCE_DMG, 1);
             }
         }
     }

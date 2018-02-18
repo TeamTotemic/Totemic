@@ -121,6 +121,8 @@ totemicmisc.isDoingStartup=Der Totempfahl beginnt eine Zeremonie
 totemicmisc.isDoingCeremony=Der Totempfahl führt eine Zeremonie aus
 totemicmisc.effectNotPortable=Der Effekt %s kann nicht in einem Medizinbeutel getragen werden
 
+death.attack.totemic.sunDance=%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.
+
 #Totempedia Localisations
 totemic.gui.lexicon.header=Die Totempedia, ein Leitfaden für all deine Totem-Bedürfnisse.
 
