@@ -256,7 +256,6 @@ totemic.page.baykokSummon2=§o你的末日到了§r
 
 totemic.entry.sunDance=日舞
 #totemic.page.sunDance0=§4日舞§0是最神聖的儀式之一，這個儀式不容易實現。它會治療附近的人，並賦予它們一段時間的傷害吸收效果。<br>§o（未完成：今后，這個儀式可能將會需要你餓死或者受傷才可以進行。）§r
-totemic.page.sunDance0=The §4Sun Dance§0 is one of the most sacred Ceremonies and also the most painful one to perform: You will be faced with a §1near-death experience§0. If you pull through, you and everyone nearby will be healed and protected from damage for a while.<br>The Sun Dance will not reduce your health below half a heart.
 totemic.page.sunDance1=§o淨化心靈§r
 
 totemic.entry.totemicStaff=圖騰權杖
