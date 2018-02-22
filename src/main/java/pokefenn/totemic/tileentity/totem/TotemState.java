@@ -5,10 +5,9 @@ import javax.annotation.Nullable;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
-import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-abstract class TotemState implements ITickable, MusicAcceptor
+abstract class TotemState implements ITickable
 {
     protected final TileTotemBase tile;
 
@@ -33,6 +32,8 @@ abstract class TotemState implements ITickable, MusicAcceptor
     {
         this.tile = tile;
     }
+
+    abstract boolean addMusic(MusicInstrument instr, int amount);
 
     boolean canSelect()
     {
