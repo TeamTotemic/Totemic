@@ -148,7 +148,7 @@ public final class LexiconData
         eagleDance = new BLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony).setSortIndex(6);
         eagleDance.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.eagleDance));
 
-        sunDance = new BLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony).setSortIndex(7);
+        sunDance = new WIPLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony).setSortIndex(7);
         sunDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.sunDance));
 
         baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(8);
