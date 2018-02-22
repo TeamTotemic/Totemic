@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -38,43 +37,13 @@ public class CeremonySunDance extends Ceremony
     @Override
     public void effect(World world, BlockPos pos, CeremonyEffectContext context)
     {
-        int radius = 8;
-
-        if(!world.isRemote && context.getTime() % 20 == 0)
+        if(!world.isRemote)
         {
-            for(EntityPlayer player : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, radius, radius))
+            for(EntityPlayer player : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
             {
-                player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 10 * 20, 3));
+                player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 15 * 20, 3));
                 player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 5 * 60 * 20, 4));
             }
         }
-
-        if(world.isRemote && context.getTime() % 5 == 0)
-        {
-            for(int i = -radius; i <= radius; i++)
-                for(int j = -radius; j <= radius; j++)
-                {
-                    if(world.rand.nextBoolean())
-                    {
-                        BlockPos p = world.getTopSolidOrLiquidBlock(pos.add(i, 0, j));
-                        spawnParticles(world, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5);
-                    }
-                }
-        }
-    }
-
-    @Override
-    public int getEffectTime()
-    {
-        return VERY_SHORT;
-    }
-
-    private void spawnParticles(World world, double x, double y, double z)
-    {
-        double dx = world.rand.nextGaussian();
-        double dy = world.rand.nextGaussian() * 0.5;
-        double dz = world.rand.nextGaussian();
-        double velY = world.rand.nextGaussian();
-        world.spawnParticle(EnumParticleTypes.VILLAGER_HAPPY, x + dx, y + dy, z + dz, 0, velY, 0);
     }
 }
