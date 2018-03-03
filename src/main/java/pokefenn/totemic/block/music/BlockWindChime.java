@@ -63,7 +63,7 @@ public class BlockWindChime extends Block implements ITileEntityProvider
         {
             tileWindChime.canPlay = false;
             TotemUtil.playSound(world, pos, ModSounds.windChime, SoundCategory.PLAYERS, 1.0f, 1.0f);
-            Totemic.api.music().playSelector(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, player, ModContent.windChime);
+            Totemic.api.music().playSelector(world, pos, player, ModContent.windChime);
             ((WorldServer) world).spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
             ((WorldServer) world).spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
         }

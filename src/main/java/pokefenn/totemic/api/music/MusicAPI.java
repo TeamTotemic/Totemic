@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /**
@@ -38,6 +39,17 @@ public interface MusicAPI
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
      */
     boolean playMusic(Entity entity, MusicInstrument instr);
+
+    /**
+     * Plays music from an instrument located at the given position (which might differ from the entity's position, e.g. Drum)
+     * to the closest nearby music acceptor.
+     * <p>The range and amount are the default values given by {@link #DEFAULT_RANGE} and {@link MusicInstrument#getBaseOutput}.
+     * <p>May only be called on the server side.
+     * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
+     * @param instr the instrument.
+     * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
+     */
+    boolean playMusic(World world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr);
 
     /**
      * <b>The name of this method is a placeholder to avoid a conflicting signature with the deprecated overload below.
@@ -75,6 +87,17 @@ public interface MusicAPI
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
      */
     boolean playSelector(Entity entity, MusicInstrument instr);
+
+    /**
+     * If the nearest music acceptor within range from the given position is a Totem Base, attempts to add the given instrument as selector to it.
+     * Usually this is triggered when playing the instrument while sneaking.
+     * <p>The range is the default value given by {@link #DEFAULT_RANGE}.
+     * <p>May only be called on the server side.
+     * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
+     * @param instr the instrument.
+     * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
+     */
+    boolean playSelector(World world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr);
 
     /**
      * If the nearest music acceptor within range from the given position is a Totem Base, attempts to add the given instrument as selector to it.
