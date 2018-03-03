@@ -55,12 +55,12 @@ public final class ModContent
     public static void instruments(RegistryEvent.Register<MusicInstrument> event)
     {
         event.getRegistry().registerAll(
-            flute = new MusicInstrument("totemic:flute", 5, 70, 5).setItem(new ItemStack(ModItems.flute)).setRegistryName("flute"),
-            drum = new MusicInstrument("totemic:drum", 7, 80, 5).setItem(new ItemStack(ModBlocks.drum)).setRegistryName("drum"),
-            windChime = new MusicInstrument("totemic:windChime", 6, 60, 5).setItem(new ItemStack(ModBlocks.wind_chime)).setRegistryName("wind_chime"),
-            jingleDress = new MusicInstrument("totemic:jingleDress", 7, 100, 5).setItem(new ItemStack(ModItems.jingle_dress)).setRegistryName("jingle_dress"),
-            rattle = new MusicInstrument("totemic:rattle", 6, 90, 5).setItem(new ItemStack(ModItems.rattle)).setRegistryName("rattle"),
-            eagleBoneWhistle = new MusicInstrument("totemic:eagleBoneWhistle", 8, 110, 5).setItem(new ItemStack(ModItems.eagle_bone_whistle)).setRegistryName("eagle_bone_whistle"));
+            flute = new MusicInstrument("totemic:flute", 5, 70).setItem(new ItemStack(ModItems.flute)).setRegistryName("flute"),
+            drum = new MusicInstrument("totemic:drum", 7, 80).setItem(new ItemStack(ModBlocks.drum)).setRegistryName("drum"),
+            windChime = new MusicInstrument("totemic:windChime", 6, 60).setItem(new ItemStack(ModBlocks.wind_chime)).setRegistryName("wind_chime"),
+            jingleDress = new MusicInstrument("totemic:jingleDress", 7, 100).setItem(new ItemStack(ModItems.jingle_dress)).setRegistryName("jingle_dress"),
+            rattle = new MusicInstrument("totemic:rattle", 6, 90).setItem(new ItemStack(ModItems.rattle)).setRegistryName("rattle"),
+            eagleBoneWhistle = new MusicInstrument("totemic:eagleBoneWhistle", 8, 110).setItem(new ItemStack(ModItems.eagle_bone_whistle)).setRegistryName("eagle_bone_whistle"));
 
         ModItems.flute.setInstrument(flute);
         ModItems.rattle.setInstrument(rattle);

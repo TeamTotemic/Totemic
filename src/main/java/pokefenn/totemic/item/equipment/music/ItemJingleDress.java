@@ -23,7 +23,6 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.item.equipment.EquipmentMaterials;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.util.ItemUtil;
-import pokefenn.totemic.util.TotemUtil;
 
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 {
@@ -90,7 +89,7 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 
     private void playMusic(World world, EntityPlayer player, ItemStack itemStack)
     {
-        TotemUtil.playMusic(player, ModContent.jingleDress, 0, 0);
+        Totemic.api.music().playMusic(player, ModContent.jingleDress);
         particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
     }
 

@@ -1,8 +1,5 @@
 package pokefenn.totemic.util;
 
-import java.util.Comparator;
-import java.util.Optional;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.entity.Entity;
@@ -15,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.tileentity.totem.TileTotemBase;
 
 public class TotemUtil
 {
@@ -46,92 +42,6 @@ public class TotemUtil
     }
 
     /**
-     * Returns the closest music acceptor from that position, if there is any in range
-     */
-    public static Optional<MusicAcceptor> getClosestAcceptor(WorldServer world, double x, double y, double z, int horizontalRadius, int verticalRadius)
-    {
-        return EntityUtil.getTileEntitiesInRange(TileEntity.class, world, new BlockPos(x, y, z), horizontalRadius, verticalRadius).stream()
-                .filter(te -> te instanceof MusicAcceptor)
-                .min(Comparator.comparing(te -> te.getDistanceSq(x, y, z)))
-                .map(te -> (MusicAcceptor) te);
-    }
-
-    /**
-     * Plays music at the given position to nearby Totem bases to select a ceremony.
-     * Usually this is triggered by playing the instrument while sneaking.
-     * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity.
-     * @param instr the instrument
-     * @param bonusRadius additional radius
-     */
-    public static void playMusicForSelector(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int bonusRadius)
-    {
-        int radius = instr.getBaseRange() + bonusRadius;
-
-        getClosestAcceptor((WorldServer) world, x, y ,z, radius, radius)
-            .filter(tile -> tile instanceof TileTotemBase && ((TileTotemBase) tile).canSelect())
-            .ifPresent(tile -> ((TileTotemBase) tile).addSelector(entity, instr));
-    }
-
-    public static void playMusicForSelector(World world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr, int bonusRadius)
-    {
-        playMusicForSelector(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr, bonusRadius);
-    }
-
-    /**
-     * Plays music from the entity's position to nearby Totem bases to select a ceremony.
-     * Usually this is triggered by playing the instrument while sneaking.
-     * @param entity the entity playing the instrument
-     * @param instr the instrument
-     * @param bonusRadius additional radius
-     */
-    public static void playMusicForSelector(Entity entity, MusicInstrument instr, int bonusRadius)
-    {
-        playMusicForSelector(entity.world, entity.posX, entity.posY, entity.posZ, entity, instr, bonusRadius);
-    }
-
-    /**
-     * Plays music at the given position to nearby music acceptors
-     * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity.
-     * @param instr the instrument
-     * @param bonusRadius additional radius
-     * @param bonusMusicAmount additional music amount
-     */
-    public static void playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
-    {
-        int radius = instr.getBaseRange() + bonusRadius;
-
-        getClosestAcceptor((WorldServer) world, x, y, z, radius, radius)
-            .ifPresent(tile -> {
-                int shiftedMusic = instr.getBaseOutput() + bonusMusicAmount;
-                addMusic(tile, entity, instr, shiftedMusic);
-            });
-    }
-
-    /**
-     * Plays music at the given position to nearby music acceptors
-     * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity.
-     * @param instr the instrument
-     * @param bonusRadius additional radius
-     * @param bonusMusicAmount additional music amount
-     */
-    public static void playMusic(World world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
-    {
-        playMusic(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr, bonusRadius, bonusMusicAmount);
-    }
-
-    /**
-     * Plays music at the entity's position to nearby music acceptors
-     * @param entity the entity playing the instrument
-     * @param instr the instrument
-     * @param bonusRadius additional radius
-     * @param bonusMusicAmount additional music amount
-     */
-    public static void playMusic(Entity entity, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
-    {
-        playMusic(entity.world, entity.posX, entity.posY, entity.posZ, entity, instr, bonusRadius, bonusMusicAmount);
-    }
-
-    /**
      * Adds music to the given music acceptor tile entity and spawns particles at its location
      */
     public static void addMusic(MusicAcceptor tile, @Nullable Entity entity, MusicInstrument instr, int musicAmount)
@@ -144,15 +54,6 @@ public class TotemUtil
             world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
         else
             world.spawnParticle(EnumParticleTypes.CLOUD, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
-    }
-
-    /**
-     * Plays a sound at the entity's location. If the entity is a player, they will also hear it.
-     */
-    public static void playSound(Entity entity, SoundEvent sound, SoundCategory category, float volume, float pitch)
-    {
-        //Can't use entity.playSound here, otherwise if entity is a player they will hear nothing
-        entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, category, volume, pitch);
     }
 
     /**
