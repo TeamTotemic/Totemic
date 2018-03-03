@@ -7,8 +7,10 @@ import javax.annotation.Nullable;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -39,9 +41,21 @@ public class MusicApiImpl implements MusicAPI
     @Override
     public boolean playMusic0(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount)
     {
-        return getClosestAcceptor(world, x, y, z, range, range)
-                .map(acc -> acc.addMusic(instr, amount))
-                .orElse(false);
+        MusicAcceptor acc = getClosestAcceptor(world, x, y, z, range, amount).orElse(null);
+        if(acc != null)
+        {
+            boolean ret = acc.addMusic(instr, amount);
+            spawnMusicParticles(world, acc, ret ? EnumParticleTypes.NOTE : EnumParticleTypes.CLOUD);
+            return ret;
+        }
+        else
+            return false;
+    }
+
+    private void spawnMusicParticles(World world, MusicAcceptor acc, EnumParticleTypes type)
+    {
+        BlockPos pos = ((TileEntity) acc).getPos();
+        ((WorldServer) world).spawnParticle(type, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
     }
 
     @Override
@@ -65,12 +79,12 @@ public class MusicApiImpl implements MusicAPI
     @Override
     public boolean playSelector(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range)
     {
-        Optional<TileTotemBase> res = getClosestAcceptor(world, x, y, z, range, range)
+        Optional<TileTotemBase> totem = getClosestAcceptor(world, x, y, z, range, range)
                 .filter(acc -> acc instanceof TileTotemBase)
                 .map(acc -> (TileTotemBase) acc)
                 .filter(TileTotemBase::canSelect);
-        res.ifPresent(totem -> totem.addSelector(entity, instr));
-        return res.isPresent();
+        totem.ifPresent(t -> t.addSelector(entity, instr));
+        return totem.isPresent();
     }
 
     @Override
