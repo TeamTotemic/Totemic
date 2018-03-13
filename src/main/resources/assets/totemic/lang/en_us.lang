@@ -120,7 +120,7 @@ totemicmisc.activeEffect=Active Totem Effect: %s
 totemicmisc.noEffect=None
 totemicmisc.startup=Starting up
 totemicmisc.activeCeremony=Active Ceremony
-totemicmisc.isDoingNoCeremony=The Totem Pole is not doing a Ceremony
+totemicmisc.isDoingNoCeremony=The Totem Pole is not doing a Ceremony. Try playing instruments while sneaking to start one.
 totemicmisc.isDoingSelection=The Totem Pole is waiting for a Ceremony to be selected
 totemicmisc.selection=Selection: %s
 totemicmisc.isDoingStartup=The Totem Pole is doing a Ceremony startup
@@ -191,7 +191,7 @@ totemic.page.windChime1=It is not rare to see §1Wind Chimes§0 hanging from the
 totemic.page.windChime2=
 
 totemic.entry.drum=Drum
-totemic.page.drum0=The §1Drum§0 is an instrumental block that can be played by simply bashing it with either fist. Because of the time for the skin on the Drum to reflect back it can take a second for it to be playable again. Drum beats are usually constant, and a vital part of any Ceremony. Because of that the music is quite melodic. As with most instruments, sneaking when playing it will allow you to select a §4Ceremony§0.
+totemic.page.drum0=The §1Drum§0 is an instrumental block that can be played by simply bashing it with either fist. Because of the time for the skin on the Drum to reflect back it can take a second for it to be playable again. Drum beats are usually constant, and a vital part of any Ceremony. Because of that the music is quite melodic. As with most instruments, §4sneaking§0 when playing it will allow you to select a §4Ceremony§0.
 totemic.page.drum1=
 
 totemic.entry.jingleDress=Jingle Dress
@@ -201,13 +201,13 @@ totemic.page.jingleDress2=
 totemic.page.jingleDress3=
 
 totemic.entry.flute=Flute
-totemic.page.flute0=Sometimes a §1Flute§0 can be one of the most simple and effective instruments available. Unlike other instruments, the §1Flute§0 simply plays music without any complication. Because of its simplicity, it is not known to be the most melodic instrument, meaning that §4Totems§0 may not accept very much of the melody. When sneaking, it can be used to select a §4Ceremony§0 for any nearby §4Totem Poles§0.
+totemic.page.flute0=Sometimes a §1Flute§0 can be one of the most simple and effective instruments available. Unlike other instruments, the §1Flute§0 simply plays music without any complication. Because of its simplicity, it is not known to be the most melodic instrument, meaning that §4Totems§0 may not accept very much of the melody. When §4sneaking§0, it can be used to select a §4Ceremony§0 for any nearby §4Totem Poles§0.
 totemic.page.flute1=The §1Flute§0 can be infused in the §4Ceremony of Flute Imbuation§0, giving it special properties.
 totemic.page.flute2=
 
 totemic.entry.rattle=Rattle
 totemic.page.rattle0=The §1Ceremonial Rattle§0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The §1Rattle§0 produces §4Musical Melody§0 whenever it has been shook with the hand.<br>It can be used in dual wield: if you hold the Rattle in your right hand, you can have another instrument in your left hand and play both at the same time.
-totemic.page.rattle1=Like all instruments, it can be played while sneaking so as to activate ceremonies.
+totemic.page.rattle1=Like all instruments, it can be played while §4sneaking§0 so as to activate ceremonies.
 totemic.page.rattle2=
 
 totemic.entry.eagleBoneWhistle=Eagle-Bone Whistle
@@ -216,7 +216,7 @@ totemic.page.eagleBoneWhistle1=
 
 totemic.entry.performingCeremonies=§oPerforming Ceremonies
 totemic.page.performingCeremonies0=§4Ceremonies§0 are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The center of a §4Ceremony§0 is a §1Totem Base§0, all music and other things are centered to the §1Totem Pole§0 and it is where the effects are released from.
-totemic.page.performingCeremonies1=To perform a §4Ceremony§0, there are a few things you must do. To select and initiate your §4Ceremony§0, you must play up to 4 Instruments in their selector mode to a §1Totem Pole§0, every ceremony has a unique sequence of Instruments. To play an Instrument in selector mode, just play it normally while sneaking. When you have played the corresponding instruments for a §4Ceremony§0,
+totemic.page.performingCeremonies1=To perform a §4Ceremony§0, there are a few things you must do. To select and initiate your §4Ceremony§0, you must play up to 4 Instruments in their selector mode to a §1Totem Pole§0, every ceremony has a unique sequence of Instruments. To play an Instrument in selector mode, just play it normally while §4sneaking§0. When you have played the corresponding instruments for a §4Ceremony§0,
 totemic.page.performingCeremonies2=the §4startup§0 will initiate. While it is in this startup mode, the §1Totem Pole§0 will accept all nearby music and store it. This is called §4Musical Melody§0 and it is what is needed for the §4Ceremonies§0 effect to activate. When the total §4Musical Melody§0 hits the threshold of the §4Ceremonies§0 Melody requirement, it will activate the effect. Each instrument can only be played up to a certain point,
 totemic.page.performingCeremonies3=so a whole ceremony could not be played with just one instrument. Also, you only have a limited amount of time to get the ceremony going, so you need to be quick enough to play the instruments. After you played enough §4Musical Melody§0, the §4Ceremony§0 will begin performing its effects. Some §4Ceremonies§0 have instant effects, others will last over a certain amount of time after the effect
 totemic.page.performingCeremonies4=initially starts. Doing the effects will drain the §4Musical Melody§0 over that time. It should be noted that the effects can only go for a certain amount of time and will stop after that time has elapsed.

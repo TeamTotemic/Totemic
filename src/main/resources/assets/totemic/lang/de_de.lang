@@ -114,7 +114,7 @@ totemicmisc.activeEffect=Aktiver Totemeffekt: %s
 totemicmisc.noEffect=Keiner
 totemicmisc.startup=Anlaufen
 totemicmisc.activeCeremony=Aktive Zeremonie
-totemicmisc.isDoingNoCeremony=Der Totempfahl führt keine Zeremonie aus
+totemicmisc.isDoingNoCeremony=Der Totempfahl führt keine Zeremonie aus. Versuche, Instrumente zu spielen während du schleichst, um eine zu starten.
 totemicmisc.isDoingSelection=Der Totempfahl wartet, dass eine Zeremonie ausgewählt wird
 totemicmisc.selection=Auswahl: %s
 totemicmisc.isDoingStartup=Der Totempfahl beginnt eine Zeremonie
@@ -181,7 +181,7 @@ totemic.page.windChime1=§1Windspiele§0 können auch an Zweigen von Bäumen hä
 totemic.page.windChime2=
 
 totemic.entry.drum=Trommel
-totemic.page.drum0=Die §1Trommel§0 ist ein Instrument, das einfach durch Schlagen mit der Hand gespielt werden kann. Trommelschläge sind normalerweise konstant und ein unverzichtbarer Teil jeder Zeremonie. Deswegen ist ihre Melodie besonders melodisch. So wie die meisten Instrumente kann während des Schleichens gespielt werden, um §4Zeremonien§0 auszuwählen.
+totemic.page.drum0=Die §1Trommel§0 ist ein Instrument, das einfach durch Schlagen mit der Hand gespielt werden kann. Trommelschläge sind normalerweise konstant und ein unverzichtbarer Teil jeder Zeremonie. Deswegen ist ihre Melodie besonders melodisch. So wie die meisten Instrumente kann während des §4Schleichens§0 gespielt werden, um §4Zeremonien§0 auszuwählen.
 totemic.page.drum1=
 
 totemic.entry.jingleDress=Glockenkleid
@@ -192,12 +192,12 @@ totemic.page.jingleDress3=
 
 totemic.entry.flute=Flöte
 totemic.page.flute0=Manchmal ist eine §1Flöte§0 eines der simpelsten und effektivsten Instrumente. Anders als andere Instrumente kann man die §1Flöte§0 ohne weitere Schwierigkeiten spielen. Da sie so simpel ist, ist sie nicht dafür bekannt, besonders melodisch zu sein, das heißt §4Totempfähle§0 können nicht besonders viel ihrer Melodie aufnehmen.
-totemic.page.flute1=Durch Schleichen kann sie benutzt werden, um §4Zeremonien§0 an nahen §4Totempfählen§0 auszuwählen.<br>Die §1Flöte§0 kann in der §4Zeremonie der Flötenverzauberung§0 mit speziellen Eigenschaften verzaubert werden.
+totemic.page.flute1=Durch §4Schleichen§0 kann sie benutzt werden, um §4Zeremonien§0 an nahen §4Totempfählen§0 auszuwählen.<br>Die §1Flöte§0 kann in der §4Zeremonie der Flötenverzauberung§0 mit speziellen Eigenschaften verzaubert werden.
 totemic.page.flute2=
 
 totemic.entry.rattle=Rassel
 totemic.page.rattle0=Die §1Zeremonielle Rassel§0 ist ein Instrument, das als Rückgrat von Zeremonien diente solange Totemisten bekannt sind. Die §1Rassel§0 produziert §4Melodie§0, wenn sie mit der Hand geschüttelt wird.<br>Sie kann beidhändig benutzt werden: Wenn du die Rassel in der rechten Hand hälst, kannst du ein anderes Instrument in der linken Hand halten und beide gleichzeitig spielen.
-totemic.page.rattle1=Wie alle Instrumente kann sie während des Schleichens gespielt werden um Zeremonien zu aktivieren.
+totemic.page.rattle1=Wie alle Instrumente kann sie während des §4Schleichens§0 gespielt werden um Zeremonien zu aktivieren.
 totemic.page.rattle2=
 
 totemic.entry.eagleBoneWhistle=Adlerknochenpfeife
@@ -206,7 +206,7 @@ totemic.page.eagleBoneWhistle1=
 
 totemic.entry.performingCeremonies=§oDurchführung von Zeremonien
 totemic.page.performingCeremonies0=§4Zeremonien§0 sind ein Weg für Totemisten, um durch Musik all ihre Kräfte über eine gewisse Zeit zusammenzunehmen, um sie dann in einem Stoß freizusetzen und Effekte zu erzeugen. Das Zentrum einer §4Zeremonie§0 ist eine §1Totembasis§0, alle Musik und andere Dinge sind um den §1Totempfahl§0 zentriert, und dort werden die Effekte freigesetzt.
-totemic.page.performingCeremonies1=Um eine §4Zeremonie§0 durchzuführen, musst du einige Dinge tun. Um eine §4Zeremonie§0 auszuwählen und einzuleiten, musst du bis zu 4 Instrumente im Selektor-Modus nahe einem §1Totempfahl§0 spielen, jede Zeremonie hat eine andere Folge von Instrumenten. Um Instrumente im Selektor-Modus zu spielen, spiele sie während du schleichst. Nachdem du die passenden Instrumente gespielt hast,
+totemic.page.performingCeremonies1=Um eine §4Zeremonie§0 durchzuführen, musst du einige Dinge tun. Um eine §4Zeremonie§0 auszuwählen und einzuleiten, musst du bis zu 4 Instrumente im Selektor-Modus nahe einem §1Totempfahl§0 spielen, jede Zeremonie hat eine andere Folge von Instrumenten. Um Instrumente im Selektor-Modus zu spielen, spiele sie während du §4schleichst§0. Nachdem du die passenden Instrumente gespielt hast,
 totemic.page.performingCeremonies2=beginnt die §4Anlaufphase§0. Während der §1Totempfahl§0 in dieser Anlaufphase ist, akzeptiert er Musik aus der Umgebung und speichert sie. Dies wird §4Musikalische Energie§0 genannt, und dies ist, was man benötigt, um den Effekt der §4Zeremonie§0 zu aktivieren. Wenn die gesamte §4Musikalische Energie§0 den Grenzwert überschreitet, den man für die §4Zeremonie§0 benötigt, wird der Effekt aktiviert.
 totemic.page.performingCeremonies3=Jedes Instrument kann nur begrenzt gespielt werden, man kann also nicht eine komplette Zeremonie mit nur einem Instrument spielen. Außerdem hast du nur eine begrenzte Zeit zur Verfügung, um die Zeremonie zum Laufen zu bringen, also musst du schnell genug sein mit den Instrumenten. Einige §4Zeremonien§0 haben sofortige Effekte, andere dauern über eine gewisse Zeit an.
 totemic.page.performingCeremonies4=Die Effekte verbrauchen die §4Musikalische Energie§0 über die Zeit. Die Effekte können nur eine gweisse Zeit andauern und hören dann auf.
