@@ -14,6 +14,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import pokefenn.totemic.init.ModBlocks;
@@ -44,7 +45,29 @@ public class BlockDummyTipi extends Block
                     IBlockState s = world.getBlockState(p);
                     if(s.getBlock() == ModBlocks.tipi)
                     {
-                        ModBlocks.tipi.onBlockHarvested(world, p, s, player);
+                        world.setBlockToAir(p);
+                        if(!player.capabilities.isCreativeMode)
+                            ModBlocks.tipi.dropBlockAsItem(world, p, s, 0);
+                        return;
+                    }
+                }
+    }
+
+    @Override
+    public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosion)
+    {
+        //find main Tipi block
+        int range = 1;
+        int height = 5;
+        for(int i = -range; i <= range; i++)
+            for(int j = 0; j >= -height; j--) //search downwards
+                for(int k = -range; k <= range; k++)
+                {
+                    BlockPos p = pos.add(i, j, k);
+                    IBlockState s = world.getBlockState(p);
+                    if(s.getBlock() == ModBlocks.tipi)
+                    {
+                        world.setBlockToAir(p);
                         return;
                     }
                 }

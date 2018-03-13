@@ -1,7 +1,5 @@
 package pokefenn.totemic.block.tipi;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
@@ -18,7 +16,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayer.SleepResult;
 import net.minecraft.init.Biomes;
-import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -130,19 +127,26 @@ public class BlockTipi extends Block implements ITileEntityProvider
                     {
                         world.setBlockToAir(p);
                     }
-                    else if(s.getBlock() == this)
-                    {
-                        if(!player.capabilities.isCreativeMode)
-                            dropBlockAsItem(world, p, s, 0);
-                        world.setBlockToAir(p);
-                    }
                 }
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
-        return Item.getItemFromBlock(this);
+        int height = 5;
+        int radius = 2;
+        for(int i = -radius; i <= radius; i++)
+            for(int j = 0; j <= height; j++)
+                for(int k = -radius; k <= radius; k++)
+                {
+                    BlockPos p = pos.add(i, j, k);
+                    IBlockState s = world.getBlockState(p);
+
+                    if(s.getBlock() == ModBlocks.dummy_tipi)
+                    {
+                        world.setBlockToAir(p);
+                    }
+                }
     }
 
     @SideOnly(Side.CLIENT)
