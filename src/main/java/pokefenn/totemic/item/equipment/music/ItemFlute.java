@@ -14,15 +14,15 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.ItemInstrument;
+import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.util.EntityUtil;
@@ -49,12 +49,35 @@ public class ItemFlute extends ItemInstrument
         ItemStack stack = player.getHeldItem(hand);
         if(!world.isRemote)
         {
-            useInstrument(stack, player, 20, 0, (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0);
+            useInstrument(stack, player, 20);
 
             if(stack.getItemDamage() == 1 && !player.isSneaking())
                 temptEntities(world, player.posX, player.posY, player.posZ);
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+    }
+
+    @Override
+    protected void playMusic(ItemStack stack, Entity entity)
+    {
+        if(entity.world.isRemote)
+            return;
+
+        WorldServer world = (WorldServer) entity.world;
+        if(!entity.isSneaking())
+        {
+            int bonusMusic = (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
+            TotemicAPI.get().music().playMusic0(entity.world, entity.posX, entity.posY, entity.posZ, entity, instrument, MusicAPI.DEFAULT_RANGE, instrument.getBaseOutput() + bonusMusic);
+            spawnParticles(world, entity.posX, entity.posY, entity.posZ, false);
+        }
+        else
+        {
+            TotemicAPI.get().music().playSelector(entity, instrument);
+            spawnParticles(world, entity.posX, entity.posY, entity.posZ, true);
+        }
+
+        if(sound != null)
+            entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
     }
 
     private void temptEntities(World world, double x, double y, double z)

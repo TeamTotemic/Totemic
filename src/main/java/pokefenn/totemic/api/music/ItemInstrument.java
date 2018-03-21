@@ -77,6 +77,28 @@ public abstract class ItemInstrument extends Item
     }
 
     /**
+     * Checks if the instrument is off cooldown and then plays music, putting it on cooldown.
+     *
+     * <p>This is the method you want to call whenever the player attempts to use the instrument,
+     * for instance from onItemRightClick.
+     * @param stack the item stack of the instrument
+     * @param entity the entity that used the instrument
+     * @param cooldown the cooldown in ticks that the instrument should be set on after successfully playing
+     */
+    protected void useInstrument(ItemStack stack, Entity entity, int cooldown)
+    {
+        if(!stack.hasTagCompound())
+            stack.setTagCompound(new NBTTagCompound());
+        NBTTagCompound tag = stack.getTagCompound();
+
+        if(tag.getInteger(INSTR_COOLDOWN_KEY) == 0)
+        {
+            playMusic(stack, entity);
+            tag.setInteger(INSTR_COOLDOWN_KEY, cooldown);
+        }
+    }
+
+    /**
      * Plays music and puts the instrument on the specified cooldown.
      * Does nothing if the instrument is currently on cooldown.
      *
@@ -87,7 +109,9 @@ public abstract class ItemInstrument extends Item
      * @param cooldown the cooldown in ticks after the instrument has been played
      * @param bonusRadius additional radius
      * @param bonusMusic additional music amount
+     * @deprecated Use the other overload instead.
      */
+    @Deprecated
     protected void useInstrument(ItemStack stack, Entity entity, int cooldown, int bonusRadius, int bonusMusic)
     {
         if(!stack.hasTagCompound())
@@ -102,12 +126,46 @@ public abstract class ItemInstrument extends Item
     }
 
     /**
-     * Plays music from this instrument, regardless of cooldown
+     * Plays music from this instrument. If the entity is sneaking, the instrument is played as selector.
+     *
+     * <p>The cooldown is not being checked in this method.
      * @param stack the item stack of the instrument
      * @param entity the entity that used the instrument
      * @param bonusRadius additional radius
      * @param bonusMusic additional music amount
      */
+    protected void playMusic(ItemStack stack, Entity entity)
+    {
+        if(entity.world.isRemote)
+            return;
+
+        WorldServer world = (WorldServer) entity.world;
+        if(!entity.isSneaking())
+        {
+            TotemicAPI.get().music().playMusic(entity, instrument);
+            spawnParticles(world, entity.posX, entity.posY, entity.posZ, false);
+        }
+        else
+        {
+            TotemicAPI.get().music().playSelector(entity, instrument);
+            spawnParticles(world, entity.posX, entity.posY, entity.posZ, true);
+        }
+
+        //The first parameter to playSound has to be null rather than entity, otherwise they will be unable to hear it.
+        if(sound != null)
+            entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
+    }
+
+    /**
+     * Plays music from this instrument, regardless of cooldown
+     * @param stack the item stack of the instrument
+     * @param entity the entity that used the instrument
+     * @param bonusRadius additional radius
+     * @param bonusMusic additional music amount
+     * @deprecated Use the other overload. If you have to specify a different radius or amount than the default,
+     * override the other overload.
+     */
+    @Deprecated
     protected void playMusic(ItemStack stack, Entity entity, int bonusRadius, int bonusMusic)
     {
         if(entity.world.isRemote)
@@ -130,7 +188,8 @@ public abstract class ItemInstrument extends Item
     }
 
     /**
-     * Spwans music particles at the given location
+     * Spwans note or firework particles at the given location.
+     * @param firework true for firework, false for note particles
      */
     protected void spawnParticles(WorldServer world, double x, double y, double z, boolean firework)
     {

@@ -28,7 +28,7 @@ public class ItemEagleBoneWhistle extends ItemInstrument
     {
         ItemStack stack = player.getHeldItem(hand);
         if(!world.isRemote)
-            useInstrument(stack, player, 20, 0, 0);
+            useInstrument(stack, player, 20);
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 
