@@ -93,7 +93,13 @@ public abstract class ItemInstrument extends Item
 
         if(tag.getInteger(INSTR_COOLDOWN_KEY) == 0)
         {
-            playMusic(stack, entity);
+            if(!entity.world.isRemote)
+            {
+                if(!entity.isSneaking())
+                    playMusic(stack, entity);
+                else
+                    playSelector(stack, entity);
+            }
             tag.setInteger(INSTR_COOLDOWN_KEY, cooldown);
         }
     }
@@ -126,7 +132,23 @@ public abstract class ItemInstrument extends Item
     }
 
     /**
-     * Plays music from this instrument. If the entity is sneaking, the instrument is played as selector.
+     * Plays music from this instrument.
+     *
+     * <p>The cooldown is not being checked in this method.
+     * @param stack the item stack of the instrument
+     * @param entity the entity that used the instrument
+     */
+    protected void playMusic(ItemStack stack, Entity entity)
+    {
+        TotemicAPI.get().music().playMusic(entity, instrument);
+        spawnParticles((WorldServer) entity.world, entity.posX, entity.posY, entity.posZ, false);
+        //The first parameter to playSound has to be null rather than entity, otherwise they will be unable to hear it.
+        if(sound != null)
+            entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
+    }
+
+    /**
+     * Plays this instrument as selector.
      *
      * <p>The cooldown is not being checked in this method.
      * @param stack the item stack of the instrument
@@ -134,23 +156,10 @@ public abstract class ItemInstrument extends Item
      * @param bonusRadius additional radius
      * @param bonusMusic additional music amount
      */
-    protected void playMusic(ItemStack stack, Entity entity)
+    protected void playSelector(ItemStack stack, Entity entity)
     {
-        if(entity.world.isRemote)
-            return;
-
-        WorldServer world = (WorldServer) entity.world;
-        if(!entity.isSneaking())
-        {
-            TotemicAPI.get().music().playMusic(entity, instrument);
-            spawnParticles(world, entity.posX, entity.posY, entity.posZ, false);
-        }
-        else
-        {
-            TotemicAPI.get().music().playSelector(entity, instrument);
-            spawnParticles(world, entity.posX, entity.posY, entity.posZ, true);
-        }
-
+        TotemicAPI.get().music().playSelector(entity, instrument);
+        spawnParticles((WorldServer) entity.world, entity.posX, entity.posY, entity.posZ, true);
         //The first parameter to playSound has to be null rather than entity, otherwise they will be unable to hear it.
         if(sound != null)
             entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -162,8 +171,8 @@ public abstract class ItemInstrument extends Item
      * @param entity the entity that used the instrument
      * @param bonusRadius additional radius
      * @param bonusMusic additional music amount
-     * @deprecated Use the other overload. If you have to specify a different radius or amount than the default,
-     * override the other overload.
+     * @deprecated Replaced with {@link #playMusic(ItemStack, Entity)} and {@link #playSelector(ItemStack, Entity)}.
+     * Override one of these methods is you need to specify a different radius or amount.
      */
     @Deprecated
     protected void playMusic(ItemStack stack, Entity entity, int bonusRadius, int bonusMusic)

@@ -124,6 +124,7 @@ public class MusicApiImpl implements MusicAPI
     {
         playMusic0(entity.world, entity.posX, entity.posY, entity.posZ, entity, instr, instr.getBaseRange() + bonusRadius, instr.getBaseOutput() + bonusMusicAmount);
     }
+
     @Override
     public void addMusic(MusicAcceptor tile, @Nullable Entity entity, MusicInstrument instr, int musicAmount)
     {

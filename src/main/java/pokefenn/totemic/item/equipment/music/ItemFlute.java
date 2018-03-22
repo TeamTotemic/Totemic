@@ -60,22 +60,9 @@ public class ItemFlute extends ItemInstrument
     @Override
     protected void playMusic(ItemStack stack, Entity entity)
     {
-        if(entity.world.isRemote)
-            return;
-
-        WorldServer world = (WorldServer) entity.world;
-        if(!entity.isSneaking())
-        {
-            int bonusMusic = (stack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
-            TotemicAPI.get().music().playMusic0(entity.world, entity.posX, entity.posY, entity.posZ, entity, instrument, MusicAPI.DEFAULT_RANGE, instrument.getBaseOutput() + bonusMusic);
-            spawnParticles(world, entity.posX, entity.posY, entity.posZ, false);
-        }
-        else
-        {
-            TotemicAPI.get().music().playSelector(entity, instrument);
-            spawnParticles(world, entity.posX, entity.posY, entity.posZ, true);
-        }
-
+        int bonusMusic = (stack.getItemDamage() == 1) ? entity.world.rand.nextInt(3) : 0;
+        TotemicAPI.get().music().playMusic0(entity.world, entity.posX, entity.posY, entity.posZ, entity, instrument, MusicAPI.DEFAULT_RANGE, instrument.getBaseOutput() + bonusMusic);
+        spawnParticles((WorldServer) entity.world, entity.posX, entity.posY, entity.posZ, false);
         if(sound != null)
             entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
     }
