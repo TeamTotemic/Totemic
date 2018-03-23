@@ -44,6 +44,7 @@ public class TotemUtil
     /**
      * Adds music to the given music acceptor tile entity and spawns particles at its location
      */
+    @Deprecated
     public static void addMusic(MusicAcceptor tile, @Nullable Entity entity, MusicInstrument instr, int musicAmount)
     {
         TileEntity te = (TileEntity) tile;
@@ -51,7 +52,7 @@ public class TotemUtil
         BlockPos pos = te.getPos();
 
         if(tile.addMusic(instr, musicAmount))
-            world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
+            world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
         else
             world.spawnParticle(EnumParticleTypes.CLOUD, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
     }

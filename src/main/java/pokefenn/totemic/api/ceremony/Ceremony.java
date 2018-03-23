@@ -128,7 +128,9 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
      */
     @Deprecated
     public void effect(World world, BlockPos pos, int time)
-    { }
+    {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * Override this if your Ceremony effect is not instant

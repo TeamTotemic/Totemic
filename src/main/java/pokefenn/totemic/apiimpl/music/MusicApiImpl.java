@@ -7,10 +7,8 @@ import javax.annotation.Nullable;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -41,21 +39,9 @@ public class MusicApiImpl implements MusicAPI
     @Override
     public boolean playMusic0(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount)
     {
-        MusicAcceptor acc = getClosestAcceptor(world, x, y, z, range, range).orElse(null);
-        if(acc != null)
-        {
-            boolean ret = acc.addMusic(instr, amount);
-            spawnMusicParticles(world, acc, ret ? EnumParticleTypes.NOTE : EnumParticleTypes.CLOUD);
-            return ret;
-        }
-        else
-            return false;
-    }
-
-    private void spawnMusicParticles(World world, MusicAcceptor acc, EnumParticleTypes type)
-    {
-        BlockPos pos = ((TileEntity) acc).getPos();
-        ((WorldServer) world).spawnParticle(type, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, 6, 0.5, 0.5, 0.5, 0.0);
+        return getClosestAcceptor(world, x, y, z, range, range)
+                .map(acc -> acc.acceptMusic(instr, amount, x, y, z, entity))
+                .orElse(false);
     }
 
     @Override
@@ -125,6 +111,7 @@ public class MusicApiImpl implements MusicAPI
         playMusic0(entity.world, entity.posX, entity.posY, entity.posZ, entity, instr, instr.getBaseRange() + bonusRadius, instr.getBaseOutput() + bonusMusicAmount);
     }
 
+    @Deprecated
     @Override
     public void addMusic(MusicAcceptor tile, @Nullable Entity entity, MusicInstrument instr, int musicAmount)
     {
