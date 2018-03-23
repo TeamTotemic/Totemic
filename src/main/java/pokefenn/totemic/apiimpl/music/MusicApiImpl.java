@@ -41,7 +41,7 @@ public class MusicApiImpl implements MusicAPI
     @Override
     public boolean playMusic0(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount)
     {
-        MusicAcceptor acc = getClosestAcceptor(world, x, y, z, range, amount).orElse(null);
+        MusicAcceptor acc = getClosestAcceptor(world, x, y, z, range, range).orElse(null);
         if(acc != null)
         {
             boolean ret = acc.addMusic(instr, amount);
