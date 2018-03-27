@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.util.ModFixs;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -21,6 +22,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.music.DefaultMusicAcceptor;
+import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.datafix.CamelCaseNamesItems;
 import pokefenn.totemic.datafix.CamelCaseNamesTiles;
@@ -56,6 +59,7 @@ public class CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(this);
+        registerCapabilities();
         registerTileEntities();
         ModCriteriaTriggers.init();
     }
@@ -84,6 +88,11 @@ public class CommonProxy
             EntityEntryBuilder.create().entity(EntityBaykok.class).id(Strings.BAYKOK_NAME, 1).name(Strings.RESOURCE_PREFIX + Strings.BAYKOK_NAME).tracker(80, 3, true).egg(0xE0E0E0, 0xF8DAD2).build(),
             EntityEntryBuilder.create().entity(EntityInvisArrow.class).id(Strings.INVIS_ARROW_NAME, 2).name(Strings.RESOURCE_PREFIX + Strings.INVIS_ARROW_NAME).tracker(64, 20, true).build(),
             EntityEntryBuilder.create().entity(EntityBaldEagle.class).id(Strings.BALD_EAGLE_NAME, 3).name(Strings.RESOURCE_PREFIX + Strings.BALD_EAGLE_NAME).tracker(80, 3, true).egg(0x4B4136, 0xF5E6A3).build());
+    }
+
+    private void registerCapabilities()
+    {
+        CapabilityManager.INSTANCE.register(MusicAcceptor.class, new DefaultMusicAcceptor.Storage(), DefaultMusicAcceptor::new);
     }
 
     private void registerTileEntities()

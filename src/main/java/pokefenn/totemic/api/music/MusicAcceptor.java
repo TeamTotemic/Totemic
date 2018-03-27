@@ -10,14 +10,11 @@ import net.minecraft.world.WorldServer;
 
 /**
  * An interface for tile entities that accept music.
- *
- * TODO: Make usable as Capability
  */
 public interface MusicAcceptor
 {
     /**
-     * Accepts music from the given instrument located at the given position (which might differ from the entity's position),
-     * played by the given entity if applicable.
+     * Accepts music from the given instrument, possibly played by an entity.
      *
      * <p><b>The default implementation is only provided for backwards compatibility and will be removed in a future release!
      * Please override this method instead of {@link #addMusic}. Keep in mind that particles are not being spawned by default anymore,
