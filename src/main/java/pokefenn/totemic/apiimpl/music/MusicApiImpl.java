@@ -2,13 +2,17 @@ package pokefenn.totemic.apiimpl.music;
 
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -76,10 +80,21 @@ public class MusicApiImpl implements MusicAPI
     @Override
     public Optional<MusicAcceptor> getClosestAcceptor(World world, double x, double y, double z, int horizontalRadius, int verticalRadius)
     {
+        //Once we remove support for directly implementing MusicAcceptor, we will be able to simplify this (filter, min, map).
         return EntityUtil.getTileEntitiesInRange(TileEntity.class, world, new BlockPos(x, y, z), horizontalRadius, verticalRadius).stream()
-                .filter(te -> te instanceof MusicAcceptor)
-                .min(Comparator.comparing(te -> te.getDistanceSq(x, y, z)))
-                .map(te -> (MusicAcceptor) te);
+                .flatMap(tile -> {
+                    //flatMap into a stream containing a pair of the tile entity and the corresponding MusicAcceptor,
+                    //or into an empty stream if we don't have a MusicAcceptor. Basically filter and map in one step.
+                    //We need the tile entity in the pair to compare distances later.
+                    if(tile.hasCapability(TotemicCapabilities.MUSIC_ACCEPTOR, null))
+                        return Stream.of(Pair.of(tile, tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR, null)));
+                    else if(tile instanceof MusicAcceptor)
+                        return Stream.of(Pair.of(tile, (MusicAcceptor) tile));
+                    else
+                        return Stream.empty();
+                })
+                .min(Comparator.comparing(pair -> pair.getLeft().getDistanceSq(x, y, z)))
+                .map(Pair::getRight);
     }
 
     //Overrides of deprecated methods below
