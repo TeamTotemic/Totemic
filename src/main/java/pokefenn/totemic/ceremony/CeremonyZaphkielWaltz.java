@@ -1,15 +1,17 @@
 package pokefenn.totemic.ceremony;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockSapling;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -61,18 +63,19 @@ public class CeremonyZaphkielWaltz extends Ceremony
                     for(int k = -radius; k <= radius; k++)
                     {
                         BlockPos p = pos.add(i, j, k);
-                        IBlockState s = world.getBlockState(p);
-                        if(s.getBlock() == Blocks.SAPLING)
+                        IBlockState state = world.getBlockState(p);
+                        Block block = state.getBlock();
+                        if(block instanceof BlockSapling && block != ModBlocks.cedar_sapling)
                         {
                             world.setBlockState(p, ModBlocks.cedar_sapling.getDefaultState(), 3);
                             spawnParticles(world, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5);
                         }
-                        else if(s.getBlock() instanceof IGrowable && s.getBlock().getTickRandomly())
+                        else if((block instanceof IGrowable || block instanceof IPlantable) && block.getTickRandomly())
                         {
                             if(world.rand.nextInt(4) < 3)
                             {
                                 if(!world.isRemote)
-                                    s.getBlock().updateTick(world, p, world.getBlockState(p), world.rand);
+                                    block.updateTick(world, p, state, world.rand);
                                 spawnParticles(world, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5);
                             }
                         }
