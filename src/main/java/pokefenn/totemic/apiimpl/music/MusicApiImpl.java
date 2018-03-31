@@ -16,7 +16,7 @@ import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.tileentity.totem.TileTotemBase;
+import pokefenn.totemic.tileentity.totem.TotemState;
 import pokefenn.totemic.util.EntityUtil;
 import pokefenn.totemic.util.TotemUtil;
 
@@ -69,12 +69,12 @@ public class MusicApiImpl implements MusicAPI
     @Override
     public boolean playSelector(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range)
     {
-        Optional<TileTotemBase> totem = getClosestAcceptor(world, x, y, z, range, range)
-                .filter(acc -> acc instanceof TileTotemBase)
-                .map(acc -> (TileTotemBase) acc)
-                .filter(TileTotemBase::canSelect);
-        totem.ifPresent(t -> t.addSelector(entity, instr));
-        return totem.isPresent();
+        Optional<TotemState> totemState = getClosestAcceptor(world, x, y, z, range, range)
+                .filter(acc -> acc instanceof TotemState)
+                .map(acc -> (TotemState) acc)
+                .filter(TotemState::canSelect);
+        totemState.ifPresent(t -> t.addSelector(entity, instr));
+        return totemState.isPresent();
     }
 
     @Override
@@ -98,28 +98,28 @@ public class MusicApiImpl implements MusicAPI
     }
 
     //Overrides of deprecated methods below
-    @SuppressWarnings("deprecation")
+    @Deprecated
     @Override
     public void playMusicForSelector(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int bonusRadius)
     {
         playSelector(world, x, y, z, entity, instr, instr.getBaseRange() + bonusRadius);
     }
 
-    @SuppressWarnings("deprecation")
+    @Deprecated
     @Override
     public void playMusicForSelector(Entity entity, MusicInstrument instr, int bonusRadius)
     {
         playSelector(entity.world, entity.posX, entity.posY, entity.posZ, entity, instr, instr.getBaseRange() + bonusRadius);
     }
 
-    @SuppressWarnings("deprecation")
+    @Deprecated
     @Override
     public void playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
     {
         playMusic0(world, x, y, z, entity, instr, instr.getBaseRange() + bonusRadius, instr.getBaseOutput() + bonusMusicAmount);
     }
 
-    @SuppressWarnings("deprecation")
+    @Deprecated
     @Override
     public void playMusic(Entity entity, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
     {

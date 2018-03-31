@@ -71,13 +71,15 @@ public final class StateTotemEffect extends TotemState
     }
 
     @Override
-    public boolean addMusic(MusicInstrument instr, int amount)
+    public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity)
     {
         int previous = musicAmount;
         musicAmount = Math.min(previous + amount / 2, TotemBase.MAX_TOTEM_EFFECT_MUSIC);
+        spawnParticles(musicAmount < TotemBase.MAX_TOTEM_EFFECT_MUSIC ? EnumParticleTypes.NOTE : EnumParticleTypes.CLOUD, 3);
         if(musicAmount > previous)
         {
             musicAdded = true;
+            tile.markDirty();
             return true;
         }
         else
@@ -85,13 +87,13 @@ public final class StateTotemEffect extends TotemState
     }
 
     @Override
-    boolean canSelect()
+    public boolean canSelect()
     {
         return true;
     }
 
     @Override
-    void addSelector(@Nullable Entity entity, MusicInstrument instr)
+    public void addSelector(@Nullable Entity entity, MusicInstrument instr)
     {
         tile.setState(new StateSelection(tile, entity, instr));
     }

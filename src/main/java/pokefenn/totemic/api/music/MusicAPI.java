@@ -170,7 +170,7 @@ public interface MusicAPI
     /**
      * Adds music to the given music acceptor tile entity and spawns particles at its location
      * @param entity the entity the music originates from. May be {@code null} if it does not come from an entity (e.g. Wind Chime).
-     * @deprecated Just call {@link MusicAcceptor#addMusic} directly and add the particles yourself.
+     * @deprecated Call {@link MusicAcceptor#acceptMusic} directly.
      */
     @Deprecated
     void addMusic(MusicAcceptor tile, @Nullable Entity entity, MusicInstrument instr, int musicAmount);

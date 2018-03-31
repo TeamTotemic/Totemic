@@ -2,7 +2,11 @@ package pokefenn.totemic.tileentity.totem;
 
 import static pokefenn.totemic.Totemic.logger;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -53,8 +57,9 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     }
 
     @Override
-    public boolean addMusic(MusicInstrument instr, int amount)
+    public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity)
     {
+        spawnParticles(EnumParticleTypes.NOTE, 6);
         return true; //TODO: Implement melody draining
     }
 

@@ -9,18 +9,18 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.TotemicRegistries;
-import pokefenn.totemic.api.music.MusicAcceptor;
-import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemBase;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.BlockTotemBase;
@@ -30,7 +30,7 @@ import pokefenn.totemic.network.NetworkHandler;
 import pokefenn.totemic.network.server.PacketTotemPoleChange;
 import pokefenn.totemic.tileentity.TileTotemic;
 
-public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBase, ITickable
+public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
 {
     private boolean firstTick = true;
 
@@ -128,16 +128,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
         return totemEffects.count(effect);
     }
 
-    @Override
-    public boolean addMusic(MusicInstrument instr, int amount)
-    {
-        boolean added = state.addMusic(instr, amount);
-        if(added)
-            markDirty();
-        return added;
-    }
-
-    public boolean canSelect()
+    /*public boolean canSelect()
     {
         return state.canSelect();
     }
@@ -145,7 +136,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
     public void addSelector(@Nullable Entity entity, MusicInstrument instr)
     {
         state.addSelector(entity, instr);
-    }
+    }*/
 
     public void resetState()
     {
@@ -165,6 +156,22 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor, TotemBa
             if(GameOverlay.activeTotem == this)
                 GameOverlay.activeTotem = null;
         }
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> cap, @Nullable EnumFacing facing)
+    {
+        return cap == TotemicCapabilities.MUSIC_ACCEPTOR || super.hasCapability(cap, facing);
+    }
+
+    @Override
+    @Nullable
+    public <T> T getCapability(Capability<T> cap, @Nullable EnumFacing facing)
+    {
+        if(cap == TotemicCapabilities.MUSIC_ACCEPTOR)
+            return TotemicCapabilities.MUSIC_ACCEPTOR.cast(getState());
+        else
+            return super.getCapability(cap, facing);
     }
 
     @Override

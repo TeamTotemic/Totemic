@@ -39,9 +39,9 @@ public final class StateStartup extends TotemState implements StartupContext
     private Ceremony ceremony;
     //private Entity initiator;
     private int time = 0;
-    private final Object2IntOpenHashMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size(), 0.75F);
+    private final Object2IntOpenHashMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size());
     private int totalMusic = 0;
-    private final Object2IntOpenHashMap<MusicInstrument> timesPlayed = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size(), 0.75F);
+    private final Object2IntOpenHashMap<MusicInstrument> timesPlayed = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size());
     //Weak set used to detect when new players enter the range so we send a synchronization packet
     private final Set<EntityPlayerMP> playersInRange = Collections.newSetFromMap(new WeakHashMap<>());
 
@@ -130,18 +130,20 @@ public final class StateStartup extends TotemState implements StartupContext
     }
 
     @Override
-    public boolean addMusic(MusicInstrument instr, int amount)
+    public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity)
     {
         timesPlayed.addTo(instr, 1);
         amount = getDiminishedMusic(instr, amount);
 
         int oldVal = music.getInt(instr);
         int newVal = Math.min(oldVal + amount, instr.getMusicMaximum());
+        spawnParticles(newVal < instr.getMusicMaximum() ? EnumParticleTypes.NOTE : EnumParticleTypes.CLOUD, 6);
         if(newVal == oldVal)
             return false;
         music.put(instr, newVal);
         totalMusic += (newVal - oldVal);
         NetworkHandler.sendAround(new PacketCeremonyStartupMusic(tile.getPos(), instr, newVal), tile, 16);
+        tile.markDirty();
         return true;
     }
 

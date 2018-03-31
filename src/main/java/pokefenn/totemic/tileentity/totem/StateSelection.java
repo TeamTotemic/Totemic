@@ -57,13 +57,13 @@ public final class StateSelection extends TotemState
     }
 
     @Override
-    boolean canSelect()
+    public boolean canSelect()
     {
         return true;
     }
 
     @Override
-    void addSelector(@Nullable Entity entity, MusicInstrument instr)
+    public void addSelector(@Nullable Entity entity, MusicInstrument instr)
     {
         BlockPos pos = tile.getPos();
         WorldServer world = (WorldServer) tile.getWorld();
@@ -98,7 +98,7 @@ public final class StateSelection extends TotemState
     }
 
     @Override
-    public boolean addMusic(MusicInstrument instr, int amount)
+    public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity)
     {
         return false;
     }
