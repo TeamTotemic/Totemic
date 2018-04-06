@@ -38,6 +38,7 @@ public final class Strings
     public static final String MEDICINE_BAG_NAME = "medicine_bag";
     public static final String CEREMONY_CHEAT_NAME = "ceremony_cheat";
     public static final String EAGLE_DROPS_NAME = "eagle_drops";
+    public static final String NETHER_PIPE_NAME = "nether_pipe";
 
     //Entities
     @Nonnull public static final String BUFFALO_NAME = "buffalo";

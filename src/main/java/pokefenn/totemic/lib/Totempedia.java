@@ -24,6 +24,7 @@ public final class Totempedia
     public static final String RATTLE = "rattle";
     public static final String JINGLE_DRESS = "jingleDress";
     public static final String EAGLE_BONE_WHISTLE = "eagleBoneWhistle";
+    public static final String NETHER_PIPE = "netherPipe";
 
     public static final String PERFORMING_CEREMONIES = "performingCeremonies";
     public static final String RAIN_DANCE = "rainDance";

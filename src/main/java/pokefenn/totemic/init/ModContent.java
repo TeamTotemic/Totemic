@@ -26,6 +26,7 @@ public final class ModContent
     public static MusicInstrument jingleDress;
     public static MusicInstrument rattle;
     public static MusicInstrument eagleBoneWhistle;
+    public static MusicInstrument netherPipe;
 
     public static TotemEffect batTotem;
     public static TotemEffect blazeTotem;
@@ -60,11 +61,12 @@ public final class ModContent
             windChime = new MusicInstrument("totemic:windChime", 6, 60).setItem(new ItemStack(ModBlocks.wind_chime)).setRegistryName("wind_chime"),
             jingleDress = new MusicInstrument("totemic:jingleDress", 7, 100).setItem(new ItemStack(ModItems.jingle_dress)).setRegistryName("jingle_dress"),
             rattle = new MusicInstrument("totemic:rattle", 6, 90).setItem(new ItemStack(ModItems.rattle)).setRegistryName("rattle"),
-            eagleBoneWhistle = new MusicInstrument("totemic:eagleBoneWhistle", 8, 110).setItem(new ItemStack(ModItems.eagle_bone_whistle)).setRegistryName("eagle_bone_whistle"));
-
+            eagleBoneWhistle = new MusicInstrument("totemic:eagleBoneWhistle", 8, 110).setItem(new ItemStack(ModItems.eagle_bone_whistle)).setRegistryName("eagle_bone_whistle"),
+            netherPipe = new MusicInstrument("totemic:netherPipe", 15, 115).setItem(new ItemStack(ModItems.nether_pipe)).setRegistryName("nether_pipe"));
         ModItems.flute.setInstrument(flute);
         ModItems.rattle.setInstrument(rattle);
         ModItems.eagle_bone_whistle.setInstrument(eagleBoneWhistle);
+        ModItems.nether_pipe.setInstrument(netherPipe);
     }
 
     @SubscribeEvent

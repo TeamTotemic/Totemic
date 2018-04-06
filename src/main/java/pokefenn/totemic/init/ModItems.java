@@ -19,10 +19,7 @@ import pokefenn.totemic.item.equipment.ItemBarkStripper;
 import pokefenn.totemic.item.equipment.ItemMedicineBag;
 import pokefenn.totemic.item.equipment.ItemTotemWhittlingKnife;
 import pokefenn.totemic.item.equipment.ItemTotemicStaff;
-import pokefenn.totemic.item.equipment.music.ItemEagleBoneWhistle;
-import pokefenn.totemic.item.equipment.music.ItemFlute;
-import pokefenn.totemic.item.equipment.music.ItemJingleDress;
-import pokefenn.totemic.item.equipment.music.ItemRattle;
+import pokefenn.totemic.item.equipment.music.*;
 import pokefenn.totemic.item.equipment.weapon.ItemBaykokBow;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.lib.WoodVariant;
@@ -47,6 +44,7 @@ public final class ModItems
     public static final ItemMedicineBag medicine_bag = null;
     public static final ItemCeremonyCheat ceremony_cheat = null;
     public static final ItemEagleDrops eagle_drops = null;
+    public static final ItemNetherPipe nether_pipe = null;
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event)
@@ -79,7 +77,9 @@ public final class ModItems
             new ItemBaykokBow(),
             new ItemMedicineBag(),
             new ItemCeremonyCheat(),
-            new ItemEagleDrops());
+            new ItemEagleDrops(),
+        new ItemNetherPipe());
+
     }
 
     private static ItemBlock makeItemBlock(Block block)
@@ -124,6 +124,7 @@ public final class ModItems
         setModel(medicine_bag, 0, medicine_bag.getRegistryName().toString() + "_closed");
         setModel(medicine_bag, 1, medicine_bag.getRegistryName().toString() + "_open");
         setDefaultModel(ceremony_cheat);
+        setDefaultModel(nether_pipe);
 
         setModel(sub_items, 1, Strings.RESOURCE_PREFIX + ItemTotemicItems.Type.iron_bells.toString());
 

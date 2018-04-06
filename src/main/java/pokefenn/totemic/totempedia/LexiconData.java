@@ -46,6 +46,7 @@ public final class LexiconData
     public static LexiconEntry rattle;
     public static LexiconEntry jingleDress;
     public static LexiconEntry eagleBoneWhistle;
+    public static LexiconEntry netherPipe;
 
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry warDance;
@@ -122,6 +123,10 @@ public final class LexiconData
 
         eagleBoneWhistle = new BLexiconEntry(Totempedia.EAGLE_BONE_WHISTLE, categoryInstruments).setSortIndex(5);
         eagleBoneWhistle.addPages(new PageText("0"), new PageCraftingRecipe("1", Strings.RESOURCE_PREFIX + "eagle_bone_whistle"));
+
+        netherPipe = new BLexiconEntry(Totempedia.NETHER_PIPE, categoryInstruments).setSortIndex(6);
+        netherPipe.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "nether_pipe"));
+
 
         //Ceremonies
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony).setSortIndex(-1);
