@@ -34,6 +34,7 @@ public final class Totempedia
     public static final String EAGLE_DANCE = "eagleDance";
     public static final String ZAPHKIEL_WALTZ = "zaphkielWaltz";
     public static final String FLUTE_INFUSION = "fluteInfusion";
+    public static final String CLEANSING = "cleansing";
     public static final String BAYKOK_SUMMON = "baykokSummon";
     public static final String SUN_DANCE = "sunDance";
 

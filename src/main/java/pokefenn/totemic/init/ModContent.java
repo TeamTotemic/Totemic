@@ -49,6 +49,7 @@ public final class ModContent
     public static Ceremony warDance;
     public static Ceremony buffaloDance;
     public static Ceremony eagleDance;
+    public static Ceremony cleansing;
     public static Ceremony baykokSummon;
     public static Ceremony sunDance;
 
@@ -122,7 +123,9 @@ public final class ModContent
             baykokSummon = new CeremonyBaykok("totemic:baykokSummon", 430,  40 * 20,
                     windChime, eagleBoneWhistle).setRegistryName("baykok_summon"),
             sunDance = new CeremonySunDance("totemic:sunDance", 410, Ceremony.LONG,
-                    drum, eagleBoneWhistle).setRegistryName("sun_dance"));
+                    drum, eagleBoneWhistle).setRegistryName("sun_dance"),
+            cleansing = new CeremonyCleansing("totemic:cleansing", 390, Ceremony.LONG,
+                flute, eagleBoneWhistle).setRegistryName("cleansing"));
     }
 
     @SubscribeEvent

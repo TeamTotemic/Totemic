@@ -82,6 +82,7 @@ totemic.ceremony.totemic:warDance=War Dance
 totemic.ceremony.totemic:baykokSummon=Chimes of Death
 totemic.ceremony.totemic:eagleDance=Eagle Dance
 totemic.ceremony.totemic:sunDance=Sun Dance
+totemic.ceremony.totemic:cleansing=Steve's Lullaby
 
 #Totem effect names
 totemic.totem.totemic:horse=Horse
@@ -261,6 +262,10 @@ totemic.entry.fluteInfusion=Flute Imbuation
 totemic.page.fluteInfusion0=The §4Ceremony of Flute Imbuation§0 is a way to enchant a regular §1Flute§0 with melodic energy, giving it special properties. Nearby flutes in your inventory or on the ground will be infused with Totemic energy.<br>The timbre of this §1Infused Flute§0 is quite more melodic than a mundane Flute. This means that §1Animals§0 and §1Villagers§0 cannot resist it and will follow you.
 totemic.page.fluteInfusion1=Its effects on Totems is more potent as well.
 totemic.page.fluteInfusion2=§oStronger than Twilicane§r
+
+totemic.entry.cleansing=Steve's Lullaby
+totemic.page.cleansing0=§4Steve's Lullaby§0 is such a beautiful and cleansing piece that it is able to calm down, and remove the evil properties of a few select monsters in the world. §4Zombie Villagers§0 will become their living counterpart. The same will occur for §4Zombie Pigmen§0, becoming regular §4Pigs§0. Only a few monsters will be affected per activation, and they need to have been weakened by a potion effect first.
+totemic.page.cleansing1=§oDon't tell Brahms!§r
 
 totemic.entry.baykokSummon=Chimes of Death
 totemic.page.baykokSummon0=The §4Chimes of Death§0 is a Ceremony that will summon the spirit known as §4Baykok§0. Do not attempt this ceremony unless you are well equiped for combat.<br>§4Baykok§0 is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with invisible arrows. He paralyzes his prey and devours their livers. 

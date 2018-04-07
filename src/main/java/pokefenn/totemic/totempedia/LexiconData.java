@@ -56,6 +56,7 @@ public final class LexiconData
     public static LexiconEntry droughtDance;
     public static LexiconEntry zaphkielWaltz;
     public static LexiconEntry eagleDance;
+    public static LexiconEntry cleansing;
     public static LexiconEntry sunDance;
     public static LexiconEntry baykokSummon;
 
@@ -153,11 +154,15 @@ public final class LexiconData
         eagleDance = new BLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony).setSortIndex(6);
         eagleDance.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.eagleDance));
 
-        sunDance = new WIPLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony).setSortIndex(7);
+        cleansing = new BLexiconEntry(Totempedia.CLEANSING, categoryCeremony).setSortIndex(7);
+        cleansing.addPages(new PageText("0"), new PageCeremony("1", ModContent.cleansing));
+
+        sunDance = new WIPLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony).setSortIndex(8);
         sunDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.sunDance));
 
-        baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(8);
+        baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(9);
         baykokSummon.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.baykokSummon));
+
 
         //Tools
         totemicStaff = new BLexiconEntry(Totempedia.TOTEMIC_STAFF, categoryTools).setSortIndex(0);
