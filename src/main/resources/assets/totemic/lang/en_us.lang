@@ -83,6 +83,7 @@ totemic.ceremony.totemic:baykokSummon=Chimes of Death
 totemic.ceremony.totemic:eagleDance=Eagle Dance
 totemic.ceremony.totemic:sunDance=Sun Dance
 totemic.ceremony.totemic:cleansing=Steve's Lullaby
+totemic.ceremony.totemic:danseMacabre=Danse Macabre
 
 #Totem effect names
 totemic.totem.totemic:horse=Horse
@@ -268,13 +269,18 @@ totemic.page.cleansing0=§4Steve's Lullaby§0 is such a beautiful and cleansing 
 totemic.page.cleansing1=§oDon't tell Brahms!§r
 
 totemic.entry.baykokSummon=Chimes of Death
-totemic.page.baykokSummon0=The §4Chimes of Death§0 is a Ceremony that will summon the spirit known as §4Baykok§0. Do not attempt this ceremony unless you are well equiped for combat.<br>§4Baykok§0 is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with invisible arrows. He paralyzes his prey and devours their livers. 
+totemic.page.baykokSummon0=The §4Chimes of Death§0 is a Ceremony that will summon the spirit known as §4Baykok§0. Do not attempt this ceremony unless you are well equipped for combat.<br>§4Baykok§0 is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with invisible arrows. He paralyzes his prey and devours their livers.
 totemic.page.baykokSummon1=If you manage to defeat §4Baykok§0, you will be able to get his bow, among other loots. With §1Baykok's Bow§0 you will also be able to fire invisible and paralyzing arrows (they will only be visible to you). His bow is stronger and more easily enchantable than a mundane bow.
 totemic.page.baykokSummon2=§oyou're gonna have a bad time§r
 
 totemic.entry.sunDance=Sun Dance
 totemic.page.sunDance0=The §4Sun Dance§0 is one of the most sacred Ceremonies, and also the most painful one to perform: You will be faced with a §1near-death experience§0. If you pull through, you and everyone nearby will be healed and protected from damage for a while.<br>The Sun Dance will not reduce your health below half a heart.
 totemic.page.sunDance1=§oKneeling, my god is the sun§r
+
+totemic.entry.danseMacabre=Danse Macabre
+totemic.page.danseMacabre0=The §4Danse Macabre§0 is probably the most deceptive §4Ceremony§0 of them all. All nearby §1Rotten Flesh§0 on the ground will transform into very, very dangerous §4Zombies§0. Whilst this may seem like a downsize, there is a decent chance that the creation will instead be a §4Zombie Villagers§0. Interestingly enough, if performed in the §1Nether§0 it seems like a different monster will spawn in the world instead.
+totemic.page.danseMacabre1=These effects effectively mean that §1Rotten Flesh§0 can be converted into §4Experience Points§0, or if it is combined with §4Steve's Lullaby§0, it will be able to create §4Villagers§0
+totemic.page.danseMacabre2=§oNovember Spawned a Monster§r
 
 totemic.entry.totemicStaff=Totemic Staff
 totemic.page.totemicStaff0=The §1Totemic Staff§0 can be used to gather information on several blocks by right clicking on them.<br>In addition, holding one whilst left-clicking a Totem Base will cancel ceremonies, and any musical selections on it.

@@ -59,6 +59,7 @@ public final class LexiconData
     public static LexiconEntry cleansing;
     public static LexiconEntry sunDance;
     public static LexiconEntry baykokSummon;
+    public static LexiconEntry danseMacabre;
 
     public static LexiconEntry creatingTotems;
     public static LexiconEntry totemEffects;
@@ -163,6 +164,8 @@ public final class LexiconData
         baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(9);
         baykokSummon.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.baykokSummon));
 
+        danseMacabre = new BLexiconEntry(Totempedia.DANSE_MACABRE, categoryCeremony).setSortIndex(10);
+        danseMacabre.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.danseMacabre));
 
         //Tools
         totemicStaff = new BLexiconEntry(Totempedia.TOTEMIC_STAFF, categoryTools).setSortIndex(0);

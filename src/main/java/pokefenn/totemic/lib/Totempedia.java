@@ -37,6 +37,7 @@ public final class Totempedia
     public static final String CLEANSING = "cleansing";
     public static final String BAYKOK_SUMMON = "baykokSummon";
     public static final String SUN_DANCE = "sunDance";
+    public static final String DANSE_MACABRE = "danseMacabre";
 
     public static final String CREATING_TOTEMS = "creatingTotems";
     public static final String TOTEM_EFFECTS = "totemEffects";

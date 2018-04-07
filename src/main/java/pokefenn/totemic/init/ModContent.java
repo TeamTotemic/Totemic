@@ -52,6 +52,7 @@ public final class ModContent
     public static Ceremony cleansing;
     public static Ceremony baykokSummon;
     public static Ceremony sunDance;
+    public static Ceremony danseMacabre;
 
     @SubscribeEvent
     public static void instruments(RegistryEvent.Register<MusicInstrument> event)
@@ -125,7 +126,9 @@ public final class ModContent
             sunDance = new CeremonySunDance("totemic:sunDance", 410, Ceremony.LONG,
                     drum, eagleBoneWhistle).setRegistryName("sun_dance"),
             cleansing = new CeremonyCleansing("totemic:cleansing", 390, Ceremony.LONG,
-                flute, eagleBoneWhistle).setRegistryName("cleansing"));
+                flute, eagleBoneWhistle).setRegistryName("cleansing"),
+            danseMacabre = new CeremonyDanseMacabre("totemic:danseMacabre", 480, Ceremony.LONG,
+                netherPipe, windChime).setRegistryName("danseMacabre"));
     }
 
     @SubscribeEvent
