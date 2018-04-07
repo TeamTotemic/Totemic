@@ -77,6 +77,7 @@ totemic.ceremony.totemic:flute=Flute Imbuation
 totemic.ceremony.totemic:rainDance=Rain Dance
 totemic.ceremony.totemic:drought=Drought Ceremony
 totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
+totemic.ceremony.totemic:fertility=Rite of Spring
 totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel Waltz
 totemic.ceremony.totemic:warDance=War Dance
 totemic.ceremony.totemic:baykokSummon=Chimes of Death
@@ -255,8 +256,12 @@ totemic.page.eagleDance0=The §1Bald Eagle§0 is a sacred bird, some say they ar
 totemic.page.eagleDance1=nearby §1Parrots§0 and turn them into Bald Eagles. Once transformed, they can be tamed with any kind of raw fish and bred with Salmon.
 totemic.page.eagleDance2=§oWelcome to 'Murica!§r
 
+totemic.entry.fertility=Rite of Spring
+totemic.page.fertility0=The §4Rite of Spring§0 is the one of the many growth and fertility §4Ceremonies§0 available to a Totemist. After activating, all nearby animals will sequentially proceed to breed. Along with that, any nearby saplings will transform into §1Red Cedar Saplings§0.
+totemic.page.fertility1=§oLover I don't have to love§r
+
 totemic.entry.zaphkielWaltz=Zaphkiel Waltz
-totemic.page.zaphkielWaltz0=The §4Zaphkiel Waltz§0 is a growth and fertility §4Ceremony§0 for nearby crops. For a short while, nearby plants will grow at a much faster rate than usual. In addition, chickens will hatch out of nearby eggs. Finally, the Zaphkiel Waltz will also transform all nearby mundane saplings into §4Red Cedar Saplings§0.
+totemic.page.zaphkielWaltz0=The §4Zaphkiel Waltz§0 is a growth and fertility §4Ceremony§0 that affects nearby crops. For a short while, nearby plants will grow at a much faster rate than usual. In addition, any nearby §1Eggs§0 will have a chance to hatch into living §4Chickens§0 at a much higher rate than they would if they were thrown.
 totemic.page.zaphkielWaltz1=§oGothicly elegant§r
 
 totemic.entry.fluteInfusion=Flute Imbuation

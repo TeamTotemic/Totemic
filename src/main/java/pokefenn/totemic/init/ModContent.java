@@ -45,6 +45,7 @@ public final class ModContent
     public static Ceremony rainDance;
     public static Ceremony drought;
     public static Ceremony fluteCeremony;
+    public static Ceremony fertility;
     public static Ceremony zaphkielWaltz;
     public static Ceremony warDance;
     public static Ceremony buffaloDance;
@@ -113,6 +114,8 @@ public final class ModContent
                     rattle, flute).setRegistryName("rain_dance"),
             drought = new CeremonyRain(false, "totemic:drought", 180, Ceremony.MEDIUM,
                     flute, rattle).setRegistryName("drought"),
+            fertility = new CeremonyFertility("totemic:fertility", 220, Ceremony.MEDIUM,
+                    drum, rattle).setRegistryName("fertility"),
             zaphkielWaltz = new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 220, Ceremony.LONG,
                     rattle, drum).setRegistryName("zaphkiel_waltz"),
             warDance = new CeremonyWarDance("totemic:warDance", 120, Ceremony.SHORT_MEDIUM,

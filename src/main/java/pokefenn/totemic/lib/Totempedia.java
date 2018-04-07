@@ -32,6 +32,7 @@ public final class Totempedia
     public static final String WAR_DANCE = "warDance";
     public static final String BUFFALO_DANCE = "buffaloDance";
     public static final String EAGLE_DANCE = "eagleDance";
+    public static final String FERTILITY = "fertility";
     public static final String ZAPHKIEL_WALTZ = "zaphkielWaltz";
     public static final String FLUTE_INFUSION = "fluteInfusion";
     public static final String CLEANSING = "cleansing";

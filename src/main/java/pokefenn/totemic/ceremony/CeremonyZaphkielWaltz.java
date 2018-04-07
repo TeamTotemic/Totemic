@@ -65,12 +65,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
                         BlockPos p = pos.add(i, j, k);
                         IBlockState state = world.getBlockState(p);
                         Block block = state.getBlock();
-                        if(block instanceof BlockSapling && block != ModBlocks.cedar_sapling)
-                        {
-                            world.setBlockState(p, ModBlocks.cedar_sapling.getDefaultState(), 3);
-                            spawnParticles(world, p.getX() + 0.5, p.getY() + 0.5, p.getZ() + 0.5);
-                        }
-                        else if((block instanceof IGrowable || block instanceof IPlantable) && block.getTickRandomly())
+                        if((block instanceof IGrowable || block instanceof IPlantable) && block.getTickRandomly())
                         {
                             if(world.rand.nextInt(4) < 3)
                             {
