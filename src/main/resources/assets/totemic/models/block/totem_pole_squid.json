@@ -1,0 +1,157 @@
+{
+    "__createdwith": "opl's Model Creator",
+    "ambientocclusion": false,
+    "textures": {
+        "texture": "blocks/planks_oak"
+    },
+    "elements": [
+        {
+            "from": [2,0,3],
+            "to": [14,16,14],
+            "faces": {
+                "up": {
+                    "texture": "#texture"
+                },
+                "down": {
+                    "texture": "#texture"
+                },
+                "west": {
+                    "texture": "#texture"
+                },
+                "east": {
+                    "texture": "#texture"
+                },
+                "north": {
+                    "uv": [4,4,14,13],
+                    "texture": "#texture"
+                },
+                "south": {
+                    "texture": "#texture"
+                }
+            }
+        },
+        {
+            "from": [2,0,2],
+            "to": [3,16,3],
+            "faces": {
+                "up": {
+                    "texture": "#texture"
+                },
+                "down": {
+                    "texture": "#texture"
+                },
+                "west": {
+                    "texture": "#texture"
+                },
+                "east": {
+                    "texture": "#texture"
+                },
+                "north": {
+                    "texture": "#texture"
+                }
+            }
+        },
+        {
+            "from": [13,0,2],
+            "to": [14,16,3],
+            "faces": {
+                "up": {
+                    "texture": "#texture"
+                },
+                "down": {
+                    "texture": "#texture"
+                },
+                "west": {
+                    "texture": "#texture"
+                },
+                "east": {
+                    "texture": "#texture"
+                },
+                "north": {
+                    "texture": "#texture"
+                }
+            }
+        },
+        {
+            "from": [5,0,2],
+            "to": [11,16,3],
+            "faces": {
+                "up": {
+                    "texture": "#texture"
+                },
+                "down": {
+                    "texture": "#texture"
+                },
+                "west": {
+                    "texture": "#texture"
+                },
+                "east": {
+                    "texture": "#texture"
+                },
+                "north": {
+                    "texture": "#texture"
+                }
+            }
+        },
+        {
+            "from": [11,0,2],
+            "to": [13,11,3],
+            "faces": {
+                "up": {
+                    "texture": "#texture"
+                },
+                "down": {
+                    "texture": "#texture"
+                },
+                "north": {
+                    "texture": "#texture"
+                }
+            }
+        },
+        {
+            "from": [3,0,2],
+            "to": [5,11,3],
+            "faces": {
+                "up": {
+                    "texture": "#texture"
+                },
+                "down": {
+                    "texture": "#texture"
+                },
+                "north": {
+                    "texture": "#texture"
+                }
+            }
+        },
+        {
+            "from": [11,13,2],
+            "to": [13,16,3],
+            "faces": {
+                "up": {
+                    "texture": "#texture"
+                },
+                "down": {
+                    "texture": "#texture"
+                },
+                "north": {
+                    "texture": "#texture"
+                }
+            }
+        },
+        {
+            "from": [3,13,2],
+            "to": [5,16,3],
+            "faces": {
+                "up": {
+                    "texture": "#texture"
+                },
+                "down": {
+                    "texture": "#texture"
+                },
+                "north": {
+                    "texture": "#texture"
+                }
+            }
+        }
+    ]
+}

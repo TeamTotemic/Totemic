@@ -2,6 +2,7 @@ package pokefenn.totemic;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.ColorizerFoliage;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -12,6 +13,7 @@ import pokefenn.totemic.client.rendering.entity.BaldEagleRendering;
 import pokefenn.totemic.client.rendering.entity.BaykokRendering;
 import pokefenn.totemic.client.rendering.entity.BuffaloRendering;
 import pokefenn.totemic.client.rendering.entity.InvisArrowRendering;
+import pokefenn.totemic.client.rendering.model.ModelTotemPole;
 import pokefenn.totemic.client.rendering.tileentity.TileWindChimeRenderer;
 import pokefenn.totemic.entity.animal.EntityBaldEagle;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
@@ -30,6 +32,7 @@ public class ClientProxy extends CommonProxy
     {
         super.preInit(event);
         OBJLoader.INSTANCE.addDomain(Totemic.MOD_ID);
+        ModelLoaderRegistry.registerLoader(ModelTotemPole.Loader.INSTANCE);
         RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, BuffaloRendering::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityInvisArrow.class, InvisArrowRendering::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityBaykok.class, BaykokRendering::new);
