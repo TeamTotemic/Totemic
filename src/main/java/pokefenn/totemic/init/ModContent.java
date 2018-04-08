@@ -60,13 +60,13 @@ public final class ModContent
     public static void instruments(RegistryEvent.Register<MusicInstrument> event)
     {
         event.getRegistry().registerAll(
-            flute = new MusicInstrument("totemic:flute", 5, 70).setItem(new ItemStack(ModItems.flute)).setRegistryName("flute"),
-            drum = new MusicInstrument("totemic:drum", 7, 80).setItem(new ItemStack(ModBlocks.drum)).setRegistryName("drum"),
-            windChime = new MusicInstrument("totemic:windChime", 6, 60).setItem(new ItemStack(ModBlocks.wind_chime)).setRegistryName("wind_chime"),
-            jingleDress = new MusicInstrument("totemic:jingleDress", 7, 100).setItem(new ItemStack(ModItems.jingle_dress)).setRegistryName("jingle_dress"),
-            rattle = new MusicInstrument("totemic:rattle", 6, 90).setItem(new ItemStack(ModItems.rattle)).setRegistryName("rattle"),
-            eagleBoneWhistle = new MusicInstrument("totemic:eagleBoneWhistle", 8, 110).setItem(new ItemStack(ModItems.eagle_bone_whistle)).setRegistryName("eagle_bone_whistle"),
-            netherPipe = new MusicInstrument("totemic:netherPipe", 15, 115).setItem(new ItemStack(ModItems.nether_pipe)).setRegistryName("nether_pipe"));
+            flute = new MusicInstrument("totemic:flute", 3, 50).setItem(new ItemStack(ModItems.flute)).setRegistryName("flute"),
+            drum = new MusicInstrument("totemic:drum", 5, 55).setItem(new ItemStack(ModBlocks.drum)).setRegistryName("drum"),
+            windChime = new MusicInstrument("totemic:windChime", 3, 30).setItem(new ItemStack(ModBlocks.wind_chime)).setRegistryName("wind_chime"),
+            jingleDress = new MusicInstrument("totemic:jingleDress", 4, 30).setItem(new ItemStack(ModItems.jingle_dress)).setRegistryName("jingle_dress"),
+            rattle = new MusicInstrument("totemic:rattle", 5, 55).setItem(new ItemStack(ModItems.rattle)).setRegistryName("rattle"),
+            eagleBoneWhistle = new MusicInstrument("totemic:eagleBoneWhistle", 6, 60).setItem(new ItemStack(ModItems.eagle_bone_whistle)).setRegistryName("eagle_bone_whistle"),
+            netherPipe = new MusicInstrument("totemic:netherPipe", 7, 65).setItem(new ItemStack(ModItems.nether_pipe)).setRegistryName("nether_pipe"));
         ModItems.flute.setInstrument(flute);
         ModItems.rattle.setInstrument(rattle);
         ModItems.eagle_bone_whistle.setInstrument(eagleBoneWhistle);
@@ -100,14 +100,15 @@ public final class ModContent
     public static void ceremonies(RegistryEvent.Register<Ceremony> event)
     {
         //Music amount landmarks:
-        //150: Flute + Drum
-        //210: Flute + Drum + full Wind Chime
-        //240: Flute + Drum + Rattle
-        //340: Flute + Drum + Rattle + Jingle Dress
-        //350: Flute + Drum + Rattle + Eagle-Bone Whistle
-        //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
-        //450: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
-        //510: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
+        //105: Flute + Drum
+        //135: Flute + Drum + full Wind Chime
+        //165: Flute + Drum + full Wind Chime + Jingle Dress
+        //160: Flute + Drum + Rattle
+        //190: Flute + Drum + Rattle + full Wind Chime
+        //220: Flute + Drum + Rattle + full Wind Chime + Jingle Dress
+        //220: Flute + Drum + Rattle + Eagle-Bone Whistle
+        //250: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
+        //280: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
         event.getRegistry().registerAll(
             warDance = new CeremonyWarDance("totemic:warDance", 120, Ceremony.SHORT_MEDIUM,
                     drum, drum).setRegistryName("war_dance"),

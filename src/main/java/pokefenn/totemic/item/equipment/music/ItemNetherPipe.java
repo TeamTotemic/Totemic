@@ -113,9 +113,9 @@ public class ItemNetherPipe extends ItemInstrument
 
                 if (with > 2)
                 {
-                    int bonusMusic = with * 2;
+                    int bonusMusic = with;
                     if (with > 10)
-                        bonusMusic = 20;
+                        bonusMusic = 10;
                     TotemicAPI.get().music().playMusic0(world, entityplayer.posX, entityplayer.posY, entityplayer.posZ, entityplayer, instrument, MusicAPI.DEFAULT_RANGE, instrument.getBaseOutput() + bonusMusic);
                     with = 0;
                 }
