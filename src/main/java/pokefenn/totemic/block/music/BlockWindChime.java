@@ -33,6 +33,13 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     }
 
     @Override
+    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
+    {
+        if(!world.isRemote && player != null && player.isSneaking())
+            playMusic(world, pos, player);
+    }
+
+    @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbor, BlockPos fromPos)
     {
         if(!world.isRemote)
@@ -57,6 +64,13 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
             EnumFacing side, float hitX, float hitY, float hitZ)
     {
+
+        playMusic(world, pos, player);
+        return true;
+    }
+
+    void playMusic(World world, BlockPos pos, EntityPlayer player)
+    {
         TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(pos);
 
         if(!world.isRemote && player.isSneaking())
@@ -67,7 +81,6 @@ public class BlockWindChime extends Block implements ITileEntityProvider
             ((WorldServer) world).spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
             ((WorldServer) world).spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
         }
-        return true;
     }
 
     @Override
