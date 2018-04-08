@@ -32,6 +32,7 @@ public class ItemRattle extends ItemInstrument
         return false;
     }
 
+    /*
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
@@ -40,4 +41,5 @@ public class ItemRattle extends ItemInstrument
             player.swingArm(hand);
         return new ActionResult<>(EnumActionResult.PASS, stack);
     }
+    */
 }
