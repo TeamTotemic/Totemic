@@ -59,7 +59,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
         public String valueToString(TotemEffect value)
         {
             if(value != null)
-                return value.getRegistryName().getResourcePath();
+                return value.getRegistryName().toString();
             else
                 return "blank";
         }

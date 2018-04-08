@@ -2,10 +2,12 @@ package pokefenn.totemic.client.rendering.model;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
+import javax.vecmath.Matrix4f;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -13,22 +15,21 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.BakedModelWrapper;
-import net.minecraftforge.client.model.ICustomModelLoader;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.*;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.BlockTotemPole;
+import pokefenn.totemic.client.RenderHelper;
 import pokefenn.totemic.init.ModContent;
 
 public class ModelTotemPole implements IModel
@@ -63,11 +64,7 @@ public class ModelTotemPole implements IModel
     {
         Map<TotemEffect, IBakedModel> bakedTotemModels = Maps.transformEntries(totemModels, (totem, model) -> {
             if(totem == ModContent.buffaloTotem) //FIXME: Band-aid to fix wrongly rotated Buffalo model
-            {
-                TRSRTransformation rotation = new TRSRTransformation(EnumFacing.EAST);
-                TRSRTransformation transform = state.apply(Optional.empty()).map(tr -> tr.compose(rotation)).orElse(rotation);
-                return model.bake(transform, format, bakedTextureGetter);
-            }
+                return model.bake(new TRSRTransformation(EnumFacing.EAST), format, bakedTextureGetter);
             else
                 return model.bake(state, format, bakedTextureGetter);
         });
@@ -81,11 +78,11 @@ public class ModelTotemPole implements IModel
                 ImmutableMap.copyOf(Maps.transformValues(totemModels, model -> model.retexture(textures))));
     }
 
-    public class BakedTotemPole extends BakedModelWrapper<IBakedModel>
+    public static final class BakedTotemPole extends BakedModelWrapper<IBakedModel>
     {
-        private final Map<TotemEffect, IBakedModel> bakedTotemModels;
+        private final ImmutableMap<TotemEffect, IBakedModel> bakedTotemModels;
 
-        public BakedTotemPole(IBakedModel bakedBlankModel, Map<TotemEffect, IBakedModel> bakedTotemModels)
+        public BakedTotemPole(IBakedModel bakedBlankModel, ImmutableMap<TotemEffect, IBakedModel> bakedTotemModels)
         {
             super(bakedBlankModel);
             this.bakedTotemModels = bakedTotemModels;
@@ -101,6 +98,12 @@ public class ModelTotemPole implements IModel
                     return bakedTotemModels.get(effect).getQuads(state, side, rand);
             }
             return originalModel.getQuads(state, side, rand);
+        }
+
+        @Override
+        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType cameraTransformType)
+        {
+            return PerspectiveMapWrapper.handlePerspective(this, RenderHelper.defaultBlockTransforms, cameraTransformType);
         }
     }
 
