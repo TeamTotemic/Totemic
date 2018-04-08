@@ -12,7 +12,8 @@
                     "texture": "#wood"
                 },
                 "down": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "down"
                 },
                 "west": {
                     "texture": "#wood"
@@ -21,7 +22,6 @@
                     "texture": "#wood"
                 },
                 "north": {
-                    "uv": [3,2,13,16],
                     "texture": "#wood"
                 },
                 "south": {
@@ -35,7 +35,8 @@
             "faces": {
                 "up": {
                     "uv": [6,5,8,7],
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "up"
                 },
                 "down": {
                     "uv": [7,6,9,8],
@@ -61,7 +62,8 @@
             "to": [3,16,9],
             "faces": {
                 "up": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "up"
                 },
                 "down": {
                     "texture": "#wood"
@@ -185,7 +187,8 @@
                     "texture": "#wood"
                 },
                 "down": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "down"
                 },
                 "north": {
                     "texture": "#wood"
@@ -197,7 +200,8 @@
             "to": [13,5,4],
             "faces": {
                 "down": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "down"
                 },
                 "west": {
                     "texture": "#wood"
@@ -215,7 +219,8 @@
             "to": [5,5,4],
             "faces": {
                 "down": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "down"
                 },
                 "west": {
                     "texture": "#wood"

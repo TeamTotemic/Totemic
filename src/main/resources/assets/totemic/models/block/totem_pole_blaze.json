@@ -9,7 +9,8 @@
             "to": [12,7,12],
             "faces": {
                 "down": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "down"
                 },
                 "west": {
                     "texture": "#wood"
@@ -171,7 +172,8 @@
             "to": [13,16,13],
             "faces": {
                 "up": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "up"
                 },
                 "down": {
                     "texture": "#wood"
@@ -183,7 +185,7 @@
                     "texture": "#wood"
                 },
                 "north": {
-                    "uv": [4,1,14,10],
+                    "uv": [4.0,1.0,14.0,10.0],
                     "texture": "#wood"
                 },
                 "south": {
@@ -196,7 +198,8 @@
             "to": [13,16,4],
             "faces": {
                 "up": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "up"
                 },
                 "west": {
                     "texture": "#wood"
