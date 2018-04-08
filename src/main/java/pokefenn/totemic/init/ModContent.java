@@ -48,6 +48,7 @@ public final class ModContent
     public static Ceremony fertility;
     public static Ceremony zaphkielWaltz;
     public static Ceremony warDance;
+    public static Ceremony depths;
     public static Ceremony buffaloDance;
     public static Ceremony eagleDance;
     public static Ceremony cleansing;
@@ -120,6 +121,8 @@ public final class ModContent
                     rattle, drum).setRegistryName("zaphkiel_waltz"),
             warDance = new CeremonyWarDance("totemic:warDance", 120, Ceremony.SHORT_MEDIUM,
                     drum, drum).setRegistryName("war_dance"),
+            depths = new CeremonyDepths("totemic:depths", 120, Ceremony.SHORT_MEDIUM,
+                     drum, flute).setRegistryName("depths"),
             buffaloDance = new CeremonyBuffaloDance("totemic:buffaloDance", 150, Ceremony.SHORT_MEDIUM,
                     drum, windChime).setRegistryName("buffalo_dance"),
             eagleDance = new CeremonyEagleDance("totemic:eagleDance", 255, Ceremony.LONG,

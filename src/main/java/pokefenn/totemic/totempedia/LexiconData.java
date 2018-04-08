@@ -50,6 +50,7 @@ public final class LexiconData
 
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry warDance;
+    public static LexiconEntry depths;
     public static LexiconEntry fluteInfusion;
     public static LexiconEntry buffaloDance;
     public static LexiconEntry rainDance;
@@ -138,37 +139,40 @@ public final class LexiconData
         warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony).setSortIndex(0);
         warDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.warDance));
 
-        fluteInfusion = new BLexiconEntry(Totempedia.FLUTE_INFUSION, categoryCeremony).setSortIndex(1);
+        depths = new BLexiconEntry(Totempedia.DEPTHS, categoryCeremony).setSortIndex(1);
+        depths.addPages(new PageText("0"), new PageCeremony("1", ModContent.depths));
+
+        fluteInfusion = new BLexiconEntry(Totempedia.FLUTE_INFUSION, categoryCeremony).setSortIndex(2);
         fluteInfusion.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.fluteCeremony));
 
-        buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony).setSortIndex(2);
+        buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony).setSortIndex(3);
         buffaloDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.buffaloDance));
 
-        rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony).setSortIndex(3);
+        rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony).setSortIndex(4);
         rainDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.rainDance));
 
-        droughtDance = new BLexiconEntry(Totempedia.DROUGHT_DANCE, categoryCeremony).setSortIndex(4);
+        droughtDance = new BLexiconEntry(Totempedia.DROUGHT_DANCE, categoryCeremony).setSortIndex(5);
         droughtDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.drought));
 
-        fertility = new BLexiconEntry(Totempedia.FERTILITY, categoryCeremony).setSortIndex(5);
+        fertility = new BLexiconEntry(Totempedia.FERTILITY, categoryCeremony).setSortIndex(6);
         fertility.addPages(new PageText("0"), new PageCeremony("1", ModContent.fertility));
 
-        zaphkielWaltz = new BLexiconEntry(Totempedia.ZAPHKIEL_WALTZ, categoryCeremony).setSortIndex(6);
+        zaphkielWaltz = new BLexiconEntry(Totempedia.ZAPHKIEL_WALTZ, categoryCeremony).setSortIndex(7);
         zaphkielWaltz.addPages(new PageText("0"), new PageCeremony("1", ModContent.zaphkielWaltz));
 
-        eagleDance = new BLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony).setSortIndex(7);
+        eagleDance = new BLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony).setSortIndex(8);
         eagleDance.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.eagleDance));
 
-        cleansing = new BLexiconEntry(Totempedia.CLEANSING, categoryCeremony).setSortIndex(8);
+        cleansing = new BLexiconEntry(Totempedia.CLEANSING, categoryCeremony).setSortIndex(9);
         cleansing.addPages(new PageText("0"), new PageCeremony("1", ModContent.cleansing));
 
-        sunDance = new WIPLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony).setSortIndex(9);
+        sunDance = new WIPLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony).setSortIndex(10);
         sunDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.sunDance));
 
-        baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(10);
+        baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(11);
         baykokSummon.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.baykokSummon));
 
-        danseMacabre = new BLexiconEntry(Totempedia.DANSE_MACABRE, categoryCeremony).setSortIndex(11);
+        danseMacabre = new BLexiconEntry(Totempedia.DANSE_MACABRE, categoryCeremony).setSortIndex(12);
         danseMacabre.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.danseMacabre));
 
         //Tools

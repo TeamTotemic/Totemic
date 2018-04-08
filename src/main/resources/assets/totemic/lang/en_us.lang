@@ -80,6 +80,7 @@ totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
 totemic.ceremony.totemic:fertility=Rite of Spring
 totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel Waltz
 totemic.ceremony.totemic:warDance=War Dance
+totemic.ceremony.totemic:depths=Symphony of the Depths
 totemic.ceremony.totemic:baykokSummon=Chimes of Death
 totemic.ceremony.totemic:eagleDance=Eagle Dance
 totemic.ceremony.totemic:sunDance=Sun Dance
@@ -246,6 +247,10 @@ totemic.page.drought1=§oNinetails, Not Kurama!§r
 totemic.entry.warDance=War Dance
 totemic.page.warDance0=The §4War Dance Ceremony§0 is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body. After performing it, the §4Ceremony§0 will bring the user Speed and Strength for a long time, allowing them to rush to battle.
 totemic.page.warDance1=§oA convoluted game of chess§r
+
+totemic.entry.depths=Symphony of the Depths
+totemic.page.depths0=The §4Symphony of the Depths§0, along with the §4War Dance§0 are some of the most basic and mundane §4Ceremonies§0 of all. The effect of this §4Ceremony§0 is as simple as it is to perform, any nearby players will be blessed with a §4Water Breathing§0 effect for a few minutes.
+totemic.page.depths1=§oMoon River§r
 
 totemic.entry.buffaloDance=Mandan Buffalo Dance
 totemic.page.buffaloDance0=As the White Man came and took over the lands, he murdered almost all of the §1Buffalos§0 that were once roaming the lands in large hordes. However, not all hope is lost. The §4Mandan Buffalo Dance§0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native. But they will grow larger and stronger over time.
