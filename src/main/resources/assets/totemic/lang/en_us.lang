@@ -73,18 +73,18 @@ totemic.config.client=Client
 totemic.config.client.tooltip=Options that have no effects on servers
 
 #Ceremony names
-totemic.ceremony.totemic:flute=Flute Imbuation
-totemic.ceremony.totemic:rainDance=Rain Dance
-totemic.ceremony.totemic:drought=Drought Ceremony
-totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
-totemic.ceremony.totemic:fertility=Rite of Spring
-totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel Waltz
 totemic.ceremony.totemic:warDance=War Dance
 totemic.ceremony.totemic:depths=Symphony of the Depths
-totemic.ceremony.totemic:baykokSummon=Chimes of Death
+totemic.ceremony.totemic:fertility=Rite of Spring
+totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel Waltz
+totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
+totemic.ceremony.totemic:rainDance=Rain Dance
+totemic.ceremony.totemic:drought=Drought Ceremony
+totemic.ceremony.totemic:flute=Flute Imbuation
 totemic.ceremony.totemic:eagleDance=Eagle Dance
-totemic.ceremony.totemic:sunDance=Sun Dance
 totemic.ceremony.totemic:cleansing=Steve's Lullaby
+totemic.ceremony.totemic:baykokSummon=Chimes of Death
+totemic.ceremony.totemic:sunDance=Sun Dance
 totemic.ceremony.totemic:danseMacabre=Danse Macabre
 
 #Totem effect names
@@ -236,13 +236,6 @@ totemic.page.performingCeremonies2=the §4startup§0 will initiate. While it is 
 totemic.page.performingCeremonies3=meaning a whole ceremony could not be played with just one instrument. As much variety as possible is required to complete a ceremony. Additionally, there is a limited amount of time to complete a §4Ceremony§0, meaning playing speed is important. After you created enough §4Musical Melody§0, the §4Ceremony§0 will begin performing its effects. Some §4Ceremonies§0 have instant effects, others will last over a certain amount
 totemic.page.performingCeremonies4=of time after the effect initially starts. Doing the effects will drain the §4Musical Melody§0 over that time. It should be noted that the effects can only go for a certain amount of time and will stop after that time has elapsed.
 
-totemic.entry.rainDance=Rain Dance Ceremony
-totemic.page.rainDance0=The §4Rain Dance Ceremony§0 is a way for you to bring a torrent of rain into the world. If the rain becomes too much to bare, the §4Drought Ceremony§0 is always available, which will remove all rain. Because the effects of this §4Ceremony§0 are so potent, it may be hard to perform.
-totemic.page.rainDance1=§oLike a Politoed§r.
-
-totemic.entry.drought=Drought Ceremony
-totemic.page.drought0=The §4Drought Ceremony§0 will clear the sky and end any storms that may be plaguing your world. It is simply the opposite of the §4Rain Dance Ceremony§0.
-totemic.page.drought1=§oNinetails, Not Kurama!§r
 
 totemic.entry.warDance=War Dance
 totemic.page.warDance0=The §4War Dance Ceremony§0 is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body. After performing it, the §4Ceremony§0 will bring the user Speed and Strength for a long time, allowing them to rush to battle.
@@ -252,15 +245,6 @@ totemic.entry.depths=Symphony of the Depths
 totemic.page.depths0=The §4Symphony of the Depths§0, along with the §4War Dance§0 are some of the most basic and mundane §4Ceremonies§0 of all. The effect of this §4Ceremony§0 is as simple as it is to perform, any nearby players will be blessed with a §4Water Breathing§0 effect for a few minutes.
 totemic.page.depths1=§oMoon River§r
 
-totemic.entry.buffaloDance=Mandan Buffalo Dance
-totemic.page.buffaloDance0=As the White Man came and took over the lands, he murdered almost all of the §1Buffalos§0 that were once roaming the lands in large hordes. However, not all hope is lost. The §4Mandan Buffalo Dance§0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native. But they will grow larger and stronger over time.
-totemic.page.buffaloDance1=§oAvoid using red rags§r
-
-totemic.entry.eagleDance=Eagle Dance
-totemic.page.eagleDance0=The §1Bald Eagle§0 is a sacred bird, some say they are spiritual messengers between humans and gods. Its feathers and bones are important ceremonial items and are used to make the §1Eagle-Bone Whistle§0.<br>Since they have gone almost extinct, they are not found in the wild; similarly to Buffalos they have to be created by the §4Eagle Dance§0 Ceremony. This Ceremony will infuse
-totemic.page.eagleDance1=nearby §1Parrots§0 and turn them into Bald Eagles. Once transformed, they can be tamed with any kind of raw fish and bred with Salmon.
-totemic.page.eagleDance2=§oWelcome to 'Murica!§r
-
 totemic.entry.fertility=Rite of Spring
 totemic.page.fertility0=The §4Rite of Spring§0 is the one of the many growth and fertility §4Ceremonies§0 available to a Totemist. After activating, all nearby animals will sequentially proceed to breed. Along with that, any nearby saplings will transform into §1Red Cedar Saplings§0.
 totemic.page.fertility1=§oLover I don't have to love§r
@@ -269,10 +253,27 @@ totemic.entry.zaphkielWaltz=Zaphkiel Waltz
 totemic.page.zaphkielWaltz0=The §4Zaphkiel Waltz§0 is a growth and fertility §4Ceremony§0 that affects nearby crops. For a short while, nearby plants will grow at a much faster rate than usual. In addition, any nearby §1Eggs§0 will have a chance to hatch into living §4Chickens§0 at a much higher rate than they would if they were thrown.
 totemic.page.zaphkielWaltz1=§oGothicly elegant§r
 
+totemic.entry.buffaloDance=Mandan Buffalo Dance
+totemic.page.buffaloDance0=As the White Man came and took over the lands, he murdered almost all of the §1Buffalos§0 that were once roaming the lands in large hordes. However, not all hope is lost. The §4Mandan Buffalo Dance§0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native. But they will grow larger and stronger over time.
+totemic.page.buffaloDance1=§oAvoid using red rags§r
+
+totemic.entry.rainDance=Rain Dance Ceremony
+totemic.page.rainDance0=The §4Rain Dance Ceremony§0 is a way for you to bring a torrent of rain into the world. If the rain becomes too much to bare, the §4Drought Ceremony§0 is always available, which will remove all rain. Because the effects of this §4Ceremony§0 are so potent, it may be hard to perform.
+totemic.page.rainDance1=§oLike a Politoed§r.
+
+totemic.entry.drought=Drought Ceremony
+totemic.page.drought0=The §4Drought Ceremony§0 will clear the sky and end any storms that may be plaguing your world. It is simply the opposite of the §4Rain Dance Ceremony§0.
+totemic.page.drought1=§oNinetails, Not Kurama!§r
+
 totemic.entry.fluteInfusion=Flute Imbuation
 totemic.page.fluteInfusion0=The §4Ceremony of Flute Imbuation§0 is a way to enchant a regular §1Flute§0 with melodic energy, giving it special properties. Nearby flutes in your inventory or on the ground will be infused with Totemic energy.<br>The timbre of this §1Infused Flute§0 is quite more melodic than a mundane Flute. This means that §1Animals§0 and §1Villagers§0 cannot resist it and will follow you.
 totemic.page.fluteInfusion1=Its effects on Totems is more potent as well.
 totemic.page.fluteInfusion2=§oStronger than Twilicane§r
+
+totemic.entry.eagleDance=Eagle Dance
+totemic.page.eagleDance0=The §1Bald Eagle§0 is a sacred bird, some say they are spiritual messengers between humans and gods. Its feathers and bones are important ceremonial items and are used to make the §1Eagle-Bone Whistle§0.<br>Since they have gone almost extinct, they are not found in the wild; similarly to Buffalos they have to be created by the §4Eagle Dance§0 Ceremony. This Ceremony will infuse
+totemic.page.eagleDance1=nearby §1Parrots§0 and turn them into Bald Eagles. Once transformed, they can be tamed with any kind of raw fish and bred with Salmon.
+totemic.page.eagleDance2=§oWelcome to 'Murica!§r
 
 totemic.entry.cleansing=Steve's Lullaby
 totemic.page.cleansing0=§4Steve's Lullaby§0 is such a beautiful and cleansing piece that it is able to calm down, and remove the evil properties of a few select monsters in the world. §4Zombie Villagers§0 will become their living counterpart. The same will occur for §4Zombie Pigmen§0, becoming regular §4Pigs§0. Only a few monsters will be affected per activation, and they need to have been weakened by a potion effect first.

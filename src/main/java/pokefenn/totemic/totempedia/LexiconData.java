@@ -51,12 +51,12 @@ public final class LexiconData
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry warDance;
     public static LexiconEntry depths;
-    public static LexiconEntry fluteInfusion;
+    public static LexiconEntry fertility;
+    public static LexiconEntry zaphkielWaltz;
     public static LexiconEntry buffaloDance;
     public static LexiconEntry rainDance;
     public static LexiconEntry droughtDance;
-    public static LexiconEntry fertility;
-    public static LexiconEntry zaphkielWaltz;
+    public static LexiconEntry fluteInfusion;
     public static LexiconEntry eagleDance;
     public static LexiconEntry cleansing;
     public static LexiconEntry sunDance;
