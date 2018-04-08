@@ -5,9 +5,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
-import javax.vecmath.Matrix4f;
-
-import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -15,21 +12,21 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.*;
+import net.minecraftforge.client.model.BakedModelWrapper;
+import net.minecraftforge.client.model.ICustomModelLoader;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.BlockTotemPole;
-import pokefenn.totemic.client.RenderHelper;
 import pokefenn.totemic.init.ModContent;
 
 public class ModelTotemPole implements IModel
@@ -45,16 +42,14 @@ public class ModelTotemPole implements IModel
 
     public ModelTotemPole()
     {
-        ImmutableMap<String, String> defaultTextures = ImmutableMap.of("wood", "totemic:blocks/stripped_cedar_log",  "particle", "totemic:blocks/stripped_cedar_log");
-
-        this.blankModel = ModelLoaderRegistry.getModelOrMissing(new ResourceLocation("totemic", "block/totem_pole_blank")).retexture(defaultTextures);
+        this.blankModel = ModelLoaderRegistry.getModelOrMissing(new ResourceLocation("totemic", "block/totem_pole_blank"));
 
         ImmutableMap.Builder<TotemEffect, IModel> builder = ImmutableMap.builder();
         for(TotemEffect totem : TotemicRegistries.totemEffects())
         {
             ResourceLocation name = totem.getRegistryName();
             builder.put(totem, ModelLoaderRegistry.getModelOrLogError(new ResourceLocation(name.getResourceDomain(), "block/totem_pole_" + name.getResourcePath()),
-                    "Could not load Totem Pole model for " + name).retexture(defaultTextures));
+                    "Could not load Totem Pole model for " + name));
         }
         this.totemModels = builder.build();
     }
@@ -99,48 +94,26 @@ public class ModelTotemPole implements IModel
             }
             return originalModel.getQuads(state, side, rand);
         }
-
-        @Override
-        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType cameraTransformType)
-        {
-            return PerspectiveMapWrapper.handlePerspective(this, RenderHelper.defaultBlockTransforms, cameraTransformType);
-        }
     }
 
     public enum Loader implements ICustomModelLoader
     {
         INSTANCE;
 
-        private ModelTotemPole MODEL = null;
-
         @Override
         public void onResourceManagerReload(IResourceManager resourceManager)
-        {
-            MODEL = null;
-        }
+        { }
 
         @Override
         public boolean accepts(ResourceLocation modelLocation)
         {
-            return modelLocation.getResourceDomain().equals("totemic") && modelLocation.getResourcePath().equals("totem_pole");
+            return modelLocation.getResourceDomain().equals("totemic") && modelLocation.getResourcePath().equals("models/block/totem_pole");
         }
 
         @Override
         public IModel loadModel(ResourceLocation modelLocation) throws Exception
         {
-            if(MODEL == null)
-                MODEL = new ModelTotemPole();
-
-            //TODO: Hardcoded until I figure out how to get variant definitions from the blockstate JSON.
-            String variant = ((ModelResourceLocation) modelLocation).getVariant();
-            if(variant.equals("wood=cedar"))
-                return MODEL;
-            if(variant.startsWith("wood="))
-            {
-                String texture = "totemic:blocks/stripped_" + variant.substring(5) + "_log";
-                return MODEL.retexture(ImmutableMap.of("wood", texture,  "particle", texture));
-            }
-            return MODEL;
+            return new ModelTotemPole();
         }
     }
 }

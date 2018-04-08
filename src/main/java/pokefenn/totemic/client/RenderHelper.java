@@ -2,20 +2,14 @@ package pokefenn.totemic.client;
 
 import java.util.List;
 
-import javax.vecmath.Vector3f;
-
 import org.lwjgl.opengl.GL11;
-
-import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraftforge.common.model.TRSRTransformation;
 
 public class RenderHelper
 {
@@ -217,39 +211,5 @@ public class RenderHelper
         buf.pos(x + 0, y + h, z).tex(u + 0,    v + texH).endVertex();
         buf.pos(x + w, y + h, z).tex(u + texW, v + texH).endVertex();
         buf.pos(x + w, y + 0, z).tex(u + texW, v + 0).endVertex();
-    }
-
-    private static TRSRTransformation getTransform(float tx, float ty, float tz, float ax, float ay, float az, float s)
-    {
-        return TRSRTransformation.blockCenterToCorner(new TRSRTransformation(
-            new Vector3f(tx / 16, ty / 16, tz / 16),
-            TRSRTransformation.quatFromXYZDegrees(new Vector3f(ax, ay, az)),
-            new Vector3f(s, s, s),
-            null));
-    }
-
-    private static final TRSRTransformation flipX = new TRSRTransformation(null, null, new Vector3f(-1, 1, 1), null);
-
-    private static TRSRTransformation leftify(TRSRTransformation transform)
-    {
-        return TRSRTransformation.blockCenterToCorner(flipX.compose(TRSRTransformation.blockCornerToCenter(transform)).compose(flipX));
-    }
-
-    //FIXME: This should come from the blockstate JSON as well
-    public static final ImmutableMap<TransformType, TRSRTransformation> defaultBlockTransforms;
-
-    static
-    {
-        //See ForgeBlockStateV1.Deserializer.deserialize
-        TRSRTransformation thirdperson = getTransform(0, 2.5f, 0, 75, 45, 0, 0.375f);
-        ImmutableMap.Builder<TransformType, TRSRTransformation> builder = ImmutableMap.builder();
-        builder.put(TransformType.GUI,                     getTransform(0, 0, 0, 30, 225, 0, 0.625f));
-        builder.put(TransformType.GROUND,                  getTransform(0, 3, 0, 0, 0, 0, 0.25f));
-        builder.put(TransformType.FIXED,                   getTransform(0, 0, 0, 0, 0, 0, 0.5f));
-        builder.put(TransformType.THIRD_PERSON_RIGHT_HAND, thirdperson);
-        builder.put(TransformType.THIRD_PERSON_LEFT_HAND,  leftify(thirdperson));
-        builder.put(TransformType.FIRST_PERSON_RIGHT_HAND, getTransform(0, 0, 0, 0, 45, 0, 0.4f));
-        builder.put(TransformType.FIRST_PERSON_LEFT_HAND,  getTransform(0, 0, 0, 0, 225, 0, 0.4f));
-        defaultBlockTransforms = builder.build();
     }
 }
