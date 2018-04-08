@@ -49,13 +49,6 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack stack)
-    {
-        return EnumRarity.UNCOMMON;
-    }
-
-    @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
         if(!world.isRemote && !player.isSpectator() && world.getTotalWorldTime() % 20L == 0)

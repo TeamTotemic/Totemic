@@ -10,7 +10,7 @@ item.totemic:totem_whittling_knife.tooltip2=Sneak+Right Click or Scroll to chang
 item.totemic:totem_whittling_knife.tooltip3=Currently Carving: %s
 item.totemic:totempedia.name=Totempedia
 item.totemic:flute.name=Flute
-item.totemic:infused_flute.name=Infused Flute
+item.totemic:infused_flute.name=Pan's Flute
 item.totemic:cedar_bark.name=Red Cedar Bark
 item.totemic:bark_stripper.name=Bark Stripper
 item.totemic:jingle_dress.name=Jingle Dress
@@ -77,10 +77,10 @@ totemic.ceremony.totemic:warDance=War Dance
 totemic.ceremony.totemic:depths=Symphony of the Depths
 totemic.ceremony.totemic:fertility=Rite of Spring
 totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel Waltz
-totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
+totemic.ceremony.totemic:buffaloDance=Buffalo Dance
 totemic.ceremony.totemic:rainDance=Rain Dance
 totemic.ceremony.totemic:drought=Drought Ceremony
-totemic.ceremony.totemic:flute=Flute Imbuation
+totemic.ceremony.totemic:flute=Serenade for Syrinx
 totemic.ceremony.totemic:eagleDance=Eagle Dance
 totemic.ceremony.totemic:cleansing=Steve's Lullaby
 totemic.ceremony.totemic:baykokSummon=Chimes of Death
@@ -110,19 +110,19 @@ totemic.instrument.totemic:rattle=Rattle
 totemic.instrument.totemic:eagleBoneWhistle=Eagle-Bone Whistle
 
 #Music values
-totemic.musicNeeded.none=No music required
+totemic.musicNeeded.none=No music required 𝄐
 
-totemic.musicNeeded.little=Needs little music
+totemic.musicNeeded.little= ♪
 
-totemic.musicNeeded.littleMedium=Needs a decent amount of music
+totemic.musicNeeded.littleMedium= ♪ ♪
 
-totemic.musicNeeded.medium=Needs a moderate amount of music
+totemic.musicNeeded.medium= ♪ ♪ ♪
 
-totemic.musicNeeded.mediumLarge=Needs more than moderate music
+totemic.musicNeeded.mediumLarge=♪ ♪ ♪ ♪
 
-totemic.musicNeeded.large=Needs lots of music
+totemic.musicNeeded.large=♪ ♪ ♪ ♪ ♪
 
-totemic.musicNeeded.crazyLarge=Needs absurd music
+totemic.musicNeeded.crazyLarge=♪ ♪ ♪ ♪ ♪ ♪
 
 totemicmisc.musicSelector=Musical Selectors
 totemicmisc.tipi.cantSleep=You cannot sleep in a Tipi without being in the open fields
@@ -170,11 +170,11 @@ totemic.category.ceremonies=Ceremonies
 totemic.category.instruments=Musical Instruments
 
 totemic.entry.cedarTree=The Red Cedar tree
-totemic.page.cedarTree0=The §1Red Cedar Tree§0 is a large tree that has magical properties, so its wood is especially useful for carving Totem poles out of. It can be obtained by infusing mundane saplings with musical energy in the §4Zaphkiel Waltz ceremony§0.
-totemic.page.cedarTree1=Red Cedar wood has the same properties and crafting applications as standard wood. In addition, a §4Bark Stripper§0 is able to remove its bark to make more efficient uses of its resources.
+totemic.page.cedarTree0=The §1Red Cedar Tree§0 is a tree that naturally has capabilities for Totemic purposes. It can be obtained by infusing mundane saplings with musical energy in the §4Rite of Spring Ceremony§0.
+totemic.page.cedarTree1=Red Cedar wood has the same properties and crafting applications as standard wood. In addition, a §4Bark Stripper§0 is able to remove its bark to make more efficient uses of its resources. Finally, it can be used to craft certain instruments like the §1Wind Chimes§0 or §4Jingle Dress§0
 
 totemic.entry.buffaloBasic=Buffaloes
-totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for all of the resources it can grant. They are incredibly sturdy and have a very large amount of health. Hunting has left them nearly extinct, but they can still be 'created' with the §4Mandan Buffalo Dance§0 Ceremony. 
+totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for all of the resources it can grant. They are incredibly sturdy and have a very large amount of health. Hunting has left them nearly extinct, but they can still be 'created' with the §4Buffalo Dance§0 Ceremony.
 totemic.page.buffaloBasic1=
 
 totemic.entry.creatingTotems=§oTotem Poles
@@ -212,11 +212,11 @@ totemic.page.jingleDress3=
 
 totemic.entry.flute=Flute
 totemic.page.flute0=Sometimes a §1Flute§0 can be one of the most simple and effective instruments available. Unlike other instruments, the §1Flute§0 simply plays music without any complication. Because of its simplicity, it is not known to be the most melodic instrument, meaning that §4Totems§0 may not accept very much of the melody. When §4sneaking§0, it can be used to select a §4Ceremony§0 for any nearby §4Totem Poles§0.
-totemic.page.flute1=The §1Flute§0 can be infused in the §4Ceremony of Flute Imbuation§0, giving it special properties.
+totemic.page.flute1=The §1Flute§0 can be infused in the §4Serenade for Syrinx§0, giving it special properties.
 totemic.page.flute2=
 
 totemic.entry.rattle=Rattle
-totemic.page.rattle0=The §1Ceremonial Rattle§0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The §1Rattle§0 produces §4Musical Melody§0 whenever it has been shook with the hand.<br>It can be used in dual wield: if you hold the Rattle in your right hand, you can have another instrument in your left hand and play both at the same time.
+totemic.page.rattle0=The §1Ceremonial Rattle§0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The §1Rattle§0 produces §4Musical Melody§0 whenever it has been shook with the hand.<br>It can be used in dual wield: if you hold the Rattle in your right hand, you can have another instrument in your left hand and play both at the same time by alternatively using the instruments.
 totemic.page.rattle1=Like all instruments, it can be played while §4sneaking§0 so as to activate ceremonies.
 totemic.page.rattle2=
 
@@ -230,15 +230,15 @@ totemic.page.netherPipe1=off their maximum amount of music within a few plays. D
 totemic.page.netherPipe2=        Soft and sweet
 
 totemic.entry.performingCeremonies=§oPerforming Ceremonies
-totemic.page.performingCeremonies0=§4Ceremonies§0 are a way for a Totemist to gather strength over a period of time through the power of §4Musical Melody§0, and other acts to release as a central burst of effects on both players, and the nearby world. The center of a §4Ceremony§0 is a §1Totem Base§0, all music and other influences are channeled to the §1Totem Pole§0 and it is where the effects are released from.
-totemic.page.performingCeremonies1=To perform a §4Ceremony§0, there are a few things you must do. To select and initiate your §4Ceremony§0, you must play 2 Instruments in their selector mode whilst next to a §1Totem Pole§0. Depending in which Instruments are played, a different §4Ceremony§0 will activate. To play an Instrument in selector mode, just play it normally whilst §4sneaking§0. When you have played the corresponding instruments for a §4Ceremony§0,
-totemic.page.performingCeremonies2=the §4startup§0 will initiate. While it is in this startup mode, the §1Totem Pole§0 will accept all nearby music and store it. This is §4Musical Melody§0, and it is what is needed for the §4Ceremonies§0 effect to activate. When the total §4Musical Melody§0 hits the threshold of the §4Ceremonies§0 Melody requirement, it will activate the effect. Each instrument can only be played up to a certain point,
-totemic.page.performingCeremonies3=meaning a whole ceremony could not be played with just one instrument. As much variety as possible is required to complete a ceremony. Additionally, there is a limited amount of time to complete a §4Ceremony§0, meaning playing speed is important. After you created enough §4Musical Melody§0, the §4Ceremony§0 will begin performing its effects. Some §4Ceremonies§0 have instant effects, others will last over a certain amount
-totemic.page.performingCeremonies4=of time after the effect initially starts. Doing the effects will drain the §4Musical Melody§0 over that time. It should be noted that the effects can only go for a certain amount of time and will stop after that time has elapsed.
+totemic.page.performingCeremonies0=§4Ceremonies§0 are a way for a Totemist to gather strength over a period of time through the power of §4Musical Melody§0 to release a central burst of energy on both players, and the nearby world. The center of a §4Ceremony§0 is a §1Totem Base§0, all music and other influences are channeled to the §1Totem Pole§0 and it is where the effects are released from.
+totemic.page.performingCeremonies1=To perform a §4Ceremony§0, there are a few things you must do. To select and initiate your §4Ceremony§0, you must play 2 specific Instruments whilst both §4Sneaking§0 and next to a §1Totem Pole§0. Any Instruments played whilst §4Sneaking§0 will play in their selector mode instead of normal. Depending on which selectors are played, a different §4Ceremony§0 will activate. For example, using the §1Flute§0 in selector mode twice will activate the §4Serenade of the Depths§0.
+totemic.page.performingCeremonies2=When you have played the corresponding instruments for a §4Ceremony§0, the §4startup§0 will initiate. While it is in this startup mode, the §1Totem Pole§0 will accept all nearby music and store it. This is §4Musical Melody§0, and it is what is needed for the §4Ceremonies§0 effect to activate. When the total §4Musical Melody§0 hits the threshold of the §4Ceremonies§0 Melody requirement, it will activate the effect. Each instrument can only be played up to a certain point,
+totemic.page.performingCeremonies3=meaning a whole ceremony could not be played with just one instrument, and a Totemist should use as many as they are able to. Additionally, there is a limited amount of time to complete a §4Ceremony§0, meaning playing speed is important. After you created enough §4Musical Melody§0, the §4Ceremony§0 will begin performing its effects. Some §4Ceremonies§0 have instant effects, others will last over a certain amount of time after the effect initially starts.
+totemic.page.performingCeremonies4=It should be noted that the effects can only pertain for a certain amount of time, and will stop after that time has elapsed.
 
 
 totemic.entry.warDance=War Dance
-totemic.page.warDance0=The §4War Dance Ceremony§0 is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body. After performing it, the §4Ceremony§0 will bring the user Speed and Strength for a long time, allowing them to rush to battle.
+totemic.page.warDance0=The §4War Dance Ceremony§0 is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body. After performing it, the §4Ceremony§0 will bring the user Speed and Strength for a long period of time time, allowing them to rush to battle.
 totemic.page.warDance1=§oA convoluted game of chess§r
 
 totemic.entry.depths=Symphony of the Depths
@@ -253,8 +253,8 @@ totemic.entry.zaphkielWaltz=Zaphkiel Waltz
 totemic.page.zaphkielWaltz0=The §4Zaphkiel Waltz§0 is a growth and fertility §4Ceremony§0 that affects nearby crops. For a short while, nearby plants will grow at a much faster rate than usual. In addition, any nearby §1Eggs§0 will have a chance to hatch into living §4Chickens§0 at a much higher rate than they would if they were thrown.
 totemic.page.zaphkielWaltz1=§oGothicly elegant§r
 
-totemic.entry.buffaloDance=Mandan Buffalo Dance
-totemic.page.buffaloDance0=As the White Man came and took over the lands, he murdered almost all of the §1Buffalos§0 that were once roaming the lands in large hordes. However, not all hope is lost. The §4Mandan Buffalo Dance§0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native. But they will grow larger and stronger over time.
+totemic.entry.buffaloDance=Buffalo Dance
+totemic.page.buffaloDance0=This beast used to roam the lands in large herds, but was mysteriously wiped out long before you came into this world. However, not all hope is lost. The §4Buffalo Dance§0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native.
 totemic.page.buffaloDance1=§oAvoid using red rags§r
 
 totemic.entry.rainDance=Rain Dance Ceremony
@@ -265,10 +265,10 @@ totemic.entry.drought=Drought Ceremony
 totemic.page.drought0=The §4Drought Ceremony§0 will clear the sky and end any storms that may be plaguing your world. It is simply the opposite of the §4Rain Dance Ceremony§0.
 totemic.page.drought1=§oNinetails, Not Kurama!§r
 
-totemic.entry.fluteInfusion=Flute Imbuation
-totemic.page.fluteInfusion0=The §4Ceremony of Flute Imbuation§0 is a way to enchant a regular §1Flute§0 with melodic energy, giving it special properties. Nearby flutes in your inventory or on the ground will be infused with Totemic energy.<br>The timbre of this §1Infused Flute§0 is quite more melodic than a mundane Flute. This means that §1Animals§0 and §1Villagers§0 cannot resist it and will follow you.
-totemic.page.fluteInfusion1=Its effects on Totems is more potent as well.
-totemic.page.fluteInfusion2=§oStronger than Twilicane§r
+totemic.entry.fluteInfusion=Serenade for Syrinx
+totemic.page.fluteInfusion0=The §4Serenade for Syrinx§0 is a way to enchant a regular §1Flute§0 with melodic energy, giving it special properties. Nearby flutes in your inventory or on the ground will be infused with Totemic energy, becoming §1Pan's Flute§0. The timbre of her Flute is quite more beautiful than that of a mundane one, meaning it produces more §4Musical Melody§0 and works better with §4Totem Poles§0.
+totemic.page.fluteInfusion1=In addition, nearby §1Animals§0 and §1Villagers§0 will be completely and utterly unable to resist the melody, and will follow you if you play the flute.
+totemic.page.fluteInfusion2=§oHide in the Sugar Cane§r
 
 totemic.entry.eagleDance=Eagle Dance
 totemic.page.eagleDance0=The §1Bald Eagle§0 is a sacred bird, some say they are spiritual messengers between humans and gods. Its feathers and bones are important ceremonial items and are used to make the §1Eagle-Bone Whistle§0.<br>Since they have gone almost extinct, they are not found in the wild; similarly to Buffalos they have to be created by the §4Eagle Dance§0 Ceremony. This Ceremony will infuse

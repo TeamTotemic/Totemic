@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.*;
@@ -55,6 +56,13 @@ public class ItemFlute extends ItemInstrument
                 temptEntities(world, player.posX, player.posY, player.posZ);
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack stack)
+    {
+        return stack.getItemDamage() == 1 ? EnumRarity.UNCOMMON : EnumRarity.COMMON;
     }
 
     @Override
