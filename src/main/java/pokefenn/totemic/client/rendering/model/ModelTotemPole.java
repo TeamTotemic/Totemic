@@ -2,6 +2,7 @@ package pokefenn.totemic.client.rendering.model;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
@@ -23,10 +24,12 @@ import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.IModelState;
+import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.BlockTotemPole;
+import pokefenn.totemic.init.ModContent;
 
 public class ModelTotemPole implements IModel
 {
@@ -58,8 +61,17 @@ public class ModelTotemPole implements IModel
     @Override
     public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
     {
-        return new BakedTotemPole(blankModel.bake(state, format, bakedTextureGetter),
-                ImmutableMap.copyOf(Maps.transformValues(totemModels, model -> model.bake(state, format, bakedTextureGetter))));
+        Map<TotemEffect, IBakedModel> bakedTotemModels = Maps.transformEntries(totemModels, (totem, model) -> {
+            if(totem == ModContent.buffaloTotem) //FIXME: Band-aid to fix wrongly rotated Buffalo model
+            {
+                TRSRTransformation rotation = new TRSRTransformation(EnumFacing.EAST);
+                TRSRTransformation transform = state.apply(Optional.empty()).map(tr -> tr.compose(rotation)).orElse(rotation);
+                return model.bake(transform, format, bakedTextureGetter);
+            }
+            else
+                return model.bake(state, format, bakedTextureGetter);
+        });
+        return new BakedTotemPole(blankModel.bake(state, format, bakedTextureGetter), ImmutableMap.copyOf(bakedTotemModels));
     }
 
     @Override
