@@ -8,44 +8,44 @@
         "wood": {
             "oak": {
                 "textures": {
-                    "pole": "totemic:blocks/totem_pole_oak",
-                    "particle": "blocks/log_oak"
+                    "wood": "blocks/planks_oak",
+                    "particle": "blocks/planks_oak"
                 }
             },
             "spruce": {
                 "textures": {
-                    "pole": "totemic:blocks/totem_pole_spruce",
-                    "particle": "blocks/log_spruce"
+                    "wood": "blocks/planks_spruce",
+                    "particle": "blocks/planks_spruce"
                 }
             },
             "birch": {
                 "textures": {
-                    "pole": "totemic:blocks/totem_pole_birch",
-                    "particle": "blocks/log_birch"
+                    "wood": "blocks/planks_birch",
+                    "particle": "blocks/planks_birch"
                 }
             },
             "jungle": {
                 "textures": {
-                    "pole": "totemic:blocks/totem_pole_jungle",
-                    "particle": "blocks/log_jungle"
+                    "wood": "blocks/planks_jungle",
+                    "particle": "blocks/planks_jungle"
                 }
             },
             "acacia": {
                 "textures": {
-                    "pole": "totemic:blocks/totem_pole_acacia",
-                    "particle": "blocks/log_acacia"
+                    "wood": "blocks/planks_acacia",
+                    "particle": "blocks/planks_acacia"
                 }
             },
             "dark_oak": {
                 "textures": {
-                    "pole": "totemic:blocks/totem_pole_dark_oak",
-                    "particle": "blocks/log_big_oak"
+                    "wood": "blocks/planks_big_oak",
+                    "particle": "blocks/planks_big_oak"
                 }
             },
             "cedar": {
                 "textures": {
-                    "pole": "totemic:blocks/totem_pole_cedar",
-                    "particle": "totemic:blocks/cedar_log"
+                    "wood": "totemic:blocks/cedar_plank",
+                    "particle": "totemic:blocks/cedar_plank"
                 }
             }
         }

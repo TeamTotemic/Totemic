@@ -10,49 +10,49 @@
                 "textures": {
                     "wood": "blocks/planks_oak",
                     "bark": "blocks/log_oak",
-                    "particle": "blocks/log_oak"
+                    "particle": "blocks/planks_oak"
                 }
             },
             "spruce": {
                 "textures": {
                     "wood": "blocks/planks_spruce",
                     "bark": "blocks/log_spruce",
-                    "particle": "blocks/log_spruce"
+                    "particle": "blocks/planks_spruce"
                 }
             },
             "birch": {
                 "textures": {
                     "wood": "blocks/planks_birch",
                     "bark": "blocks/log_birch",
-                    "particle": "blocks/log_birch"
+                    "particle": "blocks/planks_birch"
                 }
             },
             "jungle": {
                 "textures": {
                     "wood": "blocks/planks_jungle",
                     "bark": "blocks/log_jungle",
-                    "particle": "blocks/log_jungle"
+                    "particle": "blocks/planks_jungle"
                 }
             },
             "acacia": {
                 "textures": {
                     "wood": "blocks/planks_acacia",
                     "bark": "blocks/log_acacia",
-                    "particle": "blocks/log_acacia"
+                    "particle": "blocks/planks_acacia"
                 }
             },
             "dark_oak": {
                 "textures": {
                     "wood": "blocks/planks_big_oak",
                     "bark": "blocks/log_big_oak",
-                    "particle": "blocks/log_big_oak"
+                    "particle": "blocks/planks_big_oak"
                 }
             },
             "cedar": {
                 "textures": {
                     "wood": "totemic:blocks/cedar_plank",
                     "bark": "totemic:blocks/cedar_log",
-                    "particle": "totemic:blocks/cedar_log"
+                    "particle": "totemic:blocks/cedar_plank"
                 }
             }
         }
