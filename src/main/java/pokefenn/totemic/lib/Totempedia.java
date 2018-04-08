@@ -14,6 +14,7 @@ public final class Totempedia
     public static final String CATEGORY_CEREMONY = CATEGORY_PREFIX + "ceremonies";
     public static final String CATEGORY_INSTRUMENTS = CATEGORY_PREFIX + "instruments";
 
+    public static final String MELODY = "melody";
     public static final String CEDAR_TREE = "cedarTree";
     public static final String BUFFALO_BASIC = "buffaloBasic";
 
@@ -26,6 +27,8 @@ public final class Totempedia
     public static final String EAGLE_BONE_WHISTLE = "eagleBoneWhistle";
     public static final String NETHER_PIPE = "netherPipe";
 
+    public static final String BASICS_CEREMONIES = "basicsCeremonies";
+    public static final String SELECTING_CEREMONIES = "selectingCeremonies";
     public static final String PERFORMING_CEREMONIES = "performingCeremonies";
     public static final String RAIN_DANCE = "rainDance";
     public static final String DROUGHT_DANCE = "drought";

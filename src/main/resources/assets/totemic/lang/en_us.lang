@@ -169,12 +169,15 @@ totemic.category.totems=Totems and Effects
 totemic.category.ceremonies=Ceremonies
 totemic.category.instruments=Musical Instruments
 
+totemic.entry.melody=Melody
+totemic.page.melody0=§4Melody§0 is a magical power released from §4Instruments§0 that have been played. Each §1Instrument§0 has a §4Melody Threshold§0, meaning that only a certain amount §4Melody§0 can be released from one §4Instrument§0 for a specific effect. Maybe in the future this §4Melody§0 will have functions with other things in the world.
+
 totemic.entry.cedarTree=The Red Cedar tree
 totemic.page.cedarTree0=The §1Red Cedar Tree§0 is a tree that naturally has capabilities for Totemic purposes. It can be obtained by infusing mundane saplings with musical energy in the §4Rite of Spring Ceremony§0.
-totemic.page.cedarTree1=Red Cedar wood has the same properties and crafting applications as standard wood. In addition, a §4Bark Stripper§0 is able to remove its bark to make more efficient uses of its resources. Finally, it can be used to craft certain instruments like the §1Wind Chimes§0 or §4Jingle Dress§0
+totemic.page.cedarTree1=§1Red Cedar Wood§0 has the same properties and crafting applications as standard wood. In addition, a §4Bark Stripper§0 is able to remove its bark to make more efficient uses of its resources. Finally, it can be used to craft certain instruments like the §1Wind Chimes§0 or §4Jingle Dress§0
 
 totemic.entry.buffaloBasic=Buffaloes
-totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for all of the resources it can grant. They are incredibly sturdy and have a very large amount of health. Hunting has left them nearly extinct, but they can still be 'created' with the §4Buffalo Dance§0 Ceremony.
+totemic.page.buffaloBasic0=The mighty Buffalo, an animal which is known across the lands for all of the resources it can grant. They are incredibly sturdy and have a very large amount of health. Hunting has left them nearly extinct, but they can still be 'created' with the §4Buffalo Dance Ceremony§0.
 totemic.page.buffaloBasic1=
 
 totemic.entry.creatingTotems=§oTotem Poles
@@ -188,54 +191,60 @@ totemic.page.totemEffects1=§1Cow§0: Gives you resistance to damage, but also s
 totemic.page.totemEffects2=§1Rabbit§0: Gives you a jump boost<br>§1Spider§0: Lets you climb walls like a spider<br>§1Squid§0: Gives you Water Breathing<br>§1Wolf§0: Gives you strength
 
 totemic.entry.medicineBag=Medicine Bag
-totemic.page.medicineBag0=The §1Medicine Bag§0 allows you to carry a §4Totem effect§0 with you, so you can use its benefits for a limited time without having to be near a Totem Pole.<br>Once you have crafted your Medicine Bag, Sneak+Right click it on a Totem Pole block carved with the effect you want to have. Then you can right click the bag to open it and release its effect, or to close it.
-totemic.page.medicineBag1=The Medicine Bag will last for a few minutes before it depletes. To charge it, just stand near a Totem Pole that has your bag's effect carved into it.
+totemic.page.medicineBag0=The §1Medicine Bag§0 allows you to carry a §4Totem Effect§0 with you, so you can use its benefits for a limited time without having to be near a Totem Pole.<br>Once you have crafted your Medicine Bag, Sneak+Right click it on a Totem Pole block carved with the effect you want to have. Then you can right click the bag to open it and release its effect, or to close it.
+totemic.page.medicineBag1=The Medicine Bag will last for a few minutes before it depletes. To charge it, just stand near a §1Totem Pole§0 that has your bag's effect carved into it.
 totemic.page.medicineBag2=
 
 totemic.entry.instruments=§oInstruments
-totemic.page.instruments0=Instruments are a way to create §4Musical Melody§0, the life of §1Totem Poles§0. When an instrument is played, their melody will seep into a nearby §1Totem Poles§0. Every instrument produces §4Musical Melody§0 in different ways. Along that, each instrument has a different amount of §4Musical Melody§0 that a §4Ceremonies§0 may be able to accept, meaning that many different instruments are needed for effective use. 
+totemic.page.instruments0=Instruments are a way to create §4Melody§0, the life of §1Totem Poles§0. When an instrument is played, their melody will seep into a nearby §1Totem Poles§0. Every instrument produces §4Melody§0 in different ways. Along that, each instrument has a different amount of §4Melody§0 that a §4Ceremonies§0 may be able to accept, meaning that many different §4Instruments§0 are needed for effective use.
 
 totemic.entry.windChime=Wind Chime
-totemic.page.windChime0=The §1Wind Chime§0 is an instrument that will wave in the wind and periodically produce §4Musical Melody§0. The §1Wind Chime§0 cannot have any blocks below it, and must be hanging from a block above it. While the §1Wind Chime§0 does not create a large amount of §4Musical Melody§0, it does not require any intervention by players.
-totemic.page.windChime1=It is not rare to see §1Wind Chimes§0 hanging from the branches of leaves, there have even been rumours that it could make them create more §4Musical Melody§0. When the §1Wind Chime§0 is playing, it will shake vigorously and create music. Because the music from the §1Wind Chime§0 is so easy to come by, it does not take much of it before the maximum amount of §4Musical Melody§0 is reached.
+totemic.page.windChime0=The §1Wind Chime§0 is an instrument that will wave in the wind and periodically produce §4Melody§0. The §1Wind Chime§0 cannot have any blocks below it, and must be hanging from a block above it. While the §1Wind Chime§0 does not create a large amount of §4Melody§0, it does not require any intervention by players. It is recommended that only a §1Wind Chimes§0 hang near a §1Totem Pole§0 at once.
+totemic.page.windChime1=It is not rare to see §1Wind Chimes§0 hanging from the branches of leaves, there have even been rumours that it could make them create more §4Melody§0. When the §1Wind Chime§0 is playing, it will shake vigorously and create §1Melody§0. Because the music from the §1Wind Chime§0 is so easy to come by, it does not take much of it before the maximum amount of §4Melody§0 is reached.
 totemic.page.windChime2=
 
 totemic.entry.drum=Drum
-totemic.page.drum0=The §1Drum§0 is an instrumental block that can be played by simply bashing it with either fist. Because playing the instrument is so tiring, it can take a second before you will be able to play it again. Drum beats are usually constant, and a vital part of any Ceremony. Because of that the music is quite melodic. As with most instruments, §4sneaking§0 when playing it will allow you to select a §4Ceremony§0.
+totemic.page.drum0=The §1Drum§0 is an instrumental block that can be played by simply bashing it with either fist. Because playing the instrument is so tiring, it can take a second before you will be able to play it again. All §1Totemists§0 should learn the rhythm which is used when a §1Flute§0 and a §1Drum§0 are being played together, as it may be required for early §1Ceremonies§0. As with most instruments, §4sneaking§0 when playing it will allow you to select a §4Ceremony§0.
 totemic.page.drum1=
 
 totemic.entry.jingleDress=Jingle Dress
-totemic.page.jingleDress0=The §1Jingle Dress§0. One of the most prestigious pieces of clothing available for any §4Totemists§0. It is a leaf Dress adorned with bells. Running around will cause it to play music to all nearby Totem Poles. They say the faster you run the more music it creates, and a speed potion increases it even further!
-totemic.page.jingleDress1=The sound of this instrument is highly melodic, meaning that it produces a large amount if played correctly, and §1Totems§0 can also accept a high amount of the §4Musical Melody§0 from it.
+totemic.page.jingleDress0=The §1Jingle Dress§0. One of the most prestigious pieces of clothing available for any §4Totemists§0. It is a leaf dress adorned with bells. Running will create §4Melody§0, they say the faster you run the more it creates, and a speed potion increases it even further! Perhaps it's effect could be activated by running whilst waiting for a §1Drum§0 cooldown to finish.
+totemic.page.jingleDress1=Because the effect of this §1Instrument§0 is fairly passive, it does not create much §4Melody§0, and it's §4Melody Threshold§0 is easily reached. Interestingly enough, it seems like the §4Jingle Dress§0 is one of the few §4Instruments§0 that cannot be used as a §4Ceremony Selector§0.
 totemic.page.jingleDress2=
 totemic.page.jingleDress3=
 
 totemic.entry.flute=Flute
-totemic.page.flute0=Sometimes a §1Flute§0 can be one of the most simple and effective instruments available. Unlike other instruments, the §1Flute§0 simply plays music without any complication. Because of its simplicity, it is not known to be the most melodic instrument, meaning that §4Totems§0 may not accept very much of the melody. When §4sneaking§0, it can be used to select a §4Ceremony§0 for any nearby §4Totem Poles§0.
+totemic.page.flute0=Sometimes a §1Flute§0 can be one of the most simple and effective instruments available. Unlike other instruments, the §1Flute§0 simply plays music without any complication. Because of its simplicity, it is not known to be the most melodic instrument, meaning it will not create much §4Melody§0, and its §4Melody Threshold§0 will be reached easily. When §4sneaking§0, it can be used to select a §4Ceremony§0 for any nearby §4Totem Poles§0.
 totemic.page.flute1=The §1Flute§0 can be infused in the §4Serenade for Syrinx§0, giving it special properties.
 totemic.page.flute2=
 
 totemic.entry.rattle=Rattle
-totemic.page.rattle0=The §1Ceremonial Rattle§0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The §1Rattle§0 produces §4Musical Melody§0 whenever it has been shook with the hand.<br>It can be used in dual wield: if you hold the Rattle in your right hand, you can have another instrument in your left hand and play both at the same time by alternatively using the instruments.
-totemic.page.rattle1=Like all instruments, it can be played while §4sneaking§0 so as to activate ceremonies.
+totemic.page.rattle0=The §1Ceremonial Rattle§0 is an §4Instrument§0 which is a backbone of any more advanced §4Ceremonies§0. The §1Rattle§0 produces §4Melody§0 whenever it has been shook with the hand.<br>It can be used in dual wield: if you hold the Rattle in your right hand, you can have another instrument in your left hand and play both at the same time by alternatively using the instruments.
+totemic.page.rattle1=Like all §4Instruments§0, it can be played while §4sneaking§0 so as to activate ceremonies.
 totemic.page.rattle2=
 
 totemic.entry.eagleBoneWhistle=Eagle-Bone Whistle
-totemic.page.eagleBoneWhistle0=The §1Eagle-Bone Whistle§0 is made from the bones of a §4Bald Eagle§0, and as such it is very powerful. It is a necessity for more advanced Ceremonies, and actually considered more of a ceremonial object than a music instrument. 
+totemic.page.eagleBoneWhistle0=The §1Eagle-Bone Whistle§0 is made from the bones of a §4Bald Eagle§0, and as such it is very powerful. It is a necessity for more advanced §4Ceremonies§0, and is actually considered more of a ceremonial object than an §4Instrument§0.
 totemic.page.eagleBoneWhistle1=
 
 totemic.entry.netherPipe=Netherumbrian Pipes
-totemic.page.netherPipe0=The §1Netherumbrian Pipes§0 are one of the most curious instruments of them all. Although a truly vile creation, it has many uses for a Totemist. Charging it up like you would a bow makes it's bellows draw in air, after releasing all of its fumes, the §1Netherumbrian Pipes§0 will drain the life of all nearby crops. After draining their life, it will release a large amount of §4Musical Melody§0. What's interesting about these set of is that they will give
+totemic.page.netherPipe0=The §1Netherumbrian Pipes§0 are one of the most curious instruments of them all. Although a truly vile creation, it has many uses for a Totemist. Charging it up like you would a bow makes it's bellows draw in air, after releasing all of its fumes, the §1Netherumbrian Pipes§0 will drain the life of all nearby crops. After draining their life, it will release a large amount of §4Melody§0. What's interesting about these set of is that they will give
 totemic.page.netherPipe1=off their maximum amount of music within a few plays. Do not take that lightly however, as each play creates several times more music than any other instrument. After crafing, an activation is required. To do this, simply take damage from wither effects with the §1Netherumbrian Pipes§0 in hand. Interestingly enough, it seems to prefer the life essence of Nether Wart.
 totemic.page.netherPipe2=        Soft and sweet
 
-totemic.entry.performingCeremonies=§oPerforming Ceremonies
-totemic.page.performingCeremonies0=§4Ceremonies§0 are a way for a Totemist to gather strength over a period of time through the power of §4Musical Melody§0 to release a central burst of energy on both players, and the nearby world. The center of a §4Ceremony§0 is a §1Totem Base§0, all music and other influences are channeled to the §1Totem Pole§0 and it is where the effects are released from.
-totemic.page.performingCeremonies1=To perform a §4Ceremony§0, there are a few things you must do. To select and initiate your §4Ceremony§0, you must play 2 specific Instruments whilst both §4Sneaking§0 and next to a §1Totem Pole§0. Any Instruments played whilst §4Sneaking§0 will play in their selector mode instead of normal. Depending on which selectors are played, a different §4Ceremony§0 will activate. For example, using the §1Flute§0 in selector mode twice will activate the §4Serenade of the Depths§0.
-totemic.page.performingCeremonies2=When you have played the corresponding instruments for a §4Ceremony§0, the §4startup§0 will initiate. While it is in this startup mode, the §1Totem Pole§0 will accept all nearby music and store it. This is §4Musical Melody§0, and it is what is needed for the §4Ceremonies§0 effect to activate. When the total §4Musical Melody§0 hits the threshold of the §4Ceremonies§0 Melody requirement, it will activate the effect. Each instrument can only be played up to a certain point,
-totemic.page.performingCeremonies3=meaning a whole ceremony could not be played with just one instrument, and a Totemist should use as many as they are able to. Additionally, there is a limited amount of time to complete a §4Ceremony§0, meaning playing speed is important. After you created enough §4Musical Melody§0, the §4Ceremony§0 will begin performing its effects. Some §4Ceremonies§0 have instant effects, others will last over a certain amount of time after the effect initially starts.
-totemic.page.performingCeremonies4=It should be noted that the effects can only pertain for a certain amount of time, and will stop after that time has elapsed.
+totemic.entry.basicsCeremonies=§oBasics of Ceremonies
+totemic.page.basicsCeremonies0=§4Ceremonies§0 are a way for a Totemist to gather strength over a period of time through the power of §4Melody§0 to release a central burst of energy on both players, and the nearby world. The center of a §4Ceremony§0 is a §1Totem Base§0 and it also is where the effects of a §4Ceremony§0 are released from. §4Ceremonies§0 are powered by the §4Melody§0 that is released from §4Instruments§0 when they are played.
+totemic.page.basicsCeremonies1=There are two main points in a §4Ceremony§0, the first being §4Selection§0, and the second being the §4Ceremony Effects§0.
 
+totemic.entry.selectingCeremonies=§oSelecting Ceremonies
+totemic.page.selectingCeremonies0=In order to select which §4Ceremony§0 you wish to activate, a specific task must be complete. Any §4Instruments§0 played whilst §4Sneaking§0 will play in their §4Selector Mode§0, and will not release any §4Melody§0 as they would normally. A combination of two §4Instruments§0 in §4Selector Mode§0 will start a §4Ceremony§0 depending on which were played. For example, using the §1Flute§0 in selector mode twice will activate the §4Serenade of the Depths§0.
+totemic.page.selectingCeremonies1=
+
+totemic.entry.performingCeremonies=§oPerforming Ceremonies
+totemic.page.performingCeremonies0=Once a §4Ceremony§0 has been selected, the §4startup§0 will initiate. While it is in this stage, the §1Totem Pole§0 will accept any played §1Melody§0 and store it. In order for a §4Ceremony§0 effect to activate, a certain amount of §4Melody§0 is required depending on how difficult the §4Ceremony§0 is. This difficulty is represented by how many ♪ there are in it's entry in this book. When the §4Melody Requirement§0 for the §4Ceremony§0 is reached, it will activate.
+totemic.page.performingCeremonies1=Each §4Instrument§0 can only be played up to a certain point, meaning a §4Ceremony§0 could not be played with just one §4Instrument§0. This is known as the §4Melody Threshold§0. Any smoke that emits from the §1Totem Base§0 will signify that the most recently played §4Instrument§0 has reached its §4Melody Threshold§0 for that §4Ceremony§0, and the user should stop using that specific §4Instrument§0 for the rest of the §4Ceremony§0.
+totemic.page.performingCeremonies2=Additionally, there is a limited amount of time to complete a §4Ceremony§0, meaning playing speed is important. After you have created enough §4Melody§0, the §4Ceremony§0 will begin performing its effects. Some §4Ceremonies§0 have instant effects, others will last over a certain amount of time after the effect initially starts. It should be noted that the effects can only pertain for a certain amount of time, and will stop after that time has elapsed.
+totemic.page.performingCeremonies3=Finally, there should be care taken with the timing between playing §4Instruments§0, in order to complete a §4Ceremony§0 efficiently, a rhythm between instruments may be important. Because of that, it is recommended that a §4Totemist§0 spends some time getting used to the rhythms of certain §4Instruments§0
 
 totemic.entry.warDance=War Dance
 totemic.page.warDance0=The §4War Dance Ceremony§0 is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body. After performing it, the §4Ceremony§0 will bring the user Speed and Strength for a long period of time time, allowing them to rush to battle.
@@ -266,7 +275,7 @@ totemic.page.drought0=The §4Drought Ceremony§0 will clear the sky and end any 
 totemic.page.drought1=§oNinetails, Not Kurama!§r
 
 totemic.entry.fluteInfusion=Serenade for Syrinx
-totemic.page.fluteInfusion0=The §4Serenade for Syrinx§0 is a way to enchant a regular §1Flute§0 with melodic energy, giving it special properties. Nearby flutes in your inventory or on the ground will be infused with Totemic energy, becoming §1Pan's Flute§0. The timbre of her Flute is quite more beautiful than that of a mundane one, meaning it produces more §4Musical Melody§0 and works better with §4Totem Poles§0.
+totemic.page.fluteInfusion0=The §4Serenade for Syrinx§0 is a way to enchant a regular §1Flute§0 with melodic energy, giving it special properties. Nearby flutes in your inventory or on the ground will be infused with Totemic energy, becoming §1Pan's Flute§0. The timbre of her Flute is quite more beautiful than that of a mundane one, meaning it produces more §4Melody§0 and works better with §4Totem Poles§0.
 totemic.page.fluteInfusion1=In addition, nearby §1Animals§0 and §1Villagers§0 will be completely and utterly unable to resist the melody, and will follow you if you play the flute.
 totemic.page.fluteInfusion2=§oHide in the Sugar Cane§r
 
@@ -280,8 +289,8 @@ totemic.page.cleansing0=§4Steve's Lullaby§0 is such a beautiful and cleansing 
 totemic.page.cleansing1=§oDon't tell Brahms!§r
 
 totemic.entry.baykokSummon=Chimes of Death
-totemic.page.baykokSummon0=The §4Chimes of Death§0 is a Ceremony that will summon the spirit known as §4Baykok§0. Do not attempt this ceremony unless you are well equipped for combat.<br>§4Baykok§0 is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with invisible arrows. He paralyzes his prey and devours their livers.
-totemic.page.baykokSummon1=If you manage to defeat §4Baykok§0, you will be able to get his bow, among other loots. With §1Baykok's Bow§0 you will also be able to fire invisible and paralyzing arrows (they will only be visible to you). His bow is stronger and more easily enchantable than a mundane bow.
+totemic.page.baykokSummon0=The §4Chimes of Death§0 is a Ceremony that will summon the spirit known as §1Baykok§0. Do not attempt this ceremony unless you are well equipped for combat.<br>§1Baykok§0 is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with invisible arrows.
+totemic.page.baykokSummon1=If you manage to defeat §1Baykok§0, you will be able to get his bow, among other loots. Any §1Arrows§0 fired from §1Baykok's Bow§0 are visible only to the bow wielder. In addition, his bow is stronger and has a higher §4Enchantability§0 than a mundane bow.
 totemic.page.baykokSummon2=§oyou're gonna have a bad time§r
 
 totemic.entry.sunDance=Sun Dance
@@ -307,7 +316,7 @@ totemic.page.barkStripper2=
 #totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The §1Red Cedar Stripped Log§0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
 
 totemic.entry.baykokBow=Baykok's Bow
-totemic.page.baykokBow0=§4Baykok's Bow§0 is a powerful bow that can only be obtained by slaying the spirit §4Baykok§0. Baykok can be summoned with the §4Chimes of Death§0 Ceremony.<br>Arrows fired from this bow deal more damage, and non-tipped arrows will become invisible to anyone but you. The bow is also more easily enchantable and more durable than a mundane bow.
+totemic.page.baykokBow0=§1Baykok's Bow§0 is a powerful bow that can only be obtained by slaying the spirit §1Baykok§0. §1Baykok§0 can be summoned with the §4Chimes of Death§0 Ceremony.<br>Arrows fired from this bow deal more damage, and non-tipped arrows will become invisible to anyone but you. The bow also has a higher §4Enchantability§0, and is more durable than a mundane bow.
 
 totemic.entry.tipi=Tipi
 totemic.page.tipi0=The §1Tipi§0 is cone shaped tent which can be used to sleep through the night. It consists of a wooden frame, adorned with a tarp consisting of either Buffalo hide or textile. It can be placed ontop of a flat surface of grass or dirt, and requires an open sky to be used.
