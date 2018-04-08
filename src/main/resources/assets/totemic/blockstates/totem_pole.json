@@ -8,44 +8,44 @@
         "wood": {
             "oak": {
                 "textures": {
-                    "wood": "blocks/planks_oak",
-                    "particle": "blocks/planks_oak"
+                    "wood": "totemic:blocks/stripped_oak_log",
+                    "particle": "totemic:blocks/stripped_oak_log"
                 }
             },
             "spruce": {
                 "textures": {
-                    "wood": "blocks/planks_spruce",
-                    "particle": "blocks/planks_spruce"
+                    "wood": "totemic:blocks/stripped_spruce_log",
+                    "particle": "totemic:blocks/stripped_spruce_log"
                 }
             },
             "birch": {
                 "textures": {
-                    "wood": "blocks/planks_birch",
-                    "particle": "blocks/planks_birch"
+                    "wood": "totemic:blocks/stripped_birch_log",
+                    "particle": "totemic:blocks/stripped_birch_log"
                 }
             },
             "jungle": {
                 "textures": {
-                    "wood": "blocks/planks_jungle",
-                    "particle": "blocks/planks_jungle"
+                    "wood": "totemic:blocks/stripped_jungle_log",
+                    "particle": "totemic:blocks/stripped_oak_log"
                 }
             },
             "acacia": {
                 "textures": {
-                    "wood": "blocks/planks_acacia",
-                    "particle": "blocks/planks_acacia"
+                    "wood": "totemic:blocks/stripped_acacia_log",
+                    "particle": "totemic:blocks/stripped_acacia_log"
                 }
             },
             "dark_oak": {
                 "textures": {
-                    "wood": "blocks/planks_big_oak",
-                    "particle": "blocks/planks_big_oak"
+                    "wood": "totemic:blocks/stripped_dark_oak_log",
+                    "particle": "totemic:blocks/stripped_dark_oak_log"
                 }
             },
             "cedar": {
                 "textures": {
-                    "wood": "totemic:blocks/cedar_plank",
-                    "particle": "totemic:blocks/cedar_plank"
+                    "wood": "totemic:blocks/stripped_cedar_log",
+                    "particle": "totemic:blocks/stripped_cedar_log"
                 }
             }
         }

@@ -7,21 +7,20 @@ import java.util.Map;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
-import javax.vecmath.Matrix4f;
-
-import org.apache.commons.lang3.tuple.Pair;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.*;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.BakedModelWrapper;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
@@ -46,7 +45,7 @@ public class ModelTotemPole implements IModel
 
     public ModelTotemPole()
     {
-        ImmutableMap<String, String> defaultTextures = ImmutableMap.of("wood", "totemic:blocks/cedar_plank",  "particle", "totemic:blocks/cedar_plank");
+        ImmutableMap<String, String> defaultTextures = ImmutableMap.of("wood", "totemic:blocks/stripped_cedar_log",  "particle", "totemic:blocks/stripped_cedar_log");
 
         this.blankModel = ModelLoaderRegistry.getModelOrMissing(new ResourceLocation("totemic", "block/totem_pole_blank")).retexture(defaultTextures);
 
@@ -81,14 +80,13 @@ public class ModelTotemPole implements IModel
                 ImmutableMap.copyOf(Maps.transformValues(totemModels, model -> model.retexture(textures))));
     }
 
-    public class BakedTotemPole implements IBakedModel
+    public class BakedTotemPole extends BakedModelWrapper<IBakedModel>
     {
-        private final IBakedModel bakedBlankModel;
         private final Map<TotemEffect, IBakedModel> bakedTotemModels;
 
         public BakedTotemPole(IBakedModel bakedBlankModel, Map<TotemEffect, IBakedModel> bakedTotemModels)
         {
-            this.bakedBlankModel = bakedBlankModel;
+            super(bakedBlankModel);
             this.bakedTotemModels = bakedTotemModels;
         }
 
@@ -101,50 +99,7 @@ public class ModelTotemPole implements IModel
                 if(effect != null)
                     return bakedTotemModels.get(effect).getQuads(state, side, rand);
             }
-            return bakedBlankModel.getQuads(state, side, rand);
-        }
-
-        @Override
-        public boolean isAmbientOcclusion()
-        {
-            return bakedBlankModel.isAmbientOcclusion();
-        }
-
-        @Override
-        public boolean isGui3d()
-        {
-            return bakedBlankModel.isGui3d();
-        }
-
-        @Override
-        public boolean isBuiltInRenderer()
-        {
-            return bakedBlankModel.isBuiltInRenderer();
-        }
-
-        @Override
-        public TextureAtlasSprite getParticleTexture()
-        {
-            return bakedBlankModel.getParticleTexture();
-        }
-
-        @Override
-        public ItemOverrideList getOverrides()
-        {
-            return bakedBlankModel.getOverrides();
-        }
-
-        @Deprecated
-        @Override
-        public ItemCameraTransforms getItemCameraTransforms()
-        {
-            return bakedBlankModel.getItemCameraTransforms();
-        }
-
-        @Override
-        public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType cameraTransformType)
-        {
-            return bakedBlankModel.handlePerspective(cameraTransformType);
+            return originalModel.getQuads(state, side, rand);
         }
     }
 
@@ -167,24 +122,14 @@ public class ModelTotemPole implements IModel
         {
             //TODO: Hardcoded until I figure out how to get variant definitions from the blockstate JSON.
             String variant = ((ModelResourceLocation) modelLocation).getVariant();
-            switch(variant)
-            {
-            case "wood=oak":
-                return MODEL.retexture(ImmutableMap.of("wood", "blocks/planks_oak",     "particle", "blocks/planks_oak"));
-            case "wood=spruce":
-                return MODEL.retexture(ImmutableMap.of("wood", "blocks/planks_spruce",  "particle", "blocks/planks_spruce"));
-            case "wood=birch":
-                return MODEL.retexture(ImmutableMap.of("wood", "blocks/planks_birch",   "particle", "blocks/planks_birch"));
-            case "wood=jungle":
-                return MODEL.retexture(ImmutableMap.of("wood", "blocks/planks_jungle",  "particle", "blocks/planks_jungle"));
-            case "wood=acacia":
-                return MODEL.retexture(ImmutableMap.of("wood", "blocks/planks_acacia",  "particle", "blocks/planks_acacia"));
-            case "wood=dark_oak":
-                return MODEL.retexture(ImmutableMap.of("wood", "blocks/planks_big_oak", "particle", "blocks/planks_big_oak"));
-            case "wood=cedar":
-            default:
+            if(variant.equals("wood=cedar"))
                 return MODEL;
+            if(variant.startsWith("wood="))
+            {
+                String texture = "totemic:blocks/stripped_" + variant.substring(5) + "_log";
+                return MODEL.retexture(ImmutableMap.of("wood", texture,  "particle", texture));
             }
+            return MODEL;
         }
     }
 }
