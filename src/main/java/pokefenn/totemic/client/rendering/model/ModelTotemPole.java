@@ -1,7 +1,5 @@
 package pokefenn.totemic.client.rendering.model;
 
-import static pokefenn.totemic.Totemic.logger;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -32,8 +30,6 @@ import pokefenn.totemic.block.totem.BlockTotemPole;
 
 public class ModelTotemPole implements IModel
 {
-    public static final ModelTotemPole MODEL = new ModelTotemPole();
-
     private final IModel blankModel;
     private final Map<TotemEffect, IModel> totemModels;
 
@@ -53,15 +49,8 @@ public class ModelTotemPole implements IModel
         for(TotemEffect totem : TotemicRegistries.totemEffects())
         {
             ResourceLocation name = totem.getRegistryName();
-            try
-            {
-                builder.put(totem, ModelLoaderRegistry.getModel(new ResourceLocation(name.getResourceDomain(), "block/totem_pole_" + name.getResourcePath())).retexture(defaultTextures));
-            }
-            catch(Exception e)
-            {
-                logger.error("Could not load Totem Pole model for " + name, e);
-                builder.put(totem, blankModel);
-            }
+            builder.put(totem, ModelLoaderRegistry.getModelOrLogError(new ResourceLocation(name.getResourceDomain(), "block/totem_pole_" + name.getResourcePath()),
+                    "Could not load Totem Pole model for " + name).retexture(defaultTextures));
         }
         this.totemModels = builder.build();
     }
@@ -107,9 +96,13 @@ public class ModelTotemPole implements IModel
     {
         INSTANCE;
 
+        private ModelTotemPole MODEL = null;
+
         @Override
         public void onResourceManagerReload(IResourceManager resourceManager)
-        { }
+        {
+            MODEL = null;
+        }
 
         @Override
         public boolean accepts(ResourceLocation modelLocation)
@@ -120,6 +113,9 @@ public class ModelTotemPole implements IModel
         @Override
         public IModel loadModel(ResourceLocation modelLocation) throws Exception
         {
+            if(MODEL == null)
+                MODEL = new ModelTotemPole();
+
             //TODO: Hardcoded until I figure out how to get variant definitions from the blockstate JSON.
             String variant = ((ModelResourceLocation) modelLocation).getVariant();
             if(variant.equals("wood=cedar"))
