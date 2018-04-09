@@ -26,10 +26,10 @@
         ]
       }
     },
-    "performed_zaphkiel_waltz": {
+    "performed_fertility": {
       "trigger": "totemic:perform_ceremony",
       "conditions": {
-        "ceremony": "totemic:zaphkiel_waltz"
+        "ceremony": "totemic:fertility"
       }
     },
     "has_the_recipe": {
@@ -43,7 +43,7 @@
     [
       "has_log",
       "has_stripped_log",
-      "performed_zaphkiel_waltz",
+      "performed_fertility",
       "has_the_recipe"
     ]
   ]

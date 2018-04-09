@@ -4,6 +4,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -14,6 +16,7 @@ import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +24,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.ItemInstrument;
@@ -28,10 +33,8 @@ import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.util.EntityUtil;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Set;
-import java.util.WeakHashMap;
+import javax.annotation.Nullable;
+import java.util.*;
 
 public class ItemNetherPipe extends ItemInstrument
 {
@@ -45,6 +48,20 @@ public class ItemNetherPipe extends ItemInstrument
         setCreativeTab(Totemic.tabsTotem);
         setMaxStackSize(1);
         setMaxDamage(10);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
+    {
+        tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip"));
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public EnumRarity getRarity(ItemStack stack)
+    {
+        return EnumRarity.RARE;
     }
 
     @Override
@@ -113,9 +130,9 @@ public class ItemNetherPipe extends ItemInstrument
 
                 if (with > 2)
                 {
-                    int bonusMusic = with * 2;
-                    if (with > 10)
-                        bonusMusic = 20;
+                    int bonusMusic = with;
+                    if (with > 3)
+                        bonusMusic = 3;
                     TotemicAPI.get().music().playMusic0(world, entityplayer.posX, entityplayer.posY, entityplayer.posZ, entityplayer, instrument, MusicAPI.DEFAULT_RANGE, instrument.getBaseOutput() + bonusMusic);
                     with = 0;
                 }

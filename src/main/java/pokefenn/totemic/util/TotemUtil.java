@@ -25,15 +25,15 @@ public class TotemUtil
 
         if(music == 0)
             amount = "none";
-        else if(music <= 120)
+        else if(music <= 110)
             amount = "little";
         else if(music <= 150)
             amount = "littleMedium";
-        else if(music <= 180)
+        else if(music <= 195)
             amount = "medium";
-        else if(music <= 210)
-            amount = "mediumLarge";
         else if(music <= 240)
+            amount = "mediumLarge";
+        else if(music <= 290)
             amount = "large";
         else
             amount = "crazyLarge";

@@ -16,4 +16,5 @@ public class ConfigGeneral
     @Comment("Enables the generation of Medicine Wheels in villages")
     @RequiresMcRestart
     public boolean enableVillageMedicineWheel = true;
+
 }

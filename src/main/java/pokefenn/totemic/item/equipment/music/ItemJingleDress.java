@@ -1,7 +1,10 @@
 package pokefenn.totemic.item.equipment.music;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -24,6 +27,8 @@ import pokefenn.totemic.item.equipment.EquipmentMaterials;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.util.ItemUtil;
 
+import java.util.List;
+
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 {
     public static final String TIME_KEY = "time";
@@ -43,16 +48,16 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     }
 
     @Override
-    public void damageArmor(EntityLivingBase entity, @Nonnull ItemStack stack, DamageSource source, int damage, int slot)
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
     {
-        stack.damageItem(entity.world.rand.nextInt(4), entity);
+        tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public EnumRarity getRarity(ItemStack stack)
+    public void damageArmor(EntityLivingBase entity, @Nonnull ItemStack stack, DamageSource source, int damage, int slot)
     {
-        return EnumRarity.UNCOMMON;
+        stack.damageItem(entity.world.rand.nextInt(4), entity);
     }
 
     @Override

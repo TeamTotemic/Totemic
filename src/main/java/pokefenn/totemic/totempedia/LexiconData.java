@@ -36,6 +36,7 @@ public final class LexiconData
     public static LexiconCategory categoryTotems;
     public static LexiconCategory categoryInstruments;
 
+    public static LexiconEntry melody;
     public static LexiconEntry cedarTree;
     public static LexiconEntry buffaloBasic;
 
@@ -48,15 +49,17 @@ public final class LexiconData
     public static LexiconEntry eagleBoneWhistle;
     public static LexiconEntry netherPipe;
 
+    public static LexiconEntry basicsCeremonies;
+    public static LexiconEntry selectingCeremonies;
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry warDance;
     public static LexiconEntry depths;
-    public static LexiconEntry fluteInfusion;
+    public static LexiconEntry fertility;
+    public static LexiconEntry zaphkielWaltz;
     public static LexiconEntry buffaloDance;
     public static LexiconEntry rainDance;
     public static LexiconEntry droughtDance;
-    public static LexiconEntry fertility;
-    public static LexiconEntry zaphkielWaltz;
+    public static LexiconEntry fluteInfusion;
     public static LexiconEntry eagleDance;
     public static LexiconEntry cleansing;
     public static LexiconEntry sunDance;
@@ -89,6 +92,9 @@ public final class LexiconData
         //TotemicAPI.addCategory(categoryLore = new LexiconCategory(Totempedia.CATEGORY_LORE));
 
         //Basics
+        melody = new BLexiconEntry(Totempedia.MELODY, categoryBasics);
+        melody.addPages(new PageText("0"));
+
         cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics);
         cedarTree.addPages(new PageText("0"));
 
@@ -113,7 +119,7 @@ public final class LexiconData
         flute.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "flute"));
 
         drum = new BLexiconEntry(Totempedia.DRUM, categoryInstruments).setSortIndex(1);
-        drum.addPages(new PageText("0"), new PageCraftingRecipe("1", Strings.RESOURCE_PREFIX + "drum"));
+        drum.addPages(new PageText("0"), new PageText("1"),new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "drum"));
 
         windChime = new BLexiconEntry(Totempedia.WIND_CHIME, categoryInstruments).setSortIndex(2);
         windChime.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "wind_chime"));
@@ -128,51 +134,58 @@ public final class LexiconData
         eagleBoneWhistle = new BLexiconEntry(Totempedia.EAGLE_BONE_WHISTLE, categoryInstruments).setSortIndex(5);
         eagleBoneWhistle.addPages(new PageText("0"), new PageCraftingRecipe("1", Strings.RESOURCE_PREFIX + "eagle_bone_whistle"));
 
+        /*
         netherPipe = new BLexiconEntry(Totempedia.NETHER_PIPE, categoryInstruments).setSortIndex(6);
         netherPipe.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "nether_pipe"));
-
+*/
 
         //Ceremonies
-        performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony).setSortIndex(-1);
-        performingCeremonies.addPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"), new PageText("4"));
+        basicsCeremonies = new BLexiconEntry(Totempedia.BASICS_CEREMONIES, categoryCeremony).setSortIndex(-1);
+        basicsCeremonies.addPages(new PageText("0"), new PageText("1"));
 
-        warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony).setSortIndex(0);
+        selectingCeremonies = new BLexiconEntry(Totempedia.SELECTING_CEREMONIES, categoryCeremony).setSortIndex(0);
+        selectingCeremonies.addPages(new PageText("0"));
+
+        performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony).setSortIndex(1);
+        performingCeremonies.addPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));
+
+        warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony).setSortIndex(2);
         warDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.warDance));
 
-        depths = new BLexiconEntry(Totempedia.DEPTHS, categoryCeremony).setSortIndex(1);
+        depths = new BLexiconEntry(Totempedia.DEPTHS, categoryCeremony).setSortIndex(3);
         depths.addPages(new PageText("0"), new PageCeremony("1", ModContent.depths));
 
-        fluteInfusion = new BLexiconEntry(Totempedia.FLUTE_INFUSION, categoryCeremony).setSortIndex(2);
-        fluteInfusion.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.fluteCeremony));
-
-        buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony).setSortIndex(3);
-        buffaloDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.buffaloDance));
-
-        rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony).setSortIndex(4);
-        rainDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.rainDance));
-
-        droughtDance = new BLexiconEntry(Totempedia.DROUGHT_DANCE, categoryCeremony).setSortIndex(5);
-        droughtDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.drought));
-
-        fertility = new BLexiconEntry(Totempedia.FERTILITY, categoryCeremony).setSortIndex(6);
+        fertility = new BLexiconEntry(Totempedia.FERTILITY, categoryCeremony).setSortIndex(4);
         fertility.addPages(new PageText("0"), new PageCeremony("1", ModContent.fertility));
 
-        zaphkielWaltz = new BLexiconEntry(Totempedia.ZAPHKIEL_WALTZ, categoryCeremony).setSortIndex(7);
+        zaphkielWaltz = new BLexiconEntry(Totempedia.ZAPHKIEL_WALTZ, categoryCeremony).setSortIndex(5);
         zaphkielWaltz.addPages(new PageText("0"), new PageCeremony("1", ModContent.zaphkielWaltz));
 
-        eagleDance = new BLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony).setSortIndex(8);
+        buffaloDance = new BLexiconEntry(Totempedia.BUFFALO_DANCE, categoryCeremony).setSortIndex(6);
+        buffaloDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.buffaloDance));
+
+        rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony).setSortIndex(7);
+        rainDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.rainDance));
+
+        droughtDance = new BLexiconEntry(Totempedia.DROUGHT_DANCE, categoryCeremony).setSortIndex(8);
+        droughtDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.drought));
+
+        fluteInfusion = new BLexiconEntry(Totempedia.FLUTE_INFUSION, categoryCeremony).setSortIndex(9);
+        fluteInfusion.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.fluteCeremony));
+
+        eagleDance = new BLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony).setSortIndex(10);
         eagleDance.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.eagleDance));
 
-        cleansing = new BLexiconEntry(Totempedia.CLEANSING, categoryCeremony).setSortIndex(9);
+        cleansing = new BLexiconEntry(Totempedia.CLEANSING, categoryCeremony).setSortIndex(11);
         cleansing.addPages(new PageText("0"), new PageCeremony("1", ModContent.cleansing));
 
-        sunDance = new WIPLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony).setSortIndex(10);
+        sunDance = new WIPLexiconEntry(Totempedia.SUN_DANCE, categoryCeremony).setSortIndex(12);
         sunDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.sunDance));
 
-        baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(11);
+        baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(13);
         baykokSummon.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.baykokSummon));
 
-        danseMacabre = new BLexiconEntry(Totempedia.DANSE_MACABRE, categoryCeremony).setSortIndex(12);
+        danseMacabre = new BLexiconEntry(Totempedia.DANSE_MACABRE, categoryCeremony).setSortIndex(14);
         danseMacabre.addPages(new PageText("0"), new PageText("1"), new PageCeremony("2", ModContent.danseMacabre));
 
         //Tools

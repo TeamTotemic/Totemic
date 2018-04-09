@@ -6,21 +6,20 @@
     ]
   },
   "criteria": {
-    "has_buffalo_hide": {
+    "has_cedar_leaves": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "totemic:buffalo_items",
-            "data": 0
+            "item": "totemic:cedar_leaves"
           }
         ]
       }
     },
-    "performed_buffalo_dance": {
+    "performed_fertility": {
       "trigger": "totemic:perform_ceremony",
       "conditions": {
-        "ceremony": "totemic:buffalo_dance"
+        "ceremony": "totemic:fertility"
       }    
     },
     "has_the_recipe": {
@@ -32,8 +31,8 @@
   },
   "requirements": [
     [
-      "has_buffalo_hide",
-      "performed_buffalo_dance",
+      "has_cedar_leaves",
+      "performed_fertility",
       "has_the_recipe"
     ]
   ]

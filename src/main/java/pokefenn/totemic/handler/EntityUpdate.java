@@ -3,6 +3,7 @@ package pokefenn.totemic.handler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import pokefenn.totemic.init.ModPotions;
@@ -22,6 +23,7 @@ public class EntityUpdate
                     && player.isSneaking() && !player.onGround)
             {
                 player.moveRelative(0.0F, 0.0F, 0.5F, 0.1F);
+                player.motionY /= 1.5;
             }
 
             if(player.isPotionActive(ModPotions.spiderPotion))
