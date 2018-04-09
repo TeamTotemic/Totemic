@@ -134,9 +134,10 @@ public final class LexiconData
         eagleBoneWhistle = new BLexiconEntry(Totempedia.EAGLE_BONE_WHISTLE, categoryInstruments).setSortIndex(5);
         eagleBoneWhistle.addPages(new PageText("0"), new PageCraftingRecipe("1", Strings.RESOURCE_PREFIX + "eagle_bone_whistle"));
 
+        /*
         netherPipe = new BLexiconEntry(Totempedia.NETHER_PIPE, categoryInstruments).setSortIndex(6);
         netherPipe.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "nether_pipe"));
-
+*/
 
         //Ceremonies
         basicsCeremonies = new BLexiconEntry(Totempedia.BASICS_CEREMONIES, categoryCeremony).setSortIndex(-1);

@@ -134,8 +134,8 @@ public final class ModContent
                     windChime, eagleBoneWhistle).setRegistryName("baykok_summon"),
             sunDance = new CeremonySunDance("totemic:sunDance", 235, 42 * 20,
                     drum, eagleBoneWhistle).setRegistryName("sun_dance"),
-            danseMacabre = new CeremonyDanseMacabre("totemic:danseMacabre", 280, 45 * 20,
-                netherPipe, windChime).setRegistryName("danseMacabre"));
+            danseMacabre = new CeremonyDanseMacabre("totemic:danseMacabre", 235, 45 * 20,
+                eagleBoneWhistle, windChime).setRegistryName("danseMacabre"));
     }
 
     @SubscribeEvent
