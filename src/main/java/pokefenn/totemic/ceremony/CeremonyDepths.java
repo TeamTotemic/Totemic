@@ -20,10 +20,10 @@ public class CeremonyDepths extends Ceremony
     @Override
     public void effect(World world, BlockPos pos, CeremonyEffectContext context)
     {
-        if (world.isRemote)
+        if(world.isRemote)
             return;
 
-        for (EntityPlayer entity : EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
+        for(EntityPlayer entity: EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
         {
             entity.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 20 * (60 * 3), 1));
         }

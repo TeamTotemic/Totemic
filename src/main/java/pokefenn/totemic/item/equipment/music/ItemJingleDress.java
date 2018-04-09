@@ -1,5 +1,7 @@
 package pokefenn.totemic.item.equipment.music;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -9,7 +11,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,8 +27,6 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.item.equipment.EquipmentMaterials;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.util.ItemUtil;
-
-import java.util.List;
 
 public class ItemJingleDress extends ItemArmor implements ISpecialArmor
 {

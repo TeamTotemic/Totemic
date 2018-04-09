@@ -1,5 +1,9 @@
 package pokefenn.totemic.item.equipment.music;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,9 +19,6 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.ItemInstrument;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class ItemRattle extends ItemInstrument
 {
@@ -46,7 +47,6 @@ public class ItemRattle extends ItemInstrument
         return false;
     }
 
-    /*
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
@@ -55,5 +55,4 @@ public class ItemRattle extends ItemInstrument
             player.swingArm(hand);
         return new ActionResult<>(EnumActionResult.PASS, stack);
     }
-    */
 }

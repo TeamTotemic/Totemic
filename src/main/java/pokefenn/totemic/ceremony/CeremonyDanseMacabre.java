@@ -17,11 +17,8 @@ import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.util.EntityUtil;
 
-import java.util.Random;
-
 public class CeremonyDanseMacabre extends Ceremony
 {
-
     public CeremonyDanseMacabre(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
         super(name, musicNeeded, maxStartupTime, instruments);
@@ -32,29 +29,28 @@ public class CeremonyDanseMacabre extends Ceremony
     {
         int radius = 6;
 
-        if (!world.isRemote && context.getTime() % 20 == 0)
+        if(!world.isRemote && context.getTime() % 20 == 0)
         {
-            for (EntityItem entity : EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius))
+            for(EntityItem entity: EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius))
             {
-                EntityItem item = entity;
-                if (item.getItem().getItem() == Items.ROTTEN_FLESH)
+                if(entity.getItem().getItem() == Items.ROTTEN_FLESH)
                 {
-                    if (world.rand.nextInt(4) == 0)
+                    if(world.rand.nextInt(4) == 0)
                     {
                         if(entity.dimension == -1)
                         {
                             EntityPigZombie pigZombie = new EntityPigZombie(world);
-                            summon(world, pigZombie, item, pos);
+                            summon(world, pigZombie, entity);
                         }
-                        else if (world.rand.nextInt(10) == 0)
+                        else if(world.rand.nextInt(10) == 0)
                         {
                             EntityZombieVillager zombieVillager = new EntityZombieVillager(world);
-                            summon(world, zombieVillager, item, pos);
-
-                        } else
+                            summon(world, zombieVillager, entity);
+                        }
+                        else
                         {
                             EntityZombie zombie = new EntityZombie(world);
-                            summon(world, zombie, item, pos);
+                            summon(world, zombie, entity);
                         }
                     }
                 }
@@ -63,21 +59,20 @@ public class CeremonyDanseMacabre extends Ceremony
 
     }
 
-    void summon(World world, EntityZombie zombie, EntityItem item, BlockPos pos)
+    private void summon(World world, EntityZombie zombie, EntityItem item)
     {
-        Random rand = world.rand;
-        double x = pos.getX() + rand.nextInt(3);
-        int y = pos.getY();
-        int z = pos.getZ();
-        BlockPos spawnPos = new BlockPos(x, y, z);
+        BlockPos spawnPos = item.getPosition();
+        double x = item.posX;
+        double y = item.posY;
+        double z = item.posZ;
 
-        if (world.isAirBlock(spawnPos) && world.isAirBlock(new BlockPos(x, y + 1, z)))
+        if(world.isAirBlock(spawnPos) && world.isAirBlock(spawnPos.up()))
         {
             zombie.setPosition(x, y, z);
             zombie.addPotionEffect(new PotionEffect(MobEffects.SPEED, 20 * 30, 1));
             zombie.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 20 * 30, 1));
             world.spawnEntity(zombie);
-            if (item.getItem().getCount() == 1)
+            if(item.getItem().getCount() == 1)
                 item.setDead();
             else
             {
@@ -85,7 +80,7 @@ public class CeremonyDanseMacabre extends Ceremony
                 stack.shrink(1);
                 item.setItem(stack);
             }
-            spawnParticles(world, x, y, z);
+            ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y, z, 24, 0.6D, 0.5D, 0.6D, 1.0D);
         }
     }
 
@@ -100,13 +95,4 @@ public class CeremonyDanseMacabre extends Ceremony
     {
         return 6;
     }
-
-    private void spawnParticles(World world, double x, double y, double z)
-    {
-        double dx = world.rand.nextGaussian();
-        double dy = world.rand.nextGaussian() * 0.5;
-        double dz = world.rand.nextGaussian();
-        double velY = world.rand.nextGaussian();
-        for (int i = 0; i < 20; i++)
-            ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, x + dx, y + dy, z + dz, 0, velY, 0);    }
 }
