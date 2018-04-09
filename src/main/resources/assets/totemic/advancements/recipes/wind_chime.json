@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_totempedia": {
+    "has_cedar_wood": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "totemic:totempedia"
+            "item": "totemic:cedar_log"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_totempedia",
+      "has_cedar_wood",
       "has_the_recipe"
     ]
   ]

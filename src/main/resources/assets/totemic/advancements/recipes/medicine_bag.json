@@ -16,10 +16,10 @@
         ]
       }
     },
-    "performed_zaphkiel_waltz": {
+    "performed_fertility_waltz": {
       "trigger": "totemic:perform_ceremony",
       "conditions": {
-        "ceremony": "totemic:zaphkiel_waltz"
+        "ceremony": "totemic:fertility"
       }
     },
     "has_the_recipe": {
@@ -32,7 +32,7 @@
   "requirements": [
     [
       "has_cedar_plank",
-      "performed_zaphkiel_waltz",
+      "performed_fertility",
       "has_the_recipe"
     ]
   ]
