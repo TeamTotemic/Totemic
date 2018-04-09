@@ -119,7 +119,7 @@ public final class LexiconData
         flute.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "flute"));
 
         drum = new BLexiconEntry(Totempedia.DRUM, categoryInstruments).setSortIndex(1);
-        drum.addPages(new PageText("0"), new PageCraftingRecipe("1", Strings.RESOURCE_PREFIX + "drum"));
+        drum.addPages(new PageText("0"), new PageText("1"),new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "drum"));
 
         windChime = new BLexiconEntry(Totempedia.WIND_CHIME, categoryInstruments).setSortIndex(2);
         windChime.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "wind_chime"));
