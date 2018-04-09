@@ -23,6 +23,7 @@ public class EntityUpdate
                     && player.isSneaking() && !player.onGround)
             {
                 player.moveRelative(0.0F, 0.0F, 0.5F, 0.1F);
+                player.motionY /= 1.5;
             }
 
             if(player.isPotionActive(ModPotions.spiderPotion))
