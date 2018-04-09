@@ -4,6 +4,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -31,10 +33,8 @@ import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.util.EntityUtil;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Set;
-import java.util.WeakHashMap;
+import javax.annotation.Nullable;
+import java.util.*;
 
 public class ItemNetherPipe extends ItemInstrument
 {
@@ -48,6 +48,13 @@ public class ItemNetherPipe extends ItemInstrument
         setCreativeTab(Totemic.tabsTotem);
         setMaxStackSize(1);
         setMaxDamage(10);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
+    {
+        tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
     @Override

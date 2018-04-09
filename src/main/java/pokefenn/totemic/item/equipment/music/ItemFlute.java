@@ -1,9 +1,12 @@
 package pokefenn.totemic.item.equipment.music;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -28,6 +31,8 @@ import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.util.EntityUtil;
 
+import javax.annotation.Nullable;
+
 public class ItemFlute extends ItemInstrument
 {
     //Entities that have been tempted by the infused flute get stored in this weak set
@@ -45,14 +50,23 @@ public class ItemFlute extends ItemInstrument
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
+    {
+        if (stack.getItemDamage() == 1)
+            tooltip.add(I18n.format(getUnlocalizedName() +".tooltip1"));
+        tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip0"));
+    }
+
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         ItemStack stack = player.getHeldItem(hand);
-        if(!world.isRemote)
+        if (!world.isRemote)
         {
             useInstrument(stack, player, 20);
 
-            if(stack.getItemDamage() == 1 && !player.isSneaking())
+            if (stack.getItemDamage() == 1 && !player.isSneaking())
                 temptEntities(world, player.posX, player.posY, player.posZ);
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
@@ -71,17 +85,17 @@ public class ItemFlute extends ItemInstrument
         int bonusMusic = (stack.getItemDamage() == 1) ? entity.world.rand.nextInt(2) : 0;
         TotemicAPI.get().music().playMusic0(entity.world, entity.posX, entity.posY, entity.posZ, entity, instrument, MusicAPI.DEFAULT_RANGE, instrument.getBaseOutput() + bonusMusic);
         spawnParticles((WorldServer) entity.world, entity.posX, entity.posY, entity.posZ, false);
-        if(sound != null)
+        if (sound != null)
             entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
     }
 
     private void temptEntities(World world, double x, double y, double z)
     {
-        for(EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, x, y, z, 2, 2))
+        for (EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, x, y, z, 2, 2))
         {
-            if((entity instanceof EntityAnimal && entity.getNavigator() instanceof PathNavigateGround) || entity instanceof EntityVillager)
+            if ((entity instanceof EntityAnimal && entity.getNavigator() instanceof PathNavigateGround) || entity instanceof EntityVillager)
             {
-                if(temptedEntities.contains(entity))
+                if (temptedEntities.contains(entity))
                     continue;
 
                 double speed = (entity instanceof EntityAnimal) ? 1 : 0.5;
@@ -96,7 +110,7 @@ public class ItemFlute extends ItemInstrument
     @Override
     public String getUnlocalizedName(ItemStack stack)
     {
-        if(stack.getItemDamage() == 1)
+        if (stack.getItemDamage() == 1)
             return "item." + Strings.RESOURCE_PREFIX + "infused_flute";
         else
             return "item." + Strings.RESOURCE_PREFIX + "flute";
@@ -105,7 +119,7 @@ public class ItemFlute extends ItemInstrument
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list)
     {
-        if(isInCreativeTab(tab))
+        if (isInCreativeTab(tab))
         {
             list.add(new ItemStack(this, 1, 0));
             list.add(new ItemStack(this, 1, 1));

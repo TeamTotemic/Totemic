@@ -5,6 +5,8 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -14,12 +16,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.tileentity.music.TileWindChime;
 import pokefenn.totemic.util.TotemUtil;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockWindChime extends Block implements ITileEntityProvider
 {
@@ -37,6 +44,13 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     {
         if(!world.isRemote && player != null && player.isSneaking())
             playMusic(world, pos, player);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
+    {
+        tooltip.add(I18n.format(getUnlocalizedName() + ".tooltip"));
     }
 
     @Override
