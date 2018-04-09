@@ -28,29 +28,26 @@ public class CeremonyFertility extends Ceremony
     {
         int radius = 8;
 
-        if(!world.isRemote && context.getTime() % 20 * 5 == 0)
+        if(!world.isRemote && context.getTime() % (20 * 5) == 0)
         {
             for(Entity entity: EntityUtil.getEntitiesInRange(EntityLiving.class, world, pos, radius, radius))
             {
                 if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
                 {
-                    if(world.rand.nextInt(4) == 0)
+                    if(entity instanceof EntityAnimal && ((EntityAnimal) entity).getGrowingAge() == 0 && !((EntityAnimal) entity).isInLove())
                     {
-                        if(entity instanceof EntityAnimal && !((EntityAnimal) entity).isInLove())
-                        {
-                            EntityAnimal animal = (EntityAnimal) entity;
-                            animal.setInLove(null);
-                        }
-                        else
-                        {
-                            //TODO: figure out how to make villagers mate
-                            /*
-                            EntityVillager villager = (EntityVillager) entity;
-                            villager.setIsWillingToMate(true);
-                            villager.tasks.addTask(0, new EntityAIVillagerMate(villager));
-                            villager.setMating(true);
-                            */
-                        }
+                        EntityAnimal animal = (EntityAnimal) entity;
+                        animal.setInLove(null);
+                    }
+                    else
+                    {
+                        //TODO: figure out how to make villagers mate
+                        /*
+                        EntityVillager villager = (EntityVillager) entity;
+                        villager.setIsWillingToMate(true);
+                        villager.tasks.addTask(0, new EntityAIVillagerMate(villager));
+                        villager.setMating(true);
+                        */
                     }
                 }
             }
