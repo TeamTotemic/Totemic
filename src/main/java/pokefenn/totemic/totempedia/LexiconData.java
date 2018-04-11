@@ -28,10 +28,8 @@ import pokefenn.totemic.totempedia.page.PageText;
 public final class LexiconData
 {
     public static LexiconCategory categoryBasics;
-    //public static LexiconCategory categoryDevices;
     public static LexiconCategory categoryTools;
     public static LexiconCategory categoryMisc;
-    //public static LexiconCategory categoryLore;
     public static LexiconCategory categoryCeremony;
     public static LexiconCategory categoryTotems;
     public static LexiconCategory categoryInstruments;
@@ -73,7 +71,6 @@ public final class LexiconData
     public static LexiconEntry totemicStaff;
     public static LexiconEntry barkStripper;
     public static LexiconEntry baykokBow;
-    //public static LexiconEntry blowDart;
 
     public static LexiconEntry tipi;
     public static LexiconEntry totemTorch;
@@ -83,22 +80,20 @@ public final class LexiconData
         LexiconAPI reg = Totemic.api.lexicon();
 
         reg.addCategory(categoryBasics = new LexiconCategory(Totempedia.CATEGORY_BASICS));
-        //reg.addCategory(categoryDevices = new LexiconCategory(Totempedia.CATEGORY_DEVICES));
-        reg.addCategory(categoryInstruments = new LexiconCategory(Totempedia.CATEGORY_INSTRUMENTS));
         reg.addCategory(categoryTotems = new LexiconCategory(Totempedia.CATEGORY_TOTEMS));
+        reg.addCategory(categoryInstruments = new LexiconCategory(Totempedia.CATEGORY_INSTRUMENTS));
         reg.addCategory(categoryCeremony = new LexiconCategory(Totempedia.CATEGORY_CEREMONY));
         reg.addCategory(categoryTools = new LexiconCategory(Totempedia.CATEGORY_TOOLS));
         reg.addCategory(categoryMisc = new LexiconCategory(Totempedia.CATEGORY_MISC));
-        //TotemicAPI.addCategory(categoryLore = new LexiconCategory(Totempedia.CATEGORY_LORE));
 
         //Basics
-        melody = new BLexiconEntry(Totempedia.MELODY, categoryBasics);
+        melody = new BLexiconEntry(Totempedia.MELODY, categoryBasics).setSortIndex(0);
         melody.addPages(new PageText("0"));
 
-        cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics);
-        cedarTree.addPages(new PageText("0"));
+        cedarTree = new BLexiconEntry(Totempedia.CEDAR_TREE, categoryBasics).setSortIndex(1);
+        cedarTree.addPages(new PageText("0"), new PageText("1"));
 
-        buffaloBasic = new BLexiconEntry(Totempedia.BUFFALO_BASIC, categoryBasics);
+        buffaloBasic = new BLexiconEntry(Totempedia.BUFFALO_BASIC, categoryBasics).setSortIndex(2);
         buffaloBasic.addPages(new PageText("0"));
 
         //Totems and Effects
@@ -124,12 +119,12 @@ public final class LexiconData
         windChime = new BLexiconEntry(Totempedia.WIND_CHIME, categoryInstruments).setSortIndex(2);
         windChime.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "wind_chime"));
 
-        rattle = new BLexiconEntry(Totempedia.RATTLE, categoryInstruments).setSortIndex(3);
-        rattle.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "rattle"));
-
-        jingleDress = new BLexiconEntry(Totempedia.JINGLE_DRESS, categoryInstruments).setSortIndex(4);
+        jingleDress = new BLexiconEntry(Totempedia.JINGLE_DRESS, categoryInstruments).setSortIndex(3);
         jingleDress.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "jingle_dress"),
                 new PageCraftingRecipe("3", Strings.RESOURCE_PREFIX + "iron_bells"));
+
+        rattle = new BLexiconEntry(Totempedia.RATTLE, categoryInstruments).setSortIndex(4);
+        rattle.addPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "rattle"));
 
         eagleBoneWhistle = new BLexiconEntry(Totempedia.EAGLE_BONE_WHISTLE, categoryInstruments).setSortIndex(5);
         eagleBoneWhistle.addPages(new PageText("0"), new PageCraftingRecipe("1", Strings.RESOURCE_PREFIX + "eagle_bone_whistle"));
@@ -144,7 +139,7 @@ public final class LexiconData
         basicsCeremonies.addPages(new PageText("0"), new PageText("1"));
 
         selectingCeremonies = new BLexiconEntry(Totempedia.SELECTING_CEREMONIES, categoryCeremony).setSortIndex(0);
-        selectingCeremonies.addPages(new PageText("0"));
+        selectingCeremonies.addPages(new PageText("0"), new PageText("1"));
 
         performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony).setSortIndex(1);
         performingCeremonies.addPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));
