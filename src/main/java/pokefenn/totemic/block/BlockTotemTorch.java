@@ -18,6 +18,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.lib.Strings;
 
+import javax.annotation.Nullable;
+
 public class BlockTotemTorch extends Block
 {
     public BlockTotemTorch()
@@ -29,6 +31,13 @@ public class BlockTotemTorch extends Block
         setSoundType(SoundType.WOOD);
         setHardness(0.05F);
         setCreativeTab(Totemic.tabsTotem);
+
+    }
+
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
     }
 
     @Override
