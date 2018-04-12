@@ -16,6 +16,12 @@
         ]
       }
     },
+    "performed_fertility": {
+      "trigger": "totemic:perform_ceremony",
+      "conditions": {
+        "ceremony": "totemic:fertility"
+      }    
+    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -26,6 +32,7 @@
   "requirements": [
     [
       "has_cedar_wood",
+      "performed_fertility",
       "has_the_recipe"
     ]
   ]

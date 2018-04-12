@@ -6,20 +6,25 @@
     ]
   },
   "criteria": {
-    "has_cedar_plank": {
+    "has_buffalo_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "totemic:cedar_plank"
+            "item": "totemic:buffalo_items",
+            "data": 0
+          },
+          {
+            "item": "totemic:buffalo_items",
+            "data": 1
           }
         ]
       }
     },
-    "performed_fertility_waltz": {
+    "performed_buffalo_dance": {
       "trigger": "totemic:perform_ceremony",
       "conditions": {
-        "ceremony": "totemic:fertility"
+        "ceremony": "totemic:buffalo_dance"
       }
     },
     "has_the_recipe": {
@@ -31,8 +36,8 @@
   },
   "requirements": [
     [
-      "has_cedar_plank",
-      "performed_fertility_waltz",
+      "has_buffalo_item",
+      "performed_buffalo_dance",
       "has_the_recipe"
     ]
   ]
