@@ -62,8 +62,8 @@ public final class ModContent
         event.getRegistry().registerAll(
             flute = new MusicInstrument("totemic:flute", 3, 50).setItem(new ItemStack(ModItems.flute)).setRegistryName("flute"),
             drum = new MusicInstrument("totemic:drum", 4, 55).setItem(new ItemStack(ModBlocks.drum)).setRegistryName("drum"),
-            windChime = new MusicInstrument("totemic:windChime", 3, 30).setItem(new ItemStack(ModBlocks.wind_chime)).setRegistryName("wind_chime"),
-            jingleDress = new MusicInstrument("totemic:jingleDress", 2, 30).setItem(new ItemStack(ModItems.jingle_dress)).setRegistryName("jingle_dress"),
+            windChime = new MusicInstrument("totemic:windChime", 2, 25).setItem(new ItemStack(ModBlocks.wind_chime)).setRegistryName("wind_chime"),
+            jingleDress = new MusicInstrument("totemic:jingleDress", 3, 25).setItem(new ItemStack(ModItems.jingle_dress)).setRegistryName("jingle_dress"),
             rattle = new MusicInstrument("totemic:rattle", 5, 55).setItem(new ItemStack(ModItems.rattle)).setRegistryName("rattle"),
             eagleBoneWhistle = new MusicInstrument("totemic:eagleBoneWhistle", 6, 60).setItem(new ItemStack(ModItems.eagle_bone_whistle)).setRegistryName("eagle_bone_whistle"),
             netherPipe = new MusicInstrument("totemic:netherPipe", 4, 65).setItem(new ItemStack(ModItems.nether_pipe)).setRegistryName("nether_pipe"));
@@ -101,14 +101,14 @@ public final class ModContent
     {
         //Music amount landmarks:
         //105: Flute + Drum
-        //135: Flute + Drum + full Wind Chime
-        //165: Flute + Drum + full Wind Chime + Jingle Dress
+        //130: Flute + Drum + full Wind Chime
+        //155: Flute + Drum + full Wind Chime + Jingle Dress
         //160: Flute + Drum + Rattle
-        //190: Flute + Drum + Rattle + full Wind Chime
-        //220: Flute + Drum + Rattle + full Wind Chime + Jingle Dress
+        //185: Flute + Drum + Rattle + full Wind Chime
+        //210: Flute + Drum + Rattle + full Wind Chime + Jingle Dress
         //220: Flute + Drum + Rattle + Eagle-Bone Whistle
-        //250: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
-        //280: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
+        //245: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
+        //270: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
         event.getRegistry().registerAll(
             warDance = new CeremonyWarDance("totemic:warDance", 75, 19 * 20,
                     drum, drum).setRegistryName("war_dance"),
@@ -116,25 +116,25 @@ public final class ModContent
                     flute, flute).setRegistryName("depths"),
             fertility = new CeremonyFertility("totemic:fertility", 88, 22 * 20,
                     flute, drum).setRegistryName("fertility"),
-            zaphkielWaltz = new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 110, 21 * 20,
+            zaphkielWaltz = new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 106, 20 * 20,
                     windChime, flute).setRegistryName("zaphkiel_waltz"),
-            buffaloDance = new CeremonyBuffaloDance("totemic:buffaloDance", 116, 25 * 20,
+            buffaloDance = new CeremonyBuffaloDance("totemic:buffaloDance", 111, 24 * 20,
                     drum, windChime).setRegistryName("buffalo_dance"),
-            rainDance = new CeremonyRain(true, "totemic:rainDance", 182, 27 * 20,
+            rainDance = new CeremonyRain(true, "totemic:rainDance", 179, 26 * 20,
                     drum, rattle).setRegistryName("rain_dance"),
-            drought = new CeremonyRain(false, "totemic:drought", 182, 27 * 20,
+            drought = new CeremonyRain(false, "totemic:drought", 179, 26 * 20,
                     rattle, drum).setRegistryName("drought"),
-            fluteCeremony = new CeremonyFluteInfusion("totemic:flute", 185, 28 * 20,
+            fluteCeremony = new CeremonyFluteInfusion("totemic:flute", 180, 28 * 20,
                     flute, rattle).setRegistryName("flute"),
-            eagleDance = new CeremonyEagleDance("totemic:eagleDance", 190, 29 * 20,
+            eagleDance = new CeremonyEagleDance("totemic:eagleDance", 185, 29 * 20,
                     rattle, windChime).setRegistryName("eagle_dance"),
-            cleansing = new CeremonyCleansing("totemic:cleansing", 225, 35 * 20,
+            cleansing = new CeremonyCleansing("totemic:cleansing", 230, 35 * 20,
                     eagleBoneWhistle, flute).setRegistryName("cleansing"),
-            baykokSummon = new CeremonyBaykok("totemic:baykokSummon", 237,  40 * 20,
+            baykokSummon = new CeremonyBaykok("totemic:baykokSummon", 241, 40 * 20,
                     windChime, eagleBoneWhistle).setRegistryName("baykok_summon"),
-            sunDance = new CeremonySunDance("totemic:sunDance", 235, 42 * 20,
+            sunDance = new CeremonySunDance("totemic:sunDance", 240, 41 * 20,
                     drum, eagleBoneWhistle).setRegistryName("sun_dance"),
-            danseMacabre = new CeremonyDanseMacabre("totemic:danseMacabre", 235, 45 * 20,
+            danseMacabre = new CeremonyDanseMacabre("totemic:danseMacabre", 238, 45 * 20,
                 eagleBoneWhistle, windChime).setRegistryName("danseMacabre"));
     }
 
