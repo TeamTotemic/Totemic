@@ -1,7 +1,9 @@
 {
     "__createdwith": "opl's Model Creator",
-    "ambientocclusion": false,
     "textures": {
+        "top": "totemic:blocks/stripped_cedar_log_top",
+        "wood": "totemic:blocks/stripped_cedar_log",
+        "particle": "totemic:blocks/stripped_cedar_log"
     },
     "elements": [
         {
@@ -9,7 +11,7 @@
             "to": [11,8,12],
             "faces": {
                 "down": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "down"
                 },
                 "west": {
@@ -31,7 +33,7 @@
             "to": [11,14,12],
             "faces": {
                 "up": {
-                    "texture": "#wood"
+                    "texture": "#top"
                 },
                 "west": {
                     "texture": "#wood"
@@ -55,7 +57,7 @@
                     "texture": "#wood"
                 },
                 "down": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "down"
                 },
                 "west": {
@@ -77,7 +79,7 @@
                     "texture": "#wood"
                 },
                 "down": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "down"
                 },
                 "west": {
@@ -96,7 +98,7 @@
             "to": [11,16,7],
             "faces": {
                 "up": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "up"
                 },
                 "west": {
@@ -118,7 +120,7 @@
             "to": [7,16,7],
             "faces": {
                 "up": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "up"
                 },
                 "west": {
@@ -182,7 +184,7 @@
             "to": [11,14,6],
             "faces": {
                 "up": {
-                    "texture": "#wood"
+                    "texture": "#top"
                 },
                 "down": {
                     "texture": "#wood"

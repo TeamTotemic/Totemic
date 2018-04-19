@@ -1,7 +1,9 @@
 {
     "__createdwith": "opl's Model Creator",
-    "ambientocclusion": false,
     "textures": {
+        "top": "totemic:blocks/stripped_cedar_log_top",
+        "wood": "totemic:blocks/stripped_cedar_log",
+        "particle": "totemic:blocks/stripped_cedar_log"
     },
     "elements": [
         {
@@ -9,10 +11,10 @@
             "to": [14,13,14],
             "faces": {
                 "up": {
-                    "texture": "#wood"
+                    "texture": "#top"
                 },
                 "down": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "down"
                 },
                 "west": {
@@ -34,7 +36,7 @@
             "to": [13,16,12],
             "faces": {
                 "up": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "up"
                 },
                 "west": {
@@ -62,7 +64,7 @@
             "to": [5,16,12],
             "faces": {
                 "up": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "up"
                 },
                 "west": {
@@ -93,7 +95,7 @@
                     "texture": "#wood"
                 },
                 "down": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "down"
                 },
                 "west": {
@@ -112,7 +114,7 @@
             "to": [14,13,6],
             "faces": {
                 "up": {
-                    "texture": "#wood"
+                    "texture": "#top"
                 },
                 "down": {
                     "texture": "#wood"
@@ -154,7 +156,7 @@
                     "texture": "#wood"
                 },
                 "down": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "down"
                 },
                 "west": {

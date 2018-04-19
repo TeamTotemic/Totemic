@@ -1,15 +1,20 @@
 {
+    "textures": {
+        "wood": "totemic:blocks/stripped_cedar_log",
+        "top": "totemic:blocks/stripped_cedar_log_top",
+        "particle": "totemic:blocks/stripped_cedar_log"
+    },
     "elements": [
         {
             "from": [2,0,2],
             "to": [14,16,14],
             "faces": {
                 "up": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "up"
                 },
                 "down": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "down"
                 },
                 "west": {

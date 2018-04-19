@@ -10,6 +10,7 @@
                 "textures": {
                     "wood": "totemic:blocks/stripped_oak_log",
                     "bark": "blocks/log_oak",
+                    "top": "blocks/log_oak_top",
                     "particle": "totemic:blocks/stripped_oak_log"
                 }
             },
@@ -17,6 +18,7 @@
                 "textures": {
                     "wood": "totemic:blocks/stripped_spruce_log",
                     "bark": "blocks/log_spruce",
+                    "top": "blocks/log_spruce_top",
                     "particle": "totemic:blocks/stripped_spruce_log"
                 }
             },
@@ -24,6 +26,7 @@
                 "textures": {
                     "wood": "totemic:blocks/stripped_birch_log",
                     "bark": "blocks/log_birch",
+                    "top": "blocks/log_birch_top",
                     "particle": "totemic:blocks/stripped_birch_log"
                 }
             },
@@ -31,6 +34,7 @@
                 "textures": {
                     "wood": "totemic:blocks/stripped_jungle_log",
                     "bark": "blocks/log_jungle",
+                    "top": "blocks/log_jungle_top",
                     "particle": "totemic:blocks/stripped_oak_log"
                 }
             },
@@ -38,6 +42,7 @@
                 "textures": {
                     "wood": "totemic:blocks/stripped_acacia_log",
                     "bark": "blocks/log_acacia",
+                    "top": "blocks/log_acacia_top",
                     "particle": "totemic:blocks/stripped_acacia_log"
                 }
             },
@@ -45,6 +50,7 @@
                 "textures": {
                     "wood": "totemic:blocks/stripped_dark_oak_log",
                     "bark": "blocks/log_big_oak",
+                    "top": "blocks/log_big_oak_top",
                     "particle": "totemic:blocks/stripped_dark_oak_log"
                 }
             },
@@ -52,6 +58,7 @@
                 "textures": {
                     "wood": "totemic:blocks/stripped_cedar_log",
                     "bark": "totemic:blocks/cedar_log",
+                    "top": "totemic:blocks/cedar_log_top",
                     "particle": "totemic:blocks/stripped_cedar_log"
                 }
             }

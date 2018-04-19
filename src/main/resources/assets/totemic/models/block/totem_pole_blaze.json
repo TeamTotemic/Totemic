@@ -1,7 +1,9 @@
 {
     "__createdwith": "opl's Model Creator",
-    "ambientocclusion": false,
     "textures": {
+        "wood": "totemic:blocks/stripped_cedar_log",
+        "top": "totemic:blocks/stripped_cedar_log_top",
+        "particle": "totemic:blocks/stripped_cedar_log"
     },
     "elements": [
         {
@@ -9,7 +11,7 @@
             "to": [12,7,12],
             "faces": {
                 "down": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "down"
                 },
                 "west": {
@@ -172,7 +174,7 @@
             "to": [13,16,13],
             "faces": {
                 "up": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "up"
                 },
                 "down": {
@@ -198,7 +200,7 @@
             "to": [13,16,4],
             "faces": {
                 "up": {
-                    "texture": "#wood",
+                    "texture": "#top",
                     "cullface": "up"
                 },
                 "west": {

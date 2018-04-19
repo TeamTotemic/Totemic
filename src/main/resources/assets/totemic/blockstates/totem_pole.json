@@ -9,42 +9,49 @@
             "oak": {
                 "textures": {
                     "wood": "totemic:blocks/stripped_oak_log",
+                    "top": "totemic:blocks/stripped_oak_log_top",
                     "particle": "totemic:blocks/stripped_oak_log"
                 }
             },
             "spruce": {
                 "textures": {
                     "wood": "totemic:blocks/stripped_spruce_log",
+                    "top": "totemic:blocks/stripped_spruce_log_top",
                     "particle": "totemic:blocks/stripped_spruce_log"
                 }
             },
             "birch": {
                 "textures": {
                     "wood": "totemic:blocks/stripped_birch_log",
+                    "top": "totemic:blocks/stripped_birch_log_top",
                     "particle": "totemic:blocks/stripped_birch_log"
                 }
             },
             "jungle": {
                 "textures": {
                     "wood": "totemic:blocks/stripped_jungle_log",
+                    "top": "totemic:blocks/stripped_jungle_log_top",
                     "particle": "totemic:blocks/stripped_oak_log"
                 }
             },
             "acacia": {
                 "textures": {
                     "wood": "totemic:blocks/stripped_acacia_log",
+                    "top": "totemic:blocks/stripped_acacia_log_top",
                     "particle": "totemic:blocks/stripped_acacia_log"
                 }
             },
             "dark_oak": {
                 "textures": {
                     "wood": "totemic:blocks/stripped_dark_oak_log",
+                    "top": "totemic:blocks/stripped_dark_oak_log_top",
                     "particle": "totemic:blocks/stripped_dark_oak_log"
                 }
             },
             "cedar": {
                 "textures": {
                     "wood": "totemic:blocks/stripped_cedar_log",
+                    "top": "totemic:blocks/stripped_cedar_log_top",
                     "particle": "totemic:blocks/stripped_cedar_log"
                 }
             }
