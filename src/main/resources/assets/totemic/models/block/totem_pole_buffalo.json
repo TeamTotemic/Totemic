@@ -43,7 +43,8 @@
                     "texture": "#top"
                 },
                 "west": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "tintindex": 1
                 },
                 "north": {
                     "texture": "#wood"

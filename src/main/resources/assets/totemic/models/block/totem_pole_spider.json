@@ -26,7 +26,8 @@
                 },
                 "north": {
                     "uv": [3.0,0.0,13.0,16.0],
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "tintindex": 2
                 },
                 "south": {
                     "texture": "#wood"

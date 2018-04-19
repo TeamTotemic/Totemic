@@ -24,7 +24,8 @@
                     "texture": "#wood"
                 },
                 "north": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "tintindex": 1
                 },
                 "south": {
                     "texture": "#wood"

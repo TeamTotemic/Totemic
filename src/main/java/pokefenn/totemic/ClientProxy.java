@@ -60,6 +60,19 @@ public class ClientProxy extends CommonProxy
     {
         Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(
                 (state, world, pos, tintIndex) -> ColorizerFoliage.getFoliageColorPine(), ModBlocks.cedar_leaves);
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(
+                (state, world, pos, tintIndex) -> {
+                    //Colors for totem pole paint
+                    switch(tintIndex)
+                    {
+                    case 1: return 0x555555; //Black
+                    case 2: return 0xAA5555; //Red
+                    case 3: return 0xAA55EE; //Purple
+
+                    default: return -1;
+                    }
+                },
+                ModBlocks.totem_pole);
     }
 
     private void initTESRs()
