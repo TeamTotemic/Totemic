@@ -1,7 +1,6 @@
 package pokefenn.totemic.client.rendering.model;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 import javax.annotation.Nullable;
@@ -45,13 +44,33 @@ public class ModelTotemPole implements IModel
         this.blankModel = ModelLoaderRegistry.getModelOrMissing(new ResourceLocation("totemic", "block/totem_pole_blank"));
 
         ImmutableMap.Builder<TotemEffect, IModel> builder = ImmutableMap.builder();
-        for(TotemEffect totem : TotemicRegistries.totemEffects())
+        for(TotemEffect totem: TotemicRegistries.totemEffects())
         {
             ResourceLocation name = totem.getRegistryName();
             builder.put(totem, ModelLoaderRegistry.getModelOrLogError(new ResourceLocation(name.getResourceDomain(), "block/totem_pole_" + name.getResourcePath()),
                     "Could not load Totem Pole model for " + name));
         }
         this.totemModels = builder.build();
+    }
+
+    @Override
+    public Collection<ResourceLocation> getDependencies()
+    {
+        Set<ResourceLocation> deps = new HashSet<>();
+        deps.addAll(blankModel.getDependencies());
+        for(IModel model: totemModels.values())
+            deps.addAll(model.getDependencies());
+        return deps;
+    }
+
+    @Override
+    public Collection<ResourceLocation> getTextures()
+    {
+        Set<ResourceLocation> textures = new HashSet<>();
+        textures.addAll(blankModel.getTextures());
+        for(IModel model: totemModels.values())
+            textures.addAll(model.getTextures());
+        return textures;
     }
 
     @Override
