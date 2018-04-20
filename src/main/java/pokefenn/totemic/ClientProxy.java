@@ -68,6 +68,7 @@ public class ClientProxy extends CommonProxy
                     case 1: return 0x555555; //Black
                     case 2: return 0xAA5555; //Red
                     case 3: return 0xAA55EE; //Purple
+                    case 4: return 0xBBBB66; //Yellow
 
                     default: return -1;
                     }

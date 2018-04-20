@@ -25,7 +25,8 @@
                     "texture": "#wood"
                 },
                 "north": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "tintindex": 1
                 },
                 "south": {
                     "texture": "#wood"
@@ -180,6 +181,16 @@
                 "north": {
                     "texture": "#wood",
                     "cullface": "north"
+                }
+            }
+        },
+        {
+            "from": [5,2,1.75],
+            "to": [11,7,2],
+            "faces": {
+                "north": {
+                    "texture": "#wood",
+                    "tintindex": 1
                 }
             }
         }
