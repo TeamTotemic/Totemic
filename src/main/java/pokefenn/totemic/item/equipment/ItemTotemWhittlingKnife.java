@@ -20,7 +20,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
-import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.block.totem.BlockTotemPole;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.item.ItemTotemic;
@@ -109,22 +108,24 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
                     return EnumActionResult.FAIL;
             }
 
+            IBlockState newState;
+
             TotemEffect effect = getCarvingEffect(stack);
             if(effect != null)
             {
-                world.setBlockState(pos, ModBlocks.totem_pole.getDefaultState().withProperty(BlockTotemPole.WOOD, wood), 0);
+                newState = ModBlocks.totem_pole.getDefaultState().withProperty(BlockTotemPole.WOOD, wood);
+                world.setBlockState(pos, newState, 3);
                 TileTotemPole tile = (TileTotemPole) world.getTileEntity(pos);
 
                 tile.setEffect(effect);
-                tile.markForUpdate();
             }
             else
             {
-                world.setBlockState(pos, ModBlocks.totem_base.getDefaultState().withProperty(BlockTotemBase.WOOD, wood), 3);
+                newState = ModBlocks.totem_base.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, 0, player, hand).withProperty(BlockTotemPole.WOOD, wood);
+                world.setBlockState(pos, newState, 3);
             }
 
-            state = world.getBlockState(pos);
-            state.getBlock().onBlockPlacedBy(world, pos, state, player, stack);
+            newState.getBlock().onBlockPlacedBy(world, pos, newState, player, stack);
             stack.damageItem(1, player);
 
             return EnumActionResult.SUCCESS;

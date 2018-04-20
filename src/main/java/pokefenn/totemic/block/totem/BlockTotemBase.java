@@ -3,7 +3,9 @@ package pokefenn.totemic.block.totem;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import net.minecraft.block.Block;
+import javax.annotation.Nullable;
+
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -12,10 +14,9 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -32,7 +33,7 @@ import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.tileentity.totem.*;
 
-public class BlockTotemBase extends Block implements ITileEntityProvider, TotemicStaffUsage
+public class BlockTotemBase extends BlockHorizontal implements ITileEntityProvider, TotemicStaffUsage
 {
     public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);
 
@@ -98,40 +99,63 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return getMetaFromState(state);
-    }
-
-    @Override
     public int quantityDropped(Random rand)
     {
         return 0;
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-    {
-        for(int i = 0; i < WoodVariant.values().length; i++)
-            list.add(new ItemStack(this, 1, i));
-    }
-
-    @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, WOOD);
+        return new BlockStateContainer(this, FACING, WOOD);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(WOOD).ordinal();
+        return state.getValue(FACING).getHorizontalIndex();
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(WOOD, WoodVariant.values()[meta]);
+        return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof TileTotemBase)
+            return state.withProperty(WOOD, ((TileTotemBase) tile).getWoodType());
+        return state;
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rot)
+    {
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
+    {
+        return state.withRotation(mirror.toRotation(state.getValue(FACING)));
+    }
+
+    @Override
+    @Nullable
+    public TileEntity createTileEntity(World world, IBlockState state)
+    {
+        TileTotemBase tile = new TileTotemBase();
+        tile.setWoodType(state.getValue(WOOD));
+        return tile;
     }
 
     @Override

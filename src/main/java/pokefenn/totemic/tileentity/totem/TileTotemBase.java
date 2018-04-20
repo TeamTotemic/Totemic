@@ -23,7 +23,6 @@ import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemBase;
 import pokefenn.totemic.api.totem.TotemEffect;
-import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.handler.GameOverlay;
 import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.network.NetworkHandler;
@@ -33,6 +32,8 @@ import pokefenn.totemic.tileentity.TileTotemic;
 public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
 {
     private boolean firstTick = true;
+
+    private WoodVariant woodType = WoodVariant.OAK;
 
     private TotemState state = new StateTotemEffect(this);
 
@@ -99,7 +100,12 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
 
     public WoodVariant getWoodType()
     {
-        return world.getBlockState(pos).getValue(BlockTotemBase.WOOD);
+        return woodType;
+    }
+
+    public void setWoodType(WoodVariant woodType)
+    {
+        this.woodType = woodType;
     }
 
     public Multiset<TotemEffect> getTotemEffectSet()
@@ -179,6 +185,7 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
     {
         tag = super.writeToNBT(tag);
 
+        tag.setByte("wood", (byte) woodType.ordinal());
         tag.setByte("state", (byte) state.getID());
         state.writeToNBT(tag);
 
@@ -190,6 +197,7 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
     {
         super.readFromNBT(tag);
 
+        woodType = WoodVariant.values()[tag.getByte("wood")];
         if(tag.hasKey("state", 99))
             state = TotemState.fromID(tag.getByte("state"), this);
         else
