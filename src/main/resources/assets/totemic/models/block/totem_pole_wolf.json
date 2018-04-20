@@ -89,7 +89,7 @@
             }
         },
         {
-            "from": [5,0,1],
+            "from": [5,0,0],
             "to": [11,5,5],
             "faces": {
                 "up": {
@@ -106,7 +106,8 @@
                     "texture": "#wood"
                 },
                 "north": {
-                    "texture": "#wood"
+                    "texture": "#wood",
+                    "cullface": "north"
                 }
             }
         },
