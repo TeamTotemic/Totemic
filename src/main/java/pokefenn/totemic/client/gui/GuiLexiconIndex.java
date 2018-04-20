@@ -62,7 +62,7 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
     public void initGui()
     {
         super.initGui();
-        buttonList.add(new GuiButtonBack(12, left + guiWidth / 2 - 8, top + guiHeight + 2));
+        buttonList.add(backButton = new GuiButtonBack(12, left + guiWidth / 2 - 8, top + guiHeight + 2));
         buttonList.add(leftButton = new GuiButtonPage(13, left, top + guiHeight - 10, false));
         buttonList.add(rightButton = new GuiButtonPage(14, left + guiWidth - 18, top + guiHeight - 10, true));
 
@@ -207,8 +207,8 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
 
     void back()
     {
-        //if(backButton.enabled)
-        //    actionPerformed(backButton);
+        if(backButton.enabled)
+            actionPerformed(backButton);
     }
 
     void nextPage()
