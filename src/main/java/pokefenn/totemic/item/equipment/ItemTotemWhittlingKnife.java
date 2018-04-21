@@ -113,10 +113,9 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
             TotemEffect effect = getCarvingEffect(stack);
             if(effect != null)
             {
-                newState = ModBlocks.totem_pole.getDefaultState().withProperty(BlockTotemPole.WOOD, wood);
+                newState = ModBlocks.totem_pole.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, 0, player, hand).withProperty(BlockTotemPole.WOOD, wood);
                 world.setBlockState(pos, newState, 3);
                 TileTotemPole tile = (TileTotemPole) world.getTileEntity(pos);
-
                 tile.setEffect(effect);
             }
             else

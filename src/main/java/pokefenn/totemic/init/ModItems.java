@@ -56,7 +56,7 @@ public final class ModItems
             makeItemBlock(ModBlocks.cedar_sapling),
             makeItemBlock(ModBlocks.cedar_leaves),
             makeItemBlock(ModBlocks.totem_base), //new ItemBlockVariants(ModBlocks.totem_base).setRegistryName(ModBlocks.totem_base.getRegistryName()),
-            new ItemBlockVariants(ModBlocks.totem_pole).setRegistryName(ModBlocks.totem_pole.getRegistryName()),
+            makeItemBlock(ModBlocks.totem_pole), //new ItemBlockVariants(ModBlocks.totem_pole).setRegistryName(ModBlocks.totem_pole.getRegistryName()),
             makeItemBlock(ModBlocks.totem_torch),
             makeItemBlock(ModBlocks.drum),
             makeItemBlock(ModBlocks.wind_chime),
@@ -106,7 +106,7 @@ public final class ModItems
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.totem_base), var.ordinal(),
                     new ModelResourceLocation(ModBlocks.totem_base.getRegistryName(), "facing=north,wood=" + var.getName()));
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.totem_pole), var.ordinal(),
-                    new ModelResourceLocation(ModBlocks.totem_pole.getRegistryName(), "wood=" + var.getName()));
+                    new ModelResourceLocation(ModBlocks.totem_pole.getRegistryName(), "facing=north,wood=" + var.getName()));
         }
 
         setDefaultModel(flute);

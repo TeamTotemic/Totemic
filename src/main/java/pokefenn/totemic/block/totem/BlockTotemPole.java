@@ -2,31 +2,28 @@ package pokefenn.totemic.block.totem;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import pokefenn.totemic.Totemic;
@@ -38,7 +35,7 @@ import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.tileentity.totem.TileTotemBase;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
 
-public class BlockTotemPole extends Block implements ITileEntityProvider, TotemicStaffUsage
+public class BlockTotemPole extends BlockHorizontal implements ITileEntityProvider, TotemicStaffUsage
 {
     public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);
     public static final IUnlistedProperty<TotemEffect> TOTEM = new IUnlistedProperty<TotemEffect>()
@@ -57,12 +54,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
 
         @Override
         public String valueToString(TotemEffect value)
-        {
-            if(value != null)
-                return value.getRegistryName().toString();
-            else
-                return "blank";
-        }
+        { return (value != null) ? value.getRegistryName().toString() : "blank"; }
     };
 
     public BlockTotemPole()
@@ -120,40 +112,37 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
     }
 
     @Override
-    public int damageDropped(IBlockState state)
-    {
-        return getMetaFromState(state);
-    }
-
-    @Override
     public int quantityDropped(Random rand)
     {
         return 0;
     }
 
     @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
-    {
-        for(int i = 0; i < WoodVariant.values().length; i++)
-            list.add(new ItemStack(this, 1, i));
-    }
-
-    @Override
     protected BlockStateContainer createBlockState()
     {
-        return new ExtendedBlockState(this, new IProperty<?>[] {WOOD}, new IUnlistedProperty<?>[] {TOTEM});
+        return new BlockStateContainer.Builder(this).add(FACING, WOOD).add(TOTEM).build();
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return state.getValue(WOOD).ordinal();
+        return state.getValue(FACING).getHorizontalIndex();
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return getDefaultState().withProperty(WOOD, WoodVariant.values()[meta]);
+        return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
+    }
+
+    //I'm pretty sure we need both getActualState and getExtendedState
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof TileTotemPole)
+            return state.withProperty(WOOD, ((TileTotemPole) tile).getWoodType());
+        return state;
     }
 
     @Override
@@ -164,6 +153,33 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
         if(tile instanceof TileTotemPole)
             return extState.withProperty(TOTEM, ((TileTotemPole) tile).getEffect());
         return extState.withProperty(TOTEM, null);
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+    }
+
+    @Override
+    public IBlockState withRotation(IBlockState state, Rotation rot)
+    {
+        return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
+    }
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirror)
+    {
+        return state.withRotation(mirror.toRotation(state.getValue(FACING)));
+    }
+
+    @Override
+    @Nullable
+    public TileEntity createTileEntity(World world, IBlockState state)
+    {
+        TileTotemPole tile = new TileTotemPole();
+        tile.setWoodType(state.getValue(WOOD));
+        return tile;
     }
 
     @Override
