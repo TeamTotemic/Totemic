@@ -11,17 +11,14 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelRotation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.BakedModelWrapper;
-import net.minecraftforge.client.model.ICustomModelLoader;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.*;
 import net.minecraftforge.common.model.IModelState;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
@@ -78,7 +75,7 @@ public class ModelTotemPole implements IModel
     {
         Map<TotemEffect, IBakedModel> bakedTotemModels = Maps.transformEntries(totemModels, (totem, model) -> {
             if(totem == ModContent.buffaloTotem) //FIXME: Band-aid to fix wrongly rotated Buffalo model
-                return model.bake(new TRSRTransformation(EnumFacing.EAST), format, bakedTextureGetter);
+                return model.bake(new ModelStateComposition(state, ModelRotation.X0_Y90), format, bakedTextureGetter);
             else
                 return model.bake(state, format, bakedTextureGetter);
         });
