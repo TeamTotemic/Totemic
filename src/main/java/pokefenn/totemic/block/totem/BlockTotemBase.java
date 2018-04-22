@@ -25,6 +25,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -111,6 +112,12 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
             TileTotemBase tile = (TileTotemBase) world.getTileEntity(pos);
             tile.setWoodType(WoodVariant.fromID(stack.getMetadata()));
         }
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        return new ItemStack(this, 1, ((TileTotemBase) world.getTileEntity(pos)).getWoodType().getID());
     }
 
     @Override

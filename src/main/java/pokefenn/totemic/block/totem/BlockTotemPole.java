@@ -19,10 +19,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -32,6 +34,7 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicStaffUsage;
 import pokefenn.totemic.api.totem.TotemBase;
 import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.item.equipment.ItemTotemWhittlingKnife;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.tileentity.totem.TileTotemBase;
@@ -90,6 +93,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
         {
             TileTotemPole tile = (TileTotemPole) world.getTileEntity(pos);
             tile.setWoodType(WoodVariant.fromID(stack.getMetadata()));
+            tile.setEffect(ItemTotemWhittlingKnife.getCarvingEffect(stack));
         }
 
         notifyTotemBase(world, pos);
@@ -115,6 +119,17 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
             else if(!(block instanceof BlockTotemPole))
                 break;
         }
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        IExtendedBlockState extState = (IExtendedBlockState) getExtendedState(getActualState(state, world, pos), world, pos);
+        ItemStack stack = new ItemStack(this, 1, extState.getValue(WOOD).getID());
+        TotemEffect effect = extState.getValue(TOTEM);
+        String effectName = (effect != null) ? effect.getRegistryName().toString() : ItemTotemWhittlingKnife.TOTEM_BASE_PLACEHOLDER_NAME;
+        stack.setTagInfo(ItemTotemWhittlingKnife.KNIFE_TOTEM_KEY, new NBTTagString(effectName));
+        return stack;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class TileTotemPole extends TileTotemic
         return effect;
     }
 
-    public void setEffect(TotemEffect effect)
+    public void setEffect(@Nullable TotemEffect effect)
     {
         this.effect = effect;
     }
