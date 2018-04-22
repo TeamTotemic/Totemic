@@ -103,9 +103,9 @@ public final class ModItems
 
         for(WoodVariant var: WoodVariant.values())
         {
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.totem_base), var.ordinal(),
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.totem_base), var.getID(),
                     new ModelResourceLocation(ModBlocks.totem_base.getRegistryName(), "facing=north,wood=" + var.getName()));
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.totem_pole), var.ordinal(),
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.totem_pole), var.getID(),
                     new ModelResourceLocation(ModBlocks.totem_pole.getRegistryName(), "facing=north,wood=" + var.getName()));
         }
 

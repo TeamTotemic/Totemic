@@ -185,7 +185,7 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
     {
         tag = super.writeToNBT(tag);
 
-        tag.setByte("wood", (byte) woodType.ordinal());
+        tag.setByte("wood", (byte) woodType.getID());
         tag.setByte("state", (byte) state.getID());
         state.writeToNBT(tag);
 
@@ -197,7 +197,7 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
     {
         super.readFromNBT(tag);
 
-        woodType = WoodVariant.values()[tag.getByte("wood")];
+        woodType = WoodVariant.fromID(tag.getByte("wood"));
         if(tag.hasKey("state", 99))
             state = TotemState.fromID(tag.getByte("state"), this);
         else

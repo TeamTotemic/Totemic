@@ -185,14 +185,14 @@ public class ComponentMedicineWheel extends StructureVillagePieces.Village
     protected void writeStructureToNBT(NBTTagCompound tag)
     {
         super.writeStructureToNBT(tag);
-        tag.setByte("PoleWood", (byte) poleWood.ordinal());
+        tag.setByte("PoleWood", (byte) poleWood.getID());
     }
 
     @Override
     protected void readStructureFromNBT(NBTTagCompound tag, TemplateManager templateMgr)
     {
         super.readStructureFromNBT(tag, templateMgr);
-        poleWood = WoodVariant.values()[tag.getInteger("PoleWood")];
+        poleWood = WoodVariant.fromID(tag.getInteger("PoleWood"));
     }
 
     public static class CreationHandler implements IVillageCreationHandler

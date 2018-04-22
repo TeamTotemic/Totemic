@@ -38,6 +38,18 @@ public enum WoodVariant implements IStringSerializable
             return null;
     }
 
+    public static WoodVariant fromID(int id)
+    {
+        if(id < 0 || id >= values().length)
+            id = 0;
+        return values()[id];
+    }
+
+    public int getID()
+    {
+        return ordinal();
+    }
+
     @Override
     public String getName()
     {

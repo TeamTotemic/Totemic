@@ -60,7 +60,7 @@ public class TileTotemPole extends TileTotemic
     public void readFromNBT(NBTTagCompound tag)
     {
         super.readFromNBT(tag);
-        woodType = WoodVariant.values()[tag.getByte("wood")];
+        woodType = WoodVariant.fromID(tag.getByte("wood"));
         if(tag.hasKey("effect", Constants.NBT.TAG_STRING))
             effect = TotemicRegistries.totemEffects().getValue(new ResourceLocation(tag.getString("effect")));
     }
@@ -69,7 +69,7 @@ public class TileTotemPole extends TileTotemic
     public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
         tag = super.writeToNBT(tag);
-        tag.setByte("wood", (byte) woodType.ordinal());
+        tag.setByte("wood", (byte) woodType.getID());
         if(effect != null)
             tag.setString("effect", effect.getRegistryName().toString());
         return tag;
