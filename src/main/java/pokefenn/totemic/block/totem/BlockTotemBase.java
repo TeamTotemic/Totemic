@@ -5,10 +5,12 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -17,6 +19,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -33,8 +37,9 @@ import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.tileentity.totem.*;
 
-public class BlockTotemBase extends BlockHorizontal implements ITileEntityProvider, TotemicStaffUsage
+public class BlockTotemBase extends Block implements ITileEntityProvider, TotemicStaffUsage
 {
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);
 
     public BlockTotemBase()
@@ -99,6 +104,16 @@ public class BlockTotemBase extends BlockHorizontal implements ITileEntityProvid
     }
 
     @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        if(stack.getItem() == Item.getItemFromBlock(this))
+        {
+            TileTotemBase tile = (TileTotemBase) world.getTileEntity(pos);
+            tile.setWoodType(WoodVariant.fromID(stack.getMetadata()));
+        }
+    }
+
+    @Override
     public int quantityDropped(Random rand)
     {
         return 0;
@@ -158,6 +173,7 @@ public class BlockTotemBase extends BlockHorizontal implements ITileEntityProvid
         return tile;
     }
 
+    //Necessary for ITileEntityProvider
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {

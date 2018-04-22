@@ -9,6 +9,7 @@ import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -16,6 +17,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -35,8 +37,9 @@ import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.tileentity.totem.TileTotemBase;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
 
-public class BlockTotemPole extends BlockHorizontal implements ITileEntityProvider, TotemicStaffUsage
+public class BlockTotemPole extends Block implements ITileEntityProvider, TotemicStaffUsage
 {
+    public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);
     public static final IUnlistedProperty<TotemEffect> TOTEM = new IUnlistedProperty<TotemEffect>()
     {
@@ -81,19 +84,22 @@ public class BlockTotemPole extends BlockHorizontal implements ITileEntityProvid
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityLiving, ItemStack itemStack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityLiving, ItemStack stack)
     {
-        super.onBlockPlacedBy(world, pos, state, entityLiving, itemStack);
-        if(!world.isRemote)
-            notifyTotemBase(world, pos);
+        if(stack.getItem() == Item.getItemFromBlock(this))
+        {
+            TileTotemPole tile = (TileTotemPole) world.getTileEntity(pos);
+            tile.setWoodType(WoodVariant.fromID(stack.getMetadata()));
+        }
+
+        notifyTotemBase(world, pos);
     }
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
         super.breakBlock(world, pos, state);
-        if(!world.isRemote)
-            notifyTotemBase(world, pos);
+        notifyTotemBase(world, pos);
     }
 
     private void notifyTotemBase(World world, BlockPos pos)
@@ -135,7 +141,7 @@ public class BlockTotemPole extends BlockHorizontal implements ITileEntityProvid
         return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
     }
 
-    //I'm pretty sure we need both getActualState and getExtendedState
+    //We actually need both getActualState and getExtendedState
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
@@ -182,6 +188,7 @@ public class BlockTotemPole extends BlockHorizontal implements ITileEntityProvid
         return tile;
     }
 
+    //Necessary for ITileEntityProvider
     @Override
     public TileEntity createNewTileEntity(World world, int meta)
     {
