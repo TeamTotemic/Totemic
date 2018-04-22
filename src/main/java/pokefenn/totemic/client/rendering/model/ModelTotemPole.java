@@ -119,10 +119,10 @@ public class ModelTotemPole implements IModel
         private final ItemOverrideList overrideList = new ItemOverrideList(Collections.emptyList())
         {
             @Override
-            public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity)
+            public IBakedModel handleItemState(IBakedModel previousModel, ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity)
             {
                 TotemEffect effect = ItemTotemWhittlingKnife.getCarvingEffect(stack);
-                return bakedTotemModels.getOrDefault(effect, BakedTotemPole.this.originalModel);
+                return effect != null ? bakedTotemModels.get(effect) : originalModel;
             }
         };
 

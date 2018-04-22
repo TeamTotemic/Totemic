@@ -14,6 +14,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -31,6 +32,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.TotemicStaffUsage;
 import pokefenn.totemic.api.totem.TotemBase;
 import pokefenn.totemic.api.totem.TotemEffect;
@@ -124,12 +126,27 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        IExtendedBlockState extState = (IExtendedBlockState) getExtendedState(getActualState(state, world, pos), world, pos);
-        ItemStack stack = new ItemStack(this, 1, extState.getValue(WOOD).getID());
-        TotemEffect effect = extState.getValue(TOTEM);
+        TileTotemPole tile = (TileTotemPole) world.getTileEntity(pos);
+        ItemStack stack = new ItemStack(this, 1, tile.getWoodType().getID());
+        TotemEffect effect = tile.getEffect();
         String effectName = (effect != null) ? effect.getRegistryName().toString() : ItemTotemWhittlingKnife.TOTEM_BASE_PLACEHOLDER_NAME;
         stack.setTagInfo(ItemTotemWhittlingKnife.KNIFE_TOTEM_KEY, new NBTTagString(effectName));
         return stack;
+    }
+
+    @Override
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> items)
+    {
+        for(TotemEffect effect: TotemicRegistries.totemEffects())
+        {
+            ItemStack stack = new ItemStack(this, 1, 0);
+            stack.setTagInfo(ItemTotemWhittlingKnife.KNIFE_TOTEM_KEY, new NBTTagString(effect.getRegistryName().toString()));
+            items.add(stack);
+        }
+
+        ItemStack blankStack = new ItemStack(this, 1, 0);
+        blankStack.setTagInfo(ItemTotemWhittlingKnife.KNIFE_TOTEM_KEY, new NBTTagString(ItemTotemWhittlingKnife.TOTEM_BASE_PLACEHOLDER_NAME));
+        items.add(blankStack);
     }
 
     @Override
