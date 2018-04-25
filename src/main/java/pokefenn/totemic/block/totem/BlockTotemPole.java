@@ -1,5 +1,6 @@
 package pokefenn.totemic.block.totem;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
@@ -14,6 +15,8 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -147,6 +150,16 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
         ItemStack blankStack = new ItemStack(this, 1, 0);
         blankStack.setTagInfo(ItemTotemWhittlingKnife.KNIFE_TOTEM_KEY, new NBTTagString(ItemTotemWhittlingKnife.TOTEM_BASE_PLACEHOLDER_NAME));
         items.add(blankStack);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced)
+    {
+        TotemEffect effect = ItemTotemWhittlingKnife.getCarvingEffect(stack);
+        if(effect != null)
+            tooltip.add(I18n.format(effect.getUnlocalizedName()));
+        else
+            tooltip.add(I18n.format(getUnlocalizedName() + ".noEffect"));
     }
 
     @Override

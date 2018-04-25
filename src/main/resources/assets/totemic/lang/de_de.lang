@@ -59,6 +59,7 @@ tile.totemic:totem_torch.name=Totem-Fackel
 tile.totemic:cedar_plank.name=Zedernholzbretter
 tile.totemic:stripped_cedar_log.name=Entrindetes Zedernholz
 tile.totemic:tipi.name=Tipi
+tile.totemic:totem_pole.noEffect=Kein Effekt
 
 #Entity localizations
 entity.totemic:buffalo.name=Büffel
