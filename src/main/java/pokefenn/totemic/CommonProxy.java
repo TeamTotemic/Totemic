@@ -27,6 +27,7 @@ import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.datafix.CamelCaseNamesItems;
 import pokefenn.totemic.datafix.CamelCaseNamesTiles;
+import pokefenn.totemic.datafix.TotemWoodToTileEntity;
 import pokefenn.totemic.datafix.VanillaIronNugget;
 import pokefenn.totemic.entity.animal.EntityBaldEagle;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
@@ -142,10 +143,11 @@ public class CommonProxy
 
     private void registerDataFixers()
     {
-        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 1011);
+        ModFixs fixes = FMLCommonHandler.instance().getDataFixer().init(Totemic.MOD_ID, 1020);
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new VanillaIronNugget());
         fixes.registerFix(FixTypes.BLOCK_ENTITY, new CamelCaseNamesTiles());
         fixes.registerFix(FixTypes.ITEM_INSTANCE, new CamelCaseNamesItems());
+        fixes.registerFix(FixTypes.CHUNK, new TotemWoodToTileEntity());
     }
 
     protected void registerEventHandlers()

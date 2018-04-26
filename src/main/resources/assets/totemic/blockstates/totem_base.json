@@ -62,6 +62,12 @@
                     "particle": "totemic:blocks/stripped_cedar_log"
                 }
             }
+        },
+        "facing": {
+            "north": { },
+            "east":  { },
+            "south": { },
+            "west":  { }
         }
     }
 }

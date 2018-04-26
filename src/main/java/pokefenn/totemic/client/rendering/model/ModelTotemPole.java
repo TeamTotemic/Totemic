@@ -11,22 +11,24 @@ import com.google.common.collect.Maps;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemOverrideList;
+import net.minecraft.client.renderer.block.model.ModelRotation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.BakedModelWrapper;
-import net.minecraftforge.client.model.ICustomModelLoader;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraft.world.World;
+import net.minecraftforge.client.model.*;
 import net.minecraftforge.common.model.IModelState;
-import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.BlockTotemPole;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.item.equipment.ItemTotemWhittlingKnife;
 
 public class ModelTotemPole implements IModel
 {
@@ -78,7 +80,7 @@ public class ModelTotemPole implements IModel
     {
         Map<TotemEffect, IBakedModel> bakedTotemModels = Maps.transformEntries(totemModels, (totem, model) -> {
             if(totem == ModContent.buffaloTotem) //FIXME: Band-aid to fix wrongly rotated Buffalo model
-                return model.bake(new TRSRTransformation(EnumFacing.EAST), format, bakedTextureGetter);
+                return model.bake(new ModelStateComposition(state, ModelRotation.X0_Y90), format, bakedTextureGetter);
             else
                 return model.bake(state, format, bakedTextureGetter);
         });
@@ -112,6 +114,22 @@ public class ModelTotemPole implements IModel
                     return bakedTotemModels.get(effect).getQuads(state, side, rand);
             }
             return originalModel.getQuads(state, side, rand);
+        }
+
+        private final ItemOverrideList overrideList = new ItemOverrideList(Collections.emptyList())
+        {
+            @Override
+            public IBakedModel handleItemState(IBakedModel previousModel, ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity)
+            {
+                TotemEffect effect = ItemTotemWhittlingKnife.getCarvingEffect(stack);
+                return effect != null ? bakedTotemModels.get(effect) : originalModel;
+            }
+        };
+
+        @Override
+        public ItemOverrideList getOverrides()
+        {
+            return overrideList;
         }
     }
 

@@ -59,6 +59,7 @@ tile.totemic:totem_torch.name=Totem Torch
 tile.totemic:cedar_plank.name=Red Cedar Plank
 tile.totemic:stripped_cedar_log.name=Stripped Red Cedar Wood
 tile.totemic:tipi.name=Tipi
+tile.totemic:totem_pole.noEffect=No effect
 
 #Entity localizations
 entity.totemic:buffalo.name=Buffalo

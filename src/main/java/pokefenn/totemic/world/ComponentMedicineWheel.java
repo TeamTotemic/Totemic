@@ -8,6 +8,7 @@ import net.minecraft.block.BlockLog.EnumAxis;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -93,15 +94,16 @@ public class ComponentMedicineWheel extends StructureVillagePieces.Village
         fillWithAir(world, bb, 2, 0, 8,  6, 5, 8);
 
         //Create Totem Pole
-        setBlockState(world, ModBlocks.totem_base.getDefaultState().withProperty(BlockTotemBase.WOOD, poleWood), 4, 0, 4, bb);
+        setBlockState(world, ModBlocks.totem_base.getDefaultState().withProperty(BlockTotemBase.FACING, EnumFacing.SOUTH).withProperty(BlockTotemBase.WOOD, poleWood), 4, 0, 4, bb);
         List<TotemEffect> totemList = new ArrayList<>(TotemicRegistries.totemEffects().getValuesCollection());
         for(int i = 0; i < 5; i++)
         {
             int x = 4, y = 1+i, z = 4;
-            setBlockState(world, ModBlocks.totem_pole.getDefaultState().withProperty(BlockTotemPole.WOOD, poleWood), x, y, z, bb);
+            setBlockState(world, ModBlocks.totem_pole.getDefaultState().withProperty(BlockTotemBase.FACING, EnumFacing.SOUTH).withProperty(BlockTotemPole.WOOD, poleWood), x, y, z, bb);
             BlockPos pos = new BlockPos(getXWithOffset(x, z), getYWithOffset(y), getZWithOffset(x, z));
-            if(bb.isVecInside(pos))
-                ((TileTotemPole) world.getTileEntity(pos)).setEffect(totemList.get(random.nextInt(totemList.size())));
+            TileEntity tile = world.getTileEntity(pos);
+            if(tile instanceof TileTotemPole)
+                ((TileTotemPole) tile).setEffect(totemList.get(random.nextInt(totemList.size())));
         }
 
         //Place music instruments and torches
@@ -183,14 +185,14 @@ public class ComponentMedicineWheel extends StructureVillagePieces.Village
     protected void writeStructureToNBT(NBTTagCompound tag)
     {
         super.writeStructureToNBT(tag);
-        tag.setByte("PoleWood", (byte) poleWood.ordinal());
+        tag.setByte("PoleWood", (byte) poleWood.getID());
     }
 
     @Override
     protected void readStructureFromNBT(NBTTagCompound tag, TemplateManager templateMgr)
     {
         super.readStructureFromNBT(tag, templateMgr);
-        poleWood = WoodVariant.values()[tag.getInteger("PoleWood")];
+        poleWood = WoodVariant.fromID(tag.getInteger("PoleWood"));
     }
 
     public static class CreationHandler implements IVillageCreationHandler

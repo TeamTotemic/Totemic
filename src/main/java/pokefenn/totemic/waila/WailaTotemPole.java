@@ -11,7 +11,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
 
-@SuppressWarnings("null")
 public class WailaTotemPole implements IWailaDataProvider
 {
     @Override
@@ -21,6 +20,8 @@ public class WailaTotemPole implements IWailaDataProvider
         TileTotemPole pole = (TileTotemPole) accessor.getTileEntity();
         if(pole.getEffect() != null)
             currenttip.add(I18n.format(pole.getEffect().getUnlocalizedName()));
+        else
+            currenttip.add(I18n.format("tile.totemic:totem_pole.noEffect"));
         return currenttip;
     }
 }
