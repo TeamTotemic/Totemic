@@ -9,6 +9,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -34,24 +35,41 @@ public class BlockTotemTorch extends Block
     }
 
     @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
+    {
+        IBlockState below = world.getBlockState(pos.down());
+        return below.getBlock().canPlaceTorchOnTop(below, world, pos.down());
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos)
+    {
+        if(!canPlaceBlockAt(world, pos))
+        {
+            world.setBlockToAir(pos);
+            spawnAsEntity(world, pos, new ItemStack(this));
+        }
+    }
+
+    @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
         for(int i = 0; i < 2; i++)
             world.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, 0, 0, 0);
-        for(int i = 0; i < 16; i++)
+        for(int i = 0; i < 4; i++)
             world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, 0, 0, 0);
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return new AxisAlignedBB(4.75/16, 0.0, 4.75/16, 11.25/16, 1.0, 11.25/16);
     }
 
     @Override
     @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return NULL_AABB;
     }

@@ -210,4 +210,10 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
     {
         return BlockFaceShape.UNDEFINED;
     }
+
+    @Override
+    public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return true;
+    }
 }

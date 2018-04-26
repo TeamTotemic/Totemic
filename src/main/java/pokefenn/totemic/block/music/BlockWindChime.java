@@ -1,5 +1,9 @@
 package pokefenn.totemic.block.music;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -24,9 +28,6 @@ import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.tileentity.music.TileWindChime;
 import pokefenn.totemic.util.TotemUtil;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class BlockWindChime extends Block implements ITileEntityProvider
 {
@@ -56,13 +57,10 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighbor, BlockPos fromPos)
     {
-        if(!world.isRemote)
+        if(!canPlaceBlockAt(world, pos))
         {
-            if(!canPlaceBlockAt(world, pos))
-            {
-                world.setBlockToAir(pos);
-                spawnAsEntity(world, pos, new ItemStack(this));
-            }
+            world.setBlockToAir(pos);
+            spawnAsEntity(world, pos, new ItemStack(this));
         }
     }
 
