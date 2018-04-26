@@ -2,6 +2,8 @@ package pokefenn.totemic.block;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -18,26 +20,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.lib.Strings;
 
-import javax.annotation.Nullable;
-
 public class BlockTotemTorch extends Block
 {
     public BlockTotemTorch()
     {
-        super(Material.WOOD);
+        super(Material.CIRCUITS); //Same material as vanilla torch
         setRegistryName(Strings.TOTEM_TORCH_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_TORCH_NAME);
         setLightLevel(1F);
         setSoundType(SoundType.WOOD);
         setHardness(0.05F);
         setCreativeTab(Totemic.tabsTotem);
-
-    }
-
-    @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
-        return NULL_AABB;
     }
 
     @Override
@@ -53,7 +46,14 @@ public class BlockTotemTorch extends Block
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(5F/16, 0.0F, 5F/16, 11F/16, 1.3F, 11F/16);
+        return new AxisAlignedBB(4.75/16, 0.0, 4.75/16, 11.25/16, 1.0, 11.25/16);
+    }
+
+    @Override
+    @Nullable
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
     }
 
     @Override
