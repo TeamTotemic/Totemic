@@ -65,9 +65,9 @@
         },
         "facing": {
             "north": { },
-            "east":  { "y": 90 },
-            "south": { "y": 180 },
-            "west":  { "y": 270 }
+            "east":  { },
+            "south": { },
+            "west":  { }
         }
     }
 }

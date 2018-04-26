@@ -115,7 +115,7 @@
                     "cullface": "down"
                 },
                 "north": {
-                    "texture": "#top",
+                    "texture": "#bark",
                     "cullface": "north"
                 },
                 "south": {
