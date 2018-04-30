@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Streams;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -126,6 +127,8 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
 
             newState.getBlock().onBlockPlacedBy(world, pos, newState, player, stack);
             stack.damageItem(1, player);
+
+            world.playEvent(player, 2001, pos, Block.getStateId(state));
 
             return EnumActionResult.SUCCESS;
         }
