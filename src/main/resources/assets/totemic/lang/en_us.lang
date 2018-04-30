@@ -50,6 +50,7 @@ tile.totemic:cedar_log.name=Red Cedar Wood
 tile.totemic:totem_base.name=Totem Base
 tile.totemic:totem_pole.name=Totem Pole
 tile.totemic:cedar_sapling.name=Red Cedar Sapling
+tile.totemic:cedar_sapling.tooltip=Created through Rite of Spring Ceremony
 tile.totemic:cedar_leaves.name=Red Cedar Leaves
 tile.totemic:drum.name=Totemist Drum
 tile.totemic:drum.tooltip=Sneak and hit to use Selector Mode

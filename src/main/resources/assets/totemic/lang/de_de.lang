@@ -50,6 +50,7 @@ tile.totemic:cedar_log.name=Rotes Zedernholz
 tile.totemic:totem_base.name=Totembasis
 tile.totemic:totem_pole.name=Totempfahl
 tile.totemic:cedar_sapling.name=Roter Zedernsetzling
+tile.totemic:cedar_sapling.tooltip=Erzeugt durch das Ritual des Frühlings
 tile.totemic:cedar_leaves.name=Zedernlaub
 tile.totemic:drum.name=Totem-Trommel
 tile.totemic:drum.tooltip=Schleiche und schlage für den Selektor-Modus
