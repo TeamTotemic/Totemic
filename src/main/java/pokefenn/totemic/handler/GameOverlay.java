@@ -92,16 +92,18 @@ public class GameOverlay
                 int headerX = (w - font.getStringWidth(locHeader)) / 2;
                 font.drawString(locHeader, headerX, 1, 0xC8000000);
 
+                GL11.glPopAttrib();
+
                 //Instruments
                 int selectorX = 40;
                 int selectorY = 12;
                 RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-                net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
-                GlStateManager.enableRescaleNormal();
                 GlStateManager.enableDepth();
+                net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
                 renderItem.renderItemAndEffectIntoGUI(item, selectorX, selectorY);
                 renderItem.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, item, selectorX, selectorY, null);
                 net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+                GlStateManager.disableDepth();
             }
             else if(activeTotem.getState() instanceof StateStartup)
             {
@@ -132,6 +134,8 @@ public class GameOverlay
                 RenderHelper.addQuad(buf, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar
                 RenderHelper.addQuad(buf, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar
                 tes.draw();
+
+                GL11.glPopAttrib();
             }
             else if(activeTotem.getState() instanceof StateCeremonyEffect)
             {
@@ -148,10 +152,11 @@ public class GameOverlay
                 String locName = I18n.format(cer.getUnlocalizedName());
                 int nameX = (w - font.getStringWidth(locName)) / 2;
                 font.drawString(locName, nameX, 1, 0xC8000000);
+
+                GL11.glPopAttrib();
             }
 
             GlStateManager.popMatrix();
-            GL11.glPopAttrib();
         }
 
         mc.mcProfiler.endSection();
