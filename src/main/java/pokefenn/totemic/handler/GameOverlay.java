@@ -1,15 +1,19 @@
 package pokefenn.totemic.handler;
 
+import java.util.List;
+
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -18,20 +22,20 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.client.RenderHelper;
 import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.item.equipment.weapon.ItemBaykokBow;
 import pokefenn.totemic.lib.Resources;
-import pokefenn.totemic.tileentity.totem.StateCeremonyEffect;
-import pokefenn.totemic.tileentity.totem.StateStartup;
-import pokefenn.totemic.tileentity.totem.TileTotemBase;
+import pokefenn.totemic.tileentity.totem.*;
 
 @SideOnly(Side.CLIENT)
 public class GameOverlay
 {
     public static TileTotemBase activeTotem = null;
 
-    private static final ResourceLocation hudTexture = new ResourceLocation(Resources.CEREMONY_HUD);
+    private static final ResourceLocation SELECTION_HUD_TEXTURE = new ResourceLocation(Resources.SELECTION_HUD);
+    private static final ResourceLocation CEREMONY_HUD_TEXTURE = new ResourceLocation(Resources.CEREMONY_HUD);
 
     @SubscribeEvent
     public void renderHUD(RenderGameOverlayEvent.Post event)
@@ -44,7 +48,7 @@ public class GameOverlay
 
         if(activeTotem != null)
         {
-            if(activeTotem.isInvalid() || !(activeTotem.getState() instanceof StateStartup || activeTotem.getState() instanceof StateCeremonyEffect))
+            if(activeTotem.isInvalid() || activeTotem.getState() instanceof StateTotemEffect)
                 activeTotem = null;
         }
 
@@ -66,27 +70,58 @@ public class GameOverlay
             GlStateManager.pushMatrix();
             GlStateManager.translate(hudX, hudY, 0);
 
-            //Background
-            mc.renderEngine.bindTexture(hudTexture);
-            buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-            RenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
-            tes.draw();
-
             int barW = 104;
             int barH = 7;
 
-            if(activeTotem.getState() instanceof StateStartup)
+            if(activeTotem.getState() instanceof StateSelection)
+            {
+                StateSelection state = (StateSelection) activeTotem.getState();
+                List<MusicInstrument> selectors = state.getSelectors();
+                //Assuming that we have only 1 selector to render
+                MusicInstrument selector = selectors.get(0);
+                ItemStack item = (selector != null) ? selector.getItem() : ItemStack.EMPTY;
+
+                //Background
+                mc.renderEngine.bindTexture(SELECTION_HUD_TEXTURE);
+                buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+                RenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
+                tes.draw();
+
+                //Header text
+                String locHeader = I18n.format("totemic.hud.selection");
+                int headerX = (w - font.getStringWidth(locHeader)) / 2;
+                font.drawString(locHeader, headerX, 1, 0xC8000000);
+
+                //Instruments
+                int selectorX = 40;
+                int selectorY = 12;
+                RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+                net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+                GlStateManager.enableRescaleNormal();
+                GlStateManager.enableDepth();
+                renderItem.renderItemAndEffectIntoGUI(item, selectorX, selectorY);
+                renderItem.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, item, selectorX, selectorY, null);
+                net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+            }
+            else if(activeTotem.getState() instanceof StateStartup)
             {
                 StateStartup state = (StateStartup) activeTotem.getState();
                 Ceremony cer = state.getCeremony();
 
+                //Background
+                mc.renderEngine.bindTexture(CEREMONY_HUD_TEXTURE);
+                buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+                RenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
+                tes.draw();
+
+                //Ceremony name
                 String locName = I18n.format(cer.getUnlocalizedName());
                 int nameX = (w - font.getStringWidth(locName)) / 2;
                 font.drawString(locName, nameX, 1, 0xC8000000);
 
+                //Symbols and bars
                 GlStateManager.color(1, 1, 1);
-                mc.renderEngine.bindTexture(hudTexture);
-
+                mc.renderEngine.bindTexture(CEREMONY_HUD_TEXTURE);
                 buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
                 RenderHelper.addQuad(buf, 1, 10, 0,  9, 9,  16 / texW, 48 / texH,   8 / texW,  8 / texH); //Note
                 RenderHelper.addQuad(buf, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
@@ -103,6 +138,13 @@ public class GameOverlay
                 StateCeremonyEffect state = (StateCeremonyEffect) activeTotem.getState();
                 Ceremony cer = state.getCeremony();
 
+                //Background
+                mc.renderEngine.bindTexture(CEREMONY_HUD_TEXTURE);
+                buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+                RenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
+                tes.draw();
+
+                //Ceremony name
                 String locName = I18n.format(cer.getUnlocalizedName());
                 int nameX = (w - font.getStringWidth(locName)) / 2;
                 font.drawString(locName, nameX, 1, 0xC8000000);

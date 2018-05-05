@@ -141,6 +141,7 @@ totemicmisc.selection=Auswahl: %s
 totemicmisc.isDoingStartup=Der Totempfahl beginnt eine Zeremonie
 totemicmisc.isDoingCeremony=Der Totempfahl führt eine Zeremonie aus
 totemicmisc.effectNotPortable=Der Effekt %s kann nicht in einem Medizinbeutel getragen werden
+totemic.hud.selection=Zeremonie-Selektion
 
 death.attack.totemic.sunDance=%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.
 

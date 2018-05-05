@@ -14,6 +14,7 @@ public final class Resources
     public static final String GUI_CEREMONY_OVERLAY = PREFIX_GUI + "ceremony_overlay.png";
 
     //GUI overlay
+    public static final String SELECTION_HUD = PREFIX_GUI + "selection_hud.png";
     public static final String CEREMONY_HUD = PREFIX_GUI + "ceremony_hud.png";
 
     //Loot tables

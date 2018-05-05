@@ -52,6 +52,9 @@ public final class StateSelection extends TotemState
     @Override
     public void update()
     {
+        if(tile.getWorld().isRemote)
+            tile.setCeremonyOverlay();
+
         if(time++ >= 60 * 20)
             tile.setState(new StateTotemEffect(tile));
     }
