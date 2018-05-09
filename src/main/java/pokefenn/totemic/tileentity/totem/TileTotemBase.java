@@ -155,12 +155,12 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
         EntityPlayer player = Minecraft.getMinecraft().player;
         if(getDistanceSq(player.posX, player.posY, player.posZ) <= 8*8)
         {
-            GameOverlay.activeTotem = this;
+            GameOverlay.setActiveTotem(this);
         }
         else
         {
-            if(GameOverlay.activeTotem == this)
-                GameOverlay.activeTotem = null;
+            if(GameOverlay.getActiveTotem() == this)
+                GameOverlay.setActiveTotem(null);
         }
     }
 
