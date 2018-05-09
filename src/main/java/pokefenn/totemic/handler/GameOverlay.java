@@ -68,10 +68,10 @@ public class GameOverlay
 
         if(activeTotem != null)
         {
-            int w = 117;
-            int h = 30;
-            float hudX = (event.getResolution().getScaledWidth() - w) / 2 + ModConfig.client.ceremonyHudPositionX;
-            float hudY = (event.getResolution().getScaledHeight() - h) / 2 + ModConfig.client.ceremonyHudPositionY;
+            int hudWidth = 117;
+            int hudHeight = 30;
+            float hudX = (event.getResolution().getScaledWidth() - hudWidth) / 2 + ModConfig.client.ceremonyHudPositionX;
+            float hudY = (event.getResolution().getScaledHeight() - hudHeight) / 2 + ModConfig.client.ceremonyHudPositionY;
             Tessellator tes = Tessellator.getInstance();
             BufferBuilder buf = tes.getBuffer();
             FontRenderer font = mc.fontRenderer;
@@ -84,15 +84,15 @@ public class GameOverlay
             TotemState state = activeTotem.getState();
             if(state instanceof StateSelection)
             {
-                renderSelectionHUD((StateSelection) state, w, h, mc, tes, buf, font);
+                renderSelectionHUD((StateSelection) state, hudWidth, hudHeight, mc, tes, buf, font);
             }
             else if(state instanceof StateStartup)
             {
-                renderStartupHUD((StateStartup) state, w, h, mc, tes, buf, font);
+                renderStartupHUD((StateStartup) state, hudWidth, hudHeight, mc, tes, buf, font);
             }
             else if(state instanceof StateCeremonyEffect)
             {
-                renderCeremonyEffectHUD((StateCeremonyEffect) state, w, h, mc, tes, buf, font);
+                renderCeremonyEffectHUD((StateCeremonyEffect) state, hudWidth, hudHeight, mc, tes, buf, font);
             }
 
             GlStateManager.popMatrix();
@@ -146,26 +146,23 @@ public class GameOverlay
         mc.renderEngine.bindTexture(CEREMONY_HUD_TEXTURE);
         buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
         RenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
-        tes.draw();
 
-        //Ceremony name
-        String locName = I18n.format(cer.getUnlocalizedName());
-        int nameX = (w - font.getStringWidth(locName)) / 2;
-        font.drawString(locName, nameX, 1, 0xC8000000);
-
-        //Symbols and bars
-        GlStateManager.color(1, 1, 1);
-        mc.renderEngine.bindTexture(CEREMONY_HUD_TEXTURE);
-        buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        //Symbols
         RenderHelper.addQuad(buf, 1, 10, 0,  9, 9,  16 / texW, 48 / texH,   8 / texW,  8 / texH); //Note
         RenderHelper.addQuad(buf, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
 
+        //Bars
         float musicW = state.getTotalMusic() / (float)cer.getMusicNeeded() * barW;
         float timeW = Math.min(state.getTime() / (float)cer.getAdjustedMaxStartupTime(mc.world.getDifficulty()), 1.0f) * barW;
 
         RenderHelper.addQuad(buf, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar
         RenderHelper.addQuad(buf, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar
         tes.draw();
+
+        //Ceremony name
+        String locName = I18n.format(cer.getUnlocalizedName());
+        int nameX = (w - font.getStringWidth(locName)) / 2;
+        font.drawString(locName, nameX, 1, 0xC8000000);
     }
 
     private void renderCeremonyEffectHUD(StateCeremonyEffect state, int w, int h, Minecraft mc, Tessellator tes, BufferBuilder buf, FontRenderer font)
