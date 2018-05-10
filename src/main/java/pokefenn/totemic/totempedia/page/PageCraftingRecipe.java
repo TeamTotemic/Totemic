@@ -32,7 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.api.internal.IGuiLexiconEntry;
 import pokefenn.totemic.api.lexicon.LexiconEntry;
 import pokefenn.totemic.api.lexicon.LexiconRecipeMappings;
-import pokefenn.totemic.client.RenderHelper;
+import pokefenn.totemic.client.TotemicRenderHelper;
 import pokefenn.totemic.lib.Resources;
 
 public class PageCraftingRecipe extends PageRecipe
@@ -96,7 +96,7 @@ public class PageCraftingRecipe extends PageRecipe
             ((GuiScreen) gui).drawTexturedModalRect(iconX, iconY, 240, 0, 16, 16);
 
             if(mx >= iconX && my >= iconY && mx < iconX + 16 && my < iconY + 16)
-                RenderHelper.renderTooltip(mx, my, Collections.singletonList(I18n.format("totemicmisc.shapeless")));
+                TotemicRenderHelper.renderTooltip(mx, my, Collections.singletonList(I18n.format("totemicmisc.shapeless")));
         }
 
         GlStateManager.disableBlend();

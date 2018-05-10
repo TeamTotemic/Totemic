@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
-public class RenderHelper
+public class TotemicRenderHelper
 {
     public static void renderTooltip(int x, int y, List<String> tooltipData)
     {
@@ -115,7 +115,8 @@ public class RenderHelper
         GlStateManager.enableTexture2D();
     }
 
-    public static void drawTexturedModalRect(int x, int y, float z, int u, int v, int w, int h)
+    //Currently unused methods
+    /*public static void drawTexturedModalRect(int x, int y, float z, int u, int v, int w, int h)
     {
         float tx = 0.00390625F;
         float ty = 0.00390625F;
@@ -127,9 +128,8 @@ public class RenderHelper
         buf.pos(x + w, y + 0, z).tex((u + w) * tx, (v + 0) * ty).endVertex();
         buf.pos(x + 0, y + 0, z).tex((u + 0) * tx, (v + 0) * ty).endVertex();
         tes.draw();
-    }
+    }*/
 
-    //Currently unused
     /*public static void renderStar(int color, float xScale, float yScale, float zScale, long seed)
     {
         Tessellator tes = Tessellator.getInstance();
@@ -189,7 +189,7 @@ public class RenderHelper
     /**
      * Adds an untextured quad to the WorldRenderer. Needs the POSITION_COLOR vertex format.
      */
-    public static void addColoredQuad(BufferBuilder buf, double x, double y, double z, double w, double h, int color)
+    /*public static void addColoredQuad(BufferBuilder buf, double x, double y, double z, double w, double h, int color)
     {
         float r = (color >> 24 & 255) / 255.0F;
         float g = (color >> 16 & 255) / 255.0F;
@@ -199,7 +199,7 @@ public class RenderHelper
         buf.pos(x, y + h, z).color(r, g, b, a).endVertex();
         buf.pos(x + w, y + h, z).color(r, g, b, a).endVertex();
         buf.pos(x + w, y, z).color(r, g, b, a).endVertex();
-    }
+    }*/
 
     /**
      * Adds a textured quad to the WorldRenderer. Needs the POSITION_TEX vertex format.

@@ -7,7 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextFormatting;
-import pokefenn.totemic.client.RenderHelper;
+import pokefenn.totemic.client.TotemicRenderHelper;
 import pokefenn.totemic.client.gui.GuiLexicon;
 
 public class GuiButtonBookmark extends GuiButton
@@ -38,7 +38,7 @@ public class GuiButtonBookmark extends GuiButton
 
         int tooltipY = (tooltip.size() + 1) * 5;
         if(k == 2)
-            RenderHelper.renderTooltip(mouseX, mouseY + tooltipY, tooltip);
+            TotemicRenderHelper.renderTooltip(mouseX, mouseY + tooltipY, tooltip);
     }
 
 }

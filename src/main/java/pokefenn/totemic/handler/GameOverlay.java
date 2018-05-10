@@ -8,12 +8,9 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.GlStateManager.DestFactor;
 import net.minecraft.client.renderer.GlStateManager.SourceFactor;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.client.RenderHelper;
+import pokefenn.totemic.client.TotemicRenderHelper;
 import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.item.equipment.weapon.ItemBaykokBow;
 import pokefenn.totemic.lib.Resources;
@@ -114,7 +111,7 @@ public class GameOverlay
         //Background
         mc.renderEngine.bindTexture(SELECTION_HUD_TEXTURE);
         buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        RenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
+        TotemicRenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
         tes.draw();
 
         //Header text
@@ -126,11 +123,11 @@ public class GameOverlay
         int selectorX = 40;
         int selectorY = 12;
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-        net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+        RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.enableDepth();
         renderItem.renderItemAndEffectIntoGUI(item, selectorX, selectorY);
         renderItem.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, item, selectorX, selectorY, null);
-        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+        RenderHelper.disableStandardItemLighting();
     }
 
     private void renderStartupHUD(StateStartup state, int w, int h, Minecraft mc, Tessellator tes, BufferBuilder buf, FontRenderer font)
@@ -145,18 +142,18 @@ public class GameOverlay
         //Background
         mc.renderEngine.bindTexture(CEREMONY_HUD_TEXTURE);
         buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        RenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
+        TotemicRenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
 
         //Symbols
-        RenderHelper.addQuad(buf, 1, 10, 0,  9, 9,  16 / texW, 48 / texH,   8 / texW,  8 / texH); //Note
-        RenderHelper.addQuad(buf, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
+        TotemicRenderHelper.addQuad(buf, 1, 10, 0,  9, 9,  16 / texW, 48 / texH,   8 / texW,  8 / texH); //Note
+        TotemicRenderHelper.addQuad(buf, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH); //Clock
 
         //Bars
         float musicW = state.getTotalMusic() / (float)cer.getMusicNeeded() * barW;
         float timeW = Math.min(state.getTime() / (float)cer.getAdjustedMaxStartupTime(mc.world.getDifficulty()), 1.0f) * barW;
 
-        RenderHelper.addQuad(buf, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar
-        RenderHelper.addQuad(buf, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar
+        TotemicRenderHelper.addQuad(buf, 11, 11, 0,  musicW, barH,  0, 32 / texH,  musicW / texW, barH / texH); //Music bar
+        TotemicRenderHelper.addQuad(buf, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH); //Time bar
         tes.draw();
 
         //Ceremony name
@@ -175,7 +172,7 @@ public class GameOverlay
         //Background
         mc.renderEngine.bindTexture(CEREMONY_HUD_TEXTURE);
         buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        RenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
+        TotemicRenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
         tes.draw();
 
         //Ceremony name

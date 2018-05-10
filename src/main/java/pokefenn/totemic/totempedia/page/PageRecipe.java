@@ -20,6 +20,7 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag.TooltipFlags;
@@ -30,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.api.internal.IGuiLexiconEntry;
 import pokefenn.totemic.api.lexicon.LexiconPage;
 import pokefenn.totemic.api.lexicon.LexiconRecipeMappings;
-import pokefenn.totemic.client.RenderHelper;
+import pokefenn.totemic.client.TotemicRenderHelper;
 import pokefenn.totemic.client.gui.GuiLexiconEntry;
 
 public class PageRecipe extends LexiconPage
@@ -77,18 +78,18 @@ public class PageRecipe extends LexiconPage
                 first = false;
             }
 
-            RenderHelper.renderTooltip(mx, my, parsedTooltip);
+            TotemicRenderHelper.renderTooltip(mx, my, parsedTooltip);
 
             int tooltipY = 8 + tooltipData.size() * 11;
 
             if(tooltipEntry)
             {
-                RenderHelper.renderTooltipOrange(mx, my + tooltipY, Arrays.asList(TextFormatting.GRAY + I18n.format("totemicmisc.clickToRecipe")));
+                TotemicRenderHelper.renderTooltipOrange(mx, my + tooltipY, Arrays.asList(TextFormatting.GRAY + I18n.format("totemicmisc.clickToRecipe")));
                 tooltipY += 18;
             }
 
             if(!tooltipContainerStack.isEmpty())
-                RenderHelper.renderTooltipGreen(mx, my + tooltipY, Arrays.asList(TextFormatting.AQUA + I18n.format("totemicmisc.craftingContainer"), tooltipContainerStack.getDisplayName()));
+                TotemicRenderHelper.renderTooltipGreen(mx, my + tooltipY, Arrays.asList(TextFormatting.AQUA + I18n.format("totemicmisc.craftingContainer"), tooltipContainerStack.getDisplayName()));
         }
 
         tooltipStack = tooltipContainerStack = ItemStack.EMPTY;
@@ -147,12 +148,12 @@ public class PageRecipe extends LexiconPage
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+        RenderHelper.enableGUIStandardItemLighting();
         GlStateManager.enableRescaleNormal();
         GlStateManager.enableDepth();
         render.renderItemAndEffectIntoGUI(stack, xPos, yPos);
         render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, stack, xPos, yPos, null);
-        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+        RenderHelper.disableStandardItemLighting();
         GlStateManager.popMatrix();
 
         if(relativeMouseX >= xPos && relativeMouseY >= yPos && relativeMouseX <= xPos + 16 && relativeMouseY <= yPos + 16)

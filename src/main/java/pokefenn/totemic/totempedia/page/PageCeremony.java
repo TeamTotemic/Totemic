@@ -18,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.internal.IGuiLexiconEntry;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.client.RenderHelper;
+import pokefenn.totemic.client.TotemicRenderHelper;
 import pokefenn.totemic.lib.Resources;
 import pokefenn.totemic.util.TotemUtil;
 
@@ -54,7 +54,7 @@ public class PageCeremony extends PageRecipe
         }
 
         if(!tooltipStack.isEmpty())
-            RenderHelper.renderTooltip(mx, my, tooltipStack.getTooltip(mc.player, TooltipFlags.NORMAL));
+            TotemicRenderHelper.renderTooltip(mx, my, tooltipStack.getTooltip(mc.player, TooltipFlags.NORMAL));
 
         String text = I18n.format("totemicmisc.musicSelector");
         font.drawString(text, gui.getLeft() + gui.getWidth() / 2 - font.getStringWidth(text) / 2, gui.getTop() + 14, 0x999999);
