@@ -16,6 +16,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
@@ -166,6 +167,8 @@ public class GameOverlay
     {
         double texW = 128;
         double texH = 64;
+        int barW = 104;
+        int barH = 7;
 
         Ceremony cer = state.getCeremony();
 
@@ -173,6 +176,14 @@ public class GameOverlay
         mc.renderEngine.bindTexture(CEREMONY_HUD_TEXTURE);
         buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
         TotemicRenderHelper.addQuad(buf, 0, 0, 0, w, h, 0, 0, w / texW, h / texH);
+
+        //Clock symbol
+        TotemicRenderHelper.addQuad(buf, 1, 20, 0,  9, 9,   0 / texW, 48 / texH,  16 / texW, 16 / texH);
+
+        //Time bar
+        float timeW = MathHelper.clamp(1.0f - state.getTime() / (float)cer.getEffectTime(), 0.0f, 1.0f) * barW;
+
+        TotemicRenderHelper.addQuad(buf, 11, 21, 0,  timeW,  barH,  0, 32 / texH,  timeW  / texW, barH / texH);
         tes.draw();
 
         //Ceremony name
