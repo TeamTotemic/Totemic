@@ -1,5 +1,9 @@
 package pokefenn.totemic.ceremony;
 
+import java.util.Collections;
+import java.util.Set;
+import java.util.WeakHashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.state.IBlockState;
@@ -19,6 +23,9 @@ import pokefenn.totemic.util.EntityUtil;
 
 public class CeremonyFertility extends Ceremony
 {
+    //Weak set to keep track which villagers have been affected by the ceremony
+    private static final Set<EntityVillager> matedVillagers = Collections.newSetFromMap(new WeakHashMap<>());
+
     public CeremonyFertility(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
         super(name, musicNeeded, maxStartupTime, instruments);
@@ -45,10 +52,12 @@ public class CeremonyFertility extends Ceremony
                 else
                 {
                     EntityVillager villager = (EntityVillager) entity;
-                    if(villager.getGrowingAge() == 0 && !villager.getIsWillingToMate(false) && !villager.isMating())
+                    if(villager.getGrowingAge() == 0 && !matedVillagers.contains(villager) && !villager.isMating())
                     {
+                        matedVillagers.add(villager);
                         villager.setIsWillingToMate(true);
                         villager.tasks.addTask(0, new EntityAIVillagerFertility(villager));
+                        world.setEntityState(villager, (byte) 12); //Spawns heart particles
                         break;
                     }
                 }
@@ -121,11 +130,13 @@ public class CeremonyFertility extends Ceremony
                 else
                 {
                     this.mate = mate;
-                    return mate.getGrowingAge() == 0 && mate.getIsWillingToMate(true);
+                    return mate.getGrowingAge() == 0 && mate.getIsWillingToMate(true) && matedVillagers.contains(mate);
                 }
             }
             else
+            {
                 return false;
+            }
         }
 
         @Override
@@ -140,12 +151,15 @@ public class CeremonyFertility extends Ceremony
         {
             this.mate = null;
             this.villager.setMating(false);
+            matedVillagers.remove(this.villager);
+            matedVillagers.remove(this.mate);
+            this.villager.tasks.removeTask(this);
         }
 
         @Override
         public boolean shouldContinueExecuting()
         {
-            return this.matingTimeout >= 0 && this.villager.getGrowingAge() == 0 && this.villager.getIsWillingToMate(false);
+            return this.matingTimeout >= 0 && this.villager.getGrowingAge() == 0 && this.villager.getIsWillingToMate(false) && matedVillagers.contains(mate);
         }
 
         @Override
