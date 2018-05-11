@@ -267,7 +267,7 @@ totemic.page.depths0=The §4Symphony of the Depths§0, along with the §4War Dan
 totemic.page.depths1=§oMoon River§r
 
 totemic.entry.fertility=Rite of Spring
-totemic.page.fertility0=The §4Rite of Spring§0 is the one of the many growth and fertility §4Ceremonies§0 available to a Totemist. After activating, all nearby animals will sequentially proceed to breed. Along with that, any nearby saplings will transform into §1Red Cedar Saplings§0.
+totemic.page.fertility0=The §4Rite of Spring§0 is the one of the many growth and fertility §4Ceremonies§0 available to a Totemist. After activating, all nearby animals and villagers will sequentially proceed to breed, consuming food items or Emeralds respectively. However there is a decent chance that a food item will not be consumed.<br>Along with that, any nearby saplings will transform into §1Red Cedar Saplings§0.
 totemic.page.fertility1=§oLover I don't have to love§r
 
 totemic.entry.zaphkielWaltz=Zaphkiel Waltz

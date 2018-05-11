@@ -53,7 +53,7 @@ public class PageText extends LexiconPage
                 renderer.drawString(line, x, y, 0);
             }
 
-            y += 10;
+            y += 5;
         }
 
         renderer.setUnicodeFlag(unicode);
