@@ -1,6 +1,7 @@
 package pokefenn.totemic.ceremony;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
@@ -10,8 +11,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.init.Items;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,14 +39,14 @@ public class CeremonyFertility extends Ceremony
     {
         int radius = 8;
 
-        if(!world.isRemote && context.getTime() % 30 == 0)
+        if(!world.isRemote && context.getTime() % 20 == 0)
         {
             for(Entity entity: EntityUtil.getEntitiesInRange(EntityLiving.class, world, pos, radius, radius, e -> e instanceof EntityAnimal || e instanceof EntityVillager))
             {
                 if(entity instanceof EntityAnimal)
                 {
                     EntityAnimal animal = (EntityAnimal) entity;
-                    if(animal.getGrowingAge() == 0 && !animal.isInLove())
+                    if(animal.getGrowingAge() == 0 && !animal.isInLove() && consumeBreedingItem(world, pos, animal))
                     {
                         animal.setInLove(null);
                         break;
@@ -52,7 +55,7 @@ public class CeremonyFertility extends Ceremony
                 else
                 {
                     EntityVillager villager = (EntityVillager) entity;
-                    if(villager.getGrowingAge() == 0 && !matedVillagers.contains(villager) && !villager.isMating())
+                    if(villager.getGrowingAge() == 0 && !matedVillagers.contains(villager) && !villager.isMating() && consumeBreedingItem(world, pos, villager))
                     {
                         matedVillagers.add(villager);
                         villager.setIsWillingToMate(true);
@@ -79,10 +82,45 @@ public class CeremonyFertility extends Ceremony
         }
     }
 
+    private boolean consumeBreedingItem(World world, BlockPos pos, EntityAnimal animal)
+    {
+        int radius = 8;
+        List<EntityItem> breedingItems = EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius, e -> animal.isBreedingItem(e.getItem()));
+        if(!breedingItems.isEmpty())
+        {
+            if(world.rand.nextInt(3) < 2)
+            {
+                EntityItem entityItem = breedingItems.get(0);
+                entityItem.getItem().shrink(1);
+                if(entityItem.getItem().isEmpty())
+                    entityItem.setDead();
+            }
+            return true;
+        }
+        else
+            return false;
+    }
+
+    private boolean consumeBreedingItem(World world, BlockPos pos, EntityVillager villager)
+    {
+        int radius = 8;
+        List<EntityItem> breedingItems = EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius, e -> e.getItem().getItem() == Items.EMERALD);
+        if(!breedingItems.isEmpty())
+        {
+            EntityItem entityItem = breedingItems.get(0);
+            entityItem.getItem().shrink(1);
+            if(entityItem.getItem().isEmpty())
+                entityItem.setDead();
+            return true;
+        }
+        else
+            return false;
+    }
+
     @Override
     public int getEffectTime()
     {
-        return SHORT;
+        return 20 * 20;
     }
 
     @Override
