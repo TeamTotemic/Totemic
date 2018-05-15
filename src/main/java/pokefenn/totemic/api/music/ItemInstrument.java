@@ -105,33 +105,6 @@ public abstract class ItemInstrument extends Item
     }
 
     /**
-     * Plays music and puts the instrument on the specified cooldown.
-     * Does nothing if the instrument is currently on cooldown.
-     *
-     * <p>Call this method when your item is being used in some way (e.g. from onItemRightClick).
-     * It is not automatically called.
-     * @param stack the item stack of the instrument
-     * @param entity the entity that used the instrument
-     * @param cooldown the cooldown in ticks after the instrument has been played
-     * @param bonusRadius additional radius
-     * @param bonusMusic additional music amount
-     * @deprecated Use the other overload instead.
-     */
-    @Deprecated
-    protected void useInstrument(ItemStack stack, Entity entity, int cooldown, int bonusRadius, int bonusMusic)
-    {
-        if(!stack.hasTagCompound())
-            stack.setTagCompound(new NBTTagCompound());
-        NBTTagCompound tag = stack.getTagCompound();
-
-        if(tag.getInteger(INSTR_COOLDOWN_KEY) == 0)
-        {
-            playMusic(stack, entity, bonusRadius, bonusMusic);
-            tag.setInteger(INSTR_COOLDOWN_KEY, cooldown);
-        }
-    }
-
-    /**
      * Plays music from this instrument.
      *
      * <p>The cooldown is not being checked in this method.
@@ -161,37 +134,6 @@ public abstract class ItemInstrument extends Item
         TotemicAPI.get().music().playSelector(entity, instrument);
         spawnParticles((WorldServer) entity.world, entity.posX, entity.posY, entity.posZ, true);
         //The first parameter to playSound has to be null rather than entity, otherwise they will be unable to hear it.
-        if(sound != null)
-            entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
-    }
-
-    /**
-     * Plays music from this instrument, regardless of cooldown
-     * @param stack the item stack of the instrument
-     * @param entity the entity that used the instrument
-     * @param bonusRadius additional radius
-     * @param bonusMusic additional music amount
-     * @deprecated Replaced with {@link #playMusic(ItemStack, Entity)} and {@link #playSelector(ItemStack, Entity)}.
-     * Override one of these methods is you need to specify a different radius or amount.
-     */
-    @Deprecated
-    protected void playMusic(ItemStack stack, Entity entity, int bonusRadius, int bonusMusic)
-    {
-        if(entity.world.isRemote)
-            return;
-
-        WorldServer world = (WorldServer) entity.world;
-        if(!entity.isSneaking())
-        {
-            TotemicAPI.get().music().playMusic(entity, instrument, bonusRadius, bonusMusic);
-            spawnParticles(world, entity.posX, entity.posY, entity.posZ, false);
-        }
-        else
-        {
-            TotemicAPI.get().music().playMusicForSelector(entity, instrument, bonusRadius);
-            spawnParticles(world, entity.posX, entity.posY, entity.posZ, true);
-        }
-
         if(sound != null)
             entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);
     }

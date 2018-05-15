@@ -8,7 +8,6 @@ public final class MusicInstrument extends IForgeRegistryEntry.Impl<MusicInstrum
     private final String name;
     private final int baseOutput;
     private final int musicMaximum;
-    @Deprecated private final int baseRange;
     private ItemStack itemStack = ItemStack.EMPTY;
 
     /**
@@ -18,23 +17,9 @@ public final class MusicInstrument extends IForgeRegistryEntry.Impl<MusicInstrum
      */
     public MusicInstrument(String name, int baseOutput, int musicMaximum)
     {
-        this(name, baseOutput, musicMaximum, MusicAPI.DEFAULT_RANGE);
-    }
-
-    /**
-     * @param name the unlocalized name
-     * @param baseOutput the base music output every time the instrument is played
-     * @param musicMaximum the maximum amount of music that a Totem Base can take from this instrument
-     * @param baseRange the base range at which the instrument has an effect
-     * @deprecated Use the other constructor instead. The range is supposed to be consistent between instruments.
-     */
-    @Deprecated
-    public MusicInstrument(String name, int baseOutput, int musicMaximum, int baseRange)
-    {
         this.name = name;
         this.baseOutput = baseOutput;
         this.musicMaximum = musicMaximum;
-        this.baseRange = baseRange;
     }
 
     /**
@@ -78,15 +63,6 @@ public final class MusicInstrument extends IForgeRegistryEntry.Impl<MusicInstrum
     public int getMusicMaximum()
     {
         return musicMaximum;
-    }
-
-    /**
-     * @return the base range at which the instrument has an effect
-     */
-    @Deprecated
-    public int getBaseRange()
-    {
-        return baseRange;
     }
 
     @Override

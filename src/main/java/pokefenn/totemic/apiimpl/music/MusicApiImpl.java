@@ -18,7 +18,6 @@ import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.tileentity.totem.TotemState;
 import pokefenn.totemic.util.EntityUtil;
-import pokefenn.totemic.util.TotemUtil;
 
 public class MusicApiImpl implements MusicAPI
 {
@@ -95,41 +94,5 @@ public class MusicApiImpl implements MusicAPI
                 })
                 .min(Comparator.comparing(pair -> pair.getLeft().getDistanceSq(x, y, z)))
                 .map(Pair::getRight);
-    }
-
-    //Overrides of deprecated methods below
-    @Deprecated
-    @Override
-    public void playMusicForSelector(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int bonusRadius)
-    {
-        playSelector(world, x, y, z, entity, instr, instr.getBaseRange() + bonusRadius);
-    }
-
-    @Deprecated
-    @Override
-    public void playMusicForSelector(Entity entity, MusicInstrument instr, int bonusRadius)
-    {
-        playSelector(entity.world, entity.posX, entity.posY, entity.posZ, entity, instr, instr.getBaseRange() + bonusRadius);
-    }
-
-    @Deprecated
-    @Override
-    public void playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
-    {
-        playMusic0(world, x, y, z, entity, instr, instr.getBaseRange() + bonusRadius, instr.getBaseOutput() + bonusMusicAmount);
-    }
-
-    @Deprecated
-    @Override
-    public void playMusic(Entity entity, MusicInstrument instr, int bonusRadius, int bonusMusicAmount)
-    {
-        playMusic0(entity.world, entity.posX, entity.posY, entity.posZ, entity, instr, instr.getBaseRange() + bonusRadius, instr.getBaseOutput() + bonusMusicAmount);
-    }
-
-    @Deprecated
-    @Override
-    public void addMusic(MusicAcceptor tile, @Nullable Entity entity, MusicInstrument instr, int musicAmount)
-    {
-        TotemUtil.addMusic(tile, entity, instr, musicAmount);
     }
 }

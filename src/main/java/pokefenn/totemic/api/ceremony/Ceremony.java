@@ -108,29 +108,9 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
 
     /**
      * Performs the ceremony effect at the given Totem Base position. If the ceremony is not instant, this will be called each tick.
-     * <p><b>This method will be made abstract in a future release! Please override this method instead of the deprecated overload below.</b>
      * @param context an object providing information about the ceremony's state during the ceremony effect phase.
      */
-    public /*abstract*/ void effect(World world, BlockPos pos, CeremonyEffectContext context)
-    {
-        effect(world, pos, context.getTime());
-    }
-
-    /**
-     * Performs the ceremony effect at the given Totem Base position.
-     * If the ceremony is not instant, this will be called each tick.
-     * This gets called on the server and the client.
-     * @param world the world
-     * @param pos the position of the Totem Base where the effect happens
-     * @param time time in ticks how long the effect lasted so far.<br>
-     * Note: This value might not be always accurate on the client side due to potential lag and latency.
-     * @deprecated Override {@link #effect(World, BlockPos, CeremonyEffectContext)} instead.
-     */
-    @Deprecated
-    public void effect(World world, BlockPos pos, int time)
-    {
-        throw new UnsupportedOperationException();
-    }
+    public abstract void effect(World world, BlockPos pos, CeremonyEffectContext context);
 
     /**
      * Override this if your Ceremony effect is not instant
