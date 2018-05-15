@@ -83,7 +83,7 @@ public class ItemFlute extends ItemInstrument
     protected void playMusic(ItemStack stack, Entity entity)
     {
         int bonusMusic = (stack.getItemDamage() == 1) ? entity.world.rand.nextInt(2) : 0;
-        TotemicAPI.get().music().playMusic0(entity.world, entity.posX, entity.posY, entity.posZ, entity, instrument, MusicAPI.DEFAULT_RANGE, instrument.getBaseOutput() + bonusMusic);
+        TotemicAPI.get().music().playMusic(entity.world, entity.posX, entity.posY, entity.posZ, entity, instrument, MusicAPI.DEFAULT_RANGE, instrument.getBaseOutput() + bonusMusic);
         spawnParticles((WorldServer) entity.world, entity.posX, entity.posY, entity.posZ, false);
         if (sound != null)
             entity.world.playSound(null, entity.posX, entity.posY, entity.posZ, sound, SoundCategory.PLAYERS, 1.0F, 1.0F);

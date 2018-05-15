@@ -24,13 +24,13 @@ public class MusicApiImpl implements MusicAPI
     @Override
     public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr)
     {
-        return playMusic0(world, x, y, z, entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
+        return playMusic(world, x, y, z, entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
     }
 
     @Override
     public boolean playMusic(Entity entity, MusicInstrument instr)
     {
-        return playMusic0(entity.world, entity.posX, entity.posY, entity.posZ, entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
+        return playMusic(entity.world, entity.posX, entity.posY, entity.posZ, entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
     }
 
     @Override
@@ -39,8 +39,15 @@ public class MusicApiImpl implements MusicAPI
         return playMusic(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr);
     }
 
+    @Deprecated
     @Override
     public boolean playMusic0(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount)
+    {
+        return playMusic(world, x, y, z, entity, instr, range, amount);
+    }
+
+    @Override
+    public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount)
     {
         return getClosestAcceptor(world, x, y, z, range, range)
                 .map(acc -> acc.acceptMusic(instr, amount, x, y, z, entity))

@@ -101,7 +101,7 @@ public class TileWindChime extends TileTotemic implements ITickable
                     int baseAmount = ModContent.windChime.getBaseOutput();
                     int bonus = upState.getBlock().isLeaves(upState, world, pos.up())
                             ? world.rand.nextInt(3) : 0;
-                    Totemic.api.music().playMusic0(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, null, ModContent.windChime, MusicAPI.DEFAULT_RANGE, baseAmount + bonus);
+                    Totemic.api.music().playMusic(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, null, ModContent.windChime, MusicAPI.DEFAULT_RANGE, baseAmount + bonus);
                 }
         }
     }

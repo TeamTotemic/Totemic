@@ -52,9 +52,12 @@ public interface MusicAPI
     boolean playMusic(World world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr);
 
     /**
-     * <b>The name of this method is a placeholder to avoid a conflicting signature with the deprecated overload below.
-     * It will be changed to "playMusic" in a future release.</b>
-     *
+     * @deprecated Renamed to {@link #playMusic(World,double,double,double,Entity,MusicInstrument,int,int)}.
+     */
+    @Deprecated
+    boolean playMusic0(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount);
+
+    /**
      * <p>Plays music from an instrument located at the given position (which might differ from the entity's position, e.g. Drum)
      * to the closest nearby music acceptor.
      * <p>May only be called on the server side.
@@ -64,7 +67,7 @@ public interface MusicAPI
      * @param amount the amount of music to play. The default value is given by {@link MusicInstrument#getBaseOutput}.
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
      */
-    boolean playMusic0(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount);
+    boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount);
 
     /**
      * If the nearest music acceptor within range from the given position is a Totem Base, attempts to add the given instrument as selector to it.
