@@ -48,6 +48,9 @@ public class MusicApiImpl implements MusicAPI
     @Override
     public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount)
     {
+        //TODO: Temporary
+        if(range == 0 || amount == 0)
+            logger.error("", new IllegalArgumentException("The meanings of the playMusic parameters have changed, they are no longer bonus range and amount."));
         return getClosestAcceptor(world, x, y, z, range, range)
                 .map(acc -> acc.acceptMusic(instr, amount, x, y, z, entity))
                 .orElse(false);
