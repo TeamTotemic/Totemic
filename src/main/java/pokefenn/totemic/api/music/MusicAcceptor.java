@@ -7,8 +7,7 @@ import pokefenn.totemic.api.TotemicCapabilities;
 
 /**
  * Implement this interface as a Capability ({@link TotemicCapabilities#MUSIC_ACCEPTOR}) for a tile entity that can accept music
- * like a Totem Base. You can also make your tile entity implement this interface directly, <b>however this is discouraged and support
- * for that will be removed in the future!</b>
+ * like a Totem Base.
  *
  * <p>A reference implementation is provided by {@link DefaultMusicAcceptor}.
  */
