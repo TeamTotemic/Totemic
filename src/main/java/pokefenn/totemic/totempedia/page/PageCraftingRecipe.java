@@ -25,6 +25,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.IShapedRecipe;
 import net.minecraftforge.fml.relauncher.Side;
@@ -46,6 +48,14 @@ public class PageCraftingRecipe extends PageRecipe
     private int ticksElapsed = 0;
     private int recipeIndex = 0;
 
+    private static final IRecipe DUMMY_RECIPE = new ShapelessRecipes("", ItemStack.EMPTY, NonNullList.create());
+
+    private static IRecipe getRecipeOrDummy(ResourceLocation name)
+    {
+        IRecipe recipe = CraftingManager.getRecipe(name);
+        return (recipe != null) ? recipe : DUMMY_RECIPE;
+    }
+
     public PageCraftingRecipe(String unlocalizedName, IRecipe recipe)
     {
         super(unlocalizedName);
@@ -65,13 +75,16 @@ public class PageCraftingRecipe extends PageRecipe
 
     public PageCraftingRecipe(String unlocalizedName, String recipe)
     {
-        this(unlocalizedName, CraftingManager.getRecipe(new ResourceLocation(recipe)));
+        this(unlocalizedName, getRecipeOrDummy(new ResourceLocation(recipe)));
     }
 
     @Override
     public void onPageAdded(LexiconEntry entry, int index)
     {
-        LexiconRecipeMappings.map(recipe.getRecipeOutput(), entry, index);
+        if(recipe != DUMMY_RECIPE)
+            LexiconRecipeMappings.map(recipe.getRecipeOutput(), entry, index);
+        else
+            unlocalizedName = "totemic.gui.lexicon.recipeNotAvailable";
     }
 
     @Override
