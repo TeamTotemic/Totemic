@@ -40,7 +40,7 @@ public class PacketWindChime implements IMessage
             TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(msg.pos);
             if(tile instanceof TileWindChime)
             {
-                ((TileWindChime) tile).setPlaying(true);
+                //((TileWindChime) tile).setPlaying(true);
             }
             return null;
         }

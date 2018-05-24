@@ -43,8 +43,8 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     @Override
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
     {
-        if(!world.isRemote && player != null && player.isSneaking())
-            playMusic(world, pos, player);
+        if(!world.isRemote && player.isSneaking())
+            playSelector(world, pos, player);
     }
 
     @Override
@@ -76,23 +76,32 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
             EnumFacing side, float hitX, float hitY, float hitZ)
     {
-
-        playMusic(world, pos, player);
+        if(!world.isRemote && player.isSneaking())
+            playSelector(world, pos, player);
         return true;
     }
 
-    void playMusic(World world, BlockPos pos, EntityPlayer player)
+    private void playSelector(World world, BlockPos pos, EntityPlayer player)
     {
-        TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(pos);
+        TotemUtil.playSound(world, pos, ModSounds.windChime, SoundCategory.PLAYERS, 1.0f, 1.0f);
+        Totemic.api.music().playSelector(world, pos, player, ModContent.windChime);
+        ((WorldServer) world).spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
+        ((WorldServer) world).spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
+    }
 
-        if(!world.isRemote && player.isSneaking())
+    @Override
+    public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param)
+    {
+        if(!world.isRemote)
+            return true;
+
+        if(id == 0)
         {
-            tileWindChime.canPlay = false;
-            TotemUtil.playSound(world, pos, ModSounds.windChime, SoundCategory.PLAYERS, 1.0f, 1.0f);
-            Totemic.api.music().playSelector(world, pos, player, ModContent.windChime);
-            ((WorldServer) world).spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
-            ((WorldServer) world).spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5, 6, 0.0, 0.0, 0.0, 0.0);
+            TileEntity tile = world.getTileEntity(pos);
+            if(tile instanceof TileWindChime)
+                ((TileWindChime) tile).setPlaying(param);
         }
+        return true;
     }
 
     @Override

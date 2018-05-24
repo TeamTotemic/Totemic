@@ -9,114 +9,93 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModSounds;
-import pokefenn.totemic.network.NetworkHandler;
-import pokefenn.totemic.network.server.PacketWindChime;
 import pokefenn.totemic.tileentity.TileTotemic;
 
 public class TileWindChime extends TileTotemic implements ITickable
 {
     private boolean isPlaying = false;
-    public int currentTime = 0;
-    public int cooldownPassed = 0;
-    public boolean canPlay = true;
-    public float currentRotation = 0;
+    private int playingTimeLeft = 0;
+    private int cooldown = 0; //Only used on the server side
 
     @Override
     public void update()
     {
-        if(world.isRemote)
-        {
-
-            if(isPlaying)
-                currentRotation += 0.03F;
-            else
-                currentRotation = 0F;
-            if(currentRotation <= 0F)
-                currentRotation = 0F;
-            else if(currentRotation >= 4F)
-                currentRotation = 4F;
-
-            if(isPlaying && world.getTotalWorldTime() % 40L == 0)
-            {
-                world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        ModSounds.windChime, SoundCategory.BLOCKS, 0.5f, 1.0f, true);
-                world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.8, pos.getZ() + 0.5, 0, 0, 0);
-            }
-        }
-
         if(isPlaying)
         {
-            currentTime++;
-            //This is for how long it can play
-            if(currentTime >= 20 * 12)
+            if(playingTimeLeft % 40 == 0)
             {
-                setPlaying(false);
-                currentTime = 0;
+                if(!world.isRemote)
+                    playMusic();
+                else
+                    soundAndParticles();
+            }
+
+            playingTimeLeft--;
+            if(playingTimeLeft <= 0)
+            {
+                setNotPlaying();
             }
         }
-
-        if(!world.isRemote)
+        else
         {
-            if(!canPlay)
-                cooldownPassed++;
-            if(cooldownPassed > 20)
+            if(!world.isRemote)
             {
-                canPlay = true;
-                cooldownPassed = 0;
-            }
-
-            Random rand = world.rand;
-
-            if(!isPlaying && world.getTotalWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
-            {
-                setPlaying(true);
-                int radius = 2;
-
-                for(int i = -radius; i <= radius; i++)
-                    for(int j = -radius; j <= radius; j++)
-                        for(int k = -radius; k <= radius; k++)
-                        {
-                            BlockPos p = pos.add(i, j, k);
-                            if(world.getBlockState(p).getBlock() == ModBlocks.wind_chime)
-                            {
-                                if(rand.nextInt(3) == 0)
-                                {
-                                    TileWindChime tileWindChime = (TileWindChime) world.getTileEntity(p);
-                                    tileWindChime.setPlaying(true);
-                                }
-                            }
-                        }
-            }
-
-            if(isPlaying)
-                if(world.getTotalWorldTime() % 50L == 0 && rand.nextInt(2) == 0)
+                cooldown--;
+                if(cooldown <= 0)
                 {
-                    IBlockState upState = world.getBlockState(pos.up());
-                    int baseAmount = ModContent.windChime.getBaseOutput();
-                    int bonus = upState.getBlock().isLeaves(upState, world, pos.up())
-                            ? world.rand.nextInt(3) : 0;
-                    Totemic.api.music().playMusic(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, null, ModContent.windChime, MusicAPI.DEFAULT_RANGE, baseAmount + bonus);
+                    setPlaying(8 * 20);
                 }
+            }
         }
     }
 
-    public void setPlaying(boolean playing)
+    public void setPlaying(int time)
     {
-        if(!this.isPlaying && playing && !world.isRemote)
-            NetworkHandler.sendAround(new PacketWindChime(pos), this, 32);
-        this.isPlaying = playing;
-        markDirty();
+        isPlaying = true;
+        playingTimeLeft = time;
+        if(!world.isRemote)
+            world.addBlockEvent(pos, ModBlocks.wind_chime, 0, time);
+    }
+
+    public void setNotPlaying()
+    {
+        isPlaying = false;
+        if(!world.isRemote)
+            cooldown = getRandomCooldown(world.rand);
+    }
+
+    private int getRandomCooldown(Random rand)
+    {
+        return (int) (20.0 * (40.0 + 5.0 * rand.nextGaussian()));
     }
 
     public boolean isPlaying()
     {
         return isPlaying;
+    }
+
+    private void playMusic()
+    {
+        IBlockState upState = world.getBlockState(pos.up());
+        int baseAmount = ModContent.windChime.getBaseOutput();
+        int bonus = upState.getBlock().isLeaves(upState, world, pos.up())
+                ? world.rand.nextInt(3) : 0;
+        Totemic.api.music().playMusic(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, null, ModContent.windChime, MusicAPI.DEFAULT_RANGE, baseAmount + bonus);
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void soundAndParticles()
+    {
+        world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                ModSounds.windChime, SoundCategory.BLOCKS, 0.5f, 1.0f, true);
+        world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.8, pos.getZ() + 0.5, 0, 0, 0);
     }
 
     @Override
@@ -141,9 +120,11 @@ public class TileWindChime extends TileTotemic implements ITickable
     public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
         tag = super.writeToNBT(tag);
-        tag.setInteger("currentTime", currentTime);
         tag.setBoolean("isPlaying", isPlaying);
-        tag.setFloat("currentRotation", currentRotation);
+        if(isPlaying)
+            tag.setInteger("playingTimeLeft", playingTimeLeft);
+        else
+            tag.setInteger("cooldown", cooldown);
         return tag;
     }
 
@@ -151,8 +132,8 @@ public class TileWindChime extends TileTotemic implements ITickable
     public void readFromNBT(NBTTagCompound tag)
     {
         super.readFromNBT(tag);
-        currentTime = tag.getInteger("currentTime");
         isPlaying = tag.getBoolean("isPlaying");
-        currentRotation = tag.getFloat("currentRotation");
+        playingTimeLeft = tag.getInteger("playingTimeLeft");
+        cooldown = tag.getInteger("cooldown");
     }
 }
