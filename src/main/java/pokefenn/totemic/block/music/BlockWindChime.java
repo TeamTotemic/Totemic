@@ -11,6 +11,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -102,6 +103,14 @@ public class BlockWindChime extends Block implements ITileEntityProvider
                 ((TileWindChime) tile).setPlaying(param);
         }
         return true;
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof TileWindChime)
+            ((TileWindChime) tile).setNotPlaying();
     }
 
     @Override

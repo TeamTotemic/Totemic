@@ -133,7 +133,9 @@ public class TileWindChime extends TileTotemic implements ITickable
     {
         super.readFromNBT(tag);
         isPlaying = tag.getBoolean("isPlaying");
-        playingTimeLeft = tag.getInteger("playingTimeLeft");
-        cooldown = tag.getInteger("cooldown");
+        if(isPlaying)
+            playingTimeLeft = tag.getInteger("playingTimeLeft");
+        else
+            cooldown = tag.getInteger("cooldown");
     }
 }
