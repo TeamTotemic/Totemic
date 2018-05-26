@@ -96,12 +96,9 @@ public class BlockWindChime extends Block implements ITileEntityProvider
         if(!world.isRemote)
             return true;
 
-        if(id == 0)
-        {
-            TileEntity tile = world.getTileEntity(pos);
-            if(tile instanceof TileWindChime)
-                ((TileWindChime) tile).setPlaying(param);
-        }
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof TileWindChime)
+            ((TileWindChime) tile).setPlaying(param);
         return true;
     }
 
