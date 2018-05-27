@@ -43,6 +43,8 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);
 
+    public static final int EVENT_POLE_CHANGE_ID = 0;
+
     public BlockTotemBase()
     {
         super(Material.WOOD);
@@ -102,6 +104,20 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
         }
 
         return EnumActionResult.SUCCESS;
+    }
+
+    @Override
+    public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param)
+    {
+        switch(id)
+        {
+        case EVENT_POLE_CHANGE_ID:
+            TileEntity tile = world.getTileEntity(pos);
+            if(tile instanceof TileTotemBase)
+                ((TileTotemBase) tile).onPoleChange();
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -13,7 +13,6 @@ import pokefenn.totemic.network.client.PacketMouseWheel;
 import pokefenn.totemic.network.server.PacketCeremonyStartupFull;
 import pokefenn.totemic.network.server.PacketCeremonyStartupMusic;
 import pokefenn.totemic.network.server.PacketTotemEffectMusic;
-import pokefenn.totemic.network.server.PacketTotemPoleChange;
 
 public class NetworkHandler
 {
@@ -31,7 +30,6 @@ public class NetworkHandler
         registerPacket(PacketCeremonyStartupMusic.Handler.class, PacketCeremonyStartupMusic.class, Side.CLIENT);
         registerPacket(PacketCeremonyStartupFull.Handler.class, PacketCeremonyStartupFull.class, Side.CLIENT);
         registerPacket(PacketTotemEffectMusic.Handler.class, PacketTotemEffectMusic.class, Side.CLIENT);
-        registerPacket(PacketTotemPoleChange.Handler.class, PacketTotemPoleChange.class, Side.CLIENT);
     }
 
     public static void sendToServer(IMessage packet)

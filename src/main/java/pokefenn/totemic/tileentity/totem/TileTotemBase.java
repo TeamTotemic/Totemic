@@ -25,8 +25,6 @@ import pokefenn.totemic.api.totem.TotemBase;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.handler.GameOverlay;
 import pokefenn.totemic.lib.WoodVariant;
-import pokefenn.totemic.network.NetworkHandler;
-import pokefenn.totemic.network.server.PacketTotemPoleChange;
 import pokefenn.totemic.tileentity.TileTotemic;
 
 public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
@@ -74,9 +72,6 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
 
     public void onPoleChange()
     {
-        if(!world.isRemote)
-            NetworkHandler.sendAround(new PacketTotemPoleChange(pos), this, 64);
-
         calculateTotemEffects();
     }
 

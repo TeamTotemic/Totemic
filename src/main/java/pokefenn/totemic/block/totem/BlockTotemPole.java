@@ -42,7 +42,6 @@ import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.item.equipment.ItemTotemWhittlingKnife;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.lib.WoodVariant;
-import pokefenn.totemic.tileentity.totem.TileTotemBase;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
 
 public class BlockTotemPole extends Block implements ITileEntityProvider, TotemicStaffUsage
@@ -118,7 +117,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
             Block block = world.getBlockState(pos.down(i + 1)).getBlock();
             if(block instanceof BlockTotemBase)
             {
-                ((TileTotemBase) world.getTileEntity(pos.down(i + 1))).onPoleChange();
+                world.addBlockEvent(pos.down(i + 1), block, BlockTotemBase.EVENT_POLE_CHANGE_ID, 0);
                 break;
             }
             else if(!(block instanceof BlockTotemPole))
