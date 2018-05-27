@@ -169,7 +169,7 @@ totemicmisc.clickToIndex=Shift+Click to return to index
 totemicmisc.clickToRecipe=Shift+Click to see recipe
 totemicmisc.shapeless=Shapeless
 totemicmisc.oredict=Ore Dictionary
-totemic.gui.lexicon.recipeNotAvailable=(Crafting recipe not available)
+totemic.gui.lexicon.recipeNotAvailable=(Check recipe book for crafting recipe)
 totemic.gui.lexicon.wip=Work In Progress
 
 totemic.category.basics=Totemic Basics
