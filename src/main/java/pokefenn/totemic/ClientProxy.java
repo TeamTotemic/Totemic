@@ -124,7 +124,12 @@ public class ClientProxy extends CommonProxy
                     protected float getNightVisionBrightness(EntityLivingBase entity, float partialTicks)
                     {
                         int duration = entity.getActivePotionEffect(MobEffects.NIGHT_VISION).getDuration();
-                        return duration > 200 ? 1.0F : 0.0F;
+                        if(duration > 200)
+                            return 1.0F;
+                        else if(duration > 100)
+                            return (duration - 100)/100.0F;
+                        else
+                            return 0.0F;
                     }
                 };
         minecraft.entityRenderer = newRenderer;
