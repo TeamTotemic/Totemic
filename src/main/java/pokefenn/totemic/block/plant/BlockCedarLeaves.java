@@ -49,6 +49,7 @@ public class BlockCedarLeaves extends BlockLeaves
         return 80;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess iba, BlockPos pos, EnumFacing side)
@@ -56,6 +57,7 @@ public class BlockCedarLeaves extends BlockLeaves
         return Minecraft.isFancyGraphicsEnabled() || super.shouldSideBeRendered(state, iba, pos, side);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {

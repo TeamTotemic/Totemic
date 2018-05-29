@@ -2,6 +2,7 @@ package pokefenn.totemic;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
@@ -98,11 +99,11 @@ public class CommonProxy
 
     private void registerTileEntities()
     {
-        GameRegistry.registerTileEntity(TileTotemBase.class, Strings.RESOURCE_PREFIX + Strings.TOTEM_BASE_NAME);
-        GameRegistry.registerTileEntity(TileTotemPole.class, Strings.RESOURCE_PREFIX + Strings.TOTEM_POLE_NAME);
-        GameRegistry.registerTileEntity(TileDrum.class, Strings.RESOURCE_PREFIX + Strings.DRUM_NAME);
-        GameRegistry.registerTileEntity(TileWindChime.class, Strings.RESOURCE_PREFIX + Strings.WIND_CHIME_NAME);
-        GameRegistry.registerTileEntity(TileTipi.class, Strings.RESOURCE_PREFIX + Strings.TIPI_NAME);
+        GameRegistry.registerTileEntity(TileTotemBase.class, new ResourceLocation(Totemic.MOD_ID, Strings.TOTEM_BASE_NAME));
+        GameRegistry.registerTileEntity(TileTotemPole.class, new ResourceLocation(Totemic.MOD_ID, Strings.TOTEM_POLE_NAME));
+        GameRegistry.registerTileEntity(TileDrum.class, new ResourceLocation(Totemic.MOD_ID, Strings.DRUM_NAME));
+        GameRegistry.registerTileEntity(TileWindChime.class, new ResourceLocation(Totemic.MOD_ID, Strings.WIND_CHIME_NAME));
+        GameRegistry.registerTileEntity(TileTipi.class, new ResourceLocation(Totemic.MOD_ID,  Strings.TIPI_NAME));
     }
 
     private void oreDictionary()
