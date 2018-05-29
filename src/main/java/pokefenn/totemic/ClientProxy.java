@@ -1,6 +1,15 @@
 package pokefenn.totemic;
 
+import static pokefenn.totemic.Totemic.logger;
+
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.resources.IResourceManagerReloadListener;
+import net.minecraft.client.resources.SimpleReloadableResourceManager;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.MobEffects;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
@@ -8,7 +17,11 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.client.rendering.entity.BaldEagleRendering;
 import pokefenn.totemic.client.rendering.entity.BaykokRendering;
 import pokefenn.totemic.client.rendering.entity.BuffaloRendering;
@@ -25,6 +38,7 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.tileentity.music.TileWindChime;
 import pokefenn.totemic.totempedia.LexiconData;
 
+@SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
     @Override
@@ -46,6 +60,13 @@ public class ClientProxy extends CommonProxy
         super.init(event);
         registerBlockColors();
         LexiconData.init();
+    }
+
+    @Override
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        super.postInit(event);
+        removeNightVisionFlashing();
     }
 
     @Override
@@ -83,5 +104,31 @@ public class ClientProxy extends CommonProxy
     private void initTESRs()
     {
         ClientRegistry.bindTileEntitySpecialRenderer(TileWindChime.class, new TileWindChimeRenderer());
+    }
+
+    private void removeNightVisionFlashing()
+    {
+        logger.debug("Replacing EntityRenderer to remove Night Vision flashing");
+        Minecraft minecraft = Minecraft.getMinecraft();
+
+        EntityRenderer oldRenderer = minecraft.entityRenderer;
+        if(oldRenderer.getClass() != EntityRenderer.class)
+            logger.warn("Another mod already replaced the EntityRenderer. This might cause problems. Class name: {}", oldRenderer.getClass().getName());
+
+        EntityRenderer newRenderer = new EntityRenderer(minecraft, minecraft.getResourceManager())
+                {
+                    @Override
+                    protected float getNightVisionBrightness(EntityLivingBase entity, float partialTicks)
+                    {
+                        int duration = entity.getActivePotionEffect(MobEffects.NIGHT_VISION).getDuration();
+                        return duration > 200 ? 1.0F : 0.0F;
+                    }
+                };
+        minecraft.entityRenderer = newRenderer;
+
+        SimpleReloadableResourceManager resourceManager = (SimpleReloadableResourceManager) minecraft.getResourceManager();
+        List<IResourceManagerReloadListener> listeners = ReflectionHelper.getPrivateValue(SimpleReloadableResourceManager.class, resourceManager, "field_110546_b", "reloadListeners");
+        listeners.remove(oldRenderer);
+        resourceManager.registerReloadListener(newRenderer);
     }
 }
