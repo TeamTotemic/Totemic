@@ -28,6 +28,7 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.tileentity.music.TileWindChime;
+import pokefenn.totemic.util.EntityUtil;
 import pokefenn.totemic.util.TotemUtil;
 
 public class BlockWindChime extends Block implements ITileEntityProvider
@@ -63,6 +64,14 @@ public class BlockWindChime extends Block implements ITileEntityProvider
             world.setBlockToAir(pos);
             spawnAsEntity(world, pos, new ItemStack(this));
         }
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        world.removeTileEntity(pos);
+        for(TileWindChime chime: EntityUtil.getTileEntitiesInRange(TileWindChime.class, world, pos, 8, 8))
+            chime.tryUncongest();
     }
 
     @Override

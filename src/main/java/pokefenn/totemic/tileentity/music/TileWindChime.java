@@ -59,13 +59,14 @@ public class TileWindChime extends TileTotemic implements ITickable
                 cooldown--;
                 if(cooldown <= 0)
                 {
-                    if(checkForCongestion())
+                    //Not sure if we need to check here
+                    /*if(checkForCongestion())
                     {
                         isCongested = true;
                         markForUpdate();
                     }
-                    else
-                        setPlaying(8 * 20);
+                    else*/
+                    setPlaying(8 * 20);
                 }
             }
         }
@@ -86,6 +87,7 @@ public class TileWindChime extends TileTotemic implements ITickable
         playingTimeLeft = time;
         if(!world.isRemote)
             world.addBlockEvent(pos, ModBlocks.wind_chime, 0, time);
+        markDirty();
     }
 
     public void setNotPlaying()
@@ -93,6 +95,7 @@ public class TileWindChime extends TileTotemic implements ITickable
         isPlaying = false;
         if(!world.isRemote)
             cooldown = getRandomCooldown(world.rand);
+        markDirty();
     }
 
     private int getRandomCooldown(Random rand)
@@ -112,6 +115,16 @@ public class TileWindChime extends TileTotemic implements ITickable
                 return true;
         }
         return false;
+    }
+
+    public void tryUncongest()
+    {
+        if(isCongested)
+        {
+            isCongested = checkForCongestion();
+            if(!isCongested)
+                markForUpdate();
+        }
     }
 
     public boolean isPlaying()
