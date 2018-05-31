@@ -1,5 +1,6 @@
 package pokefenn.totemic.handler;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -40,12 +41,19 @@ public class PlayerInteract
     @SubscribeEvent
     public void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event)
     {
-        //Workaround to make left-clicking the Totem Base with a Totemic Staff work in creative mode
-        if(!event.getWorld().isRemote && event.getEntityPlayer().isCreative() && event.getUseBlock() != Result.DENY)
+        if(event.getEntityPlayer().isCreative() && event.getUseBlock() != Result.DENY)
         {
-            if(event.getItemStack().getItem() == ModItems.totemic_staff && event.getWorld().getBlockState(event.getPos()).getBlock() == ModBlocks.totem_base)
+            Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+            if(event.getEntityPlayer().isSneaking() && (block == ModBlocks.drum || block == ModBlocks.wind_chime))
             {
-                ModBlocks.totem_base.onBlockClicked(event.getWorld(), event.getPos(), event.getEntityPlayer());
+                //Enable using sneak+left click to select ceremonies in Creative mode
+                event.setCanceled(true);
+                block.onBlockClicked(event.getWorld(), event.getPos(), event.getEntityPlayer());
+            }
+            else if(!event.getWorld().isRemote && event.getItemStack().getItem() == ModItems.totemic_staff && block == ModBlocks.totem_base)
+            {
+                //Workaround to make left-clicking the Totem Base with a Totemic Staff work in creative mode
+                block.onBlockClicked(event.getWorld(), event.getPos(), event.getEntityPlayer());
             }
         }
     }
