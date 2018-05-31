@@ -117,6 +117,11 @@ public class TileWindChime extends TileTotemic implements ITickable
         return false;
     }
 
+    public boolean isCongested()
+    {
+        return isCongested;
+    }
+
     public void tryUncongest()
     {
         if(isCongested)

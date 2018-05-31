@@ -43,13 +43,6 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     }
 
     @Override
-    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
-    {
-        if(!world.isRemote && player.isSneaking())
-            playSelector(world, pos, player);
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flag)
     {
@@ -82,13 +75,32 @@ public class BlockWindChime extends Block implements ITileEntityProvider
                 && (world.isSideSolid(pos.up(), EnumFacing.DOWN) || upState.getBlock().isLeaves(upState, world, pos.up()));
     }
 
+    private boolean isCongested(World world, BlockPos pos)
+    {
+        return ((TileWindChime) world.getTileEntity(pos)).isCongested();
+    }
+
+    @Override
+    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player)
+    {
+        if(!world.isRemote && player.isSneaking() && !isCongested(world, pos))
+            playSelector(world, pos, player);
+    }
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand,
             EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if(!world.isRemote && player.isSneaking())
-            playSelector(world, pos, player);
-        return true;
+        if(player.isSneaking())
+        {
+            if(isCongested(world, pos))
+                return false;
+            if(!world.isRemote)
+                playSelector(world, pos, player);
+            return true;
+        }
+        else
+            return false;
     }
 
     private void playSelector(World world, BlockPos pos, EntityPlayer player)
