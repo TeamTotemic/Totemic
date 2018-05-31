@@ -17,16 +17,25 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.tileentity.TileTotemic;
+import pokefenn.totemic.util.EntityUtil;
 
 public class TileWindChime extends TileTotemic implements ITickable
 {
     private boolean isPlaying = false;
     private int playingTimeLeft = 0;
     private int cooldown = 0; //Only used on the server side
+    private boolean isCongested = false;
 
     @Override
     public void update()
     {
+        if(isCongested)
+        {
+            if(world.isRemote)
+                congestionParticles();
+            return;
+        }
+
         if(isPlaying)
         {
             if(playingTimeLeft % 40 == 0)
@@ -50,9 +59,24 @@ public class TileWindChime extends TileTotemic implements ITickable
                 cooldown--;
                 if(cooldown <= 0)
                 {
-                    setPlaying(8 * 20);
+                    if(checkForCongestion())
+                    {
+                        isCongested = true;
+                        markForUpdate();
+                    }
+                    else
+                        setPlaying(8 * 20);
                 }
             }
+        }
+    }
+
+    @Override
+    public void onLoad()
+    {
+        if(!world.isRemote && checkForCongestion())
+        {
+            isCongested = true;
         }
     }
 
@@ -74,6 +98,20 @@ public class TileWindChime extends TileTotemic implements ITickable
     private int getRandomCooldown(Random rand)
     {
         return (int) (20.0 * (40.0 + 5.0 * rand.nextGaussian()));
+    }
+
+    private boolean checkForCongestion()
+    {
+        //FIXME: Crude implementation. Can be cheated and does does not take into account which Totem Bases the other chimes are attached to.
+        int count = 0;
+        for(TileWindChime chime: EntityUtil.getTileEntitiesInRange(TileWindChime.class, world, pos, 8, 8))
+        {
+            if(chime != this && !chime.isCongested)
+                count++;
+            if(count > 2)
+                return true;
+        }
+        return false;
     }
 
     public boolean isPlaying()
@@ -98,6 +136,16 @@ public class TileWindChime extends TileTotemic implements ITickable
         world.spawnParticle(EnumParticleTypes.NOTE, pos.getX() + 0.5, pos.getY() - 0.8, pos.getZ() + 0.5, 0, 0, 0);
     }
 
+    @SideOnly(Side.CLIENT)
+    private void congestionParticles()
+    {
+        if(world.getTotalWorldTime() % 2 == 0)
+        {
+            Random rand = world.rand;
+            world.spawnParticle(EnumParticleTypes.CRIT, pos.getX() + rand.nextFloat(), pos.getY() + rand.nextFloat(), pos.getZ() + rand.nextFloat(), 0, 0, 0);
+        }
+    }
+
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()
     {
@@ -105,17 +153,33 @@ public class TileWindChime extends TileTotemic implements ITickable
     }
 
     @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        handleUpdateTag(pkt.getNbtCompound());
+    }
+
+    //NBT for client synchronization
+    @Override
     public NBTTagCompound getUpdateTag()
     {
-        return writeToNBT(new NBTTagCompound());
+        NBTTagCompound tag = super.getUpdateTag();
+        tag.setBoolean("isPlaying", isPlaying);
+        if(isPlaying)
+            tag.setInteger("playingTimeLeft", playingTimeLeft);
+        tag.setBoolean("isCongested", isCongested);
+        return tag;
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    public void handleUpdateTag(NBTTagCompound tag)
     {
-        readFromNBT(pkt.getNbtCompound());
+        isPlaying = tag.getBoolean("isPlaying");
+        if(isPlaying)
+            playingTimeLeft = tag.getInteger("playingTimeLeft");
+        isCongested = tag.getBoolean("isCongested");
     }
 
+    //NBT for saving to disk
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag)
     {
