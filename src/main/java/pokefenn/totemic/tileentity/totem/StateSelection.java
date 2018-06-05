@@ -27,13 +27,14 @@ public final class StateSelection extends TotemState
 {
     static final int ID = 1;
 
-    private static final int ACTUAL_MAX_SELECTORS =
+    /*private static final int ACTUAL_MAX_SELECTORS =
             Streams.stream(TotemicRegistries.ceremonies())
                 .mapToInt(cer -> cer.getSelectors().size())
                 .max()
-                .getAsInt();
+                .getAsInt();*/
+    private static final int NUMBER_SELECTORS = Ceremony.MIN_SELECTORS;
 
-    private final List<MusicInstrument> selectors = new ArrayList<>(ACTUAL_MAX_SELECTORS);
+    private final List<MusicInstrument> selectors = new ArrayList<>(NUMBER_SELECTORS);
     private Entity initiator;
     private int time = 0; //Time since last selection
 
@@ -87,7 +88,7 @@ public final class StateSelection extends TotemState
                 world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.7D, 0.5D, 0.7D, 0.0D);
                 tile.setState(new StateStartup(tile, initiator, match.get()));
             }
-            else if(selectors.size() >= ACTUAL_MAX_SELECTORS) //No match found - only reset if the maximum number of selectors is reached
+            else if(selectors.size() >= NUMBER_SELECTORS) //No match found - only reset if the maximum number of selectors is reached
             {
                 world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 16, 0.6D, 0.5D, 0.6D, 0.0D);
                 tile.setState(new StateTotemEffect(tile));

@@ -87,7 +87,7 @@ public class CeremonyDanseMacabre extends Ceremony
     @Override
     public int getEffectTime()
     {
-        return LONG;
+        return 45 * 20;
     }
 
     @Override

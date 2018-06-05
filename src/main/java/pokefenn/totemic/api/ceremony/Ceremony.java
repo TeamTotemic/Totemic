@@ -17,21 +17,7 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
     /** The minimum number of music instruments for selecting a ceremony */
     public static final int MIN_SELECTORS = 2;
     /** The maximum number of music instruments for selecting a ceremony */
-    public static final int MAX_SELECTORS = 4;
-
-    /**
-     * Suggested time values in ticks for maxStartupTime.
-     * These are guidelines that do not have to be used.
-     */
-    public static final int INSTANT = 0,
-            VERY_SHORT = 5 * 20,
-            SHORT = 15 * 20,
-            SHORT_MEDIUM = 22 * 20,
-            MEDIUM = 30 * 20,
-            LONG = 45 * 20,
-            EXTRA_LONG = 60 * 20,
-            MEDIUM_STUPID_LONG = 90 * 20,
-            STUPIDLY_LONG = 120 * 20;
+    public static final int MAX_SELECTORS = 2;
 
     protected final String name;
     protected final int musicNeeded;
@@ -49,8 +35,10 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
      */
     public Ceremony(String name, int musicNeeded, int maxStartupTime, MusicInstrument... selectors)
     {
-        Validate.inclusiveBetween(MIN_SELECTORS, MAX_SELECTORS, selectors.length,
-                "Wrong number of musical selectors: Must be between " + MIN_SELECTORS + " and " + MAX_SELECTORS);
+        /*Validate.inclusiveBetween(MIN_SELECTORS, MAX_SELECTORS, selectors.length,
+                "Wrong number of musical selectors: Must be between " + MIN_SELECTORS + " and " + MAX_SELECTORS);*/
+        if(selectors.length != MIN_SELECTORS)
+            throw new IllegalArgumentException("Wrong number of musical selectors: Must be equal to " + MIN_SELECTORS);
         Validate.noNullElements(selectors);
 
         this.name = name;
@@ -118,7 +106,7 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
      */
     public int getEffectTime()
     {
-        return INSTANT;
+        return 0;
     }
 
     /**

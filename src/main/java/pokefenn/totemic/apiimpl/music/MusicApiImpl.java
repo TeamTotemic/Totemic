@@ -93,7 +93,7 @@ public class MusicApiImpl implements MusicAPI
                     //TODO: Temporary.
                     //Log an error message if someone uses MusicAcceptor wrongly.
                     if(tile instanceof MusicAcceptor && !tile.hasCapability(TotemicCapabilities.MUSIC_ACCEPTOR, null))
-                        logger.error("Directly implementing MusicAcceptor is no longer supported! Expose it as Capability instead. Affected tile entity: {}", tile);
+                        logger.error("Directly implementing MusicAcceptor is no longer supported! Expose it as Capability instead, or in addition. Affected tile entity: {}", tile);
                 })
                 .filter(tile -> tile.hasCapability(TotemicCapabilities.MUSIC_ACCEPTOR, null))
                 .min(Comparator.comparing(tile -> tile.getDistanceSq(x, y, z)))

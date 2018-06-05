@@ -74,7 +74,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
     @Override
     public int getEffectTime()
     {
-        return LONG;
+        return 45 * 20;
     }
 
     @Override

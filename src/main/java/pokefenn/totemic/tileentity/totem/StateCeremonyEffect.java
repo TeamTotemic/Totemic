@@ -47,7 +47,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
         else
         {
             //Due to network delay, we want to avoid ticking instant ceremonies more than once on the client side
-            if(ceremony.getEffectTime() == Ceremony.INSTANT)
+            if(ceremony.getEffectTime() == 0)
                 tile.setState(new StateTotemEffect(tile));
 
             tile.setCeremonyOverlay();
