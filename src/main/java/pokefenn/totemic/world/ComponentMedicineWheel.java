@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockLog.EnumAxis;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -24,7 +25,6 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationH
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
-import pokefenn.totemic.block.BlockCedarLog;
 import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.block.totem.BlockTotemPole;
 import pokefenn.totemic.init.ModBlocks;
@@ -111,10 +111,12 @@ public class ComponentMedicineWheel extends StructureVillagePieces.Village
         setBlockState(world, ModBlocks.drum.getDefaultState(), 0, 0, 4, bb);
         setBlockState(world, ModBlocks.drum.getDefaultState(), 8, 0, 4, bb);
 
+        IBlockState log = getBiomeSpecificBlockState(Blocks.LOG.getDefaultState());
+        IBlockState log_z = getBiomeSpecificBlockState(Blocks.LOG.getDefaultState().withProperty(BlockLog.LOG_AXIS, EnumAxis.Z));
         for(int i = 0; i < 3; i++)
-            setBlockState(world, ModBlocks.cedar_log.getDefaultState(), 4, i, 8, bb);
-        setBlockState(world, ModBlocks.cedar_log.getDefaultState().withProperty(BlockCedarLog.LOG_AXIS, EnumAxis.Z), 4, 3, 8, bb);
-        setBlockState(world, ModBlocks.cedar_log.getDefaultState().withProperty(BlockCedarLog.LOG_AXIS, EnumAxis.Z), 4, 3, 7, bb);
+            setBlockState(world, log, 4, i, 8, bb);
+        setBlockState(world, log_z, 4, 3, 8, bb);
+        setBlockState(world, log_z, 4, 3, 7, bb);
         setBlockState(world, ModBlocks.wind_chime.getDefaultState(), 4, 2, 7, bb);
 
         if(!isZombieInfested)
