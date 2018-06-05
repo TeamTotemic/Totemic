@@ -27,6 +27,7 @@ public class CeremonyBaykok extends Ceremony
 
         world.playBroadcastSound(1023, pos, 0); //Wither spawn sound
         BlockPos spos = pos.offset(EnumFacing.getHorizontal(world.rand.nextInt(4)));
+        spos = world.getTopSolidOrLiquidBlock(spos);
         EntityBaykok baykok = new EntityBaykok(world);
         baykok.setPosition(spos.getX() + 0.5, spos.getY(), spos.getZ() + 0.5);
         baykok.onInitialSpawn(world.getDifficultyForLocation(spos), null);
