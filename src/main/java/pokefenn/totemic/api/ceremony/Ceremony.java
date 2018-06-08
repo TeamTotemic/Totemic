@@ -162,7 +162,7 @@ public abstract class Ceremony extends IForgeRegistryEntry.Impl<Ceremony>
             return getMaxStartupTime();
 
         case HARD:
-            return (int) (0.9F * getMaxStartupTime());
+            return (int) (0.875F * getMaxStartupTime());
         }
     }
 
