@@ -110,15 +110,15 @@ public final class ModContent
         //245: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
         //270: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
         event.getRegistry().registerAll(
-            warDance = new CeremonyWarDance("totemic:warDance", 75, 19 * 20,
+            warDance = new CeremonyWarDance("totemic:warDance", 75, 20 * 20,
                     drum, drum).setRegistryName("war_dance"),
-            depths = new CeremonyDepths("totemic:depths", 75, 19 * 20,
+            depths = new CeremonyDepths("totemic:depths", 75, 20 * 20,
                     flute, flute).setRegistryName("depths"),
-            fertility = new CeremonyFertility("totemic:fertility", 88, 22 * 20,
+            fertility = new CeremonyFertility("totemic:fertility", 88, 23 * 20,
                     flute, drum).setRegistryName("fertility"),
-            zaphkielWaltz = new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 106, 20 * 20,
+            zaphkielWaltz = new CeremonyZaphkielWaltz("totemic:zaphkielWaltz", 112, 20 * 20,
                     windChime, flute).setRegistryName("zaphkiel_waltz"),
-            buffaloDance = new CeremonyBuffaloDance("totemic:buffaloDance", 111, 24 * 20,
+            buffaloDance = new CeremonyBuffaloDance("totemic:buffaloDance", 123, 24 * 20,
                     drum, windChime).setRegistryName("buffalo_dance"),
             rainDance = new CeremonyRain(true, "totemic:rainDance", 179, 26 * 20,
                     drum, rattle).setRegistryName("rain_dance"),
