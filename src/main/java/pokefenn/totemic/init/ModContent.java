@@ -128,13 +128,13 @@ public final class ModContent
                     flute, rattle).setRegistryName("flute"),
             eagleDance = new CeremonyEagleDance("totemic:eagleDance", 193, 25 * 20,
                     rattle, windChime).setRegistryName("eagle_dance"),
-            cleansing = new CeremonyCleansing("totemic:cleansing", 230, 35 * 20,
+            cleansing = new CeremonyCleansing("totemic:cleansing", 245, 30 * 20,
                     eagleBoneWhistle, flute).setRegistryName("cleansing"),
-            baykokSummon = new CeremonyBaykok("totemic:baykokSummon", 241, 40 * 20,
+            baykokSummon = new CeremonyBaykok("totemic:baykokSummon", 251, 32 * 20,
                     windChime, eagleBoneWhistle).setRegistryName("baykok_summon"),
-            sunDance = new CeremonySunDance("totemic:sunDance", 240, 41 * 20,
+            sunDance = new CeremonySunDance("totemic:sunDance", 247, 31 * 20,
                     drum, eagleBoneWhistle).setRegistryName("sun_dance"),
-            danseMacabre = new CeremonyDanseMacabre("totemic:danseMacabre", 238, 45 * 20,
+            danseMacabre = new CeremonyDanseMacabre("totemic:danseMacabre", 249, 32 * 20,
                 eagleBoneWhistle, windChime).setRegistryName("danseMacabre"));
     }
 
