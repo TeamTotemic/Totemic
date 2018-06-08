@@ -30,6 +30,7 @@ public final class Totempedia
     public static final String BASICS_CEREMONIES = "basicsCeremonies";
     public static final String SELECTING_CEREMONIES = "selectingCeremonies";
     public static final String PERFORMING_CEREMONIES = "performingCeremonies";
+    public static final String CEREMONY_TIPS = "ceremonyTips";
     public static final String RAIN_DANCE = "rainDance";
     public static final String DROUGHT_DANCE = "drought";
     public static final String WAR_DANCE = "warDance";

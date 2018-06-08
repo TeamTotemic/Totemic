@@ -50,6 +50,7 @@ public final class LexiconData
     public static LexiconEntry basicsCeremonies;
     public static LexiconEntry selectingCeremonies;
     public static LexiconEntry performingCeremonies;
+    public static LexiconEntry ceremonyTips;
     public static LexiconEntry warDance;
     public static LexiconEntry depths;
     public static LexiconEntry fertility;
@@ -135,14 +136,17 @@ public final class LexiconData
 */
 
         //Ceremonies
-        basicsCeremonies = new BLexiconEntry(Totempedia.BASICS_CEREMONIES, categoryCeremony).setSortIndex(-1);
+        basicsCeremonies = new BLexiconEntry(Totempedia.BASICS_CEREMONIES, categoryCeremony).setSortIndex(-4);
         basicsCeremonies.addPages(new PageText("0"), new PageText("1"));
 
-        selectingCeremonies = new BLexiconEntry(Totempedia.SELECTING_CEREMONIES, categoryCeremony).setSortIndex(0);
+        selectingCeremonies = new BLexiconEntry(Totempedia.SELECTING_CEREMONIES, categoryCeremony).setSortIndex(-3);
         selectingCeremonies.addPages(new PageText("0"), new PageText("1"));
 
-        performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony).setSortIndex(1);
+        performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony).setSortIndex(-2);
         performingCeremonies.addPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"));
+
+        ceremonyTips = new BLexiconEntry(Totempedia.CEREMONY_TIPS, categoryCeremony).setSortIndex(-1);
+        ceremonyTips.addPages(new PageText("0"), new PageText("1"), new PageText("2"));
 
         warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony).setSortIndex(2);
         warDance.addPages(new PageText("0"), new PageCeremony("1", ModContent.warDance));

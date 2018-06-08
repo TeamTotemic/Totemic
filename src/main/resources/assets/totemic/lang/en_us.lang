@@ -232,7 +232,7 @@ totemic.page.flute1=The §1Flute§0 can be infused in the §4Serenade for Syrinx
 totemic.page.flute2=
 
 totemic.entry.rattle=Rattle
-totemic.page.rattle0=The §1Ceremonial Rattle§0 is an §4Instrument§0 which is a backbone of any more advanced §4Ceremonies§0. The §1Rattle§0 produces §4Melody§0 whenever it has been shook with the hand.<br>It can be used in dual wield: if you hold the Rattle in your right hand, you can have another instrument in your left hand and play both at the same time by alternatively using the instruments.
+totemic.page.rattle0=The §1Ceremonial Rattle§0 is an §4Instrument§0 which is a backbone of any more advanced §4Ceremonies§0. The §1Rattle§0 produces §4Melody§0 whenever it has been shook with the hand.<br>It can be used in dual wield: if you hold the Rattle in your right hand, you can have another instrument in your left hand and play both at the same time.
 totemic.page.rattle1=Like all §4Instruments§0, it can be played while §4sneaking§0 so as to activate §4Ceremonies§0.
 totemic.page.rattle2=
 
@@ -258,6 +258,11 @@ totemic.page.performingCeremonies0=Once a §4Ceremony§0 has been selected, the 
 totemic.page.performingCeremonies1=Each §4Instrument§0 can only be played up to a certain point, meaning a Ceremony could not be played with just one §4Instrument§0. This is known as the §4Melody Threshold§0. Any smoke that emits from the §1Totem Base§0 will signify that the most recently played §4Instrument§0 has reached its §4Melody Threshold§0 for that Ceremony, and the user should stop using that specific §4Instrument§0 for the rest of the Ceremony.
 totemic.page.performingCeremonies2=Additionally, there is a limited amount of time to complete a Ceremony, meaning playing speed is important. After you have created enough §4Melody§0, the Ceremony will begin performing its effects. Some Ceremonies have instant effects, others will last over a certain amount of time after the effect initially starts. It should be noted that the effects can only pertain for a certain amount of time, and will stop after that time has elapsed.
 totemic.page.performingCeremonies3=Finally, there should be care taken with the timing between playing §4Instruments§0, in order to complete a Ceremony efficiently, a rhythm between instruments may be important. Because of that, it is recommended that a §4Totemist§0 spends some time getting used to the rhythms of certain §4Instruments§0.
+
+totemic.entry.ceremonyTips=§oTips for Ceremonies
+totemic.page.ceremonyTips0=• After you selected a Ceremony, you need to §4stop sneaking§0 so that your music counts for the Ceremony.<br>• If you see white smoke coming from the Totem Pole after playing an instrument, its §4Melody Threshold§0 is reached and you should stop playing it.<br>• §4Wind Chimes§0 play at somewhat regular intervals. Try to time your Ceremony around them.
+totemic.page.ceremonyTips1=• More Instruments of the same kind usually don't help that much. Try getting more §4unique Instruments§0 if you can.<br>• That said, it can be helpful to have two §4Drums§0 and two or three §4Wind Chimes§0.<br>• Try holding your Flute in the §4left hand§0 and your Rattle in the §4right hand§0 to play both at once.
+totemic.page.ceremonyTips2=• The time you have available to complete a Ceremony changes with §4game difficulty§0.<br>• If you accidentally selected the wrong Ceremony, you can left-click your §4Totemic Staff§0 on the Totem Base.
 
 totemic.entry.warDance=War Dance
 totemic.page.warDance0=The §4War Dance Ceremony§0 is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body. After performing it, the §4Ceremony§0 will bring the user Speed and Strength for a long period of time time, allowing them to rush to battle.

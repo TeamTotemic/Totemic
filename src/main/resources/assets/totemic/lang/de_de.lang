@@ -252,6 +252,11 @@ totemic.page.performingCeremonies1=Wenn der Bedarf an §4Melodie§0 für die Zer
 totemic.page.performingCeremonies2=spielen. Außerdem hast Du nur eine begrenzte Zeit zur Verfügung, um die Zeremonie zum Laufen zu bringen, Geschwindigkeit ist also wichtig. Wenn Du genug §4Melodie§0 erzeugt hast, beginnt die Zeremonie ihren Effekt. Einige Zeremonien haben sofortige Effekte, andere dauern über eine gewisse Zeit an und hören dann auf. Abschließend sei gesagt, dass man auf das Timing zwischen dem Spielen von §4Instrumenten§0
 totemic.page.performingCeremonies3=achten sollte. Um eine Zeremonie effizient durchzuführen, ist eventuell ein Rhythmus zwischen Instrumenten wichtig. Daher sollte ein §4Totemist§0 Zeit damit verbringen, sich an den Rhythmus von Instrumenten zu gewöhnen.
 
+totemic.entry.ceremonyTips=§oTipps für Zeremonien
+totemic.page.ceremonyTips0=• Nachdem Du eine Zeremonie selektiert hast, musst Du §4aufhören, zu schleichen§0, damit die Musik gezählt wird.<br>• Weißer Rauch aus dem Totempfahl nachdem Du ein Instrument gespielt hast, bedeutet, dass die §4Melodieschranke§0 des Instruments erreicht ist und Du aufhören solltest, es zu spielen.
+totemic.page.ceremonyTips1=• §4Windspiele§0 spielen in ungefähr regelmäßigen Zeitabständen. Versuche, Deine Zeremonie daran auszurichten.<br>• Mehrere gleiche Instrumente helfen überlicherweise nicht viel. Versuche, mehrere §4unterschiedliche Instrumente§0 zu haben.<br>• Allerdings kann es hilfreich sein, zwei §4Trommeln§0 und zwei oder drei §4Windspiele§0 zu haben.
+totemic.page.ceremonyTips2=• Versuche, Deine Flöte in der §4linken Hand§0 und Deine Rassel in der §4rechten Hand§0 zu halten, um beide gleichzeitig zu spielen.<br>• Die verfügbare Zeit, um eine Zeremonie durchzuführen, hängt von der §4Schwierigkeitsstufe§0 des Spiels ab.<br>• Wenn Du versehentlich die falsche Zeremonie selektiert hast, linksklicke Deinen §4Totemstab§0 auf die Totembasis.
+
 totemic.entry.warDance=Kriegstanz
 totemic.page.warDance0=Die §4Kriegstanz-Zeremonie§0 ist eine Zeremonie, die Deine Sinne für einen Krieg stärkt und Adrenalin in Deinen gesamten Körper bringt. Nach der Durchführung bringt die §4Zeremonie§0 Geschwindigkeit und Stärke für eine Weile, um in den Kampf zu stürmen.
 totemic.page.warDance1=§oEin verwickeltes Schachspiel§r
