@@ -262,7 +262,7 @@ totemic.page.performingCeremonies3=Finally, there should be care taken with the 
 totemic.entry.ceremonyTips=§oTips for Ceremonies
 totemic.page.ceremonyTips0=• After you selected a Ceremony, you need to §4stop sneaking§0 so that your music counts for the Ceremony.<br>• If you see white smoke coming from the Totem Pole after playing an instrument, its §4Melody Threshold§0 is reached and you should stop playing it.<br>• §4Wind Chimes§0 play at somewhat regular intervals. Try to time your Ceremony around them.
 totemic.page.ceremonyTips1=• More Instruments of the same kind usually don't help that much. Try getting more §4unique Instruments§0 if you can.<br>• That said, it can be helpful to have two §4Drums§0 and two or three §4Wind Chimes§0.<br>• Try holding your Flute in the §4left hand§0 and your Rattle in the §4right hand§0 to play both at once.
-totemic.page.ceremonyTips2=• The time you have available to complete a Ceremony changes with §4game difficulty§0.<br>• If you accidentally selected the wrong Ceremony, you can left-click your §4Totemic Staff§0 on the Totem Base.
+totemic.page.ceremonyTips2=• If you want to cancel a Ceremony, e.g. when you made a wrong selection, you can §4left-click§0 your Totemic Staff on the Totem Base.<br>• The time you have available to complete a Ceremony changes with §4game difficulty§0.
 
 totemic.entry.warDance=War Dance
 totemic.page.warDance0=The §4War Dance Ceremony§0 is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body. After performing it, the §4Ceremony§0 will bring the user Speed and Strength for a long period of time time, allowing them to rush to battle.
