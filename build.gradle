@@ -33,6 +33,10 @@ minecraft {
     replace '@FINGERPRINT@', project.findProperty('signSHA1')
 }
 
+jar.manifest {
+    attributes 'FMLAT': 'totemic_at.cfg'
+}
+
 sourceCompatibility = targetCompatibility = '1.8'
 
 repositories {
