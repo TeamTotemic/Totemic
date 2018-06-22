@@ -93,7 +93,7 @@ totemic.ceremony.totemic:drought=Drought Ceremony
 totemic.ceremony.totemic:flute=Serenade for Syrinx
 totemic.ceremony.totemic:eagleDance=Eagle Dance
 totemic.ceremony.totemic:cleansing=Steve's Lullaby
-totemic.ceremony.totemic:baykokSummon=Chimes of Death
+totemic.ceremony.totemic:baykokSummon=Totentanz
 totemic.ceremony.totemic:sunDance=Sun Dance
 totemic.ceremony.totemic:danseMacabre=Danse Macabre
 
@@ -306,8 +306,8 @@ totemic.entry.cleansing=Steve's Lullaby
 totemic.page.cleansing0=§4Steve's Lullaby§0 is such a beautiful and cleansing piece that it is able to calm down, and remove the evil properties of a few select monsters in the world. §4Zombie Villagers§0 will become their living counterpart. The same will occur for §4Zombie Pigmen§0, becoming regular §4Pigs§0. Only a few monsters will be affected per activation, and they need to have been §4weakened§0 by a potion effect first.
 totemic.page.cleansing1=§oDon't tell Brahms!§r
 
-totemic.entry.baykokSummon=Chimes of Death
-totemic.page.baykokSummon0=The §4Chimes of Death§0 is a Ceremony that will summon the spirit known as §1Baykok§0. Do not attempt this ceremony unless you are well equipped for combat.<br>§1Baykok§0 is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with invisible arrows.
+totemic.entry.baykokSummon=Totentanz
+totemic.page.baykokSummon0=§4Totentanz§0 is a Ceremony that will summon the spirit known as §1Baykok§0. Do not attempt this ceremony unless you are well equipped for combat.<br>§1Baykok§0 is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with invisible arrows.
 totemic.page.baykokSummon1=If you manage to defeat §1Baykok§0, you will be able to get his bow, among other loots. Any §1Arrows§0 fired from §1Baykok's Bow§0 are visible only to the bow wielder. In addition, his bow is stronger and has a higher §4Enchantability§0 than a mundane bow.
 totemic.page.baykokSummon2=§oyou're gonna have a bad time§r
 
