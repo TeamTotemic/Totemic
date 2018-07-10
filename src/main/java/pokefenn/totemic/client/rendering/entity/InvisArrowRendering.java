@@ -2,6 +2,7 @@ package pokefenn.totemic.client.rendering.entity;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderArrow;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -22,11 +23,9 @@ public class InvisArrowRendering extends RenderArrow<EntityInvisArrow>
     {
         if(entity.isShotByLocalPlayer())
         {
-            GL11.glPushAttrib(GL11.GL_COLOR_BUFFER_BIT);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             super.doRender(entity, x, y, z, entityYaw, partialTicks);
-            GL11.glPopAttrib();
         }
     }
 

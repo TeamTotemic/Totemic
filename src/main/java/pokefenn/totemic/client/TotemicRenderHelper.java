@@ -43,8 +43,6 @@ public class TotemicRenderHelper
         if(tooltipData.isEmpty())
             return;
 
-        GL11.glPushAttrib(GL11.GL_LIGHTING_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-
         int var5 = 0;
         int var6;
         int var7;
@@ -72,7 +70,7 @@ public class TotemicRenderHelper
         drawGradientRect(var6 - 3, var7 - 3, z, var6 + var5 + 3, var7 - 3 + 1, color, color);
         drawGradientRect(var6 - 3, var7 + var9 + 2, z, var6 + var5 + 3, var7 + var9 + 3, var12, var12);
 
-        GL11.glDisable(GL11.GL_DEPTH_TEST);
+        GlStateManager.disableDepth();
         for(int var13 = 0; var13 < tooltipData.size(); ++var13)
         {
             String var14 = tooltipData.get(var13);
@@ -81,9 +79,7 @@ public class TotemicRenderHelper
                 var7 += 2;
             var7 += 10;
         }
-
-        GL11.glPopAttrib();
-        GlStateManager.color(1F, 1F, 1F, 1F);
+        GlStateManager.enableDepth();
     }
 
     public static void drawGradientRect(int x1, int y1, float z, int x2, int y2, int color1, int color2)
