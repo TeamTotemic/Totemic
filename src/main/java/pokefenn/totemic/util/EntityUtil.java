@@ -11,7 +11,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -28,10 +27,10 @@ public class EntityUtil
         return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(posX - horizontal, posY - vertical, posZ - horizontal, posX + horizontal, posY + vertical, posZ + horizontal));
     }
 
-    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontal, double vertical, @Nullable Predicate<? super T> filter)
+    /*public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontal, double vertical, @Nullable Predicate<? super T> filter)
     {
         return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(posX - horizontal, posY - vertical, posZ - horizontal, posX + horizontal, posY + vertical, posZ + horizontal));
-    }
+    }*/
 
     public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, double horizontal, double vertical)
     {
@@ -92,11 +91,6 @@ public class EntityUtil
         EntityItem item = new EntityItem(world, xPos, yPos, zPos, itemStack);
         item.setDefaultPickupDelay();
         world.spawnEntity(item);
-    }
-
-    public static void dropItem(World world, double xPos, double yPos, double zPos, Item item)
-    {
-        dropItem(world, xPos, yPos, zPos, new ItemStack(item));
     }
 
     /**

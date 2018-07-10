@@ -22,7 +22,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextFormatting;
 import pokefenn.totemic.api.lexicon.LexiconCategory;
 import pokefenn.totemic.api.lexicon.LexiconEntry;
-import pokefenn.totemic.client.ClientTickHandler;
 import pokefenn.totemic.client.gui.button.GuiButtonBack;
 import pokefenn.totemic.client.gui.button.GuiButtonInvisible;
 import pokefenn.totemic.client.gui.button.GuiButtonPage;
@@ -103,19 +102,16 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
             {
                 case 12:
                     mc.displayGuiScreen(parent);
-                    ClientTickHandler.notifyPageChange();
                     break;
                 case 13:
                     page--;
                     updatePageButtons();
                     populateIndex();
-                    ClientTickHandler.notifyPageChange();
                     break;
                 case 14:
                     page++;
                     updatePageButtons();
                     populateIndex();
-                    ClientTickHandler.notifyPageChange();
                     break;
                 default:
                     int index = par1GuiButton.id + page * 12;
@@ -124,7 +120,6 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
 
                     LexiconEntry entry = entriesToDisplay.get(index);
                     mc.displayGuiScreen(new GuiLexiconEntry(entry, this));
-                    ClientTickHandler.notifyPageChange();
             }
     }
 
@@ -199,7 +194,6 @@ public class GuiLexiconIndex extends GuiLexicon implements IParented
         else if(par2 == 199)
         { // Home
             mc.displayGuiScreen(new GuiLexicon());
-            ClientTickHandler.notifyPageChange();
         }
 
         super.keyTyped(par1, par2);

@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.lexicon.LexiconCategory;
-import pokefenn.totemic.client.ClientTickHandler;
 import pokefenn.totemic.client.gui.button.GuiButtonBookmark;
 import pokefenn.totemic.client.gui.button.GuiButtonInvisible;
 
@@ -149,7 +148,6 @@ public class GuiLexicon extends GuiScreen
             if(category != null)
             {
                 mc.displayGuiScreen(new GuiLexiconIndex(category));
-                ClientTickHandler.notifyPageChange();
             }
         }
     }
@@ -174,7 +172,6 @@ public class GuiLexicon extends GuiScreen
                 {
                     if(bookmark instanceof IParented)
                         ((IParented) bookmark).setParent(this);
-                    ClientTickHandler.notifyPageChange();
                 }
             }
         }

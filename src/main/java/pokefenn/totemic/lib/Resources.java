@@ -7,7 +7,6 @@ public final class Resources
 {
     public static final String PREFIX_MOD = "totemic:";
     public static final String PREFIX_GUI = PREFIX_MOD + "textures/gui/";
-    public static final String MODEL_SHEET_LOCATION = "textures/models/";
 
     //Totempedia
     public static final String GUI_CRAFTING_OVERLAY = PREFIX_GUI + "crafting_overlay.png";

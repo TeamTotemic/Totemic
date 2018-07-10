@@ -22,7 +22,6 @@ import pokefenn.totemic.api.internal.IGuiLexiconEntry;
 import pokefenn.totemic.api.lexicon.IAddonEntry;
 import pokefenn.totemic.api.lexicon.LexiconEntry;
 import pokefenn.totemic.api.lexicon.LexiconPage;
-import pokefenn.totemic.client.ClientTickHandler;
 import pokefenn.totemic.client.gui.button.GuiButtonBackWithShift;
 import pokefenn.totemic.client.gui.button.GuiButtonPage;
 
@@ -107,15 +106,12 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
             {
                 case 0:
                     mc.displayGuiScreen(GuiScreen.isShiftKeyDown() ? new GuiLexicon() : parent);
-                    ClientTickHandler.notifyPageChange();
                     break;
                 case 1:
                     page--;
-                    ClientTickHandler.notifyPageChange();
                     break;
                 case 2:
                     page++;
-                    ClientTickHandler.notifyPageChange();
                     break;
             }
         updatePageButtons();
@@ -238,7 +234,6 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
         else if(par2 == 199)
         { // Home
             mc.displayGuiScreen(new GuiLexicon());
-            ClientTickHandler.notifyPageChange();
         }
 
         super.keyTyped(par1, par2);
