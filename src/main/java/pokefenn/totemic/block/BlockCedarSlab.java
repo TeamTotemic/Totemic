@@ -2,6 +2,7 @@ package pokefenn.totemic.block;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Random;
 
 import com.google.common.base.Optional;
 
@@ -13,13 +14,17 @@ import net.minecraft.block.properties.PropertyHelper;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.lib.Strings;
 
 public abstract class BlockCedarSlab extends BlockSlab
 {
-    private static final IProperty<Integer> VARIANT = PropertyVoid.create("variant");
+    public static final IProperty<Integer> VARIANT = PropertyVoid.create("variant");
 
     public BlockCedarSlab()
     {
@@ -32,7 +37,7 @@ public abstract class BlockCedarSlab extends BlockSlab
         Blocks.FIRE.setFireInfo(this, 5, 20);
 
         if(!isDouble())
-            setDefaultState(createBlockState().getBaseState().withProperty(HALF, EnumBlockHalf.BOTTOM));
+            setDefaultState(blockState.getBaseState().withProperty(HALF, EnumBlockHalf.BOTTOM));
     }
 
     @Override
@@ -51,6 +56,18 @@ public abstract class BlockCedarSlab extends BlockSlab
     public Comparable<?> getTypeForItem(ItemStack stack)
     {
         return 0;
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return Item.getItemFromBlock(ModBlocks.cedar_slab);
+    }
+
+    @Override
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+    {
+        return new ItemStack(ModBlocks.cedar_slab);
     }
 
     @Override

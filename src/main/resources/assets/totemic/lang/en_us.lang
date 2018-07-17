@@ -53,6 +53,7 @@ tile.totemic:cedar_sapling.name=Red Cedar Sapling
 tile.totemic:cedar_sapling.tooltip=Created through Rite of Spring Ceremony
 tile.totemic:cedar_leaves.name=Red Cedar Leaves
 tile.totemic:cedar_stairs.name=Red Cedar Stairs
+tile.totemic:cedar_slab.name=Red Cedar Slab
 tile.totemic:drum.name=Totemist Drum
 tile.totemic:drum.tooltip=Sneak and hit to use Selector Mode
 tile.totemic:wind_chime.name=Wind Chime

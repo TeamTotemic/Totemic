@@ -69,5 +69,7 @@ public final class ModBlocks
     {
         ModelLoader.setCustomStateMapper(cedar_sapling, new Builder().ignore(BlockCedarSapling.TYPE, BlockCedarSapling.STAGE).build());
         ModelLoader.setCustomStateMapper(cedar_leaves, new Builder().ignore(BlockCedarLeaves.CHECK_DECAY, BlockCedarLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(cedar_slab, new Builder().ignore(BlockCedarSlab.VARIANT).build());
+        ModelLoader.setCustomStateMapper(double_cedar_slab, new Builder().ignore(BlockCedarSlab.VARIANT).build());
     }
 }

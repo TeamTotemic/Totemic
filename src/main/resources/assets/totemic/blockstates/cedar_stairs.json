@@ -1,5 +1,4 @@
 {
-    "forge_marker": 1,
     "variants": {
         "facing=east,half=bottom,shape=straight":  { "model": "totemic:cedar_stairs" },
         "facing=west,half=bottom,shape=straight":  { "model": "totemic:cedar_stairs", "y": 180, "uvlock": true },

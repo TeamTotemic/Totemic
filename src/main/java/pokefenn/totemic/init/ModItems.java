@@ -100,6 +100,7 @@ public final class ModItems
         setDefaultModel(ModBlocks.cedar_sapling);
         setDefaultModel(ModBlocks.cedar_leaves);
         setDefaultModel(ModBlocks.cedar_stairs);
+        setDefaultModel(ModBlocks.cedar_slab);
         setDefaultModel(ModBlocks.totem_torch);
         setDefaultModel(ModBlocks.drum);
         setDefaultModel(ModBlocks.wind_chime);

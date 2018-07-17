@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "half=bottom": { "model": "totemic:cedar_slab" },
+        "half=top": { "model": "totemic:cedar_upper_slab" },
+        "inventory": { "model": "totemic:cedar_slab" }
+    }
+}
