@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSlab;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -56,6 +57,7 @@ public final class ModItems
             makeItemBlock(ModBlocks.cedar_sapling),
             makeItemBlock(ModBlocks.cedar_leaves),
             makeItemBlock(ModBlocks.cedar_stairs),
+            new ItemSlab(ModBlocks.cedar_slab, ModBlocks.cedar_slab, ModBlocks.double_cedar_slab).setRegistryName(ModBlocks.cedar_slab.getRegistryName()),
             makeItemBlock(ModBlocks.totem_base).setHasSubtypes(true),
             makeItemBlock(ModBlocks.totem_pole).setHasSubtypes(true),
             makeItemBlock(ModBlocks.totem_torch),
