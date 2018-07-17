@@ -52,6 +52,7 @@ tile.totemic:totem_pole.name=Totempfahl
 tile.totemic:cedar_sapling.name=Roter Zedernsetzling
 tile.totemic:cedar_sapling.tooltip=Erzeugt durch das Ritual des Frühlings
 tile.totemic:cedar_leaves.name=Zedernlaub
+tile.totemic:cedar_stairs.name=Zedernholztreppe
 tile.totemic:drum.name=Totem-Trommel
 tile.totemic:drum.tooltip=Schleiche und schlage für den Selektor-Modus
 tile.totemic:wind_chime.name=Windspiel

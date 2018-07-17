@@ -55,6 +55,7 @@ public final class ModItems
             makeItemBlock(ModBlocks.cedar_plank),
             makeItemBlock(ModBlocks.cedar_sapling),
             makeItemBlock(ModBlocks.cedar_leaves),
+            makeItemBlock(ModBlocks.cedar_stairs),
             makeItemBlock(ModBlocks.totem_base).setHasSubtypes(true),
             makeItemBlock(ModBlocks.totem_pole).setHasSubtypes(true),
             makeItemBlock(ModBlocks.totem_torch),
@@ -96,6 +97,7 @@ public final class ModItems
         setDefaultModel(ModBlocks.cedar_plank);
         setDefaultModel(ModBlocks.cedar_sapling);
         setDefaultModel(ModBlocks.cedar_leaves);
+        setDefaultModel(ModBlocks.cedar_stairs);
         setDefaultModel(ModBlocks.totem_torch);
         setDefaultModel(ModBlocks.drum);
         setDefaultModel(ModBlocks.wind_chime);

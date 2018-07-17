@@ -1,6 +1,7 @@
 package pokefenn.totemic.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockStairs;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -23,6 +24,7 @@ import pokefenn.totemic.block.tipi.BlockDummyTipi;
 import pokefenn.totemic.block.tipi.BlockTipi;
 import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.block.totem.BlockTotemPole;
+import pokefenn.totemic.lib.Strings;
 
 @EventBusSubscriber(modid = Totemic.MOD_ID)
 @ObjectHolder(Totemic.MOD_ID)
@@ -33,6 +35,7 @@ public final class ModBlocks
     public static final BlockCedarPlank cedar_plank = null;
     public static final BlockCedarSapling cedar_sapling = null;
     public static final BlockCedarLeaves cedar_leaves = null;
+    public static final BlockStairs cedar_stairs = null;
     public static final BlockTotemBase totem_base = null;
     public static final BlockTotemPole totem_pole = null;
     public static final BlockTotemTorch totem_torch = null;
@@ -44,12 +47,14 @@ public final class ModBlocks
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Block> event)
     {
+        BlockCedarPlank plank;
         event.getRegistry().registerAll(
             new BlockCedarLog(),
             new BlockCedarStripped(),
-            new BlockCedarPlank(),
+            plank = new BlockCedarPlank(),
             new BlockCedarSapling(),
             new BlockCedarLeaves(),
+            new BlockStairs(plank.getDefaultState()) {}.setRegistryName(Strings.CEDAR_STAIRS_NAME).setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CEDAR_STAIRS_NAME).setCreativeTab(Totemic.tabsTotem),
             new BlockTotemBase(),
             new BlockTotemPole(),
             new BlockTotemTorch(),
