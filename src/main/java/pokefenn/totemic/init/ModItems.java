@@ -58,6 +58,8 @@ public final class ModItems
             makeItemBlock(ModBlocks.cedar_leaves),
             makeItemBlock(ModBlocks.cedar_stairs),
             new ItemSlab(ModBlocks.cedar_slab, ModBlocks.cedar_slab, ModBlocks.double_cedar_slab).setRegistryName(ModBlocks.cedar_slab.getRegistryName()),
+            makeItemBlock(ModBlocks.cedar_fence),
+            makeItemBlock(ModBlocks.cedar_fence_gate),
             makeItemBlock(ModBlocks.totem_base).setHasSubtypes(true),
             makeItemBlock(ModBlocks.totem_pole).setHasSubtypes(true),
             makeItemBlock(ModBlocks.totem_torch),

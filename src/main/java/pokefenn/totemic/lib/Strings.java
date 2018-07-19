@@ -16,6 +16,8 @@ public final class Strings
     public static final String CEDAR_STAIRS_NAME = "cedar_stairs";
     public static final String CEDAR_SLAB_NAME = "cedar_slab";
     public static final String DOUBLE_CEDAR_SLAB_NAME = "double_cedar_slab";
+    public static final String CEDAR_FENCE_NAME = "cedar_fence";
+    public static final String CEDAR_FENCE_GATE_NAME = "cedar_fence_gate";
     public static final String TOTEM_BASE_NAME = "totem_base";
     public static final String TOTEM_POLE_NAME = "totem_pole";
     public static final String TOTEM_TORCH_NAME = "totem_torch";

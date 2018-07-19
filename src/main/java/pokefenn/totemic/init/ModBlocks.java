@@ -33,6 +33,8 @@ public final class ModBlocks
     public static final BlockCedarStairs cedar_stairs = null;
     public static final BlockCedarSlab cedar_slab = null;
     public static final BlockCedarSlab double_cedar_slab = null;
+    public static final BlockCedarFence cedar_fence = null;
+    public static final BlockCedarFenceGate cedar_fence_gate = null;
     public static final BlockTotemBase totem_base = null;
     public static final BlockTotemPole totem_pole = null;
     public static final BlockTotemTorch totem_torch = null;
@@ -54,6 +56,8 @@ public final class ModBlocks
             new BlockCedarStairs(plank.getDefaultState()),
             new BlockCedarSlab() { @Override public boolean isDouble() { return false; } },
             new BlockCedarSlab() { @Override public boolean isDouble() { return true; } },
+            new BlockCedarFence(),
+            new BlockCedarFenceGate(),
             new BlockTotemBase(),
             new BlockTotemPole(),
             new BlockTotemTorch(),
