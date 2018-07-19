@@ -83,7 +83,7 @@ public final class ModItems
             new ItemMedicineBag(),
             new ItemCeremonyCheat(),
             new ItemEagleDrops(),
-        new ItemNetherPipe());
+            new ItemNetherPipe());
 
     }
 
@@ -103,6 +103,8 @@ public final class ModItems
         setDefaultModel(ModBlocks.cedar_leaves);
         setDefaultModel(ModBlocks.cedar_stairs);
         setDefaultModel(ModBlocks.cedar_slab);
+        setDefaultModel(ModBlocks.cedar_fence);
+        setDefaultModel(ModBlocks.cedar_fence_gate);
         setDefaultModel(ModBlocks.totem_torch);
         setDefaultModel(ModBlocks.drum);
         setDefaultModel(ModBlocks.wind_chime);

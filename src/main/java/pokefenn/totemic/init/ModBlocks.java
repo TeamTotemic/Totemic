@@ -1,6 +1,7 @@
 package pokefenn.totemic.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFenceGate;
 import net.minecraft.client.renderer.block.statemap.StateMap.Builder;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -57,7 +58,7 @@ public final class ModBlocks
             new BlockCedarSlab() { @Override public boolean isDouble() { return false; } },
             new BlockCedarSlab() { @Override public boolean isDouble() { return true; } },
             new BlockCedarFence(),
-            new BlockCedarFenceGate(),
+            new BlockCedarFenceGate(), //FIXME: Do we really need our own subclasses here?
             new BlockTotemBase(),
             new BlockTotemPole(),
             new BlockTotemTorch(),
@@ -75,5 +76,6 @@ public final class ModBlocks
         ModelLoader.setCustomStateMapper(cedar_leaves, new Builder().ignore(BlockCedarLeaves.CHECK_DECAY, BlockCedarLeaves.DECAYABLE).build());
         ModelLoader.setCustomStateMapper(cedar_slab, new Builder().ignore(BlockCedarSlab.VARIANT).build());
         ModelLoader.setCustomStateMapper(double_cedar_slab, new Builder().ignore(BlockCedarSlab.VARIANT).build());
+        ModelLoader.setCustomStateMapper(cedar_fence_gate, new Builder().ignore(BlockFenceGate.POWERED).build());
     }
 }
