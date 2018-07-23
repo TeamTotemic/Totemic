@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
@@ -140,6 +141,12 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
     public int quantityDropped(Random rand)
     {
         return 0;
+    }
+
+    @Override
+    public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return ((TileTotemBase) world.getTileEntity(pos)).getWoodType().getMapColor();
     }
 
     @Override

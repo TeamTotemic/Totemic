@@ -8,6 +8,7 @@ import com.google.common.base.Optional;
 
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyHelper;
@@ -28,10 +29,11 @@ public abstract class BlockCedarSlab extends BlockSlab
 
     public BlockCedarSlab()
     {
-        super(Material.WOOD);
+        super(Material.WOOD, MapColor.PINK);
         setRegistryName(!isDouble() ? Strings.CEDAR_SLAB_NAME : Strings.DOUBLE_CEDAR_SLAB_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.CEDAR_SLAB_NAME);
         setHardness(2F);
+        setResistance(5F);
         setSoundType(SoundType.WOOD);
         setCreativeTab(Totemic.tabsTotem);
         Blocks.FIRE.setFireInfo(this, 5, 20);

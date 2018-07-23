@@ -3,11 +3,13 @@ package pokefenn.totemic.block;
 import java.util.Random;
 
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.init.ModBlocks;
@@ -20,6 +22,7 @@ public class BlockCedarStripped extends BlockLog
         setRegistryName(Strings.STRIPPED_CEDAR_LOG_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.STRIPPED_CEDAR_LOG_NAME);
         setHardness(1.5F);
+        setResistance(5F);
         setCreativeTab(Totemic.tabsTotem);
         setTickRandomly(true);
         setDefaultState(getDefaultState().withProperty(LOG_AXIS, EnumAxis.Y));
@@ -41,6 +44,12 @@ public class BlockCedarStripped extends BlockLog
                 }
             }
         }
+    }
+
+    @Override
+    public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return MapColor.PINK;
     }
 
     @Override

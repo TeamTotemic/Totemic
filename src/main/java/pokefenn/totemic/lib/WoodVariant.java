@@ -5,6 +5,8 @@ import java.util.Locale;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPlanks.EnumType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
@@ -12,13 +14,21 @@ import pokefenn.totemic.init.ModBlocks;
 
 public enum WoodVariant implements IStringSerializable
 {
-    OAK,
-    SPRUCE,
-    BIRCH,
-    JUNGLE,
-    ACACIA,
-    DARK_OAK,
-    CEDAR;
+    OAK(EnumType.OAK.getMapColor()),
+    SPRUCE(EnumType.SPRUCE.getMapColor()),
+    BIRCH(EnumType.BIRCH.getMapColor()),
+    JUNGLE(EnumType.JUNGLE.getMapColor()),
+    ACACIA(EnumType.ACACIA.getMapColor()),
+    DARK_OAK(EnumType.DARK_OAK.getMapColor()),
+    CEDAR(MapColor.PINK);
+
+    private final String name = toString().toLowerCase(Locale.ROOT);
+    private final MapColor mapColor;
+
+    private WoodVariant(MapColor mapColor)
+    {
+        this.mapColor = mapColor;
+    }
 
     /**
      * @return The variant for the specified log block, or {@code null} if it is not a log in this enum
@@ -53,6 +63,11 @@ public enum WoodVariant implements IStringSerializable
     @Override
     public String getName()
     {
-        return toString().toLowerCase(Locale.ROOT);
+        return name;
+    }
+
+    public MapColor getMapColor()
+    {
+        return mapColor;
     }
 }

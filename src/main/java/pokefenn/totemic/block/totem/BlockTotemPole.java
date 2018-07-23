@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
@@ -47,7 +48,7 @@ import pokefenn.totemic.tileentity.totem.TileTotemPole;
 public class BlockTotemPole extends Block implements ITileEntityProvider, TotemicStaffUsage
 {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
-    public static final PropertyEnum<WoodVariant> WOOD = PropertyEnum.create("wood", WoodVariant.class);
+    public static final PropertyEnum<WoodVariant> WOOD = BlockTotemBase.WOOD;
     public static final IUnlistedProperty<TotemEffect> TOTEM = new IUnlistedProperty<TotemEffect>()
     {
         @Override
@@ -165,6 +166,12 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
     public int quantityDropped(Random rand)
     {
         return 0;
+    }
+
+    @Override
+    public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return ((TileTotemPole) world.getTileEntity(pos)).getWoodType().getMapColor();
     }
 
     @Override
