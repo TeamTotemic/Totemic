@@ -3,6 +3,8 @@ package pokefenn.totemic.block.plant;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.BlockStateContainer;
@@ -22,8 +24,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.world.TotemTreeGeneration;
-
-import javax.annotation.Nullable;
 
 public class BlockCedarSapling extends BlockSapling
 {
@@ -86,6 +86,6 @@ public class BlockCedarSapling extends BlockSapling
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(0.5F - 0.4F, 0.0F, 0.5F - 0.4F, 0.5F + 0.4F, 0.4F * 2.0F, 0.5F + 0.4F);
+        return SAPLING_AABB;
     }
 }

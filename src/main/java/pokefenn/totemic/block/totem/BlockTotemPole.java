@@ -68,6 +68,8 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
         { return (value != null) ? value.getRegistryName().toString() : "blank"; }
     };
 
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
+
     public BlockTotemPole()
     {
         super(Material.WOOD);
@@ -75,6 +77,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_POLE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setHardness(2);
+        setResistance(5);
         setSoundType(SoundType.WOOD);
         Blocks.FIRE.setFireInfo(this, 5, 5);
     }
@@ -249,7 +252,7 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
+        return AABB;
     }
 
     @Override

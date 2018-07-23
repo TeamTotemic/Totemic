@@ -1,5 +1,9 @@
 package pokefenn.totemic.block.music;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -30,11 +34,10 @@ import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.tileentity.music.TileDrum;
 import pokefenn.totemic.util.TotemUtil;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
 public class BlockDrum extends Block implements ITileEntityProvider
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(3F/16, 0F/16, 3F/16, 13F/16, 13F/16, 13F/16);
+
     public BlockDrum()
     {
         super(Material.WOOD);
@@ -106,7 +109,7 @@ public class BlockDrum extends Block implements ITileEntityProvider
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(3F/16, 0F/16, 3F/16, 13F/16, 13F/16, 13F/16);
+        return AABB;
     }
 
     @Override

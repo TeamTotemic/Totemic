@@ -46,6 +46,8 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
 
     public static final int EVENT_POLE_CHANGE_ID = 0;
 
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
+
     public BlockTotemBase()
     {
         super(Material.WOOD);
@@ -53,6 +55,7 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.TOTEM_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setHardness(2);
+        setResistance(5);
         setSoundType(SoundType.WOOD);
         Blocks.FIRE.setFireInfo(this, 5, 5);
     }
@@ -213,7 +216,7 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
+        return AABB;
     }
 
     @Override

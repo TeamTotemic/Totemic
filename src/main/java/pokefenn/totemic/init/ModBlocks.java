@@ -43,6 +43,7 @@ public final class ModBlocks
     public static final BlockWindChime wind_chime = null;
     public static final BlockTipi tipi = null;
     public static final BlockDummyTipi dummy_tipi = null;
+    public static final BlockDecoPillar wooden_pillar = null;
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Block> event)
@@ -65,7 +66,8 @@ public final class ModBlocks
             new BlockDrum(),
             new BlockWindChime(),
             new BlockTipi(),
-            new BlockDummyTipi());
+            new BlockDummyTipi(),
+            new BlockDecoPillar());
     }
 
     @SubscribeEvent

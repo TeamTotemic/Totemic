@@ -33,6 +33,8 @@ import pokefenn.totemic.util.TotemUtil;
 
 public class BlockWindChime extends Block implements ITileEntityProvider
 {
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
+
     public BlockWindChime()
     {
         super(Material.IRON);
@@ -134,7 +136,7 @@ public class BlockWindChime extends Block implements ITileEntityProvider
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(0.2F, 0.0F, 0.2F, 0.8F, 1F, 0.8F);
+        return AABB;
     }
 
     @Override

@@ -66,6 +66,7 @@ public final class ModItems
             makeItemBlock(ModBlocks.drum),
             makeItemBlock(ModBlocks.wind_chime),
             new ItemTipi(ModBlocks.tipi).setRegistryName(ModBlocks.tipi.getRegistryName()),
+            makeItemBlock(ModBlocks.wooden_pillar),
 
             new ItemFlute(),
             new ItemRattle(),

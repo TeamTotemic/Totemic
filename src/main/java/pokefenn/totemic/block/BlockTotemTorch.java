@@ -61,10 +61,12 @@ public class BlockTotemTorch extends Block
             world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, 0, 0, 0);
     }
 
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(4.75/16, 0.0, 4.75/16, 11.25/16, 1.0, 11.25/16);
+
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return new AxisAlignedBB(4.75/16, 0.0, 4.75/16, 11.25/16, 1.0, 11.25/16);
+        return AABB;
     }
 
     @Override

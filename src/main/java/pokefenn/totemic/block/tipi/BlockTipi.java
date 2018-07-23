@@ -37,6 +37,8 @@ public class BlockTipi extends Block implements ITileEntityProvider
 {
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0, 0, 0, 1, 0.0625, 1);
+
     public BlockTipi()
     {
         super(Material.CLOTH);
@@ -194,7 +196,7 @@ public class BlockTipi extends Block implements ITileEntityProvider
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return new AxisAlignedBB(0, 0, 0, 1, 0.0625, 1);
+        return AABB;
     }
 
     @Override
