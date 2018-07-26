@@ -47,6 +47,7 @@ import pokefenn.totemic.lib.Resources;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.network.GuiHandler;
 import pokefenn.totemic.network.NetworkHandler;
+import pokefenn.totemic.tileentity.TileDecoPillar;
 import pokefenn.totemic.tileentity.TileTipi;
 import pokefenn.totemic.tileentity.music.TileDrum;
 import pokefenn.totemic.tileentity.music.TileWindChime;
@@ -104,6 +105,7 @@ public class CommonProxy
         GameRegistry.registerTileEntity(TileDrum.class, new ResourceLocation(Totemic.MOD_ID, Strings.DRUM_NAME));
         GameRegistry.registerTileEntity(TileWindChime.class, new ResourceLocation(Totemic.MOD_ID, Strings.WIND_CHIME_NAME));
         GameRegistry.registerTileEntity(TileTipi.class, new ResourceLocation(Totemic.MOD_ID,  Strings.TIPI_NAME));
+        GameRegistry.registerTileEntity(TileDecoPillar.class, new ResourceLocation(Totemic.MOD_ID, Strings.WOODEN_PILLAR_NAME));
     }
 
     private void oreDictionary()
