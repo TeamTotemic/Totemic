@@ -2,6 +2,7 @@ package pokefenn.totemic.block;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -87,7 +88,26 @@ public class BlockDecoPillar extends BlockRotatedPillar implements ITileEntityPr
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return ((TileDecoPillar) world.getTileEntity(pos)).getWoodType().getMapColor();
+        TileDecoPillar tile = (TileDecoPillar) world.getTileEntity(pos);
+        if(tile.isStripped() || state.getValue(AXIS) == Axis.Y)
+            return tile.getWoodType().getMapColor();
+        else
+            return getBarkColor(tile.getWoodType());
+    }
+
+    MapColor getBarkColor(WoodVariant wood)
+    {
+        //See BlockOldLog.getMapColor and BlockNewLog.getMapColor
+        switch(wood)
+        {
+        case OAK: default: return BlockPlanks.EnumType.SPRUCE.getMapColor();
+        case SPRUCE: return BlockPlanks.EnumType.DARK_OAK.getMapColor();
+        case BIRCH: return MapColor.QUARTZ;
+        case JUNGLE: return BlockPlanks.EnumType.SPRUCE.getMapColor();
+        case ACACIA: return MapColor.STONE;
+        case DARK_OAK: return BlockPlanks.EnumType.DARK_OAK.getMapColor();
+        case CEDAR: return MapColor.ADOBE;
+        }
     }
 
     @Override
