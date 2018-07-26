@@ -65,6 +65,20 @@ tile.totemic:cedar_plank.name=Red Cedar Plank
 tile.totemic:stripped_cedar_log.name=Stripped Red Cedar Wood
 tile.totemic:tipi.name=Tipi
 tile.totemic:totem_pole.noEffect=No effect
+tile.totemic:wooden_pillar.oak.name=Oak Wood Pillar
+tile.totemic:wooden_pillar.spruce.name=Spruce Wood Pillar
+tile.totemic:wooden_pillar.birch.name=Birch Wood Pillar
+tile.totemic:wooden_pillar.jungle.name=Jungle Wood Pillar
+tile.totemic:wooden_pillar.acacia.name=Acacia Wood Pillar
+tile.totemic:wooden_pillar.dark_oak.name=Dark Oak Wood Pillar
+tile.totemic:wooden_pillar.cedar.name=Red Cedar Pillar
+tile.totemic:wooden_pillar.stripped_oak.name=Stripped Oak Wood Pillar
+tile.totemic:wooden_pillar.stripped_spruce.name=Stripped Spruce Wood Pillar
+tile.totemic:wooden_pillar.stripped_birch.name=Stripped Birch Wood Pillar
+tile.totemic:wooden_pillar.stripped_jungle.name=Stripped Jungle Wood Pillar
+tile.totemic:wooden_pillar.stripped_acacia.name=Stripped Acacia Wood Pillar
+tile.totemic:wooden_pillar.stripped_dark_oak.name=Stripped Dark Oak Wood Pillar
+tile.totemic:wooden_pillar.stripped_cedar.name=Stripped Red Cedar Pillar
 
 #Entity localizations
 entity.totemic:buffalo.name=Buffalo

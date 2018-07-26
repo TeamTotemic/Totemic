@@ -65,6 +65,20 @@ tile.totemic:cedar_plank.name=Zedernholzbretter
 tile.totemic:stripped_cedar_log.name=Entrindetes Zedernholz
 tile.totemic:tipi.name=Tipi
 tile.totemic:totem_pole.noEffect=Kein Effekt
+tile.totemic:wooden_pillar.oak.name=Eichenholzpfahl
+tile.totemic:wooden_pillar.spruce.name=Fichtenholzpfahl
+tile.totemic:wooden_pillar.birch.name=Birkenholzpfahl
+tile.totemic:wooden_pillar.jungle.name=Tropenholzpfahl
+tile.totemic:wooden_pillar.acacia.name=Akazienholzpfahl
+tile.totemic:wooden_pillar.dark_oak.name=Schwarzeichenholzpfahl
+tile.totemic:wooden_pillar.cedar.name=Zedernholzpfahl
+tile.totemic:wooden_pillar.stripped_oak.name=Entrindeter Eichenholzpfahl
+tile.totemic:wooden_pillar.stripped_spruce.name=Entrindeter Fichtenholzpfahl
+tile.totemic:wooden_pillar.stripped_birch.name=Entrindeter Birkenholzpfahl
+tile.totemic:wooden_pillar.stripped_jungle.name=Entrindeter Tropenholzpfahl
+tile.totemic:wooden_pillar.stripped_acacia.name=Entrindeter Akazienholzpfahl
+tile.totemic:wooden_pillar.stripped_dark_oak.name=Entrindeter Schwarzeichenholzpfahl
+tile.totemic:wooden_pillar.stripped_cedar.name=Entrindeter Zedernholzpfahl
 
 #Entity localizations
 entity.totemic:buffalo.name=Büffel

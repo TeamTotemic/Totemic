@@ -2,10 +2,7 @@ package pokefenn.totemic.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemSlab;
+import net.minecraft.item.*;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -50,6 +47,11 @@ public final class ModItems
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event)
     {
+        ItemMultiTexture.Mapper pillar_mapper = stack -> {
+            int meta = stack.getMetadata();
+            return (((meta & 1) == 1) ? "stripped_" : "") + WoodVariant.fromID(meta >> 1).getName();
+        };
+
         event.getRegistry().registerAll(
             makeItemBlock(ModBlocks.cedar_log),
             makeItemBlock(ModBlocks.stripped_cedar_log),
@@ -66,7 +68,7 @@ public final class ModItems
             makeItemBlock(ModBlocks.drum),
             makeItemBlock(ModBlocks.wind_chime),
             new ItemTipi(ModBlocks.tipi).setRegistryName(ModBlocks.tipi.getRegistryName()),
-            makeItemBlock(ModBlocks.wooden_pillar).setHasSubtypes(true),
+            new ItemMultiTexture(ModBlocks.wooden_pillar, ModBlocks.wooden_pillar, pillar_mapper).setRegistryName(ModBlocks.wooden_pillar.getRegistryName()),
 
             new ItemFlute(),
             new ItemRattle(),
@@ -117,6 +119,11 @@ public final class ModItems
                     new ModelResourceLocation(ModBlocks.totem_base.getRegistryName(), "facing=north,wood=" + var.getName()));
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.totem_pole), var.getID(),
                     new ModelResourceLocation(ModBlocks.totem_pole.getRegistryName(), "facing=north,wood=" + var.getName()));
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.wooden_pillar), 2*var.getID(),
+                    new ModelResourceLocation(ModBlocks.wooden_pillar.getRegistryName(), "axis=y,stripped=false,wood=" + var.getName()));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.wooden_pillar), 2*var.getID() + 1,
+                    new ModelResourceLocation(ModBlocks.wooden_pillar.getRegistryName(), "axis=y,stripped=true,wood=" + var.getName()));
         }
 
         setDefaultModel(flute);
