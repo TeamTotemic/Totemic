@@ -1,5 +1,7 @@
 package pokefenn.totemic.block;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.BlockDirectional;
@@ -13,6 +15,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,6 +24,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -34,6 +38,22 @@ public class BlockDecoPillarBase extends BlockDirectional implements ITileEntity
 {
     public static final PropertyEnum<WoodVariant> WOOD = BlockDecoPillar.WOOD;
     public static final PropertyBool STRIPPED = BlockDecoPillar.STRIPPED;
+
+    private static final AxisAlignedBB X_BB = new AxisAlignedBB(0.0F, 0.125F, 0.125F,  1.0F, 0.875F, 0.875F);
+    private static final AxisAlignedBB Y_BB = new AxisAlignedBB(0.125F, 0.0F, 0.125F,  0.875F, 1.0F, 0.875F);
+    private static final AxisAlignedBB Z_BB = new AxisAlignedBB(0.125F, 0.125F, 0.0F,  0.875F, 0.875F, 1.0F);
+    private static final AxisAlignedBB BASE_UP_BB = new AxisAlignedBB(0.125F, 0.0F, 0.125F,  0.875F, 0.3125F, 0.875F);
+    private static final AxisAlignedBB BASE_DOWN_BB = new AxisAlignedBB(0.125F, 0.6875F, 0.125F,  0.875F, 1.0F, 0.875F);
+    private static final AxisAlignedBB BASE_SOUTH_BB = new AxisAlignedBB(0.125F, 0.125F, 0.0F,  0.875F, 0.875F, 0.3125F);
+    private static final AxisAlignedBB BASE_NORTH_BB = new AxisAlignedBB(0.125F, 0.125F, 0.6875F,  0.875F, 0.875F, 1.0F);
+    private static final AxisAlignedBB BASE_EAST_BB = new AxisAlignedBB(0.0F, 0.125F, 0.125F,  0.3125F, 0.875F, 0.875F);
+    private static final AxisAlignedBB BASE_WEST_BB = new AxisAlignedBB(0.6875F, 0.125F, 0.125F,  1.0F, 0.875F, 0.875F);
+    private static final AxisAlignedBB POLE_UP_BB = new AxisAlignedBB(0.1875F, 0.3125F, 0.1875F,  0.8125F, 1.0F, 0.8125F);
+    private static final AxisAlignedBB POLE_DOWN_BB = new AxisAlignedBB(0.1875F, 0.0F, 0.1875F,  0.8125F, 0.6875F, 0.8125F);
+    private static final AxisAlignedBB POLE_SOUTH_BB = new AxisAlignedBB(0.1875F, 0.1875F, 0.3125F,  0.8125F, 0.8125F, 1.0F);
+    private static final AxisAlignedBB POLE_NORTH_BB = new AxisAlignedBB(0.1875F, 0.1875F, 0.0F,  0.8125F, 0.8125F, 0.6875F);
+    private static final AxisAlignedBB POLE_EAST_BB = new AxisAlignedBB(0.3125F, 0.1875F, 0.1875F,  1.0F, 0.8125F, 0.8125F);
+    private static final AxisAlignedBB POLE_WEST_BB = new AxisAlignedBB(0.0F, 0.1875F, 0.1875F,  0.6875F, 0.8125F, 0.8125F);
 
     public BlockDecoPillarBase()
     {
@@ -72,6 +92,58 @@ public class BlockDecoPillarBase extends BlockDirectional implements ITileEntity
             items.add(new ItemStack(this, 1, 2*i));
         for(int i = 0; i < WoodVariant.values().length; i++)
             items.add(new ItemStack(this, 1, 2*i + 1));
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        switch(state.getValue(FACING))
+        {
+        case UP:
+        case DOWN:
+        default:
+            return Y_BB;
+        case SOUTH:
+        case NORTH:
+            return Z_BB;
+        case EAST:
+        case WEST:
+            return X_BB;
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
+            List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
+    {
+        switch(state.getValue(FACING))
+        {
+        case UP:
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_UP_BB);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, POLE_UP_BB);
+            break;
+        case DOWN:
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_DOWN_BB);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, POLE_DOWN_BB);
+            break;
+        case SOUTH:
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_SOUTH_BB);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, POLE_SOUTH_BB);
+            break;
+        case NORTH:
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_NORTH_BB);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, POLE_NORTH_BB);
+            break;
+        case EAST:
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_EAST_BB);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, POLE_EAST_BB);
+            break;
+        case WEST:
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_WEST_BB);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, POLE_WEST_BB);
+            break;
+        }
     }
 
     @Override

@@ -125,6 +125,10 @@ public final class ModItems
                     new ModelResourceLocation(ModBlocks.wooden_pillar.getRegistryName(), "axis=y,stripped=false,wood=" + var.getName()));
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.wooden_pillar), 2*var.getID() + 1,
                     new ModelResourceLocation(ModBlocks.wooden_pillar.getRegistryName(), "axis=y,stripped=true,wood=" + var.getName()));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.wooden_pillar_base), 2*var.getID(),
+                    new ModelResourceLocation(ModBlocks.wooden_pillar_base.getRegistryName(), "facing=up,stripped=false,wood=" + var.getName()));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.wooden_pillar_base), 2*var.getID() + 1,
+                    new ModelResourceLocation(ModBlocks.wooden_pillar_base.getRegistryName(), "facing=up,stripped=true,wood=" + var.getName()));
         }
 
         setDefaultModel(flute);

@@ -79,6 +79,20 @@ tile.totemic:wooden_pillar.stripped_jungle.name=Entrindeter Tropenholzpfahl
 tile.totemic:wooden_pillar.stripped_acacia.name=Entrindeter Akazienholzpfahl
 tile.totemic:wooden_pillar.stripped_dark_oak.name=Entrindeter Schwarzeichenholzpfahl
 tile.totemic:wooden_pillar.stripped_cedar.name=Entrindeter Zedernholzpfahl
+tile.totemic:wooden_pillar_base.oak.name=Eichenholzpfahlbasis
+tile.totemic:wooden_pillar_base.spruce.name=Fichtenholzpfahlbasis
+tile.totemic:wooden_pillar_base.birch.name=Birkenholzpfahlbasis
+tile.totemic:wooden_pillar_base.jungle.name=Tropenholzpfahlbasis
+tile.totemic:wooden_pillar_base.acacia.name=Akazienholzpfahlbasis
+tile.totemic:wooden_pillar_base.dark_oak.name=Schwarzeichenholzpfahlbasis
+tile.totemic:wooden_pillar_base.cedar.name=Zedernholzpfahlbasis
+tile.totemic:wooden_pillar_base.stripped_oak.name=Entrindete Eichenholzpfahlbasis
+tile.totemic:wooden_pillar_base.stripped_spruce.name=Entrindete Fichtenholzpfahlbasis
+tile.totemic:wooden_pillar_base.stripped_birch.name=Entrindete Birkenholzpfahlbasis
+tile.totemic:wooden_pillar_base.stripped_jungle.name=Entrindete Tropenholzpfahlbasis
+tile.totemic:wooden_pillar_base.stripped_acacia.name=Entrindete Akazienholzpfahlbasis
+tile.totemic:wooden_pillar_base.stripped_dark_oak.name=Entrindete Schwarzeichenholzpfahlbasis
+tile.totemic:wooden_pillar_base.stripped_cedar.name=Entrindete Zedernholzpfahlbasis
 
 #Entity localizations
 entity.totemic:buffalo.name=Büffel

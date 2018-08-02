@@ -79,6 +79,20 @@ tile.totemic:wooden_pillar.stripped_jungle.name=Stripped Jungle Wood Pillar
 tile.totemic:wooden_pillar.stripped_acacia.name=Stripped Acacia Wood Pillar
 tile.totemic:wooden_pillar.stripped_dark_oak.name=Stripped Dark Oak Wood Pillar
 tile.totemic:wooden_pillar.stripped_cedar.name=Stripped Red Cedar Pillar
+tile.totemic:wooden_pillar_base.oak.name=Oak Wood Pillar Base
+tile.totemic:wooden_pillar_base.spruce.name=Spruce Wood Pillar Base
+tile.totemic:wooden_pillar_base.birch.name=Birch Wood Pillar Base
+tile.totemic:wooden_pillar_base.jungle.name=Jungle Wood Pillar Base
+tile.totemic:wooden_pillar_base.acacia.name=Acacia Wood Pillar Base
+tile.totemic:wooden_pillar_base.dark_oak.name=Dark Oak Wood Pillar Base
+tile.totemic:wooden_pillar_base.cedar.name=Red Cedar Pillar Base
+tile.totemic:wooden_pillar_base.stripped_oak.name=Stripped Oak Wood Pillar Base
+tile.totemic:wooden_pillar_base.stripped_spruce.name=Stripped Spruce Wood Pillar Base
+tile.totemic:wooden_pillar_base.stripped_birch.name=Stripped Birch Wood Pillar Base
+tile.totemic:wooden_pillar_base.stripped_jungle.name=Stripped Jungle Wood Pillar Base
+tile.totemic:wooden_pillar_base.stripped_acacia.name=Stripped Acacia Wood Pillar Base
+tile.totemic:wooden_pillar_base.stripped_dark_oak.name=Stripped Dark Oak Wood Pillar Base
+tile.totemic:wooden_pillar_base.stripped_cedar.name=Stripped Red Cedar Pillar Base
 
 #Entity localizations
 entity.totemic:buffalo.name=Buffalo
