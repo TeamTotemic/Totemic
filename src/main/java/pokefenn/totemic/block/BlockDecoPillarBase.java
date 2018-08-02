@@ -2,8 +2,7 @@ package pokefenn.totemic.block;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockRotatedPillar;
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -22,37 +21,31 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.tileentity.TileDecoPillar;
 
-public class BlockDecoPillar extends BlockRotatedPillar implements ITileEntityProvider
+public class BlockDecoPillarBase extends BlockDirectional implements ITileEntityProvider
 {
-    public static final PropertyEnum<WoodVariant> WOOD = BlockTotemBase.WOOD;
-    public static final PropertyBool STRIPPED = PropertyBool.create("stripped");
+    public static final PropertyEnum<WoodVariant> WOOD = BlockDecoPillar.WOOD;
+    public static final PropertyBool STRIPPED = BlockDecoPillar.STRIPPED;
 
-    private static final AxisAlignedBB X_BB = new AxisAlignedBB(0.0F, 0.1875F, 0.1875F,  1.0F, 0.8125F, 0.8125F);
-    private static final AxisAlignedBB Y_BB = new AxisAlignedBB(0.1875F, 0.0F, 0.1875F,  0.8125F, 1.0F, 0.8125F);
-    private static final AxisAlignedBB Z_BB = new AxisAlignedBB(0.1875F, 0.1875F, 0.0F,  0.8125F, 0.8125F, 1.0F);
-
-    public BlockDecoPillar()
+    public BlockDecoPillarBase()
     {
         super(Material.WOOD);
-        setRegistryName(Strings.WOODEN_PILLAR_NAME);
-        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.WOODEN_PILLAR_NAME);
+        setRegistryName(Strings.WOODEN_PILLAR_BASE_NAME);
+        setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.WOODEN_PILLAR_BASE_NAME);
         setCreativeTab(Totemic.tabsTotem);
         setHardness(2);
         setResistance(5);
         setSoundType(SoundType.WOOD);
         Blocks.FIRE.setFireInfo(this, 5, 5);
-        setDefaultState(blockState.getBaseState().withProperty(AXIS, Axis.Y).withProperty(WOOD, WoodVariant.OAK).withProperty(STRIPPED, false));
+        setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.UP).withProperty(WOOD, WoodVariant.OAK).withProperty(STRIPPED, false));
     }
 
     @Override
@@ -82,49 +75,19 @@ public class BlockDecoPillar extends BlockRotatedPillar implements ITileEntityPr
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        switch(state.getValue(AXIS))
-        {
-        case X:
-            return X_BB;
-        case Y:
-        default:
-            return Y_BB;
-        case Z:
-            return Z_BB;
-        }
-    }
-
-    @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         TileDecoPillar tile = (TileDecoPillar) world.getTileEntity(pos);
-        if(tile.isStripped() || state.getValue(AXIS) == Axis.Y)
+        if(tile.isStripped() || state.getValue(FACING).getAxis() == Axis.Y)
             return tile.getWoodType().getMapColor();
         else
-            return getBarkColor(tile.getWoodType());
-    }
-
-    static MapColor getBarkColor(WoodVariant wood)
-    {
-        //See BlockOldLog.getMapColor and BlockNewLog.getMapColor
-        switch(wood)
-        {
-        case OAK: default: return BlockPlanks.EnumType.SPRUCE.getMapColor();
-        case SPRUCE: return BlockPlanks.EnumType.DARK_OAK.getMapColor();
-        case BIRCH: return MapColor.QUARTZ;
-        case JUNGLE: return BlockPlanks.EnumType.SPRUCE.getMapColor();
-        case ACACIA: return MapColor.STONE;
-        case DARK_OAK: return BlockPlanks.EnumType.DARK_OAK.getMapColor();
-        case CEDAR: return MapColor.ADOBE;
-        }
+            return BlockDecoPillar.getBarkColor(tile.getWoodType());
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, AXIS, WOOD, STRIPPED);
+        return new BlockStateContainer(this, FACING, WOOD, STRIPPED);
     }
 
     @Override
@@ -137,6 +100,24 @@ public class BlockDecoPillar extends BlockRotatedPillar implements ITileEntityPr
             return state.withProperty(WOOD, tdp.getWoodType()).withProperty(STRIPPED, tdp.isStripped());
         }
         return state;
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(FACING).getIndex();
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta));
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        return getDefaultState().withProperty(FACING, facing);
     }
 
     @Override
@@ -154,7 +135,7 @@ public class BlockDecoPillar extends BlockRotatedPillar implements ITileEntityPr
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face)
     {
-        if(face.getAxis() == state.getValue(AXIS))
+        if(face.getAxis() == state.getValue(FACING).getAxis())
             return BlockFaceShape.CENTER_BIG;
         else
             return BlockFaceShape.UNDEFINED;
@@ -163,7 +144,7 @@ public class BlockDecoPillar extends BlockRotatedPillar implements ITileEntityPr
     @Override
     public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return state.getValue(AXIS) == Axis.Y;
+        return state.getValue(FACING).getAxis() == Axis.Y;
     }
 
     @Override

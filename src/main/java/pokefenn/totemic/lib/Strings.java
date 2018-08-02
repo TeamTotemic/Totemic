@@ -26,6 +26,7 @@ public final class Strings
     public static final String TIPI_NAME = "tipi";
     public static final String DUMMY_TIPI_NAME = "dummy_tipi";
     public static final String WOODEN_PILLAR_NAME = "wooden_pillar";
+    public static final String WOODEN_PILLAR_BASE_NAME = "wooden_pillar_base";
 
     //Items
     public static final String FLUTE_NAME = "flute";

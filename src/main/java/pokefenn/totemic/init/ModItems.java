@@ -69,6 +69,7 @@ public final class ModItems
             makeItemBlock(ModBlocks.wind_chime),
             new ItemTipi(ModBlocks.tipi).setRegistryName(ModBlocks.tipi.getRegistryName()),
             new ItemMultiTexture(ModBlocks.wooden_pillar, ModBlocks.wooden_pillar, pillar_mapper).setRegistryName(ModBlocks.wooden_pillar.getRegistryName()),
+            new ItemMultiTexture(ModBlocks.wooden_pillar_base, ModBlocks.wooden_pillar_base, pillar_mapper).setRegistryName(ModBlocks.wooden_pillar_base.getRegistryName()),
 
             new ItemFlute(),
             new ItemRattle(),
