@@ -1,5 +1,6 @@
 package pokefenn.totemic.block.totem;
 
+import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -27,6 +29,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -46,7 +49,9 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
 
     public static final int EVENT_POLE_CHANGE_ID = 0;
 
-    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
+    private static final AxisAlignedBB SELECTION_AABB = new AxisAlignedBB(0.0625F, 0.0F, 0.0625F,  0.9375F, 1.0F, 0.9375F);
+    private static final AxisAlignedBB BASE_AABB = new AxisAlignedBB(0.0F, 0.0F, 0.0F,  1.0F, 0.28125F, 1.0F);
+    private static final AxisAlignedBB POLE_AABB = new AxisAlignedBB(0.125F, 0.28125F, 0.125F,  0.875F, 1.0F, 0.875F);
 
     public BlockTotemBase()
     {
@@ -216,7 +221,36 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return AABB;
+        return FULL_BLOCK_AABB;
+    }
+
+    @Override
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos)
+    {
+        return SELECTION_AABB.offset(pos);
+    }
+
+    @Override
+    @Nullable
+    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
+    {
+        RayTraceResult base_res = rayTrace(pos, start, end, BASE_AABB);
+        RayTraceResult pole_res = rayTrace(pos, start, end, POLE_AABB);
+
+        if(base_res == null)
+            return pole_res;
+        if(pole_res == null)
+            return base_res;
+        return (base_res.hitVec.squareDistanceTo(end) < pole_res.hitVec.squareDistanceTo(end)) ? base_res : pole_res;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
+            List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
+    {
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BASE_AABB);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, POLE_AABB);
     }
 
     @Override
