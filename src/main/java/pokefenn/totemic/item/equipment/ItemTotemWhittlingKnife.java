@@ -39,6 +39,7 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         super(Strings.TOTEM_WHITTLING_KNIFE_NAME);
         setMaxStackSize(1);
         setMaxDamage(250);
+        setContainerItem(this);
     }
 
     @SideOnly(Side.CLIENT)
@@ -165,4 +166,11 @@ public class ItemTotemWhittlingKnife extends ItemTotemic
         return stack;
     }
 
+    @Override
+    public ItemStack getContainerItem(ItemStack stack)
+    {
+        stack = stack.copy();
+        stack.setItemDamage(stack.getItemDamage() + 1);
+        return stack;
+    }
 }
