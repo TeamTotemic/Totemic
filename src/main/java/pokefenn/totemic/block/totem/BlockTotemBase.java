@@ -241,7 +241,7 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
             return pole_res;
         if(pole_res == null)
             return base_res;
-        return (base_res.hitVec.squareDistanceTo(end) < pole_res.hitVec.squareDistanceTo(end)) ? base_res : pole_res;
+        return (base_res.hitVec.squareDistanceTo(start) < pole_res.hitVec.squareDistanceTo(start)) ? base_res : pole_res;
     }
 
     @SuppressWarnings("deprecation")
