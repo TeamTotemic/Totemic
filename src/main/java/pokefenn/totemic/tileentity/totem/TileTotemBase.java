@@ -159,6 +159,14 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
         }
     }
 
+    //Prevent unloaded totem bases on the client side to stick around in the Ceremony HUD,
+    //see issue #77
+    @Override
+    public void onChunkUnload()
+    {
+        invalidate();
+    }
+
     @Override
     public boolean hasCapability(Capability<?> cap, @Nullable EnumFacing facing)
     {
