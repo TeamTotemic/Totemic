@@ -27,7 +27,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.lib.WoodVariant;
@@ -47,7 +46,7 @@ public class BlockDecoPillar extends BlockRotatedPillar implements ITileEntityPr
         super(Material.WOOD);
         setRegistryName(Strings.WOODEN_PILLAR_NAME);
         setUnlocalizedName(Strings.RESOURCE_PREFIX + Strings.WOODEN_PILLAR_NAME);
-        setCreativeTab(Totemic.tabsTotem);
+        setCreativeTab(CreativeTabs.DECORATIONS);
         setHardness(2);
         setResistance(5);
         setSoundType(SoundType.WOOD);

@@ -14,12 +14,12 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyHelper;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.lib.Strings;
 
@@ -35,7 +35,7 @@ public abstract class BlockCedarSlab extends BlockSlab
         setHardness(2F);
         setResistance(5F);
         setSoundType(SoundType.WOOD);
-        setCreativeTab(Totemic.tabsTotem);
+        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
         Blocks.FIRE.setFireInfo(this, 5, 20);
 
         if(!isDouble())

@@ -9,6 +9,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
@@ -18,7 +19,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.lib.Strings;
 
 public class BlockTotemTorch extends Block
@@ -31,7 +31,7 @@ public class BlockTotemTorch extends Block
         setLightLevel(1F);
         setSoundType(SoundType.WOOD);
         setHardness(0.05F);
-        setCreativeTab(Totemic.tabsTotem);
+        setCreativeTab(CreativeTabs.DECORATIONS);
     }
 
     @Override
