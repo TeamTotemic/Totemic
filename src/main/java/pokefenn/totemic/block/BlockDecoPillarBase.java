@@ -72,17 +72,41 @@ public class BlockDecoPillarBase extends BlockDirectional implements ITileEntity
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         TileDecoPillar tile = (TileDecoPillar) world.getTileEntity(pos);
-        int meta = stack.getMetadata();
-        tile.setStripped((meta & 1) == 1);
-        tile.setWoodType(WoodVariant.fromID(meta >> 1));
+        tile.setFromMetadata(stack.getMetadata());
+    }
+
+    @Override
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof TileDecoPillar)
+            drops.add(new ItemStack(this, 1, ((TileDecoPillar) tile).getDropMetadata()));
+        else
+            drops.add(new ItemStack(this));
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    {
+        if(willHarvest)
+            return true; //Delay removal of the tile entity until after getDrops
+        else
+            return super.removedByPlayer(state, world, pos, player, willHarvest);
+    }
+
+    @Override
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state,
+            @Nullable TileEntity te, ItemStack stack)
+    {
+        super.harvestBlock(world, player, pos, state, te, stack);
+        world.setBlockState(pos, Blocks.AIR.getDefaultState(), world.isRemote ? 11 : 3);
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         TileDecoPillar tile = (TileDecoPillar) world.getTileEntity(pos);
-        int meta = (tile.isStripped() ? 1 : 0) | (tile.getWoodType().getID() << 1);
-        return new ItemStack(this, 1, meta);
+        return new ItemStack(this, 1, tile.getDropMetadata());
     }
 
     @Override
@@ -114,8 +138,8 @@ public class BlockDecoPillarBase extends BlockDirectional implements ITileEntity
 
     @SuppressWarnings("deprecation")
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
-            List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox,
+            List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState)
     {
         switch(state.getValue(FACING))
         {
@@ -187,7 +211,7 @@ public class BlockDecoPillarBase extends BlockDirectional implements ITileEntity
     }
 
     @Override
-    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         return getDefaultState().withProperty(FACING, facing);
     }
@@ -232,7 +256,7 @@ public class BlockDecoPillarBase extends BlockDirectional implements ITileEntity
     //Necessary for ITileEntityProvider
     @Override
     @Nullable
-    public TileEntity createNewTileEntity(World worldIn, int meta)
+    public TileEntity createNewTileEntity(World world, int meta)
     {
         return new TileDecoPillar();
     }

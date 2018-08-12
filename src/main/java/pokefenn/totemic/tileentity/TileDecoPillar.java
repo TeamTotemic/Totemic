@@ -28,6 +28,17 @@ public class TileDecoPillar extends TileTotemic
         this.stripped = stripped;
     }
 
+    public int getDropMetadata()
+    {
+        return (stripped ? 1 : 0) | (woodType.getID() << 1);
+    }
+
+    public void setFromMetadata(int meta)
+    {
+        stripped = ((meta & 1) == 1);
+        woodType = WoodVariant.fromID(meta >> 1);
+    }
+
     @Override
     public NBTTagCompound getUpdateTag()
     {
