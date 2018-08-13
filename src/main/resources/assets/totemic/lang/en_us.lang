@@ -93,6 +93,7 @@ tile.totemic:wooden_pillar_base.stripped_jungle.name=Stripped Jungle Wood Pillar
 tile.totemic:wooden_pillar_base.stripped_acacia.name=Stripped Acacia Wood Pillar Base
 tile.totemic:wooden_pillar_base.stripped_dark_oak.name=Stripped Dark Oak Wood Pillar Base
 tile.totemic:wooden_pillar_base.stripped_cedar.name=Stripped Red Cedar Pillar Base
+tile.totemic:wooden_pillar.tooltip=Decorative only
 
 #Entity localizations
 entity.totemic:buffalo.name=Buffalo
@@ -201,6 +202,7 @@ totemicmisc.clickToIndex=Shift+Click to return to index
 totemicmisc.clickToRecipe=Shift+Click to see recipe
 totemicmisc.shapeless=Shapeless
 totemicmisc.oredict=Ore Dictionary
+totemicmisc.craftingContainer=Returns the container
 totemic.gui.lexicon.recipeNotAvailable=(Check recipe book for crafting recipe)
 totemic.gui.lexicon.wip=Work In Progress
 

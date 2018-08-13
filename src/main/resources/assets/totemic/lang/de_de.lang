@@ -93,6 +93,7 @@ tile.totemic:wooden_pillar_base.stripped_jungle.name=Entrindete Tropenholzpfahlb
 tile.totemic:wooden_pillar_base.stripped_acacia.name=Entrindete Akazienholzpfahlbasis
 tile.totemic:wooden_pillar_base.stripped_dark_oak.name=Entrindete Schwarzeichenholzpfahlbasis
 tile.totemic:wooden_pillar_base.stripped_cedar.name=Entrindete Zedernholzpfahlbasis
+tile.totemic:wooden_pillar.tooltip=Nur dekorativ
 
 #Entity localizations
 entity.totemic:buffalo.name=Büffel
@@ -195,6 +196,7 @@ totemicmisc.clickToIndex=Umschalt+Klick zum Inhaltsverzeichnis
 totemicmisc.clickToRecipe=Umschalt+Klick zum Rezept
 totemicmisc.shapeless=Formlos
 totemicmisc.oredict=Ore Dictionary
+totemicmisc.craftingContainer=Gibt den Behälter zurück
 totemic.gui.lexicon.recipeNotAvailable=(Handwerksrezept siehe Rezeptbuch)
 totemic.gui.lexicon.wip=In Arbeit
 

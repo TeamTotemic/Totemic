@@ -176,7 +176,7 @@ public class PageRecipe extends LexiconPage
             if(accountForContainer)
             {
                 ItemStack containerStack = stack.getItem().getContainerItem(stack);
-                if(!containerStack.isEmpty())
+                if(!containerStack.isEmpty() && !containerStack.isItemEqualIgnoreDurability(stack))
                     tooltipContainerStack = containerStack;
             }
         }
