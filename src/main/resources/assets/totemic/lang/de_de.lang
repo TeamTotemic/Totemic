@@ -119,7 +119,7 @@ totemic.ceremony.totemic:drought=Trockenheitstanz
 totemic.ceremony.totemic:flute=Serenade für Syrinx
 totemic.ceremony.totemic:eagleDance=Adlertanz
 totemic.ceremony.totemic:cleansing=Steves Schlaflied
-totemic.ceremony.totemic:baykokSummon=Glocken des Todes
+totemic.ceremony.totemic:baykokSummon=Totentanz
 totemic.ceremony.totemic:sunDance=Sonnentanz
 totemic.ceremony.totemic:danseMacabre=Danse Macabre
 
@@ -331,8 +331,8 @@ totemic.entry.cleansing=Steves Schlaflied
 totemic.page.cleansing0=§4Steves Schlaflied§0 ist so ein schönes und reinigendes Stück, dass es einige bestimmte Monster komplett zähmen und läutern kann. §4Dorfbewohnerzombies§0 werden zu ihren lebenden Gegenstücken. Das Gleiche passiert mit §4Zombieschweinen§0, welche sich in Schweine verwandeln. Nur ein paar Monster werden bei jeder Anwendung beeinflusst, und sie müssen erst mit einem §4Schwächetrank§0 geschwächt werden.
 totemic.page.cleansing1=§oWas ist mit Alex?§r
 
-totemic.entry.baykokSummon=Glocken des Todes
-totemic.page.baykokSummon0=Die §4Glocken des Todes§0 sind eine Zeremonie, die den Geist §4Baykok§0 herbeiruft. Verusche nicht diese Zeremonie, bis Du gut für den Kampf ausgerüstet bist.<br>§4Baykok§0 ist ein grausamer Nachtgeist, der wie ein Skelett erscheint. Er jagd unbarmherzig nach Kriegern und ist ein Meister im Bogenschießen, er greift mit unsichtbaren Pfeilen an.
+totemic.entry.baykokSummon=Totentanz
+totemic.page.baykokSummon0=Der §4Totentanz§0 ist eine Zeremonie, die den Geist §4Baykok§0 herbeiruft. Verusche nicht diese Zeremonie, bis Du gut für den Kampf ausgerüstet bist.<br>§4Baykok§0 ist ein grausamer Nachtgeist, der wie ein Skelett erscheint. Er jagd unbarmherzig nach Kriegern und ist ein Meister im Bogenschießen, er greift mit unsichtbaren Pfeilen an.
 totemic.page.baykokSummon1=Schaffst Du es, §4Baykok§0 zu besiegen, erhälst Du seinen Bogen. Mit §1Baykoks Bogen§0 kannst Du wie er Pfeile schießen, die nur Du sehen kannst. Sein Bogen leichter zu §4verzaubern§0 und stärker als ein gewöhnlicher Bogen.
 totemic.page.baykokSummon2=§oDu hast den Bogen überspannt...§r
 
@@ -359,7 +359,7 @@ totemic.page.barkStripper2=
 #totemic.page.barkStripper1=There are many uses for both the bark and the stripped log. The §1Red Cedar Stripped Log§0 can be crafted into planks at a more efficient rate, and can be put in a furnace to create charcoal, while the bark is a crafting component for some blocks and items, usually to reinforce items.
 
 totemic.entry.baykokBow=Baykoks Bogen
-totemic.page.baykokBow0=§4Baykoks Bogen§0 ist ein mächtiger Bogen, den man nur durch Töten des Geistes §4Baykok§0 erhält. Baykok kann mit der Zeremonie §4Glocken des Todes§0 beschwört werden.<br>Pfeile, die von diesem Bogen geschossen werden, verursachen mehr Schaden, und wenn sie nicht getränkt sind, werden sie unsichtbar. Der Bogen lässt sich außerdem leichter §4verzaubern§0 und ist beständiger als ein gewöhnlicher Bogen.
+totemic.page.baykokBow0=§4Baykoks Bogen§0 ist ein mächtiger Bogen, den man nur durch Töten des Geistes §4Baykok§0 erhält. Baykok kann mit der §4Totentanz§0-Zeremonie beschwört werden.<br>Pfeile, die von diesem Bogen geschossen werden, verursachen mehr Schaden, und wenn sie nicht getränkt sind, werden sie unsichtbar. Der Bogen lässt sich außerdem leichter §4verzaubern§0 und ist beständiger als ein gewöhnlicher Bogen.
 
 totemic.entry.tipi=Tipi
 totemic.page.tipi0=Der §1Tipi§0 ist kegelförmiges Zelt, in dem man schlafen kann. Es besteht aus einem hölzernen Gerüst mit einer Plane aus Büffelleder oder Textil. Er kann auf einer flachen Oberfläche aus Erde oder Gras platziert werden, und kann nur unter offenem Himmel benutzt werden.
