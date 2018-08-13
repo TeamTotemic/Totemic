@@ -56,4 +56,5 @@ public final class Totempedia
 
     public static final String TIPI = "tipi";
     public static final String TOTEM_TORCH = "totemTorch";
+    public static final String WOODEN_PILLARS = "woodenPillars";
 }

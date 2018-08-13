@@ -75,6 +75,7 @@ public final class LexiconData
 
     public static LexiconEntry tipi;
     public static LexiconEntry totemTorch;
+    public static LexiconEntry woodenPillars;
 
     public static void init()
     {
@@ -203,5 +204,9 @@ public final class LexiconData
 
         totemTorch = new BLexiconEntry(Totempedia.TOTEM_TORCH, categoryMisc);
         totemTorch.addPages(new PageText("0"), new PageCraftingRecipe("1", Strings.RESOURCE_PREFIX + "totem_torch"));
+
+        woodenPillars = new BLexiconEntry(Totempedia.WOODEN_PILLARS, categoryMisc);
+        woodenPillars.addPages(new PageText("0"), new PageCraftingRecipe("1", Strings.RESOURCE_PREFIX + "pillar_oak"),
+                new PageCraftingRecipe("2", Strings.RESOURCE_PREFIX + "pillar_base_oak"));
     }
 }
