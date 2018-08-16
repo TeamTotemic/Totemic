@@ -122,7 +122,7 @@ totemic.ceremony.totemic:fertility=春之祭
 totemic.ceremony.totemic:zaphkielWaltz=沙法尔圆舞
 totemic.ceremony.totemic:buffaloDance=曼丹野牛舞
 totemic.ceremony.totemic:rainDance=祈雨舞
-totemic.ceremony.totemic:drought=乾旱仪式
+totemic.ceremony.totemic:drought=干旱仪式
 totemic.ceremony.totemic:flute=魔域长笛
 totemic.ceremony.totemic:eagleDance=鹰之舞
 totemic.ceremony.totemic:cleansing=史蒂夫摇篮曲
@@ -216,7 +216,7 @@ totemic.category.ceremonies=仪式
 totemic.category.instruments=乐器
 
 totemic.entry.melody=旋律
-totemic.page.melody0=§4旋律§0是演奏§4乐器s§0时释放出的魔法力量。每种§1乐器§0都有各自不同的§4旋律阈值§0，这意味着不同§4乐器§0所演奏出来的§4旋律§0也各不相同。<br>或许在将来，§4旋律§0将会发挥出举足轻重的作用。
+totemic.page.melody0=§4旋律§0是演奏§4乐器§0时释放出的魔力。每种§1乐器§0都有各自不同的§4旋律阈值§0，这意味着不同§4乐器§0所演奏出来的§4旋律§0也各不相同。<br>或许在将来，§4旋律§0将会发挥出举足轻重的作用。
 
 totemic.entry.cedarTree=红柏树
 totemic.page.cedarTree0=高大无比的§1红柏树§0有着独特的魔法属性。它需要通过§4春之祭§0仪式将旋律注入至树苗中创造。§1红柏木§0可以像普通木头那样使用，你也可以使用§4剥皮器§0去除它们的皮。
@@ -319,11 +319,11 @@ totemic.page.buffaloDance0=野牛曾经遍布整个大陆，但由于人类的�
 totemic.page.buffaloDance1=§o别用红布§r
 
 totemic.entry.rainDance=祈雨舞仪式
-totemic.page.rainDance0=§4祈雨舞仪式§0可以为这个世界带来一场倾盆大雨。如果你觉得雨太过猛烈，你可以试着举行一场§4乾旱仪式§0使其停止下雨。但由于§4祈雨舞仪式§0带来的仪式效果十分强力，所以可能会很难执行。
+totemic.page.rainDance0=§4祈雨舞仪式§0可以为这个世界带来一场倾盆大雨。如果你觉得雨太过猛烈，你可以试着举行一场§4干旱仪式§0使其停止下雨。但由于§4祈雨舞仪式§0带来的仪式效果十分强力，所以可能会很难执行。
 totemic.page.rainDance1=§o就像牛蛙君一样§r。
 
-totemic.entry.drought=乾旱仪式
-totemic.page.drought0=§4乾旱仪式§0将会终止所有的风暴，让天空放晴。其实这个仪式正好和§4祈雨舞仪式§0相反。
+totemic.entry.drought=干旱仪式
+totemic.page.drought0=§4干旱仪式§0将会终止所有的风暴，让天空放晴。其实这个仪式正好和§4祈雨舞仪式§0相反。
 totemic.page.drought1=§o九尾鞭，不是九喇嘛！§r
 
 totemic.entry.fluteInfusion=魔域长笛
