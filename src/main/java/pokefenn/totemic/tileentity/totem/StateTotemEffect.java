@@ -35,12 +35,13 @@ public final class StateTotemEffect extends TotemState
         World world = tile.getWorld();
         long totalWorldTime = world.getTotalWorldTime();
 
-        for(Multiset.Entry<TotemEffect> entry: tile.getTotemEffectSet().entrySet())
-        {
-            TotemEffect effect = entry.getElement();
-            if(totalWorldTime % effect.getInterval() == 0)
-                effect.effect(world, tile.getPos(), tile, entry.getCount());
-        }
+        if(totalWorldTime % tile.getCommonTotemEffectInterval() == 0)
+            for(Multiset.Entry<TotemEffect> entry: tile.getTotemEffectSet().entrySet())
+            {
+                TotemEffect effect = entry.getElement();
+                if(totalWorldTime % effect.getInterval() == 0)
+                    effect.effect(world, tile.getPos(), tile, entry.getCount());
+            }
 
         //Diminish melody over time, about 5 minutes to fully deplete
         if(musicAmount > 0 && totalWorldTime % 47 == 0)

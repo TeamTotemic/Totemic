@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
+import com.google.common.math.IntMath;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,6 +37,7 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
 
     private final List<TotemEffect> totemEffectList = new ArrayList<>(MAX_POLE_SIZE);
     private final Multiset<TotemEffect> totemEffects = HashMultiset.create(MAX_POLE_SIZE);
+    private int commonTotemEffectInterval = Integer.MAX_VALUE;
 
     @Override
     public void update()
@@ -67,6 +69,12 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
             else
                 break;
         }
+
+        //Calculate the greatest common divisor of all the intervals of the effects
+        commonTotemEffectInterval = totemEffects.elementSet().stream()
+                .mapToInt(TotemEffect::getInterval)
+                .reduce(IntMath::gcd)
+                .orElse(Integer.MAX_VALUE);
     }
 
     public void onPoleChange()
@@ -105,6 +113,11 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
     public Multiset<TotemEffect> getTotemEffectSet()
     {
         return totemEffects;
+    }
+
+    public int getCommonTotemEffectInterval()
+    {
+        return commonTotemEffectInterval;
     }
 
     @Override
