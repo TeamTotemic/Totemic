@@ -33,28 +33,29 @@ public final class StateTotemEffect extends TotemState
     public void update()
     {
         World world = tile.getWorld();
+        long totalWorldTime = world.getTotalWorldTime();
 
         for(Multiset.Entry<TotemEffect> entry: tile.getTotemEffectSet().entrySet())
         {
             TotemEffect effect = entry.getElement();
-            if(world.getTotalWorldTime() % effect.getInterval() == 0)
+            if(totalWorldTime % effect.getInterval() == 0)
                 effect.effect(world, tile.getPos(), tile, entry.getCount());
         }
 
         //Diminish melody over time, about 5 minutes to fully deplete
-        if(musicAmount > 0 && world.getTotalWorldTime() % 47 == 0)
+        if(musicAmount > 0 && totalWorldTime % 47 == 0)
         {
             musicAmount--;
             tile.markDirty();
         }
 
-        if(musicAdded && !world.isRemote && world.getTotalWorldTime() % 20 == 0)
+        if(musicAdded && !world.isRemote && totalWorldTime % 20 == 0)
         {
             NetworkHandler.sendAround(new PacketTotemEffectMusic(tile.getPos(), musicAmount), tile, 32);
             musicAdded = false;
         }
 
-        if(world.isRemote && world.getTotalWorldTime() % 40 == 0)
+        if(world.isRemote && totalWorldTime % 40 == 0)
             spawnParticles();
     }
 

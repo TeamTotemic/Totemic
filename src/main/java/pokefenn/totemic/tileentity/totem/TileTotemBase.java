@@ -20,7 +20,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import pokefenn.totemic.api.TotemicCapabilities;
-import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemBase;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.handler.GameOverlay;
@@ -36,7 +35,7 @@ public class TileTotemBase extends TileTotemic implements TotemBase, ITickable
     private TotemState state = new StateTotemEffect(this);
 
     private final List<TotemEffect> totemEffectList = new ArrayList<>(MAX_POLE_SIZE);
-    private final Multiset<TotemEffect> totemEffects = HashMultiset.create(TotemicRegistries.totemEffects().getEntries().size());
+    private final Multiset<TotemEffect> totemEffects = HashMultiset.create(MAX_POLE_SIZE);
 
     @Override
     public void update()
