@@ -3,19 +3,19 @@ package pokefenn.totemic.handler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import pokefenn.totemic.init.ModPotions;
 
-public class EntityUpdate
+public class PlayerTick
 {
-
     @SubscribeEvent
-    public void onEntityUpdate(LivingEvent.LivingUpdateEvent event)
+    public void onPlayerTick(TickEvent.PlayerTickEvent event)
     {
-        if(event.getEntityLiving() instanceof EntityPlayer)
+        if(event.phase == Phase.START)
         {
-            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+            EntityPlayer player = event.player;
 
             if(player.isPotionActive(ModPotions.batPotion) && !player.capabilities.isCreativeMode
                     && player.isSneaking() && !player.onGround)

@@ -36,7 +36,7 @@ import pokefenn.totemic.entity.boss.EntityBaykok;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
 import pokefenn.totemic.handler.EntityFall;
 import pokefenn.totemic.handler.EntitySpawn;
-import pokefenn.totemic.handler.EntityUpdate;
+import pokefenn.totemic.handler.PlayerTick;
 import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
@@ -155,7 +155,7 @@ public class CommonProxy
 
     protected void registerEventHandlers()
     {
-        MinecraftForge.EVENT_BUS.register(new EntityUpdate());
+        MinecraftForge.EVENT_BUS.register(new PlayerTick());
         MinecraftForge.EVENT_BUS.register(new EntityFall());
         MinecraftForge.EVENT_BUS.register(new PlayerInteract());
         if(ModConfig.general.skeletonsShouldAttackBuffalos)
