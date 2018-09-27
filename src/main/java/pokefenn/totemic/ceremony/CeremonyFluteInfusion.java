@@ -6,6 +6,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -27,7 +28,7 @@ public class CeremonyFluteInfusion extends Ceremony
 
         //I was gonna look at needing sugar cane nearby for this ceremony, but, no.
 
-        for(EntityItem entity: EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, 5, 5))
+        for(EntityItem entity: TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, 5, 5))
         {
             if(entity.getItem().getItem() == ModItems.flute)
             {
@@ -36,7 +37,7 @@ public class CeremonyFluteInfusion extends Ceremony
                 //cane = 0;
             }
         }
-        for(EntityPlayer player: EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 5, 5))
+        for(EntityPlayer player: TotemicEntityUtil.getPlayersInRange(world, pos, 5, 5))
         {
             InventoryPlayer inv = player.inventory;
             for(int i = 0; i < inv.getSizeInventory(); i++)

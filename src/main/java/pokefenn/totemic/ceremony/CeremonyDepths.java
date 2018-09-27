@@ -5,10 +5,10 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.util.EntityUtil;
 
 public class CeremonyDepths extends Ceremony
 {
@@ -23,7 +23,7 @@ public class CeremonyDepths extends Ceremony
         if(world.isRemote)
             return;
 
-        for(EntityPlayer entity: EntityUtil.getEntitiesInRange(EntityPlayer.class, world, pos, 8, 8))
+        for(EntityPlayer entity: TotemicEntityUtil.getPlayersInRange(world, pos, 8, 8))
         {
             entity.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 20 * (60 * 3), 1));
         }

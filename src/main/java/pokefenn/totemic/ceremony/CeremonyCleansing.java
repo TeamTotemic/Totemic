@@ -10,10 +10,10 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.util.EntityUtil;
 
 public class CeremonyCleansing extends Ceremony
 {
@@ -29,7 +29,7 @@ public class CeremonyCleansing extends Ceremony
 
         if(!world.isRemote)
         {
-            for(EntityZombie zombie: EntityUtil.getEntitiesInRange(EntityZombie.class, world, pos, radius, radius))
+            for(EntityZombie zombie: TotemicEntityUtil.getEntitiesInRange(EntityZombie.class, world, pos, radius, radius))
             {
                 if(zombie.isPotionActive(MobEffects.WEAKNESS))
                 {

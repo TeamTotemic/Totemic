@@ -1,5 +1,9 @@
 package pokefenn.totemic.item.equipment.music;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,9 +19,6 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.ItemInstrument;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class ItemEagleBoneWhistle extends ItemInstrument
 {

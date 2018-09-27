@@ -2,8 +2,8 @@ package pokefenn.totemic.tileentity.totem;
 
 import static pokefenn.totemic.Totemic.logger;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
@@ -23,6 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.StartupContext;
@@ -30,7 +31,6 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.network.NetworkHandler;
 import pokefenn.totemic.network.server.PacketCeremonyStartupFull;
 import pokefenn.totemic.network.server.PacketCeremonyStartupMusic;
-import pokefenn.totemic.util.EntityUtil;
 
 public final class StateStartup extends TotemState implements StartupContext
 {
@@ -85,7 +85,7 @@ public final class StateStartup extends TotemState implements StartupContext
                 {
                     //Detect when a new player has moved into range and send an update packet.
                     //We have to use the predicate to also include players in Spectator mode.
-                    List<EntityPlayerMP> players = EntityUtil.getEntitiesInRange(EntityPlayerMP.class, tile.getWorld(), tile.getPos(), 16, 16, Predicates.alwaysTrue());
+                    Collection<EntityPlayerMP> players = TotemicEntityUtil.getPlayersMPInRange((WorldServer) tile.getWorld(), tile.getPos(), 16, 16, Predicates.alwaysTrue());
                     playersInRange.retainAll(players); //Remove players that went out of range
                     for(EntityPlayerMP player: players)
                     {
@@ -125,7 +125,7 @@ public final class StateStartup extends TotemState implements StartupContext
         tile.setState(new StateCeremonyEffect(tile, ceremony));
         tile.getState().update();
 
-        for(EntityPlayerMP player: EntityUtil.getEntitiesInRange(EntityPlayerMP.class, tile.getWorld(), tile.getPos(), 8, 8))
+        for(EntityPlayerMP player: TotemicEntityUtil.getPlayersMPInRange((WorldServer) tile.getWorld(), tile.getPos(), 8, 8))
             ModCriteriaTriggers.PERFORM_CEREMONY.trigger(player, ceremony);
     }
 

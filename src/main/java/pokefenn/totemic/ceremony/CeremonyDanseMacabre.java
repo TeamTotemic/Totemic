@@ -12,10 +12,10 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.util.EntityUtil;
 
 public class CeremonyDanseMacabre extends Ceremony
 {
@@ -31,7 +31,7 @@ public class CeremonyDanseMacabre extends Ceremony
 
         if(!world.isRemote && context.getTime() % 20 == 0)
         {
-            for(EntityItem entity: EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius))
+            for(EntityItem entity: TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius))
             {
                 if(entity.getItem().getItem() == Items.ROTTEN_FLESH)
                 {

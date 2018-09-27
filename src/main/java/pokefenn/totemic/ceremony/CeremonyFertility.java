@@ -18,11 +18,11 @@ import net.minecraft.init.Items;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.init.ModBlocks;
-import pokefenn.totemic.util.EntityUtil;
 
 public class CeremonyFertility extends Ceremony
 {
@@ -41,7 +41,7 @@ public class CeremonyFertility extends Ceremony
 
         if(!world.isRemote && context.getTime() % 20 == 0)
         {
-            for(Entity entity: EntityUtil.getEntitiesInRange(EntityLiving.class, world, pos, radius, radius, e -> e instanceof EntityAnimal || e instanceof EntityVillager))
+            for(Entity entity: TotemicEntityUtil.getEntitiesInRange(EntityLiving.class, world, pos, radius, radius, e -> e instanceof EntityAnimal || e instanceof EntityVillager))
             {
                 if(entity instanceof EntityAnimal)
                 {
@@ -85,7 +85,7 @@ public class CeremonyFertility extends Ceremony
     private boolean consumeBreedingItem(World world, BlockPos pos, EntityAnimal animal)
     {
         int radius = 8;
-        List<EntityItem> breedingItems = EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius, e -> animal.isBreedingItem(e.getItem()));
+        List<EntityItem> breedingItems = (List<EntityItem>) TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius, e -> animal.isBreedingItem(e.getItem()));
         if(!breedingItems.isEmpty())
         {
             if(world.rand.nextInt(3) < 2)
@@ -104,7 +104,7 @@ public class CeremonyFertility extends Ceremony
     private boolean consumeBreedingItem(World world, BlockPos pos, EntityVillager villager)
     {
         int radius = 8;
-        List<EntityItem> breedingItems = EntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius, e -> e.getItem().getItem() == Items.EMERALD);
+        List<EntityItem> breedingItems = (List<EntityItem>) TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius, e -> e.getItem().getItem() == Items.EMERALD);
         if(!breedingItems.isEmpty())
         {
             EntityItem entityItem = breedingItems.get(0);

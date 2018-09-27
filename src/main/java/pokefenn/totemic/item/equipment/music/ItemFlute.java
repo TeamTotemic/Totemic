@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -30,8 +32,6 @@ import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.util.EntityUtil;
-
-import javax.annotation.Nullable;
 
 public class ItemFlute extends ItemInstrument
 {
@@ -91,19 +91,14 @@ public class ItemFlute extends ItemInstrument
 
     private void temptEntities(World world, double x, double y, double z)
     {
-        for (EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, x, y, z, 2, 2))
+        for (EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, x, y, z, 2, 2,
+                entity -> ((entity instanceof EntityAnimal && entity.getNavigator() instanceof PathNavigateGround) || entity instanceof EntityVillager)
+                          && !temptedEntities.contains(entity)))
         {
-            if ((entity instanceof EntityAnimal && entity.getNavigator() instanceof PathNavigateGround) || entity instanceof EntityVillager)
-            {
-                if (temptedEntities.contains(entity))
-                    continue;
+            double speed = (entity instanceof EntityAnimal) ? 1 : 0.5;
+            entity.targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, speed, this, false));
 
-                double speed = (entity instanceof EntityAnimal) ? 1 : 0.5;
-                entity.targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, speed, this, false));
-
-                temptedEntities.add(entity);
-            }
-
+            temptedEntities.add(entity);
         }
     }
 

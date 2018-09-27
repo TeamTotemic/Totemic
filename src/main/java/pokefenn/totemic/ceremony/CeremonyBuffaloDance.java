@@ -1,6 +1,6 @@
 package pokefenn.totemic.ceremony;
 
-import java.util.List;
+import java.util.Collection;
 
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.Loader;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -45,12 +46,12 @@ public class CeremonyBuffaloDance extends Ceremony
             });
     }
 
-    private static List<? extends EntityAnimal> getCows(World world, BlockPos pos, int range)
+    private static Collection<? extends EntityAnimal> getCows(World world, BlockPos pos, int range)
     {
         if(!ANIMANIA_LOADED)
-            return EntityUtil.getEntitiesInRange(EntityCow.class, world, pos, range, range, entity -> !(entity instanceof EntityBuffalo));
+            return TotemicEntityUtil.getEntitiesInRange(EntityCow.class, world, pos, range, range, entity -> !(entity instanceof EntityBuffalo));
         else //Animania compatibility
-            return EntityUtil.getEntitiesInRange(EntityAnimal.class, world, pos, range, range, entity ->
+            return TotemicEntityUtil.getEntitiesInRange(EntityAnimal.class, world, pos, range, range, entity ->
                   (entity instanceof EntityCow && !(entity instanceof EntityBuffalo))
                 || entity.getClass().getName().startsWith("com.animania.entities.cows.EntityBull")
                 || entity.getClass().getName().startsWith("com.animania.entities.cows.EntityCow"));

@@ -1,5 +1,6 @@
 package pokefenn.totemic.api.totem;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,10 +10,10 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicEntityUtil;
 
 /**
  * Default implementation of a Totem Effect that adds a potion effect
@@ -128,7 +129,7 @@ public class TotemEffectPotion extends TotemEffect
         int time = interval + getLingeringTime();
         int amplifier = getAmplifier(world, pos, totem, repetition);
 
-        for(EntityPlayer player: getPlayersInRange(world, pos, horizontal, vertical))
+        for(EntityPlayer player: TotemicEntityUtil.getPlayersInRange(world, pos, horizontal, vertical))
             applyTo(false, player, time, amplifier);
     }
 
@@ -145,9 +146,12 @@ public class TotemEffectPotion extends TotemEffect
 
     /**
      * @return a list of players within the given range of the given position
+     * @deprecated Replaced with {@link TotemicEntityUtil#getPlayersInRange(World, BlockPos, double, double)}. Keep in
+     * mind that the replacement returns a live view.
      */
+    @Deprecated
     public static List<EntityPlayer> getPlayersInRange(World world, BlockPos pos, int horizontal, int vertical)
     {
-        return world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos).grow(horizontal - 1, vertical - 1, horizontal - 1));
+        return new ArrayList<>(TotemicEntityUtil.getPlayersInRange(world, pos, horizontal, vertical));
     }
 }
