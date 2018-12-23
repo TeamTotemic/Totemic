@@ -40,6 +40,7 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.tileentity.music.TileWindChime;
 import pokefenn.totemic.totempedia.LexiconData;
 
+@SuppressWarnings("deprecation")
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
