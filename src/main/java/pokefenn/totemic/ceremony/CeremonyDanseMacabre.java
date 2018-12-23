@@ -31,7 +31,7 @@ public class CeremonyDanseMacabre extends Ceremony
 
         if(!world.isRemote && context.getTime() % 20 == 0)
         {
-            for(EntityItem entity: TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius))
+            TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius).forEach(entity ->
             {
                 if(entity.getItem().getItem() == Items.ROTTEN_FLESH)
                 {
@@ -54,7 +54,7 @@ public class CeremonyDanseMacabre extends Ceremony
                         }
                     }
                 }
-            }
+            });
         }
 
     }

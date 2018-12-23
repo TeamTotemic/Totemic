@@ -2,14 +2,15 @@ package pokefenn.totemic.tileentity.totem;
 
 import static pokefenn.totemic.Totemic.logger;
 
-import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
 import javax.annotation.Nullable;
 
 import com.google.common.base.Predicates;
+import com.google.common.collect.ImmutableList;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
@@ -85,7 +86,8 @@ public final class StateStartup extends TotemState implements StartupContext
                 {
                     //Detect when a new player has moved into range and send an update packet.
                     //We have to use the predicate to also include players in Spectator mode.
-                    Collection<EntityPlayerMP> players = TotemicEntityUtil.getPlayersMPInRange((WorldServer) tile.getWorld(), tile.getPos(), 16, 16, Predicates.alwaysTrue());
+                    List<EntityPlayerMP> players = TotemicEntityUtil.getPlayersMPInRange((WorldServer) tile.getWorld(), tile.getPos(), 16, 16, Predicates.alwaysTrue())
+                            .collect(ImmutableList.toImmutableList());
                     playersInRange.retainAll(players); //Remove players that went out of range
                     for(EntityPlayerMP player: players)
                     {
@@ -125,8 +127,8 @@ public final class StateStartup extends TotemState implements StartupContext
         tile.setState(new StateCeremonyEffect(tile, ceremony));
         tile.getState().update();
 
-        for(EntityPlayerMP player: TotemicEntityUtil.getPlayersMPInRange((WorldServer) tile.getWorld(), tile.getPos(), 8, 8))
-            ModCriteriaTriggers.PERFORM_CEREMONY.trigger(player, ceremony);
+        TotemicEntityUtil.getPlayersMPInRange((WorldServer) tile.getWorld(), tile.getPos(), 8, 8)
+            .forEach(player -> ModCriteriaTriggers.PERFORM_CEREMONY.trigger(player, ceremony));
     }
 
     @Override

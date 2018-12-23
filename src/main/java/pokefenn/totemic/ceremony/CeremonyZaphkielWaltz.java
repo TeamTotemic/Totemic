@@ -30,7 +30,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
 
         if(!world.isRemote && context.getTime() % 20 == 0)
         {
-            for(EntityItem entity: TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius))
+            TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, radius, radius).forEach(entity ->
             {
                 if(entity.getItem().getItem() == Items.EGG)
                 {
@@ -49,7 +49,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
                         }
                     }
                 }
-            }
+            });
         }
 
         if(context.getTime() % 5 == 0)

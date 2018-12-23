@@ -1,6 +1,5 @@
 package pokefenn.totemic.ceremony;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
@@ -23,9 +22,7 @@ public class CeremonyDepths extends Ceremony
         if(world.isRemote)
             return;
 
-        for(EntityPlayer entity: TotemicEntityUtil.getPlayersInRange(world, pos, 8, 8))
-        {
-            entity.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 20 * (60 * 3), 1));
-        }
+        TotemicEntityUtil.getPlayersInRange(world, pos, 8, 8).forEach(entity ->
+            entity.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 20 * (60 * 3), 1)));
     }
 }

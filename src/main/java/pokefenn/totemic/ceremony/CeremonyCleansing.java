@@ -29,7 +29,7 @@ public class CeremonyCleansing extends Ceremony
 
         if(!world.isRemote)
         {
-            for(EntityZombie zombie: TotemicEntityUtil.getEntitiesInRange(EntityZombie.class, world, pos, radius, radius))
+            TotemicEntityUtil.getEntitiesInRange(EntityZombie.class, world, pos, radius, radius).forEach(zombie ->
             {
                 if(zombie.isPotionActive(MobEffects.WEAKNESS))
                 {
@@ -56,8 +56,7 @@ public class CeremonyCleansing extends Ceremony
                         return;
                     }
                 }
-            }
-
+            });
         }
     }
 }

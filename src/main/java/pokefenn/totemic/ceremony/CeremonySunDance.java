@@ -1,6 +1,5 @@
 package pokefenn.totemic.ceremony;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -26,11 +25,9 @@ public class CeremonySunDance extends Ceremony
     {
         if(!world.isRemote && context.getTime() % 20 == 10)
         {
-            for(EntityPlayer player : TotemicEntityUtil.getPlayersInRange(world, pos, 8, 8))
-            {
-                if(player.getHealth() > 1)
-                    player.attackEntityFrom(SUN_DANCE_DMG, 1);
-            }
+            TotemicEntityUtil.getPlayersInRange(world, pos, 8, 8)
+                .filter(player -> player.getHealth() > 1)
+                .forEach(player -> player.attackEntityFrom(SUN_DANCE_DMG, 1));
         }
     }
 
@@ -39,11 +36,11 @@ public class CeremonySunDance extends Ceremony
     {
         if(!world.isRemote)
         {
-            for(EntityPlayer player : TotemicEntityUtil.getPlayersInRange(world, pos, 8, 8))
+            TotemicEntityUtil.getPlayersInRange(world, pos, 8, 8).forEach(player ->
             {
                 player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 15 * 20, 3));
                 player.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 5 * 60 * 20, 4));
-            }
+            });
         }
     }
 }

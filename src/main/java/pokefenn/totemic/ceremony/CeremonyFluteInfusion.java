@@ -1,7 +1,6 @@
 package pokefenn.totemic.ceremony;
 
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +27,7 @@ public class CeremonyFluteInfusion extends Ceremony
 
         //I was gonna look at needing sugar cane nearby for this ceremony, but, no.
 
-        for(EntityItem entity: TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, 5, 5))
+        TotemicEntityUtil.getEntitiesInRange(EntityItem.class, world, pos, 5, 5).forEach(entity ->
         {
             if(entity.getItem().getItem() == ModItems.flute)
             {
@@ -36,8 +35,8 @@ public class CeremonyFluteInfusion extends Ceremony
                 entity.setDead();
                 //cane = 0;
             }
-        }
-        for(EntityPlayer player: TotemicEntityUtil.getPlayersInRange(world, pos, 5, 5))
+        });
+        TotemicEntityUtil.getPlayersInRange(world, pos, 5, 5).forEach(player ->
         {
             InventoryPlayer inv = player.inventory;
             for(int i = 0; i < inv.getSizeInventory(); i++)
@@ -46,6 +45,6 @@ public class CeremonyFluteInfusion extends Ceremony
                     inv.setInventorySlotContents(i, new ItemStack(ModItems.flute, 1, 1));
             }
             player.inventoryContainer.detectAndSendChanges();
-        }
+        });
     }
 }

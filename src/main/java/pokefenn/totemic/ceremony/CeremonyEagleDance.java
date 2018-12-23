@@ -25,7 +25,7 @@ public class CeremonyEagleDance extends Ceremony
         if(world.isRemote)
             return;
 
-        TotemicEntityUtil.getEntitiesInRange(EntityParrot.class, world, pos, 8, 8).stream()
+        TotemicEntityUtil.getEntitiesInRange(EntityParrot.class, world, pos, 8, 8)
             .limit(2)
             .forEach(parrot -> {
                 EntityBaldEagle eagle = new EntityBaldEagle(world);

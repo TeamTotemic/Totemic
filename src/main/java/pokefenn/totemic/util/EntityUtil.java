@@ -2,6 +2,7 @@ package pokefenn.totemic.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import com.google.common.base.Predicate;
 
@@ -11,6 +12,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -20,9 +22,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityUtil
 {
-    public static <T extends Entity> List<T> getEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontal, double vertical, Predicate<? super T> filter)
+    public static <T extends Entity> List<T> listEntitiesInRange(Class<? extends T> clazz, World world, double posX, double posY, double posZ, double horizontal, double vertical, Predicate<? super T> filter)
     {
         return world.getEntitiesWithinAABB(clazz, new AxisAlignedBB(posX - horizontal, posY - vertical, posZ - horizontal, posX + horizontal, posY + vertical, posZ + horizontal), filter);
+    }
+
+    public static <T extends Entity> List<T> listEntitiesInRange(Class<? extends T> type, World world, BlockPos pos, double horizontal, double vertical, Predicate<? super T> filter)
+    {
+        Objects.requireNonNull(filter);
+        AxisAlignedBB aabb = new AxisAlignedBB(pos).grow(horizontal - 1, vertical - 1, horizontal - 1);
+        return world.getEntitiesWithinAABB(type, aabb, filter);
+    }
+
+    public static <T extends Entity> List<T> listEntitiesInRange(Class<? extends T> type, World world, BlockPos pos, double horizontal, double vertical)
+    {
+        return listEntitiesInRange(type, world, pos, horizontal, vertical, EntitySelectors.NOT_SPECTATING);
     }
 
     public static <T extends TileEntity> List<T> getTileEntitiesInRange(Class<? extends T> clazz, World world, BlockPos pos, int horizontalRadius, int verticalRadius)

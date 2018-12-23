@@ -1,8 +1,8 @@
 package pokefenn.totemic.api.totem;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -129,8 +129,8 @@ public class TotemEffectPotion extends TotemEffect
         int time = interval + getLingeringTime();
         int amplifier = getAmplifier(world, pos, totem, repetition);
 
-        for(EntityPlayer player: TotemicEntityUtil.getPlayersInRange(world, pos, horizontal, vertical))
-            applyTo(false, player, time, amplifier);
+        TotemicEntityUtil.getPlayersInRange(world, pos, horizontal, vertical)
+            .forEach(player -> applyTo(false, player, time, amplifier));
     }
 
     @Override
@@ -146,12 +146,11 @@ public class TotemEffectPotion extends TotemEffect
 
     /**
      * @return a list of players within the given range of the given position
-     * @deprecated Replaced with {@link TotemicEntityUtil#getPlayersInRange(World, BlockPos, double, double)}. Keep in
-     * mind that the replacement returns a live view.
+     * @deprecated Replaced with {@link TotemicEntityUtil#getPlayersInRange(World, BlockPos, double, double)}.
      */
     @Deprecated
     public static List<EntityPlayer> getPlayersInRange(World world, BlockPos pos, int horizontal, int vertical)
     {
-        return new ArrayList<>(TotemicEntityUtil.getPlayersInRange(world, pos, horizontal, vertical));
+        return TotemicEntityUtil.getPlayersInRange(world, pos, horizontal, vertical).collect(Collectors.toList());
     }
 }

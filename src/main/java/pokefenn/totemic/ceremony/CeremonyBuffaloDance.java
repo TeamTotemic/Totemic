@@ -1,6 +1,6 @@
 package pokefenn.totemic.ceremony;
 
-import java.util.Collection;
+import java.util.stream.Stream;
 
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
@@ -8,7 +8,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.common.Loader;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
@@ -18,8 +17,6 @@ import pokefenn.totemic.util.EntityUtil;
 
 public class CeremonyBuffaloDance extends Ceremony
 {
-    private static final boolean ANIMANIA_LOADED = Loader.isModLoaded("animania");
-
     public CeremonyBuffaloDance(String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
         super(name, musicNeeded, maxStartupTime, instruments);
@@ -31,7 +28,7 @@ public class CeremonyBuffaloDance extends Ceremony
         if(world.isRemote)
             return;
 
-        getCows(world, pos, 8).stream()
+        getCows(world, pos, 8)
             .limit(2)
             .forEach(cow -> {
                 EntityBuffalo buffalo = new EntityBuffalo(world);
@@ -46,14 +43,8 @@ public class CeremonyBuffaloDance extends Ceremony
             });
     }
 
-    private static Collection<? extends EntityAnimal> getCows(World world, BlockPos pos, int range)
+    private static Stream<? extends EntityAnimal> getCows(World world, BlockPos pos, int range)
     {
-        if(!ANIMANIA_LOADED)
-            return TotemicEntityUtil.getEntitiesInRange(EntityCow.class, world, pos, range, range, entity -> !(entity instanceof EntityBuffalo));
-        else //Animania compatibility
-            return TotemicEntityUtil.getEntitiesInRange(EntityAnimal.class, world, pos, range, range, entity ->
-                  (entity instanceof EntityCow && !(entity instanceof EntityBuffalo))
-                || entity.getClass().getName().startsWith("com.animania.entities.cows.EntityBull")
-                || entity.getClass().getName().startsWith("com.animania.entities.cows.EntityCow"));
+        return TotemicEntityUtil.getEntitiesInRange(EntityCow.class, world, pos, range, range, entity -> !(entity instanceof EntityBuffalo));
     }
 }

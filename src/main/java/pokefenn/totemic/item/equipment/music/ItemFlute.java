@@ -91,7 +91,7 @@ public class ItemFlute extends ItemInstrument
 
     private void temptEntities(World world, double x, double y, double z)
     {
-        for (EntityLiving entity : EntityUtil.getEntitiesInRange(EntityLiving.class, world, x, y, z, 2, 2,
+        for (EntityLiving entity : EntityUtil.listEntitiesInRange(EntityLiving.class, world, x, y, z, 2, 2,
                 entity -> ((entity instanceof EntityAnimal && entity.getNavigator() instanceof PathNavigateGround) || entity instanceof EntityVillager)
                           && !temptedEntities.contains(entity)))
         {
