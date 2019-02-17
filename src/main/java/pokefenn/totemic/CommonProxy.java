@@ -110,9 +110,14 @@ public class CommonProxy
 
     private void oreDictionary()
     {
-        OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.cedar_leaves, 1));
-        OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedar_log, 1, 0));
-        OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.cedar_plank, 1, 0));
+        OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.cedar_leaves));
+        OreDictionary.registerOre("treeSapling", new ItemStack(ModBlocks.cedar_sapling));
+        OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedar_log));
+        OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.cedar_plank));
+        OreDictionary.registerOre("slabWood", new ItemStack(ModBlocks.cedar_slab));
+        OreDictionary.registerOre("stairWood", new ItemStack(ModBlocks.cedar_stairs));
+        OreDictionary.registerOre("fenceWood", new ItemStack(ModBlocks.cedar_fence));
+        OreDictionary.registerOre("fenceGateWood", new ItemStack(ModBlocks.cedar_fence_gate));
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.sub_items, 1, ItemTotemicItems.Type.iron_bells.ordinal()));
         OreDictionary.registerOre("listAllmeatraw", new ItemStack(ModItems.buffalo_meat));
         OreDictionary.registerOre("listAllbeefraw", new ItemStack(ModItems.buffalo_meat));
