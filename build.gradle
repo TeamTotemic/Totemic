@@ -1,122 +1,65 @@
 buildscript {
     repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
+        mavenCentral()
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
 
-plugins {
-    id 'com.matthewprenger.cursegradle' version '1.1.2'
-}
+version = '1.13-0.11.6'
+group = 'pokefenn.totemic'
+archivesBaseName = 'Totemic'
 
-apply plugin: 'net.minecraftforge.gradle.forge'
-
-version = "1.12.2-0.11.5"
-group = "pokefenn.totemic"
-archivesBaseName = "Totemic"
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    version = "1.12.2-14.23.5.2768"
-    runDir = "run"
+    mappings channel: 'snapshot', version: '20180921-1.13'
+    //makeObfSourceJar = false
+    
+    //accessTransformer = file('my_at.cfg')
 
-    mappings = "snapshot_20180529"
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    runs {
+        client {
+            workingDirectory project.file('run')
 
-    replaceIn "Totemic.java"
-    replace "\${version}", project.version
-    replace '@FINGERPRINT@', project.findProperty('signSHA1')
-}
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
 
-jar.manifest {
-    attributes 'FMLAT': 'totemic_at.cfg'
-}
+            mods {
+                totemic { source sourceSets.main }
+            }
+        }
 
-sourceCompatibility = targetCompatibility = '1.8'
+        server {
+            workingDirectory project.file('run')
 
-repositories {
-    maven {
-        url "http://tehnut.info/maven"
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                totemic { source sourceSets.main }
+            }
+        }
     }
 }
 
 dependencies {
-    deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
+    minecraft 'net.minecraftforge:forge:1.13.2-25.0.37'
 }
 
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        // replace version and mcversion
-        expand 'version': project.version, 'mcversion': project.minecraft.version
-    }
-
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-}
-
-task deobfJar(type: Jar) {
-    from(sourceSets.main.output) {
-        appendix = 'deobf'
-    }
-}
-
-// Create API source jar
-task apiSrcJar(type: Jar) {
-    from(sourceSets.main.java) {
-        include 'pokefenn/totemic/api/**'
-        appendix = 'api'
-    }
-    classifier = 'sources'
-}
-
-task signJar(type: SignJar, dependsOn: reobfJar) {
-    // Skips if the keyStore property is missing.
-    onlyIf {
-        project.hasProperty('keyStore')
-    }
-
-    // findProperty allows us to reference the property without it existing.
-    // Using project.propName would cause the script to fail validation if
-    // the property did not exist.
-    keyStore = project.findProperty('keyStore')
-    alias = project.findProperty('keyStoreAlias')
-    storePass = project.findProperty('keyStorePass')
-    keyPass = project.findProperty('keyStoreKeyPass')
-    inputFile = jar.archivePath
-    outputFile = jar.archivePath
-}
-
-// Runs this task automatically when reobfJar is ran.
-reobfJar.finalizedBy signJar
-
-artifacts {
-    archives deobfJar
-    archives apiSrcJar
-}
-
-curseforge {
-    apiKey = project.hasProperty('curseForgeApiKey') ? project.curseForgeApiKey : ''
-
-    project {
-        id = '237541'
-        changelog  = ''
-        releaseType = 'beta'
-
-        addArtifact deobfJar
-        addArtifact apiSrcJar
+jar {
+    manifest {
+        attributes(["Specification-Title": "totemic",
+                    "Specification-Vendor": "ljfa",
+                    "Specification-Version": "1",
+                    "Implementation-Title": project.name,
+                    "Implementation-Version": project.version,
+                    "Implementation-Vendor" :"ljfa",
+                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")])
     }
 }

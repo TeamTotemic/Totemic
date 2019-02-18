@@ -1,6 +1,0 @@
-{
-    "parent": "totemic:item/baykok_bow",
-    "textures": {
-        "layer0": "totemic:items/baykok_bow_pulling_0"
-    }
-}

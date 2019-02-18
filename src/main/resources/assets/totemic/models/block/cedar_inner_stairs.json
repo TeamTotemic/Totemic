@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "totemic:blocks/cedar_plank",
-        "top": "totemic:blocks/cedar_plank",
-        "side": "totemic:blocks/cedar_plank"
-    }
-}
