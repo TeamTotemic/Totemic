@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 
 @Mod(Totemic.MOD_ID)
@@ -32,6 +33,7 @@ public final class Totemic {
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::clientSetup);
 
+        modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
     }
 
