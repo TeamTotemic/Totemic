@@ -1,0 +1,9 @@
+{
+    "parent": "totemic:block/totem_base",
+    "textures": {
+        "wood": "block/stripped_birch_log",
+        "bark": "block/birch_log",
+        "top": "block/birch_log_top",
+        "particle": "block/stripped_birch_log"
+    }
+}

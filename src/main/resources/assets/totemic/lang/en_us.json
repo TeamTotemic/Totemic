@@ -2,5 +2,13 @@
   "item.totemic.flute": "Flute",
   "item.totemic.infused_flute": "Pan's Flute",
 
+  "block.totemic.oak_totem_base": "Oak Totem Base",
+  "block.totemic.spruce_totem_base": "Spruce Totem Base",
+  "block.totemic.birch_totem_base": "Birch Totem Base",
+  "block.totemic.jungle_totem_base": "Jungle Totem Base",
+  "block.totemic.acacia_totem_base": "Acacia Totem Base",
+  "block.totemic.dark_oak_totem_base": "Dark Oak Totem Base",
+  "block.totemic.cedar_totem_base": "Red Cedar Totem Base",
+
   "itemGroup.totemic": "Totemic"
 }

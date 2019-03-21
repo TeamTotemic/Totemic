@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "totemic:block/oak_totem_base" }
+    }
+}

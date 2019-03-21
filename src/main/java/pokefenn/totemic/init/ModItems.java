@@ -1,5 +1,6 @@
 package pokefenn.totemic.init;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemBlock;
@@ -21,7 +22,17 @@ public final class ModItems {
             new ItemFlute(new Properties().maxStackSize(1).group(Totemic.itemGroup)).setRegistryName("flute"),
             new ItemInfusedFlute(new Properties().maxStackSize(1).group(Totemic.itemGroup)).setRegistryName("infused_flute"),
 
-            new ItemBlock(ModBlocks.totem_base, new Properties().group(Totemic.itemGroup)).setRegistryName(ModBlocks.totem_base.getRegistryName())
+            makeItemBlock(ModBlocks.oak_totem_base),
+            makeItemBlock(ModBlocks.spruce_totem_base),
+            makeItemBlock(ModBlocks.birch_totem_base),
+            makeItemBlock(ModBlocks.jungle_totem_base),
+            makeItemBlock(ModBlocks.acacia_totem_base),
+            makeItemBlock(ModBlocks.dark_oak_totem_base),
+            makeItemBlock(ModBlocks.cedar_totem_base)
         );
+    }
+
+    private static Item makeItemBlock(Block block) {
+        return new ItemBlock(block, new Properties().group(Totemic.itemGroup)).setRegistryName(block.getRegistryName());
     }
 }
