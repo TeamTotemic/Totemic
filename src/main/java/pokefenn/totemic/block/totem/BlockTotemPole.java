@@ -5,12 +5,9 @@ import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.state.StateContainer.Builder;
 
-public class BlockTotemBase extends BlockDirectional {
-    public final String woodType;
-
-    public BlockTotemBase(String woodType, Properties properties) {
+public class BlockTotemPole extends BlockDirectional {
+    public BlockTotemPole(Properties properties) {
         super(properties);
-        this.woodType = woodType;
         // TODO Auto-generated constructor stub
     }
 

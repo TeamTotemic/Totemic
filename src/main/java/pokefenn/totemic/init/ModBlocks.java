@@ -24,13 +24,13 @@ public final class ModBlocks {
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Block> event) {
         event.getRegistry().registerAll(
-            new BlockTotemBase(Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("oak_totem_base"),
-            new BlockTotemBase(Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("spruce_totem_base"),
-            new BlockTotemBase(Properties.create(Material.WOOD, MaterialColor.SAND).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("birch_totem_base"),
-            new BlockTotemBase(Properties.create(Material.WOOD, MaterialColor.DIRT).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("jungle_totem_base"),
-            new BlockTotemBase(Properties.create(Material.WOOD, MaterialColor.ADOBE).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("acacia_totem_base"),
-            new BlockTotemBase(Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("dark_oak_totem_base"),
-            new BlockTotemBase(Properties.create(Material.WOOD, MaterialColor.PINK).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("cedar_totem_base")
+            new BlockTotemBase("oak", Properties.create(Material.WOOD, MaterialColor.WOOD).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("oak_totem_base"),
+            new BlockTotemBase("spruce", Properties.create(Material.WOOD, MaterialColor.OBSIDIAN).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("spruce_totem_base"),
+            new BlockTotemBase("birch", Properties.create(Material.WOOD, MaterialColor.SAND).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("birch_totem_base"),
+            new BlockTotemBase("jungle", Properties.create(Material.WOOD, MaterialColor.DIRT).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("jungle_totem_base"),
+            new BlockTotemBase("acacia", Properties.create(Material.WOOD, MaterialColor.ADOBE).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("acacia_totem_base"),
+            new BlockTotemBase("dark_oak", Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("dark_oak_totem_base"),
+            new BlockTotemBase("cedar", Properties.create(Material.WOOD, MaterialColor.PINK).hardnessAndResistance(2, 5).sound(SoundType.WOOD)).setRegistryName("cedar_totem_base")
         );
     }
 }
