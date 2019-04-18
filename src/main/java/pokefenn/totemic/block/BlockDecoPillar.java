@@ -132,11 +132,17 @@ public class BlockDecoPillar extends BlockRotatedPillar implements ITileEntityPr
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        TileDecoPillar tile = (TileDecoPillar) world.getTileEntity(pos);
-        if(tile.isStripped() || state.getValue(AXIS) == Axis.Y)
-            return tile.getWoodType().getMapColor();
+        TileEntity te = world.getTileEntity(pos);
+        if(te instanceof TileDecoPillar)
+        {
+            TileDecoPillar tile = (TileDecoPillar) te;
+            if(tile.isStripped() || state.getValue(AXIS) == Axis.Y)
+                return tile.getWoodType().getMapColor();
+            else
+                return getBarkColor(tile.getWoodType());
+        }
         else
-            return getBarkColor(tile.getWoodType());
+            return MapColor.WOOD;
     }
 
     static MapColor getBarkColor(WoodVariant wood)

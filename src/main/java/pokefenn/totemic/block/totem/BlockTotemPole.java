@@ -26,7 +26,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -174,7 +179,11 @@ public class BlockTotemPole extends Block implements ITileEntityProvider, Totemi
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return ((TileTotemPole) world.getTileEntity(pos)).getWoodType().getMapColor();
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof TileTotemPole)
+            return ((TileTotemPole) tile).getWoodType().getMapColor();
+        else
+            return MapColor.WOOD;
     }
 
     @Override

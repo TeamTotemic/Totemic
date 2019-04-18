@@ -25,7 +25,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -40,7 +45,11 @@ import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.lib.Strings;
 import pokefenn.totemic.lib.WoodVariant;
-import pokefenn.totemic.tileentity.totem.*;
+import pokefenn.totemic.tileentity.totem.StateCeremonyEffect;
+import pokefenn.totemic.tileentity.totem.StateSelection;
+import pokefenn.totemic.tileentity.totem.StateStartup;
+import pokefenn.totemic.tileentity.totem.StateTotemEffect;
+import pokefenn.totemic.tileentity.totem.TileTotemBase;
 
 public class BlockTotemBase extends Block implements ITileEntityProvider, TotemicStaffUsage
 {
@@ -154,7 +163,11 @@ public class BlockTotemBase extends Block implements ITileEntityProvider, Totemi
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return ((TileTotemBase) world.getTileEntity(pos)).getWoodType().getMapColor();
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof TileTotemBase)
+            return ((TileTotemBase) tile).getWoodType().getMapColor();
+        else
+            return MapColor.WOOD;
     }
 
     @Override

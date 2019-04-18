@@ -180,11 +180,17 @@ public class BlockDecoPillarBase extends BlockDirectional implements ITileEntity
     @Override
     public MapColor getMapColor(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        TileDecoPillar tile = (TileDecoPillar) world.getTileEntity(pos);
-        if(tile.isStripped() || state.getValue(FACING).getAxis() == Axis.Y)
-            return tile.getWoodType().getMapColor();
+        TileEntity te = world.getTileEntity(pos);
+        if(te instanceof TileDecoPillar)
+        {
+            TileDecoPillar tile = (TileDecoPillar) world.getTileEntity(pos);
+            if(tile.isStripped() || state.getValue(FACING).getAxis() == Axis.Y)
+                return tile.getWoodType().getMapColor();
+            else
+                return BlockDecoPillar.getBarkColor(tile.getWoodType());
+        }
         else
-            return BlockDecoPillar.getBarkColor(tile.getWoodType());
+            return MapColor.WOOD;
     }
 
     @Override
