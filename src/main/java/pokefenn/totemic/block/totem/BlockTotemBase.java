@@ -7,11 +7,12 @@ import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer.Builder;
+import pokefenn.totemic.api.WoodType;
 
 public class BlockTotemBase extends BlockDirectional {
-    public final String woodType;
+    public final WoodType woodType;
 
-    public BlockTotemBase(String woodType, Properties properties) {
+    public BlockTotemBase(WoodType woodType, Properties properties) {
         super(properties);
         this.woodType = woodType;
         // TODO Auto-generated constructor stub

@@ -1,0 +1,9 @@
+{
+    "parent": "totemic:block/totem_pole",
+    "textures": {
+        "wood": "block/stripped_spruce_log",
+        "bark": "block/spruce_log",
+        "top": "block/spruce_log_top",
+        "particle": "block/stripped_spruce_log"
+    }
+}

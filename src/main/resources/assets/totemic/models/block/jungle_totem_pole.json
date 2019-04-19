@@ -1,0 +1,9 @@
+{
+    "parent": "totemic:block/totem_pole",
+    "textures": {
+        "wood": "block/stripped_jungle_log",
+        "bark": "block/jungle_log",
+        "top": "block/jungle_log_top",
+        "particle": "block/stripped_jungle_log"
+    }
+}
