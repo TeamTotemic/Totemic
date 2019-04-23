@@ -20,8 +20,9 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfessio
 import pokefenn.totemic.block.tipi.BlockTipi;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModVillagers;
+import pokefenn.totemic.util.MiscUtil;
 
-public class ComponentTipi extends StructureVillagePieces.Village
+public class ComponentTipi extends ComponentTotemicPiece
 {
     public ComponentTipi()
     {
@@ -98,12 +99,6 @@ public class ComponentTipi extends StructureVillagePieces.Village
 
         //Place Tipi block itself
         setBlockState(world, ModBlocks.tipi.getDefaultState().withProperty(BlockTipi.FACING, dir), x, y, z, bb);
-    }
-
-    @Override
-    protected VillagerProfession chooseForgeProfession(int count, VillagerProfession prof)
-    {
-        return ModVillagers.profTotemist;
     }
 
     public static class CreationHandler implements IVillageCreationHandler

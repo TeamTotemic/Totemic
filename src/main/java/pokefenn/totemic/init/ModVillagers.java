@@ -15,7 +15,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.lib.Resources;
+import pokefenn.totemic.util.MiscUtil;
+
+import javax.annotation.Nullable;
 
 @EventBusSubscriber(modid = Totemic.MOD_ID)
 public final class ModVillagers
@@ -23,6 +27,20 @@ public final class ModVillagers
     public static final VillagerProfession profTotemist = new VillagerProfession(Resources.PREFIX_MOD + "totemist",
             Resources.PREFIX_MOD + "textures/entity/totemic_villager.png",
             "minecraft:textures/entity/zombie_villager/zombie_villager.png"); //TODO: Totemist zombie villager texture
+
+    @Nullable
+    public static VillagerProfession generateVillagerForPiece ()
+    {
+        if (ModConfig.general.reduceMedicineManSpawnRate) {
+            if (MiscUtil.random.nextBoolean()) {
+                return profTotemist;
+            } else {
+                return null;
+            }
+        } else {
+            return profTotemist;
+        }
+    }
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VillagerProfession> event)
