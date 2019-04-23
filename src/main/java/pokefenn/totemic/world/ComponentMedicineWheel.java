@@ -21,6 +21,7 @@ import net.minecraft.world.gen.structure.StructureVillagePieces.PieceWeight;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Village;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import pokefenn.totemic.api.TotemicRegistries;
@@ -31,8 +32,9 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModVillagers;
 import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
+import pokefenn.totemic.util.MiscUtil;
 
-public class ComponentMedicineWheel extends StructureVillagePieces.Village
+public class ComponentMedicineWheel extends ComponentTotemicPiece
 {
     private WoodVariant poleWood = WoodVariant.CEDAR;
 
@@ -175,12 +177,6 @@ public class ComponentMedicineWheel extends StructureVillagePieces.Village
 
         spawnVillagers(world, bb, 4, 1, 2,  1);
         return true;
-    }
-
-    @Override
-    protected VillagerProfession chooseForgeProfession(int count, VillagerProfession prof)
-    {
-        return ModVillagers.profTotemist;
     }
 
     @Override

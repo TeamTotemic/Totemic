@@ -17,4 +17,8 @@ public class ConfigGeneral
     @RequiresMcRestart
     public boolean enableVillageMedicineWheel = true;
 
+    @Comment("Reduces the spawn chance of Medicine Man villagers")
+    @RequiresMcRestart
+    public boolean reduceMedicineManSpawnRate = false;
+
 }

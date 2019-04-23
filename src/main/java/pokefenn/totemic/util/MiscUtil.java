@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 
 public class MiscUtil
 {
+    public static Random random = new Random();
+
     /**
      * Checks whether list1 is a prefix of list2, i.e.
      * the elements of list1 appear in order at the beginning of list2.
