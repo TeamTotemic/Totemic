@@ -62,7 +62,7 @@ public final class Totemic {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
-        ModelLoaderRegistry.registerLoader(new ModelTotemPoleLoader());
+        ModelLoaderRegistry.registerLoader(ModelTotemPoleLoader.INSTANCE);
         MinecraftForge.EVENT_BUS.register(ModelBakeHandler.class);
     }
 

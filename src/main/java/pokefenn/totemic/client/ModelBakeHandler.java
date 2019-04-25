@@ -15,7 +15,7 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.WoodType;
 import pokefenn.totemic.api.totem.TotemEffect;
 
-public class ModelBakeHandler {
+public class ModelBakeHandler { //TODO: Not working properly yet
     @SubscribeEvent
     public static void onModelBake(ModelBakeEvent event) {
         for(WoodType woodType: WoodType.getWoodTypes()) {

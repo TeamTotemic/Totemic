@@ -7,7 +7,10 @@ import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockReader;
 import pokefenn.totemic.api.WoodType;
+import pokefenn.totemic.tile.totem.TileTotemBase;
 
 public class BlockTotemBase extends BlockDirectional {
     public final WoodType woodType;
@@ -27,5 +30,16 @@ public class BlockTotemBase extends BlockDirectional {
     @Nullable
     public IBlockState getStateForPlacement(BlockItemUseContext context) {
         return getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
+
+    @Override
+    @Nullable
+    public TileEntity createTileEntity(IBlockState state, IBlockReader world) {
+        return new TileTotemBase();
     }
 }

@@ -10,6 +10,7 @@ import pokefenn.totemic.api.totem.TotemEffect;
 
 @ObjectHolder(Totemic.MOD_ID)
 public final class ModContent {
+    public static final TotemEffect none = null;
     public static final TotemEffect bat = null;
     public static final TotemEffect blaze = null;
     public static final TotemEffect buffalo = null;
@@ -26,6 +27,7 @@ public final class ModContent {
     @SubscribeEvent
     public static void totemEffects(RegistryEvent.Register<TotemEffect> event) {
         event.getRegistry().registerAll(
+            new TotemEffect().setRegistryName("none"),
             new TotemEffect().setRegistryName("bat"),
             new TotemEffect().setRegistryName("blaze"),
             new TotemEffect().setRegistryName("buffalo"),

@@ -22,7 +22,9 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.IModelState;
 import pokefenn.totemic.Totemic;
 
-public class ModelTotemPoleLoader implements ICustomModelLoader {
+public enum ModelTotemPoleLoader implements ICustomModelLoader { //TODO: Not working properly yet
+    INSTANCE;
+
     private static final Pattern modelNamePattern = Pattern.compile("models/block/totem_pole/(\\w+)/(\\w+)");
 
     @Override
