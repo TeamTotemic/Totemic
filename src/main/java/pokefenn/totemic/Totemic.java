@@ -15,6 +15,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -22,8 +23,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistry;
 import net.minecraftforge.registries.ObjectHolderRegistry;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.WoodType;
 import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.block.totem.BlockTotemPole;
 import pokefenn.totemic.client.ModelBakeHandler;
@@ -31,6 +34,7 @@ import pokefenn.totemic.client.ModelTotemPoleLoader;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
+import pokefenn.totemic.init.ModTileEntities;
 
 @Mod(Totemic.MOD_ID)
 public final class Totemic {
@@ -55,6 +59,10 @@ public final class Totemic {
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
         modBus.register(ModContent.class);
+        modBus.register(ModTileEntities.class);
+
+        //Instance field is private, need reflection
+        ObfuscationReflectionHelper.setPrivateValue(TotemicAPI.class, null, new TotemicApiImpl(), "instance");
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

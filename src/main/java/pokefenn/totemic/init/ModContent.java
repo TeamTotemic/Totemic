@@ -7,6 +7,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.registries.RegistryBuilder;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.totem.TotemEffectNone;
 
 @ObjectHolder(Totemic.MOD_ID)
 public final class ModContent {
@@ -27,19 +28,19 @@ public final class ModContent {
     @SubscribeEvent
     public static void totemEffects(RegistryEvent.Register<TotemEffect> event) {
         event.getRegistry().registerAll(
-            new TotemEffect().setRegistryName("none"),
-            new TotemEffect().setRegistryName("bat"),
-            new TotemEffect().setRegistryName("blaze"),
-            new TotemEffect().setRegistryName("buffalo"),
-            new TotemEffect().setRegistryName("cow"),
-            new TotemEffect().setRegistryName("enderman"),
-            new TotemEffect().setRegistryName("horse"),
-            new TotemEffect().setRegistryName("ocelot"),
-            new TotemEffect().setRegistryName("pig"),
-            new TotemEffect().setRegistryName("rabbit"),
-            new TotemEffect().setRegistryName("spider"),
-            new TotemEffect().setRegistryName("squid"),
-            new TotemEffect().setRegistryName("wolf"));
+            new TotemEffectNone().setRegistryName("none"),
+            new TotemEffectNone().setRegistryName("bat"),
+            new TotemEffectNone().setRegistryName("blaze"),
+            new TotemEffectNone().setRegistryName("buffalo"),
+            new TotemEffectNone().setRegistryName("cow"),
+            new TotemEffectNone().setRegistryName("enderman"),
+            new TotemEffectNone().setRegistryName("horse"),
+            new TotemEffectNone().setRegistryName("ocelot"),
+            new TotemEffectNone().setRegistryName("pig"),
+            new TotemEffectNone().setRegistryName("rabbit"),
+            new TotemEffectNone().setRegistryName("spider"),
+            new TotemEffectNone().setRegistryName("squid"),
+            new TotemEffectNone().setRegistryName("wolf"));
     }
 
     @SubscribeEvent

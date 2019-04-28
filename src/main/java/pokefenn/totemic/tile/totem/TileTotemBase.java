@@ -5,19 +5,20 @@ import java.util.List;
 
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
+import com.google.common.math.IntMath;
 
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.BlockTotemPole;
 import pokefenn.totemic.init.ModTileEntities;
 
 public class TileTotemBase extends TileEntity implements ITickable {
-    public static final int MAX_POLE_SIZE = 5;
-
-    private final List<TotemEffect> totemEffectList = new ArrayList<>(MAX_POLE_SIZE);
-    private final Multiset<TotemEffect> totemEffects = HashMultiset.create(MAX_POLE_SIZE);
+    private final List<TotemEffect> totemEffectList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
+    private final Multiset<TotemEffect> totemEffects = HashMultiset.create(TotemEffectAPI.MAX_POLE_SIZE);
+    private int commonTotemEffectInterval = Integer.MAX_VALUE;
 
     public TileTotemBase() {
         super(ModTileEntities.totem_base);
@@ -36,7 +37,7 @@ public class TileTotemBase extends TileEntity implements ITickable {
         totemEffectList.clear();
         totemEffects.clear();
 
-        for(int i = 0; i < MAX_POLE_SIZE; i++) {
+        for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
             Block block = world.getBlockState(pos.up(i + 1)).getBlock();
             if(block instanceof BlockTotemPole) {
                 TotemEffect effect = ((BlockTotemPole) block).effect;
@@ -46,5 +47,11 @@ public class TileTotemBase extends TileEntity implements ITickable {
             else
                 break;
         }
+
+        //Calculate the greatest common divisor of all the intervals of the effects
+        commonTotemEffectInterval = totemEffects.elementSet().stream()
+                .mapToInt(TotemEffect::getInterval)
+                .reduce(IntMath::gcd)
+                .orElse(Integer.MAX_VALUE);
     }
 }
