@@ -22,9 +22,12 @@ public final class ModItems {
             new ItemFlute(new Properties().maxStackSize(1).group(Totemic.itemGroup)).setRegistryName("flute"),
             new ItemInfusedFlute(new Properties().maxStackSize(1).group(Totemic.itemGroup)).setRegistryName("infused_flute")
         );
+
+        for(Block block: ModBlocks.getBlocksWithItemBlock())
+            event.getRegistry().register(makeItemBlock(block));
     }
 
-    public static Item makeItemBlock(Block block) {
+    private static Item makeItemBlock(Block block) {
         return new ItemBlock(block, new Properties().group(Totemic.itemGroup)).setRegistryName(block.getRegistryName());
     }
 }

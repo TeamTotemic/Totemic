@@ -5,10 +5,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 /**
- * Base class for all Totem Effects
+ * Base class for all Totem Effects.<p>
+ * Use the {@link RegisterTotemEffectsEvent} to register your Totem Effects. Please do <b>not</b> use
+ * Forge's {@link RegistryEvent}!
  */
 public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
     /**

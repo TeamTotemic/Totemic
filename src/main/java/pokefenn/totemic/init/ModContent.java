@@ -6,6 +6,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.registries.RegistryBuilder;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.totem.RegisterTotemEffectsEvent;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.totem.TotemEffectNone;
 
@@ -26,8 +27,8 @@ public final class ModContent {
     public static final TotemEffect wolf = null;
 
     @SubscribeEvent
-    public static void totemEffects(RegistryEvent.Register<TotemEffect> event) {
-        event.getRegistry().registerAll(
+    public static void totemEffects(RegisterTotemEffectsEvent event) {
+        event.registerAll(
             new TotemEffectNone().setRegistryName("none"),
             new TotemEffectNone().setRegistryName("bat"),
             new TotemEffectNone().setRegistryName("blaze"),
