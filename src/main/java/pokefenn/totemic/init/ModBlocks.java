@@ -4,6 +4,9 @@ import java.util.*;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.Properties;
 import net.minecraft.block.SoundType;
@@ -33,6 +36,9 @@ public final class ModBlocks {
     //List of blocks for which an ItemBlock will be added
     private static final List<Block> blocksWithItemBlock = new ArrayList<>();
 
+    private static final Map<WoodType, BlockTotemBase> totemBases = new HashMap<>(WoodType.getWoodTypes().size());
+    private static final Table<WoodType, TotemEffect, BlockTotemPole> totemPoles = HashBasedTable.create(WoodType.getWoodTypes().size(), 16);
+
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Block> event) {
         internallyRegisterTotemEffects();
@@ -40,13 +46,19 @@ public final class ModBlocks {
         for(WoodType woodType: WoodType.getWoodTypes()) {
             Properties blockProperties = Properties.create(Material.WOOD, woodType.getWoodColor()).hardnessAndResistance(2, 5).sound(SoundType.WOOD);
 
-            Block totemBase = new BlockTotemBase(woodType, blockProperties).setRegistryName(Totemic.MOD_ID, woodType.getName() + "_totem_base");
+            BlockTotemBase totemBase = new BlockTotemBase(woodType, blockProperties);
+            totemBase.setRegistryName(Totemic.MOD_ID, woodType.getName() + "_totem_base");
+
             event.getRegistry().register(totemBase);
+            totemBases.put(woodType, totemBase);
             blocksWithItemBlock.add(totemBase);
 
             for(TotemEffect totemEffect: totemEffectsToRegister) {
-                Block totemPole = new BlockTotemPole(woodType, totemEffect, blockProperties).setRegistryName(Totemic.MOD_ID, woodType.getName() + "_totem_pole_" + totemEffect.getRegistryName().getPath());
+                BlockTotemPole totemPole = new BlockTotemPole(woodType, totemEffect, blockProperties);
+                totemPole.setRegistryName(Totemic.MOD_ID, woodType.getName() + "_totem_pole_" + totemEffect.getRegistryName().getPath());
+
                 event.getRegistry().register(totemPole);
+                totemPoles.put(woodType, totemEffect, totemPole);
                 blocksWithItemBlock.add(totemPole);
             }
         }
@@ -54,6 +66,14 @@ public final class ModBlocks {
 
     public static List<Block> getBlocksWithItemBlock() {
         return blocksWithItemBlock;
+    }
+
+    public static Map<WoodType, BlockTotemBase> getTotemBases() {
+        return totemBases;
+    }
+
+    public static Table<WoodType, TotemEffect, BlockTotemPole> getTotemPoles() {
+        return totemPoles;
     }
 
     //Fires the RegisterTotemEffectsEvent and collects them in the internal set
