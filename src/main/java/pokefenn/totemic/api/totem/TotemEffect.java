@@ -1,6 +1,6 @@
 package pokefenn.totemic.api.totem;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
@@ -52,7 +52,7 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
      * @param medicineBag the Medicine Bag item stack
      * @param charge time in ticks until the Medicine Bag is depleted, or -1 if it is a Creative Medicine Bag
      */
-    public void medicineBagEffect(IBlockReader world, EntityPlayer player, ItemStack medicineBag, int charge) { }
+    public void medicineBagEffect(IBlockReader world, PlayerEntity player, ItemStack medicineBag, int charge) { }
 
     /**
      * @return the translation key of the effect. By default it is given by "totemic.totem." followed by the registry name.

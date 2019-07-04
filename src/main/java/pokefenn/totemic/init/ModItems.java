@@ -1,9 +1,9 @@
 package pokefenn.totemic.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ObjectHolder;
@@ -28,6 +28,6 @@ public final class ModItems {
     }
 
     private static Item makeItemBlock(Block block) {
-        return new ItemBlock(block, new Properties().group(Totemic.itemGroup)).setRegistryName(block.getRegistryName());
+        return new BlockItem(block, new Properties().group(Totemic.itemGroup)).setRegistryName(block.getRegistryName());
     }
 }

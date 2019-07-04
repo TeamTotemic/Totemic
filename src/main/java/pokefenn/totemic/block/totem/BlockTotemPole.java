@@ -3,14 +3,14 @@ package pokefenn.totemic.block.totem;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.DirectionalBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer.Builder;
 import pokefenn.totemic.api.WoodType;
 import pokefenn.totemic.api.totem.TotemEffect;
 
-public class BlockTotemPole extends BlockDirectional {
+public class BlockTotemPole extends DirectionalBlock {
     public final WoodType woodType;
     public final TotemEffect effect;
 
@@ -22,13 +22,13 @@ public class BlockTotemPole extends BlockDirectional {
     }
 
     @Override
-    protected void fillStateContainer(Builder<Block, IBlockState> builder) {
+    protected void fillStateContainer(Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 
     @Override
     @Nullable
-    public IBlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
         return getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 }

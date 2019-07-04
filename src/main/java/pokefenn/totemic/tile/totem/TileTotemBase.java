@@ -8,14 +8,14 @@ import com.google.common.collect.Multiset;
 import com.google.common.math.IntMath;
 
 import net.minecraft.block.Block;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.BlockTotemPole;
 import pokefenn.totemic.init.ModTileEntities;
 
-public class TileTotemBase extends TileEntity implements ITickable {
+public class TileTotemBase extends TileEntity implements ITickableTileEntity {
     private final List<TotemEffect> totemEffectList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private final Multiset<TotemEffect> totemEffects = HashMultiset.create(TotemEffectAPI.MAX_POLE_SIZE);
     private int commonTotemEffectInterval = Integer.MAX_VALUE;

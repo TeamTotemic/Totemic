@@ -1,31 +1,9 @@
 package pokefenn.totemic.client;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.annotation.Nullable;
-
-import com.google.common.collect.ImmutableList;
-
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.IUnbakedModel;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.vertex.VertexFormat;
-import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.ICustomModelLoader;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.common.model.IModelState;
-import pokefenn.totemic.Totemic;
-
-public enum ModelTotemPoleLoader implements ICustomModelLoader { //TODO: Not working properly yet
+public enum ModelTotemPoleLoader /*implements ICustomModelLoader*/ { //TODO: Not working properly yet
     INSTANCE;
 
-    private static final Pattern modelNamePattern = Pattern.compile("models/block/totem_pole/(\\w+)/(\\w+)");
+    /*private static final Pattern modelNamePattern = Pattern.compile("models/block/totem_pole/(\\w+)/(\\w+)");
 
     @Override
     public void onResourceManagerReload(IResourceManager resourceManager) {
@@ -74,5 +52,5 @@ public enum ModelTotemPoleLoader implements ICustomModelLoader { //TODO: Not wor
             set.addAll(modelGetter.apply(totemEffectLoc).getTextures(modelGetter, missingTextureErrors));
             return set;
         }
-    }
+    }*/
 }

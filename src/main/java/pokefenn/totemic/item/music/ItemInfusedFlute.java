@@ -1,9 +1,9 @@
 package pokefenn.totemic.item.music;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 public class ItemInfusedFlute extends ItemFlute {
@@ -12,7 +12,7 @@ public class ItemInfusedFlute extends ItemFlute {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         if(!world.isRemote && !player.isSneaking())
             temptEntities(world, player.posX, player.posY, player.posZ);
 

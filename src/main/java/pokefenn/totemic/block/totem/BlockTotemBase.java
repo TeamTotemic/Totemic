@@ -3,8 +3,8 @@ package pokefenn.totemic.block.totem;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.DirectionalBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +12,7 @@ import net.minecraft.world.IBlockReader;
 import pokefenn.totemic.api.WoodType;
 import pokefenn.totemic.tile.totem.TileTotemBase;
 
-public class BlockTotemBase extends BlockDirectional {
+public class BlockTotemBase extends DirectionalBlock {
     public final WoodType woodType;
 
     public BlockTotemBase(WoodType woodType, Properties properties) {
@@ -22,24 +22,24 @@ public class BlockTotemBase extends BlockDirectional {
     }
 
     @Override
-    protected void fillStateContainer(Builder<Block, IBlockState> builder) {
+    protected void fillStateContainer(Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 
     @Override
     @Nullable
-    public IBlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
         return getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
     @Override
-    public boolean hasTileEntity(IBlockState state) {
+    public boolean hasTileEntity(BlockState state) {
         return true;
     }
 
     @Override
     @Nullable
-    public TileEntity createTileEntity(IBlockState state, IBlockReader world) {
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return new TileTotemBase();
     }
 }
