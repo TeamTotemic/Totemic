@@ -46,7 +46,13 @@ public final class Totemic {
         modBus.register(ModTileEntities.class);
 
         //Instance field is private, need reflection
-        ObfuscationReflectionHelper.setPrivateValue(TotemicAPI.class, null, new TotemicApiImpl(), "instance");
+        //ObfuscationReflectionHelper.setPrivateValue(TotemicAPI.class, null, new TotemicApiImpl(), "instance");
+        try {
+            ObfuscationReflectionHelper.findField(TotemicAPI.class, "instance").set(null, new TotemicApiImpl());
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Could not set API field");
+        }
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

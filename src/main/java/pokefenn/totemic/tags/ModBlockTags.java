@@ -1,7 +1,6 @@
 package pokefenn.totemic.tags;
 
 import java.nio.file.Path;
-import java.util.Collection;
 
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
@@ -23,11 +22,10 @@ public final class ModBlockTags {
             super(generator, GameData.getWrapperDefaulted(Block.class));
         }
 
-        @SuppressWarnings({ "unchecked", "rawtypes" })
         @Override
         protected void registerTags() {
-            getBuilder(TOTEM_BASES).addAll((Collection) ModBlocks.getTotemBases().values());
-            getBuilder(TOTEM_POLES).addAll((Collection) ModBlocks.getTotemPoles().values());
+            ModBlocks.getTotemBases().values().forEach(getBuilder(TOTEM_BASES)::add);
+            ModBlocks.getTotemPoles().values().forEach(getBuilder(TOTEM_POLES)::add);
         }
 
         @Override

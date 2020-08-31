@@ -14,7 +14,7 @@ public class ItemInfusedFlute extends ItemFlute {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         if(!world.isRemote && !player.isSneaking())
-            temptEntities(world, player.posX, player.posY, player.posZ);
+            temptEntities(world, player.getPosX(), player.getPosY(), player.getPosZ());
 
         return super.onItemRightClick(world, player, hand);
     }
