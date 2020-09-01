@@ -17,6 +17,17 @@ archivesBaseName = 'Totemic'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
+sourceSets {
+    main {
+        resources {
+            srcDirs = [
+                "$rootDir/src/main/resources",
+                "$rootDir/src/generated/resources"
+            ]
+        }
+    }
+}
+
 minecraft {
     mappings channel: mappings_channel, version: mappings_version
     //makeObfSourceJar = false
