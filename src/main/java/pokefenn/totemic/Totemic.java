@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
@@ -19,6 +20,7 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModTileEntities;
+import pokefenn.totemic.tags.ModBlockTags;
 
 @Mod(Totemic.MOD_ID)
 public final class Totemic {
@@ -39,6 +41,7 @@ public final class Totemic {
 
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::clientSetup);
+        modBus.addListener(this::gatherData);
 
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
@@ -62,5 +65,11 @@ public final class Totemic {
     private void clientSetup(FMLClientSetupEvent event) {
         //ModelLoaderRegistry.registerLoader(ModelTotemPoleLoader.INSTANCE);
         MinecraftForge.EVENT_BUS.register(ModelBakeHandler.class);
+    }
+
+    private void gatherData(GatherDataEvent event) {
+        if(event.includeServer()) {
+            event.getGenerator().addProvider(new ModBlockTags.Provider(event.getGenerator()));
+        }
     }
 }
