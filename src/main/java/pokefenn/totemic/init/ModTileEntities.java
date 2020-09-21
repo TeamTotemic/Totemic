@@ -1,5 +1,6 @@
 package pokefenn.totemic.init;
 
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,7 +15,7 @@ public final class ModTileEntities {
     @SubscribeEvent
     public static void init(RegistryEvent.Register<TileEntityType<?>> event) {
         event.getRegistry().registerAll(
-            TileEntityType.Builder.create(TileTotemBase::new).build(null).setRegistryName("totem_base")
+            TileEntityType.Builder.create(TileTotemBase::new, ModBlocks.getTotemBases().values().toArray(new Block[0])).build(null).setRegistryName("totem_base")
         );
     }
 }
