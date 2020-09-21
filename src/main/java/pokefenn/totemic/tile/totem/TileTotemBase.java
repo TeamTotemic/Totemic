@@ -16,6 +16,8 @@ import pokefenn.totemic.block.totem.BlockTotemPole;
 import pokefenn.totemic.init.ModTileEntities;
 
 public class TileTotemBase extends TileEntity implements ITickableTileEntity {
+    private boolean firstTick = true;
+
     private final List<TotemEffect> totemEffectList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private final Multiset<TotemEffect> totemEffects = HashMultiset.create(TotemEffectAPI.MAX_POLE_SIZE);
     private int commonTotemEffectInterval = Integer.MAX_VALUE;
@@ -26,11 +28,10 @@ public class TileTotemBase extends TileEntity implements ITickableTileEntity {
 
     @Override
     public void tick() {
-    }
-
-    @Override
-    public void onLoad() {
-        calculateTotemEffects();
+        if(firstTick) {
+            calculateTotemEffects();
+            firstTick = false;
+        }
     }
 
     private void calculateTotemEffects() {
