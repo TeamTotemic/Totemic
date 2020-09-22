@@ -7,14 +7,14 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.DirectionalBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer.Builder;
-import pokefenn.totemic.api.WoodType;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemEffect;
 
 public class BlockTotemPole extends DirectionalBlock {
-    public final WoodType woodType;
+    public final TotemWoodType woodType;
     public final TotemEffect effect;
 
-    public BlockTotemPole(WoodType woodType, TotemEffect effect, Properties properties) {
+    public BlockTotemPole(TotemWoodType woodType, TotemEffect effect, Properties properties) {
         super(properties);
         this.woodType = woodType;
         this.effect = effect;

@@ -9,13 +9,13 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
-import pokefenn.totemic.api.WoodType;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.tile.totem.TileTotemBase;
 
 public class BlockTotemBase extends DirectionalBlock {
-    public final WoodType woodType;
+    public final TotemWoodType woodType;
 
-    public BlockTotemBase(WoodType woodType, Properties properties) {
+    public BlockTotemBase(TotemWoodType woodType, Properties properties) {
         super(properties);
         this.woodType = woodType;
         // TODO Auto-generated constructor stub

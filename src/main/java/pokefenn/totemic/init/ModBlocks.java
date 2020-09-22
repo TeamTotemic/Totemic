@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ObjectHolder;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.api.WoodType;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.RegisterTotemEffectsEvent;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.BlockTotemBase;
@@ -36,14 +36,14 @@ public final class ModBlocks {
     //List of blocks for which an ItemBlock will be added
     private static final List<Block> blocksWithItemBlock = new ArrayList<>();
 
-    private static final Map<WoodType, BlockTotemBase> totemBases = new HashMap<>(WoodType.getWoodTypes().size());
-    private static final Table<WoodType, TotemEffect, BlockTotemPole> totemPoles = HashBasedTable.create(WoodType.getWoodTypes().size(), 16);
+    private static final Map<TotemWoodType, BlockTotemBase> totemBases = new HashMap<>(TotemWoodType.getWoodTypes().size());
+    private static final Table<TotemWoodType, TotemEffect, BlockTotemPole> totemPoles = HashBasedTable.create(TotemWoodType.getWoodTypes().size(), 16);
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Block> event) {
         internallyRegisterTotemEffects();
 
-        for(WoodType woodType: WoodType.getWoodTypes()) {
+        for(TotemWoodType woodType: TotemWoodType.getWoodTypes()) {
             Properties blockProperties = Properties.create(Material.WOOD, woodType.getWoodColor()).hardnessAndResistance(2, 5).sound(SoundType.WOOD);
 
             BlockTotemBase totemBase = new BlockTotemBase(woodType, blockProperties);
@@ -68,11 +68,11 @@ public final class ModBlocks {
         return blocksWithItemBlock;
     }
 
-    public static Map<WoodType, BlockTotemBase> getTotemBases() {
+    public static Map<TotemWoodType, BlockTotemBase> getTotemBases() {
         return totemBases;
     }
 
-    public static Table<WoodType, TotemEffect, BlockTotemPole> getTotemPoles() {
+    public static Table<TotemWoodType, TotemEffect, BlockTotemPole> getTotemPoles() {
         return totemPoles;
     }
 
