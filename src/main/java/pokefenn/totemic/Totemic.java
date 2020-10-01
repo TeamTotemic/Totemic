@@ -16,6 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.client.ModelBakeHandler;
+import pokefenn.totemic.client.TotemicBlockStateProvider;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
@@ -70,6 +71,9 @@ public final class Totemic {
     private void gatherData(GatherDataEvent event) {
         if(event.includeServer()) {
             event.getGenerator().addProvider(new ModBlockTags.Provider(event.getGenerator()));
+        }
+        if(event.includeClient()) {
+            event.getGenerator().addProvider(new TotemicBlockStateProvider(event.getGenerator(), event.getExistingFileHelper()));
         }
     }
 }
