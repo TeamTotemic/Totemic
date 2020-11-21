@@ -1,5 +1,6 @@
 modLoader="javafml"
-loaderVersion="[31,)"
+loaderVersion="[35,)"
+license="MIT"
 issueTrackerURL="https://github.com/TeamTotemic/Totemic/issues"
 
 [[mods]]
@@ -18,13 +19,13 @@ A magic mod about Totem Poles, nature and the power of music.
 [[dependencies.totemic]]
     modId="forge"
     mandatory=true
-    versionRange="[31,)"
+    versionRange="[35,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.totemic]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2,)"
+    versionRange="[1.16.4,)"
     ordering="NONE"
     side="BOTH"

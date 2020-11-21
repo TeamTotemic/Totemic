@@ -70,7 +70,7 @@ public final class Totemic {
 
     private void gatherData(GatherDataEvent event) {
         if(event.includeServer()) {
-            event.getGenerator().addProvider(new ModBlockTags.Provider(event.getGenerator()));
+            event.getGenerator().addProvider(new ModBlockTags.Provider(event.getGenerator(), event.getExistingFileHelper()));
         }
         if(event.includeClient()) {
             event.getGenerator().addProvider(new TotemicBlockStateProvider(event.getGenerator(), event.getExistingFileHelper()));

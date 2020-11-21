@@ -2,7 +2,7 @@ package pokefenn.totemic.client;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.init.ModBlocks;
