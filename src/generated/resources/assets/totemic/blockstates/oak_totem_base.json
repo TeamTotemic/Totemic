@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=north": {
-      "model": "minecraft:block/cobblestone"
+      "model": "totemic:block/oak_totem_base"
     },
     "facing=south": {
-      "model": "minecraft:block/cobblestone",
+      "model": "totemic:block/oak_totem_base",
       "y": 180
     },
     "facing=west": {
-      "model": "minecraft:block/cobblestone",
+      "model": "totemic:block/oak_totem_base",
       "y": 270
     },
     "facing=east": {
-      "model": "minecraft:block/cobblestone",
+      "model": "totemic:block/oak_totem_base",
       "y": 90
     }
   }
