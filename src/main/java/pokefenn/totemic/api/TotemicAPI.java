@@ -1,5 +1,6 @@
 package pokefenn.totemic.api;
 
+import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 
 /**
@@ -17,6 +18,11 @@ public abstract class TotemicAPI {
             throw new IllegalStateException("The Totemic API has been accessed too early, or Totemic is not installed");
         return instance;
     }
+
+    /**
+     * Provides access to functionality commonly used by music instrument blocks and items
+     */
+    public abstract MusicAPI music();
 
     /**
      * Provides access to functionality commonly used for implementing Totem effects.

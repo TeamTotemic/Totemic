@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -14,6 +15,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.music.DefaultMusicAcceptor;
+import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.client.ModelBakeHandler;
 import pokefenn.totemic.client.TotemicBlockStateProvider;
@@ -55,12 +58,14 @@ public final class Totemic {
             ObfuscationReflectionHelper.findField(TotemicAPI.class, "instance").set(null, new TotemicApiImpl());
         }
         catch (Exception e) {
-            throw new RuntimeException("Could not set API field");
+            throw new RuntimeException("Could not set API field", e);
         }
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
         ModBlocks.checkRegisteredTotemEffects();
+
+        CapabilityManager.INSTANCE.register(MusicAcceptor.class, new DefaultMusicAcceptor.Storage(), DefaultMusicAcceptor::new);
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
