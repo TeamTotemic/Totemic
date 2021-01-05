@@ -22,7 +22,7 @@ public interface MusicAPI
 
     /**
      * Plays music from an instrument located at the given position (which might differ from the entity's position, e.g. Drum)
-     * to the closest nearby music acceptor.
+     * to all nearby music acceptors (prioritizing higher priority acceptors, and evenly splitting between acceptors with equal priority).
      * <p>The range and amount are the default values given by {@link #DEFAULT_RANGE} and {@link MusicInstrument#getBaseOutput}.
      * <p>May only be called on the server side.
      * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
@@ -32,7 +32,8 @@ public interface MusicAPI
     boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr);
 
     /**
-     * Plays music from an instrument from the entity's position to the closest nearby music acceptor.
+     * Plays music from an instrument from the entity's position to all nearby music acceptors (prioritizing higher priority acceptors,
+     * and evenly splitting between acceptors with equal priority).
      * <p>The range and amount are the default values given by {@link #DEFAULT_RANGE} and {@link MusicInstrument#getBaseOutput}.
      * <p>May only be called on the server side.
      * @param entity the entity playing the instrument.
@@ -43,7 +44,7 @@ public interface MusicAPI
 
     /**
      * Plays music from an instrument located at the given position (which might differ from the entity's position, e.g. Drum)
-     * to the closest nearby music acceptor.
+     * to all nearby music acceptors (prioritizing higher priority acceptors, and evenly splitting between acceptors with equal priority).
      * <p>The range and amount are the default values given by {@link #DEFAULT_RANGE} and {@link MusicInstrument#getBaseOutput}.
      * <p>May only be called on the server side.
      * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
@@ -54,7 +55,7 @@ public interface MusicAPI
 
     /**
      * <p>Plays music from an instrument located at the given position (which might differ from the entity's position, e.g. Drum)
-     * to the closest nearby music acceptor.
+     * to all nearby music acceptors (prioritizing higher priority acceptors, and evenly splitting between acceptors with equal priority).
      * <p>May only be called on the server side.
      * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
      * @param instr the instrument.
@@ -62,10 +63,10 @@ public interface MusicAPI
      * @param amount the amount of music to play. The default value is given by {@link MusicInstrument#getBaseOutput}.
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
      */
-    boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount);
+    boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, double amount);
 
     /**
-     * If the nearest music acceptor within range from the given position is a Totem Base, attempts to add the given instrument as selector to it.
+     * Attempts to add the given instrument as selector to the closest nearby Totem Base.
      * Usually this is triggered when playing the instrument while sneaking.
      * <p>The range is the default value given by {@link #DEFAULT_RANGE}.
      * <p>May only be called on the server side.
@@ -76,7 +77,7 @@ public interface MusicAPI
     boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr);
 
     /**
-     * If the nearest music acceptor within range from the given entity is a Totem Base, attempts to add the given instrument as selector to it.
+     * Attempts to add the given instrument as selector to the closest nearby Totem Base.
      * Usually this is triggered when playing the instrument while sneaking.
      * <p>The range is the default value given by {@link #DEFAULT_RANGE}.
      * <p>May only be called on the server side.
@@ -87,7 +88,7 @@ public interface MusicAPI
     boolean playSelector(@Nonnull Entity entity, MusicInstrument instr);
 
     /**
-     * If the nearest music acceptor within range from the given position is a Totem Base, attempts to add the given instrument as selector to it.
+     * Attempts to add the given instrument as selector to the closest nearby Totem Base.
      * Usually this is triggered when playing the instrument while sneaking.
      * <p>The range is the default value given by {@link #DEFAULT_RANGE}.
      * <p>May only be called on the server side.

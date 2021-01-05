@@ -7,8 +7,8 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument>
 {
     private final String name;
-    private final int baseOutput;
-    private final int musicMaximum;
+    private final double baseOutput;
+    private final double musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
 
     /**
@@ -16,7 +16,7 @@ public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument>
      * @param baseOutput the default music output when the instrument is played.
      * @param musicMaximum the maximum amount of music that a Totem Base can take from this instrument.
      */
-    public MusicInstrument(String name, int baseOutput, int musicMaximum)
+    public MusicInstrument(String name, double baseOutput, double musicMaximum)
     {
         this.name = name;
         this.baseOutput = baseOutput;
@@ -42,7 +42,7 @@ public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument>
     }
 
     /**
-     * Sets the item stack that is associated with this instrument. This will be
+     * Sets the item that is associated with this instrument. This will be
      * displayed on the Totempedia on ceremony pages.
      */
     public MusicInstrument setItem(IItemProvider item)
@@ -62,7 +62,7 @@ public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument>
     /**
      * @return the default music output when the instrument is played
      */
-    public int getBaseOutput()
+    public double getBaseOutput()
     {
         return baseOutput;
     }
@@ -70,7 +70,7 @@ public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument>
     /**
      * @return the maximum amount of music that a Totem Base can take from this instrument
      */
-    public int getMusicMaximum()
+    public double getMusicMaximum()
     {
         return musicMaximum;
     }

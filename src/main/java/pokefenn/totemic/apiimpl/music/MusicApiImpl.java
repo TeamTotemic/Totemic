@@ -32,7 +32,7 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
+    public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, double amount) {
         return getClosestAcceptor(world, x, y, z, range)
                 .map(acc -> acc.acceptMusic(instr, amount, x, y, z, entity))
                 .orElse(false);

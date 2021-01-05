@@ -4,9 +4,9 @@ import javax.annotation.Nullable;
 
 import org.apache.logging.log4j.LogManager;
 
-import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
-import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
+import it.unimi.dsi.fastutil.objects.Object2DoubleMap.Entry;
+import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
@@ -25,18 +25,18 @@ import pokefenn.totemic.api.TotemicRegistries;
  */
 public class DefaultMusicAcceptor implements MusicAcceptor
 {
-    private final Object2IntMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size());
-    private int totalMusic = 0;
+    private final Object2DoubleMap<MusicInstrument> music = new Object2DoubleOpenHashMap<>(TotemicRegistries.instruments().getEntries().size());
+    private double totalMusic = 0.0;
 
     /**
      * Accepts and stores music from the given instrument, up to the maximum specified by the instrument.
      * @return {@code true} if any music was accepted.
      */
     @Override
-    public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity)
+    public boolean acceptMusic(MusicInstrument instr, double amount, double x, double y, double z, @Nullable Entity entity)
     {
-        int oldVal = music.getInt(instr);
-        int newVal = Math.min(oldVal + amount, instr.getMusicMaximum());
+        double oldVal = music.getDouble(instr);
+        double newVal = Math.min(oldVal + amount, instr.getMusicMaximum());
         if(newVal != oldVal)
         {
             music.put(instr, newVal);
@@ -50,17 +50,17 @@ public class DefaultMusicAcceptor implements MusicAcceptor
     /**
      * @return the amount of music stored from the given instrument.
      */
-    public int getMusicAmount(MusicInstrument instr)
+    public double getMusicAmount(MusicInstrument instr)
     {
-        return music.getInt(instr);
+        return music.getDouble(instr);
     }
 
     /**
      * Sets the amount of music for the given instrument. This method does not check if the amount exceeds the maximum.
      */
-    public void setMusicAmount(MusicInstrument instr, int amount)
+    public void setMusicAmount(MusicInstrument instr, double amount)
     {
-        int oldVal = music.getInt(instr);
+        double oldVal = music.getDouble(instr);
         if(amount != oldVal)
         {
             music.put(instr, amount);
@@ -71,7 +71,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor
     /**
      * @return the total amount of music stored from all instruments.
      */
-    public int getTotalMusic()
+    public double getTotalMusic()
     {
         return totalMusic;
     }
@@ -90,8 +90,8 @@ public class DefaultMusicAcceptor implements MusicAcceptor
             DefaultMusicAcceptor acceptor = (DefaultMusicAcceptor) instance;
             CompoundNBT nbt = new CompoundNBT();
 
-            for(Entry<MusicInstrument> entry: acceptor.music.object2IntEntrySet())
-                nbt.putInt(entry.getKey().getRegistryName().toString(), entry.getIntValue());
+            for(Entry<MusicInstrument> entry: acceptor.music.object2DoubleEntrySet())
+                nbt.putDouble(entry.getKey().getRegistryName().toString(), entry.getDoubleValue());
             return nbt;
         }
 
@@ -104,13 +104,13 @@ public class DefaultMusicAcceptor implements MusicAcceptor
             CompoundNBT tag = (CompoundNBT) nbt;
 
             acceptor.music.clear();
-            acceptor.totalMusic = 0;
+            acceptor.totalMusic = 0.0;
             for(String key: tag.keySet())
             {
                 MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(key));
                 if(instr != null)
                 {
-                    int amount = tag.getInt(key);
+                    double amount = tag.getDouble(key);
                     acceptor.music.put(instr, amount);
                     acceptor.totalMusic += amount;
                 }
