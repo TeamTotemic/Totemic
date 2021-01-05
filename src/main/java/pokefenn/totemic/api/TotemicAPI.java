@@ -10,7 +10,8 @@ public abstract class TotemicAPI {
     private static TotemicAPI instance;
 
     /**
-     * Returns an instance of the Totemic API.<p>
+     * Returns an instance of the Totemic API.
+     * <p>
      * This method may be called after the mod construction phase.
      */
     public static TotemicAPI get() {
@@ -20,7 +21,7 @@ public abstract class TotemicAPI {
     }
 
     /**
-     * Provides access to functionality commonly used by music instrument blocks and items
+     * Provides access to functionality commonly used by music instrument blocks and items.
      */
     public abstract MusicAPI music();
 

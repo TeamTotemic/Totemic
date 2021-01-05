@@ -9,9 +9,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 /**
- * Base class for all Totem Effects.<p>
- * Use the {@link RegisterTotemEffectsEvent} to register your Totem Effects. Please do <b>not</b> use
- * Forge's {@link RegistryEvent}!
+ * Base class for all Totem Effects.
+ * <p>
+ * Use the {@link RegisterTotemEffectsEvent} to register your Totem Effects. Please do <b>not</b> use Forge's {@link RegistryEvent}!
  */
 public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
     /**
@@ -24,8 +24,7 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
     protected final int interval;
 
     /**
-     * @param portable whether this Totem Effect can be used with a Medicine Bag.
-     * In this case, override {@link #medicineBagEffect}.
+     * @param portable whether this Totem Effect can be used with a Medicine Bag. In this case, override {@link #medicineBagEffect}.
      * @param interval the time in ticks between applications of the effect
      */
     public TotemEffect(boolean portable, int interval) {
@@ -37,22 +36,25 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
 
     /**
      * Performs the Totem Effect. This method is called every {@link #interval} ticks.
-     * @param world the world
-     * @param pos the position
+     * 
+     * @param world      the world
+     * @param pos        the position
      * @param repetition the number of Totem Pole blocks that are carved with this effect
-     * @param context an object providing information about the Totem Base
+     * @param context    an object providing information about the Totem Base
      */
     public abstract void effect(IBlockReader world, BlockPos pos, int repetition, TotemEffectContext context);
 
     /**
-     * Performs the Totem Effect when used in a Medicine Bag, if applicable. Override this method to make your effect work with Medicine Bags.
-     * This method is called every {@link #interval} ticks.
-     * @param world the world
-     * @param player the player who holds the Medicine Bag
+     * Performs the Totem Effect when used in a Medicine Bag, if applicable. Override this method to make your effect work with Medicine Bags. This method is
+     * called every {@link #interval} ticks.
+     * 
+     * @param world       the world
+     * @param player      the player who holds the Medicine Bag
      * @param medicineBag the Medicine Bag item stack
-     * @param charge time in ticks until the Medicine Bag is depleted, or -1 if it is a Creative Medicine Bag
+     * @param charge      time in ticks until the Medicine Bag is depleted, or -1 if it is a Creative Medicine Bag
      */
-    public void medicineBagEffect(IBlockReader world, PlayerEntity player, ItemStack medicineBag, int charge) { }
+    public void medicineBagEffect(IBlockReader world, PlayerEntity player, ItemStack medicineBag, int charge) {
+    }
 
     /**
      * @return the translation key of the effect. By default it is given by "totemic.totem." followed by the registry name.

@@ -1,8 +1,7 @@
 package pokefenn.totemic.api.totem;
 
 /**
- * Provides access to functionality commonly used for Totem Effects.
- * Use {@code TotemicAPI.get().totemEffect()} to get an instance of this interface.
+ * Provides access to functionality commonly used for Totem Effects. Use {@code TotemicAPI.get().totemEffect()} to get an instance of this interface.
  */
 public interface TotemEffectAPI {
     /**

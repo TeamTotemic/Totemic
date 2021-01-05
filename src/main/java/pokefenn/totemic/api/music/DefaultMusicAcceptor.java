@@ -18,27 +18,26 @@ import pokefenn.totemic.api.TotemicRegistries;
 /**
  * Simple default implementation of {@link MusicAcceptor}.
  *
- * <p>This implementation stores the music it accepts, broken down into the instruments. It will only accept up to the
- * maximum specified by each instrument.
+ * <p>
+ * This implementation stores the music it accepts, broken down into the instruments. It will only accept up to the maximum specified by each instrument.
  *
- * <p>The behavior is similar (but simplified) to a Totem Base while starting up a ceremony.
+ * <p>
+ * The behavior is similar (but simplified) to a Totem Base while starting up a ceremony.
  */
-public class DefaultMusicAcceptor implements MusicAcceptor
-{
+public class DefaultMusicAcceptor implements MusicAcceptor {
     private final Object2DoubleMap<MusicInstrument> music = new Object2DoubleOpenHashMap<>(TotemicRegistries.instruments().getEntries().size());
     private double totalMusic = 0.0;
 
     /**
      * Accepts and stores music from the given instrument, up to the maximum specified by the instrument.
+     * 
      * @return {@code true} if any music was accepted.
      */
     @Override
-    public boolean acceptMusic(MusicInstrument instr, double amount, double x, double y, double z, @Nullable Entity entity)
-    {
+    public boolean acceptMusic(MusicInstrument instr, double amount, double x, double y, double z, @Nullable Entity entity) {
         double oldVal = music.getDouble(instr);
         double newVal = Math.min(oldVal + amount, instr.getMusicMaximum());
-        if(newVal != oldVal)
-        {
+        if(newVal != oldVal) {
             music.put(instr, newVal);
             totalMusic += (newVal - oldVal);
             return true;
@@ -50,19 +49,16 @@ public class DefaultMusicAcceptor implements MusicAcceptor
     /**
      * @return the amount of music stored from the given instrument.
      */
-    public double getMusicAmount(MusicInstrument instr)
-    {
+    public double getMusicAmount(MusicInstrument instr) {
         return music.getDouble(instr);
     }
 
     /**
      * Sets the amount of music for the given instrument. This method does not check if the amount exceeds the maximum.
      */
-    public void setMusicAmount(MusicInstrument instr, double amount)
-    {
+    public void setMusicAmount(MusicInstrument instr, double amount) {
         double oldVal = music.getDouble(instr);
-        if(amount != oldVal)
-        {
+        if(amount != oldVal) {
             music.put(instr, amount);
             totalMusic += (amount - oldVal);
         }
@@ -71,20 +67,17 @@ public class DefaultMusicAcceptor implements MusicAcceptor
     /**
      * @return the total amount of music stored from all instruments.
      */
-    public double getTotalMusic()
-    {
+    public double getTotalMusic() {
         return totalMusic;
     }
 
     /**
      * Capability storage handler for MusicAcceptor.
      */
-    public static class Storage implements Capability.IStorage<MusicAcceptor>
-    {
+    public static class Storage implements Capability.IStorage<MusicAcceptor> {
         @Override
         @Nullable
-        public INBT writeNBT(Capability<MusicAcceptor> capability, MusicAcceptor instance, Direction side)
-        {
+        public INBT writeNBT(Capability<MusicAcceptor> capability, MusicAcceptor instance, Direction side) {
             if(!(instance instanceof DefaultMusicAcceptor))
                 throw new RuntimeException("Cannot serialize to an instance that is not the default implementation");
             DefaultMusicAcceptor acceptor = (DefaultMusicAcceptor) instance;
@@ -96,8 +89,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor
         }
 
         @Override
-        public void readNBT(Capability<MusicAcceptor> capability, MusicAcceptor instance, Direction side, INBT nbt)
-        {
+        public void readNBT(Capability<MusicAcceptor> capability, MusicAcceptor instance, Direction side, INBT nbt) {
             if(!(instance instanceof DefaultMusicAcceptor))
                 throw new RuntimeException("Cannot deserialize to an instance that is not the default implementation");
             DefaultMusicAcceptor acceptor = (DefaultMusicAcceptor) instance;
@@ -105,11 +97,9 @@ public class DefaultMusicAcceptor implements MusicAcceptor
 
             acceptor.music.clear();
             acceptor.totalMusic = 0.0;
-            for(String key: tag.keySet())
-            {
+            for(String key: tag.keySet()) {
                 MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(key));
-                if(instr != null)
-                {
+                if(instr != null) {
                     double amount = tag.getDouble(key);
                     acceptor.music.put(instr, amount);
                     acceptor.totalMusic += amount;

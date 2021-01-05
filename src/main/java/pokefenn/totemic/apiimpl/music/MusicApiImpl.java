@@ -33,9 +33,7 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, double amount) {
-        return getClosestAcceptor(world, x, y, z, range)
-                .map(acc -> acc.acceptMusic(instr, amount, x, y, z, entity))
-                .orElse(false);
+        return getClosestAcceptor(world, x, y, z, range).map(acc -> acc.acceptMusic(instr, amount, x, y, z, entity)).orElse(false);
     }
 
     @Override
@@ -55,9 +53,7 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
-        Optional<TotemState> totemState = getClosestAcceptor(world, x, y, z, range)
-                .filter(acc -> acc instanceof TotemState)
-                .map(acc -> (TotemState) acc)
+        Optional<TotemState> totemState = getClosestAcceptor(world, x, y, z, range).filter(acc -> acc instanceof TotemState).map(acc -> (TotemState) acc)
                 .filter(TotemState::canSelect);
         totemState.ifPresent(t -> t.addSelector(entity, instr));
         return totemState.isPresent();

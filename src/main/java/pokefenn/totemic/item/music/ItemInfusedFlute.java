@@ -20,7 +20,7 @@ public class ItemInfusedFlute extends ItemFlute {
     }
 
     private void temptEntities(World world, double x, double y, double z) {
-        //TODO
+        // TODO
     }
 
     @Override

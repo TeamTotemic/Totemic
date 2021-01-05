@@ -14,8 +14,7 @@ public final class ModTileEntities {
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<TileEntityType<?>> event) {
-        event.getRegistry().registerAll(
-            TileEntityType.Builder.create(TileTotemBase::new, ModBlocks.getTotemBases().values().toArray(new Block[0])).build(null).setRegistryName("totem_base")
-        );
+        event.getRegistry().registerAll(TileEntityType.Builder.create(TileTotemBase::new, ModBlocks.getTotemBases().values().toArray(new Block[0])).build(null)
+                .setRegistryName("totem_base"));
     }
 }

@@ -52,12 +52,12 @@ public final class Totemic {
         modBus.register(ModContent.class);
         modBus.register(ModTileEntities.class);
 
-        //Instance field is private, need reflection
-        //ObfuscationReflectionHelper.setPrivateValue(TotemicAPI.class, null, new TotemicApiImpl(), "instance");
+        // Instance field is private, need reflection
+        // ObfuscationReflectionHelper.setPrivateValue(TotemicAPI.class, null, new TotemicApiImpl(), "instance");
         try {
             ObfuscationReflectionHelper.findField(TotemicAPI.class, "instance").set(null, new TotemicApiImpl());
         }
-        catch (Exception e) {
+        catch(Exception e) {
             throw new RuntimeException("Could not set API field", e);
         }
     }
@@ -69,7 +69,7 @@ public final class Totemic {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
-        //ModelLoaderRegistry.registerLoader(ModelTotemPoleLoader.INSTANCE);
+        // ModelLoaderRegistry.registerLoader(ModelTotemPoleLoader.INSTANCE);
         MinecraftForge.EVENT_BUS.register(ModelBakeHandler.class);
     }
 

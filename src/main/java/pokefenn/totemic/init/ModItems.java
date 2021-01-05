@@ -18,10 +18,8 @@ public final class ModItems {
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event) {
-        event.getRegistry().registerAll(
-            new ItemFlute(new Properties().maxStackSize(1).group(Totemic.itemGroup)).setRegistryName("flute"),
-            new ItemInfusedFlute(new Properties().maxStackSize(1).group(Totemic.itemGroup)).setRegistryName("infused_flute")
-        );
+        event.getRegistry().registerAll(new ItemFlute(new Properties().maxStackSize(1).group(Totemic.itemGroup)).setRegistryName("flute"),
+                new ItemInfusedFlute(new Properties().maxStackSize(1).group(Totemic.itemGroup)).setRegistryName("infused_flute"));
 
         for(Block block: ModBlocks.getBlocksWithItemBlock())
             event.getRegistry().register(makeItemBlock(block));

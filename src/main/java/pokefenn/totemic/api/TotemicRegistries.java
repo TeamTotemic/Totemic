@@ -8,26 +8,23 @@ import pokefenn.totemic.api.totem.TotemEffect;
 /**
  * Provides access to Totemic's registries.
  *
- * <p>The registry events are fired in the following order: Music Instruments, Totem Effects, Ceremonies.
+ * <p>
+ * The registry events are fired in the following order: Music Instruments, Totem Effects, Ceremonies.
  */
-public final class TotemicRegistries
-{
+public final class TotemicRegistries {
     private static final IForgeRegistry<MusicInstrument> INSTRUMENTS = GameRegistry.findRegistry(MusicInstrument.class);
     private static final IForgeRegistry<TotemEffect> TOTEM_EFFECTS = GameRegistry.findRegistry(TotemEffect.class);
-    //private static final IForgeRegistry<Ceremony> CEREMONIES = GameRegistry.findRegistry(Ceremony.class);
+    // private static final IForgeRegistry<Ceremony> CEREMONIES = GameRegistry.findRegistry(Ceremony.class);
 
-    public static IForgeRegistry<MusicInstrument> instruments()
-    {
+    public static IForgeRegistry<MusicInstrument> instruments() {
         return INSTRUMENTS;
     }
 
-    public static IForgeRegistry<TotemEffect> totemEffects()
-    {
+    public static IForgeRegistry<TotemEffect> totemEffects() {
         return TOTEM_EFFECTS;
     }
 
-    /*public static IForgeRegistry<Ceremony> ceremonies()
-    {
-        return CEREMONIES;
-    }*/
+    /*
+     * public static IForgeRegistry<Ceremony> ceremonies() { return CEREMONIES; }
+     */
 }

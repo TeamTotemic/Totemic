@@ -32,14 +32,14 @@ import pokefenn.totemic.block.totem.BlockTotemPole;
 @ObjectHolder(Totemic.MOD_ID)
 public final class ModBlocks {
 
-    //Totem Effects registered with the RegisterTotemEffectsEvent are collected here. Later, the Totem Effects
-    //are registered to the appropriate Forge registry.
-    //After everything is done, we check that no Totem Effects have been registered the wrong way and then set
-    //this field to null.
-    //TODO: We don't need all of this if Forge some day allows registering things before blocks have been registered.
+    // Totem Effects registered with the RegisterTotemEffectsEvent are collected here. Later, the Totem Effects
+    // are registered to the appropriate Forge registry.
+    // After everything is done, we check that no Totem Effects have been registered the wrong way and then set
+    // this field to null.
+    // TODO: We don't need all of this if Forge some day allows registering things before blocks have been registered.
     private static @Nullable Set<TotemEffect> totemEffectsToRegister = new LinkedHashSet<>();
 
-    //List of blocks for which an ItemBlock will be added
+    // List of blocks for which an ItemBlock will be added
     private static final List<Block> blocksWithItemBlock = new ArrayList<>();
 
     private static final Map<TotemWoodType, BlockTotemBase> totemBases = new HashMap<>(TotemWoodType.getWoodTypes().size());
@@ -82,7 +82,7 @@ public final class ModBlocks {
         return totemPoles;
     }
 
-    //Fires the RegisterTotemEffectsEvent and collects them in the internal set
+    // Fires the RegisterTotemEffectsEvent and collects them in the internal set
     private static void internallyRegisterTotemEffects() {
         FMLJavaModLoadingContext.get().getModEventBus().post(new RegisterTotemEffectsEvent(effect -> {
             Objects.requireNonNull(effect);
@@ -92,21 +92,21 @@ public final class ModBlocks {
         }));
     }
 
-    //Registers the collected Totem Effects to the Forge registry
+    // Registers the collected Totem Effects to the Forge registry
     @SubscribeEvent
     public static void registerTotemEffects(RegistryEvent.Register<TotemEffect> event) {
         for(TotemEffect effect: totemEffectsToRegister)
             event.getRegistry().register(effect);
     }
 
-    //Checks if all Totem Effects have been registered with the appropriate event and then frees up the internal set
+    // Checks if all Totem Effects have been registered with the appropriate event and then frees up the internal set
     public static void checkRegisteredTotemEffects() {
         for(TotemEffect effect: GameRegistry.findRegistry(TotemEffect.class)) {
             if(!totemEffectsToRegister.contains(effect)) {
-                throw new IllegalStateException("The Totem Effect " + effect.getRegistryName() +
-                        " has not been registered with Totemic's RegisterTotemEffectsEvent");
+                throw new IllegalStateException(
+                        "The Totem Effect " + effect.getRegistryName() + " has not been registered with Totemic's RegisterTotemEffectsEvent");
             }
         }
-        totemEffectsToRegister = null; //Free up space
+        totemEffectsToRegister = null; // Free up space
     }
 }

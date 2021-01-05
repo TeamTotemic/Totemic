@@ -49,11 +49,13 @@ public class TileTotemBase extends TileEntity implements ITickableTileEntity {
                 break;
         }
 
-        //Calculate the greatest common divisor of all the intervals of the effects
-        commonTotemEffectInterval = totemEffects.elementSet().stream()
-                .mapToInt(TotemEffect::getInterval)
-                .filter(i -> i != Integer.MAX_VALUE) //Integer.MAX_VALUE is a prime number, so we don't want it in the GCD calculation
-                .reduce(IntMath::gcd)
-                .orElse(Integer.MAX_VALUE);
+        // Calculate the greatest common divisor of all the intervals of the effects
+        commonTotemEffectInterval = totemEffects.elementSet().stream().mapToInt(TotemEffect::getInterval).filter(i -> i != Integer.MAX_VALUE) // Integer.MAX_VALUE
+                                                                                                                                              // is a prime
+                                                                                                                                              // number, so we
+                                                                                                                                              // don't want it
+                                                                                                                                              // in the GCD
+                                                                                                                                              // calculation
+                .reduce(IntMath::gcd).orElse(Integer.MAX_VALUE);
     }
 }
