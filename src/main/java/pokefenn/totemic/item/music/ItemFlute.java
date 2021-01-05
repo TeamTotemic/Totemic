@@ -8,6 +8,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public class ItemFlute extends Item {
@@ -15,9 +17,11 @@ public class ItemFlute extends Item {
         super(properties);
     }
 
+    @SuppressWarnings("null")
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        // TODO Auto-generated method stub
+        TotemicAPI.get().music().playMusic(player, ModContent.flute);
+
         player.getCooldownTracker().setCooldown(ModItems.flute, 20);
         player.getCooldownTracker().setCooldown(ModItems.infused_flute, 20);
 

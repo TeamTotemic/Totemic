@@ -1,6 +1,7 @@
 package pokefenn.totemic.api.music;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IItemProvider;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument>
@@ -38,6 +39,15 @@ public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument>
     {
         this.itemStack = itemStack;
         return this;
+    }
+
+    /**
+     * Sets the item stack that is associated with this instrument. This will be
+     * displayed on the Totempedia on ceremony pages.
+     */
+    public MusicInstrument setItem(IItemProvider item)
+    {
+        return setItem(new ItemStack(item));
     }
 
     /**

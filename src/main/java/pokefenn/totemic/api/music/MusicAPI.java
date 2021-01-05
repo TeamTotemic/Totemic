@@ -73,7 +73,7 @@ public interface MusicAPI
      * @param instr the instrument.
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
      */
-    boolean playSelector(World world, double x, double y, double z, Entity entity, MusicInstrument instr);
+    boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr);
 
     /**
      * If the nearest music acceptor within range from the given entity is a Totem Base, attempts to add the given instrument as selector to it.
@@ -95,7 +95,7 @@ public interface MusicAPI
      * @param instr the instrument.
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
      */
-    boolean playSelector(World world, BlockPos pos, Entity entity, MusicInstrument instr);
+    boolean playSelector(World world, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr);
 
     /**
      * If the nearest music acceptor within range from the given position is a Totem Base, attempts to add the given instrument as selector to it.
@@ -106,11 +106,11 @@ public interface MusicAPI
      * @param range the range. The default value is given by {@link #DEFAULT_RANGE}.
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
      */
-    boolean playSelector(World world, double x, double y, double z, Entity entity, MusicInstrument instr, int range);
+    boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range);
 
     /**
      * Finds the closest music acceptor within range.
      * @return an {@link Optional} containing the closest MusicAcceptor within range, or an empty {@link Optional} if there is none.
      */
-    Optional<MusicAcceptor> getClosestAcceptor(World world, double x, double y, double z, int horizontalRadius, int verticalRadius);
+    Optional<MusicAcceptor> getClosestAcceptor(World world, double x, double y, double z, int range);
 }
