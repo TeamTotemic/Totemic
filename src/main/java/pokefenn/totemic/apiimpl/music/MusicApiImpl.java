@@ -19,6 +19,7 @@ import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.tile.totem.TileTotemBase;
+import pokefenn.totemic.tile.totem.TotemState;
 import pokefenn.totemic.util.MiscUtil;
 import pokefenn.totemic.util.TileUtil;
 
@@ -70,10 +71,12 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
-        Optional<TileTotemBase> totemBase = TileUtil.getTileEntitiesInRange(TileTotemBase.class, world, new BlockPos(x, y, z), range)
-                .min(TileUtil.compareDistanceTo(x, y, z, true));
-        //totemBase.ifPresent(t -> t.addSelector(entity, instr)); //TODO
-        return totemBase.isPresent();
+        Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(TileTotemBase.class, world, new BlockPos(x, y, z), range)
+                .min(TileUtil.compareDistanceTo(x, y, z, true))
+                .map(TileTotemBase::getState)
+                .filter(TotemState::canSelect);
+        totemState.ifPresent(t -> t.addSelector(entity, instr));
+        return totemState.isPresent();
     }
 
     @Override

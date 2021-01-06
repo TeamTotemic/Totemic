@@ -13,6 +13,13 @@ import pokefenn.totemic.api.TotemicCapabilities;
  */
 public interface MusicAcceptor {
     /**
+     * Returns {@code true} if the acceptor is able to accept music from the specified instrument. If the acceptor is saturated with the instrument,
+     * {@code false} should be returned.
+     * @param instr the music instrument
+     */
+    boolean canAcceptMusic(MusicInstrument instr);
+
+    /**
      * Accepts music from the given instrument, possibly played by an entity.
      *
      * @param instr  the music instrument

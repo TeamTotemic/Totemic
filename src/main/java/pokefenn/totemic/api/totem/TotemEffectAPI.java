@@ -7,7 +7,7 @@ public interface TotemEffectAPI {
     /**
      * The maximum amount of music for Totem Effects that a Totem Pole can have
      */
-    static final int MAX_TOTEM_EFFECT_MUSIC = 128;
+    static final double MAX_TOTEM_EFFECT_MUSIC = 256.0;
 
     /**
      * The maximum number of Totem Pole blocks above the base that a Totem Pole can have

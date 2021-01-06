@@ -6,8 +6,16 @@ import net.minecraft.entity.Entity;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-public interface TotemState extends MusicAcceptor {
-    boolean canSelect();
+public abstract class TotemState implements MusicAcceptor {
+    final TileTotemBase tile;
 
-    void addSelector(@Nonnull Entity entity, MusicInstrument instr);
+    TotemState(TileTotemBase tile) {
+        this.tile = tile;
+    }
+
+    public boolean canSelect() {
+        return false;
+    }
+
+    public void addSelector(@Nonnull Entity entity, MusicInstrument instr) { }
 }

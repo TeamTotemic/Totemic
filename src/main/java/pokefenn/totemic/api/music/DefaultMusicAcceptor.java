@@ -29,8 +29,16 @@ public class DefaultMusicAcceptor implements MusicAcceptor {
     private double totalMusic = 0.0;
 
     /**
+     * Returns {@code true} if the acceptor is not saturated with the specified instrument.
+     */
+    @Override
+    public boolean canAcceptMusic(MusicInstrument instr) {
+        return music.getDouble(instr) < instr.getMusicMaximum();
+    }
+
+    /**
      * Accepts and stores music from the given instrument, up to the maximum specified by the instrument.
-     * 
+     *
      * @return {@code true} if any music was accepted.
      */
     @Override
