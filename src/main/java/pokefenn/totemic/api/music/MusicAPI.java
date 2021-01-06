@@ -1,6 +1,7 @@
 package pokefenn.totemic.api.music;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -26,7 +27,7 @@ public interface MusicAPI {
      * The range and amount are the default values given by {@link #DEFAULT_RANGE} and {@link MusicInstrument#getBaseOutput}.
      * <p>
      * May only be called on the server side.
-     * 
+     *
      * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
@@ -40,7 +41,7 @@ public interface MusicAPI {
      * The range and amount are the default values given by {@link #DEFAULT_RANGE} and {@link MusicInstrument#getBaseOutput}.
      * <p>
      * May only be called on the server side.
-     * 
+     *
      * @param entity the entity playing the instrument.
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
@@ -54,7 +55,7 @@ public interface MusicAPI {
      * The range and amount are the default values given by {@link #DEFAULT_RANGE} and {@link MusicInstrument#getBaseOutput}.
      * <p>
      * May only be called on the server side.
-     * 
+     *
      * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
@@ -67,7 +68,7 @@ public interface MusicAPI {
      * (prioritizing higher priority acceptors, and evenly splitting between acceptors with equal priority).
      * <p>
      * May only be called on the server side.
-     * 
+     *
      * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
      * @param instr  the instrument.
      * @param range  the range. The default value is given by {@link #DEFAULT_RANGE}.
@@ -82,7 +83,7 @@ public interface MusicAPI {
      * The range is the default value given by {@link #DEFAULT_RANGE}.
      * <p>
      * May only be called on the server side.
-     * 
+     *
      * @param entity the entity playing the instrument. This is usually a PlayerEntity and should not be {@code null}.
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
@@ -95,7 +96,7 @@ public interface MusicAPI {
      * The range is the default value given by {@link #DEFAULT_RANGE}.
      * <p>
      * May only be called on the server side.
-     * 
+     *
      * @param entity the entity playing the instrument. This is usually a PlayerEntity.
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
@@ -108,7 +109,7 @@ public interface MusicAPI {
      * The range is the default value given by {@link #DEFAULT_RANGE}.
      * <p>
      * May only be called on the server side.
-     * 
+     *
      * @param entity the entity playing the instrument. This is usually a PlayerEntity and should not be {@code null}.
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
@@ -116,11 +117,10 @@ public interface MusicAPI {
     boolean playSelector(World world, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr);
 
     /**
-     * If the nearest music acceptor within range from the given position is a Totem Base, attempts to add the given instrument as selector to it. Usually this
-     * is triggered when playing the instrument while sneaking.
+     * Attempts to add the given instrument as selector to the closest nearby Totem Base. Usually this is triggered when playing the instrument while sneaking.
      * <p>
      * May only be called on the server side.
-     * 
+     *
      * @param entity the entity playing the instrument. This is usually a PlayerEntity and should not be {@code null}.
      * @param instr  the instrument.
      * @param range  the range. The default value is given by {@link #DEFAULT_RANGE}.
@@ -129,9 +129,26 @@ public interface MusicAPI {
     boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range);
 
     /**
-     * Finds the closest music acceptor within range.
-     * 
-     * @return an {@link Optional} containing the closest MusicAcceptor within range, or an empty {@link Optional} if there is none.
+     * Finds all music acceptors in range with the highest local priority.
+     *
+     * @return a {@link Stream} containing all MusicAcceptors within range whose priority is at least as large as the priority of all other acceptors within
+     * range.
      */
+    Stream<MusicAcceptor> getPrioAcceptors(World world, double x, double y, double z, int range);
+
+    /**
+     * Finds all music acceptors in range without considering their priorities.
+     *
+     * @return a {@link Stream} containing all MusicAcceptors within range, regardless of their priorities.
+     */
+    Stream<MusicAcceptor> getAllAcceptors(World world, double x, double y, double z, int range);
+
+    /**
+     * Finds the closest music acceptor within range.
+     *
+     * @return an {@link Optional} containing the closest MusicAcceptor within range, or an empty {@link Optional} if there is none.
+     * @deprecated By the new mechanics, music is no longer just added to the nearest acceptor but evenly split between acceptors of equal priority.
+     */
+    @Deprecated
     Optional<MusicAcceptor> getClosestAcceptor(World world, double x, double y, double z, int range);
 }

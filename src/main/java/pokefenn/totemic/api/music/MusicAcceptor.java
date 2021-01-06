@@ -14,7 +14,7 @@ import pokefenn.totemic.api.TotemicCapabilities;
 public interface MusicAcceptor {
     /**
      * Accepts music from the given instrument, possibly played by an entity.
-     * 
+     *
      * @param instr  the music instrument
      * @param amount the amount of music
      * @param x

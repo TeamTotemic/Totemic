@@ -13,10 +13,14 @@ import pokefenn.totemic.totem.TotemEffectNone;
 
 @ObjectHolder(Totemic.MOD_ID)
 public final class ModContent {
-    public static MusicInstrument flute;
+    public static final MusicInstrument flute = null;
     /*
-     * public static MusicInstrument drum; public static MusicInstrument windChime; public static MusicInstrument jingleDress; public static MusicInstrument
-     * rattle; public static MusicInstrument eagleBoneWhistle; public static MusicInstrument netherPipe;
+     * public static MusicInstrument drum;
+     * public static MusicInstrument windChime;
+     * public static MusicInstrument jingleDress;
+     * public static MusicInstrument rattle;
+     * public static MusicInstrument eagleBoneWhistle;
+     * public static MusicInstrument netherPipe;
      */
 
     public static final TotemEffect none = null;
