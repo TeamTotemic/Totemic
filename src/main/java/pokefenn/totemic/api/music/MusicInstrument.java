@@ -6,8 +6,8 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument> {
     private final String name;
-    private final double baseOutput;
-    private final double musicMaximum;
+    private final int baseOutput;
+    private final int musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
 
     /**
@@ -15,7 +15,7 @@ public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument> {
      * @param baseOutput   the default music output when the instrument is played.
      * @param musicMaximum the maximum amount of music that a Totem Base can take from this instrument.
      */
-    public MusicInstrument(String name, double baseOutput, double musicMaximum) {
+    public MusicInstrument(String name, int baseOutput, int musicMaximum) {
         this.name = name;
         this.baseOutput = baseOutput;
         this.musicMaximum = musicMaximum;
@@ -53,14 +53,14 @@ public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument> {
     /**
      * @return the default music output when the instrument is played
      */
-    public double getBaseOutput() {
+    public int getBaseOutput() {
         return baseOutput;
     }
 
     /**
      * @return the maximum amount of music that a Totem Base can take from this instrument
      */
-    public double getMusicMaximum() {
+    public int getMusicMaximum() {
         return musicMaximum;
     }
 

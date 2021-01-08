@@ -40,7 +40,7 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, double amount) {
+    public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
         List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(TileEntity.class, world, new BlockPos(x, y, z), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)

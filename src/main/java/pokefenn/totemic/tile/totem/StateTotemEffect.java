@@ -20,7 +20,7 @@ public final class StateTotemEffect extends TotemState {
     }
 
     @Override
-    public boolean acceptMusic(MusicInstrument instr, double amount, double x, double y, double z, @Nullable Entity entity) {
+    public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
         double previous = musicAmount;
         musicAmount = Math.min(previous + amount, TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC);
         if(musicAmount > previous) {

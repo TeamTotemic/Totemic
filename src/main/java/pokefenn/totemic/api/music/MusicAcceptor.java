@@ -30,7 +30,7 @@ public interface MusicAcceptor {
      * @param entity the entity playing the instrument. Might be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
      * @return {@code true} if this call had any effect on the acceptor.
      */
-    boolean acceptMusic(MusicInstrument instr, double amount, double x, double y, double z, @Nullable Entity entity);
+    boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity);
 
     /**
      * Returns the priority of the Music Acceptor. Higher priority acceptors will receive music before other acceptors. The music will be evenly split between

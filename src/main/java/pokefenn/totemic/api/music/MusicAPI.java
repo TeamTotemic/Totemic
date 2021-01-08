@@ -74,7 +74,7 @@ public interface MusicAPI {
      * @param amount the amount of music to play. The default value is given by {@link MusicInstrument#getBaseOutput}.
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
      */
-    boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, double amount);
+    boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount);
 
     /**
      * Attempts to add the given instrument as selector to the closest nearby Totem Base. Usually this is triggered when playing the instrument while sneaking.
