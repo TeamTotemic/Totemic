@@ -3,8 +3,6 @@ package pokefenn.totemic.apiimpl.music;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -43,7 +41,12 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, double amount) {
-        List<MusicAcceptor> list = getPrioAcceptors(world, x, y, z, range).collect(Collectors.toList());
+        List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(TileEntity.class, world, new BlockPos(x, y, z), range)
+                .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
+                .filter(LazyOptional::isPresent)
+                .map(lo -> lo.orElse(null))
+                .filter(ma -> ma.canAcceptMusic(instr))
+                .collect(MiscUtil.collectMaxElements(Comparator.comparing(MusicAcceptor::getPriority)));
         if(list.isEmpty())
             return false;
         boolean hadEffect = false;
@@ -79,23 +82,6 @@ public enum MusicApiImpl implements MusicAPI {
         return totemState.isPresent();
     }
 
-    @Override
-    public Stream<MusicAcceptor> getPrioAcceptors(World world, double x, double y, double z, int range) {
-        return getAllAcceptors(world, x, y, z, range)
-                .collect(MiscUtil.collectMaxElements(Comparator.comparing(MusicAcceptor::getPriority)))
-                .stream();
-    }
-
-    @SuppressWarnings("null")
-    @Override
-    public Stream<MusicAcceptor> getAllAcceptors(World world, double x, double y, double z, int range) {
-        return TileUtil.getTileEntitiesInRange(TileEntity.class, world, new BlockPos(x, y, z), range)
-                .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
-                .filter(LazyOptional::isPresent)
-                .map(o -> o.orElse(null));
-    }
-
-    @SuppressWarnings("null")
     @Override
     @Deprecated
     public Optional<MusicAcceptor> getClosestAcceptor(World world, double x, double y, double z, int range) {

@@ -1,7 +1,6 @@
 package pokefenn.totemic.api.music;
 
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -127,21 +126,6 @@ public interface MusicAPI {
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
      */
     boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range);
-
-    /**
-     * Finds all music acceptors in range with the highest local priority.
-     *
-     * @return a {@link Stream} containing all MusicAcceptors within range whose priority is at least as large as the priority of all other acceptors within
-     * range.
-     */
-    Stream<MusicAcceptor> getPrioAcceptors(World world, double x, double y, double z, int range);
-
-    /**
-     * Finds all music acceptors in range without considering their priorities.
-     *
-     * @return a {@link Stream} containing all MusicAcceptors within range, regardless of their priorities.
-     */
-    Stream<MusicAcceptor> getAllAcceptors(World world, double x, double y, double z, int range);
 
     /**
      * Finds the closest music acceptor within range.
