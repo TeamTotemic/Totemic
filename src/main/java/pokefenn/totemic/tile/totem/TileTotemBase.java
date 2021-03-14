@@ -44,6 +44,8 @@ public class TileTotemBase extends TileEntity implements ITickableTileEntity {
             calculateTotemEffects();
             firstTick = false;
         }
+
+        state.tick();
     }
 
     private void calculateTotemEffects() {
@@ -67,6 +69,22 @@ public class TileTotemBase extends TileEntity implements ITickableTileEntity {
                 .filter(i -> i != Integer.MAX_VALUE) //Integer.MAX_VALUE is a prime number, so we don't want it in the GCD calculation
                 .reduce(IntMath::gcd)
                 .orElse(Integer.MAX_VALUE);
+    }
+
+    public List<TotemEffect> getTotemEffectList() {
+        return totemEffectList;
+    }
+
+    public Multiset<TotemEffect> getTotemEffects() {
+        return totemEffects;
+    }
+
+    public int getPoleSize() {
+        return totemEffectList.size();
+    }
+
+    public int getCommonTotemEffectInterval() {
+        return commonTotemEffectInterval;
     }
 
     public TotemState getState() {

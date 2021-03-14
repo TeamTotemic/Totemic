@@ -3,15 +3,35 @@ package pokefenn.totemic.tile.totem;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.minecraft.entity.Entity;
-import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.api.totem.TotemEffectAPI;
+import com.google.common.collect.Multiset;
 
-public final class StateTotemEffect extends TotemState {
-    private double musicAmount = 0.0;
+import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
+import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemEffectAPI;
+import pokefenn.totemic.api.totem.TotemEffectContext;
+
+public final class StateTotemEffect extends TotemState implements TotemEffectContext {
+    private int musicAmount = 0;
 
     StateTotemEffect(TileTotemBase tile) {
         super(tile);
+    }
+
+    @Override
+    public void tick() {
+        World world = tile.getWorld();
+        long gameTime = world.getGameTime();
+
+        if(gameTime % tile.getCommonTotemEffectInterval() == 0) {
+            for(Multiset.Entry<TotemEffect> entry: tile.getTotemEffects().entrySet()) {
+                TotemEffect effect = entry.getElement();
+                if(gameTime % effect.getInterval() == 0) {
+                    effect.effect(world, tile.getPos(), entry.getCount(), this);
+                }
+            }
+        }
     }
 
     @Override
@@ -21,7 +41,7 @@ public final class StateTotemEffect extends TotemState {
 
     @Override
     public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
-        double previous = musicAmount;
+        int previous = musicAmount;
         musicAmount = Math.min(previous + amount, TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC);
         if(musicAmount > previous) {
             tile.markDirty();
@@ -39,5 +59,20 @@ public final class StateTotemEffect extends TotemState {
     @Override
     public void addSelector(@Nonnull Entity entity, MusicInstrument instr) {
         // TODO Auto-generated method stub
+    }
+
+    @Override
+    public int getTotemEffectMusic() {
+        return musicAmount;
+    }
+
+    @Override
+    public int getPoleSize() {
+        return tile.getPoleSize();
+    }
+
+    @Override
+    public int getRepetition(TotemEffect effect) {
+        return tile.getTotemEffects().count(effect);
     }
 }

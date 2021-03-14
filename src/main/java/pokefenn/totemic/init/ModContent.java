@@ -1,5 +1,8 @@
 package pokefenn.totemic.init;
 
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -7,9 +10,10 @@ import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.registries.RegistryBuilder;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.RegisterTotemEffectsEvent;
 import pokefenn.totemic.api.totem.TotemEffect;
-import pokefenn.totemic.totem.TotemEffectNone;
+import pokefenn.totemic.totem.EmptyTotemEffect;
 
 @ObjectHolder(Totemic.MOD_ID)
 public final class ModContent {
@@ -44,22 +48,39 @@ public final class ModContent {
 
     @SubscribeEvent
     public static void totemEffects(RegisterTotemEffectsEvent event) {
-        event.registerAll(new TotemEffectNone().setRegistryName("none"), new TotemEffectNone().setRegistryName("bat"),
-                new TotemEffectNone().setRegistryName("blaze"), new TotemEffectNone().setRegistryName("buffalo"), new TotemEffectNone().setRegistryName("cow"),
-                new TotemEffectNone().setRegistryName("enderman"), new TotemEffectNone().setRegistryName("horse"),
-                new TotemEffectNone().setRegistryName("ocelot"), new TotemEffectNone().setRegistryName("pig"), new TotemEffectNone().setRegistryName("rabbit"),
-                new TotemEffectNone().setRegistryName("spider"), new TotemEffectNone().setRegistryName("squid"), new TotemEffectNone().setRegistryName("wolf"));
+        event.registerAll(
+                new EmptyTotemEffect().setRegistryName("none"),
+                new EmptyTotemEffect().setRegistryName("bat"), //TODO
+                new PotionTotemEffect(Effects.FIRE_RESISTANCE).setRegistryName("blaze"),
+                new PotionTotemEffect(Effects.HASTE).setRegistryName("buffalo"),
+                new PotionTotemEffect(Effects.RESISTANCE) {
+                    @Override
+                    protected void applyTo(boolean isMedicineBag, PlayerEntity player, int time, int amplifier) {
+                        super.applyTo(isMedicineBag, player, time, amplifier);
+                        player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, time, 0, true, false));
+                    };
+                }.setRegistryName("cow"),
+                new PotionTotemEffect(Effects.NIGHT_VISION) {
+                    @Override
+                    protected int getLingeringTime() {
+                        return 210;
+                    };
+                }.setRegistryName("enderman"),
+                new PotionTotemEffect(Effects.SPEED).setRegistryName("horse"),
+                new EmptyTotemEffect().setRegistryName("ocelot"), //TODO
+                new PotionTotemEffect(Effects.LUCK).setRegistryName("pig"),
+                new PotionTotemEffect(Effects.JUMP_BOOST).setRegistryName("rabbit"),
+                new EmptyTotemEffect().setRegistryName("spider"), //TODO
+                new PotionTotemEffect(Effects.WATER_BREATHING).setRegistryName("squid"),
+                new PotionTotemEffect(Effects.STRENGTH).setRegistryName("wolf"));
     }
 
     @SubscribeEvent
     public static void createRegistries(RegistryEvent.NewRegistry event) {
         // RegistryEvents are fired in alphabetic order.
         // Instruments have to be registered before Ceremonies.
-        new RegistryBuilder<MusicInstrument>().setName(new ResourceLocation(Totemic.MOD_ID, "a_music_instruments")).setType(MusicInstrument.class)
-                .setMaxID(Byte.MAX_VALUE).create();
-        new RegistryBuilder<TotemEffect>().setName(new ResourceLocation(Totemic.MOD_ID, "b_totem_effects")).setType(TotemEffect.class).setMaxID(Byte.MAX_VALUE)
-                .create();
-        // new RegistryBuilder<Ceremony>().setName(new ResourceLocation(Totemic.MOD_ID,
-        // "c_ceremonies")).setType(Ceremony.class).setMaxID(Byte.MAX_VALUE).disableSaving().create();
+        new RegistryBuilder<MusicInstrument>().setName(new ResourceLocation(Totemic.MOD_ID, "a_music_instruments")).setType(MusicInstrument.class).setMaxID(Byte.MAX_VALUE).create();
+        new RegistryBuilder<TotemEffect>().setName(new ResourceLocation(Totemic.MOD_ID, "b_totem_effects")).setType(TotemEffect.class).setMaxID(Byte.MAX_VALUE).create();
+        // new RegistryBuilder<Ceremony>().setName(new ResourceLocation(Totemic.MOD_ID, "c_ceremonies")).setType(Ceremony.class).setMaxID(Byte.MAX_VALUE).create();
     }
 }

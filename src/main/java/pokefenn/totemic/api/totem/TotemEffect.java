@@ -4,7 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -25,7 +25,7 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
 
     /**
      * @param portable whether this Totem Effect can be used with a Medicine Bag. In this case, override {@link #medicineBagEffect}.
-     * @param interval the time in ticks between applications of the effect
+     * @param interval the time in ticks between applications of the effect. This should ideally be a multiple of 80 or 20.
      */
     public TotemEffect(boolean portable, int interval) {
         if(interval < 1)
@@ -36,24 +36,24 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
 
     /**
      * Performs the Totem Effect. This method is called every {@link #interval} ticks.
-     * 
+     *
      * @param world      the world
      * @param pos        the position
      * @param repetition the number of Totem Pole blocks that are carved with this effect
      * @param context    an object providing information about the Totem Base
      */
-    public abstract void effect(IBlockReader world, BlockPos pos, int repetition, TotemEffectContext context);
+    public abstract void effect(World world, BlockPos pos, int repetition, TotemEffectContext context);
 
     /**
      * Performs the Totem Effect when used in a Medicine Bag, if applicable. Override this method to make your effect work with Medicine Bags. This method is
      * called every {@link #interval} ticks.
-     * 
+     *
      * @param world       the world
      * @param player      the player who holds the Medicine Bag
      * @param medicineBag the Medicine Bag item stack
      * @param charge      time in ticks until the Medicine Bag is depleted, or -1 if it is a Creative Medicine Bag
      */
-    public void medicineBagEffect(IBlockReader world, PlayerEntity player, ItemStack medicineBag, int charge) {
+    public void medicineBagEffect(World world, PlayerEntity player, ItemStack medicineBag, int charge) {
     }
 
     /**

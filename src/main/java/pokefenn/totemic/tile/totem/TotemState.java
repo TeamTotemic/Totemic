@@ -13,6 +13,8 @@ public abstract class TotemState implements MusicAcceptor {
         this.tile = tile;
     }
 
+    public abstract void tick();
+
     public boolean canSelect() {
         return false;
     }
