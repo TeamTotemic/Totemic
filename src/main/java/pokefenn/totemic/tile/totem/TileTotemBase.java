@@ -20,7 +20,7 @@ import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
-import pokefenn.totemic.block.totem.BlockTotemPole;
+import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModTileEntities;
 
 public class TileTotemBase extends TileEntity implements ITickableTileEntity {
@@ -54,8 +54,8 @@ public class TileTotemBase extends TileEntity implements ITickableTileEntity {
 
         for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
             Block block = world.getBlockState(pos.up(i + 1)).getBlock();
-            if(block instanceof BlockTotemPole) {
-                TotemEffect effect = ((BlockTotemPole) block).effect;
+            if(block instanceof TotemPoleBlock) {
+                TotemEffect effect = ((TotemPoleBlock) block).effect;
                 totemEffectList.add(effect);
                 totemEffects.add(effect);
             }
@@ -69,6 +69,10 @@ public class TileTotemBase extends TileEntity implements ITickableTileEntity {
                 .filter(i -> i != Integer.MAX_VALUE) //Integer.MAX_VALUE is a prime number, so we don't want it in the GCD calculation
                 .reduce(IntMath::gcd)
                 .orElse(Integer.MAX_VALUE);
+    }
+
+    public void onPoleChange() {
+        calculateTotemEffects();
     }
 
     public List<TotemEffect> getTotemEffectList() {
