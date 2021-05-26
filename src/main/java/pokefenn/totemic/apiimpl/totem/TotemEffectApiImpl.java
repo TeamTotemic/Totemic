@@ -9,7 +9,7 @@ public enum TotemEffectApiImpl implements TotemEffectAPI {
 
     @Override
     public int getDefaultRange(TotemEffect effect, int repetition, TotemEffectContext context) {
-        return getDefaultRange(effect, DEFAULT_BASE_RANGE, repetition, context);
+        return getDefaultRange(effect, repetition, DEFAULT_BASE_RANGE, context);
     }
 
     @Override
