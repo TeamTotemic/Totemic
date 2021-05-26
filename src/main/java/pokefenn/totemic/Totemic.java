@@ -35,7 +35,7 @@ public final class Totemic {
 
     public static final ItemGroup itemGroup = new ItemGroup(Totemic.MOD_ID) {
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(ModItems.flute);
         }
     };

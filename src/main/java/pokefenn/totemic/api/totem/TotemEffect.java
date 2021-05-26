@@ -60,7 +60,7 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
      * @return the translation key of the effect. By default it is given by "totemic.totem." followed by the registry name.
      */
     public String getTranslationKey() {
-        return Util.makeTranslationKey("totemic.totem", getRegistryName());
+        return Util.makeDescriptionId("totemic.totem", getRegistryName());
     }
 
     /**

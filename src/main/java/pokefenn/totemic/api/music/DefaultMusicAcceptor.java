@@ -107,7 +107,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor {
 
             acceptor.music.clear();
             acceptor.totalMusic = 0;
-            for(String key: tag.keySet()) {
+            for(String key: tag.getAllKeys()) {
                 MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(key));
 
                 if(instr != null) {

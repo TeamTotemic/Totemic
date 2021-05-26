@@ -85,7 +85,7 @@ public class PotionTotemEffect extends TotemEffect {
      * The default value ranges between 0 and 2 above {@link #baseAmplifier}, depending on the Efficiency enchantment level of the Medicine Bag.
      */
     protected int getAmplifierForMedicineBag(World world, PlayerEntity player, ItemStack medicineBag, int charge) {
-        return baseAmplifier + EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, medicineBag) / 2;
+        return baseAmplifier + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY, medicineBag) / 2;
     }
 
     /**
@@ -101,12 +101,12 @@ public class PotionTotemEffect extends TotemEffect {
      * @param isMedicineBag whether the effect comes from a Medicine Bag
      */
     protected void applyTo(boolean isMedicineBag, PlayerEntity player, int time, int amplifier) {
-        player.addPotionEffect(new EffectInstance(potionEffect, time, amplifier, true, false));
+        player.addEffect(new EffectInstance(potionEffect, time, amplifier, true, false));
     }
 
     @Override
     public void effect(World world, BlockPos pos, int repetition, TotemEffectContext context) {
-        if(world.isRemote)
+        if(world.isClientSide)
             return;
 
         int horizontal = getHorizontalRange(world, pos, repetition, context);
@@ -119,7 +119,7 @@ public class PotionTotemEffect extends TotemEffect {
 
     @Override
     public void medicineBagEffect(World world, PlayerEntity player, ItemStack medicineBag, int charge) {
-        if(world.isRemote)
+        if(world.isClientSide)
             return;
 
         int time = interval + getLingeringTime();

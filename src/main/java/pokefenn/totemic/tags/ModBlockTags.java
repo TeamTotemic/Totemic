@@ -10,8 +10,8 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.init.ModBlocks;
 
 public final class ModBlockTags {
-    public static final INamedTag<Block> TOTEM_BASES = BlockTags.makeWrapperTag("totemic:totem_bases");
-    public static final INamedTag<Block> TOTEM_POLES = BlockTags.makeWrapperTag("totemic:totem_poles");
+    public static final INamedTag<Block> TOTEM_BASES = BlockTags.bind("totemic:totem_bases");
+    public static final INamedTag<Block> TOTEM_POLES = BlockTags.bind("totemic:totem_poles");
 
     public static final class Provider extends BlockTagsProvider {
         public Provider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
@@ -19,9 +19,9 @@ public final class ModBlockTags {
         }
 
         @Override
-        protected void registerTags() {
-            ModBlocks.getTotemBases().values().forEach(getOrCreateBuilder(TOTEM_BASES)::add);
-            ModBlocks.getTotemPoles().values().forEach(getOrCreateBuilder(TOTEM_POLES)::add);
+        protected void addTags() {
+            ModBlocks.getTotemBases().values().forEach(tag(TOTEM_BASES)::add);
+            ModBlocks.getTotemPoles().values().forEach(tag(TOTEM_POLES)::add);
         }
 
         @Override

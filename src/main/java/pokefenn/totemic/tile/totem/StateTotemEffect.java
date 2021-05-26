@@ -21,14 +21,14 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
 
     @Override
     public void tick() {
-        World world = tile.getWorld();
+        World world = tile.getLevel();
         long gameTime = world.getGameTime();
 
         if(gameTime % tile.getCommonTotemEffectInterval() == 0) {
             for(Multiset.Entry<TotemEffect> entry: tile.getTotemEffects().entrySet()) {
                 TotemEffect effect = entry.getElement();
                 if(gameTime % effect.getInterval() == 0) {
-                    effect.effect(world, tile.getPos(), entry.getCount(), this);
+                    effect.effect(world, tile.getBlockPos(), entry.getCount(), this);
                 }
             }
         }
@@ -44,7 +44,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
         int previous = musicAmount;
         musicAmount = Math.min(previous + amount, TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC);
         if(musicAmount > previous) {
-            tile.markDirty();
+            tile.setChanged();
             return true;
         }
         else

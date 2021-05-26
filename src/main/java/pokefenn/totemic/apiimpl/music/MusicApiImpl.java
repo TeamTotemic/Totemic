@@ -31,7 +31,7 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public boolean playMusic(@Nonnull Entity entity, MusicInstrument instr) {
-        return playMusic(entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
+        return playMusic(entity.level, entity.getX(), entity.getY(), entity.getZ(), entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
     }
 
     @Override
@@ -64,7 +64,7 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public boolean playSelector(@Nonnull Entity entity, MusicInstrument instr) {
-        return playSelector(entity.world, entity.getPosX(), entity.getPosY(), entity.getPosZ(), entity, instr, DEFAULT_RANGE);
+        return playSelector(entity.level, entity.getX(), entity.getY(), entity.getZ(), entity, instr, DEFAULT_RANGE);
     }
 
     @Override

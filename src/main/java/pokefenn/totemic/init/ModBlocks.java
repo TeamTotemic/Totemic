@@ -50,7 +50,7 @@ public final class ModBlocks {
         internallyRegisterTotemEffects();
 
         for(TotemWoodType woodType: TotemWoodType.getWoodTypes()) {
-            Properties blockProperties = Properties.create(Material.WOOD, woodType.getWoodColor()).hardnessAndResistance(2, 5).sound(SoundType.WOOD);
+            Properties blockProperties = Properties.of(Material.WOOD, woodType.getWoodColor()).strength(2, 5).sound(SoundType.WOOD);
 
             TotemBaseBlock totemBase = new TotemBaseBlock(woodType, blockProperties);
             totemBase.setRegistryName(Totemic.MOD_ID, woodType.getName() + "_totem_base");

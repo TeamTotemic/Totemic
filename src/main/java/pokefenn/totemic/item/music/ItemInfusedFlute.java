@@ -6,17 +6,19 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
+import net.minecraft.item.Item.Properties;
+
 public class ItemInfusedFlute extends ItemFlute {
     public ItemInfusedFlute(Properties properties) {
         super(properties);
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        if(!world.isRemote && !player.isSneaking())
-            temptEntities(world, player.getPosX(), player.getPosY(), player.getPosZ());
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        if(!world.isClientSide && !player.isShiftKeyDown())
+            temptEntities(world, player.getX(), player.getY(), player.getZ());
 
-        return super.onItemRightClick(world, player, hand);
+        return super.use(world, player, hand);
     }
 
     private void temptEntities(World world, double x, double y, double z) {
@@ -24,7 +26,7 @@ public class ItemInfusedFlute extends ItemFlute {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

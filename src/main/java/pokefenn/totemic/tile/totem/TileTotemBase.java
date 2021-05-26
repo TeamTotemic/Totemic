@@ -53,7 +53,7 @@ public class TileTotemBase extends TileEntity implements ITickableTileEntity {
         totemEffects.clear();
 
         for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
-            Block block = world.getBlockState(pos.up(i + 1)).getBlock();
+            Block block = level.getBlockState(worldPosition.above(i + 1)).getBlock();
             if(block instanceof TotemPoleBlock) {
                 TotemEffect effect = ((TotemPoleBlock) block).effect;
                 totemEffectList.add(effect);
@@ -98,7 +98,7 @@ public class TileTotemBase extends TileEntity implements ITickableTileEntity {
     void setState(TotemState state) {
         if(state != this.state) {
             this.state = state;
-            markDirty();
+            setChanged();
             musicHandler.invalidate();
         }
     }

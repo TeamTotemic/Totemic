@@ -15,6 +15,8 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 
+import net.minecraft.block.AbstractBlock.Properties;
+
 public class TotemPoleBlock extends HorizontalBlock {
     public final TotemWoodType woodType;
     public final TotemEffect effect;
@@ -26,18 +28,18 @@ public class TotemPoleBlock extends HorizontalBlock {
     }
 
     @Override
-    protected void fillStateContainer(Builder<Block, BlockState> builder) {
-        builder.add(HORIZONTAL_FACING);
+    protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
         if(facing == Direction.UP) {
             for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
-                BlockPos searchPos = currentPos.down(i + 1);
+                BlockPos searchPos = currentPos.below(i + 1);
                 BlockState searchState = world.getBlockState(searchPos);
                 if(searchState.getBlock() instanceof TotemBaseBlock) {
-                    searchState.updatePostPlacement(Direction.UP, state, world, searchPos, currentPos);
+                    searchState.updateShape(Direction.UP, state, world, searchPos, currentPos);
                 }
                 else if(!(searchState.getBlock() instanceof TotemPoleBlock))
                     break;
@@ -49,7 +51,7 @@ public class TotemPoleBlock extends HorizontalBlock {
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override

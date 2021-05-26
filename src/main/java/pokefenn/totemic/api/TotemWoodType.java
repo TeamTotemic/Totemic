@@ -8,13 +8,13 @@ import net.minecraft.block.material.MaterialColor;
 
 public final class TotemWoodType { // TODO
     private static final List<TotemWoodType> woodTypes = ImmutableList.of(
-            new TotemWoodType("oak", MaterialColor.WOOD, MaterialColor.OBSIDIAN),
-            new TotemWoodType("spruce", MaterialColor.OBSIDIAN, MaterialColor.BROWN),
+            new TotemWoodType("oak", MaterialColor.WOOD, MaterialColor.PODZOL),
+            new TotemWoodType("spruce", MaterialColor.PODZOL, MaterialColor.COLOR_BROWN),
             new TotemWoodType("birch", MaterialColor.SAND, MaterialColor.QUARTZ),
-            new TotemWoodType("jungle", MaterialColor.DIRT, MaterialColor.OBSIDIAN),
-            new TotemWoodType("acacia", MaterialColor.ADOBE, MaterialColor.STONE),
-            new TotemWoodType("dark_oak", MaterialColor.BROWN, MaterialColor.BROWN),
-            new TotemWoodType("cedar", MaterialColor.PINK, MaterialColor.ADOBE));
+            new TotemWoodType("jungle", MaterialColor.DIRT, MaterialColor.PODZOL),
+            new TotemWoodType("acacia", MaterialColor.COLOR_ORANGE, MaterialColor.STONE),
+            new TotemWoodType("dark_oak", MaterialColor.COLOR_BROWN, MaterialColor.COLOR_BROWN),
+            new TotemWoodType("cedar", MaterialColor.COLOR_PINK, MaterialColor.COLOR_ORANGE));
 
     private final String name;
     private final MaterialColor woodColor;

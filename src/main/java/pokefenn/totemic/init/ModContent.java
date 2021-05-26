@@ -52,12 +52,12 @@ public final class ModContent {
                 new EmptyTotemEffect().setRegistryName("none"),
                 new EmptyTotemEffect().setRegistryName("bat"), //TODO
                 new PotionTotemEffect(Effects.FIRE_RESISTANCE).setRegistryName("blaze"),
-                new PotionTotemEffect(Effects.HASTE).setRegistryName("buffalo"),
-                new PotionTotemEffect(Effects.RESISTANCE) {
+                new PotionTotemEffect(Effects.DIG_SPEED).setRegistryName("buffalo"),
+                new PotionTotemEffect(Effects.DAMAGE_RESISTANCE) {
                     @Override
                     protected void applyTo(boolean isMedicineBag, PlayerEntity player, int time, int amplifier) {
                         super.applyTo(isMedicineBag, player, time, amplifier);
-                        player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, time, 0, true, false));
+                        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, time, 0, true, false));
                     };
                 }.setRegistryName("cow"),
                 new PotionTotemEffect(Effects.NIGHT_VISION) {
@@ -66,13 +66,13 @@ public final class ModContent {
                         return 210;
                     };
                 }.setRegistryName("enderman"),
-                new PotionTotemEffect(Effects.SPEED).setRegistryName("horse"),
+                new PotionTotemEffect(Effects.MOVEMENT_SPEED).setRegistryName("horse"),
                 new EmptyTotemEffect().setRegistryName("ocelot"), //TODO
                 new PotionTotemEffect(Effects.LUCK).setRegistryName("pig"),
-                new PotionTotemEffect(Effects.JUMP_BOOST).setRegistryName("rabbit"),
+                new PotionTotemEffect(Effects.JUMP).setRegistryName("rabbit"),
                 new EmptyTotemEffect().setRegistryName("spider"), //TODO
                 new PotionTotemEffect(Effects.WATER_BREATHING).setRegistryName("squid"),
-                new PotionTotemEffect(Effects.STRENGTH).setRegistryName("wolf"));
+                new PotionTotemEffect(Effects.DAMAGE_BOOST).setRegistryName("wolf"));
     }
 
     @SubscribeEvent

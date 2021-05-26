@@ -38,15 +38,15 @@ public final class TotemicEntityUtil {
      */
     public static Stream<? extends PlayerEntity> getPlayersInRange(World world, BlockPos pos, double horizontal, double vertical, Predicate<? super PlayerEntity> filter) {
         Objects.requireNonNull(filter);
-        AxisAlignedBB aabb = new AxisAlignedBB(pos).grow(horizontal - 1, vertical - 1, horizontal - 1);
+        AxisAlignedBB aabb = new AxisAlignedBB(pos).inflate(horizontal - 1, vertical - 1, horizontal - 1);
         return getPlayerList(world).stream().filter(player -> player.getBoundingBox().intersects(aabb) && filter.test(player));
     }
 
     private static List<? extends PlayerEntity> getPlayerList(World world) {
         if(world instanceof ServerWorld)
-            return ((ServerWorld) world).getPlayers();
+            return ((ServerWorld) world).players();
         else
-            return ((ClientWorld) world).getPlayers();
+            return ((ClientWorld) world).players();
     }
 
     /**
@@ -74,7 +74,7 @@ public final class TotemicEntityUtil {
      */
     public static <T extends Entity> Stream<T> getEntitiesInRange(Class<? extends T> type, World world, BlockPos pos, double horizontal, double vertical, Predicate<? super T> filter) {
         Objects.requireNonNull(filter);
-        AxisAlignedBB aabb = new AxisAlignedBB(pos).grow(horizontal - 1, vertical - 1, horizontal - 1);
-        return world.<T>getEntitiesWithinAABB(type, aabb, filter).stream();
+        AxisAlignedBB aabb = new AxisAlignedBB(pos).inflate(horizontal - 1, vertical - 1, horizontal - 1);
+        return world.<T>getEntitiesOfClass(type, aabb, filter).stream();
     }
 }
