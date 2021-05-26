@@ -10,6 +10,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
 
 public class PotionTotemEffect extends TotemEffect {
@@ -61,7 +62,7 @@ public class PotionTotemEffect extends TotemEffect {
      * @see TotemEffectAPI#getDefaultRange(TotemEffect, int, TotemBase, int)
      */
     protected int getHorizontalRange(World world, BlockPos pos, int repetition, TotemEffectContext context) {
-        return baseRange; //TODO TotemicAPI.get().totemEffect().getDefaultRange(this, baseRange, totem, repetition);
+        return TotemicAPI.get().totemEffect().getDefaultRange(this, repetition, baseRange, context);
     }
 
     /**

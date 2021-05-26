@@ -15,8 +15,6 @@ import net.minecraft.world.IWorld;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.tile.totem.TileTotemBase;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class TotemBaseBlock extends HorizontalBlock {
     public final TotemWoodType woodType;
 

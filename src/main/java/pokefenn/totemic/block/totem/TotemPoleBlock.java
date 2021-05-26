@@ -15,8 +15,6 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 
-import net.minecraft.block.AbstractBlock.Properties;
-
 public class TotemPoleBlock extends HorizontalBlock {
     public final TotemWoodType woodType;
     public final TotemEffect effect;

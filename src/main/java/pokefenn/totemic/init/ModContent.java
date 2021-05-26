@@ -14,6 +14,7 @@ import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.RegisterTotemEffectsEvent;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.totem.EmptyTotemEffect;
+import pokefenn.totemic.totem.OcelotTotemEffect;
 
 @ObjectHolder(Totemic.MOD_ID)
 public final class ModContent {
@@ -67,7 +68,7 @@ public final class ModContent {
                     };
                 }.setRegistryName("enderman"),
                 new PotionTotemEffect(Effects.MOVEMENT_SPEED).setRegistryName("horse"),
-                new EmptyTotemEffect().setRegistryName("ocelot"), //TODO
+                new OcelotTotemEffect().setRegistryName("ocelot"),
                 new PotionTotemEffect(Effects.LUCK).setRegistryName("pig"),
                 new PotionTotemEffect(Effects.JUMP).setRegistryName("rabbit"),
                 new EmptyTotemEffect().setRegistryName("spider"), //TODO

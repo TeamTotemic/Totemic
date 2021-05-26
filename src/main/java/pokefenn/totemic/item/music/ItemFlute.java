@@ -12,8 +12,6 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
-import net.minecraft.item.Item.Properties;
-
 public class ItemFlute extends Item {
     public ItemFlute(Properties properties) {
         super(properties);
