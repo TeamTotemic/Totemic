@@ -71,7 +71,7 @@ public final class ModContent {
                 new OcelotTotemEffect().setRegistryName("ocelot"),
                 new PotionTotemEffect(Effects.LUCK).setRegistryName("pig"),
                 new PotionTotemEffect(Effects.JUMP).setRegistryName("rabbit"),
-                new EmptyTotemEffect().setRegistryName("spider"), //TODO
+                new PotionTotemEffect(ModEffects.spider).setRegistryName("spider"),
                 new PotionTotemEffect(Effects.WATER_BREATHING).setRegistryName("squid"),
                 new PotionTotemEffect(Effects.DAMAGE_BOOST).setRegistryName("wolf"));
     }

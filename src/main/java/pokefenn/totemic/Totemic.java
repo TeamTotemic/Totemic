@@ -22,6 +22,7 @@ import pokefenn.totemic.client.ModelBakeHandler;
 import pokefenn.totemic.client.TotemicBlockStateProvider;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.init.ModEffects;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModTileEntities;
 import pokefenn.totemic.tags.ModBlockTags;
@@ -49,6 +50,7 @@ public final class Totemic {
 
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
+        modBus.register(ModEffects.class);
         modBus.register(ModContent.class);
         modBus.register(ModTileEntities.class);
 
