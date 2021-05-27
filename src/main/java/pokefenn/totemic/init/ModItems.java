@@ -8,6 +8,8 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ObjectHolder;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.block.totem.TotemPoleBlock;
+import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.item.music.ItemFlute;
 import pokefenn.totemic.item.music.ItemInfusedFlute;
 
@@ -26,6 +28,11 @@ public final class ModItems {
     }
 
     private static Item makeItemBlock(Block block) {
-        return new BlockItem(block, new Properties().tab(Totemic.itemGroup)).setRegistryName(block.getRegistryName());
+        //TODO: Possibly there is a better solution
+        if(block instanceof TotemPoleBlock) {
+            return new TotemPoleItem((TotemPoleBlock)block, new Properties().tab(Totemic.itemGroup)).setRegistryName(block.getRegistryName());
+        }
+        else
+            return new BlockItem(block, new Properties().tab(Totemic.itemGroup)).setRegistryName(block.getRegistryName());
     }
 }

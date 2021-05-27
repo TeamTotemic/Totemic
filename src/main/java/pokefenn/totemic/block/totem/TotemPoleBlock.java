@@ -9,8 +9,12 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
@@ -60,5 +64,16 @@ public class TotemPoleBlock extends HorizontalBlock {
     @Override
     public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face) {
         return 5;
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public IFormattableTextComponent getName() {
+        return new TranslationTextComponent(this.getDescriptionId(), effect.getDisplayName());
+    }
+
+    @Override
+    public String getDescriptionId() {
+        return "block.totemic." + woodType.getName() + "_totem_pole";
     }
 }
