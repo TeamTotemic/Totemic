@@ -6,8 +6,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class ItemInfusedFlute extends ItemFlute {
-    public ItemInfusedFlute(Properties properties) {
+public class InfusedFluteItem extends FluteItem {
+    public InfusedFluteItem(Properties properties) {
         super(properties);
     }
 
