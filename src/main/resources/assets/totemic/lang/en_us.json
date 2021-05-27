@@ -2,6 +2,7 @@
   "item.totemic.flute": "Flute",
   "item.totemic.infused_flute": "Pan's Flute",
 
+  "block.totemic.totem_base": "Totem Base",
   "block.totemic.oak_totem_base": "Oak Totem Base",
   "block.totemic.spruce_totem_base": "Spruce Totem Base",
   "block.totemic.birch_totem_base": "Birch Totem Base",
@@ -17,6 +18,9 @@
   "block.totemic.acacia_totem_pole": "Acacia Totem Pole (%s)",
   "block.totemic.dark_oak_totem_pole": "Dark Oak Totem Pole (%s)",
   "block.totemic.cedar_totem_pole": "Red Cedar Totem Pole (%s)",
+  
+  "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
+  "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
   
   "totem.totemic.none": "None",
   "totem.totemic.bat": "Bat",
