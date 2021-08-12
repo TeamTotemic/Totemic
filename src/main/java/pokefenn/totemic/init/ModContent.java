@@ -59,13 +59,13 @@ public final class ModContent {
                     protected void applyTo(boolean isMedicineBag, PlayerEntity player, int time, int amplifier) {
                         super.applyTo(isMedicineBag, player, time, amplifier);
                         player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, time, 0, true, false));
-                    };
+                    }
                 }.setRegistryName("cow"),
                 new PotionTotemEffect(Effects.NIGHT_VISION) {
                     @Override
                     protected int getLingeringTime() {
                         return 210;
-                    };
+                    }
                 }.setRegistryName("enderman"),
                 new PotionTotemEffect(Effects.MOVEMENT_SPEED).setRegistryName("horse"),
                 new OcelotTotemEffect().setRegistryName("ocelot"),
