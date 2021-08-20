@@ -2,6 +2,7 @@
   "item.totemic.flute": "Flute",
   "item.totemic.infused_flute": "Pan's Flute",
 
+  "block.totemic.totem_base": "Totem Base",
   "block.totemic.oak_totem_base": "Oak Totem Base",
   "block.totemic.spruce_totem_base": "Spruce Totem Base",
   "block.totemic.birch_totem_base": "Birch Totem Base",
@@ -9,6 +10,33 @@
   "block.totemic.acacia_totem_base": "Acacia Totem Base",
   "block.totemic.dark_oak_totem_base": "Dark Oak Totem Base",
   "block.totemic.cedar_totem_base": "Red Cedar Totem Base",
+  
+  "block.totemic.oak_totem_pole": "Oak Totem Pole (%s)",
+  "block.totemic.spruce_totem_pole": "Spruce Totem Pole (%s)",
+  "block.totemic.birch_totem_pole": "Birch Totem Pole (%s)",
+  "block.totemic.jungle_totem_pole": "Jungle Totem Pole (%s)",
+  "block.totemic.acacia_totem_pole": "Acacia Totem Pole (%s)",
+  "block.totemic.dark_oak_totem_pole": "Dark Oak Totem Pole (%s)",
+  "block.totemic.cedar_totem_pole": "Red Cedar Totem Pole (%s)",
+  
+  "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
+  "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
+  
+  "totem.totemic.none": "None",
+  "totem.totemic.bat": "Bat",
+  "totem.totemic.blaze": "Blaze",
+  "totem.totemic.buffalo": "Buffalo",
+  "totem.totemic.cow": "Cow",
+  "totem.totemic.enderman": "Enderman",
+  "totem.totemic.horse": "Horse",
+  "totem.totemic.ocelot": "Ocelot",
+  "totem.totemic.pig": "Pig",
+  "totem.totemic.rabbit": "Rabbit",
+  "totem.totemic.spider": "Spider",
+  "totem.totemic.squid": "Squid",
+  "totem.totemic.wolf": "Wolf",
+  
+  "effect.totemic.spider": "Spider",
 
   "itemGroup.totemic": "Totemic"
 }

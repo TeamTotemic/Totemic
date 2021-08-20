@@ -20,12 +20,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import pokefenn.totemic.api.TotemicEntityUtil;
 
-public class ItemInfusedFlute extends ItemFlute {
+public class InfusedFluteItem extends FluteItem {
     //Entities that have been tempted by the infused flute get stored in this weak set
     //so as not to add the same AI task multiple times
     private final Set<Entity> temptedEntities = Collections.newSetFromMap(new WeakHashMap<>());
 
-    public ItemInfusedFlute(Properties properties) {
+    public InfusedFluteItem(Properties properties) {
         super(properties);
     }
 

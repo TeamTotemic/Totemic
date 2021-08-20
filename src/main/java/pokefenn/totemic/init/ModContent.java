@@ -51,7 +51,7 @@ public final class ModContent {
     public static void totemEffects(RegisterTotemEffectsEvent event) {
         event.registerAll(
                 new EmptyTotemEffect().setRegistryName("none"),
-                new EmptyTotemEffect().setRegistryName("bat"), //TODO
+                new PotionTotemEffect(Effects.SLOW_FALLING).setRegistryName("bat"),
                 new PotionTotemEffect(Effects.FIRE_RESISTANCE).setRegistryName("blaze"),
                 new PotionTotemEffect(Effects.DIG_SPEED).setRegistryName("buffalo"),
                 new PotionTotemEffect(Effects.DAMAGE_RESISTANCE) {

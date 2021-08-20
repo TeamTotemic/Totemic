@@ -4,7 +4,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -57,10 +61,18 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
     }
 
     /**
-     * @return the translation key of the effect. By default it is given by "totemic.totem." followed by the registry name.
+     * @return the translation key of the effect. By default it is given by "totem." followed by the registry name.
      */
-    public String getTranslationKey() {
-        return Util.makeDescriptionId("totemic.totem", getRegistryName());
+    public String getDescriptionId() {
+        return Util.makeDescriptionId("totem", getRegistryName());
+    }
+
+    /**
+     * @return a text component representing the effect's name
+     */
+    @OnlyIn(Dist.CLIENT)
+    public ITextComponent getDisplayName() {
+        return new TranslationTextComponent(getDescriptionId());
     }
 
     /**

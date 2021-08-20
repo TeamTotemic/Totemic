@@ -17,13 +17,13 @@ public class SpiderEffect extends Effect {
         if(entity.horizontalCollision) {
             entity.fallDistance = 0.0F;
 
-            float factor = 0.15F;
+            float velocity = 0.15F;
 
             Vector3d motion = entity.getDeltaMovement();
 
-            double motionX = MathHelper.clamp(motion.x, -factor, factor);
+            double motionX = MathHelper.clamp(motion.x, -velocity, velocity);
             double motionY = 0.2;
-            double motionZ = MathHelper.clamp(motion.z, -factor, factor);
+            double motionZ = MathHelper.clamp(motion.z, -velocity, velocity);
             if(entity.isSuppressingSlidingDownLadder()) {
                 motionY = 0.0;
             }
