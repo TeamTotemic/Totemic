@@ -9,6 +9,9 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
@@ -20,6 +23,8 @@ import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 
 public class TotemPoleBlock extends HorizontalBlock {
+    protected static final VoxelShape SHAPE = VoxelShapes.box(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
+
     public final TotemWoodType woodType;
     public final TotemEffect effect;
 
@@ -54,6 +59,11 @@ public class TotemPoleBlock extends HorizontalBlock {
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
+        return SHAPE;
     }
 
     @Override
