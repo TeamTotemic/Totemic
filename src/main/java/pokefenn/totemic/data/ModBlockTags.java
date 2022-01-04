@@ -1,4 +1,4 @@
-package pokefenn.totemic.tags;
+package pokefenn.totemic.data;
 
 import net.minecraft.block.Block;
 import net.minecraft.data.BlockTagsProvider;

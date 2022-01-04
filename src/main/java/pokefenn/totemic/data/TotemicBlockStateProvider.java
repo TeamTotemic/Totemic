@@ -1,4 +1,4 @@
-package pokefenn.totemic.client;
+package pokefenn.totemic.data;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.BlockStateProvider;

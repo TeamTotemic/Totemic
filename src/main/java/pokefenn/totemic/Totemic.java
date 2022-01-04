@@ -19,13 +19,13 @@ import pokefenn.totemic.api.music.DefaultMusicAcceptor;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.client.ModelBakeHandler;
-import pokefenn.totemic.client.TotemicBlockStateProvider;
+import pokefenn.totemic.data.ModBlockTags;
+import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModEffects;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModTileEntities;
-import pokefenn.totemic.tags.ModBlockTags;
 
 @Mod(Totemic.MOD_ID)
 public final class Totemic {
