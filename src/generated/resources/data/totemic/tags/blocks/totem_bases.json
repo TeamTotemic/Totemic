@@ -3,10 +3,10 @@
   "values": [
     "totemic:birch_totem_base",
     "totemic:spruce_totem_base",
-    "totemic:jungle_totem_base",
-    "totemic:oak_totem_base",
     "totemic:dark_oak_totem_base",
-    "totemic:cedar_totem_base",
-    "totemic:acacia_totem_base"
+    "totemic:acacia_totem_base",
+    "totemic:oak_totem_base",
+    "totemic:jungle_totem_base",
+    "totemic:cedar_totem_base"
   ]
 }

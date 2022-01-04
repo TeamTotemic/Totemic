@@ -1,7 +1,10 @@
 package pokefenn.totemic.data;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
@@ -15,7 +18,12 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         for(TotemBaseBlock block: ModBlocks.getTotemBases().values()) {
-            horizontalBlock(block, models().getExistingFile(blockTexture(block)));
+            ResourceLocation blockName = block.getRegistryName();
+            ModelFile blockModel = models().getExistingFile(new ResourceLocation(blockName.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + blockName.getPath()));
+            //Block state
+            horizontalBlock(block, blockModel);
+            //Item model
+            itemModels().withExistingParent(block.getRegistryName().toString(), blockModel.getLocation());
         }
     }
 }
