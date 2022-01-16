@@ -4,20 +4,20 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.pathfinding.GroundPathNavigator;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicEntityUtil;
 
 public class InfusedFluteItem extends FluteItem {
@@ -30,20 +30,20 @@ public class InfusedFluteItem extends FluteItem {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         if(!world.isClientSide && !player.isShiftKeyDown())
             temptEntities(world, player.getX(), player.getY(), player.getZ());
 
         return super.use(world, player, hand);
     }
 
-    private void temptEntities(World world, double x, double y, double z) {
-        TotemicEntityUtil.getEntitiesInRange(MobEntity.class, world, new BlockPos(x, y, z), 2, 2,
-                entity -> ((entity instanceof AnimalEntity && entity.getNavigation() instanceof GroundPathNavigator) || entity instanceof VillagerEntity)
+    private void temptEntities(Level world, double x, double y, double z) {
+        TotemicEntityUtil.getEntitiesInRange(Mob.class, world, new BlockPos(x, y, z), 2, 2,
+                entity -> ((entity instanceof Animal && entity.getNavigation() instanceof GroundPathNavigation) || entity instanceof Villager)
                             && !temptedEntities.contains(entity))
             .forEach(entity -> {
-                double speed = (entity instanceof AnimalEntity) ? 1 : 0.5;
-                entity.goalSelector.addGoal(5, new TemptGoal((CreatureEntity) entity, speed, Ingredient.of(this), false));
+                double speed = (entity instanceof Animal) ? 1 : 0.5;
+                entity.goalSelector.addGoal(5, new TemptGoal((PathfinderMob) entity, speed, Ingredient.of(this), false));
 
                 temptedEntities.add(entity);
             });

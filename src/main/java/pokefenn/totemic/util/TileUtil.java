@@ -3,18 +3,18 @@ package pokefenn.totemic.util;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class TileUtil {
-    public static <T extends TileEntity> Stream<T> getTileEntitiesInRange(Class<? extends T> type, World world, BlockPos pos, int range) {
+    public static <T extends BlockEntity> Stream<T> getTileEntitiesInRange(Class<? extends T> type, Level world, BlockPos pos, int range) {
         return getTileEntitiesIn(type, world, pos.offset(-range, -range, -range), pos.offset(range, range, range));
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends TileEntity> Stream<T> getTileEntitiesIn(Class<? extends T> type, World world, BlockPos start, BlockPos end) {
+    public static <T extends BlockEntity> Stream<T> getTileEntitiesIn(Class<? extends T> type, Level world, BlockPos start, BlockPos end) {
         return ChunkPos.rangeClosed(new ChunkPos(start), new ChunkPos(end))
                 .filter(chunkPos -> world.hasChunk(chunkPos.x, chunkPos.z))
                 .map(chunkPos -> world.getChunk(chunkPos.x, chunkPos.z))
@@ -23,7 +23,7 @@ public class TileUtil {
                 .map(tile -> (T) tile);
     }
 
-    public static Comparator<TileEntity> compareDistanceTo(double x, double y, double z, boolean useCenter) {
-        return Comparator.comparing((TileEntity t) -> t.getBlockPos().distSqr(x, y, z, useCenter));
+    public static Comparator<BlockEntity> compareDistanceTo(double x, double y, double z, boolean useCenter) {
+        return Comparator.comparing((BlockEntity t) -> t.getBlockPos().distSqr(x, y, z, useCenter));
     }
 }

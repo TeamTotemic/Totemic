@@ -7,13 +7,13 @@ import java.util.stream.Stream;
 
 import com.google.common.base.Predicates;
 
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 
 /**
  * Methods for getting collections of entities within an area, as commonly used for Totem Effects and Ceremonies.
@@ -25,7 +25,7 @@ public final class TotemicEntityUtil {
      * @param horizontal the horizontal range
      * @param vertical   the vertical range
      */
-    public static Stream<? extends PlayerEntity> getPlayersInRange(World world, BlockPos pos, double horizontal, double vertical) {
+    public static Stream<? extends Player> getPlayersInRange(Level world, BlockPos pos, double horizontal, double vertical) {
         return getPlayersInRange(world, pos, horizontal, vertical, Predicates.alwaysTrue());
     }
 
@@ -36,17 +36,17 @@ public final class TotemicEntityUtil {
      * @param vertical   the vertical range
      * @param filter     the filter predicate. Must not be {@code null}.
      */
-    public static Stream<? extends PlayerEntity> getPlayersInRange(World world, BlockPos pos, double horizontal, double vertical, Predicate<? super PlayerEntity> filter) {
+    public static Stream<? extends Player> getPlayersInRange(Level world, BlockPos pos, double horizontal, double vertical, Predicate<? super Player> filter) {
         Objects.requireNonNull(filter);
-        AxisAlignedBB aabb = new AxisAlignedBB(pos).inflate(horizontal - 1, vertical - 1, horizontal - 1);
+        AABB aabb = new AABB(pos).inflate(horizontal - 1, vertical - 1, horizontal - 1);
         return getPlayerList(world).stream().filter(player -> player.getBoundingBox().intersects(aabb) && filter.test(player));
     }
 
-    private static List<? extends PlayerEntity> getPlayerList(World world) {
-        if(world instanceof ServerWorld)
-            return ((ServerWorld) world).players();
+    private static List<? extends Player> getPlayerList(Level world) {
+        if(world instanceof ServerLevel)
+            return ((ServerLevel) world).players();
         else
-            return ((ClientWorld) world).players();
+            return ((ClientLevel) world).players();
     }
 
     /**
@@ -58,7 +58,7 @@ public final class TotemicEntityUtil {
      * @param horizontal the horizontal range
      * @param vertical   the vertical range
      */
-    public static <T extends Entity> Stream<T> getEntitiesInRange(Class<? extends T> type, World world, BlockPos pos, double horizontal, double vertical) {
+    public static <T extends Entity> Stream<T> getEntitiesInRange(Class<T> type, Level world, BlockPos pos, double horizontal, double vertical) {
         return getEntitiesInRange(type, world, pos, horizontal, vertical, Predicates.alwaysTrue());
     }
 
@@ -72,9 +72,9 @@ public final class TotemicEntityUtil {
      * @param vertical   the vertical range
      * @param filter     the filter predicate. Must not be {@code null}.
      */
-    public static <T extends Entity> Stream<T> getEntitiesInRange(Class<? extends T> type, World world, BlockPos pos, double horizontal, double vertical, Predicate<? super T> filter) {
+    public static <T extends Entity> Stream<T> getEntitiesInRange(Class<T> type, Level world, BlockPos pos, double horizontal, double vertical, Predicate<? super T> filter) {
         Objects.requireNonNull(filter);
-        AxisAlignedBB aabb = new AxisAlignedBB(pos).inflate(horizontal - 1, vertical - 1, horizontal - 1);
-        return world.<T>getEntitiesOfClass(type, aabb, filter).stream();
+        AABB aabb = new AABB(pos).inflate(horizontal - 1, vertical - 1, horizontal - 1);
+        return world.getEntitiesOfClass(type, aabb, filter).stream();
     }
 }

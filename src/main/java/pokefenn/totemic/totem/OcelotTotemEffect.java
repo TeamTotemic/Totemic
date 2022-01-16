@@ -2,10 +2,10 @@ package pokefenn.totemic.totem;
 
 import java.lang.reflect.Field;
 
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.totem.TotemEffect;
@@ -16,15 +16,15 @@ public class OcelotTotemEffect extends TotemEffect {
         super(false, 10);
     }
 
-    private static final Field timeSinceIgnited = ObfuscationReflectionHelper.findField(CreeperEntity.class, "swell");
+    private static final Field timeSinceIgnited = ObfuscationReflectionHelper.findField(Creeper.class, "swell");
 
     @Override
-    public void effect(World world, BlockPos pos, int repetition, TotemEffectContext context) {
+    public void effect(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
         if(world.isClientSide)
             return;
 
         int range = TotemicAPI.get().totemEffect().getDefaultRange(this, repetition, context);
-        TotemicEntityUtil.getEntitiesInRange(CreeperEntity.class, world, pos, range, range)
+        TotemicEntityUtil.getEntitiesInRange(Creeper.class, world, pos, range, range)
             .forEach(creeper -> {
                 try {
                     int ignited = (Integer) timeSinceIgnited.get(creeper);

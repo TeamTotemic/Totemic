@@ -1,12 +1,12 @@
 package pokefenn.totemic.api.totem;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
@@ -46,7 +46,7 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
      * @param repetition the number of Totem Pole blocks that are carved with this effect
      * @param context    an object providing information about the Totem Base
      */
-    public abstract void effect(World world, BlockPos pos, int repetition, TotemEffectContext context);
+    public abstract void effect(Level world, BlockPos pos, int repetition, TotemEffectContext context);
 
     /**
      * Performs the Totem Effect when used in a Medicine Bag, if applicable. Override this method to make your effect work with Medicine Bags. This method is
@@ -57,7 +57,7 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
      * @param medicineBag the Medicine Bag item stack
      * @param charge      time in ticks until the Medicine Bag is depleted, or -1 if it is a Creative Medicine Bag
      */
-    public void medicineBagEffect(World world, PlayerEntity player, ItemStack medicineBag, int charge) {
+    public void medicineBagEffect(Level world, Player player, ItemStack medicineBag, int charge) {
     }
 
     /**
@@ -71,8 +71,8 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
      * @return a text component representing the effect's name
      */
     @OnlyIn(Dist.CLIENT)
-    public ITextComponent getDisplayName() {
-        return new TranslationTextComponent(getDescriptionId());
+    public MutableComponent getDisplayName() {
+        return new TranslatableComponent(getDescriptionId());
     }
 
     /**

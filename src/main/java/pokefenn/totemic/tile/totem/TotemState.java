@@ -2,11 +2,11 @@ package pokefenn.totemic.tile.totem;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-public abstract class TotemState implements MusicAcceptor {
+public abstract sealed class TotemState implements MusicAcceptor permits StateTotemEffect {
     final TileTotemBase tile;
 
     TotemState(TileTotemBase tile) {

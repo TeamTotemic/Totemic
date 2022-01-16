@@ -5,8 +5,8 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Multiset;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
@@ -21,7 +21,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
 
     @Override
     public void tick() {
-        World world = tile.getLevel();
+        Level world = tile.getLevel();
         long gameTime = world.getGameTime();
 
         if(gameTime % tile.getCommonTotemEffectInterval() == 0) {

@@ -7,12 +7,10 @@ import org.apache.logging.log4j.LogManager;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import net.minecraft.entity.Entity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.capabilities.Capability;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraftforge.common.util.INBTSerializable;
 import pokefenn.totemic.api.TotemicRegistries;
 
 /**
@@ -24,7 +22,7 @@ import pokefenn.totemic.api.TotemicRegistries;
  * <p>
  * The behavior is similar (but simplified) to a Totem Base while starting up a ceremony.
  */
-public class DefaultMusicAcceptor implements MusicAcceptor {
+public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<CompoundTag> {
     private final Object2IntMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size());
     private int totalMusic = 0;
 
@@ -81,43 +79,29 @@ public class DefaultMusicAcceptor implements MusicAcceptor {
         return totalMusic;
     }
 
-    /**
-     * Capability storage handler for MusicAcceptor.
-     */
-    public static class Storage implements Capability.IStorage<MusicAcceptor> {
-        @Override
-        @Nullable
-        public INBT writeNBT(Capability<MusicAcceptor> capability, MusicAcceptor instance, Direction side) {
-            if(!(instance instanceof DefaultMusicAcceptor))
-                throw new RuntimeException("Cannot serialize to an instance that is not the default implementation");
-            DefaultMusicAcceptor acceptor = (DefaultMusicAcceptor) instance;
-            CompoundNBT nbt = new CompoundNBT();
+    @Override
+    public CompoundTag serializeNBT() {
+        CompoundTag nbt = new CompoundTag();
 
-            for(Entry<MusicInstrument> entry: acceptor.music.object2IntEntrySet())
-                nbt.putInt(entry.getKey().getRegistryName().toString(), entry.getIntValue());
-            return nbt;
-        }
+        for(Entry<MusicInstrument> entry: music.object2IntEntrySet())
+            nbt.putInt(entry.getKey().getRegistryName().toString(), entry.getIntValue());
+        return nbt;
+    }
 
-        @Override
-        public void readNBT(Capability<MusicAcceptor> capability, MusicAcceptor instance, Direction side, INBT nbt) {
-            if(!(instance instanceof DefaultMusicAcceptor))
-                throw new RuntimeException("Cannot deserialize to an instance that is not the default implementation");
-            DefaultMusicAcceptor acceptor = (DefaultMusicAcceptor) instance;
-            CompoundNBT tag = (CompoundNBT) nbt;
+    @Override
+    public void deserializeNBT(CompoundTag tag) {
+        music.clear();
+        totalMusic = 0;
+        for(String key: tag.getAllKeys()) {
+            MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(key));
 
-            acceptor.music.clear();
-            acceptor.totalMusic = 0;
-            for(String key: tag.getAllKeys()) {
-                MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(key));
-
-                if(instr != null) {
-                    int amount = tag.getInt(key);
-                    acceptor.music.put(instr, amount);
-                    acceptor.totalMusic += amount;
-                }
-                else
-                    LogManager.getLogger(Storage.class).warn("Unknown music instrument: {}", key);
+            if(instr != null) {
+                int amount = tag.getInt(key);
+                music.put(instr, amount);
+                totalMusic += amount;
             }
+            else
+                LogManager.getLogger().warn("Unknown music instrument: {}", key);
         }
     }
 }

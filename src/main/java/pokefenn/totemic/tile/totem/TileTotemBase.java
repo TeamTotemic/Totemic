@@ -10,10 +10,11 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.math.IntMath;
 
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import pokefenn.totemic.api.TotemicCapabilities;
@@ -23,7 +24,7 @@ import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModTileEntities;
 
-public class TileTotemBase extends TileEntity implements ITickableTileEntity {
+public class TileTotemBase extends BlockEntity {
     private boolean firstTick = true;
 
     private final List<TotemEffect> totemEffectList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
@@ -34,8 +35,8 @@ public class TileTotemBase extends TileEntity implements ITickableTileEntity {
 
     private LazyOptional<MusicAcceptor> musicHandler = LazyOptional.of(() -> state);
 
-    public TileTotemBase() {
-        super(ModTileEntities.totem_base);
+    public TileTotemBase(BlockPos pos, BlockState state) {
+        super(ModTileEntities.totem_base, pos, state);
     }
 
     @Override

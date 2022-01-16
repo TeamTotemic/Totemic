@@ -3,24 +3,23 @@ package pokefenn.totemic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.music.DefaultMusicAcceptor;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.client.ModelBakeHandler;
-import pokefenn.totemic.data.ModBlockTags;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
+import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModEffects;
@@ -34,7 +33,7 @@ public final class Totemic {
 
     public static final Logger logger = LogManager.getLogger(Totemic.class);
 
-    public static final ItemGroup itemGroup = new ItemGroup(Totemic.MOD_ID) {
+    public static final CreativeModeTab creativeTab = new CreativeModeTab(Totemic.MOD_ID) {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ModItems.flute);
@@ -46,6 +45,7 @@ public final class Totemic {
 
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::clientSetup);
+        modBus.addListener(this::registerCapabilities);
         modBus.addListener(this::gatherData);
 
         modBus.register(ModBlocks.class);
@@ -66,8 +66,6 @@ public final class Totemic {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         ModBlocks.checkRegisteredTotemEffects();
-
-        CapabilityManager.INSTANCE.register(MusicAcceptor.class, new DefaultMusicAcceptor.Storage(), DefaultMusicAcceptor::new);
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
@@ -75,9 +73,13 @@ public final class Totemic {
         MinecraftForge.EVENT_BUS.register(ModelBakeHandler.class);
     }
 
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(MusicAcceptor.class);
+    }
+
     private void gatherData(GatherDataEvent event) {
         if(event.includeServer()) {
-            event.getGenerator().addProvider(new ModBlockTags.Provider(event.getGenerator(), event.getExistingFileHelper()));
+            event.getGenerator().addProvider(new TotemicBlockTagsProvider(event.getGenerator(), event.getExistingFileHelper()));
         }
         if(event.includeClient()) {
             event.getGenerator().addProvider(new TotemicBlockStateProvider(event.getGenerator(), event.getExistingFileHelper()));

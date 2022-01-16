@@ -7,10 +7,10 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.util.LazyOptional;
 import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAPI;
@@ -25,7 +25,7 @@ public enum MusicApiImpl implements MusicAPI {
     INSTANCE;
 
     @Override
-    public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr) {
+    public boolean playMusic(Level world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr) {
         return playMusic(world, x, y, z, entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
     }
 
@@ -35,13 +35,13 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public boolean playMusic(World world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr) {
+    public boolean playMusic(Level world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr) {
         return playMusic(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr);
     }
 
     @Override
-    public boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
-        List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(TileEntity.class, world, new BlockPos(x, y, z), range)
+    public boolean playMusic(Level world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
+        List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(BlockEntity.class, world, new BlockPos(x, y, z), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)
                 .map(lo -> lo.orElse(null))
@@ -58,7 +58,7 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr) {
+    public boolean playSelector(Level world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr) {
         return playSelector(world, x, y, z, entity, instr, DEFAULT_RANGE);
     }
 
@@ -68,26 +68,17 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public boolean playSelector(World world, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr) {
+    public boolean playSelector(Level world, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr) {
         return playSelector(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr);
     }
 
     @Override
-    public boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
+    public boolean playSelector(Level world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
         Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(TileTotemBase.class, world, new BlockPos(x, y, z), range)
                 .min(TileUtil.compareDistanceTo(x, y, z, true))
                 .map(TileTotemBase::getState)
                 .filter(TotemState::canSelect);
         totemState.ifPresent(t -> t.addSelector(entity, instr));
         return totemState.isPresent();
-    }
-
-    @Override
-    @Deprecated
-    public Optional<MusicAcceptor> getClosestAcceptor(World world, double x, double y, double z, int range) {
-        return TileUtil.getTileEntitiesInRange(TileEntity.class, world, new BlockPos(x, y, z), range)
-                .filter(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR).isPresent())
-                .min(TileUtil.compareDistanceTo(x, y, z, true))
-                .flatMap(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR).resolve());
     }
 }

@@ -2,14 +2,14 @@ package pokefenn.totemic.api.totem;
 
 import java.util.Objects;
 
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
 
@@ -22,7 +22,7 @@ public class PotionTotemEffect extends TotemEffect {
     /**
      * The potion effect.
      */
-    protected final Effect potionEffect;
+    protected final MobEffect potionEffect;
     /**
      * The base range of the effect.
      * In general, the range will be larger, see {@link #getHorizontalRange} and {@link #getVerticalRange}.
@@ -39,7 +39,7 @@ public class PotionTotemEffect extends TotemEffect {
      * @param name a unique name for the Totem Effect
      * @param potion the potion effect
      */
-    public PotionTotemEffect(Effect potionEffect) {
+    public PotionTotemEffect(MobEffect potionEffect) {
         this(true, TotemEffectAPI.DEFAULT_BASE_RANGE, potionEffect, DEFAULT_INTERVAL, 0);
     }
 
@@ -50,7 +50,7 @@ public class PotionTotemEffect extends TotemEffect {
      * @param interval the time in ticks until the potion effect is renewed.
      * @param baseAmplifier the base amplifier of the potion effect. In general, the amplifier will be larger, see {@link #getAmplifier} and {@link #getAmplifierForMedicineBag}.
      */
-    public PotionTotemEffect(boolean portable, int baseRange, Effect potionEffect, int interval, int baseAmplifier) {
+    public PotionTotemEffect(boolean portable, int baseRange, MobEffect potionEffect, int interval, int baseAmplifier) {
         super(portable, interval);
         this.potionEffect = Objects.requireNonNull(potionEffect);
         this.baseRange = baseRange;
@@ -61,7 +61,7 @@ public class PotionTotemEffect extends TotemEffect {
      * Returns the horizontal range of this effect.
      * @see TotemEffectAPI#getDefaultRange(TotemEffect, int, TotemBase, int)
      */
-    protected int getHorizontalRange(World world, BlockPos pos, int repetition, TotemEffectContext context) {
+    protected int getHorizontalRange(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
         return TotemicAPI.get().totemEffect().getDefaultRange(this, repetition, baseRange, context);
     }
 
@@ -69,7 +69,7 @@ public class PotionTotemEffect extends TotemEffect {
      * Returns the vertical range of this effect.<p>
      * The default value is equal to {@link #getHorizontalRange}.
      */
-    protected int getVerticalRange(World world, BlockPos pos, int repetition, TotemEffectContext context) {
+    protected int getVerticalRange(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
         return getHorizontalRange(world, pos, repetition, context);
     }
 
@@ -77,7 +77,7 @@ public class PotionTotemEffect extends TotemEffect {
      * Returns the amplifier that should be used for this effect.<p>
      * The default value ranges between 0 and 3 above {@link #baseAmplifier}, depending on the repetition and the amount of music in the Totem Base.
      */
-    protected int getAmplifier(World world, BlockPos pos, int repetition, TotemEffectContext context) {
+    protected int getAmplifier(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
         return baseAmplifier + (repetition - 1) / 2 + (context.getTotemEffectMusic() > 192 ? 1 : 0);
     }
 
@@ -85,7 +85,7 @@ public class PotionTotemEffect extends TotemEffect {
      * Returns the amplifier that should be used for this effect, when it is used with a Medicine Bag.<p>
      * The default value ranges between 0 and 2 above {@link #baseAmplifier}, depending on the Efficiency enchantment level of the Medicine Bag.
      */
-    protected int getAmplifierForMedicineBag(World world, PlayerEntity player, ItemStack medicineBag, int charge) {
+    protected int getAmplifierForMedicineBag(Level world, Player player, ItemStack medicineBag, int charge) {
         return baseAmplifier + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY, medicineBag) / 2;
     }
 
@@ -101,12 +101,12 @@ public class PotionTotemEffect extends TotemEffect {
      * Applies the potion effect to the given player
      * @param isMedicineBag whether the effect comes from a Medicine Bag
      */
-    protected void applyTo(boolean isMedicineBag, PlayerEntity player, int time, int amplifier) {
-        player.addEffect(new EffectInstance(potionEffect, time, amplifier, true, false));
+    protected void applyTo(boolean isMedicineBag, Player player, int time, int amplifier) {
+        player.addEffect(new MobEffectInstance(potionEffect, time, amplifier, true, false));
     }
 
     @Override
-    public void effect(World world, BlockPos pos, int repetition, TotemEffectContext context) {
+    public void effect(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
         if(world.isClientSide)
             return;
 
@@ -119,7 +119,7 @@ public class PotionTotemEffect extends TotemEffect {
     }
 
     @Override
-    public void medicineBagEffect(World world, PlayerEntity player, ItemStack medicineBag, int charge) {
+    public void medicineBagEffect(Level world, Player player, ItemStack medicineBag, int charge) {
         if(world.isClientSide)
             return;
 

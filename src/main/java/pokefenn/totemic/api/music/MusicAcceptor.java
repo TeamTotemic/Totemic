@@ -2,7 +2,7 @@ package pokefenn.totemic.api.music;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 import pokefenn.totemic.api.TotemicCapabilities;
 
 /**

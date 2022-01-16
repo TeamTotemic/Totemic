@@ -1,8 +1,8 @@
 package pokefenn.totemic.item;
 
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 
 public class TotemPoleItem extends BlockItem {
@@ -11,7 +11,7 @@ public class TotemPoleItem extends BlockItem {
     }
 
     @Override
-    public ITextComponent getName(ItemStack stack) {
+    public Component getName(ItemStack stack) {
         return getBlock().getName();
     }
 }

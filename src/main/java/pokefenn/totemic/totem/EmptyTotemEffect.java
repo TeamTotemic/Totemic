@@ -1,7 +1,7 @@
 package pokefenn.totemic.totem;
 
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 
@@ -11,6 +11,6 @@ public class EmptyTotemEffect extends TotemEffect {
     }
 
     @Override
-    public void effect(World world, BlockPos pos, int repetition, TotemEffectContext context) {
+    public void effect(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
     }
 }

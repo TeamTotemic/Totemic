@@ -1,9 +1,9 @@
 package pokefenn.totemic.init;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Item.Properties;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ObjectHolder;
@@ -22,9 +22,9 @@ public final class ModItems {
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event) {
-        event.getRegistry().registerAll(new FluteItem(new Properties().stacksTo(1).tab(Totemic.itemGroup)).setRegistryName("flute"),
-                new InfusedFluteItem(new Properties().stacksTo(1).tab(Totemic.itemGroup)).setRegistryName("infused_flute"),
-                new TotemKnifeItem(new Properties().stacksTo(1).durability(250).tab(Totemic.itemGroup)).setRegistryName("totem_whittling_knife"));
+        event.getRegistry().registerAll(new FluteItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)).setRegistryName("flute"),
+                new InfusedFluteItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)).setRegistryName("infused_flute"),
+                new TotemKnifeItem(new Properties().stacksTo(1).durability(250).tab(Totemic.creativeTab)).setRegistryName("totem_whittling_knife"));
 
         for(Block block: ModBlocks.getBlocksWithItemBlock())
             event.getRegistry().register(makeItemBlock(block));
@@ -33,9 +33,9 @@ public final class ModItems {
     private static Item makeItemBlock(Block block) {
         //TODO: Possibly there is a better solution
         if(block instanceof TotemPoleBlock) {
-            return new TotemPoleItem((TotemPoleBlock)block, new Properties().tab(Totemic.itemGroup)).setRegistryName(block.getRegistryName());
+            return new TotemPoleItem((TotemPoleBlock)block, new Properties().tab(Totemic.creativeTab)).setRegistryName(block.getRegistryName());
         }
         else
-            return new BlockItem(block, new Properties().tab(Totemic.itemGroup)).setRegistryName(block.getRegistryName());
+            return new BlockItem(block, new Properties().tab(Totemic.creativeTab)).setRegistryName(block.getRegistryName());
     }
 }

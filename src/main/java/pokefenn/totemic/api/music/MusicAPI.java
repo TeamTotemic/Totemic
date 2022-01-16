@@ -1,13 +1,11 @@
 package pokefenn.totemic.api.music;
 
-import java.util.Optional;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 
 /**
  * Provides access to music-related functionality which is commonly used by music instrument blocks and items. Use {@code TotemicAPI.get().music()} to get an
@@ -31,7 +29,7 @@ public interface MusicAPI {
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
      */
-    boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr);
+    boolean playMusic(Level world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr);
 
     /**
      * Plays music from an instrument from the entity's position to all nearby music acceptors (prioritizing higher priority acceptors, and evenly splitting
@@ -59,7 +57,7 @@ public interface MusicAPI {
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
      */
-    boolean playMusic(World world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr);
+    boolean playMusic(Level world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr);
 
     /**
      * <p>
@@ -74,7 +72,7 @@ public interface MusicAPI {
      * @param amount the amount of music to play. The default value is given by {@link MusicInstrument#getBaseOutput}.
      * @return {@code true} if this call had any effect (i.e. a music acceptor was found within range and {@link MusicAcceptor#addMusic} returned {@code true}).
      */
-    boolean playMusic(World world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount);
+    boolean playMusic(Level world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount);
 
     /**
      * Attempts to add the given instrument as selector to the closest nearby Totem Base. Usually this is triggered when playing the instrument while sneaking.
@@ -87,7 +85,7 @@ public interface MusicAPI {
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
      */
-    boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr);
+    boolean playSelector(Level world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr);
 
     /**
      * Attempts to add the given instrument as selector to the closest nearby Totem Base. Usually this is triggered when playing the instrument while sneaking.
@@ -113,7 +111,7 @@ public interface MusicAPI {
      * @param instr  the instrument.
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
      */
-    boolean playSelector(World world, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr);
+    boolean playSelector(Level world, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr);
 
     /**
      * Attempts to add the given instrument as selector to the closest nearby Totem Base. Usually this is triggered when playing the instrument while sneaking.
@@ -125,14 +123,5 @@ public interface MusicAPI {
      * @param range  the range. The default value is given by {@link #DEFAULT_RANGE}.
      * @return {@code true} if this call had any effect (i.e. the closest music acceptor within range is a Totem Base which was not already doing a ceremony).
      */
-    boolean playSelector(World world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range);
-
-    /**
-     * Finds the closest music acceptor within range.
-     *
-     * @return an {@link Optional} containing the closest MusicAcceptor within range, or an empty {@link Optional} if there is none.
-     * @deprecated By the new mechanics, music is no longer just added to the nearest acceptor but evenly split between acceptors of equal priority.
-     */
-    @Deprecated
-    Optional<MusicAcceptor> getClosestAcceptor(World world, double x, double y, double z, int range);
+    boolean playSelector(Level world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range);
 }

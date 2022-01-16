@@ -1,9 +1,9 @@
 package pokefenn.totemic.init;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ObjectHolder;
@@ -51,29 +51,29 @@ public final class ModContent {
     public static void totemEffects(RegisterTotemEffectsEvent event) {
         event.registerAll(
                 new EmptyTotemEffect().setRegistryName("none"),
-                new PotionTotemEffect(Effects.SLOW_FALLING).setRegistryName("bat"),
-                new PotionTotemEffect(Effects.FIRE_RESISTANCE).setRegistryName("blaze"),
-                new PotionTotemEffect(Effects.DIG_SPEED).setRegistryName("buffalo"),
-                new PotionTotemEffect(Effects.DAMAGE_RESISTANCE) {
+                new PotionTotemEffect(MobEffects.SLOW_FALLING).setRegistryName("bat"),
+                new PotionTotemEffect(MobEffects.FIRE_RESISTANCE).setRegistryName("blaze"),
+                new PotionTotemEffect(MobEffects.DIG_SPEED).setRegistryName("buffalo"),
+                new PotionTotemEffect(MobEffects.DAMAGE_RESISTANCE) {
                     @Override
-                    protected void applyTo(boolean isMedicineBag, PlayerEntity player, int time, int amplifier) {
+                    protected void applyTo(boolean isMedicineBag, Player player, int time, int amplifier) {
                         super.applyTo(isMedicineBag, player, time, amplifier);
-                        player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, time, 0, true, false));
+                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, time, 0, true, false));
                     }
                 }.setRegistryName("cow"),
-                new PotionTotemEffect(Effects.NIGHT_VISION) {
+                new PotionTotemEffect(MobEffects.NIGHT_VISION) {
                     @Override
                     protected int getLingeringTime() {
                         return 210;
                     }
                 }.setRegistryName("enderman"),
-                new PotionTotemEffect(Effects.MOVEMENT_SPEED).setRegistryName("horse"),
+                new PotionTotemEffect(MobEffects.MOVEMENT_SPEED).setRegistryName("horse"),
                 new OcelotTotemEffect().setRegistryName("ocelot"),
-                new PotionTotemEffect(Effects.LUCK).setRegistryName("pig"),
-                new PotionTotemEffect(Effects.JUMP).setRegistryName("rabbit"),
+                new PotionTotemEffect(MobEffects.LUCK).setRegistryName("pig"),
+                new PotionTotemEffect(MobEffects.JUMP).setRegistryName("rabbit"),
                 new PotionTotemEffect(ModEffects.spider).setRegistryName("spider"),
-                new PotionTotemEffect(Effects.WATER_BREATHING).setRegistryName("squid"),
-                new PotionTotemEffect(Effects.DAMAGE_BOOST).setRegistryName("wolf"));
+                new PotionTotemEffect(MobEffects.WATER_BREATHING).setRegistryName("squid"),
+                new PotionTotemEffect(MobEffects.DAMAGE_BOOST).setRegistryName("wolf"));
     }
 
     @SubscribeEvent
