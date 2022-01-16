@@ -100,7 +100,6 @@ public class TileTotemBase extends BlockEntity {
         if(state != this.state) {
             this.state = state;
             setChanged();
-            musicHandler.invalidate();
         }
     }
 
