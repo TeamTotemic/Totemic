@@ -7,8 +7,15 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
-public class TileUtil {
+public final class TileUtil {
+    @SuppressWarnings("unchecked")
+    public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> type1, BlockEntityType<E> type2, BlockEntityTicker<? super E> ticker) {
+        return type2 == type1 ? (BlockEntityTicker<A>)ticker : null;
+    }
+
     public static <T extends BlockEntity> Stream<T> getTileEntitiesInRange(Class<? extends T> type, Level world, BlockPos pos, int range) {
         return getTileEntitiesIn(type, world, pos.offset(-range, -range, -range), pos.offset(range, range, range));
     }

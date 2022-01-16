@@ -6,18 +6,23 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.init.ModTileEntities;
 import pokefenn.totemic.tile.totem.TileTotemBase;
+import pokefenn.totemic.util.TileUtil;
 
 public class TotemBaseBlock extends HorizontalDirectionalBlock implements EntityBlock {
     protected static final VoxelShape SHAPE = Shapes.or(Shapes.box(0.0, 0.0, 0.0,  1.0, 0.28125, 1.0), Shapes.box(0.125, 0.28125, 0.125,  0.875, 1.0, 0.875));
@@ -53,6 +58,12 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new TileTotemBase(pos, state);
+    }
+
+    @Override
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return TileUtil.createTickerHelper(type, ModTileEntities.totem_base, TileTotemBase::tick);
     }
 
     @Override

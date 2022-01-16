@@ -12,6 +12,7 @@ import com.google.common.math.IntMath;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,14 +40,13 @@ public class TileTotemBase extends BlockEntity {
         super(ModTileEntities.totem_base, pos, state);
     }
 
-    @Override
-    public void tick() {
-        if(firstTick) {
-            calculateTotemEffects();
-            firstTick = false;
+    public static void tick(Level level, BlockPos pos, BlockState blockState, TileTotemBase tile) {
+        if(tile.firstTick) {
+            tile.calculateTotemEffects();
+            tile.firstTick = false;
         }
 
-        state.tick();
+        tile.state.tick();
     }
 
     private void calculateTotemEffects() {

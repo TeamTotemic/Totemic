@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collector.Characteristics;
 
-public class MiscUtil {
+public final class MiscUtil {
     public static <T> Collector<T, ?, List<T>> collectMaxElements(Comparator<? super T> comp) {
         return Collector.of(
                 ArrayList::new,
