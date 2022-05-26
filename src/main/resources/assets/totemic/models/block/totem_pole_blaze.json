@@ -1,5 +1,6 @@
 {
     "__createdwith": "opl's Model Creator",
+    "parent": "block/block",
     "textures": {
         "wood": "totemic:block/stripped_cedar_log",
         "top": "totemic:block/stripped_cedar_log_top",
