@@ -44,7 +44,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, FACING);
+        builder.add(FACING, WATERLOGGED);
     }
 
     @Override
