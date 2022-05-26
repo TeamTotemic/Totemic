@@ -1,0 +1,9 @@
+{
+  "parent": "totemic:block/totem_pole_horse",
+  "textures": {
+    "wood": "minecraft:block/stripped_acacia_log",
+    "bark": "minecraft:block/acacia_log",
+    "top": "minecraft:block/stripped_acacia_log_top",
+    "particle": "minecraft:block/stripped_acacia_log"
+  }
+}

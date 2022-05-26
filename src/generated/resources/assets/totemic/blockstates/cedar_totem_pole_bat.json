@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "totemic:block/cedar_totem_pole_bat"
+    },
+    "facing=south": {
+      "model": "totemic:block/cedar_totem_pole_bat",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "totemic:block/cedar_totem_pole_bat",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "totemic:block/cedar_totem_pole_bat",
+      "y": 90
+    }
+  }
+}

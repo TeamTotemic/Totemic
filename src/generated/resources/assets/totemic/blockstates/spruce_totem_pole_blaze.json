@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "totemic:block/spruce_totem_pole_blaze"
+    },
+    "facing=south": {
+      "model": "totemic:block/spruce_totem_pole_blaze",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "totemic:block/spruce_totem_pole_blaze",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "totemic:block/spruce_totem_pole_blaze",
+      "y": 90
+    }
+  }
+}

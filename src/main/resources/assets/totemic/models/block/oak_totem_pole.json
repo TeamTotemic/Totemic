@@ -1,9 +1,0 @@
-{
-    "parent": "totemic:block/totem_pole",
-    "textures": {
-        "wood": "block/stripped_oak_log",
-        "bark": "block/oak_log",
-        "top": "block/oak_log_top",
-        "particle": "block/stripped_oak_log"
-    }
-}

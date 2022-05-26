@@ -1,0 +1,9 @@
+{
+  "parent": "totemic:block/totem_pole_pig",
+  "textures": {
+    "wood": "minecraft:block/stripped_dark_oak_log",
+    "bark": "minecraft:block/dark_oak_log",
+    "top": "minecraft:block/stripped_dark_oak_log_top",
+    "particle": "minecraft:block/stripped_dark_oak_log"
+  }
+}

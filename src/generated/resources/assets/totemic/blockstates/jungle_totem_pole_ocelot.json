@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "totemic:block/jungle_totem_pole_ocelot"
+    },
+    "facing=south": {
+      "model": "totemic:block/jungle_totem_pole_ocelot",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "totemic:block/jungle_totem_pole_ocelot",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "totemic:block/jungle_totem_pole_ocelot",
+      "y": 90
+    }
+  }
+}
