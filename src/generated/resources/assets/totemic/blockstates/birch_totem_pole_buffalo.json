@@ -1,19 +1,19 @@
 {
   "variants": {
     "facing=north": {
-      "model": "totemic:block/birch_totem_pole_buffalo",
-      "y": 90
+      "model": "totemic:block/birch_totem_pole_buffalo"
     },
     "facing=south": {
       "model": "totemic:block/birch_totem_pole_buffalo",
-      "y": 270
+      "y": 180
     },
     "facing=west": {
-      "model": "totemic:block/birch_totem_pole_buffalo"
+      "model": "totemic:block/birch_totem_pole_buffalo",
+      "y": 270
     },
     "facing=east": {
       "model": "totemic:block/birch_totem_pole_buffalo",
-      "y": 180
+      "y": 90
     }
   }
 }
