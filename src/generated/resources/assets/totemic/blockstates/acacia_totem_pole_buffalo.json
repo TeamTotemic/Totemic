@@ -1,19 +1,19 @@
 {
   "variants": {
     "facing=north": {
-      "model": "totemic:block/acacia_totem_pole_buffalo"
+      "model": "totemic:block/acacia_totem_pole_buffalo",
+      "y": 90
     },
     "facing=south": {
       "model": "totemic:block/acacia_totem_pole_buffalo",
-      "y": 180
+      "y": 270
     },
     "facing=west": {
-      "model": "totemic:block/acacia_totem_pole_buffalo",
-      "y": 270
+      "model": "totemic:block/acacia_totem_pole_buffalo"
     },
     "facing=east": {
       "model": "totemic:block/acacia_totem_pole_buffalo",
-      "y": 90
+      "y": 180
     }
   }
 }
