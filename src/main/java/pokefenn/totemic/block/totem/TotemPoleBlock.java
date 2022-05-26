@@ -75,6 +75,11 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
     }
 
     @Override
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
+        return Shapes.empty();
+    }
+
+    @Override
     public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
         return !state.getValue(WATERLOGGED);
     }
