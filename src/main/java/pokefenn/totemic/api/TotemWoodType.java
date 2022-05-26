@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MaterialColor;
 
@@ -28,20 +27,19 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
 
     @Nullable
     public static TotemWoodType fromLog(BlockState state) {
-        Block block = state.getBlock();
-        if(BlockTags.OAK_LOGS.contains(block))
+        if(state.is(BlockTags.OAK_LOGS))
             return OAK;
-        else if(BlockTags.SPRUCE_LOGS.contains(block))
+        else if(state.is(BlockTags.SPRUCE_LOGS))
             return SPRUCE;
-        else if(BlockTags.BIRCH_LOGS.contains(block))
+        else if(state.is(BlockTags.BIRCH_LOGS))
             return BIRCH;
-        else if(BlockTags.JUNGLE_LOGS.contains(block))
+        else if(state.is(BlockTags.JUNGLE_LOGS))
             return JUNGLE;
-        else if(BlockTags.ACACIA_LOGS.contains(block))
+        else if(state.is(BlockTags.ACACIA_LOGS))
             return ACACIA;
-        else if(BlockTags.DARK_OAK_LOGS.contains(block))
+        else if(state.is(BlockTags.DARK_OAK_LOGS))
             return DARK_OAK;
-        /*else if(ModBlockTags.CEDAR_LOGS.contains(block)) //TODO
+        /*else if(state.is(ModBlockTags.CEDAR_LOGS)) //TODO
             return CEDAR;*/
         else
             return null;

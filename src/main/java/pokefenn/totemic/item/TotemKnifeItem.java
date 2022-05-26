@@ -67,7 +67,7 @@ public class TotemKnifeItem extends Item {
             TotemWoodType woodType = TotemWoodType.fromLog(state);
             if(woodType == null) {
                 //Fall back to oak if it is an unrecognized log type
-                if(BlockTags.LOGS_THAT_BURN.contains(state.getBlock()))
+                if(state.is(BlockTags.LOGS_THAT_BURN))
                     woodType = TotemWoodType.OAK;
                 else
                     return InteractionResult.FAIL;

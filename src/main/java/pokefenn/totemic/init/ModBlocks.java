@@ -21,9 +21,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ObjectHolder;
-import net.minecraftforge.registries.RegistryManager;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.RegisterTotemEffectsEvent;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
@@ -101,7 +101,7 @@ public final class ModBlocks {
 
     // Checks if all Totem Effects have been registered with the appropriate event and then frees up the internal set
     public static void checkRegisteredTotemEffects() {
-        for(TotemEffect effect: RegistryManager.ACTIVE.getRegistry(TotemEffect.class)) {
+        for(TotemEffect effect: TotemicRegistries.totemEffects()) {
             if(!totemEffectsToRegister.contains(effect)) {
                 throw new IllegalStateException(
                         "The Totem Effect " + effect.getRegistryName() + " has not been registered with Totemic's RegisterTotemEffectsEvent");

@@ -30,7 +30,7 @@ public final class TileUtil {
                 .map(tile -> (T) tile);
     }
 
-    public static Comparator<BlockEntity> compareDistanceTo(double x, double y, double z, boolean useCenter) {
-        return Comparator.comparing((BlockEntity t) -> t.getBlockPos().distSqr(x, y, z, useCenter));
+    public static Comparator<BlockEntity> compareCenterDistanceTo(double x, double y, double z) {
+        return Comparator.comparing((BlockEntity t) -> t.getBlockPos().distToCenterSqr(x, y, z));
     }
 }

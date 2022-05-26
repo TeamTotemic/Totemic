@@ -75,7 +75,7 @@ public enum MusicApiImpl implements MusicAPI {
     @Override
     public boolean playSelector(Level world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
         Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(TileTotemBase.class, world, new BlockPos(x, y, z), range)
-                .min(TileUtil.compareDistanceTo(x, y, z, true))
+                .min(TileUtil.compareCenterDistanceTo(x, y, z))
                 .map(TileTotemBase::getState)
                 .filter(TotemState::canSelect);
         totemState.ifPresent(t -> t.addSelector(entity, instr));

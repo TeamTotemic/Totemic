@@ -1,10 +1,12 @@
 package pokefenn.totemic.init;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
+import pokefenn.totemic.Totemic;
 
-public final class ModBlockTags {
-    public static final Tag.Named<Block> TOTEM_BASES = BlockTags.bind("totemic:totem_bases");
-    public static final Tag.Named<Block> TOTEM_POLES = BlockTags.bind("totemic:totem_poles");
+public final class ModBlockTags { //TODO: Replace by dynamically created tags if possible
+    public static final TagKey<Block> TOTEM_BASES = BlockTags.create(new ResourceLocation(Totemic.MOD_ID, "totem_bases"));
+    public static final TagKey<Block> TOTEM_POLES = BlockTags.create(new ResourceLocation(Totemic.MOD_ID, "totem_poles"));
 }
