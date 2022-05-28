@@ -11,6 +11,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
@@ -23,9 +24,14 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         //TODO: It would be nice if those models and block states could be loaded dynamically rather than generated
+        ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(Totemic.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
         for(TotemBaseBlock block: ModBlocks.getTotemBases().values()) {
             ResourceLocation blockName = block.getRegistryName();
-            ModelFile blockModel = models().getExistingFile(new ResourceLocation(blockName.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + blockName.getPath()));
+
+            //Block model
+            BlockModelBuilder blockModel = models().getBuilder(blockName.toString()).parent(totemBaseModel);
+            setTextures(blockModel, block.woodType);
+
             //Block state
             waterloggedHorizontalBlock(block, blockModel);
             //Item model
@@ -33,19 +39,26 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         }
         for(TotemPoleBlock block: ModBlocks.getTotemPoles().values()) {
             ResourceLocation blockName = block.getRegistryName();
-            ModelFile parentModel = models().getExistingFile(new ResourceLocation(blockName.getNamespace(), ModelProvider.BLOCK_FOLDER + "/totem_pole_" + block.effect.getRegistryName().getPath()));
-            BlockModelBuilder blockModel = models().getBuilder(blockName.getNamespace() + ":" + ModelProvider.BLOCK_FOLDER + "/" + blockName.getPath())
-                    .parent(parentModel)
-                    .texture("wood", block.woodType.getWoodTexture())
-                    .texture("bark", block.woodType.getBarkTexture())
-                    .texture("top", block.woodType.getTopTexture())
-                    .texture("particle", block.woodType.getParticleTexture());
+            ResourceLocation effectName = block.effect.getRegistryName();
+            ModelFile parentModel = models().getExistingFile(new ResourceLocation(effectName.getNamespace(), ModelProvider.BLOCK_FOLDER + "/totem_pole_" + effectName.getPath()));
+
+            //Block model
+            BlockModelBuilder blockModel = models().getBuilder(blockName.toString()).parent(parentModel);
+            setTextures(blockModel, block.woodType);
 
             //Block state
             waterloggedHorizontalBlock(block, blockModel);
             //Item model
             itemModels().getBuilder(block.getRegistryName().toString()).parent(blockModel);
         }
+    }
+
+    private BlockModelBuilder setTextures(BlockModelBuilder model, TotemWoodType woodType) {
+        return model
+                .texture("wood", woodType.getWoodTexture())
+                .texture("bark", woodType.getBarkTexture())
+                .texture("top", woodType.getTopTexture())
+                .texture("particle", woodType.getParticleTexture());
     }
 
     // The same as BlockStateProvider#horizontalBlock, but ignoring the Waterlogged property
