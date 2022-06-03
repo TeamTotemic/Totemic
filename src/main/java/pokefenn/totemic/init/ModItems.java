@@ -8,6 +8,8 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ObjectHolder;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.item.TotemKnifeItem;
 import pokefenn.totemic.item.TotemPoleItem;
@@ -32,8 +34,12 @@ public final class ModItems {
 
     private static Item makeItemBlock(Block block) {
         //TODO: Possibly there is a better solution
-        if(block instanceof TotemPoleBlock) {
-            return new TotemPoleItem((TotemPoleBlock)block, new Properties().tab(Totemic.creativeTab)).setRegistryName(block.getRegistryName());
+        if(block instanceof TotemPoleBlock pole) {
+            //Make only the oak variants of the Totem Poles and Bases appear in the creative tab
+            return new TotemPoleItem(pole, new Properties().tab(pole.woodType == TotemWoodType.OAK ? Totemic.creativeTab : null)).setRegistryName(block.getRegistryName());
+        }
+        else if(block instanceof TotemBaseBlock base) {
+            return new BlockItem(base, new Properties().tab(base.woodType == TotemWoodType.OAK ? Totemic.creativeTab : null)).setRegistryName(block.getRegistryName());
         }
         else
             return new BlockItem(block, new Properties().tab(Totemic.creativeTab)).setRegistryName(block.getRegistryName());
