@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.Streams;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -11,7 +13,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -28,6 +33,7 @@ import pokefenn.totemic.init.ModBlocks;
 
 public class TotemKnifeItem extends Item {
     public static final String KNIFE_TOTEM_KEY = "effect";
+    public static final String TOTEM_BASE_PLACEHOLDER_NAME = "";
 
     public TotemKnifeItem(Properties props) {
         super(props);
@@ -54,12 +60,43 @@ public class TotemKnifeItem extends Item {
             return null;
     }
 
+    private static List<String> totemList; //Lazily created
+
+    public static ItemStack changeIndex(ItemStack itemStack, boolean direction) {
+        if(totemList == null) {
+            totemList = Streams.stream(TotemicRegistries.totemEffects())
+                    //.filter(eff -> eff != ModContent.none)
+                    .map(eff -> eff.getRegistryName().toString())
+                    .toList();
+        }
+
+        ItemStack stack = itemStack.copy();
+        String key = stack.getOrCreateTag().getString(KNIFE_TOTEM_KEY);
+        int index;
+        if(key.equals(TOTEM_BASE_PLACEHOLDER_NAME))
+            index = -1;
+        else
+            index = totemList.indexOf(key);
+
+        if(index == -1) {
+            index = direction ? 0 : totemList.size() - 1;
+        }
+        else {
+            index += direction ? 1 : -1;
+            if(index >= totemList.size())
+                index = -1;
+        }
+
+        String name = (index != -1) ? totemList.get(index) : TOTEM_BASE_PLACEHOLDER_NAME;
+        stack.getTag().putString(KNIFE_TOTEM_KEY, name);
+        return stack;
+    }
+
     @SuppressWarnings("resource")
     @Override
     public InteractionResult useOn(UseOnContext c) {
-        if(c.getPlayer().isCrouching()) {
-            //TODO
-            return InteractionResult.FAIL;
+        if(c.getPlayer().isShiftKeyDown()) {
+            return InteractionResult.PASS;
         }
         else {
             BlockState state = c.getLevel().getBlockState(c.getClickedPos());
@@ -89,6 +126,15 @@ public class TotemKnifeItem extends Item {
 
             return InteractionResult.sidedSuccess(c.getLevel().isClientSide);
         }
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if(player.isShiftKeyDown())
+            return InteractionResultHolder.success(changeIndex(stack, true));
+        else
+            return InteractionResultHolder.fail(stack);
     }
 
     @Override
