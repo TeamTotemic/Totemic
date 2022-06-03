@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -17,7 +16,6 @@ import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
-import pokefenn.totemic.client.ModelBakeHandler;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.init.ModBlocks;
@@ -69,8 +67,7 @@ public final class Totemic {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
-        // ModelLoaderRegistry.registerLoader(ModelTotemPoleLoader.INSTANCE);
-        MinecraftForge.EVENT_BUS.register(ModelBakeHandler.class);
+
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
