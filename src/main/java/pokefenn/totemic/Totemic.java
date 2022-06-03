@@ -24,14 +24,11 @@ import pokefenn.totemic.init.ModEffects;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModTileEntities;
 
-@Mod(Totemic.MOD_ID)
+@Mod(TotemicAPI.MOD_ID)
 public final class Totemic {
-    public static final String MOD_ID = "totemic";
-    public static final String MOD_NAME = "Totemic";
-
     public static final Logger logger = LogManager.getLogger(Totemic.class);
 
-    public static final CreativeModeTab creativeTab = new CreativeModeTab(Totemic.MOD_ID) {
+    public static final CreativeModeTab creativeTab = new CreativeModeTab(TotemicAPI.MOD_ID) {
         @Override
         public ItemStack makeIcon() {
             return new ItemStack(ModItems.flute);

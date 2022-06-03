@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.NewRegistryEvent;
 import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.registries.RegistryBuilder;
-import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.RegisterTotemEffectsEvent;
@@ -17,7 +17,7 @@ import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.totem.EmptyTotemEffect;
 import pokefenn.totemic.totem.OcelotTotemEffect;
 
-@ObjectHolder(Totemic.MOD_ID)
+@ObjectHolder(TotemicAPI.MOD_ID)
 public final class ModContent {
     public static final MusicInstrument flute = null;
     /*
@@ -81,8 +81,13 @@ public final class ModContent {
     public static void createRegistries(NewRegistryEvent event) {
         // RegistryEvents are fired in alphabetic order.
         // Instruments have to be registered before Ceremonies.
-        event.create(new RegistryBuilder<MusicInstrument>().setName(new ResourceLocation(Totemic.MOD_ID, "a_music_instruments")).setType(MusicInstrument.class).setMaxID(Byte.MAX_VALUE));
-        event.create(new RegistryBuilder<TotemEffect>().setName(new ResourceLocation(Totemic.MOD_ID, "b_totem_effects")).setType(TotemEffect.class).setMaxID(Byte.MAX_VALUE));
-        // event.create(new RegistryBuilder<Ceremony>().setName(new ResourceLocation(Totemic.MOD_ID, "c_ceremonies")).setType(Ceremony.class).setMaxID(Byte.MAX_VALUE));
+        event.create(new RegistryBuilder<MusicInstrument>()
+                .setName(new ResourceLocation(TotemicAPI.MOD_ID, "a_music_instruments"))
+                .setType(MusicInstrument.class)
+                .setMaxID(Byte.MAX_VALUE));
+        event.create(new RegistryBuilder<TotemEffect>()
+                .setName(new ResourceLocation(TotemicAPI.MOD_ID, "b_totem_effects"))
+                .setType(TotemEffect.class)
+                .setMaxID(Byte.MAX_VALUE));
     }
 }

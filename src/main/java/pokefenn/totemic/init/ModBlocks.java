@@ -21,15 +21,15 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ObjectHolder;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.RegisterTotemEffectsEvent;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 
-@ObjectHolder(Totemic.MOD_ID)
+@ObjectHolder(TotemicAPI.MOD_ID)
 public final class ModBlocks {
 
     // Totem Effects registered with the RegisterTotemEffectsEvent are collected here. Later, the Totem Effects
@@ -53,7 +53,7 @@ public final class ModBlocks {
             Properties blockProperties = Properties.of(Material.WOOD, woodType.getWoodColor()).strength(2, 5).sound(SoundType.WOOD);
 
             TotemBaseBlock totemBase = new TotemBaseBlock(woodType, blockProperties);
-            totemBase.setRegistryName(Totemic.MOD_ID, woodType.getName() + "_totem_base");
+            totemBase.setRegistryName(TotemicAPI.MOD_ID, woodType.getName() + "_totem_base");
 
             event.getRegistry().register(totemBase);
             totemBases.put(woodType, totemBase);
@@ -61,7 +61,7 @@ public final class ModBlocks {
 
             for(TotemEffect totemEffect: totemEffectsToRegister) {
                 TotemPoleBlock totemPole = new TotemPoleBlock(woodType, totemEffect, blockProperties);
-                totemPole.setRegistryName(Totemic.MOD_ID, woodType.getName() + "_totem_pole_" + totemEffect.getRegistryName().getPath());
+                totemPole.setRegistryName(TotemicAPI.MOD_ID, woodType.getName() + "_totem_pole_" + totemEffect.getRegistryName().getPath());
 
                 event.getRegistry().register(totemPole);
                 totemPoles.put(woodType, totemEffect, totemPole);

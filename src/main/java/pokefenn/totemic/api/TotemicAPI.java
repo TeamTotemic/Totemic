@@ -7,6 +7,11 @@ import pokefenn.totemic.api.totem.TotemEffectAPI;
  * This class provides access to the registries and utility functions that are part of the Totemic API.
  */
 public abstract class TotemicAPI {
+    /**
+     * Totemic's Mod ID
+     */
+    public static final String MOD_ID = "totemic";
+
     private static TotemicAPI instance;
 
     /**

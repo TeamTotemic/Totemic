@@ -10,21 +10,21 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
 
 public class TotemicBlockStateProvider extends BlockStateProvider {
     public TotemicBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, Totemic.MOD_ID, exFileHelper);
+        super(gen, TotemicAPI.MOD_ID, exFileHelper);
     }
 
     @Override
     protected void registerStatesAndModels() {
         //TODO: It would be nice if those models and block states could be loaded dynamically rather than generated
-        ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(Totemic.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
+        ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(TotemicAPI.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
         for(TotemBaseBlock block: ModBlocks.getTotemBases().values()) {
             ResourceLocation blockName = block.getRegistryName();
 

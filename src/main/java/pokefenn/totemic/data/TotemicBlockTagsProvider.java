@@ -3,13 +3,13 @@ package pokefenn.totemic.data;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModBlockTags;
 import pokefenn.totemic.init.ModBlocks;
 
 public final class TotemicBlockTagsProvider extends BlockTagsProvider {
     public TotemicBlockTagsProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, Totemic.MOD_ID, existingFileHelper);
+        super(generator, TotemicAPI.MOD_ID, existingFileHelper);
     }
 
     @Override
