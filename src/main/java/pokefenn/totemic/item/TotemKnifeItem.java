@@ -30,10 +30,10 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModContent;
 
 public class TotemKnifeItem extends Item {
     public static final String KNIFE_TOTEM_KEY = "effect";
-    public static final String TOTEM_BASE_PLACEHOLDER_NAME = "";
 
     public TotemKnifeItem(Properties props) {
         super(props);
@@ -65,18 +65,14 @@ public class TotemKnifeItem extends Item {
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction) {
         if(totemList == null) {
             totemList = Streams.stream(TotemicRegistries.totemEffects())
-                    //.filter(eff -> eff != ModContent.none)
+                    .filter(eff -> eff != ModContent.none)
                     .map(eff -> eff.getRegistryName().toString())
                     .toList();
         }
 
         ItemStack stack = itemStack.copy();
         String key = stack.getOrCreateTag().getString(KNIFE_TOTEM_KEY);
-        int index;
-        if(key.equals(TOTEM_BASE_PLACEHOLDER_NAME))
-            index = -1;
-        else
-            index = totemList.indexOf(key);
+        int index = key.isEmpty() ? -1 : totemList.indexOf(key);
 
         if(index == -1) {
             index = direction ? 0 : totemList.size() - 1;
@@ -87,7 +83,7 @@ public class TotemKnifeItem extends Item {
                 index = -1;
         }
 
-        String name = (index != -1) ? totemList.get(index) : TOTEM_BASE_PLACEHOLDER_NAME;
+        String name = (index == -1) ? "" : totemList.get(index);
         stack.getTag().putString(KNIFE_TOTEM_KEY, name);
         return stack;
     }

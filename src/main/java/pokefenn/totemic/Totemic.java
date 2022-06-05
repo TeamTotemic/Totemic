@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -18,11 +19,13 @@ import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
+import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModEffects;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModTileEntities;
+import pokefenn.totemic.network.NetworkHandler;
 
 @Mod(TotemicAPI.MOD_ID)
 public final class Totemic {
@@ -38,6 +41,7 @@ public final class Totemic {
     public Totemic() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        //Mod loading events
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::clientSetup);
         modBus.addListener(this::registerCapabilities);
@@ -61,6 +65,11 @@ public final class Totemic {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         ModBlocks.checkRegisteredTotemEffects();
+        NetworkHandler.init();
+
+        //Gameplay events
+        IEventBus eventBus = MinecraftForge.EVENT_BUS;
+        eventBus.register(PlayerInteract.class);
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
