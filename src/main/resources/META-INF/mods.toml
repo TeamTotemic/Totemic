@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[36.2,)"
+loaderVersion="[40,)"
 license="MIT"
 issueTrackerURL="https://github.com/TeamTotemic/Totemic/issues"
 
@@ -9,7 +9,7 @@ version="${file.jarVersion}"
 displayName="Totemic"
 updateJSONURL="https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json"
 displayURL="https://minecraft.curseforge.com/projects/totemic"
-logoFile="assets/totemic/textures/logo/totemic_logo.png"
+logoFile="totemic_logo.png"
 credits="WayofTime, Joshie, Poppycocks, Dylan4Ever, Vazkii, Kerri Lake, Nefilto"
 authors="Pokefenn, ljfa, Sunconure11"
 description='''
@@ -19,13 +19,13 @@ A magic mod about Totem Poles, nature and the power of music.
 [[dependencies.totemic]]
     modId="forge"
     mandatory=true
-    versionRange="[36.2.0,)"
+    versionRange="[40.1.0,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.totemic]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,)"
+    versionRange="[1.18.2,)"
     ordering="NONE"
     side="BOTH"
