@@ -16,7 +16,7 @@ public class OcelotTotemEffect extends TotemEffect {
         super(false, 10);
     }
 
-    private static final Field timeSinceIgnited = ObfuscationReflectionHelper.findField(Creeper.class, "swell");
+    private static final Field timeSinceIgnited = ObfuscationReflectionHelper.findField(Creeper.class, "f_32270_"); //The Creeper#swell field
 
     @Override
     public void effect(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
