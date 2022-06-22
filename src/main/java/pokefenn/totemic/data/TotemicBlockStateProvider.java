@@ -23,10 +23,23 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        //Blocks
         logBlock(ModBlocks.cedar_log);
         logBlock(ModBlocks.stripped_cedar_log);
         axisBlock(ModBlocks.cedar_wood, blockTexture(ModBlocks.cedar_log), blockTexture(ModBlocks.cedar_log));
 
+        //Item Blocks
+        existingBlockItem(ModBlocks.cedar_log);
+        existingBlockItem(ModBlocks.stripped_cedar_log);
+        existingBlockItem(ModBlocks.cedar_wood);
+
+        //Items
+        // TODO: Generate the generated/builtin item models here as well
+
+        registerTotemModels();
+    }
+
+    private void registerTotemModels() {
         //TODO: It would be nice if those models and block states could be loaded dynamically rather than generated
         ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(TotemicAPI.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
         for(TotemBaseBlock block: ModBlocks.getTotemBases().values()) {
@@ -39,7 +52,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             //Block state
             waterloggedHorizontalBlock(block, blockModel);
             //Item model
-            itemModels().getBuilder(block.getRegistryName().toString()).parent(blockModel);
+            simpleBlockItem(block, blockModel);
         }
         for(TotemPoleBlock block: ModBlocks.getTotemPoles().values()) {
             ResourceLocation blockName = block.getRegistryName();
@@ -53,7 +66,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             //Block state
             waterloggedHorizontalBlock(block, blockModel);
             //Item model
-            itemModels().getBuilder(block.getRegistryName().toString()).parent(blockModel);
+            simpleBlockItem(block, blockModel);
         }
     }
 
@@ -73,5 +86,9 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                     .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
                     .build(),
             BlockStateProperties.WATERLOGGED);
+    }
+
+    private void existingBlockItem(Block block) {
+        simpleBlockItem(block, models().getExistingFile(block.getRegistryName()));
     }
 }

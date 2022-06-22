@@ -1,6 +1,10 @@
 {
   "item.totemic.flute": "Flute",
   "item.totemic.infused_flute": "Pan's Flute",
+  
+  "block.totemic.cedar_log": "Red Cedar Log",
+  "block.totemic.stripped_cedar_log": "Stripped Red Cedar Log",
+  "block.totemic.cedar_wood": "Red Cedar Wood",
 
   "block.totemic.totem_base": "Totem Base",
   "block.totemic.oak_totem_base": "Oak Totem Base",
