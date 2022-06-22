@@ -9,6 +9,7 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MaterialColor;
+import pokefenn.totemic.init.ModBlockTags;
 
 public final class TotemWoodType { // TODO: Allow registering new wood types
     public static final TotemWoodType OAK = new TotemWoodType("oak", MaterialColor.WOOD, MaterialColor.PODZOL, "minecraft");
@@ -44,8 +45,8 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
             return ACACIA;
         else if(state.is(BlockTags.DARK_OAK_LOGS))
             return DARK_OAK;
-        /*else if(state.is(ModBlockTags.CEDAR_LOGS)) //TODO
-            return CEDAR;*/
+        else if(state.is(ModBlockTags.CEDAR_LOGS))
+            return CEDAR;
         else
             return null;
     }

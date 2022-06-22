@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "totemic:block/cedar_log",
+    "end": "totemic:block/cedar_log_top"
+  }
+}

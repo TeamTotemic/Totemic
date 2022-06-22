@@ -23,6 +23,10 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        logBlock(ModBlocks.cedar_log);
+        logBlock(ModBlocks.stripped_cedar_log);
+        axisBlock(ModBlocks.cedar_wood, blockTexture(ModBlocks.cedar_log), blockTexture(ModBlocks.cedar_log));
+
         //TODO: It would be nice if those models and block states could be loaded dynamically rather than generated
         ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(TotemicAPI.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
         for(TotemBaseBlock block: ModBlocks.getTotemBases().values()) {
@@ -30,7 +34,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
             //Block model
             BlockModelBuilder blockModel = models().getBuilder(blockName.toString()).parent(totemBaseModel);
-            setTextures(blockModel, block.woodType);
+            setTotemTextures(blockModel, block.woodType);
 
             //Block state
             waterloggedHorizontalBlock(block, blockModel);
@@ -44,7 +48,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
             //Block model
             BlockModelBuilder blockModel = models().getBuilder(blockName.toString()).parent(parentModel);
-            setTextures(blockModel, block.woodType);
+            setTotemTextures(blockModel, block.woodType);
 
             //Block state
             waterloggedHorizontalBlock(block, blockModel);
@@ -53,7 +57,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         }
     }
 
-    private BlockModelBuilder setTextures(BlockModelBuilder model, TotemWoodType woodType) {
+    private BlockModelBuilder setTotemTextures(BlockModelBuilder model, TotemWoodType woodType) {
         return model
                 .texture("wood", woodType.getWoodTexture())
                 .texture("bark", woodType.getBarkTexture())

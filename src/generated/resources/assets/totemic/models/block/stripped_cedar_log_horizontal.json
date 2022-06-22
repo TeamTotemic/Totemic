@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "totemic:block/stripped_cedar_log",
+    "end": "totemic:block/stripped_cedar_log_top"
+  }
+}
