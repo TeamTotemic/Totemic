@@ -25,7 +25,8 @@ public final class ModItems {
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Item> event) {
-        event.getRegistry().registerAll(new FluteItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)).setRegistryName("flute"),
+        event.getRegistry().registerAll(
+                new FluteItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)).setRegistryName("flute"),
                 new InfusedFluteItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)).setRegistryName("infused_flute"),
                 new TotemKnifeItem(new Properties().stacksTo(1).durability(250).tab(Totemic.creativeTab)).setRegistryName("totem_whittling_knife"));
 

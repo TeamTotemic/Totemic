@@ -41,6 +41,8 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public boolean playMusic(Level world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
+        world.getProfiler().push("playMusic");
+        //TODO: Implement caching in case this performs too poorly
         List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(BlockEntity.class, world, new BlockPos(x, y, z), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)
@@ -54,6 +56,7 @@ public enum MusicApiImpl implements MusicAPI {
             if(acc.acceptMusic(instr, amount / list.size(), x, y, z, entity))
                 hadEffect = true;
         }
+        world.getProfiler().pop();
         return hadEffect;
     }
 

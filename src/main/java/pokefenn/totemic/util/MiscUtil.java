@@ -7,6 +7,12 @@ import java.util.stream.Collector;
 import java.util.stream.Collector.Characteristics;
 
 public final class MiscUtil {
+    /**
+     * Returns a Collector collecting the maximal elements from a Stream into a List. Useful if there will generally be
+     * multiple maximal elements and all of them need to be collected.
+     * @param <T> the type of the input elements
+     * @param comp a Comparator for comparing elements
+     */
     public static <T> Collector<T, ?, List<T>> collectMaxElements(Comparator<? super T> comp) {
         return Collector.of(
                 ArrayList::new,

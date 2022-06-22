@@ -107,9 +107,9 @@ public class TileTotemBase extends BlockEntity {
     @Override
     @Nonnull
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if(cap == TotemicCapabilities.MUSIC_ACCEPTOR) {
+        if(cap == TotemicCapabilities.MUSIC_ACCEPTOR)
             return musicHandler.cast();
-        }
-        return super.getCapability(cap, side);
+        else
+            return super.getCapability(cap, side);
     }
 }
