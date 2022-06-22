@@ -19,6 +19,7 @@ import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
+import pokefenn.totemic.data.TotemicLootTableProvider;
 import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
@@ -83,6 +84,7 @@ public final class Totemic {
     private void gatherData(GatherDataEvent event) {
         if(event.includeServer()) {
             event.getGenerator().addProvider(new TotemicBlockTagsProvider(event.getGenerator(), event.getExistingFileHelper()));
+            event.getGenerator().addProvider(new TotemicLootTableProvider(event.getGenerator()));
         }
         if(event.includeClient()) {
             event.getGenerator().addProvider(new TotemicBlockStateProvider(event.getGenerator(), event.getExistingFileHelper()));
