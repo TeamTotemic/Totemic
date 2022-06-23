@@ -71,6 +71,8 @@ public final class Totemic {
         //Gameplay events
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
+
+        ModBlocks.setFireInfo();
     }
 
     private void clientSetup(FMLClientSetupEvent event) {

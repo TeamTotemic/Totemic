@@ -1,5 +1,6 @@
 package pokefenn.totemic.init;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -15,6 +16,8 @@ import com.google.common.collect.Table;
 
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
@@ -23,6 +26,7 @@ import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.ObjectHolder;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
@@ -57,8 +61,8 @@ public final class ModBlocks {
                 withItem(new RotatedPillarBlock(Properties.of(Material.WOOD, state -> {
                     return state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MaterialColor.COLOR_PINK : MaterialColor.COLOR_ORANGE;
                 }).strength(2.0F).sound(SoundType.WOOD)).setRegistryName("cedar_log")),
-                withItem(new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(2.0F).sound(SoundType.WOOD)).setRegistryName("stripped_cedar_log")),
-                withItem(new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)).setRegistryName("cedar_wood")));
+                withItem(new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(2, 3).sound(SoundType.WOOD)).setRegistryName("stripped_cedar_log")),
+                withItem(new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2, 3).sound(SoundType.WOOD)).setRegistryName("cedar_wood")));
 
         internallyRegisterTotemEffects();
 
@@ -66,7 +70,7 @@ public final class ModBlocks {
         var totemPolesBuilder = ImmutableTable.<TotemWoodType, TotemEffect, TotemPoleBlock>builder();
 
         for(TotemWoodType woodType: TotemWoodType.getWoodTypes()) {
-            Properties blockProperties = Properties.of(Material.WOOD, woodType.getWoodColor()).strength(2, 5).sound(SoundType.WOOD);
+            Properties blockProperties = Properties.of(Material.WOOD, woodType.getWoodColor()).strength(2, 3).sound(SoundType.WOOD);
 
             TotemBaseBlock totemBase = new TotemBaseBlock(woodType, blockProperties);
             totemBase.setRegistryName(TotemicAPI.MOD_ID, woodType.getName() + "_totem_base");
@@ -88,11 +92,25 @@ public final class ModBlocks {
         totemBases = totemBasesBuilder.build();
         totemPoles = totemPolesBuilder.build();
     }
+
+    public static void setFireInfo() {
+        try {
+            FireBlock fire = (FireBlock) Blocks.FIRE;
+            Method setFlammableM = ObfuscationReflectionHelper.findMethod(FireBlock.class, "m_53444_", Block.class, int.class, int.class);
+
+            setFlammableM.invoke(fire, cedar_log, 5, 5);
+            setFlammableM.invoke(fire, stripped_cedar_log, 5, 5);
+            setFlammableM.invoke(fire, cedar_wood, 5, 5);
+        }
+        catch(ReflectiveOperationException e) {
+            throw new RuntimeException("Could not set flammability for Totemic blocks", e);
+        }
+    }
+
     public static Block withItem(Block block) {
         blocksWithItemBlock.add(block);
         return block;
     }
-
 
     public static List<Block> getBlocksWithItemBlock() {
         return blocksWithItemBlock;

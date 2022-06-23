@@ -97,7 +97,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-        return 5;
+        return 20;
     }
 
     @Override
