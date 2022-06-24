@@ -50,12 +50,12 @@ public final class Totemic {
 
         ModBlocks.REGISTER.register(modBus);
         ModItems.REGISTER.register(modBus);
+        ModEffects.REGISTER.register(modBus);
+        ModTileEntities.REGISTER.register(modBus);
 
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
-        modBus.register(ModEffects.class);
         modBus.register(ModContent.class);
-        modBus.register(ModTileEntities.class);
 
         // Instance field is private, need reflection
         // ObfuscationReflectionHelper.setPrivateValue(TotemicAPI.class, null, new TotemicApiImpl(), "instance");

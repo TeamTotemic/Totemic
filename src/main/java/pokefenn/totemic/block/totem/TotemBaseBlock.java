@@ -71,7 +71,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return TileUtil.createTickerHelper(type, ModTileEntities.totem_base, TileTotemBase::tick);
+        return TileUtil.createTickerHelper(type, ModTileEntities.totem_base.get(), TileTotemBase::tick);
     }
 
     @Override

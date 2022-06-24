@@ -9,7 +9,6 @@ import net.minecraft.world.phys.Vec3;
 public class SpiderEffect extends MobEffect {
     public SpiderEffect() {
         super(MobEffectCategory.BENEFICIAL, 0x524354);
-        setRegistryName("spider");
     }
 
     @Override

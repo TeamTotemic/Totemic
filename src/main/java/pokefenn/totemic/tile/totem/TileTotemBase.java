@@ -37,7 +37,7 @@ public class TileTotemBase extends BlockEntity {
     private LazyOptional<MusicAcceptor> musicHandler = LazyOptional.of(() -> state);
 
     public TileTotemBase(BlockPos pos, BlockState state) {
-        super(ModTileEntities.totem_base, pos, state);
+        super(ModTileEntities.totem_base.get(), pos, state);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState blockState, TileTotemBase tile) {
