@@ -10,14 +10,15 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 /**
  * Base class for all Totem Effects.
  * <p>
- * Use the {@link RegisterTotemEffectsEvent} to register your Totem Effects. Please do <b>not</b> use Forge's {@link RegistryEvent}!
+ * Use the {@link RegisterTotemEffectsEvent} to register your Totem Effects. Please do <b>not</b> use Forge's {@link DeferredRegister} or {@link RegistryEvent}!
  */
-public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> {
+public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> { //TODO: This class needs a refactoring
     /**
      * Whether this Totem Effect can be used with a Medicine Bag
      */

@@ -1,6 +1,9 @@
 package pokefenn.totemic.api.totem;
 
 import java.util.Objects;
+import java.util.function.Supplier;
+
+import com.google.common.base.Suppliers;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffect;
@@ -10,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
 
@@ -20,9 +24,9 @@ public class PotionTotemEffect extends TotemEffect {
     public static final int DEFAULT_INTERVAL = 80;
 
     /**
-     * The potion effect.
+     * A Supplier for the potion effect.
      */
-    protected final MobEffect potionEffect;
+    protected final Supplier<? extends MobEffect> potionEffectS;
     /**
      * The base range of the effect.
      * In general, the range will be larger, see {@link #getHorizontalRange} and {@link #getVerticalRange}.
@@ -35,24 +39,31 @@ public class PotionTotemEffect extends TotemEffect {
     protected final int baseAmplifier;
 
     /**
-     * Constructs a TotemEffectPotion with default values
-     * @param name a unique name for the Totem Effect
+     * Constructs a TotemEffectPotion with default values.
+     * @param potion a Supplier for the potion effect. This could, for instance, be a {@link RegistryObject}.
+     */
+    public PotionTotemEffect(Supplier<? extends MobEffect> potionEffectS) {
+        this(true, TotemEffectAPI.DEFAULT_BASE_RANGE, potionEffectS, DEFAULT_INTERVAL, 0);
+    }
+
+    /**
+     * Constructs a TotemEffectPotion with default values.
      * @param potion the potion effect
      */
     public PotionTotemEffect(MobEffect potionEffect) {
-        this(true, TotemEffectAPI.DEFAULT_BASE_RANGE, potionEffect, DEFAULT_INTERVAL, 0);
+        this(Suppliers.ofInstance(Objects.requireNonNull(potionEffect)));
     }
 
     /**
      * @param portable whether this Totem Effect can be used with a Medicine Bag.
      * @param baseRange the base range of the effect. See {@link TotemEffectAPI#DEFAULT_BASE_RANGE}.
-     * @param potion the potion effect.
+     * @param potion a Supplier for the potion effect. This could, for instance, be a {@link RegistryObject}.
      * @param interval the time in ticks until the potion effect is renewed.
      * @param baseAmplifier the base amplifier of the potion effect. In general, the amplifier will be larger, see {@link #getAmplifier} and {@link #getAmplifierForMedicineBag}.
      */
-    public PotionTotemEffect(boolean portable, int baseRange, MobEffect potionEffect, int interval, int baseAmplifier) {
+    public PotionTotemEffect(boolean portable, int baseRange, Supplier<? extends MobEffect> potionEffectS, int interval, int baseAmplifier) {
         super(portable, interval);
-        this.potionEffect = Objects.requireNonNull(potionEffect);
+        this.potionEffectS = Objects.requireNonNull(potionEffectS);
         this.baseRange = baseRange;
         this.baseAmplifier = baseAmplifier;
     }
@@ -102,7 +113,7 @@ public class PotionTotemEffect extends TotemEffect {
      * @param isMedicineBag whether the effect comes from a Medicine Bag
      */
     protected void applyTo(boolean isMedicineBag, Player player, int time, int amplifier) {
-        player.addEffect(new MobEffectInstance(potionEffect, time, amplifier, true, false));
+        player.addEffect(new MobEffectInstance(potionEffectS.get(), time, amplifier, true, false));
     }
 
     @Override
