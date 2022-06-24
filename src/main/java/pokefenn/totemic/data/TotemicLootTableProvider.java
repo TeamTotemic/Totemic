@@ -41,14 +41,14 @@ public final class TotemicLootTableProvider extends LootTableProvider {
     private static class TotemicBlockLoot extends BlockLoot {
         @Override
         protected void addTables() {
-            dropSelf(ModBlocks.cedar_log);
-            dropSelf(ModBlocks.stripped_cedar_log);
-            dropSelf(ModBlocks.cedar_wood);
+            dropSelf(ModBlocks.cedar_log.get());
+            dropSelf(ModBlocks.stripped_cedar_log.get());
+            dropSelf(ModBlocks.cedar_wood.get());
         }
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-            return ImmutableList.of(ModBlocks.cedar_log, ModBlocks.stripped_cedar_log, ModBlocks.cedar_wood);
+            return ImmutableList.of(ModBlocks.cedar_log.get(), ModBlocks.stripped_cedar_log.get(), ModBlocks.cedar_wood.get());
         }
     }
 }

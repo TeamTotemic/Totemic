@@ -45,7 +45,7 @@ public final class ModContent {
 
     @SubscribeEvent
     public static void instruments(RegistryEvent.Register<MusicInstrument> event) {
-        event.getRegistry().registerAll(new MusicInstrument("totemic:flute", 3, 50).setItem(ModItems.flute).setRegistryName("flute"));
+        event.getRegistry().registerAll(new MusicInstrument("totemic:flute", 3, 50).setItem(ModItems.flute.get()).setRegistryName("flute"));
     }
 
     @SubscribeEvent

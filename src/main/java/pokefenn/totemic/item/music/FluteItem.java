@@ -21,8 +21,8 @@ public class FluteItem extends Item {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         TotemicAPI.get().music().playMusic(player, ModContent.flute);
 
-        player.getCooldowns().addCooldown(ModItems.flute, 20);
-        player.getCooldowns().addCooldown(ModItems.infused_flute, 20);
+        player.getCooldowns().addCooldown(ModItems.flute.get(), 20);
+        player.getCooldowns().addCooldown(ModItems.infused_flute.get(), 20);
 
         player.awardStat(Stats.ITEM_USED.get(this));
         return InteractionResultHolder.success(player.getItemInHand(hand));

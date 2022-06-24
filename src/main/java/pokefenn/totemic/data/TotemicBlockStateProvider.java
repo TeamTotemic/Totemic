@@ -24,14 +24,14 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         //Blocks
-        logBlock(ModBlocks.cedar_log);
-        logBlock(ModBlocks.stripped_cedar_log);
-        axisBlock(ModBlocks.cedar_wood, blockTexture(ModBlocks.cedar_log), blockTexture(ModBlocks.cedar_log));
+        logBlock(ModBlocks.cedar_log.get());
+        logBlock(ModBlocks.stripped_cedar_log.get());
+        axisBlock(ModBlocks.cedar_wood.get(), blockTexture(ModBlocks.cedar_log.get()), blockTexture(ModBlocks.cedar_log.get()));
 
         //Item Blocks
-        existingBlockItem(ModBlocks.cedar_log);
-        existingBlockItem(ModBlocks.stripped_cedar_log);
-        existingBlockItem(ModBlocks.cedar_wood);
+        existingBlockItem(ModBlocks.cedar_log.get());
+        existingBlockItem(ModBlocks.stripped_cedar_log.get());
+        existingBlockItem(ModBlocks.cedar_wood.get());
 
         //Items
         // TODO: Generate the generated/builtin item models here as well

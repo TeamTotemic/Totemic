@@ -23,7 +23,7 @@ public record PacketMouseWheel(boolean direction) {
         context.get().enqueueWork(() -> {
             Player player = context.get().getSender();
             ItemStack stack = player.getMainHandItem();
-            if(stack.getItem() == ModItems.totem_whittling_knife) {
+            if(stack.getItem() == ModItems.totem_whittling_knife.get()) {
                 player.setItemInHand(InteractionHand.MAIN_HAND, TotemKnifeItem.changeIndex(stack, packet.direction));
             }
         });

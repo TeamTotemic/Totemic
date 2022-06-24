@@ -23,7 +23,7 @@ public class PlayerInteract {
 
         Player player = Minecraft.getInstance().player;
         ItemStack stack = player.getMainHandItem();
-        if(player.isShiftKeyDown() && stack.getItem() == ModItems.totem_whittling_knife) {
+        if(player.isShiftKeyDown() && stack.getItem() == ModItems.totem_whittling_knife.get()) {
             boolean direction = (event.getScrollDelta() > 0);
             NetworkHandler.channel.sendToServer(new PacketMouseWheel(direction));
             player.setItemInHand(InteractionHand.MAIN_HAND, TotemKnifeItem.changeIndex(stack, direction));

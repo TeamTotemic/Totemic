@@ -35,7 +35,7 @@ public final class Totemic {
     public static final CreativeModeTab creativeTab = new CreativeModeTab(TotemicAPI.MOD_ID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.flute);
+            return new ItemStack(ModItems.flute.get());
         }
     };
 
@@ -47,6 +47,9 @@ public final class Totemic {
         modBus.addListener(this::clientSetup);
         modBus.addListener(this::registerCapabilities);
         modBus.addListener(this::gatherData);
+
+        ModBlocks.REGISTER.register(modBus);
+        ModItems.REGISTER.register(modBus);
 
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);

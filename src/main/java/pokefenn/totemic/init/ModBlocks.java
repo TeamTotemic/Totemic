@@ -1,9 +1,7 @@
 package pokefenn.totemic.init;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -27,7 +25,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
-import net.minecraftforge.registries.ObjectHolder;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicRegistries;
@@ -36,11 +36,14 @@ import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 
-@ObjectHolder(TotemicAPI.MOD_ID)
 public final class ModBlocks {
-    public static final RotatedPillarBlock cedar_log = null;
-    public static final RotatedPillarBlock stripped_cedar_log = null;
-    public static final RotatedPillarBlock cedar_wood = null;
+    public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, TotemicAPI.MOD_ID);
+
+    public static final RegistryObject<RotatedPillarBlock> cedar_log = REGISTER.register("cedar_log", () -> new RotatedPillarBlock(Properties.of(Material.WOOD, state -> {
+        return state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MaterialColor.COLOR_PINK : MaterialColor.COLOR_ORANGE;
+    }).strength(2.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<RotatedPillarBlock> stripped_cedar_log = REGISTER.register("stripped_cedar_log", () -> new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(2.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<RotatedPillarBlock> cedar_wood = REGISTER.register("cedar_wood", () -> new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
 
     // Totem Effects registered with the RegisterTotemEffectsEvent are collected here. Later, the Totem Effects
     // are registered to the appropriate Forge registry.
@@ -49,21 +52,19 @@ public final class ModBlocks {
     // TODO: We don't need all of this if Forge some day allows registering things before blocks have been registered.
     private static @Nullable Set<TotemEffect> totemEffectsToRegister = new LinkedHashSet<>();
 
-    // List of blocks for which an ItemBlock will be added
-    private static final List<Block> blocksWithItemBlock = new ArrayList<>();
-
     private static Map<TotemWoodType, TotemBaseBlock> totemBases;
     private static Table<TotemWoodType, TotemEffect, TotemPoleBlock> totemPoles;
 
+    public static Map<TotemWoodType, TotemBaseBlock> getTotemBases() {
+        return totemBases;
+    }
+
+    public static Table<TotemWoodType, TotemEffect, TotemPoleBlock> getTotemPoles() {
+        return totemPoles;
+    }
+
     @SubscribeEvent
     public static void init(RegistryEvent.Register<Block> event) {
-        event.getRegistry().registerAll(
-                withItem(new RotatedPillarBlock(Properties.of(Material.WOOD, state -> {
-                    return state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MaterialColor.COLOR_PINK : MaterialColor.COLOR_ORANGE;
-                }).strength(2.0F).sound(SoundType.WOOD)).setRegistryName("cedar_log")),
-                withItem(new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(2, 3).sound(SoundType.WOOD)).setRegistryName("stripped_cedar_log")),
-                withItem(new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2, 3).sound(SoundType.WOOD)).setRegistryName("cedar_wood")));
-
         internallyRegisterTotemEffects();
 
         var totemBasesBuilder = ImmutableMap.<TotemWoodType, TotemBaseBlock>builderWithExpectedSize(TotemWoodType.getWoodTypes().size());
@@ -77,7 +78,6 @@ public final class ModBlocks {
 
             event.getRegistry().register(totemBase);
             totemBasesBuilder.put(woodType, totemBase);
-            blocksWithItemBlock.add(totemBase);
 
             for(TotemEffect totemEffect: totemEffectsToRegister) {
                 TotemPoleBlock totemPole = new TotemPoleBlock(woodType, totemEffect, blockProperties);
@@ -85,7 +85,6 @@ public final class ModBlocks {
 
                 event.getRegistry().register(totemPole);
                 totemPolesBuilder.put(woodType, totemEffect, totemPole);
-                blocksWithItemBlock.add(totemPole);
             }
         }
 
@@ -98,30 +97,13 @@ public final class ModBlocks {
             FireBlock fire = (FireBlock) Blocks.FIRE;
             Method setFlammableM = ObfuscationReflectionHelper.findMethod(FireBlock.class, "m_53444_", Block.class, int.class, int.class);
 
-            setFlammableM.invoke(fire, cedar_log, 5, 5);
-            setFlammableM.invoke(fire, stripped_cedar_log, 5, 5);
-            setFlammableM.invoke(fire, cedar_wood, 5, 5);
+            setFlammableM.invoke(fire, cedar_log.get(), 5, 5);
+            setFlammableM.invoke(fire, stripped_cedar_log.get(), 5, 5);
+            setFlammableM.invoke(fire, cedar_wood.get(), 5, 5);
         }
         catch(ReflectiveOperationException e) {
             throw new RuntimeException("Could not set flammability for Totemic blocks", e);
         }
-    }
-
-    public static Block withItem(Block block) {
-        blocksWithItemBlock.add(block);
-        return block;
-    }
-
-    public static List<Block> getBlocksWithItemBlock() {
-        return blocksWithItemBlock;
-    }
-
-    public static Map<TotemWoodType, TotemBaseBlock> getTotemBases() {
-        return totemBases;
-    }
-
-    public static Table<TotemWoodType, TotemEffect, TotemPoleBlock> getTotemPoles() {
-        return totemPoles;
     }
 
     // Fires the RegisterTotemEffectsEvent and collects them in the internal set
