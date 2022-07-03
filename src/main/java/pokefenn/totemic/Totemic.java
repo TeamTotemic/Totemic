@@ -20,7 +20,8 @@ import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
-import pokefenn.totemic.handler.PlayerInteract;
+import pokefenn.totemic.handler.ClientInteract;
+import pokefenn.totemic.handler.ModBlockColors;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModEffects;
@@ -42,7 +43,6 @@ public final class Totemic {
     public Totemic() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        //Mod loading events
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::clientSetup);
         modBus.addListener(this::registerCapabilities);
@@ -71,15 +71,17 @@ public final class Totemic {
         ModBlocks.checkRegisteredTotemEffects();
         NetworkHandler.init();
 
-        //Gameplay events
-        IEventBus eventBus = MinecraftForge.EVENT_BUS;
-        eventBus.register(PlayerInteract.class);
+        //IEventBus eventBus = MinecraftForge.EVENT_BUS;
 
         ModBlocks.setFireInfo();
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
+        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modBus.register(ModBlockColors.class);
 
+        IEventBus eventBus = MinecraftForge.EVENT_BUS;
+        eventBus.register(ClientInteract.class);
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
