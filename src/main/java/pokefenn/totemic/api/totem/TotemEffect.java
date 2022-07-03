@@ -7,8 +7,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistryEntry;
@@ -71,7 +69,6 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> { //TO
     /**
      * @return a text component representing the effect's name
      */
-    @OnlyIn(Dist.CLIENT)
     public MutableComponent getDisplayName() {
         return new TranslatableComponent(getDescriptionId());
     }

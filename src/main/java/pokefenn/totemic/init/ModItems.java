@@ -3,7 +3,11 @@ package pokefenn.totemic.init;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
@@ -39,5 +43,12 @@ public final class ModItems {
         for(TotemPoleBlock block: ModBlocks.getTotemPoles().values()) {
             event.getRegistry().register(new TotemPoleItem(block, new Properties().tab(block.woodType == TotemWoodType.CEDAR ? Totemic.creativeTab : null)).setRegistryName(block.getRegistryName()));
         }
+    }
+
+    @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
+    public static void registerItemColor(ColorHandlerEvent.Item event) {
+        event.getItemColors().register((stack, tintIndex) -> TotemPoleBlock.getBlockColor(tintIndex),
+                ModBlocks.getTotemPoles().values().toArray(ItemLike[]::new));
     }
 }

@@ -24,8 +24,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
@@ -39,7 +37,6 @@ public class TotemKnifeItem extends Item {
         super(props);
     }
 
-    @OnlyIn(Dist.CLIENT)
     private static MutableComponent getCarvingName(@Nullable TotemEffect effect) {
         if(effect != null)
             return effect.getDisplayName();
@@ -138,7 +135,6 @@ public class TotemKnifeItem extends Item {
         return new TranslatableComponent(getDescriptionId(stack), getCarvingName(getCarvingEffect(stack)));
     }
 
-    @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));

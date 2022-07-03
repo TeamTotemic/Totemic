@@ -21,8 +21,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
@@ -101,7 +99,6 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public MutableComponent getName() {
         return new TranslatableComponent(this.getDescriptionId(), effect.getDisplayName());
     }
@@ -109,5 +106,15 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
     @Override
     public String getDescriptionId() {
         return "block.totemic." + woodType.getName() + "_totem_pole";
+    }
+
+    public static int getBlockColor(int tintIndex) {
+        return switch(tintIndex) {
+        case 1 -> 0x555555; //Black
+        case 2 -> 0xAA5555; //Red
+        case 3 -> 0xAA55EE; //Purple
+        case 4 -> 0xBBBB66; //Yellow
+        default -> -1;
+        };
     }
 }
