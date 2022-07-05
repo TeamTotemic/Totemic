@@ -2,6 +2,7 @@ package pokefenn.totemic.data;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
@@ -15,6 +16,7 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModItems;
 
 public class TotemicBlockStateProvider extends BlockStateProvider {
     public TotemicBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
@@ -29,12 +31,13 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         axisBlock(ModBlocks.cedar_wood.get(), blockTexture(ModBlocks.cedar_log.get()), blockTexture(ModBlocks.cedar_log.get()));
 
         //Item Blocks
-        existingBlockItem(ModBlocks.cedar_log.get());
-        existingBlockItem(ModBlocks.stripped_cedar_log.get());
-        existingBlockItem(ModBlocks.cedar_wood.get());
+        for(var blockO: ModBlocks.REGISTER.getEntries())
+            existingBlockItem(blockO.get());
 
         //Items
-        // TODO: Generate the generated/builtin item models here as well
+        generatedItem(ModItems.flute.get());
+        generatedItem(ModItems.infused_flute.get());
+        generatedItem(ModItems.totem_whittling_knife.get());
 
         registerTotemModels();
     }
@@ -90,5 +93,9 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
     private void existingBlockItem(Block block) {
         simpleBlockItem(block, models().getExistingFile(block.getRegistryName()));
+    }
+
+    private void generatedItem(Item item) {
+        itemModels().singleTexture(item.getRegistryName().getPath(), mcLoc("item/generated"), "layer0", modLoc(ModelProvider.ITEM_FOLDER + "/" + item.getRegistryName().getPath()));
     }
 }
