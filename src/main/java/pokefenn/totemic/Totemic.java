@@ -78,7 +78,7 @@ public final class Totemic {
 
         //IEventBus eventBus = MinecraftForge.EVENT_BUS;
 
-        ModBlocks.setFireInfo();
+        event.enqueueWork(() -> ModBlocks.setFireInfo());
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
