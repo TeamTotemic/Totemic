@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import pokefenn.totemic.api.TotemicAPI;
@@ -44,7 +45,6 @@ public final class Totemic {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modBus.addListener(this::commonSetup);
-        modBus.addListener(this::clientSetup);
         modBus.addListener(this::registerCapabilities);
         modBus.addListener(this::gatherData);
 
@@ -56,6 +56,12 @@ public final class Totemic {
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
         modBus.register(ModContent.class);
+
+        if(FMLEnvironment.dist.isClient()) {
+            modBus.addListener(this::clientSetup);
+
+            modBus.register(ModBlockColors.class);
+        }
 
         // Instance field is private, need reflection
         try {
@@ -76,9 +82,6 @@ public final class Totemic {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
-        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modBus.register(ModBlockColors.class);
-
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
     }
