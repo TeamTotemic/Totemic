@@ -21,9 +21,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -107,13 +104,6 @@ public final class ModBlocks {
         catch(ReflectiveOperationException e) {
             throw new RuntimeException("Could not set flammability for Totemic blocks", e);
         }
-    }
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public static void registerBlockColors(ColorHandlerEvent.Block event) {
-        event.getBlockColors().register((state, tintGetter, pos, tintIndex) -> TotemPoleBlock.getBlockColor(tintIndex),
-                getTotemPoles().values().toArray(Block[]::new));
     }
 
     // Fires the RegisterTotemEffectsEvent and collects them in the internal set
