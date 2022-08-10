@@ -1,14 +1,11 @@
 package pokefenn.totemic.init;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.NewRegistryEvent;
 import net.minecraftforge.registries.ObjectHolder;
-import net.minecraftforge.registries.RegistryBuilder;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
@@ -75,19 +72,5 @@ public final class ModContent {
                 new PotionTotemEffect(ModEffects.spider).setRegistryName("spider"),
                 new PotionTotemEffect(MobEffects.WATER_BREATHING).setRegistryName("squid"),
                 new PotionTotemEffect(MobEffects.DAMAGE_BOOST).setRegistryName("wolf"));
-    }
-
-    @SubscribeEvent
-    public static void createRegistries(NewRegistryEvent event) {
-        // RegistryEvents are fired in alphabetic order.
-        // Instruments have to be registered before Ceremonies.
-        event.create(new RegistryBuilder<MusicInstrument>()
-                .setName(new ResourceLocation(TotemicAPI.MOD_ID, "a_music_instruments"))
-                .setType(MusicInstrument.class)
-                .setMaxID(Byte.MAX_VALUE));
-        event.create(new RegistryBuilder<TotemEffect>()
-                .setName(new ResourceLocation(TotemicAPI.MOD_ID, "b_totem_effects"))
-                .setType(TotemEffect.class)
-                .setMaxID(Byte.MAX_VALUE));
     }
 }

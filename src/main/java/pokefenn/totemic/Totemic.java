@@ -16,6 +16,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
@@ -53,6 +54,7 @@ public final class Totemic {
         ModEffects.REGISTER.register(modBus);
         ModTileEntities.REGISTER.register(modBus);
 
+        modBus.addListener(TotemicRegistries::createRegistries);
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
         modBus.register(ModContent.class);
@@ -78,7 +80,7 @@ public final class Totemic {
 
         //IEventBus eventBus = MinecraftForge.EVENT_BUS;
 
-        event.enqueueWork(() -> ModBlocks.setFireInfo());
+        event.enqueueWork(ModBlocks::setFireInfo);
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
