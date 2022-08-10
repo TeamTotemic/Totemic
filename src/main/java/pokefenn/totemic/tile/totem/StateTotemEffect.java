@@ -58,7 +58,9 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
 
     @Override
     public void addSelector(@Nonnull Entity entity, MusicInstrument instr) {
-        // TODO Auto-generated method stub
+        var newState = new StateSelection(tile, this);
+        newState.addSelector(entity, instr);
+        tile.setState(newState);
     }
 
     @Override

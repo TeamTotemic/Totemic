@@ -34,7 +34,7 @@ public class TileTotemBase extends BlockEntity {
 
     private TotemState state = new StateTotemEffect(this);
 
-    private LazyOptional<MusicAcceptor> musicHandler = LazyOptional.of(() -> state);
+    private LazyOptional<MusicAcceptor> musicHandler = LazyOptional.of(() -> this.state);
 
     public TileTotemBase(BlockPos pos, BlockState state) {
         super(ModTileEntities.totem_base.get(), pos, state);
@@ -99,8 +99,16 @@ public class TileTotemBase extends BlockEntity {
     void setState(TotemState state) {
         if(state != this.state) {
             this.state = state;
+            musicHandler.invalidate();
+            musicHandler = LazyOptional.of(() -> this.state);
             setChanged();
         }
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        musicHandler.invalidate();
     }
 
     @SuppressWarnings("null")

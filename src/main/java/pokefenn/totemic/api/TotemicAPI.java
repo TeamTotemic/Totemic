@@ -1,5 +1,6 @@
 package pokefenn.totemic.api;
 
+import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 
@@ -34,4 +35,9 @@ public abstract class TotemicAPI {
      * Provides access to functionality commonly used for implementing Totem effects.
      */
     public abstract TotemEffectAPI totemEffect();
+
+    /**
+     * Provides access to functionality commonly used for implementing Ceremonies.
+     */
+    public abstract CeremonyAPI ceremony();
 }
