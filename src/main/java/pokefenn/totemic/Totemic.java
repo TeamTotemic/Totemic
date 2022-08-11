@@ -19,6 +19,7 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
+import pokefenn.totemic.apiimpl.ceremony.CeremonyAPIImpl;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
@@ -75,12 +76,13 @@ public final class Totemic {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
+        event.enqueueWork(ModBlocks::setFireInfo);
+
         ModBlocks.checkRegisteredTotemEffects();
+        CeremonyAPIImpl.INSTANCE.computeSelectorsToCeremonyMap();
         NetworkHandler.init();
 
         //IEventBus eventBus = MinecraftForge.EVENT_BUS;
-
-        event.enqueueWork(ModBlocks::setFireInfo);
     }
 
     private void clientSetup(FMLClientSetupEvent event) {

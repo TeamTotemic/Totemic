@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.apache.commons.lang3.Validate;
 
-import com.google.common.collect.ImmutableList;
-
 import net.minecraft.world.Difficulty;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -41,7 +39,7 @@ public abstract class Ceremony extends ForgeRegistryEntry<Ceremony> {
 
         this.musicNeeded = musicNeeded;
         this.maxStartupTime = maxStartupTime;
-        this.selectors = ImmutableList.copyOf(selectors);
+        this.selectors = List.of(selectors);
     }
 
     /**
