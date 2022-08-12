@@ -2,6 +2,8 @@ package pokefenn.totemic.api;
 
 import java.util.function.Supplier;
 
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -20,6 +22,10 @@ import pokefenn.totemic.api.totem.TotemEffect;
  * Please note that Totem Effects need to be registered using the {@link RegisterTotemEffectsEvent}.
  */
 public final class TotemicRegistries {
+    public static final ResourceKey<Registry<MusicInstrument>> INSTRUMENTS_KEY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "a_music_instruments"));
+    public static final ResourceKey<Registry<TotemEffect>> TOTEM_EFFECTS_KEY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "b_totem_effects"));
+    public static final ResourceKey<Registry<Ceremony>> CEREMONIES_KEY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "c_ceremonies"));
+
     private static Supplier<IForgeRegistry<MusicInstrument>> INSTRUMENTS = null;
     private static Supplier<IForgeRegistry<TotemEffect>> TOTEM_EFFECTS = null;
     private static Supplier<IForgeRegistry<Ceremony>> CEREMONIES = null;
@@ -41,20 +47,17 @@ public final class TotemicRegistries {
         // RegistryEvents are usually fired in alphabetic order.
         // Instruments have to be registered before Ceremonies.
         INSTRUMENTS = event.create(new RegistryBuilder<MusicInstrument>()
-                .setName(new ResourceLocation(TotemicAPI.MOD_ID, "a_music_instruments"))
-                .setType(MusicInstrument.class)
+                .setName(INSTRUMENTS_KEY.registry())
                 .setMaxID(Byte.MAX_VALUE)
                 .disableSaving()
                 .disableSync());
         TOTEM_EFFECTS = event.create(new RegistryBuilder<TotemEffect>()
-                .setName(new ResourceLocation(TotemicAPI.MOD_ID, "b_totem_effects"))
-                .setType(TotemEffect.class)
+                .setName(TOTEM_EFFECTS_KEY.registry())
                 .setMaxID(Byte.MAX_VALUE)
                 .disableSaving()
                 .disableSync());
         CEREMONIES = event.create(new RegistryBuilder<Ceremony>()
-                .setName(new ResourceLocation(TotemicAPI.MOD_ID, "c_ceremonies"))
-                .setType(Ceremony.class)
+                .setName(CEREMONIES_KEY.registry())
                 .setMaxID(Byte.MAX_VALUE)
                 .disableSaving());
     }

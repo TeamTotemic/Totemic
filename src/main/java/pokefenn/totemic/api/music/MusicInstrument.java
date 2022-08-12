@@ -2,9 +2,8 @@ package pokefenn.totemic.api.music;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument> {
+public final class MusicInstrument {
     private final String name;
     private final int baseOutput;
     private final int musicMaximum;
@@ -62,10 +61,5 @@ public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument> {
      */
     public int getMusicMaximum() {
         return musicMaximum;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(getRegistryName());
     }
 }

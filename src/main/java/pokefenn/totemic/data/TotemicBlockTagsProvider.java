@@ -14,8 +14,12 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        ModBlocks.getTotemBases().values().forEach(tag(ModBlockTags.TOTEM_BASES)::add);
-        ModBlocks.getTotemPoles().values().forEach(tag(ModBlockTags.TOTEM_POLES)::add);
+        ModBlocks.getTotemBases().values().stream()
+                .map(ro -> ro.get())
+                .forEach(tag(ModBlockTags.TOTEM_BASES)::add);
+        ModBlocks.getTotemPoles().values().stream()
+                .map(ro -> ro.get())
+                .forEach(tag(ModBlockTags.TOTEM_POLES)::add);
     }
 
     @Override

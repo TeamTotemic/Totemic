@@ -2,21 +2,20 @@ package pokefenn.totemic.api.totem;
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+import pokefenn.totemic.api.TotemicRegistries;
 
 /**
  * Base class for all Totem Effects.
  * <p>
  * Use the {@link RegisterTotemEffectsEvent} to register your Totem Effects. Please do <b>not</b> use Forge's {@link DeferredRegister} or {@link RegistryEvent}!
  */
-public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> { //TODO: This class needs a refactoring
+public abstract class TotemEffect { //TODO: This class needs a refactoring
     /**
      * Whether this Totem Effect can be used with a Medicine Bag
      */
@@ -63,14 +62,14 @@ public abstract class TotemEffect extends ForgeRegistryEntry<TotemEffect> { //TO
      * @return the translation key of the effect. By default it is given by "totem." followed by the registry name.
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totem", getRegistryName());
+        return Util.makeDescriptionId("totem", TotemicRegistries.totemEffects().getKey(this));
     }
 
     /**
      * @return a text component representing the effect's name
      */
     public MutableComponent getDisplayName() {
-        return new TranslatableComponent(getDescriptionId());
+        return Component.translatable(getDescriptionId());
     }
 
     /**

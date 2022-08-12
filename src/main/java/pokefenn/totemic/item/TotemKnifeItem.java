@@ -4,11 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Streams;
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -28,7 +25,6 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.init.ModBlocks;
-import pokefenn.totemic.init.ModContent;
 
 public class TotemKnifeItem extends Item {
     public static final String KNIFE_TOTEM_KEY = "effect";
@@ -41,7 +37,7 @@ public class TotemKnifeItem extends Item {
         if(effect != null)
             return effect.getDisplayName();
         else
-            return new TranslatableComponent("block.totemic.totem_base");
+            return Component.translatable("block.totemic.totem_base");
     }
 
     @Nullable
@@ -61,9 +57,9 @@ public class TotemKnifeItem extends Item {
 
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction) {
         if(totemList == null) {
-            totemList = Streams.stream(TotemicRegistries.totemEffects())
-                    .filter(eff -> eff != ModContent.none)
-                    .map(eff -> eff.getRegistryName().toString())
+            totemList = TotemicRegistries.totemEffects().getKeys().stream()
+                    .map(key -> key.toString())
+                    .filter(key -> !key.equals("totemic:none"))
                     .toList();
         }
 
@@ -106,10 +102,10 @@ public class TotemKnifeItem extends Item {
             BlockState newState;
             TotemEffect effect = getCarvingEffect(c.getItemInHand());
             if(effect != null) {
-                newState = ModBlocks.getTotemPoles().get(woodType, effect).getStateForPlacement(new BlockPlaceContext(c));
+                newState = ModBlocks.getTotemPole(woodType, effect).getStateForPlacement(new BlockPlaceContext(c));
             }
             else {
-                newState = ModBlocks.getTotemBases().get(woodType).getStateForPlacement(new BlockPlaceContext(c));
+                newState = ModBlocks.getTotemBase(woodType).getStateForPlacement(new BlockPlaceContext(c));
             }
 
             c.getLevel().setBlock(c.getClickedPos(), newState, 3);
@@ -132,11 +128,11 @@ public class TotemKnifeItem extends Item {
 
     @Override
     public Component getName(ItemStack stack) {
-        return new TranslatableComponent(getDescriptionId(stack), getCarvingName(getCarvingEffect(stack)));
+        return Component.translatable(getDescriptionId(stack), getCarvingName(getCarvingEffect(stack)));
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
+        tooltip.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 }

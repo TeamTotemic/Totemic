@@ -4,8 +4,8 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -100,7 +100,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
 
     @Override
     public MutableComponent getName() {
-        return new TranslatableComponent(this.getDescriptionId(), effect.getDisplayName());
+        return Component.translatable(this.getDescriptionId(), effect.getDisplayName());
     }
 
     @Override

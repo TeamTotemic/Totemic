@@ -7,6 +7,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -14,7 +15,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.music.MusicAcceptor;
@@ -96,11 +96,11 @@ public final class Totemic {
 
     private void gatherData(GatherDataEvent event) {
         if(event.includeServer()) {
-            event.getGenerator().addProvider(new TotemicBlockTagsProvider(event.getGenerator(), event.getExistingFileHelper()));
-            event.getGenerator().addProvider(new TotemicLootTableProvider(event.getGenerator()));
+            event.getGenerator().addProvider(true, new TotemicBlockTagsProvider(event.getGenerator(), event.getExistingFileHelper()));
+            event.getGenerator().addProvider(true, new TotemicLootTableProvider(event.getGenerator()));
         }
         if(event.includeClient()) {
-            event.getGenerator().addProvider(new TotemicBlockStateProvider(event.getGenerator(), event.getExistingFileHelper()));
+            event.getGenerator().addProvider(true, new TotemicBlockStateProvider(event.getGenerator(), event.getExistingFileHelper()));
         }
     }
 }

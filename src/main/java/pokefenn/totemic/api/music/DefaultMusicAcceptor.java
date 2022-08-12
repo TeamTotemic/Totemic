@@ -84,7 +84,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
         CompoundTag nbt = new CompoundTag();
 
         for(Entry<MusicInstrument> entry: music.object2IntEntrySet())
-            nbt.putInt(entry.getKey().getRegistryName().toString(), entry.getIntValue());
+            nbt.putInt(TotemicRegistries.instruments().getKey(entry.getKey()).toString(), entry.getIntValue());
         return nbt;
     }
 

@@ -10,7 +10,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.RegistryObject;
@@ -97,7 +96,7 @@ public class PotionTotemEffect extends TotemEffect {
      * The default value ranges between 0 and 2 above {@link #baseAmplifier}, depending on the Efficiency enchantment level of the Medicine Bag.
      */
     protected int getAmplifierForMedicineBag(Level world, Player player, ItemStack medicineBag, int charge) {
-        return baseAmplifier + EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY, medicineBag) / 2;
+        return baseAmplifier + medicineBag.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) / 2;
     }
 
     /**

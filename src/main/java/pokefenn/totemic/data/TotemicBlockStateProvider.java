@@ -11,8 +11,10 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
@@ -45,8 +47,9 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
     private void registerTotemModels() {
         //TODO: It would be nice if those models and block states could be loaded dynamically rather than generated
         ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(TotemicAPI.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
-        for(TotemBaseBlock block: ModBlocks.getTotemBases().values()) {
-            ResourceLocation blockName = block.getRegistryName();
+        for(var blockO: ModBlocks.getTotemBases().values()) {
+            ResourceLocation blockName = blockO.getId();
+            TotemBaseBlock block = blockO.get();
 
             //Block model
             BlockModelBuilder blockModel = models().getBuilder(blockName.toString()).parent(totemBaseModel);
@@ -57,9 +60,11 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             //Item model
             simpleBlockItem(block, blockModel);
         }
-        for(TotemPoleBlock block: ModBlocks.getTotemPoles().values()) {
-            ResourceLocation blockName = block.getRegistryName();
-            ResourceLocation effectName = block.effect.getRegistryName();
+        for(var blockO: ModBlocks.getTotemPoles().values()) {
+            ResourceLocation blockName = blockO.getId();
+            TotemPoleBlock block = blockO.get();
+            ResourceLocation effectName = TotemicRegistries.totemEffects().getKey(block.effect);
+
             ModelFile parentModel = models().getExistingFile(new ResourceLocation(effectName.getNamespace(), ModelProvider.BLOCK_FOLDER + "/totem_pole_" + effectName.getPath()));
 
             //Block model
@@ -92,10 +97,10 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
     }
 
     private void existingBlockItem(Block block) {
-        simpleBlockItem(block, models().getExistingFile(block.getRegistryName()));
+        simpleBlockItem(block, models().getExistingFile(ForgeRegistries.BLOCKS.getKey(block)));
     }
 
     private void generatedItem(Item item) {
-        itemModels().singleTexture(item.getRegistryName().getPath(), mcLoc("item/generated"), "layer0", modLoc(ModelProvider.ITEM_FOLDER + "/" + item.getRegistryName().getPath()));
+        itemModels().singleTexture(ForgeRegistries.ITEMS.getKey(item).getPath(), mcLoc("item/generated"), "layer0", modLoc(ModelProvider.ITEM_FOLDER + "/" + ForgeRegistries.ITEMS.getKey(item).getPath()));
     }
 }

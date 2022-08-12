@@ -4,10 +4,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemWoodType;
@@ -27,17 +27,22 @@ public final class ModItems {
     public static final RegistryObject<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250).tab(Totemic.creativeTab)));
 
     @SubscribeEvent
-    public static void init(RegistryEvent.Register<Item> event) {
+    public static void init(RegisterEvent event) {
+        if(!event.getRegistryKey().equals(ForgeRegistries.Keys.ITEMS))
+            return;
+
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             Block block = blockO.get();
-            event.getRegistry().register(new BlockItem(block, new Properties().tab(Totemic.creativeTab)).setRegistryName(block.getRegistryName()));
+            event.getForgeRegistry().register(blockO.getId(), new BlockItem(block, new Properties().tab(Totemic.creativeTab)));
         }
 
-        for(TotemBaseBlock block: ModBlocks.getTotemBases().values()) {
-            event.getRegistry().register(new BlockItem(block, new Properties().tab(block.woodType == TotemWoodType.CEDAR ? Totemic.creativeTab : null)).setRegistryName(block.getRegistryName()));
+        for(var blockO: ModBlocks.getTotemBases().values()) {
+            TotemBaseBlock block = blockO.get();
+            event.getForgeRegistry().register(blockO.getId(), new BlockItem(block, new Properties().tab(block.woodType == TotemWoodType.CEDAR ? Totemic.creativeTab : null)));
         }
-        for(TotemPoleBlock block: ModBlocks.getTotemPoles().values()) {
-            event.getRegistry().register(new TotemPoleItem(block, new Properties().tab(block.woodType == TotemWoodType.CEDAR ? Totemic.creativeTab : null)).setRegistryName(block.getRegistryName()));
+        for(var blockO: ModBlocks.getTotemPoles().values()) {
+            TotemPoleBlock block = blockO.get();
+            event.getForgeRegistry().register(blockO.getId(), new TotemPoleItem(block, new Properties().tab(block.woodType == TotemWoodType.CEDAR ? Totemic.creativeTab : null)));
         }
     }
 }

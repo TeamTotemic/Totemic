@@ -5,13 +5,12 @@ import java.util.List;
 import org.apache.commons.lang3.Validate;
 
 import net.minecraft.world.Difficulty;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 /**
  * Base class for all ceremonies.
  */
-public abstract class Ceremony extends ForgeRegistryEntry<Ceremony> {
+public abstract class Ceremony {
     /**
      * The amount of music needed to start the ceremony.
      */
