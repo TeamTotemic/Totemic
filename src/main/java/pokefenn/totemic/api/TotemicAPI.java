@@ -2,6 +2,7 @@ package pokefenn.totemic.api;
 
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.music.MusicAPI;
+import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 
 /**
@@ -25,6 +26,11 @@ public abstract class TotemicAPI {
             throw new IllegalStateException("The Totemic API has been accessed too early, or Totemic is not installed");
         return instance;
     }
+
+    /**
+     * Provides access to Totemic's registries.
+     */
+    public abstract RegistryAPI registry();
 
     /**
      * Provides access to functionality commonly used by music instrument blocks and items.

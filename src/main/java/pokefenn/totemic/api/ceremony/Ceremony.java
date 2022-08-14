@@ -1,9 +1,11 @@
 package pokefenn.totemic.api.ceremony;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang3.Validate;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Difficulty;
 import pokefenn.totemic.api.music.MusicInstrument;
 
@@ -11,6 +13,10 @@ import pokefenn.totemic.api.music.MusicInstrument;
  * Base class for all ceremonies.
  */
 public abstract class Ceremony {
+    /**
+     * The ceremony's registry name.
+     */
+    protected final ResourceLocation name;
     /**
      * The amount of music needed to start the ceremony.
      */
@@ -26,19 +32,27 @@ public abstract class Ceremony {
 
     /**
      * Constructs a new Ceremony.
+     * @param name the ceremony's registry name
      * @param musicNeeded the amount of music needed to start the ceremony.
      * @param maxStartupTime the maximum time in ticks that the player may take to start the ceremony.<br>
      * This value will be adjusted depending on difficulty, see {@link #getAdjustedMaxStartupTime}.
      * @param selectors the list of music instruments for selecting the ceremony.
      */
-    public Ceremony(int musicNeeded, int maxStartupTime, MusicInstrument... selectors) {
+    public Ceremony(ResourceLocation name, int musicNeeded, int maxStartupTime, MusicInstrument... selectors) {
         Validate.inclusiveBetween(CeremonyAPI.MIN_SELECTORS, CeremonyAPI.MAX_SELECTORS, selectors.length,
                 "Invalid number of Cermeony selectors (must be between CeremonyAPI.MIN_SELECTORS and CeremonyAPI.MAX_SELECTORS)");
-        Validate.noNullElements(selectors);
 
+        this.name = Objects.requireNonNull(name);
         this.musicNeeded = musicNeeded;
         this.maxStartupTime = maxStartupTime;
         this.selectors = List.of(selectors);
+    }
+
+    /**
+     * @return the ceremony's registry name.
+     */
+    public final ResourceLocation getName() {
+        return name;
     }
 
     /**

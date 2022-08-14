@@ -16,10 +16,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
-import pokefenn.totemic.apiimpl.ceremony.CeremonyAPIImpl;
+import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
@@ -55,7 +54,6 @@ public final class Totemic {
         ModEffects.REGISTER.register(modBus);
         ModTileEntities.REGISTER.register(modBus);
 
-        modBus.addListener(TotemicRegistries::createRegistries);
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
         modBus.register(ModContent.class);
@@ -78,8 +76,10 @@ public final class Totemic {
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(ModBlocks::setFireInfo);
 
-        ModBlocks.checkRegisteredTotemEffects();
-        CeremonyAPIImpl.INSTANCE.computeSelectorsToCeremonyMap();
+        //Totem effects are registered during ModBlocks#init
+        RegistryApiImpl.INSTANCE.registerInstruments();
+        RegistryApiImpl.INSTANCE.registerCeremonies();
+
         NetworkHandler.init();
 
         //IEventBus eventBus = MinecraftForge.EVENT_BUS;

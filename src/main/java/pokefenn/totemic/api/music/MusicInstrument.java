@@ -1,21 +1,24 @@
 package pokefenn.totemic.api.music;
 
+import java.util.Objects;
+
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 
 public final class MusicInstrument {
-    private final String name;
+    private final ResourceLocation name;
     private final int baseOutput;
     private final int musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
 
     /**
-     * @param name         the unlocalized name.
+     * @param name         the instrument's registry name.
      * @param baseOutput   the default music output when the instrument is played.
      * @param musicMaximum the maximum amount of music that a Totem Base can take from this instrument.
      */
-    public MusicInstrument(String name, int baseOutput, int musicMaximum) {
-        this.name = name;
+    public MusicInstrument(ResourceLocation name, int baseOutput, int musicMaximum) {
+        this.name = Objects.requireNonNull(name);
         this.baseOutput = baseOutput;
         this.musicMaximum = musicMaximum;
     }
@@ -47,6 +50,13 @@ public final class MusicInstrument {
      */
     public String getUnlocalizedName() {
         return "totemic.instrument." + name;
+    }
+
+    /**
+     * @return the instrument's registry name
+     */
+    public final ResourceLocation getName() {
+        return name;
     }
 
     /**

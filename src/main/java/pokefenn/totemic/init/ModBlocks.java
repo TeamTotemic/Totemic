@@ -1,11 +1,7 @@
 package pokefenn.totemic.init;
 
 import java.lang.reflect.Method;
-import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
-
-import javax.annotation.Nullable;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableTable;
@@ -22,7 +18,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -30,9 +25,8 @@ import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.TotemicRegistries;
-import pokefenn.totemic.api.totem.RegisterTotemEffectsEvent;
 import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 
@@ -45,13 +39,6 @@ public final class ModBlocks {
     public static final RegistryObject<RotatedPillarBlock> stripped_cedar_log = REGISTER.register("stripped_cedar_log", () -> new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(2.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<RotatedPillarBlock> cedar_wood = REGISTER.register("cedar_wood", () -> new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
 
-    // Totem Effects registered with the RegisterTotemEffectsEvent are collected here. Later, the Totem Effects
-    // are registered to the appropriate Forge registry.
-    // After everything is done, we check that no Totem Effects have been registered the wrong way and then set
-    // this field to null.
-    // TODO: We don't need all of this if Forge some day allows registering things before blocks have been registered.
-    private static @Nullable Map<ResourceLocation, TotemEffect> totemEffectsToRegister = new LinkedHashMap<>();
-
     private static Map<TotemWoodType, RegistryObject<TotemBaseBlock>> totemBases;
     private static Table<TotemWoodType, TotemEffect, RegistryObject<TotemPoleBlock>> totemPoles;
 
@@ -59,7 +46,7 @@ public final class ModBlocks {
         return totemBases;
     }
 
-    public static Table<TotemWoodType, TotemEffect, RegistryObject<TotemPoleBlock>>getTotemPoles() {
+    public static Table<TotemWoodType, TotemEffect, RegistryObject<TotemPoleBlock>> getTotemPoles() {
         return totemPoles;
     }
 
@@ -76,7 +63,7 @@ public final class ModBlocks {
         if(!event.getRegistryKey().equals(ForgeRegistries.Keys.BLOCKS))
             return;
 
-        internallyRegisterTotemEffects();
+        RegistryApiImpl.INSTANCE.registerTotemEffects();
 
         var totemBasesBuilder = ImmutableMap.<TotemWoodType, RegistryObject<TotemBaseBlock>>builderWithExpectedSize(TotemWoodType.getWoodTypes().size());
         var totemPolesBuilder = ImmutableTable.<TotemWoodType, TotemEffect, RegistryObject<TotemPoleBlock>>builder();
@@ -89,13 +76,12 @@ public final class ModBlocks {
             event.getForgeRegistry().register(totemBaseName, totemBase);
             totemBasesBuilder.put(woodType, RegistryObject.create(totemBaseName, event.getForgeRegistry()));
 
-            for(var entry: totemEffectsToRegister.entrySet()) {
-                var totemEffectKey = entry.getKey();
-                var totemEffect = entry.getValue();
-                TotemPoleBlock totemPole = new TotemPoleBlock(woodType, totemEffect, blockProperties);
-                ResourceLocation totemPoleName = new ResourceLocation(TotemicAPI.MOD_ID, woodType.getName() + "_totem_pole_" + totemEffectKey.getPath());
+            for(TotemEffect effect: TotemicAPI.get().registry().totemEffects().values()) {
+                ResourceLocation effectName = effect.getName();
+                TotemPoleBlock totemPole = new TotemPoleBlock(woodType, effect, blockProperties);
+                ResourceLocation totemPoleName = new ResourceLocation(effectName.getNamespace(), woodType.getName() + "_totem_pole_" + effectName.getPath());
                 event.getForgeRegistry().register(totemPoleName, totemPole);
-                totemPolesBuilder.put(woodType, totemEffect, RegistryObject.create(totemPoleName, event.getForgeRegistry()));
+                totemPolesBuilder.put(woodType, effect, RegistryObject.create(totemPoleName, event.getForgeRegistry()));
             }
         }
 
@@ -115,34 +101,5 @@ public final class ModBlocks {
         catch(ReflectiveOperationException e) {
             throw new RuntimeException("Could not set flammability for Totemic blocks", e);
         }
-    }
-
-    // Fires the RegisterTotemEffectsEvent and collects them in the internal set
-    private static void internallyRegisterTotemEffects() {
-        FMLJavaModLoadingContext.get().getModEventBus().post(new RegisterTotemEffectsEvent((name, effect) -> {
-            Objects.requireNonNull(name);
-            Objects.requireNonNull(effect);
-            totemEffectsToRegister.put(name, effect);
-        }));
-    }
-
-    // Registers the collected Totem Effects to the Forge registry
-    @SubscribeEvent
-    public static void registerTotemEffects(RegisterEvent event) {
-        event.register(TotemicRegistries.TOTEM_EFFECTS_KEY, helper -> {
-            for(var entry: totemEffectsToRegister.entrySet())
-                helper.register(entry.getKey(), entry.getValue());
-        });
-    }
-
-    // Checks if all Totem Effects have been registered with the appropriate event and then frees up the internal set
-    public static void checkRegisteredTotemEffects() {
-        for(ResourceLocation key: TotemicRegistries.totemEffects().getKeys()) {
-            if(!totemEffectsToRegister.containsKey(key)) {
-                throw new IllegalStateException(
-                        "The Totem Effect \"" + key + "\" has not been registered with Totemic's RegisterTotemEffectsEvent");
-            }
-        }
-        totemEffectsToRegister = null; // Free up space
     }
 }

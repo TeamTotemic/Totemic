@@ -14,7 +14,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
@@ -63,7 +62,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         for(var blockO: ModBlocks.getTotemPoles().values()) {
             ResourceLocation blockName = blockO.getId();
             TotemPoleBlock block = blockO.get();
-            ResourceLocation effectName = TotemicRegistries.totemEffects().getKey(block.effect);
+            ResourceLocation effectName = block.effect.getName();
 
             ModelFile parentModel = models().getExistingFile(new ResourceLocation(effectName.getNamespace(), ModelProvider.BLOCK_FOLDER + "/totem_pole_" + effectName.getPath()));
 

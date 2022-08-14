@@ -5,9 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import com.google.common.collect.Streams;
-
-import pokefenn.totemic.api.TotemicRegistries;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -17,6 +15,7 @@ public enum CeremonyAPIImpl implements CeremonyAPI {
 
     private Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap = null;
 
+    @Override
     public Map<List<MusicInstrument>, Ceremony> getSelectorsToCeremonyMap() {
         return selectorsToCeremonyMap;
     }
@@ -25,7 +24,7 @@ public enum CeremonyAPIImpl implements CeremonyAPI {
         //This will throw an exception if two different Ceremonies happen to have the same selectors.
         //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
         //to check for prefix-freeness. So we assume MIN_SELECTORS == MAX_SELECTORS here.
-        selectorsToCeremonyMap = Streams.stream(TotemicRegistries.ceremonies())
+        selectorsToCeremonyMap = TotemicAPI.get().registry().ceremonies().values().stream()
                 .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
     }
 }

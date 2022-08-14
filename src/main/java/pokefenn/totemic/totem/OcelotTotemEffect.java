@@ -3,6 +3,7 @@ package pokefenn.totemic.totem;
 import java.lang.reflect.Field;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
@@ -12,8 +13,8 @@ import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 
 public class OcelotTotemEffect extends TotemEffect {
-    public OcelotTotemEffect() {
-        super(false, 10);
+    public OcelotTotemEffect(ResourceLocation name) {
+        super(name, false, 10);
     }
 
     private static final Field timeSinceIgnited = ObfuscationReflectionHelper.findField(Creeper.class, "f_32270_"); //The Creeper#swell field

@@ -11,7 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.util.INBTSerializable;
-import pokefenn.totemic.api.TotemicRegistries;
+import pokefenn.totemic.api.TotemicAPI;
 
 /**
  * Simple default implementation of {@link MusicAcceptor}.
@@ -23,7 +23,7 @@ import pokefenn.totemic.api.TotemicRegistries;
  * The behavior is similar (but simplified) to a Totem Base while starting up a ceremony.
  */
 public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<CompoundTag> {
-    private final Object2IntMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicRegistries.instruments().getEntries().size());
+    private final Object2IntMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicAPI.get().registry().instruments().size());
     private int totalMusic = 0;
 
     /**
@@ -84,7 +84,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
         CompoundTag nbt = new CompoundTag();
 
         for(Entry<MusicInstrument> entry: music.object2IntEntrySet())
-            nbt.putInt(TotemicRegistries.instruments().getKey(entry.getKey()).toString(), entry.getIntValue());
+            nbt.putInt(entry.getKey().toString(), entry.getIntValue());
         return nbt;
     }
 
@@ -93,7 +93,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
         music.clear();
         totalMusic = 0;
         for(String key: tag.getAllKeys()) {
-            MusicInstrument instr = TotemicRegistries.instruments().getValue(new ResourceLocation(key));
+            MusicInstrument instr = TotemicAPI.get().registry().instruments().get(new ResourceLocation(key));
 
             if(instr != null) {
                 int amount = tag.getInt(key);

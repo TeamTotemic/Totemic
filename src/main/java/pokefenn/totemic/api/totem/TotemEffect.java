@@ -1,21 +1,24 @@
 package pokefenn.totemic.api.totem;
 
+import java.util.Objects;
+
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.DeferredRegister;
-import pokefenn.totemic.api.TotemicRegistries;
 
 /**
  * Base class for all Totem Effects.
- * <p>
- * Use the {@link RegisterTotemEffectsEvent} to register your Totem Effects. Please do <b>not</b> use Forge's {@link DeferredRegister} or {@link RegistryEvent}!
  */
 public abstract class TotemEffect { //TODO: This class needs a refactoring
+    /**
+     * The Totem Effect's registry name
+     */
+    protected final ResourceLocation name;
     /**
      * Whether this Totem Effect can be used with a Medicine Bag
      */
@@ -26,12 +29,14 @@ public abstract class TotemEffect { //TODO: This class needs a refactoring
     protected final int interval;
 
     /**
+     * @param name the Totem Effect's registry name.
      * @param portable whether this Totem Effect can be used with a Medicine Bag. In this case, override {@link #medicineBagEffect}.
      * @param interval the time in ticks between applications of the effect. This should ideally be a multiple of 80 or 20.
      */
-    public TotemEffect(boolean portable, int interval) {
+    public TotemEffect(ResourceLocation name, boolean portable, int interval) {
         if(interval < 1)
             throw new IllegalArgumentException("The interval must be positive");
+        this.name = Objects.requireNonNull(name);
         this.portable = portable;
         this.interval = interval;
     }
@@ -62,7 +67,7 @@ public abstract class TotemEffect { //TODO: This class needs a refactoring
      * @return the translation key of the effect. By default it is given by "totem." followed by the registry name.
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totem", TotemicRegistries.totemEffects().getKey(this));
+        return Util.makeDescriptionId("totem", name);
     }
 
     /**
@@ -70,6 +75,13 @@ public abstract class TotemEffect { //TODO: This class needs a refactoring
      */
     public MutableComponent getDisplayName() {
         return Component.translatable(getDescriptionId());
+    }
+
+    /**
+     * @return the Totem Effect's registry name
+     */
+    public final ResourceLocation getName() {
+        return name;
     }
 
     /**

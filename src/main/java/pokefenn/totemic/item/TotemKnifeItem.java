@@ -22,7 +22,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.api.TotemWoodType;
-import pokefenn.totemic.api.TotemicRegistries;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.init.ModBlocks;
 
@@ -45,7 +45,7 @@ public class TotemKnifeItem extends Item {
         if(stack.hasTag()) {
             String key = stack.getTag().getString(KNIFE_TOTEM_KEY);
             if(!key.isEmpty())
-                return TotemicRegistries.totemEffects().getValue(new ResourceLocation(key));
+                return TotemicAPI.get().registry().totemEffects().get(new ResourceLocation(key));
             else
                 return null;
         }
@@ -57,7 +57,7 @@ public class TotemKnifeItem extends Item {
 
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction) {
         if(totemList == null) {
-            totemList = TotemicRegistries.totemEffects().getKeys().stream()
+            totemList = TotemicAPI.get().registry().totemEffects().keySet().stream()
                     .map(key -> key.toString())
                     .filter(key -> !key.equals("totemic:none"))
                     .toList();
