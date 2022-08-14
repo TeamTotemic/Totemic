@@ -1,5 +1,9 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "totemic:block/jungle_totem_pole_enderman",
+      "y": 90
+    },
     "facing=north": {
       "model": "totemic:block/jungle_totem_pole_enderman"
     },
@@ -10,10 +14,6 @@
     "facing=west": {
       "model": "totemic:block/jungle_totem_pole_enderman",
       "y": 270
-    },
-    "facing=east": {
-      "model": "totemic:block/jungle_totem_pole_enderman",
-      "y": 90
     }
   }
 }

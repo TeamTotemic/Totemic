@@ -1,9 +1,9 @@
 {
   "parent": "totemic:block/totem_pole_buffalo",
   "textures": {
-    "wood": "minecraft:block/stripped_acacia_log",
     "bark": "minecraft:block/acacia_log",
+    "particle": "minecraft:block/stripped_acacia_log",
     "top": "minecraft:block/stripped_acacia_log_top",
-    "particle": "minecraft:block/stripped_acacia_log"
+    "wood": "minecraft:block/stripped_acacia_log"
   }
 }

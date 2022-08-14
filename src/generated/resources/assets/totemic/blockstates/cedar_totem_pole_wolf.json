@@ -1,5 +1,9 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "totemic:block/cedar_totem_pole_wolf",
+      "y": 90
+    },
     "facing=north": {
       "model": "totemic:block/cedar_totem_pole_wolf"
     },
@@ -10,10 +14,6 @@
     "facing=west": {
       "model": "totemic:block/cedar_totem_pole_wolf",
       "y": 270
-    },
-    "facing=east": {
-      "model": "totemic:block/cedar_totem_pole_wolf",
-      "y": 90
     }
   }
 }

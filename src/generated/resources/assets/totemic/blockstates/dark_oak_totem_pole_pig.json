@@ -1,5 +1,9 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "totemic:block/dark_oak_totem_pole_pig",
+      "y": 90
+    },
     "facing=north": {
       "model": "totemic:block/dark_oak_totem_pole_pig"
     },
@@ -10,10 +14,6 @@
     "facing=west": {
       "model": "totemic:block/dark_oak_totem_pole_pig",
       "y": 270
-    },
-    "facing=east": {
-      "model": "totemic:block/dark_oak_totem_pole_pig",
-      "y": 90
     }
   }
 }

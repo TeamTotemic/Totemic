@@ -1,9 +1,9 @@
 {
   "parent": "totemic:block/totem_pole_blaze",
   "textures": {
-    "wood": "minecraft:block/stripped_jungle_log",
     "bark": "minecraft:block/jungle_log",
+    "particle": "minecraft:block/stripped_jungle_log",
     "top": "minecraft:block/stripped_jungle_log_top",
-    "particle": "minecraft:block/stripped_jungle_log"
+    "wood": "minecraft:block/stripped_jungle_log"
   }
 }

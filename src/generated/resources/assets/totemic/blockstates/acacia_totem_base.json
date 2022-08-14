@@ -1,5 +1,9 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "totemic:block/acacia_totem_base",
+      "y": 90
+    },
     "facing=north": {
       "model": "totemic:block/acacia_totem_base"
     },
@@ -10,10 +14,6 @@
     "facing=west": {
       "model": "totemic:block/acacia_totem_base",
       "y": 270
-    },
-    "facing=east": {
-      "model": "totemic:block/acacia_totem_base",
-      "y": 90
     }
   }
 }
