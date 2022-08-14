@@ -43,7 +43,7 @@ public final class ModContent {
     public static final TotemEffect horse = new PotionTotemEffect(new ResourceLocation("totemic", "horse"), () -> MobEffects.MOVEMENT_SPEED);
     public static final TotemEffect ocelot = new OcelotTotemEffect(new ResourceLocation("totemic", "ocelot"));
     public static final TotemEffect pig = new PotionTotemEffect(new ResourceLocation("totemic", "pig"), () -> MobEffects.LUCK);
-    public static final TotemEffect rabbit = new PotionTotemEffect(new ResourceLocation("totemic", "jump"), () -> MobEffects.JUMP);
+    public static final TotemEffect rabbit = new PotionTotemEffect(new ResourceLocation("totemic", "rabbit"), () -> MobEffects.JUMP);
     public static final TotemEffect spider = new PotionTotemEffect(new ResourceLocation("totemic", "spider"), ModEffects.spider);
     public static final TotemEffect squid = new PotionTotemEffect(new ResourceLocation("totemic", "squid"), () -> MobEffects.WATER_BREATHING);
     public static final TotemEffect wolf = new PotionTotemEffect(new ResourceLocation("totemic", "wolf"), () -> MobEffects.DAMAGE_BOOST);
@@ -55,6 +55,6 @@ public final class ModContent {
 
     @SubscribeEvent
     public static void totemEffects(TotemicRegisterEvent<TotemEffect> event) {
-        event.registerAll();
+        event.registerAll(none, bat, blaze, buffalo, cow, enderman, horse, ocelot, pig, rabbit, spider, squid, wolf);
     }
 }
