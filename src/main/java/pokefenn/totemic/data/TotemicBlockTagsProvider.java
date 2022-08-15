@@ -3,6 +3,7 @@ package pokefenn.totemic.data;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModBlockTags;
 import pokefenn.totemic.init.ModBlocks;
@@ -15,10 +16,10 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags() {
         ModBlocks.getTotemBases().values().stream()
-                .map(ro -> ro.get())
+                .map(RegistryObject::get)
                 .forEach(tag(ModBlockTags.TOTEM_BASES)::add);
         ModBlocks.getTotemPoles().values().stream()
-                .map(ro -> ro.get())
+                .map(RegistryObject::get)
                 .forEach(tag(ModBlockTags.TOTEM_POLES)::add);
     }
 

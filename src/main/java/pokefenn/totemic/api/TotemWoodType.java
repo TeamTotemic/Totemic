@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.ImmutableList;
-
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MaterialColor;
@@ -20,7 +18,7 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
     public static final TotemWoodType DARK_OAK = new TotemWoodType("dark_oak", MaterialColor.COLOR_BROWN, MaterialColor.COLOR_BROWN, "minecraft");
     public static final TotemWoodType CEDAR = new TotemWoodType("cedar", MaterialColor.COLOR_PINK, MaterialColor.COLOR_ORANGE, "totemic");
 
-    private static final List<TotemWoodType> woodTypes = ImmutableList.of(OAK, SPRUCE, BIRCH, JUNGLE, ACACIA, DARK_OAK, CEDAR);
+    private static final List<TotemWoodType> woodTypes = List.of(OAK, SPRUCE, BIRCH, JUNGLE, ACACIA, DARK_OAK, CEDAR);
 
     private final String name;
     private final MaterialColor woodColor;

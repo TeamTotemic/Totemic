@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collector;
-import java.util.stream.Collector.Characteristics;
 
 public final class MiscUtil {
     /**
@@ -46,6 +45,6 @@ public final class MiscUtil {
                         else
                             return list2;
                     }
-                }, Characteristics.IDENTITY_FINISH);
+                });
     }
 }

@@ -15,9 +15,7 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
 
     public abstract void tick();
 
-    public boolean canSelect() {
-        return false;
-    }
+    public abstract boolean canSelect();
 
     public void addSelector(@Nonnull Entity entity, MusicInstrument instr) { }
 }
