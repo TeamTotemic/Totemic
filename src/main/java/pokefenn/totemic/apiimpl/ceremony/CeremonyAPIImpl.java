@@ -15,7 +15,6 @@ public enum CeremonyAPIImpl implements CeremonyAPI {
 
     private Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap = null;
 
-    @Override
     public Map<List<MusicInstrument>, Ceremony> getSelectorsToCeremonyMap() {
         return selectorsToCeremonyMap;
     }

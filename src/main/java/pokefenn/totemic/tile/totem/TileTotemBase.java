@@ -101,6 +101,7 @@ public class TileTotemBase extends BlockEntity {
             this.state = state;
             musicHandler.invalidate();
             musicHandler = LazyOptional.of(() -> this.state);
+            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
             setChanged();
         }
     }

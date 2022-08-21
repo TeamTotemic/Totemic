@@ -7,10 +7,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.world.entity.Entity;
-import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
+import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.apiimpl.ceremony.CeremonyAPIImpl;
 
 public final class StateSelection extends TotemState {
     private final TotemState previousState;
@@ -34,9 +35,16 @@ public final class StateSelection extends TotemState {
         tile.setChanged();
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
-            Ceremony match = TotemicAPI.get().ceremony().getSelectorsToCeremonyMap().get(selectors);
-            if(match != null && match.canSelect(tile.getLevel(), tile.getBlockPos())) {
-
+            Ceremony match = CeremonyAPIImpl.INSTANCE.getSelectorsToCeremonyMap().get(selectors);
+            if(match != null) {
+                CeremonyInstance instance = match.createInstance(tile.getLevel(), tile.getBlockPos());
+                if(instance.canSelect())
+                    tile.setState(new StateStartup(tile, match, instance, entity));
+                else
+                    tile.setState(previousState);
+            }
+            else if(selectors.size() >= CeremonyAPI.MAX_SELECTORS) {
+                tile.setState(previousState);
             }
         }
     }
@@ -53,7 +61,7 @@ public final class StateSelection extends TotemState {
 
     @Override
     public void tick() {
-        // TODO Auto-generated method stub
-
+        if(time++ >= 60 * 20)
+            tile.setState(previousState);
     }
 }
