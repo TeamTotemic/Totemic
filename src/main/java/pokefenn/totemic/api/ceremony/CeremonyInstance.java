@@ -7,29 +7,24 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public abstract class CeremonyInstance implements INBTSerializable<Tag> {
-    protected final Level level;
-    protected final BlockPos pos;
-
-    public CeremonyInstance(Level level, BlockPos pos) {
-        this.level = level;
-        this.pos = pos;
+    public CeremonyInstance() {
     }
 
-    public boolean canSelect() {
+    public boolean canSelect(Level level, BlockPos pos) {
         return true;
     }
 
-    public void onStartup(StartupContext context) { }
+    public void onStartup(Level level, BlockPos pos, StartupContext context) { }
 
-    public void onStartupFail(StartupContext context) { }
+    public void onStartupFail(Level level, BlockPos pos, StartupContext context) { }
 
-    public boolean canStartEffect(StartupContext context) {
+    public boolean canStartEffect(Level level, BlockPos pos, StartupContext context) {
         return true;
     }
 
-    public void onEffectEnd(CeremonyEffectContext context) { }
+    public void onEffectEnd(Level level, BlockPos pos, CeremonyEffectContext context) { }
 
-    public abstract void effect(CeremonyEffectContext context);
+    public abstract void effect(Level level, BlockPos pos, CeremonyEffectContext context);
 
     public int getEffectTime() {
         return 0;

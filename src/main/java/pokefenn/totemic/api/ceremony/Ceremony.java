@@ -2,13 +2,12 @@ package pokefenn.totemic.api.ceremony;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.apache.commons.lang3.Validate;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 /**
@@ -27,7 +26,7 @@ public class Ceremony {
      * The maximum time in ticks that the player may take to start the ceremony, before adjustment for difficulty.
      */
     private final int maxStartupTime;
-    private final InstanceFactory factory;
+    private final Supplier<CeremonyInstance> factory;
     /**
      * The list of music instruments for selecting the ceremony.
      */
@@ -41,7 +40,7 @@ public class Ceremony {
      * This value will be adjusted depending on difficulty, see {@link #getAdjustedMaxStartupTime}.
      * @param selectors the list of music instruments for selecting the ceremony.
      */
-    public Ceremony(ResourceLocation name, int musicNeeded, int maxStartupTime, InstanceFactory factory, MusicInstrument... selectors) {
+    public Ceremony(ResourceLocation name, int musicNeeded, int maxStartupTime, Supplier<CeremonyInstance> factory, MusicInstrument... selectors) {
         Validate.inclusiveBetween(CeremonyAPI.MIN_SELECTORS, CeremonyAPI.MAX_SELECTORS, selectors.length,
                 "Invalid number of Cermeony selectors (must be between CeremonyAPI.MIN_SELECTORS and CeremonyAPI.MAX_SELECTORS)");
 
@@ -85,8 +84,8 @@ public class Ceremony {
         };
     }
 
-    public CeremonyInstance createInstance(Level level, BlockPos pos) {
-        return factory.createInstance(level, pos);
+    public CeremonyInstance createInstance() {
+        return factory.get();
     }
 
     /**
@@ -94,10 +93,5 @@ public class Ceremony {
      */
     public final List<MusicInstrument> getSelectors() {
         return selectors;
-    }
-
-    @FunctionalInterface
-    public interface InstanceFactory {
-        CeremonyInstance createInstance(Level level, BlockPos pos);
     }
 }

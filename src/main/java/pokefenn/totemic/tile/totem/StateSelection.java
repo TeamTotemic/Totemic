@@ -37,8 +37,8 @@ public final class StateSelection extends TotemState {
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
             Ceremony match = CeremonyAPIImpl.INSTANCE.getSelectorsToCeremonyMap().get(selectors);
             if(match != null) {
-                CeremonyInstance instance = match.createInstance(tile.getLevel(), tile.getBlockPos());
-                if(instance.canSelect())
+                CeremonyInstance instance = match.createInstance();
+                if(instance.canSelect(tile.getLevel(), tile.getBlockPos()))
                     tile.setState(new StateStartup(tile, match, instance, entity));
                 else
                     tile.setState(previousState);
