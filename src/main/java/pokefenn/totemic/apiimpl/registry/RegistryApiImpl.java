@@ -2,18 +2,20 @@ package pokefenn.totemic.apiimpl.registry;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 import pokefenn.totemic.api.totem.TotemEffect;
-import pokefenn.totemic.apiimpl.ceremony.CeremonyAPIImpl;
 
 public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;
@@ -21,6 +23,8 @@ public enum RegistryApiImpl implements RegistryAPI {
     private final Map<ResourceLocation, MusicInstrument> instruments = new LinkedHashMap<>();
     private final Map<ResourceLocation, TotemEffect> totemEffects = new LinkedHashMap<>();
     private final Map<ResourceLocation, Ceremony> ceremonies = new LinkedHashMap<>();
+
+    private Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap = null;
 
     @Override
     public Map<ResourceLocation, MusicInstrument> instruments() {
@@ -35,6 +39,10 @@ public enum RegistryApiImpl implements RegistryAPI {
     @Override
     public Map<ResourceLocation, Ceremony> ceremonies() {
         return Collections.unmodifiableMap(ceremonies);
+    }
+
+    public Map<List<MusicInstrument>, Ceremony> getSelectorsToCeremonyMap() {
+        return selectorsToCeremonyMap;
     }
 
     private <T> void fireRegistryEvent(Class<T> type, Map<ResourceLocation, T> registry, Function<T, ResourceLocation> nameFunc) {
@@ -57,6 +65,14 @@ public enum RegistryApiImpl implements RegistryAPI {
 
     public void registerCeremonies() {
         fireRegistryEvent(Ceremony.class, ceremonies, Ceremony::getName);
-        CeremonyAPIImpl.INSTANCE.computeSelectorsToCeremonyMap();
+        computeSelectorsToCeremonyMap();
+    }
+
+    private void computeSelectorsToCeremonyMap() {
+        //This will throw an exception if two different Ceremonies happen to have the same selectors.
+        //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
+        //to check for prefix-freeness. So we assume MIN_SELECTORS == MAX_SELECTORS here.
+        selectorsToCeremonyMap = TotemicAPI.get().registry().ceremonies().values().stream()
+                .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
     }
 }

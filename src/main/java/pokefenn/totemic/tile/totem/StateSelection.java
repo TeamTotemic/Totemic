@@ -11,7 +11,7 @@ import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.apiimpl.ceremony.CeremonyAPIImpl;
+import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 
 public final class StateSelection extends TotemState {
     private final TotemState previousState;
@@ -35,7 +35,7 @@ public final class StateSelection extends TotemState {
         tile.setChanged();
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
-            Ceremony match = CeremonyAPIImpl.INSTANCE.getSelectorsToCeremonyMap().get(selectors);
+            Ceremony match = RegistryApiImpl.INSTANCE.getSelectorsToCeremonyMap().get(selectors);
             if(match != null) {
                 CeremonyInstance instance = match.createInstance();
                 if(instance.canSelect(tile.getLevel(), tile.getBlockPos()))
