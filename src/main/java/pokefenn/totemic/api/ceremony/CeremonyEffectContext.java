@@ -1,5 +1,7 @@
 package pokefenn.totemic.api.ceremony;
 
+import net.minecraft.world.entity.Entity;
+
 /**
  * This interface provides details about a Ceremony's state during the ceremony effect phase.
  * Instances of this are passed to {@link CeremonyInstance} methods.
@@ -10,4 +12,6 @@ public interface CeremonyEffectContext {
      * Note: This value might not be accurate on the client side due to server latency.
      */
     int getTime();
+
+    Entity getInitiator();
 }

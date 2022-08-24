@@ -1,5 +1,6 @@
 package pokefenn.totemic.tile.totem;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.world.entity.Entity;
@@ -17,7 +18,7 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     private int time = 0;
 
-    public StateStartup(TileTotemBase tile, Ceremony ceremony, CeremonyInstance instance, Entity initiator) {
+    public StateStartup(TileTotemBase tile, Ceremony ceremony, CeremonyInstance instance, @Nonnull Entity initiator) {
         super(tile);
         this.ceremony = ceremony;
         this.instance = instance;
@@ -53,6 +54,11 @@ public final class StateStartup extends TotemState implements StartupContext {
     @Override
     public int getMusic(MusicInstrument instrument) {
         return musicHandler.getMusicAmount(instrument);
+    }
+
+    @Override
+    public Entity getInitiator() {
+        return initiator;
     }
 
     @Override

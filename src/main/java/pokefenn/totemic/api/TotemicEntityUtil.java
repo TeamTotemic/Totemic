@@ -5,12 +5,9 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import com.google.common.base.Predicates;
-
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -18,15 +15,15 @@ import net.minecraft.world.phys.AABB;
 /**
  * Methods for getting collections of entities within an area, as commonly used for Totem Effects and Ceremonies.
  */
-public final class TotemicEntityUtil {
+public final class TotemicEntityUtil { //TODO: Are the methods in this class still needed? Cf EntityGetter
     /**
-     * Returns the players that are within range of a position.
+     * Returns the players that are within range of a position (and are not in Spectator mode).
      *
      * @param horizontal the horizontal range
      * @param vertical   the vertical range
      */
     public static Stream<? extends Player> getPlayersInRange(Level world, BlockPos pos, double horizontal, double vertical) {
-        return getPlayersInRange(world, pos, horizontal, vertical, Predicates.alwaysTrue());
+        return getPlayersInRange(world, pos, horizontal, vertical, EntitySelector.NO_SPECTATORS);
     }
 
     /**
@@ -43,14 +40,11 @@ public final class TotemicEntityUtil {
     }
 
     private static List<? extends Player> getPlayerList(Level world) {
-        if(world instanceof ServerLevel)
-            return ((ServerLevel) world).players();
-        else
-            return ((ClientLevel) world).players();
+        return world.players();
     }
 
     /**
-     * Returns the entities of the given type that are within range of a position.
+     * Returns the entities of the given type that are within range of a position (and are not in Spectator mode).
      *
      * <p>
      * If {@code type} is {@link EntityPlayer} you should use {@link #getPlayersInRange} instead.
@@ -59,7 +53,7 @@ public final class TotemicEntityUtil {
      * @param vertical   the vertical range
      */
     public static <T extends Entity> Stream<T> getEntitiesInRange(Class<T> type, Level world, BlockPos pos, double horizontal, double vertical) {
-        return getEntitiesInRange(type, world, pos, horizontal, vertical, Predicates.alwaysTrue());
+        return getEntitiesInRange(type, world, pos, horizontal, vertical, EntitySelector.NO_SPECTATORS);
     }
 
     /**

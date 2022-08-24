@@ -1,5 +1,6 @@
 package pokefenn.totemic.api.ceremony;
 
+import net.minecraft.world.entity.Entity;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 /**
@@ -22,4 +23,6 @@ public interface StartupContext {
      * @return the amount of music from the specified instrument played for the ceremony.
      */
     int getMusic(MusicInstrument instrument);
+
+    Entity getInitiator();
 }

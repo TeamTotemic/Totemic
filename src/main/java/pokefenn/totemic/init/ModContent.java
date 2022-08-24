@@ -11,13 +11,14 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.ceremony.CeremonyWarDance;
 import pokefenn.totemic.totem.EmptyTotemEffect;
 import pokefenn.totemic.totem.OcelotTotemEffect;
 
 public final class ModContent {
     public static final MusicInstrument flute = new MusicInstrument(resloc("flute"), 3, 50);
+    public static final MusicInstrument drum = new MusicInstrument(resloc("drum"), 4, 55);
     /*
-     * public static MusicInstrument drum;
      * public static MusicInstrument windChime;
      * public static MusicInstrument jingleDress;
      * public static MusicInstrument rattle;
@@ -50,9 +51,13 @@ public final class ModContent {
     public static final TotemEffect squid = new PotionTotemEffect(resloc("squid"), () -> MobEffects.WATER_BREATHING);
     public static final TotemEffect wolf = new PotionTotemEffect(resloc("wolf"), () -> MobEffects.DAMAGE_BOOST);
 
+    public static final Ceremony warDance = new Ceremony(resloc("war_dance"), 75, 20 * 20, CeremonyWarDance::new, /*drum, drum*/flute, flute);
+
     @SubscribeEvent
     public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {
-        event.registerAll(flute.setItem(ModItems.flute.get()));
+        event.registerAll(
+                flute.setItem(ModItems.flute.get()),
+                drum);
     }
 
     @SubscribeEvent
@@ -62,7 +67,7 @@ public final class ModContent {
 
     @SubscribeEvent
     public static void cermeonies(TotemicRegisterEvent<Ceremony> event) {
-        event.registerAll();
+        event.registerAll(warDance);
     }
 
     private static ResourceLocation resloc(String path) {

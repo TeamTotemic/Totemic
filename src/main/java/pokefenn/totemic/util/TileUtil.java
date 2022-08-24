@@ -22,12 +22,11 @@ public final class TileUtil {
 
     @SuppressWarnings("unchecked")
     public static <T extends BlockEntity> Stream<T> getTileEntitiesIn(Class<? extends T> type, Level world, BlockPos start, BlockPos end) {
-        return ChunkPos.rangeClosed(new ChunkPos(start), new ChunkPos(end))
+        return (Stream<T>) ChunkPos.rangeClosed(new ChunkPos(start), new ChunkPos(end))
                 .filter(chunkPos -> world.hasChunk(chunkPos.x, chunkPos.z))
                 .map(chunkPos -> world.getChunk(chunkPos.x, chunkPos.z))
                 .flatMap(chunk -> chunk.getBlockEntities().values().stream())
-                .filter(tile -> type.isInstance(tile) && !tile.isRemoved() && tile.getBlockPos().compareTo(start) >= 0 && tile.getBlockPos().compareTo(end) <= 0)
-                .map(tile -> (T) tile);
+                .filter(tile -> type.isInstance(tile) && !tile.isRemoved() && tile.getBlockPos().compareTo(start) >= 0 && tile.getBlockPos().compareTo(end) <= 0);
     }
 
     public static Comparator<BlockEntity> compareCenterDistanceTo(double x, double y, double z) {
