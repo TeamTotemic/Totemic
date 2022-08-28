@@ -3,6 +3,7 @@ package pokefenn.totemic.api.music;
 import javax.annotation.Nullable;
 
 import net.minecraft.world.entity.Entity;
+import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 import pokefenn.totemic.api.TotemicCapabilities;
 
 /**
@@ -11,6 +12,7 @@ import pokefenn.totemic.api.TotemicCapabilities;
  * <p>
  * A reference implementation is provided by {@link DefaultMusicAcceptor}.
  */
+@AutoRegisterCapability
 public interface MusicAcceptor {
     /**
      * Returns {@code true} if the acceptor is able to accept music from the specified instrument. If the acceptor is saturated with the instrument,

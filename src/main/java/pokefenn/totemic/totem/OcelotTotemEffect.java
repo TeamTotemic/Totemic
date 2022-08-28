@@ -1,5 +1,7 @@
 package pokefenn.totemic.totem;
 
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.VarHandle;
 import java.lang.reflect.Field;
 
 import net.minecraft.core.BlockPos;
@@ -17,7 +19,17 @@ public class OcelotTotemEffect extends TotemEffect {
         super(name, false, 10);
     }
 
-    private static final Field timeSinceIgnited = ObfuscationReflectionHelper.findField(Creeper.class, "f_32270_"); //The Creeper#swell field
+    private static final VarHandle creeperSwell;
+
+    static {
+        try {
+            Field swellField = ObfuscationReflectionHelper.findField(Creeper.class, "f_32270_"); //The Creeper#swell field
+            creeperSwell = MethodHandles.privateLookupIn(Creeper.class, MethodHandles.lookup()).unreflectVarHandle(swellField);
+        }
+        catch(Exception e) {
+            throw new RuntimeException("Could not get VarHandle for Creeper.swell field", e);
+        }
+    }
 
     @Override
     public void effect(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
@@ -27,16 +39,11 @@ public class OcelotTotemEffect extends TotemEffect {
         int range = TotemicAPI.get().totemEffect().getDefaultRange(this, repetition, context);
         TotemicEntityUtil.getEntitiesInRange(Creeper.class, world, pos, range, range)
             .forEach(creeper -> {
-                try {
-                    int ignited = (Integer) timeSinceIgnited.get(creeper);
+                int ignited = (int) creeperSwell.get(creeper);
 
-                    if(ignited > 15)
-                    {
-                        timeSinceIgnited.setInt(creeper, 0);
-                        creeper.setSwellDir(-1);
-                    }
-                }
-                catch (ReflectiveOperationException e) {
+                if(ignited > 15) {
+                    creeperSwell.set(creeper, 0);
+                    creeper.setSwellDir(-1);
                 }
             });
     }

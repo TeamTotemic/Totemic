@@ -6,7 +6,6 @@ import org.apache.logging.log4j.Logger;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -16,7 +15,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
@@ -46,7 +44,6 @@ public final class Totemic {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modBus.addListener(this::commonSetup);
-        modBus.addListener(this::registerCapabilities);
         modBus.addListener(this::gatherData);
 
         ModBlocks.REGISTER.register(modBus);
@@ -88,10 +85,6 @@ public final class Totemic {
     private void clientSetup(FMLClientSetupEvent event) {
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
-    }
-
-    private void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.register(MusicAcceptor.class);
     }
 
     private void gatherData(GatherDataEvent event) {
