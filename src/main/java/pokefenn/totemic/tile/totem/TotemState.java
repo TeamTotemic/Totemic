@@ -6,7 +6,7 @@ import net.minecraft.world.entity.Entity;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-public abstract sealed class TotemState implements MusicAcceptor permits StateTotemEffect, StateSelection, StateStartup {
+public abstract sealed class TotemState implements MusicAcceptor permits StateTotemEffect, StateSelection, StateStartup, StateCeremonyEffect {
     final TileTotemBase tile;
 
     TotemState(TileTotemBase tile) {
@@ -15,7 +15,9 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
 
     public abstract void tick();
 
-    public abstract boolean canSelect();
+    public boolean canSelect() {
+        return false;
+    }
 
     public void addSelector(@Nonnull Entity entity, MusicInstrument instr) { }
 }

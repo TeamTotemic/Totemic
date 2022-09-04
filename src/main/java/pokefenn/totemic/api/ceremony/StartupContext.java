@@ -25,4 +25,8 @@ public interface StartupContext {
     int getMusic(MusicInstrument instrument);
 
     Entity getInitiator();
+
+    void failCeremony();
+
+    void startCeremony();
 }

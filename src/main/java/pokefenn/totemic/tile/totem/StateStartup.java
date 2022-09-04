@@ -3,7 +3,9 @@ package pokefenn.totemic.tile.totem;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.ceremony.StartupContext;
@@ -32,13 +34,38 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     @Override
     public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
-        return musicHandler.acceptMusic(instr, amount, x, y, z, entity);
+        if(musicHandler.acceptMusic(instr, amount, x, y, z, entity)) {
+            tile.setChanged();
+            return true;
+        }
+        else
+            return false;
     }
 
     @Override
     public void tick() {
-        // TODO Auto-generated method stub
+        Level world = tile.getLevel();
+        BlockPos pos = tile.getBlockPos();
 
+        if(!world.isClientSide) {
+            if(musicHandler.getTotalMusic() >= ceremony.getMusicNeeded()) {
+                if(instance.canStartEffect(world, pos, this))
+                    startCeremony();
+                else
+                    failCeremony();
+            }
+            else if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty())) {
+                instance.onStartupFail(world, pos, this);
+                failCeremony();
+            }
+            else {
+                instance.onStartup(world, pos, this);
+
+
+            }
+        }
+
+        time++;
     }
 
     @Override
@@ -62,8 +89,12 @@ public final class StateStartup extends TotemState implements StartupContext {
     }
 
     @Override
-    public boolean canSelect() {
-        return false;
+    public void failCeremony() {
+        tile.setState(new StateTotemEffect(tile));
     }
 
+    @Override
+    public void startCeremony() {
+        tile.setState(new StateCeremonyEffect(tile));
+    }
 }
