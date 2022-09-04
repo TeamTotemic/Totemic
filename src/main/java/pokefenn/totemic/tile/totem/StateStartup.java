@@ -10,12 +10,13 @@ import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.music.DefaultMusicAcceptor;
+import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 public final class StateStartup extends TotemState implements StartupContext {
     private final Ceremony ceremony;
     private final CeremonyInstance instance;
-    private final Entity initiator;
+    private final @Nonnull Entity initiator;
     private final DefaultMusicAcceptor musicHandler = new DefaultMusicAcceptor();
 
     private int time = 0;
@@ -40,6 +41,11 @@ public final class StateStartup extends TotemState implements StartupContext {
         }
         else
             return false;
+    }
+
+    @Override
+    public int getPriority() {
+        return MusicAcceptor.CEREMONY_PRIORITY;
     }
 
     @Override
@@ -95,6 +101,6 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     @Override
     public void startCeremony() {
-        tile.setState(new StateCeremonyEffect(tile));
+        tile.setState(new StateCeremonyEffect(tile, ceremony, instance, initiator));
     }
 }

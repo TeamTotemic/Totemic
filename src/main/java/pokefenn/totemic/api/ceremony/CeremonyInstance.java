@@ -22,8 +22,6 @@ public abstract class CeremonyInstance implements INBTSerializable<Tag> {
         return true;
     }
 
-    public void onEffectEnd(Level level, BlockPos pos, CeremonyEffectContext context) { }
-
     public abstract void effect(Level level, BlockPos pos, CeremonyEffectContext context);
 
     public int getEffectTime() {

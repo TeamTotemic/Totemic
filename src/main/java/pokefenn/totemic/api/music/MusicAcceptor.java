@@ -15,6 +15,15 @@ import pokefenn.totemic.api.TotemicCapabilities;
 @AutoRegisterCapability
 public interface MusicAcceptor {
     /**
+     * Default priority for MusicAcceptors.
+     */
+    static final int DEFAULT_PRIORITY = 0;
+    /**
+     * Music acceptor priority of a Totem Base currently performing a Ceremony.
+     */
+    static final int CEREMONY_PRIORITY = 16;
+
+    /**
      * Returns {@code true} if the acceptor is able to accept music from the specified instrument. If the acceptor is saturated with the instrument,
      * {@code false} should be returned.
      * @param instr the music instrument
@@ -37,11 +46,8 @@ public interface MusicAcceptor {
     /**
      * Returns the priority of the Music Acceptor. Higher priority acceptors will receive music before other acceptors. The music will be evenly split between
      * acceptors with the same priority.
-     *
-     * As a reference, Totem Bases which are not currently in a Ceremony will have the default priority of 0, while Totem Bases that are in one will have a
-     * priority of 16.
      */
     default int getPriority() {
-        return 0;
+        return DEFAULT_PRIORITY;
     }
 }

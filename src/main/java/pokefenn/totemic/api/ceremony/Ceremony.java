@@ -21,11 +21,11 @@ public class Ceremony {
     /**
      * The amount of music needed to start the ceremony.
      */
-    private final int musicNeeded;
+    private final int musicNeeded; //TODO: Maybe move this to CeremonyInstance?
     /**
      * The maximum time in ticks that the player may take to start the ceremony, before adjustment for difficulty.
      */
-    private final int maxStartupTime;
+    private final int maxStartupTime; //TODO: Maybe move this to CeremonyInstance?
     private final Supplier<CeremonyInstance> factory;
     /**
      * The list of music instruments for selecting the ceremony.
