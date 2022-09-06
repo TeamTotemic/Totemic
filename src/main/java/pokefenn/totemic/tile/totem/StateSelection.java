@@ -64,4 +64,8 @@ public final class StateSelection extends TotemState {
         if(time++ >= 60 * 20)
             tile.setState(previousState);
     }
+
+    public List<MusicInstrument> getSelectors() {
+        return selectors;
+    }
 }

@@ -2,6 +2,9 @@ package pokefenn.totemic.api.music;
 
 import java.util.Objects;
 
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
@@ -48,8 +51,15 @@ public final class MusicInstrument {
     /**
      * @return the unlocalized name of the Instrument, which is given by "totemic.instrument." followed by the name
      */
-    public String getUnlocalizedName() {
-        return "totemic.instrument." + name;
+    public String getDescriptionId() {
+        return Util.makeDescriptionId("totemic.instrument", name);
+    }
+
+    /**
+     * @return a text component representing the instrument's name
+     */
+    public MutableComponent getDisplayName() {
+        return Component.translatable(getDescriptionId());
     }
 
     /**

@@ -6,6 +6,9 @@ import java.util.function.Supplier;
 
 import org.apache.commons.lang3.Validate;
 
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Difficulty;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -49,6 +52,20 @@ public class Ceremony {
         this.maxStartupTime = maxStartupTime;
         this.factory = factory;
         this.selectors = List.of(selectors);
+    }
+
+    /**
+     * @return the unlocalized name of the Instrument, which is given by "totemic.ceremony." followed by the name
+     */
+    public String getDescriptionId() {
+        return Util.makeDescriptionId("totemic.ceremony", name);
+    }
+
+    /**
+     * @return a text component representing the instrument's name
+     */
+    public MutableComponent getDisplayName() {
+        return Component.translatable(getDescriptionId());
     }
 
     /**

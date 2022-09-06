@@ -64,10 +64,10 @@ public abstract class TotemEffect { //TODO: This class needs a refactoring
     }
 
     /**
-     * @return the translation key of the effect. By default it is given by "totem." followed by the registry name.
+     * @return the translation key of the effect. By default it is given by "totemic.totem" followed by the registry name.
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totem", name);
+        return Util.makeDescriptionId("totemic.totem", name);
     }
 
     /**

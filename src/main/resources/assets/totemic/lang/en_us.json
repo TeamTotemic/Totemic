@@ -25,22 +25,34 @@
   
   "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
   "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
+  "item.totemic.totemic_staff": "Totemic Staff",
+  "item.totemic.totemic_staff.tooltip": "A staff for your Totemic needs!",
   
-  "totem.totemic.none": "None",
-  "totem.totemic.bat": "Bat",
-  "totem.totemic.blaze": "Blaze",
-  "totem.totemic.buffalo": "Buffalo",
-  "totem.totemic.cow": "Cow",
-  "totem.totemic.enderman": "Enderman",
-  "totem.totemic.horse": "Horse",
-  "totem.totemic.ocelot": "Ocelot",
-  "totem.totemic.pig": "Pig",
-  "totem.totemic.rabbit": "Rabbit",
-  "totem.totemic.spider": "Spider",
-  "totem.totemic.squid": "Squid",
-  "totem.totemic.wolf": "Wolf",
+  "totemic.totem.totemic.none": "None",
+  "totemic.totem.totemic.bat": "Bat",
+  "totemic.totem.totemic.blaze": "Blaze",
+  "totemic.totem.totemic.buffalo": "Buffalo",
+  "totemic.totem.totemic.cow": "Cow",
+  "totemic.totem.totemic.enderman": "Enderman",
+  "totemic.totem.totemic.horse": "Horse",
+  "totemic.totem.totemic.ocelot": "Ocelot",
+  "totemic.totem.totemic.pig": "Pig",
+  "totemic.totem.totemic.rabbit": "Rabbit",
+  "totemic.totem.totemic.spider": "Spider",
+  "totemic.totem.totemic.squid": "Squid",
+  "totemic.totem.totemic.wolf": "Wolf",
+  
+  "totemic.instrument.totemic.flute": "Flute",
+  "totemic.instrument.totemic.drum": "Drum",
+  
+  "totemic.ceremony.totemic.war_dance": "War Dance",
   
   "effect.totemic.spider": "Spider",
 
-  "itemGroup.totemic": "Totemic"
+  "itemGroup.totemic": "Totemic",
+  
+  "totemic.isDoingNoCeremony": "The Totem Pole is not doing a Ceremony. Try playing instruments while sneaking to start one.",
+  "totemic.isDoingSelection": "The Totem Pole is waiting for a Ceremony to be selected\nSelection: %s",
+  "totemic.isDoingStartup": "The Totem Pole is doing a Ceremony startup\nCeremony: %s",
+  "totemic.isDoingCeremony": "The Totem Pole is doing a Ceremony effect\nCeremony: %s"
 }

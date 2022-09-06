@@ -12,7 +12,7 @@ import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 public final class StateCeremonyEffect extends TotemState implements CeremonyEffectContext {
-    //private final Ceremony ceremony;
+    private final Ceremony ceremony;
     private final CeremonyInstance instance;
     private final @Nonnull Entity initiator;
 
@@ -20,7 +20,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
 
     public StateCeremonyEffect(TileTotemBase tile, Ceremony ceremony, CeremonyInstance instance, @Nonnull Entity initiator) {
         super(tile);
-        //this.ceremony = ceremony;
+        this.ceremony = ceremony;
         this.instance = instance;
         this.initiator = initiator;
     }
@@ -63,5 +63,9 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     @Override
     public Entity getInitiator() {
         return initiator;
+    }
+
+    public Ceremony getCeremony() {
+        return ceremony;
     }
 }

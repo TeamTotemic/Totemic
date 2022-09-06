@@ -103,4 +103,8 @@ public final class StateStartup extends TotemState implements StartupContext {
     public void startCeremony() {
         tile.setState(new StateCeremonyEffect(tile, ceremony, instance, initiator));
     }
+
+    public Ceremony getCeremony() {
+        return ceremony;
+    }
 }
