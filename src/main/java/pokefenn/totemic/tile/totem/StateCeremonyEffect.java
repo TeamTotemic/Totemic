@@ -45,13 +45,13 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
         if(!world.isClientSide) {
             if(time >= instance.getEffectTime()) {
                 //instance.onEffectEnd(world, pos, this); //TODO: Make onEffectEnd work on the client side too, if necessary
-                tile.setState(new StateTotemEffect(tile));
+                tile.setTotemState(new StateTotemEffect(tile));
             }
         }
         else {
             //Due to network delay, we want to avoid ticking instant ceremonies more than once on the client side
             if(instance.getEffectTime() == 0)
-                tile.setState(new StateTotemEffect(tile));
+                tile.setTotemState(new StateTotemEffect(tile));
         }
     }
 

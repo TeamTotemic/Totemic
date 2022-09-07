@@ -92,11 +92,11 @@ public class TileTotemBase extends BlockEntity {
         return commonTotemEffectInterval;
     }
 
-    public TotemState getState() {
+    public TotemState getTotemState() {
         return state;
     }
 
-    void setState(TotemState state) {
+    void setTotemState(TotemState state) {
         if(state != this.state) {
             this.state = state;
             musicHandler.invalidate();

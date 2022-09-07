@@ -59,20 +59,20 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         context.getLevel().getBlockEntity(context.getClickedPos(), ModTileEntities.totem_base.get())
         .ifPresent(tile -> {
             Player player = context.getPlayer();
-            if(tile.getState() instanceof StateTotemEffect state) {
+            if(tile.getTotemState() instanceof StateTotemEffect state) {
                 player.displayClientMessage(Component.translatable("totemic.isDoingNoCeremony"), /*true*/false);
             }
-            else if(tile.getState() instanceof StateSelection state) {
+            else if(tile.getTotemState() instanceof StateSelection state) {
                 var selectors = state.getSelectors();
                 MutableComponent selComp = selectors.get(0).getDisplayName();
                 for(int i = 1; i < selectors.size(); i++)
                     selComp.append(", ").append(selectors.get(i).getDisplayName()); //TODO: Simplify using I18n (when on client side only)
                 player.displayClientMessage(Component.translatable("totemic.isDoingSelection", selComp), false);
             }
-            else if(tile.getState() instanceof StateStartup state) {
+            else if(tile.getTotemState() instanceof StateStartup state) {
                 player.displayClientMessage(Component.translatable("totemic.isDoingStartup", state.getCeremony().getDisplayName()), false);
             }
-            else if(tile.getState() instanceof StateCeremonyEffect state) {
+            else if(tile.getTotemState() instanceof StateCeremonyEffect state) {
                 player.displayClientMessage(Component.translatable("totemic.isDoingCeremony", state.getCeremony().getDisplayName()), false);
             }
         });

@@ -39,12 +39,12 @@ public final class StateSelection extends TotemState {
             if(match != null) {
                 CeremonyInstance instance = match.createInstance();
                 if(instance.canSelect(tile.getLevel(), tile.getBlockPos()))
-                    tile.setState(new StateStartup(tile, match, instance, entity));
+                    tile.setTotemState(new StateStartup(tile, match, instance, entity));
                 else
-                    tile.setState(previousState);
+                    tile.setTotemState(previousState);
             }
             else if(selectors.size() >= CeremonyAPI.MAX_SELECTORS) {
-                tile.setState(previousState);
+                tile.setTotemState(previousState);
             }
         }
     }
@@ -62,7 +62,7 @@ public final class StateSelection extends TotemState {
     @Override
     public void tick() {
         if(time++ >= 60 * 20)
-            tile.setState(previousState);
+            tile.setTotemState(previousState);
     }
 
     public List<MusicInstrument> getSelectors() {
