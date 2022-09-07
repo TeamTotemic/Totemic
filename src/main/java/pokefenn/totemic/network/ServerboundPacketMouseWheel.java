@@ -10,16 +10,16 @@ import net.minecraftforge.network.NetworkEvent;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.TotemKnifeItem;
 
-public record PacketMouseWheel(boolean direction) {
-    public static void encode(PacketMouseWheel packet, FriendlyByteBuf buf) {
+public record ServerboundPacketMouseWheel(boolean direction) {
+    public static void encode(ServerboundPacketMouseWheel packet, FriendlyByteBuf buf) {
         buf.writeBoolean(packet.direction);
     }
 
-    public static PacketMouseWheel decode(FriendlyByteBuf buf) {
-        return new PacketMouseWheel(buf.readBoolean());
+    public static ServerboundPacketMouseWheel decode(FriendlyByteBuf buf) {
+        return new ServerboundPacketMouseWheel(buf.readBoolean());
     }
 
-    public static void handleMessage(PacketMouseWheel packet, Supplier<NetworkEvent.Context> context) {
+    public static void handleMessage(ServerboundPacketMouseWheel packet, Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
             Player player = context.get().getSender();
             ItemStack stack = player.getMainHandItem();

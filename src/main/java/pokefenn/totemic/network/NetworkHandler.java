@@ -15,6 +15,6 @@ public final class NetworkHandler {
     public static final SimpleChannel channel = NetworkRegistry.newSimpleChannel(CHANNEL_NAME, () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 
     public static void init() {
-        channel.registerMessage(0, PacketMouseWheel.class, PacketMouseWheel::encode, PacketMouseWheel::decode, PacketMouseWheel::handleMessage, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        channel.registerMessage(0, ServerboundPacketMouseWheel.class, ServerboundPacketMouseWheel::encode, ServerboundPacketMouseWheel::decode, ServerboundPacketMouseWheel::handleMessage, Optional.of(NetworkDirection.PLAY_TO_SERVER));
     }
 }

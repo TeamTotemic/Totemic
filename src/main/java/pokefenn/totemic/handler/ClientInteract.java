@@ -9,7 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.TotemKnifeItem;
 import pokefenn.totemic.network.NetworkHandler;
-import pokefenn.totemic.network.PacketMouseWheel;
+import pokefenn.totemic.network.ServerboundPacketMouseWheel;
 
 public class ClientInteract {
     @SuppressWarnings("resource")
@@ -22,7 +22,7 @@ public class ClientInteract {
         ItemStack stack = player.getMainHandItem();
         if(player.isShiftKeyDown() && stack.getItem() == ModItems.totem_whittling_knife.get()) {
             boolean direction = (event.getScrollDelta() > 0);
-            NetworkHandler.channel.sendToServer(new PacketMouseWheel(direction));
+            NetworkHandler.channel.sendToServer(new ServerboundPacketMouseWheel(direction));
             player.setItemInHand(InteractionHand.MAIN_HAND, TotemKnifeItem.changeIndex(stack, direction));
             event.setCanceled(true);
         }
