@@ -1,28 +1,39 @@
 package pokefenn.totemic.tile.totem;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.EndTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 public final class StateCeremonyEffect extends TotemState implements CeremonyEffectContext {
-    private final Ceremony ceremony;
-    private final CeremonyInstance instance;
-    private final @Nonnull Entity initiator;
+    static final byte ID = 3;
+
+    private Ceremony ceremony;
+    private CeremonyInstance instance;
+    private Entity initiator;
 
     private int time = 0;
 
-    public StateCeremonyEffect(TileTotemBase tile, Ceremony ceremony, CeremonyInstance instance, @Nonnull Entity initiator) {
+    StateCeremonyEffect(TileTotemBase tile, Ceremony ceremony, CeremonyInstance instance, Entity initiator) {
         super(tile);
         this.ceremony = ceremony;
         this.instance = instance;
         this.initiator = initiator;
+    }
+
+    StateCeremonyEffect(TileTotemBase tile) {
+        super(tile);
     }
 
     @Override
@@ -67,5 +78,35 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
 
     public Ceremony getCeremony() {
         return ceremony;
+    }
+
+    @Override
+    byte getID() {
+        return ID;
+    }
+
+    @Override
+    void save(CompoundTag tag) {
+        tag.putString("Ceremony", ceremony.getName().toString());
+        Tag instanceData = instance.serializeNBT();
+        if(instanceData != EndTag.INSTANCE)
+            tag.put("InstanceData", instanceData);
+        tag.putInt("Time", time);
+        //TODO: Save initiator as well? Do we need the initiator?
+    }
+
+    @Override
+    void load(CompoundTag tag) {
+        var ceremonyName = new ResourceLocation(tag.getString("Ceremony"));
+        ceremony = TotemicAPI.get().registry().ceremonies().get(ceremonyName);
+        if(ceremony == null) {
+            Totemic.logger.error("Unknown Ceremony: {}", ceremonyName);
+            tile.setTotemState(new StateTotemEffect(tile));
+            return;
+        }
+        instance = ceremony.createInstance();
+        if(tag.contains("InstanceData"))
+            instance.deserializeNBT(tag.get("InstanceData"));
+        time = tag.getInt("Time");
     }
 }

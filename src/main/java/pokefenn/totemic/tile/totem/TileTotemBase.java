@@ -12,6 +12,8 @@ import com.google.common.math.IntMath;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -104,6 +106,25 @@ public class TileTotemBase extends BlockEntity {
             level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
             setChanged();
         }
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+
+        tag.putByte("State", state.getID());
+        state.save(tag);
+    }
+
+    @Override
+    public void load(CompoundTag tag) {
+        super.load(tag);
+
+        if(tag.contains("State", Tag.TAG_ANY_NUMERIC))
+            state = TotemState.fromID(tag.getByte("State"), this);
+        else
+            state = new StateTotemEffect(this);
+        state.load(tag);
     }
 
     @Override

@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Multiset;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -13,6 +14,8 @@ import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 
 public final class StateTotemEffect extends TotemState implements TotemEffectContext {
+    static final byte ID = 0;
+
     private int musicAmount = 0;
 
     StateTotemEffect(TileTotemBase tile) {
@@ -76,5 +79,20 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     @Override
     public int getRepetition(TotemEffect effect) {
         return tile.getTotemEffects().count(effect);
+    }
+
+    @Override
+    byte getID() {
+        return ID;
+    }
+
+    @Override
+    void save(CompoundTag tag) {
+        tag.putInt("TotemMusic", musicAmount);
+    }
+
+    @Override
+    void load(CompoundTag tag) {
+        musicAmount = tag.getInt("TotemMusic");
     }
 }
