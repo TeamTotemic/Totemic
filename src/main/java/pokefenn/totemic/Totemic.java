@@ -22,6 +22,7 @@ import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
 import pokefenn.totemic.handler.ClientInteract;
 import pokefenn.totemic.handler.ModBlockColors;
+import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModEffects;
@@ -79,7 +80,8 @@ public final class Totemic {
 
         NetworkHandler.init();
 
-        //IEventBus eventBus = MinecraftForge.EVENT_BUS;
+        IEventBus eventBus = MinecraftForge.EVENT_BUS;
+        eventBus.register(PlayerInteract.class);
     }
 
     private void clientSetup(FMLClientSetupEvent event) {

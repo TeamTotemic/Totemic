@@ -83,6 +83,11 @@ public final class StateSelection extends TotemState {
     }
 
     @Override
+    void resetTotemState() {
+        tile.setTotemState(previousState);
+    }
+
+    @Override
     byte getID() {
         return ID;
     }

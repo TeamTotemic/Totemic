@@ -22,6 +22,10 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
 
     public void addSelector(@Nonnull Entity entity, MusicInstrument instr) { }
 
+    void resetTotemState() {
+        tile.setTotemState(new StateTotemEffect(tile));
+    }
+
     static TotemState fromID(byte id, TileTotemBase tile) {
         return switch(id) {
             case StateTotemEffect.ID -> new StateTotemEffect(tile);

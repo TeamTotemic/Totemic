@@ -1,11 +1,12 @@
 package pokefenn.totemic.block.totem;
 
+import java.util.stream.Collectors;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -31,6 +32,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicStaffUsable;
+import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModTileEntities;
 import pokefenn.totemic.tile.totem.StateCeremonyEffect;
 import pokefenn.totemic.tile.totem.StateSelection;
@@ -55,19 +57,20 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @SuppressWarnings("resource")
     @Override
     public InteractionResult onTotemicStaffRightClick(UseOnContext context) {
-        //TODO: For debugging purposes, this is currently logging on both client and server side
+        if(!context.getLevel().isClientSide)
+            return InteractionResult.SUCCESS;
+
         context.getLevel().getBlockEntity(context.getClickedPos(), ModTileEntities.totem_base.get())
         .ifPresent(tile -> {
             Player player = context.getPlayer();
             if(tile.getTotemState() instanceof StateTotemEffect state) {
-                player.displayClientMessage(Component.translatable("totemic.isDoingNoCeremony"), /*true*/false);
+                player.displayClientMessage(Component.translatable("totemic.isDoingNoCeremony"), false);
             }
             else if(tile.getTotemState() instanceof StateSelection state) {
-                var selectors = state.getSelectors();
-                MutableComponent selComp = selectors.get(0).getDisplayName();
-                for(int i = 1; i < selectors.size(); i++)
-                    selComp.append(", ").append(selectors.get(i).getDisplayName()); //TODO: Simplify using I18n (when on client side only)
-                player.displayClientMessage(Component.translatable("totemic.isDoingSelection", selComp), false);
+                String selectors = state.getSelectors().stream()
+                        .map(instr -> instr.getDisplayName().getString())
+                        .collect(Collectors.joining(", "));
+                player.displayClientMessage(Component.translatable("totemic.isDoingSelection", selectors), false);
             }
             else if(tile.getTotemState() instanceof StateStartup state) {
                 player.displayClientMessage(Component.translatable("totemic.isDoingStartup", state.getCeremony().getDisplayName()), false);
@@ -76,7 +79,15 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
                 player.displayClientMessage(Component.translatable("totemic.isDoingCeremony", state.getCeremony().getDisplayName()), false);
             }
         });
-        return InteractionResult.sidedSuccess(context.getLevel().isClientSide);
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public void attack(BlockState state, Level level, BlockPos pos, Player player) {
+        if(player.getMainHandItem().getItem() == ModItems.totemic_staff.get()) {
+            level.getBlockEntity(pos, ModTileEntities.totem_base.get())
+                    .ifPresent(tile -> tile.resetTotemState());
+        }
     }
 
     @Override

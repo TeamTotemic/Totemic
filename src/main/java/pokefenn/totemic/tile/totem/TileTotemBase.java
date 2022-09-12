@@ -113,6 +113,10 @@ public class TileTotemBase extends BlockEntity {
         }
     }
 
+    public void resetTotemState() {
+        state.resetTotemState();
+    }
+
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
