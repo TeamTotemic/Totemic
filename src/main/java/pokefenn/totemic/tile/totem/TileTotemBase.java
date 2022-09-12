@@ -103,8 +103,10 @@ public class TileTotemBase extends BlockEntity {
             this.state = state;
             musicHandler.invalidate();
             musicHandler = LazyOptional.of(() -> this.state);
-            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
-            setChanged();
+            if(level != null) { //prevent NPE when called during loading
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+                setChanged();
+            }
         }
     }
 
@@ -120,11 +122,12 @@ public class TileTotemBase extends BlockEntity {
     public void load(CompoundTag tag) {
         super.load(tag);
 
-        if(tag.contains("State", Tag.TAG_ANY_NUMERIC))
+        if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
             state = TotemState.fromID(tag.getByte("State"), this);
+            state.load(tag);
+        }
         else
             state = new StateTotemEffect(this);
-        state.load(tag);
     }
 
     @Override
