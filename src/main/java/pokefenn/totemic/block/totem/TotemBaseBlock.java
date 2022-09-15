@@ -98,8 +98,8 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
         if(facing == Direction.UP) {
-            TileTotemBase tile = (TileTotemBase) world.getBlockEntity(currentPos);
-            tile.onPoleChange();
+            world.getBlockEntity(currentPos, ModTileEntities.totem_base.get())
+                    .ifPresent(TileTotemBase::onPoleChange);
         }
         return state;
     }

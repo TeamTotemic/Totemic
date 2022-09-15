@@ -10,12 +10,12 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.util.LazyOptional;
 import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.init.ModTileEntities;
 import pokefenn.totemic.tile.totem.TileTotemBase;
 import pokefenn.totemic.tile.totem.TotemState;
 import pokefenn.totemic.util.MiscUtil;
@@ -43,7 +43,7 @@ public enum MusicApiImpl implements MusicAPI {
     public boolean playMusic(Level world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
         world.getProfiler().push("playMusic");
         //TODO: Implement caching in case this performs too poorly
-        List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(BlockEntity.class, world, new BlockPos(x, y, z), range)
+        List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(null, world, new BlockPos(x, y, z), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)
                 .map(lo -> lo.orElse(null))
@@ -77,7 +77,7 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public boolean playSelector(Level world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
-        Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(TileTotemBase.class, world, new BlockPos(x, y, z), range)
+        Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(ModTileEntities.totem_base.get(), world, new BlockPos(x, y, z), range)
                 .min(TileUtil.compareCenterDistanceTo(x, y, z))
                 .map(TileTotemBase::getTotemState)
                 .filter(TotemState::canSelect);
