@@ -30,6 +30,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         logBlock(ModBlocks.cedar_log.get());
         logBlock(ModBlocks.stripped_cedar_log.get());
         axisBlock(ModBlocks.cedar_wood.get(), blockTexture(ModBlocks.cedar_log.get()), blockTexture(ModBlocks.cedar_log.get()));
+        simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
 
         //Item Blocks
         for(var blockO: ModBlocks.REGISTER.getEntries())

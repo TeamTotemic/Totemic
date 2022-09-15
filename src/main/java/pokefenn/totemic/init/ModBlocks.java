@@ -27,6 +27,7 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
+import pokefenn.totemic.block.music.DrumBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 
@@ -38,6 +39,7 @@ public final class ModBlocks {
     }).strength(2.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<RotatedPillarBlock> stripped_cedar_log = REGISTER.register("stripped_cedar_log", () -> new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(2.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<RotatedPillarBlock> cedar_wood = REGISTER.register("cedar_wood", () -> new RotatedPillarBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<DrumBlock> drum = REGISTER.register("drum", () -> new DrumBlock(Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD)));
 
     private static Map<TotemWoodType, RegistryObject<TotemBaseBlock>> totemBases;
     private static Table<TotemWoodType, TotemEffect, RegistryObject<TotemPoleBlock>> totemPoles;

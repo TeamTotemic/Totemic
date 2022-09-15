@@ -44,7 +44,7 @@ import pokefenn.totemic.util.TileUtil;
 public class TotemBaseBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, TotemicStaffUsable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected static final VoxelShape SHAPE = Shapes.or(Shapes.box(0.0, 0.0, 0.0,  1.0, 0.28125, 1.0), Shapes.box(0.125, 0.28125, 0.125,  0.875, 1.0, 0.875));
+    private static final VoxelShape SHAPE = Shapes.or(Shapes.box(0.0, 0.0, 0.0,  1.0, 0.28125, 1.0), Shapes.box(0.125, 0.28125, 0.125,  0.875, 1.0, 0.875));
 
     public final TotemWoodType woodType;
 

@@ -28,7 +28,7 @@ import pokefenn.totemic.api.totem.TotemEffectAPI;
 public class TotemPoleBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected static final VoxelShape SHAPE = Shapes.box(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
+    private static final VoxelShape SHAPE = Shapes.box(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
 
     public final TotemWoodType woodType;
     public final TotemEffect effect;

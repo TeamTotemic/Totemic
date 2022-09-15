@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-06T18:48:42.950975192	Block States: totemic
+// 1.19.2	2022-09-15T23:15:09.012015609	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 7541d5efd084b8fcab58c0cfa8131531239983c6 assets/totemic/blockstates/acacia_totem_pole_bat.json
 0b98300f6a034b0fbf4b1b2b9f800c8b004a6b8f assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -57,6 +57,7 @@ e55e4869df83c4f1bad36509c6e59ce4567c4427 assets/totemic/blockstates/dark_oak_tot
 9d65a52b3272647e3bcbee08740aa9c2f7275975 assets/totemic/blockstates/dark_oak_totem_pole_spider.json
 0b6accedcfca374a4aa37b742e51d4257cd95d63 assets/totemic/blockstates/dark_oak_totem_pole_squid.json
 85059226a9c0a1e6e4ce84a91151525b3a3d5c1f assets/totemic/blockstates/dark_oak_totem_pole_wolf.json
+a470ab352994aca627db258cfedbb3248664061c assets/totemic/blockstates/drum.json
 51a4e5965f29dbccb442c457f39327a621b36295 assets/totemic/blockstates/jungle_totem_base.json
 ddecc070622750e3653edf867a1065c1b693e493 assets/totemic/blockstates/jungle_totem_pole_bat.json
 ca84ad430742a0b671ac952480848fdb150e7999 assets/totemic/blockstates/jungle_totem_pole_blaze.json
@@ -262,6 +263,7 @@ c1714fb354bba310d963d9cfccf9e9ed17cee074 assets/totemic/models/item/dark_oak_tot
 4d486d9daa95b5e811ae3040bb785d912683e8e6 assets/totemic/models/item/dark_oak_totem_pole_spider.json
 a54afd3e381bb1b4b8936cae9a7142fd405b66e7 assets/totemic/models/item/dark_oak_totem_pole_squid.json
 c69264b0010a34694131dfd3bb3a455530f9730f assets/totemic/models/item/dark_oak_totem_pole_wolf.json
+ff24f1d7728b07732a6a654ca3a3a1bafd723d3f assets/totemic/models/item/drum.json
 baafe156d70e0fe314e2ba62e97a8b4b404760b1 assets/totemic/models/item/flute.json
 367a69f1fdd1bc66c7ad732c4ceee89c3c96e72f assets/totemic/models/item/infused_flute.json
 b44936484447b2d2dfc5b3ad2395029a5bc14fce assets/totemic/models/item/jungle_totem_base.json
