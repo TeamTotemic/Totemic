@@ -72,10 +72,13 @@ public final class StateSelection extends TotemState {
         return false;
     }
 
+    @SuppressWarnings("resource")
     @Override
     public void tick() {
-        if(time++ >= 60 * 20)
-            tile.setTotemState(previousState);
+        if(!tile.getLevel().isClientSide) { //do not change state based on time on the client side (to account for TPS lag)
+            if(time++ >= 60 * 20)
+                tile.setTotemState(previousState);
+        }
     }
 
     public List<MusicInstrument> getSelectors() {

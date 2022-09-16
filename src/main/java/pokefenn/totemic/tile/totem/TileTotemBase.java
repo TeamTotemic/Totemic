@@ -130,7 +130,9 @@ public class TileTotemBase extends BlockEntity {
         super.load(tag);
 
         if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
-            state = TotemState.fromID(tag.getByte("State"), this);
+            byte id = tag.getByte("State");
+            if(id != state.getID())
+                state = TotemState.fromID(id, this);
             state.load(tag);
         }
         else
