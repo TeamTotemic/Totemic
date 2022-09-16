@@ -1,6 +1,9 @@
 package pokefenn.totemic.block.music;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -13,6 +16,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import pokefenn.totemic.util.TileUtil;
 
 public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty PLAYED = BooleanProperty.create("played");
@@ -28,6 +32,12 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
         builder.add(PLAYED, WATERLOGGED);
+    }
+
+    @Override
+    @Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return defaultBlockState().setValue(WATERLOGGED, TileUtil.placedInWater(context));
     }
 
     @Override

@@ -107,7 +107,9 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        return defaultBlockState()
+                .setValue(FACING, context.getHorizontalDirection().getOpposite())
+                .setValue(WATERLOGGED, TileUtil.placedInWater(context));
     }
 
     @Override

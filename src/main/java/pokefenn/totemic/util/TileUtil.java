@@ -6,11 +6,13 @@ import java.util.stream.Stream;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.material.Fluids;
 
 public final class TileUtil {
     @SuppressWarnings("unchecked")
@@ -37,5 +39,9 @@ public final class TileUtil {
 
     public static Comparator<BlockEntity> compareCenterDistanceTo(double x, double y, double z) {
         return Comparator.comparing((BlockEntity t) -> t.getBlockPos().distToCenterSqr(x, y, z));
+    }
+
+    public static boolean placedInWater(BlockPlaceContext context) {
+        return context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER;
     }
 }
