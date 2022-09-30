@@ -1,0 +1,59 @@
+{
+  "item.totemic.flute": "Flöte",
+  "item.totemic.infused_flute": "Pans Flöte",
+  
+  "block.totemic.cedar_log": "Roter Zedernstamm",
+  "block.totemic.stripped_cedar_log": "Entrindeter roter Zedernstamm",
+  "block.totemic.cedar_wood": "Rotes Zedernholz",
+  "block.totemic.drum": "Totemtrommel",
+
+  "block.totemic.totem_base": "Totembasis",
+  "block.totemic.oak_totem_base": "Eichenholz-Totembasis",
+  "block.totemic.spruce_totem_base": "Fichtenholz-Totembasis",
+  "block.totemic.birch_totem_base": "Birkenholz-Totembasis",
+  "block.totemic.jungle_totem_base": "Tropenholz-Totembasis",
+  "block.totemic.acacia_totem_base": "Akazienholz-Totembasis",
+  "block.totemic.dark_oak_totem_base": "Schwarzeichenholz-Totembasis",
+  "block.totemic.cedar_totem_base": "Zedernholz-Totembasis",
+  
+  "block.totemic.oak_totem_pole": "Eichenholz-Totempfahl (%s)",
+  "block.totemic.spruce_totem_pole": "Fichtenholz-Totempfahl (%s)",
+  "block.totemic.birch_totem_pole": "Birkenholz-Totempfahl (%s)",
+  "block.totemic.jungle_totem_pole": "Tropenholz-Totempfahl (%s)",
+  "block.totemic.acacia_totem_pole": "Akazienholz-Totempfahl (%s)",
+  "block.totemic.dark_oak_totem_pole": "Schwarzeichenholz-Totempfahl (%s)",
+  "block.totemic.cedar_totem_pole": "Zedernholz-Totempfahl (%s)",
+  
+  "item.totemic.totem_whittling_knife": "Totemschnitzmesser (%s)",
+  "item.totemic.totem_whittling_knife.tooltip": "Ein Messer für all Deine Schnitzerei\nSchleichen+Rechtsklick oder Mausrad zum Ändern des Musters",
+  "item.totemic.totemic_staff": "Totemstab",
+  "item.totemic.totemic_staff.tooltip": "Ein Stab für Deine Totem-Bedürfnisse!",
+  
+  "totemic.totem.totemic.none": "Kein Effekt",
+  "totemic.totem.totemic.bat": "Fledermaus",
+  "totemic.totem.totemic.blaze": "Lohe",
+  "totemic.totem.totemic.buffalo": "Büffel",
+  "totemic.totem.totemic.cow": "Kuh",
+  "totemic.totem.totemic.enderman": "Enderman",
+  "totemic.totem.totemic.horse": "Pferd",
+  "totemic.totem.totemic.ocelot": "Ozelot",
+  "totemic.totem.totemic.pig": "Schwein",
+  "totemic.totem.totemic.rabbit": "Kaninchen",
+  "totemic.totem.totemic.spider": "Spinne",
+  "totemic.totem.totemic.squid": "Tintenfisch",
+  "totemic.totem.totemic.wolf": "Wolf",
+  
+  "totemic.instrument.totemic.flute": "Flöte",
+  "totemic.instrument.totemic.drum": "Trommel",
+  
+  "totemic.ceremony.totemic.war_dance": "Kriegstanz",
+  
+  "effect.totemic.spider": "Spinne",
+
+  "itemGroup.totemic": "Totemic",
+  
+  "totemic.isDoingNoCeremony": "Der Totempfahl führt gerade keine Zeremonie aus. Versuche, Instrumente zu spielen während Du schleichst, um eine zu starten.",
+  "totemic.isDoingSelection": "Der Totempfahl wartet, dass eine Zeremonie ausgewählt wird\nAuswahl: %s",
+  "totemic.isDoingStartup": "Der Totempfahl sammelt Musik für eine Zeremonie\nZeremonie: %s",
+  "totemic.isDoingCeremony": "Der Totempfahl führt den Effekt einer Zeremonie aus\nZeremonie: %s"
+}
