@@ -3,8 +3,14 @@ package pokefenn.totemic.block.music;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,9 +19,13 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.util.FakePlayer;
+import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.util.TileUtil;
 
 public class DrumBlock extends Block implements SimpleWaterloggedBlock {
@@ -27,6 +37,42 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     public DrumBlock(Properties props) {
         super(props);
         registerDefaultState(stateDefinition.any().setValue(PLAYED, false).setValue(WATERLOGGED, false));
+    }
+
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult res) {
+        playMusic(state, level, pos, player);
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public void attack(BlockState state, Level level, BlockPos pos, Player player) {
+        playMusic(state, level, pos, player);
+    }
+
+    private void playMusic(BlockState state, Level level, BlockPos pos, Player player) {
+        if(!level.isClientSide && !state.getValue(PLAYED)) {
+            if(!player.isShiftKeyDown()) {
+                if(!(player instanceof FakePlayer)) {
+                    putOnCooldown(state, level, pos);
+                    TotemicAPI.get().music().playMusic(level, pos, player, ModContent.drum);
+                }
+            }
+            else {
+                putOnCooldown(state, level, pos);
+                TotemicAPI.get().music().playSelector(level, pos, player, ModContent.drum);
+            }
+        }
+    }
+
+    private void putOnCooldown(BlockState state, Level level, BlockPos pos) {
+        level.setBlock(pos, state.setValue(PLAYED, true), UPDATE_ALL);
+        level.scheduleTick(pos, this, 20);
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+        level.setBlock(pos, state.setValue(PLAYED, false), UPDATE_ALL);
     }
 
     @Override

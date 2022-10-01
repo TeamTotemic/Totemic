@@ -86,7 +86,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     public void attack(BlockState state, Level level, BlockPos pos, Player player) {
         if(player.getMainHandItem().getItem() == ModItems.totemic_staff.get()) {
             level.getBlockEntity(pos, ModTileEntities.totem_base.get())
-                    .ifPresent(tile -> tile.resetTotemState());
+                    .ifPresent(TileTotemBase::resetTotemState);
         }
     }
 

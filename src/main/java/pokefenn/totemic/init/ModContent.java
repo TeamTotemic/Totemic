@@ -51,13 +51,13 @@ public final class ModContent {
     public static final TotemEffect squid = new PotionTotemEffect(resloc("squid"), () -> MobEffects.WATER_BREATHING);
     public static final TotemEffect wolf = new PotionTotemEffect(resloc("wolf"), () -> MobEffects.DAMAGE_BOOST);
 
-    public static final Ceremony warDance = new Ceremony(resloc("war_dance"), 75, 20 * 20, CeremonyWarDance::new, /*drum, drum*/flute, flute);
+    public static final Ceremony warDance = new Ceremony(resloc("war_dance"), 75, 20 * 20, CeremonyWarDance::new, drum, drum);
 
     @SubscribeEvent
     public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {
         event.registerAll(
                 flute.setItem(ModItems.flute.get()),
-                drum);
+                drum.setItem(ModBlocks.drum.get()));
     }
 
     @SubscribeEvent
