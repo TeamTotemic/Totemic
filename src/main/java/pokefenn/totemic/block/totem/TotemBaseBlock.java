@@ -74,9 +74,16 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
             }
             else if(tile.getTotemState() instanceof StateStartup state) {
                 player.displayClientMessage(Component.translatable("totemic.isDoingStartup", state.getCeremony().getDisplayName()), false);
+                //TODO: Temporary
+                player.displayClientMessage(Component.literal(String.format("Time: %d/%d, Music: %d/%d",
+                        state.getTime(), state.getCeremony().getAdjustedMaxStartupTime(context.getLevel().getDifficulty()),
+                        state.getTotalMusic(), state.getCeremony().getMusicNeeded())), false);
             }
             else if(tile.getTotemState() instanceof StateCeremonyEffect state) {
                 player.displayClientMessage(Component.translatable("totemic.isDoingCeremony", state.getCeremony().getDisplayName()), false);
+                //TODO: Temporary
+                player.displayClientMessage(Component.literal(String.format("Time: %d/%d",
+                        state.getTime(), state.getCeremonyInstance().getEffectTime())), false);
             }
         });
         return InteractionResult.SUCCESS;
