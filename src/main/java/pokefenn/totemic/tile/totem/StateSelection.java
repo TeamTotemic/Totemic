@@ -99,7 +99,7 @@ public final class StateSelection extends TotemState {
     void save(CompoundTag tag) {
         ListTag selectorsTag = new ListTag();
         for(MusicInstrument instr: selectors)
-            selectorsTag.add(StringTag.valueOf(instr.getName().toString()));
+            selectorsTag.add(StringTag.valueOf(instr.getRegistryName().toString()));
         tag.put("Selectors", selectorsTag);
         tag.putInt("Time", time);
         previousState.save(tag); //Safe since StateTotemEffect only saves the key TotemMusic

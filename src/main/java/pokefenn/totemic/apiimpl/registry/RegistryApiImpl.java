@@ -56,15 +56,15 @@ public enum RegistryApiImpl implements RegistryAPI {
     }
 
     public void registerInstruments() {
-        fireRegistryEvent(MusicInstrument.class, instruments, MusicInstrument::getName);
+        fireRegistryEvent(MusicInstrument.class, instruments, MusicInstrument::getRegistryName);
     }
 
     public void registerTotemEffects() {
-        fireRegistryEvent(TotemEffect.class, totemEffects, TotemEffect::getName);
+        fireRegistryEvent(TotemEffect.class, totemEffects, TotemEffect::getRegistryName);
     }
 
     public void registerCeremonies() {
-        fireRegistryEvent(Ceremony.class, ceremonies, Ceremony::getName);
+        fireRegistryEvent(Ceremony.class, ceremonies, Ceremony::getRegistryName);
         computeSelectorsToCeremonyMap();
     }
 

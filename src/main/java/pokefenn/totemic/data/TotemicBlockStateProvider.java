@@ -64,7 +64,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         for(var blockO: ModBlocks.getTotemPoles().values()) {
             ResourceLocation blockName = blockO.getId();
             TotemPoleBlock block = blockO.get();
-            ResourceLocation effectName = block.effect.getName();
+            ResourceLocation effectName = block.effect.getRegistryName();
 
             ModelFile parentModel = models().getExistingFile(new ResourceLocation(effectName.getNamespace(), ModelProvider.BLOCK_FOLDER + "/totem_pole_" + effectName.getPath()));
 

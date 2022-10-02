@@ -17,6 +17,8 @@ import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.music.DefaultMusicAcceptor;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.network.ClientboundPacketStartupMusic;
+import pokefenn.totemic.network.NetworkHandler;
 
 public final class StateStartup extends TotemState implements StartupContext {
     static final byte ID = 2;
@@ -24,8 +26,8 @@ public final class StateStartup extends TotemState implements StartupContext {
     private Ceremony ceremony;
     private CeremonyInstance instance;
     private Entity initiator;
-    private final DefaultMusicAcceptor musicHandler = new DefaultMusicAcceptor();
 
+    private final DefaultMusicAcceptor musicHandler = new DefaultMusicAcceptor();
     private int time = 0;
 
     StateStartup(TileTotemBase tile, Ceremony ceremony, CeremonyInstance instance, Entity initiator) {
@@ -47,6 +49,8 @@ public final class StateStartup extends TotemState implements StartupContext {
     @Override
     public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
         if(musicHandler.acceptMusic(instr, amount, x, y, z, entity)) {
+            NetworkHandler.channel.send(NetworkHandler.nearTile(tile, 16),
+                    new ClientboundPacketStartupMusic(tile.getBlockPos(), instr, musicHandler.getMusicAmount(instr)));
             tile.setChanged();
             return true;
         }
@@ -102,6 +106,10 @@ public final class StateStartup extends TotemState implements StartupContext {
         return musicHandler.getMusicAmount(instrument);
     }
 
+    public void setMusic(MusicInstrument instrument, int amount) {
+        musicHandler.setMusicAmount(instrument, amount);
+    }
+
     @Override
     public Entity getInitiator() {
         return initiator;
@@ -132,7 +140,7 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     @Override
     void save(CompoundTag tag) {
-        tag.putString("Ceremony", ceremony.getName().toString());
+        tag.putString("Ceremony", ceremony.getRegistryName().toString());
         Tag instanceData = instance.serializeNBT();
         if(instanceData != EndTag.INSTANCE)
             tag.put("InstanceData", instanceData);

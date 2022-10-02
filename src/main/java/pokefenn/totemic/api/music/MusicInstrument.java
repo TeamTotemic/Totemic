@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 
 public final class MusicInstrument {
-    private final ResourceLocation name;
+    private final ResourceLocation registryName;
     private final int baseOutput;
     private final int musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
@@ -21,7 +21,7 @@ public final class MusicInstrument {
      * @param musicMaximum the maximum amount of music that a Totem Base can take from this instrument.
      */
     public MusicInstrument(ResourceLocation name, int baseOutput, int musicMaximum) {
-        this.name = Objects.requireNonNull(name);
+        this.registryName = Objects.requireNonNull(name);
         this.baseOutput = baseOutput;
         this.musicMaximum = musicMaximum;
     }
@@ -52,7 +52,7 @@ public final class MusicInstrument {
      * @return the unlocalized name of the Instrument, which is given by "totemic.instrument." followed by the name
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totemic.instrument", name);
+        return Util.makeDescriptionId("totemic.instrument", registryName);
     }
 
     /**
@@ -65,8 +65,8 @@ public final class MusicInstrument {
     /**
      * @return the instrument's registry name
      */
-    public final ResourceLocation getName() {
-        return name;
+    public final ResourceLocation getRegistryName() {
+        return registryName;
     }
 
     /**

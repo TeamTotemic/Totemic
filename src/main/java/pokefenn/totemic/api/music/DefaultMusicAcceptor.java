@@ -1,5 +1,7 @@
 package pokefenn.totemic.api.music;
 
+import java.util.Objects;
+
 import javax.annotation.Nullable;
 
 import org.apache.logging.log4j.LogManager;
@@ -42,7 +44,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
     @Override
     public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
         int oldVal = music.getInt(instr);
-        int newVal = Math.min(oldVal + amount, instr.getMusicMaximum());
+        int newVal = Math.min(oldVal + amount, instr.getMusicMaximum()); //implicit null check on instr
         if(newVal != oldVal) {
             music.put(instr, newVal);
             totalMusic += (newVal - oldVal);
@@ -65,6 +67,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
      */
     public void setMusicAmount(MusicInstrument instr, int amount)
     {
+        Objects.requireNonNull(instr);
         int oldVal = music.getInt(instr);
         if(amount != oldVal) {
             music.put(instr, amount);

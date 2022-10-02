@@ -20,7 +20,7 @@ public class Ceremony {
     /**
      * The ceremony's registry name.
      */
-    private final ResourceLocation name;
+    private final ResourceLocation registryName;
     /**
      * The amount of music needed to start the ceremony.
      */
@@ -47,7 +47,7 @@ public class Ceremony {
         Validate.inclusiveBetween(CeremonyAPI.MIN_SELECTORS, CeremonyAPI.MAX_SELECTORS, selectors.length,
                 "Invalid number of Cermeony selectors (must be between CeremonyAPI.MIN_SELECTORS and CeremonyAPI.MAX_SELECTORS)");
 
-        this.name = Objects.requireNonNull(name);
+        this.registryName = Objects.requireNonNull(name);
         this.musicNeeded = musicNeeded;
         this.maxStartupTime = maxStartupTime;
         this.factory = factory;
@@ -58,7 +58,7 @@ public class Ceremony {
      * @return the unlocalized name of the Instrument, which is given by "totemic.ceremony." followed by the name
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totemic.ceremony", name);
+        return Util.makeDescriptionId("totemic.ceremony", registryName);
     }
 
     /**
@@ -71,8 +71,8 @@ public class Ceremony {
     /**
      * @return the ceremony's registry name.
      */
-    public final ResourceLocation getName() {
-        return name;
+    public final ResourceLocation getRegistryName() {
+        return registryName;
     }
 
     /**

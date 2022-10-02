@@ -91,7 +91,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
 
     @Override
     void save(CompoundTag tag) {
-        tag.putString("Ceremony", ceremony.getName().toString());
+        tag.putString("Ceremony", ceremony.getRegistryName().toString());
         Tag instanceData = instance.serializeNBT();
         if(instanceData != EndTag.INSTANCE)
             tag.put("InstanceData", instanceData);

@@ -18,7 +18,7 @@ public abstract class TotemEffect { //TODO: This class needs a refactoring
     /**
      * The Totem Effect's registry name
      */
-    protected final ResourceLocation name;
+    protected final ResourceLocation registryName;
     /**
      * Whether this Totem Effect can be used with a Medicine Bag
      */
@@ -36,7 +36,7 @@ public abstract class TotemEffect { //TODO: This class needs a refactoring
     public TotemEffect(ResourceLocation name, boolean portable, int interval) {
         if(interval < 1)
             throw new IllegalArgumentException("The interval must be positive");
-        this.name = Objects.requireNonNull(name);
+        this.registryName = Objects.requireNonNull(name);
         this.portable = portable;
         this.interval = interval;
     }
@@ -67,7 +67,7 @@ public abstract class TotemEffect { //TODO: This class needs a refactoring
      * @return the translation key of the effect. By default it is given by "totemic.totem" followed by the registry name.
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totemic.totem", name);
+        return Util.makeDescriptionId("totemic.totem", registryName);
     }
 
     /**
@@ -80,8 +80,8 @@ public abstract class TotemEffect { //TODO: This class needs a refactoring
     /**
      * @return the Totem Effect's registry name
      */
-    public final ResourceLocation getName() {
-        return name;
+    public final ResourceLocation getRegistryName() {
+        return registryName;
     }
 
     /**

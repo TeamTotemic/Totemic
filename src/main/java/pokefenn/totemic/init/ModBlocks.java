@@ -79,7 +79,7 @@ public final class ModBlocks {
             totemBasesBuilder.put(woodType, RegistryObject.create(totemBaseName, event.getForgeRegistry()));
 
             for(TotemEffect effect: TotemicAPI.get().registry().totemEffects().values()) {
-                ResourceLocation effectName = effect.getName();
+                ResourceLocation effectName = effect.getRegistryName();
                 TotemPoleBlock totemPole = new TotemPoleBlock(woodType, effect, blockProperties);
                 ResourceLocation totemPoleName = new ResourceLocation(effectName.getNamespace(), woodType.getName() + "_totem_pole_" + effectName.getPath());
                 event.getForgeRegistry().register(totemPoleName, totemPole);
