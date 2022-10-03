@@ -56,8 +56,8 @@ public final class ModContent {
     @SubscribeEvent
     public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {
         event.registerAll(
-                flute.setItem(ModItems.flute.get()),
-                drum.setItem(ModBlocks.drum.get()));
+                flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute),
+                drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum));
     }
 
     @SubscribeEvent

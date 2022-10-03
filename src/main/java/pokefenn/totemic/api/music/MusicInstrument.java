@@ -1,11 +1,15 @@
 package pokefenn.totemic.api.music;
 
 import java.util.Objects;
+import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
 
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 
@@ -14,6 +18,7 @@ public final class MusicInstrument {
     private final int baseOutput;
     private final int musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
+    private @Nullable Supplier<SoundEvent> sound;
 
     /**
      * @param name         the instrument's registry name.
@@ -33,6 +38,10 @@ public final class MusicInstrument {
         return itemStack;
     }
 
+    public @Nullable Supplier<SoundEvent> getSound() {
+        return sound;
+    }
+
     /**
      * Sets the item stack that is associated with this instrument. This will be displayed on the Totempedia on ceremony pages.
      */
@@ -46,6 +55,11 @@ public final class MusicInstrument {
      */
     public MusicInstrument setItem(ItemLike item) {
         return setItem(new ItemStack(item));
+    }
+
+    public MusicInstrument setSound(@Nullable Supplier<SoundEvent> sound) {
+        this.sound = sound;
+        return this;
     }
 
     /**

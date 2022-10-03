@@ -51,7 +51,7 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     private void playMusic(BlockState state, Level level, BlockPos pos, Player player) {
-        if(!level.isClientSide && !state.getValue(PLAYED)) {
+        if(!state.getValue(PLAYED)) {
             if(!player.isShiftKeyDown()) {
                 if(!(player instanceof FakePlayer)) {
                     putOnCooldown(state, level, pos);

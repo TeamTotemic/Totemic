@@ -8,7 +8,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.LazyOptional;
 import pokefenn.totemic.api.TotemicCapabilities;
@@ -25,8 +27,8 @@ public enum MusicApiImpl implements MusicAPI {
     INSTANCE;
 
     @Override
-    public boolean playMusic(Level world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr) {
-        return playMusic(world, x, y, z, entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
+    public boolean playMusic(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr) {
+        return playMusic(level, x, y, z, entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
     }
 
     @Override
@@ -35,15 +37,16 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public boolean playMusic(Level world, BlockPos pos, @Nullable Entity entity, MusicInstrument instr) {
-        return playMusic(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr);
+    public boolean playMusic(Level level, BlockPos pos, @Nullable Entity entity, MusicInstrument instr) {
+        return playMusic(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr);
     }
 
     @Override
-    public boolean playMusic(Level world, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
-        world.getProfiler().push("playMusic");
+    public boolean playMusic(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
+        level.getProfiler().push("playMusic");
+        playInstrumentSound(level, x, y, z, entity, instr);
         //TODO: Implement caching in case this performs too poorly
-        List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(null, world, new BlockPos(x, y, z), range)
+        List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(null, level, new BlockPos(x, y, z), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)
                 .map(lo -> lo.orElse(null))
@@ -56,13 +59,13 @@ public enum MusicApiImpl implements MusicAPI {
             if(acc.acceptMusic(instr, amount / list.size(), x, y, z, entity))
                 hadEffect = true;
         }
-        world.getProfiler().pop();
+        level.getProfiler().pop();
         return hadEffect;
     }
 
     @Override
-    public boolean playSelector(Level world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr) {
-        return playSelector(world, x, y, z, entity, instr, DEFAULT_RANGE);
+    public boolean playSelector(Level level, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr) {
+        return playSelector(level, x, y, z, entity, instr, DEFAULT_RANGE);
     }
 
     @Override
@@ -71,17 +74,23 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public boolean playSelector(Level world, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr) {
-        return playSelector(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr);
+    public boolean playSelector(Level level, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr) {
+        return playSelector(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr);
     }
 
     @Override
-    public boolean playSelector(Level world, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
-        Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(ModTileEntities.totem_base.get(), world, new BlockPos(x, y, z), range)
+    public boolean playSelector(Level level, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
+        playInstrumentSound(level, x, y, z, entity, instr);
+        Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(ModTileEntities.totem_base.get(), level, new BlockPos(x, y, z), range)
                 .min(TileUtil.compareCenterDistanceTo(x, y, z))
                 .map(TileTotemBase::getTotemState)
                 .filter(TotemState::canSelect);
         totemState.ifPresent(t -> t.addSelector(entity, instr));
         return totemState.isPresent();
+    }
+
+    private void playInstrumentSound(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr) {
+        if(instr.getSound() != null)
+            level.playSound(entity instanceof Player ? (Player) entity : null, x, y, z, instr.getSound().get(), SoundSource.PLAYERS, 1.0F, 1.0F);
     }
 }

@@ -50,7 +50,7 @@ public class InfusedFluteItem extends FluteItem {
     }
 
     @Override
-    public boolean isFoil(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) { //Makes the item glow
         return true;
     }
 }

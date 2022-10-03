@@ -18,12 +18,10 @@ public class FluteItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        if(!world.isClientSide) {
-            if(player.isShiftKeyDown())
-                TotemicAPI.get().music().playSelector(player, ModContent.flute);
-            else
-                TotemicAPI.get().music().playMusic(player, ModContent.flute);
-        }
+        if(player.isShiftKeyDown())
+            TotemicAPI.get().music().playSelector(player, ModContent.flute);
+        else
+            TotemicAPI.get().music().playMusic(player, ModContent.flute);
 
         player.getCooldowns().addCooldown(ModItems.flute.get(), 20);
         player.getCooldowns().addCooldown(ModItems.infused_flute.get(), 20);
