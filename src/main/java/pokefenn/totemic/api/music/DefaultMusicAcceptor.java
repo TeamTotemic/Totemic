@@ -12,6 +12,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.INBTSerializable;
 import pokefenn.totemic.api.TotemicAPI;
 
@@ -25,8 +26,17 @@ import pokefenn.totemic.api.TotemicAPI;
  * The behavior is similar (but simplified) to a Totem Base while starting up a ceremony.
  */
 public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<CompoundTag> {
+    private Vec3 position;
     private final Object2IntMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicAPI.get().registry().instruments().size());
     private int totalMusic = 0;
+
+    public DefaultMusicAcceptor(Vec3 position) {
+        this.position = position;
+    }
+
+    public DefaultMusicAcceptor() {
+        this(Vec3.ZERO);
+    }
 
     /**
      * Returns {@code true} if the acceptor is not saturated with the specified instrument.
@@ -80,6 +90,15 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
      */
     public int getTotalMusic() {
         return totalMusic;
+    }
+
+    @Override
+    public Vec3 getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vec3 position) {
+        this.position = position;
     }
 
     @Override

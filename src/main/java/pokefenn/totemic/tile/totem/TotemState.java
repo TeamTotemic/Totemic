@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 
@@ -21,6 +22,11 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
     }
 
     public void addSelector(@Nonnull Entity entity, MusicInstrument instr) { }
+
+    @Override
+    public Vec3 getPosition() {
+        return Vec3.atCenterOf(tile.getBlockPos());
+    }
 
     void resetTotemState() {
         tile.setTotemState(new StateTotemEffect(tile));

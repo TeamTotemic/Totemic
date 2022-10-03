@@ -3,6 +3,7 @@ package pokefenn.totemic.api.music;
 import javax.annotation.Nullable;
 
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 import pokefenn.totemic.api.TotemicCapabilities;
 
@@ -42,6 +43,11 @@ public interface MusicAcceptor {
      * @return {@code true} if this call had any effect on the acceptor.
      */
     boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity);
+
+    /**
+     * Returns the position of this acceptor.
+     */
+    Vec3 getPosition();
 
     /**
      * Returns the priority of the Music Acceptor. Higher priority acceptors will receive music before other acceptors. The music will be evenly split between
