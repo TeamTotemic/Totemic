@@ -53,7 +53,14 @@ public enum MusicApiImpl implements MusicAPI {
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)
                 .map(lo -> lo.orElse(null))
-                .filter(ma -> ma.canAcceptMusic(instr))
+                .filter(acc -> {
+                    if(acc.canAcceptMusic(instr))
+                        return true;
+                    else {
+                        MiscUtil.spawnServerParticles(ParticleTypes.CLOUD, level, acc.getPosition(), 6); //FIXME: The behavior of canAcceptMusic should be changed to no longer return true if the acceptor is saturated. Side effect in filter predicate is bad style.
+                        return false;
+                    }
+                })
                 .collect(MiscUtil.collectMaxElements(Comparator.comparing(MusicAcceptor::getPriority)));
         if(list.isEmpty())
             return false;
@@ -63,6 +70,8 @@ public enum MusicApiImpl implements MusicAPI {
                 hadEffect = true;
                 MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, acc.getPosition(), 6); //TODO: The way the particles are being spawned should probably be changed (creating our own packet)
             }
+            else
+                MiscUtil.spawnServerParticles(ParticleTypes.CLOUD, level, acc.getPosition(), 6);
         }
         level.getProfiler().pop();
         return hadEffect;
