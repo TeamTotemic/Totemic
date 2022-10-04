@@ -2,11 +2,13 @@ package pokefenn.totemic.tile.totem;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.util.MiscUtil;
 
 public abstract sealed class TotemState implements MusicAcceptor permits StateTotemEffect, StateSelection, StateStartup, StateCeremonyEffect {
     final TileTotemBase tile;
@@ -29,6 +31,7 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
     }
 
     void resetTotemState() {
+        MiscUtil.spawnServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16);
         tile.setTotemState(new StateTotemEffect(tile));
     }
 

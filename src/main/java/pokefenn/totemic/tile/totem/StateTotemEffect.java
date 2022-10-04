@@ -82,6 +82,10 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
+    void resetTotemState() {
+    }
+
+    @Override
     byte getID() {
         return ID;
     }

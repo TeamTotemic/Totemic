@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
@@ -19,6 +20,7 @@ import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
+import pokefenn.totemic.util.MiscUtil;
 
 public final class StateSelection extends TotemState {
     static final byte ID = 1;
@@ -43,6 +45,7 @@ public final class StateSelection extends TotemState {
 
     @Override
     public void addSelector(@Nonnull Entity entity, MusicInstrument instr) {
+        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, tile.getLevel(), getPosition(), 6);
         selectors.add(instr);
         time = 0;
         tile.setChanged();
@@ -51,14 +54,15 @@ public final class StateSelection extends TotemState {
             Ceremony match = RegistryApiImpl.INSTANCE.getSelectorsToCeremonyMap().get(selectors);
             if(match != null) {
                 CeremonyInstance instance = match.createInstance();
-                if(instance.canSelect(tile.getLevel(), tile.getBlockPos()))
+                if(instance.canSelect(tile.getLevel(), tile.getBlockPos())) {
+                    MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, tile.getLevel(), getPosition(), 16);
                     tile.setTotemState(new StateStartup(tile, match, instance, entity));
+                }
                 else
-                    tile.setTotemState(previousState);
+                    resetTotemState();
             }
-            else if(selectors.size() >= CeremonyAPI.MAX_SELECTORS) {
-                tile.setTotemState(previousState);
-            }
+            else if(selectors.size() >= CeremonyAPI.MAX_SELECTORS)
+                resetTotemState();
         }
     }
 
@@ -87,6 +91,7 @@ public final class StateSelection extends TotemState {
 
     @Override
     void resetTotemState() {
+        MiscUtil.spawnServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16);
         tile.setTotemState(previousState);
     }
 

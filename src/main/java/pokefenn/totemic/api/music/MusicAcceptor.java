@@ -46,6 +46,8 @@ public interface MusicAcceptor {
 
     /**
      * Returns the position of this acceptor.
+     *
+     * @see Vec3#atCenterOf(net.minecraft.core.Vec3i)
      */
     Vec3 getPosition();
 

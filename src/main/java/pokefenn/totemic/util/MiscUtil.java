@@ -5,6 +5,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collector;
 
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+
 public final class MiscUtil {
     /**
      * Returns a Collector collecting the maximal elements from a Stream into a List. Useful if there will generally be
@@ -46,5 +51,11 @@ public final class MiscUtil {
                             return list2;
                     }
                 });
+    }
+
+    public static void spawnServerParticles(ParticleOptions particle, Level level, Vec3 pos, int count) {
+        if(level instanceof ServerLevel slevel) {
+            slevel.sendParticles(particle, pos.x, pos.y, pos.z, count, 0.5, 0.5, 0.5, 0.0);
+        }
     }
 }
