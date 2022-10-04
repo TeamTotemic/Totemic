@@ -3,6 +3,7 @@ package pokefenn.totemic.tile.totem;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
@@ -19,6 +20,7 @@ import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.network.ClientboundPacketStartupMusic;
 import pokefenn.totemic.network.NetworkHandler;
+import pokefenn.totemic.util.MiscUtil;
 
 public final class StateStartup extends TotemState implements StartupContext {
     static final byte ID = 2;
@@ -117,11 +119,13 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     @Override
     public void failCeremony() {
+        MiscUtil.spawnServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16);
         tile.setTotemState(new StateTotemEffect(tile));
     }
 
     @Override
     public void startCeremony() {
+        MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, tile.getLevel(), getPosition(), 16);
         tile.setTotemState(new StateCeremonyEffect(tile, ceremony, instance, initiator));
     }
 
