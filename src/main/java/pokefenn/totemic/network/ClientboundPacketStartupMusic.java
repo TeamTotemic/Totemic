@@ -16,7 +16,7 @@ public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instru
     public void encode(FriendlyByteBuf buf) {
         buf.writeBlockPos(pos);
         buf.writeResourceLocation(instrument.getRegistryName());
-        buf.writeShort(amount);
+        buf.writeVarInt(amount);
     }
 
     public static ClientboundPacketStartupMusic decode(FriendlyByteBuf buf) {
@@ -25,7 +25,7 @@ public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instru
         MusicInstrument instr = TotemicAPI.get().registry().instruments().get(instrName);
         if(instr == null)
             throw new RuntimeException("Unknown Music instrument: " + instrName);
-        int amount = buf.readShort();
+        int amount = buf.readVarInt();
         return new ClientboundPacketStartupMusic(pos, instr, amount);
     }
 
