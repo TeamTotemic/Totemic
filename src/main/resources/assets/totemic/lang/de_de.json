@@ -1,12 +1,16 @@
 {
   "item.totemic.flute": "Flöte",
   "item.totemic.infused_flute": "Pans Flöte",
+  "item.totemic.infused_flute.tooltip": "Unwiderstehlich für Tiere und Dorfbewohner",
   "item.totemic.rattle": "Rassel",
   "item.totemic.totem_whittling_knife": "Totemschnitzmesser (%s)",
   "item.totemic.totem_whittling_knife.tooltip": "Ein Messer für all Deine Schnitzerei\nSchleichen+Rechtsklick oder Mausrad zum Ändern des Musters",
   "item.totemic.totemic_staff": "Totemstab",
   "item.totemic.totemic_staff.tooltip": "Ein Stab für Deine Totem-Bedürfnisse!",
   "item.totemic.ceremony_cheat": "Kreativmodus-Zeremonien-Cheat",
+  "item.totemic.ceremony_cheat.tooltip": "Benutze an einer Totembasis, um sofort die ausgewählte Zeremonie zu starten",
+  
+  "totemic.tooltip.selectorMode": "Schleiche während des Spielens für den Selektor-Modus",
   
   "block.totemic.cedar_log": "Roter Zedernstamm",
   "block.totemic.stripped_cedar_log": "Entrindeter roter Zedernstamm",

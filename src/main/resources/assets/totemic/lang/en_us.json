@@ -1,12 +1,16 @@
 {
   "item.totemic.flute": "Flute",
   "item.totemic.infused_flute": "Pan's Flute",
+  "item.totemic.infused_flute.tooltip": "Irresistible to Animals and Villagers",
   "item.totemic.rattle": "Rattle",
   "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
   "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
   "item.totemic.totemic_staff": "Totemic Staff",
   "item.totemic.totemic_staff.tooltip": "A staff for your Totemic needs!",
   "item.totemic.ceremony_cheat": "Creative Ceremony Cheat",
+  "item.totemic.ceremony_cheat.tooltip": "Use on a Totem Base to instantly start up the selected Ceremony",
+  
+  "totemic.tooltip.selectorMode": "Sneak while playing to use Selector Mode",
   
   "block.totemic.cedar_log": "Red Cedar Log",
   "block.totemic.stripped_cedar_log": "Stripped Red Cedar Log",
