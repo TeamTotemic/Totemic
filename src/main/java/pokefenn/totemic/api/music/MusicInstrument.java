@@ -83,6 +83,11 @@ public final class MusicInstrument {
         return registryName;
     }
 
+    @Override
+    public String toString() {
+        return registryName.toString();
+    }
+
     /**
      * @return the default music output when the instrument is played
      */

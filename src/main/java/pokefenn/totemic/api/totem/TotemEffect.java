@@ -84,6 +84,11 @@ public abstract class TotemEffect { //TODO: This class needs a refactoring
         return registryName;
     }
 
+    @Override
+    public String toString() {
+        return registryName.toString();
+    }
+
     /**
      * @return whether this Totem Effect can be used with a Medicine Bag
      */

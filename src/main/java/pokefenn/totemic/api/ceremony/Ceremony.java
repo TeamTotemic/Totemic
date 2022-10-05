@@ -75,6 +75,11 @@ public class Ceremony {
         return registryName;
     }
 
+    @Override
+    public String toString() {
+        return registryName.toString();
+    }
+
     /**
      * @return the amount of music needed to start the ceremony.
      */
