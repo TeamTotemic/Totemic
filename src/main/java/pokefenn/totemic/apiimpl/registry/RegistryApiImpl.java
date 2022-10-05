@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import pokefenn.totemic.api.TotemicAPI;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
@@ -72,7 +72,18 @@ public enum RegistryApiImpl implements RegistryAPI {
         //This will throw an exception if two different Ceremonies happen to have the same selectors.
         //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
         //to check for prefix-freeness. So we assume MIN_SELECTORS == MAX_SELECTORS here.
-        selectorsToCeremonyMap = TotemicAPI.get().registry().ceremonies().values().stream()
+        selectorsToCeremonyMap = ceremonies.values().stream()
                 .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
+
+        if(!FMLEnvironment.production) {
+            //Check for unregistered music instruments, to prevent subtle issues.
+            ceremonies.values().stream()
+                    .flatMap(cer -> cer.getSelectors().stream())
+                    .filter(instr -> !instruments.containsKey(instr.getRegistryName()))
+                    .findAny()
+                    .ifPresent(instr -> {
+                        throw new RuntimeException("Music instrument " + instr.getRegistryName() + " has not been registered!");
+                    });
+        }
     }
 }
