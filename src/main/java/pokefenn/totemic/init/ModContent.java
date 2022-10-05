@@ -11,6 +11,9 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.ceremony.CeremonyDepths;
+import pokefenn.totemic.ceremony.CeremonyFluteInfusion;
+import pokefenn.totemic.ceremony.CeremonyRain;
 import pokefenn.totemic.ceremony.CeremonyWarDance;
 import pokefenn.totemic.totem.EmptyTotemEffect;
 import pokefenn.totemic.totem.OcelotTotemEffect;
@@ -60,6 +63,10 @@ public final class ModContent {
     //14700: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
     //16200: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
     public static final Ceremony warDance = new Ceremony(resloc("war_dance"), 4500, 20 * 20, CeremonyWarDance::new, drum, drum);
+    public static final Ceremony depths = new Ceremony(resloc("depths"), 4500, 20 * 20, CeremonyDepths::new, flute, flute);
+    public static final Ceremony rainDance = new Ceremony(resloc("rain"), 10980, 26 * 20, () -> new CeremonyRain(true), drum, rattle);
+    public static final Ceremony drought = new Ceremony(resloc("drought"), 10980, 26 * 20, () -> new CeremonyRain(false), rattle, drum);
+    public static final Ceremony fluteInfusion = new Ceremony(resloc("flute_infusion"), 11340, 28 * 20, CeremonyFluteInfusion::new, flute, rattle);
 
     @SubscribeEvent
     public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {
@@ -76,7 +83,7 @@ public final class ModContent {
 
     @SubscribeEvent
     public static void cermeonies(TotemicRegisterEvent<Ceremony> event) {
-        event.registerAll(warDance);
+        event.registerAll(warDance, depths, rainDance, drought, fluteInfusion);
     }
 
     private static ResourceLocation resloc(String path) {
