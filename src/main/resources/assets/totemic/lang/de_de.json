@@ -1,6 +1,11 @@
 {
   "item.totemic.flute": "Flöte",
   "item.totemic.infused_flute": "Pans Flöte",
+  "item.totemic.rattle": "Rassel",
+  "item.totemic.totem_whittling_knife": "Totemschnitzmesser (%s)",
+  "item.totemic.totem_whittling_knife.tooltip": "Ein Messer für all Deine Schnitzerei\nSchleichen+Rechtsklick oder Mausrad zum Ändern des Musters",
+  "item.totemic.totemic_staff": "Totemstab",
+  "item.totemic.totemic_staff.tooltip": "Ein Stab für Deine Totem-Bedürfnisse!",
   
   "block.totemic.cedar_log": "Roter Zedernstamm",
   "block.totemic.stripped_cedar_log": "Entrindeter roter Zedernstamm",
@@ -24,11 +29,6 @@
   "block.totemic.dark_oak_totem_pole": "Schwarzeichenholz-Totempfahl (%s)",
   "block.totemic.cedar_totem_pole": "Zedernholz-Totempfahl (%s)",
   
-  "item.totemic.totem_whittling_knife": "Totemschnitzmesser (%s)",
-  "item.totemic.totem_whittling_knife.tooltip": "Ein Messer für all Deine Schnitzerei\nSchleichen+Rechtsklick oder Mausrad zum Ändern des Musters",
-  "item.totemic.totemic_staff": "Totemstab",
-  "item.totemic.totemic_staff.tooltip": "Ein Stab für Deine Totem-Bedürfnisse!",
-  
   "totemic.totem.totemic.none": "Kein Effekt",
   "totemic.totem.totemic.bat": "Fledermaus",
   "totemic.totem.totemic.blaze": "Lohe",
@@ -45,6 +45,7 @@
   
   "totemic.instrument.totemic.flute": "Flöte",
   "totemic.instrument.totemic.drum": "Trommel",
+  "totemic.instrument.totemic.rattle": "Rassel",
   
   "totemic.ceremony.totemic.war_dance": "Kriegstanz",
   

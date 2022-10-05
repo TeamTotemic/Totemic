@@ -4,5 +4,8 @@
   },
   "drum": {
     "sounds": ["totemic:drum"]
+  },
+  "rattle": {
+    "sounds": ["totemic:rattle"]
   }
 }

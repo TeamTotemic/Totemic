@@ -1,6 +1,11 @@
 {
   "item.totemic.flute": "Flute",
   "item.totemic.infused_flute": "Pan's Flute",
+  "item.totemic.rattle": "Rattle",
+  "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
+  "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
+  "item.totemic.totemic_staff": "Totemic Staff",
+  "item.totemic.totemic_staff.tooltip": "A staff for your Totemic needs!",
   
   "block.totemic.cedar_log": "Red Cedar Log",
   "block.totemic.stripped_cedar_log": "Stripped Red Cedar Log",
@@ -24,11 +29,6 @@
   "block.totemic.dark_oak_totem_pole": "Dark Oak Totem Pole (%s)",
   "block.totemic.cedar_totem_pole": "Red Cedar Totem Pole (%s)",
   
-  "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
-  "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
-  "item.totemic.totemic_staff": "Totemic Staff",
-  "item.totemic.totemic_staff.tooltip": "A staff for your Totemic needs!",
-  
   "totemic.totem.totemic.none": "None",
   "totemic.totem.totemic.bat": "Bat",
   "totemic.totem.totemic.blaze": "Blaze",
@@ -45,6 +45,7 @@
   
   "totemic.instrument.totemic.flute": "Flute",
   "totemic.instrument.totemic.drum": "Drum",
+  "totemic.instrument.totemic.rattle": "Rattle",
   
   "totemic.ceremony.totemic.war_dance": "War Dance",
   

@@ -12,6 +12,7 @@ public final class ModSounds {
 
     public static final RegistryObject<SoundEvent> flute = createSound("flute");
     public static final RegistryObject<SoundEvent> drum = createSound("drum");
+    public static final RegistryObject<SoundEvent> rattle = createSound("rattle");
 
     private static RegistryObject<SoundEvent> createSound(String name) {
         return REGISTER.register(name, () -> new SoundEvent(new ResourceLocation(TotemicAPI.MOD_ID, name)));

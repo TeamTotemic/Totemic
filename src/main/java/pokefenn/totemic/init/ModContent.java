@@ -20,7 +20,7 @@ public final class ModContent {
     public static final MusicInstrument drum = new MusicInstrument(resloc("drum"), 240, 3300);
 //    public static final MusicInstrument windChime = new MusicInstrument(resloc("wind_chime"), 120, 1500);
 //    public static final MusicInstrument jingleDress = new MusicInstrument(resloc("jingle_dress"), 180, 1500);
-//    public static final MusicInstrument rattle = new MusicInstrument(resloc("rattle"), 300, 3300);
+    public static final MusicInstrument rattle = new MusicInstrument(resloc("rattle"), 300, 3300);
 //    public static final MusicInstrument eagleBoneWhistle = new MusicInstrument(resloc("eagle_bone_whistle"), 360, 3600);
 //    public static final MusicInstrument netherPipe = new MusicInstrument(resloc("nether_pipe"), 240, 3900);
 
@@ -65,7 +65,8 @@ public final class ModContent {
     public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {
         event.registerAll(
                 flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute),
-                drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum));
+                drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum),
+                rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle));
     }
 
     @SubscribeEvent

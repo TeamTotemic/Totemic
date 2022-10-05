@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-15T23:15:09.012015609	Block States: totemic
+// 1.19.2	2022-10-05T19:11:52.061424681	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 7541d5efd084b8fcab58c0cfa8131531239983c6 assets/totemic/blockstates/acacia_totem_pole_bat.json
 0b98300f6a034b0fbf4b1b2b9f800c8b004a6b8f assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -294,6 +294,7 @@ ef8c80be4b0e8a288d6d560dcb8fcd9869890d36 assets/totemic/models/item/oak_totem_po
 b97c894ebd08004d84e2ee9a9d53fcfea962c2da assets/totemic/models/item/oak_totem_pole_spider.json
 c2e8608c9a2a2b04a85e72aa5b4304d40a5c48bf assets/totemic/models/item/oak_totem_pole_squid.json
 8c99c0fa1ffd98a8bdb1adefe3c3319a0098a195 assets/totemic/models/item/oak_totem_pole_wolf.json
+9db273534dd4c5a2bae2b6c1c83674024f6a11c2 assets/totemic/models/item/rattle.json
 8eef6c7272896eab1fa866e24749d83687b53f45 assets/totemic/models/item/spruce_totem_base.json
 883f5415dfa8211cbe689f0f13040496a29fe8cb assets/totemic/models/item/spruce_totem_pole_bat.json
 5b871ba1f2a329e11323ef4d3bf4dedd811b4816 assets/totemic/models/item/spruce_totem_pole_blaze.json
