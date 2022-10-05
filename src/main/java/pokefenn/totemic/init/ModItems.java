@@ -14,6 +14,7 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
+import pokefenn.totemic.item.CeremonyCheatItem;
 import pokefenn.totemic.item.TotemKnifeItem;
 import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.item.TotemicStaffItem;
@@ -29,6 +30,7 @@ public final class ModItems {
     public static final RegistryObject<RattleItem> rattle = REGISTER.register("rattle", () -> new RattleItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250).tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemicStaffItem> totemic_staff = REGISTER.register("totemic_staff", () -> new TotemicStaffItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
+    public static final RegistryObject<CeremonyCheatItem> ceremony_cheat = REGISTER.register("ceremony_cheat", () -> new CeremonyCheatItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
 
     @SubscribeEvent
     public static void init(RegisterEvent event) {

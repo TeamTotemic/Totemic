@@ -42,6 +42,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         generatedItem(ModItems.rattle.get());
         generatedItem(ModItems.totem_whittling_knife.get());
         generatedItem(ModItems.totemic_staff.get());
+        generatedItem(ModItems.ceremony_cheat.get());
 
         registerTotemModels();
     }

@@ -1,4 +1,4 @@
-// 1.19.2	2022-10-05T19:11:52.061424681	Block States: totemic
+// 1.19.2	2022-10-05T19:27:56.006577343	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 7541d5efd084b8fcab58c0cfa8131531239983c6 assets/totemic/blockstates/acacia_totem_pole_bat.json
 0b98300f6a034b0fbf4b1b2b9f800c8b004a6b8f assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -249,6 +249,7 @@ c32d34a72578d2b6a386a59860cd080f3817c3b6 assets/totemic/models/item/cedar_totem_
 f336ea0e99c2f301f571a02db9e285f4203f01cd assets/totemic/models/item/cedar_totem_pole_squid.json
 6f0d6e919303e90afc58f7bac8b2a1886a1be36a assets/totemic/models/item/cedar_totem_pole_wolf.json
 25126e0a93bfb7f36e49c4d7a1ae8c50065e619b assets/totemic/models/item/cedar_wood.json
+076378ab3ea3ec5484690b72aaa6fd3886e6a8ed assets/totemic/models/item/ceremony_cheat.json
 f9e5ee729c02ede39d4b7219c6d89e4d6c7503a6 assets/totemic/models/item/dark_oak_totem_base.json
 9fb874f0aa941324ce6d8b5b23770f4c1cd40a0e assets/totemic/models/item/dark_oak_totem_pole_bat.json
 146ea383f43fc3060e90d629803dd1f3f812e512 assets/totemic/models/item/dark_oak_totem_pole_blaze.json
