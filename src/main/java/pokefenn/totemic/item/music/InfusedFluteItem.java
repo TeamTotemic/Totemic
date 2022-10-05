@@ -24,6 +24,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicEntityUtil;
+import pokefenn.totemic.init.ModContent;
 
 public class InfusedFluteItem extends FluteItem {
     //Entities that have been tempted by the infused flute get stored in this weak set
@@ -40,6 +41,11 @@ public class InfusedFluteItem extends FluteItem {
             temptEntities(world, player.getX(), player.getY(), player.getZ());
 
         return super.use(world, player, hand);
+    }
+
+    @Override
+    protected int getMusicAmount(Level level) {
+        return ModContent.flute.getBaseOutput() + level.getRandom().nextInt(120);
     }
 
     private void temptEntities(Level world, double x, double y, double z) {

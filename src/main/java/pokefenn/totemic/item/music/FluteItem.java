@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
@@ -27,13 +28,17 @@ public class FluteItem extends Item {
         if(player.isShiftKeyDown())
             TotemicAPI.get().music().playSelector(player, ModContent.flute);
         else
-            TotemicAPI.get().music().playMusic(player, ModContent.flute);
+            TotemicAPI.get().music().playMusic(world, player.getX(), player.getY(), player.getZ(), player, ModContent.flute, MusicAPI.DEFAULT_RANGE, getMusicAmount(world));
 
         player.getCooldowns().addCooldown(ModItems.flute.get(), 20);
         player.getCooldowns().addCooldown(ModItems.infused_flute.get(), 20);
 
         player.awardStat(Stats.ITEM_USED.get(this));
         return InteractionResultHolder.success(player.getItemInHand(hand));
+    }
+
+    protected int getMusicAmount(Level level) {
+        return ModContent.flute.getBaseOutput();
     }
 
     @Override
