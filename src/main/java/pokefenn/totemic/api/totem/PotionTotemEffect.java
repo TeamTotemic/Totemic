@@ -81,7 +81,7 @@ public class PotionTotemEffect extends TotemEffect {
      * The default value ranges between 0 and 3 above {@link #baseAmplifier}, depending on the repetition and the amount of music in the Totem Base.
      */
     protected int getAmplifier(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
-        return baseAmplifier + (repetition - 1) / 2 + (context.getTotemEffectMusic() > 192 ? 1 : 0);
+        return baseAmplifier + (repetition - 1) / 2 + (context.getTotemEffectMusic() > 11520 ? 1 : 0);
     }
 
     /**
