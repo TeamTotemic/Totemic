@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "totemic:totem_whittling_knife"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_totemic_staff": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "totemic:totemic_staff"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_totemic_staff",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "totemic:totem_whittling_knife"
+    ]
+  }
+}

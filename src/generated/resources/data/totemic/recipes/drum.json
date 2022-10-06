@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "E": {
+      "tag": "forge:leather"
+    },
+    "L": {
+      "tag": "minecraft:logs_that_burn"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "pattern": [
+    "EEE",
+    "LWL",
+    "WLW"
+  ],
+  "result": {
+    "item": "totemic:drum"
+  }
+}

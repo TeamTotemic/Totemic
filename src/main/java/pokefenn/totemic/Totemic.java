@@ -20,6 +20,7 @@ import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
+import pokefenn.totemic.data.TotemicRecipeProvider;
 import pokefenn.totemic.handler.ClientInteract;
 import pokefenn.totemic.handler.ModBlockColors;
 import pokefenn.totemic.handler.PlayerInteract;
@@ -38,7 +39,7 @@ public final class Totemic {
     public static final CreativeModeTab creativeTab = new CreativeModeTab(TotemicAPI.MOD_ID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.flute.get());
+            return new ItemStack(ModItems.totemic_staff.get());
         }
     };
 
@@ -92,12 +93,14 @@ public final class Totemic {
     }
 
     private void gatherData(GatherDataEvent event) {
+        var gen = event.getGenerator();
         if(event.includeServer()) {
-            event.getGenerator().addProvider(true, new TotemicBlockTagsProvider(event.getGenerator(), event.getExistingFileHelper()));
-            event.getGenerator().addProvider(true, new TotemicLootTableProvider(event.getGenerator()));
+            gen.addProvider(true, new TotemicBlockTagsProvider(gen, event.getExistingFileHelper()));
+            gen.addProvider(true, new TotemicLootTableProvider(gen));
+            gen.addProvider(true, new TotemicRecipeProvider(gen));
         }
         if(event.includeClient()) {
-            event.getGenerator().addProvider(true, new TotemicBlockStateProvider(event.getGenerator(), event.getExistingFileHelper()));
+            gen.addProvider(true, new TotemicBlockStateProvider(gen, event.getExistingFileHelper()));
         }
     }
 }
