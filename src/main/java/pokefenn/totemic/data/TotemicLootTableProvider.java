@@ -20,6 +20,7 @@ import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.init.ModBlocks;
 
 public final class TotemicLootTableProvider extends LootTableProvider {
@@ -44,11 +45,12 @@ public final class TotemicLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.cedar_log.get());
             dropSelf(ModBlocks.stripped_cedar_log.get());
             dropSelf(ModBlocks.cedar_wood.get());
+            dropSelf(ModBlocks.drum.get());
         }
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-            return ImmutableList.of(ModBlocks.cedar_log.get(), ModBlocks.stripped_cedar_log.get(), ModBlocks.cedar_wood.get());
+            return ModBlocks.REGISTER.getEntries().stream().map(RegistryObject::get).toList();
         }
     }
 }
