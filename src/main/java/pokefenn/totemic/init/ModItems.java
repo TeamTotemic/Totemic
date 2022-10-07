@@ -3,7 +3,9 @@ package pokefenn.totemic.init;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -31,6 +33,7 @@ public final class ModItems {
     public static final RegistryObject<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250).tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemicStaffItem> totemic_staff = REGISTER.register("totemic_staff", () -> new TotemicStaffItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
     public static final RegistryObject<CeremonyCheatItem> ceremony_cheat = REGISTER.register("ceremony_cheat", () -> new CeremonyCheatItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
+    public static final RegistryObject<SpawnEggItem> buffalo_spawn_egg = REGISTER.register("buffalo_spawn_egg", () -> new ForgeSpawnEggItem(ModEntityTypes.buffalo, 0x2A1C12, 0x885F3E, new Properties().tab(Totemic.creativeTab)));
 
     @SubscribeEvent
     public static void init(RegisterEvent event) {

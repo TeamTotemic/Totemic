@@ -9,6 +9,7 @@
   "item.totemic.totemic_staff.tooltip": "A staff for your Totemic needs!",
   "item.totemic.ceremony_cheat": "Creative Ceremony Cheat",
   "item.totemic.ceremony_cheat.tooltip": "Use on a Totem Base to instantly start up the selected Ceremony",
+  "item.totemic.buffalo_spawn_egg": "Buffalo Spawn Egg",
   
   "totemic.tooltip.selectorMode": "Sneak while playing to use Selector Mode",
   
@@ -33,6 +34,8 @@
   "block.totemic.acacia_totem_pole": "Acacia Totem Pole (%s)",
   "block.totemic.dark_oak_totem_pole": "Dark Oak Totem Pole (%s)",
   "block.totemic.cedar_totem_pole": "Red Cedar Totem Pole (%s)",
+  
+  "entity.totemic.buffalo": "Buffalo",
   
   "totemic.totem.totemic.none": "None",
   "totemic.totem.totemic.bat": "Bat",

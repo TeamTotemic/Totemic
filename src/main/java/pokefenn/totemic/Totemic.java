@@ -27,6 +27,7 @@ import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModEffects;
+import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.init.ModTileEntities;
@@ -53,11 +54,13 @@ public final class Totemic {
         ModItems.REGISTER.register(modBus);
         ModEffects.REGISTER.register(modBus);
         ModTileEntities.REGISTER.register(modBus);
+        ModEntityTypes.REGISTER.register(modBus);
         ModSounds.REGISTER.register(modBus);
 
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
         modBus.register(ModContent.class);
+        modBus.register(ModEntityTypes.class);
 
         if(FMLEnvironment.dist.isClient()) {
             modBus.addListener(this::clientSetup);

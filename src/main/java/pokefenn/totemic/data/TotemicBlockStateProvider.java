@@ -2,7 +2,6 @@ package pokefenn.totemic.data;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
@@ -37,12 +36,14 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             existingBlockItem(blockO.get());
 
         //Items
-        generatedItem(ModItems.flute.get());
-        generatedItem(ModItems.infused_flute.get());
-        generatedItem(ModItems.rattle.get());
-        generatedItem(ModItems.totem_whittling_knife.get());
-        generatedItem(ModItems.totemic_staff.get());
-        generatedItem(ModItems.ceremony_cheat.get());
+        var im = itemModels();
+        im.basicItem(ModItems.flute.get());
+        im.basicItem(ModItems.infused_flute.get());
+        im.basicItem(ModItems.rattle.get());
+        im.basicItem(ModItems.totem_whittling_knife.get());
+        im.basicItem(ModItems.totemic_staff.get());
+        im.basicItem(ModItems.ceremony_cheat.get());
+        im.withExistingParent(ModItems.buffalo_spawn_egg.getId().toString(), "item/template_spawn_egg");
 
         registerTotemModels();
     }
@@ -101,9 +102,5 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
     private void existingBlockItem(Block block) {
         simpleBlockItem(block, models().getExistingFile(ForgeRegistries.BLOCKS.getKey(block)));
-    }
-
-    private void generatedItem(Item item) {
-        itemModels().singleTexture(ForgeRegistries.ITEMS.getKey(item).getPath(), mcLoc("item/generated"), "layer0", modLoc(ModelProvider.ITEM_FOLDER + "/" + ForgeRegistries.ITEMS.getKey(item).getPath()));
     }
 }

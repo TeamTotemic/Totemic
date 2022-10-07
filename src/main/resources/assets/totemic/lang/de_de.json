@@ -9,6 +9,7 @@
   "item.totemic.totemic_staff.tooltip": "Ein Stab für Deine Totem-Bedürfnisse!",
   "item.totemic.ceremony_cheat": "Kreativmodus-Zeremonien-Cheat",
   "item.totemic.ceremony_cheat.tooltip": "Benutze an einer Totembasis, um sofort die ausgewählte Zeremonie zu starten",
+  "item.totemic.buffalo_spawn_egg": "Büffel-Spawn-Ei",
   
   "totemic.tooltip.selectorMode": "Schleiche während des Spielens für den Selektor-Modus",
   
@@ -33,6 +34,8 @@
   "block.totemic.acacia_totem_pole": "Akazienholz-Totempfahl (%s)",
   "block.totemic.dark_oak_totem_pole": "Schwarzeichenholz-Totempfahl (%s)",
   "block.totemic.cedar_totem_pole": "Zedernholz-Totempfahl (%s)",
+  
+  "entity.totemic.buffalo": "Büffel",
   
   "totemic.totem.totemic.none": "Kein Effekt",
   "totemic.totem.totemic.bat": "Fledermaus",
