@@ -25,7 +25,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("S  ")
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LEAVES)
-                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get())) //TODO
+                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get())) //TODO: Once we have a Totempedia item, it should become the item to unlock the recipes
                 .save(rc);
         //ShapedRecipeBuilder.shaped(ModItems.rattle.get()) TODO
         ShapedRecipeBuilder.shaped(ModItems.totem_whittling_knife.get())
@@ -35,7 +35,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('I', Tags.Items.INGOTS_IRON)
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('F', Items.FLINT)
-                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get())) //TODO
+                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModItems.totemic_staff.get())
                 .pattern(" LS")
@@ -43,7 +43,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("S L")
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LEAVES)
-                .unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN)) //TODO
+                .unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModBlocks.drum.get())
                 .pattern("EEE")
@@ -52,7 +52,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('E', Tags.Items.LEATHER)
                 .define('L', ItemTags.LOGS_THAT_BURN)
                 .define('W', ItemTags.WOOL)
-                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get())) //TODO
+                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
                 .save(rc);
     }
 }

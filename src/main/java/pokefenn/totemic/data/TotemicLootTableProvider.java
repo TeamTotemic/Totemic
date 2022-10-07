@@ -50,7 +50,7 @@ public final class TotemicLootTableProvider extends LootTableProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-            return ModBlocks.REGISTER.getEntries().stream().map(RegistryObject::get).toList();
+            return ModBlocks.REGISTER.getEntries().stream().map(RegistryObject::get)::iterator;
         }
     }
 }

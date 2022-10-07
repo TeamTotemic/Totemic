@@ -55,7 +55,6 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
 
         if(!world.isClientSide) {
             if(time >= instance.getEffectTime()) {
-                //instance.onEffectEnd(world, pos, this); //TODO: Make onEffectEnd work on the client side too, if necessary
                 tile.setTotemState(new StateTotemEffect(tile));
             }
         }
