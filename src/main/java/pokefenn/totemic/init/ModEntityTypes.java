@@ -1,5 +1,6 @@
 package pokefenn.totemic.init;
 
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -8,6 +9,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.client.rendering.entity.BuffaloRenderer;
 import pokefenn.totemic.entity.Buffalo;
 
 public final class ModEntityTypes {
@@ -18,5 +20,9 @@ public final class ModEntityTypes {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(buffalo.get(), Buffalo.createAttributes().build());
+    }
+
+    public static void registerRenderers() {
+        EntityRenderers.register(ModEntityTypes.buffalo.get(), BuffaloRenderer::new);
     }
 }

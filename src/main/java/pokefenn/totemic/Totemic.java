@@ -91,6 +91,8 @@ public final class Totemic {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(ModEntityTypes::registerRenderers);
+
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
     }
