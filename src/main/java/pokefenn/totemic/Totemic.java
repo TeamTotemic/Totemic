@@ -21,8 +21,8 @@ import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
 import pokefenn.totemic.data.TotemicRecipeProvider;
+import pokefenn.totemic.handler.ClientInitHandlers;
 import pokefenn.totemic.handler.ClientInteract;
-import pokefenn.totemic.handler.ModBlockColors;
 import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
@@ -65,7 +65,7 @@ public final class Totemic {
         if(FMLEnvironment.dist.isClient()) {
             modBus.addListener(this::clientSetup);
 
-            modBus.register(ModBlockColors.class);
+            modBus.register(ClientInitHandlers.class);
         }
 
         // Instance field is private, need reflection
@@ -91,8 +91,6 @@ public final class Totemic {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(ModEntityTypes::registerRenderers);
-
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
     }
