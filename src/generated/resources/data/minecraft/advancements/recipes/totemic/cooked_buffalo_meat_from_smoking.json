@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:cooked_buffalo_meat"
+        "recipe": "minecraft:cooked_buffalo_meat_from_smoking"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "totemic:cooked_buffalo_meat"
+      "minecraft:cooked_buffalo_meat_from_smoking"
     ]
   }
 }

@@ -6,10 +6,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.Tags;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
@@ -65,8 +64,8 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
                 .save(rc);
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.buffalo_meat.get()), ModItems.cooked_buffalo_meat.get(), 0.35F, 200)
-                .unlockedBy("has_buffalo_meat", has(ModItems.buffalo_meat.get()))
-                .save(rc);
+        simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
+        simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
+        simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
     }
 }
