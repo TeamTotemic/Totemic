@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "totemic:buffalo_tooth"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "W": {
+      "tag": "minecraft:logs_that_burn"
+    }
+  },
+  "pattern": [
+    " WW",
+    " BW",
+    "S  "
+  ],
+  "result": {
+    "item": "totemic:rattle"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "totemic:buffalo_meat"
+  },
+  "result": "totemic:cooked_buffalo_meat"
+}

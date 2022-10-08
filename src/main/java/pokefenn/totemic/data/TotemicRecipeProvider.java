@@ -6,8 +6,10 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
@@ -27,7 +29,15 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('L', ItemTags.LEAVES)
                 .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get())) //TODO: Once we have a Totempedia item, it should become the item to unlock the recipes
                 .save(rc);
-        //ShapedRecipeBuilder.shaped(ModItems.rattle.get()) TODO
+        ShapedRecipeBuilder.shaped(ModItems.rattle.get())
+                .pattern(" WW")
+                .pattern(" BW")
+                .pattern("S  ")
+                .define('S', Tags.Items.RODS_WOODEN)
+                .define('W', ItemTags.LOGS_THAT_BURN)
+                .define('B', ModItems.buffalo_tooth.get())
+                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
+                .save(rc);
         ShapedRecipeBuilder.shaped(ModItems.totem_whittling_knife.get())
                 .pattern("  I")
                 .pattern(" SF")
@@ -53,6 +63,10 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('L', ItemTags.LOGS_THAT_BURN)
                 .define('W', ItemTags.WOOL)
                 .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
+                .save(rc);
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModItems.buffalo_meat.get()), ModItems.cooked_buffalo_meat.get(), 0.35F, 200)
+                .unlockedBy("has_buffalo_meat", has(ModItems.buffalo_meat.get()))
                 .save(rc);
     }
 }
