@@ -10,6 +10,10 @@
   "item.totemic.ceremony_cheat": "Creative Ceremony Cheat",
   "item.totemic.ceremony_cheat.tooltip": "Use on a Totem Base to instantly start up the selected Ceremony",
   "item.totemic.buffalo_spawn_egg": "Buffalo Spawn Egg",
+  "item.totemic.buffalo_meat": "Raw Buffalo Meat",
+  "item.totemic.cooked_buffalo_meat": "Cooked Buffalo Meat",
+  "item.totemic.buffalo_tooth": "Buffalo Tooth",
+  "item.totemic.buffalo_hide": "Buffalo Hide",
   
   "totemic.tooltip.selectorMode": "Sneak while playing to use Selector Mode",
   

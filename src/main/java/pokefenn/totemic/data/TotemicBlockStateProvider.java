@@ -44,6 +44,10 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.basicItem(ModItems.totemic_staff.get());
         im.basicItem(ModItems.ceremony_cheat.get());
         im.withExistingParent(ModItems.buffalo_spawn_egg.getId().toString(), "item/template_spawn_egg");
+        im.basicItem(ModItems.buffalo_meat.get());
+        im.basicItem(ModItems.cooked_buffalo_meat.get());
+        im.basicItem(ModItems.buffalo_tooth.get());
+        im.basicItem(ModItems.buffalo_hide.get());
 
         registerTotemModels();
     }

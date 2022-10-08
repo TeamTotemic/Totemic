@@ -10,6 +10,10 @@
   "item.totemic.ceremony_cheat": "Kreativmodus-Zeremonien-Cheat",
   "item.totemic.ceremony_cheat.tooltip": "Benutze an einer Totembasis, um sofort die ausgewählte Zeremonie zu starten",
   "item.totemic.buffalo_spawn_egg": "Büffel-Spawn-Ei",
+  "item.totemic.buffalo_meat": "Rohes Büffelfleisch",
+  "item.totemic.cooked_buffalo_meat": "Gekochtes Büffelfleisch",
+  "item.totemic.buffalo_tooth": "Büffelzahn",
+  "item.totemic.buffalo_hide": "Büffelleder",
   
   "totemic.tooltip.selectorMode": "Schleiche während des Spielens für den Selektor-Modus",
   

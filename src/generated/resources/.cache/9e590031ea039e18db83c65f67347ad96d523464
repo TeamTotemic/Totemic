@@ -1,4 +1,4 @@
-// 1.19.2	2022-10-07T20:27:28.447643419	Block States: totemic
+// 1.19.2	2022-10-08T19:26:00.37416206	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 7541d5efd084b8fcab58c0cfa8131531239983c6 assets/totemic/blockstates/acacia_totem_pole_bat.json
 0b98300f6a034b0fbf4b1b2b9f800c8b004a6b8f assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -233,7 +233,10 @@ cfb3a12824e4c8ee0f96741db6ba5e31142b5487 assets/totemic/models/item/birch_totem_
 7dcf2cb63c152638dc3b170c222b6e05a7fc9fb7 assets/totemic/models/item/birch_totem_pole_spider.json
 bac224bf8224d76e34dc4ae7c47a76d1696bad8b assets/totemic/models/item/birch_totem_pole_squid.json
 0da55933dfbb2152ed000b860a5dfe1b21f46f7b assets/totemic/models/item/birch_totem_pole_wolf.json
+e07ed8f8777f6322b75270bb09940f472212ad26 assets/totemic/models/item/buffalo_hide.json
+e7fbb37468a7095847b777e8d8244fbba84c8e63 assets/totemic/models/item/buffalo_meat.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/totemic/models/item/buffalo_spawn_egg.json
+75c5ba5a6dea96f793d6940bb7fb035c55bd2d63 assets/totemic/models/item/buffalo_tooth.json
 d7ff32ef35474a8880bc937aa1aa05401a75acc5 assets/totemic/models/item/cedar_log.json
 ab67b52e856d8ce64e27a0fcadea47f2eeddd83a assets/totemic/models/item/cedar_totem_base.json
 36348c076d524f9c86ad0983ce6f1194c179da1e assets/totemic/models/item/cedar_totem_pole_bat.json
@@ -251,6 +254,7 @@ f336ea0e99c2f301f571a02db9e285f4203f01cd assets/totemic/models/item/cedar_totem_
 6f0d6e919303e90afc58f7bac8b2a1886a1be36a assets/totemic/models/item/cedar_totem_pole_wolf.json
 25126e0a93bfb7f36e49c4d7a1ae8c50065e619b assets/totemic/models/item/cedar_wood.json
 076378ab3ea3ec5484690b72aaa6fd3886e6a8ed assets/totemic/models/item/ceremony_cheat.json
+0906cace6569019c700a95d5f8aeddb4ad2a6537 assets/totemic/models/item/cooked_buffalo_meat.json
 f9e5ee729c02ede39d4b7219c6d89e4d6c7503a6 assets/totemic/models/item/dark_oak_totem_base.json
 9fb874f0aa941324ce6d8b5b23770f4c1cd40a0e assets/totemic/models/item/dark_oak_totem_pole_bat.json
 146ea383f43fc3060e90d629803dd1f3f812e512 assets/totemic/models/item/dark_oak_totem_pole_blaze.json
