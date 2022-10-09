@@ -30,10 +30,10 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
-import pokefenn.totemic.block.grower.CedarTreeGrower;
 import pokefenn.totemic.block.music.DrumBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
+import pokefenn.totemic.world.CedarTreeGrower;
 
 public final class ModBlocks {
     public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, TotemicAPI.MOD_ID);
