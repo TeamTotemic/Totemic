@@ -16,9 +16,10 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
     public static final TotemWoodType JUNGLE = new TotemWoodType("jungle", MaterialColor.DIRT, MaterialColor.PODZOL, "minecraft");
     public static final TotemWoodType ACACIA = new TotemWoodType("acacia", MaterialColor.COLOR_ORANGE, MaterialColor.STONE, "minecraft");
     public static final TotemWoodType DARK_OAK = new TotemWoodType("dark_oak", MaterialColor.COLOR_BROWN, MaterialColor.COLOR_BROWN, "minecraft");
+    public static final TotemWoodType MANGROVE = new TotemWoodType("mangrove", MaterialColor.COLOR_RED, MaterialColor.PODZOL, "minecraft");
     public static final TotemWoodType CEDAR = new TotemWoodType("cedar", MaterialColor.COLOR_PINK, MaterialColor.COLOR_ORANGE, "totemic");
 
-    private static final List<TotemWoodType> woodTypes = List.of(OAK, SPRUCE, BIRCH, JUNGLE, ACACIA, DARK_OAK, CEDAR);
+    private static final List<TotemWoodType> woodTypes = List.of(OAK, SPRUCE, BIRCH, JUNGLE, ACACIA, DARK_OAK, MANGROVE, CEDAR);
 
     private final String name;
     private final MaterialColor woodColor;
@@ -43,6 +44,8 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
             return ACACIA;
         else if(state.is(BlockTags.DARK_OAK_LOGS))
             return DARK_OAK;
+        else if(state.is(BlockTags.MANGROVE_LOGS))
+            return MANGROVE;
         else if(state.is(ModBlockTags.CEDAR_LOGS))
             return CEDAR;
         else

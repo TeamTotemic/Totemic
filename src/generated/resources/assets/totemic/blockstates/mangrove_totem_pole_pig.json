@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "totemic:block/mangrove_totem_pole_pig",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "totemic:block/mangrove_totem_pole_pig"
+    },
+    "facing=south": {
+      "model": "totemic:block/mangrove_totem_pole_pig",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "totemic:block/mangrove_totem_pole_pig",
+      "y": 270
+    }
+  }
+}
