@@ -29,6 +29,8 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         logBlock(ModBlocks.cedar_log.get());
         logBlock(ModBlocks.stripped_cedar_log.get());
         axisBlock(ModBlocks.cedar_wood.get(), blockTexture(ModBlocks.cedar_log.get()), blockTexture(ModBlocks.cedar_log.get()));
+        axisBlock(ModBlocks.stripped_cedar_wood.get(), blockTexture(ModBlocks.stripped_cedar_log.get()), blockTexture(ModBlocks.stripped_cedar_log.get()));
+        simpleBlock(ModBlocks.cedar_leaves.get(), models().withExistingParent(ModBlocks.cedar_leaves.getId().toString(), "minecraft:block/leaves").texture("all", blockTexture(ModBlocks.cedar_leaves.get())));
         simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
 
         //Item Blocks

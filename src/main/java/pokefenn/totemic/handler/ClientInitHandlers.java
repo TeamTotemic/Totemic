@@ -7,7 +7,7 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
-import pokefenn.totemic.client.rendering.entity.BuffaloRenderer;
+import pokefenn.totemic.client.renderer.entity.BuffaloRenderer;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModEntityTypes;
 

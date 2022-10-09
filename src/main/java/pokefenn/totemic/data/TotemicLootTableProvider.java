@@ -16,6 +16,7 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -59,6 +60,8 @@ public final class TotemicLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.cedar_log.get());
             dropSelf(ModBlocks.stripped_cedar_log.get());
             dropSelf(ModBlocks.cedar_wood.get());
+            dropSelf(ModBlocks.stripped_cedar_wood.get());
+            add(ModBlocks.cedar_leaves.get(), b -> createLeavesDrops(b, Blocks.OAK_SAPLING, /*NORMAL_LEAVES_SAPLING_CHANCES*/new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F}));
             dropSelf(ModBlocks.drum.get());
         }
 

@@ -3,6 +3,7 @@
   "values": [
     "totemic:cedar_log",
     "totemic:stripped_cedar_log",
-    "totemic:cedar_wood"
+    "totemic:cedar_wood",
+    "totemic:stripped_cedar_wood"
   ]
 }
