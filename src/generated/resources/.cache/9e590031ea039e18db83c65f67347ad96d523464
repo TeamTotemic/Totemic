@@ -1,4 +1,4 @@
-// 1.19.2	2022-10-09T16:34:40.747747934	Block States: totemic
+// 1.19.2	2022-10-09T17:25:51.597237883	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 7541d5efd084b8fcab58c0cfa8131531239983c6 assets/totemic/blockstates/acacia_totem_pole_bat.json
 0b98300f6a034b0fbf4b1b2b9f800c8b004a6b8f assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -29,6 +29,7 @@ c7d3ca09155eca984e49b52d224eb6b6297c874b assets/totemic/blockstates/birch_totem_
 2411c04dd8cad399c3f12765355e906c992fdf68 assets/totemic/blockstates/birch_totem_pole_wolf.json
 79fb49da17a3c66f9f009bebdd47f81fa27c3f31 assets/totemic/blockstates/cedar_leaves.json
 66ae641b346a67b11131be9eeb5935ee8b9b283e assets/totemic/blockstates/cedar_log.json
+598bd0554f6701fe3795ee060c800c71b23a7468 assets/totemic/blockstates/cedar_sapling.json
 2c9062fa0b2b2f963a31f782bce72d759a358477 assets/totemic/blockstates/cedar_totem_base.json
 6c326182a4d132926e25ed46ecd2006b8a4568dd assets/totemic/blockstates/cedar_totem_pole_bat.json
 459385451dfd0a848f67e7be70132d86cddaf508 assets/totemic/blockstates/cedar_totem_pole_blaze.json
@@ -148,6 +149,7 @@ fa9a267a9a9a505fd158eda164212e7e87d552a9 assets/totemic/models/block/birch_totem
 0fd9e341c2c8b2e2828f0df8f43717b6116df4ab assets/totemic/models/block/cedar_leaves.json
 89c98146fc085627644213255895cf98de21953a assets/totemic/models/block/cedar_log.json
 cecd78ba3ea6edc9b67d1a7bbe3f222a73b69e6b assets/totemic/models/block/cedar_log_horizontal.json
+4a594588c5114af0253659612613ac2e1a3a388f assets/totemic/models/block/cedar_sapling.json
 658a1361eb9e774e20ed39fcb90e5d365fb8d6de assets/totemic/models/block/cedar_totem_base.json
 18d445911585093e2e14d611d56384ab2075f1e7 assets/totemic/models/block/cedar_totem_pole_bat.json
 67812a4f9bc01b8e23599aaa475379d97cf02e9c assets/totemic/models/block/cedar_totem_pole_blaze.json
@@ -272,6 +274,7 @@ e7fbb37468a7095847b777e8d8244fbba84c8e63 assets/totemic/models/item/buffalo_meat
 75c5ba5a6dea96f793d6940bb7fb035c55bd2d63 assets/totemic/models/item/buffalo_tooth.json
 e2092753eb565daeee33fa4d696391af6cb60ee0 assets/totemic/models/item/cedar_leaves.json
 d7ff32ef35474a8880bc937aa1aa05401a75acc5 assets/totemic/models/item/cedar_log.json
+5ff85a0396531d324021e83b833d6e3745163095 assets/totemic/models/item/cedar_sapling.json
 ab67b52e856d8ce64e27a0fcadea47f2eeddd83a assets/totemic/models/item/cedar_totem_base.json
 36348c076d524f9c86ad0983ce6f1194c179da1e assets/totemic/models/item/cedar_totem_pole_bat.json
 a0061ed88d6c5683299c2db727fbd5fdbe524bc1 assets/totemic/models/item/cedar_totem_pole_blaze.json

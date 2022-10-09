@@ -30,7 +30,8 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         logBlock(ModBlocks.stripped_cedar_log.get());
         axisBlock(ModBlocks.cedar_wood.get(), blockTexture(ModBlocks.cedar_log.get()), blockTexture(ModBlocks.cedar_log.get()));
         axisBlock(ModBlocks.stripped_cedar_wood.get(), blockTexture(ModBlocks.stripped_cedar_log.get()), blockTexture(ModBlocks.stripped_cedar_log.get()));
-        simpleBlock(ModBlocks.cedar_leaves.get(), models().withExistingParent(ModBlocks.cedar_leaves.getId().toString(), "minecraft:block/leaves").texture("all", blockTexture(ModBlocks.cedar_leaves.get()))); //TODO: Is it possible to have different leaves textures depending on graphics settings? Maybe using ModelEvent.BakingCompleted
+        simpleBlock(ModBlocks.cedar_leaves.get(), models().withExistingParent(ModBlocks.cedar_leaves.getId().toString(), "block/leaves").texture("all", blockTexture(ModBlocks.cedar_leaves.get()))); //TODO: Is it possible to have different leaves textures depending on graphics settings? Maybe using ModelEvent.BakingCompleted
+        simpleBlock(ModBlocks.cedar_sapling.get(), models().withExistingParent(ModBlocks.cedar_sapling.getId().toString(), "block/cross").texture("cross", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
         simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
 
         //Item Blocks

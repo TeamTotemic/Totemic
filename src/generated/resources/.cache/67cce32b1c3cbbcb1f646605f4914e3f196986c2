@@ -1,6 +1,7 @@
-// 1.19.2	2022-10-09T15:01:42.999267029	LootTables
+// 1.19.2	2022-10-09T17:13:55.308687583	LootTables
 1994f47a80d31016a9a7908beb4b7990dbe034dc data/totemic/loot_tables/blocks/cedar_leaves.json
 ce6a923c9ab04d5d1811db2534575ce8f7ff7cb6 data/totemic/loot_tables/blocks/cedar_log.json
+5923851fe7d4a4715ec279f5b2e61c12dd3d063e data/totemic/loot_tables/blocks/cedar_sapling.json
 1c8e6ad7debcc9da798cfa8a595403c6c7c1aeb9 data/totemic/loot_tables/blocks/cedar_wood.json
 101394dcc8ea344b67869f30f4ab9b7feb4f0f44 data/totemic/loot_tables/blocks/drum.json
 d7703c7caaaffcbbe6079e86736bf31e63de5291 data/totemic/loot_tables/blocks/stripped_cedar_log.json
