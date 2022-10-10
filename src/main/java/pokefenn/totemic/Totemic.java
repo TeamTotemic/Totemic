@@ -19,6 +19,7 @@ import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
+import pokefenn.totemic.data.TotemicItemTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
 import pokefenn.totemic.data.TotemicRecipeProvider;
 import pokefenn.totemic.handler.ClientInitHandlers;
@@ -100,7 +101,9 @@ public final class Totemic {
     private void gatherData(GatherDataEvent event) {
         var gen = event.getGenerator();
         if(event.includeServer()) {
-            gen.addProvider(true, new TotemicBlockTagsProvider(gen, event.getExistingFileHelper()));
+            var blockTP = new TotemicBlockTagsProvider(gen, event.getExistingFileHelper());
+            gen.addProvider(true, blockTP);
+            gen.addProvider(true, new TotemicItemTagsProvider(gen, blockTP, TotemicAPI.MOD_ID, event.getExistingFileHelper()));
             gen.addProvider(true, new TotemicLootTableProvider(gen));
             gen.addProvider(true, new TotemicRecipeProvider(gen));
         }

@@ -1,0 +1,8 @@
+// 1.19.2	2022-10-10T12:37:17.027586194	Totemic Item tags
+df2fde5a09193bb066c97a1c4a72616852680332 data/minecraft/tags/items/leaves.json
+cc42e4a4bcf0f0149edad3568521f8d79ec4f3bc data/minecraft/tags/items/logs_that_burn.json
+6f2e0a85d35f57521e978ee25a9e97515d7e95af data/minecraft/tags/items/saplings.json
+edb0a1a520fc602c68dd264a87cf9f5c8142df57 data/totemic/tags/items/cedar_logs.json
+d7f2a7a18f3e25752a29db1d95c688a304c27aab data/totemic/tags/items/flutes.json
+b11ac83d04ccb8e7ec03b67151ec3daee6200c9b data/totemic/tags/items/totem_bases.json
+1a59ace02af9d08086be38785b16c9c0e2a64b5e data/totemic/tags/items/totem_poles.json

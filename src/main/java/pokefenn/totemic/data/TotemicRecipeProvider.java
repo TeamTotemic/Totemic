@@ -68,4 +68,9 @@ public final class TotemicRecipeProvider extends RecipeProvider {
         simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
     }
+
+    @Override
+    public String getName() {
+        return "Totemic Recipes";
+    }
 }

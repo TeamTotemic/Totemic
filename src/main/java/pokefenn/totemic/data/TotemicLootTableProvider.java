@@ -106,4 +106,9 @@ public final class TotemicLootTableProvider extends LootTableProvider {
             return ModEntityTypes.REGISTER.getEntries().stream().<EntityType<?>>map(RegistryObject::get)::iterator; //Compiler has difficulty with type inference here
         }
     }
+
+    @Override
+    public String getName() {
+        return "Totemic Loot Tables";
+    }
 }
