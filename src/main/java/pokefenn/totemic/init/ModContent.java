@@ -11,6 +11,7 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.ceremony.CeremonyBuffaloDance;
 import pokefenn.totemic.ceremony.CeremonyDepths;
 import pokefenn.totemic.ceremony.CeremonyFluteInfusion;
 import pokefenn.totemic.ceremony.CeremonyRain;
@@ -21,7 +22,7 @@ import pokefenn.totemic.totem.OcelotTotemEffect;
 public final class ModContent {
     public static final MusicInstrument flute = new MusicInstrument(resloc("flute"), 180, 3000);
     public static final MusicInstrument drum = new MusicInstrument(resloc("drum"), 240, 3300);
-//    public static final MusicInstrument windChime = new MusicInstrument(resloc("wind_chime"), 120, 1500);
+    public static final MusicInstrument windChime = new MusicInstrument(resloc("wind_chime"), 120, 1500);
 //    public static final MusicInstrument jingleDress = new MusicInstrument(resloc("jingle_dress"), 180, 1500);
     public static final MusicInstrument rattle = new MusicInstrument(resloc("rattle"), 300, 3300);
 //    public static final MusicInstrument eagleBoneWhistle = new MusicInstrument(resloc("eagle_bone_whistle"), 360, 3600);
@@ -64,7 +65,8 @@ public final class ModContent {
     //16200: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
     public static final Ceremony warDance = new Ceremony(resloc("war_dance"), 4500, 20 * 20, CeremonyWarDance::new, drum, drum);
     public static final Ceremony depths = new Ceremony(resloc("depths"), 4500, 20 * 20, CeremonyDepths::new, flute, flute);
-    public static final Ceremony rainDance = new Ceremony(resloc("rain"), 10980, 26 * 20, () -> new CeremonyRain(true), drum, rattle);
+    public static final Ceremony buffaloDance = new Ceremony(resloc("buffalo_dance"), 7380, 24 * 20, CeremonyBuffaloDance::new, drum, windChime);
+    public static final Ceremony rain = new Ceremony(resloc("rain"), 10980, 26 * 20, () -> new CeremonyRain(true), drum, rattle);
     public static final Ceremony drought = new Ceremony(resloc("drought"), 10980, 26 * 20, () -> new CeremonyRain(false), rattle, drum);
     public static final Ceremony fluteInfusion = new Ceremony(resloc("flute_infusion"), 11340, 28 * 20, CeremonyFluteInfusion::new, flute, rattle);
 
@@ -73,6 +75,7 @@ public final class ModContent {
         event.registerAll(
                 flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute),
                 drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum),
+                windChime,
                 rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle));
     }
 
@@ -83,7 +86,7 @@ public final class ModContent {
 
     @SubscribeEvent
     public static void cermeonies(TotemicRegisterEvent<Ceremony> event) {
-        event.registerAll(warDance, depths, rainDance, drought, fluteInfusion);
+        event.registerAll(warDance, depths, buffaloDance, rain, drought, fluteInfusion);
     }
 
     private static ResourceLocation resloc(String path) {
