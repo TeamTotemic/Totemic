@@ -47,7 +47,7 @@ public enum MusicApiImpl implements MusicAPI {
     public boolean playMusic(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
         level.getProfiler().push("playMusic");
         playInstrumentSound(level, x, y, z, entity, instr);
-        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6);
+        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         //TODO: Implement caching in case this performs too poorly
         List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(null, level, new BlockPos(x, y, z), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
@@ -57,7 +57,7 @@ public enum MusicApiImpl implements MusicAPI {
                     if(acc.canAcceptMusic(instr))
                         return true;
                     else {
-                        MiscUtil.spawnServerParticles(ParticleTypes.CLOUD, level, acc.getPosition(), 6); //FIXME: The behavior of canAcceptMusic should be changed to no longer return true if the acceptor is saturated. Side effect in filter predicate is bad style.
+                        MiscUtil.spawnServerParticles(ParticleTypes.CLOUD, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0); //FIXME: The behavior of canAcceptMusic should be changed to no longer return true if the acceptor is saturated. Side effect in filter predicate is bad style.
                         return false;
                     }
                 })
@@ -68,10 +68,10 @@ public enum MusicApiImpl implements MusicAPI {
         for(MusicAcceptor acc: list) {
             if(acc.acceptMusic(instr, amount / list.size(), x, y, z, entity)) {
                 hadEffect = true;
-                MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, acc.getPosition(), 6); //TODO: The way the particles are being spawned should probably be changed (creating our own packet)
+                MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0); //TODO: The way the particles are being spawned should probably be changed (creating our own packet)
             }
             else
-                MiscUtil.spawnServerParticles(ParticleTypes.CLOUD, level, acc.getPosition(), 6);
+                MiscUtil.spawnServerParticles(ParticleTypes.CLOUD, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         }
         level.getProfiler().pop();
         return hadEffect;
@@ -95,8 +95,8 @@ public enum MusicApiImpl implements MusicAPI {
     @Override
     public boolean playSelector(Level level, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
         playInstrumentSound(level, x, y, z, entity, instr);
-        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6);
-        MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, new Vec3(x, y, z), 16);
+        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
+        MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, new Vec3(x, y, z), 8, new Vec3(0.6, 0.5, 0.6), 0.0);
         Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(ModTileEntities.totem_base.get(), level, new BlockPos(x, y, z), range)
                 .min(TileUtil.compareCenterDistanceTo(x, y, z))
                 .map(TileTotemBase::getTotemState)

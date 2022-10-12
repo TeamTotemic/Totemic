@@ -31,7 +31,7 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
     }
 
     void resetTotemState() {
-        MiscUtil.spawnServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16);
+        MiscUtil.spawnServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
         tile.setTotemState(new StateTotemEffect(tile));
     }
 

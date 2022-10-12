@@ -2,14 +2,15 @@ package pokefenn.totemic.ceremony;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.entity.Buffalo;
 import pokefenn.totemic.init.ModEntityTypes;
+import pokefenn.totemic.util.MiscUtil;
 
 public class CeremonyBuffaloDance extends CeremonyInstance {
     @Override
@@ -29,7 +30,7 @@ public class CeremonyBuffaloDance extends CeremonyInstance {
                 buffalo.setLeashedTo(cow.getLeashHolder(), true);
             cow.discard();
             level.addFreshEntity(buffalo);
-            ((ServerLevel) level).sendParticles(ParticleTypes.HAPPY_VILLAGER, buffalo.getX(), buffalo.getY() + 1.0, buffalo.getZ(), 24, 0.6, 0.5, 0.6, 1.0);
+            MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, buffalo.position().add(0, 1, 0), 24, new Vec3(0.6, 0.5, 0.6), 1.0);
         });
     }
 }

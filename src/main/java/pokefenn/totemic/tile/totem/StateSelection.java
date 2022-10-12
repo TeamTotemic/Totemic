@@ -13,6 +13,7 @@ import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -45,7 +46,7 @@ public final class StateSelection extends TotemState {
 
     @Override
     public void addSelector(@Nonnull Entity entity, MusicInstrument instr) {
-        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, tile.getLevel(), getPosition(), 6);
+        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, tile.getLevel(), getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         selectors.add(instr);
         time = 0;
         tile.setChanged();
@@ -55,7 +56,7 @@ public final class StateSelection extends TotemState {
             if(match != null) {
                 CeremonyInstance instance = match.createInstance();
                 if(instance.canSelect(tile.getLevel(), tile.getBlockPos())) {
-                    MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, tile.getLevel(), getPosition(), 16);
+                    MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
                     tile.setTotemState(new StateStartup(tile, match, instance, entity));
                 }
                 else
@@ -91,7 +92,7 @@ public final class StateSelection extends TotemState {
 
     @Override
     void resetTotemState() {
-        MiscUtil.spawnServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16);
+        MiscUtil.spawnServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
         tile.setTotemState(previousState);
     }
 
