@@ -24,6 +24,7 @@
   "block.totemic.cedar_leaves": "Red Cedar Leaves",
   "block.totemic.cedar_sapling": "Red Cedar Sapling",
   "block.totemic.drum": "Totemist Drum",
+  "block.totemic.wind_chime": "Wind Chime",
 
   "block.totemic.totem_base": "Totem Base",
   "block.totemic.oak_totem_base": "Oak Totem Base",
@@ -60,6 +61,7 @@
   
   "totemic.instrument.totemic.flute": "Flute",
   "totemic.instrument.totemic.drum": "Drum",
+  "totemic.instrument.totemic.wind_chime": "Wind Chime",
   "totemic.instrument.totemic.rattle": "Rattle",
   
   "totemic.ceremony.totemic.war_dance": "War Dance",

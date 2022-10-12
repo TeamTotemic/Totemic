@@ -10,7 +10,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
@@ -34,10 +34,11 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         models().withExistingParent("totemic:cedar_leaves_opaque", "block/leaves").texture("all", "totemic:block/cedar_leaves_opaque");
         simpleBlock(ModBlocks.cedar_sapling.get(), models().withExistingParent(ModBlocks.cedar_sapling.getId().toString(), "block/cross").texture("cross", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
         simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
+        simpleBlock(ModBlocks.wind_chime.get(), blockEntityRenderer(ModBlocks.wind_chime, mcLoc("block/white_terracotta")));
 
         //Item Blocks
         for(var blockO: ModBlocks.REGISTER.getEntries())
-            existingBlockItem(blockO.get());
+            existingBlockItem(blockO);
 
         //Items
         var im = itemModels();
@@ -108,7 +109,11 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             BlockStateProperties.WATERLOGGED);
     }
 
-    private void existingBlockItem(Block block) {
-        simpleBlockItem(block, models().getExistingFile(ForgeRegistries.BLOCKS.getKey(block)));
+    private void existingBlockItem(RegistryObject<? extends Block> block) {
+        simpleBlockItem(block.get(), models().getExistingFile(block.getId()));
+    }
+
+    private ModelFile blockEntityRenderer(RegistryObject<? extends Block> block, ResourceLocation particleTexture) {
+        return models().getBuilder(block.getId().toString()).texture("particle", particleTexture);
     }
 }

@@ -12,9 +12,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
+import pokefenn.totemic.client.renderer.blockentity.WindChimeRenderer;
 import pokefenn.totemic.client.renderer.entity.BuffaloRenderer;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModEntityTypes;
+import pokefenn.totemic.init.ModTileEntities;
 
 /**
  * Contains event handlers for various client-only events fired during initialization (on the mod event bus).
@@ -39,6 +41,8 @@ public class ClientInitHandlers {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypes.buffalo.get(), BuffaloRenderer::new);
+
+        event.registerBlockEntityRenderer(ModTileEntities.wind_chime.get(), WindChimeRenderer::new);
     }
 
     private static final ResourceLocation OPAQUE_CEDAR_LEAVES = new ResourceLocation(TotemicAPI.MOD_ID, "block/cedar_leaves_opaque");

@@ -1,4 +1,4 @@
-// 1.19.2	2022-10-10T12:52:53.061305442	Totemic Loot Tables
+// 1.19.2	2022-10-12T19:53:04.338524771	Totemic Loot Tables
 223a3d79fc726a880f9c65e1c167ce00b4631c41 data/totemic/loot_tables/blocks/cedar_leaves.json
 ce6a923c9ab04d5d1811db2534575ce8f7ff7cb6 data/totemic/loot_tables/blocks/cedar_log.json
 5923851fe7d4a4715ec279f5b2e61c12dd3d063e data/totemic/loot_tables/blocks/cedar_sapling.json
@@ -6,4 +6,5 @@ ce6a923c9ab04d5d1811db2534575ce8f7ff7cb6 data/totemic/loot_tables/blocks/cedar_l
 101394dcc8ea344b67869f30f4ab9b7feb4f0f44 data/totemic/loot_tables/blocks/drum.json
 d7703c7caaaffcbbe6079e86736bf31e63de5291 data/totemic/loot_tables/blocks/stripped_cedar_log.json
 c2fa8089c675eac8039cc2806cb5a2938e967cf2 data/totemic/loot_tables/blocks/stripped_cedar_wood.json
+1ca9f987ede79c0357c97b4d50c44f7455f6a5cc data/totemic/loot_tables/blocks/wind_chime.json
 dcdb284a78acbb6ff06dcaa7ac40570551ce76a2 data/totemic/loot_tables/entities/buffalo.json

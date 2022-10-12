@@ -24,6 +24,7 @@
   "block.totemic.cedar_leaves": "Rotes Zedernlaub",
   "block.totemic.cedar_sapling": "Roter Zedernsetzling",
   "block.totemic.drum": "Totemtrommel",
+  "block.totemic.wind_chime": "Windspiel",
 
   "block.totemic.totem_base": "Totembasis",
   "block.totemic.oak_totem_base": "Eichenholz-Totembasis",
@@ -60,6 +61,7 @@
   
   "totemic.instrument.totemic.flute": "Flöte",
   "totemic.instrument.totemic.drum": "Trommel",
+  "totemic.instrument.totemic.wind_chime": "Windspiel",
   "totemic.instrument.totemic.rattle": "Rassel",
   
   "totemic.ceremony.totemic.war_dance": "Kriegstanz",

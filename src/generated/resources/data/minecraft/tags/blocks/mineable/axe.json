@@ -1,6 +1,7 @@
 {
   "values": [
     "#totemic:totem_bases",
-    "#totemic:totem_poles"
+    "#totemic:totem_poles",
+    "totemic:drum"
   ]
 }

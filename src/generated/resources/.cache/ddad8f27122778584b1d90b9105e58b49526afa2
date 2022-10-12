@@ -1,8 +1,9 @@
-// 1.19.2	2022-10-10T12:37:17.029377974	Totemic Block tags
+// 1.19.2	2022-10-12T19:53:04.340260302	Totemic Block tags
 df2fde5a09193bb066c97a1c4a72616852680332 data/minecraft/tags/blocks/leaves.json
 cc42e4a4bcf0f0149edad3568521f8d79ec4f3bc data/minecraft/tags/blocks/logs_that_burn.json
-363f9d44dcfc03501226e5256c5b136d54e07404 data/minecraft/tags/blocks/mineable/axe.json
+8581a074c53f04199c6ea3598db5d13c967f0961 data/minecraft/tags/blocks/mineable/axe.json
 df2fde5a09193bb066c97a1c4a72616852680332 data/minecraft/tags/blocks/mineable/hoe.json
+adedb0c8b94ea2d69196e41d3e1426207b3d43f3 data/minecraft/tags/blocks/mineable/pickaxe.json
 6f2e0a85d35f57521e978ee25a9e97515d7e95af data/minecraft/tags/blocks/saplings.json
 edb0a1a520fc602c68dd264a87cf9f5c8142df57 data/totemic/tags/blocks/cedar_logs.json
 b11ac83d04ccb8e7ec03b67151ec3daee6200c9b data/totemic/tags/blocks/totem_bases.json

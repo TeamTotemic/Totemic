@@ -31,6 +31,7 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.block.music.DrumBlock;
+import pokefenn.totemic.block.music.WindChimeBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.world.CedarTreeGrower;
@@ -47,6 +48,7 @@ public final class ModBlocks {
     public static final RegistryObject<LeavesBlock> cedar_leaves = REGISTER.register("cedar_leaves", () -> new LeavesBlock(Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn((s, g, p, type) -> type == EntityType.OCELOT || type == EntityType.PARROT).isSuffocating((s, g, p) -> false).isViewBlocking((s, g, p) -> false)));
     public static final RegistryObject<SaplingBlock> cedar_sapling = REGISTER.register("cedar_sapling", () -> new SaplingBlock(new CedarTreeGrower(), Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static final RegistryObject<DrumBlock> drum = REGISTER.register("drum", () -> new DrumBlock(Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<WindChimeBlock> wind_chime = REGISTER.register("wind_chime", () -> new WindChimeBlock(Properties.of(Material.METAL).strength(1.5F)));
 
     private static Map<TotemWoodType, RegistryObject<TotemBaseBlock>> totemBases;
     private static Table<TotemWoodType, TotemEffect, RegistryObject<TotemPoleBlock>> totemPoles;
@@ -103,9 +105,12 @@ public final class ModBlocks {
             FireBlock fire = (FireBlock) Blocks.FIRE;
             Method setFlammableM = ObfuscationReflectionHelper.findMethod(FireBlock.class, "m_53444_", Block.class, int.class, int.class);
 
+            //We only need to call this method for blocks we don't define our own class for
             setFlammableM.invoke(fire, cedar_log.get(), 5, 5);
             setFlammableM.invoke(fire, stripped_cedar_log.get(), 5, 5);
             setFlammableM.invoke(fire, cedar_wood.get(), 5, 5);
+            setFlammableM.invoke(fire, stripped_cedar_wood.get(), 5, 5);
+            setFlammableM.invoke(fire, cedar_leaves.get(), 30, 60);
         }
         catch(ReflectiveOperationException e) {
             throw new RuntimeException("Could not set flammability for Totemic blocks", e);
