@@ -1,5 +1,7 @@
 package pokefenn.totemic.data;
 
+import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
+import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -116,6 +118,39 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
     private ModelFile blockEntityRenderer(RegistryObject<? extends Block> block, ResourceLocation particleTexture) {
         return models().getBuilder(block.getId().toString())
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
-                .texture("particle", particleTexture);
+                .texture("particle", particleTexture)
+                .guiLight(GuiLight.SIDE)
+                .transforms() //Values copied from models/block/block.json, as we cannot use block/block as the parent
+                .transform(TransformType.GUI)
+                    .rotation(30, 225, 0)
+                    .translation(0, 0, 0)
+                    .scale(0.625F)
+                    .end()
+                .transform(TransformType.GROUND)
+                    .rotation(0, 0, 0)
+                    .translation(0, 3, 0)
+                    .scale(0.25F)
+                    .end()
+                .transform(TransformType.FIXED)
+                    .rotation(0, 0, 0)
+                    .translation(0, 0, 0)
+                    .scale(0.5F)
+                    .end()
+                .transform(TransformType.THIRD_PERSON_RIGHT_HAND)
+                    .rotation(75, 45, 0)
+                    .translation(0, 2.5F, 0)
+                    .scale(0.375F)
+                    .end()
+                .transform(TransformType.FIRST_PERSON_RIGHT_HAND)
+                    .rotation(0, 45, 0)
+                    .translation(0, 0, 0)
+                    .scale(0.4F)
+                    .end()
+                .transform(TransformType.FIRST_PERSON_LEFT_HAND)
+                    .rotation(0, 225, 0)
+                    .translation(0, 0, 0)
+                    .scale(0.4F)
+                    .end()
+                .end();
     }
 }
