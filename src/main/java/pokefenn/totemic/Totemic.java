@@ -17,6 +17,7 @@ import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
+import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicItemTagsProvider;
@@ -68,6 +69,7 @@ public final class Totemic {
             modBus.addListener(this::clientSetup);
 
             modBus.register(ClientInitHandlers.class);
+            modBus.register(ModModelLayers.class);
         }
 
         // Instance field is private, need reflection
