@@ -1,6 +1,7 @@
 package pokefenn.totemic.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Quaternion;
 
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -26,20 +27,58 @@ public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEnti
     }
 
     public static LayerDefinition createLayer() {
-        var meshDef = new MeshDefinition();
-        var parts = meshDef.getRoot();
-        parts.addOrReplaceChild("base",
-                CubeListBuilder.create()
+        var mesh = new MeshDefinition();
+        var root = mesh.getRoot();
+        root.addOrReplaceChild("base", CubeListBuilder.create()
                 .texOffs(0, 0)
-                .addBox(0F, 0F, 0F, 7, 1, 7)
-                .mirror(),
-                PartPose.offset(3.5F, 10F, 3.5F));
-        return LayerDefinition.create(meshDef, 32, 32);
+                .addBox(0F, 0F, 0F, 7F, 1F, 7F, true),
+                PartPose.offset(-3.5F, 10F, -3.5F));
+        root.addOrReplaceChild("chime1", CubeListBuilder.create()
+                .texOffs(0, 8)
+                .addBox(-1F, 2F, -1F, 2F, 8F, 2F, true),
+                PartPose.offset(0F, 11F, -2.5F));
+        root.addOrReplaceChild("chime2", CubeListBuilder.create()
+                .texOffs(0, 8)
+                .addBox(-1F, 2F, -1F, 2F, 5F, 2F, true),
+                PartPose.offset(-2.5F, 11F, 0F));
+        root.addOrReplaceChild("chime3", CubeListBuilder.create()
+                .texOffs(0, 8)
+                .addBox(-1F, 2F, -1F, 2F, 7F, 2F, true),
+                PartPose.offset(0F, 11F, 2.5F));
+        root.addOrReplaceChild("chime4", CubeListBuilder.create()
+                .texOffs(0, 8)
+                .addBox(-1F, 2F, -1F, 2F, 11F, 2F, true),
+                PartPose.offset(2.5F, 11F, 0F));
+        root.addOrReplaceChild("connector1", CubeListBuilder.create()
+                .texOffs(0, 0)
+                .addBox(-0.5F, 0F, -0.5F, 1F, 2F, 1F, true),
+                PartPose.offset(0F, 11F, 2.5F));
+        root.addOrReplaceChild("connector2", CubeListBuilder.create()
+                .texOffs(0, 0)
+                .addBox(-0.5F, 0F, -0.5F, 1F, 2F, 1F, true),
+                PartPose.offset(-2.5F, 11F, 0F));
+        root.addOrReplaceChild("connector3", CubeListBuilder.create()
+                .texOffs(0, 0)
+                .addBox(-0.5F, 0F, -0.5F, 1F, 2F, 1F, true),
+                PartPose.offset(0F, 11F, -2.5F));
+        root.addOrReplaceChild("connector4", CubeListBuilder.create()
+                .texOffs(0, 0)
+                .addBox(-0.5F, 0F, -0.5F, 1F, 2F, 1F, true),
+                PartPose.offset(2.5F, 11F, 0F));
+        root.addOrReplaceChild("hook", CubeListBuilder.create()
+                .texOffs(0, 0)
+                .addBox(0F, 0F, 0F, 1F, 2F, 1F, true),
+                PartPose.offset(-0.5F, 8F, -0.5F));
+        return LayerDefinition.create(mesh, 32, 32);
     }
 
     @Override
     public void render(WindChimeBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
+        pPoseStack.pushPose();
+        pPoseStack.translate(0.5, 1.47, 0.5);
+        pPoseStack.mulPose(new Quaternion(0, 0, 1, 0)); //180° rotation around Z-axis
         var buffer = pBufferSource.getBuffer(RenderType.entitySolid(TEXTURE));
         root.render(pPoseStack, buffer, pPackedLight, pPackedOverlay);
+        pPoseStack.popPose();
     }
 }
