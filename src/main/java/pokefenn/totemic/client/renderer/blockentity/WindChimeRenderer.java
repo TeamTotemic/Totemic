@@ -17,7 +17,7 @@ import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.tile.WindChimeBlockEntity;
 
 public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEntity> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation(TotemicAPI.MOD_ID, "textures/entity/wind_chime.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(TotemicAPI.MOD_ID, "textures/entity/wind_chime.png");
 
     private final ModelPart root;
 

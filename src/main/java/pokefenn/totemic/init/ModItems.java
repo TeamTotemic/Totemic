@@ -19,6 +19,7 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.item.CeremonyCheatItem;
+import pokefenn.totemic.item.CustomRenderedBlockItem;
 import pokefenn.totemic.item.TotemKnifeItem;
 import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.item.TotemicStaffItem;
@@ -43,13 +44,18 @@ public final class ModItems {
     public static final RegistryObject<Item> cooked_buffalo_meat = REGISTER.register("cooked_buffalo_meat", () -> new Item(new Properties().tab(Totemic.creativeTab).food(cooked_buffalo_meat_food)));
     public static final RegistryObject<Item> buffalo_tooth = REGISTER.register("buffalo_tooth", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<Item> buffalo_hide = REGISTER.register("buffalo_hide", () -> new Item(new Properties().tab(Totemic.creativeTab)));
+    public static final RegistryObject<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties().tab(Totemic.creativeTab)));
 
     @SubscribeEvent
     public static void init(RegisterEvent event) {
         if(!event.getRegistryKey().equals(ForgeRegistries.Keys.ITEMS))
             return;
 
+        //Register item blocks
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
+            if(blockO.getId().equals(wind_chime.getId())) //We have a custom BlockItem for the wind chime
+                continue;
+
             Block block = blockO.get();
             event.getForgeRegistry().register(blockO.getId(), new BlockItem(block, new Properties().tab(Totemic.creativeTab)));
         }

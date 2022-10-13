@@ -114,6 +114,8 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
     }
 
     private ModelFile blockEntityRenderer(RegistryObject<? extends Block> block, ResourceLocation particleTexture) {
-        return models().getBuilder(block.getId().toString()).texture("particle", particleTexture);
+        return models().getBuilder(block.getId().toString())
+                .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
+                .texture("particle", particleTexture);
     }
 }
