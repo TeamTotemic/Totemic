@@ -75,7 +75,7 @@ public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEnti
     @Override
     public void render(WindChimeBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
-        pPoseStack.translate(0.5, 1.47, 0.5);
+        pPoseStack.translate(0.5, 1.5, 0.5);
         pPoseStack.mulPose(new Quaternion(0, 0, 1, 0)); //180° rotation around Z-axis
         var buffer = pBufferSource.getBuffer(RenderType.entitySolid(TEXTURE));
         root.render(pPoseStack, buffer, pPackedLight, pPackedOverlay);
