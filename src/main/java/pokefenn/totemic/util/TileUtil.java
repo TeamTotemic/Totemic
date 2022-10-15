@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
@@ -37,8 +38,13 @@ public final class TileUtil {
                 .filter(tile ->
                            (type == null || tile.getType() == type)
                         && !tile.isRemoved()
-                        && tile.getBlockPos().compareTo(start) >= 0
-                        && tile.getBlockPos().compareTo(end) <= 0);
+                        && isWithinBounds(tile.getBlockPos(), start, end));
+    }
+
+    public static boolean isWithinBounds(Vec3i test, Vec3i start, Vec3i end) {
+        return start.getX() <= test.getX() && test.getX() <= end.getX()
+            && start.getY() <= test.getY() && test.getY() <= end.getY()
+            && start.getZ() <= test.getZ() && test.getZ() <= end.getZ();
     }
 
     public static Comparator<BlockEntity> compareCenterDistanceTo(double x, double y, double z) {
