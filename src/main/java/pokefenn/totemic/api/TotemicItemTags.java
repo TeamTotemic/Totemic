@@ -1,12 +1,11 @@
-package pokefenn.totemic.init;
+package pokefenn.totemic.api;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import pokefenn.totemic.api.TotemicAPI;
 
-public final class ModItemTags {
+public final class TotemicItemTags {
     public static final TagKey<Item> FLUTES = ItemTags.create(new ResourceLocation(TotemicAPI.MOD_ID, "flutes"));
 
     public static final TagKey<Item> TOTEM_BASES = ItemTags.create(new ResourceLocation(TotemicAPI.MOD_ID, "totem_bases"));

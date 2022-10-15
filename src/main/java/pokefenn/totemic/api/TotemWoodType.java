@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MaterialColor;
-import pokefenn.totemic.init.ModBlockTags;
 
 public final class TotemWoodType { // TODO: Allow registering new wood types
     public static final TotemWoodType OAK = new TotemWoodType("oak", MaterialColor.WOOD, MaterialColor.PODZOL, "minecraft");
@@ -46,7 +45,7 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
             return DARK_OAK;
         else if(state.is(BlockTags.MANGROVE_LOGS))
             return MANGROVE;
-        else if(state.is(ModBlockTags.CEDAR_LOGS))
+        else if(state.is(TotemicBlockTags.CEDAR_LOGS))
             return CEDAR;
         else
             return null;
