@@ -47,18 +47,19 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if(facing == Direction.UP) {
             for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
                 BlockPos searchPos = currentPos.below(i + 1);
-                BlockState searchState = world.getBlockState(searchPos);
+                BlockState searchState = level.getBlockState(searchPos);
                 if(searchState.getBlock() instanceof TotemBaseBlock) {
-                    searchState.updateShape(Direction.UP, state, world, searchPos, currentPos);
+                    searchState.updateShape(Direction.UP, state, level, searchPos, currentPos);
                 }
                 else if(!(searchState.getBlock() instanceof TotemPoleBlock))
                     break;
             }
         }
+        TileUtil.scheduleWaterloggedTick(state, currentPos, level);
         return state;
     }
 

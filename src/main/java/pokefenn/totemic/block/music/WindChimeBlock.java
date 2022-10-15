@@ -42,8 +42,10 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
         if(pDirection == Direction.UP && !canSurvive(pState, pLevel, pCurrentPos))
             return Blocks.AIR.defaultBlockState();
-        else
+        else {
+            TileUtil.scheduleWaterloggedTick(pState, pCurrentPos, pLevel);
             return pState;
+        }
     }
 
     @Override
