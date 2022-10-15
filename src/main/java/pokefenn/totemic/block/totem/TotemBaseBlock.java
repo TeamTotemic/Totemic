@@ -58,7 +58,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     public InteractionResult onTotemicStaffRightClick(UseOnContext context) {
         if(!context.getLevel().isClientSide)
-            return InteractionResult.SUCCESS;
+            return InteractionResult.CONSUME;
 
         context.getLevel().getBlockEntity(context.getClickedPos(), ModTileEntities.totem_base.get())
         .ifPresent(tile -> {
@@ -86,7 +86,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
                         state.getTime(), state.getCeremonyInstance().getEffectTime())), false);
             }
         });
-        return InteractionResult.SUCCESS;
+        return InteractionResult.CONSUME;
     }
 
     @Override

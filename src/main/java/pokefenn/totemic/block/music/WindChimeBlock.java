@@ -1,12 +1,18 @@
 package pokefenn.totemic.block.music;
 
+import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -16,15 +22,21 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.init.ModTileEntities;
 import pokefenn.totemic.tile.WindChimeBlockEntity;
 import pokefenn.totemic.util.TileUtil;
 
@@ -57,9 +69,46 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
+    public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
+        pLevel.getBlockEntity(pPos, ModTileEntities.wind_chime.get())
+        .ifPresent(e -> e.setNotPlaying());
+    }
+
+    @Override
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if(pPlayer.isShiftKeyDown()) {
+            playSelector(pLevel, pPos, pPlayer);
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+        }
+        else
+            return InteractionResult.PASS;
+    }
+
+    @Override
+    public void attack(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
+        if(pPlayer.isShiftKeyDown())
+            playSelector(pLevel, pPos, pPlayer);
+    }
+
+    @SuppressWarnings("null")
+    private void playSelector(Level level, BlockPos pos, Player player) {
+        TotemicAPI.get().music().playSelector(level, pos, player, ModContent.windChime);
+    }
+
+    @Override
+    public boolean triggerEvent(BlockState pState, Level pLevel, BlockPos pPos, int pId, int pParam) {
+        return Optional.ofNullable(pLevel.getBlockEntity(pPos)).map(e -> e.triggerEvent(pId, pParam)).orElse(false);
+    }
+
+    @Override
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new WindChimeBlockEntity(pPos, pState);
+    }
+
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
+        return TileUtil.createTickerHelper(pBlockEntityType, ModTileEntities.wind_chime.get(), WindChimeBlockEntity::tick);
     }
 
     @Override
