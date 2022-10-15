@@ -75,7 +75,7 @@ public final class ModContent {
         event.registerAll(
                 flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute),
                 drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum),
-                windChime,
+                windChime.setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime),
                 rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle));
     }
 

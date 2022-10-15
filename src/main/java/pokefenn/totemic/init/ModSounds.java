@@ -12,6 +12,7 @@ public final class ModSounds {
 
     public static final RegistryObject<SoundEvent> flute = createSound("flute");
     public static final RegistryObject<SoundEvent> drum = createSound("drum");
+    public static final RegistryObject<SoundEvent> wind_chime = createSound("wind_chime");
     public static final RegistryObject<SoundEvent> rattle = createSound("rattle");
 
     private static RegistryObject<SoundEvent> createSound(String name) {

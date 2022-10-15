@@ -16,8 +16,8 @@ import net.minecraft.world.level.material.Fluids;
 
 public final class TileUtil {
     @SuppressWarnings("unchecked")
-    public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> type1, BlockEntityType<E> type2, BlockEntityTicker<? super E> ticker) {
-        return type2 == type1 ? (BlockEntityTicker<A>)ticker : null;
+    public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> serverType, BlockEntityType<E> clientType, BlockEntityTicker<? super E> ticker) {
+        return clientType == serverType ? (BlockEntityTicker<A>)ticker : null;
     }
 
     public static <T extends BlockEntity> Stream<T> getTileEntitiesInRange(@Nullable BlockEntityType<T> type, Level world, BlockPos pos, int range) {

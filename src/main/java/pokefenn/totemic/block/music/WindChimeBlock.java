@@ -3,11 +3,18 @@ package pokefenn.totemic.block.music;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
@@ -32,9 +39,30 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
+    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+        if(pDirection == Direction.UP && !canSurvive(pState, pLevel, pCurrentPos))
+            return Blocks.AIR.defaultBlockState();
+        else
+            return pState;
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        var above = level.getBlockState(pos.above());
+        var below = level.getBlockState(pos.below());
+        return !below.getMaterial().isSolid()
+                && (above.isFaceSturdy(level, pos.above(), Direction.DOWN, SupportType.CENTER) || above.is(BlockTags.LEAVES));
+    }
+
+    @Override
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new WindChimeBlockEntity(pPos, pState);
+    }
+
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
@@ -56,6 +84,11 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     @Override
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
         return Shapes.empty();
+    }
+
+    @Override
+    public VoxelShape getBlockSupportShape(BlockState pState, BlockGetter pReader, BlockPos pPos) {
+        return Shapes.empty(); //Prevents the wind chime from being able to support bells, other wind chimes, etc. at the bottom
     }
 
     @Override
