@@ -86,7 +86,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
                         state.getTime(), state.getCeremonyInstance().getEffectTime())), false);
             }
         });
-        return InteractionResult.CONSUME;
+        return InteractionResult.SUCCESS;
     }
 
     @Override

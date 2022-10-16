@@ -45,8 +45,11 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public boolean playMusic(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
-        level.getProfiler().push("playMusic");
         playInstrumentSound(level, x, y, z, entity, instr);
+        if(level.isClientSide)
+            return true;
+
+        level.getProfiler().push("playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         //TODO: Implement caching in case this performs too poorly
         List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(null, level, new BlockPos(x, y, z), range)
@@ -95,6 +98,9 @@ public enum MusicApiImpl implements MusicAPI {
     @Override
     public boolean playSelector(Level level, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
         playInstrumentSound(level, x, y, z, entity, instr);
+        if(level.isClientSide)
+            return true;
+
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, new Vec3(x, y, z), 8, new Vec3(0.6, 0.5, 0.6), 0.0);
         Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(ModTileEntities.totem_base.get(), level, new BlockPos(x, y, z), range)
