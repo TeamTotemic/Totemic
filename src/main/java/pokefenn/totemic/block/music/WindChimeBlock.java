@@ -90,6 +90,14 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
             playSelector(pLevel, pPos, pPlayer);
     }
 
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+        TileUtil.getTileEntitiesInRange(ModTileEntities.wind_chime.get(), pLevel, pPos, WindChimeBlockEntity.CONGESTION_RANGE)
+                .forEach(WindChimeBlockEntity::tryUncongest);
+    }
+
     @SuppressWarnings("null")
     private void playSelector(Level level, BlockPos pos, Player player) {
         TotemicAPI.get().music().playSelector(level, pos, player, ModContent.windChime);
