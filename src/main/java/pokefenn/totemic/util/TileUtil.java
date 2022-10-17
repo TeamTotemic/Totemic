@@ -25,15 +25,16 @@ public final class TileUtil {
         return clientType == serverType ? (BlockEntityTicker<A>)ticker : null;
     }
 
-    public static <T extends BlockEntity> Stream<T> getTileEntitiesInRange(@Nullable BlockEntityType<T> type, Level world, BlockPos pos, int range) {
-        return getTileEntitiesIn(type, world, pos.offset(-range, -range, -range), pos.offset(range, range, range));
+    public static <T extends BlockEntity> Stream<T> getTileEntitiesInRange(@Nullable BlockEntityType<T> type, Level level, BlockPos pos, int range) {
+        return getTileEntitiesIn(type, level, pos.offset(-range, -range, -range), pos.offset(range, range, range));
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends BlockEntity> Stream<T> getTileEntitiesIn(@Nullable BlockEntityType<T> type, Level world, BlockPos start, BlockPos end) {
+    public static <T extends BlockEntity> Stream<T> getTileEntitiesIn(@Nullable BlockEntityType<T> type, Level level, BlockPos start, BlockPos end) {
+        level.getProfiler().incrementCounter("totemic.getTileEntitiesIn");
         return (Stream<T>) ChunkPos.rangeClosed(new ChunkPos(start), new ChunkPos(end))
-                .filter(chunkPos -> world.hasChunk(chunkPos.x, chunkPos.z))
-                .map(chunkPos -> world.getChunk(chunkPos.x, chunkPos.z))
+                .filter(chunkPos -> level.hasChunk(chunkPos.x, chunkPos.z))
+                .map(chunkPos -> level.getChunk(chunkPos.x, chunkPos.z))
                 .flatMap(chunk -> chunk.getBlockEntities().values().stream())
                 .filter(tile ->
                            (type == null || tile.getType() == type)

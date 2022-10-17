@@ -49,7 +49,7 @@ public enum MusicApiImpl implements MusicAPI {
         if(level.isClientSide)
             return true;
 
-        level.getProfiler().push("playMusic");
+        level.getProfiler().push("totemic.playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         //TODO: Implement caching in case this performs too poorly
         List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(null, level, new BlockPos(x, y, z), range)
@@ -65,10 +65,8 @@ public enum MusicApiImpl implements MusicAPI {
                     }
                 })
                 .collect(MiscUtil.collectMaxElements(Comparator.comparing(MusicAcceptor::getPriority)));
-        if(list.isEmpty())
-            return false;
         boolean hadEffect = false;
-        for(MusicAcceptor acc: list) {
+        for(MusicAcceptor acc: list) { //The loop is not executed when list is empty, so we got no division by zero
             if(acc.acceptMusic(instr, amount / list.size(), x, y, z, entity)) {
                 hadEffect = true;
                 MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0); //TODO: The way the particles are being spawned should probably be changed (creating our own packet)
