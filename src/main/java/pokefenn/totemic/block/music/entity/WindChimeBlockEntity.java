@@ -15,8 +15,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.util.BlockUtil;
 
 public class WindChimeBlockEntity extends BlockEntity {
@@ -34,7 +34,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, WindChimeBlockEntity tile) {
-        if(tile.isPlaying() && !tile.isCongested) {
+        if(tile.isPlaying()) {
             if(tile.playingTimeLeft % 40 == 0)
                 TotemicAPI.get().music().playMusic(level, pos, null, ModContent.windChime);
 
@@ -43,14 +43,14 @@ public class WindChimeBlockEntity extends BlockEntity {
                 tile.setNotPlaying();
         }
         else {
-            if(level.isClientSide && tile.isCongested)
-                tile.congestionParticles();
-
-            if(!level.isClientSide) {
+            if(!tile.isCongested && !level.isClientSide) {
                 tile.cooldown--;
                 if(tile.cooldown <= 0)
                     tile.setPlaying(PLAYING_TIME);
             }
+
+            if(tile.isCongested && level.isClientSide)
+                tile.congestionParticles();
         }
     }
 
@@ -62,7 +62,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     }
 
     public boolean isPlaying() {
-        return playingTimeLeft > 0;
+        return playingTimeLeft > 0 && !isCongested;
     }
 
     public void setPlaying(int time) {

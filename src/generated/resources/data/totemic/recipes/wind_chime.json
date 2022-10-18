@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "S": {
+      "tag": "forge:string"
+    },
+    "W": {
+      "tag": "totemic:cedar_logs"
+    }
+  },
+  "pattern": [
+    "WWW",
+    "S S",
+    "C C"
+  ],
+  "result": {
+    "item": "totemic:wind_chime"
+  }
+}

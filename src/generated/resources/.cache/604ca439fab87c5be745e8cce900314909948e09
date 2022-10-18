@@ -1,4 +1,4 @@
-// 1.19.2	2022-10-10T12:52:53.059241022	Totemic Recipes
+// 1.19.2	2022-10-18T11:52:32.387423325	Totemic Recipes
 ba7495b8dfc8ec3e9ca24a02d8c41e76ff96abaf data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_campfire_cooking.json
 08c67b04f13b233569a9c1cf57792b02a5ff3701 data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_smelting.json
 c3261a9b3039586d7b91dfb728dbc97c8a8d93b2 data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_smoking.json
@@ -10,8 +10,10 @@ a35e2fecd0d8b4278196bc44f87208cb0261794a data/minecraft/recipes/cooked_buffalo_m
 ca24fd7bf1a2ab2948d826b65f084b6636175549 data/totemic/advancements/recipes/totemic/rattle.json
 2997e5270361bc5beacc73e9f14fe1e3a72635bc data/totemic/advancements/recipes/totemic/totem_whittling_knife.json
 4fb7e5ff19febb0e48ba4e37d8d44075ec64d4dd data/totemic/advancements/recipes/totemic/totemic_staff.json
+83c9c5213621627813db4bd0f88a3f26aa3010e0 data/totemic/advancements/recipes/totemic/wind_chime.json
 26f69949deed0d77484a203d5e493c5fed12ed7d data/totemic/recipes/drum.json
 7abd055f4d1ecfee95eb08c8c0367cb4ca7bb7d1 data/totemic/recipes/flute.json
 841d33d17ac864f5a3da013c160c7e71f2a46bce data/totemic/recipes/rattle.json
 afd85d8214be23ee595170033fe913659587513b data/totemic/recipes/totem_whittling_knife.json
 b34125dee7fd53bac229efb3641ef578ebdd0171 data/totemic/recipes/totemic_staff.json
+8e7f4867c5018ba0a5b5fde3dd3edfe12516c8af data/totemic/recipes/wind_chime.json

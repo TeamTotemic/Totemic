@@ -10,6 +10,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.Tags;
+import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 
@@ -61,6 +62,15 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('E', Tags.Items.LEATHER)
                 .define('L', ItemTags.LOGS_THAT_BURN)
                 .define('W', ItemTags.WOOL)
+                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
+                .save(rc);
+        ShapedRecipeBuilder.shaped(ModBlocks.wind_chime.get())
+                .pattern("WWW")
+                .pattern("S S")
+                .pattern("C C")
+                .define('W', TotemicItemTags.CEDAR_LOGS)
+                .define('S', Tags.Items.STRING)
+                .define('C', Tags.Items.INGOTS_COPPER)
                 .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
                 .save(rc);
 
