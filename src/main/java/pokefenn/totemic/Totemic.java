@@ -29,11 +29,11 @@ import pokefenn.totemic.handler.EntityHandler;
 import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.init.ModEffects;
+import pokefenn.totemic.init.ModMobEffects;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModSounds;
-import pokefenn.totemic.init.ModTileEntities;
+import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.network.NetworkHandler;
 
 @Mod(TotemicAPI.MOD_ID)
@@ -55,8 +55,8 @@ public final class Totemic {
 
         ModBlocks.REGISTER.register(modBus);
         ModItems.REGISTER.register(modBus);
-        ModEffects.REGISTER.register(modBus);
-        ModTileEntities.REGISTER.register(modBus);
+        ModMobEffects.REGISTER.register(modBus);
+        ModBlockEntities.REGISTER.register(modBus);
         ModEntityTypes.REGISTER.register(modBus);
         ModSounds.REGISTER.register(modBus);
 

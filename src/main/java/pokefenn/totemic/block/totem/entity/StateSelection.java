@@ -1,4 +1,4 @@
-package pokefenn.totemic.tile.totem;
+package pokefenn.totemic.block.totem.entity;
 
 import java.util.ArrayList;
 import java.util.List;

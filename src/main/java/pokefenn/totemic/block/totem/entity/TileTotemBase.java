@@ -1,4 +1,4 @@
-package pokefenn.totemic.tile.totem;
+package pokefenn.totemic.block.totem.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
-import pokefenn.totemic.init.ModTileEntities;
+import pokefenn.totemic.init.ModBlockEntities;
 
 public class TileTotemBase extends BlockEntity {
     private boolean firstTick = true;
@@ -42,7 +42,7 @@ public class TileTotemBase extends BlockEntity {
     private LazyOptional<MusicAcceptor> musicHandler = LazyOptional.of(() -> this.state);
 
     public TileTotemBase(BlockPos pos, BlockState state) {
-        super(ModTileEntities.totem_base.get(), pos, state);
+        super(ModBlockEntities.totem_base.get(), pos, state);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState blockState, TileTotemBase tile) {

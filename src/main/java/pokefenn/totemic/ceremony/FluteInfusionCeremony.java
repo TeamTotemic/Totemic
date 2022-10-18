@@ -9,7 +9,7 @@ import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.init.ModItems;
 
-public class CeremonyFluteInfusion extends CeremonyInstance {
+public class FluteInfusionCeremony extends CeremonyInstance {
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         TotemicEntityUtil.getEntitiesInRange(ItemEntity.class, level, pos, 5, 5, e -> e.getItem().getItem() == ModItems.flute.get())

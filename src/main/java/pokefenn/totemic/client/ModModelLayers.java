@@ -8,7 +8,7 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.client.renderer.blockentity.WindChimeRenderer;
 import pokefenn.totemic.client.renderer.entity.BuffaloRenderer;
 import pokefenn.totemic.init.ModEntityTypes;
-import pokefenn.totemic.init.ModTileEntities;
+import pokefenn.totemic.init.ModBlockEntities;
 
 public final class ModModelLayers {
     public static final ModelLayerLocation WIND_CHIME = create("wind_chime");
@@ -26,6 +26,6 @@ public final class ModModelLayers {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypes.buffalo.get(), BuffaloRenderer::new);
 
-        event.registerBlockEntityRenderer(ModTileEntities.wind_chime.get(), WindChimeRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.wind_chime.get(), WindChimeRenderer::new);
     }
 }

@@ -9,8 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.init.ModTileEntities;
-import pokefenn.totemic.tile.totem.StateStartup;
+import pokefenn.totemic.block.totem.entity.StateStartup;
+import pokefenn.totemic.init.ModBlockEntities;
 
 public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instrument, int amount) {
     public void encode(FriendlyByteBuf buf) {
@@ -32,7 +32,7 @@ public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instru
     @SuppressWarnings("resource")
     public static void handle(ClientboundPacketStartupMusic packet, Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
-            Minecraft.getInstance().level.getBlockEntity(packet.pos, ModTileEntities.totem_base.get()) //Doesn't seem to cause any exception on the server (Class Minecraft is never loaded)
+            Minecraft.getInstance().level.getBlockEntity(packet.pos, ModBlockEntities.totem_base.get()) //Doesn't seem to cause any exception on the server (Class Minecraft is never loaded)
             .ifPresent(tile -> {
                 if(tile.getTotemState() instanceof StateStartup state) {
                     state.setMusic(packet.instrument, packet.amount);

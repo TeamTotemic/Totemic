@@ -1,4 +1,4 @@
-package pokefenn.totemic.potion;
+package pokefenn.totemic.effect;
 
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;

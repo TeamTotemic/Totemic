@@ -11,11 +11,11 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.TotemEffect;
-import pokefenn.totemic.ceremony.CeremonyBuffaloDance;
-import pokefenn.totemic.ceremony.CeremonyDepths;
-import pokefenn.totemic.ceremony.CeremonyFluteInfusion;
-import pokefenn.totemic.ceremony.CeremonyRain;
-import pokefenn.totemic.ceremony.CeremonyWarDance;
+import pokefenn.totemic.ceremony.BuffaloDanceCeremony;
+import pokefenn.totemic.ceremony.DepthsCeremony;
+import pokefenn.totemic.ceremony.FluteInfusionCeremony;
+import pokefenn.totemic.ceremony.RainCeremony;
+import pokefenn.totemic.ceremony.WarDanceCeremony;
 import pokefenn.totemic.totem.EmptyTotemEffect;
 import pokefenn.totemic.totem.OcelotTotemEffect;
 
@@ -49,7 +49,7 @@ public final class ModContent {
     public static final TotemEffect ocelot = new OcelotTotemEffect(resloc("ocelot"));
     public static final TotemEffect pig = new PotionTotemEffect(resloc("pig"), () -> MobEffects.LUCK);
     public static final TotemEffect rabbit = new PotionTotemEffect(resloc("rabbit"), () -> MobEffects.JUMP);
-    public static final TotemEffect spider = new PotionTotemEffect(resloc("spider"), ModEffects.spider);
+    public static final TotemEffect spider = new PotionTotemEffect(resloc("spider"), ModMobEffects.spider);
     public static final TotemEffect squid = new PotionTotemEffect(resloc("squid"), () -> MobEffects.WATER_BREATHING);
     public static final TotemEffect wolf = new PotionTotemEffect(resloc("wolf"), () -> MobEffects.DAMAGE_BOOST);
 
@@ -63,12 +63,12 @@ public final class ModContent {
     //13200: Flute + Drum + Rattle + Eagle-Bone Whistle
     //14700: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
     //16200: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
-    public static final Ceremony warDance = new Ceremony(resloc("war_dance"), 4500, 20 * 20, CeremonyWarDance::new, drum, drum);
-    public static final Ceremony depths = new Ceremony(resloc("depths"), 4500, 20 * 20, CeremonyDepths::new, flute, flute);
-    public static final Ceremony buffaloDance = new Ceremony(resloc("buffalo_dance"), 7380, 24 * 20, CeremonyBuffaloDance::new, drum, windChime);
-    public static final Ceremony rain = new Ceremony(resloc("rain"), 10980, 26 * 20, () -> new CeremonyRain(true), drum, rattle);
-    public static final Ceremony drought = new Ceremony(resloc("drought"), 10980, 26 * 20, () -> new CeremonyRain(false), rattle, drum);
-    public static final Ceremony fluteInfusion = new Ceremony(resloc("flute_infusion"), 11340, 28 * 20, CeremonyFluteInfusion::new, flute, rattle);
+    public static final Ceremony warDance = new Ceremony(resloc("war_dance"), 4500, 20 * 20, WarDanceCeremony::new, drum, drum);
+    public static final Ceremony depths = new Ceremony(resloc("depths"), 4500, 20 * 20, DepthsCeremony::new, flute, flute);
+    public static final Ceremony buffaloDance = new Ceremony(resloc("buffalo_dance"), 7380, 24 * 20, BuffaloDanceCeremony::new, drum, windChime);
+    public static final Ceremony rain = new Ceremony(resloc("rain"), 10980, 26 * 20, () -> new RainCeremony(true), drum, rattle);
+    public static final Ceremony drought = new Ceremony(resloc("drought"), 10980, 26 * 20, () -> new RainCeremony(false), rattle, drum);
+    public static final Ceremony fluteInfusion = new Ceremony(resloc("flute_infusion"), 11340, 28 * 20, FluteInfusionCeremony::new, flute, rattle);
 
     @SubscribeEvent
     public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {

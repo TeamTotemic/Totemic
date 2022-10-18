@@ -28,7 +28,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.util.FakePlayer;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.util.TileUtil;
+import pokefenn.totemic.util.BlockUtil;
 
 public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty PLAYED = BooleanProperty.create("played");
@@ -85,7 +85,7 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return defaultBlockState().setValue(WATERLOGGED, TileUtil.placedInWater(context));
+        return defaultBlockState().setValue(WATERLOGGED, BlockUtil.placedInWater(context));
     }
 
     @Override
@@ -100,7 +100,7 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
 
     @Override
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
-        TileUtil.scheduleWaterloggedTick(pState, pCurrentPos, pLevel);
+        BlockUtil.scheduleWaterloggedTick(pState, pCurrentPos, pLevel);
         return pState;
     }
 

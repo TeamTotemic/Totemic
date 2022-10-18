@@ -19,11 +19,11 @@ import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.init.ModTileEntities;
-import pokefenn.totemic.tile.totem.TileTotemBase;
-import pokefenn.totemic.tile.totem.TotemState;
+import pokefenn.totemic.block.totem.entity.TileTotemBase;
+import pokefenn.totemic.block.totem.entity.TotemState;
+import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.util.MiscUtil;
-import pokefenn.totemic.util.TileUtil;
+import pokefenn.totemic.util.BlockUtil;
 
 public enum MusicApiImpl implements MusicAPI {
     INSTANCE;
@@ -52,7 +52,7 @@ public enum MusicApiImpl implements MusicAPI {
         level.getProfiler().push("totemic.playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         //TODO: Implement caching in case this performs too poorly
-        List<MusicAcceptor> list = TileUtil.getTileEntitiesInRange(null, level, new BlockPos(x, y, z), range)
+        List<MusicAcceptor> list = BlockUtil.getBlockEntitiesInRange(null, level, new BlockPos(x, y, z), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)
                 .map(lo -> lo.orElse(null))
@@ -101,8 +101,8 @@ public enum MusicApiImpl implements MusicAPI {
 
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, new Vec3(x, y, z), 8, new Vec3(0.6, 0.5, 0.6), 0.0);
-        Optional<TotemState> totemState = TileUtil.getTileEntitiesInRange(ModTileEntities.totem_base.get(), level, new BlockPos(x, y, z), range)
-                .min(TileUtil.compareCenterDistanceTo(x, y, z))
+        Optional<TotemState> totemState = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, new BlockPos(x, y, z), range)
+                .min(BlockUtil.compareCenterDistanceTo(x, y, z))
                 .map(TileTotemBase::getTotemState)
                 .filter(TotemState::canSelect);
         totemState.ifPresent(t -> t.addSelector(entity, instr));

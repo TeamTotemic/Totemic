@@ -18,20 +18,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluids;
 
-public final class TileUtil {
+public final class BlockUtil {
     //Same method as in BaseEntityBlock, but made public
     @SuppressWarnings("unchecked")
     public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> serverType, BlockEntityType<E> clientType, BlockEntityTicker<? super E> ticker) {
         return clientType == serverType ? (BlockEntityTicker<A>)ticker : null;
     }
 
-    public static <T extends BlockEntity> Stream<T> getTileEntitiesInRange(@Nullable BlockEntityType<T> type, Level level, BlockPos pos, int range) {
-        return getTileEntitiesIn(type, level, pos.offset(-range, -range, -range), pos.offset(range, range, range));
+    public static <T extends BlockEntity> Stream<T> getBlockEntitiesInRange(@Nullable BlockEntityType<T> type, Level level, BlockPos pos, int range) {
+        return getBlockEntitiesIn(type, level, pos.offset(-range, -range, -range), pos.offset(range, range, range));
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends BlockEntity> Stream<T> getTileEntitiesIn(@Nullable BlockEntityType<T> type, Level level, BlockPos start, BlockPos end) {
-        level.getProfiler().incrementCounter("totemic.getTileEntitiesIn");
+    public static <T extends BlockEntity> Stream<T> getBlockEntitiesIn(@Nullable BlockEntityType<T> type, Level level, BlockPos start, BlockPos end) {
+        level.getProfiler().incrementCounter("totemic.getBlockEntitiesIn");
         return (Stream<T>) ChunkPos.rangeClosed(new ChunkPos(start), new ChunkPos(end))
                 .filter(chunkPos -> level.hasChunk(chunkPos.x, chunkPos.z))
                 .map(chunkPos -> level.getChunk(chunkPos.x, chunkPos.z))
@@ -42,10 +42,10 @@ public final class TileUtil {
                         && isWithinBounds(tile.getBlockPos(), start, end));
     }
 
-    public static boolean isWithinBounds(Vec3i test, Vec3i start, Vec3i end) {
-        return start.getX() <= test.getX() && test.getX() <= end.getX()
-            && start.getY() <= test.getY() && test.getY() <= end.getY()
-            && start.getZ() <= test.getZ() && test.getZ() <= end.getZ();
+    public static boolean isWithinBounds(Vec3i vec, Vec3i start, Vec3i end) {
+        return start.getX() <= vec.getX() && vec.getX() <= end.getX()
+            && start.getY() <= vec.getY() && vec.getY() <= end.getY()
+            && start.getZ() <= vec.getZ() && vec.getZ() <= end.getZ();
     }
 
     public static Comparator<BlockEntity> compareCenterDistanceTo(double x, double y, double z) {

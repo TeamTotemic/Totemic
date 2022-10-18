@@ -12,7 +12,7 @@ import pokefenn.totemic.entity.Buffalo;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.util.MiscUtil;
 
-public class CeremonyBuffaloDance extends CeremonyInstance {
+public class BuffaloDanceCeremony extends CeremonyInstance {
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)

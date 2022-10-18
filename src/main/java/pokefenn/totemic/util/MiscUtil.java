@@ -53,9 +53,9 @@ public final class MiscUtil {
                 });
     }
 
-    public static void spawnServerParticles(ParticleOptions particle, Level level, Vec3 pos, int count, Vec3 offset, double speed) {
+    public static void spawnServerParticles(ParticleOptions particle, Level level, Vec3 pos, int count, Vec3 spread, double speed) {
         if(level instanceof ServerLevel slevel) {
-            slevel.sendParticles(particle, pos.x, pos.y, pos.z, count, offset.x, offset.y, offset.z, speed);
+            slevel.sendParticles(particle, pos.x, pos.y, pos.z, count, spread.x, spread.y, spread.z, speed);
         }
     }
 }

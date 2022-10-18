@@ -35,10 +35,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.block.music.entity.WindChimeBlockEntity;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.init.ModTileEntities;
-import pokefenn.totemic.tile.WindChimeBlockEntity;
-import pokefenn.totemic.util.TileUtil;
+import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.util.BlockUtil;
 
 public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -55,7 +55,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
         if(pDirection == Direction.UP && !canSurvive(pState, pLevel, pCurrentPos))
             return Blocks.AIR.defaultBlockState();
         else {
-            TileUtil.scheduleWaterloggedTick(pState, pCurrentPos, pLevel);
+            BlockUtil.scheduleWaterloggedTick(pState, pCurrentPos, pLevel);
             return pState;
         }
     }
@@ -70,7 +70,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
 
     @Override
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
-        pLevel.getBlockEntity(pPos, ModTileEntities.wind_chime.get())
+        pLevel.getBlockEntity(pPos, ModBlockEntities.wind_chime.get())
         .ifPresent(e -> e.setNotPlaying());
     }
 
@@ -94,7 +94,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-        TileUtil.getTileEntitiesInRange(ModTileEntities.wind_chime.get(), pLevel, pPos, WindChimeBlockEntity.CONGESTION_RANGE)
+        BlockUtil.getBlockEntitiesInRange(ModBlockEntities.wind_chime.get(), pLevel, pPos, WindChimeBlockEntity.CONGESTION_RANGE)
                 .forEach(WindChimeBlockEntity::tryUncongest);
     }
 
@@ -116,7 +116,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return TileUtil.createTickerHelper(pBlockEntityType, ModTileEntities.wind_chime.get(), WindChimeBlockEntity::tick);
+        return BlockUtil.createTickerHelper(pBlockEntityType, ModBlockEntities.wind_chime.get(), WindChimeBlockEntity::tick);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return defaultBlockState().setValue(WATERLOGGED, TileUtil.placedInWater(context));
+        return defaultBlockState().setValue(WATERLOGGED, BlockUtil.placedInWater(context));
     }
 
     @Override

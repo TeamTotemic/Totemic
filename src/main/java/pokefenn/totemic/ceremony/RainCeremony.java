@@ -6,10 +6,10 @@ import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 
-public class CeremonyRain extends CeremonyInstance {
+public class RainCeremony extends CeremonyInstance {
     private final boolean doRain;
 
-    public CeremonyRain(boolean doRain) {
+    public RainCeremony(boolean doRain) {
         this.doRain = doRain;
     }
 

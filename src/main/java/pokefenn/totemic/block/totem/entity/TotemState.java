@@ -1,4 +1,4 @@
-package pokefenn.totemic.tile.totem;
+package pokefenn.totemic.block.totem.entity;
 
 import javax.annotation.Nonnull;
 

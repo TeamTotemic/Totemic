@@ -10,9 +10,9 @@ import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderDispatcher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
+import pokefenn.totemic.block.music.entity.WindChimeBlockEntity;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
-import pokefenn.totemic.tile.WindChimeBlockEntity;
 
 public class TotemicItemRenderer extends BlockEntityWithoutLevelRenderer {
     public static final TotemicItemRenderer INSTANCE = new TotemicItemRenderer(Minecraft.getInstance().getBlockEntityRenderDispatcher(), Minecraft.getInstance().getEntityModels());

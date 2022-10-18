@@ -32,14 +32,14 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicStaffUsable;
+import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
+import pokefenn.totemic.block.totem.entity.StateSelection;
+import pokefenn.totemic.block.totem.entity.StateStartup;
+import pokefenn.totemic.block.totem.entity.StateTotemEffect;
+import pokefenn.totemic.block.totem.entity.TileTotemBase;
 import pokefenn.totemic.init.ModItems;
-import pokefenn.totemic.init.ModTileEntities;
-import pokefenn.totemic.tile.totem.StateCeremonyEffect;
-import pokefenn.totemic.tile.totem.StateSelection;
-import pokefenn.totemic.tile.totem.StateStartup;
-import pokefenn.totemic.tile.totem.StateTotemEffect;
-import pokefenn.totemic.tile.totem.TileTotemBase;
-import pokefenn.totemic.util.TileUtil;
+import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.util.BlockUtil;
 
 public class TotemBaseBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, TotemicStaffUsable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -60,7 +60,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         if(!context.getLevel().isClientSide)
             return InteractionResult.CONSUME;
 
-        context.getLevel().getBlockEntity(context.getClickedPos(), ModTileEntities.totem_base.get())
+        context.getLevel().getBlockEntity(context.getClickedPos(), ModBlockEntities.totem_base.get())
         .ifPresent(tile -> {
             Player player = context.getPlayer();
             if(tile.getTotemState() instanceof StateTotemEffect state) {
@@ -92,7 +92,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     public void attack(BlockState state, Level level, BlockPos pos, Player player) {
         if(player.getMainHandItem().getItem() == ModItems.totemic_staff.get()) {
-            level.getBlockEntity(pos, ModTileEntities.totem_base.get())
+            level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
                     .ifPresent(TileTotemBase::resetTotemState);
         }
     }
@@ -105,10 +105,10 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if(facing == Direction.UP) {
-            level.getBlockEntity(currentPos, ModTileEntities.totem_base.get())
+            level.getBlockEntity(currentPos, ModBlockEntities.totem_base.get())
                     .ifPresent(TileTotemBase::onPoleChange);
         }
-        TileUtil.scheduleWaterloggedTick(state, currentPos, level);
+        BlockUtil.scheduleWaterloggedTick(state, currentPos, level);
         return state;
     }
 
@@ -117,7 +117,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
-                .setValue(WATERLOGGED, TileUtil.placedInWater(context));
+                .setValue(WATERLOGGED, BlockUtil.placedInWater(context));
     }
 
     @Override
@@ -129,7 +129,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return TileUtil.createTickerHelper(type, ModTileEntities.totem_base.get(), TileTotemBase::tick);
+        return BlockUtil.createTickerHelper(type, ModBlockEntities.totem_base.get(), TileTotemBase::tick);
     }
 
     @Override

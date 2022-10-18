@@ -1,4 +1,4 @@
-package pokefenn.totemic.tile;
+package pokefenn.totemic.block.music.entity;
 
 import javax.annotation.Nullable;
 
@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.init.ModTileEntities;
-import pokefenn.totemic.util.TileUtil;
+import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.util.BlockUtil;
 
 public class WindChimeBlockEntity extends BlockEntity {
     public static final int CONGESTION_RANGE = 8;
@@ -30,7 +30,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     private static final int PLAYING_TIME = 8 * 20;
 
     public WindChimeBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModTileEntities.wind_chime.get(), pPos, pBlockState);
+        super(ModBlockEntities.wind_chime.get(), pPos, pBlockState);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, WindChimeBlockEntity tile) {
@@ -94,7 +94,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     }
 
     private boolean checkForCongestion() {
-        long count = TileUtil.getTileEntitiesInRange(ModTileEntities.wind_chime.get(), level, worldPosition, CONGESTION_RANGE)
+        long count = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.wind_chime.get(), level, worldPosition, CONGESTION_RANGE)
                 .filter(tile -> tile != this && !tile.isCongested)
                 .limit(MAX_NEARBY_CHIMES + 1)
                 .count();

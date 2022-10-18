@@ -14,8 +14,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.block.music.entity.WindChimeBlockEntity;
 import pokefenn.totemic.client.ModModelLayers;
-import pokefenn.totemic.tile.WindChimeBlockEntity;
 
 public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEntity> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(TotemicAPI.MOD_ID, "textures/entity/wind_chime.png");

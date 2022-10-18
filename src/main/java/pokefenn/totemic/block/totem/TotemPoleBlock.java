@@ -24,7 +24,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
-import pokefenn.totemic.util.TileUtil;
+import pokefenn.totemic.util.BlockUtil;
 
 public class TotemPoleBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -59,7 +59,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
                     break;
             }
         }
-        TileUtil.scheduleWaterloggedTick(state, currentPos, level);
+        BlockUtil.scheduleWaterloggedTick(state, currentPos, level);
         return state;
     }
 
@@ -68,7 +68,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
-                .setValue(WATERLOGGED, TileUtil.placedInWater(context));
+                .setValue(WATERLOGGED, BlockUtil.placedInWater(context));
     }
 
     @Override
