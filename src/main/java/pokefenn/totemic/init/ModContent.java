@@ -22,11 +22,11 @@ import pokefenn.totemic.totem.OcelotTotemEffect;
 public final class ModContent {
     public static final MusicInstrument flute = new MusicInstrument(resloc("flute"), 180, 3000);
     public static final MusicInstrument drum = new MusicInstrument(resloc("drum"), 240, 3300);
-    public static final MusicInstrument windChime = new MusicInstrument(resloc("wind_chime"), 120, 1500);
-//    public static final MusicInstrument jingleDress = new MusicInstrument(resloc("jingle_dress"), 180, 1500);
+    public static final MusicInstrument wind_chime = new MusicInstrument(resloc("wind_chime"), 120, 1500);
+//    public static final MusicInstrument jingle_dress = new MusicInstrument(resloc("jingle_dress"), 180, 1500);
     public static final MusicInstrument rattle = new MusicInstrument(resloc("rattle"), 300, 3300);
-//    public static final MusicInstrument eagleBoneWhistle = new MusicInstrument(resloc("eagle_bone_whistle"), 360, 3600);
-//    public static final MusicInstrument netherPipe = new MusicInstrument(resloc("nether_pipe"), 240, 3900);
+//    public static final MusicInstrument eagle_bone_whistle = new MusicInstrument(resloc("eagle_bone_whistle"), 360, 3600);
+//    public static final MusicInstrument nether_pipe = new MusicInstrument(resloc("nether_pipe"), 240, 3900);
 
     public static final TotemEffect none = new EmptyTotemEffect(resloc("none"));
     public static final TotemEffect bat = new PotionTotemEffect(resloc("bat"), () -> MobEffects.SLOW_FALLING);
@@ -63,19 +63,19 @@ public final class ModContent {
     //13200: Flute + Drum + Rattle + Eagle-Bone Whistle
     //14700: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
     //16200: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
-    public static final Ceremony warDance = new Ceremony(resloc("war_dance"), 4500, 20 * 20, WarDanceCeremony::new, drum, drum);
+    public static final Ceremony war_dance = new Ceremony(resloc("war_dance"), 4500, 20 * 20, WarDanceCeremony::new, drum, drum);
     public static final Ceremony depths = new Ceremony(resloc("depths"), 4500, 20 * 20, DepthsCeremony::new, flute, flute);
-    public static final Ceremony buffaloDance = new Ceremony(resloc("buffalo_dance"), 7380, 24 * 20, BuffaloDanceCeremony::new, drum, windChime);
+    public static final Ceremony buffalo_dance = new Ceremony(resloc("buffalo_dance"), 7380, 24 * 20, BuffaloDanceCeremony::new, drum, wind_chime);
     public static final Ceremony rain = new Ceremony(resloc("rain"), 10980, 26 * 20, () -> new RainCeremony(true), drum, rattle);
     public static final Ceremony drought = new Ceremony(resloc("drought"), 10980, 26 * 20, () -> new RainCeremony(false), rattle, drum);
-    public static final Ceremony fluteInfusion = new Ceremony(resloc("flute_infusion"), 11340, 28 * 20, FluteInfusionCeremony::new, flute, rattle);
+    public static final Ceremony flute_infusion = new Ceremony(resloc("flute_infusion"), 11340, 28 * 20, FluteInfusionCeremony::new, flute, rattle);
 
     @SubscribeEvent
     public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {
         event.registerAll(
                 flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute),
                 drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum),
-                windChime.setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime),
+                wind_chime.setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime),
                 rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle));
     }
 
@@ -85,8 +85,8 @@ public final class ModContent {
     }
 
     @SubscribeEvent
-    public static void cermeonies(TotemicRegisterEvent<Ceremony> event) {
-        event.registerAll(warDance, depths, buffaloDance, rain, drought, fluteInfusion);
+    public static void ceremonies(TotemicRegisterEvent<Ceremony> event) {
+        event.registerAll(war_dance, depths, buffalo_dance, rain, drought, flute_infusion);
     }
 
     private static ResourceLocation resloc(String path) {

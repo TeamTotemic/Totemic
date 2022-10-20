@@ -36,7 +36,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     public static void tick(Level level, BlockPos pos, BlockState state, WindChimeBlockEntity tile) {
         if(tile.isPlaying()) {
             if(tile.playingTimeLeft % 40 == 0)
-                TotemicAPI.get().music().playMusic(level, pos, null, ModContent.windChime);
+                TotemicAPI.get().music().playMusic(level, pos, null, ModContent.wind_chime);
 
             tile.playingTimeLeft--;
             if(tile.playingTimeLeft <= 0)

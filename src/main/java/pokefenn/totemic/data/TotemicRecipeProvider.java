@@ -39,7 +39,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('W', ItemTags.LOGS_THAT_BURN)
                 .define('B', ModItems.buffalo_tooth.get())
-                .unlockedBy("performed_buffalo_dance", performed(ModContent.buffaloDance))
+                .unlockedBy("performed_buffalo_dance", performed(ModContent.buffalo_dance))
                 .unlockedBy("has_buffalo_tooth", has(ModItems.buffalo_tooth.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModItems.totem_whittling_knife.get())
@@ -75,7 +75,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('W', TotemicItemTags.CEDAR_LOGS)
                 .define('S', Tags.Items.STRING)
                 .define('C', Tags.Items.INGOTS_COPPER)
-                //.unlockedBy("performed_zaphkiel_waltz", performed(ModContent.zaphkielWaltz))
+                //.unlockedBy("performed_zaphkiel_waltz", performed(ModContent.zaphkiel_waltz))
                 .unlockedBy("has_cedar_logs", has(ModBlocks.cedar_log.get()))
                 .save(rc);
 
