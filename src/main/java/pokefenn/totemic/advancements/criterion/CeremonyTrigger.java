@@ -3,7 +3,6 @@ package pokefenn.totemic.advancements.criterion;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.DeserializationContext;
 import net.minecraft.advancements.critereon.EntityPredicate.Composite;
@@ -16,8 +15,6 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 
 public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.TriggerInstance> {
-    public static final CeremonyTrigger PERFORM_CEREMONY = CriteriaTriggers.register(new CeremonyTrigger());
-
     private static final ResourceLocation ID = new ResourceLocation(TotemicAPI.MOD_ID, "performed_ceremony");
 
     @Override

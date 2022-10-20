@@ -13,7 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
+import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -138,7 +138,7 @@ public final class StateStartup extends TotemState implements StartupContext {
         MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 1.0);
         tile.setTotemState(new StateCeremonyEffect(tile, ceremony, instance, initiator));
         TotemicEntityUtil.getPlayersInRange(tile.getLevel(), tile.getBlockPos(), 8, 8)
-            .forEach(player -> CeremonyTrigger.PERFORM_CEREMONY.trigger((ServerPlayer) player, ceremony));
+            .forEach(player -> ModCriteriaTriggers.PERFORM_CEREMONY.trigger((ServerPlayer) player, ceremony));
     }
 
     public Ceremony getCeremony() {

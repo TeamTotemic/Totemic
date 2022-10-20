@@ -14,6 +14,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
@@ -27,13 +28,13 @@ import pokefenn.totemic.handler.ClientInitHandlers;
 import pokefenn.totemic.handler.ClientInteract;
 import pokefenn.totemic.handler.EntityHandler;
 import pokefenn.totemic.handler.PlayerInteract;
+import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.init.ModMobEffects;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
+import pokefenn.totemic.init.ModMobEffects;
 import pokefenn.totemic.init.ModSounds;
-import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.network.NetworkHandler;
 
 @Mod(TotemicAPI.MOD_ID)
@@ -82,7 +83,10 @@ public final class Totemic {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(ModBlocks::setFireInfo);
+        event.enqueueWork(() -> {
+            ModBlocks.setFireInfo();
+            ModCriteriaTriggers.init();
+        });
 
         //Totem effects are registered during ModBlocks#init
         RegistryApiImpl.INSTANCE.registerInstruments();
