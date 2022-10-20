@@ -10,8 +10,11 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.Tags;
+import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
 import pokefenn.totemic.api.TotemicItemTags;
+import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicRecipeProvider extends RecipeProvider {
@@ -36,7 +39,8 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('W', ItemTags.LOGS_THAT_BURN)
                 .define('B', ModItems.buffalo_tooth.get())
-                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
+                .unlockedBy("performed_buffalo_dance", performed(ModContent.buffaloDance))
+                .unlockedBy("has_buffalo_tooth", has(ModItems.buffalo_tooth.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModItems.totem_whittling_knife.get())
                 .pattern("  I")
@@ -71,12 +75,17 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('W', TotemicItemTags.CEDAR_LOGS)
                 .define('S', Tags.Items.STRING)
                 .define('C', Tags.Items.INGOTS_COPPER)
-                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
+                //.unlockedBy("performed_zaphkiel_waltz", performed(ModContent.zaphkielWaltz))
+                .unlockedBy("has_cedar_logs", has(ModBlocks.cedar_log.get()))
                 .save(rc);
 
         simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
+    }
+
+    protected static CeremonyTrigger.TriggerInstance performed(Ceremony ceremony) {
+        return CeremonyTrigger.TriggerInstance.performedCeremony(ceremony);
     }
 
     @Override

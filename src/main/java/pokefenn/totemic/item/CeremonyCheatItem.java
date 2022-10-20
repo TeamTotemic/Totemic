@@ -20,6 +20,7 @@ public class CeremonyCheatItem extends Item {
         super(props);
     }
 
+    @SuppressWarnings("resource")
     @Override
     public InteractionResult useOn(UseOnContext context) {
         return context.getLevel().getBlockEntity(context.getClickedPos(), ModBlockEntities.totem_base.get())
@@ -27,7 +28,7 @@ public class CeremonyCheatItem extends Item {
                 .filter(state -> state instanceof StateStartup)
                 .map(state -> {
                     ((StateStartup) state).startCeremony();
-                    return InteractionResult.SUCCESS;
+                    return InteractionResult.sidedSuccess(context.getLevel().isClientSide);
                 })
                 .orElse(InteractionResult.FAIL);
     }

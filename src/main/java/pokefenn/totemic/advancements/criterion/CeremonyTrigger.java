@@ -1,0 +1,64 @@
+package pokefenn.totemic.advancements.criterion;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
+
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
+import net.minecraft.advancements.critereon.DeserializationContext;
+import net.minecraft.advancements.critereon.EntityPredicate.Composite;
+import net.minecraft.advancements.critereon.SerializationContext;
+import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.GsonHelper;
+import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.ceremony.Ceremony;
+
+public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.TriggerInstance> {
+    public static final CeremonyTrigger PERFORM_CEREMONY = CriteriaTriggers.register(new CeremonyTrigger());
+
+    private static final ResourceLocation ID = new ResourceLocation(TotemicAPI.MOD_ID, "performed_ceremony");
+
+    @Override
+    public ResourceLocation getId() {
+        return ID;
+    }
+
+    @Override
+    public TriggerInstance createInstance(JsonObject pJson, Composite pPlayer, DeserializationContext pContext) {
+        var name = new ResourceLocation(GsonHelper.getAsString(pJson, "ceremony"));
+        var ceremony = TotemicAPI.get().registry().ceremonies().get(name);
+        if(ceremony == null)
+            throw new JsonSyntaxException("Unknown Ceremony '" + name + "'");
+        return new TriggerInstance(pPlayer, ceremony);
+    }
+
+    public void trigger(ServerPlayer player, Ceremony ceremony) {
+        trigger(player, ti -> ti.matches(ceremony));
+    }
+
+    public static class TriggerInstance extends AbstractCriterionTriggerInstance {
+        private final Ceremony ceremony;
+
+        public TriggerInstance(Composite pPlayer, Ceremony ceremony) {
+            super(ID, pPlayer);
+            this.ceremony = ceremony;
+        }
+
+        public static TriggerInstance performedCeremony(Ceremony ceremony) {
+            return new TriggerInstance(Composite.ANY, ceremony);
+        }
+
+        public boolean matches(Ceremony cer) {
+            return this.ceremony == cer;
+        }
+
+        @Override
+        public JsonObject serializeToJson(SerializationContext pConditions) {
+            var json = super.serializeToJson(pConditions);
+            json.addProperty("ceremony", ceremony.getRegistryName().toString());
+            return json;
+        }
+    }
+}

@@ -1,28 +1,28 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "totemic:wind_chime"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_totemic_staff": {
+    "has_cedar_logs": {
       "conditions": {
         "items": [
           {
             "items": [
-              "totemic:totemic_staff"
+              "totemic:cedar_log"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "totemic:wind_chime"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_totemic_staff",
+      "has_cedar_logs",
       "has_the_recipe"
     ]
   ],

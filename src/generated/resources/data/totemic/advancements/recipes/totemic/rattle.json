@@ -1,28 +1,35 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_buffalo_tooth": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "totemic:buffalo_tooth"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "totemic:rattle"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_totemic_staff": {
+    "performed_buffalo_dance": {
       "conditions": {
-        "items": [
-          {
-            "items": [
-              "totemic:totemic_staff"
-            ]
-          }
-        ]
+        "ceremony": "totemic:buffalo_dance"
       },
-      "trigger": "minecraft:inventory_changed"
+      "trigger": "totemic:performed_ceremony"
     }
   },
   "requirements": [
     [
-      "has_totemic_staff",
+      "performed_buffalo_dance",
+      "has_buffalo_tooth",
       "has_the_recipe"
     ]
   ],

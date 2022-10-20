@@ -8,11 +8,14 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.ceremony.StartupContext;
@@ -118,16 +121,24 @@ public final class StateStartup extends TotemState implements StartupContext {
         return initiator;
     }
 
+    @SuppressWarnings("resource")
     @Override
     public void failCeremony() {
+        if(tile.getLevel().isClientSide)
+            return;
         MiscUtil.spawnServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
         tile.setTotemState(new StateTotemEffect(tile));
     }
 
+    @SuppressWarnings("resource")
     @Override
     public void startCeremony() {
+        if(tile.getLevel().isClientSide)
+            return;
         MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 1.0);
         tile.setTotemState(new StateCeremonyEffect(tile, ceremony, instance, initiator));
+        TotemicEntityUtil.getPlayersInRange(tile.getLevel(), tile.getBlockPos(), 8, 8)
+            .forEach(player -> CeremonyTrigger.PERFORM_CEREMONY.trigger((ServerPlayer) player, ceremony));
     }
 
     public Ceremony getCeremony() {
