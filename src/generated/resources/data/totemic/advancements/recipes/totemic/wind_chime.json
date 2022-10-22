@@ -18,10 +18,17 @@
         "recipe": "totemic:wind_chime"
       },
       "trigger": "minecraft:recipe_unlocked"
+    },
+    "performed_fertility": {
+      "conditions": {
+        "ceremony": "totemic:fertility"
+      },
+      "trigger": "totemic:performed_ceremony"
     }
   },
   "requirements": [
     [
+      "performed_fertility",
       "has_cedar_logs",
       "has_the_recipe"
     ]

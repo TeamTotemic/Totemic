@@ -75,7 +75,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('W', TotemicItemTags.CEDAR_LOGS)
                 .define('S', Tags.Items.STRING)
                 .define('C', Tags.Items.INGOTS_COPPER)
-                //.unlockedBy("performed_zaphkiel_waltz", performed(ModContent.zaphkiel_waltz))
+                .unlockedBy("performed_fertility", performed(ModContent.fertility))
                 .unlockedBy("has_cedar_logs", has(ModBlocks.cedar_log.get()))
                 .save(rc);
 
