@@ -5,12 +5,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.client.model.BuffaloModel;
 import pokefenn.totemic.client.renderer.blockentity.WindChimeRenderer;
 import pokefenn.totemic.client.renderer.entity.BuffaloRenderer;
-import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.init.ModEntityTypes;
 
 public final class ModModelLayers {
+    public static final ModelLayerLocation BUFFALO = create("buffalo");
     public static final ModelLayerLocation WIND_CHIME = create("wind_chime");
 
     private static ModelLayerLocation create(String name) {
@@ -19,6 +21,7 @@ public final class ModModelLayers {
 
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        event.registerLayerDefinition(BUFFALO, BuffaloModel::createLayer);
         event.registerLayerDefinition(WIND_CHIME, WindChimeRenderer::createLayer);
     }
 
