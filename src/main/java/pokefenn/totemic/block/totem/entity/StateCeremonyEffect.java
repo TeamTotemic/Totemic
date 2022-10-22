@@ -52,6 +52,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
         BlockPos pos = tile.getBlockPos();
 
         instance.effect(world, pos, this);
+        time++;
 
         if(!world.isClientSide) {
             if(time >= instance.getEffectTime()) {
