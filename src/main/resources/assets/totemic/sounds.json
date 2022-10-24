@@ -6,7 +6,12 @@
     "sounds": ["totemic:drum"]
   },
   "wind_chime": {
-    "sounds": ["totemic:wind_chime"]
+    "sounds": [
+      {
+        "name": "totemic:wind_chime",
+        "volume": 0.5
+      }
+    ]
   },
   "rattle": {
     "sounds": ["totemic:rattle"]

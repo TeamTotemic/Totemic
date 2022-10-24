@@ -22,8 +22,8 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.block.totem.entity.TileTotemBase;
 import pokefenn.totemic.block.totem.entity.TotemState;
 import pokefenn.totemic.init.ModBlockEntities;
-import pokefenn.totemic.util.MiscUtil;
 import pokefenn.totemic.util.BlockUtil;
+import pokefenn.totemic.util.MiscUtil;
 
 public enum MusicApiImpl implements MusicAPI {
     INSTANCE;
@@ -110,7 +110,9 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     private static void playInstrumentSound(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr) {
-        if(instr.getSound() != null)
-            level.playSound(entity instanceof Player ? (Player) entity : null, x, y, z, instr.getSound().get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+        if(instr.getSound() != null) {
+            var source = (entity instanceof Player) ? SoundSource.PLAYERS : SoundSource.BLOCKS;
+            level.playSound(entity instanceof Player ? (Player) entity : null, x, y, z, instr.getSound().get(), source, 1.0F, 1.0F);
+        }
     }
 }
