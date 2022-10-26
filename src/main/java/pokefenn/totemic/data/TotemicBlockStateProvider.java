@@ -46,6 +46,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         var im = itemModels();
         im.basicItem(ModItems.flute.get());
         im.basicItem(ModItems.infused_flute.get());
+        im.basicItem(ModItems.jingle_dress.get());
         im.basicItem(ModItems.rattle.get());
         im.basicItem(ModItems.totem_whittling_knife.get());
         im.basicItem(ModItems.totemic_staff.get());

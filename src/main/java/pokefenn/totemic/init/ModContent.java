@@ -24,7 +24,7 @@ public final class ModContent {
     public static final MusicInstrument flute = new MusicInstrument(resloc("flute"), 180, 3000);
     public static final MusicInstrument drum = new MusicInstrument(resloc("drum"), 240, 3300);
     public static final MusicInstrument wind_chime = new MusicInstrument(resloc("wind_chime"), 120, 1500);
-//    public static final MusicInstrument jingle_dress = new MusicInstrument(resloc("jingle_dress"), 180, 1500);
+    public static final MusicInstrument jingle_dress = new MusicInstrument(resloc("jingle_dress"), 180, 1500);
     public static final MusicInstrument rattle = new MusicInstrument(resloc("rattle"), 300, 3300);
 //    public static final MusicInstrument eagle_bone_whistle = new MusicInstrument(resloc("eagle_bone_whistle"), 360, 3600);
 //    public static final MusicInstrument nether_pipe = new MusicInstrument(resloc("nether_pipe"), 240, 3900);
@@ -78,6 +78,7 @@ public final class ModContent {
                 flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute),
                 drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum),
                 wind_chime.setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime),
+                jingle_dress,
                 rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle));
     }
 

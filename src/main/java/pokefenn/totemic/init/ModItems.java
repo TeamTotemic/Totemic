@@ -25,6 +25,7 @@ import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.item.TotemicStaffItem;
 import pokefenn.totemic.item.music.FluteItem;
 import pokefenn.totemic.item.music.InfusedFluteItem;
+import pokefenn.totemic.item.music.JingleDressItem;
 import pokefenn.totemic.item.music.RattleItem;
 
 public final class ModItems {
@@ -35,6 +36,7 @@ public final class ModItems {
 
     public static final RegistryObject<FluteItem> flute = REGISTER.register("flute", () -> new FluteItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
     public static final RegistryObject<InfusedFluteItem> infused_flute = REGISTER.register("infused_flute", () -> new InfusedFluteItem(new Properties().stacksTo(1).tab(Totemic.creativeTab).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<JingleDressItem> jingle_dress = REGISTER.register("jingle_dress", () -> new JingleDressItem(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<RattleItem> rattle = REGISTER.register("rattle", () -> new RattleItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250).tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemicStaffItem> totemic_staff = REGISTER.register("totemic_staff", () -> new TotemicStaffItem(new Properties().stacksTo(1).tab(Totemic.creativeTab).rarity(Rarity.UNCOMMON)));
