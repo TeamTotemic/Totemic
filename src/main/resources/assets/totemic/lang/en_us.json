@@ -75,7 +75,8 @@
   "totemic.ceremony.totemic.drought": "Drought Dance",
   "totemic.ceremony.totemic.flute_infusion": "Serenade for Syrinx",
   
-  "effect.totemic.spider": "Spider",
+  "effect.totemic.spider": "Wall Climbing",
+  "effect.totemic.ocelot": "Creeper Defense",
 
   "itemGroup.totemic": "Totemic",
   

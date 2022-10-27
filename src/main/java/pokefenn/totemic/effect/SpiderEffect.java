@@ -7,8 +7,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 
 public class SpiderEffect extends MobEffect {
-    public SpiderEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0x524354);
+    public SpiderEffect(MobEffectCategory pCategory, int pColor) {
+        super(pCategory, pColor);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class SpiderEffect extends MobEffect {
         if(entity.horizontalCollision) {
             entity.fallDistance = 0.0F;
 
-            float velocity = 0.15F;
+            final float velocity = 0.15F;
 
             Vec3 motion = entity.getDeltaMovement();
 
