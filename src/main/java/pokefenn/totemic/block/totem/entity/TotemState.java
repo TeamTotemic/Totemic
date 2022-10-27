@@ -11,9 +11,9 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.util.MiscUtil;
 
 public abstract sealed class TotemState implements MusicAcceptor permits StateTotemEffect, StateSelection, StateStartup, StateCeremonyEffect {
-    final TileTotemBase tile;
+    final TotemBaseBlockEntity tile;
 
-    TotemState(TileTotemBase tile) {
+    TotemState(TotemBaseBlockEntity tile) {
         this.tile = tile;
     }
 
@@ -38,7 +38,7 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
         tile.setTotemState(new StateTotemEffect(tile));
     }
 
-    static TotemState fromID(byte id, TileTotemBase tile) {
+    static TotemState fromID(byte id, TotemBaseBlockEntity tile) {
         return switch(id) {
             case StateTotemEffect.ID -> new StateTotemEffect(tile);
             case StateSelection.ID -> new StateSelection(tile);

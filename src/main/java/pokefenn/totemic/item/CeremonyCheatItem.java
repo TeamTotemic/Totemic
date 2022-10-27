@@ -12,7 +12,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.block.totem.entity.StateStartup;
-import pokefenn.totemic.block.totem.entity.TileTotemBase;
+import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
 
 public class CeremonyCheatItem extends Item {
@@ -24,7 +24,7 @@ public class CeremonyCheatItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         return context.getLevel().getBlockEntity(context.getClickedPos(), ModBlockEntities.totem_base.get())
-                .map(TileTotemBase::getTotemState)
+                .map(TotemBaseBlockEntity::getTotemState)
                 .filter(state -> state instanceof StateStartup)
                 .map(state -> {
                     ((StateStartup) state).startCeremony();

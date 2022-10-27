@@ -36,7 +36,7 @@ import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
 import pokefenn.totemic.block.totem.entity.StateSelection;
 import pokefenn.totemic.block.totem.entity.StateStartup;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
-import pokefenn.totemic.block.totem.entity.TileTotemBase;
+import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.util.BlockUtil;
@@ -93,7 +93,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     public void attack(BlockState state, Level level, BlockPos pos, Player player) {
         if(player.getMainHandItem().getItem() == ModItems.totemic_staff.get()) {
             level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
-                    .ifPresent(TileTotemBase::resetTotemState);
+                    .ifPresent(TotemBaseBlockEntity::resetTotemState);
         }
     }
 
@@ -106,7 +106,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if(facing == Direction.UP) {
             level.getBlockEntity(currentPos, ModBlockEntities.totem_base.get())
-                    .ifPresent(TileTotemBase::onPoleChange);
+                    .ifPresent(TotemBaseBlockEntity::onPoleChange);
         }
         BlockUtil.scheduleWaterloggedTick(state, currentPos, level);
         return state;
@@ -123,13 +123,13 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new TileTotemBase(pos, state);
+        return new TotemBaseBlockEntity(pos, state);
     }
 
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return BlockUtil.createTickerHelper(type, ModBlockEntities.totem_base.get(), TileTotemBase::tick);
+        return BlockUtil.createTickerHelper(type, ModBlockEntities.totem_base.get(), TotemBaseBlockEntity::tick);
     }
 
     @Override

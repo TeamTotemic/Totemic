@@ -8,13 +8,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.music.entity.WindChimeBlockEntity;
-import pokefenn.totemic.block.totem.entity.TileTotemBase;
+import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 
 public final class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, TotemicAPI.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<TileTotemBase>> totem_base = REGISTER.register("totem_base", () ->
-            Builder.of(TileTotemBase::new, ModBlocks.getTotemBases().values().stream()
+    public static final RegistryObject<BlockEntityType<TotemBaseBlockEntity>> totem_base = REGISTER.register("totem_base", () ->
+            Builder.of(TotemBaseBlockEntity::new, ModBlocks.getTotemBases().values().stream()
                     .map(RegistryObject::get)
                     .toArray(Block[]::new))
             .build(null));

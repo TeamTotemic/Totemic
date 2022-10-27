@@ -25,14 +25,14 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
 
     private int time = 0;
 
-    StateCeremonyEffect(TileTotemBase tile, Ceremony ceremony, CeremonyInstance instance, Entity initiator) {
+    StateCeremonyEffect(TotemBaseBlockEntity tile, Ceremony ceremony, CeremonyInstance instance, Entity initiator) {
         super(tile);
         this.ceremony = ceremony;
         this.instance = instance;
         this.initiator = initiator;
     }
 
-    StateCeremonyEffect(TileTotemBase tile) {
+    StateCeremonyEffect(TotemBaseBlockEntity tile) {
         super(tile);
     }
 

@@ -30,7 +30,7 @@ import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlockEntities;
 
-public class TileTotemBase extends BlockEntity {
+public class TotemBaseBlockEntity extends BlockEntity {
     private boolean firstTick = true;
 
     private final List<TotemEffect> totemEffectList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
@@ -41,11 +41,11 @@ public class TileTotemBase extends BlockEntity {
 
     private LazyOptional<MusicAcceptor> musicHandler = LazyOptional.of(() -> this.state);
 
-    public TileTotemBase(BlockPos pos, BlockState state) {
+    public TotemBaseBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.totem_base.get(), pos, state);
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState blockState, TileTotemBase tile) {
+    public static void tick(Level level, BlockPos pos, BlockState blockState, TotemBaseBlockEntity tile) {
         if(tile.firstTick) {
             tile.calculateTotemEffects();
             tile.firstTick = false;

@@ -19,7 +19,7 @@ import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.block.totem.entity.TileTotemBase;
+import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.block.totem.entity.TotemState;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.util.BlockUtil;
@@ -103,7 +103,7 @@ public enum MusicApiImpl implements MusicAPI {
         MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, new Vec3(x, y, z), 8, new Vec3(0.6, 0.5, 0.6), 0.0);
         Optional<TotemState> totemState = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, new BlockPos(x, y, z), range)
                 .min(BlockUtil.compareCenterDistanceTo(x, y, z))
-                .map(TileTotemBase::getTotemState)
+                .map(TotemBaseBlockEntity::getTotemState)
                 .filter(TotemState::canSelect);
         totemState.ifPresent(t -> t.addSelector(entity, instr));
         return totemState.isPresent();

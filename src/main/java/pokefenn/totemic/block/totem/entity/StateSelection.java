@@ -30,12 +30,12 @@ public final class StateSelection extends TotemState {
     private final List<MusicInstrument> selectors = new ArrayList<>(CeremonyAPI.MAX_SELECTORS);
     private int time = 0; //Time since last selection
 
-    StateSelection(TileTotemBase tile, StateTotemEffect previousState) {
+    StateSelection(TotemBaseBlockEntity tile, StateTotemEffect previousState) {
         super(tile);
         this.previousState = previousState;
     }
 
-    StateSelection(TileTotemBase tile) {
+    StateSelection(TotemBaseBlockEntity tile) {
         this(tile, new StateTotemEffect(tile));
     }
 

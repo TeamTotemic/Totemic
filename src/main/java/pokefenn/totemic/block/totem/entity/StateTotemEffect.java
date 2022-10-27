@@ -18,7 +18,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
 
     private int musicAmount = 0;
 
-    StateTotemEffect(TileTotemBase tile) {
+    StateTotemEffect(TotemBaseBlockEntity tile) {
         super(tile);
     }
 

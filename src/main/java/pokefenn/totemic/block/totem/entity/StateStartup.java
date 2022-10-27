@@ -36,14 +36,14 @@ public final class StateStartup extends TotemState implements StartupContext {
     private final DefaultMusicAcceptor musicHandler = new DefaultMusicAcceptor();
     private int time = 0;
 
-    StateStartup(TileTotemBase tile, Ceremony ceremony, CeremonyInstance instance, Entity initiator) {
+    StateStartup(TotemBaseBlockEntity tile, Ceremony ceremony, CeremonyInstance instance, Entity initiator) {
         super(tile);
         this.ceremony = ceremony;
         this.instance = instance;
         this.initiator = initiator;
     }
 
-    StateStartup(TileTotemBase tile) {
+    StateStartup(TotemBaseBlockEntity tile) {
         super(tile);
     }
 
