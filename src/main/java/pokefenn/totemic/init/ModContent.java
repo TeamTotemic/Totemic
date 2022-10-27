@@ -78,7 +78,7 @@ public final class ModContent {
                 flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute),
                 drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum),
                 wind_chime.setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime),
-                jingle_dress,
+                jingle_dress.setItem(ModItems.jingle_dress.get()),
                 rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle));
     }
 
