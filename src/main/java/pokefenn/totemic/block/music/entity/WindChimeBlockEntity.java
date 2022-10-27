@@ -9,12 +9,14 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.util.BlockUtil;
@@ -36,7 +38,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     public static void tick(Level level, BlockPos pos, BlockState state, WindChimeBlockEntity tile) {
         if(tile.isPlaying()) {
             if(tile.playingTimeLeft % 40 == 0)
-                TotemicAPI.get().music().playMusic(level, pos, null, ModContent.wind_chime);
+                tile.playMusic(level, pos, state);
 
             tile.playingTimeLeft--;
             if(tile.playingTimeLeft <= 0)
@@ -52,6 +54,13 @@ public class WindChimeBlockEntity extends BlockEntity {
             if(tile.isCongested && level.isClientSide)
                 tile.congestionParticles();
         }
+    }
+
+    private void playMusic(Level level, BlockPos pos, BlockState state) {
+        var above = level.getBlockState(pos.above());
+        int baseAmount = ModContent.wind_chime.getBaseOutput();
+        int bonus = above.is(BlockTags.LEAVES) ? 60 : 0;
+        TotemicAPI.get().music().playMusic(level, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, null, ModContent.wind_chime, MusicAPI.DEFAULT_RANGE, baseAmount + bonus);
     }
 
     @Override
