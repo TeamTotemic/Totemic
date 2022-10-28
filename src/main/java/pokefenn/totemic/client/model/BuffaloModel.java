@@ -2,6 +2,9 @@ package pokefenn.totemic.client.model;
 
 import java.util.List;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+
 import net.minecraft.client.model.AgeableListModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -145,13 +148,23 @@ public class BuffaloModel<T extends Buffalo> extends AgeableListModel<T> {
 
     @Override
     public void setupAnim(T buffalo, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        final float legspeed = 0.85F;
+        final float legSpeed = 0.6662F;
+        final float legFactor = 1.4F;
 
         head.xRot = headPitch * Mth.DEG_TO_RAD + Mth.HALF_PI;
         head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
-        leg1.xRot = Mth.cos(limbSwing * legspeed) * 1.4F * limbSwingAmount + 8F*Mth.DEG_TO_RAD;
-        leg2.xRot = Mth.cos(limbSwing * legspeed + Mth.PI) * 1.4F * limbSwingAmount + 8F*Mth.DEG_TO_RAD;
-        leg3.xRot = Mth.cos(limbSwing * legspeed + Mth.PI) * 1.4F * limbSwingAmount;
-        leg4.xRot = Mth.cos(limbSwing * legspeed) * 1.4F * limbSwingAmount;
+        leg1.xRot = Mth.cos(limbSwing * legSpeed) * legFactor * limbSwingAmount + 8F*Mth.DEG_TO_RAD;
+        leg2.xRot = Mth.cos(limbSwing * legSpeed + Mth.PI) * legFactor * limbSwingAmount + 8F*Mth.DEG_TO_RAD;
+        leg3.xRot = Mth.cos(limbSwing * legSpeed + Mth.PI) * legFactor * limbSwingAmount;
+        leg4.xRot = Mth.cos(limbSwing * legSpeed) * legFactor * limbSwingAmount;
+    }
+
+    @Override
+    public void renderToBuffer(PoseStack ps, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
+        ps.pushPose();
+        ps.translate(0F, -0.75F, 0F);
+        ps.scale(1.5F, 1.5F, 1.5F);
+        super.renderToBuffer(ps, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+        ps.popPose();
     }
 }
