@@ -6,33 +6,30 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.INBTSerializable;
 
-public abstract class CeremonyInstance implements INBTSerializable<Tag> {
-    public CeremonyInstance() {
-    }
+public interface CeremonyInstance extends INBTSerializable<Tag> {
+    void effect(Level level, BlockPos pos, CeremonyEffectContext context);
 
-    public boolean canSelect(Level level, BlockPos pos) {
-        return true;
-    }
-
-    public void onStartup(Level level, BlockPos pos, StartupContext context) { }
-
-    public void onStartupFail(Level level, BlockPos pos, StartupContext context) { }
-
-    public boolean canStartEffect(Level level, BlockPos pos, StartupContext context) {
-        return true;
-    }
-
-    public abstract void effect(Level level, BlockPos pos, CeremonyEffectContext context);
-
-    public int getEffectTime() {
+    default int getEffectTime() {
         return 0;
     }
 
+    default boolean canSelect(Level level, BlockPos pos) {
+        return true;
+    }
+
+    default void onStartup(Level level, BlockPos pos, StartupContext context) { }
+
+    default void onStartupFail(Level level, BlockPos pos, StartupContext context) { }
+
+    default boolean canStartEffect(Level level, BlockPos pos, StartupContext context) {
+        return true;
+    }
+
     @Override
-    public Tag serializeNBT() {
+    default Tag serializeNBT() {
         return EndTag.INSTANCE;
     }
 
     @Override
-    public void deserializeNBT(Tag nbt) { }
+    default void deserializeNBT(Tag nbt) { }
 }

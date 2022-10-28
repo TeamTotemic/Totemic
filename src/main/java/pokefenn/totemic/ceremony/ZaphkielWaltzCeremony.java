@@ -17,7 +17,7 @@ import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.util.MiscUtil;
 
-public class ZaphkielWaltzCeremony extends CeremonyInstance {
+public class ZaphkielWaltzCeremony implements CeremonyInstance {
     private static final int RADIUS = 6;
 
     @Override
