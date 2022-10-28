@@ -21,7 +21,7 @@ public class BuffaloDanceCeremony extends CeremonyInstance {
         TotemicEntityUtil.getEntitiesInRange(Cow.class, level, pos, 8, 8, e -> e.getType() != ModEntityTypes.buffalo.get())
         .limit(2)
         .forEach(cow -> {
-            var buffalo = new Buffalo(ModEntityTypes.buffalo.get(), level);
+            var buffalo = ModEntityTypes.buffalo.get().create(level);
             float health = cow.getHealth() / cow.getMaxHealth() * buffalo.getMaxHealth();
             buffalo.setHealth(health);
             buffalo.setAge(Buffalo.BABY_START_AGE);

@@ -7,6 +7,7 @@ import java.util.stream.Collector;
 
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
@@ -57,5 +58,11 @@ public final class MiscUtil {
         if(level instanceof ServerLevel slevel) {
             slevel.sendParticles(particle, pos.x, pos.y, pos.z, count, spread.x, spread.y, spread.z, speed);
         }
+    }
+
+    public static void shrinkItemEntity(ItemEntity entity) {
+        entity.getItem().shrink(1);
+        if(entity.getItem().isEmpty())
+            entity.discard();
     }
 }

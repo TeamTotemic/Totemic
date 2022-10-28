@@ -53,7 +53,7 @@ public class FertilityCeremony extends CeremonyInstance {
             var itemE = findItemEntity(level, pos, animal::isFood);
             if(itemE.isPresent()) {
                 if(level.random.nextInt(3) < 2)
-                    shrink(itemE.get());
+                    MiscUtil.shrinkItemEntity(itemE.get());
                 animal.setInLove(context.getInitiator() instanceof Player p ? p : null);
                 return; //Limit to one animal or villager per second
             }
@@ -62,14 +62,8 @@ public class FertilityCeremony extends CeremonyInstance {
         //TODO: Villager breeding
     }
 
-    private Optional<ItemEntity> findItemEntity(Level level, BlockPos pos, Predicate<ItemStack> predicate) {
+    private static Optional<ItemEntity> findItemEntity(Level level, BlockPos pos, Predicate<ItemStack> predicate) {
         return TotemicEntityUtil.getEntitiesInRange(ItemEntity.class, level, pos, RADIUS, RADIUS, e -> predicate.test(e.getItem())).findAny();
-    }
-
-    private void shrink(ItemEntity entity) {
-        entity.getItem().shrink(1);
-        if(entity.getItem().isEmpty())
-            entity.discard();
     }
 
     @Override
