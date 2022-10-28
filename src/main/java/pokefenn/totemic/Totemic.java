@@ -13,10 +13,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.apiimpl.TotemicApiImpl;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
@@ -71,14 +69,6 @@ public final class Totemic {
 
             modBus.register(ClientInitHandlers.class);
             modBus.register(ModModelLayers.class);
-        }
-
-        // Instance field is private, need reflection
-        try {
-            ObfuscationReflectionHelper.findField(TotemicAPI.class, "instance").set(null, new TotemicApiImpl());
-        }
-        catch(Exception e) {
-            throw new RuntimeException("Could not set API field", e);
         }
     }
 

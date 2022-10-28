@@ -1,5 +1,7 @@
 package pokefenn.totemic.api;
 
+import java.util.ServiceLoader;
+
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.registry.RegistryAPI;
@@ -14,17 +16,13 @@ public abstract class TotemicAPI {
      */
     public static final String MOD_ID = "totemic";
 
-    private static TotemicAPI instance;
+    private static final TotemicAPI INSTANCE = loadService();
 
     /**
      * Returns an instance of the Totemic API.
-     * <p>
-     * This method may be called after the mod construction phase.
      */
     public static TotemicAPI get() {
-        if(instance == null)
-            throw new IllegalStateException("The Totemic API has been accessed too early, or Totemic is not installed");
-        return instance;
+        return INSTANCE;
     }
 
     /**
@@ -46,4 +44,13 @@ public abstract class TotemicAPI {
      * Provides access to functionality commonly used for implementing Ceremonies.
      */
     public abstract CeremonyAPI ceremony();
+
+    private static TotemicAPI loadService() {
+        var providers = ServiceLoader.load(TotemicAPI.class).stream().toList();
+        if(providers.isEmpty())
+            throw new IllegalStateException("No TotemicAPI provider found, Totemic is not installed");
+        else if(providers.size() > 1)
+            throw new IllegalStateException("Multiple TotemicAPI providers found");
+        return providers.get(0).get();
+    }
 }
