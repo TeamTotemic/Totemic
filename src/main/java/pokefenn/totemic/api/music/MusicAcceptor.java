@@ -29,13 +29,11 @@ public interface MusicAcceptor {
      *
      * @param instr  the music instrument
      * @param amount the amount of music
-     * @param x
-     * @param y      the instrument's location. This might be different from the entity's position (e.g. Drum).
-     * @param z
+     * @param from   the instrument's location. This might be different from the entity's position (e.g. Drum).
      * @param entity the entity playing the instrument. Might be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
      * @return a {@link MusicResult} describing the result of this call.
      */
-    MusicResult acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity);
+    MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity);
 
     /**
      * Returns the position of this acceptor.

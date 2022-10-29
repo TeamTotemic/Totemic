@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 /**
  * Provides access to music-related functionality which is commonly used by music instrument blocks and items. Use {@code TotemicAPI.get().music()} to get an
@@ -28,7 +29,7 @@ public interface MusicAPI {
      * @param entity the entity playing the instrument. May be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
      * @param instr  the instrument.
      */
-    void playMusic(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr);
+    void playMusic(Level level, Vec3 pos, @Nullable Entity entity, MusicInstrument instr);
 
     /**
      * Plays music from an instrument from the entity's position to all nearby music acceptors (prioritizing higher priority acceptors, and evenly splitting
@@ -68,7 +69,7 @@ public interface MusicAPI {
      * @param range  the range. The default value is given by {@link #DEFAULT_RANGE}.
      * @param amount the amount of music to play. The default value is given by {@link MusicInstrument#getBaseOutput}.
      */
-    void playMusic(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount);
+    void playMusic(Level level, Vec3 pos, @Nullable Entity entity, MusicInstrument instr, int range, int amount);
 
     /**
      * Attempts to add the given instrument as selector to the closest nearby Totem Base. Usually this is triggered when playing the instrument while sneaking.
@@ -80,7 +81,7 @@ public interface MusicAPI {
      * @param entity the entity playing the instrument. This is usually a PlayerEntity and should not be {@code null}.
      * @param instr  the instrument.
      */
-    void playSelector(Level level, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr);
+    void playSelector(Level level, Vec3 pos, @Nonnull Entity entity, MusicInstrument instr);
 
     /**
      * Attempts to add the given instrument as selector to the closest nearby Totem Base. Usually this is triggered when playing the instrument while sneaking.
@@ -115,5 +116,5 @@ public interface MusicAPI {
      * @param instr  the instrument.
      * @param range  the range. The default value is given by {@link #DEFAULT_RANGE}.
      */
-    void playSelector(Level level, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range);
+    void playSelector(Level level, Vec3 pos, @Nonnull Entity entity, MusicInstrument instr, int range);
 }

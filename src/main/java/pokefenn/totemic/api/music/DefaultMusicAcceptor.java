@@ -44,7 +44,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
      * @return {@code true} if any music was accepted.
      */
     @Override
-    public MusicResult acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
+    public MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity) {
         int oldVal = music.getInt(instr);
         int newVal = Math.min(oldVal + amount, instr.getMusicMaximum()); //implicit null check on instr
         if(newVal != oldVal) {

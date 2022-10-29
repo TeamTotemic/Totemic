@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.init.ModBlockEntities;
@@ -60,7 +61,7 @@ public class WindChimeBlockEntity extends BlockEntity {
         var above = level.getBlockState(pos.above());
         int baseAmount = ModContent.wind_chime.getBaseOutput();
         int bonus = above.is(BlockTags.LEAVES) ? 60 : 0;
-        TotemicAPI.get().music().playMusic(level, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, null, ModContent.wind_chime, MusicAPI.DEFAULT_RANGE, baseAmount + bonus);
+        TotemicAPI.get().music().playMusic(level, Vec3.atBottomCenterOf(pos), null, ModContent.wind_chime, MusicAPI.DEFAULT_RANGE, baseAmount + bonus);
     }
 
     @Override

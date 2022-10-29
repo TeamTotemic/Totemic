@@ -73,7 +73,7 @@ public final class StateSelection extends TotemState {
     }
 
     @Override
-    public MusicResult acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
+    public MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity) {
         return MusicResult.FAILURE;
     }
 

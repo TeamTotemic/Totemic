@@ -29,30 +29,30 @@ public enum MusicApiImpl implements MusicAPI {
     INSTANCE;
 
     @Override
-    public void playMusic(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr) {
-        playMusic(level, x, y, z, entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
+    public void playMusic(Level level, Vec3 pos, @Nullable Entity entity, MusicInstrument instr) {
+        playMusic(level, pos, entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
     }
 
     @Override
     public void playMusic(@Nonnull Entity entity, MusicInstrument instr) {
-        playMusic(entity.level, entity.getX(), entity.getY(), entity.getZ(), entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
+        playMusic(entity.level, entity.position(), entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
     }
 
     @Override
     public void playMusic(Level level, BlockPos pos, @Nullable Entity entity, MusicInstrument instr) {
-        playMusic(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr);
+        playMusic(level, Vec3.atCenterOf(pos), entity, instr);
     }
 
     @Override
-    public void playMusic(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
-        playInstrumentSound(level, x, y, z, entity, instr);
+    public void playMusic(Level level, Vec3 pos, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
+        playInstrumentSound(level, pos, entity, instr);
         if(level.isClientSide)
             return;
 
         level.getProfiler().push("totemic.playMusic");
-        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
+        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         //TODO: Implement caching in case this performs too poorly
-        List<MusicAcceptor> list = BlockUtil.getBlockEntitiesInRange(null, level, new BlockPos(x, y, z), range)
+        List<MusicAcceptor> list = BlockUtil.getBlockEntitiesInRange(null, level, new BlockPos(pos), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)
                 .map(lo -> lo.orElse(null))
@@ -60,7 +60,7 @@ public enum MusicApiImpl implements MusicAPI {
                 .collect(MiscUtil.collectMaxElements(Comparator.comparing(MusicAcceptor::getPriority)));
 
         for(MusicAcceptor acc: list) { //The loop is not executed when list is empty, so we got no division by zero
-            var result = acc.acceptMusic(instr, amount / list.size(), x, y, z, entity);
+            var result = acc.acceptMusic(instr, amount / list.size(), pos, entity);
             if(result.isSuccess())
                 MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0); //TODO: The way the particles are being spawned should probably be changed (creating our own packet)
             if(result.isSaturated())
@@ -70,39 +70,39 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public void playSelector(Level level, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr) {
-        playSelector(level, x, y, z, entity, instr, DEFAULT_RANGE);
+    public void playSelector(Level level, Vec3 pos, @Nonnull Entity entity, MusicInstrument instr) {
+        playSelector(level, pos, entity, instr, DEFAULT_RANGE);
     }
 
     @Override
     public void playSelector(@Nonnull Entity entity, MusicInstrument instr) {
-        playSelector(entity.level, entity.getX(), entity.getY(), entity.getZ(), entity, instr, DEFAULT_RANGE);
+        playSelector(entity.level, entity.position(), entity, instr, DEFAULT_RANGE);
     }
 
     @Override
     public void playSelector(Level level, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr) {
-        playSelector(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, entity, instr);
+        playSelector(level, Vec3.atCenterOf(pos), entity, instr);
     }
 
     @Override
-    public void playSelector(Level level, double x, double y, double z, @Nonnull Entity entity, MusicInstrument instr, int range) {
-        playInstrumentSound(level, x, y, z, entity, instr);
+    public void playSelector(Level level, Vec3 pos, @Nonnull Entity entity, MusicInstrument instr, int range) {
+        playInstrumentSound(level, pos, entity, instr);
         if(level.isClientSide)
             return;
 
-        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, new Vec3(x, y, z), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
-        MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, new Vec3(x, y, z), 8, new Vec3(0.6, 0.5, 0.6), 0.0);
-        Optional<TotemState> totemState = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, new BlockPos(x, y, z), range)
-                .min(BlockUtil.compareCenterDistanceTo(x, y, z))
+        MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
+        MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, pos, 8, new Vec3(0.6, 0.5, 0.6), 0.0);
+        Optional<TotemState> totemState = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, new BlockPos(pos), range)
+                .min(BlockUtil.compareCenterDistanceTo(pos))
                 .map(TotemBaseBlockEntity::getTotemState)
                 .filter(TotemState::canSelect);
         totemState.ifPresent(t -> t.addSelector(entity, instr));
     }
 
-    private static void playInstrumentSound(Level level, double x, double y, double z, @Nullable Entity entity, MusicInstrument instr) {
+    private static void playInstrumentSound(Level level, Vec3 pos, @Nullable Entity entity, MusicInstrument instr) {
         if(instr.getSound() != null) {
             var source = (entity instanceof Player) ? SoundSource.PLAYERS : SoundSource.BLOCKS;
-            level.playSound(entity instanceof Player ? (Player) entity : null, x, y, z, instr.getSound().get(), source, 1.0F, 1.0F);
+            level.playSound(entity instanceof Player ? (Player) entity : null, pos.x, pos.y, pos.z, instr.getSound().get(), source, 1.0F, 1.0F);
         }
     }
 }

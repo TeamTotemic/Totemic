@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.Vec3;
 
 public final class BlockUtil {
     //Same method as in BaseEntityBlock, but made public
@@ -48,8 +49,8 @@ public final class BlockUtil {
             && start.getZ() <= vec.getZ() && vec.getZ() <= end.getZ();
     }
 
-    public static Comparator<BlockEntity> compareCenterDistanceTo(double x, double y, double z) {
-        return Comparator.comparing((BlockEntity t) -> t.getBlockPos().distToCenterSqr(x, y, z));
+    public static Comparator<BlockEntity> compareCenterDistanceTo(Vec3 pos) {
+        return Comparator.comparing((BlockEntity t) -> t.getBlockPos().distToCenterSqr(pos));
     }
 
     public static boolean placedInWater(BlockPlaceContext context) {

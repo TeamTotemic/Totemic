@@ -53,8 +53,8 @@ public final class StateStartup extends TotemState implements StartupContext {
     }
 
     @Override
-    public MusicResult acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
-        var result = musicHandler.acceptMusic(instr, amount, x, y, z, entity);
+    public MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity) {
+        var result = musicHandler.acceptMusic(instr, amount, from, entity);
         if(result.isSuccess()) {
             NetworkHandler.channel.send(NetworkHandler.nearTile(tile, 16),
                     new ClientboundPacketStartupMusic(tile.getBlockPos(), instr, musicHandler.getMusicAmount(instr)));

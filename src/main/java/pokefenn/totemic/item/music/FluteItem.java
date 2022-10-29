@@ -28,7 +28,7 @@ public class FluteItem extends Item {
         if(player.isShiftKeyDown())
             TotemicAPI.get().music().playSelector(player, ModContent.flute);
         else
-            TotemicAPI.get().music().playMusic(world, player.getX(), player.getY(), player.getZ(), player, ModContent.flute, MusicAPI.DEFAULT_RANGE, getMusicAmount(world));
+            TotemicAPI.get().music().playMusic(world, player.position(), player, ModContent.flute, MusicAPI.DEFAULT_RANGE, getMusicAmount(world));
 
         player.getCooldowns().addCooldown(ModItems.flute.get(), 20);
         player.getCooldowns().addCooldown(ModItems.infused_flute.get(), 20);
