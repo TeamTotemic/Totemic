@@ -38,20 +38,15 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
-    public boolean canAcceptMusic(MusicInstrument instr) {
-        return musicAmount < TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC;
-    }
-
-    @Override
-    public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
+    public MusicResult acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
         int previous = musicAmount;
         musicAmount = Math.min(previous + amount, TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC);
         if(musicAmount > previous) {
             tile.setChanged();
-            return true;
+            return (musicAmount == previous + amount) ? MusicResult.SUCCESS : MusicResult.SUCCESS_SATURATED;
         }
         else
-            return false;
+            return MusicResult.SATURATED;
     }
 
     @Override

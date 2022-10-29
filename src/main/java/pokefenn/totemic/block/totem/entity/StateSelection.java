@@ -73,8 +73,8 @@ public final class StateSelection extends TotemState {
     }
 
     @Override
-    public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
-        return false;
+    public MusicResult acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
+        return MusicResult.FAILURE;
     }
 
     @SuppressWarnings("resource")

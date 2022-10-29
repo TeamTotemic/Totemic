@@ -25,13 +25,6 @@ public interface MusicAcceptor {
     static final int CEREMONY_PRIORITY = 16;
 
     /**
-     * Returns {@code true} if the acceptor is able to accept music from the specified instrument. If the acceptor is saturated with the instrument,
-     * {@code false} should be returned.
-     * @param instr the music instrument
-     */
-    boolean canAcceptMusic(MusicInstrument instr);
-
-    /**
      * Accepts music from the given instrument, possibly played by an entity.
      *
      * @param instr  the music instrument
@@ -40,9 +33,9 @@ public interface MusicAcceptor {
      * @param y      the instrument's location. This might be different from the entity's position (e.g. Drum).
      * @param z
      * @param entity the entity playing the instrument. Might be {@code null} if the instrument is not driven by an entity (e.g. Wind Chime).
-     * @return {@code true} if this call had any effect on the acceptor.
+     * @return a {@link MusicResult} describing the result of this call.
      */
-    boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity);
+    MusicResult acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity);
 
     /**
      * Returns the position of this acceptor.
@@ -52,10 +45,53 @@ public interface MusicAcceptor {
     Vec3 getPosition();
 
     /**
+     * Returns {@code true} if the acceptor is <em>generally</em> able to accept music from the specified instrument.
+     * Note that this method should still return {@code true} if the acceptor is merely saturated with the instrument.
+     * @param instr the music instrument
+     */
+    default boolean canAcceptMusic(MusicInstrument instr) {
+        return true;
+    }
+
+    /**
      * Returns the priority of the Music Acceptor. Higher priority acceptors will receive music before other acceptors. The music will be evenly split between
      * acceptors with the same priority.
      */
     default int getPriority() {
         return DEFAULT_PRIORITY;
+    }
+
+    /**
+     * Status value returned by {@link MusicAcceptor#acceptMusic}.
+     */
+    enum MusicResult {
+        /** Indicates that all of the music was transferred into the acceptor. */
+        SUCCESS,
+
+        /** Indicates that some but not all of the music was transferred into the acceptor, leaving it saturated with the instrument. */
+        SUCCESS_SATURATED,
+
+        /** Indicates that no music was transferred into the acceptor because it was already saturated with the instrument. */
+        SATURATED,
+
+        /**
+         * Indicates that no music could be transferred into the acceptor for reasons unrelated to saturation.
+         * In this case, {@link MusicAcceptor#canAcceptMusic} should return {@code false} if possible.
+         */
+        FAILURE;
+
+        /**
+         * @return {@code true} if the result indicates that some music was transferred.
+         */
+        public boolean isSuccess() {
+            return this == SUCCESS || this == SUCCESS_SATURATED;
+        }
+
+        /**
+         * @return {@code true} if the result indicates that the acceptor is left saturated with the instrument.
+         */
+        public boolean isSaturated() {
+            return this == SATURATED || this == SUCCESS_SATURATED;
+        }
     }
 }

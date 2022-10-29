@@ -39,29 +39,21 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
     }
 
     /**
-     * Returns {@code true} if the acceptor is not saturated with the specified instrument.
-     */
-    @Override
-    public boolean canAcceptMusic(MusicInstrument instr) {
-        return music.getInt(instr) < instr.getMusicMaximum();
-    }
-
-    /**
      * Accepts and stores music from the given instrument, up to the maximum specified by the instrument.
      *
      * @return {@code true} if any music was accepted.
      */
     @Override
-    public boolean acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
+    public MusicResult acceptMusic(MusicInstrument instr, int amount, double x, double y, double z, @Nullable Entity entity) {
         int oldVal = music.getInt(instr);
         int newVal = Math.min(oldVal + amount, instr.getMusicMaximum()); //implicit null check on instr
         if(newVal != oldVal) {
             music.put(instr, newVal);
             totalMusic += (newVal - oldVal);
-            return true;
+            return (newVal == oldVal + amount) ? MusicResult.SUCCESS : MusicResult.SUCCESS_SATURATED;
         }
         else
-            return false;
+            return MusicResult.SATURATED;
     }
 
     /**
