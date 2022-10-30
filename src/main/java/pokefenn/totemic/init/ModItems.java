@@ -46,6 +46,7 @@ public final class ModItems {
     public static final RegistryObject<Item> cooked_buffalo_meat = REGISTER.register("cooked_buffalo_meat", () -> new Item(new Properties().tab(Totemic.creativeTab).food(cooked_buffalo_meat_food)));
     public static final RegistryObject<Item> buffalo_tooth = REGISTER.register("buffalo_tooth", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<Item> buffalo_hide = REGISTER.register("buffalo_hide", () -> new Item(new Properties().tab(Totemic.creativeTab)));
+    public static final RegistryObject<Item> iron_bells = REGISTER.register("iron_bells", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties().tab(Totemic.creativeTab)));
 
     @SubscribeEvent

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "totemic:iron_bells"
+    },
+    "H": {
+      "tag": "forge:leather"
+    },
+    "L": {
+      "item": "totemic:cedar_leaves"
+    }
+  },
+  "pattern": [
+    " L ",
+    "BHB",
+    "LBL"
+  ],
+  "result": {
+    "item": "totemic:jingle_dress"
+  }
+}

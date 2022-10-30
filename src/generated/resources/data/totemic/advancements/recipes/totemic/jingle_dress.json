@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cedar_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "totemic:cedar_leaves"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "totemic:jingle_dress"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "performed_fertility": {
+      "conditions": {
+        "ceremony": "totemic:fertility"
+      },
+      "trigger": "totemic:performed_ceremony"
+    }
+  },
+  "requirements": [
+    [
+      "performed_fertility",
+      "has_cedar_leaves",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "totemic:jingle_dress"
+    ]
+  }
+}

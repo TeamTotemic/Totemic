@@ -1,4 +1,4 @@
-// 1.19.2	2022-10-26T14:53:50.629076705	Block States: totemic
+// 1.19.2	2022-10-30T14:36:19.721250184	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 7541d5efd084b8fcab58c0cfa8131531239983c6 assets/totemic/blockstates/acacia_totem_pole_bat.json
 0b98300f6a034b0fbf4b1b2b9f800c8b004a6b8f assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -312,6 +312,7 @@ c69264b0010a34694131dfd3bb3a455530f9730f assets/totemic/models/item/dark_oak_tot
 ff24f1d7728b07732a6a654ca3a3a1bafd723d3f assets/totemic/models/item/drum.json
 baafe156d70e0fe314e2ba62e97a8b4b404760b1 assets/totemic/models/item/flute.json
 367a69f1fdd1bc66c7ad732c4ceee89c3c96e72f assets/totemic/models/item/infused_flute.json
+dbb2bab8e6b42bf92c6b46b8fc2b863c461ad210 assets/totemic/models/item/iron_bells.json
 7da76990edba4607ba41bb76fe2ab73a01fbf28b assets/totemic/models/item/jingle_dress.json
 b44936484447b2d2dfc5b3ad2395029a5bc14fce assets/totemic/models/item/jungle_totem_base.json
 dd604c62fe793849d2e8916d79f2ab60ece8b0fb assets/totemic/models/item/jungle_totem_pole_bat.json

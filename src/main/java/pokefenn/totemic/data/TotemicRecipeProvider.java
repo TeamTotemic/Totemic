@@ -2,6 +2,7 @@ package pokefenn.totemic.data;
 
 import java.util.function.Consumer;
 
+import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -31,6 +32,23 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LEAVES)
                 .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get())) //TODO: Once we have a Totempedia item, it should become the item to unlock the recipes
+                .save(rc);
+        ShapedRecipeBuilder.shaped(ModItems.jingle_dress.get())
+                .pattern(" L ")
+                .pattern("BHB")
+                .pattern("LBL")
+                .define('L', ModBlocks.cedar_leaves.get())
+                .define('B', ModItems.iron_bells.get())
+                .define('H', Tags.Items.LEATHER)
+                .unlockedBy("performed_fertility", performed(ModContent.fertility))
+                .unlockedBy("has_cedar_leaves", has(ModBlocks.cedar_leaves.get()))
+                .save(rc);
+        ShapedRecipeBuilder.shaped(ModItems.iron_bells.get())
+                .pattern(" N ")
+                .pattern("NNN")
+                .pattern(" N ")
+                .define('N', Tags.Items.NUGGETS_IRON)
+                .unlockedBy("has_jingle_dress_recipe", RecipeUnlockedTrigger.unlocked(ModItems.jingle_dress.getId()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModItems.rattle.get())
                 .pattern(" WW")
