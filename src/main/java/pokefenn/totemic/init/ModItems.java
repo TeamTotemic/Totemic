@@ -40,7 +40,7 @@ public final class ModItems {
     public static final RegistryObject<RattleItem> rattle = REGISTER.register("rattle", () -> new RattleItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250).tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemicStaffItem> totemic_staff = REGISTER.register("totemic_staff", () -> new TotemicStaffItem(new Properties().stacksTo(1).tab(Totemic.creativeTab).rarity(Rarity.UNCOMMON)));
-    public static final RegistryObject<CeremonyCheatItem> ceremony_cheat = REGISTER.register("ceremony_cheat", () -> new CeremonyCheatItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
+    public static final RegistryObject<CeremonyCheatItem> ceremony_cheat = REGISTER.register("ceremony_cheat", () -> new CeremonyCheatItem(new Properties().stacksTo(1).tab(Totemic.creativeTab).rarity(Rarity.EPIC)));
     public static final RegistryObject<SpawnEggItem> buffalo_spawn_egg = REGISTER.register("buffalo_spawn_egg", () -> new ForgeSpawnEggItem(ModEntityTypes.buffalo, 0x2A1C12, 0x885F3E, new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<Item> buffalo_meat = REGISTER.register("buffalo_meat", () -> new Item(new Properties().tab(Totemic.creativeTab).food(buffalo_meat_food)));
     public static final RegistryObject<Item> cooked_buffalo_meat = REGISTER.register("cooked_buffalo_meat", () -> new Item(new Properties().tab(Totemic.creativeTab).food(cooked_buffalo_meat_food)));
