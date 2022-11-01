@@ -5,6 +5,7 @@
   "item.totemic.jingle_dress": "Glockenkleid",
   "item.totemic.jingle_dress.tooltip": "Hat keinen Selektor-Modus",
   "item.totemic.rattle": "Rassel",
+  "item.totemic.eagle_bone_whistle": "Adlerknochenpfeife",
   "item.totemic.totem_whittling_knife": "Totemschnitzmesser (%s)",
   "item.totemic.totem_whittling_knife.tooltip": "Ein Messer für all Deine Schnitzerei\nSchleichen+Rechtsklick oder Mausrad zum Ändern des Musters",
   "item.totemic.totemic_staff": "Totemstab",
@@ -17,6 +18,8 @@
   "item.totemic.buffalo_tooth": "Büffelzahn",
   "item.totemic.buffalo_hide": "Büffelleder",
   "item.totemic.iron_bells": "Eisenglocken",
+  "item.totemic.eagle_bone": "Adlerknochen",
+  "item.totemic.eagle_feather": "Adlerfeder",
   
   "totemic.tooltip.selectorMode": "Schleiche während des Spielens für den Selektor-Modus",
   
@@ -67,6 +70,7 @@
   "totemic.instrument.totemic.wind_chime": "Windspiel",
   "totemic.instrument.totemic.jingle_dress": "Glockenkleid",
   "totemic.instrument.totemic.rattle": "Rassel",
+  "totemic.instrument.totemic.eagle_bone_whistle": "Adlerknochenpfeife",
   
   "totemic.ceremony.totemic.war_dance": "Kriegstanz",
   "totemic.ceremony.totemic.depths": "Sinfonie der Tiefen",

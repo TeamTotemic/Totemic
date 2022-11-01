@@ -48,7 +48,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.basicItem(ModItems.infused_flute.get());
         im.basicItem(ModItems.jingle_dress.get());
         im.basicItem(ModItems.rattle.get());
-        im.basicItem(ModItems.iron_bells.get());
+        im.basicItem(ModItems.eagle_bone_whistle.get());
         im.basicItem(ModItems.totem_whittling_knife.get());
         im.basicItem(ModItems.totemic_staff.get());
         im.basicItem(ModItems.ceremony_cheat.get());
@@ -57,6 +57,9 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.basicItem(ModItems.cooked_buffalo_meat.get());
         im.basicItem(ModItems.buffalo_tooth.get());
         im.basicItem(ModItems.buffalo_hide.get());
+        im.basicItem(ModItems.iron_bells.get());
+        im.basicItem(ModItems.eagle_bone.get());
+        im.basicItem(ModItems.eagle_feather.get());
 
         registerTotemModels();
     }

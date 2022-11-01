@@ -14,6 +14,7 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> drum = createSound("drum");
     public static final RegistryObject<SoundEvent> wind_chime = createSound("wind_chime");
     public static final RegistryObject<SoundEvent> rattle = createSound("rattle");
+    public static final RegistryObject<SoundEvent> eagle_bone_whistle = createSound("eagle_bone_whistle");
 
     private static RegistryObject<SoundEvent> createSound(String name) {
         return REGISTER.register(name, () -> new SoundEvent(new ResourceLocation(TotemicAPI.MOD_ID, name)));

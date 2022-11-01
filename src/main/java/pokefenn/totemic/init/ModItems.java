@@ -23,6 +23,7 @@ import pokefenn.totemic.item.CustomRenderedBlockItem;
 import pokefenn.totemic.item.TotemKnifeItem;
 import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.item.TotemicStaffItem;
+import pokefenn.totemic.item.music.EagleBoneWhistleItem;
 import pokefenn.totemic.item.music.FluteItem;
 import pokefenn.totemic.item.music.InfusedFluteItem;
 import pokefenn.totemic.item.music.JingleDressItem;
@@ -38,6 +39,7 @@ public final class ModItems {
     public static final RegistryObject<InfusedFluteItem> infused_flute = REGISTER.register("infused_flute", () -> new InfusedFluteItem(new Properties().stacksTo(1).tab(Totemic.creativeTab).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<JingleDressItem> jingle_dress = REGISTER.register("jingle_dress", () -> new JingleDressItem(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<RattleItem> rattle = REGISTER.register("rattle", () -> new RattleItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
+    public static final RegistryObject<EagleBoneWhistleItem> eagle_bone_whistle = REGISTER.register("eagle_bone_whistle", () -> new EagleBoneWhistleItem(new Properties().stacksTo(1).tab(Totemic.creativeTab).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250).tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemicStaffItem> totemic_staff = REGISTER.register("totemic_staff", () -> new TotemicStaffItem(new Properties().stacksTo(1).tab(Totemic.creativeTab).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<CeremonyCheatItem> ceremony_cheat = REGISTER.register("ceremony_cheat", () -> new CeremonyCheatItem(new Properties().stacksTo(1).tab(Totemic.creativeTab).rarity(Rarity.EPIC)));
@@ -47,6 +49,8 @@ public final class ModItems {
     public static final RegistryObject<Item> buffalo_tooth = REGISTER.register("buffalo_tooth", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<Item> buffalo_hide = REGISTER.register("buffalo_hide", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<Item> iron_bells = REGISTER.register("iron_bells", () -> new Item(new Properties().tab(Totemic.creativeTab)));
+    public static final RegistryObject<Item> eagle_bone = REGISTER.register("eagle_bone", () -> new Item(new Properties().tab(Totemic.creativeTab)));
+    public static final RegistryObject<Item> eagle_feather = REGISTER.register("eagle_feather", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties().tab(Totemic.creativeTab)));
 
     @SubscribeEvent

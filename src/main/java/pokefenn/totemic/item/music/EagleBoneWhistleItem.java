@@ -14,35 +14,27 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.init.ModItems;
 
-public class FluteItem extends Item {
-    public FluteItem(Properties properties) {
-        super(properties);
+public class EagleBoneWhistleItem extends Item {
+    public EagleBoneWhistleItem(Properties pProperties) {
+        super(pProperties);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if(player.isShiftKeyDown())
-            TotemicAPI.get().music().playSelector(player, ModContent.flute);
+            TotemicAPI.get().music().playSelector(player, ModContent.eagle_bone_whistle);
         else
-            TotemicAPI.get().music().playMusic(level, player.position(), player, ModContent.flute, MusicAPI.DEFAULT_RANGE, getMusicAmount(level));
+            TotemicAPI.get().music().playMusic(player, ModContent.eagle_bone_whistle);
 
-        player.getCooldowns().addCooldown(ModItems.flute.get(), 20);
-        player.getCooldowns().addCooldown(ModItems.infused_flute.get(), 20);
-
+        player.getCooldowns().addCooldown(this, 20);
         player.awardStat(Stats.ITEM_USED.get(this));
         return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide);
     }
 
-    protected int getMusicAmount(Level level) {
-        return ModContent.flute.getBaseOutput();
-    }
-
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("totemic.tooltip.selectorMode"));
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        pTooltipComponents.add(Component.translatable("totemic.tooltip.selectorMode"));
     }
 }

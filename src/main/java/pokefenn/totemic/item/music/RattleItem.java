@@ -16,7 +16,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.init.ModItems;
 
 public class RattleItem extends Item {
     public RattleItem(Properties props) {
@@ -31,7 +30,7 @@ public class RattleItem extends Item {
             else
                 TotemicAPI.get().music().playMusic(entity, ModContent.rattle);
 
-            player.getCooldowns().addCooldown(ModItems.rattle.get(), 16);
+            player.getCooldowns().addCooldown(this, 16);
             player.awardStat(Stats.ITEM_USED.get(this));
         }
         return false;

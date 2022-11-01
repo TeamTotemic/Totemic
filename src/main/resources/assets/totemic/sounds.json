@@ -7,13 +7,13 @@
   },
   "wind_chime": {
     "sounds": [
-      {
-        "name": "totemic:wind_chime",
-        "volume": 0.5
-      }
+      {"name": "totemic:wind_chime", "volume": 0.5}
     ]
   },
   "rattle": {
     "sounds": ["totemic:rattle"]
+  },
+  "eagle_bone_whistle": {
+    "sounds": ["totemic:eagle_bone_whistle1", "totemic:eagle_bone_whistle2", "totemic:eagle_bone_whistle3"]
   }
 }
