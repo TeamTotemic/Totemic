@@ -100,6 +100,23 @@ public final class TotemicLootTableProvider extends LootTableProvider {
                                     .apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
                                     .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F)))))
                     );
+            add(ModEntityTypes.bald_eagle.get(),
+                    LootTable.lootTable()
+                    .withPool(
+                            LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .add(
+                                    LootItem.lootTableItem(ModItems.eagle_bone.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F/3.0F)))))
+                    .withPool(
+                            LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .add(
+                                    LootItem.lootTableItem(ModItems.eagle_feather.get())
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                    );
         }
 
         @Override

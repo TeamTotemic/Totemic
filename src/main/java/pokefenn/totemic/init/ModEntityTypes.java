@@ -15,7 +15,7 @@ public final class ModEntityTypes {
     public static final DeferredRegister<EntityType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, TotemicAPI.MOD_ID);
 
     public static final RegistryObject<EntityType<Buffalo>> buffalo = REGISTER.register("buffalo", () -> EntityType.Builder.of(Buffalo::new, MobCategory.CREATURE).sized(1.35F, 1.95F).clientTrackingRange(10).build("buffalo"));
-    public static final RegistryObject<EntityType<BaldEagle>> bald_eagle = REGISTER.register("bald_eagle", () -> EntityType.Builder.of(BaldEagle::new, MobCategory.CREATURE).sized(0.6F, 1.0F).clientTrackingRange(10).build("bald_eagle"));
+    public static final RegistryObject<EntityType<BaldEagle>> bald_eagle = REGISTER.register("bald_eagle", () -> EntityType.Builder.of(BaldEagle::new, MobCategory.CREATURE).sized(0.6F, 1.0F).clientTrackingRange(8).build("bald_eagle"));
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {

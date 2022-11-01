@@ -13,6 +13,7 @@
   "item.totemic.ceremony_cheat": "Kreativmodus-Zeremonien-Cheat",
   "item.totemic.ceremony_cheat.tooltip": "Benutze an einer Totembasis, um sofort die ausgewählte Zeremonie zu starten",
   "item.totemic.buffalo_spawn_egg": "Büffel-Spawn-Ei",
+  "item.totemic.bald_eagle_spawn_egg": "Weißkopfseeadler-Spawn-Ei",
   "item.totemic.buffalo_meat": "Rohes Büffelfleisch",
   "item.totemic.cooked_buffalo_meat": "Gekochtes Büffelfleisch",
   "item.totemic.buffalo_tooth": "Büffelzahn",
@@ -50,6 +51,7 @@
   "block.totemic.cedar_totem_pole": "Zedernholz-Totempfahl (%s)",
   
   "entity.totemic.buffalo": "Büffel",
+  "entity.totemic.bald_eagle": "Weißkopfseeadler",
   
   "totemic.totem.totemic.none": "Kein Effekt",
   "totemic.totem.totemic.bat": "Fledermaus",
