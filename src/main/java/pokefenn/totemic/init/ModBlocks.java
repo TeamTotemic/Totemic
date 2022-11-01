@@ -74,7 +74,7 @@ public final class ModBlocks {
         if(!event.getRegistryKey().equals(ForgeRegistries.Keys.BLOCKS))
             return;
 
-        RegistryApiImpl.INSTANCE.registerTotemEffects();
+        RegistryApiImpl.registerTotemEffects();
 
         var totemBasesBuilder = ImmutableMap.<TotemWoodType, RegistryObject<TotemBaseBlock>>builderWithExpectedSize(TotemWoodType.getWoodTypes().size());
         var totemPolesBuilder = ImmutableTable.<TotemWoodType, TotemEffect, RegistryObject<TotemPoleBlock>>builder();
@@ -87,7 +87,7 @@ public final class ModBlocks {
             event.getForgeRegistry().register(totemBaseName, totemBase);
             totemBasesBuilder.put(woodType, RegistryObject.create(totemBaseName, event.getForgeRegistry()));
 
-            for(TotemEffect effect: TotemicAPI.get().registry().totemEffects().values()) {
+            for(TotemEffect effect: TotemicAPI.get().registry().totemEffects()) {
                 ResourceLocation effectName = effect.getRegistryName();
                 TotemPoleBlock totemPole = new TotemPoleBlock(woodType, effect, blockProperties);
                 ResourceLocation totemPoleName = new ResourceLocation(effectName.getNamespace(), woodType.getName() + "_totem_pole_" + effectName.getPath());

@@ -79,8 +79,9 @@ public final class Totemic {
         });
 
         //Totem effects are registered during ModBlocks#init
-        RegistryApiImpl.INSTANCE.registerInstruments();
-        RegistryApiImpl.INSTANCE.registerCeremonies();
+        RegistryApiImpl.registerInstruments();
+        RegistryApiImpl.registerCeremonies();
+        RegistryApiImpl.freezeRegistries();
 
         NetworkHandler.init();
 

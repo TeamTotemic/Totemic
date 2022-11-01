@@ -52,7 +52,7 @@ public final class StateSelection extends TotemState {
         tile.setChanged();
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
-            Ceremony match = RegistryApiImpl.INSTANCE.getSelectorsToCeremonyMap().get(selectors);
+            Ceremony match = RegistryApiImpl.getSelectorsToCeremonyMap().get(selectors);
             if(match != null) {
                 CeremonyInstance instance = match.createInstance();
                 if(instance.canSelect(tile.getLevel(), tile.getBlockPos())) {
