@@ -15,5 +15,21 @@
   },
   "eagle_bone_whistle": {
     "sounds": ["totemic:eagle_bone_whistle1", "totemic:eagle_bone_whistle2", "totemic:eagle_bone_whistle3"]
+  },
+  "bald_eagle.ambient": {
+    "sounds": [
+      {"name": "totemic:bald_eagle/idle1", "volume": 0.4},
+      {"name": "totemic:bald_eagle/idle2", "volume": 0.4}
+    ]
+  },
+  "bald_eagle.hurt": {
+    "sounds": [
+      {"name": "totemic:bald_eagle/hurt", "volume": 0.7}
+    ]
+  },
+  "bald_eagle.death": {
+    "sounds": [
+      {"name": "totemic:bald_eagle/death", "volume": 0.7}
+    ]
   }
 }
