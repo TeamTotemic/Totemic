@@ -10,6 +10,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
@@ -113,6 +114,12 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     public void setMusic(MusicInstrument instrument, int amount) {
         musicHandler.setMusicAmount(instrument, amount);
+    }
+
+    @Override
+    @Nullable
+    public Player getInitiatingPlayer() {
+        return initiator instanceof Player p ? p : null;
     }
 
     @Override

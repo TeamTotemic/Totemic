@@ -1,6 +1,9 @@
 package pokefenn.totemic.api.ceremony;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * This interface provides details about a Ceremony's state during the ceremony effect phase.
@@ -13,5 +16,7 @@ public interface CeremonyEffectContext {
      */
     int getTime();
 
-    Entity getInitiator();
+    @Nullable Player getInitiatingPlayer();
+
+    @Nullable Entity getInitiator();
 }

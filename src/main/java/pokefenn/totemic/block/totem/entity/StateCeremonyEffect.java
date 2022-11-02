@@ -8,6 +8,7 @@ import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
@@ -70,6 +71,12 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     @Override
     public int getTime() {
         return time;
+    }
+
+    @Override
+    @Nullable
+    public Player getInitiatingPlayer() {
+        return initiator instanceof Player p ? p : null;
     }
 
     @Override

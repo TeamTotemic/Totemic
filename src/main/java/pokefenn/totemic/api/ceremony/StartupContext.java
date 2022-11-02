@@ -1,6 +1,9 @@
 package pokefenn.totemic.api.ceremony;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 /**
@@ -24,7 +27,9 @@ public interface StartupContext {
      */
     int getMusic(MusicInstrument instrument);
 
-    Entity getInitiator();
+    @Nullable Player getInitiatingPlayer();
+
+    @Nullable Entity getInitiator();
 
     void failCeremony();
 

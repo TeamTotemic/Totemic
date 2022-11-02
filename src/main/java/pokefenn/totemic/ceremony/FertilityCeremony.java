@@ -8,7 +8,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -54,7 +53,7 @@ public class FertilityCeremony implements CeremonyInstance {
             if(itemE.isPresent()) {
                 if(level.random.nextInt(3) < 2)
                     MiscUtil.shrinkItemEntity(itemE.get());
-                animal.setInLove(context.getInitiator() instanceof Player p ? p : null);
+                animal.setInLove(context.getInitiatingPlayer());
                 return; //Limit to one animal or villager per second
             }
         }
