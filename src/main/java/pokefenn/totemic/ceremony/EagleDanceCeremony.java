@@ -2,6 +2,8 @@ package pokefenn.totemic.ceremony;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
@@ -30,5 +32,16 @@ public class EagleDanceCeremony implements CeremonyInstance {
             level.addFreshEntity(eagle);
             MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, eagle.position().add(0, 1, 0), 24, new Vec3(0.6, 0.5, 0.6), 1.0);
         });
+    }
+
+    @Override
+    public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
+        final int range = 8;
+        if(level.getEntities(EntityType.PARROT, new AABB(pos).inflate(range - 1), EntitySelector.ENTITY_STILL_ALIVE).isEmpty()) {
+            initiator.sendSystemMessage(Component.translatable("totemic.noParrotsNearby"));
+            return false;
+        }
+        else
+            return true;
     }
 }

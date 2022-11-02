@@ -55,7 +55,7 @@ public final class StateSelection extends TotemState {
             Ceremony match = RegistryApiImpl.getSelectorsToCeremonyMap().get(selectors);
             if(match != null) {
                 CeremonyInstance instance = match.createInstance();
-                if(instance.canSelect(tile.getLevel(), tile.getBlockPos())) {
+                if(instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
                     MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
                     tile.setTotemState(new StateStartup(tile, match, instance, entity));
                 }

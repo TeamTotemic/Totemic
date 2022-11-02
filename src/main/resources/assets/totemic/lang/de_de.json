@@ -92,5 +92,8 @@
   "totemic.isDoingNoCeremony": "Der Totempfahl führt gerade keine Zeremonie aus. Versuche, Instrumente zu spielen während Du schleichst, um eine zu starten.",
   "totemic.isDoingSelection": "Der Totempfahl wartet, dass eine Zeremonie ausgewählt wird\nAuswahl: %s",
   "totemic.isDoingStartup": "Der Totempfahl sammelt Musik für eine Zeremonie\nZeremonie: %s",
-  "totemic.isDoingCeremony": "Der Totempfahl führt den Effekt einer Zeremonie aus\nZeremonie: %s"
+  "totemic.isDoingCeremony": "Der Totempfahl führt den Effekt einer Zeremonie aus\nZeremonie: %s",
+  
+  "totemic.noCowsNearby": "Die Büffeltanz-Zeremonie benötigt Kühe in der Nähe",
+  "totemic.noParrotsNearby": "Die Adltertanz-Zeremonie benötigt Papageien in der Nähe"
 }

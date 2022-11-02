@@ -92,5 +92,8 @@
   "totemic.isDoingNoCeremony": "The Totem Pole is not doing a Ceremony. Try playing instruments while sneaking to start one.",
   "totemic.isDoingSelection": "The Totem Pole is waiting for a Ceremony to be selected\nSelection: %s",
   "totemic.isDoingStartup": "The Totem Pole is collecting music for a Ceremony\nCeremony: %s",
-  "totemic.isDoingCeremony": "The Totem Pole is performing a Ceremony effect\nCeremony: %s"
+  "totemic.isDoingCeremony": "The Totem Pole is performing a Ceremony effect\nCeremony: %s",
+  
+  "totemic.noCowsNearby": "The Buffalo Dance Ceremony requires Cows nearby",
+  "totemic.noParrotsNearby": "The Eagle Dance Ceremony requires Parrots nearby"
 }
