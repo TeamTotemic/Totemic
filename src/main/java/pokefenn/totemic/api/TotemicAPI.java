@@ -20,8 +20,12 @@ public abstract class TotemicAPI {
 
     /**
      * Returns an instance of the Totemic API.
+     *
+     * @throws RuntimeException if Totemic is not installed.
      */
     public static TotemicAPI get() {
+        if(INSTANCE == null)
+            throw new IllegalStateException("No TotemicAPI provider found, Totemic is probably not installed");
         return INSTANCE;
     }
 
@@ -46,11 +50,6 @@ public abstract class TotemicAPI {
     public abstract CeremonyAPI ceremony();
 
     private static TotemicAPI loadService() {
-        var providers = ServiceLoader.load(TotemicAPI.class).stream().toList();
-        if(providers.isEmpty())
-            throw new IllegalStateException("No TotemicAPI provider found, Totemic is not installed");
-        else if(providers.size() > 1)
-            throw new IllegalStateException("Multiple TotemicAPI providers found");
-        return providers.get(0).get();
+        return ServiceLoader.load(TotemicAPI.class).findFirst().orElse(null);
     }
 }
