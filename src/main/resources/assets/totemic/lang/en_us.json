@@ -5,7 +5,7 @@
   "item.totemic.jingle_dress": "Jingle Dress",
   "item.totemic.jingle_dress.tooltip": "Has no Selector Mode",
   "item.totemic.rattle": "Rattle",
-  "item.totemic.eagle_bone_whistle": "Eagle Bone Whistle",
+  "item.totemic.eagle_bone_whistle": "Eagle-Bone Whistle",
   "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
   "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
   "item.totemic.totemic_staff": "Totemic Staff",
@@ -72,7 +72,7 @@
   "totemic.instrument.totemic.wind_chime": "Wind Chime",
   "totemic.instrument.totemic.jingle_dress": "Jingle Dress",
   "totemic.instrument.totemic.rattle": "Rattle",
-  "totemic.instrument.totemic.eagle_bone_whistle": "Eagle Bone Whistle",
+  "totemic.instrument.totemic.eagle_bone_whistle": "Eagle-Bone Whistle",
   
   "totemic.ceremony.totemic.war_dance": "War Dance",
   "totemic.ceremony.totemic.depths": "Symphony of the Depths",
@@ -82,6 +82,7 @@
   "totemic.ceremony.totemic.rain": "Rain Dance",
   "totemic.ceremony.totemic.drought": "Drought Dance",
   "totemic.ceremony.totemic.flute_infusion": "Serenade for Syrinx",
+  "totemic.ceremony.totemic.eagle_dance": "Eagle Dance",
   
   "effect.totemic.spider": "Wall Climbing",
   "effect.totemic.ocelot": "Creeper Defense",

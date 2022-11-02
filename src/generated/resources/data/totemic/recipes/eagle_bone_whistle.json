@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "totemic:eagle_bone"
+    },
+    "F": {
+      "item": "totemic:eagle_feather"
+    },
+    "S": {
+      "tag": "forge:string"
+    }
+  },
+  "pattern": [
+    "S ",
+    "BF"
+  ],
+  "result": {
+    "item": "totemic:eagle_bone_whistle"
+  }
+}

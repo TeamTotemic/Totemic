@@ -2,10 +2,11 @@ package pokefenn.totemic.ceremony;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.entity.Buffalo;
@@ -18,7 +19,8 @@ public class BuffaloDanceCeremony implements CeremonyInstance {
         if(level.isClientSide)
             return;
 
-        TotemicEntityUtil.getEntitiesInRange(Cow.class, level, pos, 8, 8, e -> e.getType() != ModEntityTypes.buffalo.get())
+        final int range = 8;
+        level.getEntities(EntityType.COW, new AABB(pos).inflate(range - 1), EntitySelector.ENTITY_STILL_ALIVE).stream()
         .limit(2)
         .forEach(cow -> {
             var buffalo = ModEntityTypes.buffalo.get().create(level);

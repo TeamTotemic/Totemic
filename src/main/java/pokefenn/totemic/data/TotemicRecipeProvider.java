@@ -96,6 +96,15 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("performed_fertility", performed(ModContent.fertility))
                 .unlockedBy("has_cedar_logs", has(ModBlocks.cedar_log.get()))
                 .save(rc);
+        ShapedRecipeBuilder.shaped(ModItems.eagle_bone_whistle.get())
+                .pattern("S ")
+                .pattern("BF")
+                .define('S', Tags.Items.STRING)
+                .define('B', ModItems.eagle_bone.get())
+                .define('F', ModItems.eagle_feather.get())
+                .unlockedBy("performed_eagle_dance", performed(ModContent.eagle_dance))
+                .unlockedBy("has_eagle_bone", has(ModItems.eagle_bone.get()))
+                .save(rc);
 
         simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
