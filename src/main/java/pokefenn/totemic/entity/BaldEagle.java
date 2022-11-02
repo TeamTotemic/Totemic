@@ -130,7 +130,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
             }
 
             if(!this.level.isClientSide) {
-                if(this.random.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, pPlayer)) {
+                if(this.random.nextInt(6) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, pPlayer)) {
                     this.tame(pPlayer);
                     this.level.broadcastEntityEvent(this, (byte) 7);
                 }
@@ -141,8 +141,11 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
 
             return InteractionResult.sidedSuccess(this.level.isClientSide);
         }
-        else if(!this.isFlying() && this.isTame() && this.isOwnedBy(pPlayer)) {
-            if(!this.level.isClientSide) {
+        else if(this.isTame() && this.isOwnedBy(pPlayer)) {
+            if(isFood(itemstack)) {
+                return super.mobInteract(pPlayer, pHand);
+            }
+            else if(!this.isFlying() && !this.level.isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }
 
@@ -191,7 +194,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
         var child = ModEntityTypes.bald_eagle.get().create(pLevel);
         var owner = getOwnerUUID();
         if(owner != null) {
-            child.setOwnerUUID(uuid);
+            child.setOwnerUUID(owner);
             child.setTame(true);
         }
         return child;
