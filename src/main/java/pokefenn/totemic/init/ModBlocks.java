@@ -1,6 +1,6 @@
 package pokefenn.totemic.init;
 
-import java.lang.reflect.Method;
+import java.lang.invoke.MethodType;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
@@ -34,6 +33,7 @@ import pokefenn.totemic.block.music.DrumBlock;
 import pokefenn.totemic.block.music.WindChimeBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
+import pokefenn.totemic.util.MethodHandleUtil;
 import pokefenn.totemic.world.CedarTreeGrower;
 
 public final class ModBlocks {
@@ -103,7 +103,7 @@ public final class ModBlocks {
     public static void setFireInfo() {
         try {
             FireBlock fire = (FireBlock) Blocks.FIRE;
-            Method setFlammableM = ObfuscationReflectionHelper.findMethod(FireBlock.class, "m_53444_", Block.class, int.class, int.class);
+            var setFlammableM = MethodHandleUtil.findMethod(FireBlock.class, "m_53444_", MethodType.methodType(void.class, Block.class, int.class, int.class));
 
             //We only need to call this method for blocks we don't define our own class for
             setFlammableM.invoke(fire, cedar_log.get(), 5, 5);
@@ -112,7 +112,7 @@ public final class ModBlocks {
             setFlammableM.invoke(fire, stripped_cedar_wood.get(), 5, 5);
             setFlammableM.invoke(fire, cedar_leaves.get(), 30, 60);
         }
-        catch(ReflectiveOperationException e) {
+        catch(Throwable e) {
             throw new RuntimeException("Could not set flammability for Totemic blocks", e);
         }
     }

@@ -1,13 +1,15 @@
 package pokefenn.totemic.init;
 
+import java.lang.invoke.MethodType;
+
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.effect.SpiderEffect;
+import pokefenn.totemic.util.MethodHandleUtil;
 
 public final class ModMobEffects {
     public static final DeferredRegister<MobEffect> REGISTER = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, TotemicAPI.MOD_ID);
@@ -18,10 +20,10 @@ public final class ModMobEffects {
     private static MobEffect newMobEffect(MobEffectCategory category, int color) {
         try {
             //Circumvent the protected MobEffect constructor
-            var constructor = ObfuscationReflectionHelper.findConstructor(MobEffect.class, MobEffectCategory.class, int.class);
-            return constructor.newInstance(category, color);
+            var constructor = MethodHandleUtil.findConstructor(MobEffect.class, MethodType.methodType(void.class, MobEffectCategory.class, int.class));
+            return (MobEffect) constructor.invokeExact(category, color);
         }
-        catch(ReflectiveOperationException e) {
+        catch(Throwable e) {
             throw new RuntimeException(e);
         }
     }
