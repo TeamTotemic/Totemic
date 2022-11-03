@@ -83,6 +83,7 @@
   "totemic.ceremony.totemic.drought": "Dürretanz",
   "totemic.ceremony.totemic.flute_infusion": "Serenade für Syrinx",
   "totemic.ceremony.totemic.eagle_dance": "Adlertanz",
+  "totemic.ceremony.totemic.cleansing": "Steves Schlaflied",
   
   "effect.totemic.spider": "Wändeklettern",
   "effect.totemic.ocelot": "Creeperabwehr",
@@ -95,5 +96,6 @@
   "totemic.isDoingCeremony": "Der Totempfahl führt den Effekt einer Zeremonie aus\nZeremonie: %s",
   
   "totemic.noCowsNearby": "Die Büffeltanz-Zeremonie benötigt Kühe in der Nähe",
-  "totemic.noParrotsNearby": "Die Adltertanz-Zeremonie benötigt Papageien in der Nähe"
+  "totemic.noParrotsNearby": "Die Adltertanz-Zeremonie benötigt Papageien in der Nähe",
+  "totemic.noWeakenedZombieVillagersNearby": "Die Zeremonie Steves Schlaflied benötigt geschwächte Zombiedorfbewohner in der Nähe"
 }

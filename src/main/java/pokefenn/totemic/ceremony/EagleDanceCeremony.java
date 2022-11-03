@@ -15,13 +15,13 @@ import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.util.MiscUtil;
 
 public class EagleDanceCeremony implements CeremonyInstance {
+    private static final int RANGE = 8;
+
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)
             return;
-
-        final int range = 8;
-        level.getEntities(EntityType.PARROT, new AABB(pos).inflate(range - 1), EntitySelector.ENTITY_STILL_ALIVE).stream()
+        level.getEntities(EntityType.PARROT, new AABB(pos).inflate(RANGE - 1), EntitySelector.ENTITY_STILL_ALIVE).stream()
         .limit(2)
         .forEach(parrot -> {
             var eagle = ModEntityTypes.bald_eagle.get().create(level);
@@ -36,8 +36,7 @@ public class EagleDanceCeremony implements CeremonyInstance {
 
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
-        final int range = 8;
-        if(level.getEntities(EntityType.PARROT, new AABB(pos).inflate(range - 1), EntitySelector.ENTITY_STILL_ALIVE).isEmpty()) {
+        if(level.getEntities(EntityType.PARROT, new AABB(pos).inflate(RANGE - 1), EntitySelector.ENTITY_STILL_ALIVE).isEmpty()) {
             initiator.sendSystemMessage(Component.translatable("totemic.noParrotsNearby"));
             return false;
         }

@@ -83,6 +83,7 @@
   "totemic.ceremony.totemic.drought": "Drought Dance",
   "totemic.ceremony.totemic.flute_infusion": "Serenade for Syrinx",
   "totemic.ceremony.totemic.eagle_dance": "Eagle Dance",
+  "totemic.ceremony.totemic.cleansing": "Steve's Lullaby",
   
   "effect.totemic.spider": "Wall Climbing",
   "effect.totemic.ocelot": "Creeper Defense",
@@ -95,5 +96,6 @@
   "totemic.isDoingCeremony": "The Totem Pole is performing a Ceremony effect\nCeremony: %s",
   
   "totemic.noCowsNearby": "The Buffalo Dance Ceremony requires Cows nearby",
-  "totemic.noParrotsNearby": "The Eagle Dance Ceremony requires Parrots nearby"
+  "totemic.noParrotsNearby": "The Eagle Dance Ceremony requires Parrots nearby",
+  "totemic.noWeakenedZombieVillagersNearby": "The Steve's Lullaby Ceremony requires weakened Zombie Villagers nearby"
 }
