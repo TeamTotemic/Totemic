@@ -6,7 +6,7 @@ package pokefenn.totemic.api.totem;
  */
 public interface TotemEffectContext {
     /**
-     * @return the amount of music for Totem Effects. The maximum is given by {@link TotemEffectAPI#MAX_TOTEM_EFFECT_MUSIC}.
+     * @return the amount of Totem Effect music. The maximum is given by {@link TotemEffectAPI#MAX_TOTEM_EFFECT_MUSIC}.
      */
     int getTotemEffectMusic();
 

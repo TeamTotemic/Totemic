@@ -12,26 +12,42 @@ import pokefenn.totemic.api.music.MusicInstrument;
  */
 public interface StartupContext {
     /**
-     * @return the time in ticks how long the startup phase lasted so far.<br>
-     * Note: This value might not be accurate on the client side due to server latency.
+     * Returns the time in ticks how long the startup phase lasted so far.
+     * <p>
+     * Note that the time is not necessarily synchronized between the server and the client, especially in case of server lag.
+     * On the client side, the returned value may be greater than the ceremony's {@linkplain Ceremony#getAdjustedMaxStartupTime maximum startup time}.
      */
     int getTime();
 
     /**
-     * @return the amount of music from all instruments played for the ceremony.
+     * Returns the amount of music from all instruments played for the ceremony.
      */
     int getTotalMusic();
 
     /**
-     * @return the amount of music from the specified instrument played for the ceremony.
+     * Returns the amount of music from the specified instrument played for the ceremony.
      */
     int getMusic(MusicInstrument instrument);
 
+    /**
+     * If the ceremony was initiated by a player, returns that player. Otherwise, returns {@code null}.
+     */
     @Nullable Player getInitiatingPlayer();
 
+    /**
+     * Returns the Entity that initiated the ceremony, if available.
+     * Returns {@code null} if the initiating entity is no longer available (e.g. when
+     * the world has been saved and reloaded).
+     */
     @Nullable Entity getInitiator();
 
+    /**
+     * Instantly aborts the ceremony and returns the Totem Base to its default state.
+     */
     void failCeremony();
 
+    /**
+     * Instantly starts the ceremony effect, skipping ahead of the rest of the startup phase.
+     */
     void startCeremony();
 }

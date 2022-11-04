@@ -1,5 +1,10 @@
 package pokefenn.totemic.api.ceremony;
 
+/**
+ * Provides access to functionality commonly used for implementing ceremonies.
+ * <p>
+ * Use {@code TotemicAPI.get().ceremony()} to get an instance of this interface.
+ */
 public interface CeremonyAPI {
     /**
      * The minimum number of music instruments for selecting a ceremony.

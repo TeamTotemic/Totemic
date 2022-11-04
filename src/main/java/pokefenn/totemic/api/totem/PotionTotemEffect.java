@@ -11,20 +11,22 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
 
+/**
+ * A TotemEffect which applies a {@link MobEffect} to all players near the Totem Pole.
+ */
 public class PotionTotemEffect extends TotemEffect {
     /**
-     * The default value for the interval time
+     * The default value for the application interval.
      */
     public static final int DEFAULT_INTERVAL = 80;
 
     /**
-     * A Supplier for the potion effect.
+     * A Supplier for the mob effect.
      */
-    protected final Supplier<? extends MobEffect> potionEffect;
+    protected final Supplier<? extends MobEffect> mobEffect;
     /**
      * The base range of the effect.
      * In general, the range will be larger, see {@link #getHorizontalRange} and {@link #getVerticalRange}.
@@ -37,25 +39,26 @@ public class PotionTotemEffect extends TotemEffect {
     protected final int baseAmplifier;
 
     /**
-     * Constructs a TotemEffectPotion with default values.
-     * @param name the Totem Effect's registry name.
-     * @param potionEffect a Supplier for the potion effect. This could, for instance, be a {@link RegistryObject}.
+     * Constructs a PotionTotemEffect with default values.
+     * @param name         the Totem Effect's registry name.
+     * @param potionEffect a Supplier for the mob effect.
      */
     public PotionTotemEffect(ResourceLocation name, Supplier<? extends MobEffect> potionEffect) {
         this(name, true, TotemEffectAPI.DEFAULT_BASE_RANGE, potionEffect, DEFAULT_INTERVAL, 0);
     }
 
     /**
-     * @param name the Totem Effect's registry name.
-     * @param portable whether this Totem Effect can be used with a Medicine Bag.
-     * @param baseRange the base range of the effect. See {@link TotemEffectAPI#DEFAULT_BASE_RANGE}.
-     * @param potionEffect a Supplier for the potion effect. This could, for instance, be a {@link RegistryObject}.
-     * @param interval the time in ticks until the potion effect is renewed.
+     * Constructs a new PotionTotemEffect.
+     * @param name          the Totem Effect's registry name.
+     * @param portable      whether this Totem Effect can be used with a Medicine Bag.
+     * @param baseRange     the base range of the effect. See {@link TotemEffectAPI#DEFAULT_BASE_RANGE}.
+     * @param mobEffect     a Supplier for the mob effect.
+     * @param interval      the time in ticks until the potion effect is renewed.
      * @param baseAmplifier the base amplifier of the potion effect. In general, the amplifier will be larger, see {@link #getAmplifier} and {@link #getAmplifierForMedicineBag}.
      */
-    public PotionTotemEffect(ResourceLocation name, boolean portable, int baseRange, Supplier<? extends MobEffect> potionEffect, int interval, int baseAmplifier) {
+    public PotionTotemEffect(ResourceLocation name, boolean portable, int baseRange, Supplier<? extends MobEffect> mobEffect, int interval, int baseAmplifier) {
         super(name, portable, interval);
-        this.potionEffect = Objects.requireNonNull(potionEffect);
+        this.mobEffect = Objects.requireNonNull(mobEffect);
         this.baseRange = baseRange;
         this.baseAmplifier = baseAmplifier;
     }
@@ -93,7 +96,7 @@ public class PotionTotemEffect extends TotemEffect {
     }
 
     /**
-     * Returns how many ticks the potion effect should linger after leaving the range or closing the Medicine Bag.<p>
+     * Returns how many ticks the mob effect should linger after leaving the range or closing the Medicine Bag.<p>
      * The default value is 20 ticks.
      */
     protected int getLingeringTime() {
@@ -101,11 +104,11 @@ public class PotionTotemEffect extends TotemEffect {
     }
 
     /**
-     * Applies the potion effect to the given player
-     * @param isMedicineBag whether the effect comes from a Medicine Bag
+     * Applies the mob effect to the given player.
+     * @param isMedicineBag whether the effect is applied by a Medicine Bag
      */
     protected void applyTo(boolean isMedicineBag, Player player, int time, int amplifier) {
-        player.addEffect(new MobEffectInstance(potionEffect.get(), time, amplifier, true, false));
+        player.addEffect(new MobEffectInstance(mobEffect.get(), time, amplifier, true, false));
     }
 
     @Override

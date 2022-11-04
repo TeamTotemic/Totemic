@@ -8,6 +8,9 @@ import net.minecraftforge.common.capabilities.CapabilityToken;
 import pokefenn.totemic.api.music.DefaultMusicAcceptor;
 import pokefenn.totemic.api.music.MusicAcceptor;
 
+/**
+ * Provides Capabilities added by Totemic.
+ */
 @SuppressWarnings("null")
 public final class TotemicCapabilities {
     /**

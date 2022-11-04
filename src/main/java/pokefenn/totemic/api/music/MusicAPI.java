@@ -9,8 +9,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Provides access to music-related functionality which is commonly used by music instrument blocks and items. Use {@code TotemicAPI.get().music()} to get an
- * instance of this interface.
+ * Provides access to music-related functionality which is commonly used by music instrument blocks and items.
+ * <p>
+ * Use {@code TotemicAPI.get().music()} to get an instance of this interface.
  */
 public interface MusicAPI {
     /**
@@ -58,7 +59,6 @@ public interface MusicAPI {
     void playMusic(Level level, BlockPos pos, @Nullable Entity entity, MusicInstrument instr);
 
     /**
-     * <p>
      * Plays music from an instrument located at the given position (which might differ from the entity's position, e.g. Drum) to all nearby music acceptors
      * (prioritizing higher priority acceptors, and evenly splitting between acceptors with equal priority).
      * <p>
@@ -78,7 +78,7 @@ public interface MusicAPI {
      * <p>
      * May be called on client and server side. This method takes care of playing the SoundEvent and spawning particles.
      *
-     * @param entity the entity playing the instrument. This is usually a PlayerEntity and should not be {@code null}.
+     * @param entity the entity playing the instrument. This is usually a Player and should not be {@code null}.
      * @param instr  the instrument.
      */
     void playSelector(Level level, Vec3 pos, @Nonnull Entity entity, MusicInstrument instr);
@@ -90,7 +90,7 @@ public interface MusicAPI {
      * <p>
      * May be called on client and server side. This method takes care of playing the SoundEvent and spawning particles.
      *
-     * @param entity the entity playing the instrument. This is usually a PlayerEntity.
+     * @param entity the entity playing the instrument. This is usually a Player.
      * @param instr  the instrument.
      */
     void playSelector(@Nonnull Entity entity, MusicInstrument instr);
@@ -102,7 +102,7 @@ public interface MusicAPI {
      * <p>
      * May be called on client and server side. This method takes care of playing the SoundEvent and spawning particles.
      *
-     * @param entity the entity playing the instrument. This is usually a PlayerEntity and should not be {@code null}.
+     * @param entity the entity playing the instrument. This is usually a Player and should not be {@code null}.
      * @param instr  the instrument.
      */
     void playSelector(Level level, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr);

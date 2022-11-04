@@ -16,8 +16,6 @@ public abstract class TotemicAPI {
      */
     public static final String MOD_ID = "totemic";
 
-    private static final TotemicAPI INSTANCE = loadService();
-
     /**
      * Returns an instance of the Totemic API.
      *
@@ -45,9 +43,11 @@ public abstract class TotemicAPI {
     public abstract TotemEffectAPI totemEffect();
 
     /**
-     * Provides access to functionality commonly used for implementing Ceremonies.
+     * Provides access to functionality commonly used for implementing ceremonies.
      */
     public abstract CeremonyAPI ceremony();
+
+    private static final TotemicAPI INSTANCE = loadService();
 
     private static TotemicAPI loadService() {
         return ServiceLoader.load(TotemicAPI.class).findFirst().orElse(null);

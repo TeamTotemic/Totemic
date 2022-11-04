@@ -8,6 +8,9 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MaterialColor;
 
+/**
+ * Represents a wood type that Totem Poles can be made out of.
+ */
 public final class TotemWoodType { // TODO: Allow registering new wood types
     public static final TotemWoodType OAK = new TotemWoodType("oak", MaterialColor.WOOD, MaterialColor.PODZOL, "minecraft");
     public static final TotemWoodType SPRUCE = new TotemWoodType("spruce", MaterialColor.PODZOL, MaterialColor.COLOR_BROWN, "minecraft");
@@ -29,6 +32,9 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
     private final String topTexture;
     private final String particleTexture;
 
+    /**
+     * Returns the TotemWoodType represented by the given BlockState, or {@code null} if the state is not a recognized log block.
+     */
     @Nullable
     public static TotemWoodType fromLog(BlockState state) {
         if(state.is(BlockTags.OAK_LOGS))
@@ -51,11 +57,14 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
             return null;
     }
 
+    /**
+     * Returns a list of all TotemWoodTypes.
+     */
     public static List<TotemWoodType> getWoodTypes() {
         return woodTypes;
     }
 
-    public TotemWoodType(String name, MaterialColor woodColor, MaterialColor barkColor, String textureKey) {
+    private TotemWoodType(String name, MaterialColor woodColor, MaterialColor barkColor, String textureKey) {
         this.name = name;
         this.woodColor = woodColor;
         this.barkColor = barkColor;
@@ -66,30 +75,51 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
         this.particleTexture = textureKey + ":block/stripped_" + name + "_log";
     }
 
+    /**
+     * Returns the name of the wood type.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Returns the MaterialColor of the inside of the wood.
+     */
     public MaterialColor getWoodColor() {
         return woodColor;
     }
 
+    /**
+     * Returns the MaterialColor of the wood bark.
+     */
     public MaterialColor getBarkColor() {
         return barkColor;
     }
 
+    /**
+     * Returns the texture key for the side of the stripped log.
+     */
     public String getWoodTexture() {
         return woodTexture;
     }
 
+    /**
+     * Returns the texture key for the side of the unstripped log.
+     */
     public String getBarkTexture() {
         return barkTexture;
     }
 
+    /**
+     * Returns the texture key for the top of the stripped log.
+     */
     public String getTopTexture() {
         return topTexture;
     }
 
+    /**
+     * Returns the texture key for the breaking particles.
+     */
     public String getParticleTexture() {
         return particleTexture;
     }

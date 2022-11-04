@@ -4,7 +4,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.context.UseOnContext;
 
 /**
- * An interface for blocks that react when right-clicked with a Totemic Staff.
+ * An interface for blocks to react when right-clicked with a Totemic Staff.
  */
 public interface TotemicStaffUsable
 {

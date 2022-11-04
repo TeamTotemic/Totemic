@@ -1,6 +1,5 @@
 package pokefenn.totemic.api;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -13,41 +12,37 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
 /**
- * Methods for getting collections of entities within an area, as commonly used for Totem Effects and Ceremonies.
+ * Methods for getting streams of entities within an area, as commonly used for Totem Effects and Ceremonies.
  */
 public final class TotemicEntityUtil { //TODO: Are the methods in this class still needed? Cf EntityGetter
     /**
-     * Returns the players that are within range of a position (and are not in Spectator mode).
+     * Returns a Stream of the players that are within range of the given position (and are not in Spectator mode).
      *
      * @param horizontal the horizontal range
      * @param vertical   the vertical range
      */
-    public static Stream<? extends Player> getPlayersInRange(Level world, BlockPos pos, double horizontal, double vertical) {
-        return getPlayersInRange(world, pos, horizontal, vertical, EntitySelector.NO_SPECTATORS);
+    public static Stream<? extends Player> getPlayersInRange(Level level, BlockPos pos, double horizontal, double vertical) {
+        return getPlayersInRange(level, pos, horizontal, vertical, EntitySelector.NO_SPECTATORS);
     }
 
     /**
-     * Returns the players that are within range of a position and satisfy a filter.
+     * Returns a Stream of the players that are within range of the given position and satisfy the filter.
      *
      * @param horizontal the horizontal range
      * @param vertical   the vertical range
      * @param filter     the filter predicate. Must not be {@code null}.
      */
-    public static Stream<? extends Player> getPlayersInRange(Level world, BlockPos pos, double horizontal, double vertical, Predicate<? super Player> filter) {
+    public static Stream<? extends Player> getPlayersInRange(Level level, BlockPos pos, double horizontal, double vertical, Predicate<? super Player> filter) {
         Objects.requireNonNull(filter);
         AABB aabb = new AABB(pos).inflate(horizontal - 1, vertical - 1, horizontal - 1);
-        return getPlayerList(world).stream().filter(player -> player.getBoundingBox().intersects(aabb) && filter.test(player));
-    }
-
-    private static List<? extends Player> getPlayerList(Level world) {
-        return world.players();
+        return level.players().stream().filter(player -> player.getBoundingBox().intersects(aabb) && filter.test(player));
     }
 
     /**
-     * Returns the entities of the given type that are within range of a position (and are not in Spectator mode).
+     * Returns a Stream of the entities of the given type that are within range of the given position (and are not in Spectator mode).
      *
      * <p>
-     * If {@code type} is {@link EntityPlayer} you should use {@link #getPlayersInRange} instead.
+     * If {@code type} is {@link Player} you should use {@link #getPlayersInRange(Level, BlockPos, double, double)} instead.
      *
      * @param horizontal the horizontal range
      * @param vertical   the vertical range
@@ -57,10 +52,10 @@ public final class TotemicEntityUtil { //TODO: Are the methods in this class sti
     }
 
     /**
-     * Returns the entities of the given type that are within range of a position and satisfy a filter.
+     * Returns a Stream of the entities of the given type that are within range of the given position and satisfy the filter.
      *
      * <p>
-     * If {@code type} is {@link EntityPlayer} you should use {@link #getPlayersInRange} instead.
+     * If {@code type} is {@link Player} you should use {@link #getPlayersInRange(Level, BlockPos, double, double, Predicate)} instead.
      *
      * @param horizontal the horizontal range
      * @param vertical   the vertical range

@@ -12,36 +12,34 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Difficulty;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 
 /**
- * Base class for all ceremonies.
+ * Represents a ceremony type.
+ * <p>
+ * Usually, it is not necessary to subclass this. Instead, implement the CeremonyInstance interface.
+ * <p>
+ * Use the {@link TotemicRegisterEvent} to register your Ceremonies.
  */
 public class Ceremony {
-    /**
-     * The ceremony's registry name.
-     */
     private final ResourceLocation registryName;
-    /**
-     * The amount of music needed to start the ceremony.
-     */
     private final int musicNeeded;
-    /**
-     * The maximum time in ticks that the player may take to start the ceremony, before adjustment for difficulty.
-     */
     private final int maxStartupTime;
     private final Supplier<CeremonyInstance> factory;
-    /**
-     * The list of music instruments for selecting the ceremony.
-     */
     private final List<MusicInstrument> selectors;
 
     /**
      * Constructs a new Ceremony.
-     * @param name the ceremony's registry name
-     * @param musicNeeded the amount of music needed to start the ceremony.
+     * <p>
+     * The ceremony effect is implemented using the {@link CeremonyInstance} interface, and a Supplier for that is passed to this constructor.
+     * @param name           the ceremony's registry name.
+     * @param musicNeeded    the amount of music needed to start the ceremony.
      * @param maxStartupTime the maximum time in ticks that the player may take to start the ceremony.<br>
-     * This value will be adjusted depending on difficulty, see {@link #getAdjustedMaxStartupTime}.
-     * @param selectors the list of music instruments for selecting the ceremony.
+     *                       This value will be adjusted depending on the level's difficulty, see {@link #getAdjustedMaxStartupTime}.
+     * @param factory        a Supplier for a CeremonyInstance, which implements the actual effect of the ceremony.<br>
+     *                       The Supplier will be invoked each time a Player performs the ceremony, or when a CeremonyInstance is to
+     *                       be deserialized from NBT.
+     * @param selectors      the list of music instruments for selecting the ceremony.
      */
     public Ceremony(ResourceLocation name, int musicNeeded, int maxStartupTime, Supplier<CeremonyInstance> factory, MusicInstrument... selectors) {
         Validate.inclusiveBetween(CeremonyAPI.MIN_SELECTORS, CeremonyAPI.MAX_SELECTORS, selectors.length,
@@ -55,21 +53,21 @@ public class Ceremony {
     }
 
     /**
-     * @return the unlocalized name of the Instrument, which is given by "totemic.ceremony." followed by the name
+     * Returns the ceremony's description ID (i.e. unlocalized name), which is given by "totemic.ceremony." followed by the registry name (with ':' replaced by '.').
      */
     public String getDescriptionId() {
         return Util.makeDescriptionId("totemic.ceremony", registryName);
     }
 
     /**
-     * @return a text component representing the instrument's name
+     * Returns a text component representing the ceremony's name.
      */
     public MutableComponent getDisplayName() {
         return Component.translatable(getDescriptionId());
     }
 
     /**
-     * @return the ceremony's registry name.
+     * Returns the ceremony's registry name.
      */
     public final ResourceLocation getRegistryName() {
         return registryName;
@@ -81,14 +79,14 @@ public class Ceremony {
     }
 
     /**
-     * @return the amount of music needed to start the ceremony.
+     * Returns the amount of music needed to start the ceremony.
      */
     public int getMusicNeeded() {
         return musicNeeded;
     }
 
     /**
-     * @return the maximum time in ticks that the player may take to start the ceremony, before adjustment for difficulty.
+     * Returns the maximum time in ticks that the player may take to start the ceremony in normal difficulty.
      */
     public int getMaxStartupTime() {
         return maxStartupTime;
@@ -106,12 +104,15 @@ public class Ceremony {
         };
     }
 
+    /**
+     * Creates a CeremonyInstance by invoking the factory passed to the constructor.
+     */
     public CeremonyInstance createInstance() {
         return factory.get();
     }
 
     /**
-     * @return the list of music instruments for selecting the ceremony.
+     * Returns the list of music instruments for selecting the ceremony.
      */
     public final List<MusicInstrument> getSelectors() {
         return selectors;

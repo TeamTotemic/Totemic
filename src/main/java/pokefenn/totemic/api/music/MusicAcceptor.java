@@ -5,11 +5,9 @@ import javax.annotation.Nullable;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
-import pokefenn.totemic.api.TotemicCapabilities;
 
 /**
- * Implement this interface as a Capability ({@link TotemicCapabilities#MUSIC_ACCEPTOR}) for a tile entity that can accept music like a Totem Base.
- *
+ * Capability for block entities which can accept music from instruments played nearby.
  * <p>
  * A reference implementation is provided by {@link DefaultMusicAcceptor}.
  */
@@ -36,7 +34,7 @@ public interface MusicAcceptor {
     MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity);
 
     /**
-     * Returns the position of this acceptor.
+     * Returns the position of this acceptor. Particles will be spawned at this location.
      *
      * @see Vec3#atCenterOf(net.minecraft.core.Vec3i)
      */

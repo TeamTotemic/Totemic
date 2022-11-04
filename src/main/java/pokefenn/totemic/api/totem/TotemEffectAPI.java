@@ -1,7 +1,9 @@
 package pokefenn.totemic.api.totem;
 
 /**
- * Provides access to functionality commonly used for Totem Effects. Use {@code TotemicAPI.get().totemEffect()} to get an instance of this interface.
+ * Provides access to functionality commonly used for implementing Totem Effects.
+ * <p>
+ * Use {@code TotemicAPI.get().totemEffect()} to get an instance of this interface.
  */
 public interface TotemEffectAPI {
     /**
@@ -11,12 +13,12 @@ public interface TotemEffectAPI {
     static final int DEFAULT_BASE_RANGE = 6;
 
     /**
-     * The maximum amount of music for Totem Effects that a Totem Pole can have
+     * The maximum amount of Totem Effect music that a Totem Pole can have.
      */
     static final int MAX_TOTEM_EFFECT_MUSIC = 15360;
 
     /**
-     * The maximum number of Totem Pole blocks above the base that a Totem Pole can have
+     * The maximum number of Totem Pole blocks above the base that a Totem Pole can have.
      */
     static final int MAX_POLE_SIZE = 5;
 

@@ -23,25 +23,29 @@ import pokefenn.totemic.api.TotemicAPI;
  * This implementation stores the music it accepts, broken down into the instruments. It will only accept up to the maximum specified by each instrument.
  *
  * <p>
- * The behavior is similar (but simplified) to a Totem Base while starting up a ceremony.
+ * The behavior is the same as a Totem Base while starting up a ceremony.
  */
 public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<CompoundTag> {
     private Vec3 position;
     private final Object2IntMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicAPI.get().registry().instruments().size());
     private int totalMusic = 0;
 
+    /**
+     * Creates a new DefaultMusicAcceptor whose {@link #getPosition()} method returns the given position.
+     */
     public DefaultMusicAcceptor(Vec3 position) {
         this.position = position;
     }
 
+    /**
+     * Creates a new DefaultMusicAcceptor whose {@link #getPosition()} method returns the zero vector.
+     */
     public DefaultMusicAcceptor() {
         this(Vec3.ZERO);
     }
 
     /**
      * Accepts and stores music from the given instrument, up to the maximum specified by the instrument.
-     *
-     * @return {@code true} if any music was accepted.
      */
     @Override
     public MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity) {
@@ -57,7 +61,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
     }
 
     /**
-     * @return the amount of music stored from the given instrument.
+     * Returns the amount of music stored from the given instrument.
      */
     public int getMusicAmount(MusicInstrument instr)
     {
@@ -78,7 +82,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
     }
 
     /**
-     * @return the total amount of music stored from all instruments.
+     * Returns the total amount of music stored from all instruments.
      */
     public int getTotalMusic() {
         return totalMusic;
@@ -89,6 +93,9 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
         return position;
     }
 
+    /**
+     * Sets the position returned by the {@link #getPosition()} method.
+     */
     public void setPosition(Vec3 position) {
         this.position = position;
     }
