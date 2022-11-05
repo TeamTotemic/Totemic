@@ -17,7 +17,7 @@ import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 /**
  * Represents a ceremony type.
  * <p>
- * Usually, it is not necessary to subclass this. Instead, implement the CeremonyInstance interface.
+ * Usually, it is not necessary to subclass this. Instead, implement the {@link CeremonyInstance} interface.
  * <p>
  * Use the {@link TotemicRegisterEvent} to register your Ceremonies.
  */

@@ -10,19 +10,30 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemEffect;
 
 /**
- * Provides read-only access to Totemic's registries.
- *
+ * Provides read access to Totemic's registries. Contents can be registered using the {@link TotemicRegisterEvent}.
  * <p>
- * Use the {@link TotemicRegisterEvent} to register your stuff.
+ * Use {@code TotemicAPI.get().registry()} to get an instance of this interface.
  */
 public interface RegistryAPI {
+    /** The resource key for the MusicInstrument registry. */
     static final ResourceKey<Registry<MusicInstrument>> MUSIC_INSTRUMENT_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "instrument"));
+    /** The resource key for the TotemEffect registry. */
     static final ResourceKey<Registry<TotemEffect>> TOTEM_EFFECT_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "totem_effect"));
+    /** The resource key for the Ceremony registry. */
     static final ResourceKey<Registry<Ceremony>> CEREMONY_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "ceremony"));
 
+    /**
+     * Provides access to the MusicInstrument registry.
+     */
     Registry<MusicInstrument> instruments();
 
+    /**
+     * Provides access to the TotemEffect registry.
+     */
     DefaultedRegistry<TotemEffect> totemEffects();
 
+    /**
+     * Provides access to the Ceremony registry.
+     */
     Registry<Ceremony> ceremonies();
 }
