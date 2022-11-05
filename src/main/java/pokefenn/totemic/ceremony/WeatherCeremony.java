@@ -6,7 +6,16 @@ import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 
-public record RainCeremony(boolean doRain) implements CeremonyInstance {
+public enum WeatherCeremony implements CeremonyInstance {
+    RAIN(true),
+    DROUGHT(false);
+
+    final boolean doRain;
+
+    WeatherCeremony(boolean doRain) {
+        this.doRain = doRain;
+    }
+
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level instanceof ServerLevel slevel && slevel.isRaining() != doRain) {

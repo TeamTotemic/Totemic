@@ -17,8 +17,8 @@ import pokefenn.totemic.ceremony.DepthsCeremony;
 import pokefenn.totemic.ceremony.EagleDanceCeremony;
 import pokefenn.totemic.ceremony.FertilityCeremony;
 import pokefenn.totemic.ceremony.FluteInfusionCeremony;
-import pokefenn.totemic.ceremony.RainCeremony;
 import pokefenn.totemic.ceremony.WarDanceCeremony;
+import pokefenn.totemic.ceremony.WeatherCeremony;
 import pokefenn.totemic.ceremony.ZaphkielWaltzCeremony;
 import pokefenn.totemic.totem.EmptyTotemEffect;
 import pokefenn.totemic.totem.OcelotTotemEffect;
@@ -67,16 +67,16 @@ public final class ModContent {
     //13200: Flute + Drum + Rattle + Eagle-Bone Whistle
     //14700: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
     //16200: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
-    public static final Ceremony war_dance = new Ceremony(resloc("war_dance"), 4500, 20 * 20, WarDanceCeremony::new, drum, drum);
-    public static final Ceremony depths = new Ceremony(resloc("depths"), 4500, 20 * 20, DepthsCeremony::new, flute, flute);
-    public static final Ceremony fertility = new Ceremony(resloc("fertility"), 5280, 23 * 20, FertilityCeremony::new, flute, drum);
-    public static final Ceremony zaphkiel_waltz = new Ceremony(resloc("zaphkiel_waltz"), 6720, 20 * 20, ZaphkielWaltzCeremony::new, wind_chime, flute);
-    public static final Ceremony buffalo_dance = new Ceremony(resloc("buffalo_dance"), 7380, 24 * 20, BuffaloDanceCeremony::new, drum, wind_chime);
-    public static final Ceremony rain = new Ceremony(resloc("rain"), 10980, 26 * 20, () -> new RainCeremony(true), drum, rattle);
-    public static final Ceremony drought = new Ceremony(resloc("drought"), 10980, 26 * 20, () -> new RainCeremony(false), rattle, drum);
-    public static final Ceremony flute_infusion = new Ceremony(resloc("flute_infusion"), 11340, 28 * 20, FluteInfusionCeremony::new, flute, rattle);
-    public static final Ceremony eagle_dance = new Ceremony(resloc("eagle_dance"), 11580, 25 * 20, EagleDanceCeremony::new, rattle, wind_chime);
-    public static final Ceremony cleansing = new Ceremony(resloc("cleansing"), 14700, 30 * 20, CleansingCeremony::new, eagle_bone_whistle, flute);
+    public static final Ceremony war_dance = new Ceremony(resloc("war_dance"), 4500, 20 * 20, () -> WarDanceCeremony.INSTANCE, drum, drum);
+    public static final Ceremony depths = new Ceremony(resloc("depths"), 4500, 20 * 20, () -> DepthsCeremony.INSTANCE, flute, flute);
+    public static final Ceremony fertility = new Ceremony(resloc("fertility"), 5280, 23 * 20, () -> FertilityCeremony.INSTANCE, flute, drum);
+    public static final Ceremony zaphkiel_waltz = new Ceremony(resloc("zaphkiel_waltz"), 6720, 20 * 20, () -> ZaphkielWaltzCeremony.INSTANCE, wind_chime, flute);
+    public static final Ceremony buffalo_dance = new Ceremony(resloc("buffalo_dance"), 7380, 24 * 20, () -> BuffaloDanceCeremony.INSTANCE, drum, wind_chime);
+    public static final Ceremony rain = new Ceremony(resloc("rain"), 10980, 26 * 20, () -> WeatherCeremony.RAIN, drum, rattle);
+    public static final Ceremony drought = new Ceremony(resloc("drought"), 10980, 26 * 20, () -> WeatherCeremony.DROUGHT, rattle, drum);
+    public static final Ceremony flute_infusion = new Ceremony(resloc("flute_infusion"), 11340, 28 * 20, () -> FluteInfusionCeremony.INSTANCE, flute, rattle);
+    public static final Ceremony eagle_dance = new Ceremony(resloc("eagle_dance"), 11580, 25 * 20, () -> EagleDanceCeremony.INSTANCE, rattle, wind_chime);
+    public static final Ceremony cleansing = new Ceremony(resloc("cleansing"), 14700, 30 * 20, () -> CleansingCeremony.INSTANCE, eagle_bone_whistle, flute);
 
     @SubscribeEvent
     public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {

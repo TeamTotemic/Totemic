@@ -15,7 +15,9 @@ import pokefenn.totemic.entity.Buffalo;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.util.MiscUtil;
 
-public class BuffaloDanceCeremony implements CeremonyInstance {
+public enum BuffaloDanceCeremony implements CeremonyInstance {
+    INSTANCE;
+
     private static final int RANGE = 8;
 
     @Override

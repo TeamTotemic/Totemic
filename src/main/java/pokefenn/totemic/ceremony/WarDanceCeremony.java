@@ -8,7 +8,9 @@ import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 
-public class WarDanceCeremony implements CeremonyInstance {
+public enum WarDanceCeremony implements CeremonyInstance {
+    INSTANCE;
+
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)

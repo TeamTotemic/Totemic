@@ -14,7 +14,9 @@ import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.util.MiscUtil;
 
-public class EagleDanceCeremony implements CeremonyInstance {
+public enum EagleDanceCeremony implements CeremonyInstance {
+    INSTANCE;
+
     private static final int RANGE = 8;
 
     @Override

@@ -9,7 +9,9 @@ import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.init.ModItems;
 
-public class FluteInfusionCeremony implements CeremonyInstance {
+public enum FluteInfusionCeremony implements CeremonyInstance {
+    INSTANCE;
+
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         final int range = 5;

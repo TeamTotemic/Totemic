@@ -23,7 +23,9 @@ import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.util.MethodHandleUtil;
 import pokefenn.totemic.util.MiscUtil;
 
-public class CleansingCeremony implements CeremonyInstance {
+public enum CleansingCeremony implements CeremonyInstance {
+    INSTANCE;
+
     private static final int RANGE = 8;
 
     private static final MethodHandle startConverting = MethodHandleUtil.findMethod(ZombieVillager.class, "m_34383_", MethodType.methodType(void.class, UUID.class, int.class));

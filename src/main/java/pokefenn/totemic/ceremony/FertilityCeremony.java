@@ -19,7 +19,9 @@ import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.util.MiscUtil;
 
-public class FertilityCeremony implements CeremonyInstance {
+public enum FertilityCeremony implements CeremonyInstance {
+    INSTANCE;
+
     private static final int RADIUS = 8;
 
     @Override
