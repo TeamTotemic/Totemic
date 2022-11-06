@@ -25,6 +25,7 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModContent;
 
 public class TotemKnifeItem extends Item {
     public static final String KNIFE_TOTEM_KEY = "effect";
@@ -57,9 +58,9 @@ public class TotemKnifeItem extends Item {
 
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction) {
         if(totemList == null) {
-            totemList = TotemicAPI.get().registry().totemEffects().keySet().stream()
-                    .map(key -> key.toString())
-                    .filter(key -> !key.equals("totemic:none"))
+            totemList = TotemicAPI.get().registry().totemEffects().stream()
+                    .filter(e -> e != ModContent.none)
+                    .map(e -> e.getRegistryName().toString())
                     .toList();
         }
 
