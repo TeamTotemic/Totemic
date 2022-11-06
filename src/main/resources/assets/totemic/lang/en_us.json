@@ -84,6 +84,7 @@
   "totemic.ceremony.totemic.flute_infusion": "Serenade for Syrinx",
   "totemic.ceremony.totemic.eagle_dance": "Eagle Dance",
   "totemic.ceremony.totemic.cleansing": "Steve's Lullaby",
+  "totemic.ceremony.totemic.sun_dance": "Sun Dance",
   
   "effect.totemic.spider": "Wall Climbing",
   "effect.totemic.ocelot": "Creeper Defense",
@@ -97,5 +98,8 @@
   
   "totemic.noCowsNearby": "The Buffalo Dance Ceremony requires Cows nearby",
   "totemic.noParrotsNearby": "The Eagle Dance Ceremony requires Parrots nearby",
-  "totemic.noZombifiedMonstersNearby": "The Steve's Lullaby Ceremony requires weakened zombified monsters nearby"
+  "totemic.noZombifiedMonstersNearby": "The Steve's Lullaby Ceremony requires weakened zombified monsters nearby",
+  
+  "death.attack.totemic.sunDance": "%1$s sacrificed themselves to the Sun God. This is not supposed to happen.",
+  "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen."
 }

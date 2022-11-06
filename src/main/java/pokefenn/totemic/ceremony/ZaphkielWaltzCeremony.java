@@ -37,7 +37,7 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
             });
         }
 
-        if(context.getTime() % 10 == 0) {
+        if(context.getTime() % 7 == 0) {
             BlockPos.betweenClosedStream(new AABB(pos).inflate(RADIUS - 1))
             .forEach(p -> {
                 var state = level.getBlockState(p);

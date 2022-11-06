@@ -84,6 +84,7 @@
   "totemic.ceremony.totemic.flute_infusion": "Serenade für Syrinx",
   "totemic.ceremony.totemic.eagle_dance": "Adlertanz",
   "totemic.ceremony.totemic.cleansing": "Steves Schlaflied",
+  "totemic.ceremony.totemic.sun_dance": "Sonnentanz",
   
   "effect.totemic.spider": "Wändeklettern",
   "effect.totemic.ocelot": "Creeperabwehr",
@@ -97,5 +98,8 @@
   
   "totemic.noCowsNearby": "Die Büffeltanz-Zeremonie benötigt Kühe in der Nähe",
   "totemic.noParrotsNearby": "Die Adltertanz-Zeremonie benötigt Papageien in der Nähe",
-  "totemic.noZombifiedMonstersNearby": "Die Zeremonie Steves Schlaflied benötigt geschwächte zombifizierte Monster in der Nähe"
+  "totemic.noZombifiedMonstersNearby": "Die Zeremonie Steves Schlaflied benötigt geschwächte zombifizierte Monster in der Nähe",
+  
+  "death.attack.totemic.sunDance": "%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.",
+  "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren."
 }
