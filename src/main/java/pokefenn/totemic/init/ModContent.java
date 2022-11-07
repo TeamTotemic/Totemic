@@ -13,6 +13,7 @@ import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.ceremony.BuffaloDanceCeremony;
 import pokefenn.totemic.ceremony.CleansingCeremony;
+import pokefenn.totemic.ceremony.DanseMacabreCeremony;
 import pokefenn.totemic.ceremony.DepthsCeremony;
 import pokefenn.totemic.ceremony.EagleDanceCeremony;
 import pokefenn.totemic.ceremony.FertilityCeremony;
@@ -79,6 +80,7 @@ public final class ModContent {
     public static final Ceremony eagle_dance = new Ceremony(resloc("eagle_dance"), 11580, 25 * 20, () -> EagleDanceCeremony.INSTANCE, rattle, wind_chime);
     public static final Ceremony cleansing = new Ceremony(resloc("cleansing"), 14700, 30 * 20, () -> CleansingCeremony.INSTANCE, eagle_bone_whistle, flute);
     public static final Ceremony sun_dance = new Ceremony(resloc("sun_dance"), 14820, 31 * 20, () -> SunDanceCeremony.INSTANCE, drum, eagle_bone_whistle);
+    public static final Ceremony danse_macabre = new Ceremony(resloc("danse_macabre"), 14940, 32 * 20, () -> DanseMacabreCeremony.INSTANCE, eagle_bone_whistle, wind_chime);
 
     @SubscribeEvent
     public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {
@@ -99,7 +101,7 @@ public final class ModContent {
     @SubscribeEvent
     public static void ceremonies(TotemicRegisterEvent<Ceremony> event) {
         event.registerAll(war_dance, depths, fertility, zaphkiel_waltz, buffalo_dance, rain,
-                drought, flute_infusion, eagle_dance, cleansing, sun_dance);
+                drought, flute_infusion, eagle_dance, cleansing, sun_dance, danse_macabre);
     }
 
     private static ResourceLocation resloc(String path) {
