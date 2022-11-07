@@ -151,10 +151,6 @@ public final class StateStartup extends TotemState implements StartupContext {
         return ceremony;
     }
 
-    public CeremonyInstance getCeremonyInstance() {
-        return instance;
-    }
-
     @Override
     byte getID() {
         return ID;

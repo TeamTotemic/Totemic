@@ -88,10 +88,6 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
         return ceremony;
     }
 
-    public CeremonyInstance getCeremonyInstance() {
-        return instance;
-    }
-
     @Override
     byte getID() {
         return ID;
