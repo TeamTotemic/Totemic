@@ -2,10 +2,12 @@ package pokefenn.totemic.block.totem.entity;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -65,6 +67,19 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
             //Due to network delay, we want to avoid ticking instant ceremonies more than once on the client side
             if(instance.getEffectTime() == 0)
                 tile.setTotemState(new StateTotemEffect(tile));
+
+            displayEffectProgress();
+        }
+    }
+
+    private void displayEffectProgress() {
+        //TODO: Temporary
+        @SuppressWarnings("resource")
+        var localPlayer = Minecraft.getInstance().player;
+        if(instance.getEffectTime() != 0 && time % 20 == 1 && tile.getBlockPos().closerToCenterThan(localPlayer.position(), 8)) {
+            localPlayer.displayClientMessage(Component.translatable("totemic.ceremonyEffectProgress",
+                    ceremony.getDisplayName(), time/20, instance.getEffectTime()/20),
+                    true);
         }
     }
 
@@ -86,6 +101,10 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
 
     public Ceremony getCeremony() {
         return ceremony;
+    }
+
+    public CeremonyInstance getCeremonyInstance() {
+        return instance;
     }
 
     @Override

@@ -96,6 +96,8 @@
   "totemic.isDoingSelection": "Der Totempfahl wartet, dass eine Zeremonie ausgewählt wird\nAuswahl: %s",
   "totemic.isDoingStartup": "Der Totempfahl sammelt Musik für eine Zeremonie\nZeremonie: %s",
   "totemic.isDoingCeremony": "Der Totempfahl führt den Effekt einer Zeremonie aus\nZeremonie: %s",
+  "totemic.startupProgress": "%s: Sammlungszeit: %d/%d s, Musik: %d/%d",
+  "totemic.ceremonyEffectProgress": "%s: Effektzeit: %d/%d s",
   
   "totemic.noCowsNearby": "Die Büffeltanz-Zeremonie benötigt Kühe in der Nähe",
   "totemic.noParrotsNearby": "Die Adltertanz-Zeremonie benötigt Papageien in der Nähe",
