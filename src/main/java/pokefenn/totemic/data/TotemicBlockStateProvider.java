@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
 import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
@@ -47,11 +48,11 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.basicItem(ModItems.flute.get());
         im.basicItem(ModItems.infused_flute.get());
         im.basicItem(ModItems.jingle_dress.get());
-        im.basicItem(ModItems.rattle.get());
+        basicItemWithParent(ModItems.rattle, "item/handheld");
         im.basicItem(ModItems.eagle_bone_whistle.get());
-        im.basicItem(ModItems.totem_whittling_knife.get());
-        im.basicItem(ModItems.totemic_staff.get());
-        im.basicItem(ModItems.ceremony_cheat.get());
+        basicItemWithParent(ModItems.totem_whittling_knife, "item/handheld");
+        basicItemWithParent(ModItems.totemic_staff, "item/handheld");
+        basicItemWithParent(ModItems.ceremony_cheat, "item/handheld");
         im.withExistingParent(ModItems.buffalo_spawn_egg.getId().toString(), "item/template_spawn_egg");
         im.withExistingParent(ModItems.bald_eagle_spawn_egg.getId().toString(), "item/template_spawn_egg");
         im.basicItem(ModItems.buffalo_meat.get());
@@ -121,7 +122,13 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), models().getExistingFile(block.getId()));
     }
 
-    private ModelFile blockEntityRenderer(RegistryObject<? extends Block> block, ResourceLocation particleTexture) {
+    private void basicItemWithParent(RegistryObject<? extends Item> item, String parent) {
+        var id = item.getId();
+        itemModels().withExistingParent(id.toString(), parent)
+                .texture("layer0", new ResourceLocation(id.getNamespace(), "item/" + id.getPath()));
+    }
+
+    private BlockModelBuilder blockEntityRenderer(RegistryObject<? extends Block> block, ResourceLocation particleTexture) {
         return models().getBuilder(block.getId().toString())
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .texture("particle", particleTexture)
