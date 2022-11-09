@@ -19,7 +19,7 @@ A magic mod about Totem Poles, nature and the power of music.
 [[dependencies.totemic]]
     modId="forge"
     mandatory=true
-    versionRange="[43.1.1,)"
+    versionRange="[43.1.52,)"
     ordering="NONE"
     side="BOTH"
 
