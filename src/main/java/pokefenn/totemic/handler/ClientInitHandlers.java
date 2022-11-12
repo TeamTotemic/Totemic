@@ -13,7 +13,6 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -61,9 +60,11 @@ public class ClientInitHandlers {
     //FIXME: This does work but it spams the log since the block state definitions and item models can't be loaded
     public static void onBakingComplete(ModelEvent.BakingCompleted event) {
         var stopwatch = Stopwatch.createStarted();
+
         for(var totemEffectEntry: ModBlocks.getTotemPoles().columnMap().entrySet()) {
             var modelName = getPoleModelName(totemEffectEntry.getKey());
             var unbakedModel = (BlockModel) event.getModelBakery().getModel(modelName);
+            var gui3D = unbakedModel.customData.isGui3d();
 
             for(var blockO: totemEffectEntry.getValue().values()) {
                 var blockName = blockO.getId();
@@ -76,17 +77,24 @@ public class ClientInitHandlers {
                 unbakedModel.textureMap.replace("top", Either.left(new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(woodType.getTopTexture()))));
                 unbakedModel.textureMap.replace("particle", Either.left(new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(woodType.getParticleTexture()))));
 
-                //Block models
-                for(var state: block.getStateDefinition().getPossibleStates()) {
-                    var bakedModel = unbakedModel.bake(event.getModelBakery(), unbakedModel, event.getModelBakery().getAtlasSet()::getSprite,
-                            BlockModelRotation.by(0, (int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180), modelName, false);
-                    event.getModels().put(BlockModelShaper.stateToModelLocation(blockName, state), bakedModel);
+                for(var direction: TotemPoleBlock.FACING.getPossibleValues()) {
+                    var stateWithFacing = block.getStateDefinition().any().setValue(TotemPoleBlock.FACING, direction);
+                    var rotation = BlockModelRotation.by(0, (int) direction.toYRot() + 180);
+                    var bakedModel = unbakedModel.bake(event.getModelBakery(), unbakedModel, event.getModelBakery().getAtlasSet()::getSprite, rotation, modelName, gui3D);
+
+                    for(var waterlogged: TotemPoleBlock.WATERLOGGED.getPossibleValues()) {
+                        var state = stateWithFacing.setValue(TotemPoleBlock.WATERLOGGED, waterlogged);
+                        event.getModels().put(BlockModelShaper.stateToModelLocation(blockName, state), bakedModel);
+                    }
+
+                    if(rotation == BlockModelRotation.X0_Y0) {
+                        //Set item model
+                        event.getModels().put(new ModelResourceLocation(blockName, "inventory"), bakedModel);
+                    }
                 }
-                //Item model
-                event.getModels().put(new ModelResourceLocation(blockName, "inventory"),
-                        unbakedModel.bake(event.getModelBakery(), unbakedModel, event.getModelBakery().getAtlasSet()::getSprite, BlockModelRotation.X0_Y0, modelName, true));
             }
         }
+
         stopwatch.stop();
         Totemic.logger.info("Totem Pole model baking took {}", stopwatch);
 
