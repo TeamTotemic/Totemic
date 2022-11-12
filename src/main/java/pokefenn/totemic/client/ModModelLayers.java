@@ -9,6 +9,7 @@ import pokefenn.totemic.client.model.BaldEagleModel;
 import pokefenn.totemic.client.model.BuffaloModel;
 import pokefenn.totemic.client.renderer.blockentity.WindChimeRenderer;
 import pokefenn.totemic.client.renderer.entity.BaldEagleRenderer;
+import pokefenn.totemic.client.renderer.entity.BaykokRenderer;
 import pokefenn.totemic.client.renderer.entity.BuffaloRenderer;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModEntityTypes;
@@ -33,6 +34,7 @@ public final class ModModelLayers {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(ModEntityTypes.buffalo.get(), BuffaloRenderer::new);
         event.registerEntityRenderer(ModEntityTypes.bald_eagle.get(), BaldEagleRenderer::new);
+        event.registerEntityRenderer(ModEntityTypes.baykok.get(), BaykokRenderer::new);
 
         event.registerBlockEntityRenderer(ModBlockEntities.wind_chime.get(), WindChimeRenderer::new);
     }

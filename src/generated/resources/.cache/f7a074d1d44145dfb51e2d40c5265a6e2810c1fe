@@ -1,4 +1,4 @@
-// 1.19.2	2022-11-01T14:04:07.414127181	Totemic Loot Tables
+// 1.19.2	2022-11-12T23:30:13.357971192	Totemic Loot Tables
 223a3d79fc726a880f9c65e1c167ce00b4631c41 data/totemic/loot_tables/blocks/cedar_leaves.json
 ce6a923c9ab04d5d1811db2534575ce8f7ff7cb6 data/totemic/loot_tables/blocks/cedar_log.json
 5923851fe7d4a4715ec279f5b2e61c12dd3d063e data/totemic/loot_tables/blocks/cedar_sapling.json
@@ -8,4 +8,5 @@ d7703c7caaaffcbbe6079e86736bf31e63de5291 data/totemic/loot_tables/blocks/strippe
 c2fa8089c675eac8039cc2806cb5a2938e967cf2 data/totemic/loot_tables/blocks/stripped_cedar_wood.json
 1ca9f987ede79c0357c97b4d50c44f7455f6a5cc data/totemic/loot_tables/blocks/wind_chime.json
 a651f350657933a62070a72e3b9c4fd4e80f0f7f data/totemic/loot_tables/entities/bald_eagle.json
+b5812ee5c599565b145b4ceac368636c0a032402 data/totemic/loot_tables/entities/baykok.json
 dcdb284a78acbb6ff06dcaa7ac40570551ce76a2 data/totemic/loot_tables/entities/buffalo.json

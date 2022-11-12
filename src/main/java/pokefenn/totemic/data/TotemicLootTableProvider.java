@@ -15,6 +15,7 @@ import net.minecraft.data.loot.EntityLoot;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootTable.Builder;
 import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.ValidationContext;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
@@ -29,6 +31,7 @@ import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
@@ -77,45 +80,61 @@ public final class TotemicLootTableProvider extends LootTableProvider {
         protected void addTables() {
             add(ModEntityTypes.buffalo.get(),
                     LootTable.lootTable()
-                    .withPool(
-                            LootPool.lootPool()
+                    .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
-                            .add(
-                                    LootItem.lootTableItem(ModItems.buffalo_hide.get())
+                            .add(LootItem.lootTableItem(ModItems.buffalo_hide.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 4.0F)))
                                     .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
-                    .withPool(
-                            LootPool.lootPool()
+                    .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
-                            .add(
-                                    LootItem.lootTableItem(ModItems.buffalo_tooth.get())
+                            .add(LootItem.lootTableItem(ModItems.buffalo_tooth.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
                                     .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F/3.0F)))))
-                    .withPool(
-                            LootPool.lootPool()
+                    .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
-                            .add(
-                                    LootItem.lootTableItem(ModItems.buffalo_meat.get())
+                            .add(LootItem.lootTableItem(ModItems.buffalo_meat.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F)))
                                     .apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
                                     .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F)))))
                     );
             add(ModEntityTypes.bald_eagle.get(),
                     LootTable.lootTable()
-                    .withPool(
-                            LootPool.lootPool()
+                    .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
-                            .add(
-                                    LootItem.lootTableItem(ModItems.eagle_bone.get())
+                            .add(LootItem.lootTableItem(ModItems.eagle_bone.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
                                     .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F/3.0F)))))
-                    .withPool(
-                            LootPool.lootPool()
+                    .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
-                            .add(
-                                    LootItem.lootTableItem(ModItems.eagle_feather.get())
+                            .add(LootItem.lootTableItem(ModItems.eagle_feather.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
                                     .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                    );
+            add(ModEntityTypes.baykok.get(),
+                    LootTable.lootTable()
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(Items.BOW)))
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(Items.BONE)
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 8.0F)))
+                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(Items.ROTTEN_FLESH)
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .add(LootItem.lootTableItem(Items.ARROW)
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 10.0F)))
+                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                    .withPool(LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1.0F))
+                            .add(AlternativesEntry.alternatives(
+                                    LootItem.lootTableItem(Items.WITHER_SKELETON_SKULL).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.25F, 0.05F)),
+                                    LootItem.lootTableItem(Items.SKELETON_SKULL))))
                     );
         }
 
