@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -55,6 +56,7 @@ public class ClientInitHandlers {
 
     @SuppressWarnings({ "resource", "deprecation" })
     @SubscribeEvent
+    //FIXME: This does work but it spams the log since the block state definitions and item models can't be loaded
     public static void onBakingComplete(ModelEvent.BakingCompleted event) {
         for(var blockO: ModBlocks.getTotemPoles().values()) {
             var blockName = blockO.getId();
@@ -69,11 +71,15 @@ public class ClientInitHandlers {
             retexturedModel.textureMap.put("top", Either.left(new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(woodType.getTopTexture()))));
             retexturedModel.textureMap.put("particle", Either.left(new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(woodType.getParticleTexture()))));
 
+            //Block models
             for(var state: block.getStateDefinition().getPossibleStates()) {
                 var bakedModel = retexturedModel.bake(event.getModelBakery(), retexturedModel, event.getModelBakery().getAtlasSet()::getSprite,
-                        BlockModelRotation.by(0, (int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180), modelName, true);
+                        BlockModelRotation.by(0, (int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180), modelName, false);
                 event.getModels().put(BlockModelShaper.stateToModelLocation(blockName, state), bakedModel);
             }
+            //Item model
+            event.getModels().put(new ModelResourceLocation(blockName, "inventory"),
+                    retexturedModel.bake(event.getModelBakery(), retexturedModel, event.getModelBakery().getAtlasSet()::getSprite, BlockModelRotation.X0_Y0, modelName, true));
         }
 
         if(!Minecraft.useFancyGraphics()) {
