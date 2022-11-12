@@ -1,9 +1,9 @@
 {
     "parent": "block/block",
     "textures": {
-        "wood": "totemic:blocks/stripped_cedar_log",
-        "top": "totemic:blocks/stripped_cedar_log_top",
-        "particle": "totemic:blocks/stripped_cedar_log"
+        "wood": "totemic:block/stripped_cedar_log",
+        "top": "totemic:block/stripped_cedar_log_top",
+        "particle": "totemic:block/stripped_cedar_log"
     },
     "elements": [
         {
