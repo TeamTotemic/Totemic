@@ -14,6 +14,7 @@
   "item.totemic.ceremony_cheat.tooltip": "Use on a Totem Base to instantly start up the selected Ceremony",
   "item.totemic.buffalo_spawn_egg": "Buffalo Spawn Egg",
   "item.totemic.bald_eagle_spawn_egg": "Bald Eagle Spawn Egg",
+  "item.totemic.baykok_spawn_egg": "Baykok Spawn Egg",
   "item.totemic.buffalo_meat": "Raw Buffalo Meat",
   "item.totemic.cooked_buffalo_meat": "Cooked Buffalo Meat",
   "item.totemic.buffalo_tooth": "Buffalo Tooth",
@@ -52,6 +53,7 @@
   
   "entity.totemic.buffalo": "Buffalo",
   "entity.totemic.bald_eagle": "Bald Eagle",
+  "entity.totemic.baykok": "Baykok",
   
   "totemic.totem.totemic.none": "None",
   "totemic.totem.totemic.bat": "Bat",

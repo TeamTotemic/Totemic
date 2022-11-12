@@ -2,6 +2,7 @@ package pokefenn.totemic.entity;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,22 +18,28 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
+import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 
 public class Baykok extends Monster implements RangedAttackMob {
     private final ServerBossEvent bossEvent = new ServerBossEvent(getDisplayName(), BossBarColor.WHITE, BossBarOverlay.PROGRESS);
@@ -47,7 +54,7 @@ public class Baykok extends Monster implements RangedAttackMob {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(1, new RangedAttackGoal(this, 1.0, 12, 30, 40.0F));
+        goalSelector.addGoal(1, new RangedBowAttackGoal<>(this, 1.0, 12, 40.0F));
         goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
         goalSelector.addGoal(4, new RandomLookAroundGoal(this));
@@ -63,8 +70,28 @@ public class Baykok extends Monster implements RangedAttackMob {
 
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
-        // TODO Auto-generated method stub
+        ItemStack arrowStack = this.getProjectile(this.getMainHandItem());
+        AbstractArrow arrow = ProjectileUtil.getMobArrow(this, arrowStack, pVelocity);
+        if(this.getMainHandItem().getItem() instanceof BowItem bowItem)
+           arrow = bowItem.customArrow(arrow);
+        double dX = pTarget.getX() - this.getX();
+        double dY = pTarget.getY(0.3333333333333333D) - arrow.getY();
+        double dZ = pTarget.getZ() - this.getZ();
+        double xzDist = Math.sqrt(dX * dX + dZ * dZ);
+        float velocity = 2.0F + 1.0F * pVelocity;
+        float inaccuracy = 4.5F - this.level.getDifficulty().getId();
+        arrow.shoot(dX, dY + xzDist * 0.2F, dZ, velocity, inaccuracy);
 
+        this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        this.level.addFreshEntity(arrow);
+    }
+
+    @Override
+    @Nullable
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
+        var spawnData = super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
+        populateDefaultEquipmentSlots(random, pDifficulty);
+        return spawnData;
     }
 
     @Override

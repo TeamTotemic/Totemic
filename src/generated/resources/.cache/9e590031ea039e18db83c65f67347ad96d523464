@@ -1,4 +1,4 @@
-// 1.19.2	2022-11-12T11:19:37.241132877	Block States: totemic
+// 1.19.2	2022-11-12T23:39:59.738400412	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 4963eb90b0bc03c9df4b8b0c923ef92f310e80fe assets/totemic/blockstates/birch_totem_base.json
 79fb49da17a3c66f9f009bebdd47f81fa27c3f31 assets/totemic/blockstates/cedar_leaves.json
@@ -37,6 +37,7 @@ dbf5977a5882ef7f58ac8d4485b79edb8e2c357f assets/totemic/models/block/stripped_ce
 2a6db0d87a5c5bba9f995de1bd00b4e5810f6651 assets/totemic/models/block/wind_chime.json
 e9391b5e33934ae171167dd2c71bc4714cf7a451 assets/totemic/models/item/acacia_totem_base.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/totemic/models/item/bald_eagle_spawn_egg.json
+63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/totemic/models/item/baykok_spawn_egg.json
 7708f4ad3dad75d675b24fd8bb8d20e46f3ae7f1 assets/totemic/models/item/birch_totem_base.json
 e07ed8f8777f6322b75270bb09940f472212ad26 assets/totemic/models/item/buffalo_hide.json
 e7fbb37468a7095847b777e8d8244fbba84c8e63 assets/totemic/models/item/buffalo_meat.json
