@@ -1,9 +1,0 @@
-{
-  "parent": "totemic:block/totem_pole_bat",
-  "textures": {
-    "bark": "minecraft:block/spruce_log",
-    "particle": "minecraft:block/stripped_spruce_log",
-    "top": "minecraft:block/stripped_spruce_log_top",
-    "wood": "minecraft:block/stripped_spruce_log"
-  }
-}

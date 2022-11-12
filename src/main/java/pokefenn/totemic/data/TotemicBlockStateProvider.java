@@ -17,7 +17,6 @@ import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
-import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 
@@ -63,11 +62,10 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.basicItem(ModItems.eagle_bone.get());
         im.basicItem(ModItems.eagle_feather.get());
 
-        registerTotemModels();
+        totemBaseModels();
     }
 
-    private void registerTotemModels() {
-        //TODO: It would be nice if those models and block states could be loaded dynamically rather than generated
+    private void totemBaseModels() {
         ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(TotemicAPI.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
         for(var blockO: ModBlocks.getTotemBases().values()) {
             ResourceLocation blockName = blockO.getId();
@@ -75,22 +73,6 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
             //Block model
             BlockModelBuilder blockModel = models().getBuilder(blockName.toString()).parent(totemBaseModel);
-            setTotemTextures(blockModel, block.woodType);
-
-            //Block state
-            waterloggedHorizontalBlock(block, blockModel);
-            //Item model
-            simpleBlockItem(block, blockModel);
-        }
-        for(var blockO: ModBlocks.getTotemPoles().values()) {
-            ResourceLocation blockName = blockO.getId();
-            TotemPoleBlock block = blockO.get();
-            ResourceLocation effectName = block.effect.getRegistryName();
-
-            ModelFile parentModel = models().getExistingFile(new ResourceLocation(effectName.getNamespace(), ModelProvider.BLOCK_FOLDER + "/totem_pole_" + effectName.getPath()));
-
-            //Block model
-            BlockModelBuilder blockModel = models().getBuilder(blockName.toString()).parent(parentModel);
             setTotemTextures(blockModel, block.woodType);
 
             //Block state

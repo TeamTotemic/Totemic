@@ -1,9 +1,0 @@
-{
-  "parent": "totemic:block/totem_pole_squid",
-  "textures": {
-    "bark": "totemic:block/cedar_log",
-    "particle": "totemic:block/stripped_cedar_log",
-    "top": "totemic:block/stripped_cedar_log_top",
-    "wood": "totemic:block/stripped_cedar_log"
-  }
-}
