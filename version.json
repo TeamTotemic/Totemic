@@ -1,7 +1,6 @@
 {
-    "homepage": "http://minecraft.curseforge.com/projects/totemic",
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/totemic",
     "promos": {
-        "1.12-recommended": "1.12-0.8.13",
-        "1.12.2-recommended": "1.12.2-0.11.5"
+        "1.12.2-recommended": "1.12.2-0.11.6"
     }
 }
