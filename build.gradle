@@ -7,7 +7,7 @@ plugins {
 
 version = mod_version
 group = 'pokefenn.totemic'
-archivesBaseName = 'Totemic'
+archivesBaseName = 'Totemic-forge'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 

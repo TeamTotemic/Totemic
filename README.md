@@ -1,22 +1,25 @@
-Totemic:
+# Totemic - Forge Version
 =======
 
 A magical themed mod with a focus on Totems, nature and Native American culture.
 
-Reporting issues:
-=======
-If the issue is a crash, make sure to provide the FML-Log or Crash Report.
-Depending on the situation, provide pictures.
-A description of the issue is needed.
-Keep issues to issues, please.
+## Setting up a workspace/building from source:
+Run `./gradlew genEclipseRuns eclipse` or `./gradlew genIntellijRuns` (or `gradlew.bat ...` if you are on Windows) to
+set up a workspace. Run `./gradlew build` to build the mod.
+More information on this can be found in the README.txt file in the Forge MDK.
 
-Pull requests:
-=======
+Prebuilt binaries can be found on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/totemic).
+
+## Reporting issues:
+If the issue is a crash, make sure to provide the Logfile or Crash Report.
+Depending on the situation, provide pictures.
+Try to describe the issue as precisely as possible, if possible provide steps to reproduce it.
+
+## Pull requests:
 Go over all major changes or content PR's with me before submitting it, don't want anything to go to waste :(
 Try to place comments in anything that is not obvious, it can be confusing to understand others' code!
 
-Credits:
-=======
+## Credits:
 The textures were mainly designed by nojustgavin and Sunconure11.
 
 The models for the Totem Poles were designed by Nefilto.
