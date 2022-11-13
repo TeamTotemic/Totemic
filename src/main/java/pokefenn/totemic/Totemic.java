@@ -25,6 +25,7 @@ import pokefenn.totemic.data.TotemicLootTableProvider;
 import pokefenn.totemic.data.TotemicRecipeProvider;
 import pokefenn.totemic.handler.ClientInitHandlers;
 import pokefenn.totemic.handler.ClientInteract;
+import pokefenn.totemic.handler.ClientRenderHandler;
 import pokefenn.totemic.handler.EntityHandler;
 import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlockEntities;
@@ -95,6 +96,7 @@ public final class Totemic {
     private void clientSetup(FMLClientSetupEvent event) {
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
+        eventBus.register(ClientRenderHandler.class);
     }
 
     private void gatherData(GatherDataEvent event) {
