@@ -1,5 +1,6 @@
-// 1.19.2	2022-10-30T14:36:19.718916453	Totemic Item tags
+// 1.19.2	2022-11-13T13:52:39.446275758	Totemic Item tags
 8c8c7476579771a19d4ed2a14de7fab91e67b074 data/forge/tags/items/leather.json
+da18fddcb4fafb900cf9a113d454941e0ca01fc4 data/forge/tags/items/tools/bows.json
 df2fde5a09193bb066c97a1c4a72616852680332 data/minecraft/tags/items/leaves.json
 cc42e4a4bcf0f0149edad3568521f8d79ec4f3bc data/minecraft/tags/items/logs_that_burn.json
 6f2e0a85d35f57521e978ee25a9e97515d7e95af data/minecraft/tags/items/saplings.json

@@ -19,6 +19,7 @@ import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
+import pokefenn.totemic.data.TotemicEntityTypeTagsProvider;
 import pokefenn.totemic.data.TotemicItemTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
 import pokefenn.totemic.data.TotemicRecipeProvider;
@@ -98,15 +99,17 @@ public final class Totemic {
 
     private void gatherData(GatherDataEvent event) {
         var gen = event.getGenerator();
+        var efh = event.getExistingFileHelper();
         if(event.includeServer()) {
-            var blockTP = new TotemicBlockTagsProvider(gen, event.getExistingFileHelper());
+            var blockTP = new TotemicBlockTagsProvider(gen, efh);
             gen.addProvider(true, blockTP);
-            gen.addProvider(true, new TotemicItemTagsProvider(gen, blockTP, TotemicAPI.MOD_ID, event.getExistingFileHelper()));
+            gen.addProvider(true, new TotemicItemTagsProvider(gen, blockTP, TotemicAPI.MOD_ID, efh));
+            gen.addProvider(true, new TotemicEntityTypeTagsProvider(gen, TotemicAPI.MOD_ID, efh));
             gen.addProvider(true, new TotemicLootTableProvider(gen));
             gen.addProvider(true, new TotemicRecipeProvider(gen));
         }
         if(event.includeClient()) {
-            gen.addProvider(true, new TotemicBlockStateProvider(gen, event.getExistingFileHelper()));
+            gen.addProvider(true, new TotemicBlockStateProvider(gen, efh));
         }
     }
 }
