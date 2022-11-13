@@ -1,5 +1,10 @@
 package pokefenn.totemic.client.renderer.entity;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.resources.ResourceLocation;
@@ -11,6 +16,16 @@ public class InvisibleArrowRenderer extends ArrowRenderer<InvisibleArrow> {
 
     public InvisibleArrowRenderer(Context pContext) {
         super(pContext);
+    }
+
+    @SuppressWarnings("resource")
+    @Override
+    public void render(InvisibleArrow pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
+        if(pEntity.getOwner() == Minecraft.getInstance().player) {
+            //Override render type used by super method
+            MultiBufferSource translucentBufferSrc = renderType -> pBuffer.getBuffer(RenderType.entityTranslucentCull(INVIS_ARROW_TEXTURE));
+            super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, translucentBufferSrc, pPackedLight);
+        }
     }
 
     @Override
