@@ -17,6 +17,7 @@ import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
+import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 
@@ -68,6 +69,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.9F).model(im.basicItem(modLoc("baykok_bow_pulling_2")).parent(baykokBow)).end();
 
         totemBaseModels();
+        dummyTotemPoleModels();
     }
 
     private void totemBaseModels() {
@@ -84,6 +86,23 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             waterloggedHorizontalBlock(block, blockModel);
             //Item model
             simpleBlockItem(block, blockModel);
+        }
+    }
+
+    /*
+     * FIXME: This exists only to silence the hundreds of warnings in the log about blockstate definitions/item models not being found.
+     * The air model is replaced by dynamically generated models in ClientInitHandlers#onBakingComplete.
+     * This is a compromise solution since any totem effects or wood types added by other mods (if there are any) would again cause
+     * warnings to appear.
+     * We don't need this if there was a way to load blockstate definitions dynamically in Forge.
+     */
+    private void dummyTotemPoleModels() {
+        var airModel = models().getExistingFile(mcLoc("air"));
+        for(var blockO: ModBlocks.getTotemPoles().values()) {
+            TotemPoleBlock block = blockO.get();
+
+            getVariantBuilder(block).partialState().setModels(ConfiguredModel.builder().modelFile(airModel).build());
+            simpleBlockItem(block, airModel);
         }
     }
 
