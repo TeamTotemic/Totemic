@@ -76,6 +76,7 @@ public final class Totemic {
         event.enqueueWork(() -> {
             ModBlocks.setFireInfo();
             ModCriteriaTriggers.init();
+            ModItems.baykok_bow.get().registerItemProperties();
         });
 
         //Totem effects are registered during ModBlocks#init

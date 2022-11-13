@@ -1,4 +1,4 @@
-// 1.19.2	2022-11-12T23:39:59.738400412	Block States: totemic
+// 1.19.2	2022-11-13T13:23:04.136843471	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 4963eb90b0bc03c9df4b8b0c923ef92f310e80fe assets/totemic/blockstates/birch_totem_base.json
 79fb49da17a3c66f9f009bebdd47f81fa27c3f31 assets/totemic/blockstates/cedar_leaves.json
@@ -37,6 +37,10 @@ dbf5977a5882ef7f58ac8d4485b79edb8e2c357f assets/totemic/models/block/stripped_ce
 2a6db0d87a5c5bba9f995de1bd00b4e5810f6651 assets/totemic/models/block/wind_chime.json
 e9391b5e33934ae171167dd2c71bc4714cf7a451 assets/totemic/models/item/acacia_totem_base.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/totemic/models/item/bald_eagle_spawn_egg.json
+9c593a7d2a87b120d07cf1c24820332b029a7cde assets/totemic/models/item/baykok_bow.json
+fbf4e4db6456c76c6f7e6c61f58127b0163de579 assets/totemic/models/item/baykok_bow_pulling_0.json
+183503cf5b0b8610cd02a1ae41e5449fb0516ec9 assets/totemic/models/item/baykok_bow_pulling_1.json
+86a6ba9907500dd82691c178327e07b1d78dc31f assets/totemic/models/item/baykok_bow_pulling_2.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/totemic/models/item/baykok_spawn_egg.json
 7708f4ad3dad75d675b24fd8bb8d20e46f3ae7f1 assets/totemic/models/item/birch_totem_base.json
 e07ed8f8777f6322b75270bb09940f472212ad26 assets/totemic/models/item/buffalo_hide.json

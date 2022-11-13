@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:bow"
+          "name": "totemic:baykok_bow"
         }
       ],
       "rolls": 1.0

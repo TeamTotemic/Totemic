@@ -37,9 +37,9 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import pokefenn.totemic.init.ModItems;
 
 public class Baykok extends Monster implements RangedAttackMob {
     private final ServerBossEvent bossEvent = new ServerBossEvent(getDisplayName(), BossBarColor.WHITE, BossBarOverlay.PROGRESS);
@@ -96,7 +96,7 @@ public class Baykok extends Monster implements RangedAttackMob {
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW)); //TODO: Add Baykok's bow
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.baykok_bow.get()));
     }
 
     @Override

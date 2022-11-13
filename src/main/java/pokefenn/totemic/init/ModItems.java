@@ -18,6 +18,7 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
+import pokefenn.totemic.item.BaykokBowItem;
 import pokefenn.totemic.item.CeremonyCheatItem;
 import pokefenn.totemic.item.CustomRenderedBlockItem;
 import pokefenn.totemic.item.TotemKnifeItem;
@@ -53,6 +54,7 @@ public final class ModItems {
     public static final RegistryObject<Item> iron_bells = REGISTER.register("iron_bells", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<Item> eagle_bone = REGISTER.register("eagle_bone", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<Item> eagle_feather = REGISTER.register("eagle_feather", () -> new Item(new Properties().tab(Totemic.creativeTab)));
+    public static final RegistryObject<BaykokBowItem> baykok_bow = REGISTER.register("baykok_bow", () -> new BaykokBowItem(new Properties().durability(576).rarity(Rarity.RARE).tab(Totemic.creativeTab)));
     public static final RegistryObject<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties().tab(Totemic.creativeTab)));
 
     @SubscribeEvent

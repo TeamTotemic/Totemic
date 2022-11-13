@@ -47,11 +47,11 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.basicItem(ModItems.flute.get());
         im.basicItem(ModItems.infused_flute.get());
         im.basicItem(ModItems.jingle_dress.get());
-        basicItemWithParent(ModItems.rattle, "item/handheld");
+        basicItemWithParent(ModItems.rattle, mcLoc("item/handheld"));
         im.basicItem(ModItems.eagle_bone_whistle.get());
-        basicItemWithParent(ModItems.totem_whittling_knife, "item/handheld");
-        basicItemWithParent(ModItems.totemic_staff, "item/handheld");
-        basicItemWithParent(ModItems.ceremony_cheat, "item/handheld");
+        basicItemWithParent(ModItems.totem_whittling_knife, mcLoc("item/handheld"));
+        basicItemWithParent(ModItems.totemic_staff, mcLoc("item/handheld"));
+        basicItemWithParent(ModItems.ceremony_cheat, mcLoc("item/handheld"));
         im.withExistingParent(ModItems.buffalo_spawn_egg.getId().toString(), "item/template_spawn_egg");
         im.withExistingParent(ModItems.bald_eagle_spawn_egg.getId().toString(), "item/template_spawn_egg");
         im.withExistingParent(ModItems.baykok_spawn_egg.getId().toString(), "item/template_spawn_egg");
@@ -62,6 +62,10 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.basicItem(ModItems.iron_bells.get());
         im.basicItem(ModItems.eagle_bone.get());
         im.basicItem(ModItems.eagle_feather.get());
+        var baykokBow = im.withExistingParent(ModItems.baykok_bow.getId().toString(), "item/bow").texture("layer0", modLoc("item/baykok_bow"));
+        baykokBow.override().predicate(mcLoc("pulling"), 1).model(im.basicItem(modLoc("baykok_bow_pulling_0")).parent(baykokBow)).end();
+        baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.65F).model(im.basicItem(modLoc("baykok_bow_pulling_1")).parent(baykokBow)).end();
+        baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.9F).model(im.basicItem(modLoc("baykok_bow_pulling_2")).parent(baykokBow)).end();
 
         totemBaseModels();
     }
@@ -105,7 +109,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(block.get(), models().getExistingFile(block.getId()));
     }
 
-    private void basicItemWithParent(RegistryObject<? extends Item> item, String parent) {
+    private void basicItemWithParent(RegistryObject<? extends Item> item, ResourceLocation parent) {
         var id = item.getId();
         itemModels().withExistingParent(id.toString(), parent)
                 .texture("layer0", new ResourceLocation(id.getNamespace(), "item/" + id.getPath()));

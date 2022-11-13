@@ -114,7 +114,7 @@ public final class TotemicLootTableProvider extends LootTableProvider {
                     LootTable.lootTable()
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
-                            .add(LootItem.lootTableItem(Items.BOW)))
+                            .add(LootItem.lootTableItem(ModItems.baykok_bow.get())))
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(LootItem.lootTableItem(Items.BONE)
