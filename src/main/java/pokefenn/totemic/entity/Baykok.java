@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.BossEvent.BossBarColor;
 import net.minecraft.world.BossEvent.BossBarOverlay;
@@ -70,17 +71,20 @@ public class Baykok extends Monster implements RangedAttackMob {
 
     @Override
     public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
+        float distanceFactor = Mth.clamp(distanceTo(pTarget) / 40.0F, 0.1F, 1.0F);
+
         ItemStack arrowStack = this.getProjectile(this.getMainHandItem());
-        AbstractArrow arrow = ProjectileUtil.getMobArrow(this, arrowStack, pVelocity);
+        AbstractArrow arrow = ProjectileUtil.getMobArrow(this, arrowStack, distanceFactor);
         if(this.getMainHandItem().getItem() instanceof BowItem bowItem)
            arrow = bowItem.customArrow(arrow);
         double dX = pTarget.getX() - this.getX();
         double dY = pTarget.getY(0.3333333333333333D) - arrow.getY();
         double dZ = pTarget.getZ() - this.getZ();
         double xzDist = Math.sqrt(dX * dX + dZ * dZ);
-        float velocity = 2.0F + 1.0F * pVelocity;
+        float velocity = 2.0F + 1.0F * distanceFactor;
         float inaccuracy = 4.5F - this.level.getDifficulty().getId();
-        arrow.shoot(dX, dY + xzDist * 0.2F, dZ, velocity, inaccuracy);
+        arrow.setBaseDamage(arrow.getBaseDamage() + 1.0 + 0.3 * level.getDifficulty().getId());
+        arrow.shoot(dX, dY + 0.125 * xzDist, dZ, velocity, inaccuracy);
 
         this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level.addFreshEntity(arrow);
