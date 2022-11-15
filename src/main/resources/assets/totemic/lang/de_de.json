@@ -89,6 +89,7 @@
   "totemic.ceremony.totemic.cleansing": "Steves Schlaflied",
   "totemic.ceremony.totemic.sun_dance": "Sonnentanz",
   "totemic.ceremony.totemic.danse_macabre": "Danse Macabre",
+  "totemic.ceremony.totemic.baykok_summon": "Totentanz",
   
   "effect.totemic.spider": "Wändeklettern",
   "effect.totemic.ocelot": "Creeperabwehr",
@@ -105,6 +106,7 @@
   "totemic.noCowsNearby": "Die Büffeltanz-Zeremonie benötigt Kühe in der Nähe",
   "totemic.noParrotsNearby": "Die Adltertanz-Zeremonie benötigt Papageien in der Nähe",
   "totemic.noZombifiedMonstersNearby": "Die Zeremonie Steves Schlaflied benötigt geschwächte zombifizierte Monster in der Nähe",
+  "totemic.cantSpawnBaykokOnPeaceful": "Baykok kann nicht in der Schwierigkeitsstufe Friedlich herbeigerufen werden",
   
   "death.attack.totemic.sunDance": "%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.",
   "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren."
