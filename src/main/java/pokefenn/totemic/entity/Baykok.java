@@ -61,7 +61,6 @@ public class Baykok extends Monster implements RangedAttackMob {
         goalSelector.addGoal(4, new RandomLookAroundGoal(this));
         targetSelector.addGoal(0, new HurtByTargetGoal(this));
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
-        targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Buffalo.class, true));
     }
 
     @Override

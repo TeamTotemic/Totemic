@@ -31,6 +31,11 @@ public class BaykokBowItem extends BowItem {
     }
 
     @Override
+    public int getEnchantmentValue() {
+        return 5;
+    }
+
+    @Override
     public boolean isFoil(ItemStack pStack) {
         return true;
     }
