@@ -114,15 +114,13 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
         music.clear();
         totalMusic = 0;
         for(String key: tag.getAllKeys()) {
-            MusicInstrument instr = TotemicAPI.get().registry().instruments().get(new ResourceLocation(key));
-
-            if(instr != null) {
+            TotemicAPI.get().registry().instruments().getOptional(new ResourceLocation(key))
+            .ifPresentOrElse(instr -> {
                 int amount = tag.getInt(key);
                 music.put(instr, amount);
                 totalMusic += amount;
-            }
-            else
-                LogManager.getLogger().warn("Unknown music instrument: {}", key);
+            },
+            () -> LogManager.getLogger().warn("Unknown music instrument: {}", key));
         }
     }
 }

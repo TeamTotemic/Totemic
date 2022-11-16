@@ -25,9 +25,8 @@ public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.Trig
     @Override
     public TriggerInstance createInstance(JsonObject pJson, Composite pPlayer, DeserializationContext pContext) {
         var name = new ResourceLocation(GsonHelper.getAsString(pJson, "ceremony"));
-        var ceremony = TotemicAPI.get().registry().ceremonies().get(name);
-        if(ceremony == null)
-            throw new JsonSyntaxException("Unknown Ceremony '" + name + "'");
+        var ceremony = TotemicAPI.get().registry().ceremonies().getOptional(name)
+                .orElseThrow(() -> new JsonSyntaxException("Unknown Ceremony '" + name + "'"));
         return new TriggerInstance(pPlayer, ceremony);
     }
 

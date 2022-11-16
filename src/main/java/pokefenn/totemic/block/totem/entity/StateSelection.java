@@ -117,11 +117,9 @@ public final class StateSelection extends TotemState {
         ListTag selectorsTag = tag.getList("Selectors", Tag.TAG_STRING);
         for(int i = 0; i < selectorsTag.size(); i++) {
             var name = new ResourceLocation(selectorsTag.getString(i));
-            var instr = TotemicAPI.get().registry().instruments().get(name);
-            if(instr != null)
-                selectors.add(instr);
-            else
-                Totemic.logger.error("Unknown music instrument: {}", name);
+            TotemicAPI.get().registry().instruments().getOptional(name)
+                    .ifPresentOrElse(selectors::add,
+                            () -> Totemic.logger.error("Unknown music instrument: {}", name));
         }
         time = tag.getInt("Time");
         previousState.load(tag); //Safe since StateTotemEffect only saves the key TotemMusic
