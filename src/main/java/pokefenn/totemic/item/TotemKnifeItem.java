@@ -91,7 +91,7 @@ public class TotemKnifeItem extends Item {
         else {
             BlockState state = c.getLevel().getBlockState(c.getClickedPos());
 
-            TotemWoodType woodType = TotemWoodType.fromLog(state);
+            TotemWoodType woodType = TotemWoodType.fromLog(state).orElse(null);
             if(woodType == null) {
                 //Fall back to oak if it is an unrecognized log type
                 if(state.is(BlockTags.LOGS_THAT_BURN))

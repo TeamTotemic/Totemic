@@ -1,5 +1,7 @@
 package pokefenn.totemic.block.totem.entity;
 
+import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.client.Minecraft;
@@ -89,14 +91,13 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     }
 
     @Override
-    @Nullable
-    public Player getInitiatingPlayer() {
-        return initiator instanceof Player p ? p : null;
+    public Optional<Player> getInitiatingPlayer() {
+        return initiator instanceof Player p ? Optional.of(p) : Optional.empty();
     }
 
     @Override
-    public Entity getInitiator() {
-        return initiator;
+    public Optional<Entity> getInitiator() {
+        return Optional.ofNullable(initiator);
     }
 
     public Ceremony getCeremony() {

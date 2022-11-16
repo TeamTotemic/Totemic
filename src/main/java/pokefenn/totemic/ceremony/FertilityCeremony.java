@@ -55,7 +55,7 @@ public enum FertilityCeremony implements CeremonyInstance {
             if(itemE.isPresent()) {
                 if(level.random.nextInt(3) < 2)
                     MiscUtil.shrinkItemEntity(itemE.get());
-                animal.setInLove(context.getInitiatingPlayer());
+                animal.setInLove(context.getInitiatingPlayer().orElse(null));
                 return; //Limit to one animal or villager per second
             }
         }

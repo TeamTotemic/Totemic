@@ -1,8 +1,7 @@
 package pokefenn.totemic.api;
 
 import java.util.List;
-
-import javax.annotation.Nullable;
+import java.util.Optional;
 
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,28 +32,27 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
     private final String particleTexture;
 
     /**
-     * Returns the TotemWoodType represented by the given BlockState, or {@code null} if the state is not a recognized log block.
+     * Returns the TotemWoodType represented by the given BlockState, or an empty Optional if the state is not a recognized log block.
      */
-    @Nullable
-    public static TotemWoodType fromLog(BlockState state) {
+    public static Optional<TotemWoodType> fromLog(BlockState state) {
         if(state.is(BlockTags.OAK_LOGS))
-            return OAK;
+            return Optional.of(OAK);
         else if(state.is(BlockTags.SPRUCE_LOGS))
-            return SPRUCE;
+            return Optional.of(SPRUCE);
         else if(state.is(BlockTags.BIRCH_LOGS))
-            return BIRCH;
+            return Optional.of(BIRCH);
         else if(state.is(BlockTags.JUNGLE_LOGS))
-            return JUNGLE;
+            return Optional.of(JUNGLE);
         else if(state.is(BlockTags.ACACIA_LOGS))
-            return ACACIA;
+            return Optional.of(ACACIA);
         else if(state.is(BlockTags.DARK_OAK_LOGS))
-            return DARK_OAK;
+            return Optional.of(DARK_OAK);
         else if(state.is(BlockTags.MANGROVE_LOGS))
-            return MANGROVE;
+            return Optional.of(MANGROVE);
         else if(state.is(TotemicBlockTags.CEDAR_LOGS))
-            return CEDAR;
+            return Optional.of(CEDAR);
         else
-            return null;
+            return Optional.empty();
     }
 
     /**

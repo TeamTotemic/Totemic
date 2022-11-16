@@ -1,6 +1,6 @@
 package pokefenn.totemic.api.ceremony;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -19,16 +19,16 @@ public interface CeremonyEffectContext {
     int getTime();
 
     /**
-     * If the ceremony was initiated by a player, returns that player. Otherwise, returns {@code null}.
+     * If the ceremony was initiated by a player, returns that player. Otherwise, returns an empty Optional.
      */
-    @Nullable Player getInitiatingPlayer();
+    Optional<Player> getInitiatingPlayer();
 
     /**
      * Returns the Entity that initiated the ceremony, if available.
-     * Returns {@code null} if the initiating entity is no longer available (e.g. when
+     * Returns an empty Optional if the initiating entity is no longer available (e.g. when
      * the world has been saved and reloaded).
      */
-    @Nullable Entity getInitiator();
+    Optional<Entity> getInitiator();
 
     //TODO: Add endCeremony() method
 }

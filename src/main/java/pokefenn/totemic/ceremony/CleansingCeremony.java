@@ -15,6 +15,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.ZombieVillager;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -43,8 +44,7 @@ public enum CleansingCeremony implements CeremonyInstance {
         var aabb = new AABB(pos).inflate(RANGE - 1);
 
         try {
-            var player = context.getInitiatingPlayer();
-            var uuid = player != null ? player.getUUID() : null;
+            var uuid = context.getInitiatingPlayer().map(Player::getUUID).orElse(null);
             for(var zombieVillager : level.getEntities(EntityType.ZOMBIE_VILLAGER, aabb, hasWeakness)) {
                 //This method ensures the player gets all the beneficial effects for curing Zombie Villagers
                 startConverting.invokeExact(zombieVillager, uuid, 1);
