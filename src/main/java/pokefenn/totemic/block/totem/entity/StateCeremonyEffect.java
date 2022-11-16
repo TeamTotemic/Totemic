@@ -100,6 +100,11 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
         return Optional.ofNullable(initiator);
     }
 
+    @Override
+    public void endCeremony() {
+        tile.setTotemState(new StateTotemEffect(tile));
+    }
+
     public Ceremony getCeremony() {
         return ceremony;
     }

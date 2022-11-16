@@ -30,5 +30,8 @@ public interface CeremonyEffectContext {
      */
     Optional<Entity> getInitiator();
 
-    //TODO: Add endCeremony() method
+    /**
+     * Ends the ceremony effect and returns the Totem Base to its default state.
+     */
+    void endCeremony();
 }
