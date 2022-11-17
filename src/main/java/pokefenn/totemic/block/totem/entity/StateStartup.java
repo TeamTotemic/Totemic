@@ -27,6 +27,7 @@ import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.music.DefaultMusicAcceptor;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.network.ClientboundPacketStartupMusic;
 import pokefenn.totemic.network.NetworkHandler;
 import pokefenn.totemic.util.MiscUtil;
@@ -98,6 +99,7 @@ public final class StateStartup extends TotemState implements StartupContext {
         else {
             instance.onStartup(world, pos, this); //do not change state based on time on the client side (to account for TPS lag)
             displayStartupProgress();
+            CeremonyHUD.INSTANCE.setActiveTotem(tile);
         }
 
         time++;

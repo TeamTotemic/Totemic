@@ -21,6 +21,7 @@ import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
+import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.util.MiscUtil;
 
 public final class StateSelection extends TotemState {
@@ -84,6 +85,8 @@ public final class StateSelection extends TotemState {
             if(time++ >= 60 * 20)
                 tile.setTotemState(previousState);
         }
+        else
+            CeremonyHUD.INSTANCE.setActiveTotem(tile);
     }
 
     public List<MusicInstrument> getSelectors() {

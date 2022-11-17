@@ -15,12 +15,15 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
+import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.init.ModBlocks;
 
 /**
@@ -112,5 +115,10 @@ public class ClientInitHandlers {
     private static ResourceLocation getPoleModelName(TotemEffect effect) {
         var effectName = effect.getRegistryName();
         return new ResourceLocation(effectName.getNamespace(), "block/totem_pole_" + effectName.getPath());
+    }
+
+    @SubscribeEvent
+    public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
+        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ceremony_hud", CeremonyHUD.INSTANCE);
     }
 }

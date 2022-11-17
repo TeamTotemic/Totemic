@@ -21,6 +21,7 @@ import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.client.CeremonyHUD;
 
 public final class StateCeremonyEffect extends TotemState implements CeremonyEffectContext {
     static final byte ID = 3;
@@ -69,6 +70,8 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
             //Due to network delay, we want to avoid ticking instant ceremonies more than once on the client side
             if(instance.getEffectTime() == 0)
                 tile.setTotemState(new StateTotemEffect(tile));
+            else
+                CeremonyHUD.INSTANCE.setActiveTotem(tile);
 
             displayEffectProgress();
         }

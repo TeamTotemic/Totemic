@@ -108,6 +108,8 @@
   "totemic.noZombifiedMonstersNearby": "Die Zeremonie Steves Schlaflied benötigt geschwächte zombifizierte Monster in der Nähe",
   "totemic.cantSpawnBaykokOnPeaceful": "Baykok kann nicht in der Schwierigkeitsstufe Friedlich herbeigerufen werden",
   
+  "totemic.hud.selection": "Zeremonie-Selektion",
+  
   "death.attack.totemic.sunDance": "%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.",
   "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren."
 }
