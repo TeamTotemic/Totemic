@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import pokefenn.totemic.api.TotemicAPI;
@@ -65,9 +66,9 @@ public enum CeremonyHUD implements IGuiOverlay {
         if(state instanceof StateSelection s)
             renderSelectionHUD(s, gui, poseStack, partialTick, hudX, hudY);
         else if(state instanceof StateStartup s)
-            renderStartupHUD(s, gui, poseStack, partialTick, hudX, hudY);
+            renderStartupHUD(s, gui, poseStack, partialTick);
         else if(state instanceof StateCeremonyEffect s)
-            renderCeremonyEffectHUD(s, gui, poseStack, partialTick, hudX, hudY);
+            renderCeremonyEffectHUD(s, gui, poseStack, partialTick);
 
         poseStack.popPose();
 
@@ -94,7 +95,7 @@ public enum CeremonyHUD implements IGuiOverlay {
     }
 
     @SuppressWarnings("resource")
-    private void renderStartupHUD(StateStartup state, ForgeGui gui, PoseStack poseStack, float partialTick, int hudX, int hudY) {
+    private void renderStartupHUD(StateStartup state, ForgeGui gui, PoseStack poseStack, float partialTick) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
@@ -120,13 +121,38 @@ public enum CeremonyHUD implements IGuiOverlay {
         BufferUploader.drawWithShader(buf.end());
 
         //Ceremony name
-        var name = cer.getDisplayName();
+        var name = cer.getDisplayName().getString();
         int nameX = (HUD_WIDTH - gui.getFont().width(name)) / 2;
         gui.getFont().draw(poseStack, name, nameX, 2, 0xC8000000);
     }
 
-    private void renderCeremonyEffectHUD(StateCeremonyEffect state, ForgeGui gui, PoseStack poseStack, float partialTick, int hudX, int hudY) {
+    private void renderCeremonyEffectHUD(StateCeremonyEffect state, ForgeGui gui, PoseStack poseStack, float partialTick) {
+        final int texW = 128, texH = 64;
+        final int barW = 104, barH = 7;
+        var cer = state.getCeremony();
+        var cerInst = state.getCeremonyInstance();
 
+        gui.setupOverlayRenderState(true, false, CEREMONY_HUD_TEXTURE);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        var buf = Tesselator.getInstance().getBuilder();
+        buf.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+
+        //Background
+        addQuad(buf, poseStack, 0, 0,  HUD_WIDTH, HUD_HEIGHT,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
+
+        //Clock symbols
+        addQuad(buf, poseStack, 1, 20,  9, 9,   0, 48,  16, 16, texW, texH);
+
+        //Time bar
+        float timeW = Mth.clamp(1.0F - (state.getTime() + partialTick) / cerInst.getEffectTime(), 0.0F, 1.0F) * barW;
+        addQuad(buf, poseStack, 11, 21,  timeW,  barH,  0, 32,  timeW,  barH, texW, texH);
+
+        BufferUploader.drawWithShader(buf.end());
+
+        //Ceremony name
+        var name = cer.getDisplayName().getString();
+        int nameX = (HUD_WIDTH - gui.getFont().width(name)) / 2;
+        gui.getFont().draw(poseStack, name, nameX, 2, 0xC8000000);
     }
 
     //Like GuiComponent.blit, but using the given BufferBuilder and allowing float values rather than int

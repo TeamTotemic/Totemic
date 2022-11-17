@@ -4,13 +4,11 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -98,22 +96,10 @@ public final class StateStartup extends TotemState implements StartupContext {
         }
         else {
             instance.onStartup(world, pos, this); //do not change state based on time on the client side (to account for TPS lag)
-            displayStartupProgress();
             CeremonyHUD.INSTANCE.setActiveTotem(tile);
         }
 
         time++;
-    }
-
-    private void displayStartupProgress() {
-        //TODO: Temporary
-        @SuppressWarnings("resource")
-        var localPlayer = Minecraft.getInstance().player;
-        if(time % 20 == 0 && tile.getBlockPos().closerToCenterThan(localPlayer.position(), 8)) {
-            localPlayer.displayClientMessage(Component.translatable("totemic.startupProgress",
-                    ceremony.getDisplayName(), time/20, ceremony.getAdjustedMaxStartupTime(localPlayer.level.getDifficulty())/20, musicHandler.getTotalMusic(), ceremony.getMusicNeeded()),
-                    true);
-        }
     }
 
     @Override
