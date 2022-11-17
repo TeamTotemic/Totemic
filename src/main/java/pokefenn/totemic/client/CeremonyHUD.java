@@ -1,9 +1,16 @@
 package pokefenn.totemic.client;
 
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.BufferBuilder;
+import com.mojang.blaze3d.vertex.BufferUploader;
+import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.Tesselator;
+import com.mojang.blaze3d.vertex.VertexFormat;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
@@ -77,7 +84,7 @@ public enum CeremonyHUD implements IGuiOverlay {
         //Header text
         var headerText = I18n.get("totemic.hud.selection");
         int headerX = (HUD_WIDTH - gui.getFont().width(headerText)) / 2;
-        gui.getFont().draw(poseStack, headerText, headerX, 1, 0xC8000000);
+        gui.getFont().draw(poseStack, headerText, headerX, 2, 0xC8000000);
 
         //Instruments
         var selectors = state.getSelectors();
@@ -86,11 +93,50 @@ public enum CeremonyHUD implements IGuiOverlay {
         gui.getMinecraft().getItemRenderer().renderGuiItem(item, hudX + 40, hudY + 12);
     }
 
+    @SuppressWarnings("resource")
     private void renderStartupHUD(StateStartup state, ForgeGui gui, PoseStack poseStack, float partialTick, int hudX, int hudY) {
+        final int texW = 128, texH = 64;
+        final int barW = 104, barH = 7;
+        var cer = state.getCeremony();
 
+        gui.setupOverlayRenderState(true, false, CEREMONY_HUD_TEXTURE);
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        var buf = Tesselator.getInstance().getBuilder();
+        buf.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+
+        //Background
+        addQuad(buf, poseStack, 0, 0,  HUD_WIDTH, HUD_HEIGHT,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
+
+        //Symbols
+        addQuad(buf, poseStack, 1, 10,  9, 9,  16, 48,   8,  8, texW, texH); //Note
+        addQuad(buf, poseStack, 1, 20,  9, 9,   0, 48,  16, 16, texW, texH); //Clock
+
+        //Bars
+        float musicW = state.getTotalMusic() / (float)cer.getMusicNeeded() * barW;
+        float timeW = Math.min((state.getTime() + partialTick) / cer.getAdjustedMaxStartupTime(gui.getMinecraft().level.getDifficulty()), 1.0F) * barW;
+        addQuad(buf, poseStack, 11, 11,  musicW, barH,  0, 32,  musicW, barH, texW, texH);
+        addQuad(buf, poseStack, 11, 21,  timeW,  barH,  0, 32,  timeW,  barH, texW, texH);
+
+        BufferUploader.drawWithShader(buf.end());
+
+        //Ceremony name
+        var name = cer.getDisplayName();
+        int nameX = (HUD_WIDTH - gui.getFont().width(name)) / 2;
+        gui.getFont().draw(poseStack, name, nameX, 2, 0xC8000000);
     }
 
     private void renderCeremonyEffectHUD(StateCeremonyEffect state, ForgeGui gui, PoseStack poseStack, float partialTick, int hudX, int hudY) {
 
+    }
+
+    //Like GuiComponent.blit, but using the given BufferBuilder and allowing float values rather than int
+    private static void addQuad(BufferBuilder buf, PoseStack ps, float x, float y, float width, float height, float uOffset, float vOffset, float uWidth, float vHeight, int textureWidth, int textureHeight) {
+        var mat = ps.last().pose();
+        float minU = uOffset / textureWidth,  maxU = (uOffset + uWidth) / textureWidth;
+        float minV = vOffset / textureHeight, maxV = (vOffset + vHeight) / textureHeight;
+        buf.vertex(mat, x,         y + height, 0).uv(minU, maxV).endVertex();
+        buf.vertex(mat, x + width, y + height, 0).uv(maxU, maxV).endVertex();
+        buf.vertex(mat, x + width, y,          0).uv(maxU, minV).endVertex();
+        buf.vertex(mat, x,         y,          0).uv(minU, minV).endVertex();
     }
 }
