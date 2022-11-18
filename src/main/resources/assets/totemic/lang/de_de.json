@@ -100,16 +100,19 @@
   "totemic.isDoingSelection": "Der Totempfahl wartet, dass eine Zeremonie ausgewählt wird\nAuswahl: %s",
   "totemic.isDoingStartup": "Der Totempfahl sammelt Musik für eine Zeremonie\nZeremonie: %s",
   "totemic.isDoingCeremony": "Der Totempfahl führt den Effekt einer Zeremonie aus\nZeremonie: %s",
-  "totemic.startupProgress": "%s: Sammlungszeit: %d/%d s, Musik: %d/%d",
-  "totemic.ceremonyEffectProgress": "%s: Effektzeit: %d/%d s",
+  "totemic.hud.selection": "Zeremonie-Selektion",
   
   "totemic.noCowsNearby": "Die Büffeltanz-Zeremonie benötigt Kühe in der Nähe",
   "totemic.noParrotsNearby": "Die Adltertanz-Zeremonie benötigt Papageien in der Nähe",
   "totemic.noZombifiedMonstersNearby": "Die Zeremonie Steves Schlaflied benötigt geschwächte zombifizierte Monster in der Nähe",
   "totemic.cantSpawnBaykokOnPeaceful": "Baykok kann nicht in der Schwierigkeitsstufe Friedlich herbeigerufen werden",
   
-  "totemic.hud.selection": "Zeremonie-Selektion",
-  
   "death.attack.totemic.sunDance": "%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.",
-  "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren."
+  "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren.",
+  
+  "totemic.config.general": "Allgemein",
+  "totemic.config.client": "Client-Seite",
+  "totemic.config.skeletonsShouldAttackBuffalos": "Skelette greifen Büffel an",
+  "totemic.config.ceremonyHudPositionX": "Zeremonien-HUD X-Position",
+  "totemic.config.ceremonyHudPositionY": "Zeremonien-HUD Y-Position"
 }

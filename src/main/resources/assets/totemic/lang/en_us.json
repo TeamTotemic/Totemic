@@ -100,16 +100,19 @@
   "totemic.isDoingSelection": "The Totem Pole is waiting for a Ceremony to be selected\nSelection: %s",
   "totemic.isDoingStartup": "The Totem Pole is collecting music for a Ceremony\nCeremony: %s",
   "totemic.isDoingCeremony": "The Totem Pole is performing a Ceremony effect\nCeremony: %s",
-  "totemic.startupProgress": "%s: Startup time: %d/%d s, Music: %d/%d",
-  "totemic.ceremonyEffectProgress": "%s: Effect time: %d/%d s",
+  "totemic.hud.selection": "Ceremony Selection",
   
   "totemic.noCowsNearby": "The Buffalo Dance Ceremony requires Cows nearby",
   "totemic.noParrotsNearby": "The Eagle Dance Ceremony requires Parrots nearby",
   "totemic.noZombifiedMonstersNearby": "The Steve's Lullaby Ceremony requires weakened zombified monsters nearby",
   "totemic.cantSpawnBaykokOnPeaceful": "Baykok cannot be summoned on Peaceful difficulty",
   
-  "totemic.hud.selection": "Ceremony Selection",
-  
   "death.attack.totemic.sunDance": "%1$s sacrificed themselves to the Sun God. This is not supposed to happen.",
-  "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen."
+  "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",
+  
+  "totemic.config.general": "General",
+  "totemic.config.client": "Client",
+  "totemic.config.skeletonsShouldAttackBuffalos": "Skeletons should attack Buffalos",
+  "totemic.config.ceremonyHudPositionX": "Ceremony HUD X position",
+  "totemic.config.ceremonyHudPositionY": "Ceremony HUD Y position"
 }

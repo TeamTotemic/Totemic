@@ -8,6 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -72,6 +73,8 @@ public final class Totemic {
             modBus.register(ClientInitHandlers.class);
             modBus.register(ModModelLayers.class);
         }
+
+        ModConfig.register(ModLoadingContext.get());
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -90,7 +93,8 @@ public final class Totemic {
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
-        eventBus.register(EntityHandler.class);
+        if(ModConfig.GENERAL.skeletonsShouldAttackBuffalos.get())
+            eventBus.addListener(EntityHandler::onEntityJoin);
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
