@@ -81,7 +81,6 @@ public final class Totemic {
         event.enqueueWork(() -> {
             ModBlocks.setFireInfo();
             ModCriteriaTriggers.init();
-            ModItems.baykok_bow.get().registerItemProperties();
         });
 
         //Totem effects are registered during ModBlocks#init
@@ -98,6 +97,10 @@ public final class Totemic {
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
+            ModItems.baykok_bow.get().registerItemProperties();
+        });
+
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
         eventBus.register(ClientRenderHandler.class);
