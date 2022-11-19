@@ -23,6 +23,8 @@
   "item.totemic.eagle_bone": "Adlerknochen",
   "item.totemic.eagle_feather": "Adlerfeder",
   "item.totemic.baykok_bow": "Baykoks Bogen",
+  "item.totemic.totempedia": "Totempedia",
+  "item.totemic.totempedia.tooltip": "Die Totempedia ist noch in Arbeit. Im Augenblick zeigt sie bei Benutzung nur eine Liste der Zeremonien.",
   
   "totemic.tooltip.selectorMode": "Schleiche während des Spielens für den Selektor-Modus",
   
@@ -90,6 +92,21 @@
   "totemic.ceremony.totemic.sun_dance": "Sonnentanz",
   "totemic.ceremony.totemic.danse_macabre": "Danse Macabre",
   "totemic.ceremony.totemic.baykok_summon": "Totentanz",
+  
+  "totemic.listOfCeremonies": "Liste der Zeremonien:",
+  "totemic.ceremony.totemic.war_dance.description": "Erhöht Angriffsschaden und Lauftempo",
+  "totemic.ceremony.totemic.depths.description": "Verleiht Unterwasseratmung",
+  "totemic.ceremony.totemic.fertility.description": "Transformiert Setzlinge zu Roten Zedernsetzlingen und brütet Tiere mit Futter",
+  "totemic.ceremony.totemic.zaphkiel_waltz.description": "Beschleunigt Pflanzenwachstum und Schlüpfen aus Hühnereiern",
+  "totemic.ceremony.totemic.buffalo_dance.description": "Transformiert Kühe zu Büffeln",
+  "totemic.ceremony.totemic.rain.description": "Lässt es regnen",
+  "totemic.ceremony.totemic.drought.description": "Beendet den Regen",
+  "totemic.ceremony.totemic.flute_infusion.description": "Verzaubert Flöten",
+  "totemic.ceremony.totemic.eagle_dance.description": "Transformiert Papageien zu Weißkopfseeadlern",
+  "totemic.ceremony.totemic.cleansing.description": "Heilt zombifizierte Mobs",
+  "totemic.ceremony.totemic.sun_dance.description": "Verleiht ein Schild, das vor Schaden schützt",
+  "totemic.ceremony.totemic.danse_macabre.description": "Erweckt Zombies aus verrottetem Fleisch",
+  "totemic.ceremony.totemic.baykok_summon.description": "Ruft Baykok herbei",
   
   "effect.totemic.spider": "Wändeklettern",
   "effect.totemic.ocelot": "Creeperabwehr",

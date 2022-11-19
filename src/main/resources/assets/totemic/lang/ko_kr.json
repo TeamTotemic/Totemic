@@ -23,6 +23,8 @@
   "item.totemic.eagle_bone": "독수리 뼈",
   "item.totemic.eagle_feather": "독수리 깃털",
   "item.totemic.baykok_bow": "베이콕의 활",
+  "item.totemic.totempedia": "토템피디아",
+  "item.totemic.totempedia.tooltip": "The Totempedia is still WIP. Right now, this item only displays a list of Ceremonies when used.",
   
   "totemic.tooltip.selectorMode": "선택 모드를 사용하시려면 쉬프트를 누르고 악기를 연주하세요",
   
@@ -90,6 +92,21 @@
   "totemic.ceremony.totemic.sun_dance": "태양의 춤",
   "totemic.ceremony.totemic.danse_macabre": "마카브레 춤",
   "totemic.ceremony.totemic.baykok_summon": "죽음의 춤",
+  
+  "totemic.listOfCeremonies": "List of Ceremonies:",
+  "totemic.ceremony.totemic.war_dance.description": "Grants a large damage and movement speed boost",
+  "totemic.ceremony.totemic.depths.description": "Grants Water Breathing",
+  "totemic.ceremony.totemic.fertility.description": "Transforms saplings to Red Cedar Saplings and breeds animals with food",
+  "totemic.ceremony.totemic.zaphkiel_waltz.description": "Makes plants grow faster and chicken eggs hatch faster",
+  "totemic.ceremony.totemic.buffalo_dance.description": "Turns Cows into Buffalos",
+  "totemic.ceremony.totemic.rain.description": "Makes it rain",
+  "totemic.ceremony.totemic.drought.description": "Stops the rain",
+  "totemic.ceremony.totemic.flute_infusion.description": "Enchantes Flutes",
+  "totemic.ceremony.totemic.eagle_dance.description": "Turns Parrots into Bald Eagles",
+  "totemic.ceremony.totemic.cleansing.description": "Cures zombified mobs",
+  "totemic.ceremony.totemic.sun_dance.description": "Shields you from damage",
+  "totemic.ceremony.totemic.danse_macabre.description": "Summons undead monsters from Rotten Flesh",
+  "totemic.ceremony.totemic.baykok_summon.description": "Summons Baykok",
   
   "effect.totemic.spider": "Wall Climbing",
   "effect.totemic.ocelot": "Creeper Defense",

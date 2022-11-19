@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "W": {
+      "tag": "minecraft:logs_that_burn"
+    }
+  },
+  "pattern": [
+    "WPW",
+    "WPW",
+    "WPW"
+  ],
+  "result": {
+    "item": "totemic:totempedia"
+  }
+}

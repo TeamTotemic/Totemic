@@ -25,13 +25,21 @@ public final class TotemicRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> rc) {
+        ShapedRecipeBuilder.shaped(ModItems.totempedia.get())
+                .pattern("WPW")
+                .pattern("WPW")
+                .pattern("WPW")
+                .define('W', ItemTags.LOGS_THAT_BURN)
+                .define('P', Items.PAPER)
+                .unlockedBy("has_paper", has(Items.PAPER))
+                .save(rc);
         ShapedRecipeBuilder.shaped(ModItems.flute.get())
                 .pattern(" LS")
                 .pattern(" S ")
                 .pattern("S  ")
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LEAVES)
-                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get())) //TODO: Once we have a Totempedia item, it should become the item to unlock the recipes
+                .unlockedBy("has_totempedia", has(ModItems.totempedia.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModItems.jingle_dress.get())
                 .pattern(" L ")
@@ -67,7 +75,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('I', Tags.Items.INGOTS_IRON)
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('F', Items.FLINT)
-                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
+                .unlockedBy("has_totempedia", has(ModItems.totempedia.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModItems.totemic_staff.get())
                 .pattern(" LS")
@@ -84,7 +92,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('E', Tags.Items.LEATHER)
                 .define('L', ItemTags.LOGS_THAT_BURN)
                 .define('W', ItemTags.WOOL)
-                .unlockedBy("has_totemic_staff", has(ModItems.totemic_staff.get()))
+                .unlockedBy("has_totempedia", has(ModItems.totempedia.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModBlocks.wind_chime.get())
                 .pattern("WWW")

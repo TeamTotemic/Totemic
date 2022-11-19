@@ -23,6 +23,8 @@
   "item.totemic.eagle_bone": "Eagle Bone",
   "item.totemic.eagle_feather": "Eagle Feather",
   "item.totemic.baykok_bow": "Baykok's Bow",
+  "item.totemic.totempedia": "Totempedia",
+  "item.totemic.totempedia.tooltip": "The Totempedia is still WIP. Right now, this item only displays a list of Ceremonies when used.",
   
   "totemic.tooltip.selectorMode": "Sneak while playing to use Selector Mode",
   
@@ -90,6 +92,21 @@
   "totemic.ceremony.totemic.sun_dance": "Sun Dance",
   "totemic.ceremony.totemic.danse_macabre": "Danse Macabre",
   "totemic.ceremony.totemic.baykok_summon": "Totentanz",
+  
+  "totemic.listOfCeremonies": "List of Ceremonies:",
+  "totemic.ceremony.totemic.war_dance.description": "Grants a large damage and movement speed boost",
+  "totemic.ceremony.totemic.depths.description": "Grants Water Breathing",
+  "totemic.ceremony.totemic.fertility.description": "Transforms saplings to Red Cedar Saplings and breeds animals with food",
+  "totemic.ceremony.totemic.zaphkiel_waltz.description": "Makes plants grow faster and chicken eggs hatch faster",
+  "totemic.ceremony.totemic.buffalo_dance.description": "Turns Cows into Buffalos",
+  "totemic.ceremony.totemic.rain.description": "Makes it rain",
+  "totemic.ceremony.totemic.drought.description": "Stops the rain",
+  "totemic.ceremony.totemic.flute_infusion.description": "Enchantes Flutes",
+  "totemic.ceremony.totemic.eagle_dance.description": "Turns Parrots into Bald Eagles",
+  "totemic.ceremony.totemic.cleansing.description": "Cures zombified mobs",
+  "totemic.ceremony.totemic.sun_dance.description": "Shields you from damage",
+  "totemic.ceremony.totemic.danse_macabre.description": "Summons Zombies from Rotten Flesh",
+  "totemic.ceremony.totemic.baykok_summon.description": "Summons Baykok",
   
   "effect.totemic.spider": "Wall Climbing",
   "effect.totemic.ocelot": "Creeper Defense",

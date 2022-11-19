@@ -7,12 +7,12 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_totemic_staff": {
+    "has_totempedia": {
       "conditions": {
         "items": [
           {
             "items": [
-              "totemic:totemic_staff"
+              "totemic:totempedia"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_totemic_staff",
+      "has_totempedia",
       "has_the_recipe"
     ]
   ],

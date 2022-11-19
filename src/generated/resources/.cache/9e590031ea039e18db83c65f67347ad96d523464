@@ -1,4 +1,4 @@
-// 1.19.2	2022-11-13T14:32:55.754746578	Block States: totemic
+// 1.19.2	2022-11-19T13:41:42.681456937	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/acacia_totem_pole_bat.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -280,4 +280,5 @@ cd84645021a9beeb018c72c44027049374059c41 assets/totemic/models/item/stripped_ced
 3a1b27731449dcb2f4b2e6c2f91942f75eecd758 assets/totemic/models/item/stripped_cedar_wood.json
 81cb8cf66c01b1bca81baa598d786696fb190d7c assets/totemic/models/item/totem_whittling_knife.json
 571cdb797bfbaeadd258470139656e8ea3f06aed assets/totemic/models/item/totemic_staff.json
+fbeef7f27200165244d1c325bf83e018a15b2cb5 assets/totemic/models/item/totempedia.json
 0143a0809264b3c35747485a2d69885839c890c4 assets/totemic/models/item/wind_chime.json
