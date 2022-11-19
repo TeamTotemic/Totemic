@@ -75,6 +75,25 @@ dependencies {
     minecraft "net.minecraftforge:forge:${forge_version}"
 }
 
+task deobfJar(type: Jar) {
+    from(sourceSets.main.output) {
+        appendix = 'deobf'
+    }
+}
+
+task apiSrcJar(type: Jar) {
+    from(sourceSets.main.java) {
+        include 'pokefenn/totemic/api/**'
+        appendix = 'api'
+    }
+    classifier = 'sources'
+}
+
+artifacts {
+    archives deobfJar
+    archives apiSrcJar
+}
+
 jar {
     manifest {
         attributes([
