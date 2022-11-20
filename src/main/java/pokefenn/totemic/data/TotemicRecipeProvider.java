@@ -83,7 +83,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("S L")
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LEAVES)
-                .unlockedBy("has_sticks", has(Tags.Items.RODS_WOODEN))
+                .unlockedBy("has_totempedia", has(ModItems.totempedia.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModBlocks.drum.get())
                 .pattern("EEE")
