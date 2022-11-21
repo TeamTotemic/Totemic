@@ -3,7 +3,11 @@ package pokefenn.totemic.init;
 import java.util.Random;
 
 import net.minecraft.entity.IMerchant;
-import net.minecraft.entity.passive.EntityVillager.*;
+import net.minecraft.entity.passive.EntityVillager.EmeraldForItems;
+import net.minecraft.entity.passive.EntityVillager.ITradeList;
+import net.minecraft.entity.passive.EntityVillager.ItemAndEmeraldToItem;
+import net.minecraft.entity.passive.EntityVillager.ListItemForEmeralds;
+import net.minecraft.entity.passive.EntityVillager.PriceInfo;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,6 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.lib.Resources;
 
 @EventBusSubscriber(modid = Totemic.MOD_ID)
@@ -27,28 +32,31 @@ public final class ModVillagers
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VillagerProfession> event)
     {
-        event.getRegistry().register(profTotemist);
+        if(ModConfig.general.enableMedicineMen)
+        {
+            event.getRegistry().register(profTotemist);
 
-        new VillagerCareer(profTotemist, "totemist")
-            .addTrade(1, new EmeraldsForItemsWithMeta(new ItemStack(ModItems.buffalo_items, 1, 0), new PriceInfo(9, 12)),
-                         new EmeraldsForItemsWithMeta(new ItemStack(ModItems.buffalo_items, 1, 1), new PriceInfo(6, 8)),
-                         new EmeraldForItems(ModItems.buffalo_meat, new PriceInfo(14,  18)),
-                         new ListItemForEmeralds(ModItems.flute, new PriceInfo(1, 1)),
-                         makeItemAndEmeraldToItemWithMeta(new ItemStack(ModItems.flute, 1, 0), new PriceInfo(1, 1), new ItemStack(ModItems.flute, 1, 1), new PriceInfo(1, 1)),
-                         new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.drum), new PriceInfo(1, 1)),
-                         new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.wind_chime), new PriceInfo(3, 4)),
-                         new ListItemForEmeralds(ModItems.totemic_staff, new PriceInfo(1, 1)))
+            new VillagerCareer(profTotemist, "totemist")
+                .addTrade(1, new EmeraldsForItemsWithMeta(new ItemStack(ModItems.buffalo_items, 1, 0), new PriceInfo(9, 12)),
+                             new EmeraldsForItemsWithMeta(new ItemStack(ModItems.buffalo_items, 1, 1), new PriceInfo(6, 8)),
+                             new EmeraldForItems(ModItems.buffalo_meat, new PriceInfo(14,  18)),
+                             new ListItemForEmeralds(ModItems.flute, new PriceInfo(1, 1)),
+                             makeItemAndEmeraldToItemWithMeta(new ItemStack(ModItems.flute, 1, 0), new PriceInfo(1, 1), new ItemStack(ModItems.flute, 1, 1), new PriceInfo(1, 1)),
+                             new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.drum), new PriceInfo(1, 1)),
+                             new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.wind_chime), new PriceInfo(3, 4)),
+                             new ListItemForEmeralds(ModItems.totemic_staff, new PriceInfo(1, 1)))
 
-            .addTrade(2, new ListItemForEmeralds(ModItems.cooked_buffalo_meat, new PriceInfo(-6, -4)),
-                         new EmeraldForItems(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(24, 32)),
-                         new EmeraldForItems(Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(14, 20)),
-                         new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.tipi), new PriceInfo(2, 3)))
+                .addTrade(2, new ListItemForEmeralds(ModItems.cooked_buffalo_meat, new PriceInfo(-6, -4)),
+                             new EmeraldForItems(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(24, 32)),
+                             new EmeraldForItems(Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(14, 20)),
+                             new ListItemForEmeralds(Item.getItemFromBlock(ModBlocks.tipi), new PriceInfo(2, 3)))
 
-            .addTrade(3, new ItemAndEmeraldToItem(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(10, 10), Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(10, 10)))
+                .addTrade(3, new ItemAndEmeraldToItem(Item.getItemFromBlock(ModBlocks.cedar_log), new PriceInfo(10, 10), Item.getItemFromBlock(ModBlocks.stripped_cedar_log), new PriceInfo(10, 10)))
 
-            .addTrade(4, new EmeraldForItems(ModItems.medicine_bag, new PriceInfo(1, 1)))
+                .addTrade(4, new EmeraldForItems(ModItems.medicine_bag, new PriceInfo(1, 1)))
 
-            .addTrade(5, new EmeraldsForItemsWithMeta(new ItemStack(ModItems.baykok_bow), new PriceInfo(-3, -2)));
+                .addTrade(5, new EmeraldsForItemsWithMeta(new ItemStack(ModItems.baykok_bow), new PriceInfo(-3, -2)));
+        }
     }
 
     static ITradeList makeItemAndEmeraldToItemWithMeta(ItemStack buying, PriceInfo buyingPriceInfo, ItemStack selling, PriceInfo sellingPriceInfo)
