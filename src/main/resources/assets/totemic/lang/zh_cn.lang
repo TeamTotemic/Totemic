@@ -184,10 +184,6 @@ totemic.hud.selection=选择仪式
 
 death.attack.totemic.sunDance=%1$s 在执行仪式的过程中发生了不测。
 
-#Waila tooltips
-totemic.waila.ceremonyStartup=仪式启动：%s
-totemic.waila.ceremonyEffect=仪式效果：%s
-
 #Totempedia Localisations
 totemic.gui.lexicon.header=图腾百科全书，图腾所需的一切指引。
 

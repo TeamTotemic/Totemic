@@ -184,10 +184,6 @@ totemic.hud.selection=의식 선택
 
 death.attack.totemic.sunDance=%1$s는 태양 만세를 외치다 희생되었습니다. 이건 원래 일어나서는 안되는 일입니다.
 
-#Waila tooltips
-totemic.waila.ceremonyStartup=의식 시작중: %s
-totemic.waila.ceremonyEffect=의식 효과: %s
-
 #Totempedia Localisations
 totemic.gui.lexicon.header=토템피디아, 토템 관련 의식에 대한 모든것.
 

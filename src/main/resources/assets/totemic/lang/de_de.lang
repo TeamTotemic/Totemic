@@ -178,10 +178,6 @@ totemic.hud.selection=Zeremonie-Selektion
 
 death.attack.totemic.sunDance=%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.
 
-#Waila tooltips
-totemic.waila.ceremonyStartup=Zeremonienstart: %s
-totemic.waila.ceremonyEffect=Zeremonieneffekt: %s
-
 #Totempedia Localisations
 totemic.gui.lexicon.header=Die Totempedia, ein Leitfaden für all Deine Totem-Bedürfnisse.
 

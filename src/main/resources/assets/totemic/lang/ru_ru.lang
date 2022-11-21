@@ -184,10 +184,6 @@ totemic.hud.selection=Выбор ритуала
 
 death.attack.totemic.sunDance=%1$s пожертвовал собой Богу Солнца.  Этого не должно было случиться.
 
-#Waila tooltips
-totemic.waila.ceremonyStartup=Ритуал начинается: %s
-totemic.waila.ceremonyEffect=Эффект ритуала: %s
-
 #Totempedia Localisations
 totemic.gui.lexicon.header=Тотемпедия, руководство по всему Тотемическому.
 

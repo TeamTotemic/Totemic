@@ -184,10 +184,6 @@ totemic.hud.selection=Ceremony Selection
 
 death.attack.totemic.sunDance=%1$s sacrificed themselves to the Sun God. This is not supposed to happen.
 
-#Waila tooltips
-totemic.waila.ceremonyStartup=Ceremony Startup: %s
-totemic.waila.ceremonyEffect=Ceremony Effect: %s
-
 #Totempedia Localisations
 totemic.gui.lexicon.header=The Totempedia, a guide to all your Totemic needs.
 
