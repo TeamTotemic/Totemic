@@ -3,43 +3,63 @@ buildscript {
         jcenter()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://maven.minecraftforge.net/"
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
     }
 }
 
-plugins {
+/*plugins {
     id 'com.matthewprenger.cursegradle' version '1.1.2'
-}
+}*/
 
-apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
 
-version = "1.12.2-0.11.6"
+version = "1.12.2-0.11.7"
 group = "pokefenn.totemic"
 archivesBaseName = "Totemic"
 
 minecraft {
-    version = "1.12.2-14.23.5.2768"
-    runDir = "run"
-
-    mappings = "snapshot_20180529"
+    mappings channel: 'snapshot', version: '20180529-1.12'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+    
+    accessTransformer = file('src/main/resources/META-INF/totemic_at.cfg')
 
-    replaceIn "Totemic.java"
+    /*replaceIn "Totemic.java"
     replace "\${version}", project.version
-    replace '@FINGERPRINT@', project.findProperty('signSHA1')
+    replace '@FINGERPRINT@', project.findProperty('signSHA1')*/
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+        }
+
+        server {
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+        }
+    }
 }
 
-jar.manifest {
-    attributes 'FMLAT': 'totemic_at.cfg'
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
 }
 
-sourceCompatibility = targetCompatibility = '1.8'
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
-repositories {
+/*repositories {
     maven {
         url "http://tehnut.info/maven"
     }
@@ -47,9 +67,9 @@ repositories {
 
 dependencies {
     deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
-}
+}*/
 
-processResources {
+/*processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
@@ -66,7 +86,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
-}
+}*/
 
 task deobfJar(type: Jar) {
     from(sourceSets.main.output) {
@@ -83,7 +103,7 @@ task apiSrcJar(type: Jar) {
     classifier = 'sources'
 }
 
-task signJar(type: SignJar, dependsOn: reobfJar) {
+/*task signJar(type: SignJar, dependsOn: reobfJar) {
     // Skips if the keyStore property is missing.
     onlyIf {
         project.hasProperty('keyStore')
@@ -101,14 +121,15 @@ task signJar(type: SignJar, dependsOn: reobfJar) {
 }
 
 // Runs this task automatically when reobfJar is ran.
-reobfJar.finalizedBy signJar
+reobfJar.finalizedBy signJar*/
+jar.finalizedBy('reobfJar')
 
 artifacts {
     archives deobfJar
     archives apiSrcJar
 }
 
-curseforge {
+/*curseforge {
     apiKey = project.hasProperty('curseForgeApiKey') ? project.curseForgeApiKey : ''
 
     project {
@@ -119,4 +140,4 @@ curseforge {
         addArtifact deobfJar
         addArtifact apiSrcJar
     }
-}
+}*/
