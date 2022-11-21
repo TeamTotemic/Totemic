@@ -136,7 +136,7 @@ public class ClientProxy extends CommonProxy
         minecraft.entityRenderer = newRenderer;
 
         SimpleReloadableResourceManager resourceManager = (SimpleReloadableResourceManager) minecraft.getResourceManager();
-        List<IResourceManagerReloadListener> listeners = ReflectionHelper.getPrivateValue(SimpleReloadableResourceManager.class, resourceManager, "field_110546_b", "reloadListeners");
+        List<IResourceManagerReloadListener> listeners = ReflectionHelper.getPrivateValue(SimpleReloadableResourceManager.class, resourceManager, "reloadListeners", "field_110546_b");
         listeners.remove(oldRenderer);
         resourceManager.registerReloadListener(newRenderer);
     }
