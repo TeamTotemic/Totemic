@@ -19,7 +19,7 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.ApiImpl;
 
 @Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, acceptedMinecraftVersions = "[1.12.2,1.13)",
-        certificateFingerprint = "@FINGERPRINT@", dependencies = "required-after:forge@[14.23.4.2768,)",
+        certificateFingerprint = "@FINGERPRINT@", dependencies = "required-after:forge@[14.23.5.2859,)",
         updateJSON = "https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json")
 public final class Totemic
 {
