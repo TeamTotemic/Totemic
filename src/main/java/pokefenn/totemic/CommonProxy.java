@@ -34,6 +34,7 @@ import pokefenn.totemic.entity.animal.EntityBaldEagle;
 import pokefenn.totemic.entity.animal.EntityBuffalo;
 import pokefenn.totemic.entity.boss.EntityBaykok;
 import pokefenn.totemic.entity.projectile.EntityInvisArrow;
+import pokefenn.totemic.handler.EntityConstruct;
 import pokefenn.totemic.handler.EntityFall;
 import pokefenn.totemic.handler.EntitySpawn;
 import pokefenn.totemic.handler.PlayerInteract;
@@ -165,6 +166,8 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new PlayerInteract());
         if(ModConfig.general.skeletonsShouldAttackBuffalos)
             MinecraftForge.EVENT_BUS.register(new EntitySpawn());
+        if(ModConfig.general.randomizeVillagerProfessions)
+            MinecraftForge.EVENT_BUS.register(new EntityConstruct());
     }
 
     private void checkCeremonySelectors()

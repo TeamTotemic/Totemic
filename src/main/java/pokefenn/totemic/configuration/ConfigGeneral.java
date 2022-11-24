@@ -21,4 +21,9 @@ public class ConfigGeneral
     @RequiresMcRestart
     public boolean enableVillageMedicineWheel = true;
 
+    @Comment("Causes the villagers in a village to be spawned with random professions (independent of the world seed).\n"
+            + "Use this option with care as it might have unintended side effects (e.g. spawning nitwits which cannot make any trades).\n"
+            + "Works around a bug in Forge/Minecraft where almost all the villagers spawned in a world have the same profession.")
+    @RequiresMcRestart
+    public boolean randomizeVillagerProfessions = false;
 }
