@@ -18,14 +18,13 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.ApiImpl;
 
-@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, version = Totemic.MOD_VERSION, acceptedMinecraftVersions = "[1.12.2,1.13)",
-        certificateFingerprint = "@FINGERPRINT@", dependencies = "required-after:forge@[14.23.5.2859,)",
+@Mod(modid = Totemic.MOD_ID, name = Totemic.MOD_NAME, acceptedMinecraftVersions = "[1.12.2,1.13)",
+        dependencies = "required-after:forge@[14.23.5.2859,)",
         updateJSON = "https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json")
 public final class Totemic
 {
     public static final String MOD_ID = "totemic";
     public static final String MOD_NAME = "Totemic";
-    public static final String MOD_VERSION = "${version}";
 
     @Mod.Instance
     public static Totemic instance;
