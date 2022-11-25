@@ -22,11 +22,14 @@ import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Village;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
+import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import pokefenn.totemic.api.TotemicRegistries;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.block.totem.BlockTotemBase;
 import pokefenn.totemic.block.totem.BlockTotemPole;
+import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModVillagers;
 import pokefenn.totemic.lib.WoodVariant;
 import pokefenn.totemic.tileentity.totem.TileTotemPole;
 
@@ -173,6 +176,15 @@ public class ComponentMedicineWheel extends StructureVillagePieces.Village
 
         spawnVillagers(world, bb, 4, 1, 2,  1);
         return true;
+    }
+
+    @Override
+    protected VillagerProfession chooseForgeProfession(int count, VillagerProfession prof)
+    {
+        if(ModConfig.general.enableMedicineMen)
+            return ModVillagers.profTotemist;
+        else
+            return super.chooseForgeProfession(count, prof);
     }
 
     @Override

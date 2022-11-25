@@ -16,8 +16,11 @@ import net.minecraft.world.gen.structure.StructureVillagePieces.PieceWeight;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
 import net.minecraft.world.gen.structure.StructureVillagePieces.Village;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
+import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import pokefenn.totemic.block.tipi.BlockTipi;
+import pokefenn.totemic.configuration.ModConfig;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModVillagers;
 
 public class ComponentTipi extends StructureVillagePieces.Village
 {
@@ -96,6 +99,15 @@ public class ComponentTipi extends StructureVillagePieces.Village
 
         //Place Tipi block itself
         setBlockState(world, ModBlocks.tipi.getDefaultState().withProperty(BlockTipi.FACING, dir), x, y, z, bb);
+    }
+
+    @Override
+    protected VillagerProfession chooseForgeProfession(int count, VillagerProfession prof)
+    {
+        if(ModConfig.general.enableMedicineMen)
+            return ModVillagers.profTotemist;
+        else
+            return super.chooseForgeProfession(count, prof);
     }
 
     public static class CreationHandler implements IVillageCreationHandler
