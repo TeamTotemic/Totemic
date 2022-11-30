@@ -22,7 +22,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemWoodType;
-import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.util.BlockUtil;
 
@@ -32,9 +32,9 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
     private static final VoxelShape SHAPE = Shapes.box(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
 
     public final TotemWoodType woodType;
-    public final TotemEffect effect;
+    public final TotemCarving effect;
 
-    public TotemPoleBlock(TotemWoodType woodType, TotemEffect effect, Properties properties) {
+    public TotemPoleBlock(TotemWoodType woodType, TotemCarving effect, Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any().setValue(WATERLOGGED, false));
         this.woodType = woodType;

@@ -17,13 +17,13 @@ import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
-import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemCarving;
 
 public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;
 
     private static final Registry<MusicInstrument> instruments = new MappedRegistry<>(MUSIC_INSTRUMENT_REGISTRY, Lifecycle.experimental(), null);
-    private static final DefaultedRegistry<TotemEffect> totemEffects = new DefaultedRegistry<>("totemic:none", TOTEM_EFFECT_REGISTRY, Lifecycle.experimental(), null);
+    private static final DefaultedRegistry<TotemCarving> totemEffects = new DefaultedRegistry<>("totemic:none", TOTEM_EFFECT_REGISTRY, Lifecycle.experimental(), null);
     private static final Registry<Ceremony> ceremonies = new MappedRegistry<>(CEREMONY_REGISTRY, Lifecycle.experimental(), null);
 
     private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap = null;
@@ -34,7 +34,7 @@ public enum RegistryApiImpl implements RegistryAPI {
     }
 
     @Override
-    public DefaultedRegistry<TotemEffect> totemEffects() {
+    public DefaultedRegistry<TotemCarving> totemEffects() {
         return totemEffects;
     }
 
@@ -61,7 +61,7 @@ public enum RegistryApiImpl implements RegistryAPI {
     }
 
     public static void registerTotemEffects() {
-        fireRegistryEvent(TotemEffect.class, totemEffects, TotemEffect::getRegistryName);
+        fireRegistryEvent(TotemCarving.class, totemEffects, TotemCarving::getRegistryName);
     }
 
     public static void registerCeremonies() {

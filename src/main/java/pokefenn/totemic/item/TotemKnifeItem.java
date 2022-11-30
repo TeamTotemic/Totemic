@@ -23,7 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 
@@ -34,7 +34,7 @@ public class TotemKnifeItem extends Item {
         super(props);
     }
 
-    private static MutableComponent getCarvingName(@Nullable TotemEffect effect) {
+    private static MutableComponent getCarvingName(@Nullable TotemCarving effect) {
         if(effect != null)
             return effect.getDisplayName();
         else
@@ -42,7 +42,7 @@ public class TotemKnifeItem extends Item {
     }
 
     @Nullable
-    public static TotemEffect getCarvingEffect(ItemStack stack) {
+    public static TotemCarving getCarvingEffect(ItemStack stack) {
         if(stack.hasTag()) {
             String key = stack.getTag().getString(KNIFE_TOTEM_KEY);
             if(!key.isEmpty())
@@ -101,7 +101,7 @@ public class TotemKnifeItem extends Item {
             }
 
             BlockState newState;
-            TotemEffect effect = getCarvingEffect(c.getItemInHand());
+            TotemCarving effect = getCarvingEffect(c.getItemInHand());
             if(effect != null) {
                 newState = ModBlocks.getTotemPole(woodType, effect).getStateForPlacement(new BlockPlaceContext(c));
             }

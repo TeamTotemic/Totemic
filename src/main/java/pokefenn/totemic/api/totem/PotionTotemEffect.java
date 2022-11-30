@@ -17,7 +17,7 @@ import pokefenn.totemic.api.TotemicEntityUtil;
 /**
  * A TotemEffect which applies a {@link MobEffect} to all players near the Totem Pole.
  */
-public class PotionTotemEffect extends TotemEffect {
+public class PotionTotemEffect extends TotemCarving {
     /**
      * The default value for the application interval.
      */
@@ -65,7 +65,7 @@ public class PotionTotemEffect extends TotemEffect {
 
     /**
      * Returns the horizontal range of this effect.
-     * @see TotemEffectAPI#getDefaultRange(TotemEffect, int, TotemBase, int)
+     * @see TotemEffectAPI#getDefaultRange(TotemCarving, int, TotemBase, int)
      */
     protected int getHorizontalRange(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
         return TotemicAPI.get().totemEffect().getDefaultRange(this, repetition, baseRange, context);

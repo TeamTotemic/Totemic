@@ -21,7 +21,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.init.ModBlocks;
@@ -112,7 +112,7 @@ public class ClientInitHandlers {
         }
     }
 
-    private static ResourceLocation getPoleModelName(TotemEffect effect) {
+    private static ResourceLocation getPoleModelName(TotemCarving effect) {
         var effectName = effect.getRegistryName();
         return new ResourceLocation(effectName.getNamespace(), "block/totem_pole_" + effectName.getPath());
     }

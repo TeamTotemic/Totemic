@@ -10,7 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 
@@ -29,8 +29,8 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
         long gameTime = world.getGameTime();
 
         if(gameTime % tile.getCommonTotemEffectInterval() == 0) {
-            for(Multiset.Entry<TotemEffect> entry: tile.getTotemEffects().entrySet()) {
-                TotemEffect effect = entry.getElement();
+            for(Multiset.Entry<TotemCarving> entry: tile.getTotemEffects().entrySet()) {
+                TotemCarving effect = entry.getElement();
                 if(gameTime % effect.getInterval() == 0) {
                     effect.effect(world, tile.getBlockPos(), entry.getCount(), this);
                 }
@@ -73,7 +73,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
-    public int getRepetition(TotemEffect effect) {
+    public int getRepetition(TotemCarving effect) {
         return tile.getTotemEffects().count(effect);
     }
 

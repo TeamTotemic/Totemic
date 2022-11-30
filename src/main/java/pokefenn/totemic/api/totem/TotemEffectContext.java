@@ -1,7 +1,7 @@
 package pokefenn.totemic.api.totem;
 
 /**
- * This interface provides details about the Totem Base where a Totem Effect is applied from. Instances of this are passed to the {@link TotemEffect#effect}
+ * This interface provides details about the Totem Base where a Totem Effect is applied from. Instances of this are passed to the {@link TotemCarving#effect}
  * method.
  */
 public interface TotemEffectContext {
@@ -18,5 +18,5 @@ public interface TotemEffectContext {
     /**
      * @return the number of Totem Pole blocks that are carved with the specified effect.
      */
-    int getRepetition(TotemEffect effect);
+    int getRepetition(TotemCarving effect);
 }

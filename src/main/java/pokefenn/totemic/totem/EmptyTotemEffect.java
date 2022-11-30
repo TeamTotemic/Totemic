@@ -3,10 +3,10 @@ package pokefenn.totemic.totem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 
-public class EmptyTotemEffect extends TotemEffect {
+public class EmptyTotemEffect extends TotemCarving {
     public EmptyTotemEffect(ResourceLocation name) {
         super(name, true, Integer.MAX_VALUE);
     }
