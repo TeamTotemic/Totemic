@@ -6,32 +6,20 @@ import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
-import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.TotemicEntityUtil;
 
 /**
- * A TotemEffect which applies a {@link MobEffect} to all players near the Totem Pole.
+ * A TotemEffect which applies a {@link MobEffect} to all entities of a certain type near the Totem Pole.
  */
-public class PotionTotemEffect extends TotemCarving {
-    /**
-     * The default value for the application interval.
-     */
-    public static final int DEFAULT_INTERVAL = 80;
-
+public class PotionTotemEffect<T extends LivingEntity> extends EntityAffectingEffect<T> {
     /**
      * A Supplier for the mob effect.
      */
     protected final Supplier<? extends MobEffect> mobEffect;
-    /**
-     * The base range of the effect.
-     * In general, the range will be larger, see {@link #getHorizontalRange} and {@link #getVerticalRange}.
-     */
-    protected final int baseRange;
     /**
      * The base amplifier of the potion effect.
      * In general, the amplifier will be larger, see {@link #getAmplifier} and {@link #getAmplifierForMedicineBag}.
@@ -64,22 +52,6 @@ public class PotionTotemEffect extends TotemCarving {
     }
 
     /**
-     * Returns the horizontal range of this effect.
-     * @see TotemEffectAPI#getDefaultRange(TotemCarving, int, TotemBase, int)
-     */
-    protected int getHorizontalRange(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
-        return TotemicAPI.get().totemEffect().getDefaultRange(this, repetition, baseRange, context);
-    }
-
-    /**
-     * Returns the vertical range of this effect.<p>
-     * The default value is equal to {@link #getHorizontalRange}.
-     */
-    protected int getVerticalRange(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
-        return getHorizontalRange(world, pos, repetition, context);
-    }
-
-    /**
      * Returns the amplifier that should be used for this effect.<p>
      * The default value ranges between 0 and 3 above {@link #baseAmplifier}, depending on the repetition and the amount of music in the Totem Base.
      */
@@ -95,42 +67,9 @@ public class PotionTotemEffect extends TotemCarving {
         return baseAmplifier + medicineBag.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) / 2;
     }
 
-    /**
-     * Returns how many ticks the mob effect should linger after leaving the range or closing the Medicine Bag.<p>
-     * The default value is 20 ticks.
-     */
-    protected int getLingeringTime() {
-        return 20;
-    }
-
-    /**
-     * Applies the mob effect to the given player.
-     * @param isMedicineBag whether the effect is applied by a Medicine Bag
-     */
-    protected void applyTo(boolean isMedicineBag, Player player, int time, int amplifier) {
-        player.addEffect(new MobEffectInstance(mobEffect.get(), time, amplifier, true, false));
-    }
-
     @Override
-    public void effect(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
-        if(world.isClientSide)
-            return;
+    public void applyTo(T entity, int repetition, TotemEffectContext context) {
+        // TODO Auto-generated method stub
 
-        int horizontal = getHorizontalRange(world, pos, repetition, context);
-        int vertical = getVerticalRange(world, pos, repetition, context);
-        int time = interval + getLingeringTime();
-        int amplifier = getAmplifier(world, pos, repetition, context);
-        TotemicEntityUtil.getPlayersInRange(world, pos, horizontal, vertical)
-                .forEach(player -> applyTo(false, player, time, amplifier));
-    }
-
-    @Override
-    public void medicineBagEffect(Level world, Player player, ItemStack medicineBag, int charge) {
-        if(world.isClientSide)
-            return;
-
-        int time = interval + getLingeringTime();
-        int amplifier = getAmplifierForMedicineBag(world, player, medicineBag, charge);
-        applyTo(true, player, time, amplifier);
     }
 }
