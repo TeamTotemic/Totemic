@@ -9,11 +9,11 @@ import net.minecraft.resources.ResourceLocation;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 
 /**
- * Represents a Totem Pole carving.
+ * Represents a Totem Pole carving. A TotemCarving consists of one or more {@link TotemEffect}s.
  * <p>
  * Use the {@link TotemicRegisterEvent} to register your TotemCarvings.
  */
-public class TotemCarving {
+public final class TotemCarving {
     /**
      * The Totem Carving's registry name.
      */
