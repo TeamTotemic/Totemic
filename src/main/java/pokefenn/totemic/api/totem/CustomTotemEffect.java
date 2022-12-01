@@ -8,6 +8,13 @@ import net.minecraft.world.level.Level;
  */
 public abstract non-sealed class CustomTotemEffect extends TotemEffect {
     /**
+     * Constructor for CustomTotemEffect with a default interval of {@value TotemEffectAPI#DEFAULT_INTERVAL}.
+     */
+    public CustomTotemEffect() {
+        this(TotemEffectAPI.DEFAULT_INTERVAL);
+    }
+
+    /**
      * Constructor for CustomTotemEffect.
      * @param interval  the time in ticks between applications of the effect. It is encouraged that this be a multiple of 20.
      */

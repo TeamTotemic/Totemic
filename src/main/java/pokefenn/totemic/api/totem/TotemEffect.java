@@ -9,6 +9,8 @@ public abstract sealed class TotemEffect permits EntityAffectingEffect<?>, Custo
     private final int interval;
 
     TotemEffect(int interval) {
+        if(interval <= 0)
+            throw new IllegalArgumentException("The interval must be larger than 0");
         this.interval = interval;
     }
 

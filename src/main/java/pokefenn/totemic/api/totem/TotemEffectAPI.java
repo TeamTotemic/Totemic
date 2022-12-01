@@ -7,6 +7,11 @@ package pokefenn.totemic.api.totem;
  */
 public interface TotemEffectAPI {
     /**
+     * The default value for the Totem Effect interval.
+     */
+    static final int DEFAULT_INTERVAL = 80;
+
+    /**
      * The maximum amount of Totem Effect music that a Totem Pole can have.
      */
     static final int MAX_TOTEM_EFFECT_MUSIC = 7680;

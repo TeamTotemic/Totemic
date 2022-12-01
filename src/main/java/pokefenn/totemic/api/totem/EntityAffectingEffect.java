@@ -1,5 +1,7 @@
 package pokefenn.totemic.api.totem;
 
+import java.util.Objects;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -11,16 +13,24 @@ import pokefenn.totemic.api.TotemicAPI;
  * A TotemEffect which affects all entities of a certain type in an area around the Totem Pole.
  */
 public abstract non-sealed class EntityAffectingEffect<T extends Entity> extends TotemEffect {
-    private final EntityType<T> entityType;
+    private final EntityType<? extends T> entityType;
+
+    /**
+     * Constructor for EntityAffectingEffect with a default interval of {@value TotemEffectAPI#DEFAULT_INTERVAL}.
+     * @param type      the type of entities to which this effect should be applied.
+     */
+    public EntityAffectingEffect(EntityType<? extends T> type) {
+        this(TotemEffectAPI.DEFAULT_INTERVAL, type);
+    }
 
     /**
      * Constructor for EntityAffectingEffect.
      * @param interval  the time in ticks between applications of the effect. It is encouraged that this be a multiple of 20.
      * @param type      the type of entities to which this effect should be applied.
      */
-    public EntityAffectingEffect(int interval, EntityType<T> type) {
+    public EntityAffectingEffect(int interval, EntityType<? extends T> type) {
         super(interval);
-        this.entityType = type;
+        this.entityType = Objects.requireNonNull(type);
     }
 
     /**
@@ -51,7 +61,7 @@ public abstract non-sealed class EntityAffectingEffect<T extends Entity> extends
     /**
      * Returns the type of entities to which this effect should be applied.
      */
-    public EntityType<T> getEntityType() {
+    public EntityType<? extends T> getEntityType() {
         return entityType;
     }
 }
