@@ -40,7 +40,7 @@ public abstract non-sealed class EntityAffectingEffect<T extends Entity> extends
 
     public int getRange(Level level, BlockPos pos, int repetition, TotemEffectContext context) {
         //TODO
-        return TotemicAPI.get().totemEffect().getDefaultRange(null, repetition, context);
+        return TotemicAPI.get().totemEffect().getDefaultRange(repetition, context);
     }
 
     public AABB getAffectedArea(Level level, BlockPos pos, int repetition, TotemEffectContext context) {

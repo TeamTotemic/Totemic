@@ -32,7 +32,7 @@ public class OcelotTotemEffect extends PotionTotemEffect {
         if(world.isClientSide)
             return;
 
-        int range = TotemicAPI.get().totemEffect().getDefaultRange(this, repetition, context);
+        int range = TotemicAPI.get().totemEffect().getDefaultRange(repetition, context);
         TotemicEntityUtil.getEntitiesInRange(Creeper.class, world, pos, range, range)
             .forEach(creeper -> {
                 int swell = (int) creeperSwell.get(creeper);
