@@ -2,14 +2,15 @@ package pokefenn.totemic.api.totem;
 
 import java.util.function.Supplier;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.entity.EntityTypeTest;
 
 /**
  * A TotemEffect which applies a {@link MobEffect} to all entities of a certain type near the Totem Pole.
@@ -52,7 +53,7 @@ public class PotionTotemEffect extends EntityAffectingEffect<LivingEntity> {
      * @param interval       the time in ticks until the potion effect is renewed.
      * @param type           the type of entities to which this effect should be applied.
      */
-    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect, boolean scaleAmplifier, int interval, EntityType<? extends LivingEntity> type) {
+    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect, boolean scaleAmplifier, int interval, EntityTypeTest<Entity, ? extends LivingEntity> type) {
         super(interval, type);
         this.mobEffect = mobEffect;
         this.scaleAmplifier = scaleAmplifier;
@@ -63,7 +64,7 @@ public class PotionTotemEffect extends EntityAffectingEffect<LivingEntity> {
      * In case {@link #scaleAmplifier} is {@code true}, this method returns a value between 0 and 3, depending on the repetition and the amount of music in the Totem Base.
      * Otherwise, the value is 0.
      */
-    protected int getAmplifier(Level world, BlockPos pos, int repetition, TotemEffectContext context) {
+    protected int getAmplifier(LivingEntity entity, int repetition, TotemEffectContext context) {
         if(scaleAmplifier)
             return (repetition - 1) / 2 + (context.getTotemEffectMusic() > 5760 ? 1 : 0);
         else
@@ -75,16 +76,37 @@ public class PotionTotemEffect extends EntityAffectingEffect<LivingEntity> {
      * In case {@link #scaleAmplifier} is {@code true}, this method returns a value between 0 and 2, depending on the Efficiency enchantment level of the Medicine Bag.
      * Otherwise, the value is 0.
      */
-    protected int getAmplifierForMedicineBag(Level world, Player player, ItemStack medicineBag, int charge) {
+    protected int getAmplifierForMedicineBag(Player player, ItemStack medicineBag, int charge) {
         if(scaleAmplifier)
             return medicineBag.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) / 2;
         else
             return 0;
     }
 
+    /**
+     * Returns how many ticks the mob effect should linger after leaving the range or closing the Medicine Bag.<p>
+     * The default value is 20 ticks.
+     */
+    protected int getLingeringTime() {
+        return 20;
+    }
+
+    /**
+     * Returns the MobEffectInstance that should be applied to the given entity.
+     */
+    protected MobEffectInstance getEffectInstance(LivingEntity entity, int repetition, TotemEffectContext context) {
+        return new MobEffectInstance(mobEffect.get(), getInterval() + getLingeringTime(), getAmplifier(entity, repetition, context), true, false);
+    }
+
+    /**
+     * Returns the MobEffectInstance that should be applied to the given player from a Medicine Bag.
+     */
+    protected MobEffectInstance getEffectInstanceForMedicineBag(Player player, ItemStack medicineBag, int charge) {
+        return new MobEffectInstance(mobEffect.get(), getInterval() + getLingeringTime(), getAmplifierForMedicineBag(player, medicineBag, charge), true, false);
+    }
+
     @Override
     public void applyTo(LivingEntity entity, int repetition, TotemEffectContext context) {
-        // TODO Auto-generated method stub
-
+        entity.addEffect(getEffectInstance(entity, repetition, context));
     }
 }
