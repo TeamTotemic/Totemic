@@ -61,7 +61,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
         for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
             Block block = level.getBlockState(worldPosition.above(i + 1)).getBlock();
             if(block instanceof TotemPoleBlock) {
-                TotemCarving effect = ((TotemPoleBlock) block).effect;
+                TotemCarving effect = ((TotemPoleBlock) block).carving;
                 totemEffectList.add(effect);
                 totemEffects.add(effect);
             }

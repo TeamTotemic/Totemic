@@ -17,8 +17,8 @@ import pokefenn.totemic.api.totem.TotemCarving;
 public interface RegistryAPI {
     /** The resource key for the MusicInstrument registry. */
     static final ResourceKey<Registry<MusicInstrument>> MUSIC_INSTRUMENT_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "instrument"));
-    /** The resource key for the TotemEffect registry. */
-    static final ResourceKey<Registry<TotemCarving>> TOTEM_EFFECT_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "totem_effect"));
+    /** The resource key for the TotemCarving registry. */
+    static final ResourceKey<Registry<TotemCarving>> TOTEM_CARVING_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "totem_carving"));
     /** The resource key for the Ceremony registry. */
     static final ResourceKey<Registry<Ceremony>> CEREMONY_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "ceremony"));
 
@@ -28,9 +28,9 @@ public interface RegistryAPI {
     Registry<MusicInstrument> instruments();
 
     /**
-     * Provides access to the TotemEffect registry.
+     * Provides access to the TotemCarving registry.
      */
-    DefaultedRegistry<TotemCarving> totemEffects();
+    DefaultedRegistry<TotemCarving> totemCarvings();
 
     /**
      * Provides access to the Ceremony registry.

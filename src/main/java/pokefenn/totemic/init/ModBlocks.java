@@ -65,8 +65,8 @@ public final class ModBlocks {
         return totemBases.get(woodType).get();
     }
 
-    public static TotemPoleBlock getTotemPole(TotemWoodType woodType, TotemCarving effect) {
-        return totemPoles.get(woodType, effect).get();
+    public static TotemPoleBlock getTotemPole(TotemWoodType woodType, TotemCarving carving) {
+        return totemPoles.get(woodType, carving).get();
     }
 
     @SubscribeEvent
@@ -74,7 +74,7 @@ public final class ModBlocks {
         if(!event.getRegistryKey().equals(ForgeRegistries.Keys.BLOCKS))
             return;
 
-        RegistryApiImpl.registerTotemEffects();
+        RegistryApiImpl.registerTotemCarvings();
 
         var totemBasesBuilder = ImmutableMap.<TotemWoodType, RegistryObject<TotemBaseBlock>>builderWithExpectedSize(TotemWoodType.getWoodTypes().size());
         var totemPolesBuilder = ImmutableTable.<TotemWoodType, TotemCarving, RegistryObject<TotemPoleBlock>>builder();
@@ -87,7 +87,7 @@ public final class ModBlocks {
             event.getForgeRegistry().register(totemBaseName, totemBase);
             totemBasesBuilder.put(woodType, RegistryObject.create(totemBaseName, event.getForgeRegistry()));
 
-            for(TotemCarving effect: TotemicAPI.get().registry().totemEffects()) {
+            for(TotemCarving effect: TotemicAPI.get().registry().totemCarvings()) {
                 ResourceLocation effectName = effect.getRegistryName();
                 TotemPoleBlock totemPole = new TotemPoleBlock(woodType, effect, blockProperties);
                 ResourceLocation totemPoleName = new ResourceLocation(effectName.getNamespace(), woodType.getName() + "_totem_pole_" + effectName.getPath());

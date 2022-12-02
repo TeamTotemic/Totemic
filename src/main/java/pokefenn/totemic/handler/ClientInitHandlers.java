@@ -51,7 +51,7 @@ public class ClientInitHandlers {
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
         for(var blockO: ModBlocks.getTotemPoles().values())
-            event.register(getPoleModelName(blockO.get().effect));
+            event.register(getPoleModelName(blockO.get().carving));
 
         if(!Minecraft.useFancyGraphics()) {
             event.register(OPAQUE_CEDAR_LEAVES);
@@ -112,9 +112,9 @@ public class ClientInitHandlers {
         }
     }
 
-    private static ResourceLocation getPoleModelName(TotemCarving effect) {
-        var effectName = effect.getRegistryName();
-        return new ResourceLocation(effectName.getNamespace(), "block/totem_pole_" + effectName.getPath());
+    private static ResourceLocation getPoleModelName(TotemCarving carving) {
+        var carvingName = carving.getRegistryName();
+        return new ResourceLocation(carvingName.getNamespace(), "block/totem_pole_" + carvingName.getPath());
     }
 
     @SubscribeEvent

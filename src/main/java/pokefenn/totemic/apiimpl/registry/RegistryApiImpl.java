@@ -23,7 +23,7 @@ public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;
 
     private static final Registry<MusicInstrument> instruments = new MappedRegistry<>(MUSIC_INSTRUMENT_REGISTRY, Lifecycle.experimental(), null);
-    private static final DefaultedRegistry<TotemCarving> totemEffects = new DefaultedRegistry<>("totemic:none", TOTEM_EFFECT_REGISTRY, Lifecycle.experimental(), null);
+    private static final DefaultedRegistry<TotemCarving> totemCarvings = new DefaultedRegistry<>("totemic:none", TOTEM_CARVING_REGISTRY, Lifecycle.experimental(), null);
     private static final Registry<Ceremony> ceremonies = new MappedRegistry<>(CEREMONY_REGISTRY, Lifecycle.experimental(), null);
 
     private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap = null;
@@ -34,8 +34,8 @@ public enum RegistryApiImpl implements RegistryAPI {
     }
 
     @Override
-    public DefaultedRegistry<TotemCarving> totemEffects() {
-        return totemEffects;
+    public DefaultedRegistry<TotemCarving> totemCarvings() {
+        return totemCarvings;
     }
 
     @Override
@@ -60,8 +60,8 @@ public enum RegistryApiImpl implements RegistryAPI {
         fireRegistryEvent(MusicInstrument.class, instruments, MusicInstrument::getRegistryName);
     }
 
-    public static void registerTotemEffects() {
-        fireRegistryEvent(TotemCarving.class, totemEffects, TotemCarving::getRegistryName);
+    public static void registerTotemCarvings() {
+        fireRegistryEvent(TotemCarving.class, totemCarvings, TotemCarving::getRegistryName);
     }
 
     public static void registerCeremonies() {
@@ -71,7 +71,7 @@ public enum RegistryApiImpl implements RegistryAPI {
 
     public static void freezeRegistries() {
         instruments.freeze();
-        totemEffects.freeze();
+        totemCarvings.freeze();
         ceremonies.freeze();
     }
 

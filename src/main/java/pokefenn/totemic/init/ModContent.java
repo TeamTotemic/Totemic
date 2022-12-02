@@ -90,7 +90,7 @@ public final class ModContent {
     }
 
     @SubscribeEvent
-    public static void totemEffects(TotemicRegisterEvent<TotemCarving> event) {
+    public static void totemCarvings(TotemicRegisterEvent<TotemCarving> event) {
         event.registerAll(none, bat, blaze, buffalo, cow, enderman, horse, ocelot, pig, rabbit, spider, squid, wolf);
     }
 
