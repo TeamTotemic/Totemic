@@ -3,14 +3,18 @@ package pokefenn.totemic.block.totem.entity;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Multiset;
+import com.google.common.collect.Multiset.Entry;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.totem.CustomTotemEffect;
+import pokefenn.totemic.api.totem.EntityAffectingEffect;
 import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 
@@ -25,17 +29,29 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
 
     @Override
     public void tick() {
-        Level world = tile.getLevel();
-        long gameTime = world.getGameTime();
+        Level level = tile.getLevel();
+        long gameTime = level.getGameTime();
 
         if(gameTime % tile.getCommonTotemEffectInterval() == 0) {
-            for(Multiset.Entry<TotemCarving> entry: tile.getTotemEffects().entrySet()) {
-                TotemCarving effect = entry.getElement();
+            for(Entry<TotemEffect> entry: tile.getTotemEffects().entrySet()) {
+                var effect = entry.getElement();
+                var repetition = entry.getCount();
+
                 if(gameTime % effect.getInterval() == 0) {
-                    effect.effect(world, tile.getBlockPos(), entry.getCount(), this);
+                    if(effect instanceof EntityAffectingEffect<?> eff)
+                        applyEntityEffect(eff, level, tile.getBlockPos(), repetition);
+                    else if(effect instanceof CustomTotemEffect eff)
+                        eff.effect(level, tile.getBlockPos(), repetition, this);
                 }
             }
         }
+    }
+
+    //TODO: Optimize implementation to avoid repeatedly getting a list of players
+    private <T extends Entity> void applyEntityEffect(EntityAffectingEffect<T> effect, Level level, BlockPos pos, int repetition) {
+        level.getEntities(effect.getEntityType(), effect.getAffectedArea(level, tile.getBlockPos(), repetition, this),
+                e -> effect.canAffect(e, repetition, this))
+        .forEach(e -> effect.applyTo(e, repetition, this));
     }
 
     @Override
