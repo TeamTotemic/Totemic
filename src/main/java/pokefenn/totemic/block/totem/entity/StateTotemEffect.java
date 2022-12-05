@@ -40,7 +40,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
         if(gameTime % tile.getCommonTotemEffectInterval() == 0) {
             for(Entry<TotemEffect> entry: tile.getTotemEffects().entrySet()) {
                 var effect = entry.getElement();
-                if(gameTime % effect.getInterval() == 0) {
+                if(gameTime % effect.getInterval() == 0 && effect.canApply(level, tile.getBlockPos(), entry.getCount(), this)) {
                     if(effect instanceof EntityAffectingEffect<?> eff)
                         applyEntityEffect(eff, level, tile.getBlockPos(), entry.getCount());
                     else if(effect instanceof CustomTotemEffect eff)

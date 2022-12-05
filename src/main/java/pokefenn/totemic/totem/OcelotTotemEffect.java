@@ -20,9 +20,6 @@ public class OcelotTotemEffect extends EntityAffectingEffect<Creeper> {
 
     @Override
     public void applyTo(Creeper creeper, int repetition, TotemEffectContext context) {
-        if(creeper.level.isClientSide)
-            return;
-
         int swell = (int) creeperSwell.get(creeper);
         if(swell > 15) {
             creeperSwell.set(creeper, 0);
