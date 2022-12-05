@@ -4,18 +4,15 @@ import java.util.function.Supplier;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.entity.EntityTypeTest;
 
 /**
- * A TotemEffect which applies a {@link MobEffect} to all entities of a certain type near the Totem Pole.
+ * A TotemEffect which applies a {@link MobEffect} to all Players near the Totem Pole.
  */
-public class PotionTotemEffect extends EntityAffectingEffect<LivingEntity> {
+public class PotionTotemEffect extends PlayerTotemEffect {
     /**
      * A Supplier for the mob effect.
      */
@@ -28,7 +25,7 @@ public class PotionTotemEffect extends EntityAffectingEffect<LivingEntity> {
     protected final boolean scaleAmplifier;
 
     /**
-     * Constructs a new PotionTotemEffect with default interval, scaling amplifier, and only affecting Players.
+     * Constructs a new PotionTotemEffect with default interval and scaling amplifier.
      * @param mobEffect a Supplier for the mob effect.
      */
     public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect) {
@@ -36,13 +33,13 @@ public class PotionTotemEffect extends EntityAffectingEffect<LivingEntity> {
     }
 
     /**
-     * Constructs a new PotionTotemEffect with default interval and only affecting Players.
+     * Constructs a new PotionTotemEffect with default interval.
      * @param mobEffect      a Supplier for the mob effect.
      * @param scaleAmplifier if {@code true}, the effect's amplifier will be scaled based on repetition and music.
      *                       Otherwise, the amplifier will be 0.
      */
     public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect, boolean scaleAmplifier) {
-        this(mobEffect, scaleAmplifier, TotemEffectAPI.DEFAULT_INTERVAL, EntityType.PLAYER);
+        this(mobEffect, scaleAmplifier, DEFAULT_INTERVAL);
     }
 
     /**
@@ -50,11 +47,10 @@ public class PotionTotemEffect extends EntityAffectingEffect<LivingEntity> {
      * @param mobEffect      a Supplier for the mob effect.
      * @param scaleAmplifier if {@code true}, the effect's amplifier will be scaled based on repetition and music.
      *                       Otherwise, the amplifier will be 0.
-     * @param interval       the time in ticks until the potion effect is renewed.
-     * @param type           the type of entities to which this effect should be applied.
+     * @param interval       the time in ticks until the mob effect is renewed.
      */
-    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect, boolean scaleAmplifier, int interval, EntityTypeTest<Entity, ? extends LivingEntity> type) {
-        super(interval, type);
+    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect, boolean scaleAmplifier, int interval) {
+        super(interval);
         this.mobEffect = mobEffect;
         this.scaleAmplifier = scaleAmplifier;
     }
@@ -106,7 +102,7 @@ public class PotionTotemEffect extends EntityAffectingEffect<LivingEntity> {
     }
 
     @Override
-    public void applyTo(LivingEntity entity, int repetition, TotemEffectContext context) {
-        entity.addEffect(getEffectInstance(entity, repetition, context));
+    public void applyTo(Player player, int repetition, TotemEffectContext context) {
+        player.addEffect(getEffectInstance(player, repetition, context));
     }
 }

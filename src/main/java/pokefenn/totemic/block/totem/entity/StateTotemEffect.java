@@ -1,23 +1,15 @@
 package pokefenn.totemic.block.totem.entity;
 
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Multiset.Entry;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.api.totem.CustomTotemEffect;
-import pokefenn.totemic.api.totem.EntityAffectingEffect;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
@@ -40,26 +32,10 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
         if(gameTime % tile.getCommonTotemEffectInterval() == 0) {
             for(Entry<TotemEffect> entry: tile.getTotemEffects().entrySet()) {
                 var effect = entry.getElement();
-                if(gameTime % effect.getInterval() == 0 && effect.canApply(level, tile.getBlockPos(), entry.getCount(), this)) {
-                    if(effect instanceof EntityAffectingEffect<?> eff)
-                        applyEntityEffect(eff, level, tile.getBlockPos(), entry.getCount());
-                    else if(effect instanceof CustomTotemEffect eff)
-                        eff.effect(level, tile.getBlockPos(), entry.getCount(), this);
-                }
+                if(gameTime % effect.getInterval() == 0)
+                    effect.effect(level, tile.getBlockPos(), entry.getCount(), this);
             }
         }
-    }
-
-    @SuppressWarnings("unchecked")
-    private <T extends Entity> void applyEntityEffect(EntityAffectingEffect<T> effect, Level level, BlockPos pos, int repetition) {
-        var aabb = effect.getAffectedArea(level, tile.getBlockPos(), repetition, this);
-        Predicate<Entity> filter = e -> effect.canAffect((T) e, repetition, this);
-        Consumer<Entity> action = e -> effect.applyTo((T) e, repetition, this);
-
-        if(effect.getEntityType() == EntityType.PLAYER)
-            TotemicEntityUtil.getPlayersIn(level, aabb, filter).forEach(action);
-        else
-            level.getEntities(effect.getEntityType(), aabb, filter).forEach(action);
     }
 
     @Override

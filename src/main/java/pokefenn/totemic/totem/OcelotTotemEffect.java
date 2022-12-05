@@ -2,24 +2,34 @@ package pokefenn.totemic.totem;
 
 import java.lang.invoke.VarHandle;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.api.totem.EntityAffectingEffect;
+import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicEntityUtil;
+import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 import pokefenn.totemic.util.MethodHandleUtil;
 import pokefenn.totemic.util.MiscUtil;
 
-public class OcelotTotemEffect extends EntityAffectingEffect<Creeper> {
+public class OcelotTotemEffect extends TotemEffect {
     public OcelotTotemEffect() {
-        super(10, EntityType.CREEPER);
+        super(10);
     }
 
     private static final VarHandle creeperSwell = MethodHandleUtil.findField(Creeper.class, "f_32270_", int.class); //The Creeper.swell field
 
     @Override
-    public void applyTo(Creeper creeper, int repetition, TotemEffectContext context) {
+    public void effect(Level level, BlockPos pos, int repetition, TotemEffectContext context) {
+        if(level.isClientSide)
+            return;
+        int range = TotemicAPI.get().totemEffect().getDefaultRange(repetition, context);
+        TotemicEntityUtil.getEntitiesInRange(Creeper.class, level, pos, range, range).forEach(this::applyTo);
+    }
+
+    private void applyTo(Creeper creeper) {
         int swell = (int) creeperSwell.get(creeper);
         if(swell > 15) {
             creeperSwell.set(creeper, 0);
