@@ -12,11 +12,9 @@ import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 /**
  * Represents a Totem Pole carving. A TotemCarving consists of one or more {@link TotemEffect}s.
  * <p>
- * Usually, it is not necessary to subclass this. Instead, use or extend one of the {@link TotemEffect} subclasses.
- * <p>
  * Use the {@link TotemicRegisterEvent} to register your TotemCarvings.
  */
-public class TotemCarving {
+public final class TotemCarving {
     private final ResourceLocation registryName;
     private final List<TotemEffect> effects;
 

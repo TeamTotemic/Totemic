@@ -1,5 +1,8 @@
 package pokefenn.totemic.block.totem.entity;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
@@ -73,8 +76,8 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
-    public int getRepetition(TotemCarving effect) {
-        return tile.getTotemEffects().count(effect);
+    public List<TotemCarving> getCarvings() {
+        return Collections.unmodifiableList(tile.getCarvings());
     }
 
     @Override
