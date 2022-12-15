@@ -12,7 +12,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 /**
  * A TotemEffect which applies a {@link MobEffect} to all Players near the Totem Pole.
  */
-public class PotionTotemEffect extends PlayerTotemEffect {
+public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagEffect {
     /**
      * A Supplier for the mob effect.
      */
@@ -104,5 +104,11 @@ public class PotionTotemEffect extends PlayerTotemEffect {
     @Override
     public void applyTo(Player player, int repetition, TotemEffectContext context) {
         player.addEffect(getEffectInstance(player, repetition, context));
+    }
+
+    @Override
+    public void medicineBagEffect(Player player, ItemStack medicineBag, int charge) {
+        if(!player.level.isClientSide)
+            player.addEffect(getEffectInstanceForMedicineBag(player, medicineBag, charge));
     }
 }
