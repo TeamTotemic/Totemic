@@ -1,15 +1,19 @@
 package pokefenn.totemic.block.totem.entity;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Multiset;
+import com.google.common.collect.Multiset.Entry;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.api.totem.TotemEffectContext;
@@ -25,15 +29,14 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
 
     @Override
     public void tick() {
-        Level world = tile.getLevel();
-        long gameTime = world.getGameTime();
+        Level level = tile.getLevel();
+        long gameTime = level.getGameTime();
 
         if(gameTime % tile.getCommonTotemEffectInterval() == 0) {
-            for(Multiset.Entry<TotemEffect> entry: tile.getTotemEffects().entrySet()) {
-                TotemEffect effect = entry.getElement();
-                if(gameTime % effect.getInterval() == 0) {
-                    effect.effect(world, tile.getBlockPos(), entry.getCount(), this);
-                }
+            for(Entry<TotemEffect> entry: tile.getTotemEffects().entrySet()) {
+                var effect = entry.getElement();
+                if(gameTime % effect.getInterval() == 0)
+                    effect.effect(level, tile.getBlockPos(), entry.getCount(), this);
             }
         }
     }
@@ -73,8 +76,8 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
-    public int getRepetition(TotemEffect effect) {
-        return tile.getTotemEffects().count(effect);
+    public List<TotemCarving> getCarvings() {
+        return Collections.unmodifiableList(tile.getCarvings());
     }
 
     @Override

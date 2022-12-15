@@ -1,16 +1,15 @@
 package pokefenn.totemic.init;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
+import pokefenn.totemic.api.totem.PortableTotemCarving;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
-import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.ceremony.BaykokSummonCeremony;
 import pokefenn.totemic.ceremony.BuffaloDanceCeremony;
 import pokefenn.totemic.ceremony.CleansingCeremony;
@@ -23,7 +22,6 @@ import pokefenn.totemic.ceremony.SunDanceCeremony;
 import pokefenn.totemic.ceremony.WarDanceCeremony;
 import pokefenn.totemic.ceremony.WeatherCeremony;
 import pokefenn.totemic.ceremony.ZaphkielWaltzCeremony;
-import pokefenn.totemic.totem.EmptyTotemEffect;
 import pokefenn.totemic.totem.OcelotTotemEffect;
 
 public final class ModContent {
@@ -35,30 +33,27 @@ public final class ModContent {
     public static final MusicInstrument eagle_bone_whistle = new MusicInstrument(resloc("eagle_bone_whistle"), 360, 3600);
 //    public static final MusicInstrument nether_pipe = new MusicInstrument(resloc("nether_pipe"), 240, 3900);
 
-    public static final TotemEffect none = new EmptyTotemEffect(resloc("none"));
-    public static final TotemEffect bat = new PotionTotemEffect(resloc("bat"), () -> MobEffects.SLOW_FALLING);
-    public static final TotemEffect blaze = new PotionTotemEffect(resloc("blaze"), () -> MobEffects.FIRE_RESISTANCE);
-    public static final TotemEffect buffalo = new PotionTotemEffect(resloc("buffalo"), () -> MobEffects.DIG_SPEED);
-    public static final TotemEffect cow = new PotionTotemEffect(resloc("cow"), () -> MobEffects.DAMAGE_RESISTANCE) {
-        @Override
-        protected void applyTo(boolean isMedicineBag, Player player, int time, int amplifier) {
-            super.applyTo(isMedicineBag, player, time, amplifier);
-            player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, time, 0, true, false));
-        }
-    };
-    public static final TotemEffect enderman = new PotionTotemEffect(resloc("enderman"), () -> MobEffects.NIGHT_VISION) {
-        @Override
-        protected int getLingeringTime() {
-            return 210;
-        }
-    };
-    public static final TotemEffect horse = new PotionTotemEffect(resloc("horse"), () -> MobEffects.MOVEMENT_SPEED);
-    public static final TotemEffect ocelot = new OcelotTotemEffect(resloc("ocelot"));
-    public static final TotemEffect pig = new PotionTotemEffect(resloc("pig"), () -> MobEffects.LUCK);
-    public static final TotemEffect rabbit = new PotionTotemEffect(resloc("rabbit"), () -> MobEffects.JUMP);
-    public static final TotemEffect spider = new PotionTotemEffect(resloc("spider"), ModMobEffects.spider);
-    public static final TotemEffect squid = new PotionTotemEffect(resloc("squid"), () -> MobEffects.WATER_BREATHING);
-    public static final TotemEffect wolf = new PotionTotemEffect(resloc("wolf"), () -> MobEffects.DAMAGE_BOOST);
+    public static final TotemCarving none = new PortableTotemCarving(resloc("none"));
+    public static final TotemCarving bat = new PortableTotemCarving(resloc("bat"), new PotionTotemEffect(() -> MobEffects.SLOW_FALLING));
+    public static final TotemCarving blaze = new PortableTotemCarving(resloc("blaze"), new PotionTotemEffect(() -> MobEffects.FIRE_RESISTANCE));
+    public static final TotemCarving buffalo = new PortableTotemCarving(resloc("buffalo"), new PotionTotemEffect(() -> MobEffects.DIG_SPEED));
+    public static final TotemCarving cow = new PortableTotemCarving(resloc("cow"),
+            new PotionTotemEffect(() -> MobEffects.DAMAGE_RESISTANCE),
+            new PotionTotemEffect(() -> MobEffects.MOVEMENT_SLOWDOWN, false));
+    public static final TotemCarving enderman = new PortableTotemCarving(resloc("enderman"),
+            new PotionTotemEffect(() -> MobEffects.NIGHT_VISION, false) {
+                @Override
+                protected int getLingeringTime() { return 210; }
+            });
+    public static final TotemCarving horse = new PortableTotemCarving(resloc("horse"), new PotionTotemEffect(() -> MobEffects.MOVEMENT_SPEED));
+    public static final TotemCarving ocelot = new TotemCarving(resloc("ocelot"),
+            new OcelotTotemEffect(),
+            new PotionTotemEffect(ModMobEffects.ocelot, false));
+    public static final TotemCarving pig = new PortableTotemCarving(resloc("pig"), new PotionTotemEffect(() -> MobEffects.LUCK));
+    public static final TotemCarving rabbit = new PortableTotemCarving(resloc("rabbit"), new PotionTotemEffect(() -> MobEffects.JUMP));
+    public static final TotemCarving spider = new PortableTotemCarving(resloc("spider"), new PotionTotemEffect(ModMobEffects.spider));
+    public static final TotemCarving squid = new PortableTotemCarving(resloc("squid"), new PotionTotemEffect(() -> MobEffects.WATER_BREATHING));
+    public static final TotemCarving wolf = new PortableTotemCarving(resloc("wolf"), new PotionTotemEffect(() -> MobEffects.DAMAGE_BOOST));
 
     //Music amount landmarks:
     //6300: Flute + Drum
@@ -96,7 +91,7 @@ public final class ModContent {
     }
 
     @SubscribeEvent
-    public static void totemEffects(TotemicRegisterEvent<TotemEffect> event) {
+    public static void totemCarvings(TotemicRegisterEvent<TotemCarving> event) {
         event.registerAll(none, bat, blaze, buffalo, cow, enderman, horse, ocelot, pig, rabbit, spider, squid, wolf);
     }
 

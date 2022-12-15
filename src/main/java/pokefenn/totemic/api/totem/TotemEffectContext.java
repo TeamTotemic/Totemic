@@ -1,8 +1,9 @@
 package pokefenn.totemic.api.totem;
 
+import java.util.List;
+
 /**
- * This interface provides details about the Totem Base where a Totem Effect is applied from. Instances of this are passed to the {@link TotemEffect#effect}
- * method.
+ * This interface provides details about the Totem Base where a Totem Effect is applied from. Instances of this are passed to methods which apply Totem Effects.
  */
 public interface TotemEffectContext {
     /**
@@ -16,7 +17,9 @@ public interface TotemEffectContext {
     int getPoleSize();
 
     /**
-     * @return the number of Totem Pole blocks that are carved with the specified effect.
+     * Returns a list of the carvings of all the Totem Pole blocks above the Totem Base, in order from bottom to top.
+     * <p>
+     * The returned list is immutable and may contain the same carving multiple times.
      */
-    int getRepetition(TotemEffect effect);
+    List<TotemCarving> getCarvings();
 }

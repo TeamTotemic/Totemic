@@ -25,6 +25,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAcceptor;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
@@ -33,7 +34,7 @@ import pokefenn.totemic.init.ModBlockEntities;
 public class TotemBaseBlockEntity extends BlockEntity {
     private boolean firstTick = true;
 
-    private final List<TotemEffect> totemEffectList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
+    private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private final Multiset<TotemEffect> totemEffects = HashMultiset.create(TotemEffectAPI.MAX_POLE_SIZE);
     private int commonTotemEffectInterval = Integer.MAX_VALUE;
 
@@ -55,15 +56,15 @@ public class TotemBaseBlockEntity extends BlockEntity {
     }
 
     private void calculateTotemEffects() {
-        totemEffectList.clear();
+        carvingList.clear();
         totemEffects.clear();
 
         for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
             Block block = level.getBlockState(worldPosition.above(i + 1)).getBlock();
             if(block instanceof TotemPoleBlock) {
-                TotemEffect effect = ((TotemPoleBlock) block).effect;
-                totemEffectList.add(effect);
-                totemEffects.add(effect);
+                var carving = ((TotemPoleBlock) block).carving;
+                carvingList.add(carving);
+                totemEffects.addAll(carving.getEffects());
             }
             else
                 break;
@@ -72,17 +73,16 @@ public class TotemBaseBlockEntity extends BlockEntity {
         // Calculate the greatest common divisor of all the intervals of the effects
         commonTotemEffectInterval = totemEffects.elementSet().stream()
                 .mapToInt(TotemEffect::getInterval)
-                .filter(i -> i != Integer.MAX_VALUE) //Integer.MAX_VALUE is a prime number, so we don't want it in the GCD calculation
                 .reduce(IntMath::gcd)
-                .orElse(Integer.MAX_VALUE);
+                .orElse(Integer.MAX_VALUE); //if there are no effects
     }
 
     public void onPoleChange() {
         calculateTotemEffects();
     }
 
-    public List<TotemEffect> getTotemEffectList() {
-        return totemEffectList;
+    public List<TotemCarving> getCarvings() {
+        return carvingList;
     }
 
     public Multiset<TotemEffect> getTotemEffects() {
@@ -90,7 +90,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     }
 
     public int getPoleSize() {
-        return totemEffectList.size();
+        return carvingList.size();
     }
 
     public int getCommonTotemEffectInterval() {

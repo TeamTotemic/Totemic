@@ -1,107 +1,48 @@
 package pokefenn.totemic.api.totem;
 
-import java.util.Objects;
-
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 
 /**
- * Represents a Totem Effect type.
- * <p>
- * Extend this class to implement your effect.
- * <p>
- * Use the {@link TotemicRegisterEvent} to register your Totem Effects.
+ * A single effect of a TotemCarving.
  */
-public abstract class TotemEffect { //TODO: This class needs a refactoring
+public abstract class TotemEffect {
     /**
-     * The Totem Effect's registry name.
+     * The default value for the Totem Effect interval.
      */
-    protected final ResourceLocation registryName;
-    /**
-     * Whether this Totem Effect can be used with a Medicine Bag.
-     */
-    protected final boolean portable;
-    /**
-     * The time in ticks between applications of the effect.
-     */
-    protected final int interval;
+    public static final int DEFAULT_INTERVAL = 80;
+
+    private final int interval;
 
     /**
-     * Constructs a new TotemEffect.
-     * @param name     the Totem Effect's registry name.
-     * @param portable whether this Totem Effect can be used with a Medicine Bag. In this case, override {@link #medicineBagEffect}.
-     * @param interval the time in ticks between applications of the effect. This should ideally be a multiple of 80 or 20.
+     * Constructor for TotemEffect with a default interval of {@value TotemEffect#DEFAULT_INTERVAL} ticks.
      */
-    public TotemEffect(ResourceLocation name, boolean portable, int interval) {
-        if(interval < 1)
-            throw new IllegalArgumentException("The interval must be positive");
-        this.registryName = Objects.requireNonNull(name);
-        this.portable = portable;
+    public TotemEffect() {
+        this(DEFAULT_INTERVAL);
+    }
+
+    /**
+     * Constructor for TotemEffect.
+     * @param interval  the time in ticks between applications of the effect. It is encouraged that this be a multiple of 20.
+     */
+    public TotemEffect(int interval) {
+        if(interval <= 0)
+            throw new IllegalArgumentException("The interval must be larger than 0");
         this.interval = interval;
     }
 
     /**
-     * Performs the Totem Effect at the given Totem Base position. This method is called every {@link #interval} ticks.
-     * @param repetition the number of Totem Pole blocks that are carved with this effect
+     * Applies the effect at the given position.
+     * @param pos        the position of the Totem Base block.
+     * @param repetition the number of Totem Pole blocks which are carved with the carving this effect belongs to.
+     * @param context    an object providing details about the Totem Pole this effect originates from.
      */
     public abstract void effect(Level level, BlockPos pos, int repetition, TotemEffectContext context);
 
     /**
-     * Performs the Totem Effect when used in a Medicine Bag, if applicable. Override this method to make your effect work with Medicine Bags. This method is
-     * called every {@link #interval} ticks.
-     * <p>
-     * Currently unused (until Medicine Bags are readded).
-     * @param player      the player who holds the Medicine Bag
-     * @param medicineBag the Medicine Bag item stack
-     * @param charge      time in ticks until the Medicine Bag is depleted, or -1 if it is a Creative Medicine Bag
-     */
-    public void medicineBagEffect(Level level, Player player, ItemStack medicineBag, int charge) {
-    }
-
-    /**
-     * Returns the effect's description ID (i.e. unlocalized name), which is given by "totemic.totem." followed by the registry name (with ':' replaced by '.').
-     */
-    public String getDescriptionId() {
-        return Util.makeDescriptionId("totemic.totem", registryName);
-    }
-
-    /**
-     * Returns a text component representing the effect's name.
-     */
-    public MutableComponent getDisplayName() {
-        return Component.translatable(getDescriptionId());
-    }
-
-    /**
-     * Returns the Totem Effect's registry name.
-     */
-    public final ResourceLocation getRegistryName() {
-        return registryName;
-    }
-
-    @Override
-    public String toString() {
-        return registryName.toString();
-    }
-
-    /**
-     * Returns whether this Totem Effect can be used with a Medicine Bag.
-     */
-    public boolean isPortable() {
-        return portable;
-    }
-
-    /**
      * Returns the time in ticks between applications of the effect.
      */
-    public int getInterval() {
+    public final int getInterval() {
         return interval;
     }
 }

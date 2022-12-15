@@ -8,13 +8,13 @@ import net.minecraftforge.eventbus.api.GenericEvent;
 import net.minecraftforge.fml.event.IModBusEvent;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemCarving;
 
 /**
  * Event for registering contents to Totemic's registries.
  * <p>
  * Note that Forge's RegisterEvent or the ObjectHolder annotation do not work for Totemic's contents.
- * @param <T> Either {@link MusicInstrument}, {@link TotemEffect} or {@link Ceremony}.
+ * @param <T> Either {@link MusicInstrument}, {@link TotemCarving} or {@link Ceremony}.
  */
 public final class TotemicRegisterEvent<T> extends GenericEvent<T> implements IModBusEvent {
     private final Consumer<T> registry;

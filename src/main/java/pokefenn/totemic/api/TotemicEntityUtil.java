@@ -33,8 +33,16 @@ public final class TotemicEntityUtil { //TODO: Are the methods in this class sti
      * @param filter     the filter predicate. Must not be {@code null}.
      */
     public static Stream<? extends Player> getPlayersInRange(Level level, BlockPos pos, double horizontal, double vertical, Predicate<? super Player> filter) {
-        Objects.requireNonNull(filter);
         AABB aabb = new AABB(pos).inflate(horizontal - 1, vertical - 1, horizontal - 1);
+        return getPlayersIn(level, aabb, filter);
+    }
+
+    /**
+     * Returns a Stream of the players that intersect the given AABB and satisfy the filter.
+     *
+     * @param filter     the filter predicate. Must not be {@code null}.
+     */
+    public static Stream<? extends Player> getPlayersIn(Level level, AABB aabb, Predicate<? super Player> filter) {
         return level.players().stream().filter(player -> player.getBoundingBox().intersects(aabb) && filter.test(player));
     }
 
