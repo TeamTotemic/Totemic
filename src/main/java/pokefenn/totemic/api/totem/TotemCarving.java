@@ -14,7 +14,7 @@ import pokefenn.totemic.api.registry.TotemicRegisterEvent;
  * <p>
  * Use the {@link TotemicRegisterEvent} to register your TotemCarvings.
  */
-public final class TotemCarving {
+public sealed class TotemCarving permits PortableTotemCarving {
     private final ResourceLocation registryName;
     private final List<TotemEffect> effects;
 
@@ -26,6 +26,16 @@ public final class TotemCarving {
     public TotemCarving(ResourceLocation name, TotemEffect... effects) {
         this.registryName = Objects.requireNonNull(name);
         this.effects = List.of(effects);
+    }
+
+    /**
+     * Constructs a new TotemCarving.
+     * @param name    the TotemCarving's registry name.
+     * @param effects the constituent effects of the carving, as a List.
+     */
+    public TotemCarving(ResourceLocation name, List<? extends TotemEffect> effects) {
+        this.registryName = Objects.requireNonNull(name);
+        this.effects = List.copyOf(effects);
     }
 
     /**
