@@ -21,6 +21,7 @@ import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.item.BaykokBowItem;
 import pokefenn.totemic.item.CeremonyCheatItem;
 import pokefenn.totemic.item.CustomRenderedBlockItem;
+import pokefenn.totemic.item.MedicineBagItem;
 import pokefenn.totemic.item.TotemKnifeItem;
 import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.item.TotemicStaffItem;
@@ -56,7 +57,8 @@ public final class ModItems {
     public static final RegistryObject<Item> eagle_bone = REGISTER.register("eagle_bone", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<Item> eagle_feather = REGISTER.register("eagle_feather", () -> new Item(new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<BaykokBowItem> baykok_bow = REGISTER.register("baykok_bow", () -> new BaykokBowItem(new Properties().durability(576).rarity(Rarity.RARE).tab(Totemic.creativeTab)));
-    public static final RegistryObject<TotempediaItem> totempedia = REGISTER.register("totempedia", () -> new TotempediaItem(new Properties().tab(Totemic.creativeTab)));
+    public static final RegistryObject<TotempediaItem> totempedia = REGISTER.register("totempedia", () -> new TotempediaItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
+    public static final RegistryObject<MedicineBagItem> medicine_bag = REGISTER.register("medicine_bag", () -> new MedicineBagItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
     public static final RegistryObject<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties().tab(Totemic.creativeTab)));
 
     @SubscribeEvent

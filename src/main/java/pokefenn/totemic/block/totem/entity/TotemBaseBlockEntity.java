@@ -85,6 +85,10 @@ public class TotemBaseBlockEntity extends BlockEntity {
         return carvingList;
     }
 
+    public boolean hasCarving(TotemCarving carving) {
+        return carvingList.contains(carving); //TODO: Use a Set instead of a List?
+    }
+
     public Multiset<TotemEffect> getTotemEffects() {
         return totemEffects;
     }

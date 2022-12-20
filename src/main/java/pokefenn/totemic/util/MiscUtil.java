@@ -3,6 +3,7 @@ package pokefenn.totemic.util;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 
 import net.minecraft.core.particles.ParticleOptions;
@@ -52,6 +53,11 @@ public final class MiscUtil {
                             return list2;
                     }
                 });
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T, S extends T> Optional<S> filterAndCast(Optional<T> opt, Class<S> clazz) {
+        return (Optional<S>) opt.filter(clazz::isInstance);
     }
 
     public static void spawnServerParticles(ParticleOptions particle, Level level, Vec3 pos, int count, Vec3 spread, double speed) {
