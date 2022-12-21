@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -30,9 +31,11 @@ import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.util.BlockUtil;
 import pokefenn.totemic.util.MiscUtil;
 
+@SuppressWarnings("deprecation")
 public class MedicineBagItem extends Item {
     public static final String TOTEM_TAG = "Totem";
     public static final String CHARGE_TAG = "Charge";
@@ -43,8 +46,10 @@ public class MedicineBagItem extends Item {
     }
 
     public void registerItemProperties() {
-        ItemProperties.register(this, new ResourceLocation(TotemicAPI.MOD_ID, "open"),
-                (stack, level, entity, seed) -> isOpen(stack) ? 1.0F : 0.0F);
+        ItemPropertyFunction func = (stack, level, entity, seed) -> isOpen(stack) ? 1.0F : 0.0F;
+        var name = new ResourceLocation(TotemicAPI.MOD_ID, "open");
+        ItemProperties.register(ModItems.medicine_bag.get(), name, func);
+        ItemProperties.register(ModItems.creative_medicine_bag.get(), name, func);
     }
 
     public static Optional<PortableTotemCarving> getCarving(ItemStack stack) {
@@ -139,12 +144,13 @@ public class MedicineBagItem extends Item {
             if(carving instanceof PortableTotemCarving) {
                 var tag = stack.getOrCreateTag();
                 tag.putString(TOTEM_TAG, carving.getRegistryName().toString());
-                tag.putInt(CHARGE_TAG, 0);
+                if(!stack.is(ModItems.creative_medicine_bag.get()))
+                    tag.putInt(CHARGE_TAG, 0);
                 return InteractionResult.SUCCESS;
             }
             else {
                 if(level.isClientSide)
-                    player.displayClientMessage(Component.translatable("totemic.effectNotPortable", carving.getDisplayName()), true);
+                    player.displayClientMessage(Component.translatable("totemic.medicineBag.notPortable", carving.getDisplayName()), true);
                 return InteractionResult.FAIL;
             }
         }
@@ -184,10 +190,10 @@ public class MedicineBagItem extends Item {
         }
         else
             key = "tooltip";
-        tooltip.add(Component.translatable(getDescriptionId() + "." + key));
+        tooltip.add(Component.translatable("totemic.medicineBag." + key));
 
         if(flag.isAdvanced())
-            tooltip.add(Component.translatable(getDescriptionId() + ".charge", getCharge(stack), getMaxCharge(stack)));
+            tooltip.add(Component.translatable("totemic.medicineBag.charge", getCharge(stack), getMaxCharge(stack)));
     }
 
     @Override

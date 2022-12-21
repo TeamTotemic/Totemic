@@ -1,4 +1,4 @@
-// 1.19.2	2022-12-21T10:49:56.941119297	Block States: totemic
+// 1.19.2	2022-12-21T11:56:45.844014799	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/acacia_totem_pole_bat.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -197,6 +197,7 @@ ab67b52e856d8ce64e27a0fcadea47f2eeddd83a assets/totemic/models/item/cedar_totem_
 25126e0a93bfb7f36e49c4d7a1ae8c50065e619b assets/totemic/models/item/cedar_wood.json
 99704c8f97dee726a7de63032720f9fcaf4f33d9 assets/totemic/models/item/ceremony_cheat.json
 0906cace6569019c700a95d5f8aeddb4ad2a6537 assets/totemic/models/item/cooked_buffalo_meat.json
+0a056ee52040621956e25ff9a22a30fbcf0566cb assets/totemic/models/item/creative_medicine_bag.json
 f9e5ee729c02ede39d4b7219c6d89e4d6c7503a6 assets/totemic/models/item/dark_oak_totem_base.json
 2d1ade82820569936fd3021a877283474ced09d0 assets/totemic/models/item/dark_oak_totem_pole_bat.json
 2d1ade82820569936fd3021a877283474ced09d0 assets/totemic/models/item/dark_oak_totem_pole_blaze.json

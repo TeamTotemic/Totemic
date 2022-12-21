@@ -25,6 +25,14 @@
   "item.totemic.baykok_bow": "Лук Байкока",
   "item.totemic.totempedia": "Тотемпедия",
   "item.totemic.totempedia.tooltip": "The Totempedia is still WIP. Right now, this item only displays a list of Ceremonies when used.",
+  "item.totemic.medicine_bag": "Медицинская сумка (%s)",
+  "item.totemic.creative_medicine_bag": "Творческая медицинская сумка (%s)",
+  "totemic.medicineBag.notPortable": "Эффект %s не может быть перенесен медицинской сумкой",
+  "totemic.medicineBag.tooltip": "Нажмите Shift+ПКМ, чтобы установить эффект на Тотемном Столбе",
+  "totemic.medicineBag.closed": "Закрыта",
+  "totemic.medicineBag.open": "Открыта",
+  "totemic.medicineBag.empty": "Пуста",
+  "totemic.medicineBag.charge": "Заряд: %d / %d",
   
   "totemic.tooltip.selectorMode": "Приседая вы можете выбрать ритуал для проведения",
   

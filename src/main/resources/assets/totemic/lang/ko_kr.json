@@ -25,6 +25,14 @@
   "item.totemic.baykok_bow": "베이콕의 활",
   "item.totemic.totempedia": "토템피디아",
   "item.totemic.totempedia.tooltip": "The Totempedia is still WIP. Right now, this item only displays a list of Ceremonies when used.",
+  "item.totemic.medicine_bag": "주술 가방 (%s)",
+  "item.totemic.creative_medicine_bag": "크리에이티브 주술 가방 (%s)",
+  "totemic.medicineBag.notPortable": "효과: %s 는 주술 가방에 넣고 다닐수 없는 효과입니다.",
+  "totemic.medicineBag.tooltip": "기존의 토템에 쉬프트+우클릭을 해 효과를 저장하세요",
+  "totemic.medicineBag.closed": "묶어둠",
+  "totemic.medicineBag.open": "풀어둠",
+  "totemic.medicineBag.empty": "비었음",
+  "totemic.medicineBag.charge": "Charge: %d / %d",
   
   "totemic.tooltip.selectorMode": "선택 모드를 사용하시려면 쉬프트를 누르고 악기를 연주하세요",
   

@@ -25,6 +25,14 @@
   "item.totemic.baykok_bow": "Baykoks Bogen",
   "item.totemic.totempedia": "Totempedia",
   "item.totemic.totempedia.tooltip": "Die Totempedia ist noch in Arbeit. Im Augenblick zeigt sie bei Benutzung nur eine Liste der Zeremonien.",
+  "item.totemic.medicine_bag": "Medizinbeutel (%s)",
+  "item.totemic.creative_medicine_bag": "Kreativmodus-Medizinbeutel (%s)",
+  "totemic.medicineBag.notPortable": "Der Effekt %s kann nicht in einem Medizinbeutel getragen werden",
+  "totemic.medicineBag.tooltip": "Schleichen+Rechtsklick auf einen Totempfahl, um den Effekt festzulegen",
+  "totemic.medicineBag.closed": "Geschlossen",
+  "totemic.medicineBag.open": "Offen",
+  "totemic.medicineBag.empty": "Leer",
+  "totemic.medicineBag.charge": "Ladung: %d / %d",
   
   "totemic.tooltip.selectorMode": "Schleiche während des Spielens für den Selektor-Modus",
   

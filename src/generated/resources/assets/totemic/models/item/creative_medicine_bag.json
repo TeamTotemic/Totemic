@@ -1,0 +1,11 @@
+{
+  "parent": "totemic:item/medicine_bag",
+  "overrides": [
+    {
+      "model": "totemic:item/medicine_bag_open",
+      "predicate": {
+        "totemic:open": 1.0
+      }
+    }
+  ]
+}

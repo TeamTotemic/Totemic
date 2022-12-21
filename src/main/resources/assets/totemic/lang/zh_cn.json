@@ -25,6 +25,14 @@
   "item.totemic.baykok_bow": "贝柯克之弓",
   "item.totemic.totempedia": "图腾百科全书",
   "item.totemic.totempedia.tooltip": "The Totempedia is still WIP. Right now, this item only displays a list of Ceremonies when used.",
+  "item.totemic.medicine_bag": "药草袋（%s）",
+  "item.totemic.creative_medicine_bag": "创造模式药草袋（%s）",
+  "totemic.medicineBag.notPortable": "药草袋无法携带 %s 效果",
+  "totemic.medicineBag.tooltip": "潜行右击对图腾柱设置效果",
+  "totemic.medicineBag.closed": "禁用",
+  "totemic.medicineBag.open": "启用",
+  "totemic.medicineBag.empty": "空",
+  "totemic.medicineBag.charge": "图腾能量：%d / %d",
   
   "totemic.tooltip.selectorMode": "潜行选择仪式进行使用",
   

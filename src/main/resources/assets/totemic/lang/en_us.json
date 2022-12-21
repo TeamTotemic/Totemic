@@ -26,11 +26,13 @@
   "item.totemic.totempedia": "Totempedia",
   "item.totemic.totempedia.tooltip": "The Totempedia is still WIP. Right now, this item only displays a list of Ceremonies when used.",
   "item.totemic.medicine_bag": "Medicine Bag (%s)",
-  "item.totemic.medicine_bag.tooltip": "Sneak+Right Click on a Totem Pole to set the effect",
-  "item.totemic.medicine_bag.closed": "Closed",
-  "item.totemic.medicine_bag.open": "Open",
-  "item.totemic.medicine_bag.empty": "Empty",
-  "item.totemic.medicine_bag.charge": "Charge: %d / %d",
+  "item.totemic.creative_medicine_bag": "Creative Medicine Bag (%s)",
+  "totemic.medicineBag.notPortable": "The effect %s cannot be carried in a Medicine Bag",
+  "totemic.medicineBag.tooltip": "Sneak+Right Click on a Totem Pole to set the effect",
+  "totemic.medicineBag.closed": "Closed",
+  "totemic.medicineBag.open": "Open",
+  "totemic.medicineBag.empty": "Empty",
+  "totemic.medicineBag.charge": "Charge: %d / %d",
   
   "totemic.tooltip.selectorMode": "Sneak while playing to use Selector Mode",
   
@@ -123,7 +125,6 @@
   "totemic.isDoingSelection": "The Totem Pole is waiting for a Ceremony to be selected\nSelection: %s",
   "totemic.isDoingStartup": "The Totem Pole is collecting music for a Ceremony\nCeremony: %s",
   "totemic.isDoingCeremony": "The Totem Pole is performing a Ceremony effect\nCeremony: %s",
-  "totemic.effectNotPortable": "The effect %s cannot be carried in a Medicine Bag",
   "totemic.hud.selection": "Ceremony Selection",
   
   "totemic.noCowsNearby": "The Buffalo Dance Ceremony requires Cows nearby",
