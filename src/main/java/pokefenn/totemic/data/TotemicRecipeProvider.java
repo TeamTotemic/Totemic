@@ -113,6 +113,19 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("performed_eagle_dance", performed(ModContent.eagle_dance))
                 .unlockedBy("has_eagle_bone", has(ModItems.eagle_bone.get()))
                 .save(rc);
+        ShapedRecipeBuilder.shaped(ModItems.medicine_bag.get())
+                .pattern("PST")
+                .pattern("HDH")
+                .pattern(" H ")
+                .define('P', TotemicItemTags.CEDAR_LOGS) //TODO:Cedar planks
+                .define('S', Tags.Items.STRING)
+                .define('T', ModItems.buffalo_tooth.get())
+                .define('H', ModItems.buffalo_hide.get())
+                .define('D', Tags.Items.GEMS_DIAMOND)
+                .unlockedBy("performed_buffalo_dance", performed(ModContent.buffalo_dance))
+                .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
+                .unlockedBy("has_buffalo_tooth", has(ModItems.buffalo_tooth.get()))
+                .save(rc);
 
         simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);

@@ -125,7 +125,7 @@ public class MedicineBagItem extends Item {
             return result.getResult();
         }
         else
-            return trySetCarving(stack, ctx.getPlayer(), ctx.getLevel(), ctx.getClickedPos());
+            return trySetCarving(stack, ctx.getPlayer(), ctx.getLevel(), ctx.getClickedPos(), ctx.getHand());
     }
 
     private InteractionResultHolder<ItemStack> toggleOpen(ItemStack stack) {
@@ -138,14 +138,16 @@ public class MedicineBagItem extends Item {
             return InteractionResultHolder.fail(stack);
     }
 
-    private InteractionResult trySetCarving(ItemStack stack, Player player, Level level, BlockPos pos) {
+    private InteractionResult trySetCarving(ItemStack stack, Player player, Level level, BlockPos pos, InteractionHand hand) {
         if(level.getBlockState(pos).getBlock() instanceof TotemPoleBlock block) {
             var carving = block.carving;
             if(carving instanceof PortableTotemCarving) {
+                stack = stack.copy();
                 var tag = stack.getOrCreateTag();
                 tag.putString(TOTEM_TAG, carving.getRegistryName().toString());
                 if(!stack.is(ModItems.creative_medicine_bag.get()))
                     tag.putInt(CHARGE_TAG, 0);
+                player.setItemInHand(hand, stack);
                 return InteractionResult.SUCCESS;
             }
             else {
