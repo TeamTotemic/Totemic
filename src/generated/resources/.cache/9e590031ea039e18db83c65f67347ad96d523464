@@ -1,4 +1,4 @@
-// 1.19.2	2022-11-19T13:41:42.681456937	Block States: totemic
+// 1.19.2	2022-12-21T10:49:56.941119297	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/acacia_totem_pole_bat.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -247,6 +247,8 @@ b44936484447b2d2dfc5b3ad2395029a5bc14fce assets/totemic/models/item/jungle_totem
 2d1ade82820569936fd3021a877283474ced09d0 assets/totemic/models/item/mangrove_totem_pole_spider.json
 2d1ade82820569936fd3021a877283474ced09d0 assets/totemic/models/item/mangrove_totem_pole_squid.json
 2d1ade82820569936fd3021a877283474ced09d0 assets/totemic/models/item/mangrove_totem_pole_wolf.json
+4d8884e0b12c27b5ef2d5033b50f7aa366502d80 assets/totemic/models/item/medicine_bag.json
+919b1478bfbc6f54f9b28e63d18b245f85117292 assets/totemic/models/item/medicine_bag_open.json
 567e01cc52e8c25fe970f7c026d0a5f2a73e265d assets/totemic/models/item/oak_totem_base.json
 2d1ade82820569936fd3021a877283474ced09d0 assets/totemic/models/item/oak_totem_pole_bat.json
 2d1ade82820569936fd3021a877283474ced09d0 assets/totemic/models/item/oak_totem_pole_blaze.json

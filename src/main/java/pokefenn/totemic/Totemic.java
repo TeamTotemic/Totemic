@@ -99,6 +99,7 @@ public final class Totemic {
     private void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ModItems.baykok_bow.get().registerItemProperties();
+            ModItems.medicine_bag.get().registerItemProperties();
         });
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;

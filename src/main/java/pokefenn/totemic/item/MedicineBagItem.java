@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicAPI;
@@ -38,6 +40,11 @@ public class MedicineBagItem extends Item {
 
     public MedicineBagItem(Properties pProperties) {
         super(pProperties);
+    }
+
+    public void registerItemProperties() {
+        ItemProperties.register(this, new ResourceLocation(TotemicAPI.MOD_ID, "open"),
+                (stack, level, entity, seed) -> isOpen(stack) ? 1.0F : 0.0F);
     }
 
     public static Optional<PortableTotemCarving> getCarving(ItemStack stack) {
@@ -143,6 +150,21 @@ public class MedicineBagItem extends Item {
         }
         else
             return InteractionResult.PASS;
+    }
+
+    @Override
+    public boolean isEnchantable(ItemStack pStack) {
+        return true;
+    }
+
+    @Override
+    public int getEnchantmentValue() {
+        return 8;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        return enchantment == Enchantments.BLOCK_EFFICIENCY || enchantment == Enchantments.UNBREAKING || super.canApplyAtEnchantingTable(stack, enchantment);
     }
 
     @Override

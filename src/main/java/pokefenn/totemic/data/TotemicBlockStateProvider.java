@@ -68,6 +68,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.65F).model(im.basicItem(modLoc("baykok_bow_pulling_1")).parent(baykokBow)).end();
         baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.9F).model(im.basicItem(modLoc("baykok_bow_pulling_2")).parent(baykokBow)).end();
         im.basicItem(ModItems.totempedia.get());
+        im.basicItem(ModItems.medicine_bag.getId()).override().predicate(modLoc("open"), 1).model(im.basicItem(modLoc("medicine_bag_open"))).end();
 
         totemBaseModels();
         dummyTotemPoleModels();
