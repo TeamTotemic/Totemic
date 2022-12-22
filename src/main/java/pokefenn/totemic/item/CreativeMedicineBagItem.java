@@ -18,8 +18,9 @@ public class CreativeMedicineBagItem extends MedicineBagItem {
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        final int creativeChargeValue = -1;
+        level.getProfiler().push("totemic.medicineBag");
 
+        final int creativeChargeValue = -1;
         if(isOpen(stack)) {
             getEffects(stack).forEach(effect -> {
                 int interval = effect.getInterval();
@@ -28,6 +29,8 @@ public class CreativeMedicineBagItem extends MedicineBagItem {
                 }
             });
         }
+
+        level.getProfiler().pop();
     }
 
     @Override

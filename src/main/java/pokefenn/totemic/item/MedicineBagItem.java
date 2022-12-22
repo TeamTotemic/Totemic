@@ -1,7 +1,10 @@
 package pokefenn.totemic.item;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.WeakHashMap;
 
 import javax.annotation.Nullable;
 
@@ -41,6 +44,8 @@ public class MedicineBagItem extends Item {
     public static final String CHARGE_TAG = "Charge";
     public static final String OPEN_TAG = "Open";
 
+    private static final Map<ItemStack, Optional<PortableTotemCarving>> carvingCache = Collections.synchronizedMap(new WeakHashMap<>(8));
+
     public MedicineBagItem(Properties pProperties) {
         super(pProperties);
     }
@@ -53,11 +58,11 @@ public class MedicineBagItem extends Item {
     }
 
     public static Optional<PortableTotemCarving> getCarving(ItemStack stack) {
-        return MiscUtil.filterAndCast(
-                Optional.ofNullable(stack.getTag())
+        return carvingCache.computeIfAbsent(stack, st -> MiscUtil.filterAndCast(
+                Optional.ofNullable(st.getTag())
                 .filter(tag -> tag.contains(TOTEM_TAG, Tag.TAG_STRING))
                 .flatMap(tag -> TotemicAPI.get().registry().totemCarvings().getOptional(new ResourceLocation(tag.getString(TOTEM_TAG)))),
-                PortableTotemCarving.class);
+                PortableTotemCarving.class));
     }
 
     public static List<MedicineBagEffect> getEffects(ItemStack stack) {
@@ -81,6 +86,8 @@ public class MedicineBagItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+        level.getProfiler().push("totemic.medicineBag");
+
         if(!level.isClientSide && level.getGameTime() % 20 == 0)
             tryCharge(stack, level, entity.blockPosition());
 
@@ -97,6 +104,8 @@ public class MedicineBagItem extends Item {
                 });
             }
         }
+
+        level.getProfiler().pop();
     }
 
     private void tryCharge(ItemStack stack, Level level, BlockPos pos) {
@@ -142,7 +151,7 @@ public class MedicineBagItem extends Item {
         if(level.getBlockState(pos).getBlock() instanceof TotemPoleBlock block) {
             var carving = block.carving;
             if(carving instanceof PortableTotemCarving) {
-                stack = stack.copy();
+                stack = stack.copy(); //Copying the stack ensures carvingCache coherence, and it makes the item name shop up above the hotbar
                 var tag = stack.getOrCreateTag();
                 tag.putString(TOTEM_TAG, carving.getRegistryName().toString());
                 if(!stack.is(ModItems.creative_medicine_bag.get()))
