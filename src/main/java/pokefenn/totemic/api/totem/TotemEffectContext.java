@@ -21,5 +21,5 @@ public interface TotemEffectContext {
      * <p>
      * The returned list is immutable and may contain the same carving multiple times.
      */
-    List<TotemCarving> getCarvings();
+    List<TotemCarving> getCarvingList();
 }

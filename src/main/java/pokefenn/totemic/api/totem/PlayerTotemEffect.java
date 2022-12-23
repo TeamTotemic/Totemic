@@ -49,8 +49,8 @@ public abstract class PlayerTotemEffect extends TotemEffect {
     }
 
     /**
-     * If this method returns {@code true}, the Totem effect is applied on the client side as well.
-     * By default, it is only applied on the server side.
+     * If this method returns {@code false} (which is the default), the Totem effect is only applied on the server side.
+     * If it returns {@code true}, the Totem effect will be applied on the client side as well.
      */
     protected boolean shouldApplyOnClientSide() {
         return false;

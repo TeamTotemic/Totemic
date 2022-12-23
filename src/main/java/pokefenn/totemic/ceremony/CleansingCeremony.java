@@ -31,6 +31,7 @@ public enum CleansingCeremony implements CeremonyInstance {
 
     private static final MethodHandle startConverting = MethodHandleUtil.findMethod(ZombieVillager.class, "m_34383_", MethodType.methodType(void.class, UUID.class, int.class));
 
+    //Map of all conversions done by this ceremony, except ZombieVillager -> Villager, which is handled specially
     private static final Map<EntityType<? extends Mob>, EntityType<? extends Mob>> conversions = Map.of(
             EntityType.ZOMBIFIED_PIGLIN, EntityType.PIGLIN,
             EntityType.ZOGLIN, EntityType.HOGLIN,

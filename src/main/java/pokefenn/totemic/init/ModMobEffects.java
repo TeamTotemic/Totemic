@@ -19,7 +19,7 @@ public final class ModMobEffects {
 
     private static MobEffect newMobEffect(MobEffectCategory category, int color) {
         try {
-            //Circumvent the protected MobEffect constructor
+            //Circumvent the protected MobEffect constructor, to avoid creating a subclass
             var constructor = MethodHandleUtil.findConstructor(MobEffect.class, MethodType.methodType(void.class, MobEffectCategory.class, int.class));
             return (MobEffect) constructor.invokeExact(category, color);
         }

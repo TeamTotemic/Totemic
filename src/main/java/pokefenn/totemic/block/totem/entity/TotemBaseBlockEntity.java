@@ -2,11 +2,12 @@ package pokefenn.totemic.block.totem.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.google.common.collect.HashMultiset;
+import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.math.IntMath;
 
@@ -35,7 +36,8 @@ public class TotemBaseBlockEntity extends BlockEntity {
     private boolean firstTick = true;
 
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
-    private final Multiset<TotemEffect> totemEffects = HashMultiset.create(TotemEffectAPI.MAX_POLE_SIZE);
+    private Set<TotemCarving> carvingSet = null; //Only needed for Medicine Bags, computed lazily
+    private Multiset<TotemEffect> totemEffects = ImmutableMultiset.of();
     private int commonTotemEffectInterval = Integer.MAX_VALUE;
 
     private TotemState state = new StateTotemEffect(this);
@@ -57,18 +59,21 @@ public class TotemBaseBlockEntity extends BlockEntity {
 
     private void calculateTotemEffects() {
         carvingList.clear();
-        totemEffects.clear();
+        carvingSet = null;
+        var totemEffectsBuilder = ImmutableMultiset.<TotemEffect>builder();
 
         for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
             Block block = level.getBlockState(worldPosition.above(i + 1)).getBlock();
-            if(block instanceof TotemPoleBlock) {
-                var carving = ((TotemPoleBlock) block).carving;
+            if(block instanceof TotemPoleBlock pole) {
+                var carving = pole.carving;
                 carvingList.add(carving);
-                totemEffects.addAll(carving.getEffects());
+                totemEffectsBuilder.addAll(carving.getEffects());
             }
             else
                 break;
         }
+
+        totemEffects = totemEffectsBuilder.build();
 
         // Calculate the greatest common divisor of all the intervals of the effects
         commonTotemEffectInterval = totemEffects.elementSet().stream()
@@ -81,12 +86,14 @@ public class TotemBaseBlockEntity extends BlockEntity {
         calculateTotemEffects();
     }
 
-    public List<TotemCarving> getCarvings() {
+    public List<TotemCarving> getCarvingList() {
         return carvingList;
     }
 
     public boolean hasCarving(TotemCarving carving) {
-        return carvingList.contains(carving); //TODO: Use a Set instead of a List?
+        if(carvingSet == null)
+            carvingSet = Set.copyOf(carvingList);
+        return carvingSet.contains(carving);
     }
 
     public Multiset<TotemEffect> getTotemEffects() {

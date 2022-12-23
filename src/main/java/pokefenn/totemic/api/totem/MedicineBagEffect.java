@@ -16,6 +16,8 @@ public interface MedicineBagEffect {
 
     /**
      * Applies the Medicine Bag effect to the given player.
+     * <p>
+     * Note that this method is called on both the server and client side.
      * @param player      the player carrying the Medicine Bag
      * @param medicineBag the Medicine Bag item stack the effect originates from
      * @param charge      the time in ticks until the Medicine Bag is depleted, or -1 if it is a Creative Medicine Bag

@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -29,7 +30,7 @@ import pokefenn.totemic.init.ModContent;
 public class InfusedFluteItem extends FluteItem {
     //Entities that have been tempted by the infused flute get stored in this weak set
     //so as not to add the same AI task multiple times
-    private final Set<Entity> temptedEntities = Collections.newSetFromMap(new WeakHashMap<>());
+    private final Set<Entity> temptedEntities = Collections.newSetFromMap(new WeakHashMap<>(4));
 
     public InfusedFluteItem(Properties properties) {
         super(properties);
@@ -44,8 +45,8 @@ public class InfusedFluteItem extends FluteItem {
     }
 
     @Override
-    protected int getMusicAmount(Level level) {
-        return ModContent.flute.getBaseOutput() + level.getRandom().nextInt(120);
+    protected int getMusicAmount(RandomSource rand) {
+        return ModContent.flute.getBaseOutput() + rand.nextInt(120);
     }
 
     private void temptEntities(Level world, double x, double y, double z) {

@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nullable;
+
 import com.mojang.serialization.Lifecycle;
 
 import net.minecraft.core.DefaultedRegistry;
@@ -43,8 +45,8 @@ public enum RegistryApiImpl implements RegistryAPI {
         return ceremonies;
     }
 
-    public static Map<List<MusicInstrument>, Ceremony> getSelectorsToCeremonyMap() {
-        return selectorsToCeremonyMap;
+    public static @Nullable Ceremony getCeremony(List<MusicInstrument> selectors) {
+        return selectorsToCeremonyMap.get(selectors);
     }
 
     private static <T> void fireRegistryEvent(Class<T> type, Registry<T> registry, Function<T, ResourceLocation> nameFunc) {

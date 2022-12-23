@@ -151,12 +151,13 @@ public class MedicineBagItem extends Item {
         if(level.getBlockState(pos).getBlock() instanceof TotemPoleBlock block) {
             var carving = block.carving;
             if(carving instanceof PortableTotemCarving) {
-                stack = stack.copy(); //Copying the stack ensures carvingCache coherence, and it makes the item name shop up above the hotbar
-                var tag = stack.getOrCreateTag();
+                var newStack = stack.copy();
+                carvingCache.remove(stack);
+                var tag = newStack.getOrCreateTag();
                 tag.putString(TOTEM_TAG, carving.getRegistryName().toString());
-                if(!stack.is(ModItems.creative_medicine_bag.get()))
+                if(!newStack.is(ModItems.creative_medicine_bag.get()))
                     tag.putInt(CHARGE_TAG, 0);
-                player.setItemInHand(hand, stack);
+                player.setItemInHand(hand, newStack);
                 return InteractionResult.SUCCESS;
             }
             else {

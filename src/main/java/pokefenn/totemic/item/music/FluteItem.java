@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -28,7 +29,7 @@ public class FluteItem extends Item {
         if(player.isShiftKeyDown())
             TotemicAPI.get().music().playSelector(player, ModContent.flute);
         else
-            TotemicAPI.get().music().playMusic(level, player.position(), player, ModContent.flute, MusicAPI.DEFAULT_RANGE, getMusicAmount(level));
+            TotemicAPI.get().music().playMusic(level, player.position(), player, ModContent.flute, MusicAPI.DEFAULT_RANGE, getMusicAmount(level.random));
 
         player.getCooldowns().addCooldown(ModItems.flute.get(), 20);
         player.getCooldowns().addCooldown(ModItems.infused_flute.get(), 20);
@@ -37,7 +38,7 @@ public class FluteItem extends Item {
         return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide);
     }
 
-    protected int getMusicAmount(Level level) {
+    protected int getMusicAmount(RandomSource rand) {
         return ModContent.flute.getBaseOutput();
     }
 

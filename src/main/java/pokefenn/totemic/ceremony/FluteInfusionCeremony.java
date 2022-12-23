@@ -23,10 +23,11 @@ public enum FluteInfusionCeremony implements CeremonyInstance {
         .forEach(player -> {
             var inv = player.getInventory();
             for(int i = 0; i < inv.getContainerSize(); i++) {
-                if(inv.getItem(i).getItem() == ModItems.flute.get())
+                if(inv.getItem(i).getItem() == ModItems.flute.get()) {
                     inv.setItem(i, new ItemStack(ModItems.infused_flute.get()));
+                    inv.setChanged();
+                }
             }
-            inv.setChanged();
         });
     }
 }

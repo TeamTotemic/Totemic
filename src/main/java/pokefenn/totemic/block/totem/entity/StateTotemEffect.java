@@ -76,8 +76,8 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
-    public List<TotemCarving> getCarvings() {
-        return Collections.unmodifiableList(tile.getCarvings());
+    public List<TotemCarving> getCarvingList() {
+        return Collections.unmodifiableList(tile.getCarvingList());
     }
 
     @Override

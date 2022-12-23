@@ -31,6 +31,8 @@ public interface StartupContext {
 
     /**
      * If the ceremony was initiated by a player, returns that player. Otherwise, returns an empty Optional.
+     * <p>
+     * Currently, only players can initiate ceremonies, but this may change in the future.
      */
     Optional<Player> getInitiatingPlayer();
 
