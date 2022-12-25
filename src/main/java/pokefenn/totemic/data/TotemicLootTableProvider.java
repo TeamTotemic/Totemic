@@ -65,6 +65,14 @@ public final class TotemicLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.stripped_cedar_wood.get());
             add(ModBlocks.cedar_leaves.get(), b -> createLeavesDrops(b, ModBlocks.cedar_sapling.get(), /*NORMAL_LEAVES_SAPLING_CHANCES*/new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F}));
             dropSelf(ModBlocks.cedar_sapling.get());
+            dropSelf(ModBlocks.cedar_planks.get());
+            dropSelf(ModBlocks.cedar_button.get());
+            dropSelf(ModBlocks.cedar_fence.get());
+            dropSelf(ModBlocks.cedar_fence_gate.get());
+            dropSelf(ModBlocks.cedar_pressure_plate.get());
+            //dropSelf(ModBlocks.cedar_sign.get());
+            add(ModBlocks.cedar_slab.get(), createSlabItemTable(ModBlocks.cedar_slab.get()));
+            dropSelf(ModBlocks.cedar_stairs.get());
             dropSelf(ModBlocks.drum.get());
             dropSelf(ModBlocks.wind_chime.get());
         }

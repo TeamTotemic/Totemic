@@ -100,6 +100,7 @@ public final class Totemic {
         event.enqueueWork(() -> {
             ModItems.baykok_bow.get().registerItemProperties();
             ModItems.medicine_bag.get().registerItemProperties();
+            //Sheets.addWoodType(ModBlocks.CEDAR_WOOD_TYPE);
         });
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;

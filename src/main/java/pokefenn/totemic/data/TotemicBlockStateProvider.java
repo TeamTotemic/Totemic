@@ -1,5 +1,7 @@
 package pokefenn.totemic.data;
 
+import java.util.Set;
+
 import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
 import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import net.minecraft.data.DataGenerator;
@@ -38,13 +40,33 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.cedar_sapling.get(), models().withExistingParent(ModBlocks.cedar_sapling.getId().toString(), "block/cross").texture("cross", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
         simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
         simpleBlock(ModBlocks.wind_chime.get(), blockEntityRenderer(ModBlocks.wind_chime, mcLoc("block/white_terracotta")));
+        simpleBlock(ModBlocks.cedar_planks.get());
+        var cedarPlankTex = blockTexture(ModBlocks.cedar_planks.get());
+        buttonBlock(ModBlocks.cedar_button.get(), cedarPlankTex);
+        fenceBlock(ModBlocks.cedar_fence.get(), cedarPlankTex);
+        fenceGateBlock(ModBlocks.cedar_fence_gate.get(), cedarPlankTex);
+        pressurePlateBlock(ModBlocks.cedar_pressure_plate.get(), cedarPlankTex);
+        //signBlock(ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), cedarPlankTex);
+        slabBlock(ModBlocks.cedar_slab.get(), ModBlocks.cedar_planks.getId(), cedarPlankTex, cedarPlankTex, cedarPlankTex);
+        stairsBlock(ModBlocks.cedar_stairs.get(), cedarPlankTex);
+        //doorBlock(...)
+        //trapdoorBlock(...)
 
         //Item Blocks
-        for(var blockO: ModBlocks.REGISTER.getEntries())
+        var im = itemModels();
+        final Set<ResourceLocation> blocksWithoutItemModel = Set.of(ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/);
+        for(var blockO: ModBlocks.REGISTER.getEntries()) {
+            if(blocksWithoutItemModel.contains(blockO.getId()))
+                continue;
+
             existingBlockItem(blockO);
+        }
+
+        im.withExistingParent(ModBlocks.cedar_button.getId().toString(), "block/button_inventory").texture("texture", cedarPlankTex);
+        im.withExistingParent(ModBlocks.cedar_fence.getId().toString(), "block/fence_inventory").texture("texture", cedarPlankTex);
+        //im.basicItem(ModBlocks.cedar_sign.getId());
 
         //Items
-        var im = itemModels();
         im.basicItem(ModItems.flute.getId());
         im.basicItem(ModItems.infused_flute.getId());
         im.basicItem(ModItems.jingle_dress.getId());
