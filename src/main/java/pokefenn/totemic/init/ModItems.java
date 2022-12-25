@@ -1,10 +1,14 @@
 package pokefenn.totemic.init;
 
+import java.util.Set;
+
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -61,7 +65,9 @@ public final class ModItems {
     public static final RegistryObject<TotempediaItem> totempedia = REGISTER.register("totempedia", () -> new TotempediaItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
     public static final RegistryObject<MedicineBagItem> medicine_bag = REGISTER.register("medicine_bag", () -> new MedicineBagItem(new Properties().stacksTo(1).tab(Totemic.creativeTab)));
     public static final RegistryObject<CreativeMedicineBagItem> creative_medicine_bag = REGISTER.register("creative_medicine_bag", () -> new CreativeMedicineBagItem(new Properties().stacksTo(1).rarity(Rarity.EPIC).tab(Totemic.creativeTab)));
+    //Blocks with custom item blocks
     public static final RegistryObject<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties().tab(Totemic.creativeTab)));
+    public static final RegistryObject<SignItem> cedar_sign = REGISTER.register("cedar_sign", () -> new SignItem(new Properties().stacksTo(16).tab(Totemic.creativeTab), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get()));
 
     @SubscribeEvent
     public static void init(RegisterEvent event) {
@@ -69,8 +75,9 @@ public final class ModItems {
             return;
 
         //Register item blocks
+        final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
-            if(blockO.getId().equals(wind_chime.getId())) //We have a custom BlockItem for the wind chime
+            if(blocksWithoutItem.contains(blockO.getId()))
                 continue;
 
             Block block = blockO.get();
