@@ -7,6 +7,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -117,7 +118,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("PST")
                 .pattern("HDH")
                 .pattern(" H ")
-                .define('P', TotemicItemTags.CEDAR_LOGS) //TODO:Cedar planks
+                .define('P', ModBlocks.cedar_planks.get())
                 .define('S', Tags.Items.STRING)
                 .define('T', ModItems.buffalo_tooth.get())
                 .define('H', ModItems.buffalo_hide.get())
@@ -126,6 +127,13 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
                 .unlockedBy("has_buffalo_tooth", has(ModItems.buffalo_tooth.get()))
                 .save(rc);
+        ShapelessRecipeBuilder.shapeless(Items.LEATHER)
+                .requires(ModItems.buffalo_hide.get())
+                .unlockedBy("performed_buffalo_dance", performed(ModContent.buffalo_dance))
+                .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
+                .save(rc, "totemic:leather_from_hide");
+
+        generateRecipes(rc, ModBlocks.getCedarBlockFamily());
 
         simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);

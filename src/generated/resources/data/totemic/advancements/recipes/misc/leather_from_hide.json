@@ -1,0 +1,41 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_buffalo_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "totemic:buffalo_hide"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "totemic:leather_from_hide"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "performed_buffalo_dance": {
+      "conditions": {
+        "ceremony": "totemic:buffalo_dance"
+      },
+      "trigger": "totemic:performed_ceremony"
+    }
+  },
+  "requirements": [
+    [
+      "performed_buffalo_dance",
+      "has_buffalo_hide",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "totemic:leather_from_hide"
+    ]
+  }
+}

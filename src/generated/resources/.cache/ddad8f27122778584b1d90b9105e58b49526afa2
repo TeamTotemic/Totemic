@@ -1,10 +1,18 @@
-// 1.19.2	2022-10-12T19:53:04.340260302	Totemic Block tags
+// 1.19.2	2022-12-26T11:37:41.503834401	Totemic Block tags
+f48a711794f70f6a13891618f69d5b89e02cb8ba data/forge/tags/blocks/fence_gates/wooden.json
+f48a711794f70f6a13891618f69d5b89e02cb8ba data/minecraft/tags/blocks/fence_gates.json
 df2fde5a09193bb066c97a1c4a72616852680332 data/minecraft/tags/blocks/leaves.json
 cc42e4a4bcf0f0149edad3568521f8d79ec4f3bc data/minecraft/tags/blocks/logs_that_burn.json
 8581a074c53f04199c6ea3598db5d13c967f0961 data/minecraft/tags/blocks/mineable/axe.json
 df2fde5a09193bb066c97a1c4a72616852680332 data/minecraft/tags/blocks/mineable/hoe.json
 adedb0c8b94ea2d69196e41d3e1426207b3d43f3 data/minecraft/tags/blocks/mineable/pickaxe.json
+138756d044923dcbdc6ea7ef48c87b78e993c3b4 data/minecraft/tags/blocks/planks.json
 6f2e0a85d35f57521e978ee25a9e97515d7e95af data/minecraft/tags/blocks/saplings.json
+aba10d1b6ec722bbfe02d07854bf143dbb5a2856 data/minecraft/tags/blocks/wooden_buttons.json
+81f10a18a2bade72fa239f377a1733ebfe29a8fa data/minecraft/tags/blocks/wooden_fences.json
+94f3a295026998046f3f2e05da8ea224ee5323a1 data/minecraft/tags/blocks/wooden_pressure_plates.json
+c555337d7413ef105766e005380d57baf9a16dbd data/minecraft/tags/blocks/wooden_slabs.json
+8a9592ab946276ae87f86f78a800bd641e4173f5 data/minecraft/tags/blocks/wooden_stairs.json
 edb0a1a520fc602c68dd264a87cf9f5c8142df57 data/totemic/tags/blocks/cedar_logs.json
 b11ac83d04ccb8e7ec03b67151ec3daee6200c9b data/totemic/tags/blocks/totem_bases.json
 1a59ace02af9d08086be38785b16c9c0e2a64b5e data/totemic/tags/blocks/totem_poles.json
