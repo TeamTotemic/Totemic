@@ -47,8 +47,12 @@
   "block.totemic.cedar_fence": "赤杉のフェンス",
   "block.totemic.cedar_fence_gate": "赤杉のフェンスゲート",
   "block.totemic.cedar_pressure_plate": "赤杉の感圧板",
+  "block.totemic.cedar_sign": "赤杉の看板",
+  "block.totemic.cedar_wall_sign": "壁に付けられた赤杉の看板",
   "block.totemic.cedar_slab": "赤杉のハーフブロック",
   "block.totemic.cedar_stairs": "赤杉の階段",
+  "block.totemic.cedar_door": "赤杉のドア",
+  "block.totemic.cedar_trapdoor": "赤杉のトラップドア",
   "block.totemic.drum": "トーテム術師のドラム",
   "block.totemic.wind_chime": "風鈴",
 

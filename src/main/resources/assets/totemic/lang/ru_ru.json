@@ -47,8 +47,12 @@
   "block.totemic.cedar_fence": "Забор из красного кедра",
   "block.totemic.cedar_fence_gate": "Калитка из красного кедра",
   "block.totemic.cedar_pressure_plate": "Нажимная плита из красного кедра",
+  "block.totemic.cedar_sign": "Табличка из красного кедра",
+  "block.totemic.cedar_wall_sign": "Настенная табличка из красного кедра",
   "block.totemic.cedar_slab": "Плита из красного кедра",
   "block.totemic.cedar_stairs": "Ступеньки из красного кедра",
+  "block.totemic.cedar_door": "Дверь из красного кедра",
+  "block.totemic.cedar_trapdoor": "Люк из красного кедра",
   "block.totemic.drum": "Барабан тотемиста",
   "block.totemic.wind_chime": "Музыкальная подвеска",
 

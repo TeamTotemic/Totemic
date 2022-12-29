@@ -47,8 +47,12 @@
   "block.totemic.cedar_fence": "Red Cedar Fence",
   "block.totemic.cedar_fence_gate": "Red Cedar Fence Gate",
   "block.totemic.cedar_pressure_plate": "Red Cedar Pressure Plate",
+  "block.totemic.cedar_sign": "Red Cedar Sign",
+  "block.totemic.cedar_wall_sign": "Red Cedar Wall Sign",
   "block.totemic.cedar_slab": "Red Cedar Slab",
   "block.totemic.cedar_stairs": "Red Cedar Stairs",
+  "block.totemic.cedar_door": "Red Cedar Door",
+  "block.totemic.cedar_trapdoor": "Red Cedar Trapdoor",
   "block.totemic.drum": "Totemist Drum",
   "block.totemic.wind_chime": "Wind Chime",
 
