@@ -26,15 +26,13 @@ public class OcelotTotemEffect extends TotemEffect {
         if(level.isClientSide)
             return;
         int range = TotemicAPI.get().totemEffect().getDefaultRange(repetition, context);
-        TotemicEntityUtil.getEntitiesInRange(Creeper.class, level, pos, range, range).forEach(this::applyTo);
-    }
-
-    private void applyTo(Creeper creeper) {
-        int swell = (int) creeperSwell.get(creeper);
-        if(swell > 15) {
-            creeperSwell.set(creeper, 0);
-            creeper.setSwellDir(-1);
-            MiscUtil.spawnServerParticles(ParticleTypes.INSTANT_EFFECT, creeper.level, creeper.getBoundingBox().getCenter(), 10, new Vec3(0.5, 0.75, 0.5), 0.0);
+        for(Creeper creeper: level.getEntitiesOfClass(Creeper.class, TotemicEntityUtil.getAABBAround(pos, range))) {
+            int swell = (int) creeperSwell.get(creeper);
+            if(swell > 15) {
+                creeperSwell.set(creeper, 0);
+                creeper.setSwellDir(-1);
+                MiscUtil.spawnServerParticles(ParticleTypes.INSTANT_EFFECT, creeper.level, creeper.getBoundingBox().getCenter(), 10, new Vec3(0.5, 0.75, 0.5), 0.0);
+            }
         }
     }
 }

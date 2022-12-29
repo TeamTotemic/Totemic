@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -64,7 +65,8 @@ public enum FertilityCeremony implements CeremonyInstance {
     }
 
     private static Optional<ItemEntity> findItemEntity(Level level, BlockPos pos, Predicate<ItemStack> predicate) {
-        return TotemicEntityUtil.getEntitiesInRange(ItemEntity.class, level, pos, RADIUS, RADIUS, e -> predicate.test(e.getItem())).findAny();
+        var list = level.getEntities(EntityType.ITEM, TotemicEntityUtil.getAABBAround(pos, RADIUS), e -> predicate.test(e.getItem()));
+        return !list.isEmpty() ? Optional.of(list.get(0)) : Optional.empty();
     }
 
     @Override

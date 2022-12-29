@@ -15,7 +15,7 @@ public enum DepthsCeremony implements CeremonyInstance {
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)
             return;
-        TotemicEntityUtil.getPlayersInRange(level, pos, 8, 8).forEach(entity -> {
+        TotemicEntityUtil.getPlayersIn(level, TotemicEntityUtil.getAABBAround(pos, 8)).forEach(entity -> {
             entity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 20 * (60 * 3), 1), context.getInitiator().orElse(null));
         });
     }

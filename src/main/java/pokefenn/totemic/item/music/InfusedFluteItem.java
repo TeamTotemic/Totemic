@@ -7,14 +7,12 @@ import java.util.WeakHashMap;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.animal.Animal;
@@ -24,7 +22,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import pokefenn.totemic.api.TotemicEntityUtil;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.init.ModContent;
 
 public class InfusedFluteItem extends FluteItem {
@@ -39,7 +38,7 @@ public class InfusedFluteItem extends FluteItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         if(!world.isClientSide && !player.isShiftKeyDown())
-            temptEntities(world, player.getX(), player.getY(), player.getZ());
+            temptEntities(world, player.position());
 
         return super.use(world, player, hand);
     }
@@ -49,13 +48,13 @@ public class InfusedFluteItem extends FluteItem {
         return ModContent.flute.getBaseOutput() + rand.nextInt(120);
     }
 
-    private void temptEntities(Level world, double x, double y, double z) {
-        TotemicEntityUtil.getEntitiesInRange(Mob.class, world, new BlockPos(x, y, z), 2, 2,
+    private void temptEntities(Level level, Vec3 pos) {
+        level.getEntitiesOfClass(AgeableMob.class, new AABB(pos, pos).inflate(2),
                 entity -> ((entity instanceof Animal && entity.getNavigation() instanceof GroundPathNavigation) || entity instanceof Villager)
                             && !temptedEntities.contains(entity))
             .forEach(entity -> {
                 double speed = (entity instanceof Animal) ? 1 : 0.5;
-                entity.goalSelector.addGoal(5, new TemptGoal((PathfinderMob) entity, speed, Ingredient.of(this), false));
+                entity.goalSelector.addGoal(5, new TemptGoal(entity, speed, Ingredient.of(this), false));
 
                 temptedEntities.add(entity);
             });

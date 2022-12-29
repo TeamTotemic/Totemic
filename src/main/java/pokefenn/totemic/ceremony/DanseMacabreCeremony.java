@@ -9,8 +9,8 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.util.MiscUtil;
@@ -23,7 +23,7 @@ public enum DanseMacabreCeremony implements CeremonyInstance {
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(!level.isClientSide && context.getTime() % 20 == 0) {
-            level.getEntities(EntityType.ITEM, new AABB(pos).inflate(RANGE - 1), e -> e.getItem().is(Items.ROTTEN_FLESH))
+            level.getEntities(EntityType.ITEM, TotemicEntityUtil.getAABBAround(pos, RANGE), e -> e.getItem().is(Items.ROTTEN_FLESH))
             .forEach(item -> {
                 if(level.random.nextInt(4) == 0)
                     summonZombie(level, item);

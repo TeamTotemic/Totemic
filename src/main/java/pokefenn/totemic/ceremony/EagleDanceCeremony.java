@@ -7,8 +7,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.init.ModEntityTypes;
@@ -23,7 +23,7 @@ public enum EagleDanceCeremony implements CeremonyInstance {
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)
             return;
-        level.getEntities(EntityType.PARROT, new AABB(pos).inflate(RANGE - 1), EntitySelector.ENTITY_STILL_ALIVE).stream()
+        level.getEntities(EntityType.PARROT, TotemicEntityUtil.getAABBAround(pos, RANGE), EntitySelector.ENTITY_STILL_ALIVE).stream()
         .limit(2)
         .forEach(parrot -> {
             var eagle = ModEntityTypes.bald_eagle.get().create(level);
@@ -38,7 +38,7 @@ public enum EagleDanceCeremony implements CeremonyInstance {
 
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
-        if(level.getEntities(EntityType.PARROT, new AABB(pos).inflate(RANGE - 1), EntitySelector.ENTITY_STILL_ALIVE).isEmpty()) {
+        if(level.getEntities(EntityType.PARROT, TotemicEntityUtil.getAABBAround(pos, RANGE), EntitySelector.ENTITY_STILL_ALIVE).isEmpty()) {
             initiator.sendSystemMessage(Component.translatable("totemic.noParrotsNearby"));
             return false;
         }

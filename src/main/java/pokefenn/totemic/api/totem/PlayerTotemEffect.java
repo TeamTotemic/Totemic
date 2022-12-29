@@ -61,7 +61,7 @@ public abstract class PlayerTotemEffect extends TotemEffect {
         if(level.isClientSide && !shouldApplyOnClientSide())
             return;
         int range = getRange(level, pos, repetition, context);
-        TotemicEntityUtil.getPlayersInRange(level, pos, range, range, p -> canAffect(p, repetition, context))
+        TotemicEntityUtil.getPlayersIn(level, TotemicEntityUtil.getAABBAround(pos, range), p -> canAffect(p, repetition, context))
                 .forEach(player -> applyTo(player, repetition, context));
     }
 }

@@ -19,6 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.util.MethodHandleUtil;
@@ -42,7 +43,7 @@ public enum CleansingCeremony implements CeremonyInstance {
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)
             return;
-        var aabb = new AABB(pos).inflate(RANGE - 1);
+        var aabb = TotemicEntityUtil.getAABBAround(pos, RANGE);
 
         try {
             var uuid = context.getInitiatingPlayer().map(Player::getUUID).orElse(null);

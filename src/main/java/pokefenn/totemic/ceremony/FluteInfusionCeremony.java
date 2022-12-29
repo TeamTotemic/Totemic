@@ -1,7 +1,7 @@
 package pokefenn.totemic.ceremony;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicEntityUtil;
@@ -15,11 +15,12 @@ public enum FluteInfusionCeremony implements CeremonyInstance {
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         final int range = 5;
-        TotemicEntityUtil.getEntitiesInRange(ItemEntity.class, level, pos, range, range, e -> e.getItem().getItem() == ModItems.flute.get())
+        var aabb = TotemicEntityUtil.getAABBAround(pos, range);
+        level.getEntities(EntityType.ITEM, aabb, e -> e.getItem().is(ModItems.flute.get()))
         .forEach(e -> {
             e.setItem(new ItemStack(ModItems.infused_flute.get()));
         });
-        TotemicEntityUtil.getPlayersInRange(level, pos, range, range)
+        TotemicEntityUtil.getPlayersIn(level, aabb)
         .forEach(player -> {
             var inv = player.getInventory();
             for(int i = 0; i < inv.getContainerSize(); i++) {

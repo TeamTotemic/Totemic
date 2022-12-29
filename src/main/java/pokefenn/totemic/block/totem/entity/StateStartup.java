@@ -147,7 +147,7 @@ public final class StateStartup extends TotemState implements StartupContext {
             return;
         MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 1.0);
         tile.setTotemState(new StateCeremonyEffect(tile, ceremony, instance, initiator));
-        TotemicEntityUtil.getPlayersInRange(tile.getLevel(), tile.getBlockPos(), 8, 8)
+        TotemicEntityUtil.getPlayersIn(tile.getLevel(), TotemicEntityUtil.getAABBAround(tile.getBlockPos(), 8))
             .forEach(player -> ModCriteriaTriggers.PERFORM_CEREMONY.trigger((ServerPlayer) player, ceremony));
     }
 

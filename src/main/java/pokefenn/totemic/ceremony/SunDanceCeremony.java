@@ -20,7 +20,7 @@ public enum SunDanceCeremony implements CeremonyInstance {
     @Override
     public void onStartup(Level level, BlockPos pos, StartupContext context) {
         if(!level.isClientSide && context.getTime() % 20 == 10) {
-            TotemicEntityUtil.getPlayersInRange(level, pos, RANGE, RANGE, player -> player.getHealth() > 1)
+            TotemicEntityUtil.getPlayersIn(level, TotemicEntityUtil.getAABBAround(pos, RANGE), player -> !player.isSpectator() && player.getHealth() > 1)
                     .forEach(player -> player.hurt(SUN_DANCE_DMG, 1));
         }
     }
@@ -28,7 +28,7 @@ public enum SunDanceCeremony implements CeremonyInstance {
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(!level.isClientSide) {
-            TotemicEntityUtil.getPlayersInRange(level, pos, RANGE, RANGE).forEach(player -> {
+            TotemicEntityUtil.getPlayersIn(level, TotemicEntityUtil.getAABBAround(pos, RANGE)).forEach(player -> {
                 player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 15 * 20, 3));
                 player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 5 * 60 * 20, 4));
             });
