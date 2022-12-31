@@ -12,8 +12,9 @@
         "items": [
           {
             "items": [
-              "totemic:totempedia"
-            ]
+              "patchouli:guide_book"
+            ],
+            "nbt": "{\"patchouli:book\":\"totemic:totempedia\"}"
           }
         ]
       },

@@ -1,5 +1,7 @@
 {
     "name": "Totempedia",
     "landing_text": "The Totempedia, a guide to all your Totemic needs.",
-    "version": 1
+    "version": 1,
+    "model": "totemic:totempedia",
+    "creative_tab": "totemic"
 }

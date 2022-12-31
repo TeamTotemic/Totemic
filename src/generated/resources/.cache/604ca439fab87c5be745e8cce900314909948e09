@@ -1,4 +1,4 @@
-// 1.19.2	2023-01-01T04:45:16.772323242	Totemic Recipes
+// 1.19.2	2023-01-01T05:00:14.417554806	Totemic Recipes
 ba7495b8dfc8ec3e9ca24a02d8c41e76ff96abaf data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_campfire_cooking.json
 08c67b04f13b233569a9c1cf57792b02a5ff3701 data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_smelting.json
 c3261a9b3039586d7b91dfb728dbc97c8a8d93b2 data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_smoking.json
@@ -13,16 +13,15 @@ a0bd178901f5f18b9edb52d7148e78ba2ca24529 data/totemic/advancements/recipes/totem
 dd7bd06129177fbfeecb09bc0585e20947dd8ce6 data/totemic/advancements/recipes/totemic/cedar_pressure_plate.json
 d71d30feeef991af2b0d02cfba8c845ab706deea data/totemic/advancements/recipes/totemic/cedar_slab.json
 7598cf6cb075d79d33e9458e9695cababb9a35bc data/totemic/advancements/recipes/totemic/cedar_stairs.json
-3492b25df1fbf964a1ad13ffd7835737419fa74e data/totemic/advancements/recipes/totemic/drum.json
+c66a5ea9d670eaaf086c5afab20b18298d8bd56a data/totemic/advancements/recipes/totemic/drum.json
 17ca536520b81f6ddb9ed7875fdab684ca849585 data/totemic/advancements/recipes/totemic/eagle_bone_whistle.json
-11e9441a8826cc5b73332b369888be6aa1ef1476 data/totemic/advancements/recipes/totemic/flute.json
+9846ae39066a4bf62f4d4f07fb985f19f180908c data/totemic/advancements/recipes/totemic/flute.json
 fae53ea047cd4929e4d9234e8ec876c1aaa526f7 data/totemic/advancements/recipes/totemic/iron_bells.json
 8386931c2d7e456f604186c13e03d37dbc332b3a data/totemic/advancements/recipes/totemic/jingle_dress.json
 c5f75134522faae7de98d809d1bc0ff8b1964ec0 data/totemic/advancements/recipes/totemic/medicine_bag.json
 588315ce220ebb908a312021d7194c75d4e43873 data/totemic/advancements/recipes/totemic/rattle.json
-f655aa647c1c07b5da119996e7d6e3d7911ab042 data/totemic/advancements/recipes/totemic/totem_whittling_knife.json
-b2b8193a1431c06ede9c3f669b54891a2cb36170 data/totemic/advancements/recipes/totemic/totemic_staff.json
-6e25331a785637afdd01cc8b8342c883436f1573 data/totemic/advancements/recipes/totemic/totempedia.json
+15d3a358ddc66b0ab2e97057c6b54744053606a1 data/totemic/advancements/recipes/totemic/totem_whittling_knife.json
+1c2c5e18ea0b69545295fa5d536b72824f349d78 data/totemic/advancements/recipes/totemic/totemic_staff.json
 87b7a6c1d6696cc8b564ac77c61666fc959a3f08 data/totemic/advancements/recipes/totemic/wind_chime.json
 3859ae0d689acfba150e7a469070484674c9a1ca data/totemic/recipes/cedar_button.json
 4d36052cee400e060deb55831d5ed71e7854661f data/totemic/recipes/cedar_fence.json
@@ -41,5 +40,4 @@ ddcf617020963de069dbb64f6f96a204cf5b7660 data/totemic/recipes/jingle_dress.json
 841d33d17ac864f5a3da013c160c7e71f2a46bce data/totemic/recipes/rattle.json
 afd85d8214be23ee595170033fe913659587513b data/totemic/recipes/totem_whittling_knife.json
 b34125dee7fd53bac229efb3641ef578ebdd0171 data/totemic/recipes/totemic_staff.json
-c4a889dca57021caf2300427f7c26ad1fd3a409a data/totemic/recipes/totempedia.json
 8e7f4867c5018ba0a5b5fde3dd3edfe12516c8af data/totemic/recipes/wind_chime.json

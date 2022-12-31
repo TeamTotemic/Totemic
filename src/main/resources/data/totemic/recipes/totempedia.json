@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "patchouli:shaped_book_recipe",
   "key": {
     "P": {
       "item": "minecraft:paper"
@@ -13,7 +13,5 @@
     "WPW",
     "WPW"
   ],
-  "result": {
-    "item": "totemic:totempedia"
-  }
+  "book": "totemic:totempedia"
 }
