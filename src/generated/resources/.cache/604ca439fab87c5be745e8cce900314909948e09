@@ -1,4 +1,4 @@
-// 1.19.2	2022-12-26T12:50:57.29162093	Totemic Recipes
+// 1.19.2	2023-01-01T04:45:16.772323242	Totemic Recipes
 ba7495b8dfc8ec3e9ca24a02d8c41e76ff96abaf data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_campfire_cooking.json
 08c67b04f13b233569a9c1cf57792b02a5ff3701 data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_smelting.json
 c3261a9b3039586d7b91dfb728dbc97c8a8d93b2 data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_smoking.json
@@ -9,6 +9,7 @@ a35e2fecd0d8b4278196bc44f87208cb0261794a data/minecraft/recipes/cooked_buffalo_m
 3897d91b601479e6a713a60739d2cbe9985bf401 data/totemic/advancements/recipes/totemic/cedar_button.json
 a0bd178901f5f18b9edb52d7148e78ba2ca24529 data/totemic/advancements/recipes/totemic/cedar_fence.json
 27d48fe365f24d86cfbb0f47bdabe86a9bbe1a4b data/totemic/advancements/recipes/totemic/cedar_fence_gate.json
+422816cb18b35e51b204651db92e5eb195007600 data/totemic/advancements/recipes/totemic/cedar_planks.json
 dd7bd06129177fbfeecb09bc0585e20947dd8ce6 data/totemic/advancements/recipes/totemic/cedar_pressure_plate.json
 d71d30feeef991af2b0d02cfba8c845ab706deea data/totemic/advancements/recipes/totemic/cedar_slab.json
 7598cf6cb075d79d33e9458e9695cababb9a35bc data/totemic/advancements/recipes/totemic/cedar_stairs.json
@@ -23,12 +24,13 @@ f655aa647c1c07b5da119996e7d6e3d7911ab042 data/totemic/advancements/recipes/totem
 b2b8193a1431c06ede9c3f669b54891a2cb36170 data/totemic/advancements/recipes/totemic/totemic_staff.json
 6e25331a785637afdd01cc8b8342c883436f1573 data/totemic/advancements/recipes/totemic/totempedia.json
 87b7a6c1d6696cc8b564ac77c61666fc959a3f08 data/totemic/advancements/recipes/totemic/wind_chime.json
-1d5cd1159272d52d7d0fe1d1c8714d742d9e1ae2 data/totemic/recipes/cedar_button.json
-24c1804c5db34e894265a9908663a55cbf92476f data/totemic/recipes/cedar_fence.json
-09962e6d0901ac13243ab8618399cae3f627742f data/totemic/recipes/cedar_fence_gate.json
-dafb91c088ae3cd94bddc0dd6b8c3bca0f5878cf data/totemic/recipes/cedar_pressure_plate.json
-be3e3cbe81cd29f4c5e0234fe929b98060ad91aa data/totemic/recipes/cedar_slab.json
-ae3d565f665497e483166c1003bd1e0715c44a4e data/totemic/recipes/cedar_stairs.json
+3859ae0d689acfba150e7a469070484674c9a1ca data/totemic/recipes/cedar_button.json
+4d36052cee400e060deb55831d5ed71e7854661f data/totemic/recipes/cedar_fence.json
+73be1df0f1816dc5b63b8f46c44942ed42b5e97a data/totemic/recipes/cedar_fence_gate.json
+29fb3163ff20f092a06409d0b0240849f5d10e7b data/totemic/recipes/cedar_planks.json
+7d412f4e412dc8f09e1c37eaf4d252d242b890d1 data/totemic/recipes/cedar_pressure_plate.json
+9f1ae98739f8064cf321613387e3ac935e7d72a3 data/totemic/recipes/cedar_slab.json
+c5ca73df6a6628452a9d20c58df2d26e96b6a4a7 data/totemic/recipes/cedar_stairs.json
 26f69949deed0d77484a203d5e493c5fed12ed7d data/totemic/recipes/drum.json
 a2d3f79d6f59441d8c85048d169dcc6d83662f68 data/totemic/recipes/eagle_bone_whistle.json
 7abd055f4d1ecfee95eb08c8c0367cb4ca7bb7d1 data/totemic/recipes/flute.json

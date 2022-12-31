@@ -126,7 +126,7 @@ public final class ModBlocks {
         totemBases = totemBasesBuilder.build();
 
         CEDAR_FAMILY = new BlockFamily.Builder(cedar_planks.get()).button(cedar_button.get()).fence(cedar_fence.get()).fenceGate(cedar_fence_gate.get()).pressurePlate(cedar_pressure_plate.get())/*.sign(cedar_sign.get(), cedar_wall_sign.get())*/.slab(cedar_slab.get()).stairs(cedar_stairs.get())/*.door(cedar_door.get()).trapdoor(cedar_trapdoor.get())*/
-                .recipeGroupPrefix("wooden").recipeUnlockedBy("has_planks").getFamily();
+                .recipeGroupPrefix("totemic:wooden").recipeUnlockedBy("has_planks").getFamily();
     }
 
     public static void setFireInfo() {

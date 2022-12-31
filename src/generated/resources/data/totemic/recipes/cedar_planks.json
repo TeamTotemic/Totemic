@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "totemic:cedar_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "totemic:cedar_planks"
+  }
+}

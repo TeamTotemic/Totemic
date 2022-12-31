@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "wooden_button",
+  "group": "totemic:wooden_button",
   "ingredients": [
     {
       "item": "totemic:cedar_planks"

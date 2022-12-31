@@ -132,6 +132,11 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("performed_buffalo_dance", performed(ModContent.buffalo_dance))
                 .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
                 .save(rc, "totemic:leather_from_hide");
+        ShapelessRecipeBuilder.shapeless(ModBlocks.cedar_planks.get(), 4)
+                .requires(TotemicItemTags.CEDAR_LOGS)
+                .unlockedBy("performed_fertility", performed(ModContent.fertility))
+                .unlockedBy("has_cedar_logs", has(ModBlocks.cedar_log.get()))
+                .save(rc);
 
         generateRecipes(rc, ModBlocks.getCedarBlockFamily());
 
