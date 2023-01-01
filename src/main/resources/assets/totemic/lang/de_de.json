@@ -146,6 +146,8 @@
   "death.attack.totemic.sunDance": "%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.",
   "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren.",
   
+  "totemic.totempedia.landingText": "Die Totempedia, ein Leitfaden für all Deine Totem-Bedürfnisse.",
+  
   "totemic.config.general": "Allgemein",
   "totemic.config.client": "Client-Seite",
   "totemic.config.skeletonsShouldAttackBuffalos": "Skelette greifen Büffel an",

@@ -146,6 +146,8 @@
   "death.attack.totemic.sunDance": "%1$s пожертвовал собой Богу Солнца.  Этого не должно было случиться.",
   "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",
   
+  "totemic.totempedia.landingText": "Тотемпедия, руководство по всему Тотемическому.",
+  
   "totemic.config.general": "General",
   "totemic.config.client": "Client",
   "totemic.config.skeletonsShouldAttackBuffalos": "Skeletons should attack Buffalos",

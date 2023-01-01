@@ -29,3 +29,10 @@ A magic mod about Totem Poles, nature and the power of music.
     versionRange="[1.19.2,)"
     ordering="NONE"
     side="BOTH"
+
+ [[dependencies.totemic]]
+    modId="patchouli"
+    mandatory=true
+    versionRange="[1.19.2-77,)"
+    ordering="NONE"
+    side="BOTH"
