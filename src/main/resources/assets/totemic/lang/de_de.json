@@ -146,7 +146,7 @@
   "death.attack.totemic.sunDance": "%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.",
   "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren.",
   
-  "totemic.totempedia.landingText": "Die Totempedia, ein Leitfaden für all Deine Totem-Bedürfnisse.",
+  "totemic.totempedia.landingText": "Die Totempedia, ein Leitfaden für all Deine Totem-Bedürfnisse.$(br2)$(4)Derzeit noch in Arbeit!",
   
   "totemic.config.general": "Allgemein",
   "totemic.config.client": "Client-Seite",

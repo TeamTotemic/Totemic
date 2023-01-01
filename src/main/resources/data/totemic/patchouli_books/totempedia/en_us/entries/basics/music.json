@@ -1,0 +1,12 @@
+{
+    "name": "Melody",
+    "icon": "minecraft:textures/particle/note.png",
+    "category": "totemic:basics",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)Melody$() is a magical power released from $(thing)Music Instruments$() that have been played.$(br2)Each Instrument has a $(thing)Melody Threshold$(), meaning that only a certain amount of Melody can be released from one Instrument for a specific Ceremony or other effect. Generally, you should try to use as many different Instruments as possible."
+        }
+    ],
+    "sortnum": 2
+}

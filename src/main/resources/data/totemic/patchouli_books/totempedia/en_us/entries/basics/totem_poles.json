@@ -1,0 +1,45 @@
+{
+    "name": "Totem Poles",
+    "icon": "totemic:oak_totem_base",
+    "category": "totemic:basics",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)Totem Poles$() are the centerpieces of Totemic. They can be carved out of any kind of wood logs using a $(item)Totem Whittling Knife$(). Different patterns can be carved, which will lead to different $(l:basics/totem_effects)Totem Effects$(/l). Right clicking or scrolling while sneaking will change the pattern the knife will carve."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Totem Poles need to have a $(thing)Totem Base$() at the bottom and can be up to 6 blocks high (including the base).$(br2)The same carving can be repeated multiple times on the same Totem Pole, making the effect stronger. A Totem Pole can also absorb $(l:basics/music)Melody$() which will make the effects stronger as well."
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock": {
+                "mapping": {
+                    "0": "totemic:oak_totem_base",
+                    "A": "totemic:oak_totem_pole_buffalo",
+                    "B": "totemic:oak_totem_pole_spider",
+                    "C": "totemic:oak_totem_pole_ocelot",
+                    "D": "totemic:oak_totem_pole_blaze",
+                    "E": "totemic:oak_totem_pole_bat"
+                },
+                "pattern": [
+                    ["E"],
+                    ["D"],
+                    ["C"],
+                    ["B"],
+                    ["A"],
+                    ["0"]
+                ],
+                "symmetrical": true
+            },
+            "enable_visualize": false,
+            "text": "An example of how a Totem Pole can look like."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:totem_whittling_knife",
+            "title": "Totem Whittling Knife"
+        }
+    ],
+    "sortnum": 0
+}

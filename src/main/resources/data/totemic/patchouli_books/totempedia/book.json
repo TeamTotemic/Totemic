@@ -3,5 +3,8 @@
     "landing_text": "totemic.totempedia.landingText",
     "version": 1,
     "model": "totemic:totempedia",
-    "creative_tab": "totemic"
+    "creative_tab": "totemic",
+    "macros": {
+        "$(carving)": "$(1)"
+    }
 }

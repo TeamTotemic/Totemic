@@ -146,7 +146,7 @@
   "death.attack.totemic.sunDance": "%1$s는 태양 만세를 외치다 희생되었습니다. 이건 원래 일어나서는 안되는 일입니다.",
   "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",
   
-  "totemic.totempedia.landingText": "토템피디아, 토템 관련 의식에 대한 모든것.",
+  "totemic.totempedia.landingText": "토템피디아, 토템 관련 의식에 대한 모든것.$(br2)$(4)Currently Work in Progress!",
   
   "totemic.config.general": "General",
   "totemic.config.client": "Client",
