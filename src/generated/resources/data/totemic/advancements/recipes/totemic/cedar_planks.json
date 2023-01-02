@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "totemic:cedar_log"
-            ]
+            "tag": "totemic:cedar_logs"
           }
         ]
       },

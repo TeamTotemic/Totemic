@@ -103,7 +103,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('S', Tags.Items.STRING)
                 .define('C', Tags.Items.INGOTS_COPPER)
                 .unlockedBy("performed_fertility", performed(ModContent.fertility))
-                .unlockedBy("has_cedar_logs", has(ModBlocks.cedar_log.get()))
+                .unlockedBy("has_cedar_logs", has(TotemicItemTags.CEDAR_LOGS))
                 .save(rc);
         ShapedRecipeBuilder.shaped(ModItems.eagle_bone_whistle.get())
                 .pattern("S ")
@@ -135,7 +135,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(ModBlocks.cedar_planks.get(), 4)
                 .requires(TotemicItemTags.CEDAR_LOGS)
                 .unlockedBy("performed_fertility", performed(ModContent.fertility))
-                .unlockedBy("has_cedar_logs", has(ModBlocks.cedar_log.get()))
+                .unlockedBy("has_cedar_logs", has(TotemicItemTags.CEDAR_LOGS))
                 .save(rc);
 
         generateRecipes(rc, ModBlocks.getCedarBlockFamily());
