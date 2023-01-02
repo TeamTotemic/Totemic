@@ -1,0 +1,16 @@
+{
+    "name": "Rattle",
+    "icon": "totemic:rattle",
+    "category": "totemic:instruments",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The $(item)Rattle$() is a backbone of any more advanced Ceremonies. It produces Melody whenever it has been shook with the hand.$(br2)When you hold the Rattle in your main hand, another Instrument held in the offhand can be played at the same time."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:rattle"
+        }
+    ],
+    "sortnum": 4
+}

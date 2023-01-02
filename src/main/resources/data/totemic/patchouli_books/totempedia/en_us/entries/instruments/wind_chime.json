@@ -1,0 +1,20 @@
+{
+    "name": "Wind Chime",
+    "icon": "totemic:wind_chime",
+    "category": "totemic:instruments",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The $(item)Wind Chime$() is an Instrument that will wave in the wind and periodically produce Melody by itself. It must be hanging from a block above it, and it cannot have any blocks below it. Often, Wind Chimes can be seen hanging from branches of leaves, which makes them release more Melody."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "While the Wind Chime does not create a large amount of Melody, it does not require any intervention by players. Because the music from the Wind Chime is so easy to come by, its $(1)Melody Threshold$() is easily reached.$(br2)It is recommended that only a couple of Wind Chimes hang near a Totem Pole at once."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:wind_chime"
+        }
+    ],
+    "sortnum": 2
+}

@@ -1,0 +1,6 @@
+{
+    "name": "Ceremonies",
+    "description": "$(thing)Ceremonies$() are a way to release powerful bursts of several different effects.",
+    "icon": "totemic:drum",
+    "sortnum": 2
+}
