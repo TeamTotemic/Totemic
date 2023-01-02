@@ -12,5 +12,6 @@
             "recipe": "totemic:eagle_bone_whistle"
         }
     ],
+    "advancement": "totemic:recipes/totemic/eagle_bone_whistle",
     "sortnum": 5
 }

@@ -13,5 +13,6 @@
             "text": "Unlike other Instruments, the Jingle Dress cannot be as a $(l:ceremonies)Ceremony Selector$()."
         }
     ],
+    "advancement": "totemic:recipes/totemic/jingle_dress",
     "sortnum": 3
 }
