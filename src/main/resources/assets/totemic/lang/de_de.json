@@ -63,6 +63,7 @@
   "block.totemic.jungle_totem_base": "Tropenholz-Totembasis",
   "block.totemic.acacia_totem_base": "Akazienholz-Totembasis",
   "block.totemic.dark_oak_totem_base": "Schwarzeichenholz-Totembasis",
+  "block.totemic.mangrove_totem_base": "Mangrovenholz-Totembasis",
   "block.totemic.cedar_totem_base": "Zedernholz-Totembasis",
   
   "block.totemic.oak_totem_pole": "Eichenholz-Totempfahl (%s)",
@@ -71,6 +72,7 @@
   "block.totemic.jungle_totem_pole": "Tropenholz-Totempfahl (%s)",
   "block.totemic.acacia_totem_pole": "Akazienholz-Totempfahl (%s)",
   "block.totemic.dark_oak_totem_pole": "Schwarzeichenholz-Totempfahl (%s)",
+  "block.totemic.mangrove_totem_pole": "Mangrovenholz-Totempfahl (%s)",
   "block.totemic.cedar_totem_pole": "Zedernholz-Totempfahl (%s)",
   
   "entity.totemic.buffalo": "Büffel",

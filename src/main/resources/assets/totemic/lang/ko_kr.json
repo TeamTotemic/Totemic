@@ -63,6 +63,7 @@
   "block.totemic.jungle_totem_base": "정글나무 토템 베이스",
   "block.totemic.acacia_totem_base": "아카시아나무 토템 베이스",
   "block.totemic.dark_oak_totem_base": "짙은 참나무 토템 베이스",
+  "block.totemic.mangrove_totem_base": "맹그로브나무 토템 베이스",
   "block.totemic.cedar_totem_base": "붉은 삼나무 토템 베이스",
   
   "block.totemic.oak_totem_pole": "참나무 토템 조각상 (%s)",
@@ -71,6 +72,7 @@
   "block.totemic.jungle_totem_pole": "정글나무 토템 조각상 (%s)",
   "block.totemic.acacia_totem_pole": "아카시아나무 토템 조각상 (%s)",
   "block.totemic.dark_oak_totem_pole": "짙은 참나무 토템 조각상 (%s)",
+  "block.totemic.mangrove_totem_pole": "맹그로브나무 토템 조각상 (%s)",
   "block.totemic.cedar_totem_pole": "붉은 삼나무 토템 조각상 (%s)",
   
   "entity.totemic.buffalo": "버팔로",

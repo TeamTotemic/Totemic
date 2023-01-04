@@ -63,6 +63,7 @@
   "block.totemic.jungle_totem_base": "ジャングルのトーテム台",
   "block.totemic.acacia_totem_base": "アカシアのトーテム台",
   "block.totemic.dark_oak_totem_base": "ダークオークのトーテム台",
+  "block.totemic.mangrove_totem_base": "マングローブのトーテム台",
   "block.totemic.cedar_totem_base": "赤杉のトーテム台",
   
   "block.totemic.oak_totem_pole": "オークのトーテムポール (%s)",
@@ -71,6 +72,7 @@
   "block.totemic.jungle_totem_pole": "ジャングルのトーテムポール (%s)",
   "block.totemic.acacia_totem_pole": "アカシアのトーテムポール (%s)",
   "block.totemic.dark_oak_totem_pole": "ダークオークのトーテムポール (%s)",
+  "block.totemic.mangrove_totem_pole": "マングローブのトーテムポール (%s)",
   "block.totemic.cedar_totem_pole": "赤杉のトーテムポール (%s)",
   
   "entity.totemic.buffalo": "バッファロー",
