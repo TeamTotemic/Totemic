@@ -15,7 +15,7 @@ public final class PatchouliIntegration {
     public static void init() {
         var api = PatchouliAPI.get();
         if(api.isStub()) //shouldn't happen as Patchouli is declared as required dependency in mods.toml
-            throw new RuntimeException("Totemic requires Patcholi to be installed");
+            throw new RuntimeException("Totemic requires Patchouli to be installed");
 
         Predicate<BlockState> isTotemBase = state -> state.is(TotemicBlockTags.TOTEM_BASES);
         Predicate<BlockState> isTotemPole = state -> state.is(TotemicBlockTags.TOTEM_POLES);

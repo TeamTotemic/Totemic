@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WoodButtonBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -45,7 +44,7 @@ import pokefenn.totemic.util.MethodHandleUtil;
 import pokefenn.totemic.world.CedarTreeGrower;
 
 public final class ModBlocks {
-    public static final WoodType CEDAR_WOOD_TYPE = WoodType.register(WoodType.create("totemic:cedar"));
+    //public static final WoodType CEDAR_WOOD_TYPE = WoodType.register(WoodType.create("totemic:cedar"));
 
     public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, TotemicAPI.MOD_ID);
 
