@@ -13,26 +13,7 @@
         },
         {
             "type": "patchouli:multiblock",
-            "multiblock": {
-                "mapping": {
-                    "0": "totemic:oak_totem_base",
-                    "A": "totemic:oak_totem_pole_buffalo",
-                    "B": "totemic:oak_totem_pole_spider",
-                    "C": "totemic:oak_totem_pole_ocelot",
-                    "D": "totemic:oak_totem_pole_blaze",
-                    "E": "totemic:oak_totem_pole_bat"
-                },
-                "pattern": [
-                    ["E"],
-                    ["D"],
-                    ["C"],
-                    ["B"],
-                    ["A"],
-                    ["0"]
-                ],
-                "symmetrical": true
-            },
-            "enable_visualize": false,
+            "multiblock_id": "totemic:example_totem_pole",
             "text": "An example of how a Totem Pole can look like."
         },
         {

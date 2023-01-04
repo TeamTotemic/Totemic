@@ -18,6 +18,7 @@ import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.ModModelLayers;
+import pokefenn.totemic.compat.PatchouliIntegration;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicEntityTypeTagsProvider;
@@ -89,6 +90,7 @@ public final class Totemic {
         RegistryApiImpl.freezeRegistries();
 
         NetworkHandler.init();
+        PatchouliIntegration.init();
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
