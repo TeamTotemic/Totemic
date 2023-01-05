@@ -1,0 +1,40 @@
+{
+    "processor": "pokefenn.totemic.compat.CeremonyComponentProcessor",
+    "components": [
+        {
+            "type": "patchouli:text",
+            "text": "$(l)Ceremony Selectors",
+            "color": "888888",
+            "x": 18,
+            "y": 5
+        },
+        {
+            "type": "patchouli:image",
+            "image": "totemic:textures/gui/ceremony_overlay.png",
+            "texture_width": 128,
+            "texture_height": 64,
+            "width": 84,
+            "height": 57,
+            "x": 16,
+            "y": 16
+        },
+        {
+            "type": "patchouli:item",
+            "item": "#selector0",
+            "x": 38,
+            "y": 23
+        },
+        {
+            "type": "patchouli:item",
+            "item": "#selector1",
+            "x": 58,
+            "y": 23
+        },
+        {
+            "type": "patchouli:text",
+            "text": "#text",
+            "x": 0,
+            "y": 120
+        }
+    ]
+}
