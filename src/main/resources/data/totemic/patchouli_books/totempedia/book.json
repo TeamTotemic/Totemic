@@ -4,7 +4,9 @@
     "version": 1,
     "model": "totemic:totempedia",
     "creative_tab": "totemic",
+    "pause_game": true,
     "macros": {
-        "$(carving)": "$(1)"
+        "$(carving)": "$(1)",
+        "$(emph)": "$(3)"
     }
 }

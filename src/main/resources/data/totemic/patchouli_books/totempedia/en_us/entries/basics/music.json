@@ -5,11 +5,11 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(thing)Melody$() is a magical power released from $(l:instruments)Music Instruments$(/l) that have been played.$(br2)Each Instrument has a $(thing)Melody Threshold$(), meaning that only a certain amount of Melody can be released from one Instrument for a specific $(l:ceremonies)Ceremony$(/l) or other effect. $(1)White smoke$() indicates that the Threshold for a particular Instrument has been reached."
+            "text": "$(thing)Melody$() is a magical power released from $(l:instruments)Music Instruments$(/l) that have been played.$(br2)Each Instrument has a $(thing)Melody Threshold$(), meaning that only a certain amount of Melody can be released from one Instrument for a specific $(l:ceremonies)Ceremony$(/l) or other effect. $(emph)White smoke$() indicates that the Threshold for a particular Instrument has been reached."
         },
         {
             "type": "patchouli:text",
-            "text": "Usually, it is necessary to play $(1)several different Instruments$() to get the desired effect. If you are having trouble creating enough Melody, try looking if there is another Instrument that you have not used yet."
+            "text": "Usually, it is necessary to play $(emph)several different Instruments$() to get the desired effect. If you are having trouble creating enough Melody, try looking if there is another Instrument that you have not used yet."
         }
     ],
     "sortnum": 2

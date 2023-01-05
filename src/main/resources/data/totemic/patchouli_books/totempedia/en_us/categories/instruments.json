@@ -1,6 +1,6 @@
 {
     "name": "Music Instruments",
-    "description": "$(thing)Music Instruments$() are essential for creating $(l:basics/music)Melody$(/l), the life of Totem Poles.$(br2)Most Instruments can be played while $(1)sneaking$() to select $(l:ceremonies)Ceremonies$(/l).",
+    "description": "$(thing)Music Instruments$() are essential for creating $(l:basics/music)Melody$(/l), the life of Totem Poles.$(br2)Most Instruments can be played while $(emph)sneaking$() to select $(l:ceremonies)Ceremonies$(/l).",
     "icon": "totemic:flute",
     "sortnum": 1
 }

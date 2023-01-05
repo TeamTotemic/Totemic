@@ -9,7 +9,7 @@
         },
         {
             "type": "patchouli:text",
-            "text": "While the Wind Chime does not create a large amount of Melody, it does not require any intervention by players. Because the music from the Wind Chime is so easy to come by, its $(1)Melody Threshold$() is easily reached.$(br2)It is recommended that only a couple of Wind Chimes hang near a Totem Pole at once."
+            "text": "While the Wind Chime does not create a large amount of Melody, it does not require any intervention by players. Because the music from the Wind Chime is so easy to come by, its $(l:basics/music)Melody Threshold$() is easily reached.$(br2)It is recommended that only a couple of Wind Chimes hang near a Totem Pole at once."
         },
         {
             "type": "patchouli:crafting",

@@ -22,5 +22,8 @@
             "title": "Totem Whittling Knife"
         }
     ],
+    "extra_recipe_mappings": {
+        "tag:totemic:totem_bases": 0
+    },
     "sortnum": 0
 }
