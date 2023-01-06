@@ -12,5 +12,6 @@
             "ceremony": "totemic:war_dance",
             "text": "$(o)A convoluted game of chess"
         }
-    ]
+    ],
+    "sortnum": 0
 }

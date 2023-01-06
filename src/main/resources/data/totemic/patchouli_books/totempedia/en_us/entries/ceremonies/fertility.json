@@ -1,0 +1,20 @@
+{
+    "name": "Rite of Spring",
+    "icon": "minecraft:air",
+    "category": "totemic:ceremonies",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The $(thing)Rite of Spring$() is one of many growth and fertility Ceremonies available to a Totemist. After activating, nearby $(emph)animals$() will $(emph)breed$() one at a time, provided the respective $(emph)food items$() are laying on the ground. There is a decent chance that the food will not be consumed.$(br2)Along with that, any nearby saplings will transform into $(l:basics/cedar_tree)Red Cedar Saplings$()."
+        },
+        {
+            "type": "totemic:ceremony",
+            "ceremony": "totemic:fertility",
+            "text": "$(o)Lover I don't have to love"
+        }
+    ],
+    "extra_recipe_mappings": {
+        "totemic:cedar_sapling": 0
+    },
+    "sortnum": 2
+}

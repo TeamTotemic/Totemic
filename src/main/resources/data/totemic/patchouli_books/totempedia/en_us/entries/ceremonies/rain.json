@@ -1,0 +1,17 @@
+{
+    "name": "Rain Dance",
+    "icon": "minecraft:air",
+    "category": "totemic:ceremonies",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The $(thing)Rain Dance$() will bring a torrent of rain into the world. Because the effects of this Ceremony are so potent, it may be somewhat hard to perform.$(br2)If the rain becomes too much to bare, the $(l:ceremonies/drought)Drought Dance$() is always available, which will remove all rain."
+        },
+        {
+            "type": "totemic:ceremony",
+            "ceremony": "totemic:rain",
+            "text": "$(o)Like a Politoed"
+        }
+    ],
+    "sortnum": 5
+}

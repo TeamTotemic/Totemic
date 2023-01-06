@@ -21,19 +21,19 @@
         {
             "type": "patchouli:item",
             "item": "#selector0",
-            "x": 38,
+            "x": 39,
             "y": 23
         },
         {
             "type": "patchouli:item",
             "item": "#selector1",
-            "x": 58,
+            "x": 59,
             "y": 23
         },
         {
             "type": "patchouli:text",
             "text": "#text",
-            "x": 0,
+            "x": 5,
             "y": 120
         }
     ]
