@@ -17,7 +17,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
@@ -67,7 +66,7 @@ public enum CleansingCeremony implements CeremonyInstance {
 
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
-        if(level.getEntitiesOfClass(Mob.class, new AABB(pos).inflate(RANGE - 1),
+        if(level.getEntitiesOfClass(Mob.class, TotemicEntityUtil.getAABBAround(pos, RANGE),
                 mob -> (conversions.containsKey(mob.getType()) || mob.getType() == EntityType.ZOMBIE_VILLAGER) && hasWeakness.test(mob)).isEmpty()) {
             initiator.sendSystemMessage(Component.translatable("totemic.noZombifiedMonstersNearby"));
             return false;

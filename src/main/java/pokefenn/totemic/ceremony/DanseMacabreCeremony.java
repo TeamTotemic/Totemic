@@ -3,8 +3,10 @@ package pokefenn.totemic.ceremony;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -36,15 +38,15 @@ public enum DanseMacabreCeremony implements CeremonyInstance {
         if(!level.getBlockState(pos).getCollisionShape(level, pos).isEmpty() || !level.getBlockState(pos.above()).getCollisionShape(level, pos).isEmpty())
             return;
 
-        Entity zombie;
+        LivingEntity zombie;
         if(level.dimension() == Level.NETHER)
             zombie = EntityType.ZOMBIFIED_PIGLIN.create(level);
+        else if(level.random.nextInt(10) == 0)
+            zombie = EntityType.ZOMBIE_VILLAGER.create(level);
         else if(level.getFluidState(pos).is(FluidTags.WATER))
             zombie = EntityType.DROWNED.create(level);
         else if(level.getBiome(pos).is(Biomes.DESERT))
             zombie = EntityType.HUSK.create(level);
-        else if(level.random.nextInt(10) == 0)
-            zombie = EntityType.ZOMBIE_VILLAGER.create(level);
         else
             zombie = EntityType.ZOMBIE.create(level);
 
@@ -52,6 +54,9 @@ public enum DanseMacabreCeremony implements CeremonyInstance {
         var dz = 0.25 * level.random.nextGaussian();
         var yRot = 360.0F * level.random.nextFloat();
         zombie.moveTo(item.getX() + dx, item.getY(), item.getZ() + dz, yRot, item.getXRot());
+
+        zombie.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60 * 20, 2));
+        zombie.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60 * 20, 2));
 
         MiscUtil.shrinkItemEntity(item);
         level.addFreshEntity(zombie);
