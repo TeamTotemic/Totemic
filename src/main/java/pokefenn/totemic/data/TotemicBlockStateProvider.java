@@ -39,7 +39,19 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         models().withExistingParent("totemic:cedar_leaves_opaque", "block/leaves").texture("all", "totemic:block/cedar_leaves_opaque");
         simpleBlock(ModBlocks.cedar_sapling.get(), models().withExistingParent(ModBlocks.cedar_sapling.getId().toString(), "block/cross").texture("cross", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
         simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
-        simpleBlock(ModBlocks.wind_chime.get(), blockEntityRenderer(ModBlocks.wind_chime, mcLoc("block/white_terracotta")));
+        simpleBlock(ModBlocks.wind_chime.get(), blockEntityRenderer(ModBlocks.wind_chime, mcLoc("block/white_terracotta"))
+                .transforms()
+                .transform(TransformType.THIRD_PERSON_RIGHT_HAND)
+                    .rotation(75, 45, 0)
+                    .translation(0, 1.25F, 0)
+                    .scale(0.375F)
+                    .end()
+                .transform(TransformType.GUI)
+                    .rotation(30, 225, 0)
+                    .translation(0, 0, 0)
+                    .scale(0.875F)
+                    .end()
+                .end());
         simpleBlock(ModBlocks.cedar_planks.get());
         var cedarPlankTex = blockTexture(ModBlocks.cedar_planks.get());
         buttonBlock(ModBlocks.cedar_button.get(), cedarPlankTex);
