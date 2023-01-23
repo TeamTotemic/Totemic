@@ -7,10 +7,10 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -27,21 +27,21 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemWoodType;
-import pokefenn.totemic.api.TotemicStaffUsable;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
 import pokefenn.totemic.block.totem.entity.StateSelection;
 import pokefenn.totemic.block.totem.entity.StateStartup;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
-import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.util.BlockUtil;
 
-public class TotemBaseBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock, TotemicStaffUsable {
+public class TotemBaseBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     private static final VoxelShape SHAPE = Shapes.or(Shapes.box(0.0, 0.0, 0.0,  1.0, 0.28125, 1.0), Shapes.box(0.125, 0.28125, 0.125,  0.875, 1.0, 0.875));
@@ -54,15 +54,21 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         this.woodType = woodType;
     }
 
-    @SuppressWarnings("resource")
     @Override
-    public InteractionResult onTotemicStaffRightClick(UseOnContext context) {
-        if(!context.getLevel().isClientSide)
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        var stack = player.getItemInHand(hand);
+        if(stack.is(ModItems.totemic_staff.get()))
+            return onTotemicStaffRightClick(level, pos, player);
+        else
+            return InteractionResult.PASS;
+    }
+
+    private InteractionResult onTotemicStaffRightClick(Level level, BlockPos pos, Player player) {
+        if(!level.isClientSide)
             return InteractionResult.CONSUME;
 
-        context.getLevel().getBlockEntity(context.getClickedPos(), ModBlockEntities.totem_base.get())
+        level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
         .ifPresent(tile -> {
-            Player player = context.getPlayer();
             if(tile.getTotemState() instanceof StateTotemEffect state) {
                 player.displayClientMessage(Component.translatable("totemic.isDoingNoCeremony"), false);
             }

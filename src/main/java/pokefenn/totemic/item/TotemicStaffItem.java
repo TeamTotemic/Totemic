@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.api.TotemicStaffUsable;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 
+@SuppressWarnings("deprecation")
 public class TotemicStaffItem extends Item {
     public TotemicStaffItem(Properties props) {
         super(props);
