@@ -1,0 +1,24 @@
+{
+    "name": "Basics of Ceremonies",
+    "icon": "minecraft:air",
+    "category": "totemic:ceremonies",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)Ceremonies$() are a way for Totemists to gather strength over a period of time through the power of $(l:basics/music)Melody$() to release a burst of energy on the nearby world. In contrast to $(l:basics/totem_effects)Totem Effects$(), the effects of Ceremonies are much more powerful, but limited in duration.$(br2)The center of a Ceremony is a $(l:basics/totem_poles)Totem Pole$(): It is where the Melody is channeled to and"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "where the effects are released from. To start a Ceremony, you need to play two Music Instruments in $(thing)Selector Mode$(), which is done by $(emph)sneaking$() while playing the Instrument. The combination of the two Instruments will decide which Ceremony is selected. For example, playing the $(l:instruments/drum)Drum$() twice while sneaking will activate the $(l:ceremonies/war_dance)War Dance$().$(br2)Once you have selected a Ceremony, you need to channel Melody into the Totem Pole until it has collected enough"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "to activate the Ceremony's effect. You only have a limited amount of time to do this, and each Instrument can only be played up to a certain point until its $(l:basics/music)Melody Threshold$() is reached, meaning that a Ceremony cannot be performed using only one Instrument. A white cloud of smoke that emits from the Totem Base signifies that the Instrument's Melody Threshold is reached, so you should stop playing that particular Instrument until the end of the Ceremony."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Since the time is limited, playing speed is important, and care should be taken with the timing and rhythm between the Instruments. It may require some practice for Totemists to complete some of the more difficult Ceremonies."
+        }
+    ],
+    "priority": true
+}
