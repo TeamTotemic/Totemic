@@ -6,7 +6,7 @@
     "creative_tab": "totemic",
     "pause_game": true,
     "macros": {
-        "$(carving)": "$(1)",
+        "$(carving)": "$(thing)",
         "$(emph)": "$(3)"
     }
 }
