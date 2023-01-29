@@ -1,4 +1,4 @@
-// 1.19.2	2022-12-25T16:25:43.134875458	Totemic Loot Tables
+// 1.19.2	2023-01-29T12:47:56.474740363	Totemic Loot Tables
 a547e9f5b84698c1f256c9987bbf661cfc88d560 data/totemic/loot_tables/blocks/cedar_button.json
 32ff75a96a7376ccc9cd9fc24f7634c83dbc37da data/totemic/loot_tables/blocks/cedar_fence.json
 ef98bb1229f54fa2771bd23bee63179f21b3c6aa data/totemic/loot_tables/blocks/cedar_fence_gate.json
@@ -13,6 +13,7 @@ c2e150a7d22b959f748741ce8f86e750b56d52c8 data/totemic/loot_tables/blocks/cedar_p
 101394dcc8ea344b67869f30f4ab9b7feb4f0f44 data/totemic/loot_tables/blocks/drum.json
 d7703c7caaaffcbbe6079e86736bf31e63de5291 data/totemic/loot_tables/blocks/stripped_cedar_log.json
 c2fa8089c675eac8039cc2806cb5a2938e967cf2 data/totemic/loot_tables/blocks/stripped_cedar_wood.json
+823c17d3d51ff20c747f000a90b47ea7e38cad12 data/totemic/loot_tables/blocks/totem_torch.json
 1ca9f987ede79c0357c97b4d50c44f7455f6a5cc data/totemic/loot_tables/blocks/wind_chime.json
 a651f350657933a62070a72e3b9c4fd4e80f0f7f data/totemic/loot_tables/entities/bald_eagle.json
 f8a2516b9b1fcab06ec18ae53d04f231d9034f11 data/totemic/loot_tables/entities/baykok.json

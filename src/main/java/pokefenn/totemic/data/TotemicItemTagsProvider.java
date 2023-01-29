@@ -28,6 +28,7 @@ public final class TotemicItemTagsProvider extends ItemTagsProvider {
         //Minecraft and Forge tags
         tag(Tags.Items.LEATHER).add(ModItems.buffalo_hide.get());
         tag(Tags.Items.TOOLS_BOWS).add(ModItems.baykok_bow.get());
+        tag(Tags.Items.ARMORS_LEGGINGS).add(ModItems.jingle_dress.get());
 
         copy(BlockTags.PLANKS, ItemTags.PLANKS);
         copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);

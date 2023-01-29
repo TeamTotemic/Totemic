@@ -63,10 +63,11 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         stairsBlock(ModBlocks.cedar_stairs.get(), cedarPlankTex);
         //doorBlock(...)
         //trapdoorBlock(...)
+        simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
 
         //Item Blocks
         var im = itemModels();
-        final Set<ResourceLocation> blocksWithoutItemModel = Set.of(ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/);
+        final Set<ResourceLocation> blocksWithoutItemModel = Set.of(ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.totem_torch.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             if(blocksWithoutItemModel.contains(blockO.getId()))
                 continue;
@@ -77,6 +78,23 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.withExistingParent(ModBlocks.cedar_button.getId().toString(), "block/button_inventory").texture("texture", cedarPlankTex);
         im.withExistingParent(ModBlocks.cedar_fence.getId().toString(), "block/fence_inventory").texture("texture", cedarPlankTex);
         //im.basicItem(ModBlocks.cedar_sign.getId());
+        im.withExistingParent(ModBlocks.totem_torch.getId().toString(), modLoc("block/totem_torch"))
+                .transforms()
+                .transform(TransformType.THIRD_PERSON_RIGHT_HAND)
+                    .rotation(0, 45, 0)
+                    .translation(0, 1.5F, 1.0F)
+                    .scale(0.25F)
+                    .end()
+                .transform(TransformType.GUI)
+                    .rotation(30, 225, 0)
+                    .translation(0, -1.0F, 0)
+                    .scale(0.625F)
+                    .end()
+                .transform(TransformType.FIXED)
+                    .translation(0, 0, 0.25F)
+                    .scale(0.5F)
+                    .end()
+                .end();
 
         //Items
         im.basicItem(ModItems.flute.getId());

@@ -137,6 +137,15 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("performed_fertility", performed(ModContent.fertility))
                 .unlockedBy("has_cedar_logs", has(TotemicItemTags.CEDAR_LOGS))
                 .save(rc);
+        ShapedRecipeBuilder.shaped(ModBlocks.totem_torch.get(), 2)
+                .pattern("STS")
+                .pattern("SWS")
+                .pattern(" S ")
+                .define('S', Tags.Items.RODS_WOODEN)
+                .define('W', ItemTags.LOGS_THAT_BURN)
+                .define('T', Items.TORCH)
+                .unlockedBy("has_totempedia", hasTotempedia)
+                .save(rc);
 
         generateRecipes(rc, ModBlocks.getCedarBlockFamily());
 

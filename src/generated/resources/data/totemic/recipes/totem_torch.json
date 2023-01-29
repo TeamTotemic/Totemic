@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "T": {
+      "item": "minecraft:torch"
+    },
+    "W": {
+      "tag": "minecraft:logs_that_burn"
+    }
+  },
+  "pattern": [
+    "STS",
+    "SWS",
+    " S "
+  ],
+  "result": {
+    "count": 2,
+    "item": "totemic:totem_torch"
+  }
+}
