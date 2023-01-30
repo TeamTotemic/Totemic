@@ -1,4 +1,7 @@
 {
   "loader": "forge:obj",
-  "model": "totemic:models/block/tipi.obj"
+  "model": "totemic:models/block/tipi.obj",
+  "textures": {
+    "particle": "minecraft:block/white_wool"
+  }
 }

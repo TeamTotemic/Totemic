@@ -1,4 +1,4 @@
-// 1.19.2	2023-01-30T13:46:39.064501585	Block States: totemic
+// 1.19.2	2023-01-30T19:30:02.068870157	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/acacia_totem_pole_bat.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/acacia_totem_pole_blaze.json
@@ -67,6 +67,7 @@ c69eda94bfb9e99cbe6b4bd74773c592f061fe50 assets/totemic/blockstates/cedar_pressu
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/dark_oak_totem_pole_squid.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/dark_oak_totem_pole_wolf.json
 a470ab352994aca627db258cfedbb3248664061c assets/totemic/blockstates/drum.json
+ea8df43dcb8488408db27bb219b83cfb3bec7f26 assets/totemic/blockstates/dummy_tipi.json
 51a4e5965f29dbccb442c457f39327a621b36295 assets/totemic/blockstates/jungle_totem_base.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/jungle_totem_pole_bat.json
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/totemic/blockstates/jungle_totem_pole_blaze.json
@@ -155,6 +156,7 @@ b99d961b0f3e3ad71b67e22aeb2d4a7fc146f15c assets/totemic/models/block/cedar_stair
 d717603470f668225b3ca6e890b6fe4b36c9b49a assets/totemic/models/block/cedar_wood.json
 8e050122d6723e43eca54a26ad4e16323a3378be assets/totemic/models/block/cedar_wood_horizontal.json
 e6f0dbfac7b4f15bcd7a7324fdf75ae23927e251 assets/totemic/models/block/dark_oak_totem_base.json
+5177b682a6f745079f6b7be5d06b5b0d8b9a80ca assets/totemic/models/block/dummy_tipi.json
 603f57c9a50ee509bb0ed92a7cd59f66e07eeb22 assets/totemic/models/block/jungle_totem_base.json
 3417c9864fd62e5b62b119b192d7581d632d2c3c assets/totemic/models/block/mangrove_totem_base.json
 5b69be6fd1268d1309ffeb030a9efe37dc020804 assets/totemic/models/block/oak_totem_base.json
@@ -163,7 +165,7 @@ f76da7674f665c59587f7e977110f152b9fd78d3 assets/totemic/models/block/spruce_tote
 d67c92246a3e974bfe4a2adf0d5cdaff1799e117 assets/totemic/models/block/stripped_cedar_log_horizontal.json
 65e60cb318205679553fa81d9ea0ca6e66120f4d assets/totemic/models/block/stripped_cedar_wood.json
 dbf5977a5882ef7f58ac8d4485b79edb8e2c357f assets/totemic/models/block/stripped_cedar_wood_horizontal.json
-9ef5ef904112af07336a0094f7be794083087d56 assets/totemic/models/block/tipi.json
+a9ff0373374b41e9ef8cfc3318d46537a2cc31a5 assets/totemic/models/block/tipi.json
 03f9383a178c64477dd5347630a70022353e6e1a assets/totemic/models/block/wind_chime.json
 e9391b5e33934ae171167dd2c71bc4714cf7a451 assets/totemic/models/item/acacia_totem_base.json
 2d1ade82820569936fd3021a877283474ced09d0 assets/totemic/models/item/acacia_totem_pole_bat.json
@@ -314,7 +316,7 @@ f95f61591f5c7ed2414e32cc91cba6a528165479 assets/totemic/models/item/rattle.json
 2d1ade82820569936fd3021a877283474ced09d0 assets/totemic/models/item/spruce_totem_pole_wolf.json
 cd84645021a9beeb018c72c44027049374059c41 assets/totemic/models/item/stripped_cedar_log.json
 3a1b27731449dcb2f4b2e6c2f91942f75eecd758 assets/totemic/models/item/stripped_cedar_wood.json
-b6508689b1dd7873caeed47274b5c3bdf7b9a01d assets/totemic/models/item/tipi.json
+6b305af1e612aa06b7753a185d3793e547661484 assets/totemic/models/item/tipi.json
 c90d8f7d85113f7b9595596db765cbc66632d0d6 assets/totemic/models/item/totem_torch.json
 81cb8cf66c01b1bca81baa598d786696fb190d7c assets/totemic/models/item/totem_whittling_knife.json
 571cdb797bfbaeadd258470139656e8ea3f06aed assets/totemic/models/item/totemic_staff.json

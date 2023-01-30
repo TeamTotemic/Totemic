@@ -65,13 +65,14 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         //doorBlock(...)
         //trapdoorBlock(...)
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
-        horizontalBlock(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString()).customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end());
+        horizontalBlock(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString()).customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end().texture("particle", mcLoc("block/white_wool")));
+        simpleBlock(ModBlocks.dummy_tipi.get(), models().withExistingParent(ModBlocks.dummy_tipi.getId().toString(), "block/air").texture("particle", mcLoc("block/white_wool")));
 
         //Item Blocks
         var im = itemModels();
-        final Set<ResourceLocation> blocksWithoutItemModel = Set.of(ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.totem_torch.getId(), ModBlocks.dummy_tipi.getId());
+        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
-            if(blocksWithoutItemModel.contains(blockO.getId()))
+            if(blocksWithCustomItemModel.contains(blockO.getId()))
                 continue;
 
             existingBlockItem(blockO);
@@ -95,6 +96,39 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                 .transform(TransformType.FIXED)
                     .translation(0, 0, 0.25F)
                     .scale(0.5F)
+                    .end()
+                .end();
+        im.withExistingParent(ModBlocks.tipi.getId().toString(), modLoc("block/tipi"))
+                .transforms()
+                .transform(TransformType.GUI)
+                    .rotation(30, 225, 0)
+                    .translation(0, -2.5F, 0)
+                    .scale(0.4F)
+                    .end()
+                .transform(TransformType.GROUND)
+                    .scale(0.25F)
+                    .end()
+                .transform(TransformType.FIXED)
+                    .translation(0, -2.5F, 0)
+                    .scale(0.4F)
+                    .end()
+                .transform(TransformType.THIRD_PERSON_RIGHT_HAND)
+                    .rotation(75, 45, 0)
+                    .translation(0, 0.05F, 0)
+                    .scale(0.25F)
+                    .end()
+                .transform(TransformType.THIRD_PERSON_LEFT_HAND)
+                    .rotation(75, 45, 0)
+                    .translation(0, 0.05F, 0)
+                    .scale(0.25F)
+                    .end()
+                .transform(TransformType.FIRST_PERSON_RIGHT_HAND)
+                    .rotation(0, 45, 0)
+                    .scale(0.25F)
+                    .end()
+                .transform(TransformType.FIRST_PERSON_LEFT_HAND)
+                    .rotation(0, 225, 0)
+                    .scale(0.25F)
                     .end()
                 .end();
 
