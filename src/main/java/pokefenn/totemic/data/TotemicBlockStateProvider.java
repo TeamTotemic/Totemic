@@ -65,7 +65,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         //doorBlock(...)
         //trapdoorBlock(...)
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
-        horizontalBlock(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString()).customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end().texture("texture", blockTexture(ModBlocks.tipi.get())));
+        horizontalBlock(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString()).customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end());
 
         //Item Blocks
         var im = itemModels();

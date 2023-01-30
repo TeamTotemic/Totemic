@@ -1,7 +1,4 @@
 {
   "loader": "forge:obj",
-  "model": "totemic:models/block/tipi.obj",
-  "textures": {
-    "texture": "totemic:block/tipi"
-  }
+  "model": "totemic:models/block/tipi.obj"
 }
