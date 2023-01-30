@@ -1,5 +1,4 @@
 {
-  "parent": "totemic:block/tipi",
   "display": {
     "firstperson_lefthand": {
       "rotation": [
@@ -95,5 +94,7 @@
         0
       ]
     }
-  }
+  },
+  "loader": "forge:obj",
+  "model": "totemic:models/block/tipi.obj"
 }

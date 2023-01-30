@@ -3,5 +3,18 @@
   "model": "totemic:models/block/tipi.obj",
   "textures": {
     "particle": "minecraft:block/white_wool"
+  },
+  "transform": {
+    "origin": "center",
+    "scale": [
+      2.85,
+      2.85,
+      2.85
+    ],
+    "translation": [
+      0.0,
+      0.95,
+      0.0
+    ]
   }
 }

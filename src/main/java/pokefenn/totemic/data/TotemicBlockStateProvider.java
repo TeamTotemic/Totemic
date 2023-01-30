@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
+import net.minecraftforge.client.model.generators.BlockModelBuilder.RootTransformBuilder.TransformOrigin;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -65,7 +66,14 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         //doorBlock(...)
         //trapdoorBlock(...)
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
-        horizontalBlock(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString()).customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end().texture("particle", mcLoc("block/white_wool")));
+        horizontalBlock(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString())
+                .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
+                .texture("particle", mcLoc("block/white_wool"))
+                .rootTransform()
+                    .origin(TransformOrigin.CENTER)
+                    .translation(0, 0.95F, 0)
+                    .scale(2.85F)
+                    .end());
         simpleBlock(ModBlocks.dummy_tipi.get(), models().withExistingParent(ModBlocks.dummy_tipi.getId().toString(), "block/air").texture("particle", mcLoc("block/white_wool")));
 
         //Item Blocks
@@ -98,7 +106,9 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                     .scale(0.5F)
                     .end()
                 .end();
-        im.withExistingParent(ModBlocks.tipi.getId().toString(), modLoc("block/tipi"))
+        //im.withExistingParent(ModBlocks.tipi.getId().toString(), modLoc("block/tipi"))
+        im.getBuilder(ModBlocks.tipi.getId().toString())
+                .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .transforms()
                 .transform(TransformType.GUI)
                     .rotation(30, 225, 0)
