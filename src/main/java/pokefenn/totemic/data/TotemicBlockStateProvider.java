@@ -14,6 +14,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
+import net.minecraftforge.client.model.generators.loaders.ObjModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemWoodType;
@@ -64,10 +65,11 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         //doorBlock(...)
         //trapdoorBlock(...)
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
+        horizontalBlock(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString()).customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end().texture("texture", blockTexture(ModBlocks.tipi.get())));
 
         //Item Blocks
         var im = itemModels();
-        final Set<ResourceLocation> blocksWithoutItemModel = Set.of(ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.totem_torch.getId());
+        final Set<ResourceLocation> blocksWithoutItemModel = Set.of(ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.totem_torch.getId(), ModBlocks.dummy_tipi.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             if(blocksWithoutItemModel.contains(blockO.getId()))
                 continue;

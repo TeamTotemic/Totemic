@@ -72,7 +72,7 @@ public final class ModItems {
             return;
 
         //Register item blocks
-        final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.wind_chime.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/);
+        final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.wind_chime.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.dummy_tipi.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             if(blocksWithoutItem.contains(blockO.getId()))
                 continue;

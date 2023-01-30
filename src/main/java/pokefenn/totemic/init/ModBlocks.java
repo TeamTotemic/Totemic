@@ -36,6 +36,8 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
+import pokefenn.totemic.block.DummyTipiBlock;
+import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.block.TotemTorchBlock;
 import pokefenn.totemic.block.music.DrumBlock;
 import pokefenn.totemic.block.music.WindChimeBlock;
@@ -71,6 +73,8 @@ public final class ModBlocks {
     public static final RegistryObject<DrumBlock> drum = REGISTER.register("drum", () -> new DrumBlock(Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<WindChimeBlock> wind_chime = REGISTER.register("wind_chime", () -> new WindChimeBlock(Properties.of(Material.METAL).strength(1.5F).sound(SoundType.METAL)));
     public static final RegistryObject<TotemTorchBlock> totem_torch = REGISTER.register("totem_torch", () -> new TotemTorchBlock(Properties.of(Material.DECORATION).strength(0.05F).lightLevel(s -> 15).sound(SoundType.WOOD).noCollission()));
+    public static final RegistryObject<TipiBlock> tipi = REGISTER.register("tipi", () -> new TipiBlock(Properties.of(Material.CLOTH_DECORATION).strength(0.2F).sound(SoundType.WOOL)));
+    public static final RegistryObject<DummyTipiBlock> dummy_tipi = REGISTER.register("dummy_tipi", () -> new DummyTipiBlock(Properties.of(Material.CLOTH_DECORATION).strength(0.2F).sound(SoundType.WOOL)));
 
     private static Map<TotemWoodType, RegistryObject<TotemBaseBlock>> totemBases;
     private static Table<TotemWoodType, TotemCarving, RegistryObject<TotemPoleBlock>> totemPoles;
