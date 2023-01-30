@@ -1,0 +1,16 @@
+{
+    "name": "Tipi",
+    "icon": "totemic:tipi",
+    "category": "totemic:misc",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The $(item)Tipi$() is a tent which can be used to sleep through the night. It consists of a wooden frame, adorned with a tarp consisting of either Wool or Buffalo Hide. It must be placed on top of a flat surface of grass or dirt, and in the open sky."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:tipi_from_wool",
+            "recipe2": "totemic:tipi_from_hide"
+        }
+    ]
+}

@@ -146,6 +146,25 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('T', Items.TORCH)
                 .unlockedBy("has_totempedia", hasTotempedia)
                 .save(rc);
+        ShapedRecipeBuilder.shaped(ModBlocks.tipi.get())
+                .pattern(" S ")
+                .pattern("SWS")
+                .pattern("W W")
+                .define('S', Tags.Items.RODS_WOODEN)
+                .define('W', ItemTags.WOOL)
+                .group("totemic:tipi")
+                .unlockedBy("has_totempedia", hasTotempedia)
+                .save(rc, "totemic:tipi_from_wool");
+        ShapedRecipeBuilder.shaped(ModBlocks.tipi.get())
+                .pattern(" S ")
+                .pattern("SWS")
+                .pattern("W W")
+                .define('S', Tags.Items.RODS_WOODEN)
+                .define('W', ModItems.buffalo_hide.get())
+                .group("totemic:tipi")
+                .unlockedBy("performed_buffalo_dance", performed(ModContent.buffalo_dance))
+                .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
+                .save(rc, "totemic:tipi_from_hide");
 
         generateRecipes(rc, ModBlocks.getCedarBlockFamily());
 

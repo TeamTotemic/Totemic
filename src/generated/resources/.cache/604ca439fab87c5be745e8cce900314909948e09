@@ -1,4 +1,4 @@
-// 1.19.2	2023-01-29T13:12:50.333372562	Totemic Recipes
+// 1.19.2	2023-01-30T20:56:32.489986225	Totemic Recipes
 ba7495b8dfc8ec3e9ca24a02d8c41e76ff96abaf data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_campfire_cooking.json
 08c67b04f13b233569a9c1cf57792b02a5ff3701 data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_smelting.json
 c3261a9b3039586d7b91dfb728dbc97c8a8d93b2 data/minecraft/advancements/recipes/totemic/cooked_buffalo_meat_from_smoking.json
@@ -20,6 +20,8 @@ fae53ea047cd4929e4d9234e8ec876c1aaa526f7 data/totemic/advancements/recipes/totem
 8386931c2d7e456f604186c13e03d37dbc332b3a data/totemic/advancements/recipes/totemic/jingle_dress.json
 c5f75134522faae7de98d809d1bc0ff8b1964ec0 data/totemic/advancements/recipes/totemic/medicine_bag.json
 588315ce220ebb908a312021d7194c75d4e43873 data/totemic/advancements/recipes/totemic/rattle.json
+605607f4d9e7a4fa5b41a9a345645395c0a63f7f data/totemic/advancements/recipes/totemic/tipi_from_hide.json
+e04bb1cc765f7c2f70f82c179ed0c2e90930082d data/totemic/advancements/recipes/totemic/tipi_from_wool.json
 a88f7dfdbc33daace02cf77debef3a01a3743687 data/totemic/advancements/recipes/totemic/totem_torch.json
 15d3a358ddc66b0ab2e97057c6b54744053606a1 data/totemic/advancements/recipes/totemic/totem_whittling_knife.json
 1c2c5e18ea0b69545295fa5d536b72824f349d78 data/totemic/advancements/recipes/totemic/totemic_staff.json
@@ -39,6 +41,8 @@ ddcf617020963de069dbb64f6f96a204cf5b7660 data/totemic/recipes/jingle_dress.json
 9a5a43d4c189c5ee402addd63c31f8ec42c6698b data/totemic/recipes/leather_from_hide.json
 108b89b608defee648fc93ecaa5d6d8818f84bf1 data/totemic/recipes/medicine_bag.json
 841d33d17ac864f5a3da013c160c7e71f2a46bce data/totemic/recipes/rattle.json
+ceaa05e357472470455554c070c761c9c3e4746f data/totemic/recipes/tipi_from_hide.json
+ea6aa1269cd9d6ef9cdf967d630fc49e7da00400 data/totemic/recipes/tipi_from_wool.json
 ed0f9365d4a5ff7f86336d4fc793dee389ccdad2 data/totemic/recipes/totem_torch.json
 afd85d8214be23ee595170033fe913659587513b data/totemic/recipes/totem_whittling_knife.json
 b34125dee7fd53bac229efb3641ef578ebdd0171 data/totemic/recipes/totemic_staff.json
