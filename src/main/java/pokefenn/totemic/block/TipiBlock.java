@@ -5,11 +5,13 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
@@ -29,8 +31,8 @@ public class TipiBlock extends HorizontalDirectionalBlock {
 
     @Override
     @Nullable
-    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return canPlaceTipi(pContext) ? defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()) : null;
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return canPlaceTipi(ctx) ? defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite()) : null;
     }
 
     private boolean canPlaceTipi(BlockPlaceContext ctx) {
@@ -84,13 +86,27 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return SHAPE;
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        var airState = Blocks.AIR.defaultBlockState();
+        for(int y = 0; y < 2; y++) {
+            for(var dir: Direction.Plane.HORIZONTAL) {
+                var p = pos.relative(dir).above(y);
+                if(level.getBlockState(p).is(ModBlocks.dummy_tipi.get()))
+                    level.setBlock(p, airState, Block.UPDATE_NEIGHBORS | Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE/* | Block.UPDATE_SUPPRESS_LIGHT*/ | Block.UPDATE_SUPPRESS_DROPS);
+            }
+        }
+        for(int y = 3; y < 6; y++) {
+            var p = pos.above(y);
+            if(level.getBlockState(p).is(ModBlocks.dummy_tipi.get()))
+                level.setBlock(p, airState, Block.UPDATE_NEIGHBORS | Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE/* | Block.UPDATE_SUPPRESS_LIGHT*/ | Block.UPDATE_SUPPRESS_DROPS);
+        }
+
+        super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return Shapes.empty();
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return SHAPE;
     }
 
     @Override

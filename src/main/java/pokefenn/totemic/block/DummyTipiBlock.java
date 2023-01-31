@@ -1,8 +1,10 @@
 package pokefenn.totemic.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,6 +17,14 @@ import pokefenn.totemic.init.ModBlocks;
 public class DummyTipiBlock extends Block {
     public DummyTipiBlock(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        //find main Tipi block
+        //TODO
+
+        super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
