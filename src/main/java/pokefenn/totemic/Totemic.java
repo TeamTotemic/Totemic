@@ -46,7 +46,7 @@ public final class Totemic {
     public static final CreativeModeTab creativeTab = new CreativeModeTab(TotemicAPI.MOD_ID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.totemic_staff.get());
+            return new ItemStack(ModBlocks.tipi.get());
         }
     };
 
