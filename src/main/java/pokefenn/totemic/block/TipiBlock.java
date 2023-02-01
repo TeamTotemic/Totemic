@@ -71,34 +71,38 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         var facing = state.getValue(FACING);
         var dummyTipiState = ModBlocks.dummy_tipi.get().defaultBlockState();
+        //bottom part
         for(int y = 0; y < 2; y++) {
             for(var dir: Direction.Plane.HORIZONTAL) {
                 if(dir == facing)
                     continue;
                 var p = pos.relative(dir).above(y);
-                level.setBlock(p, dummyTipiState, Block.UPDATE_NEIGHBORS | Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE/* | Block.UPDATE_SUPPRESS_LIGHT*/);
+                level.setBlock(p, dummyTipiState, Block.UPDATE_ALL | Block.UPDATE_INVISIBLE);
             }
         }
+        //top part
         for(int y = 3; y < 6; y++) {
             var p = pos.above(y);
-            level.setBlock(p, dummyTipiState, Block.UPDATE_NEIGHBORS | Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE/* | Block.UPDATE_SUPPRESS_LIGHT*/);
+            level.setBlock(p, dummyTipiState, Block.UPDATE_ALL | Block.UPDATE_INVISIBLE);
         }
     }
 
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         var airState = Blocks.AIR.defaultBlockState();
+        //bottom part
         for(int y = 0; y < 2; y++) {
             for(var dir: Direction.Plane.HORIZONTAL) {
                 var p = pos.relative(dir).above(y);
                 if(level.getBlockState(p).is(ModBlocks.dummy_tipi.get()))
-                    level.setBlock(p, airState, Block.UPDATE_NEIGHBORS | Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE/* | Block.UPDATE_SUPPRESS_LIGHT*/ | Block.UPDATE_SUPPRESS_DROPS);
+                    level.setBlock(p, airState, Block.UPDATE_ALL | Block.UPDATE_INVISIBLE | Block.UPDATE_SUPPRESS_DROPS);
             }
         }
+        //top part
         for(int y = 3; y < 6; y++) {
             var p = pos.above(y);
             if(level.getBlockState(p).is(ModBlocks.dummy_tipi.get()))
-                level.setBlock(p, airState, Block.UPDATE_NEIGHBORS | Block.UPDATE_CLIENTS | Block.UPDATE_INVISIBLE/* | Block.UPDATE_SUPPRESS_LIGHT*/ | Block.UPDATE_SUPPRESS_DROPS);
+                level.setBlock(p, airState, Block.UPDATE_ALL | Block.UPDATE_INVISIBLE | Block.UPDATE_SUPPRESS_DROPS);
         }
 
         super.playerWillDestroy(level, pos, state, player);

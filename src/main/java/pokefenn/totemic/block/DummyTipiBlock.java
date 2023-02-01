@@ -1,6 +1,11 @@
 package pokefenn.totemic.block;
 
+import java.util.Optional;
+
+import com.mojang.datafixers.util.Pair;
+
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -22,27 +27,36 @@ public class DummyTipiBlock extends Block {
 
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        //find main Tipi block
-        int radius = 1;
-        int height = 6;
-        outer:
-        for(int y = 0; y > -height; y--) { //search downwards
-            for(int x = -radius; x <= radius; x++) {
-                for(int z = -radius; z <= radius; z++) {
-                    var p = pos.offset(x, y, z);
-                    var tipiState = level.getBlockState(p);
-                    if(tipiState.is(ModBlocks.tipi.get())) {
-                        tipiState.getBlock().playerWillDestroy(level, p, tipiState, player);
-                        if(!player.isCreative())
-                            dropResources(tipiState, level, p, null, player, player.getMainHandItem());
-                        level.setBlock(p, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-                        break outer;
-                    }
-                }
+        findMainTipiBlock(level, pos).ifPresent(pair -> {
+            var tipiPos = pair.getFirst();
+            var tipiState = pair.getSecond();
+
+            tipiState.getBlock().playerWillDestroy(level, tipiPos, tipiState, player);
+            if(!player.isCreative())
+                dropResources(tipiState, level, tipiPos, null, player, player.getMainHandItem());
+            level.setBlock(tipiPos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL_IMMEDIATE);
+        });
+        super.playerWillDestroy(level, pos, state, player);
+    }
+
+    private Optional<Pair<BlockPos, BlockState>> findMainTipiBlock(Level level, BlockPos pos) {
+        //if the dummy tipi is in the bottom part
+        for(int y = 0; y < 2; y++) {
+            for(var dir: Direction.Plane.HORIZONTAL) {
+                var p = pos.relative(dir).below(y);
+                var state = level.getBlockState(p);
+                if(state.is(ModBlocks.tipi.get()))
+                    return Optional.of(Pair.of(p, state));
             }
         }
-
-        super.playerWillDestroy(level, pos, state, player);
+        //if it is in the top part
+        for(int y = 3; y < 6; y++) {
+            var p = pos.below(y);
+            var state = level.getBlockState(p);
+            if(state.is(ModBlocks.tipi.get()))
+                return Optional.of(Pair.of(p, state));
+        }
+        return Optional.empty();
     }
 
     @Override
