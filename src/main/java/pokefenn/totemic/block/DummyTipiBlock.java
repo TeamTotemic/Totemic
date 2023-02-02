@@ -9,6 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -39,6 +40,17 @@ public class DummyTipiBlock extends Block {
         super.playerWillDestroy(level, pos, state, player);
     }
 
+    @Override
+    public void wasExploded(Level level, BlockPos pos, Explosion explosion) {
+        findMainTipiBlock(level, pos).ifPresent(pair -> {
+            var tipiPos = pair.getFirst();
+            var tipiState = pair.getSecond();
+
+            tipiState.onBlockExploded(level, tipiPos, explosion); //will remove the Tipi block
+        });
+        super.wasExploded(level, pos, explosion);
+    }
+
     private Optional<Pair<BlockPos, BlockState>> findMainTipiBlock(Level level, BlockPos pos) {
         //if the dummy tipi is in the bottom part
         for(int y = 0; y < 2; y++) {
@@ -67,6 +79,11 @@ public class DummyTipiBlock extends Block {
     @Override
     public PushReaction getPistonPushReaction(BlockState pState) {
         return PushReaction.BLOCK;
+    }
+
+    @Override
+    public boolean propagatesSkylightDown(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+        return true;
     }
 
     @Override
