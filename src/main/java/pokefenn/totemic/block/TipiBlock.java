@@ -4,6 +4,11 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -11,23 +16,62 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.init.ModBlocks;
 
 public class TipiBlock extends HorizontalDirectionalBlock {
+    public static final BooleanProperty OCCUPIED = BedBlock.OCCUPIED;
+
     private static final VoxelShape SHAPE = Shapes.box(0, 0, 0, 1, 0.0625, 1);
     private static final VoxelShape VISUAL_SHAPE = Shapes.box(-1, 0, -1, 2, 6.25, 2);
 
     public TipiBlock(Properties pProperties) {
         super(pProperties);
+        registerDefaultState(stateDefinition.any().setValue(OCCUPIED, false));
+    }
+
+    @Override
+    public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, @org.jetbrains.annotations.Nullable Entity player) {
+        return true;
+    }
+
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if(level.isClientSide)
+            return InteractionResult.CONSUME;
+
+        if(!level.dimensionType().bedWorks()) {
+            level.removeBlock(pos, false);
+            removeDummyTipiBlocks(level, pos);
+            level.explode(null, DamageSource.badRespawnPointExplosion(), null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 5.0F, true, Explosion.BlockInteraction.DESTROY);
+            return InteractionResult.SUCCESS;
+        }
+        else if(state.getValue(OCCUPIED)) {
+            player.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
+            return InteractionResult.SUCCESS;
+        }
+        else if(!level.canSeeSky(pos.above(6))) {
+            player.displayClientMessage(Component.translatable("block.totemic.tipi.cantSleep"), true);
+            return InteractionResult.SUCCESS;
+        }
+        else {
+            player.startSleepInBed(pos).ifLeft(problem -> {
+                if(problem.getMessage() != null)
+                    player.displayClientMessage(problem.getMessage(), true);
+            });
+            return InteractionResult.SUCCESS;
+        }
     }
 
     @Override
@@ -130,6 +174,6 @@ public class TipiBlock extends HorizontalDirectionalBlock {
 
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING);
+        pBuilder.add(FACING, OCCUPIED);
     }
 }

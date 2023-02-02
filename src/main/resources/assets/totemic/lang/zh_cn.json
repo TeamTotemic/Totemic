@@ -57,6 +57,7 @@
   "block.totemic.wind_chime": "风铃",
   "block.totemic.totem_torch": "图腾火炬",
   "block.totemic.tipi": "印第安帐篷",
+  "block.totemic.tipi.cantSleep": "你不能在非开阔地的印第安帐篷里睡觉",
 
   "block.totemic.totem_base": "图腾基座",
   "block.totemic.oak_totem_base": "橡木图腾基座",
