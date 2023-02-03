@@ -77,7 +77,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return canPlaceTipi(ctx) ? defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite()) : null;
+        return canPlaceTipi(ctx) ? defaultBlockState().setValue(FACING, ctx.getHorizontalDirection()) : null;
     }
 
     private boolean canPlaceTipi(BlockPlaceContext ctx) {
@@ -114,7 +114,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        var facing = state.getValue(FACING);
+        var facing = state.getValue(FACING).getOpposite();
         var dummyTipiState = ModBlocks.dummy_tipi.get().defaultBlockState();
         //bottom part
         for(int y = 0; y < 2; y++) {

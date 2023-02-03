@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockModelBuilder.RootTransformBuilder.TransformOrigin;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -20,6 +21,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
@@ -66,14 +68,16 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         //doorBlock(...)
         //trapdoorBlock(...)
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
-        horizontalBlock(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString())
+        horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString())
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .texture("particle", mcLoc("block/white_wool"))
                 .rootTransform()
                     .origin(TransformOrigin.CENTER)
                     .translation(0, 0.95F, 0)
                     .scale(2.85F)
-                    .end());
+                    .end(),
+                0, //angle offset of 0, rotates the model by 180°
+                TipiBlock.OCCUPIED);
         simpleBlock(ModBlocks.dummy_tipi.get(), models().withExistingParent(ModBlocks.dummy_tipi.getId().toString(), "block/air").texture("particle", mcLoc("block/white_wool")));
 
         //Item Blocks
@@ -185,7 +189,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             setTotemTextures(blockModel, block.woodType);
 
             //Block state
-            waterloggedHorizontalBlock(block, blockModel);
+            horizontalBlockIgnoringProperties(block, blockModel, TotemPoleBlock.WATERLOGGED);
             //Item model
             simpleBlockItem(block, blockModel);
         }
@@ -216,14 +220,17 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                 .texture("particle", woodType.getParticleTexture());
     }
 
-    // The same as BlockStateProvider#horizontalBlock, but ignoring the Waterlogged property
-    private void waterloggedHorizontalBlock(Block block, ModelFile model) {
+    private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
+        horizontalBlockIgnoringProperties(block, model, 180, ignored);
+    }
+
+    private void horizontalBlockIgnoringProperties(Block block, ModelFile model, int angleOffset, Property<?>... ignored) {
         getVariantBuilder(block)
             .forAllStatesExcept(state -> ConfiguredModel.builder()
                     .modelFile(model)
-                    .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 180) % 360)
+                    .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) % 360)
                     .build(),
-            BlockStateProperties.WATERLOGGED);
+            ignored);
     }
 
     private void existingBlockItem(RegistryObject<? extends Block> block) {

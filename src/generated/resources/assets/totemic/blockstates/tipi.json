@@ -2,18 +2,18 @@
   "variants": {
     "facing=east": {
       "model": "totemic:block/tipi",
-      "y": 90
+      "y": 270
     },
     "facing=north": {
-      "model": "totemic:block/tipi"
-    },
-    "facing=south": {
       "model": "totemic:block/tipi",
       "y": 180
     },
+    "facing=south": {
+      "model": "totemic:block/tipi"
+    },
     "facing=west": {
       "model": "totemic:block/tipi",
-      "y": 270
+      "y": 90
     }
   }
 }
