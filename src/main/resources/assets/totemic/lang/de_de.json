@@ -24,7 +24,6 @@
   "item.totemic.eagle_feather": "Adlerfeder",
   "item.totemic.baykok_bow": "Baykoks Bogen",
   "item.totemic.totempedia": "Totempedia",
-  "item.totemic.totempedia.tooltip": "Die Totempedia ist noch in Arbeit. Im Augenblick zeigt sie bei Benutzung nur eine Liste der Zeremonien.",
   "item.totemic.medicine_bag": "Medizinbeutel (%s)",
   "item.totemic.creative_medicine_bag": "Kreativmodus-Medizinbeutel (%s)",
   "totemic.medicineBag.notPortable": "Der Effekt %s kann nicht in einem Medizinbeutel getragen werden",
@@ -151,7 +150,7 @@
   "death.attack.totemic.sunDance": "%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.",
   "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren.",
   
-  "totemic.totempedia.landingText": "Die Totempedia, ein Leitfaden für all Deine Totem-Bedürfnisse.$(br2)$(4)Derzeit noch in Arbeit!",
+  "totemic.totempedia.landingText": "Die Totempedia, ein Leitfaden für all Deine Totem-Bedürfnisse.",
   
   "totemic.config.general": "Allgemein",
   "totemic.config.client": "Client-Seite",

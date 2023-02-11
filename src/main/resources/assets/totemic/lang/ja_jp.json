@@ -24,7 +24,6 @@
   "item.totemic.eagle_feather": "ハクトウワシの羽根",
   "item.totemic.baykok_bow": "ベイコックの弓",
   "item.totemic.totempedia": "トーテムペディア",
-  "item.totemic.totempedia.tooltip": "The Totempedia is still WIP. Right now, this item only displays a list of Ceremonies when used.",
   "item.totemic.medicine_bag": "薬袋 (%s)",
   "item.totemic.creative_medicine_bag": "クリエーティブ薬袋 (%s)",
   "totemic.medicineBag.notPortable": "The effect %s cannot be carried in a Medicine Bag",
@@ -151,7 +150,7 @@
   "death.attack.totemic.sunDance": "%1$s sacrificed themselves to the Sun God. This is not supposed to happen.",
   "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",
   
-  "totemic.totempedia.landingText": "トーテムペディア、トーテム術に必要な全てのガイド$(br2)$(4)Currently Work in Progress!",
+  "totemic.totempedia.landingText": "トーテムペディア、トーテム術に必要な全てのガイド",
   
   "totemic.config.general": "General",
   "totemic.config.client": "Client",

@@ -24,7 +24,6 @@
   "item.totemic.eagle_feather": "鹰羽",
   "item.totemic.baykok_bow": "贝柯克之弓",
   "item.totemic.totempedia": "图腾百科全书",
-  "item.totemic.totempedia.tooltip": "The Totempedia is still WIP. Right now, this item only displays a list of Ceremonies when used.",
   "item.totemic.medicine_bag": "药草袋（%s）",
   "item.totemic.creative_medicine_bag": "创造模式药草袋（%s）",
   "totemic.medicineBag.notPortable": "药草袋无法携带 %s 效果",
@@ -151,7 +150,7 @@
   "death.attack.totemic.sunDance": "%1$s 在执行仪式的过程中发生了不测。",
   "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",
   
-  "totemic.totempedia.landingText": "图腾百科全书，图腾所需的一切指引。$(br2)$(4)Currently Work in Progress!",
+  "totemic.totempedia.landingText": "图腾百科全书，图腾所需的一切指引。",
   
   "totemic.config.general": "General",
   "totemic.config.client": "Client",

@@ -24,7 +24,6 @@
   "item.totemic.eagle_feather": "Орлиное перо",
   "item.totemic.baykok_bow": "Лук Байкока",
   "item.totemic.totempedia": "Тотемпедия",
-  "item.totemic.totempedia.tooltip": "The Totempedia is still WIP. Right now, this item only displays a list of Ceremonies when used.",
   "item.totemic.medicine_bag": "Медицинская сумка (%s)",
   "item.totemic.creative_medicine_bag": "Творческая медицинская сумка (%s)",
   "totemic.medicineBag.notPortable": "Эффект %s не может быть перенесен медицинской сумкой",
@@ -151,7 +150,7 @@
   "death.attack.totemic.sunDance": "%1$s пожертвовал собой Богу Солнца.  Этого не должно было случиться.",
   "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",
   
-  "totemic.totempedia.landingText": "Тотемпедия, руководство по всему Тотемическому.$(br2)$(4)Currently Work in Progress!",
+  "totemic.totempedia.landingText": "Тотемпедия, руководство по всему Тотемическому.",
   
   "totemic.config.general": "General",
   "totemic.config.client": "Client",
