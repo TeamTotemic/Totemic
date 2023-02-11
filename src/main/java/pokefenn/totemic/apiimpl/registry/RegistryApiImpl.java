@@ -20,6 +20,7 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.api.totem.TotemEffect;
 
 public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;
@@ -64,6 +65,11 @@ public enum RegistryApiImpl implements RegistryAPI {
 
     public static void registerTotemCarvings() {
         fireRegistryEvent(TotemCarving.class, totemCarvings, TotemCarving::getRegistryName);
+
+        //TODO: Temporary
+        FMLJavaModLoadingContext.get().getModEventBus().post(new TotemicRegisterEvent<>(TotemEffect.class, object -> {
+            throw new RuntimeException("TotemEffect instances can no longer be registered directly. Register TotemCarving instances instead.");
+        }));
     }
 
     public static void registerCeremonies() {
