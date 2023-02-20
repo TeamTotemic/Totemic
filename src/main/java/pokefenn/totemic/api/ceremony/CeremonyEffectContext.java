@@ -19,16 +19,18 @@ public interface CeremonyEffectContext {
     int getTime();
 
     /**
-     * If the ceremony was initiated by a player, returns that player. Otherwise, returns an empty Optional.
+     * If the ceremony was initiated by a player, returns that player, if available.
      * <p>
-     * Currently, only players can initiate ceremonies, but this may change in the future.
+     * Returns an empty Optional if the initiating entity is not a player or no longer available (e.g. when the world
+     * has been saved and reloaded).
      */
     Optional<Player> getInitiatingPlayer();
 
     /**
-     * Returns the Entity that initiated the ceremony, if available.
-     * Returns an empty Optional if the initiating entity is no longer available (e.g. when
-     * the world has been saved and reloaded).
+     * Returns the Entity that initiated the ceremony (i.e. played the last selecting instrument), if available.
+     * <p>
+     * Returns an empty Optional if the initiating entity is no longer available (e.g. when the world has been saved
+     * and reloaded).
      */
     Optional<Entity> getInitiator();
 

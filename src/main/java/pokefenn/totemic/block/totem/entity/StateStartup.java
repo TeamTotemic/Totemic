@@ -35,12 +35,12 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     private Ceremony ceremony;
     private CeremonyInstance instance;
-    private Entity initiator;
+    private @Nullable Entity initiator;
 
     private final DefaultMusicAcceptor musicHandler = new DefaultMusicAcceptor();
     private int time = 0;
 
-    StateStartup(TotemBaseBlockEntity tile, Ceremony ceremony, CeremonyInstance instance, Entity initiator) {
+    StateStartup(TotemBaseBlockEntity tile, Ceremony ceremony, CeremonyInstance instance, @Nullable Entity initiator) {
         super(tile);
         this.ceremony = ceremony;
         this.instance = instance;
@@ -172,7 +172,7 @@ public final class StateStartup extends TotemState implements StartupContext {
             tag.put("InstanceData", instanceData);
         tag.put("Music", musicHandler.serializeNBT());
         tag.putInt("Time", time);
-        //TODO: Save initiator as well? Do we need the initiator?
+        //For simplicity, we won't save the initiator, since on loading, the block entity's level will be null.
     }
 
     @Override

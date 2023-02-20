@@ -27,11 +27,11 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
 
     private Ceremony ceremony;
     private CeremonyInstance instance;
-    private Entity initiator;
+    private @Nullable Entity initiator;
 
     private int time = 0;
 
-    StateCeremonyEffect(TotemBaseBlockEntity tile, Ceremony ceremony, CeremonyInstance instance, Entity initiator) {
+    StateCeremonyEffect(TotemBaseBlockEntity tile, Ceremony ceremony, CeremonyInstance instance, @Nullable Entity initiator) {
         super(tile);
         this.ceremony = ceremony;
         this.instance = instance;
@@ -114,7 +114,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
         if(instanceData != EndTag.INSTANCE)
             tag.put("InstanceData", instanceData);
         tag.putInt("Time", time);
-        //TODO: Save initiator as well? Do we need the initiator?
+        //For simplicity, we won't save the initiator, since on loading, the block entity's level will be null.
     }
 
     @Override
