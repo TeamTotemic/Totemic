@@ -3,9 +3,6 @@ package pokefenn.totemic.ceremony;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.phys.Vec3;
@@ -13,7 +10,6 @@ import net.minecraftforge.common.IPlantable;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
-import pokefenn.totemic.util.MiscUtil;
 
 public enum ZaphkielWaltzCeremony implements CeremonyInstance {
     INSTANCE;
@@ -22,19 +18,6 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
-        if(!level.isClientSide && context.getTime() % 20 == 0) {
-            level.getEntities(EntityType.ITEM, TotemicEntityUtil.getAABBAround(pos, RADIUS), e -> e.getItem().is(Items.EGG))
-            .forEach(egg -> {
-                if(level.random.nextInt(4) == 0) {
-                    var chicken = EntityType.CHICKEN.create(level);
-                    chicken.setPos(egg.position());
-                    chicken.setAge(AgeableMob.BABY_START_AGE);
-                    level.addFreshEntity(chicken);
-                    MiscUtil.shrinkItemEntity(egg);
-                }
-            });
-        }
-
         if(context.getTime() % 7 == 0) {
             BlockPos.betweenClosedStream(TotemicEntityUtil.getAABBAround(pos, RADIUS))
             .forEach(p -> {

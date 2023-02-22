@@ -10,6 +10,7 @@ import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 import pokefenn.totemic.api.totem.PortableTotemCarving;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.ceremony.AnimalGrowthCeremony;
 import pokefenn.totemic.ceremony.BaykokSummonCeremony;
 import pokefenn.totemic.ceremony.BuffaloDanceCeremony;
 import pokefenn.totemic.ceremony.CleansingCeremony;
@@ -69,6 +70,7 @@ public final class ModContent {
     public static final Ceremony depths = new Ceremony(resloc("depths"), 4500, 20 * 20, () -> DepthsCeremony.INSTANCE, flute, flute);
     public static final Ceremony fertility = new Ceremony(resloc("fertility"), 5280, 23 * 20, () -> FertilityCeremony.INSTANCE, flute, drum);
     public static final Ceremony zaphkiel_waltz = new Ceremony(resloc("zaphkiel_waltz"), 6720, 20 * 20, () -> ZaphkielWaltzCeremony.INSTANCE, wind_chime, flute);
+    public static final Ceremony animal_growth = new Ceremony(resloc("animal_growth"), 6900, 21 * 20, () -> AnimalGrowthCeremony.INSTANCE, flute, wind_chime);
     public static final Ceremony buffalo_dance = new Ceremony(resloc("buffalo_dance"), 7380, 24 * 20, () -> BuffaloDanceCeremony.INSTANCE, drum, wind_chime);
     public static final Ceremony rain = new Ceremony(resloc("rain"), 10980, 26 * 20, () -> WeatherCeremony.RAIN, drum, rattle);
     public static final Ceremony drought = new Ceremony(resloc("drought"), 10980, 26 * 20, () -> WeatherCeremony.DROUGHT, rattle, drum);
@@ -97,7 +99,7 @@ public final class ModContent {
 
     @SubscribeEvent
     public static void ceremonies(TotemicRegisterEvent<Ceremony> event) {
-        event.registerAll(war_dance, depths, fertility, zaphkiel_waltz, buffalo_dance, rain, drought,
+        event.registerAll(war_dance, depths, fertility, zaphkiel_waltz, animal_growth, buffalo_dance, rain, drought,
                 flute_infusion, eagle_dance, cleansing, sun_dance, danse_macabre, baykok_summon);
     }
 
