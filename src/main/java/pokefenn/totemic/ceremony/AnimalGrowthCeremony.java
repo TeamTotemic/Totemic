@@ -59,7 +59,7 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
                 var state = level.getBlockState(p);
                 if(state.is(Blocks.TURTLE_EGG) && TurtleEggBlock.onSand(level, p)) {
                     if(!level.isClientSide) {
-                        if(level.random.nextInt(getEffectTime()) == 0) //about once per ceremony usage
+                        if(level.random.nextInt(45) == 0) //about once per ceremony usage
                             hatchTurtleEgg(level, p, state);
                     }
                     else {
