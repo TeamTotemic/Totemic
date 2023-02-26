@@ -11,6 +11,11 @@
             "type": "totemic:ceremony",
             "ceremony": "totemic:buffalo_dance",
             "text": "$(o)Don't use red rags"
+        },
+        {
+            "type": "patchouli:entity",
+            "entity": "totemic:buffalo",
+            "scale": 0.8
         }
     ],
     "sortnum": 5
