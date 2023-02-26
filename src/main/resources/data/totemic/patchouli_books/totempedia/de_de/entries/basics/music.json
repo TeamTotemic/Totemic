@@ -5,11 +5,11 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(thing)Melodie$() ist eine magische Kraft, die von $(l:instruments)Musikinstrumenten$(/l) freigesetzt wird, wenn sie gespielt werden.$(br2)Jedes Instrument hat eine $(thing)Melodieobergrenze$(), das heißt, dass jedes Instrument nur eine bestimmte Menge an Melodie auf einmal für eine $(l:ceremonies)Zeremonie$(/l) oder anderen Effekt freisetzen kann. $(emph)Weißer Rauch$() zeigt an, dass die Obergrenze für ein Instrument erreicht wurde."
+            "text": "$(thing)Melodie$() ist eine magische Kraft, die von $(l:instruments)Musikinstrumenten$(/l) freigesetzt wird. Jedes Instrument erzeugt Melodie auf eine andere Weise. Spielt man eines, gelangt seine Melodie in nahegelegene $(l:basics/totem_poles)Totempfähle$(/l).$(br2)Jedes Instrument hat eine $(thing)Melodieobergrenze$(), das heißt, dass jedes Instrument nur eine bestimmte Menge an Melodie auf einmal für eine $(l:ceremonies)Zeremonie$(/l) oder"
         },
         {
             "type": "patchouli:text",
-            "text": "Deshalb ist es meistens nötig, $(emph)möglichst viele verschiedene$() Instrumente zu spielen, um den gewünschten Effekt zu aktivieren. Wenn du Schwierigkeiten hast, genügend Melodie zu erzeugen, schaue vielleicht, ob es ein Instrument gibt, was du noch nicht benutzt hast."
+            "text": "anderen Effekt freisetzen kann. $(emph)Weißer Rauch$() zeigt an, dass die Obergrenze für ein Instrument erreicht wurde. Meistens ist es also nötig, $(emph)möglichst viele verschiedene$() Instrumente zu spielen, um den gewünschten Effekt zu erhalten. Wenn du Schwierigkeiten hast, genügend Melodie zu erzeugen, schaue vielleicht, ob es ein Instrument gibt, was du noch nicht benutzt hast."
         }
     ],
     "sortnum": 2

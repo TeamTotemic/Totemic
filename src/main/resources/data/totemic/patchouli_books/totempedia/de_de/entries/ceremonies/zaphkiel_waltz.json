@@ -1,16 +1,16 @@
 {
-    "name": "Zaphkiel Waltz",
+    "name": "Zaphkiel-Walzer",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Zaphkiel Waltz$() is a growth Ceremony that affects nearby $(emph)plants$(), making them grow at a much faster rate than usual."
+            "text": "Der $(thing)Zaphkiel-Walzer$() ist eine Wachstumszeremonie, die auf $(emph)Pflanzen$() wirkt, um sie deutlich schneller wachsen zu lassen."
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:zaphkiel_waltz",
-            "text": "$(o)Gothicly elegant"
+            "text": "$(o)Gotisch elegant"
         }
     ],
     "sortnum": 3

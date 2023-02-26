@@ -11,7 +11,7 @@
             "type": "patchouli:crafting",
             "recipe": "totemic:medicine_bag",
             "title": "Medicine Bag",
-            "text": "The Medicine Bag will last for a few minutes before it depletes. To $(emph)charge$() it, just stand near a Totem Pole that has your bag's effect carved into it."
+            "text": "$(br)The Medicine Bag will last for a few minutes before it depletes. To $(emph)charge$() it, just stand near a Totem Pole that has your bag's effect carved into it."
         }
     ],
     "extra_recipe_mappings": {

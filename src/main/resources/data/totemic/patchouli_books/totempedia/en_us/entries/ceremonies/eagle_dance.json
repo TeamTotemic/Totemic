@@ -11,6 +11,11 @@
             "type": "totemic:ceremony",
             "ceremony": "totemic:eagle_dance",
             "text": "$(o)Welcome to 'Murica!"
+        },
+        {
+            "type": "patchouli:entity",
+            "entity": "totemic:bald_eagle",
+            "scale": 0.5
         }
     ],
     "sortnum": 9

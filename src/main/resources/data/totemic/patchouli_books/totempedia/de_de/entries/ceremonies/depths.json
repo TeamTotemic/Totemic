@@ -1,11 +1,11 @@
 {
-    "name": "Symphony of the Depths",
+    "name": "Sinfonie der Tiefen",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Symphony of the Depths$() is a simple Ceremony that will give all nearby players $(emph)Water Breathing$() for a long duration."
+            "text": "Die $(thing)Sinfonie der Tiefen$() ist eine einfache Zeremonie, die dir und allen in der Nähe für eine Weile $(emph)Unterwasseratmung$() gibt."
         },
         {
             "type": "totemic:ceremony",

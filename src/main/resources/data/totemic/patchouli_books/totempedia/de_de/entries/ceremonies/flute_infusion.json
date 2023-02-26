@@ -1,16 +1,16 @@
 {
-    "name": "Serenade for Syrinx",
+    "name": "Serenade für Syrinx",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Serenade for Syrinx$() will enchant a regular $(l:instruments/flute)Flute$() with melodic energy, turning it into $(item)Pan's Flute$().$(br2)Not only can Pan's Flute release much more $(l:basics/music)Melody$() than a regular Flute, but $(emph)Animals$() and $(emph)Villagers$() will also be unable to resist its melody and will follow you when you play it."
+            "text": "Die $(thing)Serenade für Syrinx$() verzaubert eine normale $(l:instruments/flute)Flöte$() mit melodischer Energie, wodurch sie zu $(item)Pans Flöte$() wird.$(br2)Pans Flöte erzeugt deutlich mehr $(l:basics/music)Melodie$() als eine normale Flöte, und außerdem können $(emph)Tiere$() und $(emph)Dorfbewohner$() ihrem Klang nicht widerstehen und folgen dir, wenn du sie spielst."
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:flute_infusion",
-            "text": "$(o)Hide in the Sugar Cane"
+            "text": "$(o)Versteck dich im Zuckerrohr"
         }
     ],
     "extra_recipe_mappings": {

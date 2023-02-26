@@ -5,7 +5,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(thing)Steve's Lullaby$() is a Ceremony which can calm down and heal $(emph)Zombie Villagers, Zombified Piglins$() and other creatures that have been infested with zombification. Only a few monsters will be affected per activation, and they need to have been $(emph)weakened$() by a potion effect first."
+            "text": "$(thing)Steve's Lullaby$() is a Ceremony which can calm down and heal $(emph)Zombie Villagers, Zombified Piglins$() and other creatures that have been infested with zombification.$(br2)Only a few monsters will be affected per activation, and they need to have been $(emph)weakened$() by a potion effect first."
         },
         {
             "type": "totemic:ceremony",

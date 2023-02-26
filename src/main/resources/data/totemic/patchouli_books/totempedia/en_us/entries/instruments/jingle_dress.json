@@ -11,6 +11,10 @@
             "type": "patchouli:crafting",
             "recipe": "totemic:jingle_dress",
             "text": "$(br)Unlike other Instruments, the Jingle Dress cannot be used as a $(l:ceremonies)Ceremony Selector$()."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:iron_bells"
         }
     ],
     "advancement": "totemic:recipes/totemic/jingle_dress",

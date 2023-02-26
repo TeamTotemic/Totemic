@@ -1,16 +1,16 @@
 {
-    "name": "Drought Dance",
+    "name": "Dürretanz",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Drought Dance$() will clear the sky and end any rain or thunderstorms that may be plaguing your world.$(br2)Its effects are opposite to the $(l:ceremonies/rain)Rain Dance$()."
+            "text": "Der $(thing)Dürretanz$() klärt den Himmel auf und beendet jeden Regen oder Gewittersturm, der das Land heimsucht.$(br2)Seine Effekte stehen im Gegensatz zum $(l:ceremonies/rain)Regentanz$()."
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:drought",
-            "text": "$(o)Ninetails, Not Kurama!"
+            "text": "$(o)Ninetails, nicht Kurama!"
         }
     ],
     "sortnum": 7

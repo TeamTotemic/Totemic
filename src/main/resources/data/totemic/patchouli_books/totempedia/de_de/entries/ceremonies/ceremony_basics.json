@@ -1,31 +1,31 @@
 {
-    "name": "Basics of Ceremonies",
+    "name": "Zeremonie-Grundlagen",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(thing)Ceremonies$() are a way for Totemists to gather strength over a period of time through the power of $(l:basics/music)Melody$() to release a burst of energy on the nearby world. In contrast to $(l:basics/totem_effects)Totem Effects$(), the effects of Ceremonies are much more powerful, but limited in duration.$(br2)The center of a Ceremony is a $(l:basics/totem_poles)Totem Pole$(): It is where the Melody is channeled to and"
+            "text": "$(thing)Zeremonien$() sind ein Weg für Totemisten, die Kraft von $(l:basics/music)Melodie$() zu bündeln, um sie dann in einem großen Stoß freizusetzen und kraftvolle Effekte zu erzeugen. Anders als $(l:basics/totem_effects)Totemeffekte$() sind die Effekte von Zeremonien viel mächtiger, aber zeitlich begrenzt.$(br2)Der Mittelpunkt einer jeden Zeremonie ist ein $(l:basics/totem_poles)Totempfahl$(): Dorthin wird die Melodie"
         },
         {
             "type": "patchouli:text",
-            "text": "where the effects are released from. To start a Ceremony, you need to play two Music Instruments in $(thing)Selector Mode$(), which is done by $(emph)sneaking$() while playing the Instrument. The combination of the two Instruments will decide which Ceremony is selected. For example, playing the $(l:instruments/drum)Drum$() twice while sneaking will activate the $(l:ceremonies/war_dance)War Dance$().$(br2)Once you have selected a Ceremony, you need to channel $(l:basics/music)Melody$() into the Totem Pole until it has collected enough"
+            "text": "geleitet und von dort werden die Effekte freigesetzt. Um eine Zeremonie zu beginnen, musst du zwei Musikinstrumente im $(thing)Auswahlmodus$() spielen, das geht, indem du sie während des $(emph)Schleichens$() spielst. Welche zwei Instrumente du spielst, entscheidet dabei, welche Zeremonie du auswählst. Spielst du zum Beispiel zweimal die $(l:instruments/drum)Trommel$() während du schleichst, aktivierst du die $(l:ceremonies/war_dance)Kriegstanz$()-Zeremonie.$(br2)Wenn du die Zeremonie ausgewählt hast, musst du"
         },
         {
             "type": "patchouli:text",
-            "text": "to activate the Ceremony's effect. You only have a $(emph)limited amount of time$() to do this, and each Instrument can only be played up to a certain point until its $(l:basics/music)Melody Threshold$() is reached, meaning that a Ceremony cannot be performed using only one Instrument. A $(emph)white cloud of smoke$() that emits from the Totem Base signifies that the Instrument's Melody Threshold is reached, so you should $(emph)stop playing$() that particular Instrument until the end of the Ceremony."
+            "text": "$(l:basics/music)Melodie$() in den Totempfahl leiten, bis er genug gesammelt hat, um den Effekt der Zeremonie freizusetzen. Dafür hast du nur eine $(emph)begrenzte Zeit$() zur Verfügung, und jedes Instrument kann nur solange gespielt werden, bis seine $(l:basics/music)Melodieobergrenze$() erreicht ist, das heißt also, dass eine Zeremonie nicht mit nur einem Instrument ausgeführt werden kann. $(emph)Weißer Rauch$() aus der Totembasis zeigt an, dass die Melodieobergrenze des Instrumentes erreicht ist, in diesem Fall solltest du"
         },
         {
             "type": "patchouli:text",
-            "text": "Since the time is limited, playing speed is important, and care should be taken with the $(emph)timing$() and $(emph)rhythm$() between the Instruments. It may require some practice for Totemists to complete some of the more difficult Ceremonies.$(br2)Left-clicking the Totem Base with a $(l:basics/totemic_staff)Totemic Staff$() will cancel any Ceremony or Selection on that Totem Pole."
+            "text": "bis zum Ende der Zeremonie $(emph)aufhören$(), dieses Instrument zu spielen.$(br2)Da die Zeit begrenzt ist, ist die Spielgeschwindigkeit wichtig, und man sollte auf das $(emph)Timing$() und den $(emph)Rhythmus$() zwischen den verschiedenen Instrumenten achten. Es braucht eventuell etwas Übung, um die schwierigeren Zeremonien durchzuführen.$(br2)Ein Linksklick mit dem $(l:basics/totemic_staff)Totemstab$() auf die Totembasis bricht jede Zeremonie und"
         },
         {
             "type": "patchouli:text",
-            "text": "$(o)Tips for Ceremonies:$()$(li)After you selected a Ceremony, you need to $(emph)stop sneaking$() so that your music counts for the Ceremony.$(li)$(l:instruments/wind_chime)Wind Chimes$() play at somewhat regular intervals. Try to time your Ceremony around them.$(li)More Instruments of the same kind usually don't help that much. Try getting as many $(emph)different Instruments$() as you can.$(li)That said, it can be helpful to have two $(l:instruments/drum)Drum$() and two or three $(l:instruments/wind_chime)Wind Chimes$()."
+            "text": "Selektion darauf ab.$(br2)$(o)Tipps für Zeremonien:$()$(li)Wenn du eine Zeremonie ausgewählt hast, musst du $(emph)aufhören, zu schleichen$(), damit die Melodie für die Zeremonie gezählt wird.$(li)$(l:instruments/wind_chime)Windspiele$() spielen in ungefähr gleichen Zeitabständen. Versuche, deine Zeremonie daran auszurichten.$(li)Mehrere gleiche Instrumente helfen normalerweise nicht viel. Versuche, so viele $(emph)verschiedene Instrumente$() wie möglich zu verwenden."
         },
         {
             "type": "patchouli:text",
-            "text": "$(li)If you hold a $(l:instruments/rattle)Rattle$() in your main hand and a $(l:instruments/flute)Flute$() in your off hand, you can play them both at the same time.$(li)The time you have available to complete a Ceremony changes with $(emph)game difficulty$()."
+            "text": "$(li)Allerdings kann es hilfreich sein, zwei $(l:instruments/drum)Trommeln$() und zwei oder drei $(l:instruments/wind_chime)Windspiele$() zu haben.$(li)Wenn du eine $(l:instruments/rattle)Rassel$() in der Haupthand und eine $(l:instruments/flute)Flöte$() in der Zweithand hälst, kannst du sie beide gleichzeitig spielen.$(li)Die verfügbare Zeit für eine Zeremonie hängt von der $(emph)Schwierigkeitsstufe$() des Spiels ab."
         }
     ],
     "priority": true

@@ -5,7 +5,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)War Dance$() is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body.$(br2)After performing it, the Ceremony will grant everyone nearby $(emph)Speed$() and $(emph)Strength$() for a long period of time, allowing them to rush to battle."
+            "text": "The $(thing)War Dance$() is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body.$(br2)After performing it, the Ceremony will grant you and everyone nearby $(emph)Speed$() and $(emph)Strength$() for a few minutes, allowing you to rush to battle."
         },
         {
             "type": "totemic:ceremony",

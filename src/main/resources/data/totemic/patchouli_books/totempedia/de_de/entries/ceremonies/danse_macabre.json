@@ -5,12 +5,12 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Danse Macabre$() is a dark necromantic Ceremony, which will bring $(emph)Zombies$() back to life from $(emph)Rotten Flesh$(). However, there is a decent chance that the summoned creations will be $(emph)Zombie Villagers$() instead. Depending on the environment, other kinds of monsters will spawn instead of Zombies."
+            "text": "Der $(thing)Danse Macabre$() ist eine dunkle nekromantische Zerenonie, die $(emph)Zombies$() aus $(emph)verrottetem Fleisch$() zum Leben erweckt. Es besteht allerdings eine gute Chance, dass die erweckten Kreaturen $(emph)Zombie-Dorfbewohner$() sind. Je nach Umgebung werden statt Zombies andere Monster erweckt."
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:danse_macabre",
-            "text": "$(o)November Spawned a Monster"
+            "text": "$(o)Bis die Wolken wieder lila sind"
         }
     ],
     "sortnum": 12

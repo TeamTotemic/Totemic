@@ -11,7 +11,7 @@
             "type": "patchouli:crafting",
             "recipe": "totemic:medicine_bag",
             "title": "Medizinbeutel",
-            "text": "Beutel dann öffnen und schließen.$(br)Der Medizinbeutel hält ein paar Minuten, bevor er leer ist. Zum $(emph)Aufladen$() musst du dich nur in die Nähe eines Totempfahls stellen, der den Effekt deines Beutels aufgeschnitzt hat."
+            "text": "Beutel dann öffnen und schließen.$(br)Der Medizinbeutel hält ein paar Minuten, bevor er leer ist. Zum $(emph)Aufladen$() musst du dich nur in die Nähe eines Totempfahls stellen, der den Effekt deines Beutels eingeschnitzt hat."
         }
     ],
     "extra_recipe_mappings": {

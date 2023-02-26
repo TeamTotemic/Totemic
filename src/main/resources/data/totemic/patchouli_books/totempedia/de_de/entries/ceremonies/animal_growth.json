@@ -1,16 +1,16 @@
 {
-    "name": "Hymn of Maturity",
+    "name": "Hymne des Erwachsens",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Hymn of Maturity$() is a growth Ceremony that makes $(emph)baby animals$() grow up much faster, as well as help with the hatching of $(emph)Chicken$() and $(emph)Turtle eggs$()."
+            "text": "Die $(thing)Hymne des Erwachsens$() ist eine Wachstumszeremonie, die $(emph)Jungtiere$() schneller aufwachsen lässt. Außerdem hilft sie $(emph)Hühnern$() und $(emph)Schildkröten$(), aus ihren Eiern zu schlüpfen."
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:animal_growth",
-            "text": "$(o)Maturity is a high price to pay for growing up"
+            "text": "$(o)Erwachsenwerden ist ein großer Preis, den man fürs Aufwachsen zahlt"
         }
     ],
     "sortnum": 4

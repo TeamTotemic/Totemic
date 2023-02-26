@@ -1,11 +1,11 @@
 {
-    "name": "Rattle",
+    "name": "Rassel",
     "icon": "totemic:rattle",
     "category": "totemic:instruments",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(item)Rattle$() is a backbone of any more advanced Ceremonies. It produces Melody whenever it has been shook with the hand.$(br2)When you hold the Rattle in your main hand, another Instrument held in the offhand can be played at the same time."
+            "text": "Die $(item)Rassel$() bildet das Rückgrat von fortgeschritteneren Zeremonien. Sie erzeugt Melodie, wenn sie mit der Hand geschüttelt wird.$(br2)Wenn du die Rassel in der Haupthand hälst, kannst du sie gleichzeitig mit einem anderen Instrument in der Zweithand spielen."
         },
         {
             "type": "patchouli:crafting",

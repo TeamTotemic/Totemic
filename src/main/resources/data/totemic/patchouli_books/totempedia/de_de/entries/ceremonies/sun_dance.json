@@ -1,16 +1,16 @@
 {
-    "name": "Sun Dance",
+    "name": "Sonnentanz",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Sun Dance$() is a very special and sacred Ceremony. Unlike with other Ceremonies, you will be faced with a $(emph)near-death experience$(). If you pull through, you and everyone nearby will be $(emph)healed$() and $(emph)protected from damage$() for a while.$(br2)$(o)The Sun Dance will not reduce your health below half a heart."
+            "text": "Der $(thing)Sonnentanz$() ist eine der heiligsten Zeremonien. Anders als bei anderen Zeremonien erlebst du hier eine $(emph)Nahtoderfahrung$(). Wenn du es schaffst, wirst du und jeder in der Nähe $(emph)geheilt$() und einige Zeit lang $(emph)vor Schaden geschützt$().$(br2)$(o)Der Sonnentanz reduziert Deine Lebenspunkte nicht unter ein halbes Herz."
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:sun_dance",
-            "text": "$(o)Kneeling, my god is the sun"
+            "text": "$(o)Heile sie, mit Feuer von oben"
         }
     ],
     "sortnum": 11

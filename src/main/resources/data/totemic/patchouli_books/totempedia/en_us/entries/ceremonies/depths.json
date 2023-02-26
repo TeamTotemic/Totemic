@@ -5,7 +5,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Symphony of the Depths$() is a simple Ceremony that will give all nearby players $(emph)Water Breathing$() for a long duration."
+            "text": "The $(thing)Symphony of the Depths$() is a simple Ceremony that will give you and everyone nearby $(emph)Water Breathing$() for a few minutes."
         },
         {
             "type": "totemic:ceremony",

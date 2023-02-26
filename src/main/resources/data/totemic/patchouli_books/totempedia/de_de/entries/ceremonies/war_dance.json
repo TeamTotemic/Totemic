@@ -1,16 +1,16 @@
 {
-    "name": "War Dance",
+    "name": "Kriegstanz",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)War Dance$() is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body.$(br2)After performing it, the Ceremony will grant everyone nearby $(emph)Speed$() and $(emph)Strength$() for a long period of time, allowing them to rush to battle."
+            "text": "Der $(thing)Kriegstanz$() ist eine Zeremonie, die zur Vorbereitung auf einen Kampf deine Sinne schärft und Adrenalin in deinen Körper bringt.$(br2)Nach der Durchführung bringt der Kriegstanz dir und allen in der Nähe $(emph)Schnelligkeit$() und $(emph)Stärke$() für eine Weile, um in den Kampf zu stürmen."
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:war_dance",
-            "text": "$(o)A convoluted game of chess"
+            "text": "$(o)Ein verwickeltes Schachspiel"
         }
     ],
     "sortnum": 0
