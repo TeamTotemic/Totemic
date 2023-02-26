@@ -1,0 +1,20 @@
+{
+    "name": "Medizinbeutel",
+    "icon": "totemic:medicine_bag",
+    "category": "totemic:misc",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Mit dem $(item)Medizinbeutel$() kannst du einen $(l:basics/totem_effects)Totemeffekt$() mit dir tragen, so dass du seine Wirkung für eine begrenzte Zeit nutzen kannst, ohne in der Nähe eines Totempfahles sein zu müssen.$(br2)Um den Effekt deines Medizinbeutels festzulegen, Schleichen+Rechtsklicke ihn auf einen Totempfahl mit dem gewünschten Effekt. Durch einen Rechsklick kannst du den"
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:medicine_bag",
+            "title": "Medizinbeutel",
+            "text": "Beutel dann öffnen und schließen.$(br)Der Medizinbeutel hält ein paar Minuten, bevor er leer ist. Zum $(emph)Aufladen$() musst du dich nur in die Nähe eines Totempfahls stellen, der den Effekt deines Beutels aufgeschnitzt hat."
+        }
+    ],
+    "extra_recipe_mappings": {
+        "totemic:creative_medicine_bag": 1
+    }
+}

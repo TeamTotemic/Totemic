@@ -1,0 +1,15 @@
+{
+    "name": "Totemfackel",
+    "icon": "totemic:totem_torch",
+    "category": "totemic:misc",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "Die $(item)Totemfackel$() ist eine größere Variante einer normalen Fackel, und strahlt außerdem etwas mehr Licht aus."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:totem_torch"
+        }
+    ]
+}

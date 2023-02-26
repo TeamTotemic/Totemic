@@ -1,0 +1,17 @@
+{
+    "name": "Sun Dance",
+    "icon": "minecraft:air",
+    "category": "totemic:ceremonies",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The $(thing)Sun Dance$() is a very special and sacred Ceremony. Unlike with other Ceremonies, you will be faced with a $(emph)near-death experience$(). If you pull through, you and everyone nearby will be $(emph)healed$() and $(emph)protected from damage$() for a while.$(br2)$(o)The Sun Dance will not reduce your health below half a heart."
+        },
+        {
+            "type": "totemic:ceremony",
+            "ceremony": "totemic:sun_dance",
+            "text": "$(o)Kneeling, my god is the sun"
+        }
+    ],
+    "sortnum": 11
+}

@@ -1,0 +1,18 @@
+{
+    "name": "Jingle Dress",
+    "icon": "totemic:jingle_dress",
+    "category": "totemic:instruments",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The $(item)Jingle Dress$() is a leaf dress adorned with bells. It releases Melody when you move and jump around, and a speed potion increases it even further.$(br2)While it doesn't create a lot of Melody and its $(l:basics/music)Melody Threshold$() is easily reached, it can still be deciding for the success of a Ceremony. Dancing while playing other Instruments is crucial for every Totemist."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:jingle_dress",
+            "text": "$(br)Unlike other Instruments, the Jingle Dress cannot be used as a $(l:ceremonies)Ceremony Selector$()."
+        }
+    ],
+    "advancement": "totemic:recipes/totemic/jingle_dress",
+    "sortnum": 3
+}

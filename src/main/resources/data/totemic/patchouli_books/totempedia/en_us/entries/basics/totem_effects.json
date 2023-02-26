@@ -5,7 +5,7 @@
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "These are the different $(thing)Totem Effects$() you can carve on a $(l:basics/totem_poles)Totem Pole$():$(br2)$(carving)Bat$(): Makes you fall slowly and negates fall damage$(br2)$(carving)Blaze$(): Protects you against fires$(br2)$(carving)Buffalo$(): Makes you mine blocks faster"
+            "text": "$(thing)Totem Effects$() are passive effects that always emanate from a $(l:basics/totem_poles)Totem Pole$(). They depend on the patterns that you carved into it:$(br2)$(carving)Bat$(): Makes you fall slowly and negates fall damage$(br2)$(carving)Blaze$(): Protects you against fires$(br2)$(carving)Buffalo$(): Makes you mine blocks faster"
         },
         {
             "type": "patchouli:text",

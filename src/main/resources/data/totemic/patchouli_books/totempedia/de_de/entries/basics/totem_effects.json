@@ -1,0 +1,20 @@
+{
+    "name": "Totemeffekte",
+    "icon": "totemic:oak_totem_pole_buffalo",
+    "category": "totemic:basics",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)Totemeffekte$() sind passive Effekte, die immer von einem $(l:basics/totem_poles)Totempfahl$() ausgehen. Sie richten sich nach den Mustern, die in den Pfahl geschnitzt wurden:$(br2)$(carving)Fledermaus$(): Lässt dich langsamer fallen und keinen Fallschaden nehmen$(br2)$(carving)Lohe$(): Schützt dich vor Feuer"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(carving)Büffel$(): Lässt dich schneller Blöcke abbauen$(br2)$(carving)Kuh$(): Gibt dir Schadensresistenz, aber verlangsamt dich auch$(br2)$(carving)Enderman$(): Gibt dir Nachtsicht$(br2)$(carving)Pferd$(): Gibt dir Schnelligkeit$(br2)$(carving)Ozelot$(): Verhindert, dass Creeper explodieren$(br2)$(carving)Schwein$(): Bringt dir Glück"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(carving)Kaninchen$(): Lässt dich höher springen$(br2)$(carving)Spinne$(): Lässt dich Wände hochklettern wie eine Spinne$(br2)$(carving)Tintenfisch$(): Gibt dir Unterwasseratmung$(br2)$(carving)Wolf$(): Gibt dir Angriffsstärke"
+        }
+    ],
+    "sortnum": 1
+}

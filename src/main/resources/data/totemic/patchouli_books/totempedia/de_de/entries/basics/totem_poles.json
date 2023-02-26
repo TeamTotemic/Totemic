@@ -1,0 +1,30 @@
+{
+    "name": "Totempfähle",
+    "icon": "totemic:oak_totem_base",
+    "category": "totemic:basics",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)Totempfähle$() sind das Herzstück von Totemic. Sie können mit einem $(item)Totemschnitzmesser$() aus jeder Art von Holz geschnitzt werden. Verschiedene Muster können dabei geschnitzt werden, die zu verschiedenen $(l:basics/totem_effects)Totemeffekten$(/l) führen. Das geschnitzte Muster kann dabei durch Rechtsklick oder Scrollen während des Schleichens geändert werden."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Totempfähle benötigen unten eine $(thing)Totembasis$() und können bis zu 6 Blöcke hoch sein (die Basis mitgezählt).$(br2)Dasselbe Muster kann auch mehrmals auf den gleichen Pfahl geschnitzt werden, wodurch der Effekt verstärkt wird. Der Totempfahl kann außerdem $(l:basics/music)Melodie$() absorbieren, die die Effekte ebenfalls verstärkt."
+        },
+        {
+            "type": "patchouli:multiblock",
+            "multiblock_id": "totemic:example_totem_pole",
+            "text": "Beispiel, wie ein Totempfahl aussehen kann."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:totem_whittling_knife",
+            "title": "Totemschnitzmesser"
+        }
+    ],
+    "extra_recipe_mappings": {
+        "tag:totemic:totem_bases": 0,
+        "tag:totemic:totem_poles": 0
+    },
+    "sortnum": 0
+}

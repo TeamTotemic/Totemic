@@ -1,0 +1,17 @@
+{
+    "name": "Hymn of Maturity",
+    "icon": "minecraft:air",
+    "category": "totemic:ceremonies",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The $(thing)Hymn of Maturity$() is a growth Ceremony that makes $(emph)baby animals$() grow up much faster, as well as help with the hatching of $(emph)Chicken$() and $(emph)Turtle eggs$()."
+        },
+        {
+            "type": "totemic:ceremony",
+            "ceremony": "totemic:animal_growth",
+            "text": "$(o)Maturity is a high price to pay for growing up"
+        }
+    ],
+    "sortnum": 4
+}

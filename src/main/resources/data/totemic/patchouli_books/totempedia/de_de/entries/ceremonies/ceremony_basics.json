@@ -1,0 +1,32 @@
+{
+    "name": "Basics of Ceremonies",
+    "icon": "minecraft:air",
+    "category": "totemic:ceremonies",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "$(thing)Ceremonies$() are a way for Totemists to gather strength over a period of time through the power of $(l:basics/music)Melody$() to release a burst of energy on the nearby world. In contrast to $(l:basics/totem_effects)Totem Effects$(), the effects of Ceremonies are much more powerful, but limited in duration.$(br2)The center of a Ceremony is a $(l:basics/totem_poles)Totem Pole$(): It is where the Melody is channeled to and"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "where the effects are released from. To start a Ceremony, you need to play two Music Instruments in $(thing)Selector Mode$(), which is done by $(emph)sneaking$() while playing the Instrument. The combination of the two Instruments will decide which Ceremony is selected. For example, playing the $(l:instruments/drum)Drum$() twice while sneaking will activate the $(l:ceremonies/war_dance)War Dance$().$(br2)Once you have selected a Ceremony, you need to channel $(l:basics/music)Melody$() into the Totem Pole until it has collected enough"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "to activate the Ceremony's effect. You only have a $(emph)limited amount of time$() to do this, and each Instrument can only be played up to a certain point until its $(l:basics/music)Melody Threshold$() is reached, meaning that a Ceremony cannot be performed using only one Instrument. A $(emph)white cloud of smoke$() that emits from the Totem Base signifies that the Instrument's Melody Threshold is reached, so you should $(emph)stop playing$() that particular Instrument until the end of the Ceremony."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Since the time is limited, playing speed is important, and care should be taken with the $(emph)timing$() and $(emph)rhythm$() between the Instruments. It may require some practice for Totemists to complete some of the more difficult Ceremonies.$(br2)Left-clicking the Totem Base with a $(l:basics/totemic_staff)Totemic Staff$() will cancel any Ceremony or Selection on that Totem Pole."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(o)Tips for Ceremonies:$()$(li)After you selected a Ceremony, you need to $(emph)stop sneaking$() so that your music counts for the Ceremony.$(li)$(l:instruments/wind_chime)Wind Chimes$() play at somewhat regular intervals. Try to time your Ceremony around them.$(li)More Instruments of the same kind usually don't help that much. Try getting as many $(emph)different Instruments$() as you can.$(li)That said, it can be helpful to have two $(l:instruments/drum)Drum$() and two or three $(l:instruments/wind_chime)Wind Chimes$()."
+        },
+        {
+            "type": "patchouli:text",
+            "text": "$(li)If you hold a $(l:instruments/rattle)Rattle$() in your main hand and a $(l:instruments/flute)Flute$() in your off hand, you can play them both at the same time.$(li)The time you have available to complete a Ceremony changes with $(emph)game difficulty$()."
+        }
+    ],
+    "priority": true
+}

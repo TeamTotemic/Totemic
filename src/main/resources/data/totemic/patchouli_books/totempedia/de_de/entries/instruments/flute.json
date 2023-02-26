@@ -1,0 +1,16 @@
+{
+    "name": "Flute",
+    "icon": "totemic:flute",
+    "category": "totemic:instruments",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The $(item)Flute$() is one of the simplest Instruments available. Unlike other Instruments, it simply plays music without any complication. However, it is not known to be the most melodic instrument, meaning it will not create very much $(l:basics/music)Melody$(/l), and its Melody Threshold will be reached easily.$(br2)The Flute can be infused in the $(l:ceremonies/flute_infusion)Serenade for Syrinx$(/l), giving it special properties."
+        },
+        {
+            "type": "patchouli:crafting",
+            "recipe": "totemic:flute"
+        }
+    ],
+    "sortnum": 0
+}
