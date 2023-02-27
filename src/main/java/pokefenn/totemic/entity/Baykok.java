@@ -163,6 +163,6 @@ public class Baykok extends Monster implements RangedAttackMob {
     @Override
     public void setCustomName(@Nullable Component pName) {
         super.setCustomName(pName);
-        bossEvent.setName(pName);
+        bossEvent.setName(getDisplayName());
     }
 }

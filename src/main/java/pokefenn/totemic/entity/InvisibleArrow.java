@@ -32,7 +32,8 @@ public class InvisibleArrow extends AbstractArrow {
 
     @Override
     protected void doPostHurtEffects(LivingEntity pTarget) {
-        if(getOwner().getType() == ModEntityTypes.baykok.get())
+        var owner = getOwner();
+        if(owner != null && owner.getType() == ModEntityTypes.baykok.get())
             pTarget.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 1), getEffectSource());
         super.doPostHurtEffects(pTarget);
     }

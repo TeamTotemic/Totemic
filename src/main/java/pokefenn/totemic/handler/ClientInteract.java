@@ -19,6 +19,8 @@ public class ClientInteract {
             return;
 
         Player player = Minecraft.getInstance().player;
+        if(player == null)
+            return;
         ItemStack stack = player.getMainHandItem();
         if(player.isShiftKeyDown() && stack.getItem() == ModItems.totem_whittling_knife.get()) {
             boolean direction = (event.getScrollDelta() > 0);

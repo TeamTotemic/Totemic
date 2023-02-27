@@ -1,7 +1,5 @@
 package pokefenn.totemic.block.totem;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -64,7 +62,6 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
     }
 
     @Override
-    @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())

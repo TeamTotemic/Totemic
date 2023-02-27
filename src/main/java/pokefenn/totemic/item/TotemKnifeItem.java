@@ -85,7 +85,8 @@ public class TotemKnifeItem extends Item {
     @SuppressWarnings("resource")
     @Override
     public InteractionResult useOn(UseOnContext c) {
-        if(c.getPlayer().isShiftKeyDown()) {
+        var player = c.getPlayer();
+        if(player != null && player.isShiftKeyDown()) {
             return InteractionResult.PASS;
         }
         else {
@@ -110,9 +111,10 @@ public class TotemKnifeItem extends Item {
             }
 
             c.getLevel().setBlock(c.getClickedPos(), newState, 3);
-            newState.getBlock().setPlacedBy(c.getLevel(), c.getClickedPos(), newState, c.getPlayer(), c.getItemInHand());
-            c.getItemInHand().hurtAndBreak(1, c.getPlayer(), player -> player.broadcastBreakEvent(c.getHand()));
-            c.getLevel().playSound(c.getPlayer(), c.getClickedPos(), SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+            newState.getBlock().setPlacedBy(c.getLevel(), c.getClickedPos(), newState, player, c.getItemInHand());
+            if(player != null)
+                c.getItemInHand().hurtAndBreak(1, player, p -> p.broadcastBreakEvent(c.getHand()));
+            c.getLevel().playSound(player, c.getClickedPos(), SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
 
             return InteractionResult.sidedSuccess(c.getLevel().isClientSide);
         }
