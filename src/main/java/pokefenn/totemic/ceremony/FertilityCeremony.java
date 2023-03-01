@@ -12,12 +12,12 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.util.BlockUtil;
 import pokefenn.totemic.util.MiscUtil;
 
 public enum FertilityCeremony implements CeremonyInstance {
@@ -37,7 +37,7 @@ public enum FertilityCeremony implements CeremonyInstance {
     }
 
     private void transformSaplings(Level level, BlockPos pos) {
-        BlockPos.betweenClosedStream(new AABB(pos).inflate(RADIUS - 1))
+        BlockPos.betweenClosedStream(BlockUtil.getBoundingBoxAround(pos, RADIUS))
                 .filter(p -> {
                     var state = level.getBlockState(p);
                     return state.is(BlockTags.SAPLINGS) && state.getBlock() != ModBlocks.cedar_sapling.get();
@@ -50,7 +50,7 @@ public enum FertilityCeremony implements CeremonyInstance {
     }
 
     private void breedAnimalsAndVillagers(Level level, BlockPos pos, CeremonyEffectContext context) {
-        var aabb = new AABB(pos).inflate(RADIUS - 1);
+        var aabb = TotemicEntityUtil.getAABBAround(pos, RADIUS);
         for(var animal: level.getEntitiesOfClass(Animal.class, aabb, a -> a.getAge() == 0 && !a.isInLove())) {
             var itemE = findItemEntity(level, pos, animal::isFood);
             if(itemE.isPresent()) {

@@ -7,9 +7,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.IPlantable;
-import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
+import pokefenn.totemic.util.BlockUtil;
 
 public enum ZaphkielWaltzCeremony implements CeremonyInstance {
     INSTANCE;
@@ -19,7 +19,7 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(context.getTime() % 7 == 0) {
-            BlockPos.betweenClosedStream(TotemicEntityUtil.getAABBAround(pos, RADIUS))
+            BlockPos.betweenClosedStream(BlockUtil.getBoundingBoxAround(pos, RADIUS))
             .forEach(p -> {
                 var state = level.getBlockState(p);
                 var block = state.getBlock();
@@ -42,7 +42,7 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
 
     private void spawnParticles(Level level, BlockPos pos) {
         var rand = level.random;
-        var vec = Vec3.atCenterOf(pos).add(rand.nextGaussian(), rand.nextGaussian() * 0.5, rand.nextGaussian());
+        var vec = Vec3.atCenterOf(pos).add(rand.nextGaussian() * 0.5, rand.nextGaussian() * 0.5, rand.nextGaussian() * 0.5);
         double ySpeed = rand.nextGaussian();
         level.addParticle(ParticleTypes.HAPPY_VILLAGER, vec.x, vec.y, vec.z, 0.0, ySpeed, 0.0);
     }

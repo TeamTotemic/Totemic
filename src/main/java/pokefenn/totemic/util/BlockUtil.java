@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.Vec3;
 
@@ -47,6 +48,10 @@ public final class BlockUtil {
         return start.getX() <= vec.getX() && vec.getX() <= end.getX()
             && start.getY() <= vec.getY() && vec.getY() <= end.getY()
             && start.getZ() <= vec.getZ() && vec.getZ() <= end.getZ();
+    }
+
+    public static BoundingBox getBoundingBoxAround(BlockPos pos, int range) {
+        return new BoundingBox(pos).inflatedBy(range);
     }
 
     public static Comparator<BlockEntity> compareCenterDistanceTo(Vec3 pos) {
