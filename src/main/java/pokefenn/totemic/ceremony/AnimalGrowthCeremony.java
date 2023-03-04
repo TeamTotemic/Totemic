@@ -55,9 +55,8 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
             }
 
             //Turtle egg hatching
-            BlockPos.betweenClosedStream(BlockUtil.getBoundingBoxAround(pos, RADIUS))
-            .forEach(p -> {
-                var state = level.getBlockState(p);
+            BlockUtil.forEachBlockIn(level, BlockUtil.getBoundingBoxAround(pos, RADIUS),
+            (p, state) -> {
                 if(state.is(Blocks.TURTLE_EGG) && TurtleEggBlock.onSand(level, p)) {
                     if(!level.isClientSide) {
                         if(level.random.nextInt(45) == 0) //about once per ceremony usage

@@ -19,9 +19,8 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(context.getTime() % 7 == 0) {
-            BlockPos.betweenClosedStream(BlockUtil.getBoundingBoxAround(pos, RADIUS))
-            .forEach(p -> {
-                var state = level.getBlockState(p);
+            BlockUtil.forEachBlockIn(level, BlockUtil.getBoundingBoxAround(pos, RADIUS),
+            (p, state) -> {
                 var block = state.getBlock();
                 if((block instanceof IPlantable || block instanceof BonemealableBlock) && state.isRandomlyTicking()) {
                     if(level.random.nextInt(4) < 3) {
