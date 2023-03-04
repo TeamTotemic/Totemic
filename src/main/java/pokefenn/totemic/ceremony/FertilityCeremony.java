@@ -17,7 +17,6 @@ import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.init.ModBlocks;
-import pokefenn.totemic.util.BlockUtil;
 import pokefenn.totemic.util.MiscUtil;
 
 public enum FertilityCeremony implements CeremonyInstance {
@@ -37,7 +36,7 @@ public enum FertilityCeremony implements CeremonyInstance {
     }
 
     private void transformSaplings(Level level, BlockPos pos) {
-        BlockPos.betweenClosedStream(BlockUtil.getBoundingBoxAround(pos, RADIUS))
+        BlockPos.betweenClosedStream(TotemicEntityUtil.getBoundingBoxAround(pos, RADIUS))
                 .filter(p -> {
                     var state = level.getBlockState(p);
                     return state.is(BlockTags.SAPLINGS) && state.getBlock() != ModBlocks.cedar_sapling.get();

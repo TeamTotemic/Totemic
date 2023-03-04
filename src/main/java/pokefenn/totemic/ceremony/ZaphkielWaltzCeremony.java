@@ -7,9 +7,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.IPlantable;
+import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
-import pokefenn.totemic.util.BlockUtil;
 
 public enum ZaphkielWaltzCeremony implements CeremonyInstance {
     INSTANCE;
@@ -19,7 +20,7 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(context.getTime() % 7 == 0) {
-            BlockUtil.forEachBlockIn(level, BlockUtil.getBoundingBoxAround(pos, RADIUS),
+            TotemicAPI.get().ceremony().forEachBlockIn(level, TotemicEntityUtil.getBoundingBoxAround(pos, RADIUS),
             (p, state) -> {
                 var block = state.getBlock();
                 if((block instanceof IPlantable || block instanceof BonemealableBlock) && state.isRandomlyTicking()) {

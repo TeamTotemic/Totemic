@@ -16,10 +16,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
-import pokefenn.totemic.util.BlockUtil;
 import pokefenn.totemic.util.MiscUtil;
 
 public enum AnimalGrowthCeremony implements CeremonyInstance {
@@ -55,7 +55,7 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
             }
 
             //Turtle egg hatching
-            BlockUtil.forEachBlockIn(level, BlockUtil.getBoundingBoxAround(pos, RADIUS),
+            TotemicAPI.get().ceremony().forEachBlockIn(level, TotemicEntityUtil.getBoundingBoxAround(pos, RADIUS),
             (p, state) -> {
                 if(state.is(Blocks.TURTLE_EGG) && TurtleEggBlock.onSand(level, p)) {
                     if(!level.isClientSide) {

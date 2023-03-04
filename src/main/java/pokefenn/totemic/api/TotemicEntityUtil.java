@@ -8,13 +8,16 @@ import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.EntityGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
+import pokefenn.totemic.api.ceremony.CeremonyAPI;
 
 /**
  * Methods for constructing AABBs and getting streams of entities within an area, as commonly used for Totem Effects and
  * Ceremonies.
  *
  * @see EntityGetter
+ * @see CeremonyAPI#forEachBlockIn
  */
 public final class TotemicEntityUtil {
     /**
@@ -31,6 +34,22 @@ public final class TotemicEntityUtil {
      */
     public static AABB getAABBAround(BlockPos pos, double horizontalRange, double verticalRange) {
         return new AABB(pos).inflate(horizontalRange - 1, verticalRange - 1, horizontalRange - 1);
+    }
+
+    /**
+     * Returns a BoundingBox centered around {@code pos} and extending {@code range} blocks from it
+     * in all directions.
+     */
+    public static BoundingBox getBoundingBoxAround(BlockPos pos, int range) {
+        return getBoundingBoxAround(pos, range, range);
+    }
+
+    /**
+     * Returns a BoundingBox centered around {@code pos} and extending {@code horizontalRange}
+     * blocks in the horizontal directions and {@code verticalRange} blocks in the vertical direction.
+     */
+    public static BoundingBox getBoundingBoxAround(BlockPos pos, int horizontalRange, int verticalRange) {
+        return BoundingBox.fromCorners(pos.offset(-horizontalRange, -verticalRange, -horizontalRange), pos.offset(horizontalRange, verticalRange, horizontalRange));
     }
 
     /**
