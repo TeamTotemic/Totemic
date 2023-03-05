@@ -14,6 +14,7 @@ public enum CeremonyAPIImpl implements CeremonyAPI {
 
     @Override
     public void forEachBlockIn(Level level, BoundingBox box, BiConsumer<BlockPos, BlockState> action) {
+        level.getProfiler().incrementCounter("totemic.forEachBlockIn");
         var startSec = SectionPos.of(new BlockPos(box.minX(), box.minY(), box.minZ()));
         var endSec = SectionPos.of(new BlockPos(box.maxX(), box.maxY(), box.maxZ()));
         //iterate over the chunks

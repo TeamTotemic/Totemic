@@ -37,9 +37,9 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.block.DummyTipiBlock;
+import pokefenn.totemic.block.StrippableLogBlock;
 import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.block.TotemTorchBlock;
-import pokefenn.totemic.block.StrippableLogBlock;
 import pokefenn.totemic.block.music.DrumBlock;
 import pokefenn.totemic.block.music.WindChimeBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
@@ -107,10 +107,17 @@ public final class ModBlocks {
         if(!event.getRegistryKey().equals(ForgeRegistries.Keys.BLOCKS))
             return;
 
+        registerTotemBasesAndPoles(event);
+
+        CEDAR_FAMILY = new BlockFamily.Builder(cedar_planks.get()).button(cedar_button.get()).fence(cedar_fence.get()).fenceGate(cedar_fence_gate.get()).pressurePlate(cedar_pressure_plate.get())/*.sign(cedar_sign.get(), cedar_wall_sign.get())*/.slab(cedar_slab.get()).stairs(cedar_stairs.get())/*.door(cedar_door.get()).trapdoor(cedar_trapdoor.get())*/
+                .recipeGroupPrefix("totemic:wooden").recipeUnlockedBy("has_planks").getFamily();
+    }
+
+    private static void registerTotemBasesAndPoles(RegisterEvent event) {
         RegistryApiImpl.registerTotemCarvings();
 
         var totemBasesBuilder = ImmutableMap.<TotemWoodType, RegistryObject<TotemBaseBlock>>builderWithExpectedSize(TotemWoodType.getWoodTypes().size());
-        totemPoles = ArrayTable.create(TotemWoodType.getWoodTypes(), TotemicAPI.get().registry().totemCarvings());
+        totemPoles = ArrayTable.create(TotemWoodType.getWoodTypes(), TotemicAPI.get().registry().totemCarvings()); //it is faster not to use a builder since the table is dense
 
         for(TotemWoodType woodType: TotemWoodType.getWoodTypes()) {
             Properties blockProperties = Properties.of(Material.WOOD, woodType.getWoodColor()).strength(2, 3).sound(SoundType.WOOD);
@@ -130,9 +137,6 @@ public final class ModBlocks {
         }
 
         totemBases = totemBasesBuilder.build();
-
-        CEDAR_FAMILY = new BlockFamily.Builder(cedar_planks.get()).button(cedar_button.get()).fence(cedar_fence.get()).fenceGate(cedar_fence_gate.get()).pressurePlate(cedar_pressure_plate.get())/*.sign(cedar_sign.get(), cedar_wall_sign.get())*/.slab(cedar_slab.get()).stairs(cedar_stairs.get())/*.door(cedar_door.get()).trapdoor(cedar_trapdoor.get())*/
-                .recipeGroupPrefix("totemic:wooden").recipeUnlockedBy("has_planks").getFamily();
     }
 
     public static void setFireInfo() {
