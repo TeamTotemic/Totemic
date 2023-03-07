@@ -8,7 +8,7 @@ public enum TotemEffectApiImpl implements TotemEffectAPI {
 
     @Override
     public int getDefaultRange(int repetition, TotemEffectContext context) {
-        final int DEFAULT_BASE_RANGE = 6;
-        return DEFAULT_BASE_RANGE + context.getTotemEffectMusic() / 1920 + (context.getPoleSize() >= TotemEffectAPI.MAX_POLE_SIZE ? 1 : 0);
+        final int baseRange = 5;
+        return baseRange + context.getTotemEffectMusic() / 1920 + (context.getPoleSize() >= TotemEffectAPI.MAX_POLE_SIZE ? 1 : 0);
     }
 }

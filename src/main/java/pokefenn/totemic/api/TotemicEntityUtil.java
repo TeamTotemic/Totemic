@@ -33,7 +33,7 @@ public final class TotemicEntityUtil {
      * blocks in the horizontal directions and {@code verticalRange} blocks in the vertical direction.
      */
     public static AABB getAABBAround(BlockPos pos, double horizontalRange, double verticalRange) {
-        return new AABB(pos).inflate(horizontalRange - 1, verticalRange - 1, horizontalRange - 1);
+        return new AABB(pos).inflate(horizontalRange, verticalRange, horizontalRange);
     }
 
     /**

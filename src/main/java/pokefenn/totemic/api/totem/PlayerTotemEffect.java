@@ -44,7 +44,7 @@ public abstract class PlayerTotemEffect extends TotemEffect {
     /**
      * Returns the effect's range.
      */
-    public int getRange(Level level, BlockPos pos, int repetition, TotemEffectContext context) {
+    public double getRange(Level level, BlockPos pos, int repetition, TotemEffectContext context) {
         return TotemicAPI.get().totemEffect().getDefaultRange(repetition, context);
     }
 
@@ -60,7 +60,7 @@ public abstract class PlayerTotemEffect extends TotemEffect {
     public void effect(Level level, BlockPos pos, int repetition, TotemEffectContext context) {
         if(level.isClientSide && !shouldApplyOnClientSide())
             return;
-        int range = getRange(level, pos, repetition, context);
+        var range = getRange(level, pos, repetition, context);
         TotemicEntityUtil.getPlayersIn(level, TotemicEntityUtil.getAABBAround(pos, range), p -> canAffect(p, repetition, context))
                 .forEach(player -> applyTo(player, repetition, context));
     }

@@ -18,7 +18,7 @@ public interface TotemEffectAPI {
 
     /**
      * For Totem Effects that affect an area, returns a default value for how large that area should be.
-     * The return value ranges between 6 and 10, depending on the height of the Totem Pole and the amount of music.
+     * The return value ranges between 5 and 10, depending on the height of the Totem Pole and the amount of music.
      * The exact value might be subject to change.
      *
      * <p>It is suggested but not mandatory that you use this default value for your Totem Effects. Using the defaults will make your effects
