@@ -14,7 +14,7 @@ public enum FluteInfusionCeremony implements CeremonyInstance {
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
-        final int range = 5;
+        final int range = 6;
         var aabb = TotemicEntityUtil.getAABBAround(pos, range);
         level.getEntities(EntityType.ITEM, aabb, e -> e.getItem().is(ModItems.flute.get()))
         .forEach(e -> {

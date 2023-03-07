@@ -23,6 +23,7 @@ public enum FertilityCeremony implements CeremonyInstance {
     INSTANCE;
 
     private static final int RADIUS = 8;
+    private static final int SAPLING_TRANSFORM_RADIUS = 6;
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
@@ -36,7 +37,7 @@ public enum FertilityCeremony implements CeremonyInstance {
     }
 
     private void transformSaplings(Level level, BlockPos pos) {
-        BlockPos.betweenClosedStream(TotemicEntityUtil.getBoundingBoxAround(pos, RADIUS))
+        BlockPos.betweenClosedStream(TotemicEntityUtil.getBoundingBoxAround(pos, SAPLING_TRANSFORM_RADIUS))
                 .filter(p -> {
                     var state = level.getBlockState(p);
                     return state.is(BlockTags.SAPLINGS) && state.getBlock() != ModBlocks.cedar_sapling.get();

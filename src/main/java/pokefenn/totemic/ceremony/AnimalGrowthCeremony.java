@@ -26,6 +26,7 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
     INSTANCE;
 
     private static final int RADIUS = 8;
+    private static final int TURTLE_HATCH_RADIUS = 6;
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
@@ -55,7 +56,7 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
             }
 
             //Turtle egg hatching
-            TotemicAPI.get().ceremony().forEachBlockIn(level, TotemicEntityUtil.getBoundingBoxAround(pos, RADIUS),
+            TotemicAPI.get().ceremony().forEachBlockIn(level, TotemicEntityUtil.getBoundingBoxAround(pos, TURTLE_HATCH_RADIUS),
             (p, state) -> {
                 if(state.is(Blocks.TURTLE_EGG) && TurtleEggBlock.onSand(level, p)) {
                     if(!level.isClientSide) {
