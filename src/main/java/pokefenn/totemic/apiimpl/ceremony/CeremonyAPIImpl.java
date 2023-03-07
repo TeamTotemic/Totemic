@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
+import pokefenn.totemic.util.BlockUtil;
 
 public enum CeremonyAPIImpl implements CeremonyAPI {
     INSTANCE;
@@ -15,8 +16,8 @@ public enum CeremonyAPIImpl implements CeremonyAPI {
     @Override
     public void forEachBlockIn(Level level, BoundingBox box, BiConsumer<BlockPos, BlockState> action) {
         level.getProfiler().incrementCounter("totemic.forEachBlockIn");
-        var startSec = SectionPos.of(new BlockPos(box.minX(), box.minY(), box.minZ()));
-        var endSec = SectionPos.of(new BlockPos(box.maxX(), box.maxY(), box.maxZ()));
+        var startSec = SectionPos.of(BlockUtil.lowerCorner(box));
+        var endSec = SectionPos.of(BlockUtil.upperCorner(box));
         //iterate over the chunks
         for(int chunkX = startSec.getX(); chunkX <= endSec.getX(); chunkX++)
             for(int chunkZ = startSec.getZ(); chunkZ <= endSec.getZ(); chunkZ++) {
