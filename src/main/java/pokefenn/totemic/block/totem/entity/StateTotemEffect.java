@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Multiset.Entry;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -38,6 +39,13 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
                 if(gameTime % effect.getInterval() == 0)
                     effect.effect(level, tile.getBlockPos(), entry.getCount(), this);
             }
+        }
+
+        //Drain melody over time
+        if(gameTime % 20 == 0 && musicAmount > 0) {
+            //these values are chosen such that 3 Wind Chimes hanging from leaves will keep the music amount at about 2/3 of the maximum
+            int musicDrain = Mth.clamp(musicAmount / 96, 10, 60);
+            musicAmount = Math.max(musicAmount - musicDrain, 0);
         }
     }
 

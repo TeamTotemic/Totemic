@@ -61,8 +61,9 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      * Otherwise, the value is 0.
      */
     protected int getAmplifier(LivingEntity entity, int repetition, TotemEffectContext context) {
+        final int musicThreshold = TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC * 3 / 4;
         if(scaleAmplifier)
-            return (repetition - 1) / 2 + (context.getTotemEffectMusic() > 5760 ? 1 : 0);
+            return (repetition - 1) / 2 + (context.getTotemEffectMusic() >= musicThreshold ? 1 : 0);
         else
             return 0;
     }

@@ -60,7 +60,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     private void playMusic(Level level, BlockPos pos, BlockState state) {
         var above = level.getBlockState(pos.above());
         int baseAmount = ModContent.wind_chime.getBaseOutput();
-        int bonus = above.is(BlockTags.LEAVES) ? 60 : 0;
+        int bonus = above.is(BlockTags.LEAVES) ? baseAmount/2 : 0;
         TotemicAPI.get().music().playMusic(level, Vec3.atBottomCenterOf(pos), null, ModContent.wind_chime, MusicAPI.DEFAULT_RANGE, baseAmount + bonus);
     }
 
