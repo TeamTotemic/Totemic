@@ -1,7 +1,7 @@
 {
     "name": "item.totemic.totempedia",
     "landing_text": "totemic.totempedia.landingText",
-    "version": 1,
+    "version": 2,
     "model": "totemic:totempedia",
     "creative_tab": "totemic",
     "pause_game": true,
