@@ -1,22 +1,25 @@
 # Totemic - Forge Version
 
-A magical themed mod with a focus on Totems, nature and Native American culture.
+A magical themed Minecraft mod with a focus on Totem Poles, nature and the power of music.
+
+For downloads and more information see on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/totemic).
+
+## Reporting issues:
+If the issue is a crash, make sure to provide the log file or crash report.
+Depending on the situation, provide pictures.
+Try to describe the issue as precisely as possible, if possible give steps to reproduce it.
+
+## Pull requests:
+Translations into other languages are welcome. The main language files can be found in the folder `src/main/resources/assets/totemic/lang`,
+the Totempedia contens in `src/main/resources/data/totemic/patchouli_books/totempedia`.
+
+For code or content PR's: Please go over all major changes with me before submitting them, I don't want anything to go to waste :(
+Try to place comments in anything that is not obvious, it can be confusing to understand others' code!
 
 ## Setting up a workspace/building from source:
 Run `./gradlew genEclipseRuns eclipse` or `./gradlew genIntellijRuns` (or `gradlew.bat ...` if you are on Windows) to
 set up a workspace. Run `./gradlew build` to build the mod.
-More information on this can be found in the README.txt file in the Forge MDK.
-
-Prebuilt binaries can be found on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/totemic).
-
-## Reporting issues:
-If the issue is a crash, make sure to provide the Logfile or Crash Report.
-Depending on the situation, provide pictures.
-Try to describe the issue as precisely as possible, if possible provide steps to reproduce it.
-
-## Pull requests:
-Go over all major changes or content PR's with me before submitting it, don't want anything to go to waste :(
-Try to place comments in anything that is not obvious, it can be confusing to understand others' code!
+For more information see the README.txt file in the Forge MDK.
 
 ## Credits:
 - The textures were mainly designed by nojustgavin and Sunconure11.
