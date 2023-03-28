@@ -104,7 +104,7 @@ public class TotemKnifeItem extends Item {
             BlockState newState;
             TotemCarving carving = getCarving(c.getItemInHand());
             if(carving != null) {
-                newState = ModBlocks.getTotemPole(woodType, carving).getStateForPlacement(new BlockPlaceContext(c));
+                newState = ModBlocks.getTotemPole(woodType).getStateForPlacement(new BlockPlaceContext(c));
             }
             else {
                 newState = ModBlocks.getTotemBase(woodType).getStateForPlacement(new BlockPlaceContext(c));

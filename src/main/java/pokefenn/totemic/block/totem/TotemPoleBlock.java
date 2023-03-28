@@ -1,15 +1,20 @@
 package pokefenn.totemic.block.totem;
 
+import java.util.Objects;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -20,28 +25,29 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemWoodType;
-import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
+import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
+import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.item.TotemKnifeItem;
 import pokefenn.totemic.util.BlockUtil;
 
-public class TotemPoleBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+public class TotemPoleBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     private static final VoxelShape SHAPE = Shapes.box(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
 
     public final TotemWoodType woodType;
-    public final TotemCarving carving;
 
-    public TotemPoleBlock(TotemWoodType woodType, TotemCarving carving, Properties properties) {
+    public TotemPoleBlock(TotemWoodType woodType, Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any().setValue(WATERLOGGED, false));
         this.woodType = woodType;
-        this.carving = carving;
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, FACING);
+        builder.add(FACING, WATERLOGGED);
     }
 
     @Override
@@ -66,6 +72,13 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
         return defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
                 .setValue(WATERLOGGED, BlockUtil.placedInWater(context));
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        var carving = Objects.requireNonNullElse(TotemKnifeItem.getCarving(stack), ModContent.none);
+        level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
+                .ifPresent(pole -> pole.setCarving(carving));
     }
 
     @Override
@@ -100,13 +113,8 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Simple
     }
 
     @Override
-    public MutableComponent getName() {
-        return Component.translatable(this.getDescriptionId(), carving.getDisplayName());
-    }
-
-    @Override
-    public String getDescriptionId() {
-        return "block.totemic." + woodType.getName() + "_totem_pole";
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new TotemPoleBlockEntity(pPos, pState);
     }
 
     public static int getBlockColor(int tintIndex) {

@@ -1,15 +1,7 @@
 package pokefenn.totemic.handler;
 
-import com.google.common.base.Stopwatch;
-import com.mojang.datafixers.util.Either;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.BlockModelShaper;
-import net.minecraft.client.renderer.block.model.BlockModel;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.resources.model.BlockModelRotation;
-import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -19,9 +11,7 @@ import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.RegistryObject;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.init.ModBlocks;
@@ -50,8 +40,8 @@ public class ClientInitHandlers {
 
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
-        for(var blockO: ModBlocks.getTotemPoles().values())
-            event.register(getPoleModelName(blockO.get().carving));
+        /*for(var blockO: ModBlocks.getTotemPoles().values())
+            event.register(getPoleModelName(blockO.get().carving));*/
 
         if(!Minecraft.useFancyGraphics()) {
             event.register(OPAQUE_CEDAR_LEAVES);
@@ -62,7 +52,7 @@ public class ClientInitHandlers {
     @SubscribeEvent
     //FIXME: This does work but it spams the log since the block state definitions and item models can't be loaded
     public static void onBakingComplete(ModelEvent.BakingCompleted event) {
-        var stopwatch = Stopwatch.createStarted();
+        /*var stopwatch = Stopwatch.createStarted();
 
         for(var totemEffectEntry: ModBlocks.getTotemPoles().columnMap().entrySet()) {
             var modelName = getPoleModelName(totemEffectEntry.getKey());
@@ -99,7 +89,7 @@ public class ClientInitHandlers {
         }
 
         stopwatch.stop();
-        Totemic.logger.info("Totem Pole model baking took {}", stopwatch);
+        Totemic.logger.info("Totem Pole model baking took {}", stopwatch);*/
 
         if(!Minecraft.useFancyGraphics()) {
             //Replace all the occurrences of the cedar leaves model with opaque ones.
@@ -112,10 +102,10 @@ public class ClientInitHandlers {
         }
     }
 
-    private static ResourceLocation getPoleModelName(TotemCarving carving) {
+    /*private static ResourceLocation getPoleModelName(TotemCarving carving) {
         var carvingName = carving.getRegistryName();
         return new ResourceLocation(carvingName.getNamespace(), "block/totem_pole_" + carvingName.getPath());
-    }
+    }*/
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {

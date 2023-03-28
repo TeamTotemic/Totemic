@@ -30,8 +30,8 @@ import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.MedicineBagEffect;
 import pokefenn.totemic.api.totem.PortableTotemCarving;
-import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
+import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
@@ -148,8 +148,8 @@ public class MedicineBagItem extends Item {
     }
 
     private InteractionResult trySetCarving(ItemStack stack, Player player, Level level, BlockPos pos, InteractionHand hand) {
-        if(level.getBlockState(pos).getBlock() instanceof TotemPoleBlock block) {
-            var carving = block.carving;
+        if(level.getBlockEntity(pos) instanceof TotemPoleBlockEntity pole) {
+            var carving = pole.getCarving();
             if(carving instanceof PortableTotemCarving) {
                 var newStack = stack.copy();
                 carvingCache.remove(stack);

@@ -29,7 +29,6 @@ import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
-import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlockEntities;
 
 public class TotemBaseBlockEntity extends BlockEntity {
@@ -63,9 +62,9 @@ public class TotemBaseBlockEntity extends BlockEntity {
         var totemEffectsBuilder = ImmutableMultiset.<TotemEffect>builder();
 
         for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
-            Block block = level.getBlockState(worldPosition.above(i + 1)).getBlock();
-            if(block instanceof TotemPoleBlock pole) {
-                var carving = pole.carving;
+            var blockEntity = level.getBlockEntity(worldPosition.above(i + 1));
+            if(blockEntity instanceof TotemPoleBlockEntity pole) {
+                var carving = pole.getCarving();
                 carvingList.add(carving);
                 totemEffectsBuilder.addAll(carving.getEffects());
             }
