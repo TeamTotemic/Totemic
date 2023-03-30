@@ -1,6 +1,7 @@
 package pokefenn.totemic.block.totem;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,6 +27,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
+import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
@@ -53,25 +55,11 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if(facing == Direction.UP) {
-            for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
-                BlockPos searchPos = currentPos.below(i + 1);
-                BlockState searchState = level.getBlockState(searchPos);
-                if(searchState.getBlock() instanceof TotemBaseBlock) {
-                    searchState.updateShape(Direction.UP, state, level, searchPos, currentPos);
-                }
-                else if(!(searchState.getBlock() instanceof TotemPoleBlock))
-                    break;
-            }
+            findTotemBase(level, currentPos)
+                    .ifPresent(TotemBaseBlockEntity::onPoleChange);
         }
         BlockUtil.scheduleWaterloggedTick(state, currentPos, level);
         return state;
-    }
-
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return defaultBlockState()
-                .setValue(FACING, context.getHorizontalDirection().getOpposite())
-                .setValue(WATERLOGGED, BlockUtil.placedInWater(context));
     }
 
     @Override
@@ -79,6 +67,27 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         var carving = Objects.requireNonNullElse(TotemKnifeItem.getCarving(stack), ModContent.none);
         level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
                 .ifPresent(pole -> pole.setCarving(carving));
+        findTotemBase(level, pos)
+                .ifPresent(TotemBaseBlockEntity::onPoleChange);
+    }
+
+    private Optional<TotemBaseBlockEntity> findTotemBase(BlockGetter level, BlockPos currentPos) {
+        for(int i = 0; i < TotemEffectAPI.MAX_POLE_SIZE; i++) {
+            var searchPos = currentPos.below(i + 1);
+            var blockEntity = level.getBlockEntity(searchPos);
+            if(blockEntity instanceof TotemBaseBlockEntity base)
+                return Optional.of(base);
+            else if(!(blockEntity instanceof TotemPoleBlockEntity))
+                break;
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return defaultBlockState()
+                .setValue(FACING, context.getHorizontalDirection().getOpposite())
+                .setValue(WATERLOGGED, BlockUtil.placedInWater(context));
     }
 
     @Override

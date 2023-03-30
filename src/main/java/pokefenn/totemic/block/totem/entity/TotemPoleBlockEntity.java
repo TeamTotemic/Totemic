@@ -60,5 +60,6 @@ public class TotemPoleBlockEntity extends BlockEntity {
 
     public void setCarving(TotemCarving carving) {
         this.carving = Objects.requireNonNull(carving);
+        setChanged();
     }
 }

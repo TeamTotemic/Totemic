@@ -32,7 +32,7 @@ import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.init.ModBlockEntities;
 
 public class TotemBaseBlockEntity extends BlockEntity {
-    private boolean firstTick = true;
+    private boolean needPoleUpdate = true;
 
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private Set<TotemCarving> carvingSet = null; //Only needed for Medicine Bags, computed lazily
@@ -48,9 +48,9 @@ public class TotemBaseBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState blockState, TotemBaseBlockEntity tile) {
-        if(tile.firstTick) {
+        if(tile.needPoleUpdate) {
             tile.calculateTotemEffects();
-            tile.firstTick = false;
+            tile.needPoleUpdate = false;
         }
 
         tile.state.tick();
@@ -82,7 +82,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     }
 
     public void onPoleChange() {
-        calculateTotemEffects();
+        needPoleUpdate = true;
     }
 
     public List<TotemCarving> getCarvingList() {
