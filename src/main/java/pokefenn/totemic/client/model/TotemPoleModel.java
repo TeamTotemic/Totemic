@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.mojang.datafixers.util.Pair;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockModel;
@@ -31,6 +32,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.ChunkRenderTypeSet;
@@ -46,10 +49,9 @@ import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.item.TotemPoleItem;
 
 public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
-    public static final ModelProperty<TotemCarving> CARVING_PROPERTY = new ModelProperty<>();
-
     private @Nullable Map<TotemCarving, UnbakedModel> totemModels;
 
     private TotemPoleModel() {
@@ -83,11 +85,20 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
     }
 
     public static final class Baked extends BakedModelWrapper<BakedModel> {
+        public static final ModelProperty<TotemCarving> CARVING_PROPERTY = new ModelProperty<>();
+
         private final Map<TotemCarving, BakedModel> bakedTotemModels;
+        private final ItemOverrides itemOverrides;
 
         private Baked(Map<TotemCarving, BakedModel> bakedTotemModels) {
             super(Objects.requireNonNull(bakedTotemModels.get(ModContent.none))); //default to "none" model
             this.bakedTotemModels = bakedTotemModels;
+            this.itemOverrides = new ItemOverrides() {
+                @Override
+                public BakedModel resolve(BakedModel pModel, ItemStack pStack, ClientLevel pLevel, LivingEntity pEntity, int pSeed) {
+                    return bakedTotemModels.get(TotemPoleItem.getCarving(pStack));
+                }
+            };
         }
 
         private BakedModel getModelFor(ModelData modelData) {
@@ -114,8 +125,13 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
         public @NotNull ModelData getModelData(@NotNull BlockAndTintGetter level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull ModelData modelData) {
             var carving = level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
                     .map(TotemPoleBlockEntity::getCarving)
-                    .orElseGet(() -> ModContent.none);
+                    .orElse(ModContent.none);
             return ModelData.builder().with(CARVING_PROPERTY, carving).build();
+        }
+
+        @Override
+        public ItemOverrides getOverrides() {
+            return itemOverrides;
         }
     }
 
