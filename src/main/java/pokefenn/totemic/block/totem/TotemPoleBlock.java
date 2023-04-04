@@ -1,6 +1,5 @@
 package pokefenn.totemic.block.totem;
 
-import java.util.Objects;
 import java.util.Optional;
 
 import net.minecraft.core.BlockPos;
@@ -64,7 +63,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        var carving = Objects.requireNonNullElse(TotemKnifeItem.getCarving(stack), ModContent.none);
+        var carving = TotemKnifeItem.getCarving(stack).orElse(ModContent.none);
         level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
                 .ifPresent(pole -> pole.setCarving(carving));
         findTotemBase(level, pos)
