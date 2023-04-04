@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -25,12 +27,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.item.TotemKnifeItem;
+import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.util.BlockUtil;
 
 public class TotemPoleBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
@@ -63,7 +66,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        var carving = TotemKnifeItem.getCarving(stack).orElse(ModContent.none);
+        var carving = TotemPoleItem.getCarving(stack); //also works for TotemKnifeItem
         level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
                 .ifPresent(pole -> pole.setCarving(carving));
         findTotemBase(level, pos)
@@ -133,5 +136,24 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         case 4 -> 0xBBBB66; //Yellow
         default -> -1;
         };
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+        var carving = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_pole.get())
+                .map(TotemPoleBlockEntity::getCarving)
+                .orElse(ModContent.none);
+        var stack = new ItemStack(this);
+        stack.getOrCreateTag().putString(TotemPoleItem.POLE_CARVING_KEY, carving.getRegistryName().toString());
+        return stack;
+    }
+
+    @Override
+    public void fillItemCategory(CreativeModeTab pTab, NonNullList<ItemStack> pItems) {
+        for(var carving: TotemicAPI.get().registry().totemCarvings()) {
+            var stack = new ItemStack(this);
+            stack.getOrCreateTag().putString(TotemPoleItem.POLE_CARVING_KEY, carving.getRegistryName().toString());
+            pItems.add(stack);
+        }
     }
 }
