@@ -14,6 +14,8 @@ import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockModelBuilder.RootTransformBuilder.TransformOrigin;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.CustomLoaderBuilder;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.client.model.generators.loaders.ObjModelBuilder;
@@ -175,17 +177,33 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.getBuilder(ModItems.creative_medicine_bag.getId().toString()).parent(medBag).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
 
         totemBaseModels();
-        dummyTotemPoleModels();
+        totemPoleModels();
     }
 
     private void totemBaseModels() {
         ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(TotemicAPI.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
         for(var blockO: ModBlocks.getTotemBases().values()) {
-            ResourceLocation blockName = blockO.getId();
-            TotemBaseBlock block = blockO.get();
+            var blockName = blockO.getId();
+            var block = blockO.get();
 
             //Block model
-            BlockModelBuilder blockModel = models().getBuilder(blockName.toString()).parent(totemBaseModel);
+            var blockModel = models().getBuilder(blockName.toString()).parent(totemBaseModel);
+            setTotemTextures(blockModel, block.woodType);
+
+            //Block state
+            horizontalBlockIgnoringProperties(block, blockModel, TotemBaseBlock.WATERLOGGED);
+            //Item model
+            simpleBlockItem(block, blockModel);
+        }
+    }
+
+    private void totemPoleModels() {
+        for(var blockO: ModBlocks.getTotemPoles().values()) {
+            var blockName = blockO.getId();
+            var block = blockO.get();
+
+            //Block model
+            var blockModel = models().getBuilder(blockName.toString()).customLoader(this::totemPoleLoaderBuilder).end();
             setTotemTextures(blockModel, block.woodType);
 
             //Block state
@@ -195,29 +213,17 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         }
     }
 
-    /*
-     * FIXME: This exists only to silence the hundreds of warnings in the log about blockstate definitions/item models not being found.
-     * The air model is replaced by dynamically generated models in ClientInitHandlers#onBakingComplete.
-     * This is a compromise solution since any totem effects or wood types added by other mods (if there are any) would again cause
-     * warnings to appear.
-     * We don't need this if there was a way to load blockstate definitions dynamically in Forge.
-     */
-    private void dummyTotemPoleModels() {
-        var airModel = models().getExistingFile(mcLoc("air"));
-        for(var blockO: ModBlocks.getTotemPoles().values()) {
-            TotemPoleBlock block = blockO.get();
-
-            getVariantBuilder(block).partialState().setModels(ConfiguredModel.builder().modelFile(airModel).build());
-            simpleBlockItem(block, airModel);
-        }
-    }
-
     private BlockModelBuilder setTotemTextures(BlockModelBuilder model, TotemWoodType woodType) {
         return model
                 .texture("wood", woodType.getWoodTexture())
                 .texture("bark", woodType.getBarkTexture())
                 .texture("top", woodType.getTopTexture())
                 .texture("particle", woodType.getParticleTexture());
+    }
+
+    private <T extends ModelBuilder<T>> CustomLoaderBuilder<T> totemPoleLoaderBuilder(T parent, ExistingFileHelper existingFileHelper) {
+        //The model doesn't have any properties besides the texture map, so we can just use an anonymous class
+        return new CustomLoaderBuilder<T>(modLoc("totem_pole"), parent, existingFileHelper) { };
     }
 
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {

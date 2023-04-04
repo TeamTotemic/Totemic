@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "totemic:block/acacia_totem_pole",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "totemic:block/acacia_totem_pole"
+    },
+    "facing=south": {
+      "model": "totemic:block/acacia_totem_pole",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "totemic:block/acacia_totem_pole",
+      "y": 270
+    }
+  }
+}

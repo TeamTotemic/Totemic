@@ -1,0 +1,9 @@
+{
+  "loader": "totemic:totem_pole",
+  "textures": {
+    "bark": "minecraft:block/birch_log",
+    "particle": "minecraft:block/stripped_birch_log",
+    "top": "minecraft:block/stripped_birch_log_top",
+    "wood": "minecraft:block/stripped_birch_log"
+  }
+}

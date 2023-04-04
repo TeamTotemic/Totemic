@@ -1,4 +1,4 @@
-// 1.19.2	2022-12-26T11:37:41.503834401	Totemic Block tags
+// 1.19.2	2023-04-04T17:22:12.142534274	Totemic Block tags
 f48a711794f70f6a13891618f69d5b89e02cb8ba data/forge/tags/blocks/fence_gates/wooden.json
 f48a711794f70f6a13891618f69d5b89e02cb8ba data/minecraft/tags/blocks/fence_gates.json
 df2fde5a09193bb066c97a1c4a72616852680332 data/minecraft/tags/blocks/leaves.json
@@ -15,4 +15,4 @@ c555337d7413ef105766e005380d57baf9a16dbd data/minecraft/tags/blocks/wooden_slabs
 8a9592ab946276ae87f86f78a800bd641e4173f5 data/minecraft/tags/blocks/wooden_stairs.json
 edb0a1a520fc602c68dd264a87cf9f5c8142df57 data/totemic/tags/blocks/cedar_logs.json
 b11ac83d04ccb8e7ec03b67151ec3daee6200c9b data/totemic/tags/blocks/totem_bases.json
-1a59ace02af9d08086be38785b16c9c0e2a64b5e data/totemic/tags/blocks/totem_poles.json
+6533f11f691cc0ca5ef5c53898267cb9b4b08972 data/totemic/tags/blocks/totem_poles.json
