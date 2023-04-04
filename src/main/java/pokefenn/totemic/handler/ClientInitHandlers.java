@@ -14,6 +14,7 @@ import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.client.CeremonyHUD;
+import pokefenn.totemic.client.model.TotemPoleModel;
 import pokefenn.totemic.init.ModBlocks;
 
 /**
@@ -36,61 +37,22 @@ public class ClientInitHandlers {
                         .toArray(ItemLike[]::new));
     }
 
+    @SubscribeEvent
+    public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
+        event.register("totem_pole", TotemPoleModel.Loader.INSTANCE);
+    }
+
     private static final ResourceLocation OPAQUE_CEDAR_LEAVES = new ResourceLocation(TotemicAPI.MOD_ID, "block/cedar_leaves_opaque");
 
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
-        /*for(var blockO: ModBlocks.getTotemPoles().values())
-            event.register(getPoleModelName(blockO.get().carving));*/
-
         if(!Minecraft.useFancyGraphics()) {
             event.register(OPAQUE_CEDAR_LEAVES);
         }
     }
 
-    @SuppressWarnings({ "resource", "deprecation" })
     @SubscribeEvent
-    //FIXME: This does work but it spams the log since the block state definitions and item models can't be loaded
     public static void onBakingComplete(ModelEvent.BakingCompleted event) {
-        /*var stopwatch = Stopwatch.createStarted();
-
-        for(var totemEffectEntry: ModBlocks.getTotemPoles().columnMap().entrySet()) {
-            var modelName = getPoleModelName(totemEffectEntry.getKey());
-            var unbakedModel = (BlockModel) event.getModelBakery().getModel(modelName);
-            var gui3D = unbakedModel.customData.isGui3d();
-
-            for(var blockO: totemEffectEntry.getValue().values()) {
-                var blockName = blockO.getId();
-                var block = blockO.get();
-                var woodType = block.woodType;
-
-                //The unbaked model will be modified here, but that should be fine since it is not used elsewhere
-                unbakedModel.textureMap.replace("wood", Either.left(new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(woodType.getWoodTexture()))));
-                unbakedModel.textureMap.replace("bark", Either.left(new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(woodType.getBarkTexture()))));
-                unbakedModel.textureMap.replace("top", Either.left(new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(woodType.getTopTexture()))));
-                unbakedModel.textureMap.replace("particle", Either.left(new Material(TextureAtlas.LOCATION_BLOCKS, new ResourceLocation(woodType.getParticleTexture()))));
-
-                for(var direction: TotemPoleBlock.FACING.getPossibleValues()) {
-                    var stateWithFacing = block.getStateDefinition().any().setValue(TotemPoleBlock.FACING, direction);
-                    var rotation = BlockModelRotation.by(0, (int) direction.toYRot() + 180);
-                    var bakedModel = unbakedModel.bake(event.getModelBakery(), unbakedModel, event.getModelBakery().getAtlasSet()::getSprite, rotation, modelName, gui3D);
-
-                    for(var waterlogged: TotemPoleBlock.WATERLOGGED.getPossibleValues()) {
-                        var state = stateWithFacing.setValue(TotemPoleBlock.WATERLOGGED, waterlogged);
-                        event.getModels().put(BlockModelShaper.stateToModelLocation(blockName, state), bakedModel);
-                    }
-
-                    if(rotation == BlockModelRotation.X0_Y0) {
-                        //Set item model
-                        event.getModels().put(new ModelResourceLocation(blockName, "inventory"), bakedModel);
-                    }
-                }
-            }
-        }
-
-        stopwatch.stop();
-        Totemic.logger.info("Totem Pole model baking took {}", stopwatch);*/
-
         if(!Minecraft.useFancyGraphics()) {
             //Replace all the occurrences of the cedar leaves model with opaque ones.
             //Not a perfect solution, since the resources are not reloaded on changing the graphics settings.
@@ -101,11 +63,6 @@ public class ClientInitHandlers {
                 }
         }
     }
-
-    /*private static ResourceLocation getPoleModelName(TotemCarving carving) {
-        var carvingName = carving.getRegistryName();
-        return new ResourceLocation(carvingName.getNamespace(), "block/totem_pole_" + carvingName.getPath());
-    }*/
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
