@@ -69,6 +69,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         stairsBlock(ModBlocks.cedar_stairs.get(), cedarPlankTex);
         //doorBlock(...)
         //trapdoorBlock(...)
+        simpleBlock(ModBlocks.potted_cedar_sapling.get(), models().singleTexture(ModBlocks.potted_cedar_sapling.getId().toString(), mcLoc("block/flower_pot_cross"), "plant", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
         horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString())
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
@@ -84,7 +85,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
         //Item Blocks
         var im = itemModels();
-        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.getId(), ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId());
+        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.getId(), ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.potted_cedar_sapling.getId(), ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             if(blocksWithCustomItemModel.contains(blockO.getId()))
                 continue;

@@ -38,6 +38,7 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.LOGS_THAT_BURN).addTag(TotemicBlockTags.CEDAR_LOGS);
         tag(BlockTags.LEAVES).add(ModBlocks.cedar_leaves.get());
         tag(BlockTags.SAPLINGS).add(ModBlocks.cedar_sapling.get());
+        tag(BlockTags.FLOWER_POTS).add(ModBlocks.potted_cedar_sapling.get());
         tag(BlockTags.MINEABLE_WITH_AXE).addTags(TotemicBlockTags.TOTEM_BASES, TotemicBlockTags.TOTEM_POLES).add(ModBlocks.drum.get());
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.wind_chime.get());
         tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.cedar_leaves.get());

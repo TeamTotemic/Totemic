@@ -1,4 +1,4 @@
-// 1.19.2	2023-04-05T21:48:10.877776838	Block States: totemic
+// 1.19.2	2023-04-05T22:32:00.514022497	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 80eda1878695a5358ef5439c8686ff419c1532af assets/totemic/blockstates/acacia_totem_pole.json
 4963eb90b0bc03c9df4b8b0c923ef92f310e80fe assets/totemic/blockstates/birch_totem_base.json
@@ -26,6 +26,7 @@ bf500948c9d4a7abda1bfafd40f944616f185c81 assets/totemic/blockstates/mangrove_tot
 4b7bab8b14280a1317cd1965e3f75f0110d4f7f4 assets/totemic/blockstates/mangrove_totem_pole.json
 ce993b6e2246f85f788f36083324d9de6619d0e5 assets/totemic/blockstates/oak_totem_base.json
 c610b52d0cc1dfb720767828a8d0177df8818ee7 assets/totemic/blockstates/oak_totem_pole.json
+d6fa33b8b040ad977342398c32c323a5856cb134 assets/totemic/blockstates/potted_cedar_sapling.json
 4ef67e6f5061f69d1cf98fdce5bec6b0e2a49575 assets/totemic/blockstates/spruce_totem_base.json
 1101f8c8284f50277054d101708027dda8006319 assets/totemic/blockstates/spruce_totem_pole.json
 84e85530b82c3fba7e8c2558b055a70c9e7abfc7 assets/totemic/blockstates/stripped_cedar_log.json
@@ -71,6 +72,7 @@ e6f0dbfac7b4f15bcd7a7324fdf75ae23927e251 assets/totemic/models/block/dark_oak_to
 344eebe33ea760e47d5e0168c7eadba9f5a606db assets/totemic/models/block/mangrove_totem_pole.json
 5b69be6fd1268d1309ffeb030a9efe37dc020804 assets/totemic/models/block/oak_totem_base.json
 02c298ed2a3516a1b2c4bc21d1fc1bb0cda22ddb assets/totemic/models/block/oak_totem_pole.json
+cdcba2fb47795f35919b8edf040e5bdd470b8737 assets/totemic/models/block/potted_cedar_sapling.json
 f76da7674f665c59587f7e977110f152b9fd78d3 assets/totemic/models/block/spruce_totem_base.json
 b6c7fa444f8527094687902efb1fd8a16cf20717 assets/totemic/models/block/spruce_totem_pole.json
 744dcf5bcd62eda7196fb11a0061a1c8ab99db89 assets/totemic/models/block/stripped_cedar_log.json
