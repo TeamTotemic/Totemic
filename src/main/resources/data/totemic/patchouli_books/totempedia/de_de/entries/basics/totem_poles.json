@@ -12,8 +12,8 @@
             "text": "Totempfähle benötigen unten eine $(thing)Totembasis$() und können bis zu 6 Blöcke hoch sein (die Basis mitgezählt).$(br2)Dasselbe Muster kann auch mehrmals auf den gleichen Pfahl geschnitzt werden, wodurch der Effekt verstärkt wird. Der Totempfahl kann außerdem $(l:basics/music)Melodie$() absorbieren, die die Effekte ebenfalls verstärkt."
         },
         {
-            "type": "patchouli:multiblock",
-            "multiblock_id": "totemic:example_totem_pole",
+            "type": "patchouli:image",
+            "images": ["totemic:textures/gui/example_totem_pole.png"],
             "text": "Beispiel, wie ein Totempfahl aussehen kann."
         },
         {

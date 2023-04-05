@@ -12,8 +12,8 @@
             "text": "Totem Poles need to have a $(thing)Totem Base$() at the bottom and can be up to 6 blocks high (including the base).$(br2)The same carving can be repeated multiple times on the same Totem Pole, making the effect stronger. A Totem Pole can also absorb $(l:basics/music)Melody$() which will make the effects stronger as well."
         },
         {
-            "type": "patchouli:multiblock",
-            "multiblock_id": "totemic:example_totem_pole",
+            "type": "patchouli:image",
+            "images": ["totemic:textures/gui/example_totem_pole.png"],
             "text": "An example of how a Totem Pole can look like."
         },
         {
