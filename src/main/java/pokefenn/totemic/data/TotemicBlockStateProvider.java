@@ -84,7 +84,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
         //Item Blocks
         var im = itemModels();
-        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId());
+        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.getId(), ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             if(blocksWithCustomItemModel.contains(blockO.getId()))
                 continue;
@@ -92,6 +92,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             existingBlockItem(blockO);
         }
 
+        im.singleTexture(ModBlocks.cedar_sapling.getId().toString(), mcLoc("item/generated"), "layer0", blockTexture(ModBlocks.cedar_sapling.get()));
         im.withExistingParent(ModBlocks.cedar_button.getId().toString(), "block/button_inventory").texture("texture", cedarPlankTex);
         im.withExistingParent(ModBlocks.cedar_fence.getId().toString(), "block/fence_inventory").texture("texture", cedarPlankTex);
         //im.basicItem(ModBlocks.cedar_sign.getId());
@@ -113,6 +114,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                     .end()
                 .end();
         //im.withExistingParent(ModBlocks.tipi.getId().toString(), modLoc("block/tipi"))
+        //use a separate item model because the transforms are not compatible with the tipi's root transform
         im.getBuilder(ModBlocks.tipi.getId().toString())
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .transforms()

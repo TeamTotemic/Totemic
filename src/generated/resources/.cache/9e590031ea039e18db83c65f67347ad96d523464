@@ -1,4 +1,4 @@
-// 1.19.2	2023-04-04T17:22:12.140251972	Block States: totemic
+// 1.19.2	2023-04-05T21:48:10.877776838	Block States: totemic
 59ce1ac33d606888f914ba93e407e65c887aeedc assets/totemic/blockstates/acacia_totem_base.json
 80eda1878695a5358ef5439c8686ff419c1532af assets/totemic/blockstates/acacia_totem_pole.json
 4963eb90b0bc03c9df4b8b0c923ef92f310e80fe assets/totemic/blockstates/birch_totem_base.json
@@ -100,7 +100,7 @@ e2092753eb565daeee33fa4d696391af6cb60ee0 assets/totemic/models/item/cedar_leaves
 d7ff32ef35474a8880bc937aa1aa05401a75acc5 assets/totemic/models/item/cedar_log.json
 6a54958c0a50534108ed18f42192aae44cf6b693 assets/totemic/models/item/cedar_planks.json
 8875250dac6cac589523bdd17991d7a4e9b59451 assets/totemic/models/item/cedar_pressure_plate.json
-5ff85a0396531d324021e83b833d6e3745163095 assets/totemic/models/item/cedar_sapling.json
+56812312b35abe8446e86f9c98427a3c73d063f0 assets/totemic/models/item/cedar_sapling.json
 43699b443b06414c954f5b4724927d949089281a assets/totemic/models/item/cedar_slab.json
 c05125241825f246f586d1b8fb15c3b65a6749df assets/totemic/models/item/cedar_stairs.json
 ab67b52e856d8ce64e27a0fcadea47f2eeddd83a assets/totemic/models/item/cedar_totem_base.json

@@ -1,3 +1,6 @@
 {
-  "parent": "totemic:block/cedar_sapling"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "totemic:block/cedar_sapling"
+  }
 }
