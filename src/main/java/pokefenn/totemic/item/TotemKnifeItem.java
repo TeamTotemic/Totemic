@@ -8,8 +8,6 @@ import javax.annotation.Nullable;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,6 +20,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
@@ -104,11 +103,11 @@ public class TotemKnifeItem extends Item {
             Block newBlock = isTotemBase ? ModBlocks.getTotemBase(woodType) : ModBlocks.getTotemPole(woodType);
             BlockState newState = newBlock.getStateForPlacement(new BlockPlaceContext(c));
 
-            c.getLevel().setBlock(c.getClickedPos(), newState, 3);
+            c.getLevel().setBlock(c.getClickedPos(), newState, Block.UPDATE_ALL_IMMEDIATE);
             newBlock.setPlacedBy(c.getLevel(), c.getClickedPos(), newState, player, c.getItemInHand()); //this takes care of setting the carving
             if(player != null)
                 c.getItemInHand().hurtAndBreak(1, player, p -> p.broadcastBreakEvent(c.getHand()));
-            c.getLevel().playSound(player, c.getClickedPos(), SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
+            c.getLevel().levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, c.getClickedPos(), Block.getId(state));
 
             return InteractionResult.sidedSuccess(c.getLevel().isClientSide);
         }
