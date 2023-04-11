@@ -2,6 +2,9 @@ package pokefenn.totemic.block.totem.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,7 +23,6 @@ import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.util.MiscUtil;
 
@@ -53,7 +55,7 @@ public final class StateSelection extends TotemState {
         tile.setChanged();
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
-            Ceremony match = RegistryApiImpl.getCeremony(selectors);
+            Ceremony match = getCeremony(selectors);
             if(match != null) {
                 CeremonyInstance instance = match.createInstance();
                 if(instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
@@ -91,6 +93,20 @@ public final class StateSelection extends TotemState {
 
     public List<MusicInstrument> getSelectors() {
         return selectors;
+    }
+
+    private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap; //Lazily created
+
+    private static @Nullable Ceremony getCeremony(List<MusicInstrument> selectors) {
+        if(selectorsToCeremonyMap == null) {
+            //This will throw an exception if two different Ceremonies happen to have the same selectors.
+            //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
+            //to check for prefix-freeness. So we assume MIN_SELECTORS == MAX_SELECTORS here.
+            selectorsToCeremonyMap = TotemicAPI.get().registry().ceremonies().stream()
+                    .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
+        }
+
+        return selectorsToCeremonyMap.get(selectors);
     }
 
     @Override
