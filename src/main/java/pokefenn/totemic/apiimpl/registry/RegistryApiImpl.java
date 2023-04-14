@@ -1,15 +1,16 @@
 package pokefenn.totemic.apiimpl.registry;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
-import com.mojang.serialization.Lifecycle;
-
-import net.minecraft.core.DefaultedRegistry;
-import net.minecraft.core.MappedRegistry;
-import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.NewRegistryEvent;
+import net.minecraftforge.registries.RegisterEvent;
+import net.minecraftforge.registries.RegistryBuilder;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
@@ -19,60 +20,46 @@ import pokefenn.totemic.api.totem.TotemCarving;
 public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;
 
-    private static final Registry<MusicInstrument> instruments = new MappedRegistry<>(MUSIC_INSTRUMENT_REGISTRY, Lifecycle.experimental(), null);
-    private static final DefaultedRegistry<TotemCarving> totemCarvings = new DefaultedRegistry<>("totemic:none", TOTEM_CARVING_REGISTRY, Lifecycle.experimental(), null);
-    private static final Registry<Ceremony> ceremonies = new MappedRegistry<>(CEREMONY_REGISTRY, Lifecycle.experimental(), null);
+    private static Supplier<IForgeRegistry<MusicInstrument>> instruments;
+    private static Supplier<IForgeRegistry<TotemCarving>> totemCarvings;
+    private static Supplier<IForgeRegistry<Ceremony>> ceremonies;
 
-    @Override
-    public Registry<MusicInstrument> instruments() {
-        return instruments;
+    @SubscribeEvent
+    public static void createRegistries(NewRegistryEvent event) {
+        instruments = event.create(new RegistryBuilder<MusicInstrument>().setName(MUSIC_INSTRUMENT_REGISTRY.location()).disableSaving());
+        totemCarvings = event.create(new RegistryBuilder<TotemCarving>().setName(TOTEM_CARVING_REGISTRY.location()).setDefaultKey(new ResourceLocation(TotemicAPI.MOD_ID, "none")).disableSaving().disableSync());
+        ceremonies = event.create(new RegistryBuilder<Ceremony>().setName(CEREMONY_REGISTRY.location()).disableSaving().disableSync());
     }
 
-    @Override
-    public DefaultedRegistry<TotemCarving> totemCarvings() {
-        return totemCarvings;
+    @SubscribeEvent
+    public static void registerContents(RegisterEvent event) {
+        if(event.getRegistryKey().equals(MUSIC_INSTRUMENT_REGISTRY))
+            fireRegistryEvent(MusicInstrument.class, event.getForgeRegistry(), MusicInstrument::getRegistryName);
+        else if(event.getRegistryKey().equals(TOTEM_CARVING_REGISTRY))
+            fireRegistryEvent(TotemCarving.class, event.getForgeRegistry(), TotemCarving::getRegistryName);
+        else if(event.getRegistryKey().equals(CEREMONY_REGISTRY))
+            fireRegistryEvent(Ceremony.class, event.getForgeRegistry(), Ceremony::getRegistryName);
     }
 
-    @Override
-    public Registry<Ceremony> ceremonies() {
-        return ceremonies;
-    }
-
-    private static <T> void fireRegistryEvent(Class<T> type, Registry<T> registry, Function<T, ResourceLocation> nameFunc) {
+    private static <T> void fireRegistryEvent(Class<T> type, IForgeRegistry<T> registry, Function<T, ResourceLocation> nameFunc) {
         FMLJavaModLoadingContext.get().getModEventBus().post(new TotemicRegisterEvent<>(type, object -> {
             ResourceLocation name = nameFunc.apply(object);
-            if(registry.containsKey(name))
-                throw new IllegalArgumentException("The " + type.getSimpleName() + " object '" + name + "' has already been registered");
-            Registry.register(registry, name, object);
+            registry.register(name, object);
         }));
     }
 
-    public static void registerInstruments() {
-        fireRegistryEvent(MusicInstrument.class, instruments, MusicInstrument::getRegistryName);
+    @Override
+    public IForgeRegistry<MusicInstrument> instruments() {
+        return instruments.get();
     }
 
-    public static void registerTotemCarvings() {
-        fireRegistryEvent(TotemCarving.class, totemCarvings, TotemCarving::getRegistryName);
+    @Override
+    public IForgeRegistry<TotemCarving> totemCarvings() {
+        return totemCarvings.get();
     }
 
-    public static void registerCeremonies() {
-        fireRegistryEvent(Ceremony.class, ceremonies, Ceremony::getRegistryName);
-
-        if(!FMLEnvironment.production) {
-            //Check for unregistered music instruments, to prevent subtle issues.
-            ceremonies.stream()
-                    .flatMap(cer -> cer.getSelectors().stream())
-                    .filter(instr -> !instruments.containsKey(instr.getRegistryName()))
-                    .findAny()
-                    .ifPresent(instr -> {
-                        throw new RuntimeException("Music instrument '" + instr.getRegistryName() + "' has not been registered!");
-                    });
-        }
-    }
-
-    public static void freezeRegistries() {
-        instruments.freeze();
-        totemCarvings.freeze();
-        ceremonies.freeze();
+    @Override
+    public IForgeRegistry<Ceremony> ceremonies() {
+        return ceremonies.get();
     }
 }

@@ -33,7 +33,6 @@ import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.block.DummyTipiBlock;
 import pokefenn.totemic.block.StrippableLogBlock;
 import pokefenn.totemic.block.TipiBlock;
@@ -115,8 +114,6 @@ public final class ModBlocks {
     }
 
     private static void registerTotemBasesAndPoles(RegisterEvent event) {
-        RegistryApiImpl.registerTotemCarvings();
-
         var woodTypes = TotemWoodType.getWoodTypes();
         var totemBasesBuilder = ImmutableMap.<TotemWoodType, RegistryObject<TotemBaseBlock>>builderWithExpectedSize(woodTypes.size());
         var totemPolesBuilder = ImmutableMap.<TotemWoodType, RegistryObject<TotemPoleBlock>>builderWithExpectedSize(woodTypes.size());

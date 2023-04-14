@@ -1,16 +1,16 @@
 package pokefenn.totemic.api.registry;
 
-import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.IForgeRegistry;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemCarving;
 
 /**
- * Provides read access to Totemic's registries. Contents can be registered using the {@link TotemicRegisterEvent}.
+ * Provides read-only access to Totemic's registries. Contents can be registered using the {@link TotemicRegisterEvent}.
  * <p>
  * Use {@code TotemicAPI.get().registry()} to get an instance of this interface.
  */
@@ -25,15 +25,15 @@ public interface RegistryAPI {
     /**
      * Provides access to the MusicInstrument registry.
      */
-    Registry<MusicInstrument> instruments();
+    IForgeRegistry<MusicInstrument> instruments();
 
     /**
      * Provides access to the TotemCarving registry.
      */
-    DefaultedRegistry<TotemCarving> totemCarvings();
+    IForgeRegistry<TotemCarving> totemCarvings();
 
     /**
      * Provides access to the Ceremony registry.
      */
-    Registry<Ceremony> ceremonies();
+    IForgeRegistry<Ceremony> ceremonies();
 }

@@ -64,8 +64,9 @@ public final class Totemic {
 
         modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
-        modBus.register(ModContent.class);
         modBus.register(ModEntityTypes.class);
+        modBus.register(RegistryApiImpl.class);
+        modBus.register(ModContent.class);
 
         if(FMLEnvironment.dist.isClient()) {
             modBus.addListener(this::clientSetup);
@@ -82,11 +83,6 @@ public final class Totemic {
             ModBlocks.setFireInfo();
             ModCriteriaTriggers.init();
         });
-
-        //Totem effects are registered during ModBlocks#init
-        RegistryApiImpl.registerInstruments();
-        RegistryApiImpl.registerCeremonies();
-        RegistryApiImpl.freezeRegistries();
 
         NetworkHandler.init();
         //PatchouliIntegration.init();
