@@ -40,9 +40,9 @@ import pokefenn.totemic.util.MiscUtil;
 
 @SuppressWarnings("deprecation")
 public class MedicineBagItem extends Item {
-    public static final String TOTEM_TAG = "Totem";
-    public static final String CHARGE_TAG = "Charge";
-    public static final String OPEN_TAG = "Open";
+    public static final String CARVING_TAG = "carving";
+    public static final String CHARGE_TAG = "charge";
+    public static final String OPEN_TAG = "open";
 
     private static final Map<ItemStack, Optional<PortableTotemCarving>> carvingCache = Collections.synchronizedMap(new WeakHashMap<>(8));
 
@@ -60,8 +60,9 @@ public class MedicineBagItem extends Item {
     public static Optional<PortableTotemCarving> getCarving(ItemStack stack) {
         return carvingCache.computeIfAbsent(stack, st -> MiscUtil.filterAndCast(
                 Optional.ofNullable(st.getTag())
-                .filter(tag -> tag.contains(TOTEM_TAG, Tag.TAG_STRING))
-                .flatMap(tag -> MiscUtil.getOptional(TotemicAPI.get().registry().totemCarvings(), new ResourceLocation(tag.getString(TOTEM_TAG)))),
+                .filter(tag -> tag.contains(CARVING_TAG, Tag.TAG_STRING))
+                .map(tag -> TotemicAPI.get().registry().totemCarvings().getValue(new ResourceLocation(tag.getString(CARVING_TAG))))
+                .filter(carving -> carving != ModContent.none),
                 PortableTotemCarving.class));
     }
 
@@ -154,7 +155,7 @@ public class MedicineBagItem extends Item {
                 var newStack = stack.copy();
                 carvingCache.remove(stack);
                 var tag = newStack.getOrCreateTag();
-                tag.putString(TOTEM_TAG, carving.getRegistryName().toString());
+                tag.putString(CARVING_TAG, carving.getRegistryName().toString());
                 if(!newStack.is(ModItems.creative_medicine_bag.get()))
                     tag.putInt(CHARGE_TAG, 0);
                 player.setItemInHand(hand, newStack);

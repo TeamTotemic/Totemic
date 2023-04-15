@@ -27,7 +27,6 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.util.MiscUtil;
 
 public class TotemKnifeItem extends Item {
     public static final String KNIFE_CARVING_KEY = "carving";
@@ -43,14 +42,13 @@ public class TotemKnifeItem extends Item {
 
     //an empty Optional represents a Totem Base
     public static Optional<TotemCarving> getCarving(ItemStack stack) {
+        final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
         return Optional.ofNullable(stack.getTag())
-                .flatMap(tag -> {
-                    var key = tag.getString(KNIFE_CARVING_KEY);
-                    if(!key.isEmpty())
-                        return MiscUtil.getOptional(TotemicAPI.get().registry().totemCarvings(), new ResourceLocation(key));
-                    else
-                        return Optional.empty();
-                });
+                .map(tag -> tag.getString(KNIFE_CARVING_KEY))
+                .filter(str -> !str.isEmpty())
+                .map(ResourceLocation::new)
+                .filter(carvingRegistry::containsKey)
+                .map(carvingRegistry::getValue);
     }
 
     private static List<String> totemList; //Lazily created
