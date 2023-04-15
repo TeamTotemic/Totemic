@@ -135,8 +135,8 @@ public final class StateSelection extends TotemState {
         selectors.clear();
         ListTag selectorsTag = tag.getList("Selectors", Tag.TAG_STRING);
         for(int i = 0; i < selectorsTag.size(); i++) {
-            var name = new ResourceLocation(selectorsTag.getString(i));
-            var instr = TotemicAPI.get().registry().instruments().getValue(name);
+            var name = selectorsTag.getString(i);
+            var instr = TotemicAPI.get().registry().instruments().getValue(ResourceLocation.tryParse(name));
             if(instr != null)
                 selectors.add(instr);
             else

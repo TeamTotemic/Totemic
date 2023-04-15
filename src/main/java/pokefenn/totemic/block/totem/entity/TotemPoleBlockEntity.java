@@ -12,6 +12,7 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.init.ModBlockEntities;
@@ -33,7 +34,9 @@ public class TotemPoleBlockEntity extends BlockEntity {
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
-        var carvingKey = new ResourceLocation(tag.getString("Carving"));
+        var carvingKey = ResourceLocation.tryParse(tag.getString("Carving"));
+        if(!TotemicAPI.get().registry().totemCarvings().containsKey(carvingKey))
+            Totemic.logger.error("Unknown Totem Carving: '{}'", tag.getString("Carving"));
         carving = TotemicAPI.get().registry().totemCarvings().getValue(carvingKey);
     }
 

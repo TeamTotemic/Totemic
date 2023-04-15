@@ -46,7 +46,7 @@ public class TotemKnifeItem extends Item {
         return Optional.ofNullable(stack.getTag())
                 .map(tag -> tag.getString(KNIFE_CARVING_KEY))
                 .filter(str -> !str.isEmpty())
-                .map(ResourceLocation::new)
+                .map(ResourceLocation::tryParse)
                 .filter(carvingRegistry::containsKey)
                 .map(carvingRegistry::getValue);
     }

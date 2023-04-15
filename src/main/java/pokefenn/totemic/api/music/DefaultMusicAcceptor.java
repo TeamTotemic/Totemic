@@ -115,7 +115,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
         totalMusic = 0;
         var instrRegistry = TotemicAPI.get().registry().instruments();
         for(String key: tag.getAllKeys()) {
-            var instr = instrRegistry.getValue(new ResourceLocation(key));
+            var instr = instrRegistry.getValue(ResourceLocation.tryParse(key));
             if(instr != null) {
                 int amount = tag.getInt(key);
                 music.put(instr, amount);

@@ -89,9 +89,11 @@ public enum CeremonyHUD implements IGuiOverlay {
 
         //Instruments
         var selectors = state.getSelectors();
-        //Assuming that we have only 1 selector to render
-        var item = selectors.get(0).getItem();
-        gui.getMinecraft().getItemRenderer().renderGuiItem(item, hudX + 40, hudY + 12);
+        //Assuming that we have at most 1 selector to render
+        if(!selectors.isEmpty()) {
+            var item = selectors.get(0).getItem();
+            gui.getMinecraft().getItemRenderer().renderGuiItem(item, hudX + 40, hudY + 12);
+        }
     }
 
     @SuppressWarnings("resource")

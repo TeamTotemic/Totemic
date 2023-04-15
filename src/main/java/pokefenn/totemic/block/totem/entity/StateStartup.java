@@ -179,8 +179,8 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     @Override
     void load(CompoundTag tag) {
-        var ceremonyName = new ResourceLocation(tag.getString("Ceremony"));
-        ceremony = TotemicAPI.get().registry().ceremonies().getValue(ceremonyName);
+        var ceremonyName = tag.getString("Ceremony");
+        ceremony = TotemicAPI.get().registry().ceremonies().getValue(ResourceLocation.tryParse(ceremonyName));
         if(ceremony == null) {
             Totemic.logger.error("Unknown Ceremony: '{}'", ceremonyName);
             tile.setTotemState(new StateTotemEffect(tile));
