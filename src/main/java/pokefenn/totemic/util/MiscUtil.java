@@ -7,10 +7,12 @@ import java.util.Optional;
 import java.util.stream.Collector;
 
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public final class MiscUtil {
     /**
@@ -58,6 +60,20 @@ public final class MiscUtil {
     @SuppressWarnings("unchecked")
     public static <T, S extends T> Optional<S> filterAndCast(Optional<T> opt, Class<S> clazz) {
         return (Optional<S>) opt.filter(clazz::isInstance);
+    }
+
+    /**
+     * If the registry contains the given key, returns an Optional containing the corresponding value. Otherwise,
+     * returns an empty Optional.
+     * <p>
+     * Note that this is not equivalent to {@code Optional.ofNullable(registry.getValue(key))} in case the registry
+     * has a default value.
+     */
+    public static <V> Optional<V> getOptional(IForgeRegistry<? extends V> registry, ResourceLocation key) {
+        if(registry.containsKey(key))
+            return Optional.of(registry.getValue(key));
+        else
+            return Optional.empty();
     }
 
     public static void spawnServerParticles(ParticleOptions particle, Level level, Vec3 pos, int count, Vec3 spread, double speed) {

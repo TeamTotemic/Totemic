@@ -120,9 +120,9 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     @Override
     void load(CompoundTag tag) {
         var ceremonyName = new ResourceLocation(tag.getString("Ceremony"));
-        ceremony = TotemicAPI.get().registry().ceremonies().get(ceremonyName);
+        ceremony = TotemicAPI.get().registry().ceremonies().getValue(ceremonyName);
         if(ceremony == null) {
-            Totemic.logger.error("Unknown Ceremony: {}", ceremonyName);
+            Totemic.logger.error("Unknown Ceremony: '{}'", ceremonyName);
             tile.setTotemState(new StateTotemEffect(tile));
             return;
         }

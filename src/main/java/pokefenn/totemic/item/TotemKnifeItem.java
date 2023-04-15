@@ -27,6 +27,7 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.util.MiscUtil;
 
 public class TotemKnifeItem extends Item {
     public static final String KNIFE_CARVING_KEY = "carving";
@@ -46,7 +47,7 @@ public class TotemKnifeItem extends Item {
                 .flatMap(tag -> {
                     var key = tag.getString(KNIFE_CARVING_KEY);
                     if(!key.isEmpty())
-                        return TotemicAPI.get().registry().totemCarvings().getOptional(new ResourceLocation(key));
+                        return MiscUtil.getOptional(TotemicAPI.get().registry().totemCarvings(), new ResourceLocation(key));
                     else
                         return Optional.empty();
                 });
@@ -56,7 +57,7 @@ public class TotemKnifeItem extends Item {
 
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction) {
         if(totemList == null) {
-            totemList = TotemicAPI.get().registry().totemCarvings().stream()
+            totemList = TotemicAPI.get().registry().totemCarvings().getValues().stream()
                     .filter(e -> e != ModContent.none)
                     .map(e -> e.getRegistryName().toString())
                     .toList();

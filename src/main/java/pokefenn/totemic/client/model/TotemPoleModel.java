@@ -68,7 +68,7 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
         final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
 
         var textureMap = ((BlockGeometryBakingContext) ctx).owner.textureMap;
-        totemModels = Maps.newHashMapWithExpectedSize(carvingRegistry.size());
+        totemModels = Maps.newHashMapWithExpectedSize(carvingRegistry.getValues().size());
         var materials = new HashSet<Material>();
         for(var carving: carvingRegistry) {
             //Create new BlockModel with the totem pole model as parent, but different textures

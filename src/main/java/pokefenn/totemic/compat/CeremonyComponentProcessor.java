@@ -14,8 +14,9 @@ public class CeremonyComponentProcessor implements IComponentProcessor {
     @Override
     public void setup(IVariableProvider variables) {
         var ceremonyId = variables.get("ceremony").asString();
-        ceremony = TotemicAPI.get().registry().ceremonies().getOptional(new ResourceLocation(ceremonyId))
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Ceremony: '" + ceremonyId + "'"));
+        ceremony = TotemicAPI.get().registry().ceremonies().getValue(new ResourceLocation(ceremonyId));
+        if(ceremony == null)
+            throw new IllegalArgumentException("Invalid Ceremony: '" + ceremonyId + "'");
     }
 
     @Override
