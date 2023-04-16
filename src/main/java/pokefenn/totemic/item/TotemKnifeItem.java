@@ -29,7 +29,7 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 
 public class TotemKnifeItem extends Item {
-    public static final String KNIFE_CARVING_KEY = "carving";
+    public static final String KNIFE_CARVING_KEY = "Carving";
 
     public TotemKnifeItem(Properties props) {
         super(props);
