@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -15,16 +14,15 @@ import pokefenn.totemic.init.ModBlockEntities;
 public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instrument, int amount) {
     public void encode(FriendlyByteBuf buf) {
         buf.writeBlockPos(pos);
-        buf.writeResourceLocation(instrument.getRegistryName());
+        buf.writeRegistryIdUnsafe(TotemicAPI.get().registry().instruments(), instrument);
         buf.writeVarInt(amount);
     }
 
     public static ClientboundPacketStartupMusic decode(FriendlyByteBuf buf) {
         BlockPos pos = buf.readBlockPos();
-        ResourceLocation instrName = buf.readResourceLocation();
-        MusicInstrument instr = TotemicAPI.get().registry().instruments().getValue(instrName);
+        MusicInstrument instr = buf.readRegistryIdUnsafe(TotemicAPI.get().registry().instruments());
         if(instr == null)
-            throw new RuntimeException("Unknown Music instrument: '" + instrName + "'");
+            throw new RuntimeException("Invalid Music Instrument ID");
         int amount = buf.readVarInt();
         return new ClientboundPacketStartupMusic(pos, instr, amount);
     }
