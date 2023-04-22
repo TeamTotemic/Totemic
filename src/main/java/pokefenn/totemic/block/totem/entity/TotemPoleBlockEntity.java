@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 
@@ -29,6 +30,9 @@ public class TotemPoleBlockEntity extends BlockEntity {
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putString("Carving", carving.getRegistryName().toString());
+
+        //This is in preparation of a future change where the wood type will also get stored in the block entity
+        tag.putString("Wood", "totemic:" + ((TotemPoleBlock) getBlockState().getBlock()).woodType.getName());
     }
 
     @Override

@@ -29,6 +29,7 @@ import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
+import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.init.ModBlockEntities;
 
 public class TotemBaseBlockEntity extends BlockEntity {
@@ -133,6 +134,9 @@ public class TotemBaseBlockEntity extends BlockEntity {
 
         tag.putByte("State", state.getID());
         state.save(tag);
+
+        //This is in preparation of a future change where the wood type will also get stored in the block entity
+        tag.putString("Wood", "totemic:" + ((TotemBaseBlock) getBlockState().getBlock()).woodType.getName());
     }
 
     @Override
