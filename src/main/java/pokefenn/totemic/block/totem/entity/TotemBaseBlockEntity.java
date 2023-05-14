@@ -89,6 +89,10 @@ public class TotemBaseBlockEntity extends BlockEntity {
         needPoleUpdate = true;
     }
 
+    public TotemWoodType getWoodType() {
+        return woodType;
+    }
+
     public List<TotemCarving> getCarvingList() {
         return carvingList;
     }

@@ -63,6 +63,10 @@ public class TotemPoleBlockEntity extends BlockEntity {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    public TotemWoodType getWoodType() {
+        return woodType;
+    }
+
     public TotemCarving getCarving() {
         return carving;
     }

@@ -1,11 +1,12 @@
 package pokefenn.totemic.client.model;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import com.google.common.collect.ImmutableTable;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.RenderType;
@@ -24,32 +25,29 @@ import net.minecraftforge.client.ChunkRenderTypeSet;
 import net.minecraftforge.client.model.BakedModelWrapper;
 import net.minecraftforge.client.model.data.ModelData;
 import net.minecraftforge.client.model.data.ModelProperty;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemCarving;
-import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.item.TotemPoleItem;
 
 public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
-    public static final ModelProperty<TotemCarving> CARVING_PROPERTY = new ModelProperty<>();
-
-    private final Map<TotemCarving, BakedModel> bakedTotemModels;
+    private final ImmutableTable<TotemWoodType, TotemCarving, BakedModel> bakedTotemModels;
     private final ItemOverrides itemOverrides;
 
-    BakedTotemPoleModel(Map<TotemCarving, BakedModel> bakedTotemModels) {
-        super(Objects.requireNonNull(bakedTotemModels.get(ModContent.none))); //default to "none" model
+    BakedTotemPoleModel(ImmutableTable<TotemWoodType, TotemCarving, BakedModel> bakedTotemModels) {
+        super(Objects.requireNonNull(bakedTotemModels.get(TotemWoodType.CEDAR, ModContent.none))); //default model
         this.bakedTotemModels = bakedTotemModels;
         this.itemOverrides = new ItemOverrides() {
             @Override
             public BakedModel resolve(BakedModel pModel, ItemStack pStack, ClientLevel pLevel, LivingEntity pEntity, int pSeed) {
-                return bakedTotemModels.get(TotemPoleItem.getCarving(pStack));
+                return pModel; //TODO //bakedTotemModels.get(TotemPoleItem.getCarving(pStack));
             }
         };
     }
 
     private BakedModel getModelFor(ModelData modelData) {
-        var carving = modelData.get(CARVING_PROPERTY);
-        return carving != null ? bakedTotemModels.get(carving) : originalModel;
+        var data = Objects.requireNonNullElse(modelData.get(Data.PROPERTY), Data.DEFAULT);
+        return bakedTotemModels.get(data.woodType, data.carving);
     }
 
     @Override
@@ -69,14 +67,21 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
 
     @Override
     public @NotNull ModelData getModelData(@NotNull BlockAndTintGetter level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull ModelData modelData) {
-        var carving = level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
-                .map(TotemPoleBlockEntity::getCarving)
-                .orElse(ModContent.none);
-        return ModelData.builder().with(CARVING_PROPERTY, carving).build();
+        return ModelData.builder().with(Data.PROPERTY,
+                level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
+                    .map(pole -> new Data(pole.getWoodType(), pole.getCarving()))
+                    .orElse(Data.DEFAULT))
+                .build();
     }
 
     @Override
     public ItemOverrides getOverrides() {
         return itemOverrides;
+    }
+
+    public static record Data(TotemWoodType woodType, TotemCarving carving) {
+        public static final ModelProperty<Data> PROPERTY = new ModelProperty<>();
+
+        public static final Data DEFAULT = new Data(TotemWoodType.CEDAR, ModContent.none);
     }
 }
