@@ -1,5 +1,5 @@
 {
-  "loader": "totemic:totem_pole",
+  "parent": "totemic:block/totem_pole",
   "textures": {
     "bark": "minecraft:block/dark_oak_log",
     "particle": "minecraft:block/stripped_dark_oak_log",

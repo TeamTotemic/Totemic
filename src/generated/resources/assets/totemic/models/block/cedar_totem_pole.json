@@ -1,5 +1,5 @@
 {
-  "loader": "totemic:totem_pole",
+  "parent": "totemic:block/totem_pole",
   "textures": {
     "bark": "totemic:block/cedar_log",
     "particle": "totemic:block/stripped_cedar_log",

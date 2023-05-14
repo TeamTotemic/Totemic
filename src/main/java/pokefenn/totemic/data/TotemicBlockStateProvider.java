@@ -18,8 +18,10 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.loaders.ObjModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.TipiBlock;
+import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 
@@ -173,44 +175,21 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         var medBag = im.basicItem(ModItems.medicine_bag.getId()).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
         im.getBuilder(ModItems.creative_medicine_bag.getId().toString()).parent(medBag).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
 
-        /*totemBaseModels();
-        totemPoleModels();*/
-    }
-
-    /*private void totemBaseModels() {
-        ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(TotemicAPI.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
-        for(var blockO: ModBlocks.getTotemBases().values()) {
-            var blockName = blockO.getId();
-            var block = blockO.get();
-
-            //Block model
-            var blockModel = models().getBuilder(blockName.toString()).parent(totemBaseModel);
-            setTotemTextures(blockModel, block.woodType);
-
-            //Block state
-            horizontalBlockIgnoringProperties(block, blockModel, TotemBaseBlock.WATERLOGGED);
-            //Item model
-            simpleBlockItem(block, blockModel);
-        }
+        totemPoleModels();
     }
 
     private void totemPoleModels() {
-        for(var blockO: ModBlocks.getTotemPoles().values()) {
-            var blockName = blockO.getId();
-            var block = blockO.get();
+        //Block state
+        horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), models().getExistingFile(modLoc("totem_pole")), TotemPoleBlock.WATERLOGGED);
 
-            //Block model
-            var blockModel = models().getBuilder(blockName.toString()).customLoader(this::totemPoleLoaderBuilder).end();
-            setTotemTextures(blockModel, block.woodType);
-
-            //Block state
-            horizontalBlockIgnoringProperties(block, blockModel, TotemPoleBlock.WATERLOGGED);
-            //Item model
-            simpleBlockItem(block, blockModel);
+        for(var woodType: TotemWoodType.getWoodTypes()) {
+            //Model for each wood type
+            var blockModel = models().withExistingParent("totemic:" + woodType.getName() + "_totem_pole", modLoc("totem_pole"));
+            setTotemTextures(blockModel, woodType);
         }
-    }*/
+    }
 
-    /*private BlockModelBuilder setTotemTextures(BlockModelBuilder model, TotemWoodType woodType) {
+    private BlockModelBuilder setTotemTextures(BlockModelBuilder model, TotemWoodType woodType) {
         return model
                 .texture("wood", woodType.getWoodTexture())
                 .texture("bark", woodType.getBarkTexture())
@@ -218,14 +197,9 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                 .texture("particle", woodType.getParticleTexture());
     }
 
-    private <T extends ModelBuilder<T>> CustomLoaderBuilder<T> totemPoleLoaderBuilder(T parent, ExistingFileHelper existingFileHelper) {
-        //The model doesn't have any properties besides the texture map, so we can just use an anonymous class
-        return new CustomLoaderBuilder<T>(modLoc("totem_pole"), parent, existingFileHelper) { };
-    }
-
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
         horizontalBlockIgnoringProperties(block, model, 180, ignored);
-    }*/
+    }
 
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, int angleOffset, Property<?>... ignored) {
         getVariantBuilder(block)

@@ -78,6 +78,8 @@ public final class TotemicLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.wind_chime.get());
             dropSelf(ModBlocks.totem_torch.get());
             dropSelf(ModBlocks.tipi.get());
+            add(ModBlocks.totem_base.get(), noDrop());
+            add(ModBlocks.totem_pole.get(), noDrop());
         }
 
         @Override

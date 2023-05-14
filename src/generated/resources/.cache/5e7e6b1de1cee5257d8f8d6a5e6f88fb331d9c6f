@@ -1,4 +1,4 @@
-// 1.19.2	2023-04-04T17:22:12.136260441	Totemic Item tags
+// 1.19.2	2023-05-14T23:04:50.845326281	Totemic Item tags
 8a567014dc4a3f77acc3596dba6ceab589ec8a41 data/forge/tags/items/armors/leggings.json
 f48a711794f70f6a13891618f69d5b89e02cb8ba data/forge/tags/items/fence_gates/wooden.json
 8c8c7476579771a19d4ed2a14de7fab91e67b074 data/forge/tags/items/leather.json
@@ -13,5 +13,3 @@ aba10d1b6ec722bbfe02d07854bf143dbb5a2856 data/minecraft/tags/items/wooden_button
 c555337d7413ef105766e005380d57baf9a16dbd data/minecraft/tags/items/wooden_slabs.json
 8a9592ab946276ae87f86f78a800bd641e4173f5 data/minecraft/tags/items/wooden_stairs.json
 edb0a1a520fc602c68dd264a87cf9f5c8142df57 data/totemic/tags/items/cedar_logs.json
-b11ac83d04ccb8e7ec03b67151ec3daee6200c9b data/totemic/tags/items/totem_bases.json
-6533f11f691cc0ca5ef5c53898267cb9b4b08972 data/totemic/tags/items/totem_poles.json
