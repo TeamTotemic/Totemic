@@ -5,7 +5,6 @@ import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.init.ModBlocks;
@@ -15,16 +14,9 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
         super(generator, TotemicAPI.MOD_ID, existingFileHelper);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     protected void addTags() {
         //Totemic tags
-        ModBlocks.getTotemBases().values().stream()
-                .map(RegistryObject::get)
-                .forEach(tag(TotemicBlockTags.TOTEM_BASES)::add);
-        ModBlocks.getTotemPoles().values().stream()
-                .map(RegistryObject::get)
-                .forEach(tag(TotemicBlockTags.TOTEM_POLES)::add);
         tag(TotemicBlockTags.CEDAR_LOGS).add(ModBlocks.cedar_log.get(), ModBlocks.stripped_cedar_log.get(), ModBlocks.cedar_wood.get(), ModBlocks.stripped_cedar_wood.get());
 
         //Minecraft and Forge tags
@@ -39,7 +31,7 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.LEAVES).add(ModBlocks.cedar_leaves.get());
         tag(BlockTags.SAPLINGS).add(ModBlocks.cedar_sapling.get());
         tag(BlockTags.FLOWER_POTS).add(ModBlocks.potted_cedar_sapling.get());
-        tag(BlockTags.MINEABLE_WITH_AXE).addTags(TotemicBlockTags.TOTEM_BASES, TotemicBlockTags.TOTEM_POLES).add(ModBlocks.drum.get());
+        tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.drum.get(), ModBlocks.totem_base.get(), ModBlocks.totem_pole.get());
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.wind_chime.get());
         tag(BlockTags.MINEABLE_WITH_HOE).add(ModBlocks.cedar_leaves.get());
 

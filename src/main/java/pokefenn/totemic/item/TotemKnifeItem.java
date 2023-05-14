@@ -99,7 +99,7 @@ public class TotemKnifeItem extends Item {
             }
 
             boolean isTotemBase = getCarving(c.getItemInHand()).isEmpty();
-            Block newBlock = isTotemBase ? ModBlocks.getTotemBase(woodType) : ModBlocks.getTotemPole(woodType);
+            Block newBlock = isTotemBase ? ModBlocks.totem_base.get() : ModBlocks.totem_pole.get(); //TODO //ModBlocks.getTotemBase(woodType) : ModBlocks.getTotemPole(woodType);
             BlockState newState = newBlock.getStateForPlacement(new BlockPlaceContext(c));
 
             c.getLevel().setBlock(c.getClickedPos(), newState, Block.UPDATE_ALL_IMMEDIATE);

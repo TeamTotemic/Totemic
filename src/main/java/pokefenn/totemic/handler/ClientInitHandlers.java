@@ -3,14 +3,11 @@ package pokefenn.totemic.handler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.client.CeremonyHUD;
@@ -23,18 +20,12 @@ import pokefenn.totemic.init.ModBlocks;
 public class ClientInitHandlers {
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        event.register((state, tintGetter, pos, tintIndex) -> TotemPoleBlock.getBlockColor(tintIndex),
-                ModBlocks.getTotemPoles().values().stream()
-                        .map(RegistryObject::get)
-                        .toArray(Block[]::new));
+        event.register((state, tintGetter, pos, tintIndex) -> TotemPoleBlock.getBlockColor(tintIndex), ModBlocks.totem_pole.get());
     }
 
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, tintIndex) -> TotemPoleBlock.getBlockColor(tintIndex),
-                ModBlocks.getTotemPoles().values().stream()
-                        .map(RegistryObject::get)
-                        .toArray(ItemLike[]::new));
+        event.register((stack, tintIndex) -> TotemPoleBlock.getBlockColor(tintIndex), ModBlocks.totem_pole.get());
     }
 
     @SubscribeEvent

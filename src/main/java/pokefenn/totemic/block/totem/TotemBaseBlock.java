@@ -31,7 +31,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
 import pokefenn.totemic.block.totem.entity.StateSelection;
 import pokefenn.totemic.block.totem.entity.StateStartup;
@@ -46,12 +45,9 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
 
     private static final VoxelShape SHAPE = Shapes.or(Shapes.box(0.0, 0.0, 0.0,  1.0, 0.28125, 1.0), Shapes.box(0.125, 0.28125, 0.125,  0.875, 1.0, 0.875));
 
-    public final TotemWoodType woodType;
-
-    public TotemBaseBlock(TotemWoodType woodType, Properties properties) {
+    public TotemBaseBlock(Properties properties) {
         super(properties);
         registerDefaultState(stateDefinition.any().setValue(WATERLOGGED, false));
-        this.woodType = woodType;
     }
 
     @Override

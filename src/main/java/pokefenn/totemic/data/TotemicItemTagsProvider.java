@@ -21,8 +21,6 @@ public final class TotemicItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags() {
         //Totemic tags
-        copy(TotemicBlockTags.TOTEM_BASES, TotemicItemTags.TOTEM_BASES);
-        copy(TotemicBlockTags.TOTEM_POLES, TotemicItemTags.TOTEM_POLES);
         copy(TotemicBlockTags.CEDAR_LOGS, TotemicItemTags.CEDAR_LOGS);
 
         //Minecraft and Forge tags

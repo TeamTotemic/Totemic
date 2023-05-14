@@ -14,18 +14,12 @@ import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockModelBuilder.RootTransformBuilder.TransformOrigin;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.CustomLoaderBuilder;
-import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.client.model.generators.loaders.ObjModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
-import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.TipiBlock;
-import pokefenn.totemic.block.totem.TotemBaseBlock;
-import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 
@@ -179,11 +173,11 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         var medBag = im.basicItem(ModItems.medicine_bag.getId()).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
         im.getBuilder(ModItems.creative_medicine_bag.getId().toString()).parent(medBag).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
 
-        totemBaseModels();
-        totemPoleModels();
+        /*totemBaseModels();
+        totemPoleModels();*/
     }
 
-    private void totemBaseModels() {
+    /*private void totemBaseModels() {
         ModelFile totemBaseModel = models().getExistingFile(new ResourceLocation(TotemicAPI.MOD_ID, ModelProvider.BLOCK_FOLDER + "/totem_base"));
         for(var blockO: ModBlocks.getTotemBases().values()) {
             var blockName = blockO.getId();
@@ -214,9 +208,9 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             //Item model
             simpleBlockItem(block, blockModel);
         }
-    }
+    }*/
 
-    private BlockModelBuilder setTotemTextures(BlockModelBuilder model, TotemWoodType woodType) {
+    /*private BlockModelBuilder setTotemTextures(BlockModelBuilder model, TotemWoodType woodType) {
         return model
                 .texture("wood", woodType.getWoodTexture())
                 .texture("bark", woodType.getBarkTexture())
@@ -231,7 +225,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
         horizontalBlockIgnoringProperties(block, model, 180, ignored);
-    }
+    }*/
 
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, int angleOffset, Property<?>... ignored) {
         getVariantBuilder(block)

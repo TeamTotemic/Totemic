@@ -18,23 +18,26 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
-import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.init.ModBlockEntities;
 
 public class TotemBaseBlockEntity extends BlockEntity {
     private boolean needPoleUpdate = true;
 
+    private TotemWoodType woodType = TotemWoodType.CEDAR;
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private Set<TotemCarving> carvingSet = null; //Only needed for Medicine Bags, computed lazily
     private Multiset<TotemEffect> totemEffects = ImmutableMultiset.of();
@@ -131,17 +134,21 @@ public class TotemBaseBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
-
+        tag.putString("Wood", "totemic:" + woodType.getName());
         tag.putByte("State", state.getID());
         state.save(tag);
-
-        //This is in preparation of a future change where the wood type will also get stored in the block entity
-        tag.putString("Wood", "totemic:" + ((TotemBaseBlock) getBlockState().getBlock()).woodType.getName());
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
+        var woodKey = ResourceLocation.tryParse(tag.getString("Wood"));
+        var wood = TotemWoodType.getWoodTypes().stream()
+                .filter(wt -> wt.getName().equals(woodKey.getPath()))
+                .findAny();
+        if(wood.isEmpty())
+            Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
+        woodType = wood.orElse(TotemWoodType.CEDAR);
 
         if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
             byte id = tag.getByte("State");
