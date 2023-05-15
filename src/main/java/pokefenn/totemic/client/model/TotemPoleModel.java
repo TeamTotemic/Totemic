@@ -45,14 +45,16 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
 
     @Override
     public Collection<Material> getMaterials(IGeometryBakingContext ctx, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
+        //In addition to gathering materials, this method also resolves the model dependencies.
+        //TODO: We probably don't need to create the totemModels table every time this method is called
         final var woodTypeRegistry = TotemWoodType.getWoodTypes();
         final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
 
         totemModels = ArrayTable.create(woodTypeRegistry, carvingRegistry);
         var materials = new HashSet<Material>();
         for(var woodType: woodTypeRegistry) {
-            var woodTypeModel = modelGetter.apply(getWoodTypeModelName(woodType));
-            var textureMap = ((BlockModel) woodTypeModel).textureMap; //TODO: This only works if the wood type model specifies all textures itself rather than inheriting textures from its parent
+            var woodTypeModel = (BlockModel) modelGetter.apply(getWoodTypeModelName(woodType));
+            var textureMap = woodTypeModel.textureMap; //TODO: This only works if the wood type model specifies all textures itself rather than inheriting textures from its parent
 
             for(var carving: carvingRegistry) {
                 //Create new BlockModel with the totem pole model as parent, but different textures

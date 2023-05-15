@@ -1,5 +1,4 @@
 {
-  "parent": "totemic:block/totem_pole",
   "textures": {
     "bark": "minecraft:block/spruce_log",
     "particle": "minecraft:block/stripped_spruce_log",

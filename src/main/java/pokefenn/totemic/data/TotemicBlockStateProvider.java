@@ -184,7 +184,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
         for(var woodType: TotemWoodType.getWoodTypes()) {
             //Model for each wood type
-            var blockModel = models().withExistingParent("totemic:" + woodType.getName() + "_totem_pole", modLoc("totem_pole"));
+            var blockModel = models().getBuilder("totemic:" + woodType.getName() + "_totem_pole");
             setTotemTextures(blockModel, woodType);
         }
     }
