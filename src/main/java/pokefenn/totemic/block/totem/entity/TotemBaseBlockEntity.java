@@ -37,7 +37,7 @@ import pokefenn.totemic.init.ModBlockEntities;
 public class TotemBaseBlockEntity extends BlockEntity {
     private boolean needPoleUpdate = true;
 
-    private TotemWoodType woodType = TotemWoodType.CEDAR;
+    private TotemWoodType woodType = TotemWoodType.OAK;
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private Set<TotemCarving> carvingSet = null; //Only needed for Medicine Bags, computed lazily
     private Multiset<TotemEffect> totemEffects = ImmutableMultiset.of();
@@ -152,7 +152,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
                 .findAny();
         if(wood.isEmpty())
             Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
-        woodType = wood.orElse(TotemWoodType.CEDAR);
+        woodType = wood.orElse(TotemWoodType.OAK);
 
         if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
             byte id = tag.getByte("State");

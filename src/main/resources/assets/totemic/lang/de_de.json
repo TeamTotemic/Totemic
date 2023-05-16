@@ -57,8 +57,9 @@
   "block.totemic.totem_torch": "Totemfackel",
   "block.totemic.tipi": "Tipi",
   "block.totemic.tipi.cantSleep": "Du kannst in einem Tipi nur unter freiem Himmel schlafen",
-
   "block.totemic.totem_base": "Totembasis",
+  "block.totemic.totem_pole": "Totempfahl",
+  
   "block.totemic.oak_totem_base": "Eichenholz-Totembasis",
   "block.totemic.spruce_totem_base": "Fichtenholz-Totembasis",
   "block.totemic.birch_totem_base": "Birkenholz-Totembasis",

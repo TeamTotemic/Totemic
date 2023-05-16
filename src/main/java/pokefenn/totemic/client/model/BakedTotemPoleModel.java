@@ -29,18 +29,19 @@ import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.item.TotemPoleItem;
 
 public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     private final ImmutableTable<TotemWoodType, TotemCarving, BakedModel> bakedTotemModels;
     private final ItemOverrides itemOverrides;
 
     BakedTotemPoleModel(ImmutableTable<TotemWoodType, TotemCarving, BakedModel> bakedTotemModels) {
-        super(Objects.requireNonNull(bakedTotemModels.get(TotemWoodType.CEDAR, ModContent.none))); //default model
+        super(Objects.requireNonNull(bakedTotemModels.get(TotemWoodType.OAK, ModContent.none))); //default model
         this.bakedTotemModels = bakedTotemModels;
         this.itemOverrides = new ItemOverrides() {
             @Override
             public BakedModel resolve(BakedModel pModel, ItemStack pStack, ClientLevel pLevel, LivingEntity pEntity, int pSeed) {
-                return pModel; //TODO //bakedTotemModels.get(TotemPoleItem.getCarving(pStack));
+                return bakedTotemModels.get(TotemPoleItem.getWoodType(pStack), TotemPoleItem.getCarving(pStack));
             }
         };
     }
@@ -82,6 +83,6 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     public static record Data(TotemWoodType woodType, TotemCarving carving) {
         public static final ModelProperty<Data> PROPERTY = new ModelProperty<>();
 
-        public static final Data DEFAULT = new Data(TotemWoodType.CEDAR, ModContent.none);
+        public static final Data DEFAULT = new Data(TotemWoodType.OAK, ModContent.none);
     }
 }

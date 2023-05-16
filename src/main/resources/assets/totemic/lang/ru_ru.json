@@ -57,8 +57,9 @@
   "block.totemic.totem_torch": "Факел для тотема",
   "block.totemic.tipi": "Типи",
   "block.totemic.tipi.cantSleep": "Вы не можете спать в типи, пока не окажетесь на открытом пространстве",
-
   "block.totemic.totem_base": "Основание тотема",
+  "block.totemic.totem_pole": "Тотемный столб",
+  
   "block.totemic.oak_totem_base": "Oak Основание тотема",
   "block.totemic.spruce_totem_base": "Spruce Основание тотема",
   "block.totemic.birch_totem_base": "Birch Основание тотема",

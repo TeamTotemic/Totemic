@@ -57,8 +57,9 @@
   "block.totemic.totem_torch": "トーテムトーチ",
   "block.totemic.tipi": "ティピー",
   "block.totemic.tipi.cantSleep": "開けた場所でないとティピーで眠れない",
-
   "block.totemic.totem_base": "トーテム台",
+  "block.totemic.totem_pole": "トーテムポール",
+  
   "block.totemic.oak_totem_base": "オークのトーテム台",
   "block.totemic.spruce_totem_base": "トウヒのトーテム台",
   "block.totemic.birch_totem_base": "シラカバのトーテム台",

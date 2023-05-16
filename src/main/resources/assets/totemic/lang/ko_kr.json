@@ -57,8 +57,9 @@
   "block.totemic.totem_torch": "토템 횃불",
   "block.totemic.tipi": "티피",
   "block.totemic.tipi.cantSleep": "티피는, 야외에서만 쓰이는 텐트입니다.",
-
   "block.totemic.totem_base": "토템 베이스",
+  "block.totemic.totem_pole": "토템 조각상",
+  
   "block.totemic.oak_totem_base": "참나무 토템 베이스",
   "block.totemic.spruce_totem_base": "가문비나무 토템 베이스",
   "block.totemic.birch_totem_base": "자작나무 토템 베이스",

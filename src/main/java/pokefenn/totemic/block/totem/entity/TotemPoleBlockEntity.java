@@ -20,7 +20,7 @@ import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 
 public class TotemPoleBlockEntity extends BlockEntity {
-    private TotemWoodType woodType = TotemWoodType.CEDAR;
+    private TotemWoodType woodType = TotemWoodType.OAK;
     private TotemCarving carving = ModContent.none;
 
     public TotemPoleBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -43,7 +43,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
                 .findAny();
         if(wood.isEmpty())
             Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
-        woodType = wood.orElse(TotemWoodType.CEDAR);
+        woodType = wood.orElse(TotemWoodType.OAK);
         var carvingKey = ResourceLocation.tryParse(tag.getString("Carving"));
         if(!TotemicAPI.get().registry().totemCarvings().containsKey(carvingKey))
             Totemic.logger.error("Unknown Totem Carving: '{}'", tag.getString("Carving"));
@@ -69,6 +69,11 @@ public class TotemPoleBlockEntity extends BlockEntity {
 
     public TotemCarving getCarving() {
         return carving;
+    }
+
+    public void setWoodType(TotemWoodType woodType) {
+        this.woodType = Objects.requireNonNull(woodType);
+        setChanged();
     }
 
     public void setCarving(TotemCarving carving) {

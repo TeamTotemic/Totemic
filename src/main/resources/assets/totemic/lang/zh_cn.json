@@ -57,8 +57,9 @@
   "block.totemic.totem_torch": "图腾火炬",
   "block.totemic.tipi": "印第安帐篷",
   "block.totemic.tipi.cantSleep": "你不能在非开阔地的印第安帐篷里睡觉",
-
   "block.totemic.totem_base": "图腾基座",
+  "block.totemic.totem_pole": "图腾柱",
+  
   "block.totemic.oak_totem_base": "橡木图腾基座",
   "block.totemic.spruce_totem_base": "云杉木图腾基座",
   "block.totemic.birch_totem_base": "白桦木图腾基座",

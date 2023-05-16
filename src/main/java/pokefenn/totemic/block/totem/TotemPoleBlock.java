@@ -26,6 +26,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
@@ -62,9 +63,11 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        var carving = TotemPoleItem.getCarving(stack); //also works for TotemKnifeItem
         level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
-                .ifPresent(pole -> pole.setCarving(carving));
+                .ifPresent(pole -> {
+                    pole.setWoodType(TotemPoleItem.getWoodType(stack));
+                    pole.setCarving(TotemPoleItem.getCarving(stack));
+                });
         findTotemBase(level, pos)
                 .ifPresent(TotemBaseBlockEntity::onPoleChange);
     }
@@ -136,11 +139,12 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
-        var carving = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_pole.get())
-                .map(TotemPoleBlockEntity::getCarving)
-                .orElse(ModContent.none);
+        var pole = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_pole.get());
+        var woodType = pole.map(TotemPoleBlockEntity::getWoodType).orElse(TotemWoodType.OAK);
+        var carving = pole.map(TotemPoleBlockEntity::getCarving).orElse(ModContent.none);
         var stack = new ItemStack(this);
         stack.getOrCreateTag().putString(TotemPoleItem.POLE_CARVING_KEY, carving.getRegistryName().toString());
+        stack.getTag().putString(TotemPoleItem.POLE_WOOD_KEY, "totemic:" + woodType.getName());
         return stack;
     }
 
@@ -149,6 +153,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         for(var carving: TotemicAPI.get().registry().totemCarvings()) {
             var stack = new ItemStack(this);
             stack.getOrCreateTag().putString(TotemPoleItem.POLE_CARVING_KEY, carving.getRegistryName().toString());
+            stack.getTag().putString(TotemPoleItem.POLE_WOOD_KEY, "totemic:cedar");
             pItems.add(stack);
         }
     }
