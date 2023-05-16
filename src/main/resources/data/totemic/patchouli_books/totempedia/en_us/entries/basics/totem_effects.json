@@ -1,6 +1,6 @@
 {
     "name": "Totem Effects",
-    "icon": "totemic:oak_totem_pole{carving:'totemic:buffalo'}",
+    "icon": "totemic:totem_pole{Wood:'totemic:oak',Carving:'totemic:buffalo'}",
     "category": "totemic:basics",
     "pages": [
         {

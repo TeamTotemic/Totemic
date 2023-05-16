@@ -1,6 +1,6 @@
 {
     "name": "Totempfähle",
-    "icon": "totemic:oak_totem_base",
+    "icon": "totemic:totem_base",
     "category": "totemic:basics",
     "pages": [
         {
@@ -23,8 +23,8 @@
         }
     ],
     "extra_recipe_mappings": {
-        "tag:totemic:totem_bases": 0,
-        "tag:totemic:totem_poles": 0
+        "totemic:totem_base": 0,
+        "totemic:totem_pole": 0
     },
     "sortnum": 0
 }
