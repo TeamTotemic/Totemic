@@ -21,6 +21,7 @@ import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.TipiBlock;
+import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
@@ -81,7 +82,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
         //Item Blocks
         var im = itemModels();
-        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.getId(), ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.potted_cedar_sapling.getId(), ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId());
+        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.getId(), ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.potted_cedar_sapling.getId(), ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             if(blocksWithCustomItemModel.contains(blockO.getId()))
                 continue;
@@ -146,6 +147,8 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                     .scale(0.25F)
                     .end()
                 .end();
+        im.withExistingParent(ModBlocks.totem_base.getId().toString(), modLoc("block/dynamic_totem_base"));
+        im.withExistingParent(ModBlocks.totem_pole.getId().toString(), modLoc("block/dynamic_totem_pole"));
 
         //Items
         im.basicItem(ModItems.flute.getId());
@@ -179,13 +182,17 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
     }
 
     private void totemPoleModels() {
-        //Block state
-        horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), models().getExistingFile(modLoc("totem_pole")), TotemPoleBlock.WATERLOGGED);
+        //Block states
+        horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), models().getExistingFile(modLoc("dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
+        horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), models().getExistingFile(modLoc("dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
 
         for(var woodType: TotemWoodType.getWoodTypes()) {
             //Model for each wood type
-            var blockModel = models().getBuilder("totemic:" + woodType.getName() + "_totem_pole");
-            setTotemTextures(blockModel, woodType);
+            var poleModel = models().getBuilder("totemic:" + woodType.getName() + "_totem_pole");
+            setTotemTextures(poleModel, woodType);
+
+            var baseModel = models().withExistingParent("totemic:" + woodType.getName() + "_totem_base", modLoc("totem_base"));
+            setTotemTextures(baseModel, woodType);
         }
     }
 

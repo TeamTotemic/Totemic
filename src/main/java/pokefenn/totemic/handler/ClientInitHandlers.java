@@ -11,6 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.client.CeremonyHUD;
+import pokefenn.totemic.client.model.TotemBaseModel;
 import pokefenn.totemic.client.model.TotemPoleModel;
 import pokefenn.totemic.init.ModBlocks;
 
@@ -31,6 +32,7 @@ public class ClientInitHandlers {
     @SubscribeEvent
     public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
         event.register("totem_pole", TotemPoleModel.Loader.INSTANCE);
+        event.register("totem_base", TotemBaseModel.Loader.INSTANCE);
     }
 
     private static final ResourceLocation OPAQUE_CEDAR_LEAVES = new ResourceLocation(TotemicAPI.MOD_ID, "block/cedar_leaves_opaque");

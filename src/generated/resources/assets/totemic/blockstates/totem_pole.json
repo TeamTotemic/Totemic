@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "totemic:block/totem_pole",
+      "model": "totemic:block/dynamic_totem_pole",
       "y": 90
     },
     "facing=north": {
-      "model": "totemic:block/totem_pole"
+      "model": "totemic:block/dynamic_totem_pole"
     },
     "facing=south": {
-      "model": "totemic:block/totem_pole",
+      "model": "totemic:block/dynamic_totem_pole",
       "y": 180
     },
     "facing=west": {
-      "model": "totemic:block/totem_pole",
+      "model": "totemic:block/dynamic_totem_pole",
       "y": 270
     }
   }
