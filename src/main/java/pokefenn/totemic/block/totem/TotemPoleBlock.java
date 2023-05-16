@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -135,6 +136,13 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         case 4 -> 0xBBBB66; //Yellow
         default -> -1;
         };
+    }
+
+    @Override
+    public MaterialColor getMapColor(BlockState state, BlockGetter level, BlockPos pos, MaterialColor defaultColor) {
+        return level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
+                .map(pole -> pole.getWoodType().getWoodColor())
+                .orElse(defaultColor);
     }
 
     @Override
