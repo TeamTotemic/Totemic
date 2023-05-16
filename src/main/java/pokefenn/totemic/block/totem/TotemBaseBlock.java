@@ -6,10 +6,14 @@ import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -32,6 +36,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
 import pokefenn.totemic.block.totem.entity.StateSelection;
 import pokefenn.totemic.block.totem.entity.StateStartup;
@@ -39,6 +44,7 @@ import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModItems;
+import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.util.BlockUtil;
 
 public class TotemBaseBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
@@ -109,6 +115,12 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
+                .ifPresent(pole -> pole.setWoodType(TotemPoleItem.getWoodType(stack)));
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
@@ -163,5 +175,21 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         return level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
                 .map(base -> base.getWoodType().getWoodColor())
                 .orElse(defaultColor);
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+        var base = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_base.get());
+        var woodType = base.map(TotemBaseBlockEntity::getWoodType).orElse(TotemWoodType.OAK);
+        var stack = new ItemStack(this);
+        stack.getOrCreateTag().putString(TotemPoleItem.POLE_WOOD_KEY, "totemic:" + woodType.getName());
+        return stack;
+    }
+
+    @Override
+    public void fillItemCategory(CreativeModeTab pTab, NonNullList<ItemStack> pItems) {
+        var stack = new ItemStack(this);
+        stack.getOrCreateTag().putString(TotemPoleItem.POLE_WOOD_KEY, "totemic:cedar");
+        pItems.add(stack);
     }
 }

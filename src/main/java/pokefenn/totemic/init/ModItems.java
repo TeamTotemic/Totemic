@@ -23,6 +23,7 @@ import pokefenn.totemic.item.CeremonyCheatItem;
 import pokefenn.totemic.item.CreativeMedicineBagItem;
 import pokefenn.totemic.item.CustomRenderedBlockItem;
 import pokefenn.totemic.item.MedicineBagItem;
+import pokefenn.totemic.item.TotemBaseItem;
 import pokefenn.totemic.item.TotemKnifeItem;
 import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.item.TotemicStaffItem;
@@ -62,8 +63,8 @@ public final class ModItems {
     //Blocks with custom item blocks
     public static final RegistryObject<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties().tab(Totemic.creativeTab)));
     //public static final RegistryObject<SignItem> cedar_sign = REGISTER.register("cedar_sign", () -> new SignItem(new Properties().stacksTo(16).tab(Totemic.creativeTab), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get()));
+    public static final RegistryObject<TotemBaseItem> totem_base = REGISTER.register("totem_base", () -> new TotemBaseItem(ModBlocks.totem_base.get(), new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemPoleItem> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleItem(ModBlocks.totem_pole.get(), new Properties().tab(Totemic.creativeTab)));
-    //TODO: totem_base
 
     @SubscribeEvent
     public static void init(RegisterEvent event) {
@@ -71,7 +72,7 @@ public final class ModItems {
             return;
 
         //Register item blocks
-        final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.dummy_tipi.getId(), ModBlocks.totem_pole.getId());
+        final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             if(blocksWithoutItem.contains(blockO.getId()))
                 continue;
