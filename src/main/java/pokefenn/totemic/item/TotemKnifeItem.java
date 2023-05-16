@@ -21,10 +21,10 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LevelEvent;
-import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 
@@ -47,7 +47,7 @@ public class TotemKnifeItem extends Item {
                 .map(tag -> tag.getString(KNIFE_CARVING_KEY))
                 .filter(str -> !str.isEmpty())
                 .map(ResourceLocation::tryParse)
-                .filter(carvingRegistry::containsKey)
+                .filter(carvingRegistry::containsKey) //filter because we don't want to get the default value if the key doesn't exist
                 .map(carvingRegistry::getValue);
     }
 
@@ -87,23 +87,34 @@ public class TotemKnifeItem extends Item {
             return InteractionResult.PASS;
         }
         else {
-            BlockState state = c.getLevel().getBlockState(c.getClickedPos());
+            var state = c.getLevel().getBlockState(c.getClickedPos());
 
-            TotemWoodType woodType = TotemWoodType.fromLog(state).orElse(null);
-            if(woodType == null) {
+            var woodType = TotemWoodType.fromLog(state).orElseGet(() -> {
                 //Fall back to oak if it is an unrecognized log type
                 if(state.is(BlockTags.LOGS_THAT_BURN))
-                    woodType = TotemWoodType.OAK;
+                    return TotemWoodType.OAK;
                 else
-                    return InteractionResult.FAIL;
-            }
+                    return null;
+            });
+            if(woodType == null)
+                return InteractionResult.FAIL;
+            getCarving(c.getItemInHand()).ifPresentOrElse(
+                carving -> { //Totem Pole
+                    var newState = ModBlocks.totem_pole.get().getStateForPlacement(new BlockPlaceContext(c));
+                    c.getLevel().setBlock(c.getClickedPos(), newState, Block.UPDATE_ALL_IMMEDIATE);
+                    c.getLevel().getBlockEntity(c.getClickedPos(), ModBlockEntities.totem_pole.get())
+                        .ifPresent(pole -> {
+                            pole.setWoodType(woodType);
+                            pole.setCarving(carving);
+                        });
+                },
+                () -> { //Totem Base
+                    var newState = ModBlocks.totem_base.get().getStateForPlacement(new BlockPlaceContext(c));
+                    c.getLevel().setBlock(c.getClickedPos(), newState, Block.UPDATE_ALL_IMMEDIATE);
+                    c.getLevel().getBlockEntity(c.getClickedPos(), ModBlockEntities.totem_base.get())
+                        .ifPresent(base -> base.setWoodType(woodType));
+                });
 
-            boolean isTotemBase = getCarving(c.getItemInHand()).isEmpty();
-            Block newBlock = isTotemBase ? ModBlocks.totem_base.get() : ModBlocks.totem_pole.get(); //TODO //ModBlocks.getTotemBase(woodType) : ModBlocks.getTotemPole(woodType);
-            BlockState newState = newBlock.getStateForPlacement(new BlockPlaceContext(c));
-
-            c.getLevel().setBlock(c.getClickedPos(), newState, Block.UPDATE_ALL_IMMEDIATE);
-            newBlock.setPlacedBy(c.getLevel(), c.getClickedPos(), newState, player, c.getItemInHand()); //this takes care of setting the carving
             if(player != null)
                 c.getItemInHand().hurtAndBreak(1, player, p -> p.broadcastBreakEvent(c.getHand()));
             c.getLevel().levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, c.getClickedPos(), Block.getId(state));

@@ -2,6 +2,7 @@ package pokefenn.totemic.block.totem.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -91,6 +92,11 @@ public class TotemBaseBlockEntity extends BlockEntity {
 
     public TotemWoodType getWoodType() {
         return woodType;
+    }
+
+    public void setWoodType(TotemWoodType woodType) {
+        this.woodType = Objects.requireNonNull(woodType);
+        setChanged();
     }
 
     public List<TotemCarving> getCarvingList() {
