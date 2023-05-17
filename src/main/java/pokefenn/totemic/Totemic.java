@@ -29,6 +29,7 @@ import pokefenn.totemic.handler.ClientInteract;
 import pokefenn.totemic.handler.ClientRenderHandler;
 import pokefenn.totemic.handler.EntityHandler;
 import pokefenn.totemic.handler.PlayerInteract;
+import pokefenn.totemic.handler.RemapHandler;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
@@ -88,6 +89,7 @@ public final class Totemic {
         //PatchouliIntegration.init();
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
+        eventBus.register(RemapHandler.class);
         eventBus.register(PlayerInteract.class);
         if(ModConfig.GENERAL.skeletonsShouldAttackBuffalos.get())
             eventBus.addListener(EntityHandler::onEntityJoin);
