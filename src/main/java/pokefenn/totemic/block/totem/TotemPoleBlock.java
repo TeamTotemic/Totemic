@@ -64,11 +64,10 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        var woodType = TotemPoleItem.getWoodType(stack);
+        var carving = TotemPoleItem.getCarving(stack);
         level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
-                .ifPresent(pole -> {
-                    pole.setWoodType(TotemPoleItem.getWoodType(stack));
-                    pole.setCarving(TotemPoleItem.getCarving(stack));
-                });
+                .ifPresent(pole -> pole.setAppearance(woodType, carving));
         findTotemBase(level, pos)
                 .ifPresent(TotemBaseBlockEntity::onPoleChange);
     }

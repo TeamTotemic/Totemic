@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.math.IntMath;
@@ -24,6 +26,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.model.data.ModelData;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import pokefenn.totemic.Totemic;
@@ -33,6 +36,7 @@ import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
+import pokefenn.totemic.client.model.BakedTotemBaseModel;
 import pokefenn.totemic.init.ModBlockEntities;
 
 public class TotemBaseBlockEntity extends BlockEntity {
@@ -96,6 +100,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
 
     public void setWoodType(TotemWoodType woodType) {
         this.woodType = Objects.requireNonNull(woodType);
+        requestModelDataUpdate();
         setChanged();
     }
 
@@ -197,5 +202,10 @@ public class TotemBaseBlockEntity extends BlockEntity {
             return musicHandler.cast();
         else
             return super.getCapability(cap, side);
+    }
+
+    @Override
+    public @NotNull ModelData getModelData() {
+        return ModelData.builder().with(BakedTotemBaseModel.WOOD_TYPE_PROPERTY, woodType).build();
     }
 }

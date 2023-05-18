@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -12,10 +14,12 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.model.data.ModelData;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.client.model.BakedTotemPoleModel;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 
@@ -71,13 +75,15 @@ public class TotemPoleBlockEntity extends BlockEntity {
         return carving;
     }
 
-    public void setWoodType(TotemWoodType woodType) {
+    public void setAppearance(TotemWoodType woodType, TotemCarving carving) {
         this.woodType = Objects.requireNonNull(woodType);
+        this.carving = Objects.requireNonNull(carving);
+        requestModelDataUpdate();
         setChanged();
     }
 
-    public void setCarving(TotemCarving carving) {
-        this.carving = Objects.requireNonNull(carving);
-        setChanged();
+    @Override
+    public @NotNull ModelData getModelData() {
+        return ModelData.builder().with(BakedTotemPoleModel.DATA_PROPERTY, new BakedTotemPoleModel.Data(woodType, carving)).build();
     }
 }

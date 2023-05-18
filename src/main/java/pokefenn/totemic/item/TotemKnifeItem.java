@@ -103,10 +103,7 @@ public class TotemKnifeItem extends Item {
                     var newState = ModBlocks.totem_pole.get().getStateForPlacement(new BlockPlaceContext(c));
                     c.getLevel().setBlock(c.getClickedPos(), newState, Block.UPDATE_ALL_IMMEDIATE);
                     c.getLevel().getBlockEntity(c.getClickedPos(), ModBlockEntities.totem_pole.get())
-                        .ifPresent(pole -> {
-                            pole.setWoodType(woodType);
-                            pole.setCarving(carving);
-                        });
+                        .ifPresent(pole -> pole.setAppearance(woodType, carving));
                 },
                 () -> { //Totem Base
                     var newState = ModBlocks.totem_base.get().getStateForPlacement(new BlockPlaceContext(c));
