@@ -24,6 +24,7 @@ import net.minecraftforge.client.model.geometry.IGeometryBakingContext;
 import net.minecraftforge.client.model.geometry.IGeometryLoader;
 import net.minecraftforge.client.model.geometry.IUnbakedGeometry;
 import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.api.TotemicAPI;
 
 public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
     private Map<TotemWoodType, UnbakedModel> totemModels = null;
@@ -41,9 +42,9 @@ public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
     public Collection<Material> getMaterials(IGeometryBakingContext ctx, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
         //In addition to gathering materials, this method also resolves the model dependencies.
         //TODO: We probably don't need to create the totemModels table every time this method is called
-        final var woodTypeRegistry = TotemWoodType.getWoodTypes();
+        final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
 
-        totemModels = Maps.newHashMapWithExpectedSize(woodTypeRegistry.size());
+        totemModels = Maps.newHashMapWithExpectedSize(woodTypeRegistry.getValues().size());
         var materials = new HashSet<Material>();
         for(var woodType: woodTypeRegistry) {
             var model = modelGetter.apply(getWoodTypeModelName(woodType));
@@ -55,7 +56,7 @@ public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
     }
 
     private static ResourceLocation getWoodTypeModelName(TotemWoodType woodType) {
-        var woodName = new ResourceLocation("totemic", woodType.getName());
+        var woodName = woodType.getRegistryName();
         return new ResourceLocation(woodName.getNamespace(), "block/" + woodName.getPath() + "_totem_base");
     }
 

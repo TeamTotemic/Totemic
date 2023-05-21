@@ -35,7 +35,7 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     private final ItemOverrides itemOverrides;
 
     BakedTotemPoleModel(ImmutableTable<TotemWoodType, TotemCarving, BakedModel> bakedTotemModels) {
-        super(Objects.requireNonNull(bakedTotemModels.get(TotemWoodType.OAK, ModContent.none))); //default model
+        super(Objects.requireNonNull(bakedTotemModels.get(ModContent.oak, ModContent.none))); //default model
         this.bakedTotemModels = bakedTotemModels;
         this.itemOverrides = new ItemOverrides() {
             @Override
@@ -71,6 +71,6 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     }
 
     public static record Data(TotemWoodType woodType, TotemCarving carving) {
-        public static final Data DEFAULT = new Data(TotemWoodType.OAK, ModContent.none);
+        public static final Data DEFAULT = new Data(ModContent.oak, ModContent.none);
     }
 }

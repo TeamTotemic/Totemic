@@ -24,7 +24,7 @@ import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 
 public class TotemPoleBlockEntity extends BlockEntity {
-    private TotemWoodType woodType = TotemWoodType.OAK;
+    private TotemWoodType woodType = ModContent.oak;
     private TotemCarving carving = ModContent.none;
 
     public TotemPoleBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -34,7 +34,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
-        tag.putString("Wood", "totemic:" + woodType.getName());
+        tag.putString("Wood", woodType.getRegistryName().toString());
         tag.putString("Carving", carving.getRegistryName().toString());
     }
 
@@ -42,12 +42,9 @@ public class TotemPoleBlockEntity extends BlockEntity {
     public void load(CompoundTag tag) {
         super.load(tag);
         var woodKey = ResourceLocation.tryParse(tag.getString("Wood"));
-        var wood = TotemWoodType.getWoodTypes().stream()
-                .filter(wt -> wt.getName().equals(woodKey.getPath()))
-                .findAny();
-        if(wood.isEmpty())
+        if(!TotemicAPI.get().registry().woodTypes().containsKey(woodKey))
             Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
-        woodType = wood.orElse(TotemWoodType.OAK);
+        woodType = TotemicAPI.get().registry().woodTypes().getValue(woodKey);
         var carvingKey = ResourceLocation.tryParse(tag.getString("Carving"));
         if(!TotemicAPI.get().registry().totemCarvings().containsKey(carvingKey))
             Totemic.logger.error("Unknown Totem Carving: '{}'", tag.getString("Carving"));

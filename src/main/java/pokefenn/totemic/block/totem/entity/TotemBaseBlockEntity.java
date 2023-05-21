@@ -31,6 +31,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.totem.TotemCarving;
@@ -38,11 +39,12 @@ import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.client.model.BakedTotemBaseModel;
 import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.init.ModContent;
 
 public class TotemBaseBlockEntity extends BlockEntity {
     private boolean needPoleUpdate = true;
 
-    private TotemWoodType woodType = TotemWoodType.OAK;
+    private TotemWoodType woodType = ModContent.oak;
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private Set<TotemCarving> carvingSet = null; //Only needed for Medicine Bags, computed lazily
     private Multiset<TotemEffect> totemEffects = ImmutableMultiset.of();
@@ -149,7 +151,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
-        tag.putString("Wood", "totemic:" + woodType.getName());
+        tag.putString("Wood", woodType.getRegistryName().toString());
         tag.putByte("State", state.getID());
         state.save(tag);
     }
@@ -158,12 +160,9 @@ public class TotemBaseBlockEntity extends BlockEntity {
     public void load(CompoundTag tag) {
         super.load(tag);
         var woodKey = ResourceLocation.tryParse(tag.getString("Wood"));
-        var wood = TotemWoodType.getWoodTypes().stream()
-                .filter(wt -> wt.getName().equals(woodKey.getPath()))
-                .findAny();
-        if(wood.isEmpty())
+        if(!TotemicAPI.get().registry().woodTypes().containsKey(woodKey))
             Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
-        woodType = wood.orElse(TotemWoodType.OAK);
+        woodType = TotemicAPI.get().registry().woodTypes().getValue(woodKey);
 
         if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
             byte id = tag.getByte("State");

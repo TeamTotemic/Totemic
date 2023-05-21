@@ -47,7 +47,7 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
     public Collection<Material> getMaterials(IGeometryBakingContext ctx, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
         //In addition to gathering materials, this method also resolves the model dependencies.
         //TODO: We probably don't need to create the totemModels table every time this method is called
-        final var woodTypeRegistry = TotemWoodType.getWoodTypes();
+        final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
         final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
 
         totemModels = ArrayTable.create(woodTypeRegistry, carvingRegistry);
@@ -67,7 +67,7 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
     }
 
     private static ResourceLocation getWoodTypeModelName(TotemWoodType woodType) {
-        var woodName = new ResourceLocation("totemic", woodType.getName());
+        var woodName = woodType.getRegistryName();
         return new ResourceLocation(woodName.getNamespace(), "block/" + woodName.getPath() + "_totem_pole");
     }
 

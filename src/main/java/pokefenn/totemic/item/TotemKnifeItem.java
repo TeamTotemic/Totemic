@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -21,7 +20,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LevelEvent;
-import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.init.ModBlockEntities;
@@ -89,13 +87,13 @@ public class TotemKnifeItem extends Item {
         else {
             var state = c.getLevel().getBlockState(c.getClickedPos());
 
-            var woodType = TotemWoodType.fromLog(state).orElseGet(() -> {
+            var woodType = ModContent.oak; /* TODO TotemWoodType.fromLog(state).orElseGet(() -> {
                 //Fall back to oak if it is an unrecognized log type
                 if(state.is(BlockTags.LOGS_THAT_BURN))
-                    return TotemWoodType.OAK;
+                    return ModContent.oak;
                 else
                     return null;
-            });
+            });*/
             if(woodType == null)
                 return InteractionResult.FAIL;
             getCarving(c.getItemInHand()).ifPresentOrElse(

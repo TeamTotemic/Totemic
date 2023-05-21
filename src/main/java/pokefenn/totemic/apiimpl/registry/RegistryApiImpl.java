@@ -10,6 +10,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.NewRegistryEvent;
 import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryBuilder;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -21,12 +22,14 @@ public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;
 
     private static Supplier<IForgeRegistry<MusicInstrument>> instruments;
+    private static Supplier<IForgeRegistry<TotemWoodType>> woodTypes;
     private static Supplier<IForgeRegistry<TotemCarving>> totemCarvings;
     private static Supplier<IForgeRegistry<Ceremony>> ceremonies;
 
     @SubscribeEvent
     public static void createRegistries(NewRegistryEvent event) {
         instruments = event.create(new RegistryBuilder<MusicInstrument>().setName(MUSIC_INSTRUMENT_REGISTRY.location()).disableSaving());
+        woodTypes = event.create(new RegistryBuilder<TotemWoodType>().setName(WOOD_TYPE_REGISTRY.location()).setDefaultKey(new ResourceLocation(TotemicAPI.MOD_ID, "oak")).disableSaving().disableSync());
         totemCarvings = event.create(new RegistryBuilder<TotemCarving>().setName(TOTEM_CARVING_REGISTRY.location()).setDefaultKey(new ResourceLocation(TotemicAPI.MOD_ID, "none")).disableSaving().disableSync());
         ceremonies = event.create(new RegistryBuilder<Ceremony>().setName(CEREMONY_REGISTRY.location()).disableSaving().disableSync());
     }
@@ -35,6 +38,8 @@ public enum RegistryApiImpl implements RegistryAPI {
     public static void registerContents(RegisterEvent event) {
         if(event.getRegistryKey().equals(MUSIC_INSTRUMENT_REGISTRY))
             fireRegistryEvent(MusicInstrument.class, event.getForgeRegistry(), MusicInstrument::getRegistryName);
+        else if(event.getRegistryKey().equals(WOOD_TYPE_REGISTRY))
+            fireRegistryEvent(TotemWoodType.class, event.getForgeRegistry(), TotemWoodType::getRegistryName);
         else if(event.getRegistryKey().equals(TOTEM_CARVING_REGISTRY))
             fireRegistryEvent(TotemCarving.class, event.getForgeRegistry(), TotemCarving::getRegistryName);
         else if(event.getRegistryKey().equals(CEREMONY_REGISTRY))
@@ -51,6 +56,11 @@ public enum RegistryApiImpl implements RegistryAPI {
     @Override
     public IForgeRegistry<MusicInstrument> instruments() {
         return instruments.get();
+    }
+
+    @Override
+    public IForgeRegistry<TotemWoodType> woodTypes() {
+        return woodTypes.get();
     }
 
     @Override

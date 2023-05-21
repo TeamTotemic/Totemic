@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModContent;
@@ -20,13 +21,13 @@ public class TotemPoleItem extends BlockItem {
     }
 
     public static TotemWoodType getWoodType(ItemStack stack) {
-        final var woodTypeRegistry = TotemWoodType.getWoodTypes();
+        final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
         return Optional.ofNullable(stack.getTag())
                 .map(tag -> tag.getString(POLE_WOOD_KEY))
+                .filter(str -> !str.isEmpty())
                 .map(ResourceLocation::tryParse)
-                .map(ResourceLocation::getPath)
-                .flatMap(name -> woodTypeRegistry.stream().filter(wt -> wt.getName().equals(name)).findAny())
-                .orElse(TotemWoodType.OAK);
+                .map(woodTypeRegistry::getValue)
+                .orElse(ModContent.oak);
     }
 
     public static TotemCarving getCarving(ItemStack stack) {
@@ -36,7 +37,7 @@ public class TotemPoleItem extends BlockItem {
     @Override
     public String getDescriptionId(ItemStack stack) {
         var woodType = getWoodType(stack);
-        return "block.totemic." + woodType.getName() + "_totem_pole";
+        return "block." + woodType.getRegistryName().toLanguageKey() + "_totem_pole";
     }
 
     @Override

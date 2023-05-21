@@ -18,7 +18,6 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.loaders.ObjModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
-import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
@@ -186,23 +185,23 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), models().getExistingFile(modLoc("dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
         horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), models().getExistingFile(modLoc("dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
 
-        for(var woodType: TotemWoodType.getWoodTypes()) {
+        /*for(var woodType: TotemWoodType.getWoodTypes()) {
             //Model for each wood type
             var poleModel = models().getBuilder("totemic:" + woodType.getName() + "_totem_pole");
             setTotemTextures(poleModel, woodType);
 
             var baseModel = models().withExistingParent("totemic:" + woodType.getName() + "_totem_base", modLoc("totem_base"));
             setTotemTextures(baseModel, woodType);
-        }
+        }*/ ///TODO: Totem Wood Type texture data generation
     }
 
-    private BlockModelBuilder setTotemTextures(BlockModelBuilder model, TotemWoodType woodType) {
+    /*private BlockModelBuilder setTotemTextures(BlockModelBuilder model, TotemWoodType woodType) {
         return model
                 .texture("wood", woodType.getWoodTexture())
                 .texture("bark", woodType.getBarkTexture())
                 .texture("top", woodType.getTopTexture())
                 .texture("particle", woodType.getParticleTexture());
-    }
+    }*/
 
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
         horizontalBlockIgnoringProperties(block, model, 180, ignored);

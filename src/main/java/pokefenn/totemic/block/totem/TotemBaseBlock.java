@@ -36,13 +36,13 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
 import pokefenn.totemic.block.totem.entity.StateSelection;
 import pokefenn.totemic.block.totem.entity.StateStartup;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.util.BlockUtil;
@@ -179,10 +179,10 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
-        var base = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_base.get());
-        var woodType = base.map(TotemBaseBlockEntity::getWoodType).orElse(TotemWoodType.OAK);
+        var tile = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_base.get());
+        var woodType = tile.map(TotemBaseBlockEntity::getWoodType).orElse(ModContent.oak);
         var stack = new ItemStack(this);
-        stack.getOrCreateTag().putString(TotemPoleItem.POLE_WOOD_KEY, "totemic:" + woodType.getName());
+        stack.getOrCreateTag().putString(TotemPoleItem.POLE_WOOD_KEY, woodType.getRegistryName().toString());
         return stack;
     }
 

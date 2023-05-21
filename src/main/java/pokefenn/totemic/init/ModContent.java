@@ -1,9 +1,13 @@
 package pokefenn.totemic.init;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
@@ -33,6 +37,15 @@ public final class ModContent {
     public static final MusicInstrument rattle = new MusicInstrument(resloc("rattle"), 300, 3300);
     public static final MusicInstrument eagle_bone_whistle = new MusicInstrument(resloc("eagle_bone_whistle"), 360, 3600);
 //    public static final MusicInstrument nether_pipe = new MusicInstrument(resloc("nether_pipe"), 240, 3900);
+
+    public static final TotemWoodType oak = new TotemWoodType(resloc("oak"), MaterialColor.WOOD, MaterialColor.PODZOL, BlockTags.OAK_LOGS);
+    public static final TotemWoodType spruce = new TotemWoodType(resloc("spruce"), MaterialColor.PODZOL, MaterialColor.COLOR_BROWN, BlockTags.SPRUCE_LOGS);
+    public static final TotemWoodType birch = new TotemWoodType(resloc("birch"), MaterialColor.SAND, MaterialColor.QUARTZ, BlockTags.BIRCH_LOGS);
+    public static final TotemWoodType jungle = new TotemWoodType(resloc("jungle"), MaterialColor.DIRT, MaterialColor.PODZOL, BlockTags.JUNGLE_LOGS);
+    public static final TotemWoodType acacia = new TotemWoodType(resloc("acacia"), MaterialColor.COLOR_ORANGE, MaterialColor.STONE, BlockTags.ACACIA_LOGS);
+    public static final TotemWoodType dark_oak = new TotemWoodType(resloc("dark_oak"), MaterialColor.COLOR_BROWN, MaterialColor.COLOR_BROWN, BlockTags.DARK_OAK_LOGS);
+    public static final TotemWoodType mangrove = new TotemWoodType(resloc("mangrove"), MaterialColor.COLOR_RED, MaterialColor.PODZOL, BlockTags.MANGROVE_LOGS);
+    public static final TotemWoodType cedar = new TotemWoodType(resloc("cedar"), MaterialColor.COLOR_PINK, MaterialColor.COLOR_ORANGE, TotemicBlockTags.CEDAR_LOGS);
 
     public static final TotemCarving none = new PortableTotemCarving(resloc("none"));
     public static final TotemCarving bat = new PortableTotemCarving(resloc("bat"), new PotionTotemEffect(() -> MobEffects.SLOW_FALLING));
@@ -90,6 +103,11 @@ public final class ModContent {
                 jingle_dress.setItem(ModItems.jingle_dress.get()),
                 rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle),
                 eagle_bone_whistle.setItem(ModItems.eagle_bone_whistle.get()).setSound(ModSounds.eagle_bone_whistle));
+    }
+
+    @SubscribeEvent
+    public static void woodTypes(TotemicRegisterEvent<TotemWoodType> event) {
+        event.registerAll(oak, spruce, birch, jungle, acacia, dark_oak, mangrove, cedar);
     }
 
     @SubscribeEvent

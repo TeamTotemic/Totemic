@@ -1,83 +1,38 @@
 package pokefenn.totemic.api;
 
-import java.util.List;
-import java.util.Optional;
-
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MaterialColor;
 
 /**
  * Represents a wood type that Totem Poles can be made out of.
  */
-public final class TotemWoodType { // TODO: Allow registering new wood types
-    public static final TotemWoodType OAK = new TotemWoodType("oak", MaterialColor.WOOD, MaterialColor.PODZOL, "minecraft");
-    public static final TotemWoodType SPRUCE = new TotemWoodType("spruce", MaterialColor.PODZOL, MaterialColor.COLOR_BROWN, "minecraft");
-    public static final TotemWoodType BIRCH = new TotemWoodType("birch", MaterialColor.SAND, MaterialColor.QUARTZ, "minecraft");
-    public static final TotemWoodType JUNGLE = new TotemWoodType("jungle", MaterialColor.DIRT, MaterialColor.PODZOL, "minecraft");
-    public static final TotemWoodType ACACIA = new TotemWoodType("acacia", MaterialColor.COLOR_ORANGE, MaterialColor.STONE, "minecraft");
-    public static final TotemWoodType DARK_OAK = new TotemWoodType("dark_oak", MaterialColor.COLOR_BROWN, MaterialColor.COLOR_BROWN, "minecraft");
-    public static final TotemWoodType MANGROVE = new TotemWoodType("mangrove", MaterialColor.COLOR_RED, MaterialColor.PODZOL, "minecraft");
-    public static final TotemWoodType CEDAR = new TotemWoodType("cedar", MaterialColor.COLOR_PINK, MaterialColor.COLOR_ORANGE, "totemic");
-
-    private static final List<TotemWoodType> woodTypes = List.of(OAK, SPRUCE, BIRCH, JUNGLE, ACACIA, DARK_OAK, MANGROVE, CEDAR);
-
-    private final String name;
+public final class TotemWoodType {
+    private final ResourceLocation registryName;
     private final MaterialColor woodColor;
     private final MaterialColor barkColor;
-
-    private final String woodTexture;
-    private final String barkTexture;
-    private final String topTexture;
-    private final String particleTexture;
+    private final TagKey<Block> logTag;
 
     /**
-     * Returns the TotemWoodType represented by the given BlockState, or an empty Optional if the state is not a recognized log block.
+     * Constructs a new TotemWoodType.
+     * @param name      the TotemWoodType's registry name.
+     * @param woodColor the MaterialColor of the log's inside.
+     * @param barkColor the MaterialColor of the log's bark.
+     * @param logTag    the tag containing all the log and wood blocks associated with this wood type (e.g. {@code minecraft:oak_logs})
      */
-    public static Optional<TotemWoodType> fromLog(BlockState state) {
-        if(state.is(BlockTags.OAK_LOGS))
-            return Optional.of(OAK);
-        else if(state.is(BlockTags.SPRUCE_LOGS))
-            return Optional.of(SPRUCE);
-        else if(state.is(BlockTags.BIRCH_LOGS))
-            return Optional.of(BIRCH);
-        else if(state.is(BlockTags.JUNGLE_LOGS))
-            return Optional.of(JUNGLE);
-        else if(state.is(BlockTags.ACACIA_LOGS))
-            return Optional.of(ACACIA);
-        else if(state.is(BlockTags.DARK_OAK_LOGS))
-            return Optional.of(DARK_OAK);
-        else if(state.is(BlockTags.MANGROVE_LOGS))
-            return Optional.of(MANGROVE);
-        else if(state.is(TotemicBlockTags.CEDAR_LOGS))
-            return Optional.of(CEDAR);
-        else
-            return Optional.empty();
-    }
-
-    /**
-     * Returns a list of all TotemWoodTypes.
-     */
-    public static List<TotemWoodType> getWoodTypes() {
-        return woodTypes;
-    }
-
-    private TotemWoodType(String name, MaterialColor woodColor, MaterialColor barkColor, String textureKey) {
-        this.name = name;
+    public TotemWoodType(ResourceLocation name, MaterialColor woodColor, MaterialColor barkColor, TagKey<Block> logTag) {
+        this.registryName = name;
         this.woodColor = woodColor;
         this.barkColor = barkColor;
-
-        this.woodTexture = textureKey + ":block/stripped_" + name + "_log";
-        this.barkTexture = textureKey + ":block/" + name + "_log";
-        this.topTexture = textureKey + ":block/stripped_" + name + "_log_top";
-        this.particleTexture = textureKey + ":block/stripped_" + name + "_log";
+        this.logTag = logTag;
     }
 
     /**
-     * Returns the name of the wood type.
+     * Returns the wood type's registry name.
      */
-    public String getName() {
-        return name;
+    public ResourceLocation getRegistryName() {
+        return registryName;
     }
 
     /**
@@ -95,30 +50,14 @@ public final class TotemWoodType { // TODO: Allow registering new wood types
     }
 
     /**
-     * Returns the texture key for the side of the stripped log.
+     * Returns the block tag associated with this wood type.
      */
-    public String getWoodTexture() {
-        return woodTexture;
+    public TagKey<Block> getLogTag() {
+        return logTag;
     }
 
-    /**
-     * Returns the texture key for the side of the unstripped log.
-     */
-    public String getBarkTexture() {
-        return barkTexture;
-    }
-
-    /**
-     * Returns the texture key for the top of the stripped log.
-     */
-    public String getTopTexture() {
-        return topTexture;
-    }
-
-    /**
-     * Returns the texture key for the breaking particles.
-     */
-    public String getParticleTexture() {
-        return particleTexture;
+    @Override
+    public String toString() {
+        return registryName.toString();
     }
 }

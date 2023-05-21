@@ -23,6 +23,7 @@ import net.minecraftforge.client.model.BakedModelWrapper;
 import net.minecraftforge.client.model.data.ModelData;
 import net.minecraftforge.client.model.data.ModelProperty;
 import pokefenn.totemic.api.TotemWoodType;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.item.TotemPoleItem;
 
 public final class BakedTotemBaseModel extends BakedModelWrapper<BakedModel> {
@@ -32,7 +33,7 @@ public final class BakedTotemBaseModel extends BakedModelWrapper<BakedModel> {
     private final ItemOverrides itemOverrides;
 
     BakedTotemBaseModel(Map<TotemWoodType, BakedModel> bakedTotemModels) {
-        super(Objects.requireNonNull(bakedTotemModels.get(TotemWoodType.OAK))); //default model
+        super(Objects.requireNonNull(bakedTotemModels.get(ModContent.oak))); //default model
         this.bakedTotemModels = bakedTotemModels;
         this.itemOverrides = new ItemOverrides() {
             @Override
@@ -43,7 +44,7 @@ public final class BakedTotemBaseModel extends BakedModelWrapper<BakedModel> {
     }
 
     private BakedModel getModelFor(ModelData modelData) {
-        var woodType = Objects.requireNonNullElse(modelData.get(WOOD_TYPE_PROPERTY), TotemWoodType.OAK);
+        var woodType = Objects.requireNonNullElse(modelData.get(WOOD_TYPE_PROPERTY), ModContent.oak);
         return bakedTotemModels.get(woodType);
     }
 
