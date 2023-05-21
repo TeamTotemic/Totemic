@@ -10,13 +10,13 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.NewRegistryEvent;
 import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryBuilder;
-import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.api.totem.TotemWoodType;
 
 public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;

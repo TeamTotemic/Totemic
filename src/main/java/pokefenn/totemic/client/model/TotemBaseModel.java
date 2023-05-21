@@ -23,8 +23,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.geometry.IGeometryBakingContext;
 import net.minecraftforge.client.model.geometry.IGeometryLoader;
 import net.minecraftforge.client.model.geometry.IUnbakedGeometry;
-import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.totem.TotemWoodType;
 
 public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
     private Map<TotemWoodType, UnbakedModel> totemModels = null;

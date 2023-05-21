@@ -6,10 +6,10 @@ import org.jetbrains.annotations.ApiStatus;
 
 import net.minecraftforge.eventbus.api.GenericEvent;
 import net.minecraftforge.fml.event.IModBusEvent;
-import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.api.totem.TotemWoodType;
 
 /**
  * Event for registering contents to Totemic's registries.

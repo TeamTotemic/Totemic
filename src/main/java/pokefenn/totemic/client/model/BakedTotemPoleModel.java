@@ -23,8 +23,8 @@ import net.minecraftforge.client.ChunkRenderTypeSet;
 import net.minecraftforge.client.model.BakedModelWrapper;
 import net.minecraftforge.client.model.data.ModelData;
 import net.minecraftforge.client.model.data.ModelProperty;
-import pokefenn.totemic.api.TotemWoodType;
 import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.item.TotemPoleItem;
 

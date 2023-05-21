@@ -1,4 +1,6 @@
-package pokefenn.totemic.api;
+package pokefenn.totemic.api.totem;
+
+import java.util.Objects;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -19,13 +21,14 @@ public final class TotemWoodType {
      * @param name      the TotemWoodType's registry name.
      * @param woodColor the MaterialColor of the log's inside.
      * @param barkColor the MaterialColor of the log's bark.
-     * @param logTag    the tag containing all the log and wood blocks associated with this wood type (e.g. {@code minecraft:oak_logs})
+     * @param logTag    the tag containing all the log and wood blocks associated with this wood type (e.g. {@code minecraft:oak_logs}).<br>
+     *                  Any of the tagged blocks will be recognized as this wood type by the Totem Whittling Knife.
      */
     public TotemWoodType(ResourceLocation name, MaterialColor woodColor, MaterialColor barkColor, TagKey<Block> logTag) {
-        this.registryName = name;
-        this.woodColor = woodColor;
-        this.barkColor = barkColor;
-        this.logTag = logTag;
+        this.registryName = Objects.requireNonNull(name);
+        this.woodColor = Objects.requireNonNull(woodColor);
+        this.barkColor = Objects.requireNonNull(barkColor);
+        this.logTag = Objects.requireNonNull(logTag);
     }
 
     /**
@@ -51,6 +54,8 @@ public final class TotemWoodType {
 
     /**
      * Returns the block tag associated with this wood type.
+     *
+     * Any of the blocks in this tag will be recognized as this wood type by the Totem Whittling Knife.
      */
     public TagKey<Block> getLogTag() {
         return logTag;
