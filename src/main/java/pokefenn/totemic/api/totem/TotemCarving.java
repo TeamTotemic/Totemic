@@ -7,12 +7,9 @@ import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 
 /**
  * Represents a Totem Pole carving. A TotemCarving consists of one or more {@link TotemEffect}s.
- * <p>
- * Use the {@link TotemicRegisterEvent} to register your TotemCarvings.
  */
 public sealed class TotemCarving permits PortableTotemCarving {
     private final ResourceLocation registryName;

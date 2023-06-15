@@ -16,14 +16,15 @@ import pokefenn.totemic.api.totem.TotemWoodType;
  * Use {@code TotemicAPI.get().registry()} to get an instance of this interface.
  */
 public interface RegistryAPI {
+    //The letter prefixes on the ResourceKeys are to make sure the RegisterEvents fire in this order. MusicInstruments need to be registered before Ceremonies.
     /** The resource key for the MusicInstrument registry. */
-    static final ResourceKey<Registry<MusicInstrument>> MUSIC_INSTRUMENT_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "instrument"));
+    static final ResourceKey<Registry<MusicInstrument>> MUSIC_INSTRUMENT_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "a_instrument"));
     /** The resource key for the TotemWoodType registry. */
-    static final ResourceKey<Registry<TotemWoodType>> WOOD_TYPE_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "wood_type"));
+    static final ResourceKey<Registry<TotemWoodType>> WOOD_TYPE_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "b_wood_type"));
     /** The resource key for the TotemCarving registry. */
-    static final ResourceKey<Registry<TotemCarving>> TOTEM_CARVING_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "totem_carving"));
+    static final ResourceKey<Registry<TotemCarving>> TOTEM_CARVING_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "c_totem_carving"));
     /** The resource key for the Ceremony registry. */
-    static final ResourceKey<Registry<Ceremony>> CEREMONY_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "ceremony"));
+    static final ResourceKey<Registry<Ceremony>> CEREMONY_REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(TotemicAPI.MOD_ID, "d_ceremony"));
 
     /**
      * Provides access to the MusicInstrument registry.

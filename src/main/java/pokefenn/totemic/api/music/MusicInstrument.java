@@ -10,15 +10,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 
 /**
  * Represents a music instrument type.
- * <p>
- * Use the {@link TotemicRegisterEvent} to register your MusicInstruments.
  */
 public final class MusicInstrument {
     private final ResourceLocation registryName;

@@ -12,13 +12,10 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Difficulty;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 
 /**
  * Represents a ceremony type.
  * The actual ceremony effect is implemented using the {@link CeremonyInstance} interface.
- * <p>
- * Use the {@link TotemicRegisterEvent} to register your Ceremonies.
  */
 public final class Ceremony {
     private final ResourceLocation registryName;

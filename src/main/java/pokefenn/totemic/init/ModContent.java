@@ -5,11 +5,12 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.registries.RegisterEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.api.registry.TotemicRegisterEvent;
+import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.totem.PortableTotemCarving;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.TotemCarving;
@@ -95,30 +96,59 @@ public final class ModContent {
     public static final Ceremony baykok_summon = new Ceremony(resloc("baykok_summon"), 15060, 32 * 20, () -> BaykokSummonCeremony.INSTANCE, wind_chime, eagle_bone_whistle);
 
     @SubscribeEvent
-    public static void instruments(TotemicRegisterEvent<MusicInstrument> event) {
-        event.registerAll(
-                flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute),
-                drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum),
-                wind_chime.setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime),
-                jingle_dress.setItem(ModItems.jingle_dress.get()),
-                rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle),
-                eagle_bone_whistle.setItem(ModItems.eagle_bone_whistle.get()).setSound(ModSounds.eagle_bone_whistle));
-    }
+    public static void register(RegisterEvent event) {
+        event.register(RegistryAPI.MUSIC_INSTRUMENT_REGISTRY, reg -> {
+            reg.register("flute", flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute));
+            reg.register("drum", drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum));
+            reg.register("wind_chime", wind_chime.setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime));
+            reg.register("jingle_dress", jingle_dress.setItem(ModItems.jingle_dress.get()));
+            reg.register("rattle", rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle));
+            reg.register("eagle_bone_whistle", eagle_bone_whistle.setItem(ModItems.eagle_bone_whistle.get()).setSound(ModSounds.eagle_bone_whistle));
+        });
 
-    @SubscribeEvent
-    public static void woodTypes(TotemicRegisterEvent<TotemWoodType> event) {
-        event.registerAll(oak, spruce, birch, jungle, acacia, dark_oak, mangrove, cedar);
-    }
+        event.register(RegistryAPI.WOOD_TYPE_REGISTRY, reg -> {
+            reg.register("oak", oak);
+            reg.register("spruce", spruce);
+            reg.register("birch", birch);
+            reg.register("jungle", jungle);
+            reg.register("acacia", acacia);
+            reg.register("dark_oak", dark_oak);
+            reg.register("mangrove", mangrove);
+            reg.register("cedar", cedar);
+        });
 
-    @SubscribeEvent
-    public static void totemCarvings(TotemicRegisterEvent<TotemCarving> event) {
-        event.registerAll(none, bat, blaze, buffalo, cow, enderman, horse, ocelot, pig, rabbit, spider, squid, wolf);
-    }
+        event.register(RegistryAPI.TOTEM_CARVING_REGISTRY, reg -> {
+            reg.register("none", none);
+            reg.register("bat", bat);
+            reg.register("blaze", blaze);
+            reg.register("buffalo", buffalo);
+            reg.register("cow", cow);
+            reg.register("enderman", enderman);
+            reg.register("horse", horse);
+            reg.register("ocelot", ocelot);
+            reg.register("pig", pig);
+            reg.register("rabbit", rabbit);
+            reg.register("spider", spider);
+            reg.register("squid", squid);
+            reg.register("wolf", wolf);
+        });
 
-    @SubscribeEvent
-    public static void ceremonies(TotemicRegisterEvent<Ceremony> event) {
-        event.registerAll(war_dance, depths, fertility, zaphkiel_waltz, animal_growth, buffalo_dance, rain, drought,
-                flute_infusion, eagle_dance, cleansing, sun_dance, danse_macabre, baykok_summon);
+        event.register(RegistryAPI.CEREMONY_REGISTRY, reg -> {
+            reg.register("war_dance", war_dance);
+            reg.register("depths", depths);
+            reg.register("fertility", fertility);
+            reg.register("zaphkiel_waltz", zaphkiel_waltz);
+            reg.register("animal_growth", animal_growth);
+            reg.register("buffalo_dance", buffalo_dance);
+            reg.register("rain", rain);
+            reg.register("drought", drought);
+            reg.register("flute_infusion", flute_infusion);
+            reg.register("eagle_dance", eagle_dance);
+            reg.register("cleansing", cleansing);
+            reg.register("sun_dance", sun_dance);
+            reg.register("danse_macabre", danse_macabre);
+            reg.register("baykok_summon", baykok_summon);
+        });
     }
 
     private static ResourceLocation resloc(String path) {

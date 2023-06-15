@@ -1,20 +1,16 @@
 package pokefenn.totemic.apiimpl.registry;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.NewRegistryEvent;
-import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryBuilder;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
-import pokefenn.totemic.api.registry.TotemicRegisterEvent;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
 
@@ -32,25 +28,6 @@ public enum RegistryApiImpl implements RegistryAPI {
         woodTypes = event.create(new RegistryBuilder<TotemWoodType>().setName(WOOD_TYPE_REGISTRY.location()).setDefaultKey(new ResourceLocation(TotemicAPI.MOD_ID, "oak")).disableSaving().disableSync());
         totemCarvings = event.create(new RegistryBuilder<TotemCarving>().setName(TOTEM_CARVING_REGISTRY.location()).setDefaultKey(new ResourceLocation(TotemicAPI.MOD_ID, "none")).disableSaving().disableSync());
         ceremonies = event.create(new RegistryBuilder<Ceremony>().setName(CEREMONY_REGISTRY.location()).disableSaving().disableSync());
-    }
-
-    @SubscribeEvent
-    public static void registerContents(RegisterEvent event) {
-        if(event.getRegistryKey().equals(MUSIC_INSTRUMENT_REGISTRY))
-            fireRegistryEvent(MusicInstrument.class, event.getForgeRegistry(), MusicInstrument::getRegistryName);
-        else if(event.getRegistryKey().equals(WOOD_TYPE_REGISTRY))
-            fireRegistryEvent(TotemWoodType.class, event.getForgeRegistry(), TotemWoodType::getRegistryName);
-        else if(event.getRegistryKey().equals(TOTEM_CARVING_REGISTRY))
-            fireRegistryEvent(TotemCarving.class, event.getForgeRegistry(), TotemCarving::getRegistryName);
-        else if(event.getRegistryKey().equals(CEREMONY_REGISTRY))
-            fireRegistryEvent(Ceremony.class, event.getForgeRegistry(), Ceremony::getRegistryName);
-    }
-
-    private static <T> void fireRegistryEvent(Class<T> type, IForgeRegistry<T> registry, Function<T, ResourceLocation> nameFunc) {
-        FMLJavaModLoadingContext.get().getModEventBus().post(new TotemicRegisterEvent<>(type, object -> {
-            ResourceLocation name = nameFunc.apply(object);
-            registry.register(name, object);
-        }));
     }
 
     @Override
