@@ -1,7 +1,6 @@
 package pokefenn.totemic.api.ceremony;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.apache.commons.lang3.Validate;
@@ -11,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Difficulty;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 /**
@@ -18,7 +18,6 @@ import pokefenn.totemic.api.music.MusicInstrument;
  * The actual ceremony effect is implemented using the {@link CeremonyInstance} interface.
  */
 public final class Ceremony {
-    private final ResourceLocation registryName;
     private final int musicNeeded;
     private final int maxStartupTime;
     private final Supplier<CeremonyInstance> factory;
@@ -28,7 +27,6 @@ public final class Ceremony {
      * Constructs a new Ceremony.
      * <p>
      * The ceremony effect is implemented using the {@link CeremonyInstance} interface, and a Supplier for that is passed to this constructor.
-     * @param name           the ceremony's registry name.
      * @param musicNeeded    the amount of music needed to start the ceremony.
      * @param maxStartupTime the maximum time in ticks that the player may take to start the ceremony.<br>
      *                       This value will be adjusted depending on the level's difficulty, see {@link #getAdjustedMaxStartupTime}.
@@ -37,11 +35,10 @@ public final class Ceremony {
      *                       be deserialized from NBT.
      * @param selectors      the list of music instruments for selecting the ceremony.
      */
-    public Ceremony(ResourceLocation name, int musicNeeded, int maxStartupTime, Supplier<CeremonyInstance> factory, MusicInstrument... selectors) {
+    public Ceremony(int musicNeeded, int maxStartupTime, Supplier<CeremonyInstance> factory, MusicInstrument... selectors) {
         Validate.inclusiveBetween(CeremonyAPI.MIN_SELECTORS, CeremonyAPI.MAX_SELECTORS, selectors.length,
                 "Invalid number of Cermeony selectors (must be between CeremonyAPI.MIN_SELECTORS and CeremonyAPI.MAX_SELECTORS)");
 
-        this.registryName = Objects.requireNonNull(name);
         this.musicNeeded = musicNeeded;
         this.maxStartupTime = maxStartupTime;
         this.factory = factory;
@@ -52,7 +49,7 @@ public final class Ceremony {
      * Returns the ceremony's description ID (i.e. unlocalized name), which is given by "totemic.ceremony." followed by the registry name (with ':' replaced by '.').
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totemic.ceremony", registryName);
+        return Util.makeDescriptionId("totemic.ceremony", getRegistryName());
     }
 
     /**
@@ -66,12 +63,12 @@ public final class Ceremony {
      * Returns the ceremony's registry name.
      */
     public final ResourceLocation getRegistryName() {
-        return registryName;
+        return TotemicAPI.get().registry().ceremonies().getKey(this);
     }
 
     @Override
     public String toString() {
-        return registryName.toString();
+        return getRegistryName().toString();
     }
 
     /**

@@ -15,12 +15,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.api.TotemicAPI;
 
 /**
  * Represents a music instrument type.
  */
 public final class MusicInstrument {
-    private final ResourceLocation registryName;
     private final int baseOutput;
     private final int musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
@@ -28,12 +28,10 @@ public final class MusicInstrument {
 
     /**
      * Constructs a new MusicInstrument.
-     * @param name         the instrument's registry name.
      * @param baseOutput   the default music output when the instrument is played.
      * @param musicMaximum the maximum amount of music that a Totem Base can receive from this instrument before getting saturated.
      */
-    public MusicInstrument(ResourceLocation name, int baseOutput, int musicMaximum) {
-        this.registryName = Objects.requireNonNull(name);
+    public MusicInstrument(int baseOutput, int musicMaximum) {
         this.baseOutput = baseOutput;
         this.musicMaximum = musicMaximum;
     }
@@ -80,7 +78,7 @@ public final class MusicInstrument {
      * Returns the instrument's description ID (i.e. unlocalized name), which is given by "totemic.instrument." followed by the registry name (with ':' replaced by '.').
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totemic.instrument", registryName);
+        return Util.makeDescriptionId("totemic.instrument", getRegistryName());
     }
 
     /**
@@ -94,12 +92,12 @@ public final class MusicInstrument {
      * Returns the instrument's registry name.
      */
     public final ResourceLocation getRegistryName() {
-        return registryName;
+        return TotemicAPI.get().registry().instruments().getKey(this);
     }
 
     @Override
     public String toString() {
-        return registryName.toString();
+        return getRegistryName().toString();
     }
 
     /**
