@@ -33,7 +33,7 @@
   "totemic.medicineBag.empty": "Leer",
   "totemic.medicineBag.charge": "Ladung: %d / %d",
   
-  "totemic.tooltip.selectorMode": "Schleiche während des Spielens für den Selektor-Modus",
+  "totemic.tooltip.selectorMode": "Schleiche während des Spielens, um eine Zeremonie auszuwählen",
   
   "block.totemic.cedar_log": "Roter Zedernstamm",
   "block.totemic.stripped_cedar_log": "Entrindeter roter Zedernstamm",

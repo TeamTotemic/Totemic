@@ -33,7 +33,7 @@
   "totemic.medicineBag.empty": "Empty",
   "totemic.medicineBag.charge": "Charge: %d / %d",
   
-  "totemic.tooltip.selectorMode": "Sneak while playing to use Selector Mode",
+  "totemic.tooltip.selectorMode": "Sneak while playing to select a Ceremony",
   
   "block.totemic.cedar_log": "赤杉の原木",
   "block.totemic.stripped_cedar_log": "樹皮を剥いだ赤杉の原木",

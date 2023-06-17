@@ -33,7 +33,7 @@
   "totemic.medicineBag.empty": "Empty",
   "totemic.medicineBag.charge": "Charge: %d / %d",
   
-  "totemic.tooltip.selectorMode": "Sneak while playing to use Selector Mode",
+  "totemic.tooltip.selectorMode": "Sneak while playing to select a Ceremony",
   
   "block.totemic.cedar_log": "Red Cedar Log",
   "block.totemic.stripped_cedar_log": "Stripped Red Cedar Log",
