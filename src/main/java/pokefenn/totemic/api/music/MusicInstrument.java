@@ -25,6 +25,7 @@ public final class MusicInstrument {
     private final int musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
     private @Nullable Supplier<SoundEvent> sound;
+    private @Nullable String descriptionId;
 
     /**
      * Constructs a new MusicInstrument.
@@ -78,7 +79,9 @@ public final class MusicInstrument {
      * Returns the instrument's description ID (i.e. unlocalized name), which is given by "totemic.instrument." followed by the registry name (with ':' replaced by '.').
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totemic.instrument", getRegistryName());
+        if(descriptionId == null)
+            descriptionId = Util.makeDescriptionId("totemic.instrument", getRegistryName());
+        return descriptionId;
     }
 
     /**

@@ -3,6 +3,8 @@ package pokefenn.totemic.api.ceremony;
 import java.util.List;
 import java.util.function.Supplier;
 
+import javax.annotation.Nullable;
+
 import org.apache.commons.lang3.Validate;
 
 import net.minecraft.Util;
@@ -22,6 +24,7 @@ public final class Ceremony {
     private final int maxStartupTime;
     private final Supplier<CeremonyInstance> factory;
     private final List<MusicInstrument> selectors;
+    private @Nullable String descriptionId;
 
     /**
      * Constructs a new Ceremony.
@@ -49,7 +52,9 @@ public final class Ceremony {
      * Returns the ceremony's description ID (i.e. unlocalized name), which is given by "totemic.ceremony." followed by the registry name (with ':' replaced by '.').
      */
     public String getDescriptionId() {
-        return Util.makeDescriptionId("totemic.ceremony", getRegistryName());
+        if(descriptionId == null)
+            descriptionId = Util.makeDescriptionId("totemic.ceremony", getRegistryName());
+        return descriptionId;
     }
 
     /**
