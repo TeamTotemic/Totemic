@@ -78,6 +78,9 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                 0, //angle offset of 0, rotates the model by 180°
                 TipiBlock.OCCUPIED);
         simpleBlock(ModBlocks.dummy_tipi.get(), models().withExistingParent(ModBlocks.dummy_tipi.getId().toString(), "block/air").texture("particle", mcLoc("block/white_wool")));
+        horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), models().getExistingFile(modLoc("dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
+        horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), models().getExistingFile(modLoc("dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
+        totemWoodTypes();
 
         //Item Blocks
         var im = itemModels();
@@ -176,32 +179,27 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         var medBagOpen = im.basicItem(modLoc("medicine_bag_open"));
         var medBag = im.basicItem(ModItems.medicine_bag.getId()).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
         im.getBuilder(ModItems.creative_medicine_bag.getId().toString()).parent(medBag).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
-
-        totemPoleModels();
     }
 
-    private void totemPoleModels() {
-        //Block states
-        horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), models().getExistingFile(modLoc("dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
-        horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), models().getExistingFile(modLoc("dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
+    private void totemWoodTypes() {
+        //Generate Totem Base and Totem Pole model files for each wood type
+        for(var woodTypeKey: TotemicAPI.get().registry().woodTypes().getKeys()) {
+            var namespace = woodTypeKey.getPath().equals("cedar") ? "totemic" : "minecraft";
 
-        /*for(var woodType: TotemWoodType.getWoodTypes()) {
-            //Model for each wood type
-            var poleModel = models().getBuilder("totemic:" + woodType.getName() + "_totem_pole");
-            setTotemTextures(poleModel, woodType);
-
-            var baseModel = models().withExistingParent("totemic:" + woodType.getName() + "_totem_base", modLoc("totem_base"));
-            setTotemTextures(baseModel, woodType);
-        }*/ ///TODO: Totem Wood Type texture data generation
+            var poleModel = models().getBuilder(woodTypeKey.toString() + "_totem_pole"); //the pole model has no parent, it only specifies the textures and is being loaded in TotemPoleModel.getMaterials.
+            var baseModel = models().withExistingParent(woodTypeKey.toString() + "_totem_base", modLoc("totem_base"));
+            setTotemTextures(poleModel, namespace, woodTypeKey.getPath());
+            setTotemTextures(baseModel, namespace, woodTypeKey.getPath());
+        }
     }
 
-    /*private BlockModelBuilder setTotemTextures(BlockModelBuilder model, TotemWoodType woodType) {
+    private BlockModelBuilder setTotemTextures(BlockModelBuilder model, String namespace, String woodType) {
         return model
-                .texture("wood", woodType.getWoodTexture())
-                .texture("bark", woodType.getBarkTexture())
-                .texture("top", woodType.getTopTexture())
-                .texture("particle", woodType.getParticleTexture());
-    }*/
+                .texture("wood", new ResourceLocation(namespace, "block/stripped_" + woodType + "_log"))
+                .texture("bark", new ResourceLocation(namespace, "block/" + woodType + "_log"))
+                .texture("top", new ResourceLocation(namespace, "block/stripped_" + woodType + "_log_top"))
+                .texture("particle", new ResourceLocation(namespace, "block/stripped_" + woodType + "_log"));
+    }
 
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
         horizontalBlockIgnoringProperties(block, model, 180, ignored);
