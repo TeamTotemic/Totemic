@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "totemic:wooden_trapdoor",
+  "key": {
+    "#": {
+      "item": "totemic:cedar_planks"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "item": "totemic:cedar_trapdoor"
+  }
+}

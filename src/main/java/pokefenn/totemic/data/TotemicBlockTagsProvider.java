@@ -22,11 +22,13 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
         //Minecraft and Forge tags
         tag(BlockTags.PLANKS).add(ModBlocks.cedar_planks.get());
         tag(BlockTags.WOODEN_BUTTONS).add(ModBlocks.cedar_button.get());
+        tag(BlockTags.WOODEN_DOORS).add(ModBlocks.cedar_door.get());
         tag(BlockTags.WOODEN_STAIRS).add(ModBlocks.cedar_stairs.get());
         tag(BlockTags.WOODEN_SLABS).add(ModBlocks.cedar_slab.get());
         tag(BlockTags.WOODEN_FENCES).add(ModBlocks.cedar_fence.get());
         tag(BlockTags.FENCE_GATES).add(ModBlocks.cedar_fence_gate.get());
         tag(BlockTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.cedar_pressure_plate.get());
+        tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.cedar_trapdoor.get());
         tag(BlockTags.LOGS_THAT_BURN).addTag(TotemicBlockTags.CEDAR_LOGS);
         tag(BlockTags.LEAVES).add(ModBlocks.cedar_leaves.get());
         tag(BlockTags.SAPLINGS).add(ModBlocks.cedar_sapling.get());
