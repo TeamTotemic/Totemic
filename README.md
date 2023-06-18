@@ -22,7 +22,7 @@ set up a workspace. Run `./gradlew build` to build the mod.
 For more information see the README.txt file in the Forge MDK.
 
 ## Credits:
-- The textures were mainly designed by nojustgavin and Sunconure11.
+- The textures were mainly designed by nojustgavin, Sunconure11 and VincentLongiug.
 - The models for the Totem Poles were designed by Nefilto.
 - The Flute sounds were cut from [overblow.mp3](https://freesound.org/people/kerri/sounds/37144/) by Kerri Lake,
 used under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), slightly changed in pitch.

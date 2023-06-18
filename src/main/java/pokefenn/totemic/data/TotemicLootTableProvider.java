@@ -71,8 +71,10 @@ public final class TotemicLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.cedar_fence_gate.get());
             dropSelf(ModBlocks.cedar_pressure_plate.get());
             //dropSelf(ModBlocks.cedar_sign.get());
-            add(ModBlocks.cedar_slab.get(), createSlabItemTable(ModBlocks.cedar_slab.get()));
+            add(ModBlocks.cedar_slab.get(), BlockLoot::createSlabItemTable);
             dropSelf(ModBlocks.cedar_stairs.get());
+            add(ModBlocks.cedar_door.get(), BlockLoot::createDoorTable);
+            dropSelf(ModBlocks.cedar_trapdoor.get());
             add(ModBlocks.potted_cedar_sapling.get(), createPotFlowerItemTable(ModBlocks.cedar_sapling.get()));
             dropSelf(ModBlocks.drum.get());
             dropSelf(ModBlocks.wind_chime.get());

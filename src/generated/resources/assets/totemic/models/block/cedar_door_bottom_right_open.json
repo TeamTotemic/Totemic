@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_right_open",
+  "textures": {
+    "bottom": "totemic:block/cedar_door_bottom",
+    "top": "totemic:block/cedar_door_top"
+  }
+}

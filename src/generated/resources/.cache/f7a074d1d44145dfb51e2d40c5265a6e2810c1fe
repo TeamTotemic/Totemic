@@ -1,5 +1,6 @@
-// 1.19.2	2023-05-14T23:04:50.848740362	Totemic Loot Tables
+// 1.19.2	2023-06-18T20:34:39.316355033	Totemic Loot Tables
 a547e9f5b84698c1f256c9987bbf661cfc88d560 data/totemic/loot_tables/blocks/cedar_button.json
+4b14507d601a38047ff2ebc6094ded6a74c1ffa1 data/totemic/loot_tables/blocks/cedar_door.json
 32ff75a96a7376ccc9cd9fc24f7634c83dbc37da data/totemic/loot_tables/blocks/cedar_fence.json
 ef98bb1229f54fa2771bd23bee63179f21b3c6aa data/totemic/loot_tables/blocks/cedar_fence_gate.json
 223a3d79fc726a880f9c65e1c167ce00b4631c41 data/totemic/loot_tables/blocks/cedar_leaves.json
@@ -9,6 +10,7 @@ c2e150a7d22b959f748741ce8f86e750b56d52c8 data/totemic/loot_tables/blocks/cedar_p
 5923851fe7d4a4715ec279f5b2e61c12dd3d063e data/totemic/loot_tables/blocks/cedar_sapling.json
 081ea320c244e70b9300a43a651aea8b3d3c2bbf data/totemic/loot_tables/blocks/cedar_slab.json
 9e30a7d1dd76df4791a0f961fcdb3b8f8ae5e60e data/totemic/loot_tables/blocks/cedar_stairs.json
+fdf22ddcd5fdca462a2fdcbf377b38b2d8f8223a data/totemic/loot_tables/blocks/cedar_trapdoor.json
 1c8e6ad7debcc9da798cfa8a595403c6c7c1aeb9 data/totemic/loot_tables/blocks/cedar_wood.json
 101394dcc8ea344b67869f30f4ab9b7feb4f0f44 data/totemic/loot_tables/blocks/drum.json
 5f63d3ad1e4af85eee848a250f08e598b628b394 data/totemic/loot_tables/blocks/potted_cedar_sapling.json
