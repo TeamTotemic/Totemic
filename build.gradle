@@ -5,10 +5,6 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-repositories {
-    maven { url 'https://maven.blamejared.com' }
-}
-
 version = mod_version
 group = 'pokefenn.totemic'
 archivesBaseName = 'Totemic-forge'
@@ -17,7 +13,6 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
     mappings channel: mappings_channel, version: mappings_version
-    // makeObfSourceJar = false
     
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -87,17 +82,15 @@ minecraft {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+repositories {
+    maven { url 'https://maven.blamejared.com' }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${forge_version}"
     
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77")
-}
-
-task deobfJar(type: Jar) {
-    from(sourceSets.main.output) {
-        appendix = 'deobf'
-    }
 }
 
 task apiSrcJar(type: Jar) {
@@ -109,7 +102,6 @@ task apiSrcJar(type: Jar) {
 }
 
 artifacts {
-    archives deobfJar
     archives apiSrcJar
 }
 
@@ -121,7 +113,7 @@ jar {
             "Specification-Version": "1",
             "Implementation-Title": project.name,
             "Implementation-Version": project.version,
-            "Implementation-Vendor" :"ljfa",
+            "Implementation-Vendor": "ljfa",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
