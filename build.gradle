@@ -89,8 +89,8 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${forge_version}"
     
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
 }
 
 task apiSrcJar(type: Jar) {
