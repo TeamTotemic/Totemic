@@ -1,10 +1,11 @@
 package pokefenn.totemic.world;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.FeatureUtils;
-import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
@@ -31,7 +32,7 @@ public class CedarTreeGrower extends AbstractTreeGrower {
 
     @Override
     @Nullable
-    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource random, boolean hasFlowers) {
+    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random random, boolean hasFlowers) {
         return CedarTreeFeature.CEDAR;
     }
 }

@@ -5,15 +5,14 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.minecraft.Util;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
-import pokefenn.totemic.api.TotemicAPI;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
 /**
  * Represents a Totem Pole carving. A TotemCarving consists of one or more {@link TotemEffect}s.
  */
-public sealed class TotemCarving permits PortableTotemCarving {
+public sealed class TotemCarving extends ForgeRegistryEntry<TotemCarving> permits PortableTotemCarving {
     private final List<TotemEffect> effects;
     private @Nullable String descriptionId;
 
@@ -46,14 +45,7 @@ public sealed class TotemCarving permits PortableTotemCarving {
      * Returns a text component representing the carving's name.
      */
     public MutableComponent getDisplayName() {
-        return Component.translatable(getDescriptionId());
-    }
-
-    /**
-     * Returns the carving's registry name.
-     */
-    public final ResourceLocation getRegistryName() {
-        return TotemicAPI.get().registry().totemCarvings().getKey(this);
+        return new TranslatableComponent(getDescriptionId());
     }
 
     /**

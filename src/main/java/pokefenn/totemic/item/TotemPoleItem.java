@@ -3,6 +3,7 @@ package pokefenn.totemic.item;
 import java.util.Optional;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -36,13 +37,13 @@ public class TotemPoleItem extends BlockItem {
 
     @Override
     public String getDescriptionId(ItemStack stack) {
-        var woodType = getWoodType(stack);
-        return "block." + woodType.getRegistryName().toLanguageKey() + "_totem_pole";
+        var woodTypeName = getWoodType(stack).getRegistryName();
+        return "block." + woodTypeName.getNamespace() + "." + woodTypeName.getPath() + "_totem_pole";
     }
 
     @Override
     public Component getName(ItemStack stack) {
         var carving = getCarving(stack);
-        return Component.translatable(getDescriptionId(stack), carving.getDisplayName());
+        return new TranslatableComponent(getDescriptionId(stack), carving.getDisplayName());
     }
 }

@@ -3,9 +3,10 @@ package pokefenn.totemic.block;
 import javax.annotation.Nullable;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -60,11 +61,11 @@ public class TipiBlock extends HorizontalDirectionalBlock {
             return InteractionResult.SUCCESS;
         }
         else if(state.getValue(OCCUPIED)) {
-            player.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
+            player.displayClientMessage(new TranslatableComponent("block.minecraft.bed.occupied"), true);
             return InteractionResult.SUCCESS;
         }
         else if(!level.canSeeSky(pos.above(6))) {
-            player.displayClientMessage(Component.translatable("block.totemic.tipi.cantSleep"), true);
+            player.displayClientMessage(new TranslatableComponent("block.totemic.tipi.cantSleep"), true);
             return InteractionResult.SUCCESS;
         }
         else {
@@ -98,7 +99,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
 
         if(level.isOutsideBuildHeight(pos.getY() + totalHeight - 1)) {
             if(ctx.getPlayer() instanceof ServerPlayer sp)
-                sp.sendSystemMessage(Component.translatable("build.tooHigh", level.getMaxBuildHeight() - 1).withStyle(ChatFormatting.RED), true);
+                sp.sendMessage(new TranslatableComponent("build.tooHigh", level.getMaxBuildHeight() - 1).withStyle(ChatFormatting.RED), Util.NIL_UUID);
             return false;
         }
 

@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
@@ -38,7 +39,7 @@ public class TotemKnifeItem extends Item {
 
     private static MutableComponent getCarvingName(Optional<TotemCarving> carving) {
         return carving.map(TotemCarving::getDisplayName)
-                .orElseGet(() -> Component.translatable("block.totemic.totem_base"));
+                .orElseGet(() -> new TranslatableComponent("block.totemic.totem_base"));
     }
 
     //an empty Optional represents a Totem Base
@@ -137,11 +138,11 @@ public class TotemKnifeItem extends Item {
 
     @Override
     public Component getName(ItemStack stack) {
-        return Component.translatable(getDescriptionId(stack), getCarvingName(getCarving(stack)));
+        return new TranslatableComponent(getDescriptionId(stack), getCarvingName(getCarving(stack)));
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable(getDescriptionId() + ".tooltip"));
+        tooltip.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
     }
 }

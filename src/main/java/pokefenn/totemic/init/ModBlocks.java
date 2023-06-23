@@ -24,10 +24,10 @@ import net.minecraft.world.level.block.WoodButtonBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.DummyTipiBlock;
@@ -70,7 +70,7 @@ public final class ModBlocks {
     public static final RegistryObject<WindChimeBlock> wind_chime = REGISTER.register("wind_chime", () -> new WindChimeBlock(Properties.of(Material.METAL).strength(1.5F).sound(SoundType.METAL)));
     public static final RegistryObject<TotemTorchBlock> totem_torch = REGISTER.register("totem_torch", () -> new TotemTorchBlock(Properties.of(Material.DECORATION).strength(0.05F).lightLevel(s -> 15).sound(SoundType.WOOD).noCollission()));
     public static final RegistryObject<TipiBlock> tipi = REGISTER.register("tipi", () -> new TipiBlock(Properties.of(Material.CLOTH_DECORATION).strength(0.2F).sound(SoundType.WOOL).noOcclusion()));
-    public static final RegistryObject<DummyTipiBlock> dummy_tipi = REGISTER.register("dummy_tipi", () -> new DummyTipiBlock(Properties.of(Material.CLOTH_DECORATION).strength(0.2F).sound(SoundType.WOOL).noOcclusion().isValidSpawn((s, g, p, t) -> false).isRedstoneConductor((s, g, p) -> false).isSuffocating((s, g, p) -> false).isViewBlocking((s, g, p) -> false).noLootTable()));
+    public static final RegistryObject<DummyTipiBlock> dummy_tipi = REGISTER.register("dummy_tipi", () -> new DummyTipiBlock(Properties.of(Material.CLOTH_DECORATION).strength(0.2F).sound(SoundType.WOOL).noOcclusion().isValidSpawn((s, g, p, t) -> false).isRedstoneConductor((s, g, p) -> false).isSuffocating((s, g, p) -> false).isViewBlocking((s, g, p) -> false).noDrops()));
     public static final RegistryObject<TotemBaseBlock> totem_base = REGISTER.register("totem_base", () -> new TotemBaseBlock(Properties.of(Material.WOOD).strength(2, 3).sound(SoundType.WOOD)));
     public static final RegistryObject<TotemPoleBlock> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleBlock(Properties.of(Material.WOOD).strength(2, 3).sound(SoundType.WOOD)));
 
@@ -81,10 +81,7 @@ public final class ModBlocks {
     }
 
     @SubscribeEvent
-    public static void init(RegisterEvent event) {
-        if(!event.getRegistryKey().equals(ForgeRegistries.Keys.BLOCKS))
-            return;
-
+    public static void init(RegistryEvent.Register<Block> event) {
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(cedar_sapling.getId(), potted_cedar_sapling);
 
         CEDAR_FAMILY = new BlockFamily.Builder(cedar_planks.get()).button(cedar_button.get()).fence(cedar_fence.get()).fenceGate(cedar_fence_gate.get()).pressurePlate(cedar_pressure_plate.get())/*.sign(cedar_sign.get(), cedar_wall_sign.get())*/.slab(cedar_slab.get()).stairs(cedar_stairs.get()).door(cedar_door.get()).trapdoor(cedar_trapdoor.get())

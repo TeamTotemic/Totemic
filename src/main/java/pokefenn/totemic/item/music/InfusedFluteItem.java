@@ -2,13 +2,14 @@ package pokefenn.totemic.item.music;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.WeakHashMap;
 
 import javax.annotation.Nullable;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.util.RandomSource;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.AgeableMob;
@@ -44,7 +45,7 @@ public class InfusedFluteItem extends FluteItem {
     }
 
     @Override
-    protected int getMusicAmount(RandomSource rand) {
+    protected int getMusicAmount(Random rand) {
         return ModContent.flute.getBaseOutput() + rand.nextInt(120);
     }
 
@@ -62,7 +63,7 @@ public class InfusedFluteItem extends FluteItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable(getDescriptionId() + ".tooltip"));
+        tooltip.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
         super.appendHoverText(stack, level, tooltip, flag);
     }
 

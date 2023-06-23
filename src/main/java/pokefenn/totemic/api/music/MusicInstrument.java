@@ -6,21 +6,20 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import net.minecraft.Util;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.api.TotemicAPI;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
 /**
  * Represents a music instrument type.
  */
-public final class MusicInstrument {
+public final class MusicInstrument extends ForgeRegistryEntry<MusicInstrument> {
     private final int baseOutput;
     private final int musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
@@ -88,14 +87,7 @@ public final class MusicInstrument {
      * Returns a text component representing the instrument's name.
      */
     public MutableComponent getDisplayName() {
-        return Component.translatable(getDescriptionId());
-    }
-
-    /**
-     * Returns the instrument's registry name.
-     */
-    public final ResourceLocation getRegistryName() {
-        return TotemicAPI.get().registry().instruments().getKey(this);
+        return new TranslatableComponent(getDescriptionId());
     }
 
     @Override

@@ -1,11 +1,12 @@
 package pokefenn.totemic.block.music;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -73,7 +74,7 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random rand) {
         level.setBlock(pos, state.setValue(PLAYED, false), UPDATE_ALL);
     }
 

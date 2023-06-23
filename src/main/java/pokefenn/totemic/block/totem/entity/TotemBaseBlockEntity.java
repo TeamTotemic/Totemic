@@ -26,7 +26,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.ModelData;
+import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.client.model.data.ModelDataMap;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import pokefenn.totemic.Totemic;
@@ -204,7 +205,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     }
 
     @Override
-    public @NotNull ModelData getModelData() {
-        return ModelData.builder().with(BakedTotemBaseModel.WOOD_TYPE_PROPERTY, woodType).build();
+    public @NotNull IModelData getModelData() {
+        return new ModelDataMap.Builder().withInitial(BakedTotemBaseModel.WOOD_TYPE_PROPERTY, woodType).build();
     }
 }

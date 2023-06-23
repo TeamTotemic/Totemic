@@ -1,8 +1,9 @@
 package pokefenn.totemic.ceremony;
 
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
@@ -44,7 +45,7 @@ public enum BuffaloDanceCeremony implements CeremonyInstance {
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
         if(level.getEntities(EntityType.COW, TotemicEntityUtil.getAABBAround(pos, RANGE), EntitySelector.ENTITY_STILL_ALIVE).isEmpty()) {
-            initiator.sendSystemMessage(Component.translatable("totemic.noCowsNearby"));
+            initiator.sendMessage(new TranslatableComponent("totemic.noCowsNearby"), Util.NIL_UUID);
             return false;
         }
         else

@@ -11,7 +11,7 @@ public class TotemBaseItem extends BlockItem {
 
     @Override
     public String getDescriptionId(ItemStack stack) {
-        var woodType = TotemPoleItem.getWoodType(stack);
-        return "block." + woodType.getRegistryName().toLanguageKey() + "_totem_base";
+        var woodTypeName = TotemPoleItem.getWoodType(stack).getRegistryName();
+        return "block." + woodTypeName.getNamespace() + "." + woodTypeName.getPath() + "_totem_base";
     }
 }

@@ -1,7 +1,9 @@
 package pokefenn.totemic.item.music;
 
 import java.util.List;
+import java.util.Objects;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.jetbrains.annotations.NotNull;
@@ -9,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -21,7 +24,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
@@ -59,7 +61,7 @@ public class JingleDressItem extends ArmorItem {
     };
 
     //Rather than using the ItemStack's NBT for keeping track of the charge, we attach a Capability to the ItemStack
-    private static final Capability<ChargeCounter> CHARGE_COUNTER = CapabilityManager.get(new CapabilityToken<>() {});
+    private static final @Nonnull Capability<ChargeCounter> CHARGE_COUNTER = Objects.requireNonNull(CapabilityManager.get(new CapabilityToken<>() {}));
 
     public JingleDressItem(Properties pProperties) {
         super(MATERIAL, EquipmentSlot.LEGS, pProperties);
@@ -96,11 +98,10 @@ public class JingleDressItem extends ArmorItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable(getDescriptionId() + ".tooltip"));
+        tooltip.add(new TranslatableComponent(getDescriptionId() + ".tooltip"));
     }
 
-    @AutoRegisterCapability
-    private static class ChargeCounter implements ICapabilityProvider {
+    public static class ChargeCounter implements ICapabilityProvider {
         private LazyOptional<ChargeCounter> holder = LazyOptional.of(() -> this);
 
         int charge = 0;

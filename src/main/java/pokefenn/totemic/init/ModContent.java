@@ -3,12 +3,11 @@ package pokefenn.totemic.init;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.material.MaterialColor;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.RegisterEvent;
 import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
-import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.totem.PortableTotemCarving;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.TotemCarving;
@@ -43,7 +42,6 @@ public final class ModContent {
     public static final TotemWoodType jungle = new TotemWoodType(MaterialColor.DIRT, MaterialColor.PODZOL, BlockTags.JUNGLE_LOGS);
     public static final TotemWoodType acacia = new TotemWoodType(MaterialColor.COLOR_ORANGE, MaterialColor.STONE, BlockTags.ACACIA_LOGS);
     public static final TotemWoodType dark_oak = new TotemWoodType(MaterialColor.COLOR_BROWN, MaterialColor.COLOR_BROWN, BlockTags.DARK_OAK_LOGS);
-    public static final TotemWoodType mangrove = new TotemWoodType(MaterialColor.COLOR_RED, MaterialColor.PODZOL, BlockTags.MANGROVE_LOGS);
     public static final TotemWoodType cedar = new TotemWoodType(MaterialColor.COLOR_PINK, MaterialColor.COLOR_ORANGE, TotemicBlockTags.CEDAR_LOGS);
 
     public static final TotemCarving none = new PortableTotemCarving();
@@ -93,58 +91,66 @@ public final class ModContent {
     public static final Ceremony baykok_summon = new Ceremony(15060, 32 * 20, () -> BaykokSummonCeremony.INSTANCE, wind_chime, eagle_bone_whistle);
 
     @SubscribeEvent
-    public static void register(RegisterEvent event) {
-        event.register(RegistryAPI.MUSIC_INSTRUMENT_REGISTRY, reg -> {
-            reg.register("flute", flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute));
-            reg.register("drum", drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum));
-            reg.register("wind_chime", wind_chime.setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime));
-            reg.register("jingle_dress", jingle_dress.setItem(ModItems.jingle_dress.get()));
-            reg.register("rattle", rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle));
-            reg.register("eagle_bone_whistle", eagle_bone_whistle.setItem(ModItems.eagle_bone_whistle.get()).setSound(ModSounds.eagle_bone_whistle));
-        });
+    public static void instruments(RegistryEvent.Register<MusicInstrument> event) {
+        event.getRegistry().registerAll(
+                flute.setItem(ModItems.flute.get()).setSound(ModSounds.flute).setRegistryName("flute"),
+                drum.setItem(ModBlocks.drum.get()).setSound(ModSounds.drum).setRegistryName("drum"),
+                wind_chime.setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime).setRegistryName("wind_chime"),
+                jingle_dress.setItem(ModItems.jingle_dress.get()).setRegistryName("jingle_dress"),
+                rattle.setItem(ModItems.rattle.get()).setSound(ModSounds.rattle).setRegistryName("rattle"),
+                eagle_bone_whistle.setItem(ModItems.eagle_bone_whistle.get()).setSound(ModSounds.eagle_bone_whistle).setRegistryName("eagle_bone_whistle")
+        );
+    }
 
-        event.register(RegistryAPI.WOOD_TYPE_REGISTRY, reg -> {
-            reg.register("oak", oak);
-            reg.register("spruce", spruce);
-            reg.register("birch", birch);
-            reg.register("jungle", jungle);
-            reg.register("acacia", acacia);
-            reg.register("dark_oak", dark_oak);
-            reg.register("mangrove", mangrove);
-            reg.register("cedar", cedar);
-        });
+    @SubscribeEvent
+    public static void woodTypes(RegistryEvent.Register<TotemWoodType> event) {
+        event.getRegistry().registerAll(
+                oak.setRegistryName("oak"),
+                spruce.setRegistryName("spruce"),
+                birch.setRegistryName("birch"),
+                jungle.setRegistryName("jungle"),
+                acacia.setRegistryName("acacia"),
+                dark_oak.setRegistryName("dark_oak"),
+                cedar.setRegistryName("cedar")
+        );
+    }
 
-        event.register(RegistryAPI.TOTEM_CARVING_REGISTRY, reg -> {
-            reg.register("none", none);
-            reg.register("bat", bat);
-            reg.register("blaze", blaze);
-            reg.register("buffalo", buffalo);
-            reg.register("cow", cow);
-            reg.register("enderman", enderman);
-            reg.register("horse", horse);
-            reg.register("ocelot", ocelot);
-            reg.register("pig", pig);
-            reg.register("rabbit", rabbit);
-            reg.register("spider", spider);
-            reg.register("squid", squid);
-            reg.register("wolf", wolf);
-        });
+    @SubscribeEvent
+    public static void carvings(RegistryEvent.Register<TotemCarving> event) {
+        event.getRegistry().registerAll(
+                none.setRegistryName("none"),
+                bat.setRegistryName("bat"),
+                blaze.setRegistryName("blaze"),
+                buffalo.setRegistryName("buffalo"),
+                cow.setRegistryName("cow"),
+                enderman.setRegistryName("enderman"),
+                horse.setRegistryName("horse"),
+                ocelot.setRegistryName("ocelot"),
+                pig.setRegistryName("pig"),
+                rabbit.setRegistryName("rabbit"),
+                spider.setRegistryName("spider"),
+                squid.setRegistryName("squid"),
+                wolf.setRegistryName("wolf")
+        );
+    }
 
-        event.register(RegistryAPI.CEREMONY_REGISTRY, reg -> {
-            reg.register("war_dance", war_dance);
-            reg.register("depths", depths);
-            reg.register("fertility", fertility);
-            reg.register("zaphkiel_waltz", zaphkiel_waltz);
-            reg.register("animal_growth", animal_growth);
-            reg.register("buffalo_dance", buffalo_dance);
-            reg.register("rain", rain);
-            reg.register("drought", drought);
-            reg.register("flute_infusion", flute_infusion);
-            reg.register("eagle_dance", eagle_dance);
-            reg.register("cleansing", cleansing);
-            reg.register("sun_dance", sun_dance);
-            reg.register("danse_macabre", danse_macabre);
-            reg.register("baykok_summon", baykok_summon);
-        });
+    @SubscribeEvent
+    public static void ceremonies(RegistryEvent.Register<Ceremony> event) {
+        event.getRegistry().registerAll(
+                war_dance.setRegistryName("war_dance"),
+                depths.setRegistryName("depths"),
+                fertility.setRegistryName("fertility"),
+                zaphkiel_waltz.setRegistryName("zaphkiel_waltz"),
+                animal_growth.setRegistryName("animal_growth"),
+                buffalo_dance.setRegistryName("buffalo_dance"),
+                rain.setRegistryName("rain"),
+                drought.setRegistryName("drought"),
+                flute_infusion.setRegistryName("flute_infusion"),
+                eagle_dance.setRegistryName("eagle_dance"),
+                cleansing.setRegistryName("cleansing"),
+                sun_dance.setRegistryName("sun_dance"),
+                danse_macabre.setRegistryName("danse_macabre"),
+                baykok_summon.setRegistryName("baykok_summon")
+        );
     }
 }

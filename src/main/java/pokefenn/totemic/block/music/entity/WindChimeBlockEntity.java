@@ -1,5 +1,7 @@
 package pokefenn.totemic.block.music.entity;
 
+import java.util.Random;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -10,7 +12,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -99,7 +100,7 @@ public class WindChimeBlockEntity extends BlockEntity {
         }
     }
 
-    private int getRandomCooldown(RandomSource rand) {
+    private int getRandomCooldown(Random rand) {
         return (int) (20.0 * (40.0 + 5.0 * rand.nextGaussian())); //40 ± 5 seconds
     }
 

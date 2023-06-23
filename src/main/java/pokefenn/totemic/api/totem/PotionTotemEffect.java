@@ -7,6 +7,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 
 /**
@@ -75,7 +76,7 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      */
     protected int getAmplifierForMedicineBag(Player player, ItemStack medicineBag, int charge) {
         if(scaleAmplifier)
-            return medicineBag.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) / 2;
+            return EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY, medicineBag) / 2;
         else
             return 0;
     }

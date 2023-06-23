@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -40,7 +41,7 @@ public class CreativeMedicineBagItem extends MedicineBagItem {
             key = isOpen(stack) ? "open" : "closed";
         else
             key = "tooltip";
-        tooltip.add(Component.translatable("totemic.medicineBag." + key));
+        tooltip.add(new TranslatableComponent("totemic.medicineBag." + key));
     }
 
     @Override

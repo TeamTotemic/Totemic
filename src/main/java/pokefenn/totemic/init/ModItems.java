@@ -11,10 +11,10 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
@@ -67,10 +67,7 @@ public final class ModItems {
     public static final RegistryObject<TotemPoleItem> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleItem(ModBlocks.totem_pole.get(), new Properties().tab(Totemic.creativeTab)));
 
     @SubscribeEvent
-    public static void init(RegisterEvent event) {
-        if(!event.getRegistryKey().equals(ForgeRegistries.Keys.ITEMS))
-            return;
-
+    public static void init(RegistryEvent.Register<Item> event) {
         //Register item blocks
         final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
@@ -78,7 +75,7 @@ public final class ModItems {
                 continue;
 
             Block block = blockO.get();
-            event.getForgeRegistry().register(blockO.getId(), new BlockItem(block, new Properties().tab(Totemic.creativeTab)));
+            event.getRegistry().register(new BlockItem(block, new Properties().tab(Totemic.creativeTab)).setRegistryName(blockO.getId()));
         }
     }
 }

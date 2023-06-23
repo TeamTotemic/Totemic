@@ -11,11 +11,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
-import net.minecraftforge.client.model.generators.BlockModelBuilder.RootTransformBuilder.TransformOrigin;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.loaders.ObjModelBuilder;
+import net.minecraftforge.client.model.generators.loaders.OBJLoaderBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
@@ -39,7 +38,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         axisBlock(ModBlocks.stripped_cedar_wood.get(), blockTexture(ModBlocks.stripped_cedar_log.get()), blockTexture(ModBlocks.stripped_cedar_log.get()));
         simpleBlock(ModBlocks.cedar_leaves.get(), models().withExistingParent("totemic:cedar_leaves", "block/leaves").texture("all", "totemic:block/cedar_leaves"));
         models().withExistingParent("totemic:cedar_leaves_opaque", "block/leaves").texture("all", "totemic:block/cedar_leaves_opaque");
-        simpleBlock(ModBlocks.cedar_sapling.get(), models().withExistingParent(ModBlocks.cedar_sapling.getId().toString(), "block/cross").texture("cross", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.cedar_sapling.get(), models().withExistingParent(ModBlocks.cedar_sapling.getId().toString(), "block/cross").texture("cross", blockTexture(ModBlocks.cedar_sapling.get())));
         simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
         simpleBlock(ModBlocks.wind_chime.get(), blockEntityRenderer(ModBlocks.wind_chime, mcLoc("block/white_terracotta"))
                 .transforms()
@@ -65,16 +64,16 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         stairsBlock(ModBlocks.cedar_stairs.get(), cedarPlankTex);
         doorBlock(ModBlocks.cedar_door.get(), modLoc("block/cedar_door_bottom"), modLoc("block/cedar_door_top"));
         trapdoorBlock(ModBlocks.cedar_trapdoor.get(), modLoc("block/cedar_trapdoor"), true);
-        simpleBlock(ModBlocks.potted_cedar_sapling.get(), models().singleTexture(ModBlocks.potted_cedar_sapling.getId().toString(), mcLoc("block/flower_pot_cross"), "plant", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.potted_cedar_sapling.get(), models().singleTexture(ModBlocks.potted_cedar_sapling.getId().toString(), mcLoc("block/flower_pot_cross"), "plant", blockTexture(ModBlocks.cedar_sapling.get())));
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
         horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString())
-                .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
+                .customLoader(OBJLoaderBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .texture("particle", mcLoc("block/white_wool"))
-                .rootTransform()
+                /*.rootTransform()
                     .origin(TransformOrigin.CENTER)
                     .translation(0, 0.95F, 0)
                     .scale(2.85F)
-                    .end(),
+                    .end()*/, //FIXME
                 0, //angle offset of 0, rotates the model by 180°
                 TipiBlock.OCCUPIED);
         simpleBlock(ModBlocks.dummy_tipi.get(), models().withExistingParent(ModBlocks.dummy_tipi.getId().toString(), "block/air").texture("particle", mcLoc("block/white_wool")));
@@ -118,7 +117,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         //im.withExistingParent(ModBlocks.tipi.getId().toString(), modLoc("block/tipi"))
         //use a separate item model because the transforms are not compatible with the tipi's root transform
         im.getBuilder(ModBlocks.tipi.getId().toString())
-                .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
+                .customLoader(OBJLoaderBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .transforms()
                 .transform(TransformType.GUI)
                     .rotation(30, 225, 0)

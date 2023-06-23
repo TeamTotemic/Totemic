@@ -14,7 +14,8 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.ModelData;
+import net.minecraftforge.client.model.data.IModelData;
+import net.minecraftforge.client.model.data.ModelDataMap;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
@@ -80,7 +81,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
     }
 
     @Override
-    public @NotNull ModelData getModelData() {
-        return ModelData.builder().with(BakedTotemPoleModel.DATA_PROPERTY, new BakedTotemPoleModel.Data(woodType, carving)).build();
+    public @NotNull IModelData getModelData() {
+        return new ModelDataMap.Builder().withInitial(BakedTotemPoleModel.DATA_PROPERTY, new BakedTotemPoleModel.Data(woodType, carving)).build();
     }
 }

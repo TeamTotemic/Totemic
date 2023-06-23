@@ -1,12 +1,13 @@
 package pokefenn.totemic.item.music;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -38,12 +39,12 @@ public class FluteItem extends Item {
         return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide);
     }
 
-    protected int getMusicAmount(RandomSource rand) {
+    protected int getMusicAmount(Random rand) {
         return ModContent.flute.getBaseOutput();
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("totemic.tooltip.selectorMode"));
+        tooltip.add(new TranslatableComponent("totemic.tooltip.selectorMode"));
     }
 }

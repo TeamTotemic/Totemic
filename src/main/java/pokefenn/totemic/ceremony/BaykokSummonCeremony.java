@@ -1,8 +1,9 @@
 package pokefenn.totemic.ceremony;
 
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
@@ -34,7 +35,7 @@ public enum BaykokSummonCeremony implements CeremonyInstance {
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
         if(level.getDifficulty() == Difficulty.PEACEFUL) {
-            initiator.sendSystemMessage(Component.translatable("totemic.cantSpawnBaykokOnPeaceful"));
+            initiator.sendMessage(new TranslatableComponent("totemic.cantSpawnBaykokOnPeaceful"), Util.NIL_UUID);
             return false;
         }
         else

@@ -14,8 +14,8 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import net.minecraftforge.client.gui.ForgeIngameGui;
+import net.minecraftforge.client.gui.IIngameOverlay;
 import pokefenn.totemic.ModConfig;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
@@ -24,7 +24,7 @@ import pokefenn.totemic.block.totem.entity.StateStartup;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 
-public enum CeremonyHUD implements IGuiOverlay {
+public enum CeremonyHUD implements IIngameOverlay {
     INSTANCE;
 
     private static final ResourceLocation SELECTION_HUD_TEXTURE = new ResourceLocation(TotemicAPI.MOD_ID, "textures/gui/selection_hud.png");
@@ -45,7 +45,7 @@ public enum CeremonyHUD implements IGuiOverlay {
     }
 
     @Override
-    public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int screenWidth, int screenHeight) {
+    public void render(ForgeIngameGui gui, PoseStack poseStack, float partialTick, int screenWidth, int screenHeight) {
         if(activeTotem == null)
             return;
         if(activeTotem.isRemoved() || activeTotem.getTotemState() instanceof StateTotemEffect) {
@@ -53,8 +53,8 @@ public enum CeremonyHUD implements IGuiOverlay {
             return;
         }
 
-        var mc = gui.getMinecraft();
-        gui.getMinecraft().getProfiler().push("totemic.ceremonyHUD");
+        var mc = Minecraft.getInstance();
+        mc.getProfiler().push("totemic.ceremonyHUD");
 
         final int hudX = (screenWidth - HUD_WIDTH) / 2 + ModConfig.CLIENT.ceremonyHudPositionX.get();
         final int hudY = (screenHeight - HUD_HEIGHT) / 2 + ModConfig.CLIENT.ceremonyHudPositionY.get();
@@ -75,7 +75,7 @@ public enum CeremonyHUD implements IGuiOverlay {
         mc.getProfiler().pop();
     }
 
-    private void renderSelectionHUD(StateSelection state, ForgeGui gui, PoseStack poseStack, float partialTick, int hudX, int hudY) {
+    private void renderSelectionHUD(StateSelection state, ForgeIngameGui gui, PoseStack poseStack, float partialTick, int hudX, int hudY) {
         final int texW = 128, texH = 64;
         gui.setupOverlayRenderState(true, false, SELECTION_HUD_TEXTURE);
 
@@ -92,12 +92,12 @@ public enum CeremonyHUD implements IGuiOverlay {
         //Assuming that we have at most 1 selector to render
         if(!selectors.isEmpty()) {
             var item = selectors.get(0).getItem();
-            gui.getMinecraft().getItemRenderer().renderGuiItem(item, hudX + 40, hudY + 12);
+            Minecraft.getInstance().getItemRenderer().renderGuiItem(item, hudX + 40, hudY + 12);
         }
     }
 
     @SuppressWarnings("resource")
-    private void renderStartupHUD(StateStartup state, ForgeGui gui, PoseStack poseStack, float partialTick) {
+    private void renderStartupHUD(StateStartup state, ForgeIngameGui gui, PoseStack poseStack, float partialTick) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
@@ -116,11 +116,12 @@ public enum CeremonyHUD implements IGuiOverlay {
 
         //Bars
         float musicW = state.getTotalMusic() / (float)cer.getMusicNeeded() * barW;
-        float timeW = Math.min((state.getTime() + partialTick) / cer.getAdjustedMaxStartupTime(gui.getMinecraft().level.getDifficulty()), 1.0F) * barW;
+        float timeW = Math.min((state.getTime() + partialTick) / cer.getAdjustedMaxStartupTime(Minecraft.getInstance().level.getDifficulty()), 1.0F) * barW;
         addQuad(buf, poseStack, 11, 11,  musicW, barH,  0, 32,  musicW, barH, texW, texH);
         addQuad(buf, poseStack, 11, 21,  timeW,  barH,  0, 32,  timeW,  barH, texW, texH);
 
-        BufferUploader.drawWithShader(buf.end());
+        buf.end();
+        BufferUploader.end(buf);
 
         //Ceremony name
         var name = cer.getDisplayName().getString();
@@ -128,7 +129,7 @@ public enum CeremonyHUD implements IGuiOverlay {
         gui.getFont().draw(poseStack, name, nameX, 2, 0xC8000000);
     }
 
-    private void renderCeremonyEffectHUD(StateCeremonyEffect state, ForgeGui gui, PoseStack poseStack, float partialTick) {
+    private void renderCeremonyEffectHUD(StateCeremonyEffect state, ForgeIngameGui gui, PoseStack poseStack, float partialTick) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
@@ -149,7 +150,8 @@ public enum CeremonyHUD implements IGuiOverlay {
         float timeW = Mth.clamp(1.0F - (state.getTime() + partialTick) / cerInst.getEffectTime(), 0.0F, 1.0F) * barW;
         addQuad(buf, poseStack, 11, 21,  timeW,  barH,  0, 32,  timeW,  barH, texW, texH);
 
-        BufferUploader.drawWithShader(buf.end());
+        buf.end();
+        BufferUploader.end(buf);
 
         //Ceremony name
         var name = cer.getDisplayName().getString();

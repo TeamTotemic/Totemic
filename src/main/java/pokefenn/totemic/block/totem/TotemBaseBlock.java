@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -73,19 +73,19 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
         .ifPresent(tile -> {
             if(tile.getTotemState() instanceof StateTotemEffect state) {
-                player.displayClientMessage(Component.translatable("totemic.isDoingNoCeremony"), false);
+                player.displayClientMessage(new TranslatableComponent("totemic.isDoingNoCeremony"), false);
             }
             else if(tile.getTotemState() instanceof StateSelection state) {
                 String selectors = state.getSelectors().stream()
                         .map(instr -> instr.getDisplayName().getString())
                         .collect(Collectors.joining(", "));
-                player.displayClientMessage(Component.translatable("totemic.isDoingSelection", selectors), false);
+                player.displayClientMessage(new TranslatableComponent("totemic.isDoingSelection", selectors), false);
             }
             else if(tile.getTotemState() instanceof StateStartup state) {
-                player.displayClientMessage(Component.translatable("totemic.isDoingStartup", state.getCeremony().getDisplayName()), false);
+                player.displayClientMessage(new TranslatableComponent("totemic.isDoingStartup", state.getCeremony().getDisplayName()), false);
             }
             else if(tile.getTotemState() instanceof StateCeremonyEffect state) {
-                player.displayClientMessage(Component.translatable("totemic.isDoingCeremony", state.getCeremony().getDisplayName()), false);
+                player.displayClientMessage(new TranslatableComponent("totemic.isDoingCeremony", state.getCeremony().getDisplayName()), false);
             }
         });
         return InteractionResult.SUCCESS;

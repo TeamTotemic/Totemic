@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -25,6 +26,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicAPI;
@@ -81,7 +83,7 @@ public class MedicineBagItem extends Item {
     }
 
     public static int getMaxCharge(ItemStack stack) {
-        int unbreaking = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
+        int unbreaking = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.UNBREAKING, stack);
         return (4 + 2 * unbreaking) * 60 * 20;
     }
 
@@ -163,7 +165,7 @@ public class MedicineBagItem extends Item {
             }
             else {
                 if(level.isClientSide)
-                    player.displayClientMessage(Component.translatable("totemic.medicineBag.notPortable", carving.getDisplayName()), true);
+                    player.displayClientMessage(new TranslatableComponent("totemic.medicineBag.notPortable", carving.getDisplayName()), true);
                 return InteractionResult.FAIL;
             }
         }
@@ -188,7 +190,7 @@ public class MedicineBagItem extends Item {
 
     @Override
     public Component getName(ItemStack stack) {
-        return Component.translatable(getDescriptionId(),
+        return new TranslatableComponent(getDescriptionId(),
                 getCarving(stack).orElse((PortableTotemCarving) ModContent.none).getDisplayName());
     }
 
@@ -203,10 +205,10 @@ public class MedicineBagItem extends Item {
         }
         else
             key = "tooltip";
-        tooltip.add(Component.translatable("totemic.medicineBag." + key));
+        tooltip.add(new TranslatableComponent("totemic.medicineBag." + key));
 
         if(flag.isAdvanced())
-            tooltip.add(Component.translatable("totemic.medicineBag.charge", getCharge(stack), getMaxCharge(stack)));
+            tooltip.add(new TranslatableComponent("totemic.medicineBag.charge", getCharge(stack), getMaxCharge(stack)));
     }
 
     @Override

@@ -3,10 +3,14 @@ package pokefenn.totemic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.gui.ForgeIngameGui;
+import net.minecraftforge.client.gui.OverlayRegistry;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -14,9 +18,12 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
+import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
@@ -29,7 +36,6 @@ import pokefenn.totemic.handler.ClientInteract;
 import pokefenn.totemic.handler.ClientRenderHandler;
 import pokefenn.totemic.handler.EntityHandler;
 import pokefenn.totemic.handler.PlayerInteract;
-import pokefenn.totemic.handler.RemapHandler;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
@@ -37,6 +43,7 @@ import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModMobEffects;
 import pokefenn.totemic.init.ModSounds;
+import pokefenn.totemic.item.music.JingleDressItem;
 import pokefenn.totemic.network.NetworkHandler;
 
 @Mod(TotemicAPI.MOD_ID)
@@ -54,6 +61,7 @@ public final class Totemic {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modBus.addListener(this::commonSetup);
+        modBus.addListener(this::registerCapabilities);
         modBus.addListener(this::gatherData);
 
         ModBlocks.REGISTER.register(modBus);
@@ -89,12 +97,12 @@ public final class Totemic {
         //PatchouliIntegration.init();
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
-        eventBus.register(RemapHandler.class);
         eventBus.register(PlayerInteract.class);
         if(ModConfig.GENERAL.skeletonsShouldAttackBuffalos.get())
             eventBus.addListener(EntityHandler::onEntityJoin);
     }
 
+    @SuppressWarnings("null")
     private void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ModItems.baykok_bow.get().registerItemProperties();
@@ -105,6 +113,16 @@ public final class Totemic {
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
         eventBus.register(ClientRenderHandler.class);
+
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.cedar_sapling.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.potted_cedar_sapling.get(), RenderType.cutout());
+
+        OverlayRegistry.registerOverlayAbove(ForgeIngameGui.HOTBAR_ELEMENT, "ceremony_hud", CeremonyHUD.INSTANCE);
+    }
+
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(MusicAcceptor.class);
+        event.register(JingleDressItem.ChargeCounter.class);
     }
 
     private void gatherData(GatherDataEvent event) {
@@ -112,14 +130,14 @@ public final class Totemic {
         var efh = event.getExistingFileHelper();
         if(event.includeServer()) {
             var blockTP = new TotemicBlockTagsProvider(gen, efh);
-            gen.addProvider(true, blockTP);
-            gen.addProvider(true, new TotemicItemTagsProvider(gen, blockTP, TotemicAPI.MOD_ID, efh));
-            gen.addProvider(true, new TotemicEntityTypeTagsProvider(gen, TotemicAPI.MOD_ID, efh));
-            gen.addProvider(true, new TotemicLootTableProvider(gen));
-            gen.addProvider(true, new TotemicRecipeProvider(gen));
+            gen.addProvider(blockTP);
+            gen.addProvider(new TotemicItemTagsProvider(gen, blockTP, TotemicAPI.MOD_ID, efh));
+            gen.addProvider(new TotemicEntityTypeTagsProvider(gen, TotemicAPI.MOD_ID, efh));
+            gen.addProvider(new TotemicLootTableProvider(gen));
+            gen.addProvider(new TotemicRecipeProvider(gen));
         }
         if(event.includeClient()) {
-            gen.addProvider(true, new TotemicBlockStateProvider(gen, efh));
+            gen.addProvider(new TotemicBlockStateProvider(gen, efh));
         }
     }
 }

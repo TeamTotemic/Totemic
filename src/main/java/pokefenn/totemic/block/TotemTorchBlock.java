@@ -1,8 +1,9 @@
 package pokefenn.totemic.block;
 
+import java.util.Random;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -19,7 +20,7 @@ public class TotemTorchBlock extends TorchBlock {
     }
 
     @Override
-    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, Random pRandom) {
         double x = pPos.getX() + 0.5D;
         double y = pPos.getY() + 1.0D;
         double z = pPos.getZ() + 0.5D;

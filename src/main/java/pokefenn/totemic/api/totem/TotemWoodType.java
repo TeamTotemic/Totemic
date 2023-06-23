@@ -2,16 +2,15 @@ package pokefenn.totemic.api.totem;
 
 import java.util.Objects;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MaterialColor;
-import pokefenn.totemic.api.TotemicAPI;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
 /**
  * Represents a wood type that Totem Poles can be made out of.
  */
-public final class TotemWoodType {
+public final class TotemWoodType extends ForgeRegistryEntry<TotemWoodType> {
     private final MaterialColor woodColor;
     private final MaterialColor barkColor;
     private final TagKey<Block> logTag;
@@ -27,13 +26,6 @@ public final class TotemWoodType {
         this.woodColor = Objects.requireNonNull(woodColor);
         this.barkColor = Objects.requireNonNull(barkColor);
         this.logTag = Objects.requireNonNull(logTag);
-    }
-
-    /**
-     * Returns the wood type's registry name.
-     */
-    public ResourceLocation getRegistryName() {
-        return TotemicAPI.get().registry().woodTypes().getKey(this);
     }
 
     /**

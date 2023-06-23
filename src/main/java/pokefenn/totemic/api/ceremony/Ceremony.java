@@ -8,18 +8,17 @@ import javax.annotation.Nullable;
 import org.apache.commons.lang3.Validate;
 
 import net.minecraft.Util;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Difficulty;
-import pokefenn.totemic.api.TotemicAPI;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 /**
  * Represents a ceremony type.
  * The actual ceremony effect is implemented using the {@link CeremonyInstance} interface.
  */
-public final class Ceremony {
+public final class Ceremony extends ForgeRegistryEntry<Ceremony> {
     private final int musicNeeded;
     private final int maxStartupTime;
     private final Supplier<CeremonyInstance> factory;
@@ -61,14 +60,7 @@ public final class Ceremony {
      * Returns a text component representing the ceremony's name.
      */
     public MutableComponent getDisplayName() {
-        return Component.translatable(getDescriptionId());
-    }
-
-    /**
-     * Returns the ceremony's registry name.
-     */
-    public final ResourceLocation getRegistryName() {
-        return TotemicAPI.get().registry().ceremonies().getKey(this);
+        return new TranslatableComponent(getDescriptionId());
     }
 
     @Override
