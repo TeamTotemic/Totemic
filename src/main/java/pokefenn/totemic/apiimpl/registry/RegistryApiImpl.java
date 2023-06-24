@@ -24,10 +24,10 @@ public enum RegistryApiImpl implements RegistryAPI {
 
     @SubscribeEvent
     public static void createRegistries(NewRegistryEvent event) {
-        instruments = event.create(new RegistryBuilder<MusicInstrument>().setName(MUSIC_INSTRUMENT_REGISTRY.location()).disableSaving());
-        woodTypes = event.create(new RegistryBuilder<TotemWoodType>().setName(WOOD_TYPE_REGISTRY.location()).setDefaultKey(new ResourceLocation(TotemicAPI.MOD_ID, "oak")).disableSaving().disableSync());
-        totemCarvings = event.create(new RegistryBuilder<TotemCarving>().setName(TOTEM_CARVING_REGISTRY.location()).setDefaultKey(new ResourceLocation(TotemicAPI.MOD_ID, "none")).disableSaving().disableSync());
-        ceremonies = event.create(new RegistryBuilder<Ceremony>().setName(CEREMONY_REGISTRY.location()).disableSaving().disableSync());
+        instruments = event.create(new RegistryBuilder<MusicInstrument>().setType(MusicInstrument.class).setName(MUSIC_INSTRUMENT_REGISTRY.location()).disableSaving());
+        woodTypes = event.create(new RegistryBuilder<TotemWoodType>().setType(TotemWoodType.class).setName(WOOD_TYPE_REGISTRY.location()).setDefaultKey(new ResourceLocation(TotemicAPI.MOD_ID, "oak")).disableSaving().disableSync());
+        totemCarvings = event.create(new RegistryBuilder<TotemCarving>().setType(TotemCarving.class).setName(TOTEM_CARVING_REGISTRY.location()).setDefaultKey(new ResourceLocation(TotemicAPI.MOD_ID, "none")).disableSaving().disableSync());
+        ceremonies = event.create(new RegistryBuilder<Ceremony>().setType(Ceremony.class).setName(CEREMONY_REGISTRY.location()).disableSaving().disableSync());
     }
 
     @Override
