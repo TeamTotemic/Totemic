@@ -4,6 +4,7 @@
   "textures": {
     "particle": "minecraft:block/white_wool"
   },
+  "ambientocclusion": false,
   "transform": {
     "origin": "center",
     "scale": [
