@@ -1,12 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PST",
+    "HDH",
+    " H "
+  ],
   "key": {
-    "D": {
-      "tag": "forge:gems/diamond"
-    },
-    "H": {
-      "item": "totemic:buffalo_hide"
-    },
     "P": {
       "item": "totemic:cedar_planks"
     },
@@ -15,13 +14,14 @@
     },
     "T": {
       "item": "totemic:buffalo_tooth"
+    },
+    "H": {
+      "item": "totemic:buffalo_hide"
+    },
+    "D": {
+      "tag": "forge:gems/diamond"
     }
   },
-  "pattern": [
-    "PST",
-    "HDH",
-    " H "
-  ],
   "result": {
     "item": "totemic:medicine_bag"
   }

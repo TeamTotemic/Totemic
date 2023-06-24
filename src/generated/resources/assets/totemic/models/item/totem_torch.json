@@ -1,15 +1,20 @@
 {
   "parent": "totemic:block/totem_torch",
   "display": {
-    "fixed": {
-      "scale": [
-        0.5,
-        0.5,
-        0.5
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        45,
+        0
       ],
       "translation": [
         0,
-        0,
+        1.5,
+        1
+      ],
+      "scale": [
+        0.25,
+        0.25,
         0.25
       ]
     },
@@ -19,32 +24,27 @@
         225,
         0
       ],
-      "scale": [
-        0.625,
-        0.625,
-        0.625
-      ],
       "translation": [
         0,
         -1,
         0
-      ]
-    },
-    "thirdperson_righthand": {
-      "rotation": [
-        0,
-        45,
-        0
       ],
       "scale": [
-        0.25,
-        0.25,
-        0.25
-      ],
+        0.625,
+        0.625,
+        0.625
+      ]
+    },
+    "fixed": {
       "translation": [
         0,
-        1.5,
-        1
+        0,
+        0.25
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
       ]
     }
   }

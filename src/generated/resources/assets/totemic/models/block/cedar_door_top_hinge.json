@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/door_top_right",
+  "parent": "minecraft:block/door_top_rh",
   "textures": {
     "bottom": "totemic:block/cedar_door_bottom",
     "top": "totemic:block/cedar_door_top"

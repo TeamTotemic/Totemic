@@ -1,8 +1,8 @@
 {
   "textures": {
+    "wood": "minecraft:block/stripped_spruce_log",
     "bark": "minecraft:block/spruce_log",
-    "particle": "minecraft:block/stripped_spruce_log",
     "top": "minecraft:block/stripped_spruce_log_top",
-    "wood": "minecraft:block/stripped_spruce_log"
+    "particle": "minecraft:block/stripped_spruce_log"
   }
 }

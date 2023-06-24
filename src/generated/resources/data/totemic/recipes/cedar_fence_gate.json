@@ -1,6 +1,10 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "totemic:wooden_fence_gate",
+  "pattern": [
+    "#W#",
+    "#W#"
+  ],
   "key": {
     "#": {
       "item": "minecraft:stick"
@@ -9,10 +13,6 @@
       "item": "totemic:cedar_planks"
     }
   },
-  "pattern": [
-    "#W#",
-    "#W#"
-  ],
   "result": {
     "item": "totemic:cedar_fence_gate"
   }

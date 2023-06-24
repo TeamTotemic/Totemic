@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "key": {
-    "L": {
-      "tag": "minecraft:leaves"
-    },
-    "S": {
-      "tag": "forge:rods/wooden"
-    }
-  },
   "pattern": [
     " LS",
     " S ",
     "S  "
   ],
+  "key": {
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "L": {
+      "tag": "minecraft:leaves"
+    }
+  },
   "result": {
     "item": "totemic:flute"
   }

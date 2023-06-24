@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "totemic:wooden_door",
-  "key": {
-    "#": {
-      "item": "totemic:cedar_planks"
-    }
-  },
   "pattern": [
     "##",
     "##",
     "##"
   ],
+  "key": {
+    "#": {
+      "item": "totemic:cedar_planks"
+    }
+  },
   "result": {
-    "count": 3,
-    "item": "totemic:cedar_door"
+    "item": "totemic:cedar_door",
+    "count": 3
   }
 }

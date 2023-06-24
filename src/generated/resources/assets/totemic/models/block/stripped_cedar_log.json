@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "totemic:block/stripped_cedar_log_top",
-    "side": "totemic:block/stripped_cedar_log"
+    "side": "totemic:block/stripped_cedar_log",
+    "end": "totemic:block/stripped_cedar_log_top"
   }
 }

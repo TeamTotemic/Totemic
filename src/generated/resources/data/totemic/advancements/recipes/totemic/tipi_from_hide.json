@@ -1,7 +1,19 @@
 {
   "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "totemic:tipi_from_hide"
+    ]
+  },
   "criteria": {
+    "performed_buffalo_dance": {
+      "trigger": "totemic:performed_ceremony",
+      "conditions": {
+        "ceremony": "totemic:buffalo_dance"
+      }
+    },
     "has_buffalo_hide": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -10,20 +22,13 @@
             ]
           }
         ]
-      },
-      "trigger": "minecraft:inventory_changed"
+      }
     },
     "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "totemic:tipi_from_hide"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "performed_buffalo_dance": {
-      "conditions": {
-        "ceremony": "totemic:buffalo_dance"
-      },
-      "trigger": "totemic:performed_ceremony"
+      }
     }
   },
   "requirements": [
@@ -32,10 +37,5 @@
       "has_buffalo_hide",
       "has_the_recipe"
     ]
-  ],
-  "rewards": {
-    "recipes": [
-      "totemic:tipi_from_hide"
-    ]
-  }
+  ]
 }

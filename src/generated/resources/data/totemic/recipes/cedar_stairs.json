@@ -1,18 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "totemic:wooden_stairs",
-  "key": {
-    "#": {
-      "item": "totemic:cedar_planks"
-    }
-  },
   "pattern": [
     "#  ",
     "## ",
     "###"
   ],
+  "key": {
+    "#": {
+      "item": "totemic:cedar_planks"
+    }
+  },
   "result": {
-    "count": 4,
-    "item": "totemic:cedar_stairs"
+    "item": "totemic:cedar_stairs",
+    "count": 4
   }
 }

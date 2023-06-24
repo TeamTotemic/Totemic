@@ -1,13 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "totemic:totem_whittling_knife"
+    ]
+  },
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "totemic:totem_whittling_knife"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
     "has_totempedia": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -17,8 +17,13 @@
             "nbt": "{\"patchouli:book\":\"totemic:totempedia\"}"
           }
         ]
-      },
-      "trigger": "minecraft:inventory_changed"
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "totemic:totem_whittling_knife"
+      }
     }
   },
   "requirements": [
@@ -26,10 +31,5 @@
       "has_totempedia",
       "has_the_recipe"
     ]
-  ],
-  "rewards": {
-    "recipes": [
-      "totemic:totem_whittling_knife"
-    ]
-  }
+  ]
 }

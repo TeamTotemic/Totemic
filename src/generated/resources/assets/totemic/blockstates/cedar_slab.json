@@ -1,13 +1,13 @@
 {
   "variants": {
+    "type=top": {
+      "model": "totemic:block/cedar_slab_top"
+    },
     "type=bottom": {
       "model": "totemic:block/cedar_slab"
     },
     "type=double": {
       "model": "totemic:block/cedar_planks"
-    },
-    "type=top": {
-      "model": "totemic:block/cedar_slab_top"
     }
   }
 }
