@@ -23,8 +23,7 @@
         }
     ],
     "extra_recipe_mappings": {
-        "totemic:totem_base": 0,
-        "totemic:totem_pole": 0
+        "totemic:totem_base": 0
     },
     "sortnum": 0
 }

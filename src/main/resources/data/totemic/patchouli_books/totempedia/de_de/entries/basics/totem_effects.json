@@ -16,5 +16,8 @@
             "text": "$(carving)Kaninchen$(): Lässt dich höher springen$(br2)$(carving)Spinne$(): Lässt dich Wände hochklettern wie eine Spinne$(br2)$(carving)Tintenfisch$(): Gibt dir Unterwasseratmung$(br2)$(carving)Wolf$(): Gibt dir Angriffsstärke"
         }
     ],
+    "extra_recipe_mappings": {
+        "totemic:totem_pole": 0
+    },
     "sortnum": 1
 }

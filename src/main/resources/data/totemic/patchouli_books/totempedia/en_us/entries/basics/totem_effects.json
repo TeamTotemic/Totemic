@@ -16,5 +16,8 @@
             "text": "$(carving)Spider$(): Lets you climb walls like a Spider$(br2)$(carving)Squid$(): Gives you water breathing$(br2)$(carving)Wolf$(): Gives you attack strength"
         }
     ],
+    "extra_recipe_mappings": {
+        "totemic:totem_pole": 0
+    },
     "sortnum": 1
 }
