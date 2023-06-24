@@ -8,6 +8,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -62,7 +63,7 @@ public final class ModItems {
     public static final RegistryObject<CreativeMedicineBagItem> creative_medicine_bag = REGISTER.register("creative_medicine_bag", () -> new CreativeMedicineBagItem(new Properties().stacksTo(1).rarity(Rarity.EPIC).tab(Totemic.creativeTab)));
     //Blocks with custom item blocks
     public static final RegistryObject<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties().tab(Totemic.creativeTab)));
-    //public static final RegistryObject<SignItem> cedar_sign = REGISTER.register("cedar_sign", () -> new SignItem(new Properties().stacksTo(16).tab(Totemic.creativeTab), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get()));
+    public static final RegistryObject<SignItem> cedar_sign = REGISTER.register("cedar_sign", () -> new SignItem(new Properties().stacksTo(16).tab(Totemic.creativeTab), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get()));
     public static final RegistryObject<TotemBaseItem> totem_base = REGISTER.register("totem_base", () -> new TotemBaseItem(ModBlocks.totem_base.get(), new Properties().tab(Totemic.creativeTab)));
     public static final RegistryObject<TotemPoleItem> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleItem(ModBlocks.totem_pole.get(), new Properties().tab(Totemic.creativeTab)));
 
@@ -72,7 +73,7 @@ public final class ModItems {
             return;
 
         //Register item blocks
-        final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
+        final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             if(blocksWithoutItem.contains(blockO.getId()))
                 continue;

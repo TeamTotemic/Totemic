@@ -3,6 +3,7 @@ package pokefenn.totemic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -87,6 +88,7 @@ public final class Totemic {
 
         NetworkHandler.init();
         //PatchouliIntegration.init();
+        ModBlocks.addCedarSignToSignBlockEntityType();
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(RemapHandler.class);
@@ -99,7 +101,7 @@ public final class Totemic {
         event.enqueueWork(() -> {
             ModItems.baykok_bow.get().registerItemProperties();
             ModItems.medicine_bag.get().registerItemProperties();
-            //Sheets.addWoodType(ModBlocks.CEDAR_WOOD_TYPE);
+            Sheets.addWoodType(ModBlocks.CEDAR_WOOD_TYPE);
         });
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;

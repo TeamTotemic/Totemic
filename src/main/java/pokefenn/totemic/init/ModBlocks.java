@@ -1,6 +1,8 @@
 package pokefenn.totemic.init;
 
 import java.lang.invoke.MethodType;
+import java.util.HashSet;
+import java.util.Set;
 
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.data.BlockFamily;
@@ -19,12 +21,18 @@ import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.WoodButtonBlock;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
@@ -42,7 +50,7 @@ import pokefenn.totemic.util.MethodHandleUtil;
 import pokefenn.totemic.world.CedarTreeGrower;
 
 public final class ModBlocks {
-    //public static final WoodType CEDAR_WOOD_TYPE = WoodType.register(WoodType.create("totemic:cedar"));
+    public static final WoodType CEDAR_WOOD_TYPE = WoodType.register(WoodType.create("totemic:cedar"));
 
     public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, TotemicAPI.MOD_ID);
 
@@ -59,8 +67,8 @@ public final class ModBlocks {
     public static final RegistryObject<FenceBlock> cedar_fence = REGISTER.register("cedar_fence", () -> new FenceBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<FenceGateBlock> cedar_fence_gate = REGISTER.register("cedar_fence_gate", () -> new FenceGateBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<PressurePlateBlock> cedar_pressure_plate = REGISTER.register("cedar_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).noCollission().strength(0.5F).sound(SoundType.WOOD)));
-    //public static final RegistryObject<StandingSignBlock> cedar_sign = REGISTER.register("cedar_sign", () -> new StandingSignBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).noCollission().strength(1.0F).sound(SoundType.WOOD), CEDAR_WOOD_TYPE));
-    //public static final RegistryObject<WallSignBlock> cedar_wall_sign = REGISTER.register("cedar_wall_sign", () -> new WallSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(cedar_sign), CEDAR_WOOD_TYPE));
+    public static final RegistryObject<StandingSignBlock> cedar_sign = REGISTER.register("cedar_sign", () -> new StandingSignBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).noCollission().strength(1.0F).sound(SoundType.WOOD), CEDAR_WOOD_TYPE));
+    public static final RegistryObject<WallSignBlock> cedar_wall_sign = REGISTER.register("cedar_wall_sign", () -> new WallSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(cedar_sign), CEDAR_WOOD_TYPE));
     public static final RegistryObject<SlabBlock> cedar_slab = REGISTER.register("cedar_slab", () -> new SlabBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<StairBlock> cedar_stairs = REGISTER.register("cedar_stairs", () -> new StairBlock(() -> cedar_planks.get().defaultBlockState(), Properties.copy(cedar_planks.get())));
     public static final RegistryObject<DoorBlock> cedar_door = REGISTER.register("cedar_door", () -> new DoorBlock(Properties.of(Material.WOOD, MaterialColor.COLOR_PINK).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
@@ -87,9 +95,11 @@ public final class ModBlocks {
 
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(cedar_sapling.getId(), potted_cedar_sapling);
 
-        CEDAR_FAMILY = new BlockFamily.Builder(cedar_planks.get()).button(cedar_button.get()).fence(cedar_fence.get()).fenceGate(cedar_fence_gate.get()).pressurePlate(cedar_pressure_plate.get())/*.sign(cedar_sign.get(), cedar_wall_sign.get())*/.slab(cedar_slab.get()).stairs(cedar_stairs.get()).door(cedar_door.get()).trapdoor(cedar_trapdoor.get())
+        CEDAR_FAMILY = new BlockFamily.Builder(cedar_planks.get()).button(cedar_button.get()).fence(cedar_fence.get()).fenceGate(cedar_fence_gate.get()).pressurePlate(cedar_pressure_plate.get()).sign(cedar_sign.get(), cedar_wall_sign.get()).slab(cedar_slab.get()).stairs(cedar_stairs.get()).door(cedar_door.get()).trapdoor(cedar_trapdoor.get())
                 .recipeGroupPrefix("totemic:wooden").recipeUnlockedBy("has_planks").getFamily();
     }
+
+    //TODO: Consider using an access transformer for the following two methods (many other mods already do this for those particular cases)
 
     public static void setFireInfo() {
         try {
@@ -110,6 +120,25 @@ public final class ModBlocks {
         }
         catch(Throwable e) {
             throw new RuntimeException("Could not set flammability for Totemic blocks", e);
+        }
+    }
+
+    //Modifies the validBlocks of the sign block entity type to add our own sign block to it
+    @SuppressWarnings("unchecked")
+    public static void addCedarSignToSignBlockEntityType() {
+        try {
+            var validBlocksField = ObfuscationReflectionHelper.findField(BlockEntityType.class, "f_58915_");
+            var signValidBlocks = (Set<Block>) validBlocksField.get(BlockEntityType.SIGN);
+            if(!(signValidBlocks instanceof HashSet)) { //another mod might have already made the set mutable
+                signValidBlocks = new HashSet<>(signValidBlocks); //if not, copy into a mutable set
+                validBlocksField.set(BlockEntityType.SIGN, signValidBlocks);
+            }
+
+            signValidBlocks.add(ModBlocks.cedar_sign.get());
+            signValidBlocks.add(ModBlocks.cedar_wall_sign.get());
+        }
+        catch(Exception e) {
+            throw new RuntimeException("Could not add Red Cedar Sign to the allowed blocks for the sign block entity type", e);
         }
     }
 }
