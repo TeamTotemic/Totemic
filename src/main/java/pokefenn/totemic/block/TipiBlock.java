@@ -45,7 +45,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, @org.jetbrains.annotations.Nullable Entity player) {
+    public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, @Nullable Entity player) {
         return true;
     }
 

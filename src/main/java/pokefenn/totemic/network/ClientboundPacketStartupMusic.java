@@ -12,12 +12,14 @@ import pokefenn.totemic.block.totem.entity.StateStartup;
 import pokefenn.totemic.init.ModBlockEntities;
 
 public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instrument, int amount) {
+    @SuppressWarnings("null")
     public void encode(FriendlyByteBuf buf) {
         buf.writeBlockPos(pos);
         buf.writeRegistryIdUnsafe(TotemicAPI.get().registry().instruments(), instrument);
         buf.writeVarInt(amount);
     }
 
+    @SuppressWarnings("null")
     public static ClientboundPacketStartupMusic decode(FriendlyByteBuf buf) {
         BlockPos pos = buf.readBlockPos();
         MusicInstrument instr = buf.readRegistryIdUnsafe(TotemicAPI.get().registry().instruments());

@@ -1,6 +1,6 @@
 package pokefenn.totemic.data;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.EntityTypeTagsProvider;

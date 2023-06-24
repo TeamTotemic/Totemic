@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -47,12 +47,12 @@ public final class BakedTotemBaseModel extends BakedModelWrapper<BakedModel> {
     }
 
     @Override
-    public @NotNull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @NotNull Random rand, @NotNull IModelData extraData) {
+    public @Nonnull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData) {
         return getModelFor(extraData).getQuads(state, side, rand, extraData);
     }
 
     @Override
-    public TextureAtlasSprite getParticleIcon(@NotNull IModelData data) {
+    public TextureAtlasSprite getParticleIcon(@Nonnull IModelData data) {
         return getModelFor(data).getParticleIcon(data);
     }
 

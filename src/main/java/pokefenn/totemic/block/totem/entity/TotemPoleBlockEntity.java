@@ -2,9 +2,8 @@ package pokefenn.totemic.block.totem.entity;
 
 import java.util.Objects;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -80,8 +79,9 @@ public class TotemPoleBlockEntity extends BlockEntity {
         setChanged();
     }
 
+    @SuppressWarnings("null")
     @Override
-    public @NotNull IModelData getModelData() {
+    public @Nonnull IModelData getModelData() {
         return new ModelDataMap.Builder().withInitial(BakedTotemPoleModel.DATA_PROPERTY, new BakedTotemPoleModel.Data(woodType, carving)).build();
     }
 }

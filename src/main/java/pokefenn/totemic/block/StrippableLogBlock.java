@@ -2,7 +2,7 @@ package pokefenn.totemic.block;
 
 import java.util.function.Supplier;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.RotatedPillarBlock;

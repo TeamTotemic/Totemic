@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import com.google.common.collect.ImmutableTable;
 
@@ -49,12 +49,12 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     }
 
     @Override
-    public @NotNull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @NotNull Random rand, @NotNull IModelData extraData) {
+    public @Nonnull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData) {
         return getModelFor(extraData).getQuads(state, side, rand, extraData);
     }
 
     @Override
-    public TextureAtlasSprite getParticleIcon(@NotNull IModelData data) {
+    public TextureAtlasSprite getParticleIcon(@Nonnull IModelData data) {
         return getModelFor(data).getParticleIcon(data);
     }
 

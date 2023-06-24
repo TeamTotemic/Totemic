@@ -8,8 +8,6 @@ import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import org.jetbrains.annotations.NotNull;
-
 import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
 import com.google.common.math.IntMath;
@@ -204,8 +202,9 @@ public class TotemBaseBlockEntity extends BlockEntity {
             return super.getCapability(cap, side);
     }
 
+    @SuppressWarnings("null")
     @Override
-    public @NotNull IModelData getModelData() {
+    public @Nonnull IModelData getModelData() {
         return new ModelDataMap.Builder().withInitial(BakedTotemBaseModel.WOOD_TYPE_PROPERTY, woodType).build();
     }
 }
