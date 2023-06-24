@@ -66,14 +66,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         trapdoorBlock(ModBlocks.cedar_trapdoor.get(), modLoc("block/cedar_trapdoor"), true);
         simpleBlock(ModBlocks.potted_cedar_sapling.get(), models().singleTexture(ModBlocks.potted_cedar_sapling.getId().toString(), mcLoc("block/flower_pot_cross"), "plant", blockTexture(ModBlocks.cedar_sapling.get())));
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
-        horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString())
-                .customLoader(OBJLoaderBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
-                .texture("particle", mcLoc("block/white_wool"))
-                /*.rootTransform()
-                    .origin(TransformOrigin.CENTER)
-                    .translation(0, 0.95F, 0)
-                    .scale(2.85F)
-                    .end()*/, //FIXME
+        horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getExistingFile(modLoc("tipi")),
                 0, //angle offset of 0, rotates the model by 180°
                 TipiBlock.OCCUPIED);
         simpleBlock(ModBlocks.dummy_tipi.get(), models().withExistingParent(ModBlocks.dummy_tipi.getId().toString(), "block/air").texture("particle", mcLoc("block/white_wool")));
