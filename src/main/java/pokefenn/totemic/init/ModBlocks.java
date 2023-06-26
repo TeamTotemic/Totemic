@@ -1,8 +1,6 @@
 package pokefenn.totemic.init;
 
-import java.lang.invoke.MethodType;
 import java.util.HashSet;
-import java.util.Set;
 
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.data.BlockFamily;
@@ -32,7 +30,6 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
@@ -46,7 +43,6 @@ import pokefenn.totemic.block.music.DrumBlock;
 import pokefenn.totemic.block.music.WindChimeBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
-import pokefenn.totemic.util.MethodHandleUtil;
 import pokefenn.totemic.world.CedarTreeGrower;
 
 public final class ModBlocks {
@@ -99,46 +95,29 @@ public final class ModBlocks {
                 .recipeGroupPrefix("totemic:wooden").recipeUnlockedBy("has_planks").getFamily();
     }
 
-    //TODO: Consider using an access transformer for the following two methods (many other mods already do this for those particular cases)
-
     public static void setFireInfo() {
-        try {
-            FireBlock fire = (FireBlock) Blocks.FIRE;
-            var setFlammableM = MethodHandleUtil.findMethod(FireBlock.class, "m_53444_", MethodType.methodType(void.class, Block.class, int.class, int.class));
-
-            //We only need to call this method for blocks we don't define our own class for
-            setFlammableM.invoke(fire, cedar_log.get(), 5, 5);
-            setFlammableM.invoke(fire, stripped_cedar_log.get(), 5, 5);
-            setFlammableM.invoke(fire, cedar_wood.get(), 5, 5);
-            setFlammableM.invoke(fire, stripped_cedar_wood.get(), 5, 5);
-            setFlammableM.invoke(fire, cedar_leaves.get(), 30, 60);
-            setFlammableM.invoke(fire, cedar_planks.get(), 5, 20);
-            setFlammableM.invoke(fire, cedar_fence.get(), 5, 20);
-            setFlammableM.invoke(fire, cedar_fence_gate.get(), 5, 20);
-            setFlammableM.invoke(fire, cedar_slab.get(), 5, 20);
-            setFlammableM.invoke(fire, cedar_stairs.get(), 5, 20);
-        }
-        catch(Throwable e) {
-            throw new RuntimeException("Could not set flammability for Totemic blocks", e);
-        }
+        FireBlock fire = (FireBlock) Blocks.FIRE;
+        //We only need to call this method for blocks we don't define our own class for
+        fire.setFlammable(cedar_log.get(), 5, 5);
+        fire.setFlammable(stripped_cedar_log.get(), 5, 5);
+        fire.setFlammable(cedar_wood.get(), 5, 5);
+        fire.setFlammable(stripped_cedar_wood.get(), 5, 5);
+        fire.setFlammable(cedar_leaves.get(), 30, 60);
+        fire.setFlammable(cedar_planks.get(), 5, 20);
+        fire.setFlammable(cedar_fence.get(), 5, 20);
+        fire.setFlammable(cedar_fence_gate.get(), 5, 20);
+        fire.setFlammable(cedar_slab.get(), 5, 20);
+        fire.setFlammable(cedar_stairs.get(), 5, 20);
     }
 
     //Modifies the validBlocks of the sign block entity type to add our own sign block to it
-    @SuppressWarnings("unchecked")
     public static void addCedarSignToSignBlockEntityType() {
-        try {
-            var validBlocksField = ObfuscationReflectionHelper.findField(BlockEntityType.class, "f_58915_");
-            var signValidBlocks = (Set<Block>) validBlocksField.get(BlockEntityType.SIGN);
-            if(!(signValidBlocks instanceof HashSet)) { //another mod might have already made the set mutable
-                signValidBlocks = new HashSet<>(signValidBlocks); //if not, copy into a mutable set
-                validBlocksField.set(BlockEntityType.SIGN, signValidBlocks);
-            }
+        var signValidBlocks = BlockEntityType.SIGN.validBlocks;
+        if(!(signValidBlocks instanceof HashSet)) { //another mod might have already made the set mutable
+            BlockEntityType.SIGN.validBlocks = signValidBlocks = new HashSet<>(signValidBlocks); //if not, copy into a mutable set
+        }
 
-            signValidBlocks.add(ModBlocks.cedar_sign.get());
-            signValidBlocks.add(ModBlocks.cedar_wall_sign.get());
-        }
-        catch(Exception e) {
-            throw new RuntimeException("Could not add Red Cedar Sign to the allowed blocks for the sign block entity type", e);
-        }
+        signValidBlocks.add(ModBlocks.cedar_sign.get());
+        signValidBlocks.add(ModBlocks.cedar_wall_sign.get());
     }
 }

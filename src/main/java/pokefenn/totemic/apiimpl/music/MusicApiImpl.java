@@ -51,7 +51,6 @@ public enum MusicApiImpl implements MusicAPI {
 
         level.getProfiler().push("totemic.playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
-        //TODO: Implement caching in case this performs too poorly
         List<MusicAcceptor> list = BlockUtil.getBlockEntitiesInRange(null, level, new BlockPos(pos), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)
