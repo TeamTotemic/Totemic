@@ -83,12 +83,12 @@ public final class Totemic {
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             ModBlocks.setFireInfo();
+            ModBlocks.addCedarSignToSignBlockEntityType();
             ModCriteriaTriggers.init();
         });
 
         NetworkHandler.init();
         //PatchouliIntegration.init();
-        ModBlocks.addCedarSignToSignBlockEntityType();
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(RemapHandler.class);
