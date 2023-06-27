@@ -1,6 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "totemic:wooden_sign",
+  "pattern": [
+    "###",
+    "###",
+    " X "
+  ],
   "key": {
     "#": {
       "item": "totemic:cedar_planks"
@@ -9,13 +14,8 @@
       "item": "minecraft:stick"
     }
   },
-  "pattern": [
-    "###",
-    "###",
-    " X "
-  ],
   "result": {
-    "count": 3,
-    "item": "totemic:cedar_sign"
+    "item": "totemic:cedar_sign",
+    "count": 3
   }
 }
