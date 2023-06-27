@@ -59,7 +59,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         fenceBlock(ModBlocks.cedar_fence.get(), cedarPlankTex);
         fenceGateBlock(ModBlocks.cedar_fence_gate.get(), cedarPlankTex);
         pressurePlateBlock(ModBlocks.cedar_pressure_plate.get(), cedarPlankTex);
-        //signBlock(ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), cedarPlankTex);
+        signBlock(ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), cedarPlankTex);
         slabBlock(ModBlocks.cedar_slab.get(), ModBlocks.cedar_planks.getId(), cedarPlankTex, cedarPlankTex, cedarPlankTex);
         stairsBlock(ModBlocks.cedar_stairs.get(), cedarPlankTex);
         doorBlock(ModBlocks.cedar_door.get(), modLoc("block/cedar_door_bottom"), modLoc("block/cedar_door_top"));
@@ -76,7 +76,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
         //Item Blocks
         var im = itemModels();
-        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.getId(), ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId(), ModBlocks.cedar_door.getId(), ModBlocks.cedar_trapdoor.getId()/*, ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId()*/, ModBlocks.potted_cedar_sapling.getId(), ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
+        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.getId(), ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId(), ModBlocks.cedar_door.getId(), ModBlocks.cedar_trapdoor.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.potted_cedar_sapling.getId(), ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
         for(var blockO: ModBlocks.REGISTER.getEntries()) {
             if(blocksWithCustomItemModel.contains(blockO.getId()))
                 continue;
@@ -89,7 +89,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.withExistingParent(ModBlocks.cedar_fence.getId().toString(), "block/fence_inventory").texture("texture", cedarPlankTex);
         im.basicItem(ModBlocks.cedar_door.getId());
         im.withExistingParent(ModBlocks.cedar_trapdoor.getId().toString(), modLoc("block/cedar_trapdoor_bottom"));
-        //im.basicItem(ModBlocks.cedar_sign.getId());
+        im.basicItem(ModBlocks.cedar_sign.getId());
         im.withExistingParent(ModBlocks.totem_torch.getId().toString(), modLoc("block/totem_torch"))
                 .transforms()
                 .transform(TransformType.THIRD_PERSON_RIGHT_HAND)

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.ForgeIngameGui;
@@ -90,6 +91,7 @@ public final class Totemic {
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             ModBlocks.setFireInfo();
+            ModBlocks.addCedarSignToSignBlockEntityType();
             ModCriteriaTriggers.init();
         });
 
@@ -107,7 +109,7 @@ public final class Totemic {
         event.enqueueWork(() -> {
             ModItems.baykok_bow.get().registerItemProperties();
             ModItems.medicine_bag.get().registerItemProperties();
-            //Sheets.addWoodType(ModBlocks.CEDAR_WOOD_TYPE);
+            Sheets.addWoodType(ModBlocks.CEDAR_WOOD_TYPE);
         });
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
