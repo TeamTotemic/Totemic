@@ -63,16 +63,14 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
     /**
      * Returns the amount of music stored from the given instrument.
      */
-    public int getMusicAmount(MusicInstrument instr)
-    {
+    public int getMusicAmount(MusicInstrument instr) {
         return music.getInt(instr);
     }
 
     /**
      * Sets the amount of music for the given instrument. This method does not check if the amount exceeds the maximum.
      */
-    public void setMusicAmount(MusicInstrument instr, int amount)
-    {
+    public void setMusicAmount(MusicInstrument instr, int amount) {
         Objects.requireNonNull(instr);
         int oldVal = music.getInt(instr);
         if(amount != oldVal) {

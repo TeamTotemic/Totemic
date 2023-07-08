@@ -53,9 +53,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
 
     @Override
     public CompoundTag getUpdateTag() {
-        var tag = new CompoundTag();
-        saveAdditional(tag);
-        return tag;
+        return saveWithoutMetadata();
     }
 
     @Override
