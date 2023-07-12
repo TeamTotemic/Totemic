@@ -1,3 +1,3 @@
-- Added Red Cedar Sign
-- Shift+Right Clicking Totem Pole blocks with the Totempedia now brings up the Totem Effects page
-- Fixed a bug where the music amount shown during a Ceremony was not accurate if a player came to the Totem Pole from further away (in multiplayer)
+Initial port to Minecraft 1.18.2 (the current Forge LTS version). Functionally the same as 1.19.2-0.12.6.
+
+Worlds created with this version should be portable to 1.19.2-0.12.6 with no problems, though a backup is always recommended.
