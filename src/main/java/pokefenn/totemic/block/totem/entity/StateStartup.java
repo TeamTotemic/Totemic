@@ -15,6 +15,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.network.PacketDistributor;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
@@ -62,7 +63,7 @@ public final class StateStartup extends TotemState implements StartupContext {
     public MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity) {
         var result = musicHandler.acceptMusic(instr, amount, from, entity);
         if(result.isSuccess()) {
-            NetworkHandler.channel.send(NetworkHandler.nearTile(tile, 16),
+            NetworkHandler.channel.send(PacketDistributor.TRACKING_CHUNK.with(() -> tile.getLevel().getChunkAt(tile.getBlockPos())),
                     new ClientboundPacketStartupMusic(tile.getBlockPos(), instr, musicHandler.getMusicAmount(instr)));
             tile.setChanged();
         }
