@@ -1,0 +1,3 @@
+- Added Red Cedar Sign
+- Shift+Right Clicking Totem Pole blocks with the Totempedia now brings up the Totem Effects page
+- Fixed a bug where the music amount shown during a Ceremony was not accurate if a player came to the Totem Pole from further away (in multiplayer)
