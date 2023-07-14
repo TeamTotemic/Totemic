@@ -28,7 +28,6 @@ import pokefenn.totemic.data.TotemicRecipeProvider;
 import pokefenn.totemic.handler.ClientInitHandlers;
 import pokefenn.totemic.handler.ClientInteract;
 import pokefenn.totemic.handler.ClientRenderHandler;
-import pokefenn.totemic.handler.EntityHandler;
 import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.handler.RemapHandler;
 import pokefenn.totemic.init.ModBlockEntities;
@@ -93,8 +92,6 @@ public final class Totemic {
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(RemapHandler.class);
         eventBus.register(PlayerInteract.class);
-        if(ModConfig.GENERAL.skeletonsShouldAttackBuffalos.get())
-            eventBus.addListener(EntityHandler::onEntityJoin);
     }
 
     private void clientSetup(FMLClientSetupEvent event) {

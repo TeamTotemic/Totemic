@@ -1,27 +1,18 @@
 package pokefenn.totemic;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig.Type;
 
 public final class ModConfig {
-    public static class General {
-        public final BooleanValue skeletonsShouldAttackBuffalos;
-
+    /*public static class General {
         General(ForgeConfigSpec.Builder builder) {
             builder.comment("Totemic general configuration settings")
                     .translation("totemic.config.general")
                     .push("general");
-
-            skeletonsShouldAttackBuffalos = builder
-                    .comment("Set to false to prevent Skeletons from shooting Buffalos")
-                    .translation("totemic.config.skeletonsShouldAttackBuffalos")
-                    .worldRestart()
-                    .define("skeletonsShouldAttackBuffalos", true);
         }
-    }
+    }*/
 
     public static class Client {
         public final ConfigValue<Integer> ceremonyHudPositionX;
@@ -44,16 +35,16 @@ public final class ModConfig {
         }
     }
 
-    public static final General GENERAL;
+    //public static final General GENERAL;
     public static final Client CLIENT;
 
-    private static final ForgeConfigSpec generalSpec;
+    //private static final ForgeConfigSpec generalSpec;
     private static final ForgeConfigSpec clientSpec;
 
     static {
-        var generalPair = new ForgeConfigSpec.Builder().configure(General::new);
+        /*var generalPair = new ForgeConfigSpec.Builder().configure(General::new);
         GENERAL = generalPair.getLeft();
-        generalSpec = generalPair.getRight();
+        generalSpec = generalPair.getRight();*/
 
         var clientPair = new ForgeConfigSpec.Builder().configure(Client::new);
         CLIENT = clientPair.getLeft();
@@ -61,7 +52,7 @@ public final class ModConfig {
     }
 
     public static void register(ModLoadingContext context) {
-        context.registerConfig(Type.COMMON, generalSpec);
+        //context.registerConfig(Type.COMMON, generalSpec);
         context.registerConfig(Type.CLIENT, clientSpec);
     }
 }
