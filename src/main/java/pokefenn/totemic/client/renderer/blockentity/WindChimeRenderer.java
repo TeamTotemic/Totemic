@@ -13,12 +13,12 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
-import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.music.entity.WindChimeBlockEntity;
 import pokefenn.totemic.client.ModModelLayers;
 
 public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEntity> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(TotemicAPI.MOD_ID, "textures/entity/wind_chime.png");
+    private static final ResourceLocation TEXTURE = Totemic.resloc("textures/entity/wind_chime.png");
 
     private final ModelPart root;
 

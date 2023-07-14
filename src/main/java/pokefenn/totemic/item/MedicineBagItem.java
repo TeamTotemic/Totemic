@@ -27,6 +27,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.MedicineBagEffect;
 import pokefenn.totemic.api.totem.PortableTotemCarving;
@@ -52,7 +53,7 @@ public class MedicineBagItem extends Item {
 
     public void registerItemProperties() {
         ItemPropertyFunction func = (stack, level, entity, seed) -> isOpen(stack) ? 1.0F : 0.0F;
-        var name = new ResourceLocation(TotemicAPI.MOD_ID, "open");
+        var name = Totemic.resloc("open");
         ItemProperties.register(ModItems.medicine_bag.get(), name, func);
         ItemProperties.register(ModItems.creative_medicine_bag.get(), name, func);
     }

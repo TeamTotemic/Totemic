@@ -1,10 +1,10 @@
 package pokefenn.totemic.init;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 
 public final class ModSounds {
@@ -20,6 +20,6 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> bald_eagle_death = createSound("bald_eagle.death");
 
     private static RegistryObject<SoundEvent> createSound(String name) {
-        return REGISTER.register(name, () -> new SoundEvent(new ResourceLocation(TotemicAPI.MOD_ID, name)));
+        return REGISTER.register(name, () -> new SoundEvent(Totemic.resloc(name)));
     }
 }

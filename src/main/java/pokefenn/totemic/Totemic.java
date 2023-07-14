@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -120,5 +121,9 @@ public final class Totemic {
         if(event.includeClient()) {
             gen.addProvider(true, new TotemicBlockStateProvider(gen, efh));
         }
+    }
+
+    public static ResourceLocation resloc(String path) {
+        return new ResourceLocation(TotemicAPI.MOD_ID, path);
     }
 }
