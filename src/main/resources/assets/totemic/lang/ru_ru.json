@@ -157,7 +157,6 @@
   
   "totemic.config.general": "General",
   "totemic.config.client": "Client",
-  "totemic.config.skeletonsShouldAttackBuffalos": "Skeletons should attack Buffalos",
   "totemic.config.ceremonyHudPositionX": "Ceremony HUD X position",
   "totemic.config.ceremonyHudPositionY": "Ceremony HUD Y position"
 }

@@ -157,7 +157,6 @@
   
   "totemic.config.general": "Allgemein",
   "totemic.config.client": "Client-Seite",
-  "totemic.config.skeletonsShouldAttackBuffalos": "Skelette greifen Büffel an",
   "totemic.config.ceremonyHudPositionX": "Zeremonien-HUD X-Position",
   "totemic.config.ceremonyHudPositionY": "Zeremonien-HUD Y-Position"
 }
