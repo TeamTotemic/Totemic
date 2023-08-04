@@ -1,3 +1,3 @@
-- Added Red Cedar Sign
-- Shift+Right Clicking Totem Pole blocks with the Totempedia now brings up the Totem Effects page
-- Fixed a bug where the music amount shown during a Ceremony was not accurate if a player came to the Totem Pole from further away (in multiplayer)
+- Skeletons will no longer shoot at Buffalos (I believe that this has no gameplay value and only causes frustration, especially when you're not aware of it)
+- 日本語化を更新した (further improvements to Japanese translation are welcome)
+- Moved the Totempedia Patchouli files to the assets folder (no changes to the actual content)
