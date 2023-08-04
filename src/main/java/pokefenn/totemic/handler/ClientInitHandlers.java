@@ -31,8 +31,8 @@ public class ClientInitHandlers {
 
     @SubscribeEvent
     public static void registerModelLoaders(ModelRegistryEvent event) {
-        ModelLoaderRegistry.registerLoader(new ResourceLocation(TotemicAPI.MOD_ID, "totem_pole"), TotemPoleModel.Loader.INSTANCE);
-        ModelLoaderRegistry.registerLoader(new ResourceLocation(TotemicAPI.MOD_ID, "totem_base"), TotemBaseModel.Loader.INSTANCE);
+        ModelLoaderRegistry.registerLoader(Totemic.resloc("totem_pole"), TotemPoleModel.Loader.INSTANCE);
+        ModelLoaderRegistry.registerLoader(Totemic.resloc("totem_base"), TotemBaseModel.Loader.INSTANCE);
 
         ForgeModelBakery.addSpecialModel(OPAQUE_CEDAR_LEAVES);
     }
