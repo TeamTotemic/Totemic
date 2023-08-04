@@ -9,13 +9,12 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.Tags;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
-import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.init.ModBlocks;
@@ -30,7 +29,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> rc) {
-        var totempedia = PatchouliAPI.get().getBookStack(new ResourceLocation(TotemicAPI.MOD_ID, "totempedia"));
+        var totempedia = PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
         var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(totempedia.getItem()).hasNbt(totempedia.getTag()).build());
 
         //The Totempedia recipe itself is not being generated

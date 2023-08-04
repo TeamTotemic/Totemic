@@ -2,10 +2,9 @@ package pokefenn.totemic.client;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.model.BaldEagleModel;
 import pokefenn.totemic.client.model.BaykokModel;
 import pokefenn.totemic.client.model.BuffaloModel;
@@ -24,7 +23,7 @@ public final class ModModelLayers {
     public static final ModelLayerLocation WIND_CHIME = create("wind_chime");
 
     private static ModelLayerLocation create(String name) {
-        return new ModelLayerLocation(new ResourceLocation(TotemicAPI.MOD_ID, name), "main");
+        return new ModelLayerLocation(Totemic.resloc(name), "main");
     }
 
     @SubscribeEvent

@@ -4,6 +4,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '5.1.+'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'net.darkhax.curseforgegradle' version '1.1.15'
+    id 'com.modrinth.minotaur' version '2.+'
 }
 
 version = mod_version
@@ -126,12 +127,24 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     apiToken = findProperty('curseForgeApiKey')
     
     def mainFile = upload(237541, jar)
-    mainFile.releaseType = 'beta'
+    mainFile.releaseType = mod_release_type
     mainFile.changelog = file('changelog.md')
     mainFile.changelogType = 'markdown'
     mainFile.addRequirement('patchouli')
     
     def apiSrcFile = mainFile.withAdditionalFile(apiSrcJar)
+}
+
+modrinth {
+    token = findProperty('modrinthApiToken')
+    projectId = 'fenns_totemic'
+    versionType = mod_release_type
+    uploadFile = jar
+    changelog = file('changelog.md').text
+    dependencies {
+        required.project 'patchouli'
+    }
+    additionalFiles = [apiSrcJar]
 }
 
 publishing {

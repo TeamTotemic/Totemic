@@ -9,7 +9,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ForgeModelBakery;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.client.model.TotemBaseModel;
 import pokefenn.totemic.client.model.TotemPoleModel;
@@ -37,7 +37,7 @@ public class ClientInitHandlers {
         ForgeModelBakery.addSpecialModel(OPAQUE_CEDAR_LEAVES);
     }
 
-    private static final ResourceLocation OPAQUE_CEDAR_LEAVES = new ResourceLocation(TotemicAPI.MOD_ID, "block/cedar_leaves_opaque");
+    private static final ResourceLocation OPAQUE_CEDAR_LEAVES = Totemic.resloc("block/cedar_leaves_opaque");
 
     @SubscribeEvent
     public static void onBakingComplete(ModelBakeEvent event) {

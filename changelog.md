@@ -1,3 +1,3 @@
-Initial port to Minecraft 1.18.2 (the current Forge LTS version). Functionally the same as 1.19.2-0.12.6.
-
-Worlds created with this version should be portable to 1.19.2-0.12.6 with no problems, though a backup is always recommended.
+- Skeletons will no longer shoot at Buffalos (I believe that this has no gameplay value and only causes frustration, especially when you're not aware of it)
+- 日本語化を更新した (further improvements to Japanese translation are welcome)
+- Moved the Totempedia Patchouli files to the assets folder (no changes to the actual content)

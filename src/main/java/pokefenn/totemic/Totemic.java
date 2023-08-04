@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.ForgeIngameGui;
@@ -35,7 +36,6 @@ import pokefenn.totemic.data.TotemicRecipeProvider;
 import pokefenn.totemic.handler.ClientInitHandlers;
 import pokefenn.totemic.handler.ClientInteract;
 import pokefenn.totemic.handler.ClientRenderHandler;
-import pokefenn.totemic.handler.EntityHandler;
 import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
@@ -100,8 +100,6 @@ public final class Totemic {
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
-        if(ModConfig.GENERAL.skeletonsShouldAttackBuffalos.get())
-            eventBus.addListener(EntityHandler::onEntityJoin);
     }
 
     @SuppressWarnings("null")
@@ -141,5 +139,9 @@ public final class Totemic {
         if(event.includeClient()) {
             gen.addProvider(new TotemicBlockStateProvider(gen, efh));
         }
+    }
+
+    public static ResourceLocation resloc(String path) {
+        return new ResourceLocation(TotemicAPI.MOD_ID, path);
     }
 }

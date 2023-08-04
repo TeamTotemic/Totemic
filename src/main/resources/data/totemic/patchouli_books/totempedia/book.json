@@ -8,5 +8,6 @@
     "macros": {
         "$(carving)": "$(thing)",
         "$(emph)": "$(3)"
-    }
+    },
+    "use_resource_pack": true
 }

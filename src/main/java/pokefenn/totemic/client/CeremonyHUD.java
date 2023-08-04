@@ -17,7 +17,7 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.client.gui.ForgeIngameGui;
 import net.minecraftforge.client.gui.IIngameOverlay;
 import pokefenn.totemic.ModConfig;
-import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
 import pokefenn.totemic.block.totem.entity.StateSelection;
 import pokefenn.totemic.block.totem.entity.StateStartup;
@@ -27,8 +27,8 @@ import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 public enum CeremonyHUD implements IIngameOverlay {
     INSTANCE;
 
-    private static final ResourceLocation SELECTION_HUD_TEXTURE = new ResourceLocation(TotemicAPI.MOD_ID, "textures/gui/selection_hud.png");
-    private static final ResourceLocation CEREMONY_HUD_TEXTURE = new ResourceLocation(TotemicAPI.MOD_ID, "textures/gui/ceremony_hud.png");
+    private static final ResourceLocation SELECTION_HUD_TEXTURE = Totemic.resloc("textures/gui/selection_hud.png");
+    private static final ResourceLocation CEREMONY_HUD_TEXTURE = Totemic.resloc("textures/gui/ceremony_hud.png");
 
     private static final int HUD_WIDTH = 117;
     private static final int HUD_HEIGHT = 30;

@@ -4,13 +4,13 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.client.model.BaldEagleModel;
 import pokefenn.totemic.entity.BaldEagle;
 
 public class BaldEagleRenderer extends MobRenderer<BaldEagle, BaldEagleModel<BaldEagle>> {
-    private static final ResourceLocation BALD_EAGLE_TEXTURE = new ResourceLocation(TotemicAPI.MOD_ID, "textures/entity/bald_eagle.png");
+    private static final ResourceLocation BALD_EAGLE_TEXTURE = Totemic.resloc("textures/entity/bald_eagle.png");
 
     public BaldEagleRenderer(Context ctx) {
         super(ctx, new BaldEagleModel<>(ctx.bakeLayer(ModModelLayers.BALD_EAGLE)), 0.4F);

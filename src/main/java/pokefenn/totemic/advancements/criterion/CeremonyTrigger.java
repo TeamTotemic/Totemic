@@ -11,11 +11,12 @@ import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.GsonHelper;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 
 public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.TriggerInstance> {
-    private static final ResourceLocation ID = new ResourceLocation(TotemicAPI.MOD_ID, "performed_ceremony");
+    private static final ResourceLocation ID = Totemic.resloc("performed_ceremony");
 
     @Override
     public ResourceLocation getId() {
