@@ -1,16 +1,16 @@
 {
-    "name": "Drought Dance",
+    "name": "totemic.entry.drought",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Drought Dance$() will clear the sky and end any rain or thunderstorms that may be plaguing your world.$(br2)Its effects are opposite to the $(l:ceremonies/rain)Rain Dance$()."
+            "text": "totemic.page.drought0"
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:drought",
-            "text": "$(o)Ninetails, Not Kurama!"
+            "text": "totemic.page.drought1"
         }
     ],
     "sortnum": 7

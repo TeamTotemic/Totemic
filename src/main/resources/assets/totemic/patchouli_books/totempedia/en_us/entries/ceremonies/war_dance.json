@@ -1,16 +1,16 @@
 {
-    "name": "War Dance",
+    "name": "totemic.entry.war_dance",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)War Dance$() is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body.$(br2)After performing it, the Ceremony will grant you and everyone nearby $(emph)Speed$() and $(emph)Strength$() for a few minutes, allowing you to rush to battle."
+            "text": "totemic.page.war_dance0"
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:war_dance",
-            "text": "$(o)A convoluted game of chess"
+            "text": "totemic.page.war_dance1"
         }
     ],
     "sortnum": 0

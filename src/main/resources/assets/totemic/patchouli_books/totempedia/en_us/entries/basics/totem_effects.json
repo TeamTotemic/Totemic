@@ -1,19 +1,19 @@
 {
-    "name": "Totem Effects",
+    "name": "totemic.entry.totem_effects",
     "icon": "totemic:totem_pole{Wood:'totemic:oak',Carving:'totemic:buffalo'}",
     "category": "totemic:basics",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(thing)Totem Effects$() are passive effects that always emanate from a $(l:basics/totem_poles)Totem Pole$(). They depend on the patterns that you carved into it:$(br2)$(carving)Bat$(): Makes you fall slowly and negates fall damage$(br2)$(carving)Blaze$(): Protects you against fires$(br2)$(carving)Buffalo$(): Makes you mine blocks faster"
+            "text": "totemic.page.totem_effects0"
         },
         {
             "type": "patchouli:text",
-            "text": "$(carving)Cow$(): Gives you damage resistance but also slows you down$(br2)$(carving)Enderman$(): Gives you night vision$(br2)$(carving)Horse$(): Gives you a speed boost$(br2)$(carving)Ocelot$(): Prevents Creepers from exploding$(br2)$(carving)Pig$(): Brings you good luck$(br2)$(carving)Rabbit$(): Gives you a jump boost"
+            "text": "totemic.page.totem_effects1"
         },
         {
             "type": "patchouli:text",
-            "text": "$(carving)Spider$(): Lets you climb walls like a Spider$(br2)$(carving)Squid$(): Gives you water breathing$(br2)$(carving)Wolf$(): Gives you attack strength"
+            "text": "totemic.page.totem_effects2"
         }
     ],
     "extra_recipe_mappings": {

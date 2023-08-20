@@ -1,20 +1,20 @@
 {
-    "name": "Totentanz",
+    "name": "totemic.entry.baykok_summon",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Totentanz$() is a Ceremony that will summon the spirit known as $(thing)Baykok$(). Do not attempt this Ceremony unless you are well equipped for combat.$(br2)$(thing)Baykok$() is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with $(emph)invisible arrows$()."
+            "text": "totemic.page.baykok_summon0"
         },
         {
             "type": "patchouli:text",
-            "text": "If you manage to defeat Baykok, you will be able to get his bow, among other loots. Any arrows fired from $(item)Baykok's Bow$() are visible only to the bow wielder. In addition, his bow is stronger and has a higher $(emph)Enchantability$() than a mundane bow."
+            "text": "totemic.page.baykok_summon1"
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:baykok_summon",
-            "text": "$(o)When Death draws near you..."
+            "text": "totemic.page.baykok_summon2"
         },
         {
             "type": "patchouli:entity",

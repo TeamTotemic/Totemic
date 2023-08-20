@@ -1,16 +1,16 @@
 {
-    "name": "Buffalo Dance",
+    "name": "totemic.entry.buffalo_dance",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "$(l:basics/buffalos)Buffalos$() used to roam this world long before you came into it. The $(thing)Buffalo Dance$() can bring them back by infusing nearby $(emph)Cows$() with strength, turning them into $(emph)Buffalos$(). They will start out as infants and only gain their full strength after a while."
+            "text": "totemic.page.buffalo_dance0"
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:buffalo_dance",
-            "text": "$(o)Don't use red rags"
+            "text": "totemic.page.buffalo_dance1"
         },
         {
             "type": "patchouli:entity",

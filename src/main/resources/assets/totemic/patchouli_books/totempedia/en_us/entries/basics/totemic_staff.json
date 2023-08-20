@@ -1,16 +1,16 @@
 {
-    "name": "Totemic Staff",
+    "name": "totemic.entry.totemic_staff",
     "icon": "totemic:totemic_staff",
     "category": "totemic:basics",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Totem Staff$() is a tool that can be used on $(l:basics/totem_poles)Totem Bases$() to gather information from them.$(br2)Additionally, left-clicking it on a Totem Base will cancel any $(l:ceremonies/ceremony_basics)Ceremonies$() and Selections on it."
+            "text": "totemic.page.totemic_staff0"
         },
         {
             "type": "patchouli:crafting",
             "recipe": "totemic:totemic_staff",
-            "text": "$(o)No resemblance to wrenches"
+            "text": "totemic.page.totemic_staff1"
         }
     ],
     "sortnum": 3

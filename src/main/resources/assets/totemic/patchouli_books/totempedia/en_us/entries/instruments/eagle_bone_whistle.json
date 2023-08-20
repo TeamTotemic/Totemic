@@ -1,11 +1,11 @@
 {
-    "name": "Eagle-Bone Whistle",
+    "name": "totemic.entry.eagle_bone_whistle",
     "icon": "totemic:eagle_bone_whistle",
     "category": "totemic:instruments",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(item)Eagle-Bone Whistle$() is made from the bones of a $(l:basics/bald_eagle)Bald Eagle$(), and as such it is very powerful. It is a necessity for more advanced Ceremonies."
+            "text": "totemic.page.eagle_bone_whistle0"
         },
         {
             "type": "patchouli:crafting",

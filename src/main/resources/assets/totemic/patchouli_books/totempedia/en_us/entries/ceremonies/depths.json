@@ -1,16 +1,16 @@
 {
-    "name": "Symphony of the Depths",
+    "name": "totemic.entry.depths",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Symphony of the Depths$() is a simple Ceremony that will give you and everyone nearby $(emph)Water Breathing$() for a few minutes."
+            "text": "totemic.page.depths0"
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:depths",
-            "text": "$(o)Moon River"
+            "text": "totemic.page.depths1"
         }
     ],
     "sortnum": 1

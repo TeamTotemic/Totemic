@@ -1,6 +1,6 @@
 {
-    "name": "Ceremonies",
-    "description": "$(thing)Ceremonies$() are a way to release powerful bursts of several different effects.",
+    "name": "totemic.category.ceremonies",
+    "description": "totemic.category.ceremonies.description",
     "icon": "totemic:drum",
     "sortnum": 2
 }

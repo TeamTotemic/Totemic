@@ -1,6 +1,6 @@
 {
-    "name": "Miscellaneous",
-    "description": "Decorative blocks and other miscellaneous things.",
+    "name": "totemic.category.misc",
+    "description": "totemic.category.misc.description",
     "icon": "totemic:tipi",
     "sortnum": 3
 }
