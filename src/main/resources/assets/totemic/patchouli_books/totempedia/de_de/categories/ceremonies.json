@@ -1,6 +1,0 @@
-{
-    "name": "Zeremonien",
-    "description": "Mit $(thing)Zeremonien$() kann man verschiedene kraftvolle Effekte hervorrufen.",
-    "icon": "totemic:drum",
-    "sortnum": 2
-}

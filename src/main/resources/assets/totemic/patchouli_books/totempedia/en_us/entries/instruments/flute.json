@@ -9,7 +9,8 @@
         },
         {
             "type": "patchouli:crafting",
-            "recipe": "totemic:flute"
+            "recipe": "totemic:flute",
+            "text": "totemic.page.flute1"
         }
     ],
     "sortnum": 0

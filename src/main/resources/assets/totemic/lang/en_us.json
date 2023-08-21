@@ -7,6 +7,7 @@
   "item.totemic.rattle": "Rattle",
   "item.totemic.eagle_bone_whistle": "Eagle-Bone Whistle",
   "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
+  "item.totemic.totem_whittling_knife.name": "Totem Whittling Knife",
   "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
   "item.totemic.totemic_staff": "Totemic Staff",
   "item.totemic.totemic_staff.tooltip": "A staff for your Totemic needs!",
@@ -25,6 +26,7 @@
   "item.totemic.baykok_bow": "Baykok's Bow",
   "item.totemic.totempedia": "Totempedia",
   "item.totemic.medicine_bag": "Medicine Bag (%s)",
+  "item.totemic.medicine_bag.name": "Medicine Bag",
   "item.totemic.creative_medicine_bag": "Creative Medicine Bag (%s)",
   "totemic.medicineBag.notPortable": "The effect %s cannot be carried in a Medicine Bag",
   "totemic.medicineBag.tooltip": "Sneak+Right Click on a Totem Pole to set the effect",
@@ -256,6 +258,7 @@
 
   "totemic.entry.flute": "Flute",
   "totemic.page.flute0": "The $(item)Flute$() is one of the simplest Instruments available. Unlike other Instruments, it simply plays music without any complication. However, it is not known to be the most melodic instrument, meaning it will not create very much $(l:basics/music)Melody$(/l), and its Melody Threshold will be reached easily.$(br2)The Flute can be infused in the $(l:ceremonies/flute_infusion)Serenade for Syrinx$(/l), giving it special properties.",
+  "totemic.page.flute1": "",
 
   "totemic.entry.jingle_dress": "Jingle Dress",
   "totemic.page.jingle_dress0": "The $(item)Jingle Dress$() is a leaf dress adorned with bells. It releases Melody when you move and jump around, and a speed potion increases it even further.$(br2)While it doesn't create a lot of Melody and its $(l:basics/music)Melody Threshold$() is easily reached, it can still be deciding for the success of a Ceremony. Dancing while playing other Instruments is crucial for every Totemist.",

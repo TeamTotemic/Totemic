@@ -10,7 +10,7 @@
         {
             "type": "patchouli:crafting",
             "recipe": "totemic:medicine_bag",
-            "title": "Medicine Bag",
+            "title": "item.totemic.medicine_bag.name",
             "text": "totemic.page.medicine_bag1"
         }
     ],

@@ -19,7 +19,7 @@
         {
             "type": "patchouli:crafting",
             "recipe": "totemic:totem_whittling_knife",
-            "title": "Totem Whittling Knife"
+            "title": "item.totemic.totem_whittling_knife.name"
         }
     ],
     "extra_recipe_mappings": {
