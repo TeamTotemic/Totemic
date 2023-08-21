@@ -7,6 +7,7 @@
   "item.totemic.rattle": "Трещотка",
   "item.totemic.eagle_bone_whistle": "Свисток из орлиной кости",
   "item.totemic.totem_whittling_knife": "Нож для вырезания тотемов (%s)",
+  "item.totemic.totem_whittling_knife.name": "Нож для вырезания тотемов",
   "item.totemic.totem_whittling_knife.tooltip": "Нож для всех Ваших нужд по вырезки рисунков\nЧтобы сменить вырезаемый рисунок, нажмите Shift + ПКМ или прокрутите колёсико мыши",
   "item.totemic.totemic_staff": "Тотемный посох",
   "item.totemic.totemic_staff.tooltip": "Посох для управления Вашими Тотемами!",
@@ -25,6 +26,7 @@
   "item.totemic.baykok_bow": "Лук Байкока",
   "item.totemic.totempedia": "Тотемпедия",
   "item.totemic.medicine_bag": "Медицинская сумка (%s)",
+  "item.totemic.medicine_bag.name": "Медицинская сумка",
   "item.totemic.creative_medicine_bag": "Творческая медицинская сумка (%s)",
   "totemic.medicineBag.notPortable": "Эффект %s не может быть перенесен медицинской сумкой",
   "totemic.medicineBag.tooltip": "Нажмите Shift+ПКМ, чтобы установить эффект на Тотемном Столбе",
@@ -154,6 +156,130 @@
   "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",
   
   "totemic.totempedia.landingText": "Тотемпедия, руководство по всему Тотемическому.",
+  "totemic.totempedia.ceremonySelectors": "$(l)Ceremony Selectors",
+  
+  "totemic.category.basics": "Totemic Basics",
+  "totemic.category.basics.description": "All you need to know to get started as a Totemist.",
+  "totemic.category.ceremonies": "Ceremonies",
+  "totemic.category.ceremonies.description": "$(thing)Ceremonies$() are a way to release powerful bursts of several different effects.",
+  "totemic.category.instruments": "Music Instruments",
+  "totemic.category.instruments.description": "$(thing)Music Instruments$() are essential for creating $(l:basics/music)Melody$(/l), the life of Totem Poles.$(br2)Most Instruments can be played while $(emph)sneaking$() to $(l:ceremonies/ceremony_basics)select Ceremonies$(/l).",
+  "totemic.category.misc": "Miscellaneous",
+  "totemic.category.misc.description": "Decorative blocks and other miscellaneous things.",
+  
+  "totemic.entry.music": "Melody",
+  "totemic.page.music0": "$(thing)Melody$() is a magical power released from $(l:instruments)Music Instruments$(/l). Every Instrument produces Melody in different ways. When an Instrument is played, its Melody will seep into nearby $(l:basics/totem_poles)Totem Poles$(/l).$(br2)Each Instrument has a $(thing)Melody Threshold$(), meaning that only a certain amount of Melody can be released from one Instrument for a specific $(l:ceremonies)Ceremony$(/l) or other effect.",
+  "totemic.page.music1": "$(emph)White smoke$() indicates that the Threshold for a particular Instrument has been reached. Usually, it is necessary to play $(emph)several different Instruments$() to get the desired effect. If you are having trouble creating enough Melody, try looking if there is another Instrument that you have not used yet.",
+
+  "totemic.entry.totem_effects": "Totem Effects",
+  "totemic.page.totem_effects0": "$(thing)Totem Effects$() are passive effects that always emanate from a $(l:basics/totem_poles)Totem Pole$(). They depend on the patterns that you carved into it:$(br2)$(carving)Bat$(): Makes you fall slowly and negates fall damage$(br2)$(carving)Blaze$(): Protects you against fires$(br2)$(carving)Buffalo$(): Makes you mine blocks faster",
+  "totemic.page.totem_effects1": "$(carving)Cow$(): Gives you damage resistance but also slows you down$(br2)$(carving)Enderman$(): Gives you night vision$(br2)$(carving)Horse$(): Gives you a speed boost$(br2)$(carving)Ocelot$(): Prevents Creepers from exploding$(br2)$(carving)Pig$(): Brings you good luck$(br2)$(carving)Rabbit$(): Gives you a jump boost",
+  "totemic.page.totem_effects2": "$(carving)Spider$(): Lets you climb walls like a Spider$(br2)$(carving)Squid$(): Gives you water breathing$(br2)$(carving)Wolf$(): Gives you attack strength",
+
+  "totemic.entry.totemic_staff": "Totemic Staff",
+  "totemic.page.totemic_staff0": "The $(thing)Totem Staff$() is a tool that can be used on $(l:basics/totem_poles)Totem Bases$() to gather information from them.$(br2)Additionally, left-clicking it on a Totem Base will cancel any $(l:ceremonies/ceremony_basics)Ceremonies$() and Selections on it.",
+  "totemic.page.totemic_staff1": "$(o)No resemblance to wrenches",
+
+  "totemic.entry.totem_poles": "Totem Poles",
+  "totemic.page.totem_poles0": "$(thing)Totem Poles$() are the centerpieces of Totemic. They can be carved out of any kind of wood logs using a $(item)Totem Whittling Knife$(). Different patterns can be carved, which will lead to different $(l:basics/totem_effects)Totem Effects$(/l). Right clicking or scrolling while sneaking will change the pattern the knife will carve.",
+  "totemic.page.totem_poles1": "Totem Poles need to have a $(thing)Totem Base$() at the bottom and can be up to 6 blocks high (including the base).$(br2)The same carving can be repeated multiple times on the same Totem Pole, making the effect stronger. A Totem Pole can also absorb $(l:basics/music)Melody$() which will make the effects stronger as well.",
+  "totemic.page.totem_poles2": "An example of how a Totem Pole can look like.",
+
+  "totemic.entry.animal_growth": "Hymn of Maturity",
+  "totemic.page.animal_growth0": "The $(thing)Hymn of Maturity$() is a growth Ceremony that makes $(emph)baby animals$() grow up much faster, as well as help with the hatching of $(emph)Chicken$() and $(emph)Turtle eggs$().",
+  "totemic.page.animal_growth1": "$(o)Maturity is a high price to pay for growing up",
+
+  "totemic.entry.baykok_summon": "Totentanz",
+  "totemic.page.baykok_summon0": "The $(thing)Totentanz$() is a Ceremony that will summon the spirit known as $(thing)Baykok$(). Do not attempt this Ceremony unless you are well equipped for combat.$(br2)$(thing)Baykok$() is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with $(emph)invisible arrows$().",
+  "totemic.page.baykok_summon1": "If you manage to defeat Baykok, you will be able to get his bow, among other loots. Any arrows fired from $(item)Baykok's Bow$() are visible only to the bow wielder. In addition, his bow is stronger and has a higher $(emph)Enchantability$() than a mundane bow.",
+  "totemic.page.baykok_summon2": "$(o)When Death draws near you...",
+
+  "totemic.entry.buffalo_dance": "Buffalo Dance",
+  "totemic.page.buffalo_dance0": "$(l:basics/buffalos)Buffalos$() used to roam this world long before you came into it. The $(thing)Buffalo Dance$() can bring them back by infusing nearby $(emph)Cows$() with strength, turning them into $(emph)Buffalos$(). They will start out as infants and only gain their full strength after a while.",
+  "totemic.page.buffalo_dance1": "$(o)Don't use red rags",
+
+  "totemic.entry.ceremony_basics": "Basics of Ceremonies",
+  "totemic.page.ceremony_basics0": "$(thing)Ceremonies$() are a way for Totemists to gather strength over a period of time through the power of $(l:basics/music)Melody$() to release a burst of energy on the nearby world. In contrast to $(l:basics/totem_effects)Totem Effects$(), the effects of Ceremonies are much more powerful, but limited in duration.$(br2)The center of a Ceremony is a $(l:basics/totem_poles)Totem Pole$(): It is where the Melody is channeled to and",
+  "totemic.page.ceremony_basics1": "where the effects are released from. To start a Ceremony, you need to play two Music Instruments in $(thing)Selector Mode$(), which is done by $(emph)sneaking$() while playing the Instrument. The combination of the two Instruments will decide which Ceremony is selected. For example, playing the $(l:instruments/drum)Drum$() twice while sneaking will activate the $(l:ceremonies/war_dance)War Dance$().$(br2)Once you have selected a Ceremony, you need to channel $(l:basics/music)Melody$() into the Totem Pole until it has collected enough",
+  "totemic.page.ceremony_basics2": "to activate the Ceremony's effect. You only have a $(emph)limited amount of time$() to do this, and each Instrument can only be played up to a certain point until its $(l:basics/music)Melody Threshold$() is reached, meaning that a Ceremony cannot be performed using only one Instrument. A $(emph)white cloud of smoke$() that emits from the Totem Base signifies that the Instrument's Melody Threshold is reached, so you should $(emph)stop playing$() that particular Instrument until the end of the Ceremony.",
+  "totemic.page.ceremony_basics3": "Since the time is limited, playing speed is important, and care should be taken with the $(emph)timing$() and $(emph)rhythm$() between the Instruments. It may require some practice for Totemists to complete some of the more difficult Ceremonies.$(br2)Left-clicking the Totem Base with a $(l:basics/totemic_staff)Totemic Staff$() will cancel any Ceremony or Selection on that Totem Pole.",
+  "totemic.page.ceremony_basics4": "$(o)Tips for Ceremonies:$()$(li)After you selected a Ceremony, you need to $(emph)stop sneaking$() so that your music counts for the Ceremony.$(li)$(l:instruments/wind_chime)Wind Chimes$() play at somewhat regular intervals. Try to time your Ceremony around them.$(li)More Instruments of the same kind usually don't help that much. Try getting as many $(emph)different Instruments$() as you can.$(li)That said, it can be helpful to have two $(l:instruments/drum)Drum$() and two or three $(l:instruments/wind_chime)Wind Chimes$().",
+  "totemic.page.ceremony_basics5": "$(li)If you hold a $(l:instruments/rattle)Rattle$() in your main hand and a $(l:instruments/flute)Flute$() in your off hand, you can play them both at the same time.$(li)The time you have available to complete a Ceremony changes with $(emph)game difficulty$().",
+
+  "totemic.entry.cleansing": "Steve's Lullaby",
+  "totemic.page.cleansing0": "$(thing)Steve's Lullaby$() is a Ceremony which can calm down and heal $(emph)Zombie Villagers, Zombified Piglins$() and other creatures that have been infested with zombification.$(br2)Only a few monsters will be affected per activation, and they need to have been $(emph)weakened$() by a potion effect first.",
+  "totemic.page.cleansing1": "$(o)Don't tell Alex!",
+
+  "totemic.entry.danse_macabre": "Danse Macabre",
+  "totemic.page.danse_macabre0": "The $(thing)Danse Macabre$() is a dark necromantic Ceremony, which will bring $(emph)Zombies$() back to life from $(emph)Rotten Flesh$(). However, there is a decent chance that the summoned creations will be $(emph)Zombie Villagers$() instead. Depending on the environment, other kinds of monsters will spawn instead of Zombies.",
+  "totemic.page.danse_macabre1": "$(o)November Spawned a Monster",
+
+  "totemic.entry.depths": "Symphony of the Depths",
+  "totemic.page.depths0": "The $(thing)Symphony of the Depths$() is a simple Ceremony that will give you and everyone nearby $(emph)Water Breathing$() for a few minutes.",
+  "totemic.page.depths1": "$(o)Moon River",
+
+  "totemic.entry.drought": "Drought Dance",
+  "totemic.page.drought0": "The $(thing)Drought Dance$() will clear the sky and end any rain or thunderstorms that may be plaguing your world.$(br2)Its effects are opposite to the $(l:ceremonies/rain)Rain Dance$().",
+  "totemic.page.drought1": "$(o)Ninetails, Not Kurama!",
+
+  "totemic.entry.eagle_dance": "Eagle Dance",
+  "totemic.page.eagle_dance0": "Like Buffalos, this land used to be home to $(l:basics/bald_eagle)Bald Eagles$() before they have gone extinct. But they can be brought back with the $(thing)Eagle Dance$(), which will turn nearby $(emph)Parrots$() into Bald Eagles.",
+  "totemic.page.eagle_dance1": "$(o)Welcome to 'Murica!",
+
+  "totemic.entry.fertility": "Rite of Spring",
+  "totemic.page.fertility0": "The $(thing)Rite of Spring$() is one of several growth and fertility Ceremonies available to a Totemist. After activating, nearby $(emph)animals$() will $(emph)breed$() one at a time, provided the respective $(emph)food items$() are laying on the ground. There is a decent chance that the food will not be consumed.$(br2)Along with that, any nearby saplings will transform into $(l:basics/cedar_tree)Red Cedar Saplings$().",
+  "totemic.page.fertility1": "$(o)Lover I don't have to love",
+
+  "totemic.entry.flute_infusion": "Serenade for Syrinx",
+  "totemic.page.flute_infusion0": "The $(thing)Serenade for Syrinx$() will enchant a regular $(l:instruments/flute)Flute$() with melodic energy, turning it into $(item)Pan's Flute$().$(br2)Not only can Pan's Flute release much more $(l:basics/music)Melody$() than a regular Flute, but $(emph)Animals$() and $(emph)Villagers$() will also be unable to resist its melody and will follow you when you play it.",
+  "totemic.page.flute_infusion1": "$(o)Hide in the Sugar Cane",
+
+  "totemic.entry.rain": "Rain Dance",
+  "totemic.page.rain0": "The $(thing)Rain Dance$() will bring a torrent of rain into the world. Because the effects of this Ceremony are so potent, it may be somewhat hard to perform.$(br2)If the rain becomes too much to bare, the $(l:ceremonies/drought)Drought Dance$() is always available, which will remove all rain.",
+  "totemic.page.rain1": "$(o)Like a Politoed",
+
+  "totemic.entry.sun_dance": "Sun Dance",
+  "totemic.page.sun_dance0": "The $(thing)Sun Dance$() is a very special and sacred Ceremony. Unlike with other Ceremonies, you will be faced with a $(emph)near-death experience$(). If you pull through, you and everyone nearby will be $(emph)healed$() and $(emph)shielded from damage$() for a while.$(br2)$(o)The Sun Dance will not reduce your health below half a heart.",
+  "totemic.page.sun_dance1": "$(o)Kneeling, my god is the sun",
+
+  "totemic.entry.war_dance": "War Dance",
+  "totemic.page.war_dance0": "The $(thing)War Dance$() is a Ceremony that will heighten your senses for an incoming war and bring the adrenalin to your entire body.$(br2)After performing it, the Ceremony will grant you and everyone nearby $(emph)Speed$() and $(emph)Strength$() for a few minutes, allowing you to rush to battle.",
+  "totemic.page.war_dance1": "$(o)A convoluted game of chess",
+
+  "totemic.entry.zaphkiel_waltz": "Zaphkiel Waltz",
+  "totemic.page.zaphkiel_waltz0": "The $(thing)Zaphkiel Waltz$() is a growth Ceremony that affects nearby $(emph)plants$(), making them grow at a much faster rate than usual.",
+  "totemic.page.zaphkiel_waltz1": "$(o)Gothicly elegant",
+
+  "totemic.entry.drum": "Drum",
+  "totemic.page.drum0": "The $(item)Drum$() is an Instrument that can be played by simply bashing it with your fist.$(br2)Every Totemist should learn the rhythm which is used when a $(l:instruments/flute)Flute$(/l) and a Drum are being played together, as it may be required for early Ceremonies. It is recommended to have a few Drums around a Totem Pole in order to be able play them alternatingly.",
+
+  "totemic.entry.eagle_bone_whistle": "Eagle-Bone Whistle",
+  "totemic.page.eagle_bone_whistle0": "The $(item)Eagle-Bone Whistle$() is made from the bones of a $(l:basics/bald_eagle)Bald Eagle$(), and as such it is very powerful. It is a necessity for more advanced Ceremonies.",
+
+  "totemic.entry.flute": "Flute",
+  "totemic.page.flute0": "The $(item)Flute$() is one of the simplest Instruments available. Unlike other Instruments, it simply plays music without any complication. However, it is not known to be the most melodic instrument, meaning it will not create very much $(l:basics/music)Melody$(/l), and its Melody Threshold will be reached easily.$(br2)The Flute can be infused in the $(l:ceremonies/flute_infusion)Serenade for Syrinx$(/l), giving it special properties.",
+  "totemic.page.flute1": "",
+
+  "totemic.entry.jingle_dress": "Jingle Dress",
+  "totemic.page.jingle_dress0": "The $(item)Jingle Dress$() is a leaf dress adorned with bells. It releases Melody when you move and jump around, and a speed potion increases it even further.$(br2)While it doesn't create a lot of Melody and its $(l:basics/music)Melody Threshold$() is easily reached, it can still be deciding for the success of a Ceremony. Dancing while playing other Instruments is crucial for every Totemist.",
+  "totemic.page.jingle_dress1": "$(br)Unlike other Instruments, the Jingle Dress cannot be used as a $(l:ceremonies)Ceremony Selector$().",
+
+  "totemic.entry.rattle": "Rattle",
+  "totemic.page.rattle0": "The $(item)Rattle$() is a backbone of any more advanced Ceremonies. It produces Melody whenever it has been shook with the hand.$(br2)When you hold the Rattle in your main hand, another Instrument held in the offhand can be played at the same time.",
+
+  "totemic.entry.wind_chime": "Wind Chime",
+  "totemic.page.wind_chime0": "The $(item)Wind Chime$() is an Instrument that will wave in the wind and recurrently produce Melody by itself. It must be hanging from a block above it, and it needs free space below it. Often, Wind Chimes can be seen hanging from branches of leaves, which makes them release more Melody.",
+  "totemic.page.wind_chime1": "While the Wind Chime does not create a large amount of Melody, it does not require any manual intervention. Because the music from the Wind Chime is so easy to come by, its $(l:basics/music)Melody Threshold$() is easily reached.$(br2)It should be mentioned that too many Wind Chimes near each other will absorb all the wind and stop them from working.",
+
+  "totemic.entry.medicine_bag": "Medicine Bag",
+  "totemic.page.medicine_bag0": "The $(item)Medicine Bag$() allows you to carry a $(l:basics/totem_effects)Totem Effect$() with you, so you can use its benefits for a limited time even when you are not near a Totem Pole.$(br2)Once you have crafted your Medicine Bag, Sneak+Right click it on a Totem Pole block carved with the effect you want to have. You can then right click the bag to open or close it.",
+  "totemic.page.medicine_bag1": "$(br)The Medicine Bag will last for a few minutes before it depletes. To $(emph)charge$() it, just stand near a Totem Pole that has your bag's effect carved into it.",
+
+  "totemic.entry.tipi": "Tipi",
+  "totemic.page.tipi0": "The $(item)Tipi$() is a tent which can be used to sleep through the night. It consists of a wooden frame, adorned with a tarp consisting of either Wool or Buffalo Hide. It must be placed on top of a flat surface of grass or dirt, and in the open sky.",
+
+  "totemic.entry.totem_torch": "Totem Torch",
+  "totemic.page.totem_torch0": "The $(item)Totem Torch$() is a larger version of a regular torch, emitting slightly more light than it.",
   
   "totemic.config.general": "General",
   "totemic.config.client": "Client",
