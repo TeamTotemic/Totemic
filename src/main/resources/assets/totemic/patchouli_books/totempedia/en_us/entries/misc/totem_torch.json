@@ -1,11 +1,11 @@
 {
-    "name": "Totem Torch",
+    "name": "totemic.entry.totem_torch",
     "icon": "totemic:totem_torch",
     "category": "totemic:misc",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(item)Totem Torch$() is a larger version of a regular torch, emitting slightly more light than it."
+            "text": "totemic.page.totem_torch0"
         },
         {
             "type": "patchouli:crafting",

@@ -3,7 +3,7 @@
     "components": [
         {
             "type": "patchouli:text",
-            "text": "$(l)Ceremony Selectors",
+            "text": "totemic.totempedia.ceremonySelectors",
             "color": "888888",
             "x": 18,
             "y": 5

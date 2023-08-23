@@ -1,17 +1,17 @@
 {
-    "name": "Medicine Bag",
+    "name": "totemic.entry.medicine_bag",
     "icon": "totemic:medicine_bag",
     "category": "totemic:misc",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(item)Medicine Bag$() allows you to carry a $(l:basics/totem_effects)Totem Effect$() with you, so you can use its benefits for a limited time even when you are not near a Totem Pole.$(br2)Once you have crafted your Medicine Bag, Sneak+Right click it on a Totem Pole block carved with the effect you want to have. You can then right click the bag to open or close it."
+            "text": "totemic.page.medicine_bag0"
         },
         {
             "type": "patchouli:crafting",
             "recipe": "totemic:medicine_bag",
-            "title": "Medicine Bag",
-            "text": "$(br)The Medicine Bag will last for a few minutes before it depletes. To $(emph)charge$() it, just stand near a Totem Pole that has your bag's effect carved into it."
+            "title": "item.totemic.medicine_bag.name",
+            "text": "totemic.page.medicine_bag1"
         }
     ],
     "extra_recipe_mappings": {

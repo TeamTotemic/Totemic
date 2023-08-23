@@ -7,6 +7,7 @@
   "item.totemic.rattle": "Rassel",
   "item.totemic.eagle_bone_whistle": "Adlerknochenpfeife",
   "item.totemic.totem_whittling_knife": "Totemschnitzmesser (%s)",
+  "item.totemic.totem_whittling_knife.name": "Totemschnitzmesser",
   "item.totemic.totem_whittling_knife.tooltip": "Ein Messer für all Deine Schnitzerei\nSchleichen+Rechtsklick oder Mausrad zum Ändern des Musters",
   "item.totemic.totemic_staff": "Totemstab",
   "item.totemic.totemic_staff.tooltip": "Ein Stab für Deine Totem-Bedürfnisse!",
@@ -25,6 +26,7 @@
   "item.totemic.baykok_bow": "Baykoks Bogen",
   "item.totemic.totempedia": "Totempedia",
   "item.totemic.medicine_bag": "Medizinbeutel (%s)",
+  "item.totemic.medicine_bag.name": "Medizinbeutel",
   "item.totemic.creative_medicine_bag": "Kreativmodus-Medizinbeutel (%s)",
   "totemic.medicineBag.notPortable": "Der Effekt %s kann nicht in einem Medizinbeutel getragen werden",
   "totemic.medicineBag.tooltip": "Schleichen+Rechtsklick auf einen Totempfahl, um den Effekt festzulegen",
@@ -154,6 +156,130 @@
   "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren.",
   
   "totemic.totempedia.landingText": "Die Totempedia, ein Leitfaden für all Deine Totem-Bedürfnisse.",
+  "totemic.totempedia.ceremonySelectors": "$(l)Zeremonie-Selektion",
+  
+  "totemic.category.basics": "Totemic-Grundlagen",
+  "totemic.category.basics.description": "Alles, was du wissen musst, um ein Totemist zu werden.",
+  "totemic.category.ceremonies": "Zeremonien",
+  "totemic.category.ceremonies.description": "Mit $(thing)Zeremonien$() kann man verschiedene kraftvolle Effekte hervorrufen.",
+  "totemic.category.instruments": "Musikinstrumente",
+  "totemic.category.instruments.description": "$(thing)Musikinstrumente$() sind unerlässlich, um $(l:basics/music)Melodie$(/l) zu erzeugen, die Lebensessenz von Totempfählen.$(br2)Die meisten Instrumente können während des $(emph)Schleichens$() gespielt werden, um $(l:ceremonies/ceremony_basics)Zeremonien auszuwählen$(/l).",
+  "totemic.category.misc": "Verschiedenes",
+  "totemic.category.misc.description": "Dekorative Blöcke und andere verschiedene Dinge.",
+  
+  "totemic.entry.music": "Melodie",
+  "totemic.page.music0": "$(thing)Melodie$() ist eine magische Kraft, die von $(l:instruments)Musikinstrumenten$(/l) freigesetzt wird. Jedes Instrument erzeugt Melodie auf eine andere Weise. Spielt man eines, gelangt seine Melodie in nahegelegene $(l:basics/totem_poles)Totempfähle$(/l).$(br2)Jedes Instrument hat eine $(thing)Melodieobergrenze$(), das heißt, dass jedes Instrument nur eine bestimmte Menge an Melodie auf einmal für eine $(l:ceremonies)Zeremonie$(/l) oder",
+  "totemic.page.music1": "anderen Effekt freisetzen kann. $(emph)Weißer Rauch$() zeigt an, dass die Obergrenze für ein Instrument erreicht wurde. Meistens ist es also nötig, $(emph)möglichst viele verschiedene$() Instrumente zu spielen, um den gewünschten Effekt zu erhalten. Wenn du Schwierigkeiten hast, genügend Melodie zu erzeugen, schaue vielleicht, ob es ein Instrument gibt, was du noch nicht benutzt hast.",
+
+  "totemic.entry.totem_effects": "Totemeffekte",
+  "totemic.page.totem_effects0": "$(thing)Totemeffekte$() sind passive Effekte, die immer von einem $(l:basics/totem_poles)Totempfahl$() ausgehen. Sie richten sich nach den Mustern, die in den Pfahl geschnitzt wurden:$(br2)$(carving)Fledermaus$(): Lässt dich langsamer fallen und keinen Fallschaden nehmen$(br2)$(carving)Lohe$(): Schützt dich vor Feuer",
+  "totemic.page.totem_effects1": "$(carving)Büffel$(): Lässt dich schneller Blöcke abbauen$(br2)$(carving)Kuh$(): Gibt dir Schadensresistenz, aber verlangsamt dich auch$(br2)$(carving)Enderman$(): Gibt dir Nachtsicht$(br2)$(carving)Pferd$(): Gibt dir Schnelligkeit$(br2)$(carving)Ozelot$(): Verhindert, dass Creeper explodieren$(br2)$(carving)Schwein$(): Bringt dir Glück",
+  "totemic.page.totem_effects2": "$(carving)Kaninchen$(): Lässt dich höher springen$(br2)$(carving)Spinne$(): Lässt dich Wände hochklettern wie eine Spinne$(br2)$(carving)Tintenfisch$(): Gibt dir Unterwasseratmung$(br2)$(carving)Wolf$(): Gibt dir Angriffsstärke",
+
+  "totemic.entry.totemic_staff": "Totemstab",
+  "totemic.page.totemic_staff0": "Der $(thing)Totemstab$() kann auf $(l:basics/totem_poles)Totembasen$() benutzt werden, um Informationen über den Totempfahl zu liefern.$(br2)Außerdem kann man mit ihm durch Linksklick auf die Totembasis $(l:ceremonies/ceremony_basics)Zeremonien$() und Selektionen abbrechen.",
+  "totemic.page.totemic_staff1": "$(o)Garantiert kein Schraubenschlüssel",
+
+  "totemic.entry.totem_poles": "Totempfähle",
+  "totemic.page.totem_poles0": "$(thing)Totempfähle$() sind das Herzstück von Totemic. Sie können mit einem $(item)Totemschnitzmesser$() aus jeder Art von Holz geschnitzt werden. Verschiedene Muster können dabei geschnitzt werden, die zu verschiedenen $(l:basics/totem_effects)Totemeffekten$(/l) führen. Das geschnitzte Muster kann dabei durch Rechtsklick oder Scrollen während des Schleichens geändert werden.",
+  "totemic.page.totem_poles1": "Totempfähle benötigen unten eine $(thing)Totembasis$() und können bis zu 6 Blöcke hoch sein (die Basis mitgezählt).$(br2)Dasselbe Muster kann auch mehrmals auf den gleichen Pfahl geschnitzt werden, wodurch der Effekt verstärkt wird. Der Totempfahl kann außerdem $(l:basics/music)Melodie$() absorbieren, die die Effekte ebenfalls verstärkt.",
+  "totemic.page.totem_poles2": "Beispiel, wie ein Totempfahl aussehen kann.",
+
+  "totemic.entry.animal_growth": "Hymne des Erwachsens",
+  "totemic.page.animal_growth0": "Die $(thing)Hymne des Erwachsens$() ist eine Wachstumszeremonie, die $(emph)Jungtiere$() schneller aufwachsen lässt. Außerdem hilft sie $(emph)Hühnern$() und $(emph)Schildkröten$(), aus ihren Eiern zu schlüpfen.",
+  "totemic.page.animal_growth1": "$(o)Erwachsenwerden ist ein großer Preis, den man fürs Aufwachsen zahlt",
+
+  "totemic.entry.baykok_summon": "Totentanz",
+  "totemic.page.baykok_summon0": "Der $(thing)Totentanz$() ist eine Zeremonie, die den Geist $(thing)Baykok$() herbeiruft. Verusche diese Zeremonie nicht, bis du gut für den Kampf ausgerüstet bist.$(br2)$(thing)Baykok$() ist ein grausamer Nachtgeist, der wie ein Skelett erscheint. Er jagd unbarmherzig nach Kriegern und ist ein Meister im Bogenschießen, er greift mit $(emph)unsichtbaren Pfeilen$() an.",
+  "totemic.page.baykok_summon1": "Schaffst du es, Baykok zu besiegen, erhälst du unter anderem seinen Bogen. Mit $(item)Baykoks Bogen$() kannst du selbst Pfeile verschießen, die nur du sehen kannst. Sein Bogen ist außerdem stärker und leichter zu $(emph)verzaubern$() als ein gewöhnlicher Bogen.",
+  "totemic.page.baykok_summon2": "$(o)Du hast den Bogen überspannt...",
+
+  "totemic.entry.buffalo_dance": "Büffeltanz",
+  "totemic.page.buffalo_dance0": "Lange bevor du in diese Welt kamst, war sie von $(l:basics/buffalos)Büffeln$() bewohnt. Der $(thing)Büffeltanz$() bringt die Büffel zurück, indem er $(emph)Kühen$() Kraft gibt und sie in $(emph)Büffel$() verwandelt. Sie sind zunächst klein und erlangen ihre volle Stärke erst nach einer Weile.",
+  "totemic.page.buffalo_dance1": "$(o)Vermeide rote Tücher",
+
+  "totemic.entry.ceremony_basics": "Zeremonie-Grundlagen",
+  "totemic.page.ceremony_basics0": "$(thing)Zeremonien$() sind ein Weg für Totemisten, die Kraft von $(l:basics/music)Melodie$() zu bündeln, um sie dann in einem großen Stoß freizusetzen und kraftvolle Effekte zu erzeugen. Anders als $(l:basics/totem_effects)Totemeffekte$() sind die Effekte von Zeremonien viel mächtiger, aber zeitlich begrenzt.$(br2)Der Mittelpunkt einer jeden Zeremonie ist ein $(l:basics/totem_poles)Totempfahl$(): Dorthin wird die Melodie",
+  "totemic.page.ceremony_basics1": "geleitet und von dort werden die Effekte freigesetzt. Um eine Zeremonie zu beginnen, musst du zwei Musikinstrumente im $(thing)Auswahlmodus$() spielen, das geht, indem du sie während des $(emph)Schleichens$() spielst. Welche zwei Instrumente du spielst, entscheidet dabei, welche Zeremonie du auswählst. Spielst du zum Beispiel zweimal die $(l:instruments/drum)Trommel$() während du schleichst, aktivierst du die $(l:ceremonies/war_dance)Kriegstanz$()-Zeremonie.$(br2)Wenn du die Zeremonie ausgewählt hast, musst du",
+  "totemic.page.ceremony_basics2": "$(l:basics/music)Melodie$() in den Totempfahl leiten, bis er genug gesammelt hat, um den Effekt der Zeremonie freizusetzen. Dafür hast du nur eine $(emph)begrenzte Zeit$() zur Verfügung, und jedes Instrument kann nur solange gespielt werden, bis seine $(l:basics/music)Melodieobergrenze$() erreicht ist, das heißt also, dass eine Zeremonie nicht mit nur einem Instrument ausgeführt werden kann. $(emph)Weißer Rauch$() aus der Totembasis zeigt an, dass die Melodieobergrenze des Instrumentes erreicht ist, in diesem Fall solltest du",
+  "totemic.page.ceremony_basics3": "bis zum Ende der Zeremonie $(emph)aufhören$(), dieses Instrument zu spielen.$(br2)Da die Zeit begrenzt ist, ist die Spielgeschwindigkeit wichtig, und man sollte auf das $(emph)Timing$() und den $(emph)Rhythmus$() zwischen den verschiedenen Instrumenten achten. Es braucht eventuell etwas Übung, um die schwierigeren Zeremonien durchzuführen.$(br2)Ein Linksklick mit dem $(l:basics/totemic_staff)Totemstab$() auf die Totembasis bricht jede Zeremonie und",
+  "totemic.page.ceremony_basics4": "Selektion darauf ab.$(br2)$(o)Tipps für Zeremonien:$()$(li)Wenn du eine Zeremonie ausgewählt hast, musst du $(emph)aufhören, zu schleichen$(), damit die Melodie für die Zeremonie gezählt wird.$(li)$(l:instruments/wind_chime)Windspiele$() spielen in ungefähr gleichen Zeitabständen. Versuche, deine Zeremonie daran auszurichten.$(li)Mehrere gleiche Instrumente helfen normalerweise nicht viel. Versuche, so viele $(emph)verschiedene Instrumente$() wie möglich zu verwenden.",
+  "totemic.page.ceremony_basics5": "$(li)Allerdings kann es hilfreich sein, zwei $(l:instruments/drum)Trommeln$() und zwei oder drei $(l:instruments/wind_chime)Windspiele$() zu haben.$(li)Wenn du eine $(l:instruments/rattle)Rassel$() in der Haupthand und eine $(l:instruments/flute)Flöte$() in der Zweithand hälst, kannst du sie beide gleichzeitig spielen.$(li)Die verfügbare Zeit für eine Zeremonie hängt von der $(emph)Schwierigkeitsstufe$() des Spiels ab.",
+
+  "totemic.entry.cleansing": "Steves Schlaflied",
+  "totemic.page.cleansing0": "$(thing)Steves Schlaflied$() ist ein sanftes Lied, das $(emph)Zombie-Dorfbewohner, Zombifizierte Piglins$() und andere zombifizierte Kreaturen beruhigen und heilen kann.$(br2)Nur ein paar Monster auf einmal sind pro Aktivierung betroffen, und sie müssen vorher durch einen Trank $(emph)geschwächt$() werden.",
+  "totemic.page.cleansing1": "$(o)Was ist mit Alex?",
+
+  "totemic.entry.danse_macabre": "Danse Macabre",
+  "totemic.page.danse_macabre0": "Der $(thing)Danse Macabre$() ist eine dunkle nekromantische Zerenonie, die $(emph)Zombies$() aus $(emph)verrottetem Fleisch$() zum Leben erweckt. Es besteht allerdings eine gute Chance, dass die erweckten Kreaturen $(emph)Zombie-Dorfbewohner$() sind. Je nach Umgebung werden statt Zombies andere Monster erweckt.",
+  "totemic.page.danse_macabre1": "$(o)Bis die Wolken wieder lila sind",
+
+  "totemic.entry.depths": "Sinfonie der Tiefen",
+  "totemic.page.depths0": "Die $(thing)Sinfonie der Tiefen$() ist eine einfache Zeremonie, die dir und allen in der Nähe für eine Weile $(emph)Unterwasseratmung$() gibt.",
+  "totemic.page.depths1": "$(o)Moon River",
+
+  "totemic.entry.drought": "Dürretanz",
+  "totemic.page.drought0": "Der $(thing)Dürretanz$() klärt den Himmel auf und beendet jeden Regen oder Gewittersturm, der das Land heimsucht.$(br2)Seine Effekte stehen im Gegensatz zum $(l:ceremonies/rain)Regentanz$().",
+  "totemic.page.drought1": "$(o)Ninetails, nicht Kurama!",
+
+  "totemic.entry.eagle_dance": "Adlertanz",
+  "totemic.page.eagle_dance0": "So wie Büffel gab es in diesem Land einst auch $(l:basics/bald_eagle)Weißkopfseeadler$(). Sie können mit dem $(thing)Adlertanz$() zurückgebracht werden, der $(emph)Papgeien$() in Weißkopfseeadler verwandelt.",
+  "totemic.page.eagle_dance1": "$(o)Welcome to 'Murica!",
+
+  "totemic.entry.fertility": "Ritus des Frühlings",
+  "totemic.page.fertility0": "Der $(thing)Ritus des Frühlings$() ist eine von mehreren Wachstums- und Fruchtbarkeitszeremonien, die einem Totemisten zur Verfügung stehen. Nach der Aktivierung $(emph)begatten$() sich $(emph)Tiere$() in der Nähe, wenn ihre $(emph)Nahrung$() auf dem Boden liegt. Allerdings besteht eine gute Chance, dass die Nahrung nicht verbraucht wird.$(br)Außerdem verwandeln sich Setzlinge in $(l:basics/cedar_tree)Rote Zedernsetzlinge$().",
+  "totemic.page.fertility1": "$(o)Kein Liebhaber zum Lieben",
+
+  "totemic.entry.flute_infusion": "Serenade für Syrinx",
+  "totemic.page.flute_infusion0": "Die $(thing)Serenade für Syrinx$() verzaubert eine normale $(l:instruments/flute)Flöte$() mit melodischer Energie, wodurch sie zu $(item)Pans Flöte$() wird.$(br2)Pans Flöte erzeugt deutlich mehr $(l:basics/music)Melodie$() als eine normale Flöte, und außerdem können $(emph)Tiere$() und $(emph)Dorfbewohner$() ihrem Klang nicht widerstehen und folgen dir, wenn du sie spielst.",
+  "totemic.page.flute_infusion1": "$(o)Versteck dich im Zuckerrohr",
+
+  "totemic.entry.rain": "Regentanz",
+  "totemic.page.rain0": "Mit dem $(thing)Regentanz$() kannst du eine Regenflut über das Land bringen. Da die Effekte dieser Zeremonie sehr potent sind, ist sie vielleicht etwas schwierig durchzuführen.$(br2)Wird der Regen zu viel, kann er über den $(l:ceremonies/drought)Dürretanz$() wieder entfernt werden.",
+  "totemic.page.rain1": "$(o)Wie ein Quaxo",
+
+  "totemic.entry.sun_dance": "Sonnentanz",
+  "totemic.page.sun_dance0": "Der $(thing)Sonnentanz$() ist eine der heiligsten Zeremonien. Anders als bei anderen Zeremonien erlebst du hier eine $(emph)Nahtoderfahrung$(). Wenn du es schaffst, wirst du und jeder in der Nähe $(emph)geheilt$() und einige Zeit lang $(emph)vor Schaden geschützt$().$(br2)$(o)Der Sonnentanz reduziert Deine Lebenspunkte nicht unter ein halbes Herz.",
+  "totemic.page.sun_dance1": "$(o)Heile sie, mit Feuer von oben",
+
+  "totemic.entry.war_dance": "Kriegstanz",
+  "totemic.page.war_dance0": "Der $(thing)Kriegstanz$() ist eine Zeremonie, die zur Vorbereitung auf einen Kampf deine Sinne schärft und Adrenalin in deinen Körper bringt.$(br2)Nach der Durchführung bringt der Kriegstanz dir und allen in der Nähe $(emph)Schnelligkeit$() und $(emph)Stärke$() für eine Weile, um in den Kampf zu stürmen.",
+  "totemic.page.war_dance1": "$(o)Ein verwickeltes Schachspiel",
+
+  "totemic.entry.zaphkiel_waltz": "Zaphkiel-Walzer",
+  "totemic.page.zaphkiel_waltz0": "Der $(thing)Zaphkiel-Walzer$() ist eine Wachstumszeremonie, die auf $(emph)Pflanzen$() wirkt, um sie deutlich schneller wachsen zu lassen.",
+  "totemic.page.zaphkiel_waltz1": "$(o)Gotisch elegant",
+
+  "totemic.entry.drum": "Trommel",
+  "totemic.page.drum0": "Die $(item)Trommel$() ist ein Instrument, das einfach durch Schlagen mit der Hand gespielt werden kann.$(br2)Jeder Totemist sollte mit dem Rhythmus vertraut sein, wenn $(l:instruments/flute)Flöte$(/l) und Trommel zusammen gespielt werden, denn man braucht ihn für die anfänglichen Zeremonien. Es wird empfohlen, mehrere Trommeln um einen Totempfahl zu haben, um sie abwechselnd spielen zu können.",
+
+  "totemic.entry.eagle_bone_whistle": "Adlerknochenpfeife",
+  "totemic.page.eagle_bone_whistle0": "Die $(item)Adlerknochenpfeife$() wird aus den Knochen eines $(l:basics/bald_eagle)Weißkopfseeadlers$() gefertigt, und ist daher sehr kraftvoll. Sie ist ein Muss für fortgeschrittenere Zeremoien.",
+
+  "totemic.entry.flute": "Flöte",
+  "totemic.page.flute0": "Die $(item)Flöte$() ist eines der einfachsten Musikinstrumente. Anders als andere Instrumente kann man die Flöte ohne weitere Schwierigkeiten spielen. Allerdings ist sie nicht besonders melodisch, das heißt, sie erzeugt nicht viel $(l:basics/music)Melodie$(/l) und ihre Melodieobergrenze ist schnell erreicht.",
+  "totemic.page.flute1": "$(br)Die Flöte kann in der Zeremonie $(l:ceremonies/flute_infusion)Serenade für Syrinx$(/l) mit speziellen Eigenschaften verzaubert werden.",
+
+  "totemic.entry.jingle_dress": "Glockenkleid",
+  "totemic.page.jingle_dress0": "Das $(item)Glockenkleid$() ist ein Laubkleid geziert mit Glocken. Durch Herumlaufen und Springen erzeugt es Melodie, durch einen Geschwindigkeitstrank sogar noch mehr.$(br2)Es erzeugt zwar nicht sehr viel Melodie und seine $(l:basics/music)Melodieobergrenze$() ist schnell erreicht, aber es kann trotzdem entscheidend für den Erfolg einer Zeremonie sein.",
+  "totemic.page.jingle_dress1": "$(br)Tanzen, während man andere Instrumente spielt, ist für jeden Totemisten unabdingbar.$(br2)Anders als andere Instrumente kann das Glockenkleid nicht zur $(l:ceremonies)Auswahl von Zeremonien$() gespielt werden.",
+
+  "totemic.entry.rattle": "Rassel",
+  "totemic.page.rattle0": "Die $(item)Rassel$() bildet das Rückgrat von fortgeschritteneren Zeremonien. Sie erzeugt Melodie, wenn sie mit der Hand geschüttelt wird.$(br2)Wenn du die Rassel in der Haupthand hälst, kannst du sie gleichzeitig mit einem anderen Instrument in der Zweithand spielen.",
+
+  "totemic.entry.wind_chime": "Windspiel",
+  "totemic.page.wind_chime0": "Das $(item)Windspiel$() ist ein Instrument, das im Wind flattert und so ohne weiteres Zutun Melodie erzeugt. Es muss an einem Block aufgehängt werden und benötigt freien Platz nach unten. Windspiele sieht man auch oft an Laubzweigen aufgehängt, wodurch sie mehr Melodie freisetzen.",
+  "totemic.page.wind_chime1": "Das Windspiel erzeugt zwar nicht viel Melodie, aber es benötigt kein manuelles Eingreifen dabei. Da seine Musik recht leicht zu erhalten ist ist seine $(l:basics/music)Melodieobergrenze$() schnell erreicht.$(br2)Es sollte erwähnt werden, dass zu viele Windspiele nahe beieinander den gesamten Wind absorbieren und nicht mehr funktionieren.",
+
+  "totemic.entry.medicine_bag": "Medizinbeutel",
+  "totemic.page.medicine_bag0": "Mit dem $(item)Medizinbeutel$() kannst du einen $(l:basics/totem_effects)Totemeffekt$() mit dir tragen, so dass du seine Wirkung für eine begrenzte Zeit nutzen kannst, ohne in der Nähe eines Totempfahles sein zu müssen.$(br2)Um den Effekt deines Medizinbeutels festzulegen, Schleichen+Rechtsklicke ihn auf einen Totempfahl mit dem gewünschten Effekt. Durch einen Rechsklick kannst du den",
+  "totemic.page.medicine_bag1": "Beutel dann öffnen und schließen.$(br)Der Medizinbeutel hält ein paar Minuten, bevor er leer ist. Zum $(emph)Aufladen$() musst du dich nur in die Nähe eines Totempfahls stellen, der den Effekt deines Beutels eingeschnitzt hat.",
+
+  "totemic.entry.tipi": "Tipi",
+  "totemic.page.tipi0": "Das $(item)Tipi$() ist ein Zelt, in dem du nachts schlafen kannst. Es besteht aus einem hölzernen Rahmen, abgedeckt mit einer Plane, die aus Wolle oder Büffelleder bestehen kann. Es muss auf einer flachen Stelle auf Erde oder Gras platziert werden, und kann nur unter freiem Himmel benutzt werden.",
+
+  "totemic.entry.totem_torch": "Totemfackel",
+  "totemic.page.totem_torch0": "Die $(item)Totemfackel$() ist eine größere Variante einer normalen Fackel, und strahlt außerdem etwas mehr Licht aus.",
   
   "totemic.config.general": "Allgemein",
   "totemic.config.client": "Client-Seite",

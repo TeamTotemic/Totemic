@@ -48,13 +48,13 @@ public enum CeremonyHUD implements IIngameOverlay {
     public void render(ForgeIngameGui gui, PoseStack poseStack, float partialTick, int screenWidth, int screenHeight) {
         if(activeTotem == null)
             return;
-        if(activeTotem.isRemoved() || activeTotem.getTotemState() instanceof StateTotemEffect) {
+        var mc = Minecraft.getInstance();
+        mc.getProfiler().push("totemic.ceremonyHUD");
+
+        if(activeTotem.isRemoved() || activeTotem.getLevel() != mc.level || activeTotem.getTotemState() instanceof StateTotemEffect) {
             activeTotem = null;
             return;
         }
-
-        var mc = Minecraft.getInstance();
-        mc.getProfiler().push("totemic.ceremonyHUD");
 
         final int hudX = (screenWidth - HUD_WIDTH) / 2 + ModConfig.CLIENT.ceremonyHudPositionX.get();
         final int hudY = (screenHeight - HUD_HEIGHT) / 2 + ModConfig.CLIENT.ceremonyHudPositionY.get();

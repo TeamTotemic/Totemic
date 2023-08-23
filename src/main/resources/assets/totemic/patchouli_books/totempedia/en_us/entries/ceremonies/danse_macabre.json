@@ -1,16 +1,16 @@
 {
-    "name": "Danse Macabre",
+    "name": "totemic.entry.danse_macabre",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(thing)Danse Macabre$() is a dark necromantic Ceremony, which will bring $(emph)Zombies$() back to life from $(emph)Rotten Flesh$(). However, there is a decent chance that the summoned creations will be $(emph)Zombie Villagers$() instead. Depending on the environment, other kinds of monsters will spawn instead of Zombies."
+            "text": "totemic.page.danse_macabre0"
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:danse_macabre",
-            "text": "$(o)November Spawned a Monster"
+            "text": "totemic.page.danse_macabre1"
         }
     ],
     "sortnum": 12

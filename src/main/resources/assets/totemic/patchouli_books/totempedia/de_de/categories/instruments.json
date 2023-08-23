@@ -1,6 +1,0 @@
-{
-    "name": "Musikinstrumente",
-    "description": "$(thing)Musikinstrumente$() sind unerlässlich, um $(l:basics/music)Melodie$(/l) zu erzeugen, die Lebensessenz von Totempfählen.$(br2)Die meisten Instrumente können während des $(emph)Schleichens$() gespielt werden, um $(l:ceremonies/ceremony_basics)Zeremonien auszuwählen$(/l).",
-    "icon": "totemic:flute",
-    "sortnum": 1
-}

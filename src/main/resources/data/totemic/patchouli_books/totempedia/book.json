@@ -9,5 +9,6 @@
         "$(carving)": "$(thing)",
         "$(emph)": "$(3)"
     },
+    "i18n": true,
     "use_resource_pack": true
 }

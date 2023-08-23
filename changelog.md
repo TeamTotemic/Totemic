@@ -1,3 +1,2 @@
-- Skeletons will no longer shoot at Buffalos (I believe that this has no gameplay value and only causes frustration, especially when you're not aware of it)
-- 日本語化を更新した (further improvements to Japanese translation are welcome)
-- Moved the Totempedia Patchouli files to the assets folder (no changes to the actual content)
+- Fixed a bug where the Ceremony HUD got stuck on the screen when switching dimensions/worlds
+- The Totempedia text contents has been moved to the language files (internal change, aimed at making it easier to translate the Totempedia)

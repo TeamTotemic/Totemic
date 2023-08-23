@@ -8,6 +8,7 @@ import java.util.WeakHashMap;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.BlockPos;
@@ -209,7 +210,7 @@ public class MedicineBagItem extends Item {
         tooltip.add(new TranslatableComponent("totemic.medicineBag." + key));
 
         if(flag.isAdvanced())
-            tooltip.add(new TranslatableComponent("totemic.medicineBag.charge", getCharge(stack), getMaxCharge(stack)));
+            tooltip.add(new TranslatableComponent("totemic.medicineBag.charge", getCharge(stack), getMaxCharge(stack)).withStyle(ChatFormatting.GRAY));
     }
 
     @Override

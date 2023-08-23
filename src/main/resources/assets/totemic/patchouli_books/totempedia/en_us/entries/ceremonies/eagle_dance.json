@@ -1,16 +1,16 @@
 {
-    "name": "Eagle Dance",
+    "name": "totemic.entry.eagle_dance",
     "icon": "minecraft:air",
     "category": "totemic:ceremonies",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "Like Buffalos, this land used to be home to $(l:basics/bald_eagle)Bald Eagles$() before they have gone extinct. But they can be brought back with the $(thing)Eagle Dance$(), which will turn nearby $(emph)Parrots$() into Bald Eagles."
+            "text": "totemic.page.eagle_dance0"
         },
         {
             "type": "totemic:ceremony",
             "ceremony": "totemic:eagle_dance",
-            "text": "$(o)Welcome to 'Murica!"
+            "text": "totemic.page.eagle_dance1"
         },
         {
             "type": "patchouli:entity",

@@ -1,11 +1,11 @@
 {
-    "name": "Drum",
+    "name": "totemic.entry.drum",
     "icon": "totemic:drum",
     "category": "totemic:instruments",
     "pages": [
         {
             "type": "patchouli:text",
-            "text": "The $(item)Drum$() is an Instrument that can be played by simply bashing it with your fist.$(br2)Every Totemist should learn the rhythm which is used when a $(l:instruments/flute)Flute$(/l) and a Drum are being played together, as it may be required for early Ceremonies. It is recommended to have a few Drums around a Totem Pole in order to be able play them alternatingly."
+            "text": "totemic.page.drum0"
         },
         {
             "type": "patchouli:crafting",
