@@ -30,6 +30,10 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
         return Vec3.atCenterOf(tile.getBlockPos());
     }
 
+    public int getAnalogOutputSignal() {
+        return 0;
+    }
+
     @SuppressWarnings("resource")
     void resetTotemState() {
         if(tile.getLevel().isClientSide)

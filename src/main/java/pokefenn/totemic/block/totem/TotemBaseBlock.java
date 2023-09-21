@@ -128,6 +128,18 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        return level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
+                .map(base -> base.getTotemState().getAnalogOutputSignal())
+                .orElse(0);
+    }
+
+    @Override
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new TotemBaseBlockEntity(pos, state);

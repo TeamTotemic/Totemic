@@ -74,6 +74,11 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
+    public int getAnalogOutputSignal() {
+        return (musicAmount * 15) / TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC;
+    }
+
+    @Override
     public int getTotemEffectMusic() {
         return musicAmount;
     }
