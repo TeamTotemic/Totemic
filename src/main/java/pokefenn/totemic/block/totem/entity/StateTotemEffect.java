@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Multiset.Entry;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -51,6 +52,19 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
 
             if(getAnalogOutputSignal() != prevAnalogOut)
                 tile.setChanged(); //To save on neighbor updates, we only call this when the analog output signal has changed
+        }
+
+        if(level.isClientSide && gameTime % 40 == 0)
+            spawnParticles();
+    }
+
+    private void spawnParticles() {
+        for(int i = 0; i < (musicAmount * 8) / TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC; i++) {
+            var rand = tile.getLevel().getRandom();
+            float xoff = 2 * rand.nextFloat() - 1;
+            float zoff = 2 * rand.nextFloat() - 1;
+            var pos = getPosition();
+            tile.getLevel().addParticle(ParticleTypes.NOTE, pos.x + xoff, pos.y, pos.z + zoff, 0, 0.5, 0);
         }
     }
 
