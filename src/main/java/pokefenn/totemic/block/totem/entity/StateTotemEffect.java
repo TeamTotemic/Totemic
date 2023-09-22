@@ -43,9 +43,14 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
 
         //Drain melody over time
         if(gameTime % 20 == 0 && musicAmount > 0) {
+            int prevAnalogOut = getAnalogOutputSignal();
+
             //these values are chosen such that 3 Wind Chimes hanging from leaves will keep the music amount at about 2/3 of the maximum
             int musicDrain = Mth.clamp(musicAmount / 96, 10, 60);
             musicAmount = Math.max(musicAmount - musicDrain, 0);
+
+            if(getAnalogOutputSignal() != prevAnalogOut)
+                tile.setChanged(); //To save on neighbor updates, we only call this when the analog output signal has changed
         }
     }
 
