@@ -1,7 +1,5 @@
 package pokefenn.totemic.block.music;
 
-import java.util.Optional;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -36,8 +34,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.music.entity.WindChimeBlockEntity;
-import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.util.BlockUtil;
 
 public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterloggedBlock {
@@ -105,7 +103,8 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
 
     @Override
     public boolean triggerEvent(BlockState pState, Level pLevel, BlockPos pPos, int pId, int pParam) {
-        return Optional.ofNullable(pLevel.getBlockEntity(pPos)).map(e -> e.triggerEvent(pId, pParam)).orElse(false);
+        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+        return blockentity != null && blockentity.triggerEvent(pId, pParam);
     }
 
     @Override

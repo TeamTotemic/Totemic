@@ -78,7 +78,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     public void setPlaying(int time) {
         playingTimeLeft = time;
         if(!level.isClientSide)
-            level.blockEvent(getBlockPos(), getBlockState().getBlock(), 0, time); //Notify the client that the chime is playing
+            level.blockEvent(getBlockPos(), getBlockState().getBlock(), 1, time); //Notify the client that the chime is playing
         setChanged();
     }
 
