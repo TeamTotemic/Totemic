@@ -142,6 +142,7 @@
   "itemGroup.totemic": "トテミク",
   
   "totemic.isDoingNoCeremony": "トーテムポールは儀式を行わない",
+  "totemic.totemEffectMusic": "トーテム効果の音楽：%d / %d",
   "totemic.isDoingSelection": "トーテムポールは儀式が選択されるのを待っている\n選択：%s",
   "totemic.isDoingStartup": "トーテムポールは儀式を準備している\n儀式：%s",
   "totemic.isDoingCeremony": "トーテムポールは儀式の効果を発動している\n儀式：%s",

@@ -142,6 +142,7 @@
   "itemGroup.totemic": "Totemic",
   
   "totemic.isDoingNoCeremony": "Der Totempfahl führt gerade keine Zeremonie aus. Versuche, Instrumente zu spielen während Du schleichst, um eine zu starten.",
+  "totemic.totemEffectMusic": "Totemeffekt-Melodie: %d / %d",
   "totemic.isDoingSelection": "Der Totempfahl wartet, dass eine Zeremonie ausgewählt wird\nAuswahl: %s",
   "totemic.isDoingStartup": "Der Totempfahl sammelt Musik für eine Zeremonie\nZeremonie: %s",
   "totemic.isDoingCeremony": "Der Totempfahl führt den Effekt einer Zeremonie aus\nZeremonie: %s",

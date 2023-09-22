@@ -142,6 +142,7 @@
   "itemGroup.totemic": "Totemic",
   
   "totemic.isDoingNoCeremony": "Нет активных ритуалов с этим Тотемным столбом",
+  "totemic.totemEffectMusic": "Totem Effect Melody: %d / %d",
   "totemic.isDoingSelection": "Тотемный столб ожидает выбора ритуала.\nВыбор: %s",
   "totemic.isDoingStartup": "Тотемный столб начинает ритуал\nритуал: %s",
   "totemic.isDoingCeremony": "Тотемный столб находится под эффектом от ритуала.\nритуал: %s",

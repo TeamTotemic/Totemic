@@ -142,6 +142,7 @@
   "itemGroup.totemic": "Totemic",
 
   "totemic.isDoingNoCeremony": "Тотемний стовп не виконує церемонію. Спробуйте зіграти на інструменті поки крадетесь, щоб запустити одну.",
+  "totemic.totemEffectMusic": "Totem Effect Melody: %d / %d",
   "totemic.isDoingSelection": "Тотемний стовп очікує на вибір церемонії\nВибір: %s",
   "totemic.isDoingStartup": "Тотемний стовп збирає музику для церемонії\nЦеремонія: %s",
   "totemic.isDoingCeremony": "Тотемний стовп виконує ефект церемонії\nЦеремонія: %s",
