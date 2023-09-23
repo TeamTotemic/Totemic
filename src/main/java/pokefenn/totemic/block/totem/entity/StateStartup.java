@@ -139,7 +139,7 @@ public final class StateStartup extends TotemState implements StartupContext {
     public void failCeremony() {
         if(tile.getLevel().isClientSide)
             return;
-        MiscUtil.spawnServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
+        MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
         tile.setTotemState(new StateTotemEffect(tile));
     }
 
@@ -148,7 +148,7 @@ public final class StateStartup extends TotemState implements StartupContext {
     public void startCeremony() {
         if(tile.getLevel().isClientSide)
             return;
-        MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 1.0);
+        MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.HAPPY_VILLAGER, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 1.0);
         tile.setTotemState(new StateCeremonyEffect(tile, ceremony, instance, initiator));
         TotemicEntityUtil.getPlayersIn(tile.getLevel(), TotemicEntityUtil.getAABBAround(tile.getBlockPos(), ADVANCEMENT_TRIGGER_RANGE))
             .forEach(player -> ModCriteriaTriggers.PERFORM_CEREMONY.trigger((ServerPlayer) player, ceremony));
