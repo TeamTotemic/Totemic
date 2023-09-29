@@ -2,5 +2,6 @@
 - Certain particle effects are now always visible even when the graphics option is set to "Minimal"
 - Added particles visualizing the amount of Totem Effect Melody that a Totem Base has
 - Comparators can now sense the amount of Totem Effect Melody from Totem Bases
-- Fixed a bug where the Totem Effect Melody is not saved properly
+- Fixed a bug where the Tipi model was displayed at the wrong location with Forge 43.2.8 or newer
+- Fixed a bug where the Totem Effect Melody was not saved properly
 - Now requires at least Forge version 43.3

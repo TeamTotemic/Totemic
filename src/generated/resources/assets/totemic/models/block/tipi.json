@@ -5,7 +5,7 @@
     "particle": "minecraft:block/white_wool"
   },
   "transform": {
-    "origin": "center",
+    "origin": "corner",
     "scale": [
       2.85,
       2.85,

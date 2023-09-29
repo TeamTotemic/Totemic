@@ -71,7 +71,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .texture("particle", mcLoc("block/white_wool"))
                 .rootTransform()
-                    .origin(TransformOrigin.CENTER)
+                    .origin(TransformOrigin.CORNER)
                     .translation(0, 0.95F, 0)
                     .scale(2.85F)
                     .end(),

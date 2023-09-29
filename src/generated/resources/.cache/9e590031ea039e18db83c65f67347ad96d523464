@@ -1,4 +1,4 @@
-// 1.19.2	2023-06-24T15:17:20.075708219	Block States: totemic
+// 1.19.2	2023-09-29T10:21:18.297013375	Block States: totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 3e98d3008a2e942b780e2b0a1452c0ec062cae73 assets/totemic/blockstates/cedar_fence.json
@@ -81,7 +81,7 @@ f76da7674f665c59587f7e977110f152b9fd78d3 assets/totemic/models/block/spruce_tote
 d67c92246a3e974bfe4a2adf0d5cdaff1799e117 assets/totemic/models/block/stripped_cedar_log_horizontal.json
 65e60cb318205679553fa81d9ea0ca6e66120f4d assets/totemic/models/block/stripped_cedar_wood.json
 dbf5977a5882ef7f58ac8d4485b79edb8e2c357f assets/totemic/models/block/stripped_cedar_wood_horizontal.json
-19226b43a733bc6958018bbd3dab07359e92dcb2 assets/totemic/models/block/tipi.json
+d8930e424f68ba599d519161fb2b46c29374b64f assets/totemic/models/block/tipi.json
 03f9383a178c64477dd5347630a70022353e6e1a assets/totemic/models/block/wind_chime.json
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets/totemic/models/item/bald_eagle_spawn_egg.json
 9c593a7d2a87b120d07cf1c24820332b029a7cde assets/totemic/models/item/baykok_bow.json
