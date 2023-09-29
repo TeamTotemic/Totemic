@@ -105,7 +105,7 @@ public class JingleDressItem extends ArmorItem {
         int charge = 0;
 
         @Override
-        public <T> @Nonnull LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        public @Nonnull <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
             return CHARGE_COUNTER.orEmpty(cap, holder);
         }
     }
