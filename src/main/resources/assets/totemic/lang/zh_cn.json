@@ -142,6 +142,7 @@
   "itemGroup.totemic": "图腾",
   
   "totemic.isDoingNoCeremony": "此图腾柱并无仪式",
+  "totemic.totemEffectMusic": "Totem Effect Melody: %d / %d",
   "totemic.isDoingSelection": "此图腾柱正在等待仪式选择\n选择：%s",
   "totemic.isDoingStartup": "此图腾柱正在举行仪式\n仪式: %s",
   "totemic.isDoingCeremony": "此图腾柱正在散发效果\n仪式: %s",

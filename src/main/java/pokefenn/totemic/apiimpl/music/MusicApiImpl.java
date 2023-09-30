@@ -61,9 +61,9 @@ public enum MusicApiImpl implements MusicAPI {
         for(MusicAcceptor acc: list) { //The loop is not executed when list is empty, so we got no division by zero
             var result = acc.acceptMusic(instr, amount / list.size(), pos, entity);
             if(result.isSuccess())
-                MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0); //TODO: The way the particles are being spawned should probably be changed (creating our own packet)
+                MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.NOTE, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0); //TODO: The way the particles are being spawned should probably be changed (creating our own packet)
             if(result.isSaturated())
-                MiscUtil.spawnServerParticles(ParticleTypes.CLOUD, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
+                MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.CLOUD, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         }
         level.getProfiler().pop();
     }

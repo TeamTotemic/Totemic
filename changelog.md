@@ -1,2 +1,7 @@
-- Fixed a bug where the Ceremony HUD got stuck on the screen when switching dimensions/worlds
-- The Totempedia text contents has been moved to the language files (internal change, aimed at making it easier to translate the Totempedia)
+- (@unroman) Added Ukranian translation
+- Certain particle effects are now always visible even when the graphics option is set to "Minimal"
+- Added particles visualizing the amount of Totem Effect Melody that a Totem Base has
+- Comparators can now sense the amount of Totem Effect Melody from Totem Bases
+- Fixed a bug where the Tipi model was displayed at the wrong location with Forge 43.2.8 or newer
+- Fixed a bug where the Totem Effect Melody was not saved properly
+- Now requires at least Forge version 43.3

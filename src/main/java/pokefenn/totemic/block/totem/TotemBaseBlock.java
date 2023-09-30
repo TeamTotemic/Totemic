@@ -4,6 +4,8 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -36,6 +38,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
 import pokefenn.totemic.block.totem.entity.StateSelection;
 import pokefenn.totemic.block.totem.entity.StateStartup;
@@ -66,6 +69,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
             return InteractionResult.PASS;
     }
 
+    @SuppressWarnings("resource")
     private InteractionResult onTotemicStaffRightClick(Level level, BlockPos pos, Player player) {
         if(!level.isClientSide)
             return InteractionResult.CONSUME;
@@ -74,6 +78,8 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         .ifPresent(tile -> {
             if(tile.getTotemState() instanceof StateTotemEffect state) {
                 player.displayClientMessage(new TranslatableComponent("totemic.isDoingNoCeremony"), false);
+                if(Minecraft.getInstance().options.advancedItemTooltips)
+                    player.displayClientMessage(new TranslatableComponent("totemic.totemEffectMusic", state.getTotemEffectMusic(), TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC).withStyle(ChatFormatting.GRAY), false);
             }
             else if(tile.getTotemState() instanceof StateSelection state) {
                 String selectors = state.getSelectors().stream()
@@ -125,6 +131,18 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         return defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
                 .setValue(WATERLOGGED, BlockUtil.placedInWater(context));
+    }
+
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        return level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
+                .map(base -> base.getTotemState().getAnalogOutputSignal())
+                .orElse(0);
     }
 
     @Override
