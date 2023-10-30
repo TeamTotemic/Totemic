@@ -24,13 +24,13 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'pokefenn.totemic'
+            property 'forge.enabledGameTestNamespaces', 'totemic'
             
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                totemic { source sourceSets.main }
+                totemic { sources sourceSets.main, sourceSets.test }
             }
         }
 
@@ -39,13 +39,13 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'pokefenn.totemic'
+            property 'forge.enabledGameTestNamespaces', 'totemic'
             
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                totemic { source sourceSets.main }
+                totemic { sources sourceSets.main, sourceSets.test }
             }
         }
 
@@ -54,13 +54,13 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'pokefenn.totemic'
+            property 'forge.enabledGameTestNamespaces', 'totemic'
             
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                totemic { source sourceSets.main }
+                totemic { sources sourceSets.main, sourceSets.test }
             }
         }
         
