@@ -14,7 +14,7 @@ import pokefenn.totemic.init.ModContent;
 @GameTestHolder(TotemicAPI.MOD_ID)
 @PrefixGameTestTemplate(false)
 public final class MusicTests {
-    @GameTest(template = "play_music")
+    @GameTest(template = "music/play_music")
     public static void testPlayMusic(GameTestHelper h) {
         final BlockPos totemPos = new BlockPos(0, 1, 0);
         final BlockPos playPos = new BlockPos(1, 1, 0);
