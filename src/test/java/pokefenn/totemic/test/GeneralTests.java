@@ -52,6 +52,22 @@ public final class GeneralTests {
         h.succeed();
     }
 
+    @GameTest(template = "tipi_destroy")
+    public static void testTipiDestroy(GameTestHelper h) {
+        final BlockPos tipi1Pos = new BlockPos(1, 2, 1);
+        final BlockPos dummy2Pos = new BlockPos(4, 3, 2);
+        var level = h.getLevel();
+        var player = h.makeMockPlayer();
+        h.getBlockState(tipi1Pos).onDestroyedByPlayer(level, h.absolutePos(tipi1Pos), player, true, level.getFluidState(h.absolutePos(tipi1Pos)));
+        h.getBlockState(dummy2Pos).onDestroyedByPlayer(level, h.absolutePos(dummy2Pos), player, true, level.getFluidState(h.absolutePos(dummy2Pos)));
+
+        h.forEveryBlockInStructure(pos -> {
+            if(pos.getY() >= 2)
+                h.assertBlockPresent(Blocks.AIR, pos);
+        });
+        h.succeed();
+    }
+
     private static void useItem(GameTestHelper h, ItemStack item, BlockPos pos, Direction dir) {
         var apos = h.absolutePos(pos);
         item.useOn(new UseOnContext(h.getLevel(), h.makeMockPlayer(), InteractionHand.MAIN_HAND, item,
