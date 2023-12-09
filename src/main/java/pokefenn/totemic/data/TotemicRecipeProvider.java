@@ -1,39 +1,39 @@
 package pokefenn.totemic.data;
 
-import java.util.function.Consumer;
-
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.Tags;
-import pokefenn.totemic.Totemic;
+import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
 import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
-import vazkii.patchouli.api.PatchouliAPI;
 
 public final class TotemicRecipeProvider extends RecipeProvider {
-    public TotemicRecipeProvider(DataGenerator generator) {
-        super(generator);
+    public TotemicRecipeProvider(PackOutput pOutput) {
+        super(pOutput);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> rc) {
-        var totempedia = PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
+    protected void buildRecipes(RecipeOutput rc) {
+        var totempedia = new ItemStack(Items.WRITTEN_BOOK); //TODO //PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
         var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(totempedia.getItem()).hasNbt(totempedia.getTag()).build());
 
         //The Totempedia recipe itself is not being generated
-        ShapedRecipeBuilder.shaped(ModItems.flute.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.flute.get())
                 .pattern(" LS")
                 .pattern(" S ")
                 .pattern("S  ")
@@ -41,7 +41,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('L', ItemTags.LEAVES)
                 .unlockedBy("has_totempedia", hasTotempedia)
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModItems.jingle_dress.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.jingle_dress.get())
                 .pattern(" L ")
                 .pattern("BHB")
                 .pattern("LBL")
@@ -51,14 +51,14 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("performed_fertility", performed(ModContent.fertility))
                 .unlockedBy("has_cedar_leaves", has(ModBlocks.cedar_leaves.get()))
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModItems.iron_bells.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.iron_bells.get())
                 .pattern(" N ")
                 .pattern("NNN")
                 .pattern(" N ")
                 .define('N', Tags.Items.NUGGETS_IRON)
                 .unlockedBy("has_jingle_dress_recipe", RecipeUnlockedTrigger.unlocked(ModItems.jingle_dress.getId()))
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModItems.rattle.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.rattle.get())
                 .pattern(" WW")
                 .pattern(" BW")
                 .pattern("S  ")
@@ -68,7 +68,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("performed_buffalo_dance", performed(ModContent.buffalo_dance))
                 .unlockedBy("has_buffalo_tooth", has(ModItems.buffalo_tooth.get()))
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModItems.totem_whittling_knife.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.totem_whittling_knife.get())
                 .pattern("  I")
                 .pattern(" SF")
                 .pattern("S  ")
@@ -77,7 +77,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('F', Items.FLINT)
                 .unlockedBy("has_totempedia", hasTotempedia)
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModItems.totemic_staff.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.totemic_staff.get())
                 .pattern(" LS")
                 .pattern(" S ")
                 .pattern("S L")
@@ -85,7 +85,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('L', ItemTags.LEAVES)
                 .unlockedBy("has_totempedia", hasTotempedia)
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModBlocks.drum.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.drum.get())
                 .pattern("EEE")
                 .pattern("LWL")
                 .pattern("WLW")
@@ -94,7 +94,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('W', ItemTags.WOOL)
                 .unlockedBy("has_totempedia", hasTotempedia)
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModBlocks.wind_chime.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.wind_chime.get())
                 .pattern("WWW")
                 .pattern("S S")
                 .pattern("C C")
@@ -104,7 +104,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("performed_fertility", performed(ModContent.fertility))
                 .unlockedBy("has_cedar_logs", has(TotemicItemTags.CEDAR_LOGS))
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModItems.eagle_bone_whistle.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.eagle_bone_whistle.get())
                 .pattern("S ")
                 .pattern("BF")
                 .define('S', Tags.Items.STRING)
@@ -113,7 +113,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("performed_eagle_dance", performed(ModContent.eagle_dance))
                 .unlockedBy("has_eagle_bone", has(ModItems.eagle_bone.get()))
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModItems.medicine_bag.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.medicine_bag.get())
                 .pattern("PST")
                 .pattern("HDH")
                 .pattern(" H ")
@@ -126,17 +126,17 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
                 .unlockedBy("has_buffalo_tooth", has(ModItems.buffalo_tooth.get()))
                 .save(rc);
-        ShapelessRecipeBuilder.shapeless(Items.LEATHER)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.LEATHER)
                 .requires(ModItems.buffalo_hide.get())
                 .unlockedBy("performed_buffalo_dance", performed(ModContent.buffalo_dance))
                 .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
                 .save(rc, "totemic:leather_from_hide");
-        ShapelessRecipeBuilder.shapeless(ModBlocks.cedar_planks.get(), 4)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.cedar_planks.get(), 4)
                 .requires(TotemicItemTags.CEDAR_LOGS)
                 .unlockedBy("performed_fertility", performed(ModContent.fertility))
                 .unlockedBy("has_cedar_logs", has(TotemicItemTags.CEDAR_LOGS))
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModBlocks.totem_torch.get(), 2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.totem_torch.get(), 2)
                 .pattern("STS")
                 .pattern("SWS")
                 .pattern(" S ")
@@ -145,7 +145,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('T', Items.TORCH)
                 .unlockedBy("has_totempedia", hasTotempedia)
                 .save(rc);
-        ShapedRecipeBuilder.shaped(ModBlocks.tipi.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.tipi.get())
                 .pattern(" S ")
                 .pattern("SWS")
                 .pattern("W W")
@@ -154,7 +154,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .group("totemic:tipi")
                 .unlockedBy("has_totempedia", hasTotempedia)
                 .save(rc, "totemic:tipi_from_wool");
-        ShapedRecipeBuilder.shaped(ModBlocks.tipi.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.tipi.get())
                 .pattern(" S ")
                 .pattern("SWS")
                 .pattern("W W")
@@ -172,12 +172,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
         simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
     }
 
-    protected static CeremonyTrigger.TriggerInstance performed(Ceremony ceremony) {
-        return CeremonyTrigger.TriggerInstance.performedCeremony(ceremony);
-    }
-
-    @Override
-    public String getName() {
-        return "Totemic Recipes";
+    protected static Criterion<CeremonyTrigger.TriggerInstance> performed(Ceremony ceremony) {
+        return ModCriteriaTriggers.PERFORM_CEREMONY.createCriterion(CeremonyTrigger.TriggerInstance.performedCeremony(ceremony));
     }
 }

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -18,6 +19,12 @@ import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.ModModelLayers;
+import pokefenn.totemic.data.TotemicBlockStateProvider;
+import pokefenn.totemic.data.TotemicBlockTagsProvider;
+import pokefenn.totemic.data.TotemicEntityTypeTagsProvider;
+import pokefenn.totemic.data.TotemicItemTagsProvider;
+import pokefenn.totemic.data.TotemicLootTableProvider;
+import pokefenn.totemic.data.TotemicRecipeProvider;
 import pokefenn.totemic.handler.ClientInitHandlers;
 import pokefenn.totemic.handler.ClientInteract;
 import pokefenn.totemic.handler.ClientRenderHandler;
@@ -93,19 +100,17 @@ public final class Totemic {
     }
 
     private void gatherData(GatherDataEvent event) {
-        /*var gen = event.getGenerator();
+        var gen = event.getGenerator();
         var efh = event.getExistingFileHelper();
-        if(event.includeServer()) {
-            var blockTP = new TotemicBlockTagsProvider(gen, efh);
-            gen.addProvider(true, blockTP);
-            gen.addProvider(true, new TotemicItemTagsProvider(gen, blockTP, TotemicAPI.MOD_ID, efh));
-            gen.addProvider(true, new TotemicEntityTypeTagsProvider(gen, TotemicAPI.MOD_ID, efh));
-            gen.addProvider(true, new TotemicLootTableProvider(gen));
-            gen.addProvider(true, new TotemicRecipeProvider(gen));
-        }
-        if(event.includeClient()) {
-            gen.addProvider(true, new TotemicBlockStateProvider(gen, efh));
-        }*/
+        var lookup = event.getLookupProvider();
+
+        var blockTP = gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicBlockTagsProvider(out, lookup, efh));
+        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), TotemicAPI.MOD_ID, efh));
+        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicEntityTypeTagsProvider(out, lookup, TotemicAPI.MOD_ID, efh));
+        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicLootTableProvider(out));
+        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicRecipeProvider(out));
+
+        gen.addProvider(event.includeClient(), (PackOutput out) -> new TotemicBlockStateProvider(out, efh));
     }
 
     public static ResourceLocation resloc(String path) {

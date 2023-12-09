@@ -3,7 +3,7 @@ package pokefenn.totemic.data;
 import java.util.Set;
 
 import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -26,8 +26,8 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 
 public class TotemicBlockStateProvider extends BlockStateProvider {
-    public TotemicBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, TotemicAPI.MOD_ID, exFileHelper);
+    public TotemicBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+        super(output, TotemicAPI.MOD_ID, exFileHelper);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString())
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .texture("particle", mcLoc("block/white_wool"))
-                .rootTransform()
+                .rootTransforms()
                     .origin(TransformOrigin.CORNER)
                     .translation(0, 0.95F, 0)
                     .scale(2.85F)

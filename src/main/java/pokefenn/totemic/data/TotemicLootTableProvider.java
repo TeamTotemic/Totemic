@@ -1,34 +1,25 @@
 package pokefenn.totemic.data;
 
 import java.util.List;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.Set;
+import java.util.stream.Stream;
 
-import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.Pair;
-
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.loot.BlockLoot;
-import net.minecraft.data.loot.EntityLoot;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.LootTable.Builder;
-import net.minecraft.world.level.storage.loot.LootTables;
-import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
@@ -40,25 +31,24 @@ import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicLootTableProvider extends LootTableProvider {
-    public TotemicLootTableProvider(DataGenerator generator) {
-        super(generator);
+    public TotemicLootTableProvider(PackOutput pOutput) {
+        super(pOutput, Set.of(), List.of(
+                new SubProviderEntry(TotemicBlockLoot::new, LootContextParamSets.BLOCK),
+                new SubProviderEntry(TotemicEntityLoot::new, LootContextParamSets.ENTITY)));
     }
 
-    @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, Builder>>>, LootContextParamSet>> getTables() { //Yo dawg
-        return ImmutableList.of(
-                Pair.of(TotemicBlockLoot::new, LootContextParamSets.BLOCK),
-                Pair.of(TotemicEntityLoot::new, LootContextParamSets.ENTITY));
-    }
-
-    @Override
+    /*@Override
     protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
-        map.forEach((name, table) -> LootTables.validate(validationtracker, name, table));
-    }
+        map.forEach((name, table) -> table.validate(validationtracker));
+    }*/
 
-    private static class TotemicBlockLoot extends BlockLoot {
+    private static class TotemicBlockLoot extends BlockLootSubProvider {
+        public TotemicBlockLoot() {
+            super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+        }
+
         @Override
-        protected void addTables() {
+        protected void generate() {
             dropSelf(ModBlocks.cedar_log.get());
             dropSelf(ModBlocks.stripped_cedar_log.get());
             dropSelf(ModBlocks.cedar_wood.get());
@@ -71,9 +61,9 @@ public final class TotemicLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.cedar_fence_gate.get());
             dropSelf(ModBlocks.cedar_pressure_plate.get());
             dropSelf(ModBlocks.cedar_sign.get());
-            add(ModBlocks.cedar_slab.get(), BlockLoot::createSlabItemTable);
+            add(ModBlocks.cedar_slab.get(), this::createSlabItemTable);
             dropSelf(ModBlocks.cedar_stairs.get());
-            add(ModBlocks.cedar_door.get(), BlockLoot::createDoorTable);
+            add(ModBlocks.cedar_door.get(), this::createDoorTable);
             dropSelf(ModBlocks.cedar_trapdoor.get());
             add(ModBlocks.potted_cedar_sapling.get(), createPotFlowerItemTable(ModBlocks.cedar_sapling.get()));
             dropSelf(ModBlocks.drum.get());
@@ -90,9 +80,13 @@ public final class TotemicLootTableProvider extends LootTableProvider {
         }
     }
 
-    private static class TotemicEntityLoot extends EntityLoot {
+    private static class TotemicEntityLoot extends EntityLootSubProvider {
+        public TotemicEntityLoot() {
+            super(FeatureFlags.REGISTRY.allFlags());
+        }
+
         @Override
-        protected void addTables() {
+        public void generate() {
             add(ModEntityTypes.buffalo.get(),
                     LootTable.lootTable()
                     .withPool(LootPool.lootPool()
@@ -154,13 +148,8 @@ public final class TotemicLootTableProvider extends LootTableProvider {
         }
 
         @Override
-        protected Iterable<EntityType<?>> getKnownEntities() {
-            return ModEntityTypes.REGISTER.getEntries().stream().<EntityType<?>>map(RegistryObject::get)::iterator; //Compiler has difficulty with type inference here
+        protected Stream<EntityType<?>> getKnownEntityTypes() {
+            return ModEntityTypes.REGISTER.getEntries().stream().map(RegistryObject::get);
         }
-    }
-
-    @Override
-    public String getName() {
-        return "Totemic Loot Tables";
     }
 }
