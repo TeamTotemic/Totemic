@@ -9,7 +9,6 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
@@ -66,48 +65,49 @@ public enum CeremonyHUD implements IGuiOverlay {
 
         var state = activeTotem.getTotemState();
         if(state instanceof StateSelection s)
-            renderSelectionHUD(s, gui, poseStack, partialTick, hudX, hudY);
+            renderSelectionHUD(s, gui, guiGraphics, partialTick, hudX, hudY);
         else if(state instanceof StateStartup s)
-            renderStartupHUD(s, gui, poseStack, partialTick);
+            renderStartupHUD(s, gui, guiGraphics, partialTick);
         else if(state instanceof StateCeremonyEffect s)
-            renderCeremonyEffectHUD(s, gui, poseStack, partialTick);
+            renderCeremonyEffectHUD(s, gui, guiGraphics, partialTick);
 
         poseStack.popPose();
 
         mc.getProfiler().pop();
     }
 
-    private void renderSelectionHUD(StateSelection state, ForgeGui gui, PoseStack poseStack, float partialTick, int hudX, int hudY) {
+    private void renderSelectionHUD(StateSelection state, ForgeGui gui, GuiGraphics guiGraphics, float partialTick, int hudX, int hudY) {
         final int texW = 128, texH = 64;
-        gui.setupOverlayRenderState(true, false, SELECTION_HUD_TEXTURE);
+        gui.setupOverlayRenderState(true, false);
 
         //Background
-        GuiComponent.blit(poseStack, 0, 0,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
+        guiGraphics.blit(SELECTION_HUD_TEXTURE, 0, 0,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
 
         //Header text
         var headerText = I18n.get("totemic.hud.selection");
-        int headerX = (HUD_WIDTH - gui.getFont().width(headerText)) / 2;
-        gui.getFont().draw(poseStack, headerText, headerX, 2, 0xC8000000);
+        guiGraphics.drawCenteredString(gui.getFont(), headerText, HUD_WIDTH / 2, 2, 0xC8000000);
 
         //Instruments
         var selectors = state.getSelectors();
         //Assuming that we have at most 1 selector to render
         if(!selectors.isEmpty()) {
             var item = selectors.get(0).getItem();
-            gui.getMinecraft().getItemRenderer().renderGuiItem(item, hudX + 40, hudY + 12);
+            guiGraphics.renderItem(item, hudX + 40, hudY + 12);
         }
     }
 
     @SuppressWarnings("resource")
-    private void renderStartupHUD(StateStartup state, ForgeGui gui, PoseStack poseStack, float partialTick) {
+    private void renderStartupHUD(StateStartup state, ForgeGui gui, GuiGraphics guiGraphics, float partialTick) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
 
-        gui.setupOverlayRenderState(true, false, CEREMONY_HUD_TEXTURE);
+        gui.setupOverlayRenderState(true, false);
+        RenderSystem.setShaderTexture(0, CEREMONY_HUD_TEXTURE);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         var buf = Tesselator.getInstance().getBuilder();
         buf.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        var poseStack = guiGraphics.pose();
 
         //Background
         addQuad(buf, poseStack, 0, 0,  HUD_WIDTH, HUD_HEIGHT,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
@@ -126,20 +126,21 @@ public enum CeremonyHUD implements IGuiOverlay {
 
         //Ceremony name
         var name = cer.getDisplayName().getString();
-        int nameX = (HUD_WIDTH - gui.getFont().width(name)) / 2;
-        gui.getFont().draw(poseStack, name, nameX, 2, 0xC8000000);
+        guiGraphics.drawCenteredString(gui.getFont(), name, HUD_WIDTH / 2, 2, 0xC8000000);
     }
 
-    private void renderCeremonyEffectHUD(StateCeremonyEffect state, ForgeGui gui, PoseStack poseStack, float partialTick) {
+    private void renderCeremonyEffectHUD(StateCeremonyEffect state, ForgeGui gui, GuiGraphics guiGraphics, float partialTick) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
         var cerInst = state.getCeremonyInstance();
 
-        gui.setupOverlayRenderState(true, false, CEREMONY_HUD_TEXTURE);
+        gui.setupOverlayRenderState(true, false);
+        RenderSystem.setShaderTexture(0, CEREMONY_HUD_TEXTURE);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         var buf = Tesselator.getInstance().getBuilder();
         buf.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        var poseStack = guiGraphics.pose();
 
         //Background
         addQuad(buf, poseStack, 0, 0,  HUD_WIDTH, HUD_HEIGHT,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
@@ -155,8 +156,7 @@ public enum CeremonyHUD implements IGuiOverlay {
 
         //Ceremony name
         var name = cer.getDisplayName().getString();
-        int nameX = (HUD_WIDTH - gui.getFont().width(name)) / 2;
-        gui.getFont().draw(poseStack, name, nameX, 2, 0xC8000000);
+        guiGraphics.drawCenteredString(gui.getFont(), name, HUD_WIDTH / 2, 2, 0xC8000000);
     }
 
     //Like GuiComponent.blit, but using the given BufferBuilder and allowing float values rather than int

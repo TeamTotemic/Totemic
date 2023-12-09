@@ -5,14 +5,12 @@ import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestAssertPosException;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraftforge.gametest.GameTestHolder;
-import net.minecraftforge.gametest.PrefixGameTestTemplate;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.init.ModContent;
 
-@GameTestHolder(TotemicAPI.MOD_ID)
-@PrefixGameTestTemplate(false)
+@GameTestHolder(value = "totemic.music", namespace = TotemicAPI.MOD_ID)
 public final class MusicTests {
     @GameTest(template = "music/play_music")
     public static void testPlayMusic(GameTestHelper h) {
