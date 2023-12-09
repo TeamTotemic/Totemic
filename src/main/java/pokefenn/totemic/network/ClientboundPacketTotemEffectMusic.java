@@ -1,11 +1,9 @@
 package pokefenn.totemic.network;
 
-import java.util.function.Supplier;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.event.network.CustomPayloadEvent;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.init.ModBlockEntities;
 
@@ -22,15 +20,12 @@ public record ClientboundPacketTotemEffectMusic(BlockPos pos, int amount) {
     }
 
     @SuppressWarnings("resource")
-    public static void handle(ClientboundPacketTotemEffectMusic packet, Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
-            Minecraft.getInstance().level.getBlockEntity(packet.pos, ModBlockEntities.totem_base.get())
-            .ifPresent(tile -> {
-                if(tile.getTotemState() instanceof StateTotemEffect state) {
-                    state.setTotemEffectMusic(packet.amount);
-                }
-            });
+    public static void handle(ClientboundPacketTotemEffectMusic packet, CustomPayloadEvent.Context context) {
+        Minecraft.getInstance().level.getBlockEntity(packet.pos, ModBlockEntities.totem_base.get())
+        .ifPresent(tile -> {
+            if(tile.getTotemState() instanceof StateTotemEffect state) {
+                state.setTotemEffectMusic(packet.amount);
+            }
         });
-        context.get().setPacketHandled(true);
     }
 }

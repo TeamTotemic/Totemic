@@ -1,11 +1,9 @@
 package pokefenn.totemic.network;
 
-import java.util.function.Supplier;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.event.network.CustomPayloadEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.block.totem.entity.StateStartup;
@@ -28,15 +26,12 @@ public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instru
     }
 
     @SuppressWarnings("resource")
-    public static void handle(ClientboundPacketStartupMusic packet, Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
-            Minecraft.getInstance().level.getBlockEntity(packet.pos, ModBlockEntities.totem_base.get()) //Doesn't seem to cause any exception on the server (Class Minecraft is never loaded)
-            .ifPresent(tile -> {
-                if(tile.getTotemState() instanceof StateStartup state) {
-                    state.setMusic(packet.instrument, packet.amount);
-                }
-            });
+    public static void handle(ClientboundPacketStartupMusic packet, CustomPayloadEvent.Context context) {
+        Minecraft.getInstance().level.getBlockEntity(packet.pos, ModBlockEntities.totem_base.get()) //Doesn't seem to cause any exception on the server (Class Minecraft is never loaded)
+        .ifPresent(tile -> {
+            if(tile.getTotemState() instanceof StateStartup state) {
+                state.setMusic(packet.instrument, packet.amount);
+            }
         });
-        context.get().setPacketHandled(true);
     }
 }
