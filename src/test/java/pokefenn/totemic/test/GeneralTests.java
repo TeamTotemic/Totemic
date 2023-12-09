@@ -10,13 +10,15 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.gametest.GameTestDontPrefix;
 import net.minecraftforge.gametest.GameTestHolder;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModBlocks;
 
 @GameTestHolder(value = "totemic.general", namespace = TotemicAPI.MOD_ID)
+@GameTestDontPrefix
 public final class GeneralTests {
-    @GameTest(template = "general/tipi_place")
+    @GameTest(batch = "totemic.general", template = "general/tipi_place")
     public static void testTipiPlace(GameTestHelper h) {
         var tipiItem = new ItemStack(ModBlocks.tipi.get());
         var placePos = new BlockPos(1, 1, 1);
@@ -25,7 +27,7 @@ public final class GeneralTests {
         h.succeed();
     }
 
-    @GameTest(template = "general/tipi_place_invalid_surface")
+    @GameTest(batch = "totemic.general", template = "general/tipi_place_invalid_surface")
     public static void testTipiPlaceInvalidSurface(GameTestHelper h) {
         var tipiItem = new ItemStack(ModBlocks.tipi.get());
         var placePos = new BlockPos(1, 1, 1);
@@ -37,7 +39,7 @@ public final class GeneralTests {
         h.succeed();
     }
 
-    @GameTest(template = "general/tipi_place_obstructed")
+    @GameTest(batch = "totemic.general", template = "general/tipi_place_obstructed")
     public static void testTipiPlaceObstructed(GameTestHelper h) {
         var tipiItem = new ItemStack(ModBlocks.tipi.get());
         var placePos = new BlockPos(1, 1, 1);
@@ -50,7 +52,7 @@ public final class GeneralTests {
         h.succeed();
     }
 
-    @GameTest(template = "general/tipi_destroy")
+    @GameTest(batch = "totemic.general", template = "general/tipi_destroy")
     public static void testTipiDestroy(GameTestHelper h) {
         final BlockPos tipi1Pos = new BlockPos(1, 2, 1);
         final BlockPos dummy2Pos = new BlockPos(4, 3, 2);
