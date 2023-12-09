@@ -1,9 +1,6 @@
 package pokefenn.totemic.client.model;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Function;
 
 import com.google.common.collect.ArrayTable;
@@ -13,14 +10,13 @@ import com.google.common.collect.Tables;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
@@ -38,20 +34,18 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
     }
 
     @Override
-    public BakedModel bake(IGeometryBakingContext ctx, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation) {
+    public BakedModel bake(IGeometryBakingContext ctx, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation) {
         var bakedModels = Tables.transformValues(totemModels, unbaked -> unbaked.bake(bakery, spriteGetter, modelState, modelLocation));
         return new BakedTotemPoleModel(ImmutableTable.copyOf(bakedModels));
     }
 
     @Override
-    public Collection<Material> getMaterials(IGeometryBakingContext ctx, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
-        //In addition to gathering materials, this method also resolves the model dependencies.
+    public void resolveParents(Function<ResourceLocation, UnbakedModel> modelGetter, IGeometryBakingContext ctx) {
         //TODO: We probably don't need to create the totemModels table every time this method is called
         final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
         final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
 
         totemModels = ArrayTable.create(woodTypeRegistry, carvingRegistry);
-        var materials = new HashSet<Material>();
         for(var woodType: woodTypeRegistry) {
             var woodTypeModel = (BlockModel) modelGetter.apply(getWoodTypeModelName(woodType));
             var textureMap = woodTypeModel.textureMap; //TODO: This only works if the wood type model specifies all textures itself rather than inheriting textures from its parent
@@ -60,10 +54,9 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
                 //Create new BlockModel with the totem pole model as parent, but different textures
                 var model = new BlockModel(getPoleModelName(carving), List.of(), textureMap, ctx.useAmbientOcclusion(), null, ctx.getTransforms(), List.of());
                 totemModels.put(woodType, carving, model);
-                materials.addAll(model.getMaterials(modelGetter, missingTextureErrors));
+                model.resolveParents(modelGetter);
             }
         }
-        return materials;
     }
 
     private static ResourceLocation getWoodTypeModelName(TotemWoodType woodType) {

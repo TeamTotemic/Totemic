@@ -2,7 +2,7 @@ package pokefenn.totemic.init;
 
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.RegisterEvent;
 import pokefenn.totemic.api.TotemicBlockTags;
@@ -37,14 +37,14 @@ public final class ModContent {
     public static final MusicInstrument eagle_bone_whistle = new MusicInstrument(360, 3600);
 //    public static final MusicInstrument nether_pipe = new MusicInstrument(240, 3900);
 
-    public static final TotemWoodType oak = new TotemWoodType(MaterialColor.WOOD, MaterialColor.PODZOL, BlockTags.OAK_LOGS);
-    public static final TotemWoodType spruce = new TotemWoodType(MaterialColor.PODZOL, MaterialColor.COLOR_BROWN, BlockTags.SPRUCE_LOGS);
-    public static final TotemWoodType birch = new TotemWoodType(MaterialColor.SAND, MaterialColor.QUARTZ, BlockTags.BIRCH_LOGS);
-    public static final TotemWoodType jungle = new TotemWoodType(MaterialColor.DIRT, MaterialColor.PODZOL, BlockTags.JUNGLE_LOGS);
-    public static final TotemWoodType acacia = new TotemWoodType(MaterialColor.COLOR_ORANGE, MaterialColor.STONE, BlockTags.ACACIA_LOGS);
-    public static final TotemWoodType dark_oak = new TotemWoodType(MaterialColor.COLOR_BROWN, MaterialColor.COLOR_BROWN, BlockTags.DARK_OAK_LOGS);
-    public static final TotemWoodType mangrove = new TotemWoodType(MaterialColor.COLOR_RED, MaterialColor.PODZOL, BlockTags.MANGROVE_LOGS);
-    public static final TotemWoodType cedar = new TotemWoodType(MaterialColor.COLOR_PINK, MaterialColor.COLOR_ORANGE, TotemicBlockTags.CEDAR_LOGS);
+    public static final TotemWoodType oak = new TotemWoodType(MapColor.WOOD, MapColor.PODZOL, BlockTags.OAK_LOGS);
+    public static final TotemWoodType spruce = new TotemWoodType(MapColor.PODZOL, MapColor.COLOR_BROWN, BlockTags.SPRUCE_LOGS);
+    public static final TotemWoodType birch = new TotemWoodType(MapColor.SAND, MapColor.QUARTZ, BlockTags.BIRCH_LOGS);
+    public static final TotemWoodType jungle = new TotemWoodType(MapColor.DIRT, MapColor.PODZOL, BlockTags.JUNGLE_LOGS);
+    public static final TotemWoodType acacia = new TotemWoodType(MapColor.COLOR_ORANGE, MapColor.STONE, BlockTags.ACACIA_LOGS);
+    public static final TotemWoodType dark_oak = new TotemWoodType(MapColor.COLOR_BROWN, MapColor.COLOR_BROWN, BlockTags.DARK_OAK_LOGS);
+    public static final TotemWoodType mangrove = new TotemWoodType(MapColor.COLOR_RED, MapColor.PODZOL, BlockTags.MANGROVE_LOGS);
+    public static final TotemWoodType cedar = new TotemWoodType(MapColor.COLOR_PINK, MapColor.COLOR_ORANGE, TotemicBlockTags.CEDAR_LOGS);
 
     public static final TotemCarving none = new PortableTotemCarving();
     public static final TotemCarving bat = new PortableTotemCarving(new PotionTotemEffect(() -> MobEffects.SLOW_FALLING));

@@ -34,7 +34,7 @@ public enum DanseMacabreCeremony implements CeremonyInstance {
     }
 
     private void summonZombie(Level level, ItemEntity item) {
-        var pos = new BlockPos(item.position());
+        var pos = BlockPos.containing(item.position());
         if(!level.getBlockState(pos).getCollisionShape(level, pos).isEmpty() || !level.getBlockState(pos.above()).getCollisionShape(level, pos).isEmpty())
             return;
 

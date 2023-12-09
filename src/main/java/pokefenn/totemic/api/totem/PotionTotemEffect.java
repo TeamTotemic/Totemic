@@ -107,9 +107,10 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
         player.addEffect(getEffectInstance(player, repetition, context));
     }
 
+    @SuppressWarnings("resource")
     @Override
     public void medicineBagEffect(Player player, ItemStack medicineBag, int charge) {
-        if(!player.level.isClientSide)
+        if(!player.level().isClientSide)
             player.addEffect(getEffectInstanceForMedicineBag(player, medicineBag, charge));
     }
 }

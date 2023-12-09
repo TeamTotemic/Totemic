@@ -35,7 +35,7 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public void playMusic(@Nonnull Entity entity, MusicInstrument instr) {
-        playMusic(entity.level, entity.position(), entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
+        playMusic(entity.level(), entity.position(), entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
     }
 
     @Override
@@ -51,7 +51,7 @@ public enum MusicApiImpl implements MusicAPI {
 
         level.getProfiler().push("totemic.playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
-        List<MusicAcceptor> list = BlockUtil.getBlockEntitiesInRange(null, level, new BlockPos(pos), range)
+        List<MusicAcceptor> list = BlockUtil.getBlockEntitiesInRange(null, level, BlockPos.containing(pos), range)
                 .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
                 .filter(LazyOptional::isPresent)
                 .map(lo -> lo.orElse(null))
@@ -75,7 +75,7 @@ public enum MusicApiImpl implements MusicAPI {
 
     @Override
     public void playSelector(@Nonnull Entity entity, MusicInstrument instr) {
-        playSelector(entity.level, entity.position(), entity, instr, DEFAULT_RANGE);
+        playSelector(entity.level(), entity.position(), entity, instr, DEFAULT_RANGE);
     }
 
     @Override
@@ -91,7 +91,7 @@ public enum MusicApiImpl implements MusicAPI {
 
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, pos, 8, new Vec3(0.6, 0.5, 0.6), 0.0);
-        Optional<TotemState> totemState = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, new BlockPos(pos), range)
+        Optional<TotemState> totemState = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, BlockPos.containing(pos), range)
                 .min(BlockUtil.compareCenterDistanceTo(pos))
                 .map(TotemBaseBlockEntity::getTotemState)
                 .filter(TotemState::canSelect);

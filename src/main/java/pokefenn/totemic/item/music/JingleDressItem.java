@@ -13,7 +13,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
@@ -52,17 +51,17 @@ public class JingleDressItem extends ArmorItem {
         public int getEnchantmentValue() { return 15; }
 
         @Override
-        public int getDurabilityForSlot(EquipmentSlot pSlot) { return 5 * 15; }
+        public int getDurabilityForType(Type pSlot) { return 5 * 15; }
 
         @Override
-        public int getDefenseForSlot(EquipmentSlot pSlot) { return 1; }
+        public int getDefenseForType(Type pSlot) { return 1; }
     };
 
     //Rather than using the ItemStack's NBT for keeping track of the charge, we attach a Capability to the ItemStack
     private static final Capability<ChargeCounter> CHARGE_COUNTER = CapabilityManager.get(new CapabilityToken<>() {});
 
     public JingleDressItem(Properties pProperties) {
-        super(MATERIAL, EquipmentSlot.LEGS, pProperties);
+        super(MATERIAL, Type.LEGGINGS, pProperties);
     }
 
     @Override

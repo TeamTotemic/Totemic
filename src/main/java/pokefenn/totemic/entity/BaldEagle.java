@@ -101,21 +101,22 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
     private void calculateFlapping() {
         this.oFlap = this.flap;
         this.oFlapSpeed = this.flapSpeed;
-        this.flapSpeed += (!this.onGround && !this.isPassenger() ? 4 : -1) * 0.3F;
+        this.flapSpeed += (!this.onGround() && !this.isPassenger() ? 4 : -1) * 0.3F;
         this.flapSpeed = Mth.clamp(this.flapSpeed, 0.0F, 1.0F);
-        if(!this.onGround && this.flapping < 1.0F) {
+        if(!this.onGround() && this.flapping < 1.0F) {
             this.flapping = 1.0F;
         }
 
         this.flapping *= 0.9F;
         Vec3 vec3 = this.getDeltaMovement();
-        if(!this.onGround && vec3.y < 0.0D) {
+        if(!this.onGround() && vec3.y < 0.0D) {
             this.setDeltaMovement(vec3.multiply(1.0D, 0.6D, 1.0D));
         }
 
         this.flap += this.flapping * 2.0F;
     }
 
+    @SuppressWarnings("resource")
     @Override
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
@@ -125,31 +126,31 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
             }
 
             if(!this.isSilent()) {
-                this.level.playSound((Player) null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F,
+                this.level().playSound((Player) null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F,
                         1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
             }
 
-            if(!this.level.isClientSide) {
+            if(!this.level().isClientSide) {
                 if(this.random.nextInt(6) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, pPlayer)) {
                     this.tame(pPlayer);
-                    this.level.broadcastEntityEvent(this, (byte) 7);
+                    this.level().broadcastEntityEvent(this, (byte) 7);
                 }
                 else {
-                    this.level.broadcastEntityEvent(this, (byte) 6);
+                    this.level().broadcastEntityEvent(this, (byte) 6);
                 }
             }
 
-            return InteractionResult.sidedSuccess(this.level.isClientSide);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
         else if(this.isTame() && this.isOwnedBy(pPlayer)) {
             if(isFood(itemstack)) {
                 return super.mobInteract(pPlayer, pHand);
             }
-            else if(!this.isFlying() && !this.level.isClientSide) {
+            else if(!this.isFlying() && !this.level().isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }
 
-            return InteractionResult.sidedSuccess(this.level.isClientSide);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
         else {
             return super.mobInteract(pPlayer, pHand);
@@ -202,7 +203,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
 
     @Override
     public boolean doHurtTarget(Entity pEntity) {
-        return pEntity.hurt(DamageSource.mobAttack(this), 3.0F);
+        return pEntity.hurt(pEntity.damageSources().mobAttack(this), 3.0F);
     }
 
     @Override
@@ -250,13 +251,14 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
         }
     }
 
+    @SuppressWarnings("resource")
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
         if(this.isInvulnerableTo(pSource)) {
             return false;
         }
         else {
-            if(!this.level.isClientSide) {
+            if(!this.level().isClientSide) {
                 this.setOrderedToSit(false);
             }
 
@@ -266,7 +268,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
 
     @Override
     public boolean isFlying() {
-        return !onGround;
+        return !onGround();
     }
 
     @Override

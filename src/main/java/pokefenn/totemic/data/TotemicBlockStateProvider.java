@@ -3,20 +3,20 @@ package pokefenn.totemic.data;
 import java.util.Set;
 
 import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
-import net.minecraft.client.renderer.block.model.ItemTransforms.TransformType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
-import net.minecraftforge.client.model.generators.BlockModelBuilder.RootTransformBuilder.TransformOrigin;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.loaders.ObjModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.common.util.TransformationHelper.TransformOrigin;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.TipiBlock;
@@ -43,12 +43,12 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
         simpleBlock(ModBlocks.wind_chime.get(), blockEntityRenderer(ModBlocks.wind_chime, mcLoc("block/white_terracotta"))
                 .transforms()
-                .transform(TransformType.THIRD_PERSON_RIGHT_HAND)
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
                     .rotation(75, 45, 0)
                     .translation(0, 1.25F, 0)
                     .scale(0.375F)
                     .end()
-                .transform(TransformType.GUI)
+                .transform(ItemDisplayContext.GUI)
                     .rotation(30, 225, 0)
                     .translation(0, 0, 0)
                     .scale(0.875F)
@@ -100,17 +100,17 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.basicItem(ModBlocks.cedar_sign.getId());
         im.withExistingParent(ModBlocks.totem_torch.getId().toString(), modLoc("block/totem_torch"))
                 .transforms()
-                .transform(TransformType.THIRD_PERSON_RIGHT_HAND)
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
                     .rotation(0, 45, 0)
                     .translation(0, 1.5F, 1.0F)
                     .scale(0.25F)
                     .end()
-                .transform(TransformType.GUI)
+                .transform(ItemDisplayContext.GUI)
                     .rotation(30, 225, 0)
                     .translation(0, -1.0F, 0)
                     .scale(0.625F)
                     .end()
-                .transform(TransformType.FIXED)
+                .transform(ItemDisplayContext.FIXED)
                     .translation(0, 0, 0.25F)
                     .scale(0.5F)
                     .end()
@@ -120,33 +120,33 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
         im.getBuilder(ModBlocks.tipi.getId().toString())
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .transforms()
-                .transform(TransformType.GUI)
+                .transform(ItemDisplayContext.GUI)
                     .rotation(30, 225, 0)
                     .translation(0, -2.5F, 0)
                     .scale(0.4F)
                     .end()
-                .transform(TransformType.GROUND)
+                .transform(ItemDisplayContext.GROUND)
                     .scale(0.25F)
                     .end()
-                .transform(TransformType.FIXED)
+                .transform(ItemDisplayContext.FIXED)
                     .translation(0, -2.5F, 0)
                     .scale(0.4F)
                     .end()
-                .transform(TransformType.THIRD_PERSON_RIGHT_HAND)
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
                     .rotation(75, 45, 0)
                     .translation(0, 0.05F, 0)
                     .scale(0.25F)
                     .end()
-                .transform(TransformType.THIRD_PERSON_LEFT_HAND)
+                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND)
                     .rotation(75, 45, 0)
                     .translation(0, 0.05F, 0)
                     .scale(0.25F)
                     .end()
-                .transform(TransformType.FIRST_PERSON_RIGHT_HAND)
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
                     .rotation(0, 45, 0)
                     .scale(0.25F)
                     .end()
-                .transform(TransformType.FIRST_PERSON_LEFT_HAND)
+                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
                     .rotation(0, 225, 0)
                     .scale(0.25F)
                     .end()
@@ -232,32 +232,32 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
                 .texture("particle", particleTexture)
                 .guiLight(GuiLight.SIDE)
                 .transforms() //Values copied from models/block/block.json, as we cannot use block/block as the parent
-                .transform(TransformType.GUI)
+                .transform(ItemDisplayContext.GUI)
                     .rotation(30, 225, 0)
                     .translation(0, 0, 0)
                     .scale(0.625F)
                     .end()
-                .transform(TransformType.GROUND)
+                .transform(ItemDisplayContext.GROUND)
                     .rotation(0, 0, 0)
                     .translation(0, 3, 0)
                     .scale(0.25F)
                     .end()
-                .transform(TransformType.FIXED)
+                .transform(ItemDisplayContext.FIXED)
                     .rotation(0, 0, 0)
                     .translation(0, 0, 0)
                     .scale(0.5F)
                     .end()
-                .transform(TransformType.THIRD_PERSON_RIGHT_HAND)
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
                     .rotation(75, 45, 0)
                     .translation(0, 2.5F, 0)
                     .scale(0.375F)
                     .end()
-                .transform(TransformType.FIRST_PERSON_RIGHT_HAND)
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
                     .rotation(0, 45, 0)
                     .translation(0, 0, 0)
                     .scale(0.4F)
                     .end()
-                .transform(TransformType.FIRST_PERSON_LEFT_HAND)
+                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
                     .rotation(0, 225, 0)
                     .translation(0, 0, 0)
                     .scale(0.4F)

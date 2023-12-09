@@ -7,9 +7,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -25,8 +25,8 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -56,7 +56,8 @@ public class TipiBlock extends HorizontalDirectionalBlock {
         if(!level.dimensionType().bedWorks()) {
             level.removeBlock(pos, false);
             removeDummyTipiBlocks(level, pos);
-            level.explode(null, DamageSource.badRespawnPointExplosion(), null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 5.0F, true, Explosion.BlockInteraction.DESTROY);
+            Vec3 vec = pos.getCenter();
+            level.explode(null, level.damageSources().badRespawnPointExplosion(vec), null, vec, 5.0F, true, Level.ExplosionInteraction.BLOCK);
             return InteractionResult.SUCCESS;
         }
         else if(state.getValue(OCCUPIED)) {
@@ -87,7 +88,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
         var pos = ctx.getClickedPos();
 
         var belowState = level.getBlockState(pos.below());
-        if(belowState.getMaterial() != Material.GRASS && belowState.getMaterial() != Material.DIRT)
+        if(!belowState.is(BlockTags.DIRT))
             return false;
         if(!belowState.isFaceSturdy(level, pos, Direction.UP))
             return false;

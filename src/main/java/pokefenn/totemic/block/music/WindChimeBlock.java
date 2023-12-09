@@ -62,7 +62,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         var above = level.getBlockState(pos.above());
         var below = level.getBlockState(pos.below());
-        return !below.getMaterial().isSolid()
+        return !below.isSolid()
                 && (above.isFaceSturdy(level, pos.above(), Direction.DOWN, SupportType.CENTER) || above.is(BlockTags.LEAVES));
     }
 

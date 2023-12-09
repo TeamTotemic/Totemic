@@ -5,8 +5,6 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -20,12 +18,6 @@ import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.ModModelLayers;
-import pokefenn.totemic.data.TotemicBlockStateProvider;
-import pokefenn.totemic.data.TotemicBlockTagsProvider;
-import pokefenn.totemic.data.TotemicEntityTypeTagsProvider;
-import pokefenn.totemic.data.TotemicItemTagsProvider;
-import pokefenn.totemic.data.TotemicLootTableProvider;
-import pokefenn.totemic.data.TotemicRecipeProvider;
 import pokefenn.totemic.handler.ClientInitHandlers;
 import pokefenn.totemic.handler.ClientInteract;
 import pokefenn.totemic.handler.ClientRenderHandler;
@@ -43,13 +35,6 @@ import pokefenn.totemic.network.NetworkHandler;
 @Mod(TotemicAPI.MOD_ID)
 public final class Totemic {
     public static final Logger logger = LogManager.getLogger(Totemic.class);
-
-    public static final CreativeModeTab creativeTab = new CreativeModeTab(TotemicAPI.MOD_ID) {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(ModBlocks.tipi.get());
-        }
-    };
 
     public Totemic() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -108,7 +93,7 @@ public final class Totemic {
     }
 
     private void gatherData(GatherDataEvent event) {
-        var gen = event.getGenerator();
+        /*var gen = event.getGenerator();
         var efh = event.getExistingFileHelper();
         if(event.includeServer()) {
             var blockTP = new TotemicBlockTagsProvider(gen, efh);
@@ -120,7 +105,7 @@ public final class Totemic {
         }
         if(event.includeClient()) {
             gen.addProvider(true, new TotemicBlockStateProvider(gen, efh));
-        }
+        }*/
     }
 
     public static ResourceLocation resloc(String path) {

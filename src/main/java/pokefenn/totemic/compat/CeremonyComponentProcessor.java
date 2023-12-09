@@ -1,15 +1,7 @@
 package pokefenn.totemic.compat;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.ceremony.Ceremony;
-import vazkii.patchouli.api.IComponentProcessor;
-import vazkii.patchouli.api.IVariable;
-import vazkii.patchouli.api.IVariableProvider;
-
-public class CeremonyComponentProcessor implements IComponentProcessor {
-    private Ceremony ceremony;
+public class CeremonyComponentProcessor /*implements IComponentProcessor*/ {
+    /*private Ceremony ceremony;
 
     @Override
     public void setup(IVariableProvider variables) {
@@ -30,5 +22,5 @@ public class CeremonyComponentProcessor implements IComponentProcessor {
 
     private ItemStack getSelectorItem(int index) {
         return ceremony.getSelectors().get(index).getItem();
-    }
+    }*/
 }

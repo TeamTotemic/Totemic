@@ -1,7 +1,8 @@
 package pokefenn.totemic.client.renderer.blockentity;
 
+import org.joml.Quaternionf;
+
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Quaternion;
 
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -76,7 +77,7 @@ public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEnti
     public void render(WindChimeBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
         pPoseStack.translate(0.5, 1.5, 0.5);
-        pPoseStack.mulPose(new Quaternion(0, 0, 1, 0)); //180° rotation around Z-axis
+        pPoseStack.mulPose(new Quaternionf(0, 0, 1, 0)); //180° rotation around Z-axis
         //TODO: Swing animation
         var buffer = pBufferSource.getBuffer(RenderType.entitySolid(TEXTURE));
         root.render(pPoseStack, buffer, pPackedLight, pPackedOverlay);

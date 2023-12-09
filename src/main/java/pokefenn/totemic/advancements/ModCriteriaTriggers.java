@@ -7,6 +7,6 @@ public final class ModCriteriaTriggers {
     public static final CeremonyTrigger PERFORM_CEREMONY = new CeremonyTrigger();
 
     public static void init() {
-        CriteriaTriggers.register(PERFORM_CEREMONY);
+        CriteriaTriggers.register("performed_ceremony", PERFORM_CEREMONY);
     }
 }

@@ -22,7 +22,7 @@ public enum BaykokSummonCeremony implements CeremonyInstance {
             level.globalLevelEvent(1023, pos, 0); //Wither spawn sound
             var spawnPos = pos.relative(Direction.Plane.HORIZONTAL.getRandomDirection(level.random));
             spawnPos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, spawnPos);
-            ModEntityTypes.baykok.get().spawn((ServerLevel) level, null, null, null, spawnPos, MobSpawnType.MOB_SUMMONED, false, false);
+            ModEntityTypes.baykok.get().spawn((ServerLevel) level, spawnPos, MobSpawnType.MOB_SUMMONED);
         }
     }
 

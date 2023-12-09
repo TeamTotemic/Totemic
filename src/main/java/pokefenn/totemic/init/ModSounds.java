@@ -20,6 +20,6 @@ public final class ModSounds {
     public static final RegistryObject<SoundEvent> bald_eagle_death = createSound("bald_eagle.death");
 
     private static RegistryObject<SoundEvent> createSound(String name) {
-        return REGISTER.register(name, () -> new SoundEvent(Totemic.resloc(name)));
+        return REGISTER.register(name, () -> SoundEvent.createVariableRangeEvent(Totemic.resloc(name)));
     }
 }

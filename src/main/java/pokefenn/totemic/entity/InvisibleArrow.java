@@ -24,7 +24,7 @@ public class InvisibleArrow extends AbstractArrow {
     }
 
     public static InvisibleArrow copyArrow(AbstractArrow arrow) {
-        var invisArrow = new InvisibleArrow(arrow.getX(), arrow.getY(), arrow.getZ(), arrow.level);
+        var invisArrow = new InvisibleArrow(arrow.getX(), arrow.getY(), arrow.getZ(), arrow.level());
         invisArrow.setOwner(arrow.getOwner());
         invisArrow.setBaseDamage(arrow.getBaseDamage());
         return invisArrow;

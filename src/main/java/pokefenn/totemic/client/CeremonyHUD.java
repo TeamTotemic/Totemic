@@ -10,6 +10,7 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
@@ -45,7 +46,7 @@ public enum CeremonyHUD implements IGuiOverlay {
     }
 
     @Override
-    public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int screenWidth, int screenHeight) {
+    public void render(ForgeGui gui, GuiGraphics guiGraphics, float partialTick, int screenWidth, int screenHeight) {
         if(activeTotem == null)
             return;
         var mc = gui.getMinecraft();
@@ -59,6 +60,7 @@ public enum CeremonyHUD implements IGuiOverlay {
         final int hudX = (screenWidth - HUD_WIDTH) / 2 + ModConfig.CLIENT.ceremonyHudPositionX.get();
         final int hudY = (screenHeight - HUD_HEIGHT) / 2 + ModConfig.CLIENT.ceremonyHudPositionY.get();
 
+        var poseStack = guiGraphics.pose();
         poseStack.pushPose();
         poseStack.translate(hudX, hudY, 0);
 

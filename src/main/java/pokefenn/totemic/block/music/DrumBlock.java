@@ -25,7 +25,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.util.FakePlayer;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.util.BlockUtil;
@@ -55,10 +54,8 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     private void playMusic(BlockState state, Level level, BlockPos pos, Player player) {
         if(!state.getValue(PLAYED)) {
             if(!player.isShiftKeyDown()) {
-                if(!(player instanceof FakePlayer)) {
-                    putOnCooldown(state, level, pos);
-                    TotemicAPI.get().music().playMusic(level, pos, player, ModContent.drum);
-                }
+                putOnCooldown(state, level, pos);
+                TotemicAPI.get().music().playMusic(level, pos, player, ModContent.drum);
             }
             else {
                 putOnCooldown(state, level, pos);

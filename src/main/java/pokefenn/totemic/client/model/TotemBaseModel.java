@@ -1,22 +1,18 @@
 package pokefenn.totemic.client.model;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 
 import com.google.common.collect.Maps;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelBaker;
 import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.resources.ResourceLocation;
@@ -33,26 +29,23 @@ public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
     }
 
     @Override
-    public BakedModel bake(IGeometryBakingContext ctx, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation) {
+    public BakedModel bake(IGeometryBakingContext ctx, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation) {
         var bakedModels = Maps.transformValues(totemModels, unbaked -> unbaked.bake(bakery, spriteGetter, modelState, modelLocation));
         return new BakedTotemBaseModel(Map.copyOf(bakedModels));
     }
 
     @Override
-    public Collection<Material> getMaterials(IGeometryBakingContext ctx, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
-        //In addition to gathering materials, this method also resolves the model dependencies.
+    public void resolveParents(Function<ResourceLocation, UnbakedModel> modelGetter, IGeometryBakingContext context) {
         //TODO: We probably don't need to create the totemModels table every time this method is called
         final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
 
         totemModels = Maps.newHashMapWithExpectedSize(woodTypeRegistry.getValues().size());
-        var materials = new HashSet<Material>();
         for(var woodType: woodTypeRegistry) {
             var model = modelGetter.apply(getWoodTypeModelName(woodType));
 
             totemModels.put(woodType, model);
-            materials.addAll(model.getMaterials(modelGetter, missingTextureErrors));
+            model.resolveParents(modelGetter);
         }
-        return materials;
     }
 
     private static ResourceLocation getWoodTypeModelName(TotemWoodType woodType) {

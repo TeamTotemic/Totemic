@@ -81,12 +81,12 @@ public class Baykok extends Monster implements RangedAttackMob {
         double dZ = pTarget.getZ() - this.getZ();
         double xzDist = Math.sqrt(dX * dX + dZ * dZ);
         float velocity = 2.0F + 1.0F * distanceFactor;
-        float inaccuracy = 4.5F - this.level.getDifficulty().getId();
-        arrow.setBaseDamage(arrow.getBaseDamage() + 1.0 + 0.3 * level.getDifficulty().getId());
+        float inaccuracy = 4.5F - this.level().getDifficulty().getId();
+        arrow.setBaseDamage(arrow.getBaseDamage() + 1.0 + 0.3 * level().getDifficulty().getId());
         arrow.shoot(dX, dY + 0.125 * xzDist, dZ, velocity, inaccuracy);
 
         this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-        this.level.addFreshEntity(arrow);
+        this.level().addFreshEntity(arrow);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class Baykok extends Monster implements RangedAttackMob {
 
     @Override
     public void checkDespawn() {
-        if(this.level.getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
+        if(this.level().getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
             this.discard();
         }
         else {

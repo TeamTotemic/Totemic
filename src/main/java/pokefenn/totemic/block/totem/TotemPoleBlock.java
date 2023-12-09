@@ -4,9 +4,7 @@ import java.util.Optional;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -23,11 +21,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
@@ -137,7 +134,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public MaterialColor getMapColor(BlockState state, BlockGetter level, BlockPos pos, MaterialColor defaultColor) {
+    public MapColor getMapColor(BlockState state, BlockGetter level, BlockPos pos, MapColor defaultColor) {
         return level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
                 .map(pole -> pole.getWoodType().getWoodColor())
                 .orElse(defaultColor);
@@ -152,15 +149,5 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         stack.getOrCreateTag().putString(TotemPoleItem.POLE_CARVING_KEY, carving.getRegistryName().toString());
         stack.getTag().putString(TotemPoleItem.POLE_WOOD_KEY, woodType.getRegistryName().toString());
         return stack;
-    }
-
-    @Override
-    public void fillItemCategory(CreativeModeTab pTab, NonNullList<ItemStack> pItems) {
-        for(var carving: TotemicAPI.get().registry().totemCarvings()) {
-            var stack = new ItemStack(this);
-            stack.getOrCreateTag().putString(TotemPoleItem.POLE_CARVING_KEY, carving.getRegistryName().toString());
-            stack.getTag().putString(TotemPoleItem.POLE_WOOD_KEY, "totemic:cedar");
-            pItems.add(stack);
-        }
     }
 }

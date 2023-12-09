@@ -25,7 +25,7 @@ public class OcelotTotemEffect extends TotemEffect {
             if(creeper.swell > 15) {
                 creeper.swell = 0;
                 creeper.setSwellDir(-1);
-                MiscUtil.spawnServerParticles(ParticleTypes.INSTANT_EFFECT, creeper.level, creeper.getBoundingBox().getCenter(), 10, new Vec3(0.5, 0.75, 0.5), 0.0);
+                MiscUtil.spawnServerParticles(ParticleTypes.INSTANT_EFFECT, creeper.level(), creeper.getBoundingBox().getCenter(), 10, new Vec3(0.5, 0.75, 0.5), 0.0);
             }
         }
     }
