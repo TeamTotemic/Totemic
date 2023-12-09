@@ -1,6 +1,6 @@
 #!/bin/bash
 # Creates a new Github release with the current version and changelog
-BRANCH=1.19
+BRANCH=1.20.2
 VERSION=$(sed -nr 's/mod_version=(.*)/\1/p' gradle.properties)
 if [ $? -ne 0 ] || [ -z "$VERSION" ]; then
     echo "Version number could not be determined" >&2

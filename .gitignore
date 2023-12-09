@@ -3,7 +3,8 @@
 /bin
 /build
 /eclipse
+/.eclipse
 /.classpath
 /.project
 /run
-/*.launch
+*.launch
