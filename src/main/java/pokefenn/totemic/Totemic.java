@@ -15,7 +15,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
-import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.ModModelLayers;
@@ -76,7 +75,6 @@ public final class Totemic {
         event.enqueueWork(() -> {
             ModBlocks.setFireInfo();
             ModBlocks.addCedarSignToSignBlockEntityType();
-            ModCriteriaTriggers.init();
         });
 
         NetworkHandler.init();

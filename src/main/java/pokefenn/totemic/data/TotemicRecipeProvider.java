@@ -30,7 +30,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
     @Override
     protected void buildRecipes(RecipeOutput rc) {
         var totempedia = new ItemStack(Items.WRITTEN_BOOK); //TODO //PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
-        var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(totempedia.getItem()).hasNbt(totempedia.getTag()).build());
+        var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(totempedia.getItem())/*.hasNbt(totempedia.getTag())*/.build());
 
         //The Totempedia recipe itself is not being generated
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.flute.get())
