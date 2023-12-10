@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_buffalo_meat": {
+    "has_eagle_bone": {
       "conditions": {
         "items": [
           {
             "items": [
-              "totemic:buffalo_meat"
+              "totemic:eagle_bone"
             ]
           }
         ]
@@ -15,20 +15,28 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:cooked_buffalo_meat_from_smelting"
+        "recipe": "totemic:eagle_bone_whistle"
       },
       "trigger": "minecraft:recipe_unlocked"
+    },
+    "performed_eagle_dance": {
+      "conditions": {
+        "ceremony": "totemic:eagle_dance"
+      },
+      "trigger": "totemic:performed_ceremony"
     }
   },
   "requirements": [
     [
-      "has_buffalo_meat",
-      "has_the_recipe"
+      "has_the_recipe",
+      "performed_eagle_dance",
+      "has_eagle_bone"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:cooked_buffalo_meat_from_smelting"
+      "totemic:eagle_bone_whistle"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

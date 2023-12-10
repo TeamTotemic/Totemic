@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "L": {
       "tag": "minecraft:leaves"
@@ -15,5 +16,6 @@
   ],
   "result": {
     "item": "totemic:totemic_staff"
-  }
+  },
+  "show_notification": true
 }

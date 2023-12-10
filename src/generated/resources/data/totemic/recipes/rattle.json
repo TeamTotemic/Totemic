@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "B": {
       "item": "totemic:buffalo_tooth"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "totemic:rattle"
-  }
+  },
+  "show_notification": true
 }

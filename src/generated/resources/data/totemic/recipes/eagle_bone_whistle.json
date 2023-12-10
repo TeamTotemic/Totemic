@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "B": {
       "item": "totemic:eagle_bone"
@@ -17,5 +18,6 @@
   ],
   "result": {
     "item": "totemic:eagle_bone_whistle"
-  }
+  },
+  "show_notification": true
 }

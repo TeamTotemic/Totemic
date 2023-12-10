@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:wind_chime"
+        "recipe": "totemic:cedar_planks"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,14 +26,15 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "performed_fertility",
-      "has_cedar_logs",
-      "has_the_recipe"
+      "has_cedar_logs"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:wind_chime"
+      "totemic:cedar_planks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

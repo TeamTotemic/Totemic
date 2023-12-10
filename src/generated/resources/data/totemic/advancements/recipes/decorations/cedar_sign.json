@@ -15,20 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:cedar_trapdoor"
+        "recipe": "totemic:cedar_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_planks"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:cedar_trapdoor"
+      "totemic:cedar_sign"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

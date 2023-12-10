@@ -1,6 +1,18 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_buffalo_hide": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "totemic:buffalo_hide"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_buffalo_tooth": {
       "conditions": {
         "items": [
@@ -15,7 +27,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:rattle"
+        "recipe": "totemic:medicine_bag"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -28,14 +40,16 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "performed_buffalo_dance",
-      "has_buffalo_tooth",
-      "has_the_recipe"
+      "has_buffalo_hide",
+      "has_buffalo_tooth"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:rattle"
+      "totemic:medicine_bag"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

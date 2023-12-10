@@ -1,11 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cedar_logs": {
+    "has_cedar_leaves": {
       "conditions": {
         "items": [
           {
-            "tag": "totemic:cedar_logs"
+            "items": [
+              "totemic:cedar_leaves"
+            ]
           }
         ]
       },
@@ -13,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:cedar_planks"
+        "recipe": "totemic:jingle_dress"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,14 +28,15 @@
   },
   "requirements": [
     [
+      "has_the_recipe",
       "performed_fertility",
-      "has_cedar_logs",
-      "has_the_recipe"
+      "has_cedar_leaves"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:cedar_planks"
+      "totemic:jingle_dress"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

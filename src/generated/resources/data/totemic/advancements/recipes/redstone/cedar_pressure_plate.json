@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_buffalo_meat": {
+    "has_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "totemic:buffalo_meat"
+              "totemic:cedar_planks"
             ]
           }
         ]
@@ -15,20 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:cooked_buffalo_meat_from_smoking"
+        "recipe": "totemic:cedar_pressure_plate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_buffalo_meat",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_planks"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:cooked_buffalo_meat_from_smoking"
+      "totemic:cedar_pressure_plate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "B": {
       "item": "totemic:iron_bells"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "totemic:jingle_dress"
-  }
+  },
+  "show_notification": true
 }

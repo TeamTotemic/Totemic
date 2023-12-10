@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_buffalo_hide": {
+    "has_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "totemic:buffalo_hide"
+              "totemic:cedar_planks"
             ]
           }
         ]
@@ -15,27 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:leather_from_hide"
+        "recipe": "totemic:cedar_trapdoor"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "performed_buffalo_dance": {
-      "conditions": {
-        "ceremony": "totemic:buffalo_dance"
-      },
-      "trigger": "totemic:performed_ceremony"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "performed_buffalo_dance",
-      "has_buffalo_hide"
+      "has_planks"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:leather_from_hide"
+      "totemic:cedar_trapdoor"
     ]
   },
   "sends_telemetry_event": false

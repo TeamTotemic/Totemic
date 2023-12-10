@@ -15,20 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:cedar_fence"
+        "recipe": "totemic:cedar_button"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_planks"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:cedar_fence"
+      "totemic:cedar_button"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

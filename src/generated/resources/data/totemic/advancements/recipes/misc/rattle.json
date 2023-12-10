@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_planks": {
+    "has_buffalo_tooth": {
       "conditions": {
         "items": [
           {
             "items": [
-              "totemic:cedar_planks"
+              "totemic:buffalo_tooth"
             ]
           }
         ]
@@ -15,20 +15,28 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:cedar_button"
+        "recipe": "totemic:rattle"
       },
       "trigger": "minecraft:recipe_unlocked"
+    },
+    "performed_buffalo_dance": {
+      "conditions": {
+        "ceremony": "totemic:buffalo_dance"
+      },
+      "trigger": "totemic:performed_ceremony"
     }
   },
   "requirements": [
     [
-      "has_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "performed_buffalo_dance",
+      "has_buffalo_tooth"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:cedar_button"
+      "totemic:rattle"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

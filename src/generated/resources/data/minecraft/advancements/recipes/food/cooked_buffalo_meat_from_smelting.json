@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_buffalo_hide": {
+    "has_buffalo_meat": {
       "conditions": {
         "items": [
           {
             "items": [
-              "totemic:buffalo_hide"
+              "totemic:buffalo_meat"
             ]
           }
         ]
@@ -15,27 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:tipi_from_hide"
+        "recipe": "minecraft:cooked_buffalo_meat_from_smelting"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "performed_buffalo_dance": {
-      "conditions": {
-        "ceremony": "totemic:buffalo_dance"
-      },
-      "trigger": "totemic:performed_ceremony"
     }
   },
   "requirements": [
     [
-      "performed_buffalo_dance",
-      "has_buffalo_hide",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_buffalo_meat"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:tipi_from_hide"
+      "minecraft:cooked_buffalo_meat_from_smelting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

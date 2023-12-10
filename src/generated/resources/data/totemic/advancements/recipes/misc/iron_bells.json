@@ -16,13 +16,14 @@
   },
   "requirements": [
     [
-      "has_jingle_dress_recipe",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_jingle_dress_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
       "totemic:iron_bells"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

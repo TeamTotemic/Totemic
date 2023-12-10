@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_eagle_bone": {
+    "has_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "totemic:eagle_bone"
+              "totemic:cedar_planks"
             ]
           }
         ]
@@ -15,27 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:eagle_bone_whistle"
+        "recipe": "totemic:cedar_fence"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "performed_eagle_dance": {
-      "conditions": {
-        "ceremony": "totemic:eagle_dance"
-      },
-      "trigger": "totemic:performed_ceremony"
     }
   },
   "requirements": [
     [
-      "performed_eagle_dance",
-      "has_eagle_bone",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_planks"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:eagle_bone_whistle"
+      "totemic:cedar_fence"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

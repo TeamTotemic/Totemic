@@ -12,9 +12,8 @@
         "items": [
           {
             "items": [
-              "patchouli:guide_book"
-            ],
-            "nbt": "{\"patchouli:book\":\"totemic:totempedia\"}"
+              "minecraft:written_book"
+            ]
           }
         ]
       },
@@ -23,13 +22,14 @@
   },
   "requirements": [
     [
-      "has_totempedia",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_totempedia"
     ]
   ],
   "rewards": {
     "recipes": [
       "totemic:totemic_staff"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

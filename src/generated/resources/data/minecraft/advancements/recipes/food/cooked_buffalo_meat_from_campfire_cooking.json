@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_planks": {
+    "has_buffalo_meat": {
       "conditions": {
         "items": [
           {
             "items": [
-              "totemic:cedar_planks"
+              "totemic:buffalo_meat"
             ]
           }
         ]
@@ -15,20 +15,21 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "totemic:cedar_fence_gate"
+        "recipe": "minecraft:cooked_buffalo_meat_from_campfire_cooking"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_planks",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_buffalo_meat"
     ]
   ],
   "rewards": {
     "recipes": [
-      "totemic:cedar_fence_gate"
+      "minecraft:cooked_buffalo_meat_from_campfire_cooking"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
