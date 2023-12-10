@@ -2,11 +2,15 @@ package pokefenn.totemic.init;
 
 import java.util.Set;
 
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SpawnEggItem;
@@ -17,6 +21,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.item.BaykokBowItem;
 import pokefenn.totemic.item.CeremonyCheatItem;
@@ -68,17 +73,35 @@ public final class ModItems {
 
     @SubscribeEvent
     public static void init(RegisterEvent event) {
-        if(!event.getRegistryKey().equals(ForgeRegistries.Keys.ITEMS))
-            return;
+        if(event.getRegistryKey().equals(ForgeRegistries.Keys.ITEMS)) {
+            //Register item blocks
+            final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
+            for(var blockO: ModBlocks.REGISTER.getEntries()) {
+                if(blocksWithoutItem.contains(blockO.getId()))
+                    continue;
 
-        //Register item blocks
-        final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
-        for(var blockO: ModBlocks.REGISTER.getEntries()) {
-            if(blocksWithoutItem.contains(blockO.getId()))
-                continue;
-
-            Block block = blockO.get();
-            event.getForgeRegistry().register(blockO.getId(), new BlockItem(block, new Properties()));
+                Block block = blockO.get();
+                event.getForgeRegistry().register(blockO.getId(), new BlockItem(block, new Properties()));
+            }
         }
+        //Register the creative tab
+        event.register(Registries.CREATIVE_MODE_TAB, Totemic.resloc("totemic"), () ->
+                CreativeModeTab.builder()
+                .title(Component.translatable("itemGroup.totemic"))
+                .icon(() -> new ItemStack(ModBlocks.tipi.get()))
+                .displayItems(ModItems::addItemsToCreativeTab)
+                .build());
+    }
+
+    //TODO: Manual adding might be better to define a better ordering of the items
+    private static void addItemsToCreativeTab(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output out) {
+        final Set<ResourceLocation> blocksNotInCreativeTab = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.dummy_tipi.getId());
+        ModBlocks.REGISTER.getEntries().stream()
+                .filter(ro -> !blocksNotInCreativeTab.contains(ro.getId()))
+                .map(RegistryObject::get)
+                .forEach(out::accept);
+        ModItems.REGISTER.getEntries().stream()
+                .map(RegistryObject::get)
+                .forEach(out::accept);
     }
 }
