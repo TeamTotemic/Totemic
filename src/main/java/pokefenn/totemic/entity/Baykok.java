@@ -89,6 +89,7 @@ public class Baykok extends Monster implements RangedAttackMob {
         this.level().addFreshEntity(arrow);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {

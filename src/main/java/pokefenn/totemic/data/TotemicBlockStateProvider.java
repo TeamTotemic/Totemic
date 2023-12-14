@@ -25,7 +25,7 @@ import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 
-public class TotemicBlockStateProvider extends BlockStateProvider {
+public final class TotemicBlockStateProvider extends BlockStateProvider {
     public TotemicBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, TotemicAPI.MOD_ID, exFileHelper);
     }

@@ -47,9 +47,4 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
 
         tag(Tags.Blocks.FENCE_GATES_WOODEN).add(ModBlocks.cedar_fence_gate.get());
     }
-
-    @Override
-    public String getName() {
-        return "Totemic Block tags";
-    }
 }

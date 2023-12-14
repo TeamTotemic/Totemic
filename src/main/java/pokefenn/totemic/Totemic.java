@@ -103,8 +103,8 @@ public final class Totemic {
         var lookup = event.getLookupProvider();
 
         var blockTP = gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicBlockTagsProvider(out, lookup, efh));
-        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), TotemicAPI.MOD_ID, efh));
-        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicEntityTypeTagsProvider(out, lookup, TotemicAPI.MOD_ID, efh));
+        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
+        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicEntityTypeTagsProvider(out, lookup, efh));
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicLootTableProvider(out));
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicRecipeProvider(out));
 

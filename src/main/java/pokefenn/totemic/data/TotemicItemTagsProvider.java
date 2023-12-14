@@ -12,13 +12,14 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicItemTagsProvider extends ItemTagsProvider {
-    public TotemicItemTagsProvider(PackOutput pOutput, CompletableFuture<Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-        super(pOutput, pLookupProvider, pBlockTags, modId, existingFileHelper);
+    public TotemicItemTagsProvider(PackOutput pOutput, CompletableFuture<Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, @Nullable ExistingFileHelper existingFileHelper) {
+        super(pOutput, pLookupProvider, pBlockTags, TotemicAPI.MOD_ID, existingFileHelper);
     }
 
     @Override
@@ -46,10 +47,5 @@ public final class TotemicItemTagsProvider extends ItemTagsProvider {
         copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
 
         copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
-    }
-
-    @Override
-    public String getName() {
-        return "Totemic Item tags";
     }
 }

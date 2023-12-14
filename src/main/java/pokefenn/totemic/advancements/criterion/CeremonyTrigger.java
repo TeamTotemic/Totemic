@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.DeserializationContext;
@@ -12,6 +13,7 @@ import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.GsonHelper;
+import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 
@@ -37,8 +39,8 @@ public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.Trig
             this.ceremony = ceremony;
         }
 
-        public static TriggerInstance performedCeremony(Ceremony ceremony) {
-            return new TriggerInstance(Optional.empty(), ceremony); //TODO: Not sure if Optional.empty() is the correct behavior here if we don't care which player
+        public static Criterion<TriggerInstance> performedCeremony(Ceremony ceremony) {
+            return ModCriteriaTriggers.PERFORM_CEREMONY.createCriterion(new TriggerInstance(Optional.empty(), ceremony));
         }
 
         public boolean matches(Ceremony cer) {

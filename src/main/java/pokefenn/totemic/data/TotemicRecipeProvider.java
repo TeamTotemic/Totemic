@@ -13,7 +13,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.Tags;
-import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
 import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -173,6 +172,6 @@ public final class TotemicRecipeProvider extends RecipeProvider {
     }
 
     protected static Criterion<CeremonyTrigger.TriggerInstance> performed(Ceremony ceremony) {
-        return ModCriteriaTriggers.PERFORM_CEREMONY.createCriterion(CeremonyTrigger.TriggerInstance.performedCeremony(ceremony));
+        return CeremonyTrigger.TriggerInstance.performedCeremony(ceremony);
     }
 }
