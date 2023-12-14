@@ -20,11 +20,11 @@ public class ClientInteract {
             return;
 
         Player player = Minecraft.getInstance().player;
-        if(player == null)
+        if(player == null || !player.isShiftKeyDown())
             return;
         ItemStack stack = player.getMainHandItem();
-        if(player.isShiftKeyDown() && stack.getItem() == ModItems.totem_whittling_knife.get()) {
-            boolean direction = (event.getDeltaX() > 0);
+        if(stack.getItem() == ModItems.totem_whittling_knife.get()) {
+            boolean direction = (event.getDeltaY() > 0);
             NetworkHandler.channel.send(new ServerboundPacketMouseWheel(direction), PacketDistributor.SERVER.noArg());
             player.setItemInHand(InteractionHand.MAIN_HAND, TotemKnifeItem.changeIndex(stack, direction));
             event.setCanceled(true);
