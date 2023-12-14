@@ -11,9 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:written_book"
-            ]
+            "tag": "minecraft:logs_that_burn"
           }
         ]
       },

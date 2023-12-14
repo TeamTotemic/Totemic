@@ -10,7 +10,6 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.Tags;
@@ -29,8 +28,9 @@ public final class TotemicRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput rc) {
-        var totempedia = new ItemStack(Items.WRITTEN_BOOK); //TODO //PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
-        var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(totempedia.getItem())/*.hasNbt(totempedia.getTag())*/.build());
+        //TODO: Patchouli is not yet available
+        //var totempedia = PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
+        var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(ItemTags.LOGS_THAT_BURN)/*.of(totempedia.getItem()).hasNbt(totempedia.getTag())*/.build());
 
         //The Totempedia recipe itself is not being generated
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.flute.get())
