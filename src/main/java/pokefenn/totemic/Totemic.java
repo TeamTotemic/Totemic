@@ -20,6 +20,8 @@ import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
+import pokefenn.totemic.data.TotemicDamageTypeTagsProvider;
+import pokefenn.totemic.data.TotemicDatapackEntryProvider;
 import pokefenn.totemic.data.TotemicEntityTypeTagsProvider;
 import pokefenn.totemic.data.TotemicItemTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
@@ -107,6 +109,8 @@ public final class Totemic {
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicEntityTypeTagsProvider(out, lookup, efh));
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicLootTableProvider(out));
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicRecipeProvider(out));
+        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicDatapackEntryProvider(out, lookup));
+        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicDamageTypeTagsProvider(out, lookup, efh));
 
         gen.addProvider(event.includeClient(), (PackOutput out) -> new TotemicBlockStateProvider(out, efh));
     }
