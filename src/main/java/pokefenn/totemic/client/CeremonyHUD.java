@@ -11,7 +11,7 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
@@ -29,6 +29,8 @@ public enum CeremonyHUD implements IGuiOverlay {
 
     private static final ResourceLocation SELECTION_HUD_TEXTURE = Totemic.resloc("textures/gui/selection_hud.png");
     private static final ResourceLocation CEREMONY_HUD_TEXTURE = Totemic.resloc("textures/gui/ceremony_hud.png");
+
+    private static final Component SELECTION_TEXT = Component.translatable("totemic.hud.selection");
 
     private static final int HUD_WIDTH = 117;
     private static final int HUD_HEIGHT = 30;
@@ -83,16 +85,15 @@ public enum CeremonyHUD implements IGuiOverlay {
         //Background
         guiGraphics.blit(SELECTION_HUD_TEXTURE, 0, 0,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
 
-        //Header text
-        var headerText = I18n.get("totemic.hud.selection");
-        guiGraphics.drawCenteredString(gui.getFont(), headerText, HUD_WIDTH / 2, 2, 0xC8000000);
+        int headerX = (HUD_WIDTH - gui.getFont().width(SELECTION_TEXT)) / 2;
+        guiGraphics.drawString(gui.getFont(), SELECTION_TEXT, headerX, 2, 0xC8000000, false);
 
         //Instruments
         var selectors = state.getSelectors();
         //Assuming that we have at most 1 selector to render
         if(!selectors.isEmpty()) {
             var item = selectors.get(0).getItem();
-            guiGraphics.renderItem(item, hudX + 40, hudY + 12);
+            guiGraphics.renderItem(item, 40, 12);
         }
     }
 
@@ -125,8 +126,9 @@ public enum CeremonyHUD implements IGuiOverlay {
         BufferUploader.drawWithShader(buf.end());
 
         //Ceremony name
-        var name = cer.getDisplayName().getString();
-        guiGraphics.drawCenteredString(gui.getFont(), name, HUD_WIDTH / 2, 2, 0xC8000000);
+        var name = cer.getDisplayName();
+        int nameX = (HUD_WIDTH - gui.getFont().width(name)) / 2;
+        guiGraphics.drawString(gui.getFont(), name, nameX, 2, 0xC8000000, false);
     }
 
     private void renderCeremonyEffectHUD(StateCeremonyEffect state, ForgeGui gui, GuiGraphics guiGraphics, float partialTick) {
@@ -155,11 +157,12 @@ public enum CeremonyHUD implements IGuiOverlay {
         BufferUploader.drawWithShader(buf.end());
 
         //Ceremony name
-        var name = cer.getDisplayName().getString();
-        guiGraphics.drawCenteredString(gui.getFont(), name, HUD_WIDTH / 2, 2, 0xC8000000);
+        var name = cer.getDisplayName();
+        int nameX = (HUD_WIDTH - gui.getFont().width(name)) / 2;
+        guiGraphics.drawString(gui.getFont(), name, nameX, 2, 0xC8000000, false);
     }
 
-    //Like GuiComponent.blit, but using the given BufferBuilder and allowing float values rather than int
+    //Like GuiGraphics.blit, but using the given BufferBuilder and allowing float values rather than int
     private static void addQuad(BufferBuilder buf, PoseStack ps, float x, float y, float width, float height, float uOffset, float vOffset, float uWidth, float vHeight, int textureWidth, int textureHeight) {
         var mat = ps.last().pose();
         float minU = uOffset / textureWidth,  maxU = (uOffset + uWidth) / textureWidth;
