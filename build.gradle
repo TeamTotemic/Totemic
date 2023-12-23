@@ -1,61 +1,56 @@
 plugins {
+    id 'java-library'
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id 'net.darkhax.curseforgegradle' version '1.1.15'
+    id 'net.neoforged.gradle.userdev' version '7.0.57'
+    //id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    id 'net.darkhax.curseforgegradle' version '1.1.18'
     id 'com.modrinth.minotaur' version '2.+'
 }
 
 version = mod_version
-group = 'pokefenn.totemic'
+group = mod_group_id
+
+repositories {
+    mavenLocal()
+}
 
 base {
-    archivesName = 'Totemic-forge'
+    archivesName = 'Totemic-neoforged'
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-minecraft {
-    mappings channel: mappings_channel, version: mappings_version
+runs {
+    configureEach {
+        //workingDirectory project.file('run')
 
-    copyIdeResources = true
+        systemProperty 'forge.logging.markers', 'REGISTRIES'
+        systemProperty 'forge.logging.console.level', 'debug'
 
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+        //systemProperty 'mixin.env.remapRefMap', 'true'
+        //systemProperty 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
-    runs {
-        configureEach {
-            workingDirectory project.file('run')
+        modSources sourceSets.main, sourceSets.test
+    }
 
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
+    client {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    }
 
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+    server {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+        programArgument '--nogui'
+    }
 
-            mods {
-                totemic { sources sourceSets.main, sourceSets.test }
-            }
-        }
+    gameTestServer {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    }
+    
+    data {
+        //workingDirectory project.file('run-data')
 
-        client {
-            property 'forge.enabledGameTestNamespaces', mod_id
-        }
-
-        server {
-            property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
-        }
-
-        gameTestServer {
-            property 'forge.enabledGameTestNamespaces', mod_id
-        }
-        
-        data {
-            workingDirectory project.file('run-data')
-
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-        }
+        programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
     }
 }
 
@@ -66,26 +61,25 @@ repositories {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${forge_version}"
+    implementation "net.neoforged:neoforge:${neo_version}"
     
     //compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api")
     //runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.2-77")
 }
 
-tasks.named('processResources', ProcessResources).configure {
-    //TODO
-    /*var replaceProperties = [
-            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
-            forge_version: forge_version, forge_version_range: forge_version_range,
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+            neo_version         : neo_version, neo_version_range: neo_version_range,
             loader_version_range: loader_version_range,
-            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors: mod_authors, mod_description: mod_description,
+            mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors         : mod_authors, mod_description: mod_description,
     ]
     inputs.properties replaceProperties
 
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+    filesMatching(['META-INF/mods.toml']) {
         expand replaceProperties + [project: project]
-    }*/
+    }
 }
 
 task apiSrcJar(type: Jar) {
@@ -98,22 +92,6 @@ task apiSrcJar(type: Jar) {
 
 artifacts {
     archives apiSrcJar
-}
-
-tasks.named('jar', Jar).configure {
-    manifest {
-        attributes([
-            "Specification-Title": "totemic",
-            "Specification-Vendor": "ljfa",
-            "Specification-Version": "1",
-            "Implementation-Title": project.name,
-            "Implementation-Version": project.version,
-            "Implementation-Vendor": "ljfa",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-
-    finalizedBy 'reobfJar'
 }
 
 task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
