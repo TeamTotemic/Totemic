@@ -14,8 +14,8 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraftforge.client.gui.overlay.ForgeGui;
-import net.minecraftforge.client.gui.overlay.IGuiOverlay;
+import net.neoforged.neoforge.client.gui.overlay.ExtendedGui;
+import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
 import pokefenn.totemic.ModConfig;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
@@ -47,7 +47,7 @@ public enum CeremonyHUD implements IGuiOverlay {
     }
 
     @Override
-    public void render(ForgeGui gui, GuiGraphics guiGraphics, float partialTick, int screenWidth, int screenHeight) {
+    public void render(ExtendedGui gui, GuiGraphics guiGraphics, float partialTick, int screenWidth, int screenHeight) {
         if(activeTotem == null)
             return;
         var mc = gui.getMinecraft();
@@ -78,7 +78,7 @@ public enum CeremonyHUD implements IGuiOverlay {
         mc.getProfiler().pop();
     }
 
-    private void renderSelectionHUD(StateSelection state, ForgeGui gui, GuiGraphics guiGraphics, float partialTick, int hudX, int hudY) {
+    private void renderSelectionHUD(StateSelection state, ExtendedGui gui, GuiGraphics guiGraphics, float partialTick, int hudX, int hudY) {
         final int texW = 128, texH = 64;
         gui.setupOverlayRenderState(true, false);
 
@@ -98,7 +98,7 @@ public enum CeremonyHUD implements IGuiOverlay {
     }
 
     @SuppressWarnings("resource")
-    private void renderStartupHUD(StateStartup state, ForgeGui gui, GuiGraphics guiGraphics, float partialTick) {
+    private void renderStartupHUD(StateStartup state, ExtendedGui gui, GuiGraphics guiGraphics, float partialTick) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
@@ -131,7 +131,7 @@ public enum CeremonyHUD implements IGuiOverlay {
         guiGraphics.drawString(gui.getFont(), name, nameX, 2, 0xC8000000, false);
     }
 
-    private void renderCeremonyEffectHUD(StateCeremonyEffect state, ForgeGui gui, GuiGraphics guiGraphics, float partialTick) {
+    private void renderCeremonyEffectHUD(StateCeremonyEffect state, ExtendedGui gui, GuiGraphics guiGraphics, float partialTick) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();

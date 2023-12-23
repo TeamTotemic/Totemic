@@ -1,10 +1,10 @@
 package pokefenn.totemic.handler;
 
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.Event.Result;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import pokefenn.totemic.init.ModItems;
+import net.neoforged.bus.api.Event.Result;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import pokefenn.totemic.init.ModBlockEntities;
+import pokefenn.totemic.init.ModItems;
 
 public class PlayerInteract {
     @SubscribeEvent

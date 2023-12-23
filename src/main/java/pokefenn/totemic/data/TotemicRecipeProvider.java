@@ -1,5 +1,7 @@
 package pokefenn.totemic.data;
 
+import static net.minecraft.data.recipes.RecipeProvider.simpleCookingRecipe;
+
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
@@ -12,7 +14,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.common.Tags;
+import net.neoforged.neoforge.common.Tags;
 import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
 import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.api.ceremony.Ceremony;

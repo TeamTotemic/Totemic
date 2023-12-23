@@ -131,7 +131,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
             }
 
             if(!this.level().isClientSide) {
-                if(this.random.nextInt(6) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, pPlayer)) {
+                if(this.random.nextInt(6) == 0 && !net.neoforged.neoforge.event.EventHooks.onAnimalTame(this, pPlayer)) {
                     this.tame(pPlayer);
                     this.level().broadcastEntityEvent(this, (byte) 7);
                 }

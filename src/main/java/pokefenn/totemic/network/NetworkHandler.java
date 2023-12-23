@@ -1,9 +1,9 @@
 package pokefenn.totemic.network;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.network.ChannelBuilder;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.SimpleChannel;
+import net.neoforged.neoforge.network.NetworkDirection;
+import net.neoforged.neoforge.network.NetworkRegistry.ChannelBuilder;
+import net.neoforged.neoforge.network.simple.SimpleChannel;
 import pokefenn.totemic.Totemic;
 
 public final class NetworkHandler {

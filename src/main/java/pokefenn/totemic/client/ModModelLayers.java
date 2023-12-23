@@ -2,8 +2,8 @@ package pokefenn.totemic.client;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.model.BaldEagleModel;
 import pokefenn.totemic.client.model.BaykokModel;

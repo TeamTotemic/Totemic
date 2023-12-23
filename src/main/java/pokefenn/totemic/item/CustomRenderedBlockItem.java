@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import pokefenn.totemic.client.renderer.TotemicItemRenderer;
 
 public class CustomRenderedBlockItem extends BlockItem {

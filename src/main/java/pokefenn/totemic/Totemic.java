@@ -6,15 +6,15 @@ import org.apache.logging.log4j.Logger;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
@@ -83,7 +83,7 @@ public final class Totemic {
         NetworkHandler.init();
         //PatchouliIntegration.init();
 
-        IEventBus eventBus = MinecraftForge.EVENT_BUS;
+        IEventBus eventBus = NeoForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
     }
 
@@ -94,7 +94,7 @@ public final class Totemic {
             Sheets.addWoodType(ModBlocks.CEDAR_WOOD_TYPE);
         });
 
-        IEventBus eventBus = MinecraftForge.EVENT_BUS;
+        IEventBus eventBus = NeoForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
         eventBus.register(ClientRenderHandler.class);
     }

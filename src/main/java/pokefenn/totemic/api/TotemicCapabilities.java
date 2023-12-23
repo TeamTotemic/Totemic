@@ -4,9 +4,9 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
+import net.neoforged.neoforge.common.capabilities.Capability;
+import net.neoforged.neoforge.common.capabilities.CapabilityManager;
+import net.neoforged.neoforge.common.capabilities.CapabilityToken;
 import pokefenn.totemic.api.music.DefaultMusicAcceptor;
 import pokefenn.totemic.api.music.MusicAcceptor;
 

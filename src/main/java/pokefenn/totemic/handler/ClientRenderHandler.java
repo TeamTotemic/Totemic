@@ -1,7 +1,7 @@
 package pokefenn.totemic.handler;
 
-import net.minecraftforge.client.event.ComputeFovModifierEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;
 import pokefenn.totemic.init.ModItems;
 
 public final class ClientRenderHandler {
