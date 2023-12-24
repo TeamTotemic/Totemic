@@ -1,4 +1,4 @@
-# Totemic - Forge Version
+# Totemic - NeoForge Version
 
 A magical themed Minecraft mod with a focus on Totem Poles, nature and the power of music.
 
@@ -17,9 +17,8 @@ For code or content PR's: Please go over all major changes with me before submit
 Try to place comments in anything that is not obvious, it can be confusing to understand others' code!
 
 ## Setting up a workspace/building from source:
-Run `./gradlew genEclipseRuns eclipse` or `./gradlew genIntellijRuns` (or `gradlew.bat ...` if you are on Windows) to
-set up a workspace. Run `./gradlew build` to build the mod.
-For more information see the README.txt file in the Forge MDK.
+You can import the Gradle project into an IDE of your choice (e.g. Eclipse). Run `./gradlew build` or `gradlew.bat build` to build the mod.
+For more information refer to the NeoForged documentation.
 
 ## Credits:
 - The textures were mainly designed by nojustgavin, Sunconure11 and VincentLongiug.
