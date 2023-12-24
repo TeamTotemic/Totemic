@@ -10,8 +10,8 @@ Depending on the situation, provide pictures.
 Try to describe the issue as precisely as possible, if possible give steps to reproduce it.
 
 ## Pull requests:
-Translations into other languages are welcome. The main language files can be found in the folder `src/main/resources/assets/totemic/lang`,
-the Totempedia contens in `src/main/resources/data/totemic/patchouli_books/totempedia`.
+Translations into other languages are welcome. The language files can be found in the folder [src/main/resources/assets/totemic/lang](src/main/resources/assets/totemic/lang),
+the Totempedia contens in [src/main/resources/assets/totemic/patchouli_books/totempedia](src/main/resources/assets/totemic/patchouli_books/totempedia).
 
 For code or content PR's: Please go over all major changes with me before submitting them, I don't want anything to go to waste :(
 Try to place comments in anything that is not obvious, it can be confusing to understand others' code!
