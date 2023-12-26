@@ -63,7 +63,7 @@ public class MedicineBagItem extends Item {
         return carvingCache.computeIfAbsent(stack, st -> MiscUtil.filterAndCast(
                 Optional.ofNullable(st.getTag())
                 .filter(tag -> tag.contains(TOTEM_TAG, Tag.TAG_STRING))
-                .map(tag -> TotemicAPI.get().registry().totemCarvings().getValue(ResourceLocation.tryParse(tag.getString(TOTEM_TAG))))
+                .map(tag -> TotemicAPI.get().registry().totemCarvings().get(ResourceLocation.tryParse(tag.getString(TOTEM_TAG))))
                 .filter(carving -> carving != ModContent.none),
                 PortableTotemCarving.class));
     }

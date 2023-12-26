@@ -10,6 +10,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
@@ -141,7 +142,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+    public ItemStack getCloneItemStack(LevelReader pLevel, BlockPos pPos, BlockState pState) {
         var tile = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_pole.get());
         var woodType = tile.map(TotemPoleBlockEntity::getWoodType).orElse(ModContent.oak);
         var carving = tile.map(TotemPoleBlockEntity::getCarving).orElse(ModContent.none);

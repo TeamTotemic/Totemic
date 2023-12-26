@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RenderShape;
@@ -27,7 +28,7 @@ public class DummyTipiBlock extends Block {
     }
 
     @Override
-    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         findMainTipiBlock(level, pos).ifPresent(pair -> {
             var tipiPos = pair.getFirst();
             var tipiState = pair.getSecond();
@@ -37,7 +38,7 @@ public class DummyTipiBlock extends Block {
                 dropResources(tipiState, level, tipiPos, null, player, player.getMainHandItem());
             level.setBlock(tipiPos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL_IMMEDIATE);
         });
-        super.playerWillDestroy(level, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class DummyTipiBlock extends Block {
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+    public ItemStack getCloneItemStack(LevelReader pLevel, BlockPos pPos, BlockState pState) {
         return new ItemStack(ModBlocks.tipi.get());
     }
 

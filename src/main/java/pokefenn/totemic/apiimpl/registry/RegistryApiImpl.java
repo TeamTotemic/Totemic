@@ -1,9 +1,7 @@
 package pokefenn.totemic.apiimpl.registry;
 
-import java.util.function.Supplier;
-
+import net.minecraft.core.Registry;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.registries.IForgeRegistry;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegistryBuilder;
 import pokefenn.totemic.Totemic;
@@ -16,36 +14,38 @@ import pokefenn.totemic.api.totem.TotemWoodType;
 public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;
 
-    private static Supplier<IForgeRegistry<MusicInstrument>> instruments;
-    private static Supplier<IForgeRegistry<TotemWoodType>> woodTypes;
-    private static Supplier<IForgeRegistry<TotemCarving>> totemCarvings;
-    private static Supplier<IForgeRegistry<Ceremony>> ceremonies;
+    //TODO: Consider moving these fields to RegistryAPI
+    private static final Registry<MusicInstrument> MUSIC_INSTRUMENT = new RegistryBuilder<>(MUSIC_INSTRUMENT_REGISTRY).sync(true).create();
+    private static final Registry<TotemWoodType> WOOD_TYPE = new RegistryBuilder<>(WOOD_TYPE_REGISTRY).defaultKey(Totemic.resloc("oak")).sync(false).create();
+    private static final Registry<TotemCarving> TOTEM_CARVING = new RegistryBuilder<>(TOTEM_CARVING_REGISTRY).defaultKey(Totemic.resloc("none")).sync(false).create();
+    private static final Registry<Ceremony> CEREMONY = new RegistryBuilder<>(CEREMONY_REGISTRY).sync(false).create();
 
     @SubscribeEvent
-    public static void createRegistries(NewRegistryEvent event) {
-        instruments = event.create(new RegistryBuilder<MusicInstrument>().setName(MUSIC_INSTRUMENT_REGISTRY.location()).disableSaving());
-        woodTypes = event.create(new RegistryBuilder<TotemWoodType>().setName(WOOD_TYPE_REGISTRY.location()).setDefaultKey(Totemic.resloc("oak")).disableSaving().disableSync());
-        totemCarvings = event.create(new RegistryBuilder<TotemCarving>().setName(TOTEM_CARVING_REGISTRY.location()).setDefaultKey(Totemic.resloc("none")).disableSaving().disableSync());
-        ceremonies = event.create(new RegistryBuilder<Ceremony>().setName(CEREMONY_REGISTRY.location()).disableSaving().disableSync());
+    public static void registerRegistries(NewRegistryEvent event) {
+        event.register(MUSIC_INSTRUMENT);
+        event.register(WOOD_TYPE);
+        event.register(TOTEM_CARVING);
+        event.register(CEREMONY);
     }
 
     @Override
-    public IForgeRegistry<MusicInstrument> instruments() {
-        return instruments.get();
+    public Registry<MusicInstrument> instruments() {
+        return MUSIC_INSTRUMENT;
     }
 
     @Override
-    public IForgeRegistry<TotemWoodType> woodTypes() {
-        return woodTypes.get();
+    public Registry<TotemWoodType> woodTypes() {
+        return WOOD_TYPE;
     }
 
     @Override
-    public IForgeRegistry<TotemCarving> totemCarvings() {
-        return totemCarvings.get();
+    public Registry<TotemCarving> totemCarvings() {
+        return TOTEM_CARVING;
     }
 
     @Override
-    public IForgeRegistry<Ceremony> ceremonies() {
-        return ceremonies.get();
+    public Registry<Ceremony> ceremonies() {
+        return CEREMONY;
     }
+
 }

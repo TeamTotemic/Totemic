@@ -5,7 +5,6 @@ import java.util.Set;
 import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -17,7 +16,8 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.util.TransformationHelper.TransformOrigin;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
@@ -89,7 +89,7 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
             if(blocksWithCustomItemModel.contains(blockO.getId()))
                 continue;
 
-            existingBlockItem(blockO);
+            existingBlockItem((DeferredBlock<?>) blockO);
         }
 
         im.singleTexture(ModBlocks.cedar_sapling.getId().toString(), mcLoc("item/generated"), "layer0", blockTexture(ModBlocks.cedar_sapling.get()));
@@ -185,7 +185,7 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
 
     private void totemWoodTypes() {
         //Generate Totem Base and Totem Pole model files for each wood type
-        for(var woodTypeKey: TotemicAPI.get().registry().woodTypes().getKeys()) {
+        for(var woodTypeKey: TotemicAPI.get().registry().woodTypes().keySet()) {
             var namespace = woodTypeKey.getPath().equals("cedar") ? "totemic" : "minecraft";
 
             var poleModel = models().getBuilder(woodTypeKey.toString() + "_totem_pole"); //the pole model has no parent, it only specifies the textures and is being loaded in TotemPoleModel.getMaterials.
@@ -216,17 +216,17 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
             ignored);
     }
 
-    private void existingBlockItem(RegistryObject<? extends Block> block) {
+    private void existingBlockItem(DeferredBlock<?> block) {
         simpleBlockItem(block.get(), models().getExistingFile(block.getId()));
     }
 
-    private void basicItemWithParent(RegistryObject<? extends Item> item, ResourceLocation parent) {
+    private void basicItemWithParent(DeferredItem<?> item, ResourceLocation parent) {
         var id = item.getId();
         itemModels().withExistingParent(id.toString(), parent)
                 .texture("layer0", new ResourceLocation(id.getNamespace(), "item/" + id.getPath()));
     }
 
-    private BlockModelBuilder blockEntityRenderer(RegistryObject<? extends Block> block, ResourceLocation particleTexture) {
+    private BlockModelBuilder blockEntityRenderer(DeferredBlock<?> block, ResourceLocation particleTexture) {
         return models().getBuilder(block.getId().toString())
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .texture("particle", particleTexture)

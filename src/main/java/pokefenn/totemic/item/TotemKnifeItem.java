@@ -48,15 +48,14 @@ public class TotemKnifeItem extends Item {
                 .map(tag -> tag.getString(KNIFE_CARVING_KEY))
                 .filter(str -> !str.isEmpty())
                 .map(ResourceLocation::tryParse)
-                .filter(carvingRegistry::containsKey) //filter because we don't want to get the default value if the key doesn't exist
-                .map(carvingRegistry::getValue);
+                .flatMap(carvingRegistry::getOptional); //we don't want to get the default value if the key doesn't exist
     }
 
     private static List<String> totemList; //Lazily created
 
     public static ItemStack changeIndex(ItemStack itemStack, boolean direction) {
         if(totemList == null) {
-            totemList = TotemicAPI.get().registry().totemCarvings().getValues().stream()
+            totemList = TotemicAPI.get().registry().totemCarvings().stream()
                     .filter(e -> e != ModContent.none)
                     .map(e -> e.getRegistryName().toString())
                     .toList();
@@ -115,7 +114,7 @@ public class TotemKnifeItem extends Item {
     }
 
     private static Optional<TotemWoodType> getWoodTypeForLog(BlockState state) {
-        return TotemicAPI.get().registry().woodTypes().getValues().stream()
+        return TotemicAPI.get().registry().woodTypes().stream()
                 .filter(wood -> state.is(wood.getLogTag()))
                 .findAny()
                 .or(() -> { //Fall back to oak if it is an unrecognized log type

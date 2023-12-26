@@ -1,12 +1,7 @@
 package pokefenn.totemic.api;
 
-import java.util.Objects;
-
-import javax.annotation.Nonnull;
-
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.CapabilityManager;
-import net.neoforged.neoforge.common.capabilities.CapabilityToken;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.capabilities.BlockCapability;
 import pokefenn.totemic.api.music.DefaultMusicAcceptor;
 import pokefenn.totemic.api.music.MusicAcceptor;
 
@@ -20,5 +15,5 @@ public final class TotemicCapabilities {
      * <p>
      * A reference implementation is provided by {@link DefaultMusicAcceptor}.
      */
-    public static final @Nonnull Capability<MusicAcceptor> MUSIC_ACCEPTOR = Objects.requireNonNull(CapabilityManager.get(new CapabilityToken<>(){}));
+    public static final BlockCapability<MusicAcceptor, Void> MUSIC_ACCEPTOR = BlockCapability.createVoid(new ResourceLocation(TotemicAPI.MOD_ID, "music_acceptor"), MusicAcceptor.class);
 }

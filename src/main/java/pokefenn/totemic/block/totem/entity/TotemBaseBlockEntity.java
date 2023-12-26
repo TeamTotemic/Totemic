@@ -162,7 +162,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
         var woodKey = ResourceLocation.tryParse(tag.getString("Wood"));
         if(!TotemicAPI.get().registry().woodTypes().containsKey(woodKey))
             Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
-        woodType = TotemicAPI.get().registry().woodTypes().getValue(woodKey);
+        woodType = TotemicAPI.get().registry().woodTypes().get(woodKey); //TODO: Can use Registry#getOptional here
 
         if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
             byte id = tag.getByte("State");

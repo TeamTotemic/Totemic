@@ -15,7 +15,7 @@ public class TotemTorchBlock extends TorchBlock {
     protected static final VoxelShape AABB = Block.box(4.75, 0, 4.75, 11.25, 16, 11.25);
 
     public TotemTorchBlock(Properties pProperties) {
-        super(pProperties, ParticleTypes.FLAME);
+        super(ParticleTypes.FLAME, pProperties);
     }
 
     @Override

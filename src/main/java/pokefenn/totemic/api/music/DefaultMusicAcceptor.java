@@ -27,7 +27,7 @@ import pokefenn.totemic.api.TotemicAPI;
  */
 public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<CompoundTag> {
     private Vec3 position;
-    private final Object2IntMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicAPI.get().registry().instruments().getValues().size());
+    private final Object2IntMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicAPI.get().registry().instruments().size());
     private int totalMusic = 0;
 
     /**
@@ -113,7 +113,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
         totalMusic = 0;
         var instrRegistry = TotemicAPI.get().registry().instruments();
         for(String key: tag.getAllKeys()) {
-            var instr = instrRegistry.getValue(ResourceLocation.tryParse(key));
+            var instr = instrRegistry.get(ResourceLocation.tryParse(key));
             if(instr != null) {
                 int amount = tag.getInt(key);
                 music.put(instr, amount);

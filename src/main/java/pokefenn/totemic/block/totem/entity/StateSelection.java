@@ -102,7 +102,7 @@ public final class StateSelection extends TotemState {
             //This will throw an exception if two different Ceremonies happen to have the same selectors.
             //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
             //to check for prefix-freeness. So we assume MIN_SELECTORS == MAX_SELECTORS here.
-            selectorsToCeremonyMap = TotemicAPI.get().registry().ceremonies().getValues().stream()
+            selectorsToCeremonyMap = TotemicAPI.get().registry().ceremonies().stream()
                     .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
         }
 
@@ -136,7 +136,7 @@ public final class StateSelection extends TotemState {
         ListTag selectorsTag = tag.getList("Selectors", Tag.TAG_STRING);
         for(int i = 0; i < selectorsTag.size(); i++) {
             var name = selectorsTag.getString(i);
-            var instr = TotemicAPI.get().registry().instruments().getValue(ResourceLocation.tryParse(name));
+            var instr = TotemicAPI.get().registry().instruments().get(ResourceLocation.tryParse(name));
             if(instr != null)
                 selectors.add(instr);
             else

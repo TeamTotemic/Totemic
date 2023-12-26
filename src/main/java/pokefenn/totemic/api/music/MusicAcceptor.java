@@ -4,14 +4,12 @@ import javax.annotation.Nullable;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.capabilities.AutoRegisterCapability;
 
 /**
  * Capability for block entities which can accept music from instruments played nearby.
  * <p>
  * A reference implementation is provided by {@link DefaultMusicAcceptor}.
  */
-@AutoRegisterCapability
 public interface MusicAcceptor {
     /**
      * Default priority for MusicAcceptors.

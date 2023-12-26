@@ -2,12 +2,12 @@ package pokefenn.totemic;
 
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.config.ModConfig.Type;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
-import net.neoforged.neoforge.common.NeoForgeConfigSpec;
 
 public final class ModConfig {
     /*public static class General {
-        General(ForgeConfigSpec.Builder builder) {
+        General(ModConfigSpec.Builder builder) {
             builder.comment("Totemic general configuration settings")
                     .translation("totemic.config.general")
                     .push("general");
@@ -18,7 +18,7 @@ public final class ModConfig {
         public final ConfigValue<Integer> ceremonyHudPositionX;
         public final ConfigValue<Integer> ceremonyHudPositionY;
 
-        Client(NeoForgeConfigSpec.Builder builder) {
+        Client(ModConfigSpec.Builder builder) {
             builder.comment("Totemic client-only configuration settings")
                     .translation("totemic.config.client")
                     .push("client");
@@ -38,15 +38,15 @@ public final class ModConfig {
     //public static final General GENERAL;
     public static final Client CLIENT;
 
-    //private static final ForgeConfigSpec generalSpec;
-    private static final NeoForgeConfigSpec clientSpec;
+    //private static final ModConfigSpec generalSpec;
+    private static final ModConfigSpec clientSpec;
 
     static {
         /*var generalPair = new ForgeConfigSpec.Builder().configure(General::new);
         GENERAL = generalPair.getLeft();
         generalSpec = generalPair.getRight();*/
 
-        var clientPair = new NeoForgeConfigSpec.Builder().configure(Client::new);
+        var clientPair = new ModConfigSpec.Builder().configure(Client::new);
         CLIENT = clientPair.getLeft();
         clientSpec = clientPair.getRight();
     }

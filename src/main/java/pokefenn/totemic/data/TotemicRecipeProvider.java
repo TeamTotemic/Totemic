@@ -2,9 +2,12 @@ package pokefenn.totemic.data;
 
 import static net.minecraft.data.recipes.RecipeProvider.simpleCookingRecipe;
 
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -23,8 +26,8 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicRecipeProvider extends RecipeProvider {
-    public TotemicRecipeProvider(PackOutput pOutput) {
-        super(pOutput);
+    public TotemicRecipeProvider(PackOutput pOutput, CompletableFuture<Provider> pLookupProvider) {
+        super(pOutput, pLookupProvider);
     }
 
     @Override

@@ -25,7 +25,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyC
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.neoforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
@@ -76,7 +76,7 @@ public final class TotemicLootTableProvider extends LootTableProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-            return ModBlocks.REGISTER.getEntries().stream().map(RegistryObject::get)::iterator;
+            return ModBlocks.REGISTER.getEntries().stream().<Block>map(DeferredHolder::get)::iterator;
         }
     }
 
@@ -149,7 +149,7 @@ public final class TotemicLootTableProvider extends LootTableProvider {
 
         @Override
         protected Stream<EntityType<?>> getKnownEntityTypes() {
-            return ModEntityTypes.REGISTER.getEntries().stream().map(RegistryObject::get);
+            return ModEntityTypes.REGISTER.getEntries().stream().map(DeferredHolder::get);
         }
     }
 }

@@ -11,7 +11,6 @@ import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -44,9 +43,7 @@ import pokefenn.totemic.network.NetworkHandler;
 public final class Totemic {
     public static final Logger logger = LogManager.getLogger(Totemic.class);
 
-    public Totemic() {
-        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-
+    public Totemic(IEventBus modBus) {
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::gatherData);
 
@@ -110,7 +107,7 @@ public final class Totemic {
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicEntityTypeTagsProvider(out, lookup, efh));
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicLootTableProvider(out));
-        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicRecipeProvider(out));
+        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicRecipeProvider(out, lookup));
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicDatapackEntryProvider(out, lookup));
         gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicDamageTypeTagsProvider(out, lookup, efh));
 

@@ -75,7 +75,7 @@ public class Baykok extends Monster implements RangedAttackMob {
         ItemStack arrowStack = this.getProjectile(this.getMainHandItem());
         AbstractArrow arrow = ProjectileUtil.getMobArrow(this, arrowStack, distanceFactor);
         if(this.getMainHandItem().getItem() instanceof BowItem bowItem)
-           arrow = bowItem.customArrow(arrow);
+           arrow = bowItem.customArrow(arrow, arrowStack);
         double dX = pTarget.getX() - this.getX();
         double dY = pTarget.getY(1.0/3.0) - arrow.getY();
         double dZ = pTarget.getZ() - this.getZ();

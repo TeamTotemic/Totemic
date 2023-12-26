@@ -26,7 +26,7 @@ public class TotemPoleItem extends BlockItem {
                 .map(tag -> tag.getString(POLE_WOOD_KEY))
                 .filter(str -> !str.isEmpty())
                 .map(ResourceLocation::tryParse)
-                .map(woodTypeRegistry::getValue)
+                .map(woodTypeRegistry::get)
                 .orElse(ModContent.oak);
     }
 

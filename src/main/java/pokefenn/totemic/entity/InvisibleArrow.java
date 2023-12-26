@@ -11,16 +11,18 @@ import net.minecraft.world.level.Level;
 import pokefenn.totemic.init.ModEntityTypes;
 
 public class InvisibleArrow extends AbstractArrow {
+    private static final ItemStack DEFAULT_ARROW_STACK = new ItemStack(Items.ARROW);
+
     public InvisibleArrow(EntityType<? extends InvisibleArrow> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel);
+        super(pEntityType, pLevel, DEFAULT_ARROW_STACK);
     }
 
     public InvisibleArrow(LivingEntity pShooter, Level pLevel) {
-        super(ModEntityTypes.invisible_arrow.get(), pShooter, pLevel);
+        super(ModEntityTypes.invisible_arrow.get(), pShooter, pLevel, DEFAULT_ARROW_STACK);
     }
 
     public InvisibleArrow(double pX, double pY, double pZ, Level pLevel) {
-        super(ModEntityTypes.invisible_arrow.get(), pX, pY, pZ, pLevel);
+        super(ModEntityTypes.invisible_arrow.get(), pX, pY, pZ, pLevel, DEFAULT_ARROW_STACK);
     }
 
     public static InvisibleArrow copyArrow(AbstractArrow arrow) {
