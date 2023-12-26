@@ -3,7 +3,9 @@ package pokefenn.totemic.api.registry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.RegisterEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -11,7 +13,7 @@ import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
 
 /**
- * Provides read-only access to Totemic's registries. Contents can be registered using the {@link TotemicRegisterEvent}.
+ * Provides read-only access to Totemic's registries. Contents can be registered as usual using {@link DeferredRegister} or {@link RegisterEvent}.
  * <p>
  * Use {@code TotemicAPI.get().registry()} to get an instance of this interface.
  */
