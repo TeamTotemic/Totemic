@@ -1,13 +1,10 @@
 package pokefenn.totemic.item.music;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import org.jetbrains.annotations.NotNull;
-
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -20,12 +17,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.capabilities.ICapabilityProvider;
-import net.neoforged.neoforge.common.capabilities.AutoRegisterCapability;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.capabilities.CapabilityManager;
-import net.neoforged.neoforge.common.capabilities.CapabilityToken;
-import net.neoforged.neoforge.common.util.LazyOptional;
+import net.neoforged.neoforge.attachment.AttachmentType;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.RegisterEvent;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
@@ -57,8 +53,9 @@ public class JingleDressItem extends ArmorItem {
         public int getDefenseForType(Type pSlot) { return 1; }
     };
 
-    //Rather than using the ItemStack's NBT for keeping track of the charge, we attach a Capability to the ItemStack
-    private static final Capability<ChargeCounter> CHARGE_COUNTER = CapabilityManager.get(new CapabilityToken<>() {});
+    //Rather than using the ItemStack's NBT for keeping track of the charge, we use a data attachment for the ItemStack.
+    //TODO: There might be no performance benefit of this approach compared to using ItemStack NBT
+    private static final Supplier<AttachmentType<ChargeCounter>> CHARGE_COUNTER = DeferredHolder.create(NeoForgeRegistries.Keys.ATTACHMENT_TYPES, Totemic.resloc("charge_counter"));
 
     public JingleDressItem(Properties pProperties) {
         super(MATERIAL, Type.LEGGINGS, pProperties);
@@ -67,30 +64,24 @@ public class JingleDressItem extends ArmorItem {
     @Override
     public void onArmorTick(ItemStack stack, Level level, Player player) {
         if(!level.isClientSide && !player.isSpectator() && player.tickCount % 20 == 0) {
-            stack.getCapability(CHARGE_COUNTER).ifPresent(cc -> {
-                final double chargeFactor = 10.0;
-                final int maxSingleCharge = 8;
-                final int chargeLimit = 10;
+            final double chargeFactor = 10.0;
+            final int maxSingleCharge = 8;
+            final int chargeLimit = 10;
 
-                double dx = player.xCloak - player.getX();
-                double dy = player.yCloak - player.getY();
-                double dz = player.zCloak - player.getZ();
-                double velocity = Math.sqrt(dx*dx + dy*dy + dz*dz);
-                if(player.hasEffect(MobEffects.MOVEMENT_SPEED))
-                    velocity *= 1.2;
+            double dx = player.xCloak - player.getX();
+            double dy = player.yCloak - player.getY();
+            double dz = player.zCloak - player.getZ();
+            double velocity = Math.sqrt(dx*dx + dy*dy + dz*dz);
+            if(player.hasEffect(MobEffects.MOVEMENT_SPEED))
+                velocity *= 1.2;
 
-                cc.charge += Mth.clamp((int)(velocity * chargeFactor), 0, maxSingleCharge);
-                if(cc.charge >= chargeLimit) {
-                    TotemicAPI.get().music().playMusic(player, ModContent.jingle_dress);
-                    cc.charge %= chargeLimit;
-                }
-            });
+            var counter = stack.getData(CHARGE_COUNTER);
+            counter.charge += Mth.clamp((int)(velocity * chargeFactor), 0, maxSingleCharge);
+            if(counter.charge >= chargeLimit) {
+                TotemicAPI.get().music().playMusic(player, ModContent.jingle_dress);
+                counter.charge %= chargeLimit;
+            }
         }
-    }
-
-    @Override
-    public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-        return new ChargeCounter();
     }
 
     @Override
@@ -98,15 +89,12 @@ public class JingleDressItem extends ArmorItem {
         tooltip.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 
-    @AutoRegisterCapability
-    private static class ChargeCounter implements ICapabilityProvider {
-        private LazyOptional<ChargeCounter> holder = LazyOptional.of(() -> this);
-
+    private static class ChargeCounter {
         int charge = 0;
+    }
 
-        @Override
-        public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-            return CHARGE_COUNTER.orEmpty(cap, holder);
-        }
+    public static void registerAttachmentType(RegisterEvent event) {
+        event.register(NeoForgeRegistries.Keys.ATTACHMENT_TYPES, Totemic.resloc("charge_counter"),
+                () -> AttachmentType.builder(ChargeCounter::new).build());
     }
 }
