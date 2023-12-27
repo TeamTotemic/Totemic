@@ -14,7 +14,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.util.LazyOptional;
 import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
@@ -52,10 +51,8 @@ public enum MusicApiImpl implements MusicAPI {
         level.getProfiler().push("totemic.playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         List<MusicAcceptor> list = BlockUtil.getBlockEntitiesInRange(null, level, BlockPos.containing(pos), range)
-                .map(tile -> tile.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR))
-                .filter(LazyOptional::isPresent)
-                .map(lo -> lo.orElse(null))
-                .filter(acc -> acc.canAcceptMusic(instr))
+                .map(tile -> TotemicCapabilities.MUSIC_ACCEPTOR.getCapability(level, tile.getBlockPos(), tile.getBlockState(), tile, null)) //TODO: Consider using BlockCapabilityCache
+                .filter(acc -> acc != null && acc.canAcceptMusic(instr))
                 .collect(MiscUtil.collectMaxElements(Comparator.comparing(MusicAcceptor::getPriority)));
 
         for(MusicAcceptor acc: list) { //The loop is not executed when list is empty, so we got no division by zero

@@ -17,6 +17,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
+import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
@@ -59,6 +60,8 @@ public final class Totemic {
         modBus.register(ModEntityTypes.class);
         modBus.register(RegistryApiImpl.class);
         modBus.register(ModContent.class);
+
+        modBus.addListener(TotemBaseBlockEntity::registerCapability);
 
         if(FMLEnvironment.dist.isClient()) {
             modBus.addListener(this::clientSetup);

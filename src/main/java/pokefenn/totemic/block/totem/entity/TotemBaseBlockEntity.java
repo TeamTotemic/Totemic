@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +14,6 @@ import com.google.common.collect.Multiset;
 import com.google.common.math.IntMath;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
@@ -26,13 +24,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.model.data.ModelData;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicCapabilities;
-import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
@@ -51,8 +47,6 @@ public class TotemBaseBlockEntity extends BlockEntity {
     private int commonTotemEffectInterval = Integer.MAX_VALUE;
 
     private TotemState state = new StateTotemEffect(this);
-
-    private LazyOptional<MusicAcceptor> musicHandler = LazyOptional.of(() -> this.state);
 
     public TotemBaseBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.totem_base.get(), pos, state);
@@ -135,11 +129,10 @@ public class TotemBaseBlockEntity extends BlockEntity {
     void setTotemState(TotemState state) {
         if(state != this.state) {
             this.state = state;
-            musicHandler.invalidate();
-            musicHandler = LazyOptional.of(() -> this.state);
             if(level != null) { //prevent NPE when called during loading
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_ALL);
                 setChanged();
+                invalidateCapabilities();
             }
         }
     }
@@ -186,23 +179,12 @@ public class TotemBaseBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        musicHandler.invalidate();
-    }
-
-    @SuppressWarnings("null")
-    @Override
-    @Nonnull
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if(cap == TotemicCapabilities.MUSIC_ACCEPTOR)
-            return musicHandler.cast();
-        else
-            return super.getCapability(cap, side);
-    }
-
-    @Override
     public @NotNull ModelData getModelData() {
         return ModelData.builder().with(BakedTotemBaseModel.WOOD_TYPE_PROPERTY, woodType).build();
+    }
+
+    public static void registerCapability(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(TotemicCapabilities.MUSIC_ACCEPTOR, ModBlockEntities.totem_base.get(),
+                (totem, context) -> totem.state);
     }
 }
