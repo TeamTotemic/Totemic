@@ -2,6 +2,8 @@ package pokefenn.totemic.block;
 
 import javax.annotation.Nullable;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,6 +35,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import pokefenn.totemic.init.ModBlocks;
 
 public class TipiBlock extends HorizontalDirectionalBlock {
+    public static final MapCodec<TipiBlock> CODEC = simpleCodec(TipiBlock::new);
+
     public static final BooleanProperty OCCUPIED = BedBlock.OCCUPIED;
 
     private static final VoxelShape SHAPE = Shapes.box(0, 0, 0, 1, 0.0625, 1);
@@ -184,5 +188,10 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING, OCCUPIED);
+    }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
     }
 }

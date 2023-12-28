@@ -2,6 +2,8 @@ package pokefenn.totemic.block.totem;
 
 import java.util.Optional;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,6 +37,8 @@ import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.util.BlockUtil;
 
 public class TotemPoleBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
+    public static final MapCodec<TotemPoleBlock> CODEC = simpleCodec(TotemPoleBlock::new);
+
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     private static final VoxelShape SHAPE = Shapes.box(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
@@ -150,5 +154,10 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         stack.getOrCreateTag().putString(TotemPoleItem.POLE_CARVING_KEY, carving.getRegistryName().toString());
         stack.getTag().putString(TotemPoleItem.POLE_WOOD_KEY, woodType.getRegistryName().toString());
         return stack;
+    }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
     }
 }

@@ -4,6 +4,8 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -50,6 +52,8 @@ import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.util.BlockUtil;
 
 public class TotemBaseBlock extends HorizontalDirectionalBlock implements EntityBlock, SimpleWaterloggedBlock {
+    public static final MapCodec<TotemBaseBlock> CODEC = simpleCodec(TotemBaseBlock::new);
+
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     private static final VoxelShape SHAPE = Shapes.or(Shapes.box(0.0, 0.0, 0.0,  1.0, 0.28125, 1.0), Shapes.box(0.125, 0.28125, 0.125,  0.875, 1.0, 0.875));
@@ -201,5 +205,10 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         var stack = new ItemStack(this);
         stack.getOrCreateTag().putString(TotemPoleItem.POLE_WOOD_KEY, woodType.getRegistryName().toString());
         return stack;
+    }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
     }
 }
