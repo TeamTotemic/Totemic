@@ -4,18 +4,19 @@ import java.util.Optional;
 
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.NetworkRegistry;
+import net.neoforged.neoforge.network.PlayNetworkDirection;
 import net.neoforged.neoforge.network.simple.SimpleChannel;
 import pokefenn.totemic.Totemic;
 
 public final class NetworkHandler {
     private static final ResourceLocation CHANNEL_NAME = Totemic.resloc("main");
-    private static final String PROTOCOL_VERSION = "3";
+    private static final String PROTOCOL_VERSION = "4";
 
     public static final SimpleChannel channel = NetworkRegistry.newSimpleChannel(CHANNEL_NAME, () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 
     public static void init() {
-        channel.registerMessage(0, ServerboundPacketMouseWheel.class, ServerboundPacketMouseWheel::encode, ServerboundPacketMouseWheel::decode, ServerboundPacketMouseWheel::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
-        channel.registerMessage(1, ClientboundPacketStartupMusic.class, ClientboundPacketStartupMusic::encode, ClientboundPacketStartupMusic::decode, ClientboundPacketStartupMusic::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
-        channel.registerMessage(2, ClientboundPacketTotemEffectMusic.class, ClientboundPacketTotemEffectMusic::encode, ClientboundPacketTotemEffectMusic::decode, ClientboundPacketTotemEffectMusic::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        channel.registerMessage(0, ServerboundPacketMouseWheel.class, ServerboundPacketMouseWheel::encode, ServerboundPacketMouseWheel::decode, ServerboundPacketMouseWheel::handle, Optional.of(PlayNetworkDirection.PLAY_TO_SERVER));
+        channel.registerMessage(1, ClientboundPacketStartupMusic.class, ClientboundPacketStartupMusic::encode, ClientboundPacketStartupMusic::decode, ClientboundPacketStartupMusic::handle, Optional.of(PlayNetworkDirection.PLAY_TO_CLIENT));
+        channel.registerMessage(2, ClientboundPacketTotemEffectMusic.class, ClientboundPacketTotemEffectMusic::encode, ClientboundPacketTotemEffectMusic::decode, ClientboundPacketTotemEffectMusic::handle, Optional.of(PlayNetworkDirection.PLAY_TO_CLIENT));
     }
 }

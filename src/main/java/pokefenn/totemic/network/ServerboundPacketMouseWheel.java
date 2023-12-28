@@ -1,12 +1,10 @@
 package pokefenn.totemic.network;
 
-import java.util.function.Supplier;
-
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkEvent;
+import net.neoforged.neoforge.network.NetworkEvent;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.TotemKnifeItem;
 
@@ -19,14 +17,14 @@ public record ServerboundPacketMouseWheel(boolean direction) {
         return new ServerboundPacketMouseWheel(buf.readBoolean());
     }
 
-    public static void handle(ServerboundPacketMouseWheel packet, Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> {
-            Player player = context.get().getSender();
+    public static void handle(ServerboundPacketMouseWheel packet, NetworkEvent.Context context) {
+        context.enqueueWork(() -> {
+            Player player = context.getSender();
             ItemStack stack = player.getMainHandItem();
             if(stack.getItem() == ModItems.totem_whittling_knife.get()) {
                 player.setItemInHand(InteractionHand.MAIN_HAND, TotemKnifeItem.changeIndex(stack, packet.direction));
             }
         });
-        context.get().setPacketHandled(true);
+        context.setPacketHandled(true);
     }
 }
