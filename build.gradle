@@ -2,9 +2,9 @@ plugins {
     id 'java-library'
     id 'eclipse'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.57'
+    id 'net.neoforged.gradle.userdev' version '7.0.+'
     //id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id 'net.darkhax.curseforgegradle' version '1.1.18'
+    id 'net.darkhax.curseforgegradle' version '1.1.+'
     id 'com.modrinth.minotaur' version '2.+'
 }
 
@@ -16,7 +16,7 @@ repositories {
 }
 
 base {
-    archivesName = 'Totemic-neoforged'
+    archivesName = 'Totemic-neoforge'
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -29,8 +29,6 @@ minecraft {
 
 runs {
     configureEach {
-        //workingDirectory project.file('run')
-
         systemProperty 'forge.logging.markers', 'REGISTRIES'
         systemProperty 'forge.logging.console.level', 'debug'
 
@@ -54,8 +52,6 @@ runs {
     }
     
     data {
-        //workingDirectory project.file('run-data')
-
         programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
     }
 }
