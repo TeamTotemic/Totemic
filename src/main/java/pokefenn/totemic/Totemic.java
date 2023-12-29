@@ -63,6 +63,7 @@ public final class Totemic {
 
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
         modBus.addListener(JingleDressItem::registerAttachmentType);
+        modBus.addListener(ModCriteriaTriggers::init);
 
         if(FMLEnvironment.dist.isClient()) {
             modBus.addListener(this::clientSetup);
@@ -78,7 +79,6 @@ public final class Totemic {
         event.enqueueWork(() -> {
             ModBlocks.setFireInfo();
             ModBlocks.addCedarSignToSignBlockEntityType();
-            ModCriteriaTriggers.init();
         });
 
         NetworkHandler.init();
@@ -101,8 +101,6 @@ public final class Totemic {
     }
 
     private void gatherData(GatherDataEvent event) {
-        ModCriteriaTriggers.init();
-
         var gen = event.getGenerator();
         var efh = event.getExistingFileHelper();
         var lookup = event.getLookupProvider();
