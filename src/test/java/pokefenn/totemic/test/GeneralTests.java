@@ -10,13 +10,13 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.gametest.GameTestDontPrefix;
 import net.neoforged.neoforge.gametest.GameTestHolder;
+import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModBlocks;
 
-@GameTestHolder(value = "totemic.general", namespace = TotemicAPI.MOD_ID)
-@GameTestDontPrefix
+@GameTestHolder(TotemicAPI.MOD_ID)
+@PrefixGameTestTemplate(false)
 public final class GeneralTests {
     @GameTest(batch = "totemic.general", template = "general/tipi_place")
     public static void testTipiPlace(GameTestHelper h) {
