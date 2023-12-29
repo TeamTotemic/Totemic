@@ -11,7 +11,7 @@ updateJSONURL="https://raw.githubusercontent.com/TeamTotemic/Totemic/version/ver
 displayURL="https://minecraft.curseforge.com/projects/totemic"
 logoFile="totemic_logo.png"
 credits="nojustgavin, Nefilto, ZestyBlaze, VincentLongiug, WayofTime, Joshie, Poppycocks, Dylan4Ever, Vazkii, Kerri Lake"
-authors="{mod_authors}"
+authors="${mod_authors}"
 description='''${mod_description}'''
 
 [[dependencies.${mod_id}]]

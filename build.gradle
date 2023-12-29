@@ -82,6 +82,22 @@ tasks.withType(ProcessResources).configureEach {
     filesMatching(['META-INF/mods.toml']) {
         expand replaceProperties + [project: project]
     }
+    
+    //Workaround to get the game to launch in Eclipse
+    //Hopefully temporary
+    var resourceTargets = ['META-INF/mods.toml', 'pack.mcmeta']
+    var intoTargets = ["$rootDir/bin/main/"]
+    intoTargets.each { target ->
+        if (file(target).exists()) {
+            copy {
+                from(sourceSets.main.resources) {
+                    include resourceTargets
+                    expand replaceProperties
+                }
+                into target
+            }
+        }
+    }
 }
 
 task apiSrcJar(type: Jar) {
