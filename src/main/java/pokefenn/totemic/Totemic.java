@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.client.renderer.Sheets;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
@@ -107,16 +106,17 @@ public final class Totemic {
         var gen = event.getGenerator();
         var efh = event.getExistingFileHelper();
         var lookup = event.getLookupProvider();
+        var out = gen.getPackOutput();
 
-        var blockTP = gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicBlockTagsProvider(out, lookup, efh));
-        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
-        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicEntityTypeTagsProvider(out, lookup, efh));
-        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicLootTableProvider(out));
-        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicRecipeProvider(out, lookup));
-        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicDatapackEntryProvider(out, lookup));
-        gen.addProvider(event.includeServer(), (PackOutput out) -> new TotemicDamageTypeTagsProvider(out, lookup, efh));
+        var blockTP = gen.addProvider(event.includeServer(), new TotemicBlockTagsProvider(out, lookup, efh));
+        gen.addProvider(event.includeServer(), new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
+        gen.addProvider(event.includeServer(), new TotemicEntityTypeTagsProvider(out, lookup, efh));
+        gen.addProvider(event.includeServer(), new TotemicLootTableProvider(out));
+        gen.addProvider(event.includeServer(), new TotemicRecipeProvider(out, lookup));
+        gen.addProvider(event.includeServer(), new TotemicDatapackEntryProvider(out, lookup));
+        gen.addProvider(event.includeServer(), new TotemicDamageTypeTagsProvider(out, lookup, efh));
 
-        gen.addProvider(event.includeClient(), (PackOutput out) -> new TotemicBlockStateProvider(out, efh));
+        gen.addProvider(event.includeClient(), new TotemicBlockStateProvider(out, efh));
     }
 
     public static ResourceLocation resloc(String path) {

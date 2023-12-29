@@ -7,5 +7,5 @@
 /.classpath
 /.project
 /run
-/run-data
+/runs
 *.launch
