@@ -1,7 +1,5 @@
 package pokefenn.totemic.data;
 
-import static net.minecraft.data.recipes.RecipeProvider.simpleCookingRecipe;
-
 import java.util.concurrent.CompletableFuture;
 
 import net.minecraft.advancements.Criterion;
@@ -15,8 +13,12 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CampfireCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
+import net.minecraft.world.item.crafting.SmokingRecipe;
 import net.neoforged.neoforge.common.Tags;
 import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
 import pokefenn.totemic.api.TotemicItemTags;
@@ -169,11 +171,11 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
                 .save(rc, "totemic:tipi_from_hide");
 
-        generateRecipes(rc, ModBlocks.getCedarBlockFamily());
+        generateRecipes(rc, ModBlocks.getCedarBlockFamily(), FeatureFlags.DEFAULT_FLAGS);
 
-        simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
-        simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
-        simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
+        simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
+        simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
+        simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
     }
 
     protected static Criterion<CeremonyTrigger.TriggerInstance> performed(Ceremony ceremony) {
