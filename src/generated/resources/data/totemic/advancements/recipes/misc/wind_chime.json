@@ -35,6 +35,5 @@
     "recipes": [
       "totemic:wind_chime"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

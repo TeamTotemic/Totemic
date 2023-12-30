@@ -37,6 +37,5 @@
     "recipes": [
       "totemic:jingle_dress"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

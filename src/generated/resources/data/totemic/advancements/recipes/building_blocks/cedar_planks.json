@@ -35,6 +35,5 @@
     "recipes": [
       "totemic:cedar_planks"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

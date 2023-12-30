@@ -30,6 +30,5 @@
     "recipes": [
       "totemic:cedar_sign"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

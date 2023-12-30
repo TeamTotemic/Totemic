@@ -28,6 +28,5 @@
     "recipes": [
       "totemic:totem_whittling_knife"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

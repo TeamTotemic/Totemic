@@ -30,6 +30,5 @@
     "recipes": [
       "minecraft:cooked_buffalo_meat_from_smoking"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

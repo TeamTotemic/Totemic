@@ -28,6 +28,5 @@
     "recipes": [
       "totemic:totemic_staff"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

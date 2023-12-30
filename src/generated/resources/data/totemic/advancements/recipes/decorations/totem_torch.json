@@ -28,6 +28,5 @@
     "recipes": [
       "totemic:totem_torch"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -37,6 +37,5 @@
     "recipes": [
       "totemic:rattle"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

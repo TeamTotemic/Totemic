@@ -28,6 +28,5 @@
     "recipes": [
       "totemic:flute"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -50,6 +50,5 @@
     "recipes": [
       "totemic:medicine_bag"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

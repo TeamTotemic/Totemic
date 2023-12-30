@@ -37,6 +37,5 @@
     "recipes": [
       "totemic:leather_from_hide"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

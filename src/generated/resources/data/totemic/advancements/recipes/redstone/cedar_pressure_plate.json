@@ -30,6 +30,5 @@
     "recipes": [
       "totemic:cedar_pressure_plate"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

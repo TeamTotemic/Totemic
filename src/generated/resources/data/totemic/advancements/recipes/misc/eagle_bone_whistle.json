@@ -37,6 +37,5 @@
     "recipes": [
       "totemic:eagle_bone_whistle"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

@@ -24,6 +24,5 @@
     "recipes": [
       "totemic:iron_bells"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }
