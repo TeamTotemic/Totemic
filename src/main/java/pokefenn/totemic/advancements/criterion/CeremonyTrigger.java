@@ -18,8 +18,7 @@ import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.TriggerInstance> {
     @Override
     public Codec<TriggerInstance> codec() {
-        // TODO Auto-generated method stub
-        return null;
+        return TriggerInstance.CODEC;
     }
 
     public void trigger(ServerPlayer player, Ceremony ceremony) {
