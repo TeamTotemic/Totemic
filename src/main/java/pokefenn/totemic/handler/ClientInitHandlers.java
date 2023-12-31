@@ -31,8 +31,8 @@ public class ClientInitHandlers {
 
     @SubscribeEvent
     public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
-        event.register("totem_pole", TotemPoleModel.Loader.INSTANCE);
-        event.register("totem_base", TotemBaseModel.Loader.INSTANCE);
+        event.register(Totemic.resloc("totem_pole"), TotemPoleModel.Loader.INSTANCE);
+        event.register(Totemic.resloc("totem_base"), TotemBaseModel.Loader.INSTANCE);
     }
 
     private static final ResourceLocation OPAQUE_CEDAR_LEAVES = Totemic.resloc("block/cedar_leaves_opaque");
@@ -59,6 +59,6 @@ public class ClientInitHandlers {
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), "ceremony_hud", CeremonyHUD.INSTANCE);
+        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), Totemic.resloc("ceremony_hud"), CeremonyHUD.INSTANCE);
     }
 }
