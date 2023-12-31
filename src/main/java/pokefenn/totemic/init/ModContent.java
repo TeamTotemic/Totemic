@@ -42,6 +42,7 @@ public final class ModContent {
     public static final TotemWoodType birch = new TotemWoodType(MapColor.SAND, MapColor.QUARTZ, BlockTags.BIRCH_LOGS);
     public static final TotemWoodType jungle = new TotemWoodType(MapColor.DIRT, MapColor.PODZOL, BlockTags.JUNGLE_LOGS);
     public static final TotemWoodType acacia = new TotemWoodType(MapColor.COLOR_ORANGE, MapColor.STONE, BlockTags.ACACIA_LOGS);
+    public static final TotemWoodType cherry = new TotemWoodType(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockTags.CHERRY_LOGS);
     public static final TotemWoodType dark_oak = new TotemWoodType(MapColor.COLOR_BROWN, MapColor.COLOR_BROWN, BlockTags.DARK_OAK_LOGS);
     public static final TotemWoodType mangrove = new TotemWoodType(MapColor.COLOR_RED, MapColor.PODZOL, BlockTags.MANGROVE_LOGS);
     public static final TotemWoodType cedar = new TotemWoodType(MapColor.COLOR_PINK, MapColor.COLOR_ORANGE, TotemicBlockTags.CEDAR_LOGS);
@@ -109,6 +110,7 @@ public final class ModContent {
             reg.register("birch", birch);
             reg.register("jungle", jungle);
             reg.register("acacia", acacia);
+            reg.register("cherry", cherry);
             reg.register("dark_oak", dark_oak);
             reg.register("mangrove", mangrove);
             reg.register("cedar", cedar);
