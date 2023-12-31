@@ -45,7 +45,7 @@ public class ClientInitHandlers {
     }
 
     @SubscribeEvent
-    public static void onBakingComplete(ModelEvent.BakingCompleted event) {
+    public static void onBakingComplete(ModelEvent.ModifyBakingResult event) {
         if(!Minecraft.useFancyGraphics()) {
             //Replace all the occurrences of the cedar leaves model with opaque ones.
             //Not a perfect solution, since the resources are not reloaded on changing the graphics settings.
