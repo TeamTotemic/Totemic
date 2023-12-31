@@ -1,0 +1,9 @@
+{
+  "parent": "totemic:block/totem_base",
+  "textures": {
+    "bark": "minecraft:block/cherry_log",
+    "particle": "minecraft:block/stripped_cherry_log",
+    "top": "minecraft:block/stripped_cherry_log_top",
+    "wood": "minecraft:block/stripped_cherry_log"
+  }
+}
