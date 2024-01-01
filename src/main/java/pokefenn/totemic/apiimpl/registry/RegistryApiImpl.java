@@ -14,7 +14,6 @@ import pokefenn.totemic.api.totem.TotemWoodType;
 public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;
 
-    //TODO: Consider moving these fields to RegistryAPI
     private static final Registry<MusicInstrument> MUSIC_INSTRUMENT = new RegistryBuilder<>(MUSIC_INSTRUMENT_REGISTRY).sync(true).create();
     private static final Registry<TotemWoodType> WOOD_TYPE = new RegistryBuilder<>(WOOD_TYPE_REGISTRY).defaultKey(Totemic.resloc("oak")).sync(false).create();
     private static final Registry<TotemCarving> TOTEM_CARVING = new RegistryBuilder<>(TOTEM_CARVING_REGISTRY).defaultKey(Totemic.resloc("none")).sync(false).create();

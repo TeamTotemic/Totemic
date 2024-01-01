@@ -1,22 +1,16 @@
 package pokefenn.totemic.network;
 
-import java.util.Optional;
-
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.network.NetworkRegistry;
-import net.neoforged.neoforge.network.PlayNetworkDirection;
-import net.neoforged.neoforge.network.simple.SimpleChannel;
-import pokefenn.totemic.Totemic;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
+import pokefenn.totemic.api.TotemicAPI;
 
 public final class NetworkHandler {
-    private static final ResourceLocation CHANNEL_NAME = Totemic.resloc("main");
-    private static final String PROTOCOL_VERSION = "4";
+    private static final String NETWORK_VERSION = "4";
 
-    public static final SimpleChannel channel = NetworkRegistry.newSimpleChannel(CHANNEL_NAME, () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
+    public static void init(RegisterPayloadHandlerEvent event) {
+        var reg = event.registrar(TotemicAPI.MOD_ID).versioned(NETWORK_VERSION);
 
-    public static void init() {
-        channel.registerMessage(0, ServerboundPacketMouseWheel.class, ServerboundPacketMouseWheel::encode, ServerboundPacketMouseWheel::decode, ServerboundPacketMouseWheel::handle, Optional.of(PlayNetworkDirection.PLAY_TO_SERVER));
-        channel.registerMessage(1, ClientboundPacketStartupMusic.class, ClientboundPacketStartupMusic::encode, ClientboundPacketStartupMusic::decode, ClientboundPacketStartupMusic::handle, Optional.of(PlayNetworkDirection.PLAY_TO_CLIENT));
-        channel.registerMessage(2, ClientboundPacketTotemEffectMusic.class, ClientboundPacketTotemEffectMusic::encode, ClientboundPacketTotemEffectMusic::decode, ClientboundPacketTotemEffectMusic::handle, Optional.of(PlayNetworkDirection.PLAY_TO_CLIENT));
+        reg.play(ClientboundPacketStartupMusic.ID, ClientboundPacketStartupMusic::new, ClientboundPacketStartupMusic::handle);
+        reg.play(ClientboundPacketTotemEffectMusic.ID, ClientboundPacketTotemEffectMusic::new, ClientboundPacketTotemEffectMusic::handle);
+        reg.play(ServerboundPacketMouseWheel.ID, ServerboundPacketMouseWheel::new, ServerboundPacketMouseWheel::handle);
     }
 }

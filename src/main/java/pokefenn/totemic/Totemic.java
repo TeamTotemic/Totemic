@@ -64,6 +64,7 @@ public final class Totemic {
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
         modBus.addListener(JingleDressItem::registerAttachmentType);
         modBus.addListener(ModCriteriaTriggers::init);
+        modBus.addListener(NetworkHandler::init);
 
         if(FMLEnvironment.dist.isClient()) {
             modBus.addListener(this::clientSetup);
@@ -81,7 +82,6 @@ public final class Totemic {
             ModBlocks.addCedarSignToSignBlockEntityType();
         });
 
-        NetworkHandler.init();
         //PatchouliIntegration.init();
 
         IEventBus eventBus = NeoForge.EVENT_BUS;
