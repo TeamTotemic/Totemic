@@ -7,14 +7,13 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_totempedia": {
+    "has_torch": {
       "conditions": {
         "items": [
           {
             "items": [
-              "patchouli:guide_book"
-            ],
-            "nbt": "{\"patchouli:book\":\"totemic:totempedia\"}"
+              "minecraft:torch"
+            ]
           }
         ]
       },
@@ -23,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_totempedia",
+      "has_torch",
       "has_the_recipe"
     ]
   ],

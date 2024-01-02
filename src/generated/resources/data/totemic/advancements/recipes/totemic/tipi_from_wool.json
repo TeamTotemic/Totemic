@@ -7,14 +7,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_totempedia": {
+    "has_wool": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "patchouli:guide_book"
-            ],
-            "nbt": "{\"patchouli:book\":\"totemic:totempedia\"}"
+            "tag": "minecraft:wool"
           }
         ]
       },
@@ -23,7 +20,7 @@
   },
   "requirements": [
     [
-      "has_totempedia",
+      "has_wool",
       "has_the_recipe"
     ]
   ],

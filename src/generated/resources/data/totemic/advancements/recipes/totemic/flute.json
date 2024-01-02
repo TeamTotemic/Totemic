@@ -7,14 +7,13 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_totempedia": {
+    "has_totem_knife": {
       "conditions": {
         "items": [
           {
             "items": [
-              "patchouli:guide_book"
-            ],
-            "nbt": "{\"patchouli:book\":\"totemic:totempedia\"}"
+              "totemic:totem_whittling_knife"
+            ]
           }
         ]
       },
@@ -23,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_totempedia",
+      "has_totem_knife",
       "has_the_recipe"
     ]
   ],
