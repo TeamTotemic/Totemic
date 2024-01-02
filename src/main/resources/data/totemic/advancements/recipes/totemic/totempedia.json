@@ -19,6 +19,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_totem_knife": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "totemic:totem_whittling_knife"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "totemic:totempedia"
@@ -29,6 +41,7 @@
   "requirements": [
     [
       "has_paper",
+      "has_totem_knife",
       "has_the_recipe"
     ]
   ],

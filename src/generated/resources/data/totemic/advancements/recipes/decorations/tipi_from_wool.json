@@ -7,11 +7,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_totempedia": {
+    "has_wool": {
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:logs_that_burn"
+            "tag": "minecraft:wool"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_totempedia"
+      "has_wool"
     ]
   ],
   "rewards": {

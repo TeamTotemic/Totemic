@@ -1,27 +1,29 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_iron_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "totemic:totem_whittling_knife"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_totempedia": {
-      "conditions": {
-        "items": [
-          {
-            "tag": "minecraft:logs_that_burn"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_totempedia"
+      "has_iron_ingot"
     ]
   ],
   "rewards": {
