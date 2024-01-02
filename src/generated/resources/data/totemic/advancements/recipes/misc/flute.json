@@ -7,11 +7,13 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_totempedia": {
+    "has_totem_knife": {
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:logs_that_burn"
+            "items": [
+              "totemic:totem_whittling_knife"
+            ]
           }
         ]
       },
@@ -20,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_totempedia",
+      "has_totem_knife",
       "has_the_recipe"
     ]
   ],
