@@ -1,7 +1,8 @@
-- (@unroman) Added Ukranian translation
-- Certain particle effects are now always visible even when the graphics option is set to "Minimal"
-- Added particles visualizing the amount of Totem Effect Melody that a Totem Base has
-- Comparators can now sense the amount of Totem Effect Melody from Totem Bases
-- Fixed a bug where the Tipi model was displayed at the wrong location with Forge 43.2.8 or newer
-- Fixed a bug where the Totem Effect Melody was not saved properly
-- Now requires at least Forge version 43.3
+This is an early release for Minecraft 1.20.4 with NeoForge. From now on, we will be targeting NeoForge rather than Forge.
+
+I haven't tested everything thoroughly and NeoForge is still unstable, so issues may occur.
+Loading worlds from Totemic 1.19.2-0.12.9 appears to be working, but as always, making a world backup is highly recommended.
+If you encounter any problems, please don't hesitate to report them to our [issue tracker](https://github.com/TeamTotemic/Totemic/issues).
+
+As Patchouli for NeoForge is still work in progress as of now, the Totempedia is not available yet. Most of the basic crafting
+recipes are instead unlocked when obtaining a Totem Whittling Knife.

@@ -5,6 +5,6 @@
  * <p>
  * Feel free to create an issue or pull request on Github to suggest changes or extensions to the API.
  *
- * @version 2.0.0
+ * @version 1.20.4-2.0.0
  */
 package pokefenn.totemic.api;
