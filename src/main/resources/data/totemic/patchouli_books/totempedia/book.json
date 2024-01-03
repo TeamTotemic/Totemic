@@ -3,7 +3,7 @@
     "landing_text": "totemic.totempedia.landingText",
     "version": 3,
     "model": "totemic:totempedia",
-    "creative_tab": "totemic",
+    "creative_tab": "totemic:totemic",
     "pause_game": true,
     "macros": {
         "$(carving)": "$(thing)",
