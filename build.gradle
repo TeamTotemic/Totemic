@@ -119,7 +119,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.releaseType = mod_release_type
     mainFile.changelog = file('changelog.md')
     mainFile.changelogType = 'markdown'
-    mainFile.addRequirement('patchouli')
+    mainFile.addOptional('patchouli')
     
     def apiSrcFile = mainFile.withAdditionalFile(apiSrcJar)
 }
@@ -129,9 +129,11 @@ modrinth {
     projectId = 'fenns_totemic'
     versionType = mod_release_type
     uploadFile = jar
+    gameVersions = ["${minecraft_version}"]
+    loaders = ["neoforge"]
     changelog = file('changelog.md').text
     dependencies {
-        required.project 'patchouli'
+        optional.project 'patchouli'
     }
     additionalFiles = [apiSrcJar]
 }
