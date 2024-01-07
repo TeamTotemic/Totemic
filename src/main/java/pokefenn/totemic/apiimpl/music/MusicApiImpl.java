@@ -90,7 +90,7 @@ public enum MusicApiImpl implements MusicAPI {
 
         level.getProfiler().push("totemic.playSelector");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
-        MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, pos, 8, new Vec3(0.6, 0.5, 0.6), 0.0);
+        MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, pos, 2, new Vec3(0.5, 0.5, 0.5), 0.0);
         BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, new BlockPos(pos), range)
                 .map(TotemBaseBlockEntity::getTotemState)
                 .filter(TotemState::canSelect)
