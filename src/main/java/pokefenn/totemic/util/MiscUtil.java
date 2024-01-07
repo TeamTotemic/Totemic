@@ -21,7 +21,7 @@ public final class MiscUtil {
      */
     public static <T> Collector<T, ?, List<T>> collectMaxElements(Comparator<? super T> comp) {
         return Collector.of(
-                () -> new ArrayList<>(2), //the list is usually going to be small
+                ArrayList::new,
                 (List<T> list, T e) -> {
                     if(list.isEmpty())
                         list.add(e);
