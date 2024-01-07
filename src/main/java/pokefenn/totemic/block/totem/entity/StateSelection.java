@@ -22,6 +22,7 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
+import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.util.MiscUtil;
@@ -78,6 +79,11 @@ public final class StateSelection extends TotemState {
     @Override
     public MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity) {
         return MusicResult.FAILURE;
+    }
+
+    @Override
+    public int getPriority() {
+        return MusicAcceptor.CEREMONY_PRIORITY;
     }
 
     @SuppressWarnings("resource")

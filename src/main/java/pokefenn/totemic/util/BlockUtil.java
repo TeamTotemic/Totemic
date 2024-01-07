@@ -1,6 +1,5 @@
 package pokefenn.totemic.util;
 
-import java.util.Comparator;
 import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
@@ -17,7 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicEntityUtil;
 
 public final class BlockUtil {
@@ -50,10 +48,6 @@ public final class BlockUtil {
 
     public static BlockPos upperCorner(BoundingBox box) {
         return new BlockPos(box.maxX(), box.maxY(), box.maxZ());
-    }
-
-    public static Comparator<BlockEntity> compareCenterDistanceTo(Vec3 pos) {
-        return Comparator.comparing((BlockEntity t) -> t.getBlockPos().distToCenterSqr(pos));
     }
 
     public static boolean placedInWater(BlockPlaceContext context) {
