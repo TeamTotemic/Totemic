@@ -148,6 +148,7 @@
   "totemic.isDoingCeremony": "The Totem Pole is performing a Ceremony effect\nCeremony: %s",
   "totemic.hud.selection": "Ceremony Selection",
   
+  "totemic.ceremonyDisabled": "The %s Ceremony has been disabled in the configuration",
   "totemic.noCowsNearby": "The Buffalo Dance Ceremony requires Cows nearby",
   "totemic.noParrotsNearby": "The Eagle Dance Ceremony requires Parrots nearby",
   "totemic.noZombifiedMonstersNearby": "The Steve's Lullaby Ceremony requires weakened zombified monsters nearby",
@@ -284,6 +285,8 @@
   
   "totemic.config.general": "General",
   "totemic.config.client": "Client",
+  "totemic.config.server": "Server",
   "totemic.config.ceremonyHudPositionX": "Ceremony HUD X position",
-  "totemic.config.ceremonyHudPositionY": "Ceremony HUD Y position"
+  "totemic.config.ceremonyHudPositionY": "Ceremony HUD Y position",
+  "totemic.config.disabledCeremonies": "Disabled Ceremonies"
 }

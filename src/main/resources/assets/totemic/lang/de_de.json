@@ -148,6 +148,7 @@
   "totemic.isDoingCeremony": "Der Totempfahl führt den Effekt einer Zeremonie aus\nZeremonie: %s",
   "totemic.hud.selection": "Zeremonie-Selektion",
   
+  "totemic.ceremonyDisabled": "Die Zeremonie %s wurde in der Konfiguration deaktiviert",
   "totemic.noCowsNearby": "Die Büffeltanz-Zeremonie benötigt Kühe in der Nähe",
   "totemic.noParrotsNearby": "Die Adltertanz-Zeremonie benötigt Papageien in der Nähe",
   "totemic.noZombifiedMonstersNearby": "Die Zeremonie Steves Schlaflied benötigt geschwächte zombifizierte Monster in der Nähe",
@@ -284,6 +285,8 @@
   
   "totemic.config.general": "Allgemein",
   "totemic.config.client": "Client-Seite",
+  "totemic.config.server": "Server",
   "totemic.config.ceremonyHudPositionX": "Zeremonien-HUD X-Position",
-  "totemic.config.ceremonyHudPositionY": "Zeremonien-HUD Y-Position"
+  "totemic.config.ceremonyHudPositionY": "Zeremonien-HUD Y-Position",
+  "totemic.config.disabledCeremonies": "Deaktivierte Zeremonien"
 }
