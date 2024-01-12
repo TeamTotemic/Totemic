@@ -13,14 +13,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 import pokefenn.totemic.api.TotemicAPI;
 
 public final class ModConfig {
-    /*public static class General {
-        General(ForgeConfigSpec.Builder builder) {
-            builder.comment("Totemic general configuration settings")
-                    .translation("totemic.config.general")
-                    .push("general");
-        }
-    }*/
-
     public static class Client {
         public final ConfigValue<Integer> ceremonyHudPositionX;
         public final ConfigValue<Integer> ceremonyHudPositionY;
@@ -53,6 +45,7 @@ public final class ModConfig {
             disabledCeremonies = builder
                     .comment("List of Ceremonies that should be disabled. Note that disabling some of the Ceremonies will prevent progression in Totemic.")
                     .comment("Example: [\"totemic:rain\", \"totemic:drought\"]")
+                    .comment("See the Totempedia with advanced tooltips enabled (F3+H) to look up the Ceremonies' registry names.")
                     .translation("totemic.config.disabledCeremonies")
                     .defineListAllowEmpty(List.of("disabledCeremonies"), List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().ceremonies()));
         }
@@ -75,19 +68,13 @@ public final class ModConfig {
         };
     }
 
-    //public static final General GENERAL;
     public static final Client CLIENT;
     public static final Server SERVER;
 
-    //private static final ForgeConfigSpec generalSpec;
     private static final ForgeConfigSpec clientSpec;
     private static final ForgeConfigSpec serverSpec;
 
     static {
-        /*var generalPair = new ForgeConfigSpec.Builder().configure(General::new);
-        GENERAL = generalPair.getLeft();
-        generalSpec = generalPair.getRight();*/
-
         var clientPair = new ForgeConfigSpec.Builder().configure(Client::new);
         CLIENT = clientPair.getLeft();
         clientSpec = clientPair.getRight();
@@ -98,7 +85,6 @@ public final class ModConfig {
     }
 
     public static void register(ModLoadingContext context) {
-        //context.registerConfig(Type.COMMON, generalSpec);
         context.registerConfig(Type.CLIENT, clientSpec);
         context.registerConfig(Type.SERVER, serverSpec);
     }
