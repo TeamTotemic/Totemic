@@ -9,6 +9,7 @@
   "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
   "item.totemic.totem_whittling_knife.name": "Totem Whittling Knife",
   "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
+  "totemic.carvingDisabled": "The %s Totem Carving has been disabled in the configuration",
   "item.totemic.totemic_staff": "Totemic Staff",
   "item.totemic.totemic_staff.tooltip": "A staff for your Totemic needs!",
   "item.totemic.ceremony_cheat": "Creative Ceremony Cheat",
@@ -288,5 +289,6 @@
   "totemic.config.server": "Server",
   "totemic.config.ceremonyHudPositionX": "Ceremony HUD X position",
   "totemic.config.ceremonyHudPositionY": "Ceremony HUD Y position",
-  "totemic.config.disabledCeremonies": "Disabled Ceremonies"
+  "totemic.config.disabledCeremonies": "Disabled Ceremonies",
+  "totemic.config.disabledTotemCarvings": "Disabled Totem Carvings"
 }

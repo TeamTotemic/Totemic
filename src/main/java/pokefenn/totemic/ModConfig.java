@@ -36,6 +36,7 @@ public final class ModConfig {
 
     public static class Server {
         public final ConfigValue<List<? extends String>> disabledCeremonies;
+        public final ConfigValue<List<? extends String>> disabledTotemCarvings;
 
         Server(ForgeConfigSpec.Builder builder) {
             builder.comment("Totemic server configuration settings. These settings are world specific and are synced from the server to clients.")
@@ -48,6 +49,12 @@ public final class ModConfig {
                     .comment("See the Totempedia with advanced tooltips enabled (F3+H) to look up the Ceremonies' registry names.")
                     .translation("totemic.config.disabledCeremonies")
                     .defineListAllowEmpty(List.of("disabledCeremonies"), List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().ceremonies()));
+
+            disabledTotemCarvings = builder
+                    .comment("List of Totem Carvings that should be disabled from being carved.")
+                    .comment("Example: [\"totemic:spider\"]")
+                    .translation("totemic.config.disabledTotemCarvings")
+                    .defineListAllowEmpty(List.of("disabledTotemCarvings"), List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().totemCarvings()));
         }
     }
 
