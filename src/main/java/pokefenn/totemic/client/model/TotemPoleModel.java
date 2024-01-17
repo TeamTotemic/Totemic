@@ -46,23 +46,26 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
     @Override
     public Collection<Material> getMaterials(IGeometryBakingContext ctx, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
         //In addition to gathering materials, this method also resolves the model dependencies.
-        //TODO: We probably don't need to create the totemModels table every time this method is called
-        final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
-        final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
+        if(totemModels == null) {
+            final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
+            final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
 
-        totemModels = ArrayTable.create(woodTypeRegistry, carvingRegistry);
-        var materials = new HashSet<Material>();
-        for(var woodType: woodTypeRegistry) {
-            var woodTypeModel = (BlockModel) modelGetter.apply(getWoodTypeModelName(woodType));
-            var textureMap = woodTypeModel.textureMap; //TODO: This only works if the wood type model specifies all textures itself rather than inheriting textures from its parent
+            totemModels = ArrayTable.create(woodTypeRegistry, carvingRegistry);
+            for(var woodType: woodTypeRegistry) {
+                var woodTypeModel = (BlockModel) modelGetter.apply(getWoodTypeModelName(woodType));
+                var textureMap = woodTypeModel.textureMap; //TODO: This only works if the wood type model specifies all textures itself rather than inheriting textures from its parent
 
-            for(var carving: carvingRegistry) {
-                //Create new BlockModel with the totem pole model as parent, but different textures
-                var model = new BlockModel(getPoleModelName(carving), List.of(), textureMap, ctx.useAmbientOcclusion(), null, ctx.getTransforms(), List.of());
-                totemModels.put(woodType, carving, model);
-                materials.addAll(model.getMaterials(modelGetter, missingTextureErrors));
+                for(var carving: carvingRegistry) {
+                    //Create new BlockModel with the totem pole model as parent, but different textures
+                    var model = new BlockModel(getPoleModelName(carving), List.of(), textureMap, ctx.useAmbientOcclusion(), null, ctx.getTransforms(), List.of());
+                    totemModels.put(woodType, carving, model);
+                }
             }
         }
+
+        var materials = new HashSet<Material>();
+        for(var model: totemModels.values())
+            materials.addAll(model.getMaterials(modelGetter, missingTextureErrors));
         return materials;
     }
 

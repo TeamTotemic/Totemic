@@ -41,17 +41,20 @@ public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
     @Override
     public Collection<Material> getMaterials(IGeometryBakingContext ctx, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
         //In addition to gathering materials, this method also resolves the model dependencies.
-        //TODO: We probably don't need to create the totemModels table every time this method is called
-        final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
+        if(totemModels == null) {
+            final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
 
-        totemModels = Maps.newHashMapWithExpectedSize(woodTypeRegistry.getValues().size());
-        var materials = new HashSet<Material>();
-        for(var woodType: woodTypeRegistry) {
-            var model = modelGetter.apply(getWoodTypeModelName(woodType));
+            totemModels = Maps.newHashMapWithExpectedSize(woodTypeRegistry.getValues().size());
+            for(var woodType: woodTypeRegistry) {
+                var model = modelGetter.apply(getWoodTypeModelName(woodType));
 
-            totemModels.put(woodType, model);
-            materials.addAll(model.getMaterials(modelGetter, missingTextureErrors));
+                totemModels.put(woodType, model);
+            }
         }
+
+        var materials = new HashSet<Material>();
+        for(var model: totemModels.values())
+            materials.addAll(model.getMaterials(modelGetter, missingTextureErrors));
         return materials;
     }
 
