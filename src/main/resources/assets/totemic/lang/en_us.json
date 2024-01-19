@@ -62,6 +62,8 @@
   "block.totemic.tipi.cantSleep": "You can only sleep in a Tipi in the open field",
   "block.totemic.totem_base": "Totem Base",
   "block.totemic.totem_pole": "Totem Pole",
+  "totemic.carvingIdTooltip": "Carving ID: %s",
+  "totemic.woodTypeIdTooltip": "Wood Type ID: %s",
 
   "block.totemic.oak_totem_base": "Oak Totem Base",
   "block.totemic.spruce_totem_base": "Spruce Totem Base",
