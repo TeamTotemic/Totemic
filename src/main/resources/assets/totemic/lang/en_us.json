@@ -9,6 +9,7 @@
   "item.totemic.totem_whittling_knife": "Totem Whittling Knife (%s)",
   "item.totemic.totem_whittling_knife.name": "Totem Whittling Knife",
   "item.totemic.totem_whittling_knife.tooltip": "A knife for all your whittlin' needs\nSneak+Right Click or Scroll to change carving",
+  "totemic.carvingDisabled": "The %s Totem Carving has been disabled in the configuration",
   "item.totemic.totemic_staff": "Totemic Staff",
   "item.totemic.totemic_staff.tooltip": "A staff for your Totemic needs!",
   "item.totemic.ceremony_cheat": "Creative Ceremony Cheat",
@@ -61,6 +62,8 @@
   "block.totemic.tipi.cantSleep": "You can only sleep in a Tipi in the open field",
   "block.totemic.totem_base": "Totem Base",
   "block.totemic.totem_pole": "Totem Pole",
+  "totemic.carvingIdTooltip": "Carving ID: %s",
+  "totemic.woodTypeIdTooltip": "Wood Type ID: %s",
 
   "block.totemic.oak_totem_base": "Oak Totem Base",
   "block.totemic.spruce_totem_base": "Spruce Totem Base",
@@ -290,5 +293,6 @@
   "totemic.config.server": "Server",
   "totemic.config.ceremonyHudPositionX": "Ceremony HUD X position",
   "totemic.config.ceremonyHudPositionY": "Ceremony HUD Y position",
-  "totemic.config.disabledCeremonies": "Disabled Ceremonies"
+  "totemic.config.disabledCeremonies": "Disabled Ceremonies",
+  "totemic.config.disabledTotemCarvings": "Disabled Totem Carvings"
 }

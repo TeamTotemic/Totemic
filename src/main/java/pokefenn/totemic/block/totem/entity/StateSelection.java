@@ -73,7 +73,7 @@ public final class StateSelection extends TotemState {
         }
     }
 
-    private boolean isDisabled(Ceremony ceremony, @Nonnull Entity entity) {
+    private static boolean isDisabled(Ceremony ceremony, @Nonnull Entity entity) {
         if(ModConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
             entity.sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
             return true;

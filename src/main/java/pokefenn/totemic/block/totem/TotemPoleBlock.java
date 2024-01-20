@@ -1,13 +1,17 @@
 package pokefenn.totemic.block.totem;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.mojang.serialization.MapCodec;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -159,5 +163,21 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+        if(pFlag.isAdvanced()) {
+            var carvingID = Optional.ofNullable(pStack.getTag())
+                    .map(tag -> tag.getString(TotemPoleItem.POLE_CARVING_KEY))
+                    .filter(str -> !str.isEmpty())
+                    .orElse("totemic:none");
+            var woodTypeID = Optional.ofNullable(pStack.getTag())
+                    .map(tag -> tag.getString(TotemPoleItem.POLE_WOOD_KEY))
+                    .filter(str -> !str.isEmpty())
+                    .orElse("totemic:oak");
+            pTooltip.add(Component.translatable("totemic.carvingIdTooltip", carvingID).withStyle(ChatFormatting.GRAY));
+            pTooltip.add(Component.translatable("totemic.woodTypeIdTooltip", woodTypeID).withStyle(ChatFormatting.GRAY));
+        }
     }
 }

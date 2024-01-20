@@ -36,15 +36,16 @@ public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
 
     @Override
     public void resolveParents(Function<ResourceLocation, UnbakedModel> modelGetter, IGeometryBakingContext context) {
-        //TODO: We probably don't need to create the totemModels table every time this method is called
-        final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
+        if(totemModels == null) {
+            final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
 
-        totemModels = Maps.newHashMapWithExpectedSize(woodTypeRegistry.size());
-        for(var woodType: woodTypeRegistry) {
-            var model = modelGetter.apply(getWoodTypeModelName(woodType));
+            totemModels = Maps.newHashMapWithExpectedSize(woodTypeRegistry.size());
+            for(var woodType: woodTypeRegistry) {
+                var model = modelGetter.apply(getWoodTypeModelName(woodType));
 
-            totemModels.put(woodType, model);
-            model.resolveParents(modelGetter);
+                totemModels.put(woodType, model);
+                model.resolveParents(modelGetter);
+            }
         }
     }
 

@@ -13,14 +13,6 @@ import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import pokefenn.totemic.api.TotemicAPI;
 
 public final class ModConfig {
-    /*public static class General {
-        General(ModConfigSpec.Builder builder) {
-            builder.comment("Totemic general configuration settings")
-                    .translation("totemic.config.general")
-                    .push("general");
-        }
-    }*/
-
     public static class Client {
         public final ConfigValue<Integer> ceremonyHudPositionX;
         public final ConfigValue<Integer> ceremonyHudPositionY;
@@ -44,6 +36,7 @@ public final class ModConfig {
 
     public static class Server {
         public final ConfigValue<List<? extends String>> disabledCeremonies;
+        public final ConfigValue<List<? extends String>> disabledTotemCarvings;
 
         Server(ModConfigSpec.Builder builder) {
             builder.comment("Totemic server configuration settings. These settings are world specific and are synced from the server to clients.")
@@ -53,8 +46,16 @@ public final class ModConfig {
             disabledCeremonies = builder
                     .comment("List of Ceremonies that should be disabled. Note that disabling some of the Ceremonies will prevent progression in Totemic.")
                     .comment("Example: [\"totemic:rain\", \"totemic:drought\"]")
+                    .comment("See the Totempedia with advanced tooltips enabled (F3+H) to look up the Ceremonies' IDs.")
                     .translation("totemic.config.disabledCeremonies")
                     .defineListAllowEmpty(List.of("disabledCeremonies"), List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().ceremonies()));
+
+            disabledTotemCarvings = builder
+                    .comment("List of Totem Carvings that should be disabled from being carved.")
+                    .comment("Example: [\"totemic:spider\"]")
+                    .comment("Use advanced tooltips (F3+H) to look up the Totem Carvings' IDs.")
+                    .translation("totemic.config.disabledTotemCarvings")
+                    .defineListAllowEmpty(List.of("disabledTotemCarvings"), List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().totemCarvings()));
         }
     }
 
@@ -75,19 +76,13 @@ public final class ModConfig {
         };
     }
 
-    //public static final General GENERAL;
     public static final Client CLIENT;
     public static final Server SERVER;
 
-    //private static final ModConfigSpec generalSpec;
     private static final ModConfigSpec clientSpec;
     private static final ModConfigSpec serverSpec;
 
     static {
-        /*var generalPair = new ModConfigSpec.Builder().configure(General::new);
-        GENERAL = generalPair.getLeft();
-        generalSpec = generalPair.getRight();*/
-
         var clientPair = new ModConfigSpec.Builder().configure(Client::new);
         CLIENT = clientPair.getLeft();
         clientSpec = clientPair.getRight();
@@ -98,7 +93,6 @@ public final class ModConfig {
     }
 
     public static void register(ModLoadingContext context) {
-        //context.registerConfig(Type.COMMON, generalSpec);
         context.registerConfig(Type.CLIENT, clientSpec);
         context.registerConfig(Type.SERVER, serverSpec);
     }

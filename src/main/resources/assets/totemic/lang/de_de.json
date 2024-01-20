@@ -9,6 +9,7 @@
   "item.totemic.totem_whittling_knife": "Totemschnitzmesser (%s)",
   "item.totemic.totem_whittling_knife.name": "Totemschnitzmesser",
   "item.totemic.totem_whittling_knife.tooltip": "Ein Messer für all Deine Schnitzerei\nSchleichen+Rechtsklick oder Mausrad zum Ändern des Musters",
+  "totemic.carvingDisabled": "Das Schnitzmuster %s wurde in der Konfiguration deaktiviert",
   "item.totemic.totemic_staff": "Totemstab",
   "item.totemic.totemic_staff.tooltip": "Ein Stab für Deine Totem-Bedürfnisse!",
   "item.totemic.ceremony_cheat": "Kreativmodus-Zeremonien-Cheat",
@@ -61,6 +62,8 @@
   "block.totemic.tipi.cantSleep": "Du kannst in einem Tipi nur unter freiem Himmel schlafen",
   "block.totemic.totem_base": "Totembasis",
   "block.totemic.totem_pole": "Totempfahl",
+  "totemic.carvingIdTooltip": "Schnitzmuster-ID: %s",
+  "totemic.woodTypeIdTooltip": "Holztyp-ID: %s",
   
   "block.totemic.oak_totem_base": "Eichenholz-Totembasis",
   "block.totemic.spruce_totem_base": "Fichtenholz-Totembasis",
@@ -290,5 +293,6 @@
   "totemic.config.server": "Server",
   "totemic.config.ceremonyHudPositionX": "Zeremonien-HUD X-Position",
   "totemic.config.ceremonyHudPositionY": "Zeremonien-HUD Y-Position",
-  "totemic.config.disabledCeremonies": "Deaktivierte Zeremonien"
+  "totemic.config.disabledCeremonies": "Deaktivierte Zeremonien",
+  "totemic.config.disabledTotemCarvings": "Deaktivierte Totem-Schnitzmuster"
 }

@@ -1,8 +1,9 @@
-This is an early release for Minecraft 1.20.4 with NeoForge. From now on, we will be targeting NeoForge rather than Forge.
+This update is aimed at making selecting Ceremonies more intuitive and providing more control to modpack makers and server owners. If you want to prevent players from changing the weather or climbing all over the place, now you can.
 
-I haven't tested everything thoroughly and NeoForge is still unstable, so issues may occur.
-Loading worlds from Totemic 1.19.2-0.12.9 appears to be working, but as always, making a world backup is highly recommended.
-If you encounter any problems, please don't hesitate to report them to our [issue tracker](https://github.com/TeamTotemic/Totemic/issues).
+- Playing an instrument in selection mode will now preferably target Totem Bases that already have a selection on them. This makes it more feasible to perform Ceremonies in areas where multiple Totem Poles are placed near each other.
+- Totem Bases will now emit particles when in selection mode.
+- Added a config option to disable individual Ceremonies.
+- Added a config option to disable individual Totem Carvings.
+- Added a tooltip to Totem Pole and Base items visible with advanced tooltips enabled (F3+H) showing the Totem Carving and Wood Type registry IDs.
 
-As Patchouli for NeoForge is still work in progress as of now, the Totempedia is not available yet. Most of the basic crafting
-recipes are instead unlocked when obtaining a Totem Whittling Knife.
+The config options can be found in the server config, which for Minecraft 1.19.2 is located in `.minecraft/saves/<save name>/serverconfig` on the client and `<server folder>/world/serverconfig` on the server.

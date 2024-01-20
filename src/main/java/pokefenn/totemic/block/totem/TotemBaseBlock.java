@@ -1,5 +1,7 @@
 package pokefenn.totemic.block.totem;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
@@ -16,6 +18,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -210,5 +213,16 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+        if(pFlag.isAdvanced()) {
+            var woodTypeID = Optional.ofNullable(pStack.getTag())
+                    .map(tag -> tag.getString(TotemPoleItem.POLE_WOOD_KEY))
+                    .filter(str -> !str.isEmpty())
+                    .orElse("totemic:oak");
+            pTooltip.add(Component.translatable("totemic.woodTypeIdTooltip", woodTypeID).withStyle(ChatFormatting.GRAY));
+        }
     }
 }

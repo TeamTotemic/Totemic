@@ -22,6 +22,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
+import pokefenn.totemic.ModConfig;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
@@ -93,14 +94,17 @@ public class TotemKnifeItem extends Item {
                 return InteractionResult.FAIL;
 
             var carving = getCarving(c.getItemInHand());
-            var newBlock = carving.isPresent() ? ModBlocks.totem_pole.get() : ModBlocks.totem_base.get();
-            var newState = newBlock.getStateForPlacement(new BlockPlaceContext(c));
-            c.getLevel().setBlock(c.getClickedPos(), newState, Block.UPDATE_ALL_IMMEDIATE);
             if(carving.isPresent()) {
+                if(isCarvingDisabled(carving.get(), player))
+                    return InteractionResult.FAIL;
+                var newState = ModBlocks.totem_pole.get().getStateForPlacement(new BlockPlaceContext(c));
+                c.getLevel().setBlock(c.getClickedPos(), newState, Block.UPDATE_ALL_IMMEDIATE);
                 c.getLevel().getBlockEntity(c.getClickedPos(), ModBlockEntities.totem_pole.get())
                     .ifPresent(pole -> pole.setAppearance(woodType.get(), carving.get()));
             }
             else {
+                var newState = ModBlocks.totem_base.get().getStateForPlacement(new BlockPlaceContext(c));
+                c.getLevel().setBlock(c.getClickedPos(), newState, Block.UPDATE_ALL_IMMEDIATE);
                 c.getLevel().getBlockEntity(c.getClickedPos(), ModBlockEntities.totem_base.get())
                     .ifPresent(base -> base.setWoodType(woodType.get()));
             }
@@ -123,6 +127,16 @@ public class TotemKnifeItem extends Item {
                     else
                         return Optional.empty();
                 });
+    }
+
+    private static boolean isCarvingDisabled(TotemCarving carving, @Nullable Player player) {
+        if(ModConfig.SERVER.disabledTotemCarvings.get().contains(carving.getRegistryName().toString())) {
+            if(player != null && player.level().isClientSide())
+                player.sendSystemMessage(Component.translatable("totemic.carvingDisabled", carving.getDisplayName()));
+            return true;
+        }
+        else
+            return false;
     }
 
     @Override
