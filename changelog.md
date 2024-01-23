@@ -6,4 +6,4 @@ This update is aimed at making selecting Ceremonies more intuitive and providing
 - Added a config option to disable individual Totem Carvings.
 - Added a tooltip to Totem Pole and Base items visible with advanced tooltips enabled (F3+H) showing the Totem Carving and Wood Type registry IDs.
 
-The config options can be found in the server config, which for Minecraft 1.19.2 is located in `.minecraft/saves/<save name>/serverconfig` on the client and `<server folder>/world/serverconfig` on the server.
+The config options can be found in the server config, which for Minecraft 1.20.4+ is located in the usual `config` folder (keep in mind that the server config file is not created on the client until a world is loaded).
