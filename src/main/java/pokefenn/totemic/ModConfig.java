@@ -1,8 +1,8 @@
 package pokefenn.totemic;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -48,31 +48,30 @@ public final class ModConfig {
                     .comment("Example: [\"totemic:rain\", \"totemic:drought\"]")
                     .comment("See the Totempedia with advanced tooltips enabled (F3+H) to look up the Ceremonies' IDs.")
                     .translation("totemic.config.disabledCeremonies")
-                    .defineListAllowEmpty(List.of("disabledCeremonies"), List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().ceremonies()));
+                    .defineListAllowEmpty(List.of("disabledCeremonies"), List::of, isValidRegistryKey(TotemicAPI.get().registry().ceremonies()));
 
             disabledTotemCarvings = builder
                     .comment("List of Totem Carvings that should be disabled from being carved.")
                     .comment("Example: [\"totemic:spider\"]")
                     .comment("Use advanced tooltips (F3+H) to look up the Totem Carvings' IDs.")
                     .translation("totemic.config.disabledTotemCarvings")
-                    .defineListAllowEmpty(List.of("disabledTotemCarvings"), List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().totemCarvings()));
+                    .defineListAllowEmpty(List.of("disabledTotemCarvings"), List::of, isValidRegistryKey(TotemicAPI.get().registry().totemCarvings()));
         }
     }
 
     /**
      * Returns a Predicate that checks whether the given object is a valid String defining a valid ResourceLocation
      * contained in the given registry,
-     *
-     * Using a Supplier for the registry since our registries are not initialized before the config spec is built.
      */
-    private static Predicate<Object> isValidRegistryKey(Supplier<Registry<?>> registry) {
+    private static Predicate<Object> isValidRegistryKey(Registry<?> registry) {
+        Objects.requireNonNull(registry);
         return obj -> {
             if(!(obj instanceof String str))
                 return false;
             var key = ResourceLocation.tryParse(str);
             if(key == null)
                 return false;
-            return registry.get().containsKey(key);
+            return registry.containsKey(key);
         };
     }
 
