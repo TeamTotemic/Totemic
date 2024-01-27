@@ -152,10 +152,10 @@ public class TotemBaseBlockEntity extends BlockEntity {
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
-        var woodKey = ResourceLocation.tryParse(tag.getString("Wood"));
-        if(!TotemicAPI.get().registry().woodTypes().containsKey(woodKey))
+        var optWood = TotemicAPI.get().registry().woodTypes().getOptional(ResourceLocation.tryParse(tag.getString("Wood")));
+        if(optWood.isEmpty())
             Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
-        woodType = TotemicAPI.get().registry().woodTypes().get(woodKey); //TODO: Can use Registry#getOptional here
+        woodType = optWood.orElse(ModContent.oak);
 
         if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
             byte id = tag.getByte("State");

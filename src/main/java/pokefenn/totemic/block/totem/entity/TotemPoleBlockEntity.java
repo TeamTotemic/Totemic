@@ -41,14 +41,14 @@ public class TotemPoleBlockEntity extends BlockEntity {
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
-        var woodKey = ResourceLocation.tryParse(tag.getString("Wood"));
-        if(!TotemicAPI.get().registry().woodTypes().containsKey(woodKey))
+        var optWood = TotemicAPI.get().registry().woodTypes().getOptional(ResourceLocation.tryParse(tag.getString("Wood")));
+        if(optWood.isEmpty())
             Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
-        woodType = TotemicAPI.get().registry().woodTypes().get(woodKey); //TODO: Can use Registry#getOptional here
-        var carvingKey = ResourceLocation.tryParse(tag.getString("Carving"));
-        if(!TotemicAPI.get().registry().totemCarvings().containsKey(carvingKey))
+        woodType = optWood.orElse(ModContent.oak);
+        var optCarving = TotemicAPI.get().registry().totemCarvings().getOptional(ResourceLocation.tryParse(tag.getString("Carving")));
+        if(optCarving.isEmpty())
             Totemic.logger.error("Unknown Totem Carving: '{}'", tag.getString("Carving"));
-        carving = TotemicAPI.get().registry().totemCarvings().get(carvingKey);
+        carving = optCarving.orElse(ModContent.none);
     }
 
     @Override
