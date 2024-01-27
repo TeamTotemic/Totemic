@@ -37,7 +37,6 @@ import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModMobEffects;
 import pokefenn.totemic.init.ModSounds;
-import pokefenn.totemic.item.music.JingleDressItem;
 import pokefenn.totemic.network.NetworkHandler;
 
 @Mod(TotemicAPI.MOD_ID)
@@ -62,7 +61,6 @@ public final class Totemic {
         modBus.register(ModContent.class);
 
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
-        modBus.addListener(JingleDressItem::registerAttachmentType);
         modBus.addListener(ModCriteriaTriggers::init);
         modBus.addListener(NetworkHandler::init);
 
