@@ -28,10 +28,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.DummyTipiBlock;
@@ -77,11 +75,7 @@ public final class ModBlocks {
     public static final RegistryObject<TotemBaseBlock> totem_base = REGISTER.register("totem_base", () -> new TotemBaseBlock(Properties.of(Material.WOOD).strength(2, 3).sound(SoundType.WOOD)));
     public static final RegistryObject<TotemPoleBlock> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleBlock(Properties.of(Material.WOOD).strength(2, 3).sound(SoundType.WOOD)));
 
-    @SubscribeEvent
-    public static void init(RegisterEvent event) {
-        if(!event.getRegistryKey().equals(ForgeRegistries.Keys.BLOCKS))
-            return;
-
+    public static void addPlantsToFlowerPot() {
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(cedar_sapling.getId(), potted_cedar_sapling);
     }
 

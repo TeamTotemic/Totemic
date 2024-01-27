@@ -64,7 +64,6 @@ public final class Totemic {
         ModEntityTypes.REGISTER.register(modBus);
         ModSounds.REGISTER.register(modBus);
 
-        modBus.register(ModBlocks.class);
         modBus.register(ModItems.class);
         modBus.register(ModEntityTypes.class);
         modBus.register(RegistryApiImpl.class);
@@ -82,6 +81,7 @@ public final class Totemic {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            ModBlocks.addPlantsToFlowerPot();
             ModBlocks.setFireInfo();
             ModBlocks.addCedarSignToSignBlockEntityType();
             ModCriteriaTriggers.init();
