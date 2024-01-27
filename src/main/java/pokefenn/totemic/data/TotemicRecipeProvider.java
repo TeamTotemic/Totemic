@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -176,11 +177,27 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
                 .save(rc, "totemic:tipi_from_hide");
 
-        generateRecipes(rc, ModBlocks.getCedarBlockFamily(), FeatureFlags.DEFAULT_FLAGS);
+        generateRecipes(rc, createCedarBlockFamily(), FeatureFlags.DEFAULT_FLAGS);
 
         simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
+    }
+
+    private static BlockFamily createCedarBlockFamily() {
+        return new BlockFamily.Builder(ModBlocks.cedar_planks.get())
+                .button(ModBlocks.cedar_button.get())
+                .fence(ModBlocks.cedar_fence.get())
+                .fenceGate(ModBlocks.cedar_fence_gate.get())
+                .pressurePlate(ModBlocks.cedar_pressure_plate.get())
+                .sign(ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get())
+                .slab(ModBlocks.cedar_slab.get())
+                .stairs(ModBlocks.cedar_stairs.get())
+                .door(ModBlocks.cedar_door.get())
+                .trapdoor(ModBlocks.cedar_trapdoor.get())
+                .recipeGroupPrefix("totemic:wooden")
+                .recipeUnlockedBy("has_planks")
+                .getFamily();
     }
 
     protected static Criterion<CeremonyTrigger.TriggerInstance> performed(Ceremony ceremony) {
