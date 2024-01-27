@@ -3,7 +3,6 @@ package pokefenn.totemic.init;
 import java.util.HashSet;
 
 import net.minecraft.core.Direction.Axis;
-import net.minecraft.data.BlockFamily;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -81,21 +80,12 @@ public final class ModBlocks {
     public static final RegistryObject<TotemBaseBlock> totem_base = REGISTER.register("totem_base", () -> new TotemBaseBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD)));
     public static final RegistryObject<TotemPoleBlock> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD)));
 
-    private static BlockFamily CEDAR_FAMILY;
-
-    public static BlockFamily getCedarBlockFamily() {
-        return CEDAR_FAMILY;
-    }
-
     @SubscribeEvent
     public static void init(RegisterEvent event) {
         if(!event.getRegistryKey().equals(ForgeRegistries.Keys.BLOCKS))
             return;
 
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(cedar_sapling.getId(), potted_cedar_sapling);
-
-        CEDAR_FAMILY = new BlockFamily.Builder(cedar_planks.get()).button(cedar_button.get()).fence(cedar_fence.get()).fenceGate(cedar_fence_gate.get()).pressurePlate(cedar_pressure_plate.get()).sign(cedar_sign.get(), cedar_wall_sign.get()).slab(cedar_slab.get()).stairs(cedar_stairs.get()).door(cedar_door.get()).trapdoor(cedar_trapdoor.get())
-                .recipeGroupPrefix("totemic:wooden").recipeUnlockedBy("has_planks").getFamily();
     }
 
     public static void setFireInfo() {

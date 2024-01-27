@@ -3,6 +3,7 @@ package pokefenn.totemic.data;
 import java.util.function.Consumer;
 
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -170,11 +171,27 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
                 .save(rc, "totemic:tipi_from_hide");
 
-        generateRecipes(rc, ModBlocks.getCedarBlockFamily());
+        generateRecipes(rc, createCedarBlockFamily());
 
         simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
+    }
+
+    private static BlockFamily createCedarBlockFamily() {
+        return new BlockFamily.Builder(ModBlocks.cedar_planks.get())
+                .button(ModBlocks.cedar_button.get())
+                .fence(ModBlocks.cedar_fence.get())
+                .fenceGate(ModBlocks.cedar_fence_gate.get())
+                .pressurePlate(ModBlocks.cedar_pressure_plate.get())
+                .sign(ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get())
+                .slab(ModBlocks.cedar_slab.get())
+                .stairs(ModBlocks.cedar_stairs.get())
+                .door(ModBlocks.cedar_door.get())
+                .trapdoor(ModBlocks.cedar_trapdoor.get())
+                .recipeGroupPrefix("totemic:wooden")
+                .recipeUnlockedBy("has_planks")
+                .getFamily();
     }
 
     protected static CeremonyTrigger.TriggerInstance performed(Ceremony ceremony) {
