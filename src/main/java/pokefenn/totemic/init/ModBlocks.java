@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Optional;
 
 import net.minecraft.core.Direction.Axis;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -33,10 +32,8 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.RegisterEvent;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.DummyTipiBlock;
 import pokefenn.totemic.block.StrippableLogBlock;
@@ -81,12 +78,7 @@ public final class ModBlocks {
     public static final DeferredBlock<TotemBaseBlock> totem_base = REGISTER.register("totem_base", () -> new TotemBaseBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD)));
     public static final DeferredBlock<TotemPoleBlock> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD)));
 
-    //TODO: This does not need to be an event handler, we should just call it from CommonSetup
-    @SubscribeEvent
-    public static void init(RegisterEvent event) {
-        if(!event.getRegistryKey().equals(Registries.BLOCK))
-            return;
-
+    public static void addPlantsToFlowerPot() {
         ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(cedar_sapling.getId(), potted_cedar_sapling);
     }
 
