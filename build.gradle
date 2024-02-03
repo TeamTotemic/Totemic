@@ -19,8 +19,8 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
 
-    copyIdeResources = true
-    generateRunFolders = true
+    //copyIdeResources = true
+    //generateRunFolders = true
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -71,21 +71,6 @@ dependencies {
     
     //compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api")
     //runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.2-77")
-}
-
-tasks.named('processResources', ProcessResources).configure {
-    var replaceProperties = [
-            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
-            forge_version: forge_version, forge_version_range: forge_version_range,
-            loader_version_range: loader_version_range,
-            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors: mod_authors, mod_description: mod_description,
-    ]
-    inputs.properties replaceProperties
-
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-        expand replaceProperties + [project: project]
-    }
 }
 
 task apiSrcJar(type: Jar) {
