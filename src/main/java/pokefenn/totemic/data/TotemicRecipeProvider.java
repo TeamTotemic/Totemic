@@ -1,11 +1,12 @@
 package pokefenn.totemic.data;
 
-import net.minecraft.advancements.Criterion;
+import java.util.function.Consumer;
+
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -26,7 +27,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    protected void buildRecipes(RecipeOutput rc) {
+    protected void buildRecipes(Consumer<FinishedRecipe> rc) {
         //TODO: Patchouli is not yet available
         //var totempedia = PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
         var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(ItemTags.LOGS_THAT_BURN)/*.of(totempedia.getItem()).hasNbt(totempedia.getTag())*/.build());
@@ -171,7 +172,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
         simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
     }
 
-    protected static Criterion<CeremonyTrigger.TriggerInstance> performed(Ceremony ceremony) {
+    protected static CeremonyTrigger.TriggerInstance performed(Ceremony ceremony) {
         return CeremonyTrigger.TriggerInstance.performedCeremony(ceremony);
     }
 }

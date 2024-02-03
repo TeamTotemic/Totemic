@@ -7,6 +7,6 @@ public final class ModCriteriaTriggers {
     public static final CeremonyTrigger PERFORM_CEREMONY = new CeremonyTrigger();
 
     public static void init() {
-        CriteriaTriggers.register("totemic:performed_ceremony", PERFORM_CEREMONY);
+        CriteriaTriggers.register(PERFORM_CEREMONY);
     }
 }

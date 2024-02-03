@@ -1,25 +1,30 @@
 package pokefenn.totemic.advancements.criterion;
 
-import java.util.Optional;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
-import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.DeserializationContext;
+import net.minecraft.advancements.critereon.SerializationContext;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.GsonHelper;
-import pokefenn.totemic.advancements.ModCriteriaTriggers;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 
 public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.TriggerInstance> {
+    private static final ResourceLocation ID = Totemic.resloc("performed_ceremony");
+
     @Override
-    public TriggerInstance createInstance(JsonObject pJson, Optional<ContextAwarePredicate> pPlayer, DeserializationContext pContext) {
+    public ResourceLocation getId() {
+        return ID;
+    }
+
+    @Override
+    public TriggerInstance createInstance(JsonObject pJson, ContextAwarePredicate pPlayer, DeserializationContext pContext) {
         var name = new ResourceLocation(GsonHelper.getAsString(pJson, "ceremony"));
         var ceremony = TotemicAPI.get().registry().ceremonies().getValue(name);
         if(ceremony == null)
@@ -34,13 +39,13 @@ public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.Trig
     public static class TriggerInstance extends AbstractCriterionTriggerInstance {
         private final Ceremony ceremony;
 
-        public TriggerInstance(Optional<ContextAwarePredicate> pPlayer, Ceremony ceremony) {
-            super(pPlayer);
+        public TriggerInstance(ContextAwarePredicate pPlayer, Ceremony ceremony) {
+            super(ID, pPlayer);
             this.ceremony = ceremony;
         }
 
-        public static Criterion<TriggerInstance> performedCeremony(Ceremony ceremony) {
-            return ModCriteriaTriggers.PERFORM_CEREMONY.createCriterion(new TriggerInstance(Optional.empty(), ceremony));
+        public static TriggerInstance performedCeremony(Ceremony ceremony) {
+            return new TriggerInstance(ContextAwarePredicate.ANY, ceremony);
         }
 
         public boolean matches(Ceremony cer) {
@@ -48,8 +53,8 @@ public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.Trig
         }
 
         @Override
-        public JsonObject serializeToJson() {
-            var json = super.serializeToJson();
+        public JsonObject serializeToJson(SerializationContext pConditions) {
+            var json = super.serializeToJson(pConditions);
             json.addProperty("ceremony", ceremony.getRegistryName().toString());
             return json;
         }
