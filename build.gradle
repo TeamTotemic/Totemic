@@ -1,14 +1,14 @@
 plugins {
     id 'eclipse'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id 'net.darkhax.curseforgegradle' version '1.1.15'
+    id 'net.darkhax.curseforgegradle' version '1.1.+'
     id 'com.modrinth.minotaur' version '2.+'
 }
 
 version = mod_version
-group = 'pokefenn.totemic'
+group = mod_group_id
 
 base {
     archivesName = 'Totemic-forge'
@@ -17,9 +17,10 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: mappings_channel, version: mappings_version
+    mappings channel: mapping_channel, version: mapping_version
 
     copyIdeResources = true
+    generateRunFolders = true
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -34,7 +35,7 @@ minecraft {
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                totemic { sources sourceSets.main, sourceSets.test }
+                "${mod_id}" { sources sourceSets.main, sourceSets.test }
             }
         }
 
@@ -44,7 +45,7 @@ minecraft {
 
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
+            //args '--nogui'
         }
 
         gameTestServer {
@@ -66,15 +67,14 @@ repositories {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${forge_version}"
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     
     //compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.19.2-77:api")
     //runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.2-77")
 }
 
 tasks.named('processResources', ProcessResources).configure {
-    //TODO
-    /*var replaceProperties = [
+    var replaceProperties = [
             minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
             forge_version: forge_version, forge_version_range: forge_version_range,
             loader_version_range: loader_version_range,
@@ -85,7 +85,7 @@ tasks.named('processResources', ProcessResources).configure {
 
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
         expand replaceProperties + [project: project]
-    }*/
+    }
 }
 
 task apiSrcJar(type: Jar) {
@@ -103,13 +103,13 @@ artifacts {
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
-            "Specification-Title": "totemic",
-            "Specification-Vendor": "ljfa",
-            "Specification-Version": "1",
-            "Implementation-Title": project.name,
-            "Implementation-Version": project.version,
-            "Implementation-Vendor": "ljfa",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+            'Specification-Title'     : mod_id,
+            'Specification-Vendor'    : mod_authors,
+            'Specification-Version'   : '1',
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.jar.archiveVersion,
+            'Implementation-Vendor'   : mod_authors,
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 
@@ -123,7 +123,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.releaseType = mod_release_type
     mainFile.changelog = file('changelog.md')
     mainFile.changelogType = 'markdown'
-    mainFile.addRequirement('patchouli')
+    mainFile.addOptional('patchouli')
     
     def apiSrcFile = mainFile.withAdditionalFile(apiSrcJar)
 }
@@ -135,7 +135,7 @@ modrinth {
     uploadFile = jar
     changelog = file('changelog.md').text
     dependencies {
-        required.project 'patchouli'
+        optional.project 'patchouli'
     }
     additionalFiles = [apiSrcJar]
 }

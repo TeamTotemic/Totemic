@@ -1,36 +1,34 @@
 modLoader="javafml"
-loaderVersion="[48,)"
-license="MIT"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
 issueTrackerURL="https://github.com/TeamTotemic/Totemic/issues"
 
 [[mods]]
-modId="totemic"
-version="${file.jarVersion}"
-displayName="Totemic"
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
 updateJSONURL="https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json"
 displayURL="https://minecraft.curseforge.com/projects/totemic"
 logoFile="totemic_logo.png"
 credits="nojustgavin, Nefilto, ZestyBlaze, VincentLongiug, WayofTime, Joshie, Poppycocks, Dylan4Ever, Vazkii, Kerri Lake"
-authors="Pokefenn, ljfa, Sunconure11"
-description='''
-A magic mod about Totem Poles, nature and the power of music.
-'''
+authors="${mod_authors}"
+description='''${mod_description}'''
 
-[[dependencies.totemic]]
+[[dependencies.${mod_id}]]
     modId="forge"
     mandatory=true
-    versionRange="[48.1.0,)"
+    versionRange="${forge_version_range}"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.totemic]]
+[[dependencies.${mod_id}]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.20.2,1.21)"
+    versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
 
-#[[dependencies.totemic]]
+#[[dependencies.${mod_id}]]
 #    modId="patchouli"
 #    mandatory=true
 #    versionRange="[1.19.2-77,)"
