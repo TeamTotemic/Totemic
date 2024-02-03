@@ -2,7 +2,6 @@ package pokefenn.totemic.apiimpl.music;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -89,13 +88,17 @@ public enum MusicApiImpl implements MusicAPI {
         if(level.isClientSide)
             return;
 
+        level.getProfiler().push("totemic.playSelector");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
-        MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, pos, 8, new Vec3(0.6, 0.5, 0.6), 0.0);
-        Optional<TotemState> totemState = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, BlockPos.containing(pos), range)
-                .min(BlockUtil.compareCenterDistanceTo(pos))
+        MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, pos, 2, new Vec3(0.5, 0.5, 0.5), 0.0);
+        BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, BlockPos.containing(pos), range)
                 .map(TotemBaseBlockEntity::getTotemState)
-                .filter(TotemState::canSelect);
-        totemState.ifPresent(t -> t.addSelector(entity, instr));
+                .filter(TotemState::canSelect)
+                .max(
+                        Comparator.comparing(MusicAcceptor::getPriority) //Prefer highest priority (i.e. StateSelection)
+                        .thenComparingDouble(acc -> -acc.getPosition().distanceToSqr(pos))) //then prefer the closest one (note the minus sign to reverse the order)
+                .ifPresent(t -> t.addSelector(entity, instr));
+        level.getProfiler().pop();
     }
 
     private static void playInstrumentSound(Level level, Vec3 pos, @Nullable Entity entity, MusicInstrument instr) {

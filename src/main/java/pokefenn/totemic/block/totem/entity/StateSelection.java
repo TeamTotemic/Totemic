@@ -14,14 +14,17 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.ModConfig;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
+import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.util.MiscUtil;
@@ -50,16 +53,16 @@ public final class StateSelection extends TotemState {
     @Override
     public void addSelector(@Nonnull Entity entity, MusicInstrument instr) {
         MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.NOTE, tile.getLevel(), getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
+        MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.FIREWORK, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
         selectors.add(instr);
         time = 0;
         tile.setChanged();
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
             Ceremony match = getCeremony(selectors);
-            if(match != null) {
+            if(match != null && !isDisabled(match, entity)) {
                 CeremonyInstance instance = match.createInstance();
                 if(instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
-                    MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.FIREWORK, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
                     tile.setTotemState(new StateStartup(tile, match, instance, entity));
                 }
                 else
@@ -70,6 +73,15 @@ public final class StateSelection extends TotemState {
         }
     }
 
+    private static boolean isDisabled(Ceremony ceremony, @Nonnull Entity entity) {
+        if(ModConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
+            entity.sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
+            return true;
+        }
+        else
+            return false;
+    }
+
     @Override
     public boolean canAcceptMusic(MusicInstrument instr) {
         return false;
@@ -78,6 +90,11 @@ public final class StateSelection extends TotemState {
     @Override
     public MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity) {
         return MusicResult.FAILURE;
+    }
+
+    @Override
+    public int getPriority() {
+        return MusicAcceptor.CEREMONY_PRIORITY;
     }
 
     @SuppressWarnings("resource")

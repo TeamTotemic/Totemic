@@ -1,7 +1,9 @@
-- (@unroman) Added Ukranian translation
-- Certain particle effects are now always visible even when the graphics option is set to "Minimal"
-- Added particles visualizing the amount of Totem Effect Melody that a Totem Base has
-- Comparators can now sense the amount of Totem Effect Melody from Totem Bases
-- Fixed a bug where the Tipi model was displayed at the wrong location with Forge 43.2.8 or newer
-- Fixed a bug where the Totem Effect Melody was not saved properly
-- Now requires at least Forge version 43.3
+This update is aimed at making selecting Ceremonies more intuitive and providing more control to modpack makers and server owners. If you want to prevent players from changing the weather or climbing all over the place, now you can.
+
+- Playing an instrument in selection mode will now preferably target Totem Bases that already have a selection on them. This makes it more feasible to perform Ceremonies in areas where multiple Totem Poles are placed near each other.
+- Totem Bases will now emit particles when in selection mode.
+- Added a config option to disable individual Ceremonies.
+- Added a config option to disable individual Totem Carvings.
+- Added a tooltip to Totem Pole and Base items visible with advanced tooltips enabled (F3+H) showing the Totem Carving and Wood Type registry IDs.
+
+The config options can be found in the server config, which for Minecraft 1.19.2 is located in `.minecraft/saves/<save name>/serverconfig` on the client and `<server folder>/world/serverconfig` on the server.
