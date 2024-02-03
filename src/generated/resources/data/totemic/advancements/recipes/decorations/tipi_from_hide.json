@@ -28,9 +28,9 @@
   },
   "requirements": [
     [
-      "has_the_recipe",
       "performed_buffalo_dance",
-      "has_buffalo_hide"
+      "has_buffalo_hide",
+      "has_the_recipe"
     ]
   ],
   "rewards": {

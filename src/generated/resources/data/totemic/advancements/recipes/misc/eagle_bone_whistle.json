@@ -28,9 +28,9 @@
   },
   "requirements": [
     [
-      "has_the_recipe",
       "performed_eagle_dance",
-      "has_eagle_bone"
+      "has_eagle_bone",
+      "has_the_recipe"
     ]
   ],
   "rewards": {

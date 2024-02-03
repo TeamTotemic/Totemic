@@ -28,9 +28,9 @@
   },
   "requirements": [
     [
-      "has_the_recipe",
       "performed_fertility",
-      "has_cedar_leaves"
+      "has_cedar_leaves",
+      "has_the_recipe"
     ]
   ],
   "rewards": {

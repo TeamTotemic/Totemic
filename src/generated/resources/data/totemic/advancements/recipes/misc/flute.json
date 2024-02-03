@@ -20,8 +20,8 @@
   },
   "requirements": [
     [
-      "has_the_recipe",
-      "has_totempedia"
+      "has_totempedia",
+      "has_the_recipe"
     ]
   ],
   "rewards": {
