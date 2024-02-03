@@ -78,8 +78,8 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
         musicAmount = Math.min(previous + amount, TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC);
         if(musicAmount > previous) {
             var pos = Vec3.atCenterOf(tile.getBlockPos());
-            NetworkHandler.channel.send(new ClientboundPacketTotemEffectMusic(tile.getBlockPos(), musicAmount),
-                    PacketDistributor.NEAR.with(new TargetPoint(pos.x, pos.y, pos.z, 64, tile.getLevel().dimension())));
+            NetworkHandler.channel.send(PacketDistributor.NEAR.with(TargetPoint.p(pos.x, pos.y, pos.z, 64, tile.getLevel().dimension())),
+                    new ClientboundPacketTotemEffectMusic(tile.getBlockPos(), musicAmount));
             tile.setChanged();
             return (musicAmount == previous + amount) ? MusicResult.SUCCESS : MusicResult.SUCCESS_SATURATED;
         }
