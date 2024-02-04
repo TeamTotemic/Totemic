@@ -28,18 +28,16 @@ public final class TotemicRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> rc) {
-        //TODO: Patchouli is not yet available
-        //var totempedia = PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
-        //var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(totempedia.getItem()).hasNbt(totempedia.getTag()).build());
+        //TODO: Find a way to unlock the basic recipes when obtaining the Totempedia,
+        //probably by generating conditional advancements independently from the recipes.
 
-        //The Totempedia recipe itself is not being generated
+        //The Totempedia recipe is not being generated
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.flute.get())
                 .pattern(" LS")
                 .pattern(" S ")
                 .pattern("S  ")
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LEAVES)
-                //.unlockedBy("has_totempedia", hasTotempedia)
                 .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.jingle_dress.get())
@@ -76,7 +74,6 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('I', Tags.Items.INGOTS_IRON)
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('F', Items.FLINT)
-                //.unlockedBy("has_totempedia", hasTotempedia)
                 .unlockedBy("has_iron_ingot", has(Items.IRON_INGOT))
                 .save(rc);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.totemic_staff.get())
@@ -85,7 +82,6 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("S L")
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LEAVES)
-                //.unlockedBy("has_totempedia", hasTotempedia)
                 .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.drum.get())
@@ -95,7 +91,6 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('E', Tags.Items.LEATHER)
                 .define('L', ItemTags.LOGS_THAT_BURN)
                 .define('W', ItemTags.WOOL)
-                //.unlockedBy("has_totempedia", hasTotempedia)
                 .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.wind_chime.get())
@@ -147,7 +142,6 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('W', ItemTags.LOGS_THAT_BURN)
                 .define('T', Items.TORCH)
-                //.unlockedBy("has_totempedia", hasTotempedia)
                 .unlockedBy("has_torch", has(Items.TORCH))
                 .save(rc);
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.tipi.get())
@@ -157,7 +151,6 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('W', ItemTags.WOOL)
                 .group("totemic:tipi")
-                //.unlockedBy("has_totempedia", hasTotempedia)
                 .unlockedBy("has_wool", has(ItemTags.WOOL))
                 .save(rc, "totemic:tipi_from_wool");
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModBlocks.tipi.get())
