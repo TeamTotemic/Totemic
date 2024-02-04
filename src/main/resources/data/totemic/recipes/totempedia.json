@@ -1,17 +1,30 @@
 {
-  "type": "patchouli:shaped_book_recipe",
-  "key": {
-    "P": {
-      "item": "minecraft:paper"
-    },
-    "W": {
-      "tag": "minecraft:logs_that_burn"
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "patchouli"
+        }
+      ],
+      "recipe": {
+        "type": "patchouli:shaped_book_recipe",
+        "key": {
+          "P": {
+            "item": "minecraft:paper"
+          },
+          "W": {
+            "tag": "minecraft:logs_that_burn"
+          }
+        },
+        "pattern": [
+          "WPW",
+          "WPW",
+          "WPW"
+        ],
+        "book": "totemic:totempedia"
+      }
     }
-  },
-  "pattern": [
-    "WPW",
-    "WPW",
-    "WPW"
-  ],
-  "book": "totemic:totempedia"
+  ]
 }

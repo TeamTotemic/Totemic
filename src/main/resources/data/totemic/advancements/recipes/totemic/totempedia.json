@@ -1,34 +1,46 @@
 {
-  "parent": "minecraft:recipes/root",
-  "criteria": {
-    "has_paper": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "minecraft:paper"
-            ]
+  "advancements": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "patchouli"
+        }
+      ],
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_paper": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "minecraft:paper"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          },
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "totemic:totempedia"
+            },
+            "trigger": "minecraft:recipe_unlocked"
           }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "totemic:totempedia"
-      },
-      "trigger": "minecraft:recipe_unlocked"
+        },
+        "requirements": [
+          [
+            "has_paper",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "totemic:totempedia"
+          ]
+        }
+      }
     }
-  },
-  "requirements": [
-    [
-      "has_paper",
-      "has_the_recipe"
-    ]
-  ],
-  "rewards": {
-    "recipes": [
-      "totemic:totempedia"
-    ]
-  }
+  ]
 }
