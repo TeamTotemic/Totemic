@@ -68,6 +68,26 @@ public final class GeneralTests {
         h.succeed();
     }
 
+    @GameTest(template = "general/cedar_flower_pot")
+    public static void testCedarFlowerPot(GameTestHelper h) {
+        final BlockPos pos = new BlockPos(0, 1, 0);
+        var apos = h.absolutePos(pos);
+        var level = h.getLevel();
+
+        h.assertBlockPresent(Blocks.FLOWER_POT, pos);
+
+        var player = h.makeMockPlayer();
+        player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModBlocks.cedar_sapling.get()));
+        h.getBlockState(pos).use(h.getLevel(), player, InteractionHand.MAIN_HAND,
+                new BlockHitResult(Vec3.atCenterOf(apos), Direction.NORTH, apos, true));
+        h.assertBlockPresent(ModBlocks.potted_cedar_sapling.get(), pos);
+        level.destroyBlock(apos, true);
+        h.assertBlockPresent(Blocks.AIR, pos);
+        h.assertItemEntityPresent(Blocks.FLOWER_POT.asItem(), pos, 1.0);
+        h.assertItemEntityPresent(ModBlocks.cedar_sapling.get().asItem(), pos, 1.0);
+        h.succeed();
+    }
+
     private static void useItem(GameTestHelper h, ItemStack item, BlockPos pos, Direction dir) {
         var apos = h.absolutePos(pos);
         item.useOn(new UseOnContext(h.getLevel(), h.makeMockPlayer(), InteractionHand.MAIN_HAND, item,
