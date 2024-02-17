@@ -171,6 +171,9 @@ public final class TotemicRecipeProvider extends RecipeProvider {
 
         generateRecipes(rc, createCedarBlockFamily());
 
+        woodFromLogs(rc, ModBlocks.cedar_wood.get(), ModBlocks.cedar_log.get());
+        woodFromLogs(rc, ModBlocks.stripped_cedar_wood.get(), ModBlocks.stripped_cedar_log.get());
+
         simpleCookingRecipe(rc, "smelting", RecipeSerializer.SMELTING_RECIPE, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "smoking", RecipeSerializer.SMOKING_RECIPE, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe(rc, "campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
