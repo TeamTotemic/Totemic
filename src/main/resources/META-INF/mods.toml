@@ -32,7 +32,7 @@ A magic mod about Totem Poles, nature and the power of music.
 
  [[dependencies.totemic]]
     modId="patchouli"
-    mandatory=true
+    mandatory=false
     versionRange="[1.19.2-77,)"
     ordering="NONE"
     side="BOTH"
