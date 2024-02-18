@@ -11,8 +11,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.client.CeremonyHUD;
-import pokefenn.totemic.client.model.TotemBaseModel;
-import pokefenn.totemic.client.model.TotemPoleModel;
+import pokefenn.totemic.client.model.totem.TotemBaseModel;
+import pokefenn.totemic.client.model.totem.TotemPoleModel;
 import pokefenn.totemic.init.ModBlocks;
 
 /**
