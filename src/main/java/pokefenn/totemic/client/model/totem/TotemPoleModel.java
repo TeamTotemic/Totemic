@@ -58,6 +58,7 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
                 for(var carving: carvingRegistry) {
                     //Create new BlockModel with the totem pole model as parent, but different textures
                     var model = new BlockModel(getPoleModelName(carving), List.of(), textureMap, ctx.useAmbientOcclusion(), null, ctx.getTransforms(), List.of());
+                    model.name = ctx.getModelName() + "[" + woodType.getRegistryName() + ", " + carving.getRegistryName() + "]";
                     totemModels.put(woodType, carving, model);
                 }
             }
