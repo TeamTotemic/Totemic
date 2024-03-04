@@ -1,4 +1,4 @@
-package pokefenn.totemic.client.model;
+package pokefenn.totemic.client.model.totem;
 
 import java.util.Map;
 import java.util.function.Function;

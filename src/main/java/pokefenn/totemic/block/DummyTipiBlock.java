@@ -105,4 +105,9 @@ public class DummyTipiBlock extends Block {
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.INVISIBLE;
     }
+
+    @Override
+    public String getDescriptionId() {
+        return ModBlocks.tipi.get().getDescriptionId();
+    }
 }
