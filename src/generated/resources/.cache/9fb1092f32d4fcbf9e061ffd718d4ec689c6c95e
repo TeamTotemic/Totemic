@@ -1,4 +1,4 @@
-// 1.20.4	2024-01-02T17:05:19.088179305	Recipes
+// 1.20.4	2024-03-10T10:58:17.650798763	Recipes
 b243dc6da883bfa48b98462536449526364f05a5 data/minecraft/advancements/recipes/food/cooked_buffalo_meat_from_campfire_cooking.json
 8de00892e88926ad296deee1d8f6b957756d619a data/minecraft/advancements/recipes/food/cooked_buffalo_meat_from_smelting.json
 0f91403007591cafe34011383d34bb937b2f2cb2 data/minecraft/advancements/recipes/food/cooked_buffalo_meat_from_smoking.json
@@ -8,6 +8,8 @@ b037610215a6ea7fa9dab4ae1cf907c97fa469b6 data/minecraft/recipes/cooked_buffalo_m
 90eebe91e8b61ed461d5ad4acb317558cc03124e data/totemic/advancements/recipes/building_blocks/cedar_planks.json
 832c54eb660581057f31d3153bd77f2fe7651f49 data/totemic/advancements/recipes/building_blocks/cedar_slab.json
 573ad969dbaa43fc726fb3a43d1cdfe34a5722e0 data/totemic/advancements/recipes/building_blocks/cedar_stairs.json
+58e8fa4a0ede9a368b3897c11211be2552201a3e data/totemic/advancements/recipes/building_blocks/cedar_wood.json
+fe507ee0aa8b62f819ea90686b8fab6ad5dcb7e0 data/totemic/advancements/recipes/building_blocks/stripped_cedar_wood.json
 dfc0c8dc4e609f66f6b2b6b55b7d49e18dc6b48f data/totemic/advancements/recipes/decorations/cedar_fence.json
 3903188c81b225fea521518cc37c1e76a2e4ff61 data/totemic/advancements/recipes/decorations/cedar_sign.json
 a6821694ee09929cb596981cfb4c636df48de6d8 data/totemic/advancements/recipes/decorations/tipi_from_hide.json
@@ -39,6 +41,7 @@ f25649a25799952b5396bd353c50965c0f476faf data/totemic/recipes/cedar_pressure_pla
 cd0d887d6eb9160a5ab94f9ba1a8c58b8953f56a data/totemic/recipes/cedar_slab.json
 99bc720d482a3f067d1fcb8d16e04d74a24a99d4 data/totemic/recipes/cedar_stairs.json
 ab051aa8992440a9276fc0b44c4d57c8fb771d2c data/totemic/recipes/cedar_trapdoor.json
+5a476866f1c0980465d7d907259b1a421f142e6f data/totemic/recipes/cedar_wood.json
 1c2caa83303953017a7a2b0c904367e5d5da03a7 data/totemic/recipes/drum.json
 51d760aace2f38434be0eadeeebf0b129231530a data/totemic/recipes/eagle_bone_whistle.json
 3e0687f23a94de85ebf0867a06d9d47414f7064c data/totemic/recipes/flute.json
@@ -47,6 +50,7 @@ e02cdd3477a7610fbffa82dcb6c2afc7bd4a4161 data/totemic/recipes/jingle_dress.json
 5cfaa8b437834102185623d1cbb6d8df1dc18a11 data/totemic/recipes/leather_from_hide.json
 abed553f7a025ab8dcfb3a631ae62840c0f714e2 data/totemic/recipes/medicine_bag.json
 9dea495485998aef57bd8f2e9ad030b99e6d2b67 data/totemic/recipes/rattle.json
+18cde504b7b9407df3cdc6f2fc1d598b66a69b3b data/totemic/recipes/stripped_cedar_wood.json
 7c866101016142a65b16b616e6bf0256d5cecbd8 data/totemic/recipes/tipi_from_hide.json
 740a8e334a5ca88ef6400ba863500c69c4fbe085 data/totemic/recipes/tipi_from_wool.json
 6afc2290b3586719b51120036813acfa3188b932 data/totemic/recipes/totem_torch.json
