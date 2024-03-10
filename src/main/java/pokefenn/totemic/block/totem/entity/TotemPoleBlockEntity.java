@@ -19,7 +19,7 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
-import pokefenn.totemic.client.model.BakedTotemPoleModel;
+import pokefenn.totemic.client.model.totem.BakedTotemPoleModel;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 

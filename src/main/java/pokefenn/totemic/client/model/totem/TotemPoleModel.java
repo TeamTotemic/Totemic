@@ -1,4 +1,4 @@
-package pokefenn.totemic.client.model;
+package pokefenn.totemic.client.model.totem;
 
 import java.util.List;
 import java.util.function.Function;
@@ -23,6 +23,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
 import net.neoforged.neoforge.client.model.geometry.IGeometryLoader;
 import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
@@ -48,11 +49,14 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
             totemModels = ArrayTable.create(woodTypeRegistry, carvingRegistry);
             for(var woodType: woodTypeRegistry) {
                 var woodTypeModel = (BlockModel) modelGetter.apply(getWoodTypeModelName(woodType));
-                var textureMap = woodTypeModel.textureMap; //TODO: This only works if the wood type model specifies all textures itself rather than inheriting textures from its parent
+                if(woodTypeModel.getParentLocation() != null)
+                    Totemic.logger.error("Error loading {}: Parents are not supported for Totem Wood Type models", woodTypeModel);
+                var textureMap = woodTypeModel.textureMap;
 
                 for(var carving: carvingRegistry) {
                     //Create new BlockModel with the totem pole model as parent, but different textures
                     var model = new BlockModel(getPoleModelName(carving), List.of(), textureMap, ctx.useAmbientOcclusion(), null, ctx.getTransforms(), List.of());
+                    model.name = ctx.getModelName() + "[" + woodType.getRegistryName() + ", " + carving.getRegistryName() + "]";
                     totemModels.put(woodType, carving, model);
                     model.resolveParents(modelGetter);
                 }
