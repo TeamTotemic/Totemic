@@ -1,9 +1,5 @@
-This update is aimed at making selecting Ceremonies more intuitive and providing more control to modpack makers and server owners. If you want to prevent players from changing the weather or climbing all over the place, now you can.
-
-- Playing an instrument in selection mode will now preferably target Totem Bases that already have a selection on them. This makes it more feasible to perform Ceremonies in areas where multiple Totem Poles are placed near each other.
-- Totem Bases will now emit particles when in selection mode.
-- Added a config option to disable individual Ceremonies.
-- Added a config option to disable individual Totem Carvings.
-- Added a tooltip to Totem Pole and Base items visible with advanced tooltips enabled (F3+H) showing the Totem Carving and Wood Type registry IDs.
-
-The config options can be found in the server config, which for Minecraft 1.19.2 is located in `.minecraft/saves/<save name>/serverconfig` on the client and `<server folder>/world/serverconfig` on the server.
+- Patchouli is no longer required for Totemic
+  - Consequently, the unlocking conditions for some of the crafting recipes were changed. Most of the basic recipes are now unlocked when you obtain a Totem Whittling Knife, whose recipe is in turn unlocked by iron ingots.
+- Added missing crafting recipes for Red Cedar Wood and Stripped Red Cedar Wood (aka bark blocks)
+- Missing texture entries for a Totem Pole wood type in a resource pack will now cause its Totem Poles to have missing textures rather than Red Cedar textures
+- Added missing block names for Dummy Tipi and Potted Red Cedar Sapling
