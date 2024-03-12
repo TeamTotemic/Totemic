@@ -88,7 +88,6 @@ public final class Totemic {
         });
 
         NetworkHandler.init();
-        //PatchouliIntegration.init();
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(RemapHandler.class);
