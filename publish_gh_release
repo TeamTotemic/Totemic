@@ -1,6 +1,6 @@
 #!/bin/bash
 # Creates a new Github release with the current version and changelog
-PRERELEASE=true
+PRERELEASE=false
 BRANCH=$(git symbolic-ref --short HEAD)
 VERSION=$(sed -nr 's/mod_version=(.*)/\1/p' gradle.properties)
 if [ $? -ne 0 ] || [ -z "$VERSION" ]; then
