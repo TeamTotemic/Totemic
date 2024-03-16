@@ -166,6 +166,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
 
         generateRecipes(rc, createCedarBlockFamily());
 
+        hangingSign(rc, ModItems.cedar_hanging_sign.get(), ModBlocks.stripped_cedar_log.get());
         woodFromLogs(rc, ModBlocks.cedar_wood.get(), ModBlocks.cedar_log.get());
         woodFromLogs(rc, ModBlocks.stripped_cedar_wood.get(), ModBlocks.stripped_cedar_log.get());
 

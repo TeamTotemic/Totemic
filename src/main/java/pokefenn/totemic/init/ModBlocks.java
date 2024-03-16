@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.CeilingHangingSignBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
+import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -63,8 +65,10 @@ public final class ModBlocks {
     public static final RegistryObject<FenceBlock> cedar_fence = REGISTER.register("cedar_fence", () -> new FenceBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<FenceGateBlock> cedar_fence_gate = REGISTER.register("cedar_fence_gate", () -> new FenceGateBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD), CEDAR_WOOD_TYPE));
     public static final RegistryObject<PressurePlateBlock> cedar_pressure_plate = REGISTER.register("cedar_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollission().strength(0.5F).sound(SoundType.WOOD), CEDAR_BLOCK_SET_TYPE));
-    public static final RegistryObject<StandingSignBlock> cedar_sign = REGISTER.register("cedar_sign", () -> new StandingSignBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).sound(SoundType.WOOD), CEDAR_WOOD_TYPE));
-    public static final RegistryObject<WallSignBlock> cedar_wall_sign = REGISTER.register("cedar_wall_sign", () -> new WallSignBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).sound(SoundType.WOOD).lootFrom(cedar_sign), CEDAR_WOOD_TYPE));
+    public static final RegistryObject<StandingSignBlock> cedar_sign = REGISTER.register("cedar_sign", () -> new StandingSignBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava().sound(SoundType.WOOD), CEDAR_WOOD_TYPE));
+    public static final RegistryObject<WallSignBlock> cedar_wall_sign = REGISTER.register("cedar_wall_sign", () -> new WallSignBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava().sound(SoundType.WOOD).lootFrom(cedar_sign), CEDAR_WOOD_TYPE));
+    public static final RegistryObject<CeilingHangingSignBlock> cedar_hanging_sign = REGISTER.register("cedar_hanging_sign", () -> new CeilingHangingSignBlock(Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava(), CEDAR_WOOD_TYPE));
+    public static final RegistryObject<WallHangingSignBlock> cedar_wall_hanging_sign = REGISTER.register("cedar_wall_hanging_sign", () -> new WallHangingSignBlock(Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).lootFrom(cedar_hanging_sign).ignitedByLava(), CEDAR_WOOD_TYPE));
     public static final RegistryObject<SlabBlock> cedar_slab = REGISTER.register("cedar_slab", () -> new SlabBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static final RegistryObject<StairBlock> cedar_stairs = REGISTER.register("cedar_stairs", () -> new StairBlock(() -> cedar_planks.get().defaultBlockState(), Properties.copy(cedar_planks.get())));
     public static final RegistryObject<DoorBlock> cedar_door = REGISTER.register("cedar_door", () -> new DoorBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(3.0F).sound(SoundType.WOOD).noOcclusion(), CEDAR_BLOCK_SET_TYPE));
@@ -97,14 +101,20 @@ public final class ModBlocks {
         fire.setFlammable(cedar_stairs.get(), 5, 20);
     }
 
-    //Modifies the validBlocks of the sign block entity type to add our own sign block to it
+    //Modifies the validBlocks of the sign block entity types to add our own sign blocks to it
     public static void addCedarSignToSignBlockEntityType() {
         var signValidBlocks = BlockEntityType.SIGN.validBlocks;
         if(!(signValidBlocks instanceof HashSet)) { //another mod might have already made the set mutable
             BlockEntityType.SIGN.validBlocks = signValidBlocks = new HashSet<>(signValidBlocks); //if not, copy into a mutable set
         }
-
         signValidBlocks.add(ModBlocks.cedar_sign.get());
         signValidBlocks.add(ModBlocks.cedar_wall_sign.get());
+
+        var hangingSignValidBlocks = BlockEntityType.HANGING_SIGN.validBlocks;
+        if(!(hangingSignValidBlocks instanceof HashSet)) {
+            BlockEntityType.HANGING_SIGN.validBlocks = hangingSignValidBlocks = new HashSet<>(hangingSignValidBlocks);
+        }
+        hangingSignValidBlocks.add(ModBlocks.cedar_hanging_sign.get());
+        hangingSignValidBlocks.add(ModBlocks.cedar_wall_hanging_sign.get());
     }
 }
