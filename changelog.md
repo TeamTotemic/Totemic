@@ -1,3 +1,4 @@
+- Added Red Cedar Hanging Sign
 - Added missing crafting recipes for Red Cedar Wood and Stripped Red Cedar Wood (aka bark blocks)
 - Missing texture entries for a Totem Pole wood type in a resource pack will now cause its Totem Poles to have missing textures rather than Red Cedar textures
 - Added missing block names for Dummy Tipi and Potted Red Cedar Sapling
