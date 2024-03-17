@@ -108,7 +108,7 @@ public final class Totemic {
         gen.addProvider(event.includeServer(), new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
         gen.addProvider(event.includeServer(), new TotemicEntityTypeTagsProvider(out, lookup, efh));
         gen.addProvider(event.includeServer(), new TotemicLootTableProvider(out));
-        gen.addProvider(event.includeServer(), new TotemicRecipeProvider(out, lookup));
+        gen.addProvider(event.includeServer(), new TotemicRecipeProvider(out));
         gen.addProvider(event.includeServer(), new TotemicDatapackEntryProvider(out, lookup));
         gen.addProvider(event.includeServer(), new TotemicDamageTypeTagsProvider(out, lookup, efh));
 

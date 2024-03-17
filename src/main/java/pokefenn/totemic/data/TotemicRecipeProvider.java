@@ -1,10 +1,7 @@
 package pokefenn.totemic.data;
 
-import java.util.concurrent.CompletableFuture;
-
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
-import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -28,8 +25,8 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicRecipeProvider extends RecipeProvider {
-    public TotemicRecipeProvider(PackOutput pOutput, CompletableFuture<Provider> pLookupProvider) {
-        super(pOutput, pLookupProvider);
+    public TotemicRecipeProvider(PackOutput pOutput) {
+        super(pOutput);
     }
 
     @Override
