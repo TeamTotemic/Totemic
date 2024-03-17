@@ -1,5 +1,6 @@
-// 1.20.4	2023-12-30T10:12:05.081827895	Tags for minecraft:block mod id totemic
+// 1.20.4	2024-03-17T10:57:23.649617259	Tags for minecraft:block mod id totemic
 f48a711794f70f6a13891618f69d5b89e02cb8ba data/forge/tags/blocks/fence_gates/wooden.json
+078b597579c0695676d5fa7a8e01199a6c72186a data/minecraft/tags/blocks/ceiling_hanging_signs.json
 f48a711794f70f6a13891618f69d5b89e02cb8ba data/minecraft/tags/blocks/fence_gates.json
 e3f8662521ab16bc05ee18f9375d2604e170c19b data/minecraft/tags/blocks/flower_pots.json
 df2fde5a09193bb066c97a1c4a72616852680332 data/minecraft/tags/blocks/leaves.json
@@ -10,6 +11,7 @@ adedb0c8b94ea2d69196e41d3e1426207b3d43f3 data/minecraft/tags/blocks/mineable/pic
 138756d044923dcbdc6ea7ef48c87b78e993c3b4 data/minecraft/tags/blocks/planks.json
 6f2e0a85d35f57521e978ee25a9e97515d7e95af data/minecraft/tags/blocks/saplings.json
 f0d3f56f139f56db7185ab2401fc427e1d8369bc data/minecraft/tags/blocks/standing_signs.json
+b89cc767a52e970de118dfc0295239bb73bdbd21 data/minecraft/tags/blocks/wall_hanging_signs.json
 a284a4b122ebb24bdc8857734fec4fe43cf8a1d1 data/minecraft/tags/blocks/wall_signs.json
 aba10d1b6ec722bbfe02d07854bf143dbb5a2856 data/minecraft/tags/blocks/wooden_buttons.json
 e7b4115e7582408eb4759a0acd43cd5224798743 data/minecraft/tags/blocks/wooden_doors.json

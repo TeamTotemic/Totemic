@@ -1,8 +1,9 @@
-// 1.20.4	2023-12-31T11:33:34.730272504	Block States: totemic
+// 1.20.4	2024-03-17T10:57:23.645794449	Block States: totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 3e98d3008a2e942b780e2b0a1452c0ec062cae73 assets/totemic/blockstates/cedar_fence.json
 833e74c5fa1b60e01e9a634f58cde0dd5a660ba4 assets/totemic/blockstates/cedar_fence_gate.json
+8ae596f4ae1afe00c69c89ef163f0dec13613152 assets/totemic/blockstates/cedar_hanging_sign.json
 79fb49da17a3c66f9f009bebdd47f81fa27c3f31 assets/totemic/blockstates/cedar_leaves.json
 66ae641b346a67b11131be9eeb5935ee8b9b283e assets/totemic/blockstates/cedar_log.json
 fdbbfa4d7e6b2815cfeb0ccbca7f41759e6d417d assets/totemic/blockstates/cedar_planks.json
@@ -12,6 +13,7 @@ cd65a9e8889465e477af29122d0b61173fb3039b assets/totemic/blockstates/cedar_sign.j
 81bea50bf778638c559a55587e10a1b6cc8ca392 assets/totemic/blockstates/cedar_slab.json
 6849ce8030225e2180706e4a216da02b98bfa0bb assets/totemic/blockstates/cedar_stairs.json
 0b5f78beb2cee1617e01e3c69d8dbd7c86852f7d assets/totemic/blockstates/cedar_trapdoor.json
+8ae596f4ae1afe00c69c89ef163f0dec13613152 assets/totemic/blockstates/cedar_wall_hanging_sign.json
 cd65a9e8889465e477af29122d0b61173fb3039b assets/totemic/blockstates/cedar_wall_sign.json
 439eae1bde86e003fd721b57213cb7b19901c7bf assets/totemic/blockstates/cedar_wood.json
 a470ab352994aca627db258cfedbb3248664061c assets/totemic/blockstates/drum.json
@@ -44,6 +46,7 @@ bc58c97d499bf1514798f68cad894584de649c84 assets/totemic/models/block/cedar_door_
 69bd2d9cd2b06814034fc745e985d2a7631e1cac assets/totemic/models/block/cedar_fence_gate_wall_open.json
 9398e8a1b79435a874d2c69ab43adb8d8e14667a assets/totemic/models/block/cedar_fence_post.json
 2bdbb725cbbaad42721d42b16dde842f4ffec252 assets/totemic/models/block/cedar_fence_side.json
+9f73b0d314ad6b60a14dfb9da4125ff6dc6e3456 assets/totemic/models/block/cedar_hanging_sign.json
 0fd9e341c2c8b2e2828f0df8f43717b6116df4ab assets/totemic/models/block/cedar_leaves.json
 c917b01200537e8d7a5a9053d180c45e9bad95a4 assets/totemic/models/block/cedar_leaves_opaque.json
 89c98146fc085627644213255895cf98de21953a assets/totemic/models/block/cedar_log.json
@@ -99,6 +102,7 @@ e7fbb37468a7095847b777e8d8244fbba84c8e63 assets/totemic/models/item/buffalo_meat
 e07dace44f3733e20698421a4d3c780a076b59a4 assets/totemic/models/item/cedar_door.json
 208f6f5f9f017409b28307e279064853fdad16d5 assets/totemic/models/item/cedar_fence.json
 fbd5b91ae822aa2f31ae36c9244f467d5de7f61d assets/totemic/models/item/cedar_fence_gate.json
+6c27f6998aed77979a0f89f9837976ea0ba569b9 assets/totemic/models/item/cedar_hanging_sign.json
 e2092753eb565daeee33fa4d696391af6cb60ee0 assets/totemic/models/item/cedar_leaves.json
 d7ff32ef35474a8880bc937aa1aa05401a75acc5 assets/totemic/models/item/cedar_log.json
 6a54958c0a50534108ed18f42192aae44cf6b693 assets/totemic/models/item/cedar_planks.json
