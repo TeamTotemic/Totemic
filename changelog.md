@@ -1,3 +1,4 @@
+- Added Red Cedar Hanging Sign
 - Added missing crafting recipes for Red Cedar Wood and Stripped Red Cedar Wood (aka bark blocks)
 - Now requires at least NeoForge version 20.4.167 (stable release)
 - Missing texture entries for a Totem Pole wood type in a resource pack will now cause its Totem Poles to have missing textures rather than Red Cedar textures
