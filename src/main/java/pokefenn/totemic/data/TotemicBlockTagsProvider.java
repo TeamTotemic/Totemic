@@ -35,6 +35,8 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
         tag(BlockTags.FENCE_GATES).add(ModBlocks.cedar_fence_gate.get());
         tag(BlockTags.STANDING_SIGNS).add(ModBlocks.cedar_sign.get());
         tag(BlockTags.WALL_SIGNS).add(ModBlocks.cedar_wall_sign.get());
+        tag(BlockTags.CEILING_HANGING_SIGNS).add(ModBlocks.cedar_hanging_sign.get());
+        tag(BlockTags.WALL_HANGING_SIGNS).add(ModBlocks.cedar_wall_hanging_sign.get());
         tag(BlockTags.WOODEN_PRESSURE_PLATES).add(ModBlocks.cedar_pressure_plate.get());
         tag(BlockTags.WOODEN_TRAPDOORS).add(ModBlocks.cedar_trapdoor.get());
         tag(BlockTags.LOGS_THAT_BURN).addTag(TotemicBlockTags.CEDAR_LOGS);

@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.ItemStack;
@@ -68,6 +69,7 @@ public final class ModItems {
     //Blocks with custom item blocks
     public static final DeferredItem<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties()));
     public static final DeferredItem<SignItem> cedar_sign = REGISTER.register("cedar_sign", () -> new SignItem(new Properties().stacksTo(16), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get()));
+    public static final DeferredItem<HangingSignItem> cedar_hanging_sign = REGISTER.register("cedar_hanging_sign", () -> new HangingSignItem(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<TotemBaseItem> totem_base = REGISTER.register("totem_base", () -> new TotemBaseItem(ModBlocks.totem_base.get(), new Properties()));
     public static final DeferredItem<TotemPoleItem> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleItem(ModBlocks.totem_pole.get(), new Properties()));
 
@@ -75,7 +77,7 @@ public final class ModItems {
     public static void init(RegisterEvent event) {
         event.register(Registries.ITEM, registry -> {
             //Register item blocks
-            final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
+            final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.cedar_hanging_sign.getId(), ModBlocks.cedar_wall_hanging_sign.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
             for(var blockO: ModBlocks.REGISTER.getEntries()) {
                 if(blocksWithoutItem.contains(blockO.getId()))
                     continue;
@@ -96,7 +98,7 @@ public final class ModItems {
 
     //TODO: Manual adding might be better to define a better ordering of the items
     private static void addItemsToCreativeTab(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output out) {
-        final Set<ResourceLocation> blocksNotInCreativeTab = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.dummy_tipi.getId());
+        final Set<ResourceLocation> blocksNotInCreativeTab = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.cedar_hanging_sign.getId(), ModBlocks.cedar_wall_hanging_sign.getId(), ModBlocks.dummy_tipi.getId());
         ModBlocks.REGISTER.getEntries().stream()
                 .filter(ro -> !blocksNotInCreativeTab.contains(ro.getId()))
                 .map(DeferredHolder::get)
