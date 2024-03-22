@@ -18,7 +18,7 @@ import pokefenn.totemic.init.ModBlocks;
 @GameTestHolder(TotemicAPI.MOD_ID)
 @PrefixGameTestTemplate(false)
 public final class GeneralTests {
-    @GameTest(template = "general/tipi_place")
+    @GameTest(batch = "totemic.general", template = "general/tipi_place")
     public static void testTipiPlace(GameTestHelper h) {
         var tipiItem = new ItemStack(ModBlocks.tipi.get());
         var placePos = new BlockPos(1, 1, 1);
@@ -27,7 +27,7 @@ public final class GeneralTests {
         h.succeed();
     }
 
-    @GameTest(template = "general/tipi_place_invalid_surface")
+    @GameTest(batch = "totemic.general", template = "general/tipi_place_invalid_surface")
     public static void testTipiPlaceInvalidSurface(GameTestHelper h) {
         var tipiItem = new ItemStack(ModBlocks.tipi.get());
         var placePos = new BlockPos(1, 1, 1);
@@ -39,7 +39,7 @@ public final class GeneralTests {
         h.succeed();
     }
 
-    @GameTest(template = "general/tipi_place_obstructed")
+    @GameTest(batch = "totemic.general", template = "general/tipi_place_obstructed")
     public static void testTipiPlaceObstructed(GameTestHelper h) {
         var tipiItem = new ItemStack(ModBlocks.tipi.get());
         var placePos = new BlockPos(1, 1, 1);
@@ -52,7 +52,7 @@ public final class GeneralTests {
         h.succeed();
     }
 
-    @GameTest(template = "general/tipi_destroy")
+    @GameTest(batch = "totemic.general", template = "general/tipi_destroy")
     public static void testTipiDestroy(GameTestHelper h) {
         final BlockPos tipi1Pos = new BlockPos(1, 2, 1);
         final BlockPos dummy2Pos = new BlockPos(4, 3, 2);
@@ -68,7 +68,7 @@ public final class GeneralTests {
         h.succeed();
     }
 
-    @GameTest(template = "general/cedar_flower_pot")
+    @GameTest(batch = "totemic.general", template = "general/cedar_flower_pot")
     public static void testCedarFlowerPot(GameTestHelper h) {
         final BlockPos pos = new BlockPos(0, 1, 0);
         var apos = h.absolutePos(pos);
