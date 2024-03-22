@@ -29,7 +29,7 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.item.TotemPoleItem;
 
 public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
-    public static final ModelProperty<Data> DATA_PROPERTY = new ModelProperty<>();
+    public static final ModelProperty<TotemPoleModelData> DATA_PROPERTY = new ModelProperty<>();
 
     private final ImmutableTable<TotemWoodType, TotemCarving, BakedModel> bakedTotemModels;
     private final ItemOverrides itemOverrides;
@@ -46,8 +46,8 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     }
 
     private BakedModel getModelFor(ModelData modelData) {
-        var data = Objects.requireNonNullElse(modelData.get(DATA_PROPERTY), Data.DEFAULT);
-        return bakedTotemModels.get(data.woodType, data.carving);
+        var data = Objects.requireNonNullElse(modelData.get(DATA_PROPERTY), TotemPoleModelData.DEFAULT);
+        return bakedTotemModels.get(data.woodType(), data.carving());
     }
 
     @Override
@@ -68,9 +68,5 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     @Override
     public ItemOverrides getOverrides() {
         return itemOverrides;
-    }
-
-    public static record Data(TotemWoodType woodType, TotemCarving carving) {
-        public static final Data DEFAULT = new Data(ModContent.oak, ModContent.none);
     }
 }
