@@ -44,7 +44,7 @@ import pokefenn.totemic.init.ModContent;
 public class TotemBaseBlockEntity extends BlockEntity {
     private boolean needPoleUpdate = true;
 
-    private TotemWoodType woodType = ModContent.oak;
+    private volatile TotemWoodType woodType = ModContent.oak; //Needs to be volatile since getModelData() is called from chunk render threads
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private Set<TotemCarving> carvingSet = null; //Only needed for Medicine Bags, computed lazily
     private Multiset<TotemEffect> totemEffects = ImmutableMultiset.of();

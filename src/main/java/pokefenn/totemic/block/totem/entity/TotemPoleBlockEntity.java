@@ -25,8 +25,9 @@ import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 
 public class TotemPoleBlockEntity extends BlockEntity {
-    private TotemWoodType woodType = ModContent.oak;
-    private TotemCarving carving = ModContent.none;
+    //Fields need to be volatile since getModelData() is called from chunk render threads
+    private volatile TotemWoodType woodType = ModContent.oak;
+    private volatile TotemCarving carving = ModContent.none;
 
     public TotemPoleBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.totem_pole.get(), pPos, pBlockState);
