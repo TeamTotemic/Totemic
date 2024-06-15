@@ -13,4 +13,12 @@
 #    woodColor = 53
 #    barkColor = 54
 [[customTotemWoodTypes]]
+	id = "gametest:test_wood_type_1"
+	logs = "#minecraft:crimson_stems"
+	woodColor = 53
+	barkColor = 54
+
+[[customTotemWoodTypes]]
+	id = "gametest:test_wood_type_2"
+	logs = "#minecraft:warped_stems"
 
