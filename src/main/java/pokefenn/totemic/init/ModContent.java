@@ -9,7 +9,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegisterEvent;
@@ -124,8 +123,8 @@ public final class ModContent {
                         throw new IllegalArgumentException("Missing entry 'logs'");
                     if(!logsStr.startsWith("#"))
                         throw new IllegalArgumentException("'logs' value must be a valid block tag key starting with '#'");
-                    int woodColorIndex = entry.getIntOrElse("woodColor", Blocks.OAK_LOG.defaultMaterialColor().id);
-                    int barkColorIndex = entry.getIntOrElse("barkColor", Blocks.OAK_WOOD.defaultMaterialColor().id);
+                    int woodColorIndex = entry.getIntOrElse("woodColor", MaterialColor.WOOD.id);
+                    int barkColorIndex = entry.getIntOrElse("barkColor", MaterialColor.PODZOL.id);
 
                     var id = new ResourceLocation(idStr);
                     var logTagKey = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(logsStr.substring(1)));
