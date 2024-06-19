@@ -1,0 +1,9 @@
+{
+  "parent": "totemic:block/totem_base",
+  "textures": {
+    "bark": "minecraft:block/warped_stem",
+    "particle": "minecraft:block/stripped_warped_stem",
+    "top": "minecraft:block/stripped_warped_stem_top",
+    "wood": "minecraft:block/stripped_warped_stem"
+  }
+}
