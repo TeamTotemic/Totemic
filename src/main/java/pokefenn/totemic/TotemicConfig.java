@@ -1,6 +1,5 @@
 package pokefenn.totemic;
 
-import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -8,13 +7,14 @@ import java.util.function.Supplier;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.InMemoryFormat;
-import com.electronwill.nightconfig.core.file.FileWatcher;
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.electronwill.nightconfig.core.file.FileNotFoundAction;
+import com.electronwill.nightconfig.core.io.WritingMode;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.config.ConfigTracker;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -133,29 +133,22 @@ public final class TotemicConfig {
         serverSpec = serverPair.getRight();
     }
 
-    //Special case for the common config, we need to load it earlier since Forge usually loads the configs after the registry events
-    private static ModConfig commonModConfig;
-
     public static void register(ModLoadingContext context) {
         context.registerConfig(ModConfig.Type.CLIENT, clientSpec);
         context.registerConfig(ModConfig.Type.SERVER, serverSpec);
 
-        commonModConfig = new ModConfig(ModConfig.Type.COMMON, commonSpec, context.getActiveContainer());
+        //Special case for the common config, we need to load it earlier since Forge usually loads the configs after the registry events
+        var commonModConfig = new ModConfig(ModConfig.Type.COMMON, commonSpec, context.getActiveContainer());
         context.getActiveContainer().addConfig(commonModConfig);
-    }
-
-    public static void loadCommonConfigEarly() {
-        try {
-            var openConfigMethod = ConfigTracker.class.getDeclaredMethod("openConfig", ModConfig.class, Path.class);
-            openConfigMethod.setAccessible(true);
-            openConfigMethod.invoke(ConfigTracker.INSTANCE, commonModConfig, FMLPaths.CONFIGDIR.get());
-
-            //Remove file watcher for our early loaded config to (hopefully) avoid a known race condition which leads to the config spuriously being reset to default
-            //See https://github.com/neoforged/NeoForge/issues/32
-            FileWatcher.defaultInstance().removeWatch(commonModConfig.getFullPath());
-        }
-        catch(Exception e) {
-            throw new RuntimeException(e);
-        }
+        var configPath = FMLPaths.CONFIGDIR.get().resolve(commonModConfig.getFileName());
+        var configData = CommentedFileConfig.builder(configPath)
+                .sync()
+                .preserveInsertionOrder()
+                .autosave()
+                .onFileNotFound(FileNotFoundAction.READ_NOTHING) //if the file does not exist, it will be created by Forge later
+                .writingMode(WritingMode.REPLACE)
+                .build();
+        configData.load();
+        commonSpec.acceptConfig(configData);
     }
 }
