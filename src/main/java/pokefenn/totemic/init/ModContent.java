@@ -122,6 +122,7 @@ public final class ModContent {
                         throw new IllegalArgumentException("Missing entry 'logs'");
                     if(!logsStr.startsWith("#"))
                         throw new IllegalArgumentException("'logs' value must be a valid block tag key starting with '#'");
+                    //Note that there is no way for us to check if the tag key actually exists since tags are not loaded until server start
                     int woodColorIndex = entry.getIntOrElse("woodColor", MaterialColor.WOOD.id);
                     int barkColorIndex = entry.getIntOrElse("barkColor", MaterialColor.PODZOL.id);
 
@@ -134,7 +135,7 @@ public final class ModContent {
                     Totemic.logger.debug("Added custom Totem Wood Type with ID '" + id + "'");
                 }
                 catch(Exception e) {
-                    throw new IllegalArgumentException("Invalid custom Totem Wood Type with ID '" + idStr + "': Please check your 'totemic-common.toml' config file.\n" + e.getLocalizedMessage(), e);
+                    throw new IllegalArgumentException("Invalid custom Totem Wood Type with ID '" + idStr + "': " + e.getLocalizedMessage() + "\nPlease check your 'totemic-common.toml' config file.", e);
                 }
             }
         });
