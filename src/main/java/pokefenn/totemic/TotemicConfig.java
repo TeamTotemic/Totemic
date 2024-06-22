@@ -33,17 +33,26 @@ public final class TotemicConfig {
                             This config option allows you to add custom wood types for Totem Bases and Totem Poles.
                             Must be a list of tables with the following keys:
                               id: Required: The wood type's ID. Must be a valid resource location (Example: "my_mod:my_wood_type").
-                              logs: Required: Specifies which log blocks are recognized as belonging to this wood type by the Totem Whittling Knife. Currently, only block tags are supported. Must be a string starting with '#' specifying a valid block tag (Example: "#minecraft:crimson_stems").
-                              woodColor: Optional: An integer between 0 and 61 specifying the map color of the wood's inside. See https://minecraft.wiki/w/Map_item_format#Color_table for a list of possible colors. Defaults to 13 (Oak Log's wood color).
-                              barkColor: Optional: An integer between 0 and 61 specifying the map color of the wood's bark, see above. Defaults to 34 (Oak Log's bark color).
+                              logs: Required: Specifies which log blocks are recognized as belonging to this wood type by the Totem Whittling Knife.
+                                    Currently, only block tags are supported. Must be a string starting with '#' specifying a valid block tag
+                                    (Example: "#minecraft:crimson_stems").
+                              woodColor: Optional: An integer between 0 and 61 specifying the map color of the wood's inside.
+                                         See https://minecraft.wiki/w/Map_item_format#Color_table for a list of possible colors. Defaults to 13
+                                         (Oak Log's wood color).
+                              barkColor: Optional: An integer between 0 and 61 specifying the map color of the wood's bark, see above. Defaults
+                                         to 34 (Oak Log's bark color).
+
+                            Textures and language keys for the corresponding Totem Pole/Base blocks need to be added via a resource pack.
+                            See here for an example resource pack: https://github.com/TeamTotemic/Totemic/tree/1.19/CustomWoodTypeTestResources
 
                             Example entry:
                             [[customTotemWoodTypes]]
                                 id = "my_mod:crimson"
                                 logs = "#minecraft:crimson_stems"
-                                woodColor = 53
-                                barkColor = 54""")
+                                woodColor = 53  #optional
+                                barkColor = 54  #optional""")
                     .translation("totemic.config.customTotemWoodTypes")
+                    .worldRestart()
                     .defineList(List.of("customTotemWoodTypes"), () -> List.of(emptyConfig), o -> o instanceof Config);
         }
     }
