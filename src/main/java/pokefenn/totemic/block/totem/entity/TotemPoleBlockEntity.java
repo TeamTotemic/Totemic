@@ -24,6 +24,11 @@ import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 
 public class TotemPoleBlockEntity extends BlockEntity {
+    //Remember the values as read from NBT to avoid permanently replacing them with the defaults in case entries are removed from the registry
+    //(e.g. when the config gets changed or corrupted)
+    private ResourceLocation woodTypeLoc = ModContent.oak.getId();
+    private ResourceLocation carvingLoc = ModContent.none.getId();
+
     //Fields need to be volatile since getModelData() is called from chunk render threads
     private volatile TotemWoodType woodType = ModContent.oak.get();
     private volatile TotemCarving carving = ModContent.none.get();
@@ -35,21 +40,22 @@ public class TotemPoleBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
-        tag.putString("Wood", woodType.getRegistryName().toString());
-        tag.putString("Carving", carving.getRegistryName().toString());
+        tag.putString("Wood", woodTypeLoc.toString());
+        tag.putString("Carving", carvingLoc.toString());
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
-        var woodKey = ResourceLocation.tryParse(tag.getString("Wood"));
-        if(!TotemicAPI.get().registry().woodTypes().containsKey(woodKey))
-            Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
-        woodType = TotemicAPI.get().registry().woodTypes().getValue(woodKey);
-        var carvingKey = ResourceLocation.tryParse(tag.getString("Carving"));
-        if(!TotemicAPI.get().registry().totemCarvings().containsKey(carvingKey))
-            Totemic.logger.error("Unknown Totem Carving: '{}'", tag.getString("Carving"));
-        carving = TotemicAPI.get().registry().totemCarvings().getValue(carvingKey);
+        woodTypeLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Wood")), ModContent.oak.getId());
+        if(!TotemicAPI.get().registry().woodTypes().containsKey(woodTypeLoc))
+            Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);
+        woodType = TotemicAPI.get().registry().woodTypes().getValue(woodTypeLoc);
+
+        carvingLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Carving")), ModContent.none.getId());
+        if(!TotemicAPI.get().registry().totemCarvings().containsKey(carvingLoc))
+            Totemic.logger.warn("Unknown Totem Carving: '{}'", carvingLoc);
+        carving = TotemicAPI.get().registry().totemCarvings().getValue(carvingLoc);
     }
 
     @Override
