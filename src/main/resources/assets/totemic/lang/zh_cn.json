@@ -233,7 +233,7 @@
   "totemic.page.eagle_dance1": "$(o)欢迎来到“Murica”!",
 
   "totemic.entry.fertility": "春之祭",
-  "totemic.page.fertility0": "$(thing)春之祭$()是玩家可以使用的促进作物生长和动物繁殖的几个仪式之一。仪式启动后，只要将相应的食物放在地上，附近的$(emph)动物$()便开始依次$(emph)繁殖$()，并且繁殖有一定几率不会被$(emph)消耗食物$()。$(br2)除此之外，在仪式附近的任何树苗将会变成$(l:basics/cedar_tree)红柏树苗$()。",
+  "totemic.page.fertility0": "$(thing)春之祭$()是玩家可以使用的促进作物生长和动物繁殖的几个仪式之一。仪式启动后，只要将相应的食物放在地上，附近的$(emph)动物$()便开始依次$(emph)繁殖$()，并且繁殖有一定几率不会被$(emph)消耗食物$()。$(br2)除此之外，在仪式附近的任何树苗将会变成$(emph)红柏树苗$()。",
   "totemic.page.fertility1": "$(o)爱人，我不必去爱",
 
   "totemic.entry.flute_infusion": "魔域长笛",
