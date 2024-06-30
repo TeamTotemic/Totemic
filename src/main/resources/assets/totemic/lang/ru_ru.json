@@ -128,9 +128,9 @@
   "totemic.listOfCeremonies": "Список церемоний:",
   "totemic.ceremony.totemic.war_dance.description": "Даёт повышенный урон и надбавку к скорости",
   "totemic.ceremony.totemic.depths.description": "Даёт подводное дыхание",
-  "totemic.ceremony.totemic.fertility.description": "Превращает сажанцы в сажанец Красного кедра и размножает животных как при помощи пищи", // idk how to translate 'and breeds animals with food', translated as I understand it.
+  "totemic.ceremony.totemic.fertility.description": "Превращает сажанцы в сажанец Красного кедра и размножает животных как при помощи пищи",
   "totemic.ceremony.totemic.zaphkiel_waltz.description": "Ускоряет рост растений",
-  "totemic.ceremony.totemic.animal_growth.description": "Ускоряет рост животных, а также ускоряет снос яиц куриц и черепах. Makes animals grow faster and Chicken and Turtle eggs hatch faster",
+  "totemic.ceremony.totemic.animal_growth.description": "Ускоряет рост животных, а также ускоряет снос яиц куриц и черепах.",
   "totemic.ceremony.totemic.buffalo_dance.description": "Перевоплащает коров в Бизонов",
   "totemic.ceremony.totemic.rain.description": "Привызает дождь",
   "totemic.ceremony.totemic.drought.description": "Останавливает дождь",
