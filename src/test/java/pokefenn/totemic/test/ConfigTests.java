@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestAssertException;
+import net.minecraft.gametest.framework.GameTestAssertPosException;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -70,12 +71,18 @@ public final class ConfigTests {
         final BlockPos base3Pos = new BlockPos(2, 1, 0);
         GeneralTests.useItem(h, totemKnife, base1Pos, Direction.NORTH);
         h.assertBlockPresent(ModBlocks.totem_base.get(), base1Pos);
-        if(!((TotemBaseBlockEntity) h.getBlockEntity(base1Pos)).getWoodType().equals(testWoodType1))
-            throw new GameTestAssertException("Incorrect wood type at " + base1Pos);
+        var base1 = (TotemBaseBlockEntity) h.getBlockEntity(base1Pos);
+        if(base1.getWoodType() != testWoodType1)
+            throw new GameTestAssertPosException("Incorrect wood type", h.absolutePos(base1Pos), base1Pos, h.getTick());
+        if(!getWoodTypeLoc(base1).equals(new ResourceLocation(testWoodType1ID)))
+            throw new GameTestAssertPosException("Incorrect saved wood type ResourceLocation", h.absolutePos(base1Pos), base1Pos, h.getTick());
         GeneralTests.useItem(h, totemKnife, base2Pos, Direction.NORTH);
         h.assertBlockPresent(ModBlocks.totem_base.get(), base2Pos);
-        if(!((TotemBaseBlockEntity) h.getBlockEntity(base2Pos)).getWoodType().equals(testWoodType2))
-            throw new GameTestAssertException("Incorrect wood type at " + base2Pos);
+        var base2 = (TotemBaseBlockEntity) h.getBlockEntity(base2Pos);
+        if(base2.getWoodType() != testWoodType2)
+            throw new GameTestAssertPosException("Incorrect wood type", h.absolutePos(base2Pos), base2Pos, h.getTick());
+        if(!getWoodTypeLoc(base2).equals(new ResourceLocation(testWoodType2ID)))
+            throw new GameTestAssertPosException("Incorrect saved wood type ResourceLocation", h.absolutePos(base2Pos), base2Pos, h.getTick());
         GeneralTests.useItem(h, totemKnife, base3Pos, Direction.NORTH);
         h.assertBlockNotPresent(ModBlocks.totem_base.get(), base3Pos);
 
@@ -86,15 +93,32 @@ public final class ConfigTests {
         final BlockPos pole3Pos = new BlockPos(2, 2, 0);
         GeneralTests.useItem(h, totemKnife, pole1Pos, Direction.NORTH);
         h.assertBlockPresent(ModBlocks.totem_pole.get(), pole1Pos);
-        if(!((TotemPoleBlockEntity) h.getBlockEntity(pole1Pos)).getWoodType().equals(testWoodType1))
-            throw new GameTestAssertException("Incorrect wood type at " + pole1Pos);
+        var pole1 = (TotemPoleBlockEntity) h.getBlockEntity(pole1Pos);
+        if(pole1.getWoodType() != testWoodType1)
+            throw new GameTestAssertPosException("Incorrect wood type", h.absolutePos(pole1Pos), pole1Pos, h.getTick());
+        if(!getWoodTypeLoc(pole1).equals(new ResourceLocation(testWoodType1ID)))
+            throw new GameTestAssertPosException("Incorrect saved wood type ResourceLocation", h.absolutePos(pole1Pos), pole1Pos, h.getTick());
         GeneralTests.useItem(h, totemKnife, pole2Pos, Direction.NORTH);
         h.assertBlockPresent(ModBlocks.totem_pole.get(), pole2Pos);
-        if(!((TotemPoleBlockEntity) h.getBlockEntity(pole2Pos)).getWoodType().equals(testWoodType2))
-            throw new GameTestAssertException("Incorrect wood type at " + pole2Pos);
+        var pole2 = (TotemPoleBlockEntity) h.getBlockEntity(pole2Pos);
+        if(pole2.getWoodType() != testWoodType2)
+            throw new GameTestAssertPosException("Incorrect wood type", h.absolutePos(pole2Pos), pole2Pos, h.getTick());
+        if(!getWoodTypeLoc(pole2).equals(new ResourceLocation(testWoodType2ID)))
+            throw new GameTestAssertPosException("Incorrect saved wood type ResourceLocation", h.absolutePos(pole2Pos), pole2Pos, h.getTick());
         GeneralTests.useItem(h, totemKnife, pole3Pos, Direction.NORTH);
         h.assertBlockNotPresent(ModBlocks.totem_pole.get(), pole3Pos);
 
         h.succeed();
+    }
+
+    private static ResourceLocation getWoodTypeLoc(Object poleOrBase) {
+        try {
+            var woodTypeLocField = poleOrBase.getClass().getDeclaredField("woodTypeLoc");
+            woodTypeLocField.setAccessible(true);
+            return (ResourceLocation) woodTypeLocField.get(poleOrBase);
+        }
+        catch(Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

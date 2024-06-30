@@ -105,6 +105,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
 
     public void setWoodType(TotemWoodType woodType) {
         this.woodType = Objects.requireNonNull(woodType);
+        this.woodTypeLoc = woodType.getRegistryName();
         requestModelDataUpdate();
         setChanged();
     }

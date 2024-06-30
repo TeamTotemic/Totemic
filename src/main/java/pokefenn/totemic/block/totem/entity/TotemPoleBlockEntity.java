@@ -79,7 +79,9 @@ public class TotemPoleBlockEntity extends BlockEntity {
 
     public void setAppearance(TotemWoodType woodType, TotemCarving carving) {
         this.woodType = Objects.requireNonNull(woodType);
+        this.woodTypeLoc = woodType.getRegistryName();
         this.carving = Objects.requireNonNull(carving);
+        this.carvingLoc = carving.getRegistryName();
         requestModelDataUpdate();
         setChanged();
     }
