@@ -167,6 +167,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
         if(!TotemicAPI.get().registry().woodTypes().containsKey(woodTypeLoc))
             Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);
         woodType = TotemicAPI.get().registry().woodTypes().getValue(woodTypeLoc);
+        requestModelDataUpdate();
 
         if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
             byte id = tag.getByte("State");

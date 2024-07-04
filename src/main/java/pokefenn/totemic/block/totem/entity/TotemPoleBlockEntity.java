@@ -56,6 +56,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
         if(!TotemicAPI.get().registry().totemCarvings().containsKey(carvingLoc))
             Totemic.logger.warn("Unknown Totem Carving: '{}'", carvingLoc);
         carving = TotemicAPI.get().registry().totemCarvings().getValue(carvingLoc);
+        requestModelDataUpdate();
     }
 
     @Override
