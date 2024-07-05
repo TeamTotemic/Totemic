@@ -37,14 +37,17 @@ import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.api.totem.TotemWoodType;
-import pokefenn.totemic.client.model.totem.BakedTotemBaseModel;
+import pokefenn.totemic.client.model.totem.TotemPoleModelData;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
 
 public class TotemBaseBlockEntity extends BlockEntity {
     private boolean needPoleUpdate = true;
 
-    private volatile TotemWoodType woodType = ModContent.oak.get(); //Needs to be volatile since getModelData() is called from chunk render threads
+    //see also TotemPoleBlockEntity
+    private ResourceLocation woodTypeLoc = ModContent.oak.getId();
+    private volatile TotemWoodType woodType = ModContent.oak.get();
+
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private Set<TotemCarving> carvingSet = null; //Only needed for Medicine Bags, computed lazily
     private Multiset<TotemEffect> totemEffects = ImmutableMultiset.of();
@@ -102,6 +105,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
 
     public void setWoodType(TotemWoodType woodType) {
         this.woodType = Objects.requireNonNull(woodType);
+        this.woodTypeLoc = woodType.getRegistryName();
         requestModelDataUpdate();
         setChanged();
     }
@@ -151,7 +155,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
-        tag.putString("Wood", woodType.getRegistryName().toString());
+        tag.putString("Wood", woodTypeLoc.toString());
         tag.putByte("State", state.getID());
         state.save(tag);
     }
@@ -159,10 +163,11 @@ public class TotemBaseBlockEntity extends BlockEntity {
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
-        var woodKey = ResourceLocation.tryParse(tag.getString("Wood"));
-        if(!TotemicAPI.get().registry().woodTypes().containsKey(woodKey))
-            Totemic.logger.error("Unknown Totem Wood Type: '{}'", tag.getString("Wood"));
-        woodType = TotemicAPI.get().registry().woodTypes().getValue(woodKey);
+        woodTypeLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Wood")), ModContent.oak.getId());
+        if(!TotemicAPI.get().registry().woodTypes().containsKey(woodTypeLoc))
+            Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);
+        woodType = TotemicAPI.get().registry().woodTypes().getValue(woodTypeLoc);
+        requestModelDataUpdate();
 
         if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
             byte id = tag.getByte("State");
@@ -203,6 +208,6 @@ public class TotemBaseBlockEntity extends BlockEntity {
 
     @Override
     public @NotNull ModelData getModelData() {
-        return ModelData.builder().with(BakedTotemBaseModel.WOOD_TYPE_PROPERTY, woodType).build();
+        return ModelData.builder().with(TotemPoleModelData.WOOD_TYPE_PROPERTY, woodType).build();
     }
 }

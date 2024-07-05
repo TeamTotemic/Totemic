@@ -16,7 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
-import pokefenn.totemic.ModConfig;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
 import pokefenn.totemic.block.totem.entity.StateSelection;
@@ -58,8 +58,8 @@ public enum CeremonyHUD implements IGuiOverlay {
             return;
         }
 
-        final int hudX = (screenWidth - HUD_WIDTH) / 2 + ModConfig.CLIENT.ceremonyHudPositionX.get();
-        final int hudY = (screenHeight - HUD_HEIGHT) / 2 + ModConfig.CLIENT.ceremonyHudPositionY.get();
+        final int hudX = (screenWidth - HUD_WIDTH) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionX.get();
+        final int hudY = (screenHeight - HUD_HEIGHT) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionY.get();
 
         var poseStack = guiGraphics.pose();
         poseStack.pushPose();

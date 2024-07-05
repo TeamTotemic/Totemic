@@ -199,7 +199,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
         var tile = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_base.get());
-        var woodType = tile.map(TotemBaseBlockEntity::getWoodType).orElse(ModContent.oak.get());
+        var woodType = tile.map(TotemBaseBlockEntity::getWoodType).orElseGet(ModContent.oak);
         var stack = new ItemStack(this);
         stack.getOrCreateTag().putString(TotemPoleItem.POLE_WOOD_KEY, woodType.getRegistryName().toString());
         return stack;

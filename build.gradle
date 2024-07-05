@@ -49,6 +49,8 @@ minecraft {
         }
 
         gameTestServer {
+            workingDirectory project.file('run-gameTestServer')
+
             property 'forge.enabledGameTestNamespaces', mod_id
         }
         

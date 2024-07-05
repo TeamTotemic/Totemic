@@ -191,7 +191,7 @@ public class MedicineBagItem extends Item {
     @Override
     public Component getName(ItemStack stack) {
         return Component.translatable(getDescriptionId(),
-                getCarving(stack).orElse((PortableTotemCarving) ModContent.none.get()).getDisplayName());
+                getCarving(stack).orElseGet(ModContent.none).getDisplayName());
     }
 
     @Override

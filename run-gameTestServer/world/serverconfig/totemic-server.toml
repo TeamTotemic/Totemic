@@ -1,0 +1,12 @@
+
+#Totemic server configuration settings. These settings are world specific and are synced from the server to clients.
+[server]
+	#List of Ceremonies that should be disabled. Note that disabling some of the Ceremonies will prevent progression in Totemic.
+	#Example: ["totemic:rain", "totemic:drought"]
+	#See the Totempedia with advanced tooltips enabled (F3+H) to look up the Ceremonies' IDs.
+	disabledCeremonies = []
+	#List of Totem Carvings that should be disabled from being carved.
+	#Example: ["totemic:spider"]
+	#Use advanced tooltips (F3+H) to look up the Totem Carvings' IDs.
+	disabledTotemCarvings = []
+

@@ -1,4 +1,5 @@
-- Fixed a recurring crash that happens when the Zaphkiel Waltz or Hymn of Maturity ceremony is performed near the bedrock or the build height limit, for example in Superflat worlds
-
-API changes:
-- Fixed CeremonyAPI.forEachBlockIn causing an exception when the given BoundingBox extends past the build height limit (causing the abovementioned crash)
+- Added a config option to allow adding custom wood types for Totem Poles. See the config file `totemic-common.toml` for details and examples.
+  - Note that (Neo)Forge's config system is known to spuriously reset config files to their default values in some cases. If that happens, or if wood types are removed from the config, the placed Totem Poles and Bases in the world will turn into Oak wood, but should turn back into their previous wood type when the config entries are re-added.
+- (@AlgorithmLX) Updated Russian localization
+- (@HanJiang-cn) Updated Simplified Chinese localization, including the Totempedia
+- Removed a bad link from the Rite of Spring Totempedia page

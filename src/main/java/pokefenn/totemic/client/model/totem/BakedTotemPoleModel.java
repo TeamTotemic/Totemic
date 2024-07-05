@@ -23,13 +23,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.ChunkRenderTypeSet;
 import net.minecraftforge.client.model.BakedModelWrapper;
 import net.minecraftforge.client.model.data.ModelData;
-import net.minecraftforge.client.model.data.ModelProperty;
 import pokefenn.totemic.item.TotemPoleItem;
 
 //TODO: Consider unifying this class with BakedTotemBaseModel
 public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
-    public static final ModelProperty<TotemPoleModelData> DATA_PROPERTY = new ModelProperty<>();
-
     private final Map<TotemPoleModelData, BakedModel> bakedTotemModels;
     private final ItemOverrides itemOverrides;
 
@@ -46,7 +43,7 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     }
 
     private BakedModel getModelFor(ModelData modelData) {
-        var data = Objects.requireNonNullElse(modelData.get(DATA_PROPERTY), TotemPoleModelData.DEFAULT);
+        var data = Objects.requireNonNullElse(modelData.get(TotemPoleModelData.DATA_PROPERTY), TotemPoleModelData.DEFAULT);
         return bakedTotemModels.get(data);
     }
 

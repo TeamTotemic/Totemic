@@ -237,7 +237,7 @@
   "totemic.page.eagle_dance1": "$(o)Welcome to 'Murica!",
 
   "totemic.entry.fertility": "Rite of Spring",
-  "totemic.page.fertility0": "The $(thing)Rite of Spring$() is one of several growth and fertility Ceremonies available to a Totemist. After activating, nearby $(emph)animals$() will $(emph)breed$() one at a time, provided the respective $(emph)food items$() are laying on the ground. There is a decent chance that the food will not be consumed.$(br2)Along with that, any nearby saplings will transform into $(l:basics/cedar_tree)Red Cedar Saplings$().",
+  "totemic.page.fertility0": "The $(thing)Rite of Spring$() is one of several growth and fertility Ceremonies available to a Totemist. After activating, nearby $(emph)animals$() will $(emph)breed$() one at a time, provided the respective $(emph)food items$() are laying on the ground. There is a decent chance that the food will not be consumed.$(br2)Along with that, any nearby saplings will transform into $(emph)Red Cedar Saplings$().",
   "totemic.page.fertility1": "$(o)Lover I don't have to love",
 
   "totemic.entry.flute_infusion": "Serenade for Syrinx",
@@ -291,11 +291,12 @@
   "totemic.entry.totem_torch": "Totem Torch",
   "totemic.page.totem_torch0": "The $(item)Totem Torch$() is a larger version of a regular torch, emitting slightly more light than it.",
   
-  "totemic.config.general": "General",
+  "totemic.config.common": "Common",
   "totemic.config.client": "Client",
   "totemic.config.server": "Server",
   "totemic.config.ceremonyHudPositionX": "Ceremony HUD X position",
   "totemic.config.ceremonyHudPositionY": "Ceremony HUD Y position",
   "totemic.config.disabledCeremonies": "Disabled Ceremonies",
-  "totemic.config.disabledTotemCarvings": "Disabled Totem Carvings"
+  "totemic.config.disabledTotemCarvings": "Disabled Totem Carvings",
+  "totemic.config.customTotemWoodTypes": "Custom Totem Wood Types"
 }

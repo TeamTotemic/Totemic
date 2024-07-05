@@ -18,7 +18,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.ModConfig;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -74,7 +74,7 @@ public final class StateSelection extends TotemState {
     }
 
     private static boolean isDisabled(Ceremony ceremony, @Nonnull Entity entity) {
-        if(ModConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
+        if(TotemicConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
             entity.sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
             return true;
         }

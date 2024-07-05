@@ -22,7 +22,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
-import pokefenn.totemic.ModConfig;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
@@ -132,7 +132,7 @@ public class TotemKnifeItem extends Item {
     }
 
     private static boolean isCarvingDisabled(TotemCarving carving, @Nullable Player player) {
-        if(ModConfig.SERVER.disabledTotemCarvings.get().contains(carving.getRegistryName().toString())) {
+        if(TotemicConfig.SERVER.disabledTotemCarvings.get().contains(carving.getRegistryName().toString())) {
             if(player != null && player.level().isClientSide())
                 player.sendSystemMessage(Component.translatable("totemic.carvingDisabled", carving.getDisplayName()));
             return true;

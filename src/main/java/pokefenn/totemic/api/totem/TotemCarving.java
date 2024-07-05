@@ -34,7 +34,7 @@ public sealed class TotemCarving permits PortableTotemCarving {
     }
 
     /**
-     * Constructs a new TotemCarving multiple effects.
+     * Constructs a new TotemCarving with multiple effects.
      * @param effects the constituent effects of the carving, as a List.
      */
     public TotemCarving(List<? extends TotemEffect> effects) {

@@ -8,4 +8,15 @@
 /.project
 /run
 /run-data
-*.launch
+/*.launch
+# Exclude run-gameTestServer, but include run-gameTestServer/config/totemic-common.toml and
+# run-gameTestServer/world/serverconfig/totemic-server.toml
+/run-gameTestServer/*
+!/run-gameTestServer/config
+/run-gameTestServer/config/*
+!/run-gameTestServer/config/totemic-common.toml
+!/run-gameTestServer/world
+/run-gameTestServer/world/*
+!/run-gameTestServer/world/serverconfig
+/run-gameTestServer/world/serverconfig/*
+!/run-gameTestServer/world/serverconfig/totemic-server.toml

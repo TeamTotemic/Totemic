@@ -147,8 +147,8 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
         var tile = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_pole.get());
-        var woodType = tile.map(TotemPoleBlockEntity::getWoodType).orElse(ModContent.oak.get());
-        var carving = tile.map(TotemPoleBlockEntity::getCarving).orElse(ModContent.none.get());
+        var woodType = tile.map(TotemPoleBlockEntity::getWoodType).orElseGet(ModContent.oak);
+        var carving = tile.map(TotemPoleBlockEntity::getCarving).orElseGet(ModContent.none);
         var stack = new ItemStack(this);
         stack.getOrCreateTag().putString(TotemPoleItem.POLE_CARVING_KEY, carving.getRegistryName().toString());
         stack.getTag().putString(TotemPoleItem.POLE_WOOD_KEY, woodType.getRegistryName().toString());
