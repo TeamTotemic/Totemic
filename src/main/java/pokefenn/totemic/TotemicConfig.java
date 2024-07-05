@@ -45,6 +45,8 @@ public final class TotemicConfig {
                             Textures and language keys for the corresponding Totem Pole/Base blocks need to be added via a resource pack.
                             See here for an example resource pack: https://github.com/TeamTotemic/Totemic/tree/1.19/CustomWoodTypeTestResources
 
+                            Please note that issues will arise if the wood types are not the same on the server and client.
+
                             Example entry:
                             [[customTotemWoodTypes]]
                                 id = "my_mod:crimson"
