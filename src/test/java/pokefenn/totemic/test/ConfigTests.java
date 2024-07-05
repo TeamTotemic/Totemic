@@ -9,7 +9,7 @@ import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.gametest.GameTestHolder;
 import net.minecraftforge.gametest.PrefixGameTestTemplate;
 import pokefenn.totemic.TotemicConfig;
@@ -53,13 +53,13 @@ public final class ConfigTests {
 
         var testWoodType1 = woodTypeReg.getValue(new ResourceLocation(testWoodType1ID));
         if(!testWoodType1.getLogTag().equals(BlockTags.CRIMSON_STEMS)
-        || !testWoodType1.getWoodColor().equals(MaterialColor.CRIMSON_STEM)
-        || !testWoodType1.getBarkColor().equals(MaterialColor.CRIMSON_HYPHAE))
+        || !testWoodType1.getWoodColor().equals(MapColor.CRIMSON_STEM)
+        || !testWoodType1.getBarkColor().equals(MapColor.CRIMSON_HYPHAE))
             throw new GameTestAssertException("Wood type " + testWoodType1ID + " has incorrect attributes");
         var testWoodType2 = woodTypeReg.getValue(new ResourceLocation(testWoodType2ID));
         if(!testWoodType2.getLogTag().equals(BlockTags.WARPED_STEMS)
-        || !testWoodType2.getWoodColor().equals(MaterialColor.WOOD)
-        || !testWoodType2.getBarkColor().equals(MaterialColor.PODZOL))
+        || !testWoodType2.getWoodColor().equals(MapColor.WOOD)
+        || !testWoodType2.getBarkColor().equals(MapColor.PODZOL))
             throw new GameTestAssertException("Wood type " + testWoodType2ID + " has incorrect attributes");
 
         //Test if carving the blocks works as expected (TODO: Should probably move that to a general test for the Totem Whittling Knife)

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.electronwill.nightconfig.core.Config;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -124,13 +124,13 @@ public final class ModContent {
                     if(!logsStr.startsWith("#"))
                         throw new IllegalArgumentException("'logs' value must be a valid block tag key starting with '#'");
                     //Note that there is no way for us to check if the tag key actually exists since tags are not loaded until server start
-                    int woodColorIndex = entry.getIntOrElse("woodColor", MaterialColor.WOOD.id);
-                    int barkColorIndex = entry.getIntOrElse("barkColor", MaterialColor.PODZOL.id);
+                    int woodColorIndex = entry.getIntOrElse("woodColor", MapColor.WOOD.id);
+                    int barkColorIndex = entry.getIntOrElse("barkColor", MapColor.PODZOL.id);
 
                     var id = new ResourceLocation(idStr);
-                    var logTagKey = TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(logsStr.substring(1)));
-                    var woodColor = MaterialColor.byId(woodColorIndex);
-                    var barkColor = MaterialColor.byId(barkColorIndex);
+                    var logTagKey = TagKey.create(Registries.BLOCK, new ResourceLocation(logsStr.substring(1)));
+                    var woodColor = MapColor.byId(woodColorIndex);
+                    var barkColor = MapColor.byId(barkColorIndex);
 
                     reg.register(id, new TotemWoodType(woodColor, barkColor, logTagKey));
                     Totemic.logger.debug("Added custom Totem Wood Type with ID '" + id + "'");

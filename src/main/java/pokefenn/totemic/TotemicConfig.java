@@ -43,7 +43,7 @@ public final class TotemicConfig {
                                          to 34 (Oak Log's bark color).
 
                             Textures and language keys for the corresponding Totem Pole/Base blocks need to be added via a resource pack.
-                            See here for an example resource pack: https://github.com/TeamTotemic/Totemic/tree/1.19/CustomWoodTypeTestResources
+                            See here for an example resource pack: https://github.com/TeamTotemic/Totemic/tree/1.20.1/CustomWoodTypeTestResources
 
                             Please note that issues will arise if the wood types are not the same on the server and client.
 
