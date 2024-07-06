@@ -6,6 +6,12 @@
 /.eclipse
 /.classpath
 /.project
-/run
-/runs
 *.launch
+/runs/*
+# Exclude runs, but include runs/gameTestServer/config/totemic-common.toml and totemic-server.toml
+!/runs/gameTestServer
+/runs/gameTestServer/*
+!/runs/gameTestServer/config
+/runs/gameTestServer/config/*
+!/runs/gameTestServer/config/totemic-common.toml
+!/runs/gameTestServer/config/totemic-server.toml
