@@ -50,13 +50,13 @@ public class TotemPoleBlockEntity extends BlockEntity {
         woodTypeLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Wood")), ModContent.oak.getId());
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
         if(optWood.isEmpty())
-            Totemic.logger.error("Unknown Totem Wood Type: '{}'", woodTypeLoc);
+            Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);
         woodType = optWood.orElseGet(ModContent.oak);
 
         carvingLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Carving")), ModContent.none.getId());
-        var optCarving = TotemicAPI.get().registry().totemCarvings().getOptional(carvingLoc );
+        var optCarving = TotemicAPI.get().registry().totemCarvings().getOptional(carvingLoc);
         if(optCarving.isEmpty())
-            Totemic.logger.error("Unknown Totem Carving: '{}'", carvingLoc );
+            Totemic.logger.warn("Unknown Totem Carving: '{}'", carvingLoc);
         carving = optCarving.orElseGet(ModContent.none);
         requestModelDataUpdate();
     }
