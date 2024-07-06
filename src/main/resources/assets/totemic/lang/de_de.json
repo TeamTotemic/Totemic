@@ -237,7 +237,7 @@
   "totemic.page.eagle_dance1": "$(o)Welcome to 'Murica!",
 
   "totemic.entry.fertility": "Ritus des Frühlings",
-  "totemic.page.fertility0": "Der $(thing)Ritus des Frühlings$() ist eine von mehreren Wachstums- und Fruchtbarkeitszeremonien, die einem Totemisten zur Verfügung stehen. Nach der Aktivierung $(emph)begatten$() sich $(emph)Tiere$() in der Nähe, wenn ihre $(emph)Nahrung$() auf dem Boden liegt. Allerdings besteht eine gute Chance, dass die Nahrung nicht verbraucht wird.$(br)Außerdem verwandeln sich Setzlinge in $(l:basics/cedar_tree)Rote Zedernsetzlinge$().",
+  "totemic.page.fertility0": "Der $(thing)Ritus des Frühlings$() ist eine von mehreren Wachstums- und Fruchtbarkeitszeremonien, die einem Totemisten zur Verfügung stehen. Nach der Aktivierung $(emph)begatten$() sich $(emph)Tiere$() in der Nähe, wenn ihre $(emph)Nahrung$() auf dem Boden liegt. Allerdings besteht eine gute Chance, dass die Nahrung nicht verbraucht wird.$(br)Außerdem verwandeln sich Setzlinge in $(emph)Rote Zedernsetzlinge$().",
   "totemic.page.fertility1": "$(o)Kein Liebhaber zum Lieben",
 
   "totemic.entry.flute_infusion": "Serenade für Syrinx",
@@ -291,11 +291,12 @@
   "totemic.entry.totem_torch": "Totemfackel",
   "totemic.page.totem_torch0": "Die $(item)Totemfackel$() ist eine größere Variante einer normalen Fackel, und strahlt außerdem etwas mehr Licht aus.",
   
-  "totemic.config.general": "Allgemein",
+  "totemic.config.common": "Allgemein",
   "totemic.config.client": "Client-Seite",
   "totemic.config.server": "Server",
   "totemic.config.ceremonyHudPositionX": "Zeremonien-HUD X-Position",
   "totemic.config.ceremonyHudPositionY": "Zeremonien-HUD Y-Position",
   "totemic.config.disabledCeremonies": "Deaktivierte Zeremonien",
-  "totemic.config.disabledTotemCarvings": "Deaktivierte Totem-Schnitzmuster"
+  "totemic.config.disabledTotemCarvings": "Deaktivierte Totem-Schnitzmuster",
+  "totemic.config.customTotemWoodTypes": "Benutzerdefinierte Totempfahl-Holztypen"
 }

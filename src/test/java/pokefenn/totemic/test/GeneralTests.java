@@ -88,7 +88,7 @@ public final class GeneralTests {
         h.succeed();
     }
 
-    private static void useItem(GameTestHelper h, ItemStack item, BlockPos pos, Direction dir) {
+    public static void useItem(GameTestHelper h, ItemStack item, BlockPos pos, Direction dir) {
         var apos = h.absolutePos(pos);
         item.useOn(new UseOnContext(h.getLevel(), h.makeMockPlayer(), InteractionHand.MAIN_HAND, item,
                 new BlockHitResult(Vec3.atCenterOf(apos), dir, apos, true)));

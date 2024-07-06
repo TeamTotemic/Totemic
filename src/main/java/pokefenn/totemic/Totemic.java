@@ -61,6 +61,7 @@ public final class Totemic {
         modBus.register(ModItems.class);
         modBus.register(ModEntityTypes.class);
         modBus.register(RegistryApiImpl.class);
+        modBus.addListener(ModContent::registerCustomWoodTypes);
 
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
         modBus.addListener(ModCriteriaTriggers::init);
@@ -73,7 +74,7 @@ public final class Totemic {
             modBus.register(ModModelLayers.class);
         }
 
-        ModConfig.register(ModLoadingContext.get());
+        TotemicConfig.register(ModLoadingContext.get());
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

@@ -29,8 +29,6 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.item.TotemPoleItem;
 
 public final class BakedTotemBaseModel extends BakedModelWrapper<BakedModel> {
-    public static final ModelProperty<TotemWoodType> WOOD_TYPE_PROPERTY = new ModelProperty<>();
-
     private final Map<TotemWoodType, BakedModel> bakedTotemModels;
     private final ItemOverrides itemOverrides;
 
@@ -46,7 +44,7 @@ public final class BakedTotemBaseModel extends BakedModelWrapper<BakedModel> {
     }
 
     private BakedModel getModelFor(ModelData modelData) {
-        var woodType = Objects.requireNonNullElse(modelData.get(WOOD_TYPE_PROPERTY), ModContent.oak.get());
+        var woodType = Objects.requireNonNullElse(modelData.get(TotemPoleModelData.WOOD_TYPE_PROPERTY), ModContent.oak.get());
         return bakedTotemModels.get(woodType);
     }
 

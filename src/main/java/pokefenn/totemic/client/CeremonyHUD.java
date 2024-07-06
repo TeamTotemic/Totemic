@@ -58,8 +58,8 @@ public enum CeremonyHUD implements IGuiOverlay {
             return;
         }
 
-        final int hudX = (screenWidth - HUD_WIDTH) / 2 + ModConfig.CLIENT.ceremonyHudPositionX.get();
-        final int hudY = (screenHeight - HUD_HEIGHT) / 2 + ModConfig.CLIENT.ceremonyHudPositionY.get();
+        final int hudX = (screenWidth - HUD_WIDTH) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionX.get();
+        final int hudY = (screenHeight - HUD_HEIGHT) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionY.get();
 
         var poseStack = guiGraphics.pose();
         poseStack.pushPose();
