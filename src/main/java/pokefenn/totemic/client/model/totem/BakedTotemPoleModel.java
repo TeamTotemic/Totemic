@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 import net.neoforged.neoforge.client.model.BakedModelWrapper;
 import net.neoforged.neoforge.client.model.data.ModelData;
-import net.neoforged.neoforge.client.model.data.ModelProperty;
 import pokefenn.totemic.item.TotemPoleItem;
 
 //TODO: Consider unifying this class with BakedTotemBaseModel

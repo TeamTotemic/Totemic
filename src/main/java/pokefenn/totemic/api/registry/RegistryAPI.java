@@ -1,5 +1,6 @@
 package pokefenn.totemic.api.registry;
 
+import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -33,12 +34,12 @@ public interface RegistryAPI {
     /**
      * Provides access to the TotemCarving registry.
      */
-    Registry<TotemWoodType> woodTypes();
+    DefaultedRegistry<TotemWoodType> woodTypes();
 
     /**
      * Provides access to the TotemCarving registry.
      */
-    Registry<TotemCarving> totemCarvings();
+    DefaultedRegistry<TotemCarving> totemCarvings();
 
     /**
      * Provides access to the Ceremony registry.

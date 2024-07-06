@@ -1,13 +1,21 @@
 package pokefenn.totemic;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
+
+import com.electronwill.nightconfig.core.Config;
+import com.electronwill.nightconfig.core.InMemoryFormat;
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.electronwill.nightconfig.core.file.FileNotFoundAction;
+import com.electronwill.nightconfig.core.io.WritingMode;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.ModLoadingContext;
-import net.neoforged.fml.config.ModConfig.Type;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import pokefenn.totemic.api.TotemicAPI;
@@ -16,7 +24,7 @@ public final class TotemicConfig {
     public static class Common {
         public final ConfigValue<List<? extends Config>> customTotemWoodTypes;
 
-        Common(ForgeConfigSpec.Builder builder) {
+        Common(ModConfigSpec.Builder builder) {
             //The default value will be a list containing an empty table, rather than an empty list, to make the TOML syntax for lists of tables clearer to users.
             //The default TOML file will then contain "[[customTotemWoodTypes]]" rather than "customTotemWoodTypes = []".
             var emptyConfig = Config.wrap(Map.of(), InMemoryFormat.defaultInstance());

@@ -10,8 +10,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraftforge.gametest.GameTestHolder;
-import net.minecraftforge.gametest.PrefixGameTestTemplate;
+import net.neoforged.neoforge.gametest.GameTestHolder;
+import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
@@ -51,12 +51,12 @@ public final class ConfigTests {
         if(!woodTypeReg.containsKey(new ResourceLocation(testWoodType2ID)))
             throw new GameTestAssertException("Expected wood type " + testWoodType2ID + " to be registered");
 
-        var testWoodType1 = woodTypeReg.getValue(new ResourceLocation(testWoodType1ID));
+        var testWoodType1 = woodTypeReg.get(new ResourceLocation(testWoodType1ID));
         if(!testWoodType1.getLogTag().equals(BlockTags.CRIMSON_STEMS)
         || !testWoodType1.getWoodColor().equals(MapColor.CRIMSON_STEM)
         || !testWoodType1.getBarkColor().equals(MapColor.CRIMSON_HYPHAE))
             throw new GameTestAssertException("Wood type " + testWoodType1ID + " has incorrect attributes");
-        var testWoodType2 = woodTypeReg.getValue(new ResourceLocation(testWoodType2ID));
+        var testWoodType2 = woodTypeReg.get(new ResourceLocation(testWoodType2ID));
         if(!testWoodType2.getLogTag().equals(BlockTags.WARPED_STEMS)
         || !testWoodType2.getWoodColor().equals(MapColor.WOOD)
         || !testWoodType2.getBarkColor().equals(MapColor.PODZOL))
@@ -87,7 +87,7 @@ public final class ConfigTests {
         h.assertBlockNotPresent(ModBlocks.totem_base.get(), base3Pos);
 
         //Totem Poles
-        totemKnife.getOrCreateTag().putString(TotemKnifeItem.KNIFE_CARVING_KEY, ModContent.blaze.getId().toString());
+        totemKnife.getOrCreateTag().putString(TotemKnifeItem.KNIFE_CARVING_KEY, ModContent.blaze.get().getRegistryName().toString());
         final BlockPos pole1Pos = new BlockPos(0, 2, 0);
         final BlockPos pole2Pos = new BlockPos(1, 2, 0);
         final BlockPos pole3Pos = new BlockPos(2, 2, 0);

@@ -11,7 +11,11 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.RegisterEvent;
+import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -47,7 +51,7 @@ public final class ModContent {
 //    public static final Supplier<MusicInstrument> nether_pipe = INSTRUMENTS.register("nether_pipe", () -> new MusicInstrument(240, 3900));
 
     public static final DeferredRegister<TotemWoodType> WOOD_TYPES = DeferredRegister.create(RegistryAPI.WOOD_TYPE_REGISTRY, TotemicAPI.MOD_ID);
-    public static final Supplier<TotemWoodType> oak = WOOD_TYPES.register("oak", () -> new TotemWoodType(MapColor.WOOD, MapColor.PODZOL, BlockTags.OAK_LOGS));
+    public static final DeferredHolder<TotemWoodType, TotemWoodType> oak = WOOD_TYPES.register("oak", () -> new TotemWoodType(MapColor.WOOD, MapColor.PODZOL, BlockTags.OAK_LOGS)); //default value
     public static final Supplier<TotemWoodType> spruce = WOOD_TYPES.register("spruce", () -> new TotemWoodType(MapColor.PODZOL, MapColor.COLOR_BROWN, BlockTags.SPRUCE_LOGS));
     public static final Supplier<TotemWoodType> birch = WOOD_TYPES.register("birch", () -> new TotemWoodType(MapColor.SAND, MapColor.QUARTZ, BlockTags.BIRCH_LOGS));
     public static final Supplier<TotemWoodType> jungle = WOOD_TYPES.register("jungle", () -> new TotemWoodType(MapColor.DIRT, MapColor.PODZOL, BlockTags.JUNGLE_LOGS));
@@ -58,7 +62,7 @@ public final class ModContent {
     public static final Supplier<TotemWoodType> cedar = WOOD_TYPES.register("cedar", () -> new TotemWoodType(MapColor.COLOR_PINK, MapColor.COLOR_ORANGE, TotemicBlockTags.CEDAR_LOGS));
 
     public static final DeferredRegister<TotemCarving> CARVINGS = DeferredRegister.create(RegistryAPI.TOTEM_CARVING_REGISTRY, TotemicAPI.MOD_ID);
-    public static final Supplier<PortableTotemCarving> none = CARVINGS.register("none", () -> new PortableTotemCarving(List.of()));
+    public static final DeferredHolder<TotemCarving, PortableTotemCarving> none = CARVINGS.register("none", () -> new PortableTotemCarving(List.of()));  //default value
     public static final Supplier<PortableTotemCarving> bat = CARVINGS.register("bat", () -> new PortableTotemCarving(new PotionTotemEffect(MobEffects.SLOW_FALLING)));
     public static final Supplier<PortableTotemCarving> blaze = CARVINGS.register("blaze", () -> new PortableTotemCarving(new PotionTotemEffect(MobEffects.FIRE_RESISTANCE)));
     public static final Supplier<PortableTotemCarving> buffalo = CARVINGS.register("buffalo", () -> new PortableTotemCarving(new PotionTotemEffect(MobEffects.DIG_SPEED)));
