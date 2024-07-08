@@ -8,11 +8,14 @@ modId="${mod_id}"
 version="${mod_version}"
 displayName="${mod_name}"
 updateJSONURL="https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json"
-displayURL="https://minecraft.curseforge.com/projects/totemic"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/totemic"
 logoFile="totemic_logo.png"
 credits="nojustgavin, Nefilto, ZestyBlaze, VincentLongiug, WayofTime, Joshie, Poppycocks, Dylan4Ever, Vazkii, Kerri Lake"
 authors="${mod_authors}"
 description='''${mod_description}'''
+
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
 
 [[dependencies.${mod_id}]]
     modId="neoforge"
@@ -28,12 +31,9 @@ description='''${mod_description}'''
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
-    modId="patchouli"
-    type="optional"
-    versionRange="[1.20.4-85,)"
-    ordering="NONE"
-    side="BOTH"
-
-[[accessTransformers]]
-file="META-INF/accesstransformer.cfg"
+#[[dependencies.${mod_id}]]
+#    modId="patchouli"
+#    type="optional"
+#    versionRange="[1.20.4-85,)"
+#    ordering="NONE"
+#    side="BOTH"

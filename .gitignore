@@ -1,13 +1,30 @@
-/.gradle
-/.settings
-/bin
-/build
-/eclipse
-/.eclipse
-/.classpath
-/.project
+# eclipse
+bin
 *.launch
-/runs/*
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+runs
+run-data
+
+repo
+
 # Exclude runs, but include runs/gameTestServer/config/totemic-common.toml and totemic-server.toml
 !/runs/gameTestServer
 /runs/gameTestServer/*
