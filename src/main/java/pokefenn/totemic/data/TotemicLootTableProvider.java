@@ -2,8 +2,11 @@ package pokefenn.totemic.data;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.EntityLootSubProvider;
@@ -31,20 +34,16 @@ import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicLootTableProvider extends LootTableProvider {
-    public TotemicLootTableProvider(PackOutput pOutput) {
+    public TotemicLootTableProvider(PackOutput pOutput, CompletableFuture<Provider> registries) {
         super(pOutput, Set.of(), List.of(
                 new SubProviderEntry(TotemicBlockLoot::new, LootContextParamSets.BLOCK),
-                new SubProviderEntry(TotemicEntityLoot::new, LootContextParamSets.ENTITY)));
+                new SubProviderEntry(TotemicEntityLoot::new, LootContextParamSets.ENTITY)),
+                registries);
     }
 
-    /*@Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
-        map.forEach((name, table) -> table.validate(validationtracker));
-    }*/
-
     private static class TotemicBlockLoot extends BlockLootSubProvider {
-        public TotemicBlockLoot() {
-            super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+        public TotemicBlockLoot(HolderLookup.Provider registries) {
+            super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
         }
 
         @Override
@@ -82,8 +81,8 @@ public final class TotemicLootTableProvider extends LootTableProvider {
     }
 
     private static class TotemicEntityLoot extends EntityLootSubProvider {
-        public TotemicEntityLoot() {
-            super(FeatureFlags.REGISTRY.allFlags());
+        public TotemicEntityLoot(HolderLookup.Provider registries) {
+            super(FeatureFlags.REGISTRY.allFlags(), registries);
         }
 
         @Override

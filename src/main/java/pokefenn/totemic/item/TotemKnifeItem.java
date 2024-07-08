@@ -155,7 +155,7 @@ public class TotemKnifeItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 }

@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -73,10 +72,10 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if(pPlayer.isShiftKeyDown()) {
-            playSelector(pLevel, pPos, pPlayer);
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+        if(player.isShiftKeyDown()) {
+            playSelector(level, pos, player);
+            return InteractionResult.sidedSuccess(level.isClientSide);
         }
         else
             return InteractionResult.PASS;
@@ -88,7 +87,6 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
             playSelector(pLevel, pPos, pPlayer);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -154,7 +152,6 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
         return !state.getValue(WATERLOGGED);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);

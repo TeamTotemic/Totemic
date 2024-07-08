@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -43,7 +43,7 @@ import pokefenn.totemic.network.NetworkHandler;
 public final class Totemic {
     public static final Logger logger = LogManager.getLogger(Totemic.class);
 
-    public Totemic(IEventBus modBus) {
+    public Totemic(IEventBus modBus, ModContainer container) {
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::gatherData);
 
@@ -74,7 +74,7 @@ public final class Totemic {
             modBus.register(ModModelLayers.class);
         }
 
-        TotemicConfig.register(ModLoadingContext.get());
+        TotemicConfig.register(container);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -111,8 +111,8 @@ public final class Totemic {
         var blockTP = gen.addProvider(event.includeServer(), new TotemicBlockTagsProvider(out, lookup, efh));
         gen.addProvider(event.includeServer(), new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
         gen.addProvider(event.includeServer(), new TotemicEntityTypeTagsProvider(out, lookup, efh));
-        gen.addProvider(event.includeServer(), new TotemicLootTableProvider(out));
-        gen.addProvider(event.includeServer(), new TotemicRecipeProvider(out));
+        gen.addProvider(event.includeServer(), new TotemicLootTableProvider(out, lookup));
+        gen.addProvider(event.includeServer(), new TotemicRecipeProvider(out, lookup));
         gen.addProvider(event.includeServer(), new TotemicDatapackEntryProvider(out, lookup));
         gen.addProvider(event.includeServer(), new TotemicDamageTypeTagsProvider(out, lookup, efh));
 
@@ -120,6 +120,6 @@ public final class Totemic {
     }
 
     public static ResourceLocation resloc(String path) {
-        return new ResourceLocation(TotemicAPI.MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(TotemicAPI.MOD_ID, path);
     }
 }

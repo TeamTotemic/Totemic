@@ -69,6 +69,6 @@ public class Buffalo extends Cow {
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntityDimensions dim) {
-        return this.isBaby() ? dim.height * 0.95F : 1.8F;
+        return this.isBaby() ? dim.height() * 0.95F : 1.8F;
     }
 }

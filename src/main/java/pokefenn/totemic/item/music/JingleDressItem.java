@@ -1,11 +1,10 @@
 package pokefenn.totemic.item.music;
 
+import java.util.EnumMap;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
+import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffects;
@@ -16,36 +15,26 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public class JingleDressItem extends ArmorItem {
-    public static final ArmorMaterial MATERIAL = new ArmorMaterial() {
-        @Override
-        public float getToughness() { return 0.0F; }
-
-        @Override
-        public Ingredient getRepairIngredient() { return Ingredient.of(ModItems.buffalo_hide.get()); }
-
-        @Override
-        public String getName() { return "totemic:jingle_dress"; }
-
-        @Override
-        public float getKnockbackResistance() { return 0.0F; }
-
-        @Override
-        public SoundEvent getEquipSound() { return SoundEvents.ARMOR_EQUIP_LEATHER; }
-
-        @Override
-        public int getEnchantmentValue() { return 15; }
-
-        @Override
-        public int getDurabilityForType(Type pSlot) { return 5 * 15; }
-
-        @Override
-        public int getDefenseForType(Type pSlot) { return 1; }
-    };
+    public static final ArmorMaterial MATERIAL = new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 1);
+                map.put(ArmorItem.Type.LEGGINGS, 1);
+                map.put(ArmorItem.Type.CHESTPLATE, 1);
+                map.put(ArmorItem.Type.HELMET, 1);
+                map.put(ArmorItem.Type.BODY, 1);
+            }),
+            15,
+            SoundEvents.ARMOR_EQUIP_LEATHER,
+            () -> Ingredient.of(ModItems.buffalo_hide.get()),
+            List.of(new ArmorMaterial.Layer(Totemic.resloc("jingle_dress"))),
+            0.0F,
+            0.0F); //TODO: Register this
 
     public static final String CHARGE_KEY = "Charge";
 
@@ -78,7 +67,7 @@ public class JingleDressItem extends ArmorItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 }

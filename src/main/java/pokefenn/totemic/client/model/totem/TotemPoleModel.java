@@ -33,8 +33,8 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
     }
 
     @Override
-    public BakedModel bake(IGeometryBakingContext ctx, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation) {
-        var bakedModels = Map.copyOf(Maps.transformValues(totemModels, unbaked -> unbaked.bake(bakery, spriteGetter, modelState, modelLocation)));
+    public BakedModel bake(IGeometryBakingContext ctx, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides) {
+        var bakedModels = Map.copyOf(Maps.transformValues(totemModels, unbaked -> unbaked.bake(bakery, spriteGetter, modelState)));
         return new BakedTotemPoleModel(bakedModels);
     }
 
@@ -64,12 +64,12 @@ public final class TotemPoleModel implements IUnbakedGeometry<TotemPoleModel> {
 
     private static ResourceLocation getWoodTypeModelName(TotemWoodType woodType) {
         var woodName = woodType.getRegistryName();
-        return new ResourceLocation(woodName.getNamespace(), "block/" + woodName.getPath() + "_totem_pole");
+        return woodName.withPath("block/" + woodName.getPath() + "_totem_pole");
     }
 
     private static ResourceLocation getPoleModelName(TotemCarving carving) {
         var carvingName = carving.getRegistryName();
-        return new ResourceLocation(carvingName.getNamespace(), "block/totem_pole_" + carvingName.getPath());
+        return carvingName.withPath("block/totem_pole_" + carvingName.getPath());
     }
 
     public enum Loader implements IGeometryLoader<TotemPoleModel> {

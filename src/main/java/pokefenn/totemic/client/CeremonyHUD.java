@@ -8,14 +8,15 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 
+import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.neoforged.neoforge.client.gui.overlay.ExtendedGui;
-import net.neoforged.neoforge.client.gui.overlay.IGuiOverlay;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
@@ -24,7 +25,7 @@ import pokefenn.totemic.block.totem.entity.StateStartup;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 
-public enum CeremonyHUD implements IGuiOverlay {
+public enum CeremonyHUD implements LayeredDraw.Layer {
     INSTANCE;
 
     private static final ResourceLocation SELECTION_HUD_TEXTURE = Totemic.resloc("textures/gui/selection_hud.png");
@@ -47,10 +48,10 @@ public enum CeremonyHUD implements IGuiOverlay {
     }
 
     @Override
-    public void render(ExtendedGui gui, GuiGraphics guiGraphics, float partialTick, int screenWidth, int screenHeight) {
+    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         if(activeTotem == null)
             return;
-        var mc = gui.getMinecraft();
+        var mc = Minecraft.getInstance();
         mc.getProfiler().push("totemic.ceremonyHUD");
 
         if(activeTotem.isRemoved() || activeTotem.getLevel() != mc.level || activeTotem.getTotemState() instanceof StateTotemEffect) {
@@ -58,8 +59,8 @@ public enum CeremonyHUD implements IGuiOverlay {
             return;
         }
 
-        final int hudX = (screenWidth - HUD_WIDTH) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionX.get();
-        final int hudY = (screenHeight - HUD_HEIGHT) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionY.get();
+        final int hudX = (guiGraphics.guiWidth() - HUD_WIDTH) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionX.get();
+        final int hudY = (guiGraphics.guiHeight() - HUD_HEIGHT) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionY.get();
 
         var poseStack = guiGraphics.pose();
         poseStack.pushPose();

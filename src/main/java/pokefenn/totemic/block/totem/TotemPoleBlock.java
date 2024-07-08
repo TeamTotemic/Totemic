@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -166,7 +167,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+    public void appendHoverText(ItemStack pStack, Item.TooltipContext context, List<Component> pTooltip, TooltipFlag pFlag) {
         if(pFlag.isAdvanced()) {
             var carvingID = Optional.ofNullable(pStack.getTag())
                     .map(tag -> tag.getString(TotemPoleItem.POLE_CARVING_KEY))

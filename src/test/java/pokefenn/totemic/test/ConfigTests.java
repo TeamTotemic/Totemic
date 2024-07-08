@@ -46,17 +46,17 @@ public final class ConfigTests {
 
         //Test if the custom wood types are registered correctly
         var woodTypeReg = TotemicAPI.get().registry().woodTypes();
-        if(!woodTypeReg.containsKey(new ResourceLocation(testWoodType1ID)))
+        if(!woodTypeReg.containsKey(ResourceLocation.parse(testWoodType1ID)))
             throw new GameTestAssertException("Expected wood type " + testWoodType1ID + " to be registered");
-        if(!woodTypeReg.containsKey(new ResourceLocation(testWoodType2ID)))
+        if(!woodTypeReg.containsKey(ResourceLocation.parse(testWoodType2ID)))
             throw new GameTestAssertException("Expected wood type " + testWoodType2ID + " to be registered");
 
-        var testWoodType1 = woodTypeReg.get(new ResourceLocation(testWoodType1ID));
+        var testWoodType1 = woodTypeReg.get(ResourceLocation.parse(testWoodType1ID));
         if(!testWoodType1.getLogTag().equals(BlockTags.CRIMSON_STEMS)
         || !testWoodType1.getWoodColor().equals(MapColor.CRIMSON_STEM)
         || !testWoodType1.getBarkColor().equals(MapColor.CRIMSON_HYPHAE))
             throw new GameTestAssertException("Wood type " + testWoodType1ID + " has incorrect attributes");
-        var testWoodType2 = woodTypeReg.get(new ResourceLocation(testWoodType2ID));
+        var testWoodType2 = woodTypeReg.get(ResourceLocation.parse(testWoodType2ID));
         if(!testWoodType2.getLogTag().equals(BlockTags.WARPED_STEMS)
         || !testWoodType2.getWoodColor().equals(MapColor.WOOD)
         || !testWoodType2.getBarkColor().equals(MapColor.PODZOL))
@@ -74,14 +74,14 @@ public final class ConfigTests {
         var base1 = (TotemBaseBlockEntity) h.getBlockEntity(base1Pos);
         if(base1.getWoodType() != testWoodType1)
             throw new GameTestAssertPosException("Incorrect wood type", h.absolutePos(base1Pos), base1Pos, h.getTick());
-        if(!getWoodTypeLoc(base1).equals(new ResourceLocation(testWoodType1ID)))
+        if(!getWoodTypeLoc(base1).equals(ResourceLocation.parse(testWoodType1ID)))
             throw new GameTestAssertPosException("Incorrect saved wood type ResourceLocation", h.absolutePos(base1Pos), base1Pos, h.getTick());
         GeneralTests.useItem(h, totemKnife, base2Pos, Direction.NORTH);
         h.assertBlockPresent(ModBlocks.totem_base.get(), base2Pos);
         var base2 = (TotemBaseBlockEntity) h.getBlockEntity(base2Pos);
         if(base2.getWoodType() != testWoodType2)
             throw new GameTestAssertPosException("Incorrect wood type", h.absolutePos(base2Pos), base2Pos, h.getTick());
-        if(!getWoodTypeLoc(base2).equals(new ResourceLocation(testWoodType2ID)))
+        if(!getWoodTypeLoc(base2).equals(ResourceLocation.parse(testWoodType2ID)))
             throw new GameTestAssertPosException("Incorrect saved wood type ResourceLocation", h.absolutePos(base2Pos), base2Pos, h.getTick());
         GeneralTests.useItem(h, totemKnife, base3Pos, Direction.NORTH);
         h.assertBlockNotPresent(ModBlocks.totem_base.get(), base3Pos);
@@ -96,14 +96,14 @@ public final class ConfigTests {
         var pole1 = (TotemPoleBlockEntity) h.getBlockEntity(pole1Pos);
         if(pole1.getWoodType() != testWoodType1)
             throw new GameTestAssertPosException("Incorrect wood type", h.absolutePos(pole1Pos), pole1Pos, h.getTick());
-        if(!getWoodTypeLoc(pole1).equals(new ResourceLocation(testWoodType1ID)))
+        if(!getWoodTypeLoc(pole1).equals(ResourceLocation.parse(testWoodType1ID)))
             throw new GameTestAssertPosException("Incorrect saved wood type ResourceLocation", h.absolutePos(pole1Pos), pole1Pos, h.getTick());
         GeneralTests.useItem(h, totemKnife, pole2Pos, Direction.NORTH);
         h.assertBlockPresent(ModBlocks.totem_pole.get(), pole2Pos);
         var pole2 = (TotemPoleBlockEntity) h.getBlockEntity(pole2Pos);
         if(pole2.getWoodType() != testWoodType2)
             throw new GameTestAssertPosException("Incorrect wood type", h.absolutePos(pole2Pos), pole2Pos, h.getTick());
-        if(!getWoodTypeLoc(pole2).equals(new ResourceLocation(testWoodType2ID)))
+        if(!getWoodTypeLoc(pole2).equals(ResourceLocation.parse(testWoodType2ID)))
             throw new GameTestAssertPosException("Incorrect saved wood type ResourceLocation", h.absolutePos(pole2Pos), pole2Pos, h.getTick());
         GeneralTests.useItem(h, totemKnife, pole3Pos, Direction.NORTH);
         h.assertBlockNotPresent(ModBlocks.totem_pole.get(), pole3Pos);

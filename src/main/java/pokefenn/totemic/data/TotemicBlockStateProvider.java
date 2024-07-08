@@ -201,10 +201,10 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
 
     private BlockModelBuilder setTotemTextures(BlockModelBuilder model, String namespace, String woodType) {
         return model
-                .texture("wood", new ResourceLocation(namespace, "block/stripped_" + woodType + "_log"))
-                .texture("bark", new ResourceLocation(namespace, "block/" + woodType + "_log"))
-                .texture("top", new ResourceLocation(namespace, "block/stripped_" + woodType + "_log_top"))
-                .texture("particle", new ResourceLocation(namespace, "block/stripped_" + woodType + "_log"));
+                .texture("wood", ResourceLocation.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"))
+                .texture("bark", ResourceLocation.fromNamespaceAndPath(namespace, "block/" + woodType + "_log"))
+                .texture("top", ResourceLocation.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log_top"))
+                .texture("particle", ResourceLocation.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"));
     }
 
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
@@ -233,7 +233,7 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
     private void basicItemWithParent(DeferredItem<?> item, ResourceLocation parent) {
         var id = item.getId();
         itemModels().withExistingParent(id.toString(), parent)
-                .texture("layer0", new ResourceLocation(id.getNamespace(), "item/" + id.getPath()));
+                .texture("layer0", id.withPath("item/" + id.getPath()));
     }
 
     private BlockModelBuilder blockEntityRenderer(DeferredBlock<?> block, ResourceLocation particleTexture) {

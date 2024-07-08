@@ -38,7 +38,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModSounds;
@@ -53,10 +53,10 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
 
     public BaldEagle(EntityType<? extends BaldEagle> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        setTame(false);
+        setTame(false, false);
         this.moveControl = new FlyingMoveControl(this, 10, false);
-        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, -1.0F);
-        this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, -1.0F);
+        this.setPathfindingMalus(PathType.DANGER_FIRE, -1.0F);
+        this.setPathfindingMalus(PathType.DAMAGE_FIRE, -1.0F);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -73,7 +73,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
         this.goalSelector.addGoal(1, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F, true));
+        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new FollowMobGoal(this, 1.0D, 3.0F, 7.0F));
     }
@@ -89,7 +89,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
 
     @Override
     protected float getStandingEyeHeight(Pose pPose, EntityDimensions pDimensions) {
-        return pDimensions.height * 0.6F;
+        return pDimensions.height() * 0.6F;
     }
 
     @Override

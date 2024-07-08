@@ -29,8 +29,8 @@ public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
     }
 
     @Override
-    public BakedModel bake(IGeometryBakingContext ctx, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation) {
-        var bakedModels = Map.copyOf(Maps.transformValues(totemModels, unbaked -> unbaked.bake(bakery, spriteGetter, modelState, modelLocation)));
+    public BakedModel bake(IGeometryBakingContext ctx, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides) {
+        var bakedModels = Map.copyOf(Maps.transformValues(totemModels, unbaked -> unbaked.bake(bakery, spriteGetter, modelState)));
         return new BakedTotemBaseModel(bakedModels);
     }
 
@@ -51,7 +51,7 @@ public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
 
     private static ResourceLocation getWoodTypeModelName(TotemWoodType woodType) {
         var woodName = woodType.getRegistryName();
-        return new ResourceLocation(woodName.getNamespace(), "block/" + woodName.getPath() + "_totem_base");
+        return woodName.withPath("block/" + woodName.getPath() + "_totem_base");
     }
 
     public enum Loader implements IGeometryLoader<TotemBaseModel> {

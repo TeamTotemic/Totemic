@@ -6,12 +6,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.WeakHashMap;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -184,8 +183,8 @@ public class MedicineBagItem extends Item {
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment == Enchantments.BLOCK_EFFICIENCY || enchantment == Enchantments.UNBREAKING || super.canApplyAtEnchantingTable(stack, enchantment);
+    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> ench) {
+        return ench.getKey() == Enchantments.EFFICIENCY || ench.getKey() == Enchantments.UNBREAKING || super.isPrimaryItemFor(stack, ench);
     }
 
     @Override
@@ -195,7 +194,7 @@ public class MedicineBagItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         String key;
         if(getCarving(stack).isPresent()) {
             if(getCharge(stack) > 0)

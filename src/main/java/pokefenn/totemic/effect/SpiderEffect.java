@@ -12,7 +12,7 @@ public class SpiderEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         if(entity.horizontalCollision) {
             entity.fallDistance = 0.0F;
 

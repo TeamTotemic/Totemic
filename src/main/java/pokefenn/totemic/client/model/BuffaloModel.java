@@ -160,11 +160,11 @@ public class BuffaloModel<T extends Buffalo> extends AgeableListModel<T> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack ps, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, float pRed, float pGreen, float pBlue, float pAlpha) {
+    public void renderToBuffer(PoseStack ps, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
         ps.pushPose();
         ps.translate(0F, -0.75F, 0F);
         ps.scale(1.5F, 1.5F, 1.5F);
-        super.renderToBuffer(ps, pBuffer, pPackedLight, pPackedOverlay, pRed, pGreen, pBlue, pAlpha);
+        super.renderToBuffer(ps, buffer, packedLight, packedOverlay, color);
         ps.popPose();
     }
 }

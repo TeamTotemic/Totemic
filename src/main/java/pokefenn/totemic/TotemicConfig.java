@@ -13,7 +13,7 @@ import com.electronwill.nightconfig.core.io.WritingMode;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.ModConfigSpec;
@@ -143,13 +143,13 @@ public final class TotemicConfig {
         serverSpec = serverPair.getRight();
     }
 
-    public static void register(ModLoadingContext context) {
-        context.registerConfig(ModConfig.Type.CLIENT, clientSpec);
-        context.registerConfig(ModConfig.Type.SERVER, serverSpec);
+    public static void register(ModContainer container) {
+        container.registerConfig(ModConfig.Type.CLIENT, clientSpec);
+        container.registerConfig(ModConfig.Type.SERVER, serverSpec);
 
-        //Special case for the common config, we need to load it earlier since Forge usually loads the configs after the registry events
-        var commonModConfig = new ModConfig(ModConfig.Type.COMMON, commonSpec, context.getActiveContainer());
-        context.getActiveContainer().addConfig(commonModConfig);
+        //TODO: No longer needed, use ModConfig.Type.STARTUP
+        var commonModConfig = new ModConfig(ModConfig.Type.COMMON, commonSpec, container);
+        container.addConfig(commonModConfig);
         var configPath = FMLPaths.CONFIGDIR.get().resolve(commonModConfig.getFileName());
         var configData = CommentedFileConfig.builder(configPath)
                 .sync()

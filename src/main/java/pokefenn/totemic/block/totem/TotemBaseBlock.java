@@ -17,6 +17,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -216,7 +217,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
+    public void appendHoverText(ItemStack pStack, Item.TooltipContext context, List<Component> pTooltip, TooltipFlag pFlag) {
         if(pFlag.isAdvanced()) {
             var woodTypeID = Optional.ofNullable(pStack.getTag())
                     .map(tag -> tag.getString(TotemPoleItem.POLE_WOOD_KEY))

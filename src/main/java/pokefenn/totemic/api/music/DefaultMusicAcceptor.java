@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -99,7 +100,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
     }
 
     @Override
-    public CompoundTag serializeNBT() {
+    public CompoundTag serializeNBT(HolderLookup.Provider provider) {
         CompoundTag nbt = new CompoundTag();
 
         for(Entry<MusicInstrument> entry: music.object2IntEntrySet())
@@ -108,7 +109,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
     }
 
     @Override
-    public void deserializeNBT(CompoundTag tag) {
+    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag tag) { //TODO: Use the given provider
         music.clear();
         totalMusic = 0;
         var instrRegistry = TotemicAPI.get().registry().instruments();

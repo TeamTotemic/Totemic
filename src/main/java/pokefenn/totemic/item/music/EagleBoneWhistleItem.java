@@ -2,8 +2,6 @@ package pokefenn.totemic.item.music;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -34,7 +32,7 @@ public class EagleBoneWhistleItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(ItemStack pStack, TooltipContext context, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         pTooltipComponents.add(Component.translatable("totemic.tooltip.selectorMode"));
     }
 }

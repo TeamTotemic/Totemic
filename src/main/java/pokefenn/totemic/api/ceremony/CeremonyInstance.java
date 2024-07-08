@@ -1,6 +1,7 @@
 package pokefenn.totemic.api.ceremony;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.Entity;
@@ -76,7 +77,7 @@ public interface CeremonyInstance extends INBTSerializable<Tag> {
      * Serializes the state of the current ceremony to an NBT tag.
      */
     @Override
-    default Tag serializeNBT() {
+    default Tag serializeNBT(HolderLookup.Provider provider) {
         return EndTag.INSTANCE;
     }
 
@@ -86,5 +87,5 @@ public interface CeremonyInstance extends INBTSerializable<Tag> {
      * This method is not called if {@link #serializeNBT()} had returned an {@link EndTag}.
      */
     @Override
-    default void deserializeNBT(Tag nbt) { }
+    default void deserializeNBT(HolderLookup.Provider provider, Tag nbt) { }
 }

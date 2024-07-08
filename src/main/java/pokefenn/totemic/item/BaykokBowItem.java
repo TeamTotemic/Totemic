@@ -16,10 +16,11 @@ public class BaykokBowItem extends BowItem {
     }
 
     public void registerItemProperties() {
-        var pulling = new ResourceLocation("pulling");
-        var pull = new ResourceLocation("pull");
-        ItemProperties.register(this, pulling, ItemProperties.getProperty(Items.BOW, pulling));
-        ItemProperties.register(this, pull, ItemProperties.getProperty(Items.BOW, pull));
+        var pulling = ResourceLocation.withDefaultNamespace("pulling");
+        var pull = ResourceLocation.withDefaultNamespace("pull");
+        var bowStack = new ItemStack(Items.BOW);
+        ItemProperties.register(this, pulling, ItemProperties.getProperty(bowStack, pulling));
+        ItemProperties.register(this, pull, ItemProperties.getProperty(bowStack, pull));
     }
 
     @Override

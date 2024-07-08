@@ -2,12 +2,12 @@ package pokefenn.totemic.handler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.BlockModelShaper;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.client.event.RegisterGuiOverlaysEvent;
-import net.neoforged.neoforge.client.gui.overlay.VanillaGuiOverlay;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.client.CeremonyHUD;
@@ -35,7 +35,7 @@ public class ClientInitHandlers {
         event.register(Totemic.resloc("totem_base"), TotemBaseModel.Loader.INSTANCE);
     }
 
-    private static final ResourceLocation OPAQUE_CEDAR_LEAVES = Totemic.resloc("block/cedar_leaves_opaque");
+    private static final ModelResourceLocation OPAQUE_CEDAR_LEAVES = ModelResourceLocation.standalone(Totemic.resloc("block/cedar_leaves_opaque"));
 
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
@@ -58,7 +58,7 @@ public class ClientInitHandlers {
     }
 
     @SubscribeEvent
-    public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-        event.registerAbove(VanillaGuiOverlay.HOTBAR.id(), Totemic.resloc("ceremony_hud"), CeremonyHUD.INSTANCE);
+    public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
+        event.registerAbove(VanillaGuiLayers.HOTBAR, Totemic.resloc("ceremony_hud"), CeremonyHUD.INSTANCE);
     }
 }

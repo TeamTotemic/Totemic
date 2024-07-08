@@ -2,8 +2,6 @@ package pokefenn.totemic.item.music;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
@@ -43,7 +41,7 @@ public class FluteItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable("totemic.tooltip.selectorMode"));
     }
 }

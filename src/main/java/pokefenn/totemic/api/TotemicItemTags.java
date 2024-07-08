@@ -9,5 +9,5 @@ import net.minecraft.world.item.Item;
  * Provides keys to Item tags added by Totemic.
  */
 public final class TotemicItemTags {
-    public static final TagKey<Item> CEDAR_LOGS = ItemTags.create(new ResourceLocation(TotemicAPI.MOD_ID, "cedar_logs"));
+    public static final TagKey<Item> CEDAR_LOGS = ItemTags.create(ResourceLocation.fromNamespaceAndPath(TotemicAPI.MOD_ID, "cedar_logs"));
 }

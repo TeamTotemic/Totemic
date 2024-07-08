@@ -76,10 +76,10 @@ public final class ModContent {
     public static final Supplier<PortableTotemCarving> horse = CARVINGS.register("horse", () -> new PortableTotemCarving(new PotionTotemEffect(MobEffects.MOVEMENT_SPEED)));
     public static final Supplier<TotemCarving> ocelot = CARVINGS.register("ocelot", () -> new TotemCarving(
             new OcelotTotemEffect(),
-            new PotionTotemEffect(ModMobEffects.ocelot.get(), false)));
+            new PotionTotemEffect(ModMobEffects.ocelot, false)));
     public static final Supplier<PortableTotemCarving> pig = CARVINGS.register("pig", () -> new PortableTotemCarving(new PotionTotemEffect(MobEffects.LUCK)));
     public static final Supplier<PortableTotemCarving> rabbit = CARVINGS.register("rabbit", () -> new PortableTotemCarving(new PotionTotemEffect(MobEffects.JUMP)));
-    public static final Supplier<PortableTotemCarving> spider = CARVINGS.register("spider", () -> new PortableTotemCarving(new PotionTotemEffect(ModMobEffects.spider.get())));
+    public static final Supplier<PortableTotemCarving> spider = CARVINGS.register("spider", () -> new PortableTotemCarving(new PotionTotemEffect(ModMobEffects.spider)));
     public static final Supplier<PortableTotemCarving> squid = CARVINGS.register("squid", () -> new PortableTotemCarving(new PotionTotemEffect(MobEffects.WATER_BREATHING)));
     public static final Supplier<PortableTotemCarving> wolf = CARVINGS.register("wolf", () -> new PortableTotemCarving(new PotionTotemEffect(MobEffects.DAMAGE_BOOST)));
 
@@ -128,8 +128,8 @@ public final class ModContent {
                     int woodColorIndex = entry.getIntOrElse("woodColor", MapColor.WOOD.id);
                     int barkColorIndex = entry.getIntOrElse("barkColor", MapColor.PODZOL.id);
 
-                    var id = new ResourceLocation(idStr);
-                    var logTagKey = TagKey.create(Registries.BLOCK, new ResourceLocation(logsStr.substring(1)));
+                    var id = ResourceLocation.parse(idStr);
+                    var logTagKey = TagKey.create(Registries.BLOCK, ResourceLocation.parse(logsStr.substring(1)));
                     var woodColor = MapColor.byId(woodColorIndex);
                     var barkColor = MapColor.byId(barkColorIndex);
 

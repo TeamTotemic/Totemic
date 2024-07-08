@@ -1,12 +1,12 @@
 package pokefenn.totemic.network;
 
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlerEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import pokefenn.totemic.api.TotemicAPI;
 
 public final class NetworkHandler {
     private static final String NETWORK_VERSION = "4";
 
-    public static void init(RegisterPayloadHandlerEvent event) {
+    public static void init(RegisterPayloadHandlersEvent event) {
         var reg = event.registrar(TotemicAPI.MOD_ID).versioned(NETWORK_VERSION);
 
         reg.play(ClientboundPacketStartupMusic.ID, ClientboundPacketStartupMusic::new, ClientboundPacketStartupMusic::handle);

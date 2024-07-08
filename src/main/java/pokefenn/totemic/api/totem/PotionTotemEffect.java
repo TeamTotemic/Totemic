@@ -1,8 +1,8 @@
 package pokefenn.totemic.api.totem;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
+import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,7 +17,7 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
     /**
      * The mob effect to apply.
      */
-    protected final MobEffect mobEffect;
+    protected final Holder<MobEffect> mobEffect;
 
     /**
      * If {@code true}, the effect's amplifier will be scaled based on repetition and music.
@@ -29,7 +29,7 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      * Constructs a new PotionTotemEffect with default interval and scaling amplifier.
      * @param mobEffect The mob effect to apply.
      */
-    public PotionTotemEffect(MobEffect mobEffect) {
+    public PotionTotemEffect(Holder<MobEffect> mobEffect) {
         this(mobEffect, true);
     }
 
@@ -39,7 +39,7 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      * @param scaleAmplifier if {@code true}, the effect's amplifier will be scaled based on repetition and music.
      *                       Otherwise, the amplifier will be 0.
      */
-    public PotionTotemEffect(MobEffect mobEffect, boolean scaleAmplifier) {
+    public PotionTotemEffect(Holder<MobEffect> mobEffect, boolean scaleAmplifier) {
         this(mobEffect, scaleAmplifier, DEFAULT_INTERVAL);
     }
 
@@ -50,37 +50,10 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      *                       Otherwise, the amplifier will be 0.
      * @param interval       the time in ticks until the mob effect is renewed.
      */
-    public PotionTotemEffect(MobEffect mobEffect, boolean scaleAmplifier, int interval) {
+    public PotionTotemEffect(Holder<MobEffect> mobEffect, boolean scaleAmplifier, int interval) {
         super(interval);
         this.mobEffect = Objects.requireNonNull(mobEffect);
         this.scaleAmplifier = scaleAmplifier;
-    }
-
-    /**
-     * @deprecated Use the above version without the Supplier. Make sure that the MobEffect exists at the time of construction
-     * (which might require using DeferredRegister or similar).
-     */
-    @Deprecated
-    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect) {
-        this(mobEffect.get());
-    }
-
-    /**
-     * @deprecated Use the above version without the Supplier. Make sure that the MobEffect exists at the time of construction
-     * (which might require using DeferredRegister or similar).
-     */
-    @Deprecated
-    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect, boolean scaleAmplifier) {
-        this(mobEffect.get(), scaleAmplifier);
-    }
-
-    /**
-     * @deprecated Use the above version without the Supplier. Make sure that the MobEffect exists at the time of construction
-     * (which might require using DeferredRegister or similar).
-     */
-    @Deprecated
-    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect, boolean scaleAmplifier, int interval) {
-        this(mobEffect.get(), scaleAmplifier, interval);
     }
 
     /**
@@ -103,7 +76,7 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      */
     protected int getAmplifierForMedicineBag(Player player, ItemStack medicineBag, int charge) {
         if(scaleAmplifier)
-            return medicineBag.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) / 2;
+            return medicineBag.getEnchantmentLevel(Enchantments.EFFICIENCY) / 2;
         else
             return 0;
     }

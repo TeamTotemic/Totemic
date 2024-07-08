@@ -17,5 +17,5 @@ public final class TotemicCapabilities {
      * <p>
      * A reference implementation is provided by {@link DefaultMusicAcceptor}.
      */
-    public static final BlockCapability<MusicAcceptor, Void> MUSIC_ACCEPTOR = BlockCapability.createVoid(new ResourceLocation(TotemicAPI.MOD_ID, "music_acceptor"), MusicAcceptor.class);
+    public static final BlockCapability<MusicAcceptor, Void> MUSIC_ACCEPTOR = BlockCapability.createVoid(ResourceLocation.fromNamespaceAndPath(TotemicAPI.MOD_ID, "music_acceptor"), MusicAcceptor.class);
 }

@@ -42,8 +42,8 @@ import pokefenn.totemic.item.music.RattleItem;
 public final class ModItems {
     public static final DeferredRegister.Items REGISTER = DeferredRegister.createItems(TotemicAPI.MOD_ID);
 
-    public static final FoodProperties buffalo_meat_food = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.35F).meat().build();
-    public static final FoodProperties cooked_buffalo_meat_food = (new FoodProperties.Builder()).nutrition(9).saturationMod(0.9F).meat().build();
+    public static final FoodProperties buffalo_meat_food = new FoodProperties.Builder().nutrition(3).saturationModifier(0.35F).build();
+    public static final FoodProperties cooked_buffalo_meat_food = new FoodProperties.Builder().nutrition(9).saturationModifier(0.9F).build();
 
     public static final DeferredItem<FluteItem> flute = REGISTER.register("flute", () -> new FluteItem(new Properties().stacksTo(1)));
     public static final DeferredItem<InfusedFluteItem> infused_flute = REGISTER.register("infused_flute", () -> new InfusedFluteItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));

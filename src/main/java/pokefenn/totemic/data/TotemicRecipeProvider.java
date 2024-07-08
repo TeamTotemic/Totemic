@@ -1,7 +1,10 @@
 package pokefenn.totemic.data;
 
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -25,8 +28,8 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicRecipeProvider extends RecipeProvider {
-    public TotemicRecipeProvider(PackOutput pOutput) {
-        super(pOutput);
+    public TotemicRecipeProvider(PackOutput pOutput, CompletableFuture<Provider> registries) {
+        super(pOutput, registries);
     }
 
     @Override
@@ -51,7 +54,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("LBL")
                 .define('L', ModBlocks.cedar_leaves.get())
                 .define('B', ModItems.iron_bells.get())
-                .define('H', Tags.Items.LEATHER)
+                .define('H', Tags.Items.LEATHERS)
                 .unlockedBy("performed_fertility", performed(ModContent.fertility.get()))
                 .unlockedBy("has_cedar_leaves", has(ModBlocks.cedar_leaves.get()))
                 .save(rc);
@@ -95,7 +98,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("EEE")
                 .pattern("LWL")
                 .pattern("WLW")
-                .define('E', Tags.Items.LEATHER)
+                .define('E', Tags.Items.LEATHERS)
                 .define('L', ItemTags.LOGS_THAT_BURN)
                 .define('W', ItemTags.WOOL)
                 //.unlockedBy("has_totempedia", hasTotempedia)
@@ -106,7 +109,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("S S")
                 .pattern("C C")
                 .define('W', TotemicItemTags.CEDAR_LOGS)
-                .define('S', Tags.Items.STRING)
+                .define('S', Tags.Items.STRINGS)
                 .define('C', Tags.Items.INGOTS_COPPER)
                 .unlockedBy("performed_fertility", performed(ModContent.fertility.get()))
                 .unlockedBy("has_cedar_logs", has(TotemicItemTags.CEDAR_LOGS))
@@ -114,7 +117,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.eagle_bone_whistle.get())
                 .pattern("S ")
                 .pattern("BF")
-                .define('S', Tags.Items.STRING)
+                .define('S', Tags.Items.STRINGS)
                 .define('B', ModItems.eagle_bone.get())
                 .define('F', ModItems.eagle_feather.get())
                 .unlockedBy("performed_eagle_dance", performed(ModContent.eagle_dance.get()))
@@ -125,7 +128,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("HDH")
                 .pattern(" H ")
                 .define('P', ModBlocks.cedar_planks.get())
-                .define('S', Tags.Items.STRING)
+                .define('S', Tags.Items.STRINGS)
                 .define('T', ModItems.buffalo_tooth.get())
                 .define('H', ModItems.buffalo_hide.get())
                 .define('D', Tags.Items.GEMS_DIAMOND)

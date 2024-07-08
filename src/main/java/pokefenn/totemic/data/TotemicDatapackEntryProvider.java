@@ -8,7 +8,7 @@ import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.RegistrySetBuilder.RegistryBootstrap;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -36,11 +36,11 @@ public final class TotemicDatapackEntryProvider extends DatapackBuiltinEntriesPr
                 Set.of(TotemicAPI.MOD_ID));
     }
 
-    private static void addDamageTypes(BootstapContext<DamageType> context) {
+    private static void addDamageTypes(BootstrapContext<DamageType> context) {
         context.register(ModResources.SUN_DANCE_DMG, new DamageType("totemic.sunDance", DamageScaling.NEVER, 0.0F));
     }
 
-    private static void addTreeFeatures(BootstapContext<ConfiguredFeature<?, ?>> context) {
+    private static void addTreeFeatures(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         FeatureUtils.register(context, ModResources.CEDAR_TREE_FEATURE, Feature.TREE,
                 new TreeConfigurationBuilder(
                         BlockStateProvider.simple(ModBlocks.cedar_log.get()),
