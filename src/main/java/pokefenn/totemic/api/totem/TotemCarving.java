@@ -4,16 +4,25 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.mojang.serialization.Codec;
+
 import net.minecraft.Util;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.registry.RegistryAPI;
 
 /**
  * Represents a Totem Pole carving. A TotemCarving consists of one or more {@link TotemEffect}s.
  */
 public sealed class TotemCarving permits PortableTotemCarving {
+    public static final Codec<TotemCarving> CODEC = TotemicAPI.get().registry().totemCarvings().byNameCodec();
+    public static final StreamCodec<RegistryFriendlyByteBuf, TotemCarving> STREAM_CODEC = ByteBufCodecs.registry(RegistryAPI.TOTEM_CARVING_REGISTRY);
+
     private final List<TotemEffect> effects;
     private @Nullable String descriptionId;
 

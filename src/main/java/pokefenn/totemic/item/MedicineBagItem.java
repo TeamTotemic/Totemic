@@ -1,19 +1,14 @@
 package pokefenn.totemic.item;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.WeakHashMap;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -28,25 +23,19 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.MedicineBagEffect;
 import pokefenn.totemic.api.totem.PortableTotemCarving;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.init.ModDataComponents;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.util.BlockUtil;
 import pokefenn.totemic.util.MiscUtil;
 
 @SuppressWarnings("deprecation")
 public class MedicineBagItem extends Item {
-    public static final String TOTEM_TAG = "Totem";
-    public static final String CHARGE_TAG = "Charge";
-    public static final String OPEN_TAG = "Open";
-
-    private static final Map<ItemStack, Optional<PortableTotemCarving>> carvingCache = Collections.synchronizedMap(new WeakHashMap<>(8));
-
     public MedicineBagItem(Properties pProperties) {
         super(pProperties);
     }
@@ -59,12 +48,9 @@ public class MedicineBagItem extends Item {
     }
 
     public static Optional<PortableTotemCarving> getCarving(ItemStack stack) {
-        return carvingCache.computeIfAbsent(stack, st -> MiscUtil.filterAndCast(
-                Optional.ofNullable(st.getTag())
-                .filter(tag -> tag.contains(TOTEM_TAG, Tag.TAG_STRING))
-                .map(tag -> TotemicAPI.get().registry().totemCarvings().get(ResourceLocation.tryParse(tag.getString(TOTEM_TAG))))
+        return MiscUtil.filterAndCast(Optional.ofNullable(stack.get(ModDataComponents.CARVING))
                 .filter(carving -> carving != ModContent.none.get()),
-                PortableTotemCarving.class));
+                PortableTotemCarving.class);
     }
 
     public static List<MedicineBagEffect> getEffects(ItemStack stack) {

@@ -11,11 +11,9 @@ import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.init.ModDataComponents;
 
 public class TotemPoleItem extends BlockItem {
-    public static final String POLE_WOOD_KEY = "Wood";
-    public static final String POLE_CARVING_KEY = TotemKnifeItem.KNIFE_CARVING_KEY;
-
     public TotemPoleItem(TotemPoleBlock block, Properties props) {
         super(block, props);
     }
@@ -31,7 +29,7 @@ public class TotemPoleItem extends BlockItem {
     }
 
     public static TotemCarving getCarving(ItemStack stack) {
-        return TotemKnifeItem.getCarving(stack).orElseGet(ModContent.none);
+        return stack.getOrDefault(ModDataComponents.CARVING, ModContent.none.get());
     }
 
     @Override

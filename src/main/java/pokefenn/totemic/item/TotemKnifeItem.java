@@ -7,11 +7,11 @@ import javax.annotation.Nullable;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,10 +29,9 @@ import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.init.ModDataComponents;
 
 public class TotemKnifeItem extends Item {
-    public static final String KNIFE_CARVING_KEY = "Carving";
-
     public TotemKnifeItem(Properties props) {
         super(props);
     }
@@ -44,28 +43,21 @@ public class TotemKnifeItem extends Item {
 
     //an empty Optional represents a Totem Base
     public static Optional<TotemCarving> getCarving(ItemStack stack) {
-        final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
-        return Optional.ofNullable(stack.getTag())
-                .map(tag -> tag.getString(KNIFE_CARVING_KEY))
-                .filter(str -> !str.isEmpty())
-                .map(ResourceLocation::tryParse)
-                .flatMap(carvingRegistry::getOptional); //we don't want to get the default value if the key doesn't exist
+        return Optional.ofNullable(stack.get(ModDataComponents.CARVING));
     }
 
-    private static List<String> totemList; //Lazily created
+    private static List<TotemCarving> totemList; //Lazily created
 
-    public static ItemStack changeIndex(ItemStack itemStack, boolean direction) {
+    public static ItemStack changeIndex(ItemStack stack, boolean direction) {
         var locTotemList = totemList; //avoid reading the field multiple times
         if(locTotemList == null) {
             totemList = locTotemList = TotemicAPI.get().registry().totemCarvings().stream()
                     .filter(e -> e != ModContent.none.get())
-                    .map(e -> e.getRegistryName().toString())
                     .toList(); //creates an immutable list, hence thread safe
         }
 
-        ItemStack stack = itemStack.copy();
-        String key = stack.getOrCreateTag().getString(KNIFE_CARVING_KEY);
-        int index = key.isEmpty() ? -1 : locTotemList.indexOf(key);
+        var optCarving = getCarving(stack);
+        int index = optCarving.isEmpty() ? -1 : locTotemList.indexOf(optCarving.get());
 
         if(index == -1) {
             index = direction ? 0 : locTotemList.size() - 1;
@@ -76,9 +68,13 @@ public class TotemKnifeItem extends Item {
                 index = -1;
         }
 
-        String name = (index == -1) ? "" : locTotemList.get(index);
-        stack.getTag().putString(KNIFE_CARVING_KEY, name);
-        return stack;
+        var newStack = stack.copy();
+        if(index == -1)
+            newStack.remove(ModDataComponents.CARVING);
+        else
+            newStack.set(ModDataComponents.CARVING, locTotemList.get(index));
+        return newStack;
+
     }
 
     @SuppressWarnings("resource")
@@ -111,7 +107,7 @@ public class TotemKnifeItem extends Item {
             }
 
             if(player != null)
-                c.getItemInHand().hurtAndBreak(1, player, p -> p.broadcastBreakEvent(c.getHand()));
+                c.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(c.getHand()));
             c.getLevel().levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, c.getClickedPos(), Block.getId(state));
 
             return InteractionResult.sidedSuccess(c.getLevel().isClientSide);
