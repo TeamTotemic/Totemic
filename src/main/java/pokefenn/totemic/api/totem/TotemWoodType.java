@@ -2,31 +2,34 @@ package pokefenn.totemic.api.totem;
 
 import java.util.Objects;
 
+import com.mojang.serialization.Codec;
+
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.registry.RegistryAPI;
 
 /**
  * Represents a wood type that Totem Poles can be made out of.
+ * @param woodColor the MapColor of the log's inside.
+ * @param barkColor the MapColor of the log's bark.
+ * @param logTag    the tag containing all the log and wood blocks associated with this wood type (e.g. {@code minecraft:oak_logs}).<br>
+ *                  Any of the tagged blocks will be recognized as this wood type by the Totem Whittling Knife.
  */
-public final class TotemWoodType {
-    private final MapColor woodColor;
-    private final MapColor barkColor;
-    private final TagKey<Block> logTag;
+public record TotemWoodType(MapColor woodColor, MapColor barkColor, TagKey<Block> logTag) {
+    //TODO: How to make sure that this works when client and server are not synced?
+    public static final Codec<TotemWoodType> CODEC = TotemicAPI.get().registry().woodTypes().byNameCodec();
+    public static final StreamCodec<RegistryFriendlyByteBuf, TotemWoodType> STREAM_CODEC = ByteBufCodecs.registry(RegistryAPI.WOOD_TYPE_REGISTRY);
 
-    /**
-     * Constructs a new TotemWoodType.
-     * @param woodColor the MapColor of the log's inside.
-     * @param barkColor the MapColor of the log's bark.
-     * @param logTag    the tag containing all the log and wood blocks associated with this wood type (e.g. {@code minecraft:oak_logs}).<br>
-     *                  Any of the tagged blocks will be recognized as this wood type by the Totem Whittling Knife.
-     */
-    public TotemWoodType(MapColor woodColor, MapColor barkColor, TagKey<Block> logTag) {
-        this.woodColor = Objects.requireNonNull(woodColor);
-        this.barkColor = Objects.requireNonNull(barkColor);
-        this.logTag = Objects.requireNonNull(logTag);
+    public TotemWoodType {
+        Objects.requireNonNull(woodColor);
+        Objects.requireNonNull(barkColor);
+        Objects.requireNonNull(logTag);
     }
 
     /**
@@ -34,29 +37,6 @@ public final class TotemWoodType {
      */
     public ResourceLocation getRegistryName() {
         return TotemicAPI.get().registry().woodTypes().getKey(this);
-    }
-
-    /**
-     * Returns the MapColor of the inside of the wood.
-     */
-    public MapColor getWoodColor() {
-        return woodColor;
-    }
-
-    /**
-     * Returns the MapColor of the wood bark.
-     */
-    public MapColor getBarkColor() {
-        return barkColor;
-    }
-
-    /**
-     * Returns the block tag associated with this wood type.
-     *
-     * Any of the blocks in this tag will be recognized as this wood type by the Totem Whittling Knife.
-     */
-    public TagKey<Block> getLogTag() {
-        return logTag;
     }
 
     @Override

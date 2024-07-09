@@ -116,7 +116,7 @@ public class TotemKnifeItem extends Item {
 
     private static Optional<TotemWoodType> getWoodTypeForLog(BlockState state) {
         return TotemicAPI.get().registry().woodTypes().stream()
-                .filter(wood -> state.is(wood.getLogTag()))
+                .filter(wood -> state.is(wood.logTag()))
                 .findAny()
                 .or(() -> { //Fall back to oak if it is an unrecognized log type
                     if(state.is(BlockTags.LOGS_THAT_BURN))

@@ -1,12 +1,8 @@
 package pokefenn.totemic.item;
 
-import java.util.Optional;
-
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
@@ -19,13 +15,7 @@ public class TotemPoleItem extends BlockItem {
     }
 
     public static TotemWoodType getWoodType(ItemStack stack) {
-        final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
-        return Optional.ofNullable(stack.getTag())
-                .map(tag -> tag.getString(POLE_WOOD_KEY))
-                .filter(str -> !str.isEmpty())
-                .map(ResourceLocation::tryParse)
-                .map(woodTypeRegistry::get)
-                .orElseGet(ModContent.oak);
+        return stack.getOrDefault(ModDataComponents.WOOD_TYPE, ModContent.oak.get());
     }
 
     public static TotemCarving getCarving(ItemStack stack) {

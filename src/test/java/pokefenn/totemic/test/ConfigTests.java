@@ -52,14 +52,14 @@ public final class ConfigTests {
             throw new GameTestAssertException("Expected wood type " + testWoodType2ID + " to be registered");
 
         var testWoodType1 = woodTypeReg.get(ResourceLocation.parse(testWoodType1ID));
-        if(!testWoodType1.getLogTag().equals(BlockTags.CRIMSON_STEMS)
-        || !testWoodType1.getWoodColor().equals(MapColor.CRIMSON_STEM)
-        || !testWoodType1.getBarkColor().equals(MapColor.CRIMSON_HYPHAE))
+        if(!testWoodType1.logTag().equals(BlockTags.CRIMSON_STEMS)
+        || !testWoodType1.woodColor().equals(MapColor.CRIMSON_STEM)
+        || !testWoodType1.barkColor().equals(MapColor.CRIMSON_HYPHAE))
             throw new GameTestAssertException("Wood type " + testWoodType1ID + " has incorrect attributes");
         var testWoodType2 = woodTypeReg.get(ResourceLocation.parse(testWoodType2ID));
-        if(!testWoodType2.getLogTag().equals(BlockTags.WARPED_STEMS)
-        || !testWoodType2.getWoodColor().equals(MapColor.WOOD)
-        || !testWoodType2.getBarkColor().equals(MapColor.PODZOL))
+        if(!testWoodType2.logTag().equals(BlockTags.WARPED_STEMS)
+        || !testWoodType2.woodColor().equals(MapColor.WOOD)
+        || !testWoodType2.barkColor().equals(MapColor.PODZOL))
             throw new GameTestAssertException("Wood type " + testWoodType2ID + " has incorrect attributes");
 
         //Test if carving the blocks works as expected (TODO: Should probably move that to a general test for the Totem Whittling Knife)

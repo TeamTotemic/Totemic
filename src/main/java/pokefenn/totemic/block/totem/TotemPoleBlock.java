@@ -1,18 +1,13 @@
 package pokefenn.totemic.block.totem;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.mojang.serialization.MapCodec;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -38,6 +33,7 @@ import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.init.ModDataComponents;
 import pokefenn.totemic.item.TotemPoleItem;
 import pokefenn.totemic.util.BlockUtil;
 
@@ -146,7 +142,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     public MapColor getMapColor(BlockState state, BlockGetter level, BlockPos pos, MapColor defaultColor) {
         return level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
-                .map(pole -> pole.getWoodType().getWoodColor())
+                .map(pole -> pole.getWoodType().woodColor())
                 .orElse(defaultColor);
     }
 
@@ -156,8 +152,8 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         var woodType = tile.map(TotemPoleBlockEntity::getWoodType).orElseGet(ModContent.oak);
         var carving = tile.map(TotemPoleBlockEntity::getCarving).orElseGet(ModContent.none);
         var stack = new ItemStack(this);
-        stack.getOrCreateTag().putString(TotemPoleItem.POLE_CARVING_KEY, carving.getRegistryName().toString());
-        stack.getTag().putString(TotemPoleItem.POLE_WOOD_KEY, woodType.getRegistryName().toString());
+        stack.set(ModDataComponents.WOOD_TYPE, woodType);
+        stack.set(ModDataComponents.CARVING, carving);
         return stack;
     }
 
@@ -166,7 +162,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         return CODEC;
     }
 
-    @Override
+    /*@Override
     public void appendHoverText(ItemStack pStack, Item.TooltipContext context, List<Component> pTooltip, TooltipFlag pFlag) {
         if(pFlag.isAdvanced()) {
             var carvingID = Optional.ofNullable(pStack.getTag())
@@ -180,5 +176,5 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
             pTooltip.add(Component.translatable("totemic.carvingIdTooltip", carvingID).withStyle(ChatFormatting.GRAY));
             pTooltip.add(Component.translatable("totemic.woodTypeIdTooltip", woodTypeID).withStyle(ChatFormatting.GRAY));
         }
-    }
+    }*/
 }
