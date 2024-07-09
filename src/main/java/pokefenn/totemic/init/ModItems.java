@@ -1,11 +1,18 @@
 package pokefenn.totemic.init;
 
+import java.util.EnumMap;
+import java.util.List;
 import java.util.Set;
 
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.HangingSignItem;
@@ -15,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -72,6 +80,22 @@ public final class ModItems {
     public static final DeferredItem<HangingSignItem> cedar_hanging_sign = REGISTER.register("cedar_hanging_sign", () -> new HangingSignItem(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<TotemBaseItem> totem_base = REGISTER.register("totem_base", () -> new TotemBaseItem(ModBlocks.totem_base.get(), new Properties()));
     public static final DeferredItem<TotemPoleItem> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleItem(ModBlocks.totem_pole.get(), new Properties()));
+
+    public static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, TotemicAPI.MOD_ID);
+    public static final Holder<ArmorMaterial> JINGLE_DRESS_MATERIAL = ARMOR_MATERIALS.register("jingle_dress", () -> new ArmorMaterial(
+            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                map.put(ArmorItem.Type.BOOTS, 1);
+                map.put(ArmorItem.Type.LEGGINGS, 1);
+                map.put(ArmorItem.Type.CHESTPLATE, 1);
+                map.put(ArmorItem.Type.HELMET, 1);
+                map.put(ArmorItem.Type.BODY, 1);
+            }),
+            15,
+            SoundEvents.ARMOR_EQUIP_LEATHER,
+            () -> Ingredient.of(ModItems.buffalo_hide.get()),
+            List.of(new ArmorMaterial.Layer(Totemic.resloc("jingle_dress"))),
+            0.0F,
+            0.0F));
 
     @SubscribeEvent
     public static void init(RegisterEvent event) {

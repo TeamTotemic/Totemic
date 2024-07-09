@@ -15,4 +15,6 @@ public final class ModDataComponents {
             builder.persistent(TotemCarving.CODEC).networkSynchronized(TotemCarving.STREAM_CODEC).cacheEncoding());
     public static final Supplier<DataComponentType<TotemWoodType>> WOOD_TYPE = REGISTER.registerComponentType("wood_type", builder ->
             builder.persistent(TotemWoodType.CODEC).networkSynchronized(TotemWoodType.STREAM_CODEC).cacheEncoding());
+    public static final Supplier<DataComponentType<Integer>> JINGLE_DRESS_CHARGE = REGISTER.registerComponentType("jd_charge", builder ->
+            builder); //no need to save or sync this
 }

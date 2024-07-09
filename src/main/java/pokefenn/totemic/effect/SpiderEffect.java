@@ -29,6 +29,7 @@ public class SpiderEffect extends MobEffect {
 
             entity.setDeltaMovement(motionX, motionY, motionZ);
         }
+        return true;
     }
 
     @Override
