@@ -2,8 +2,6 @@ package pokefenn.totemic.item;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -34,7 +32,7 @@ public class CreativeMedicineBagItem extends MedicineBagItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         String key;
         if(getCarving(stack).isPresent())
             key = isOpen(stack) ? "open" : "closed";

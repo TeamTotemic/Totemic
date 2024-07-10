@@ -60,15 +60,15 @@ public class MedicineBagItem extends Item {
     }
 
     public static int getCharge(ItemStack stack) {
-        return stack.hasTag() ? stack.getTag().getInt(CHARGE_TAG) : 0;
+        return stack.getOrDefault(ModDataComponents.MEDICINE_BAG_CHARGE, 0);
     }
 
     public static boolean isOpen(ItemStack stack) {
-        return stack.hasTag() ? stack.getTag().getBoolean(OPEN_TAG) : false;
+        return stack.getOrDefault(ModDataComponents.OPEN, false);
     }
 
     public static int getMaxCharge(ItemStack stack) {
-        int unbreaking = stack.getEnchantmentLevel(Enchantments.UNBREAKING);
+        int unbreaking = 0; //TODO //stack.getEnchantmentLevel(Enchantments.UNBREAKING);
         return (4 + 2 * unbreaking) * 60 * 20;
     }
 
@@ -86,8 +86,7 @@ public class MedicineBagItem extends Item {
                     int interval = effect.getInterval();
                     if(level.getGameTime() % interval == 0) {
                         effect.medicineBagEffect((Player) entity, stack, charge);
-                        if(!level.isClientSide)
-                            stack.getTag().putInt(CHARGE_TAG, Math.max(charge - interval, 0));
+                        stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - interval, 0));
                     }
                 });
             }
@@ -103,7 +102,7 @@ public class MedicineBagItem extends Item {
             getCarving(stack).ifPresent(carving -> {
                 if(BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, pos, 6)
                         .anyMatch(tile -> tile.getTotemState() instanceof StateTotemEffect && tile.hasCarving(carving))) {
-                    stack.getTag().putInt(CHARGE_TAG, Math.min(charge + maxCharge / 12, maxCharge));
+                    stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.min(charge + maxCharge / 12, maxCharge));
                 }
             });
         }
@@ -127,8 +126,7 @@ public class MedicineBagItem extends Item {
 
     private InteractionResultHolder<ItemStack> toggleOpen(ItemStack stack) {
         if(getCarving(stack).isPresent()) {
-            var tag = stack.getTag();
-            tag.putBoolean(OPEN_TAG, !tag.getBoolean(OPEN_TAG));
+            stack.update(ModDataComponents.OPEN, false, open -> !open);
             return InteractionResultHolder.success(stack);
         }
         else
@@ -140,11 +138,9 @@ public class MedicineBagItem extends Item {
             var carving = pole.getCarving();
             if(carving instanceof PortableTotemCarving) {
                 var newStack = stack.copy();
-                carvingCache.remove(stack);
-                var tag = newStack.getOrCreateTag();
-                tag.putString(TOTEM_TAG, carving.getRegistryName().toString());
+                newStack.set(ModDataComponents.CARVING, carving);
                 if(!newStack.is(ModItems.creative_medicine_bag.get()))
-                    tag.putInt(CHARGE_TAG, 0);
+                    newStack.set(ModDataComponents.MEDICINE_BAG_CHARGE, 0);
                 player.setItemInHand(hand, newStack);
                 return InteractionResult.SUCCESS;
             }
