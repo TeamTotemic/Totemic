@@ -24,11 +24,11 @@ public class BaykokBowItem extends BowItem {
     }
 
     @Override
-    public AbstractArrow customArrow(AbstractArrow arrow, ItemStack arrowStack) {
+    public AbstractArrow customArrow(AbstractArrow arrow, ItemStack projectileStack, ItemStack weaponStack) {
         if(arrow.getType() == EntityType.ARROW && ((Arrow) arrow).getColor() <= 0) //Non-tipped arrow
             return InvisibleArrow.copyArrow(arrow);
         else
-            return super.customArrow(arrow, arrowStack);
+            return super.customArrow(arrow, projectileStack, weaponStack);
     }
 
     @Override

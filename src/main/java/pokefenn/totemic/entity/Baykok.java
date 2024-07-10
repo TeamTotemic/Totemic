@@ -2,7 +2,6 @@ package pokefenn.totemic.entity;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,7 +19,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -38,6 +36,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import pokefenn.totemic.init.ModItems;
@@ -45,7 +44,7 @@ import pokefenn.totemic.init.ModItems;
 public class Baykok extends Monster implements RangedAttackMob {
     private final ServerBossEvent bossEvent = new ServerBossEvent(getDisplayName(), BossBarColor.WHITE, BossBarOverlay.PROGRESS);
 
-    public Baykok(EntityType<? extends Monster> pEntityType, Level pLevel) {
+    public Baykok(EntityType<? extends Baykok> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         bossEvent.setDarkenScreen(true);
         setHealth(getMaxHealth());
@@ -60,7 +59,7 @@ public class Baykok extends Monster implements RangedAttackMob {
         goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
         goalSelector.addGoal(4, new RandomLookAroundGoal(this));
         targetSelector.addGoal(0, new HurtByTargetGoal(this));
-        targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+        targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false));
     }
 
     @Override
@@ -69,18 +68,19 @@ public class Baykok extends Monster implements RangedAttackMob {
     }
 
     @Override
-    public void performRangedAttack(LivingEntity pTarget, float pVelocity) {
-        float distanceFactor = Mth.clamp(distanceTo(pTarget) / 40.0F, 0.1F, 1.0F);
+    public void performRangedAttack(LivingEntity target, float distanceFactor) {
+        float newDistanceFactor = Mth.clamp(distanceTo(target) / 40.0F, 0.1F, 1.0F);
 
-        ItemStack arrowStack = this.getProjectile(this.getMainHandItem());
-        AbstractArrow arrow = ProjectileUtil.getMobArrow(this, arrowStack, distanceFactor);
-        if(this.getMainHandItem().getItem() instanceof BowItem bowItem)
-           arrow = bowItem.customArrow(arrow, arrowStack);
-        double dX = pTarget.getX() - this.getX();
-        double dY = pTarget.getY(1.0/3.0) - arrow.getY();
-        double dZ = pTarget.getZ() - this.getZ();
+        ItemStack weapon = this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, item -> item instanceof BowItem));
+        ItemStack arrowStack = this.getProjectile(weapon);
+        AbstractArrow arrow = ProjectileUtil.getMobArrow(this, arrowStack, newDistanceFactor, weapon);
+        if(weapon.getItem() instanceof ProjectileWeaponItem weaponItem)
+           arrow = weaponItem.customArrow(arrow, arrowStack, weapon);
+        double dX = target.getX() - this.getX();
+        double dY = target.getY(1.0/3.0) - arrow.getY();
+        double dZ = target.getZ() - this.getZ();
         double xzDist = Math.sqrt(dX * dX + dZ * dZ);
-        float velocity = 2.0F + 1.0F * distanceFactor;
+        float velocity = 2.0F + 1.0F * newDistanceFactor;
         float inaccuracy = 4.5F - this.level().getDifficulty().getId();
         arrow.setBaseDamage(arrow.getBaseDamage() + 1.0 + 0.3 * level().getDifficulty().getId());
         arrow.shoot(dX, dY + 0.125 * xzDist, dZ, velocity, inaccuracy);
@@ -92,19 +92,17 @@ public class Baykok extends Monster implements RangedAttackMob {
     @SuppressWarnings("deprecation")
     @Override
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
-        var spawnData = super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
-        populateDefaultEquipmentSlots(random, pDifficulty);
-        return spawnData;
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
+        spawnGroupData = super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+        populateDefaultEquipmentSlots(random, difficulty);
+        return spawnGroupData;
     }
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.baykok_bow.get()));
+        this.setGuaranteedDrop(EquipmentSlot.MAINHAND);
     }
-
-    @Override
-    protected void dropCustomDeathLoot(DamageSource pSource, int pLooting, boolean pRecentlyHit) { } //Don't drop the bow twice
 
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
@@ -133,11 +131,6 @@ public class Baykok extends Monster implements RangedAttackMob {
     public void stopSeenByPlayer(ServerPlayer pServerPlayer) {
         super.stopSeenByPlayer(pServerPlayer);
         bossEvent.removePlayer(pServerPlayer);
-    }
-
-    @Override
-    public MobType getMobType() {
-        return MobType.UNDEAD;
     }
 
     @Override

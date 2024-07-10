@@ -1,5 +1,7 @@
 package pokefenn.totemic.entity;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -11,22 +13,20 @@ import net.minecraft.world.level.Level;
 import pokefenn.totemic.init.ModEntityTypes;
 
 public class InvisibleArrow extends AbstractArrow {
-    private static final ItemStack DEFAULT_ARROW_STACK = new ItemStack(Items.ARROW);
-
     public InvisibleArrow(EntityType<? extends InvisibleArrow> pEntityType, Level pLevel) {
-        super(pEntityType, pLevel, DEFAULT_ARROW_STACK);
+        super(pEntityType, pLevel);
     }
 
-    public InvisibleArrow(LivingEntity pShooter, Level pLevel) {
-        super(ModEntityTypes.invisible_arrow.get(), pShooter, pLevel, DEFAULT_ARROW_STACK);
+    public InvisibleArrow(Level level, double x, double y, double z, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
+        super(ModEntityTypes.invisible_arrow.get(), x, y, z, level, pickupItemStack, firedFromWeapon);
     }
 
-    public InvisibleArrow(double pX, double pY, double pZ, Level pLevel) {
-        super(ModEntityTypes.invisible_arrow.get(), pX, pY, pZ, pLevel, DEFAULT_ARROW_STACK);
+    public InvisibleArrow(Level level, LivingEntity owner, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
+        super(ModEntityTypes.invisible_arrow.get(), owner, level, pickupItemStack, firedFromWeapon);
     }
 
     public static InvisibleArrow copyArrow(AbstractArrow arrow) {
-        var invisArrow = new InvisibleArrow(arrow.getX(), arrow.getY(), arrow.getZ(), arrow.level());
+        var invisArrow = new InvisibleArrow(arrow.level(), arrow.getX(), arrow.getY(), arrow.getZ(), arrow.getPickupItemStackOrigin(), arrow.getWeaponItem());
         invisArrow.setOwner(arrow.getOwner());
         invisArrow.setBaseDamage(arrow.getBaseDamage());
         return invisArrow;
@@ -41,7 +41,7 @@ public class InvisibleArrow extends AbstractArrow {
     }
 
     @Override
-    protected ItemStack getPickupItem() {
+    protected ItemStack getDefaultPickupItem() {
         return new ItemStack(Items.ARROW);
     }
 }

@@ -15,17 +15,15 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
+import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithEnchantedBonusCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -52,7 +50,7 @@ public final class TotemicLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.stripped_cedar_log.get());
             dropSelf(ModBlocks.cedar_wood.get());
             dropSelf(ModBlocks.stripped_cedar_wood.get());
-            add(ModBlocks.cedar_leaves.get(), b -> createLeavesDrops(b, ModBlocks.cedar_sapling.get(), /*NORMAL_LEAVES_SAPLING_CHANCES*/new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F}));
+            add(ModBlocks.cedar_leaves.get(), b -> createLeavesDrops(b, ModBlocks.cedar_sapling.get(), NORMAL_LEAVES_SAPLING_CHANCES));
             dropSelf(ModBlocks.cedar_sapling.get());
             dropSelf(ModBlocks.cedar_planks.get());
             dropSelf(ModBlocks.cedar_button.get());
@@ -93,18 +91,18 @@ public final class TotemicLootTableProvider extends LootTableProvider {
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(LootItem.lootTableItem(ModItems.buffalo_hide.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 4.0F)))
-                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)))))
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(LootItem.lootTableItem(ModItems.buffalo_tooth.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
-                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F/3.0F)))))
+                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 2.0F/3.0F)))))
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(LootItem.lootTableItem(ModItems.buffalo_meat.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 4.0F)))
-                                    .apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
-                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F)))))
+                                    .apply(SmeltItemFunction.smelted().when(this.shouldSmeltLoot()))
+                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 2.0F)))))
                     );
             add(ModEntityTypes.bald_eagle.get(),
                     LootTable.lootTable()
@@ -112,37 +110,34 @@ public final class TotemicLootTableProvider extends LootTableProvider {
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(LootItem.lootTableItem(ModItems.eagle_bone.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
-                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 2.0F/3.0F)))))
+                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 2.0F/3.0F)))))
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(LootItem.lootTableItem(ModItems.eagle_feather.get())
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
-                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)))))
                     );
             add(ModEntityTypes.baykok.get(),
                     LootTable.lootTable()
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
-                            .add(LootItem.lootTableItem(ModItems.baykok_bow.get())))
-                    .withPool(LootPool.lootPool()
-                            .setRolls(ConstantValue.exactly(1.0F))
                             .add(LootItem.lootTableItem(Items.BONE)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 8.0F)))
-                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)))))
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(LootItem.lootTableItem(Items.ROTTEN_FLESH)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
-                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)))))
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(LootItem.lootTableItem(Items.ARROW)
                                     .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 10.0F)))
-                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)))))
                     .withPool(LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(AlternativesEntry.alternatives(
-                                    LootItem.lootTableItem(Items.WITHER_SKELETON_SKULL).when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.25F, 0.05F)),
+                                    LootItem.lootTableItem(Items.WITHER_SKELETON_SKULL).when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(registries, 0.25F, 0.05F)),
                                     LootItem.lootTableItem(Items.SKELETON_SKULL))))
                     );
         }

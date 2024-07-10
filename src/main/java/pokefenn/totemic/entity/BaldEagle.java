@@ -13,10 +13,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -85,11 +83,6 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
         flyingpathnavigation.setCanFloat(true);
         flyingpathnavigation.setCanPassDoors(true);
         return flyingpathnavigation;
-    }
-
-    @Override
-    protected float getStandingEyeHeight(Pose pPose, EntityDimensions pDimensions) {
-        return pDimensions.height() * 0.6F;
     }
 
     @Override
@@ -191,12 +184,13 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
     }
 
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel pLevel, AgeableMob pOtherParent) {
-        var child = ModEntityTypes.bald_eagle.get().create(pLevel);
-        var owner = getOwnerUUID();
-        if(owner != null) {
-            child.setOwnerUUID(owner);
-            child.setTame(true);
+    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
+        var child = ModEntityTypes.bald_eagle.get().create(level);
+        if(child != null /*&& otherParent instanceof BaldEagle eagle*/) {
+            if(this.isTame()) {
+                child.setOwnerUUID(this.getOwnerUUID());
+                child.setTame(true, true);
+            }
         }
         return child;
     }
