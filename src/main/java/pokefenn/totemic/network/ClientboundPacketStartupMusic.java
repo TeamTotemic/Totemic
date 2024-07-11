@@ -1,48 +1,38 @@
 package pokefenn.totemic.network;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
-import net.neoforged.neoforge.network.handling.PlayPayloadContext;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.block.totem.entity.StateStartup;
 import pokefenn.totemic.init.ModBlockEntities;
 
 public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instrument, int amount) implements CustomPacketPayload {
-    public static final ResourceLocation ID = Totemic.resloc("startup_music");
+    public static final Type<ClientboundPacketStartupMusic> TYPE = new Type<>(Totemic.resloc("startup_music"));
+
+    @SuppressWarnings("null")
+    public static final StreamCodec<RegistryFriendlyByteBuf, ClientboundPacketStartupMusic> STREAM_CODEC = StreamCodec.composite(
+            BlockPos.STREAM_CODEC, ClientboundPacketStartupMusic::pos,
+            ByteBufCodecs.registry(RegistryAPI.MUSIC_INSTRUMENT_REGISTRY), ClientboundPacketStartupMusic::instrument,
+            ByteBufCodecs.VAR_INT, ClientboundPacketStartupMusic::amount,
+            ClientboundPacketStartupMusic::new);
 
     @Override
-    public void write(FriendlyByteBuf buf) {
-        buf.writeBlockPos(pos);
-        buf.writeId(TotemicAPI.get().registry().instruments(), instrument);
-        buf.writeVarInt(amount);
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 
-    public ClientboundPacketStartupMusic(FriendlyByteBuf buf) {
-        this(
-                buf.readBlockPos(),
-                buf.readById(TotemicAPI.get().registry().instruments()),
-                buf.readVarInt());
-    }
-
-    @SuppressWarnings("resource")
-    public void handle(PlayPayloadContext context) {
-        context.workHandler().submitAsync(() -> {
-            Minecraft.getInstance().level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
-            .ifPresent(tile -> {
-                if(tile.getTotemState() instanceof StateStartup state) {
-                    state.setMusic(instrument, amount);
-                }
-            });
+    public void handle(IPayloadContext context) {
+        context.player().level().getBlockEntity(pos, ModBlockEntities.totem_base.get())
+        .ifPresent(tile -> {
+            if(tile.getTotemState() instanceof StateStartup state) {
+                state.setMusic(instrument, amount);
+            }
         });
-    }
-
-    @Override
-    public ResourceLocation id() {
-        return ID;
     }
 }

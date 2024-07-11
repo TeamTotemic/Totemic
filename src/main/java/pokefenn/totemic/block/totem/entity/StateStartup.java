@@ -10,9 +10,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -62,8 +64,8 @@ public final class StateStartup extends TotemState implements StartupContext {
     public MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity) {
         var result = musicHandler.acceptMusic(instr, amount, from, entity);
         if(result.isSuccess()) {
-            PacketDistributor.TRACKING_CHUNK.with(tile.getLevel().getChunkAt(tile.getBlockPos()))
-                    .send(new ClientboundPacketStartupMusic(tile.getBlockPos(), instr, musicHandler.getMusicAmount(instr)));
+            PacketDistributor.sendToPlayersTrackingChunk((ServerLevel) tile.getLevel(), new ChunkPos(tile.getBlockPos()),
+                    new ClientboundPacketStartupMusic(tile.getBlockPos(), instr, musicHandler.getMusicAmount(instr)));
             tile.setChanged();
         }
         return result;

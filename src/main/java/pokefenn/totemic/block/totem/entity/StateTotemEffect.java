@@ -10,10 +10,10 @@ import com.google.common.collect.Multiset.Entry;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Climate.TargetPoint;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -77,8 +77,8 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
         musicAmount = Math.min(previous + amount, TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC);
         if(musicAmount > previous) {
             var pos = Vec3.atCenterOf(tile.getBlockPos());
-            PacketDistributor.NEAR.with(new TargetPoint(pos.x, pos.y, pos.z, 64, tile.getLevel().dimension()))
-                    .send(new ClientboundPacketTotemEffectMusic(tile.getBlockPos(), musicAmount));
+            PacketDistributor.sendToPlayersNear((ServerLevel) tile.getLevel(), null, pos.x, pos.y, pos.z, 64,
+                    new ClientboundPacketTotemEffectMusic(tile.getBlockPos(), (short) musicAmount));
             tile.setChanged();
             return (musicAmount == previous + amount) ? MusicResult.SUCCESS : MusicResult.SUCCESS_SATURATED;
         }
