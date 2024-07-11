@@ -7,8 +7,8 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.ToolAction;
-import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 
 public class StrippableLogBlock extends RotatedPillarBlock {
     private final Supplier<? extends RotatedPillarBlock> strippedBlock;
@@ -19,10 +19,10 @@ public class StrippableLogBlock extends RotatedPillarBlock {
     }
 
     @Override
-    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
-        if(toolAction == ToolActions.AXE_STRIP)
+    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
+        if(ItemAbilities.AXE_STRIP == itemAbility)
             return strippedBlock.get().defaultBlockState().setValue(AXIS, state.getValue(AXIS));
         else
-            return super.getToolModifiedState(state, context, toolAction, simulate);
+            return super.getToolModifiedState(state, context, itemAbility, simulate);
     }
 }

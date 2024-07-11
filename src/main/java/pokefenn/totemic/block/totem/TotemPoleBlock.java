@@ -108,7 +108,6 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         return !state.getValue(WATERLOGGED);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);

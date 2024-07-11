@@ -8,7 +8,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantments;
 
 /**
  * A TotemEffect which applies a {@link MobEffect} to all Players near the Totem Pole.
@@ -76,7 +75,7 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      */
     protected int getAmplifierForMedicineBag(Player player, ItemStack medicineBag, int charge) {
         if(scaleAmplifier)
-            return medicineBag.getEnchantmentLevel(Enchantments.EFFICIENCY) / 2;
+            return 0; //TODO //medicineBag.getEnchantmentLevel(Enchantments.EFFICIENCY) / 2;
         else
             return 0;
     }

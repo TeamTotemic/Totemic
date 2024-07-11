@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -65,18 +65,17 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        var stack = player.getItemInHand(hand);
-        if(stack.is(ModItems.totemic_staff.get()))
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if(stack.is(ModItems.totemic_staff))
             return onTotemicStaffRightClick(level, pos, player);
         else
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @SuppressWarnings("resource")
-    private InteractionResult onTotemicStaffRightClick(Level level, BlockPos pos, Player player) {
+    private ItemInteractionResult onTotemicStaffRightClick(Level level, BlockPos pos, Player player) {
         if(!level.isClientSide)
-            return InteractionResult.CONSUME;
+            return ItemInteractionResult.CONSUME;
 
         level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
         .ifPresent(tile -> {
@@ -98,7 +97,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
                 player.displayClientMessage(Component.translatable("totemic.isDoingCeremony", state.getCeremony().getDisplayName()), false);
             }
         });
-        return InteractionResult.SUCCESS;
+        return ItemInteractionResult.SUCCESS;
     }
 
     @Override
@@ -176,7 +175,6 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         return false;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);

@@ -18,8 +18,8 @@ import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.init.ModDataComponents;
 import pokefenn.totemic.init.ModItems;
-import pokefenn.totemic.item.TotemKnifeItem;
 
 /**
  * Tests for the config files.
@@ -87,7 +87,7 @@ public final class ConfigTests {
         h.assertBlockNotPresent(ModBlocks.totem_base.get(), base3Pos);
 
         //Totem Poles
-        totemKnife.getOrCreateTag().putString(TotemKnifeItem.KNIFE_CARVING_KEY, ModContent.blaze.get().getRegistryName().toString());
+        totemKnife.set(ModDataComponents.CARVING, ModContent.blaze.get());
         final BlockPos pole1Pos = new BlockPos(0, 2, 0);
         final BlockPos pole2Pos = new BlockPos(1, 2, 0);
         final BlockPos pole3Pos = new BlockPos(2, 2, 0);

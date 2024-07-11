@@ -34,6 +34,9 @@ public final class TotemicRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput rc) {
+        //TODO: Find a way to unlock the basic recipes when obtaining the Totempedia,
+        //probably by generating conditional advancements independently from the recipes.
+
         //TODO: Patchouli is not yet available
         //var totempedia = PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
         //var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(totempedia.getItem()).hasNbt(totempedia.getTag()).build());

@@ -11,7 +11,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -47,36 +46,34 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, @org.jetbrains.annotations.Nullable Entity player) {
-        return true;
-    }
-
-    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        if(level.isClientSide)
+        if(level.isClientSide) {
             return InteractionResult.CONSUME;
-
-        if(!level.dimensionType().bedWorks()) {
-            level.removeBlock(pos, false);
-            removeDummyTipiBlocks(level, pos);
-            Vec3 vec = pos.getCenter();
-            level.explode(null, level.damageSources().badRespawnPointExplosion(vec), null, vec, 5.0F, true, Level.ExplosionInteraction.BLOCK);
-            return InteractionResult.SUCCESS;
-        }
-        else if(state.getValue(OCCUPIED)) {
-            player.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
-            return InteractionResult.SUCCESS;
-        }
-        else if(!level.canSeeSky(pos.above(6))) {
-            player.displayClientMessage(Component.translatable("block.totemic.tipi.cantSleep"), true);
-            return InteractionResult.SUCCESS;
         }
         else {
-            player.startSleepInBed(pos).ifLeft(problem -> {
-                if(problem.getMessage() != null)
-                    player.displayClientMessage(problem.getMessage(), true);
-            });
-            return InteractionResult.SUCCESS;
+            if(!BedBlock.canSetSpawn(level)) {
+                level.removeBlock(pos, false);
+                removeDummyTipiBlocks(level, pos);
+                Vec3 vec3 = pos.getCenter();
+                level.explode(null, level.damageSources().badRespawnPointExplosion(vec3), null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
+                return InteractionResult.SUCCESS;
+            }
+            else if(state.getValue(OCCUPIED)) {
+                player.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
+                return InteractionResult.SUCCESS;
+            }
+            else if(!level.canSeeSky(pos.above(6))) {
+                player.displayClientMessage(Component.translatable("block.totemic.tipi.cantSleep"), true);
+                return InteractionResult.SUCCESS;
+            }
+            else {
+                player.startSleepInBed(pos).ifLeft(problem -> {
+                    if(problem.getMessage() != null) {
+                        player.displayClientMessage(problem.getMessage(), true);
+                    }
+                });
+                return InteractionResult.SUCCESS;
+            }
         }
     }
 

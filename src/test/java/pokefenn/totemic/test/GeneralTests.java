@@ -7,6 +7,7 @@ import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -57,7 +58,7 @@ public final class GeneralTests {
         final BlockPos tipi1Pos = new BlockPos(1, 2, 1);
         final BlockPos dummy2Pos = new BlockPos(4, 3, 2);
         var level = h.getLevel();
-        var player = h.makeMockPlayer();
+        var player = h.makeMockPlayer(GameType.SURVIVAL);
         h.getBlockState(tipi1Pos).onDestroyedByPlayer(level, h.absolutePos(tipi1Pos), player, true, level.getFluidState(h.absolutePos(tipi1Pos)));
         h.getBlockState(dummy2Pos).onDestroyedByPlayer(level, h.absolutePos(dummy2Pos), player, true, level.getFluidState(h.absolutePos(dummy2Pos)));
 
@@ -76,9 +77,10 @@ public final class GeneralTests {
 
         h.assertBlockPresent(Blocks.FLOWER_POT, pos);
 
-        var player = h.makeMockPlayer();
-        player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(ModBlocks.cedar_sapling.get()));
-        h.getBlockState(pos).use(h.getLevel(), player, InteractionHand.MAIN_HAND,
+        var player = h.makeMockPlayer(GameType.SURVIVAL);
+        var stack = new ItemStack(ModBlocks.cedar_sapling.get());
+        player.setItemInHand(InteractionHand.MAIN_HAND, stack);
+        h.getBlockState(pos).useItemOn(stack, h.getLevel(), player, InteractionHand.MAIN_HAND,
                 new BlockHitResult(Vec3.atCenterOf(apos), Direction.NORTH, apos, true));
         h.assertBlockPresent(ModBlocks.potted_cedar_sapling.get(), pos);
         level.destroyBlock(apos, true);
@@ -90,7 +92,7 @@ public final class GeneralTests {
 
     public static void useItem(GameTestHelper h, ItemStack item, BlockPos pos, Direction dir) {
         var apos = h.absolutePos(pos);
-        item.useOn(new UseOnContext(h.getLevel(), h.makeMockPlayer(), InteractionHand.MAIN_HAND, item,
+        item.useOn(new UseOnContext(h.getLevel(), h.makeMockPlayer(GameType.SURVIVAL), InteractionHand.MAIN_HAND, item,
                 new BlockHitResult(Vec3.atCenterOf(apos), dir, apos, true)));
     }
 
