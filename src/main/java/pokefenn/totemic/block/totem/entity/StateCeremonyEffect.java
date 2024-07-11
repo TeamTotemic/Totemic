@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
@@ -108,9 +109,9 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     }
 
     @Override
-    void save(CompoundTag tag) {
+    void save(CompoundTag tag, Provider regsitries) {
         tag.putString("Ceremony", ceremony.getRegistryName().toString());
-        Tag instanceData = instance.serializeNBT();
+        Tag instanceData = instance.serializeNBT(regsitries);
         if(instanceData != EndTag.INSTANCE)
             tag.put("InstanceData", instanceData);
         tag.putInt("Time", time);
@@ -118,7 +119,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     }
 
     @Override
-    void load(CompoundTag tag) {
+    void load(CompoundTag tag, Provider regsitries) {
         var ceremonyName = tag.getString("Ceremony");
         ceremony = TotemicAPI.get().registry().ceremonies().get(ResourceLocation.tryParse(ceremonyName));
         if(ceremony == null) {
@@ -128,7 +129,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
         }
         instance = ceremony.createInstance();
         if(tag.contains("InstanceData"))
-            instance.deserializeNBT(tag.get("InstanceData"));
+            instance.deserializeNBT(regsitries, tag.get("InstanceData"));
         time = tag.getInt("Time");
     }
 }

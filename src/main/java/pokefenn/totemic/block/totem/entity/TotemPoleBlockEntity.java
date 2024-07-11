@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -38,15 +39,15 @@ public class TotemPoleBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
+    protected void saveAdditional(CompoundTag tag, Provider registries) {
+        super.saveAdditional(tag, registries);
         tag.putString("Wood", woodTypeLoc.toString());
         tag.putString("Carving", carvingLoc.toString());
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
+    public void loadAdditional(CompoundTag tag, Provider registries) {
+        super.loadAdditional(tag, registries);
         woodTypeLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Wood")), ModContent.oak.getId());
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
         if(optWood.isEmpty())
@@ -61,9 +62,10 @@ public class TotemPoleBlockEntity extends BlockEntity {
         requestModelDataUpdate();
     }
 
+    //TODO: Do we need update packets? The block will usually not change after being placed
     @Override
-    public CompoundTag getUpdateTag() {
-        return saveWithoutMetadata();
+    public CompoundTag getUpdateTag(Provider registries) {
+        return saveWithoutMetadata(registries);
     }
 
     @Override

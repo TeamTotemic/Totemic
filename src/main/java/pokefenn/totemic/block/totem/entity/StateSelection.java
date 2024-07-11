@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -138,17 +139,17 @@ public final class StateSelection extends TotemState {
     }
 
     @Override
-    void save(CompoundTag tag) {
+    void save(CompoundTag tag, Provider regsitries) {
         ListTag selectorsTag = new ListTag();
         for(MusicInstrument instr: selectors)
             selectorsTag.add(StringTag.valueOf(instr.getRegistryName().toString()));
         tag.put("Selectors", selectorsTag);
         tag.putInt("Time", time);
-        previousState.save(tag); //Safe since StateTotemEffect only saves the key TotemMusic
+        previousState.save(tag, regsitries); //Safe since StateTotemEffect only saves the key TotemMusic
     }
 
     @Override
-    void load(CompoundTag tag) {
+    void load(CompoundTag tag, Provider regsitries) {
         selectors.clear();
         ListTag selectorsTag = tag.getList("Selectors", Tag.TAG_STRING);
         for(int i = 0; i < selectorsTag.size(); i++) {
@@ -160,6 +161,6 @@ public final class StateSelection extends TotemState {
                 Totemic.logger.error("Unknown music instrument: '{}'", name);
         }
         time = tag.getInt("Time");
-        previousState.load(tag); //Safe since StateTotemEffect only saves the key TotemMusic
+        previousState.load(tag, regsitries); //Safe since StateTotemEffect only saves the key TotemMusic
     }
 }

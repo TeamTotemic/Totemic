@@ -14,6 +14,7 @@ import com.google.common.collect.Multiset;
 import com.google.common.math.IntMath;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
@@ -146,16 +147,16 @@ public class TotemBaseBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
+    protected void saveAdditional(CompoundTag tag, Provider registries) {
+        super.saveAdditional(tag, registries);
         tag.putString("Wood", woodTypeLoc.toString());
         tag.putByte("State", state.getID());
-        state.save(tag);
+        state.save(tag, registries);
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
+    public void loadAdditional(CompoundTag tag, Provider registries) {
+        super.loadAdditional(tag, registries);
         woodTypeLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Wood")), ModContent.oak.getId());
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
         if(optWood.isEmpty())
@@ -167,15 +168,15 @@ public class TotemBaseBlockEntity extends BlockEntity {
             byte id = tag.getByte("State");
             if(id != state.getID())
                 state = TotemState.fromID(id, this);
-            state.load(tag);
+            state.load(tag, registries);
         }
         else
             state = new StateTotemEffect(this);
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        return saveWithoutMetadata();
+    public CompoundTag getUpdateTag(Provider registries) {
+        return saveWithoutMetadata(registries);
     }
 
     @Override

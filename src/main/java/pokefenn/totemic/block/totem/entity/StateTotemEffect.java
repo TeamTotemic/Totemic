@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Multiset.Entry;
 
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -132,12 +133,12 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
-    void save(CompoundTag tag) {
+    void save(CompoundTag tag, Provider regsitries) {
         tag.putInt("TotemMusic", musicAmount);
     }
 
     @Override
-    void load(CompoundTag tag) {
+    void load(CompoundTag tag, Provider regsitries) {
         musicAmount = tag.getInt("TotemMusic");
     }
 }

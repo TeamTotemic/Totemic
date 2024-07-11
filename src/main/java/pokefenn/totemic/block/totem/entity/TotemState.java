@@ -2,6 +2,7 @@ package pokefenn.totemic.block.totem.entity;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
@@ -54,7 +55,7 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
 
     abstract byte getID();
 
-    abstract void save(CompoundTag tag);
+    abstract void save(CompoundTag tag, HolderLookup.Provider registries);
 
-    abstract void load(CompoundTag tag);
+    abstract void load(CompoundTag tag, HolderLookup.Provider registries);
 }

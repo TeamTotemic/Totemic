@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.EndTag;
@@ -169,18 +170,18 @@ public final class StateStartup extends TotemState implements StartupContext {
     }
 
     @Override
-    void save(CompoundTag tag) {
+    void save(CompoundTag tag, Provider regsitries) {
         tag.putString("Ceremony", ceremony.getRegistryName().toString());
-        Tag instanceData = instance.serializeNBT();
+        Tag instanceData = instance.serializeNBT(regsitries);
         if(instanceData != EndTag.INSTANCE)
             tag.put("InstanceData", instanceData);
-        tag.put("Music", musicHandler.serializeNBT());
+        tag.put("Music", musicHandler.serializeNBT(regsitries));
         tag.putInt("Time", time);
         //For simplicity, we won't save the initiator, since on loading, the block entity's level will be null.
     }
 
     @Override
-    void load(CompoundTag tag) {
+    void load(CompoundTag tag, Provider regsitries) {
         var ceremonyName = tag.getString("Ceremony");
         ceremony = TotemicAPI.get().registry().ceremonies().get(ResourceLocation.tryParse(ceremonyName));
         if(ceremony == null) {
@@ -190,8 +191,8 @@ public final class StateStartup extends TotemState implements StartupContext {
         }
         instance = ceremony.createInstance();
         if(tag.contains("InstanceData"))
-            instance.deserializeNBT(tag.get("InstanceData"));
-        musicHandler.deserializeNBT(tag.getCompound("Music"));
+            instance.deserializeNBT(regsitries, tag.get("InstanceData"));
+        musicHandler.deserializeNBT(regsitries, tag.getCompound("Music"));
         time = tag.getInt("Time");
     }
 }

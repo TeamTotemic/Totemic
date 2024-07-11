@@ -3,7 +3,7 @@ package pokefenn.totemic.block.music.entity;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
@@ -129,7 +129,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void saveAdditional(CompoundTag tag, Provider registries) {
         super.saveAdditional(tag, registries);
         if(isPlaying())
             tag.putInt("PlayingTime", playingTimeLeft);
@@ -138,8 +138,8 @@ public class WindChimeBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag tag, HolderLookup.Provider registries) {
-        super.load(tag);
+    public void loadAdditional(CompoundTag tag, Provider registries) {
+        super.loadAdditional(tag, registries);
         if(tag.contains("PlayingTime"))
             playingTimeLeft = tag.getInt("PlayingTime");
         else {
@@ -149,7 +149,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
+    public CompoundTag getUpdateTag(Provider registries) {
         var tag = new CompoundTag();
         tag.putInt("PlayingTime", playingTimeLeft);
         tag.putBoolean("IsCongested", isCongested);
@@ -157,7 +157,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void handleUpdateTag(CompoundTag tag) {
+    public void handleUpdateTag(CompoundTag tag, Provider lookupProvider) {
         playingTimeLeft = tag.getInt("PlayingTime");
         isCongested = tag.getBoolean("IsCongested");
     }
@@ -165,11 +165,11 @@ public class WindChimeBlockEntity extends BlockEntity {
     @Override
     @Nullable
     public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
+        return ClientboundBlockEntityDataPacket.create(this); //TODO: Consider using leaner packets
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-        handleUpdateTag(pkt.getTag());
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, Provider lookupProvider) {
+        handleUpdateTag(pkt.getTag(), lookupProvider);
     }
 }
