@@ -111,7 +111,7 @@ public final class ModContent {
 
     public static void registerCustomWoodTypes(RegisterEvent event) {
         event.register(RegistryAPI.WOOD_TYPE_REGISTRY, reg -> {
-            for(Config entry: TotemicConfig.COMMON.customTotemWoodTypes.get()) {
+            for(Config entry: TotemicConfig.STARTUP.customTotemWoodTypes.get()) {
                 if(entry.isEmpty())
                     continue; //ignore empty default value
 

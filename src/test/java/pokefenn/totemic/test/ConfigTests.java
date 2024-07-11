@@ -37,10 +37,10 @@ public final class ConfigTests {
 
         //Test if the custom wood types are present in the config.
         //This should also ensure that the config hasn't been reset to default
-        if(TotemicConfig.COMMON.customTotemWoodTypes.get().stream()
+        if(TotemicConfig.STARTUP.customTotemWoodTypes.get().stream()
                 .noneMatch(c -> testWoodType1ID.equals(c.get("id"))))
             throw new GameTestAssertException("Expected wood type " + testWoodType1ID + " to be present in the config");
-        if(TotemicConfig.COMMON.customTotemWoodTypes.get().stream()
+        if(TotemicConfig.STARTUP.customTotemWoodTypes.get().stream()
                 .noneMatch(c -> testWoodType2ID.equals(c.get("id"))))
             throw new GameTestAssertException("Expected wood type " + testWoodType2ID + " to be present in the config");
 

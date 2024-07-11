@@ -7,24 +7,20 @@ import java.util.function.Predicate;
 
 import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.InMemoryFormat;
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
-import com.electronwill.nightconfig.core.file.FileNotFoundAction;
-import com.electronwill.nightconfig.core.io.WritingMode;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import pokefenn.totemic.api.TotemicAPI;
 
 public final class TotemicConfig {
-    public static class Common {
+    public static class Startup {
         public final ConfigValue<List<? extends Config>> customTotemWoodTypes;
 
-        Common(ModConfigSpec.Builder builder) {
+        Startup(ModConfigSpec.Builder builder) {
             //The default value will be a list containing an empty table, rather than an empty list, to make the TOML syntax for lists of tables clearer to users.
             //The default TOML file will then contain "[[customTotemWoodTypes]]" rather than "customTotemWoodTypes = []".
             var emptyConfig = Config.wrap(Map.of(), InMemoryFormat.defaultInstance());
@@ -121,18 +117,18 @@ public final class TotemicConfig {
         };
     }
 
-    public static final Common COMMON;
+    public static final Startup STARTUP;
     public static final Client CLIENT;
     public static final Server SERVER;
 
-    private static final ModConfigSpec commonSpec;
+    private static final ModConfigSpec startupSpec;
     private static final ModConfigSpec clientSpec;
     private static final ModConfigSpec serverSpec;
 
     static {
-        var commonPair = new ModConfigSpec.Builder().configure(Common::new);
-        COMMON = commonPair.getLeft();
-        commonSpec = commonPair.getRight();
+        var startupPair = new ModConfigSpec.Builder().configure(Startup::new);
+        STARTUP = startupPair.getLeft();
+        startupSpec = startupPair.getRight();
 
         var clientPair = new ModConfigSpec.Builder().configure(Client::new);
         CLIENT = clientPair.getLeft();
@@ -144,21 +140,8 @@ public final class TotemicConfig {
     }
 
     public static void register(ModContainer container) {
+        container.registerConfig(ModConfig.Type.STARTUP, startupSpec);
         container.registerConfig(ModConfig.Type.CLIENT, clientSpec);
         container.registerConfig(ModConfig.Type.SERVER, serverSpec);
-
-        //TODO: No longer needed, use ModConfig.Type.STARTUP
-        var commonModConfig = new ModConfig(ModConfig.Type.COMMON, commonSpec, container);
-        container.addConfig(commonModConfig);
-        var configPath = FMLPaths.CONFIGDIR.get().resolve(commonModConfig.getFileName());
-        var configData = CommentedFileConfig.builder(configPath)
-                .sync()
-                .preserveInsertionOrder()
-                .autosave()
-                .onFileNotFound(FileNotFoundAction.READ_NOTHING) //if the file does not exist, it will be created by Forge later
-                .writingMode(WritingMode.REPLACE)
-                .build();
-        configData.load();
-        commonSpec.acceptConfig(configData);
     }
 }
