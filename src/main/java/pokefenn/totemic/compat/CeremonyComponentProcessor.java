@@ -14,7 +14,7 @@ public class CeremonyComponentProcessor implements IComponentProcessor {
 
     @Override
     public void setup(Level level, IVariableProvider variables) {
-        var ceremonyId = variables.get("ceremony").asString();
+        var ceremonyId = variables.get("ceremony", level.registryAccess()).asString();
         ceremony = TotemicAPI.get().registry().ceremonies().get(ResourceLocation.parse(ceremonyId));
         if(ceremony == null)
             throw new IllegalArgumentException("Invalid Ceremony: '" + ceremonyId + "'");
@@ -23,8 +23,8 @@ public class CeremonyComponentProcessor implements IComponentProcessor {
     @Override
     public IVariable process(Level level, String key) {
         return switch(key) {
-            case "selector0" -> IVariable.from(getSelectorItem(0));
-            case "selector1" -> IVariable.from(getSelectorItem(1));
+            case "selector0" -> IVariable.from(getSelectorItem(0), level.registryAccess());
+            case "selector1" -> IVariable.from(getSelectorItem(1), level.registryAccess());
             default -> null;
         };
     }
