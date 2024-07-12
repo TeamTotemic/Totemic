@@ -4,9 +4,9 @@ license="${mod_license}"
 issueTrackerURL="https://github.com/TeamTotemic/Totemic/issues"
 
 [[mods]]
-modId="${mod_id}"
-version="${mod_version}"
-displayName="${mod_name}"
+modId="totemic"
+version="${file.jarVersion}"
+displayName="Totemic"
 updateJSONURL="https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/totemic"
 logoFile="totemic_logo.png"
@@ -17,21 +17,21 @@ description='''${mod_description}'''
 [[accessTransformers]]
 file="META-INF/accesstransformer.cfg"
 
-[[dependencies.${mod_id}]]
+[[dependencies.totemic]]
     modId="neoforge"
     type="required"
     versionRange="${neo_version_range}"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.totemic]]
     modId="minecraft"
     type="required"
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
 
-#[[dependencies.${mod_id}]]
+#[[dependencies.totemic]]
 #    modId="patchouli"
 #    type="optional"
 #    versionRange="[1.20.4-85,)"
