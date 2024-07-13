@@ -17,7 +17,7 @@ public enum RegistryApiImpl implements RegistryAPI {
 
     private static final Registry<MusicInstrument> MUSIC_INSTRUMENT = new RegistryBuilder<>(MUSIC_INSTRUMENT_REGISTRY).sync(true).create();
     private static final DefaultedRegistry<TotemWoodType> WOOD_TYPE = (DefaultedRegistry<TotemWoodType>) new RegistryBuilder<>(WOOD_TYPE_REGISTRY).defaultKey(Totemic.resloc("oak")).sync(false).create();
-    private static final DefaultedRegistry<TotemCarving> TOTEM_CARVING = (DefaultedRegistry<TotemCarving>) new RegistryBuilder<>(TOTEM_CARVING_REGISTRY).defaultKey(Totemic.resloc("none")).sync(false).create();
+    private static final DefaultedRegistry<TotemCarving> TOTEM_CARVING = (DefaultedRegistry<TotemCarving>) new RegistryBuilder<>(TOTEM_CARVING_REGISTRY).defaultKey(Totemic.resloc("none")).sync(true).create();
     private static final Registry<Ceremony> CEREMONY = new RegistryBuilder<>(CEREMONY_REGISTRY).sync(false).create();
 
     @SubscribeEvent

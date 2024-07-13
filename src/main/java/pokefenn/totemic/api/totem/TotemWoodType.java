@@ -12,7 +12,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.registry.RegistryAPI;
 
 /**
  * Represents a wood type that Totem Poles can be made out of.
@@ -24,7 +23,7 @@ import pokefenn.totemic.api.registry.RegistryAPI;
 public record TotemWoodType(MapColor woodColor, MapColor barkColor, TagKey<Block> logTag) {
     //TODO: How to make sure that this works when client and server are not synced?
     public static final Codec<TotemWoodType> CODEC = TotemicAPI.get().registry().woodTypes().byNameCodec();
-    public static final StreamCodec<RegistryFriendlyByteBuf, TotemWoodType> STREAM_CODEC = ByteBufCodecs.registry(RegistryAPI.WOOD_TYPE_REGISTRY);
+    public static final StreamCodec<RegistryFriendlyByteBuf, TotemWoodType> STREAM_CODEC = ByteBufCodecs.fromCodecWithRegistries(CODEC);//ByteBufCodecs.registry(RegistryAPI.WOOD_TYPE_REGISTRY);
 
     public TotemWoodType {
         Objects.requireNonNull(woodColor);

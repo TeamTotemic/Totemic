@@ -23,7 +23,7 @@ public class JingleDressItem extends ArmorItem {
 
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        final int leggingsSlot = 38;
+        final int leggingsSlot = 37;
         if(slotId == leggingsSlot && !level.isClientSide && entity instanceof Player player && !player.isSpectator() && player.tickCount % 20 == 0) {
             final double chargeFactor = 10.0;
             final int maxSingleCharge = 8;
