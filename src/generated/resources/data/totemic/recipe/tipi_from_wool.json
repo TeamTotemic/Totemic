@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "totemic:tipi",
+  "key": {
+    "S": {
+      "tag": "c:rods/wooden"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SWS",
+    "W W"
+  ],
+  "result": {
+    "count": 1,
+    "id": "totemic:tipi"
+  }
+}

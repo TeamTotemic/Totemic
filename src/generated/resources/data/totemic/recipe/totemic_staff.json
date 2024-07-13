@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "L": {
+      "tag": "minecraft:leaves"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "pattern": [
+    " LS",
+    " S ",
+    "S L"
+  ],
+  "result": {
+    "count": 1,
+    "id": "totemic:totemic_staff"
+  }
+}

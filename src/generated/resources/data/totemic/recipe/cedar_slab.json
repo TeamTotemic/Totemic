@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "totemic:wooden_slab",
+  "key": {
+    "#": {
+      "item": "totemic:cedar_planks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "totemic:cedar_slab"
+  }
+}

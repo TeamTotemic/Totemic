@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "tag": "c:gems/diamond"
+    },
+    "H": {
+      "item": "totemic:buffalo_hide"
+    },
+    "P": {
+      "item": "totemic:cedar_planks"
+    },
+    "S": {
+      "tag": "c:strings"
+    },
+    "T": {
+      "item": "totemic:buffalo_tooth"
+    }
+  },
+  "pattern": [
+    "PST",
+    "HDH",
+    " H "
+  ],
+  "result": {
+    "count": 1,
+    "id": "totemic:medicine_bag"
+  }
+}

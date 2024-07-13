@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "totemic:wooden_button",
+  "ingredients": [
+    {
+      "item": "totemic:cedar_planks"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "totemic:cedar_button"
+  }
+}
