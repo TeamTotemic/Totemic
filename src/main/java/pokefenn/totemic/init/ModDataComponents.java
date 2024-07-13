@@ -20,7 +20,7 @@ public final class ModDataComponents {
     public static final Supplier<DataComponentType<TotemWoodType>> WOOD_TYPE = REGISTER.registerComponentType("wood_type", builder ->
             builder.persistent(TotemWoodType.CODEC).networkSynchronized(TotemWoodType.STREAM_CODEC).cacheEncoding());
     public static final Supplier<DataComponentType<Integer>> JINGLE_DRESS_CHARGE = REGISTER.registerComponentType("jd_charge", builder ->
-            builder); //no need to save or sync this
+            builder.networkSynchronized(ByteBufCodecs.VAR_INT)); //no need to save or sync this, but a StreamCodec is still required
     public static final Supplier<DataComponentType<Integer>> MEDICINE_BAG_CHARGE = REGISTER.registerComponentType("mb_charge", builder ->
             builder.persistent(ExtraCodecs.NON_NEGATIVE_INT).networkSynchronized(ByteBufCodecs.VAR_INT));
     public static final Supplier<DataComponentType<Boolean>> OPEN = REGISTER.registerComponentType("open", builder ->
