@@ -59,8 +59,14 @@ public final class GeneralTests {
         final BlockPos dummy2Pos = new BlockPos(4, 3, 2);
         var level = h.getLevel();
         var player = h.makeMockPlayer(GameType.SURVIVAL);
-        h.getBlockState(tipi1Pos).onDestroyedByPlayer(level, h.absolutePos(tipi1Pos), player, true, level.getFluidState(h.absolutePos(tipi1Pos)));
-        h.getBlockState(dummy2Pos).onDestroyedByPlayer(level, h.absolutePos(dummy2Pos), player, true, level.getFluidState(h.absolutePos(dummy2Pos)));
+
+        var tipi1State = h.getBlockState(tipi1Pos);
+        tipi1State.getBlock().playerWillDestroy(level, h.absolutePos(tipi1Pos), tipi1State, player);
+        tipi1State.onDestroyedByPlayer(level, h.absolutePos(tipi1Pos), player, true, level.getFluidState(h.absolutePos(tipi1Pos)));
+
+        var dummy2State = h.getBlockState(dummy2Pos);
+        dummy2State.getBlock().playerWillDestroy(level, h.absolutePos(dummy2Pos), dummy2State, player);
+        dummy2State.onDestroyedByPlayer(level, h.absolutePos(dummy2Pos), player, true, level.getFluidState(h.absolutePos(dummy2Pos)));
 
         h.forEveryBlockInStructure(pos -> {
             if(pos.getY() >= 2)
