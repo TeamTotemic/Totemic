@@ -108,15 +108,16 @@ public final class Totemic {
     private void gatherData(GatherDataEvent event) {
         var gen = event.getGenerator();
         var efh = event.getExistingFileHelper();
-        var lookup = event.getLookupProvider();
         var out = gen.getPackOutput();
+
+        var datapackProvider = gen.addProvider(event.includeServer(), new TotemicDatapackEntryProvider(out, event.getLookupProvider()));
+        var lookup = datapackProvider.getRegistryProvider();
 
         var blockTP = gen.addProvider(event.includeServer(), new TotemicBlockTagsProvider(out, lookup, efh));
         gen.addProvider(event.includeServer(), new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
         gen.addProvider(event.includeServer(), new TotemicEntityTypeTagsProvider(out, lookup, efh));
         gen.addProvider(event.includeServer(), new TotemicLootTableProvider(out, lookup));
         gen.addProvider(event.includeServer(), new TotemicRecipeProvider(out, lookup));
-        gen.addProvider(event.includeServer(), new TotemicDatapackEntryProvider(out, lookup));
         gen.addProvider(event.includeServer(), new TotemicDamageTypeTagsProvider(out, lookup, efh));
 
         gen.addProvider(event.includeClient(), new TotemicBlockStateProvider(out, efh));

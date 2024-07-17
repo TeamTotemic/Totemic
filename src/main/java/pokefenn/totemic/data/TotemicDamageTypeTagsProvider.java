@@ -19,8 +19,7 @@ public final class TotemicDamageTypeTagsProvider extends DamageTypeTagsProvider 
 
     @Override
     protected void addTags(Provider pProvider) {
-        //FIXME: Have to use addOptional, as the add method causes an error about missing references for some reason
-        tag(DamageTypeTags.BYPASSES_ARMOR).addOptional(ModResources.SUN_DANCE_DMG.location());
-        tag(DamageTypeTags.BYPASSES_EFFECTS).addOptional(ModResources.SUN_DANCE_DMG.location());
+        tag(DamageTypeTags.BYPASSES_ARMOR).add(ModResources.SUN_DANCE_DMG);
+        tag(DamageTypeTags.BYPASSES_EFFECTS).add(ModResources.SUN_DANCE_DMG);
     }
 }

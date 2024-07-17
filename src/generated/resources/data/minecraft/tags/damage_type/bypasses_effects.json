@@ -1,8 +1,5 @@
 {
   "values": [
-    {
-      "id": "totemic:sun_dance",
-      "required": false
-    }
+    "totemic:sun_dance"
   ]
 }
