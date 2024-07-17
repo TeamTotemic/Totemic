@@ -25,6 +25,7 @@ import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicBlockStateProvider extends BlockStateProvider {
@@ -189,13 +190,14 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
 
     private void totemWoodTypes() {
         //Generate Totem Base and Totem Pole model files for each wood type
-        for(var woodTypeKey: TotemicAPI.get().registry().woodTypes().keySet()) {
-            var namespace = woodTypeKey.getPath().equals("cedar") ? "totemic" : "minecraft";
+        for(var entry: ModContent.WOOD_TYPES.getEntries()) {
+            var woodTypeId = entry.getId();
+            var namespace = woodTypeId.getPath().equals("cedar") ? "totemic" : "minecraft";
 
-            var poleModel = models().getBuilder(woodTypeKey.toString() + "_totem_pole"); //the pole model has no parent, it only specifies the textures and is being loaded in TotemPoleModel.getMaterials.
-            var baseModel = models().withExistingParent(woodTypeKey.toString() + "_totem_base", modLoc("totem_base"));
-            setTotemTextures(poleModel, namespace, woodTypeKey.getPath());
-            setTotemTextures(baseModel, namespace, woodTypeKey.getPath());
+            var poleModel = models().getBuilder(woodTypeId.toString() + "_totem_pole"); //the pole model has no parent, it only specifies the textures and is being loaded in TotemPoleModel.getMaterials.
+            var baseModel = models().withExistingParent(woodTypeId.toString() + "_totem_base", modLoc("totem_base"));
+            setTotemTextures(poleModel, namespace, woodTypeId.getPath());
+            setTotemTextures(baseModel, namespace, woodTypeId.getPath());
         }
     }
 
