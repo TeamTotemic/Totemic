@@ -7,7 +7,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -19,8 +18,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.totem.MedicineBagEffect;
@@ -36,6 +33,8 @@ import pokefenn.totemic.util.MiscUtil;
 
 @SuppressWarnings("deprecation")
 public class MedicineBagItem extends Item {
+    public static final int MAX_CHARGE = 4 * 60 * 20;
+
     public MedicineBagItem(Properties pProperties) {
         super(pProperties);
     }
@@ -67,11 +66,6 @@ public class MedicineBagItem extends Item {
         return stack.getOrDefault(ModDataComponents.OPEN, false);
     }
 
-    public static int getMaxCharge(ItemStack stack) {
-        int unbreaking = 0; //TODO //stack.getEnchantmentLevel(Enchantments.UNBREAKING);
-        return (4 + 2 * unbreaking) * 60 * 20;
-    }
-
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         level.getProfiler().push("totemic.medicineBag");
@@ -86,7 +80,7 @@ public class MedicineBagItem extends Item {
                     int interval = effect.getInterval();
                     if(level.getGameTime() % interval == 0) {
                         effect.medicineBagEffect((Player) entity, stack, charge);
-                        stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - interval, 0));
+                        stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - interval, 0)); //TODO: This is called multiple times on carvings with multiple effects, which can be problematic especially when they have different intervals
                     }
                 });
             }
@@ -97,12 +91,11 @@ public class MedicineBagItem extends Item {
 
     private void tryCharge(ItemStack stack, Level level, BlockPos pos) {
         int charge = getCharge(stack);
-        int maxCharge = getMaxCharge(stack);
-        if(charge < maxCharge) {
+        if(charge < MAX_CHARGE) {
             getCarving(stack).ifPresent(carving -> {
                 if(BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, pos, 6)
                         .anyMatch(tile -> tile.getTotemState() instanceof StateTotemEffect && tile.hasCarving(carving))) {
-                    stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.min(charge + maxCharge / 12, maxCharge));
+                    stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.min(charge + MAX_CHARGE / 12, MAX_CHARGE));
                 }
             });
         }
@@ -155,21 +148,6 @@ public class MedicineBagItem extends Item {
     }
 
     @Override
-    public boolean isEnchantable(ItemStack pStack) {
-        return true;
-    }
-
-    @Override
-    public int getEnchantmentValue() {
-        return 8;
-    }
-
-    @Override
-    public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> ench) {
-        return ench.getKey() == Enchantments.EFFICIENCY || ench.getKey() == Enchantments.UNBREAKING || super.isPrimaryItemFor(stack, ench);
-    }
-
-    @Override
     public Component getName(ItemStack stack) {
         return Component.translatable(getDescriptionId(),
                 getCarving(stack).orElseGet(ModContent.none).getDisplayName());
@@ -189,7 +167,7 @@ public class MedicineBagItem extends Item {
         tooltip.add(Component.translatable("totemic.medicineBag." + key));
 
         if(flag.isAdvanced())
-            tooltip.add(Component.translatable("totemic.medicineBag.charge", getCharge(stack), getMaxCharge(stack)).withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("totemic.medicineBag.charge", getCharge(stack), MAX_CHARGE).withStyle(ChatFormatting.GRAY));
     }
 
     @Override
@@ -199,12 +177,12 @@ public class MedicineBagItem extends Item {
 
     @Override
     public int getBarWidth(ItemStack pStack) {
-        return Math.round(13.0F * getCharge(pStack) / getMaxCharge(pStack));
+        return Math.round(13.0F * getCharge(pStack) / MAX_CHARGE);
     }
 
     @Override
     public int getBarColor(ItemStack pStack) {
-        float f = (float) getCharge(pStack) / (float) getMaxCharge(pStack);
+        float f = (float) getCharge(pStack) / (float) MAX_CHARGE;
         return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
     }
 }

@@ -70,14 +70,10 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
 
     /**
      * Returns the amplifier that should be used for this effect, when it is used with a Medicine Bag.<p>
-     * In case {@link #scaleAmplifier} is {@code true}, this method returns a value between 0 and 2, depending on the Efficiency enchantment level of the Medicine Bag.
-     * Otherwise, the value is 0.
+     * By default this is always 0.
      */
     protected int getAmplifierForMedicineBag(Player player, ItemStack medicineBag, int charge) {
-        if(scaleAmplifier)
-            return 0; //TODO //medicineBag.getEnchantmentLevel(Enchantments.EFFICIENCY) / 2;
-        else
-            return 0;
+        return 0;
     }
 
     /**
