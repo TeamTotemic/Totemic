@@ -65,6 +65,7 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
         var poseStack = guiGraphics.pose();
         poseStack.pushPose();
         poseStack.translate(hudX, hudY, 0);
+        RenderSystem.enableBlend();
 
         var state = activeTotem.getTotemState();
         if(state instanceof StateSelection s)
@@ -74,6 +75,7 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
         else if(state instanceof StateCeremonyEffect s)
             renderCeremonyEffectHUD(s, guiGraphics, deltaTracker);
 
+        RenderSystem.disableBlend();
         poseStack.popPose();
 
         mc.getProfiler().pop();
