@@ -20,12 +20,15 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.item.crafting.SmokingRecipe;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
 import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
+import vazkii.patchouli.api.PatchouliAPI;
 
 public final class TotemicRecipeProvider extends RecipeProvider {
     public TotemicRecipeProvider(PackOutput pOutput, CompletableFuture<Provider> registries) {
@@ -37,11 +40,18 @@ public final class TotemicRecipeProvider extends RecipeProvider {
         //TODO: Find a way to unlock the basic recipes when obtaining the Totempedia,
         //probably by generating conditional advancements independently from the recipes.
 
-        //TODO: Patchouli is not yet available
-        //var totempedia = PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
+        var totempedia = PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
         //var hasTotempedia = inventoryTrigger(ItemPredicate.Builder.item().of(totempedia.getItem()).hasNbt(totempedia.getTag()).build());
 
-        //The Totempedia recipe itself is not being generated
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, totempedia)
+                .pattern("WPW")
+                .pattern("WPW")
+                .pattern("WPW")
+                .define('P', Items.PAPER)
+                .define('W', ItemTags.LOGS_THAT_BURN)
+                .unlockedBy("has_paper", has(Items.PAPER))
+                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife))
+                .save(rc.withConditions(new ModLoadedCondition(PatchouliAPI.MOD_ID)), "totemic:totempedia");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.flute.get())
                 .pattern(" LS")
                 .pattern(" S ")

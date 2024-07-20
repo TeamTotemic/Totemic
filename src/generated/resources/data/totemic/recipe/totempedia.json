@@ -5,7 +5,8 @@
       "modid": "patchouli"
     }
   ],
-  "type": "patchouli:shaped_book_recipe",
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "P": {
       "item": "minecraft:paper"
@@ -19,5 +20,11 @@
     "WPW",
     "WPW"
   ],
-  "book": "totemic:totempedia"
+  "result": {
+    "components": {
+      "patchouli:book": "totemic:totempedia"
+    },
+    "count": 1,
+    "id": "patchouli:guide_book"
+  }
 }

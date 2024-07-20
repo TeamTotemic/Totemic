@@ -11,21 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:paper"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_totem_knife": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "totemic:totem_whittling_knife"
-            ]
+            "items": "minecraft:paper"
           }
         ]
       },
@@ -36,13 +22,23 @@
         "recipe": "totemic:totempedia"
       },
       "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_totem_knife": {
+      "conditions": {
+        "items": [
+          {
+            "items": "totemic:totem_whittling_knife"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_paper",
-      "has_totem_knife",
-      "has_the_recipe"
+      "has_totem_knife"
     ]
   ],
   "rewards": {
