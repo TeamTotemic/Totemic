@@ -84,8 +84,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly "vazkii.patchouli:Patchouli:1.20.6-87-NEOFORGE-SNAPSHOT:api" //for compilation of CeremonyComponentProcessor only. Might not work if the interface changes in 1.21
-    //runtimeOnly "vazkii.patchouli:Patchouli:1.20.4-85-NEOFORGE"
+    compileOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE-SNAPSHOT:api"
+    runtimeOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE-SNAPSHOT"
 }
 
 tasks.withType(ProcessResources).configureEach {
