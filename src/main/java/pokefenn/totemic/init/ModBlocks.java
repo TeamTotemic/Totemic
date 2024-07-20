@@ -1,6 +1,5 @@
 package pokefenn.totemic.init;
 
-import java.util.HashSet;
 import java.util.Optional;
 
 import net.minecraft.core.Direction.Axis;
@@ -34,6 +33,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import pokefenn.totemic.api.TotemicAPI;
@@ -101,20 +101,8 @@ public final class ModBlocks {
         fire.setFlammable(cedar_stairs.get(), 5, 20);
     }
 
-    //Modifies the validBlocks of the sign block entity types to add our own sign blocks to it
-    public static void addCedarSignToSignBlockEntityType() {
-        var signValidBlocks = BlockEntityType.SIGN.validBlocks;
-        if(!(signValidBlocks instanceof HashSet)) { //another mod might have already made the set mutable
-            BlockEntityType.SIGN.validBlocks = signValidBlocks = new HashSet<>(signValidBlocks); //if not, copy into a mutable set
-        }
-        signValidBlocks.add(ModBlocks.cedar_sign.get());
-        signValidBlocks.add(ModBlocks.cedar_wall_sign.get());
-
-        var hangingSignValidBlocks = BlockEntityType.HANGING_SIGN.validBlocks;
-        if(!(hangingSignValidBlocks instanceof HashSet)) {
-            BlockEntityType.HANGING_SIGN.validBlocks = hangingSignValidBlocks = new HashSet<>(hangingSignValidBlocks);
-        }
-        hangingSignValidBlocks.add(ModBlocks.cedar_hanging_sign.get());
-        hangingSignValidBlocks.add(ModBlocks.cedar_wall_hanging_sign.get());
+    public static void addCedarSignToSignBlockEntityType(BlockEntityTypeAddBlocksEvent event) {
+        event.modify(BlockEntityType.SIGN, ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get());
+        event.modify(BlockEntityType.HANGING_SIGN, ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get());
     }
 }

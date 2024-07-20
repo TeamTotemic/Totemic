@@ -65,6 +65,7 @@ public final class Totemic {
         modBus.register(ModEntityTypes.class);
         modBus.register(RegistryApiImpl.class);
         modBus.addListener(ModContent::registerCustomWoodTypes);
+        modBus.addListener(ModBlocks::addCedarSignToSignBlockEntityType);
 
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
         modBus.addListener(ModCriteriaTriggers::init);
@@ -84,7 +85,6 @@ public final class Totemic {
         event.enqueueWork(() -> {
             ModBlocks.addPlantsToFlowerPot();
             ModBlocks.setFireInfo();
-            ModBlocks.addCedarSignToSignBlockEntityType();
         });
 
         //PatchouliIntegration.init();
