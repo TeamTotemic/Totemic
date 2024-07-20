@@ -14,8 +14,8 @@ credits="nojustgavin, Nefilto, ZestyBlaze, VincentLongiug, WayofTime, Joshie, Po
 authors="${mod_authors}"
 description='''${mod_description}'''
 
-[[accessTransformers]]
-file="META-INF/accesstransformer.cfg"
+[[mixins]]
+    config="totemic.mixins.json"
 
 [[dependencies.totemic]]
     modId="neoforge"
