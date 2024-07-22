@@ -46,6 +46,11 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
+    public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, LivingEntity sleeper) {
+        return true;
+    }
+
+    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if(level.isClientSide) {
             return InteractionResult.CONSUME;
