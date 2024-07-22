@@ -1,3 +1,4 @@
-// 1.21	2024-07-17T12:02:35.064377736	Tags for minecraft:damage_type mod id totemic
+// 1.21	2024-07-22T09:49:46.415813561	Tags for minecraft:damage_type mod id totemic
 3ea9abe2e85f826ab41b1574fe78b27381ba524a data/minecraft/tags/damage_type/bypasses_armor.json
 3ea9abe2e85f826ab41b1574fe78b27381ba524a data/minecraft/tags/damage_type/bypasses_effects.json
+3ea9abe2e85f826ab41b1574fe78b27381ba524a data/minecraft/tags/damage_type/no_knockback.json

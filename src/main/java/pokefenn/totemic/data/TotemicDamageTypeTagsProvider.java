@@ -21,5 +21,6 @@ public final class TotemicDamageTypeTagsProvider extends DamageTypeTagsProvider 
     protected void addTags(Provider pProvider) {
         tag(DamageTypeTags.BYPASSES_ARMOR).add(ModResources.SUN_DANCE_DMG);
         tag(DamageTypeTags.BYPASSES_EFFECTS).add(ModResources.SUN_DANCE_DMG);
+        tag(DamageTypeTags.NO_KNOCKBACK).add(ModResources.SUN_DANCE_DMG);
     }
 }
