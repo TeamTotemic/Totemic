@@ -55,7 +55,7 @@ public final class ModItems {
 
     public static final DeferredItem<FluteItem> flute = REGISTER.register("flute", () -> new FluteItem(new Properties().stacksTo(1)));
     public static final DeferredItem<InfusedFluteItem> infused_flute = REGISTER.register("infused_flute", () -> new InfusedFluteItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
-    public static final DeferredItem<JingleDressItem> jingle_dress = REGISTER.register("jingle_dress", () -> new JingleDressItem(new Properties().component(ModDataComponents.JINGLE_DRESS_CHARGE, 0)));
+    public static final DeferredItem<JingleDressItem> jingle_dress = REGISTER.register("jingle_dress", () -> new JingleDressItem(new Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(5)).component(ModDataComponents.JINGLE_DRESS_CHARGE, 0)));
     public static final DeferredItem<RattleItem> rattle = REGISTER.register("rattle", () -> new RattleItem(new Properties().stacksTo(1)));
     public static final DeferredItem<EagleBoneWhistleItem> eagle_bone_whistle = REGISTER.register("eagle_bone_whistle", () -> new EagleBoneWhistleItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final DeferredItem<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250)));
