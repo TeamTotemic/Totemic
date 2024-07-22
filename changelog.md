@@ -1,5 +1,7 @@
-- Added a config option to allow adding custom wood types for Totem Poles. See the config file `totemic-common.toml` for details and examples.
-  - Note that (Neo)Forge's config system is known to spuriously reset config files to their default values in some cases. If that happens, or if wood types are removed from the config, the placed Totem Poles and Bases in the world will turn into Oak wood, but should turn back into their previous wood type when the config entries are re-added.
-- (@AlgorithmLX) Updated Russian localization
-- (@HanJiang-cn) Updated Simplified Chinese localization, including the Totempedia
-- Removed a bad link from the Rite of Spring Totempedia page
+First release for Minecraft 1.21. Please don't hesitate to report any bugs or other issues to our [Github issue tracker](https://github.com/TeamTotemic/Totemic/issues) or [Discord channel](https://discord.com/channels/426876970693951498/426877961116057600).
+
+Loading worlds from 1.20.1 or 1.20.4 appears to be working, but as always, making a world backup is highly recommended.
+
+Minor differences from 1.20.4-0.12.13:
+- The Medicine Bag is no longer enchantable and the Efficiency and Unbreaking enchantments no longer have any effect on it.
+- The config file "totemic-common-toml" is now "totemic-startup.toml".
