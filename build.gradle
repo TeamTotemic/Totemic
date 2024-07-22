@@ -128,6 +128,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     apiToken = findProperty('curseForgeApiKey')
     
     def mainFile = upload(237541, jar)
+    mainFile.addModLoader('NeoForge')
     mainFile.releaseType = mod_release_type
     mainFile.changelog = file('changelog.md')
     mainFile.changelogType = 'markdown'

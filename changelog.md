@@ -4,4 +4,4 @@ Loading worlds from 1.20.1 or 1.20.4 appears to be working, but as always, makin
 
 Minor differences from 1.20.4-0.12.13:
 - The Medicine Bag is no longer enchantable and the Efficiency and Unbreaking enchantments no longer have any effect on it.
-- The config file "totemic-common-toml" is now "totemic-startup.toml".
+- The config file "totemic-common.toml" is now "totemic-startup.toml".
