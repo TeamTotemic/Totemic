@@ -64,6 +64,8 @@ neoForge {
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }
+    
+    addModdingDependenciesTo sourceSets.test
 
     mods {
         "${mod_id}" {
