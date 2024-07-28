@@ -47,9 +47,5 @@ public abstract class TotemicAPI {
      */
     public abstract CeremonyAPI ceremony();
 
-    private static final TotemicAPI INSTANCE = loadService();
-
-    private static TotemicAPI loadService() {
-        return ServiceLoader.load(TotemicAPI.class).findFirst().orElse(null);
-    }
+    private static final TotemicAPI INSTANCE = ServiceLoader.load(TotemicAPI.class).findFirst().orElse(null);
 }

@@ -61,14 +61,14 @@ public final class Totemic {
         ModContent.CARVINGS.register(modBus);
         ModContent.CEREMONIES.register(modBus);
 
-        modBus.register(ModItems.class);
-        modBus.register(ModEntityTypes.class);
-        modBus.register(RegistryApiImpl.class);
-        modBus.addListener(ModContent::registerCustomWoodTypes);
-        modBus.addListener(ModBlocks::addCedarSignToSignBlockEntityType);
-
-        modBus.addListener(TotemBaseBlockEntity::registerCapability);
+        modBus.addListener(ModItems::init);
         modBus.addListener(ModCriteriaTriggers::init);
+        modBus.addListener(ModEntityTypes::registerAttributes);
+        modBus.addListener(RegistryApiImpl::registerRegistries);
+        modBus.addListener(ModContent::registerCustomWoodTypes);
+
+        modBus.addListener(ModBlocks::addCedarSignToSignBlockEntityType);
+        modBus.addListener(TotemBaseBlockEntity::registerCapability);
         modBus.addListener(NetworkHandler::init);
 
         if(FMLEnvironment.dist.isClient()) {
@@ -86,8 +86,6 @@ public final class Totemic {
             ModBlocks.addPlantsToFlowerPot();
             ModBlocks.setFireInfo();
         });
-
-        //PatchouliIntegration.init();
 
         IEventBus eventBus = NeoForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);

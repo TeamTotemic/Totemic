@@ -1,7 +1,5 @@
 package pokefenn.totemic.block.totem.entity;
 
-import javax.annotation.Nonnull;
-
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -24,7 +22,7 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
         return false;
     }
 
-    public void addSelector(@Nonnull Entity entity, MusicInstrument instr) { }
+    public void addSelector(Entity entity, MusicInstrument instr) { }
 
     @Override
     public Vec3 getPosition() {

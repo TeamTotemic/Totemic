@@ -17,7 +17,7 @@ import net.neoforged.neoforge.common.util.INBTSerializable;
  * The CeremonyInstance object may be used to keep track of internal state for the duration of the ceremony. If, however, your ceremony is
  * stateless, it is encouraged to reuse one object for all performances of the ceremony.
  */
-public interface CeremonyInstance extends INBTSerializable<Tag> {
+public interface CeremonyInstance extends INBTSerializable<Tag> { //TODO: Consider renaming this class, e.g. to "CeremonyEffect"
     /**
      * Peforms the ceremony's effect at the given Totem Base position.
      * <p>

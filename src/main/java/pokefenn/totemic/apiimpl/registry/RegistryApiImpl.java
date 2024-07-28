@@ -2,7 +2,6 @@ package pokefenn.totemic.apiimpl.registry;
 
 import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Registry;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegistryBuilder;
 import pokefenn.totemic.Totemic;
@@ -20,7 +19,6 @@ public enum RegistryApiImpl implements RegistryAPI {
     private static final DefaultedRegistry<TotemCarving> TOTEM_CARVING = (DefaultedRegistry<TotemCarving>) new RegistryBuilder<>(TOTEM_CARVING_REGISTRY).defaultKey(Totemic.resloc("none")).sync(true).create();
     private static final Registry<Ceremony> CEREMONY = new RegistryBuilder<>(CEREMONY_REGISTRY).sync(false).create();
 
-    @SubscribeEvent
     public static void registerRegistries(NewRegistryEvent event) {
         event.register(MUSIC_INSTRUMENT);
         event.register(WOOD_TYPE);

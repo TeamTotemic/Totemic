@@ -94,7 +94,6 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
                 .forEach(WindChimeBlockEntity::tryUncongest);
     }
 
-    @SuppressWarnings("null")
     private void playSelector(Level level, BlockPos pos, Player player) {
         TotemicAPI.get().music().playSelector(level, pos, player, ModContent.wind_chime.get());
     }

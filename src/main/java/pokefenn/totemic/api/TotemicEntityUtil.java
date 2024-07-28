@@ -62,7 +62,7 @@ public final class TotemicEntityUtil {
     /**
      * Returns a Stream of the players that intersect the given AABB and satisfy the filter.
      *
-     * @param filter the filter predicate. Must not be {@code null}.
+     * @param filter the filter predicate. Must not be {@code null}. Note that spectating players are not filtered out by default.
      */
     public static Stream<? extends Player> getPlayersIn(Level level, AABB aabb, Predicate<? super Player> filter) {
         level.getProfiler().incrementCounter("totemic.getPlayersIn");

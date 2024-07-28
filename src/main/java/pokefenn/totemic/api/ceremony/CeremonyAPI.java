@@ -32,5 +32,5 @@ public interface CeremonyAPI {
      * @param box    the BoundingBox to iterate over
      * @param action the action to be performed for each position and the BlockState at that position
      */
-    void forEachBlockIn(Level level, BoundingBox box, BiConsumer<BlockPos, BlockState> action);
+    void forEachBlockIn(Level level, BoundingBox box, BiConsumer<BlockPos, BlockState> action); //TODO: Is this a good place for this method?
 }

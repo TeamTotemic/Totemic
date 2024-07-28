@@ -3,7 +3,6 @@ package pokefenn.totemic.apiimpl.music;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
@@ -32,7 +31,7 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public void playMusic(@Nonnull Entity entity, MusicInstrument instr) {
+    public void playMusic(Entity entity, MusicInstrument instr) {
         playMusic(entity.level(), entity.position(), entity, instr, DEFAULT_RANGE, instr.getBaseOutput());
     }
 
@@ -50,7 +49,7 @@ public enum MusicApiImpl implements MusicAPI {
         level.getProfiler().push("totemic.playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         List<MusicAcceptor> list = BlockUtil.getBlockEntitiesInRange(null, level, BlockPos.containing(pos), range)
-                .map(tile -> TotemicCapabilities.MUSIC_ACCEPTOR.getCapability(level, tile.getBlockPos(), tile.getBlockState(), tile, null)) //TODO: Consider using BlockCapabilityCache
+                .map(tile -> level.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR, tile.getBlockPos(), tile.getBlockState(), tile)) //TODO: Consider using BlockCapabilityCache
                 .filter(acc -> acc != null && acc.canAcceptMusic(instr))
                 .collect(MiscUtil.collectMaxElements(Comparator.comparing(MusicAcceptor::getPriority)));
 
@@ -65,22 +64,22 @@ public enum MusicApiImpl implements MusicAPI {
     }
 
     @Override
-    public void playSelector(Level level, Vec3 pos, @Nonnull Entity entity, MusicInstrument instr) {
+    public void playSelector(Level level, Vec3 pos, Entity entity, MusicInstrument instr) {
         playSelector(level, pos, entity, instr, DEFAULT_RANGE);
     }
 
     @Override
-    public void playSelector(@Nonnull Entity entity, MusicInstrument instr) {
+    public void playSelector(Entity entity, MusicInstrument instr) {
         playSelector(entity.level(), entity.position(), entity, instr, DEFAULT_RANGE);
     }
 
     @Override
-    public void playSelector(Level level, BlockPos pos, @Nonnull Entity entity, MusicInstrument instr) {
+    public void playSelector(Level level, BlockPos pos, Entity entity, MusicInstrument instr) {
         playSelector(level, Vec3.atCenterOf(pos), entity, instr);
     }
 
     @Override
-    public void playSelector(Level level, Vec3 pos, @Nonnull Entity entity, MusicInstrument instr, int range) {
+    public void playSelector(Level level, Vec3 pos, Entity entity, MusicInstrument instr, int range) {
         playInstrumentSound(level, pos, entity, instr);
         if(level.isClientSide)
             return;

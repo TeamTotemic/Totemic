@@ -3,7 +3,6 @@ package pokefenn.totemic.block.totem.entity;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Multiset.Entry;
@@ -93,7 +92,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
-    public void addSelector(@Nonnull Entity entity, MusicInstrument instr) {
+    public void addSelector(Entity entity, MusicInstrument instr) {
         var newState = new StateSelection(tile, this);
         newState.addSelector(entity, instr);
         tile.setTotemState(newState);

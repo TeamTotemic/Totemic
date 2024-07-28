@@ -32,7 +32,7 @@ public interface MusicAcceptor {
     MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity);
 
     /**
-     * Returns the position of this acceptor. Particles will be spawned at this location.
+     * Returns the position of this acceptor. Used for particle spawning.
      *
      * @see Vec3#atCenterOf(net.minecraft.core.Vec3i)
      */

@@ -5,8 +5,6 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang3.Validate;
-
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -52,17 +50,6 @@ public final class Ceremony {
      */
     public Ceremony(int musicNeeded, int maxStartupTime, Supplier<CeremonyInstance> factory, Supplier<MusicInstrument> selector1, Supplier<MusicInstrument> selector2) {
         this(musicNeeded, maxStartupTime, factory, selector1.get(), selector2.get());
-    }
-
-    /**
-     * Varargs form of {@link Ceremony#Ceremony(int, int, Supplier, MusicInstrument, MusicInstrument)}.
-     * Usually doesn't need to be used since at the moment Ceremonies must have exactly two selectors.
-     */
-    @Deprecated
-    public Ceremony(int musicNeeded, int maxStartupTime, Supplier<CeremonyInstance> factory, MusicInstrument... selectors) {
-        this(musicNeeded, maxStartupTime, factory, selectors[0], selectors[1]);
-        Validate.inclusiveBetween(CeremonyAPI.MIN_SELECTORS, CeremonyAPI.MAX_SELECTORS, selectors.length,
-                "Invalid number of Cermeony selectors (must be between CeremonyAPI.MIN_SELECTORS and CeremonyAPI.MAX_SELECTORS)");
     }
 
     /**

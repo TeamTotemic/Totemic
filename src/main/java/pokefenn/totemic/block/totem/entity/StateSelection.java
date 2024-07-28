@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.HolderLookup.Provider;
@@ -52,7 +51,7 @@ public final class StateSelection extends TotemState {
     }
 
     @Override
-    public void addSelector(@Nonnull Entity entity, MusicInstrument instr) {
+    public void addSelector(Entity entity, MusicInstrument instr) {
         MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.NOTE, tile.getLevel(), getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.FIREWORK, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
         selectors.add(instr);
@@ -74,7 +73,7 @@ public final class StateSelection extends TotemState {
         }
     }
 
-    private static boolean isDisabled(Ceremony ceremony, @Nonnull Entity entity) {
+    private static boolean isDisabled(Ceremony ceremony, Entity entity) {
         if(TotemicConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
             entity.sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
             return true;

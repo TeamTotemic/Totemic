@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import pokefenn.totemic.api.TotemicAPI;
@@ -42,7 +41,6 @@ public final class ModEntityTypes {
             .updateInterval(20)
             .build("invisible_arrow"));
 
-    @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(buffalo.get(), Buffalo.createAttributes().build());
         event.put(bald_eagle.get(), BaldEagle.createAttributes().build());
