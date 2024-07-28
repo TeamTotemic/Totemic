@@ -21,6 +21,8 @@ public final class TotemicConfig {
         public final ConfigValue<List<? extends Config>> customTotemWoodTypes;
 
         Startup(ModConfigSpec.Builder builder) {
+            //TODO: See if/how this can be made to work with the config GUI
+
             //The default value will be a list containing an empty table, rather than an empty list, to make the TOML syntax for lists of tables clearer to users.
             //The default TOML file will then contain "[[customTotemWoodTypes]]" rather than "customTotemWoodTypes = []".
             var emptyConfig = Config.wrap(Map.of(), InMemoryFormat.defaultInstance());
@@ -50,8 +52,8 @@ public final class TotemicConfig {
                                 woodColor = 53  #optional
                                 barkColor = 54  #optional""")
                     .translation("totemic.config.customTotemWoodTypes")
-                    .worldRestart()
-                    .defineList(List.of("customTotemWoodTypes"), () -> List.of(emptyConfig), o -> o instanceof Config);
+                    .gameRestart()
+                    .defineList("customTotemWoodTypes", () -> List.of(emptyConfig), () -> emptyConfig, o -> o instanceof Config);
         }
     }
 
@@ -90,14 +92,14 @@ public final class TotemicConfig {
                     .comment("Example: [\"totemic:rain\", \"totemic:drought\"]")
                     .comment("See the Totempedia with advanced tooltips enabled (F3+H) to look up the Ceremonies' IDs.")
                     .translation("totemic.config.disabledCeremonies")
-                    .defineListAllowEmpty(List.of("disabledCeremonies"), List::of, isValidRegistryKey(TotemicAPI.get().registry().ceremonies()));
+                    .defineListAllowEmpty("disabledCeremonies", List::of, () -> "", isValidRegistryKey(TotemicAPI.get().registry().ceremonies()));
 
             disabledTotemCarvings = builder
                     .comment("List of Totem Carvings that should be disabled from being carved.")
                     .comment("Example: [\"totemic:spider\"]")
                     .comment("Use advanced tooltips (F3+H) to look up the Totem Carvings' IDs.")
                     .translation("totemic.config.disabledTotemCarvings")
-                    .defineListAllowEmpty(List.of("disabledTotemCarvings"), List::of, isValidRegistryKey(TotemicAPI.get().registry().totemCarvings()));
+                    .defineListAllowEmpty("disabledTotemCarvings", List::of, () -> "", isValidRegistryKey(TotemicAPI.get().registry().totemCarvings()));
         }
     }
 
