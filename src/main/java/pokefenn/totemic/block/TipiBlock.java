@@ -57,8 +57,8 @@ public class TipiBlock extends HorizontalDirectionalBlock {
 
     @Override
     public Optional<RespawnPosAngle> getRespawnPosition(BlockState state, EntityType<?> type, LevelReader levelReader, BlockPos pos, float orientation) {
-        //FIXME: Need to implement this
-        return super.getRespawnPosition(state, type, levelReader, pos, orientation);
+        var facing = state.getValue(FACING).getOpposite();
+        return Optional.of(new RespawnPosAngle(Vec3.upFromBottomCenterOf(pos, 0.0625), facing.toYRot()));
     }
 
     @Override
