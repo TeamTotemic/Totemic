@@ -20,13 +20,13 @@ public class TotemTorchBlock extends TorchBlock {
 
     @Override
     public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
-        double x = pPos.getX() + 0.5D;
-        double y = pPos.getY() + 1.0D;
-        double z = pPos.getZ() + 0.5D;
+        double x = pPos.getX() + 0.5;
+        double y = pPos.getY() + 1.0;
+        double z = pPos.getZ() + 0.5;
         for(int i = 0; i < 2; i++)
-            pLevel.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0D, 0.0D, 0.0D);
+            pLevel.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0, 0.0, 0.0);
         for(int i = 0; i < 2; i++)
-            pLevel.addParticle(this.flameParticle, x, y, z, 0.0D, 0.0D, 0.0D);
+            pLevel.addParticle(this.flameParticle, x, y, z, 0.0, 0.0, 0.0);
     }
 
     @Override

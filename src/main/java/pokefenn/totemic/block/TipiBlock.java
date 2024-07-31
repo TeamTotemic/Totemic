@@ -42,8 +42,8 @@ public class TipiBlock extends HorizontalDirectionalBlock {
 
     public static final BooleanProperty OCCUPIED = BedBlock.OCCUPIED;
 
-    private static final VoxelShape SHAPE = Shapes.box(0, 0, 0, 1, 0.0625, 1);
-    private static final VoxelShape VISUAL_SHAPE = Shapes.box(-1, 0, -1, 2, 6.25, 2);
+    private static final VoxelShape SHAPE = Shapes.box(0, 0, 0,  1, 0.0625, 1);
+    private static final VoxelShape VISUAL_SHAPE = Shapes.box(-1, 0, -1,  2, 6.25, 2);
 
     public TipiBlock(Properties pProperties) {
         super(pProperties);

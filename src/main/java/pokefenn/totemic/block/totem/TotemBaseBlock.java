@@ -57,7 +57,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape SHAPE = Shapes.or(Shapes.box(0.0, 0.0, 0.0,  1.0, 0.28125, 1.0), Shapes.box(0.125, 0.28125, 0.125,  0.875, 1.0, 0.875));
+    private static final VoxelShape SHAPE = Shapes.or(Block.box(0, 0, 0,  16, 4.5, 16), Shapes.box(2, 4.5, 2,  14, 16, 14));
 
     public TotemBaseBlock(Properties properties) {
         super(properties);
@@ -79,29 +79,31 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
 
         level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
         .ifPresent(tile -> {
-            if(tile.getTotemState() instanceof StateTotemEffect state) {
+            switch(tile.getTotemState()) {
+            case StateTotemEffect state -> {
                 player.displayClientMessage(Component.translatable("totemic.isDoingNoCeremony"), false);
                 if(Minecraft.getInstance().options.advancedItemTooltips)
                     player.displayClientMessage(Component.translatable("totemic.totemEffectMusic", state.getTotemEffectMusic(), TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC).withStyle(ChatFormatting.GRAY), false);
             }
-            else if(tile.getTotemState() instanceof StateSelection state) {
+            case StateSelection state -> {
                 String selectors = state.getSelectors().stream()
                         .map(instr -> instr.getDisplayName().getString())
                         .collect(Collectors.joining(", "));
                 player.displayClientMessage(Component.translatable("totemic.isDoingSelection", selectors), false);
             }
-            else if(tile.getTotemState() instanceof StateStartup state) {
+            case StateStartup state -> {
                 player.displayClientMessage(Component.translatable("totemic.isDoingStartup", state.getCeremony().getDisplayName()), false);
             }
-            else if(tile.getTotemState() instanceof StateCeremonyEffect state) {
+            case StateCeremonyEffect state -> {
                 player.displayClientMessage(Component.translatable("totemic.isDoingCeremony", state.getCeremony().getDisplayName()), false);
+            }
             }
         });
         return ItemInteractionResult.SUCCESS;
     }
 
     @Override
-    public void attack(BlockState state, Level level, BlockPos pos, Player player) {
+    protected void attack(BlockState state, Level level, BlockPos pos, Player player) {
         if(player.getMainHandItem().getItem() == ModItems.totemic_staff.get()) {
             level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
                     .ifPresent(TotemBaseBlockEntity::resetTotemState);
@@ -114,13 +116,13 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if(facing == Direction.UP) {
             level.getBlockEntity(currentPos, ModBlockEntities.totem_base.get())
                     .ifPresent(TotemBaseBlockEntity::onPoleChange);
         }
         BlockUtil.scheduleWaterloggedTick(state, currentPos, level);
-        return state;
+        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
     }
 
     @Override
@@ -137,12 +139,12 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public boolean hasAnalogOutputSignal(BlockState state) {
+    protected boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
     @Override
-    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         return level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
                 .map(base -> base.getTotemState().getAnalogOutputSignal())
                 .orElse(0);
@@ -161,22 +163,22 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
+    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
         return Shapes.empty();
     }
 
     @Override
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
         return false;
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    protected FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
@@ -210,15 +212,4 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }
-
-    /*@Override
-    public void appendHoverText(ItemStack pStack, Item.TooltipContext context, List<Component> pTooltip, TooltipFlag pFlag) {
-        if(pFlag.isAdvanced()) {
-            var woodTypeID = Optional.ofNullable(pStack.getTag())
-                    .map(tag -> tag.getString(TotemPoleItem.POLE_WOOD_KEY))
-                    .filter(str -> !str.isEmpty())
-                    .orElse("totemic:oak");
-            pTooltip.add(Component.translatable("totemic.woodTypeIdTooltip", woodTypeID).withStyle(ChatFormatting.GRAY));
-        }
-    }*/
 }

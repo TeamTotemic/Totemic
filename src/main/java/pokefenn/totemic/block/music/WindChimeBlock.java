@@ -40,7 +40,7 @@ import pokefenn.totemic.util.BlockUtil;
 public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape SHAPE = Shapes.box(0.25F, 0.0F, 0.25F, 0.75F, 1F, 0.75F);
+    private static final VoxelShape SHAPE = Block.box(4, 0, 4,  12, 16, 12);
 
     public WindChimeBlock(Properties pProperties) {
         super(pProperties);
@@ -48,17 +48,18 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+    protected BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+        BlockUtil.scheduleWaterloggedTick(pState, pCurrentPos, pLevel);
+
         if(pDirection == Direction.UP && !canSurvive(pState, pLevel, pCurrentPos))
             return Blocks.AIR.defaultBlockState();
-        else {
-            BlockUtil.scheduleWaterloggedTick(pState, pCurrentPos, pLevel);
-            return pState;
-        }
+        else
+            return super.updateShape(pState, pDirection, pNeighborState, pLevel, pCurrentPos, pNeighborPos);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         var above = level.getBlockState(pos.above());
         var below = level.getBlockState(pos.below());
         return !below.isSolid()
@@ -66,7 +67,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
+    protected void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         pLevel.getBlockEntity(pPos, ModBlockEntities.wind_chime.get())
         .ifPresent(e -> e.setNotPlaying());
     }
@@ -82,13 +83,13 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    public void attack(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
+    protected void attack(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
         if(pPlayer.isShiftKeyDown())
             playSelector(pLevel, pPos, pPlayer);
     }
 
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+    protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
         BlockUtil.getBlockEntitiesInRange(ModBlockEntities.wind_chime.get(), pLevel, pPos, WindChimeBlockEntity.CONGESTION_RANGE)
                 .forEach(WindChimeBlockEntity::tryUncongest);
@@ -99,7 +100,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    public boolean triggerEvent(BlockState pState, Level pLevel, BlockPos pPos, int pId, int pParam) {
+    protected boolean triggerEvent(BlockState pState, Level pLevel, BlockPos pPos, int pId, int pParam) {
         BlockEntity blockentity = pLevel.getBlockEntity(pPos);
         return blockentity != null && blockentity.triggerEvent(pId, pParam);
     }
@@ -116,7 +117,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    protected RenderShape getRenderShape(BlockState pState) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
@@ -132,27 +133,27 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
+    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
         return Shapes.empty();
     }
 
     @Override
-    public VoxelShape getBlockSupportShape(BlockState pState, BlockGetter pReader, BlockPos pPos) {
+    protected VoxelShape getBlockSupportShape(BlockState pState, BlockGetter pReader, BlockPos pPos) {
         return Shapes.empty(); //Prevents the wind chime from being able to support bells, other wind chimes, etc. at the bottom
     }
 
     @Override
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
         return !state.getValue(WATERLOGGED);
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    protected FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 }

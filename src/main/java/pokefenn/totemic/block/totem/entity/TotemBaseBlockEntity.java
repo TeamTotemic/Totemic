@@ -155,7 +155,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag, Provider registries) {
+    protected void loadAdditional(CompoundTag tag, Provider registries) {
         super.loadAdditional(tag, registries);
         woodTypeLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Wood")), ModContent.oak.getId());
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
@@ -164,7 +164,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
         woodType = optWood.orElseGet(ModContent.oak);
         requestModelDataUpdate();
 
-        if(tag.contains("State", Tag.TAG_ANY_NUMERIC)) {
+        if(tag.contains("State", Tag.TAG_BYTE)) {
             byte id = tag.getByte("State");
             if(id != state.getID())
                 state = TotemState.fromID(id, this);

@@ -32,7 +32,7 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty PLAYED = BooleanProperty.create("played");
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape SHAPE = Shapes.box(3F/16, 0F/16, 3F/16, 13F/16, 13F/16, 13F/16);
+    private static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 13, 13);
 
     public DrumBlock(Properties props) {
         super(props);
@@ -46,7 +46,7 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public void attack(BlockState state, Level level, BlockPos pos, Player player) {
+    protected void attack(BlockState state, Level level, BlockPos pos, Player player) {
         playMusic(state, level, pos, player);
     }
 
@@ -69,7 +69,7 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+    protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
         level.setBlock(pos, state.setValue(PLAYED, false), UPDATE_ALL);
     }
 
@@ -85,28 +85,28 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
+    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
         return Shapes.empty();
     }
 
     @Override
-    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
+    protected BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
         BlockUtil.scheduleWaterloggedTick(pState, pCurrentPos, pLevel);
-        return pState;
+        return super.updateShape(pState, pDirection, pNeighborState, pLevel, pCurrentPos, pNeighborPos);
     }
 
     @Override
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
         return !state.getValue(WATERLOGGED);
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    protected FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 }

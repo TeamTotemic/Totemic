@@ -42,7 +42,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape SHAPE = Shapes.box(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
+    private static final VoxelShape SHAPE = Block.box(2, 0, 2,  14, 16, 14);
 
     public TotemPoleBlock(Properties properties) {
         super(properties);
@@ -55,13 +55,13 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
         if(facing == Direction.UP) {
             findTotemBase(level, currentPos)
                     .ifPresent(TotemBaseBlockEntity::onPoleChange);
         }
         BlockUtil.scheduleWaterloggedTick(state, currentPos, level);
-        return state;
+        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
     }
 
     @Override
@@ -94,22 +94,22 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
+    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
         return Shapes.empty();
     }
 
     @Override
-    public boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
         return !state.getValue(WATERLOGGED);
     }
 
     @Override
-    public FluidState getFluidState(BlockState state) {
+    protected FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
@@ -160,20 +160,4 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }
-
-    /*@Override
-    public void appendHoverText(ItemStack pStack, Item.TooltipContext context, List<Component> pTooltip, TooltipFlag pFlag) {
-        if(pFlag.isAdvanced()) {
-            var carvingID = Optional.ofNullable(pStack.getTag())
-                    .map(tag -> tag.getString(TotemPoleItem.POLE_CARVING_KEY))
-                    .filter(str -> !str.isEmpty())
-                    .orElse("totemic:none");
-            var woodTypeID = Optional.ofNullable(pStack.getTag())
-                    .map(tag -> tag.getString(TotemPoleItem.POLE_WOOD_KEY))
-                    .filter(str -> !str.isEmpty())
-                    .orElse("totemic:oak");
-            pTooltip.add(Component.translatable("totemic.carvingIdTooltip", carvingID).withStyle(ChatFormatting.GRAY));
-            pTooltip.add(Component.translatable("totemic.woodTypeIdTooltip", woodTypeID).withStyle(ChatFormatting.GRAY));
-        }
-    }*/
 }

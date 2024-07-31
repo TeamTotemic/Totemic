@@ -46,7 +46,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag, Provider registries) {
+    protected void loadAdditional(CompoundTag tag, Provider registries) {
         super.loadAdditional(tag, registries);
         woodTypeLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Wood")), ModContent.oak.getId());
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
@@ -62,7 +62,6 @@ public class TotemPoleBlockEntity extends BlockEntity {
         requestModelDataUpdate();
     }
 
-    //TODO: Do we need update packets? The block will usually not change after being placed
     @Override
     public CompoundTag getUpdateTag(Provider registries) {
         return saveWithoutMetadata(registries);

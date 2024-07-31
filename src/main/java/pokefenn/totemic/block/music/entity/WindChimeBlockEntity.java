@@ -138,7 +138,7 @@ public class WindChimeBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void loadAdditional(CompoundTag tag, Provider registries) {
+    protected void loadAdditional(CompoundTag tag, Provider registries) {
         super.loadAdditional(tag, registries);
         if(tag.contains("PlayingTime"))
             playingTimeLeft = tag.getInt("PlayingTime");
