@@ -21,7 +21,7 @@
                 },
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 1
+                    "tintindex": 5592405
                 },
                 "south": {
                     "texture": "#wood"
@@ -185,7 +185,7 @@
             "faces": {
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 1
+                    "tintindex": 5592405
                 }
             }
         }

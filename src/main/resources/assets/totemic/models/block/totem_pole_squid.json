@@ -22,7 +22,7 @@
                 "north": {
                     "uv": [4.0,4.0,14.0,13.0],
                     "texture": "#wood",
-                    "tintindex": 1
+                    "tintindex": 5592405
                 },
                 "south": {
                     "texture": "#wood"

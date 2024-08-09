@@ -128,16 +128,6 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         return new TotemPoleBlockEntity(pPos, pState);
     }
 
-    public static int getBlockColor(int tintIndex) {
-        return switch(tintIndex) {
-        case 1 -> 0x555555; //Black
-        case 2 -> 0xAA5555; //Red
-        case 3 -> 0xAA55EE; //Purple
-        case 4 -> 0xBBBB66; //Yellow
-        default -> -1;
-        };
-    }
-
     @Override
     public MapColor getMapColor(BlockState state, BlockGetter level, BlockPos pos, MapColor defaultColor) {
         return level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
