@@ -9,7 +9,6 @@ import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.client.model.totem.TotemBaseModel;
 import pokefenn.totemic.client.model.totem.TotemPoleModel;
@@ -21,12 +20,13 @@ import pokefenn.totemic.init.ModBlocks;
 public class ClientInitHandlers {
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        event.register((state, tintGetter, pos, tintIndex) -> TotemPoleBlock.getBlockColor(tintIndex), ModBlocks.totem_pole.get());
+        //Directly use the tint index as color
+        event.register((state, tintGetter, pos, tintIndex) -> tintIndex, ModBlocks.totem_pole.get());
     }
 
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, tintIndex) -> TotemPoleBlock.getBlockColor(tintIndex), ModBlocks.totem_pole.get());
+        event.register((stack, tintIndex) -> tintIndex, ModBlocks.totem_pole.get());
     }
 
     @SubscribeEvent
