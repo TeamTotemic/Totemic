@@ -2,9 +2,12 @@ package pokefenn.totemic.ceremony;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -66,5 +69,15 @@ public enum DanseMacabreCeremony implements CeremonyInstance {
     @Override
     public int getEffectTime() {
         return 45 * 20;
+    }
+
+    @Override
+    public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
+        if(level.getDifficulty() == Difficulty.PEACEFUL) {
+            initiator.sendSystemMessage(Component.translatable("totemic.cantUseDanseMacabreOnPeaceful"));
+            return false;
+        }
+        else
+            return true;
     }
 }

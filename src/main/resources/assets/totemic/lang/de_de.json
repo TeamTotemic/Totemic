@@ -161,6 +161,7 @@
   "totemic.noParrotsNearby": "Die Adltertanz-Zeremonie benötigt Papageien in der Nähe",
   "totemic.noZombifiedMonstersNearby": "Die Zeremonie Steves Schlaflied benötigt geschwächte zombifizierte Monster in der Nähe",
   "totemic.cantSpawnBaykokOnPeaceful": "Baykok kann nicht in der Schwierigkeitsstufe Friedlich herbeigerufen werden",
+  "totemic.cantUseDanseMacabreOnPeaceful": "Die Danse-Macabre-Zeremonie kann nicht in der Schwierigkeitsstufe Friedlich durchgeführt werden",
   
   "death.attack.totemic.sunDance": "%1$s opferte sich dem Sonnengott. Das sollte nicht passieren.",
   "death.attack.totemic.sunDance.player": "%2$s opferte %1$s dem Sonnengott. Das sollte nicht passieren.",
