@@ -25,7 +25,7 @@ public enum CleansingCeremony implements CeremonyInstance {
     private static final int RANGE = 8;
 
     //Map of all conversions done by this ceremony, except ZombieVillager -> Villager, which is handled specially
-    private static final Map<EntityType<? extends Mob>, EntityType<? extends Mob>> conversions = Map.of(
+    private static final Map<EntityType<? extends Mob>, EntityType<? extends Mob>> conversions = Map.of( //TODO: Consider using e.g. a data map for that
             EntityType.ZOMBIFIED_PIGLIN, EntityType.PIGLIN,
             EntityType.ZOGLIN, EntityType.HOGLIN,
             EntityType.ZOMBIE_HORSE, EntityType.HORSE);
@@ -37,18 +37,13 @@ public enum CleansingCeremony implements CeremonyInstance {
             return;
         var aabb = TotemicEntityUtil.getAABBAround(pos, RANGE);
 
-        try {
-            var uuid = context.getInitiatingPlayer().map(Player::getUUID).orElse(null);
-            for(var zombieVillager : level.getEntities(EntityType.ZOMBIE_VILLAGER, aabb, hasWeakness)) {
-                //This method ensures the player gets all the beneficial effects for curing Zombie Villagers
-                zombieVillager.startConverting(uuid, 1);
-            }
-        }
-        catch(Throwable e) {
-            throw new RuntimeException(e);
+        var uuid = context.getInitiatingPlayer().map(Player::getUUID).orElse(null);
+        for(var zombieVillager : level.getEntities(EntityType.ZOMBIE_VILLAGER, aabb, hasWeakness)) {
+            //This method ensures the player gets all the beneficial effects for curing Zombie Villagers
+            zombieVillager.startConverting(uuid, 1);
         }
 
-        for(var mob : level.getEntitiesOfClass(Mob.class, aabb, mob -> conversions.containsKey(mob.getType()) && hasWeakness.test(mob))) {
+        for(var mob: level.getEntitiesOfClass(Mob.class, aabb, mob -> conversions.containsKey(mob.getType()) && hasWeakness.test(mob))) {
             var converted = mob.convertTo(conversions.get(mob.getType()), true);
             if(converted != null) {
                 converted.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));

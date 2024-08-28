@@ -153,10 +153,12 @@
   "totemic.isDoingCeremony": "Тотемний стовп виконує ефект церемонії\nЦеремонія: %s",
   "totemic.hud.selection": "Вибір церемонії",
 
+  "totemic.ceremonyDisabled": "The %s Ceremony has been disabled in the configuration",
   "totemic.noCowsNearby": "Церемонія танцю бізона вимагає корів поблизу",
   "totemic.noParrotsNearby": "Церемонія танцю орла вимагає папуг поблизу",
   "totemic.noZombifiedMonstersNearby": "Церемонія колискової Стіва вимагає ослаблених зомбованих монстрів поблизу",
   "totemic.cantSpawnBaykokOnPeaceful": "Байкока неможливо викликати на мирній складності",
+  "totemic.cantUseDanseMacabreOnPeaceful": "The Danse Macabre Ceremony cannot be performed on Peaceful difficulty",
 
   "death.attack.totemic.sunDance": "%1$s пожертвував себе Богу Сонця. Це не мало статися.",
   "death.attack.totemic.sunDance.player": "%2$s пожертвував %1$s Богу Сонця. Це не мало статися.",

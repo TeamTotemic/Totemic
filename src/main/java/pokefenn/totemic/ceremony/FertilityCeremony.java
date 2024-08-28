@@ -36,7 +36,7 @@ public enum FertilityCeremony implements CeremonyInstance {
         }
     }
 
-    private void transformSaplings(Level level, BlockPos pos) {
+    private static void transformSaplings(Level level, BlockPos pos) {
         BlockPos.betweenClosedStream(TotemicEntityUtil.getBoundingBoxAround(pos, SAPLING_TRANSFORM_RADIUS))
                 .filter(p -> {
                     var state = level.getBlockState(p);
@@ -49,7 +49,7 @@ public enum FertilityCeremony implements CeremonyInstance {
                 });
     }
 
-    private void breedAnimalsAndVillagers(Level level, BlockPos pos, CeremonyEffectContext context) {
+    private static void breedAnimalsAndVillagers(Level level, BlockPos pos, CeremonyEffectContext context) {
         var aabb = TotemicEntityUtil.getAABBAround(pos, RADIUS);
         for(var animal: level.getEntitiesOfClass(Animal.class, aabb, a -> a.getAge() == 0 && !a.isInLove())) {
             var itemE = findItemEntity(level, pos, animal::isFood);

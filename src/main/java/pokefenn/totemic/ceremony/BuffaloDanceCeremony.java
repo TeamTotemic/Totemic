@@ -32,7 +32,7 @@ public enum BuffaloDanceCeremony implements CeremonyInstance {
             float health = cow.getHealth() / cow.getMaxHealth() * buffalo.getMaxHealth();
             buffalo.setHealth(health);
             buffalo.setAge(Buffalo.BABY_START_AGE);
-            buffalo.setPos(cow.position());
+            buffalo.copyPosition(cow);
             if(cow.isLeashed())
                 buffalo.setLeashedTo(cow.getLeashHolder(), true);
             cow.discard();

@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Multiset.Entry;
-
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -18,7 +16,6 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemCarving;
-import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 import pokefenn.totemic.network.ClientboundPacketTotemEffectMusic;
@@ -38,7 +35,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
         long gameTime = level.getGameTime();
 
         if(gameTime % tile.getCommonTotemEffectInterval() == 0) {
-            for(Entry<TotemEffect> entry: tile.getTotemEffects().entrySet()) {
+            for(var entry: tile.getTotemEffects().entrySet()) {
                 var effect = entry.getElement();
                 if(gameTime % effect.getInterval() == 0)
                     effect.effect(level, tile.getBlockPos(), entry.getCount(), this);
@@ -62,11 +59,11 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     private void spawnParticles() {
+        var rand = tile.getLevel().getRandom();
+        var pos = getPosition();
         for(int i = 0; i < (musicAmount * 8) / TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC; i++) {
-            var rand = tile.getLevel().getRandom();
             float xoff = 2 * rand.nextFloat() - 1;
             float zoff = 2 * rand.nextFloat() - 1;
-            var pos = getPosition();
             tile.getLevel().addParticle(ParticleTypes.NOTE, pos.x + xoff, pos.y, pos.z + zoff, 0, 0.5, 0);
         }
     }

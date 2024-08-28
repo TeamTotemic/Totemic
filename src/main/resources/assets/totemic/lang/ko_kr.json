@@ -153,10 +153,12 @@
   "totemic.isDoingCeremony": "토템이 의식의 효과를 진행중입니다.\n의식: %s",
   "totemic.hud.selection": "의식 선택",
   
+  "totemic.ceremonyDisabled": "The %s Ceremony has been disabled in the configuration",
   "totemic.noCowsNearby": "The Buffalo Dance Ceremony requires Cows nearby",
   "totemic.noParrotsNearby": "The Eagle Dance Ceremony requires Parrots nearby",
   "totemic.noZombifiedMonstersNearby": "The Steve's Lullaby Ceremony requires weakened zombified monsters nearby",
   "totemic.cantSpawnBaykokOnPeaceful": "Baykok cannot be summoned on Peaceful difficulty",
+  "totemic.cantUseDanseMacabreOnPeaceful": "The Danse Macabre Ceremony cannot be performed on Peaceful difficulty",
   
   "death.attack.totemic.sunDance": "%1$s는 태양 만세를 외치다 희생되었습니다. 이건 원래 일어나서는 안되는 일입니다.",
   "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",
