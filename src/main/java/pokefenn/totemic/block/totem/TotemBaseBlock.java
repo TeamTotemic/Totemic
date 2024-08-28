@@ -57,7 +57,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape SHAPE = Shapes.or(Block.box(0, 0, 0,  16, 4.5, 16), Shapes.box(2, 4.5, 2,  14, 16, 14));
+    private static final VoxelShape SHAPE = Shapes.or(Block.box(0, 0, 0,  16, 4.5, 16), Block.box(2, 4.5, 2,  14, 16, 14));
 
     public TotemBaseBlock(Properties properties) {
         super(properties);
