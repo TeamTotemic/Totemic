@@ -8,6 +8,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.levelgen.Heightmap;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
@@ -18,8 +19,8 @@ public enum BaykokSummonCeremony implements CeremonyInstance {
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
-        if(!level.isClientSide && context.getTime() == getEffectTime()-1) {
-            level.globalLevelEvent(1023, pos, 0); //Wither spawn sound
+        if(!level.isClientSide && context.getTime() == getEffectTime() - 1) {
+            level.globalLevelEvent(LevelEvent.SOUND_WITHER_BOSS_SPAWN, pos, 0);
             var spawnPos = pos.relative(Direction.Plane.HORIZONTAL.getRandomDirection(level.random));
             spawnPos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, spawnPos);
             ModEntityTypes.baykok.get().spawn((ServerLevel) level, spawnPos, MobSpawnType.MOB_SUMMONED);

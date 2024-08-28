@@ -161,6 +161,7 @@
   "totemic.noParrotsNearby": "鹰之舞仪式附近需要有鹦鹉",
   "totemic.noZombifiedMonstersNearby": "史蒂夫摇篮曲仪式附近需要有虚弱的僵尸",
   "totemic.cantSpawnBaykokOnPeaceful": "无法在和平模式下召唤贝柯克",
+  "totemic.cantUseDanseMacabreOnPeaceful": "The Danse Macabre Ceremony cannot be performed on Peaceful difficulty",
   
   "death.attack.totemic.sunDance": "%1$s 在执行仪式的过程中发生了不测。",
   "death.attack.totemic.sunDance.player": "%2$s 向太阳神献祭了 %1$s 。这是不允许发生的事情。",

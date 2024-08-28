@@ -23,11 +23,12 @@ public enum EagleDanceCeremony implements CeremonyInstance {
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)
             return;
+
         level.getEntities(EntityType.PARROT, TotemicEntityUtil.getAABBAround(pos, RANGE), EntitySelector.ENTITY_STILL_ALIVE).stream()
         .limit(2)
         .forEach(parrot -> {
             var eagle = ModEntityTypes.bald_eagle.get().create(level);
-            eagle.setPos(parrot.position());
+            eagle.copyPosition(parrot);
             if(parrot.isLeashed())
                 eagle.setLeashedTo(parrot.getLeashHolder(), true);
             parrot.discard();

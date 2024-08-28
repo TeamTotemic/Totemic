@@ -153,10 +153,12 @@
   "totemic.isDoingCeremony": "Тотемный столб находится под эффектом от ритуала.\nритуал: %s",
   "totemic.hud.selection": "Выбор ритуала",
   
+  "totemic.ceremonyDisabled": "The %s Ceremony has been disabled in the configuration",
   "totemic.noCowsNearby": "The Buffalo Dance Ceremony requires Cows nearby",
   "totemic.noParrotsNearby": "The Eagle Dance Ceremony requires Parrots nearby",
   "totemic.noZombifiedMonstersNearby": "The Steve's Lullaby Ceremony requires weakened zombified monsters nearby",
   "totemic.cantSpawnBaykokOnPeaceful": "Baykok cannot be summoned on Peaceful difficulty",
+  "totemic.cantUseDanseMacabreOnPeaceful": "The Danse Macabre Ceremony cannot be performed on Peaceful difficulty",
   
   "death.attack.totemic.sunDance": "%1$s пожертвовал собой Богу Солнца. Этого не должно было случиться.",
   "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",

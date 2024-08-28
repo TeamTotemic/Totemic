@@ -30,8 +30,8 @@ public enum SunDanceCeremony implements CeremonyInstance {
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(!level.isClientSide) {
             TotemicEntityUtil.getPlayersIn(level, TotemicEntityUtil.getAABBAround(pos, RANGE)).forEach(player -> {
-                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 15 * 20, 3));
-                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 5 * 60 * 20, 4));
+                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 15 * 20, 3), context.getInitiator().orElse(null));
+                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 5 * 60 * 20, 4), context.getInitiator().orElse(null));
             });
         }
     }

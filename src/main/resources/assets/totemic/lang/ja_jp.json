@@ -153,10 +153,12 @@
   "totemic.isDoingCeremony": "トーテムポールは儀式の効果を発動している\n儀式：%s",
   "totemic.hud.selection": "儀式の選択",
   
+  "totemic.ceremonyDisabled": "The %s Ceremony has been disabled in the configuration",
   "totemic.noCowsNearby": "バッファローの踊りはウシが辺り必要です",
   "totemic.noParrotsNearby": "鷲の踊りはオウムが辺り必要です",
   "totemic.noZombifiedMonstersNearby": "スティーブの子守唄は弱体化したゾンビ化したモンスターが辺り必要です",
   "totemic.cantSpawnBaykokOnPeaceful": "ベイコックはピースフル難易度では召喚できません",
+  "totemic.cantUseDanseMacabreOnPeaceful": "The Danse Macabre Ceremony cannot be performed on Peaceful difficulty",
   
   "death.attack.totemic.sunDance": "%1$s sacrificed themselves to the Sun God. This is not supposed to happen.",
   "death.attack.totemic.sunDance.player": "%2$s sacrificed %1$s to the Sun God. This is not supposed to happen.",
