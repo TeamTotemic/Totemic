@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.IPlantable;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
@@ -22,8 +23,7 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
         if(context.getTime() % 7 == 0) {
             TotemicAPI.get().ceremony().forEachBlockIn(level, TotemicEntityUtil.getBoundingBoxAround(pos, RADIUS),
             (p, state) -> {
-                var block = state.getBlock();
-                if((block instanceof IPlantable || block instanceof BonemealableBlock) && state.isRandomlyTicking()) {
+                if(state.isRandomlyTicking() && state.is(TotemicBlockTags.ZAPHKIEL_WALTZ_GROWABLE)) {
                     if(level.random.nextInt(4) < 3) {
                         if(!level.isClientSide)
                             state.randomTick((ServerLevel) level, p, level.random);

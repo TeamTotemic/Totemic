@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -20,9 +21,14 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
         super(output, lookupProvider, TotemicAPI.MOD_ID, existingFileHelper);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void addTags(Provider pProvider) {
         //Totemic tags
+        tag(TotemicBlockTags.ZAPHKIEL_WALTZ_GROWABLE)
+                .addTags(BlockTags.CROPS, BlockTags.SAPLINGS, BlockTags.BEE_GROWABLES, BlockTags.MAINTAINS_FARMLAND)
+                .add(Blocks.BAMBOO_SAPLING, Blocks.BAMBOO, Blocks.CACTUS, Blocks.SUGAR_CANE, Blocks.COCOA, Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM,
+                     Blocks.NETHER_WART, Blocks.GRASS_BLOCK, Blocks.MYCELIUM, Blocks.KELP, Blocks.CAVE_VINES, Blocks.TWISTING_VINES, Blocks.VINE);
         tag(TotemicBlockTags.CEDAR_LOGS).add(ModBlocks.cedar_log.get(), ModBlocks.stripped_cedar_log.get(), ModBlocks.cedar_wood.get(), ModBlocks.stripped_cedar_wood.get());
 
         //Minecraft and Forge tags

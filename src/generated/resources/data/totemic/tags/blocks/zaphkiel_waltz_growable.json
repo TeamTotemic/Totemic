@@ -1,0 +1,22 @@
+{
+  "values": [
+    "#minecraft:crops",
+    "#minecraft:saplings",
+    "#minecraft:bee_growables",
+    "#minecraft:maintains_farmland",
+    "minecraft:bamboo_sapling",
+    "minecraft:bamboo",
+    "minecraft:cactus",
+    "minecraft:sugar_cane",
+    "minecraft:cocoa",
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom",
+    "minecraft:nether_wart",
+    "minecraft:grass_block",
+    "minecraft:mycelium",
+    "minecraft:kelp",
+    "minecraft:cave_vines",
+    "minecraft:twisting_vines",
+    "minecraft:vine"
+  ]
+}
