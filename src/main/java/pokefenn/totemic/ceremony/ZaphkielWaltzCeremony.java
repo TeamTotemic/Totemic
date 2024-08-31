@@ -4,14 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BambooStalkBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.CactusBlock;
-import net.minecraft.world.level.block.SugarCaneBlock;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
@@ -26,7 +21,7 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
         if(context.getTime() % 7 == 0) {
             TotemicAPI.get().ceremony().forEachBlockIn(level, TotemicEntityUtil.getBoundingBoxAround(pos, RADIUS),
             (p, state) -> {
-                if(isPlant(state.getBlock()) && state.isRandomlyTicking()) {
+                if(state.isRandomlyTicking() && state.is(TotemicBlockTags.ZAPHKIEL_WALTZ_GROWABLE)) {
                     if(level.random.nextInt(4) < 3) {
                         if(!level.isClientSide)
                             state.randomTick((ServerLevel) level, p, level.random);
@@ -36,15 +31,6 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
                 }
             });
         }
-    }
-
-    //TODO: We should probably use a tag for that
-    public static boolean isPlant(Block block) {
-        return block instanceof BonemealableBlock
-                || block instanceof BambooStalkBlock
-                || block instanceof BushBlock
-                || block instanceof CactusBlock
-                || block instanceof SugarCaneBlock;
     }
 
     @Override
