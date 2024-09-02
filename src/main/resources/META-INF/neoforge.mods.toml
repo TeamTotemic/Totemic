@@ -31,9 +31,9 @@ description='''${mod_description}'''
     ordering="NONE"
     side="BOTH"
 
-#[[dependencies.totemic]]
-#    modId="patchouli"
-#    type="optional"
-#    versionRange="[1.20.4-85,)"
-#    ordering="NONE"
-#    side="BOTH"
+[[dependencies.totemic]]
+    modId="patchouli"
+    type="optional"
+    versionRange="[1.21-87,)"
+    ordering="NONE"
+    side="BOTH"

@@ -86,8 +86,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE-SNAPSHOT:api"
-    runtimeOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE-SNAPSHOT"
+    compileOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE:api"
+    runtimeOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE"
 }
 
 tasks.withType(ProcessResources).configureEach {
