@@ -14,7 +14,7 @@ public class CustomRenderedBlockItem extends BlockItem {
     }
 
     @Override
-    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) { //TODO: This method is deprecated, use RegisterClientExtensionsEvent instead
         consumer.accept(new IClientItemExtensions() {
             @Override
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
