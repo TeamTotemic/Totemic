@@ -2,7 +2,6 @@
   "values": [
     "#minecraft:crops",
     "#minecraft:saplings",
-    "#minecraft:cave_vines",
     "#minecraft:bee_growables",
     "#minecraft:maintains_farmland",
     "minecraft:bamboo_sapling",
@@ -16,6 +15,7 @@
     "minecraft:grass_block",
     "minecraft:mycelium",
     "minecraft:kelp",
+    "minecraft:cave_vines",
     "minecraft:twisting_vines",
     "minecraft:vine"
   ]
