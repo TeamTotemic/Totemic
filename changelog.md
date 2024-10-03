@@ -1,5 +1,4 @@
-- Added a config option to allow adding custom wood types for Totem Poles. See the config file `totemic-common.toml` for details and examples.
-  - Note that (Neo)Forge's config system is known to spuriously reset config files to their default values in some cases. If that happens, or if wood types are removed from the config, the placed Totem Poles and Bases in the world will turn into Oak wood, but should turn back into their previous wood type when the config entries are re-added.
-- (@AlgorithmLX) Updated Russian localization
-- (@HanJiang-cn) Updated Simplified Chinese localization, including the Totempedia
-- Removed a bad link from the Rite of Spring Totempedia page
+- Added the block tag `totemic:zaphkiel_waltz_growable`, allowing customization of which blocks are affected by the Zaphkiel Waltz ceremony, like in 1.21
+  - Note that only blocks which receive random ticks are actually affected by the Zaphkiel Waltz
+- Added an error message when trying to start the Danse Macabre ceremony on Peaceful difficulty
+- A bit of code cleanup under the hood
