@@ -1,3 +1,5 @@
-// 1.21.1	2024-08-21T22:38:50.747971037	Tags for minecraft:entity_type mod id totemic
+// 1.21.1	2024-12-08T17:46:25.769381052	Tags for minecraft:entity_type mod id totemic
 b474edd64bbd378237b3b8c491de50cde424904e data/c/tags/entity_type/bosses.json
 99750aefd0385a2bfc36137c208d13626bf36e26 data/minecraft/tags/entity_type/arrows.json
+dd79f519e750876b485633e3e26baefd29fa6ccf data/totemic/tags/entity_type/buffalo_dance_targets.json
+76a9eca4a8126ef7ff60c275ffd0a2ac3ffbbbfb data/totemic/tags/entity_type/eagle_dance_targets.json
