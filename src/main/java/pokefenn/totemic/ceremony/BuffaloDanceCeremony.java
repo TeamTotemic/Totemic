@@ -1,13 +1,15 @@
 package pokefenn.totemic.ceremony;
 
+import java.util.function.Predicate;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntitySelector;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.api.TotemicEntityTypeTags;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
@@ -20,12 +22,14 @@ public enum BuffaloDanceCeremony implements CeremonyInstance {
 
     private static final int RANGE = 8;
 
+    private static final Predicate<Mob> CAN_APPLY_BUFFALO_DANCE = mob -> mob.getType().is(TotemicEntityTypeTags.BUFFALO_DANCE_TARGETS) && mob.isAlive();
+
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)
             return;
 
-        level.getEntities(EntityType.COW, TotemicEntityUtil.getAABBAround(pos, RANGE), EntitySelector.ENTITY_STILL_ALIVE).stream()
+        level.getEntitiesOfClass(Mob.class, TotemicEntityUtil.getAABBAround(pos, RANGE), CAN_APPLY_BUFFALO_DANCE).stream()
         .limit(2)
         .forEach(cow -> {
             var buffalo = ModEntityTypes.buffalo.get().create(level);
@@ -43,7 +47,7 @@ public enum BuffaloDanceCeremony implements CeremonyInstance {
 
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
-        if(level.getEntities(EntityType.COW, TotemicEntityUtil.getAABBAround(pos, RANGE), EntitySelector.ENTITY_STILL_ALIVE).isEmpty()) {
+        if(level.getEntitiesOfClass(Mob.class, TotemicEntityUtil.getAABBAround(pos, RANGE), CAN_APPLY_BUFFALO_DANCE).isEmpty()) {
             initiator.sendSystemMessage(Component.translatable("totemic.noCowsNearby"));
             return false;
         }
