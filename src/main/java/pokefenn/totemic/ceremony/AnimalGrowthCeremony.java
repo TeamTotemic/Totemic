@@ -63,6 +63,8 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
                 if(level.random.nextInt(4) == 0) {
                     MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, egg.position(), 10, new Vec3(0.5, 0.5, 0.5), 1.0);
                     var chicken = EntityType.CHICKEN.create(level);
+                    if(chicken == null)
+                        return;
                     chicken.setAge(AgeableMob.BABY_START_AGE);
                     chicken.moveTo(egg.position(), level.random.nextFloat() * 360.0F, 0.0F);
                     level.addFreshEntity(chicken);

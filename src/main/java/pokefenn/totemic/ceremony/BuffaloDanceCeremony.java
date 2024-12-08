@@ -33,6 +33,8 @@ public enum BuffaloDanceCeremony implements CeremonyInstance {
         .limit(2)
         .forEach(cow -> {
             var buffalo = ModEntityTypes.buffalo.get().create(level);
+            if(buffalo == null)
+                return;
             float health = cow.getHealth() / cow.getMaxHealth() * buffalo.getMaxHealth();
             buffalo.setHealth(health);
             buffalo.setAge(Buffalo.BABY_START_AGE);
