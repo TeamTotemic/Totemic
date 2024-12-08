@@ -32,6 +32,8 @@ public enum EagleDanceCeremony implements CeremonyInstance {
         .limit(2)
         .forEach(parrot -> {
             var eagle = ModEntityTypes.bald_eagle.get().create(level);
+            if(eagle == null)
+                return;
             eagle.copyPosition(parrot);
             if(parrot.isLeashed())
                 eagle.setLeashedTo(parrot.getLeashHolder(), true);

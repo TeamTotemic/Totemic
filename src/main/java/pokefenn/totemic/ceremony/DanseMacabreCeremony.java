@@ -53,6 +53,9 @@ public enum DanseMacabreCeremony implements CeremonyInstance {
         else
             zombie = EntityType.ZOMBIE.create(level);
 
+        if(zombie == null)
+            return;
+
         var dx = 0.25 * level.random.nextGaussian();
         var dz = 0.25 * level.random.nextGaussian();
         var yRot = 360.0F * level.random.nextFloat();
