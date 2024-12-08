@@ -4,8 +4,6 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
-import org.jetbrains.annotations.NotNull;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.nbt.CompoundTag;
@@ -91,7 +89,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
     }
 
     @Override
-    public @NotNull ModelData getModelData() {
+    public ModelData getModelData() {
         return ModelData.builder().with(TotemPoleModelData.DATA_PROPERTY, new TotemPoleModelData(woodType, carving)).build();
     }
 }

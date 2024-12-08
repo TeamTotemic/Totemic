@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -48,17 +47,17 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     }
 
     @Override
-    public @NotNull List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @NotNull RandomSource rand, @NotNull ModelData extraData, @Nullable RenderType renderType) {
+    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, RandomSource rand, ModelData extraData, @Nullable RenderType renderType) {
         return getModelFor(extraData).getQuads(state, side, rand, extraData, renderType);
     }
 
     @Override
-    public TextureAtlasSprite getParticleIcon(@NotNull ModelData data) {
+    public TextureAtlasSprite getParticleIcon(ModelData data) {
         return getModelFor(data).getParticleIcon(data);
     }
 
     @Override
-    public ChunkRenderTypeSet getRenderTypes(@NotNull BlockState state, @NotNull RandomSource rand, @NotNull ModelData data) {
+    public ChunkRenderTypeSet getRenderTypes(BlockState state, RandomSource rand, ModelData data) {
         return getModelFor(data).getRenderTypes(state, rand, data);
     }
 
@@ -68,7 +67,7 @@ public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
     }
 
     @Override
-    public @NotNull ModelData getModelData(@NotNull BlockAndTintGetter level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull ModelData modelData) {
+    public ModelData getModelData(BlockAndTintGetter level, BlockPos pos, BlockState state, ModelData modelData) {
         return modelData;
     }
 }
