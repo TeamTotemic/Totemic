@@ -25,6 +25,7 @@ public final class TotemicEntityTypeTagsProvider extends EntityTypeTagsProvider 
         //Totemic tags
         tag(TotemicEntityTypeTags.BUFFALO_DANCE_TARGETS).add(EntityType.COW);
         tag(TotemicEntityTypeTags.EAGLE_DANCE_TARGETS).add(EntityType.PARROT);
+        tag(TotemicEntityTypeTags.HYMN_OF_MATURITY_BLACKLIST); //don't add anything by default, just create the JSON file
 
         //Minecraft and Forge tags
         tag(EntityTypeTags.ARROWS).add(ModEntityTypes.invisible_arrow.get());

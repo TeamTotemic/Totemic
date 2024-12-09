@@ -18,6 +18,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicEntityTypeTags;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
@@ -40,7 +41,7 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
     }
 
     private static void growAnimals(Level level, AABB aabb) {
-        level.getEntitiesOfClass(Animal.class, aabb, Animal::isBaby)
+        level.getEntitiesOfClass(Animal.class, aabb, animal -> animal.isBaby() && !animal.getType().is(TotemicEntityTypeTags.HYMN_OF_MATURITY_BLACKLIST))
         .forEach(animal -> {
             if(level.random.nextInt(4) == 0) {
                 if(!level.isClientSide) {
@@ -56,7 +57,7 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
         });
     }
 
-    private static void hatchChickenEggs(Level level, AABB aabb) {
+    private static void hatchChickenEggs(Level level, AABB aabb) { //TODO: Introduce a data map for allowing customization of egg hatching
         if(!level.isClientSide) {
             level.getEntities(EntityType.ITEM, aabb, e -> e.getItem().is(Items.EGG))
             .forEach(egg -> {
