@@ -21,6 +21,7 @@ import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicDamageTypeTagsProvider;
+import pokefenn.totemic.data.TotemicDataMapProvider;
 import pokefenn.totemic.data.TotemicDatapackEntryProvider;
 import pokefenn.totemic.data.TotemicEntityTypeTagsProvider;
 import pokefenn.totemic.data.TotemicItemTagsProvider;
@@ -34,6 +35,7 @@ import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModDataComponents;
+import pokefenn.totemic.init.ModDataMapTypes;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModMobEffects;
@@ -63,6 +65,7 @@ public final class Totemic {
 
         modBus.addListener(ModItems::init);
         modBus.addListener(ModCriteriaTriggers::init);
+        modBus.addListener(ModDataMapTypes::init);
         modBus.addListener(ModEntityTypes::registerAttributes);
         modBus.addListener(RegistryApiImpl::registerRegistries);
         modBus.addListener(ModContent::registerCustomWoodTypes);
@@ -117,6 +120,7 @@ public final class Totemic {
         gen.addProvider(event.includeServer(), new TotemicLootTableProvider(out, lookup));
         gen.addProvider(event.includeServer(), new TotemicRecipeProvider(out, lookup));
         gen.addProvider(event.includeServer(), new TotemicDamageTypeTagsProvider(out, lookup, efh));
+        gen.addProvider(event.includeServer(), new TotemicDataMapProvider(out, lookup));
 
         gen.addProvider(event.includeClient(), new TotemicBlockStateProvider(out, efh));
     }
