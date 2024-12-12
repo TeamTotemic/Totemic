@@ -1,7 +1,6 @@
 package pokefenn.totemic.ceremony;
 
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -26,14 +25,12 @@ public enum CleansingCeremony implements CeremonyInstance {
 
     private static final int RANGE = 8;
 
-    private static final Predicate<Mob> hasWeakness = m -> m.hasEffect(MobEffects.WEAKNESS);
-
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)
             return;
         var aabb = TotemicEntityUtil.getAABBAround(pos, RANGE);
-        for(var mob: level.getEntitiesOfClass(Mob.class, aabb, mob -> getConversionTarget(mob).isPresent() && hasWeakness.test(mob))) {
+        for(var mob: level.getEntitiesOfClass(Mob.class, aabb, mob -> getConversionTarget(mob).isPresent() && mob.hasEffect(MobEffects.WEAKNESS))) {
             var targetType = getConversionTarget(mob).get();
             if(mob instanceof ZombieVillager zombieVillager && targetType == EntityType.VILLAGER) {
                 //This method ensures the player gets all the beneficial effects for curing Zombie Villagers
@@ -53,7 +50,7 @@ public enum CleansingCeremony implements CeremonyInstance {
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
         if(level.getEntitiesOfClass(Mob.class, TotemicEntityUtil.getAABBAround(pos, RANGE),
-                mob -> getConversionTarget(mob).isPresent() && hasWeakness.test(mob)).isEmpty()) {
+                mob -> getConversionTarget(mob).isPresent() && mob.hasEffect(MobEffects.WEAKNESS)).isEmpty()) {
             initiator.sendSystemMessage(Component.translatable("totemic.noZombifiedMonstersNearby"));
             return false;
         }
