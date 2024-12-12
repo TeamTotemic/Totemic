@@ -1,6 +1,6 @@
 package pokefenn.totemic.ceremony;
 
-import java.util.Map;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import net.minecraft.core.BlockPos;
@@ -17,6 +17,7 @@ import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
+import pokefenn.totemic.init.ModDataMapTypes;
 import pokefenn.totemic.util.MiscUtil;
 
 public enum CleansingCeremony implements CeremonyInstance {
@@ -24,11 +25,6 @@ public enum CleansingCeremony implements CeremonyInstance {
 
     private static final int RANGE = 8;
 
-    //Map of all conversions done by this ceremony, except ZombieVillager -> Villager, which is handled specially
-    private static final Map<EntityType<? extends Mob>, EntityType<? extends Mob>> conversions = Map.of( //TODO: Consider using e.g. a data map for that
-            EntityType.ZOMBIFIED_PIGLIN, EntityType.PIGLIN,
-            EntityType.ZOGLIN, EntityType.HOGLIN,
-            EntityType.ZOMBIE_HORSE, EntityType.HORSE);
     private static final Predicate<Mob> hasWeakness = m -> m.hasEffect(MobEffects.WEAKNESS);
 
     @Override
@@ -43,8 +39,8 @@ public enum CleansingCeremony implements CeremonyInstance {
             zombieVillager.startConverting(uuid, 1);
         }
 
-        for(var mob: level.getEntitiesOfClass(Mob.class, aabb, mob -> conversions.containsKey(mob.getType()) && hasWeakness.test(mob))) {
-            var converted = mob.convertTo(conversions.get(mob.getType()), true);
+        for(var mob: level.getEntitiesOfClass(Mob.class, aabb, mob -> getConversionTarget(mob).isPresent() && hasWeakness.test(mob))) {
+            var converted = mob.convertTo(getConversionTarget(mob).get(), true);
             if(converted != null) {
                 converted.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));
                 MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, converted.getBoundingBox().getCenter(), 10, new Vec3(0.6, 0.5, 0.6), 1.0);
@@ -55,11 +51,16 @@ public enum CleansingCeremony implements CeremonyInstance {
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
         if(level.getEntitiesOfClass(Mob.class, TotemicEntityUtil.getAABBAround(pos, RANGE),
-                mob -> (conversions.containsKey(mob.getType()) || mob.getType() == EntityType.ZOMBIE_VILLAGER) && hasWeakness.test(mob)).isEmpty()) {
+                mob -> (getConversionTarget(mob).isPresent() || mob.getType() == EntityType.ZOMBIE_VILLAGER) && hasWeakness.test(mob)).isEmpty()) {
             initiator.sendSystemMessage(Component.translatable("totemic.noZombifiedMonstersNearby"));
             return false;
         }
         else
             return true;
+    }
+
+    @SuppressWarnings("deprecation")
+    private Optional<EntityType<? extends Mob>> getConversionTarget(Mob mob) {
+        return Optional.ofNullable(mob.getType().builtInRegistryHolder().getData(ModDataMapTypes.CLEANSING_CEREMONY_CONVERSIONS));
     }
 }
