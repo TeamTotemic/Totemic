@@ -25,6 +25,7 @@ public enum CleansingCeremony implements CeremonyInstance {
 
     private static final int RANGE = 8;
 
+    @SuppressWarnings("deprecation")
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level.isClientSide)
@@ -38,10 +39,15 @@ public enum CleansingCeremony implements CeremonyInstance {
                 zombieVillager.startConverting(uuid, 1);
             }
             else {
-                var converted = mob.convertTo(targetType, true);
-                if(converted != null) {
-                    converted.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));
-                    MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, converted.getBoundingBox().getCenter(), 10, new Vec3(0.6, 0.5, 0.6), 1.0);
+                try {
+                    var converted = mob.convertTo(targetType, true);
+                    if(converted != null) {
+                        converted.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));
+                        MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, converted.getBoundingBox().getCenter(), 10, new Vec3(0.6, 0.5, 0.6), 1.0);
+                    }
+                }
+                catch(ClassCastException e) {
+                    throw new IllegalStateException("Invalid conversion target '" + targetType.builtInRegistryHolder().getRegisteredName() + "' for the cleasing ceremony, must be a Mob entity type", e);
                 }
             }
         }

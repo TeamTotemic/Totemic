@@ -21,7 +21,7 @@ public final class ModDataMapTypes {
                     .comapFlatMap(ModDataMapTypes::checkMobEntityType, Function.identity())
     ).build();
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "deprecation" })
     private static DataResult<EntityType<? extends Mob>> checkMobEntityType(EntityType<?> type) {
         /*
          * Unfortunately, due to type erasure, we can't check if the entity's type actually extends Mob.
@@ -32,10 +32,10 @@ public final class ModDataMapTypes {
                 || type == EntityType.IRON_GOLEM
                 || type == EntityType.SNOW_GOLEM
                 || type == EntityType.VILLAGER
-                || !BuiltInRegistries.ENTITY_TYPE.getKey(type).getNamespace().equals("minecraft"))
+                || !BuiltInRegistries.ENTITY_TYPE.getKey(type).getNamespace().equals("minecraft") && type != ModEntityTypes.invisible_arrow.get())
             return DataResult.success((EntityType<? extends Mob>) type);
         else
-            return DataResult.error(() -> "Invalid conversion target for the cleasing ceremony, must be a Mob entity type");
+            return DataResult.error(() -> "Invalid conversion target '" + type.builtInRegistryHolder().getRegisteredName() + "' for the cleasing ceremony, must be a Mob entity type");
     }
 
     public static void init(RegisterDataMapTypesEvent event) {
