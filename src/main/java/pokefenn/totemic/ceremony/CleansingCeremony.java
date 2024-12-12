@@ -11,6 +11,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -32,18 +33,19 @@ public enum CleansingCeremony implements CeremonyInstance {
         if(level.isClientSide)
             return;
         var aabb = TotemicEntityUtil.getAABBAround(pos, RANGE);
-
-        var uuid = context.getInitiatingPlayer().map(Player::getUUID).orElse(null);
-        for(var zombieVillager : level.getEntities(EntityType.ZOMBIE_VILLAGER, aabb, hasWeakness)) {
-            //This method ensures the player gets all the beneficial effects for curing Zombie Villagers
-            zombieVillager.startConverting(uuid, 1);
-        }
-
         for(var mob: level.getEntitiesOfClass(Mob.class, aabb, mob -> getConversionTarget(mob).isPresent() && hasWeakness.test(mob))) {
-            var converted = mob.convertTo(getConversionTarget(mob).get(), true);
-            if(converted != null) {
-                converted.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));
-                MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, converted.getBoundingBox().getCenter(), 10, new Vec3(0.6, 0.5, 0.6), 1.0);
+            var targetType = getConversionTarget(mob).get();
+            if(mob instanceof ZombieVillager zombieVillager && targetType == EntityType.VILLAGER) {
+                //This method ensures the player gets all the beneficial effects for curing Zombie Villagers
+                var uuid = context.getInitiatingPlayer().map(Player::getUUID).orElse(null);
+                zombieVillager.startConverting(uuid, 1);
+            }
+            else {
+                var converted = mob.convertTo(targetType, true);
+                if(converted != null) {
+                    converted.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));
+                    MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, converted.getBoundingBox().getCenter(), 10, new Vec3(0.6, 0.5, 0.6), 1.0);
+                }
             }
         }
     }
@@ -51,7 +53,7 @@ public enum CleansingCeremony implements CeremonyInstance {
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
         if(level.getEntitiesOfClass(Mob.class, TotemicEntityUtil.getAABBAround(pos, RANGE),
-                mob -> (getConversionTarget(mob).isPresent() || mob.getType() == EntityType.ZOMBIE_VILLAGER) && hasWeakness.test(mob)).isEmpty()) {
+                mob -> getConversionTarget(mob).isPresent() && hasWeakness.test(mob)).isEmpty()) {
             initiator.sendSystemMessage(Component.translatable("totemic.noZombifiedMonstersNearby"));
             return false;
         }

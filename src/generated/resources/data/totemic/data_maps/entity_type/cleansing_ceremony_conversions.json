@@ -2,6 +2,7 @@
   "values": {
     "minecraft:zoglin": "minecraft:hoglin",
     "minecraft:zombie_horse": "minecraft:horse",
+    "minecraft:zombie_villager": "minecraft:villager",
     "minecraft:zombified_piglin": "minecraft:piglin"
   }
 }

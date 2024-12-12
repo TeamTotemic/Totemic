@@ -16,8 +16,8 @@ public class TotemicDataMapProvider extends DataMapProvider {
     @SuppressWarnings("deprecation")
     @Override
     protected void gather() {
-        //The conversion ZombieVillager -> Villager is handled specially
         builder(ModDataMapTypes.CLEANSING_CEREMONY_CONVERSIONS)
+                .add(EntityType.ZOMBIE_VILLAGER.builtInRegistryHolder(),  EntityType.VILLAGER, false)
                 .add(EntityType.ZOMBIFIED_PIGLIN.builtInRegistryHolder(), EntityType.PIGLIN, false)
                 .add(EntityType.ZOGLIN.builtInRegistryHolder(),           EntityType.HOGLIN, false)
                 .add(EntityType.ZOMBIE_HORSE.builtInRegistryHolder(),     EntityType.HORSE, false);
