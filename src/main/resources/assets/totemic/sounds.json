@@ -31,5 +31,13 @@
     "sounds": [
       {"name": "totemic:bald_eagle/death", "volume": 0.7}
     ]
-  }
+  },
+  "silentnight0": {"sounds": ["totemic:silentnight0"]},
+  "silentnight1": {"sounds": ["totemic:silentnight1"]},
+  "silentnight2": {"sounds": ["totemic:silentnight2"]},
+  "silentnight3": {"sounds": ["totemic:silentnight3"]},
+  "silentnight4": {"sounds": ["totemic:silentnight4"]},
+  "silentnight5": {"sounds": ["totemic:silentnight5"]},
+  "silentnight6": {"sounds": ["totemic:silentnight6"]},
+  "silentnight7": {"sounds": ["totemic:silentnight7"]}
 }
