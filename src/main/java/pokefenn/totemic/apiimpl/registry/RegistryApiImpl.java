@@ -2,14 +2,18 @@ package pokefenn.totemic.apiimpl.registry;
 
 import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Registry;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegistryBuilder;
+import net.neoforged.neoforge.registries.datamaps.DataMapType;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
+import pokefenn.totemic.init.ModDataMapTypes;
 
 public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;
@@ -46,4 +50,8 @@ public enum RegistryApiImpl implements RegistryAPI {
         return CEREMONY;
     }
 
+    @Override
+    public DataMapType<EntityType<?>, EntityType<? extends Mob>> cleansingCeremonyConversionsDataMap() {
+        return ModDataMapTypes.CLEANSING_CEREMONY_CONVERSIONS;
+    }
 }
