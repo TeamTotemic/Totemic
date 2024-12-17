@@ -15,9 +15,9 @@ fi
 
 echo "Publishing Github release '$VERSION' on branch '$BRANCH'"
 
-export PRERELEASE BRANCH VERSION
+export PRERELEASE BRANCH VERSION LATEST
 curl -L \
-  --variable '%BRANCH' --variable '%VERSION' --variable '%PRERELEASE' \
+  --variable '%PRERELEASE' --variable '%BRANCH' --variable '%VERSION' --variable '%LATEST' \
   --variable '%GH_TOKEN@../totemic_gh_token' \
   --variable '%CHANGELOG@changelog.md' \
   -X POST \
