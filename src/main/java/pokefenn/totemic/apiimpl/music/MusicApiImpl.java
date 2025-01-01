@@ -1,7 +1,5 @@
 package pokefenn.totemic.apiimpl.music;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.Comparator;
 import java.util.List;
 
@@ -14,7 +12,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
@@ -22,8 +19,6 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.block.totem.entity.TotemState;
 import pokefenn.totemic.init.ModBlockEntities;
-import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.util.BlockUtil;
 import pokefenn.totemic.util.MiscUtil;
 
@@ -102,29 +97,10 @@ public enum MusicApiImpl implements MusicAPI {
         level.getProfiler().pop();
     }
 
-    public static final boolean isChristmasTime;
-    private static final int[] silentNightBars = {0, 0, 1, 2, 3, 0, 3, 0, 4, 5, 6, 7};
-    private static volatile int silentNightCounter = 0;
-    static {
-        var today = LocalDate.now();
-        isChristmasTime = today.getMonth() == Month.DECEMBER && today.getDayOfMonth() >= 24 && today.getDayOfMonth() <= 29;
-
-        if(isChristmasTime)
-            Totemic.logger.info("Merry Christmas!");
-    }
-
     private static void playInstrumentSound(Level level, Vec3 pos, @Nullable Entity entity, MusicInstrument instr) {
         if(instr.getSound() != null) {
             var source = (entity instanceof Player) ? SoundSource.PLAYERS : SoundSource.BLOCKS;
-            var sound = instr.getSound().get();
-
-            if(isChristmasTime && instr == ModContent.flute.get()) {
-                sound = ModSounds.silentnight[silentNightBars[silentNightCounter]].get();
-                if(level.getServer() == null || level.getServer().isDedicatedServer()) //don't advance the counter twice in singleplayer
-                    silentNightCounter = (silentNightCounter + 1) % silentNightBars.length;
-            }
-
-            level.playSound(entity instanceof Player ? (Player) entity : null, pos.x, pos.y, pos.z, sound, source, 1.0F, 1.0F);
+            level.playSound(entity instanceof Player ? (Player) entity : null, pos.x, pos.y, pos.z, instr.getSound().get(), source, 1.0F, 1.0F);
         }
     }
 }

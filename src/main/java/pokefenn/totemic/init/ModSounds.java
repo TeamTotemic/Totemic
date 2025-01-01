@@ -1,7 +1,6 @@
 package pokefenn.totemic.init;
 
 import java.util.function.Supplier;
-import java.util.stream.IntStream;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvent;
@@ -9,7 +8,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 
-@SuppressWarnings("unchecked")
 public final class ModSounds {
     public static final DeferredRegister<SoundEvent> REGISTER = DeferredRegister.create(Registries.SOUND_EVENT, TotemicAPI.MOD_ID);
 
@@ -21,8 +19,6 @@ public final class ModSounds {
     public static final Supplier<SoundEvent> bald_eagle_ambient = createSound("bald_eagle.ambient");
     public static final Supplier<SoundEvent> bald_eagle_hurt = createSound("bald_eagle.hurt");
     public static final Supplier<SoundEvent> bald_eagle_death = createSound("bald_eagle.death");
-
-    public static final Supplier<SoundEvent>[] silentnight = IntStream.rangeClosed(0, 7).mapToObj(i -> createSound("silentnight" + i)).toArray(Supplier[]::new);
 
     private static Supplier<SoundEvent> createSound(String name) {
         return REGISTER.register(name, () -> SoundEvent.createVariableRangeEvent(Totemic.resloc(name)));
