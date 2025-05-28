@@ -12,6 +12,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import pokefenn.totemic.api.TotemicAPI;
@@ -53,7 +55,7 @@ public final class TotemicConfig {
                                 barkColor = 54  #optional""")
                     .translation("totemic.config.customTotemWoodTypes")
                     .gameRestart()
-                    .defineList("customTotemWoodTypes", () -> List.of(emptyConfig), () -> emptyConfig, o -> o instanceof Config);
+                    .defineList("customTotemWoodTypes", () -> List.of(emptyConfig), null, o -> o instanceof Config);
         }
     }
 
@@ -145,5 +147,11 @@ public final class TotemicConfig {
         container.registerConfig(ModConfig.Type.STARTUP, startupSpec);
         container.registerConfig(ModConfig.Type.CLIENT, clientSpec);
         container.registerConfig(ModConfig.Type.SERVER, serverSpec);
+    }
+
+    public static void registerConfigGui(ModContainer container) {
+        container.registerExtensionPoint(IConfigScreenFactory.class, (mod, parent) -> new ConfigurationScreen(mod, parent,
+                //filter out customTotemWoodTypes from the config GUI
+                (context, key, original) -> key.equals("customTotemWoodTypes") ? null : original));
     }
 }

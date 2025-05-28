@@ -74,14 +74,16 @@ public final class Totemic {
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
         modBus.addListener(NetworkHandler::init);
 
+        TotemicConfig.register(container);
+
         if(FMLEnvironment.dist.isClient()) {
             modBus.addListener(this::clientSetup);
 
             modBus.register(ClientInitHandlers.class);
             modBus.register(ModModelLayers.class);
-        }
 
-        TotemicConfig.register(container);
+            TotemicConfig.registerConfigGui(container);
+        }
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
