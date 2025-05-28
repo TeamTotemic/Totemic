@@ -33,7 +33,6 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
         return 0;
     }
 
-    @SuppressWarnings("resource")
     void resetTotemState() {
         if(tile.getLevel().isClientSide)
             return;

@@ -18,7 +18,6 @@ public class InvisibleArrowRenderer extends ArrowRenderer<InvisibleArrow> {
         super(pContext);
     }
 
-    @SuppressWarnings("resource")
     @Override
     public void render(InvisibleArrow pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
         if(pEntity.getOwner() == Minecraft.getInstance().player) {

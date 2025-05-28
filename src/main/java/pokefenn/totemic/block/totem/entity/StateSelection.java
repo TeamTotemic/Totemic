@@ -97,7 +97,6 @@ public final class StateSelection extends TotemState {
         return MusicAcceptor.CEREMONY_PRIORITY;
     }
 
-    @SuppressWarnings("resource")
     @Override
     public void tick() {
         if(!tile.getLevel().isClientSide) { //do not change state based on time on the client side (to account for TPS lag)

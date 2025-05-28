@@ -17,7 +17,6 @@ public class CeremonyCheatItem extends Item {
         super(props);
     }
 
-    @SuppressWarnings("resource")
     @Override
     public InteractionResult useOn(UseOnContext context) {
         return context.getLevel().getBlockEntity(context.getClickedPos(), ModBlockEntities.totem_base.get())

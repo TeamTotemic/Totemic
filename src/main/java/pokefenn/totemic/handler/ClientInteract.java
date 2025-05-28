@@ -11,7 +11,6 @@ import pokefenn.totemic.item.TotemKnifeItem;
 import pokefenn.totemic.network.ServerboundPacketMouseWheel;
 
 public class ClientInteract {
-    @SuppressWarnings("resource")
     @SubscribeEvent
     public static void onMouseScroll(MouseScrollingEvent event) {
         if(event.isCanceled())

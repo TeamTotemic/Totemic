@@ -72,7 +72,6 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    @SuppressWarnings("resource")
     private ItemInteractionResult onTotemicStaffRightClick(Level level, BlockPos pos, Player player) {
         if(!level.isClientSide)
             return ItemInteractionResult.CONSUME;

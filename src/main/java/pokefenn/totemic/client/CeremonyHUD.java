@@ -81,7 +81,6 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
         mc.getProfiler().pop();
     }
 
-    @SuppressWarnings("resource")
     private void renderSelectionHUD(StateSelection state, GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         final int texW = 128, texH = 64;
 
@@ -101,7 +100,6 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
         }
     }
 
-    @SuppressWarnings("resource")
     private void renderStartupHUD(StateStartup state, GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
@@ -135,7 +133,6 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
         guiGraphics.drawString(font, name, nameX, 2, 0xC8000000, false);
     }
 
-    @SuppressWarnings("resource")
     private void renderCeremonyEffectHUD(StateCeremonyEffect state, GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
