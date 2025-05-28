@@ -117,7 +117,7 @@ public final class ModContent {
 
                 String idStr = entry.get("id");
                 if(idStr == null)
-                    throw new IllegalArgumentException("Invalid custom Totem Wood Type: Missing entry 'id'. Please check your 'totemic-common.toml' config file.");
+                    throw new IllegalArgumentException("Invalid custom Totem Wood Type: Missing entry 'id'. Please check your 'totemic-startup.toml' config file.");
                 try {
                     String logsStr = entry.get("logs");
                     if(logsStr == null)
@@ -137,7 +137,7 @@ public final class ModContent {
                     Totemic.logger.debug("Added custom Totem Wood Type with ID '" + id + "'");
                 }
                 catch(Exception e) {
-                    throw new IllegalArgumentException("Invalid custom Totem Wood Type with ID '" + idStr + "': " + e.getLocalizedMessage() + "\nPlease check your 'totemic-common.toml' config file.", e);
+                    throw new IllegalArgumentException("Invalid custom Totem Wood Type with ID '" + idStr + "': " + e.getLocalizedMessage() + "\nPlease check your 'totemic-startup.toml' config file.", e);
                 }
             }
         });
