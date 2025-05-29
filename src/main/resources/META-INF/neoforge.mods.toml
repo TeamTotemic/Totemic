@@ -13,6 +13,7 @@ logoFile="totemic_logo.png"
 credits="nojustgavin, Nefilto, ZestyBlaze, VincentLongiug, WayofTime, Joshie, Poppycocks, Dylan4Ever, Vazkii, Kerri Lake"
 authors="${mod_authors}"
 description='''${mod_description}'''
+enumExtensions="META-INF/enumextensions.json"
 
 [[mixins]]
     config="totemic.mixins.json"

@@ -1,0 +1,13 @@
+{
+    "entries": [
+        {
+            "enum": "net/minecraft/world/entity/vehicle/Boat$Type",
+            "name": "TOTEMIC_CEDAR",
+            "constructor": "(Ljava/util/function/Supplier;Ljava/lang/String;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Z)V",
+            "parameters": {
+                "class": "pokefenn/totemic/init/BoatTypeEnumParams",
+                "field": "TOTEMIC_CEDAR_ENUM_PROXY"
+            }
+        }
+    ]
+}
