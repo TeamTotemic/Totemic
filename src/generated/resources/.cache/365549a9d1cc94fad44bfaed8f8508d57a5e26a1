@@ -1,7 +1,9 @@
-// 1.21.1	2024-08-21T22:38:50.75353921	Tags for minecraft:item mod id totemic
+// 1.21.1	2025-05-29T22:02:19.858312439	Tags for minecraft:item mod id totemic
 f48a711794f70f6a13891618f69d5b89e02cb8ba data/c/tags/item/fence_gates/wooden.json
 8c8c7476579771a19d4ed2a14de7fab91e67b074 data/c/tags/item/leathers.json
 da18fddcb4fafb900cf9a113d454941e0ca01fc4 data/c/tags/item/tools/bow.json
+e408001122c69d71b853a669def954eb13a7d3be data/minecraft/tags/item/boats.json
+622309a908d52c30083b0164845a9f5c1807f156 data/minecraft/tags/item/chest_boats.json
 df2fde5a09193bb066c97a1c4a72616852680332 data/minecraft/tags/item/leaves.json
 8a567014dc4a3f77acc3596dba6ceab589ec8a41 data/minecraft/tags/item/leg_armor.json
 cc42e4a4bcf0f0149edad3568521f8d79ec4f3bc data/minecraft/tags/item/logs_that_burn.json

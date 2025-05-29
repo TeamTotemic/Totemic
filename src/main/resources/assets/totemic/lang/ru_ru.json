@@ -34,6 +34,8 @@
   "totemic.medicineBag.open": "Открыта",
   "totemic.medicineBag.empty": "Пуста",
   "totemic.medicineBag.charge": "Заряд: %d / %d",
+  "item.totemic.cedar_boat": "Red Cedar Boat",
+  "item.totemic.cedar_chest_boat": "Red Cedar Boat with Chest",
   
   "totemic.tooltip.selectorMode": "Приседая вы можете выбрать ритуал для проведения",
   

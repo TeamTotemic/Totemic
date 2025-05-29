@@ -34,6 +34,8 @@
   "totemic.medicineBag.open": "開いた",
   "totemic.medicineBag.empty": "空",
   "totemic.medicineBag.charge": "電荷：%d / %d",
+  "item.totemic.cedar_boat": "赤杉のボート",
+  "item.totemic.cedar_chest_boat": "チェスト付きの赤杉のボート",
   
   "totemic.tooltip.selectorMode": "儀式を選択するには演奏しながらスニークして",
   

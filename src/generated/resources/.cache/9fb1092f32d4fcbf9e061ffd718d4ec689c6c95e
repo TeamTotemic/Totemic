@@ -1,4 +1,4 @@
-// 1.21.1	2024-08-21T22:38:50.75243256	Recipes
+// 1.21.1	2025-05-29T22:02:19.856451054	Recipes
 93116018ed5f034e0ed24e190ca152273105cce8 data/minecraft/advancement/recipes/food/cooked_buffalo_meat_from_campfire_cooking.json
 e55c90c769bf8b82065c78971737fb5f691a0d56 data/minecraft/advancement/recipes/food/cooked_buffalo_meat_from_smelting.json
 ae92116ef54c077dd0e06297a516199abea19d20 data/minecraft/advancement/recipes/food/cooked_buffalo_meat_from_smoking.json
@@ -33,7 +33,11 @@ b0fd736267e0733c688bb6411bd93352d7fdf6ef data/totemic/advancement/recipes/redsto
 18cb13c874097a6d9af3db0f153abccd36147db9 data/totemic/advancement/recipes/redstone/cedar_trapdoor.json
 0ecba5cc1301a8d0749834b9131b1355a71983f0 data/totemic/advancement/recipes/tools/totem_whittling_knife.json
 a347b2b02ab57393fdf30d811ec889a191000bd8 data/totemic/advancement/recipes/tools/totemic_staff.json
+8ba60027155bfc653a080064331c95301468427e data/totemic/advancement/recipes/transportation/cedar_boat.json
+85152f4337cdd45b9c91c1157e462f21610c0118 data/totemic/advancement/recipes/transportation/cedar_chest_boat.json
+5a170e310de924a04819a9d0268685dfda1bfbbc data/totemic/recipe/cedar_boat.json
 8fd602502e24b0375385f281eaa76ea09cebccf3 data/totemic/recipe/cedar_button.json
+18d44e12513f9b6bd57f9e467ac888ece2de22de data/totemic/recipe/cedar_chest_boat.json
 a063e1e7b473ad289f5b3b9f2e1117ec3443caa0 data/totemic/recipe/cedar_door.json
 d9fb89553d6849ffe95372495d8f02d2292a551d data/totemic/recipe/cedar_fence.json
 84e172e0b2a8e895c3e6aacba8489827fff1cbeb data/totemic/recipe/cedar_fence_gate.json

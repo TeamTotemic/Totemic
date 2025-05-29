@@ -35,6 +35,8 @@
   "totemic.medicineBag.open": "Offen",
   "totemic.medicineBag.empty": "Leer",
   "totemic.medicineBag.charge": "Ladung: %d / %d",
+  "item.totemic.cedar_boat": "Rotes Zedernholzboot",
+  "item.totemic.cedar_chest_boat": "Rotes Zedernholzkistenboot",
   
   "totemic.tooltip.selectorMode": "Schleiche während des Spielens, um eine Zeremonie auszuwählen",
   
