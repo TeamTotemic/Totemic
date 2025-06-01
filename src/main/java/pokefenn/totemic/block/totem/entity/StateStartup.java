@@ -20,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
@@ -82,7 +83,7 @@ public final class StateStartup extends TotemState implements StartupContext {
         Level world = tile.getLevel();
         BlockPos pos = tile.getBlockPos();
 
-        if(!world.isClientSide) {
+        if(!world.isClientSide) { //server side
             if(musicHandler.getTotalMusic() >= ceremony.getMusicNeeded()) {
                 if(instance.canStartEffect(world, pos, this))
                     startCeremony();
@@ -94,15 +95,22 @@ public final class StateStartup extends TotemState implements StartupContext {
                 failCeremony();
             }
             else {
-                instance.onStartup(world, pos, this);
+                startupTick(world, pos);
             }
         }
-        else {
-            instance.onStartup(world, pos, this); //do not change state based on time on the client side (to account for TPS lag)
+        else { //client side
+            //do not change state based on time on the client side (to account for TPS lag)
+            startupTick(world, pos);
             CeremonyHUD.INSTANCE.setActiveTotem(tile);
         }
 
         time++;
+    }
+
+    private void startupTick(Level world, BlockPos pos) {
+        TotemicEventHooks.get().fireCeremonyStartupTick(world, pos, ceremony, instance, this);
+        if(tile.getTotemState() == this) //make sure the startup hasn't been canceled by a handler of the above event
+            instance.onStartup(world, pos, this);
     }
 
     @Override
