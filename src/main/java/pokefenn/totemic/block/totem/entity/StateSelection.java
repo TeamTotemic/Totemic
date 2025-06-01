@@ -20,6 +20,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
+import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
@@ -113,7 +114,7 @@ public final class StateSelection extends TotemState {
 
     private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap; //Lazily created
 
-    private static @Nullable Ceremony getCeremony(List<MusicInstrument> selectors) {
+    private @Nullable Ceremony getCeremony(List<MusicInstrument> selectors) {
         if(selectorsToCeremonyMap == null) {
             //This will throw an exception if two different Ceremonies happen to have the same selectors.
             //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
@@ -122,7 +123,8 @@ public final class StateSelection extends TotemState {
                     .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
         }
 
-        return selectorsToCeremonyMap.get(selectors);
+        return TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), selectors,
+                selectorsToCeremonyMap.get(selectors));
     }
 
     @Override
