@@ -10,6 +10,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.ICancellableEvent;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -176,6 +177,28 @@ public abstract class CeremonyEvent extends Event {
          * @return a StartupContext providing details about the Ceremony's progress and allowing control over the Ceremony
          */
         public StartupContext getContext() {
+            return context;
+        }
+    }
+
+    /**
+     * This event is fired every tick during the Ceremony effect phase. Will only be fired once if the Ceremony effect is instantaneous
+     * (i.e. {@link CeremonyInstance#getEffectTime()} == 0).
+     * <p>
+     * When this event is cancelled, {@link CeremonyInstance#effect} will not be called.
+     */
+    public static class EffectTick extends CeremonyEvent implements ICancellableEvent {
+        private final CeremonyEffectContext context;
+
+        public EffectTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, CeremonyEffectContext context) {
+            super(level, pos, ceremony, instance);
+            this.context = context;
+        }
+
+        /**
+         * @return a CeremonyEffectContext providing details about the Ceremony's progress and allowing control over the Ceremony
+         */
+        public CeremonyEffectContext getContext() {
             return context;
         }
     }

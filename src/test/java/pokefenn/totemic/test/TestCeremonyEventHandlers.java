@@ -25,7 +25,7 @@ public class TestCeremonyEventHandlers {
     @SubscribeEvent
     public static void onStartupTick(CeremonyEvent.StartupTick event) {
         if(event.getContext().getTime() % 20 == 0)
-            Totemic.logger.debug("CeremonyEvent.StartupTick fired (time % 20 == 0)");
+            Totemic.logger.debug("CeremonyEvent.StartupTick fired (time = " + event.getContext().getTime() + ")");
     }
 
     @SubscribeEvent
@@ -39,6 +39,18 @@ public class TestCeremonyEventHandlers {
         Totemic.logger.debug("CeremonyEvent.StartupSuccess fired");
         if(false) {
             event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onEffectTick(CeremonyEvent.EffectTick event) {
+        if(event.getContext().getTime() % 20 == 0)
+            Totemic.logger.debug("CeremonyEvent.EffectTick fired (time = " + event.getContext().getTime() + ")");
+        if(event.getContext().getTime() >= 5*20) { //will stop the effect from applying after 5 seconds
+            event.setCanceled(true);
+        }
+        if(event.getContext().getTime() >= 10*20) { //will completely end the effect after 10 seconds
+            event.getContext().endCeremony();
         }
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.neoforge.common.NeoForge;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.event.CeremonyEvent;
@@ -34,5 +35,9 @@ public class TotemicEventHooks {
 
     public boolean fireCeremonyStartupSuccess(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, StartupContext context) {
         return !NeoForge.EVENT_BUS.post(new CeremonyEvent.StartupSuccess(level, pos, ceremony, instance, context)).isCanceled();
+    }
+
+    public boolean fireCeremonyEffectTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, CeremonyEffectContext context) {
+        return !NeoForge.EVENT_BUS.post(new CeremonyEvent.EffectTick(level, pos, ceremony, instance, context)).isCanceled();
     }
 }
