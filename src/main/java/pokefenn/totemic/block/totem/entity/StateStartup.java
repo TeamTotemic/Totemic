@@ -85,10 +85,10 @@ public final class StateStartup extends TotemState implements StartupContext {
 
         if(!world.isClientSide) { //server side
             if(musicHandler.getTotalMusic() >= ceremony.getMusicNeeded()) {
-                if(instance.canStartEffect(world, pos, this))
+                if(instance.canStartEffect(world, pos, this) && TotemicEventHooks.get().fireCeremonyStartupSuccess(world, pos, ceremony, instance, this))
                     startCeremony();
                 else
-                    failCeremony();
+                    failCeremony(); //TODO: For 1.21.5, this else branch should be removed, to give the canStartEffect method the option to hold off on starting the effect without completely aborting the Ceremony
             }
             else if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty())) {
                 TotemicEventHooks.get().fireCeremonyStartupFail(world, pos, ceremony, instance, this);

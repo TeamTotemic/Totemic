@@ -157,4 +157,26 @@ public abstract class CeremonyEvent extends Event {
             return context;
         }
     }
+
+    /**
+     * This event is fired when the player has successfully completed the ceremony startup.
+     * <p>
+     * When this event is cancelled, the Ceremony is considered failed and the effect is not started (however, this behavior will probably change in the future).
+     * This event is only fired on the server side, and it will not fire when the player uses the Creative Ceremony Cheat item.
+     */
+    public static class StartupSuccess extends CeremonyEvent implements ICancellableEvent {
+        private final StartupContext context;
+
+        public StartupSuccess(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, StartupContext context) {
+            super(level, pos, ceremony, instance);
+            this.context = context;
+        }
+
+        /**
+         * @return a StartupContext providing details about the Ceremony's progress and allowing control over the Ceremony
+         */
+        public StartupContext getContext() {
+            return context;
+        }
+    }
 }

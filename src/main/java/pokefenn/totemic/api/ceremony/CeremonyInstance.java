@@ -62,7 +62,7 @@ public interface CeremonyInstance extends INBTSerializable<Tag> { //TODO: Consid
 
     /**
      * Called when the player has successfully finished the startup and before the ceremony effect begins. If {@code false} is returned,
-     * the startup will be considered failed and the effect is not started.
+     * the startup will be considered failed and the effect is not started (however, this behavior will probably change in the future).
      * <p>
      * Note that this method is bypassed if the player uses the Creative Ceremony Cheat item.
      * <p>
