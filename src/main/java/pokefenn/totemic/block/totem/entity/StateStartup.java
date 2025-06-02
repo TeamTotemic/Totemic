@@ -91,6 +91,7 @@ public final class StateStartup extends TotemState implements StartupContext {
                     failCeremony();
             }
             else if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty())) {
+                TotemicEventHooks.get().fireCeremonyStartupFail(world, pos, ceremony, instance, this);
                 instance.onStartupFail(world, pos, this);
                 failCeremony();
             }

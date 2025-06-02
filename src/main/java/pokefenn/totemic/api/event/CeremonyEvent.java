@@ -14,6 +14,9 @@ import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.music.MusicInstrument;
 
+/**
+ * Various events that are fired during different parts of a Ceremony
+ */
 public abstract class CeremonyEvent extends Event {
     private final LevelAccessor level;
     private final BlockPos pos;
@@ -59,9 +62,10 @@ public abstract class CeremonyEvent extends Event {
      * This event is fired when the required number of instruments for selecting a Ceremony has been played,
      * even when the instruments don't match any Ceremony.
      * <p>
-     * If this event is canceled, no Ceremony will be selected.
+     * If this event is canceled, no Ceremony will be selected. This event is only fired on the server side.
      */
     public static class Selection extends Event implements ICancellableEvent {
+        //not a subclass of CeremonyEvent since this is the only one where Ceremony is mutable and there's no CeremonyInstance
         private final LevelAccessor level;
         private final BlockPos pos;
         private final List<MusicInstrument> selectors;
@@ -121,6 +125,27 @@ public abstract class CeremonyEvent extends Event {
         private final StartupContext context;
 
         public StartupTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, StartupContext context) {
+            super(level, pos, ceremony, instance);
+            this.context = context;
+        }
+
+        /**
+         * @return a StartupContext providing details about the Ceremony's progress and allowing control over the Ceremony
+         */
+        public StartupContext getContext() {
+            return context;
+        }
+    }
+
+    /**
+     * This event is fired when the player was not successful in completing the ceremony startup because the time ran out.
+     * <p>
+     * This event is only fired on the server side.
+     */
+    public static class StartupFail extends CeremonyEvent {
+        private final StartupContext context;
+
+        public StartupFail(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, StartupContext context) {
             super(level, pos, ceremony, instance);
             this.context = context;
         }
