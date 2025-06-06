@@ -109,8 +109,7 @@ public final class StateStartup extends TotemState implements StartupContext {
     }
 
     private void startupTick(Level world, BlockPos pos) {
-        TotemicEventHooks.get().fireCeremonyStartupTick(world, pos, ceremony, instance, this);
-        if(tile.getTotemState() == this) //make sure the startup hasn't been canceled by a handler of the above event
+        if(TotemicEventHooks.get().fireCeremonyStartupTick(world, pos, ceremony, instance, this))
             instance.onStartup(world, pos, this);
     }
 

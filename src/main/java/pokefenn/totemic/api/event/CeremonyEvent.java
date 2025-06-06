@@ -16,7 +16,7 @@ import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 /**
- * Various events that are fired during different parts of a Ceremony
+ * Various events that are fired during different parts of a Ceremony.
  */
 public abstract class CeremonyEvent extends Event {
     private final LevelAccessor level;
@@ -63,7 +63,7 @@ public abstract class CeremonyEvent extends Event {
      * This event is fired when the required number of instruments for selecting a Ceremony has been played,
      * even when the instruments don't match any Ceremony.
      * <p>
-     * If this event is canceled, no Ceremony will be selected. This event is only fired on the server side.
+     * If canceled, no Ceremony will be selected. This event is only fired on the server side.
      */
     public static class Selection extends Event implements ICancellableEvent {
         //not a subclass of CeremonyEvent since this is the only one where Ceremony is mutable and there's no CeremonyInstance
@@ -120,9 +120,10 @@ public abstract class CeremonyEvent extends Event {
     /**
      * This event is fired every tick during the Ceremony startup phase.
      * <p>
-     * This event is not cancellable, but the startup phase can be cancelled or skipped using the {@link #getContext()} method.
+     * When canceled, side effects of the startup (e.g. the damage dealt by the Sun Dance) will not be applied.
+     * The startup phase can be skipped or aborted entirely by using {@link #getContext()}.
      */
-    public static class StartupTick extends CeremonyEvent {
+    public static class StartupTick extends CeremonyEvent implements ICancellableEvent {
         private final StartupContext context;
 
         public StartupTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, StartupContext context) {
@@ -162,7 +163,7 @@ public abstract class CeremonyEvent extends Event {
     /**
      * This event is fired when the player has successfully completed the ceremony startup.
      * <p>
-     * When this event is cancelled, the Ceremony is considered failed and the effect is not started (however, this behavior will probably change in the future).
+     * When cancelled, the Ceremony is considered failed and the effect is not started (however, this behavior will probably change in the future).
      * This event is only fired on the server side, and it will not fire when the player uses the Creative Ceremony Cheat item.
      */
     public static class StartupSuccess extends CeremonyEvent implements ICancellableEvent {
@@ -185,7 +186,7 @@ public abstract class CeremonyEvent extends Event {
      * This event is fired every tick during the Ceremony effect phase. Will only be fired once if the Ceremony effect is instantaneous
      * (i.e. {@link CeremonyInstance#getEffectTime()} == 0).
      * <p>
-     * When this event is cancelled, {@link CeremonyInstance#effect} will not be called.
+     * When cancelled, {@link CeremonyInstance#effect} will not be called.
      */
     public static class EffectTick extends CeremonyEvent implements ICancellableEvent {
         private final CeremonyEffectContext context;
