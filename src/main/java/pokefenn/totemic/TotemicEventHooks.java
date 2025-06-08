@@ -2,6 +2,8 @@ package pokefenn.totemic;
 
 import java.util.List;
 
+import com.mojang.datafixers.util.Pair;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.neoforge.common.NeoForge;
@@ -20,9 +22,12 @@ public class TotemicEventHooks {
         return INSTANCE;
     }
 
-    public Ceremony fireCeremonySelection(LevelAccessor level, BlockPos pos, List<MusicInstrument> selectors, Ceremony ceremony) {
-        var event = new CeremonyEvent.Selection(level, pos, selectors, ceremony);
-        return NeoForge.EVENT_BUS.post(event).isCanceled() ? null : event.getCeremony();
+    /**
+     * @return a Pair of the Ceremony to be selected and a Boolean describing whether {@link CeremonyInstance#canSelect} should be called.
+     */
+    public Pair<Ceremony, Boolean> fireCeremonySelection(LevelAccessor level, BlockPos pos, List<MusicInstrument> selectors, Ceremony ceremony) {
+        var event = NeoForge.EVENT_BUS.post(new CeremonyEvent.Selection(level, pos, selectors, ceremony));
+        return Pair.of(event.getCeremony(), !event.isCanceled());
     }
 
     public boolean fireCeremonyStartupTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, StartupContext context) {

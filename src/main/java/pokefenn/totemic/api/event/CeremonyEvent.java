@@ -63,7 +63,8 @@ public abstract class CeremonyEvent extends Event {
      * This event is fired when the required number of instruments for selecting a Ceremony has been played,
      * even when the instruments don't match any Ceremony.
      * <p>
-     * If canceled, no Ceremony will be selected. This event is only fired on the server side.
+     * When canceled, the Ceremony's own check of whether it can be selected (e.g. the Buffalo Dance checking whether
+     * cows are nearby) will be skipped.
      */
     public static class Selection extends Event implements ICancellableEvent {
         //not a subclass of CeremonyEvent since this is the only one where Ceremony is mutable and there's no CeremonyInstance
@@ -110,7 +111,7 @@ public abstract class CeremonyEvent extends Event {
         }
 
         /**
-         * Modifies the Ceremony that will be selected.
+         * Modifies the Ceremony that will be selected, if any.
          */
         public void setCeremony(@Nullable Ceremony ceremony) {
             this.ceremony = ceremony;

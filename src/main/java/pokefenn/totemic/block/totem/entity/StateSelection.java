@@ -60,11 +60,15 @@ public final class StateSelection extends TotemState {
         tile.setChanged();
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
-            Ceremony match = getCeremony(selectors);
-            if(match != null && !isDisabled(match, entity)) {
-                CeremonyInstance instance = match.createInstance();
-                if(instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
-                    tile.setTotemState(new StateStartup(tile, match, instance, entity));
+            var eventResult = TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), selectors,
+                    getCeremony(selectors));
+            Ceremony ceremony = eventResult.getFirst();
+            boolean doSelectionCheck = eventResult.getSecond();
+
+            if(ceremony != null && !isDisabled(ceremony, entity)) {
+                CeremonyInstance instance = ceremony.createInstance();
+                if(!doSelectionCheck || instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
+                    tile.setTotemState(new StateStartup(tile, ceremony, instance, entity));
                 }
                 else
                     resetTotemState();
@@ -123,8 +127,7 @@ public final class StateSelection extends TotemState {
                     .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
         }
 
-        return TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), selectors,
-                selectorsToCeremonyMap.get(selectors));
+        return selectorsToCeremonyMap.get(selectors);
     }
 
     @Override
