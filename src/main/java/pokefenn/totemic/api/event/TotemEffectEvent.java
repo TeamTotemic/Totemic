@@ -13,6 +13,9 @@ import pokefenn.totemic.api.totem.TotemEffectContext;
  * This event is fired when a Totem Effect is applied at a Totem Base.
  * <p>
  * When canceled, {@link TotemEffect#effect} will not be called.
+ * <p>
+ * Note: This event is currently fired multiple times if a TotemCarving contains multiple TotemEffects (like the Cow and Ocelot carvings),
+ * and not fired at all for TotemCarvings with no effects (like the 'none' carving). This is expected to change in the future.
  */
 public class TotemEffectEvent extends Event implements ICancellableEvent {
     private final LevelAccessor level;
@@ -54,11 +57,7 @@ public class TotemEffectEvent extends Event implements ICancellableEvent {
      * @return the TotemCarving that the effect belongs to
      */
     public TotemCarving getCarving() {
-        //TODO: We currently don't store which TotemCarving each TotemEffect comes from, necessitating an expensive search
-        return TotemicAPI.get().registry().totemCarvings().stream()
-                .filter(carving -> carving.getEffects().contains(effect))
-                .findAny()
-                .orElseThrow();
+        return TotemicAPI.get().totemEffect().getCarvingForEffect(effect);
     }
 
     /**
