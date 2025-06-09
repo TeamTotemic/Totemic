@@ -12,7 +12,10 @@ import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.event.CeremonyEvent;
+import pokefenn.totemic.api.event.TotemEffectEvent;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.totem.TotemEffect;
+import pokefenn.totemic.api.totem.TotemEffectContext;
 
 public class TotemicEventHooks {
     //Make the hook methods in this class instance rather static methods, to facilitate future abstraction from NeoForge's event system
@@ -22,6 +25,7 @@ public class TotemicEventHooks {
         return INSTANCE;
     }
 
+    //Ceremony Events
     /**
      * @return a Pair of the Ceremony to be selected and a Boolean describing whether {@link CeremonyInstance#canSelect} should be called.
      */
@@ -44,5 +48,10 @@ public class TotemicEventHooks {
 
     public boolean fireCeremonyEffectTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, CeremonyEffectContext context) {
         return !NeoForge.EVENT_BUS.post(new CeremonyEvent.EffectTick(level, pos, ceremony, instance, context)).isCanceled();
+    }
+
+    //Totem Effect Events
+    public boolean fireTotemEffectEvent(LevelAccessor level, BlockPos pos, TotemEffect effect, int repetition, TotemEffectContext context) {
+        return !NeoForge.EVENT_BUS.post(new TotemEffectEvent(level, pos, effect, repetition, context)).isCanceled();
     }
 }

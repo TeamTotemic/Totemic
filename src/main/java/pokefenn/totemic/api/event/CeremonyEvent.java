@@ -64,7 +64,8 @@ public abstract class CeremonyEvent extends Event {
      * even when the instruments don't match any Ceremony.
      * <p>
      * When canceled, the Ceremony's own check of whether it can be selected (e.g. the Buffalo Dance checking whether
-     * cows are nearby) will be skipped.
+     * cows are nearby) will be skipped. If you want to prevent selecting a Ceremony, use {@code setCeremony(null)}
+     * instead.
      */
     public static class Selection extends Event implements ICancellableEvent {
         //not a subclass of CeremonyEvent since this is the only one where Ceremony is mutable and there's no CeremonyInstance
@@ -164,7 +165,7 @@ public abstract class CeremonyEvent extends Event {
     /**
      * This event is fired when the player has successfully completed the ceremony startup.
      * <p>
-     * When cancelled, the Ceremony is considered failed and the effect is not started (however, this behavior will probably change in the future).
+     * When canceled, the Ceremony is considered failed and the effect is not started (however, this behavior will probably change in the future).
      * This event is only fired on the server side, and it will not fire when the player uses the Creative Ceremony Cheat item.
      */
     public static class StartupSuccess extends CeremonyEvent implements ICancellableEvent {
@@ -187,7 +188,7 @@ public abstract class CeremonyEvent extends Event {
      * This event is fired every tick during the Ceremony effect phase. Will only be fired once if the Ceremony effect is instantaneous
      * (i.e. {@link CeremonyInstance#getEffectTime()} == 0).
      * <p>
-     * When cancelled, {@link CeremonyInstance#effect} will not be called.
+     * When canceled, {@link CeremonyInstance#effect} will not be called.
      */
     public static class EffectTick extends CeremonyEvent implements ICancellableEvent {
         private final CeremonyEffectContext context;

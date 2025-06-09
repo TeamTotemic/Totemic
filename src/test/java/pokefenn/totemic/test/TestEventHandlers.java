@@ -5,10 +5,11 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.event.CeremonyEvent;
+import pokefenn.totemic.api.event.TotemEffectEvent;
 
-//Some event handlers that print log messages to allow manual testing of Ceremony events.
+//Some event handlers that print log messages to allow manual testing of Totemic events.
 @EventBusSubscriber(modid = TotemicAPI.MOD_ID)
-public class TestCeremonyEventHandlers {
+public class TestEventHandlers {
     @SubscribeEvent
     public static void onSelection(CeremonyEvent.Selection event) {
         Totemic.logger.debug("CeremonyEvent.Selection fired: {}" , event.getCeremony());
@@ -21,6 +22,8 @@ public class TestCeremonyEventHandlers {
     public static void onStartupTick(CeremonyEvent.StartupTick event) {
         if(event.getContext().getTime() % 20 == 0)
             Totemic.logger.debug("CeremonyEvent.StartupTick fired (time = {})", event.getContext().getTime());
+        //event.getContext().startCeremony();
+        //event.getContext().failCeremony();
     }
 
     @SubscribeEvent
@@ -31,7 +34,7 @@ public class TestCeremonyEventHandlers {
     @SubscribeEvent
     public static void onStartupSuccess(CeremonyEvent.StartupSuccess event) {
         Totemic.logger.debug("CeremonyEvent.StartupSuccess fired");
-        event.setCanceled(true);
+        //event.setCanceled(true);
     }
 
     @SubscribeEvent
@@ -44,5 +47,12 @@ public class TestCeremonyEventHandlers {
         if(event.getContext().getTime() >= 10*20) { //will completely end the effect after 10 seconds
             event.getContext().endCeremony();
         }
+    }
+
+    @SubscribeEvent
+    public static void onTotemEffectTick(TotemEffectEvent event) {
+        //Totemic.logger.debug("TotemEffectEvent fired (effect = {}, carving = {}, rep = {}, pos = {})", event.getEffect(), event.getCarving(), event.getRepetition(), event.getPos());
+        /*if(event.getCarving() == ModContent.ocelot.get())
+            event.setCanceled(true);*/
     }
 }
