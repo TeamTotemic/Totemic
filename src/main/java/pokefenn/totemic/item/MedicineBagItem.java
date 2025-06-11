@@ -20,6 +20,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.totem.MedicineBagEffect;
 import pokefenn.totemic.api.totem.PortableTotemCarving;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
@@ -79,7 +80,10 @@ public class MedicineBagItem extends Item {
                 getEffects(stack).forEach(effect -> {
                     int interval = effect.getInterval();
                     if(level.getGameTime() % interval == 0) {
-                        effect.medicineBagEffect((Player) entity, stack, charge);
+                        var carving = getCarving(stack).get(); //Optional.get is safe since getEffects returned a non-empty list
+                        var player = (Player) entity;
+                        if(TotemicEventHooks.get().fireMedicineBagEffectEvent(effect, carving, player, stack, charge))
+                            effect.medicineBagEffect(player, stack, charge);
                         stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - interval, 0)); //TODO: This is called multiple times on carvings with multiple effects, which can be problematic especially when they have different intervals
                     }
                 });

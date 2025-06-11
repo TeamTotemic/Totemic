@@ -8,6 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import pokefenn.totemic.TotemicEventHooks;
 
 public class CreativeMedicineBagItem extends MedicineBagItem {
     public CreativeMedicineBagItem(Properties pProperties) {
@@ -23,7 +24,10 @@ public class CreativeMedicineBagItem extends MedicineBagItem {
             getEffects(stack).forEach(effect -> {
                 int interval = effect.getInterval();
                 if(level.getGameTime() % interval == 0) {
-                    effect.medicineBagEffect((Player) entity, stack, creativeChargeValue);
+                    var carving = getCarving(stack).get(); //Optional.get is safe since getEffects returned a non-empty list
+                    var player = (Player) entity;
+                    if(TotemicEventHooks.get().fireMedicineBagEffectEvent(effect, carving, player, stack, creativeChargeValue))
+                        effect.medicineBagEffect(player, stack, creativeChargeValue);
                 }
             });
         }

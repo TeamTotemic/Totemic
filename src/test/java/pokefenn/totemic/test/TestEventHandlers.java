@@ -5,6 +5,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.event.CeremonyEvent;
+import pokefenn.totemic.api.event.MedicineBagEffectEvent;
 import pokefenn.totemic.api.event.TotemEffectEvent;
 
 //Some event handlers that print log messages to allow manual testing of Totemic events.
@@ -54,5 +55,12 @@ public class TestEventHandlers {
         //Totemic.logger.debug("TotemEffectEvent fired (effect = {}, carving = {}, rep = {}, pos = {})", event.getEffect(), event.getCarving(), event.getRepetition(), event.getPos());
         /*if(event.getCarving() == ModContent.ocelot.get())
             event.setCanceled(true);*/
+        if(!event.getCarving().getEffects().contains(event.getEffect()))
+            Totemic.logger.error("Carving {} does not contain TotemEffect {}", event.getCarving(), event.getEffect());
+    }
+
+    @SubscribeEvent
+    public static void onMedicineBagEffectTick(MedicineBagEffectEvent event) {
+        Totemic.logger.debug("MedicineBagEffectEvent fired (effect = {}, carving = {}, charge = {})", event.getEffect(), event.getCarving(), event.getCharge());
     }
 }

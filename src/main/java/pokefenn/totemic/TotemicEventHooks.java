@@ -5,6 +5,8 @@ import java.util.List;
 import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.neoforge.common.NeoForge;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -12,8 +14,11 @@ import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.event.CeremonyEvent;
+import pokefenn.totemic.api.event.MedicineBagEffectEvent;
 import pokefenn.totemic.api.event.TotemEffectEvent;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.totem.MedicineBagEffect;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 
@@ -53,5 +58,9 @@ public class TotemicEventHooks {
     //Totem Effect Events
     public boolean fireTotemEffectEvent(LevelAccessor level, BlockPos pos, TotemEffect effect, int repetition, TotemEffectContext context) {
         return !NeoForge.EVENT_BUS.post(new TotemEffectEvent(level, pos, effect, repetition, context)).isCanceled();
+    }
+
+    public boolean fireMedicineBagEffectEvent(MedicineBagEffect effect, TotemCarving carving, Player player, ItemStack medicineBag, int charge) {
+        return !NeoForge.EVENT_BUS.post(new MedicineBagEffectEvent(effect, carving, player, medicineBag, charge)).isCanceled();
     }
 }

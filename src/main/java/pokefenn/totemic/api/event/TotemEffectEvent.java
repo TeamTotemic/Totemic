@@ -10,12 +10,15 @@ import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 
 /**
- * This event is fired when a Totem Effect is applied at a Totem Base.
+ * This event is fired every time a {@link TotemEffect} is applied at a Totem Base.
  * <p>
  * When canceled, {@link TotemEffect#effect} will not be called.
  * <p>
- * Note: This event is currently fired multiple times if a TotemCarving contains multiple TotemEffects (like the Cow and Ocelot carvings),
- * and not fired at all for TotemCarvings with no effects (like the 'none' carving). This is expected to change in the future.
+ * Note: This event is currently fired multiple times if a {@link TotemCarving} contains multiple TotemEffects (like
+ * the Cow and Ocelot carvings), and not fired at all for TotemCarvings with no effects (like the 'none' carving).
+ * This is expected to change in the future.
+ *
+ * @see MedicineBagEffectEvent
  */
 public class TotemEffectEvent extends Event implements ICancellableEvent {
     private final LevelAccessor level;

@@ -4,7 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 
 /**
- * A single effect of a TotemCarving.
+ * A single effect of a {@link TotemCarving}.
+ *
+ * @see MedicineBagEffect
  */
 public abstract class TotemEffect {
     /**

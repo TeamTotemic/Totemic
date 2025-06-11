@@ -18,6 +18,8 @@ import pokefenn.totemic.api.registry.RegistryAPI;
 
 /**
  * Represents a Totem Pole carving. A TotemCarving consists of one or more {@link TotemEffect}s.
+ *
+ * @see PortableTotemCarving
  */
 public sealed class TotemCarving permits PortableTotemCarving {
     public static final Codec<TotemCarving> CODEC = TotemicAPI.get().registry().totemCarvings().byNameCodec();
