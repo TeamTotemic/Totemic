@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.mojang.datafixers.util.Pair;
 
+import it.unimi.dsi.fastutil.ints.IntBooleanPair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -60,7 +61,11 @@ public class TotemicEventHooks {
         return !NeoForge.EVENT_BUS.post(new TotemEffectEvent(level, pos, effect, repetition, context)).isCanceled();
     }
 
-    public boolean fireMedicineBagEffectEvent(MedicineBagEffect effect, TotemCarving carving, Player player, ItemStack medicineBag, int charge) {
-        return !NeoForge.EVENT_BUS.post(new MedicineBagEffectEvent(effect, carving, player, medicineBag, charge)).isCanceled();
+    /**
+     * @return a pair of the charge to deduct from the Medicine Bag and a boolean describing whether {@link MedicineBagEffect#medicineBagEffect} should be called.
+     */
+    public IntBooleanPair fireMedicineBagEffectEvent(MedicineBagEffect effect, TotemCarving carving, Player player, ItemStack medicineBag, int charge, int chargeToDeduct) {
+        var event = NeoForge.EVENT_BUS.post(new MedicineBagEffectEvent(effect, carving, player, medicineBag, charge, chargeToDeduct));
+        return IntBooleanPair.of(event.getChargeToDeduct(), !event.isCanceled());
     }
 }

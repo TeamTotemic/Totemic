@@ -11,7 +11,8 @@ import pokefenn.totemic.api.totem.TotemCarving;
 /**
  * This event is fired every time a {@link MedicineBagEffect} is applied.
  * <p>
- * When canceled, {@link MedicineBagEffect#medicineBagEffect} will not be called.
+ * When canceled, {@link MedicineBagEffect#medicineBagEffect} will not be called, but charge will still be drained from
+ * the Medicine Bag.
  * <p>
  * Note: This event is currently fired multiple times if a {@link PortableTotemCarving} contains multiple
  * MedicineBagEffects (like the Cow and Ocelot carvings), and not fired at all for PortableTotemCarvings with no
@@ -25,13 +26,15 @@ public class MedicineBagEffectEvent extends Event implements ICancellableEvent {
     private final Player player;
     private final ItemStack medicineBag;
     private final int charge;
+    private int chargeToDeduct;
 
-    public MedicineBagEffectEvent(MedicineBagEffect effect, TotemCarving carving, Player player, ItemStack medicineBag, int charge) {
+    public MedicineBagEffectEvent(MedicineBagEffect effect, TotemCarving carving, Player player, ItemStack medicineBag, int charge, int chargeToDeduct) {
         this.effect = effect;
         this.carving = carving;
         this.player = player;
         this.medicineBag = medicineBag;
         this.charge = charge;
+        this.chargeToDeduct = chargeToDeduct;
     }
 
     /**
@@ -67,5 +70,27 @@ public class MedicineBagEffectEvent extends Event implements ICancellableEvent {
      */
     public int getCharge() {
         return charge;
+    }
+
+    /**
+     * @return how much charge to deduct from the Medicine Bag. By default, this is equal to {@code getEffect().getInterval()}.
+     */
+    public int getChargeToDeduct() {
+        return chargeToDeduct;
+    }
+
+    /**
+     * Modifies how much charge will be deducted from the Medicine Bag.
+     * Will be ignored for Creative Medicine Bags.
+     */
+    public void setChargeToDeduct(int chargeToDeduct) {
+        this.chargeToDeduct = chargeToDeduct;
+    }
+
+    /**
+     * @return true if the item is a Creative Medicine Bag as opposed to a regular Medicine Bag
+     */
+    public boolean isCreativeMedicineBag() {
+        return charge == -1;
     }
 }

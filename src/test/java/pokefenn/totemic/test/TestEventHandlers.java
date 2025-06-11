@@ -42,12 +42,12 @@ public class TestEventHandlers {
     public static void onEffectTick(CeremonyEvent.EffectTick event) {
         if(event.getContext().getTime() % 20 == 0)
             Totemic.logger.debug("CeremonyEvent.EffectTick fired (time = {})", event.getContext().getTime());
-        if(event.getContext().getTime() >= 5*20) { //will stop the effect from applying after 5 seconds
+        /*if(event.getContext().getTime() >= 5*20) { //will stop the effect from applying after 5 seconds
             event.setCanceled(true);
-        }
-        if(event.getContext().getTime() >= 10*20) { //will completely end the effect after 10 seconds
+        }*/
+        /*if(event.getContext().getTime() >= 10*20) { //will completely end the effect after 10 seconds
             event.getContext().endCeremony();
-        }
+        }*/
     }
 
     @SubscribeEvent
@@ -61,6 +61,9 @@ public class TestEventHandlers {
 
     @SubscribeEvent
     public static void onMedicineBagEffectTick(MedicineBagEffectEvent event) {
-        Totemic.logger.debug("MedicineBagEffectEvent fired (effect = {}, carving = {}, charge = {})", event.getEffect(), event.getCarving(), event.getCharge());
+        Totemic.logger.debug("MedicineBagEffectEvent fired (effect = {}, carving = {}, charge = {}, deduct = {})", event.getEffect(), event.getCarving(), event.getCharge(), event.getChargeToDeduct());
+        //event.setCanceled(true);
+        /*if(!event.getPlayer().level().isClientSide)
+            event.setChargeToDeduct(10);*/
     }
 }

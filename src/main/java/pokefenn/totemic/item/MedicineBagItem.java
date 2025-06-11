@@ -82,9 +82,11 @@ public class MedicineBagItem extends Item {
                     if(level.getGameTime() % interval == 0) {
                         var carving = getCarving(stack).get(); //Optional.get is safe since getEffects returned a non-empty list
                         var player = (Player) entity;
-                        if(TotemicEventHooks.get().fireMedicineBagEffectEvent(effect, carving, player, stack, charge))
+                        var eventResult = TotemicEventHooks.get().fireMedicineBagEffectEvent(effect, carving, player, stack, charge, interval);
+                        int chargeToDeduct = eventResult.firstInt();
+                        if(eventResult.rightBoolean())
                             effect.medicineBagEffect(player, stack, charge);
-                        stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - interval, 0)); //TODO: This is called multiple times on carvings with multiple effects, which can be problematic especially when they have different intervals
+                        stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - chargeToDeduct, 0)); //TODO: This is called multiple times on carvings with multiple effects, which can be problematic especially when they have different intervals
                     }
                 });
             }
