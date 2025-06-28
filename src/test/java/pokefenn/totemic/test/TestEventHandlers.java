@@ -14,7 +14,7 @@ public class TestEventHandlers {
     @SubscribeEvent
     public static void onSelection(CeremonyEvent.Selection event) {
         Totemic.logger.debug("CeremonyEvent.Selection fired: {}" , event.getCeremony());
-        //event.setCanceled(true);
+        //event.setSkipSelectionCheck(true);
         //event.setCeremony(null);
         //event.setCeremony(ModContent.buffalo_dance.get());
     }

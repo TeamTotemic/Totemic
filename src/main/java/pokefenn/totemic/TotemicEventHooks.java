@@ -2,9 +2,8 @@ package pokefenn.totemic;
 
 import java.util.List;
 
-import com.mojang.datafixers.util.Pair;
-
 import it.unimi.dsi.fastutil.ints.IntBooleanPair;
+import it.unimi.dsi.fastutil.objects.ObjectBooleanPair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -24,7 +23,8 @@ import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 
 public class TotemicEventHooks {
-    //Make the hook methods in this class instance rather static methods, to facilitate future abstraction from NeoForge's event system
+    //Make the hook methods in this class instance rather static methods, to facilitate future abstraction from NeoForge's event system.
+    //For the same reason, we return pairs rather than event instances from methods.
     private static final TotemicEventHooks INSTANCE = new TotemicEventHooks();
 
     public static TotemicEventHooks get() {
@@ -33,11 +33,11 @@ public class TotemicEventHooks {
 
     //Ceremony Events
     /**
-     * @return a Pair of the Ceremony to be selected and a Boolean describing whether {@link CeremonyInstance#canSelect} should be called.
+     * @return a Pair of the Ceremony to be selected and a boolean describing whether the call to {@link CeremonyInstance#canSelect} should be skipped.
      */
-    public Pair<Ceremony, Boolean> fireCeremonySelection(LevelAccessor level, BlockPos pos, List<MusicInstrument> selectors, Ceremony ceremony) {
+    public ObjectBooleanPair<Ceremony> fireCeremonySelection(LevelAccessor level, BlockPos pos, List<MusicInstrument> selectors, Ceremony ceremony) {
         var event = NeoForge.EVENT_BUS.post(new CeremonyEvent.Selection(level, pos, selectors, ceremony));
-        return Pair.of(event.getCeremony(), !event.isCanceled());
+        return ObjectBooleanPair.of(event.getCeremony(), event.getSkipSelectionCheck());
     }
 
     public boolean fireCeremonyStartupTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, StartupContext context) {

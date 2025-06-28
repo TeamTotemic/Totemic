@@ -62,18 +62,16 @@ public abstract class CeremonyEvent extends Event {
     /**
      * This event is fired when the required number of instruments for selecting a Ceremony has been played,
      * even when the instruments don't match any Ceremony.
-     * It allows changing the Ceremony that will be selected.
-     * <p>
-     * When canceled, the Ceremony's own check of whether it can be selected (e.g. the Buffalo Dance checking whether
-     * cows are nearby) will be skipped. If you want to prevent selecting a Ceremony, use {@code setCeremony(null)}
-     * instead.
+     * It allows changing the Ceremony that will be selected (if any), and skipping the Ceremony's selection check.
      */
-    public static class Selection extends Event implements ICancellableEvent {
+    public static class Selection extends Event {
         //not a subclass of CeremonyEvent since this is the only one where Ceremony is mutable and there's no CeremonyInstance
         private final LevelAccessor level;
         private final BlockPos pos;
         private final List<MusicInstrument> selectors;
+
         private @Nullable Ceremony ceremony;
+        private boolean skipSelectionCheck = false;
 
         public Selection(LevelAccessor level, BlockPos pos, List<MusicInstrument> selectors, @Nullable Ceremony ceremony) {
             this.level = level;
@@ -113,10 +111,25 @@ public abstract class CeremonyEvent extends Event {
         }
 
         /**
-         * Modifies the Ceremony that will be selected, if any.
+         * Modifies the Ceremony that will be selected. Pass null to select no Ceremony.
          */
         public void setCeremony(@Nullable Ceremony ceremony) {
             this.ceremony = ceremony;
+        }
+
+        /**
+         * If this method returns true, the Ceremony's selection check (e.g. the Buffalo Dance checking for cows)
+         * will be skipped.
+         */
+        public boolean getSkipSelectionCheck() {
+            return skipSelectionCheck;
+        }
+
+        /**
+         * When set to true, the Ceremony's selection check (e.g. the Buffalo Dance checking for cows) will be skipped.
+         */
+        public void setSkipSelectionCheck(boolean skipSelectionCheck) {
+            this.skipSelectionCheck = skipSelectionCheck;
         }
     }
 
