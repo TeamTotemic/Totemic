@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.redstone.Redstone;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
@@ -77,6 +78,11 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     @Override
     public int getTime() {
         return time;
+    }
+
+    @Override
+    public int getAnalogOutputSignal() {
+        return Redstone.SIGNAL_MAX;
     }
 
     @Override

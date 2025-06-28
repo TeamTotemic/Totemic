@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.redstone.Redstone;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PacketDistributor;
 import pokefenn.totemic.Totemic;
@@ -120,6 +121,11 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     public void setMusic(MusicInstrument instrument, int amount) {
         musicHandler.setMusicAmount(instrument, amount);
+    }
+
+    @Override
+    public int getAnalogOutputSignal() {
+        return (getTotalMusic() * Redstone.SIGNAL_MAX) / ceremony.getMusicNeeded();
     }
 
     @Override
