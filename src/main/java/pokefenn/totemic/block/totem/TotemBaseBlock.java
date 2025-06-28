@@ -35,6 +35,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.redstone.Redstone;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -146,7 +147,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         return level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
                 .map(base -> base.getTotemState().getAnalogOutputSignal())
-                .orElse(0);
+                .orElse(Redstone.SIGNAL_NONE);
     }
 
     @Override

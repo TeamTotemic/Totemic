@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.redstone.Redstone;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -30,7 +31,7 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
     }
 
     public int getAnalogOutputSignal() {
-        return 0;
+        return Redstone.SIGNAL_NONE;
     }
 
     void resetTotemState() {

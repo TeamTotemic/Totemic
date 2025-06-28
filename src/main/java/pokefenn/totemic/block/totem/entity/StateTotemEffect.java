@@ -12,6 +12,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.redstone.Redstone;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import pokefenn.totemic.TotemicEventHooks;
@@ -100,7 +101,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
 
     @Override
     public int getAnalogOutputSignal() {
-        return (musicAmount * 15) / TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC;
+        return (musicAmount * Redstone.SIGNAL_MAX) / TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC;
     }
 
     @Override
