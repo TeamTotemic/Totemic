@@ -62,6 +62,7 @@ public abstract class CeremonyEvent extends Event {
     /**
      * This event is fired when the required number of instruments for selecting a Ceremony has been played,
      * even when the instruments don't match any Ceremony.
+     * It allows changing the Ceremony that will be selected.
      * <p>
      * When canceled, the Ceremony's own check of whether it can be selected (e.g. the Buffalo Dance checking whether
      * cows are nearby) will be skipped. If you want to prevent selecting a Ceremony, use {@code setCeremony(null)}

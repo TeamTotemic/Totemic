@@ -27,7 +27,7 @@ public class CreativeMedicineBagItem extends MedicineBagItem {
                     var carving = getCarving(stack).get(); //Optional.get is safe since getEffects returned a non-empty list
                     var player = (Player) entity;
                     var eventResult = TotemicEventHooks.get().fireMedicineBagEffectEvent(effect, carving, player, stack, creativeChargeValue, 0);
-                    if(eventResult.rightBoolean())
+                    if(eventResult.secondBoolean())
                         effect.medicineBagEffect(player, stack, creativeChargeValue);
                 }
             });

@@ -84,7 +84,7 @@ public class MedicineBagItem extends Item {
                         var player = (Player) entity;
                         var eventResult = TotemicEventHooks.get().fireMedicineBagEffectEvent(effect, carving, player, stack, charge, interval);
                         int chargeToDeduct = eventResult.firstInt();
-                        if(eventResult.rightBoolean())
+                        if(eventResult.secondBoolean())
                             effect.medicineBagEffect(player, stack, charge);
                         stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - chargeToDeduct, 0)); //TODO: This is called multiple times on carvings with multiple effects, which can be problematic especially when they have different intervals
                     }

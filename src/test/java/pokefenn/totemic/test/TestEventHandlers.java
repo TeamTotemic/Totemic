@@ -23,6 +23,7 @@ public class TestEventHandlers {
     public static void onStartupTick(CeremonyEvent.StartupTick event) {
         if(event.getContext().getTime() % 20 == 0)
             Totemic.logger.debug("CeremonyEvent.StartupTick fired (time = {})", event.getContext().getTime());
+        //event.setCanceled(true);
         //event.getContext().startCeremony();
         //event.getContext().failCeremony();
     }

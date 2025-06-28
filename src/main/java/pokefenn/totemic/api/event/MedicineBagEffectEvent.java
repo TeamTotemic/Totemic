@@ -13,6 +13,7 @@ import pokefenn.totemic.api.totem.TotemCarving;
  * <p>
  * When canceled, {@link MedicineBagEffect#medicineBagEffect} will not be called, but charge will still be drained from
  * the Medicine Bag.
+ * The amount of charge to be drained can be modified.
  * <p>
  * Note: This event is currently fired multiple times if a {@link PortableTotemCarving} contains multiple
  * MedicineBagEffects (like the Cow and Ocelot carvings), and not fired at all for PortableTotemCarvings with no
