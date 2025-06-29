@@ -3,21 +3,17 @@ package pokefenn.totemic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
-import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicDamageTypeTagsProvider;
@@ -27,9 +23,6 @@ import pokefenn.totemic.data.TotemicEntityTypeTagsProvider;
 import pokefenn.totemic.data.TotemicItemTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
 import pokefenn.totemic.data.TotemicRecipeProvider;
-import pokefenn.totemic.handler.ClientInitHandlers;
-import pokefenn.totemic.handler.ClientInteract;
-import pokefenn.totemic.handler.ClientRenderHandler;
 import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
@@ -75,15 +68,6 @@ public final class Totemic {
         modBus.addListener(NetworkHandler::init);
 
         TotemicConfig.register(container);
-
-        if(FMLEnvironment.dist.isClient()) {
-            modBus.addListener(this::clientSetup);
-
-            modBus.register(ClientInitHandlers.class);
-            modBus.register(ModModelLayers.class);
-
-            TotemicConfig.registerConfigGui(container);
-        }
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -94,18 +78,6 @@ public final class Totemic {
 
         IEventBus eventBus = NeoForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
-    }
-
-    private void clientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> {
-            ModItems.baykok_bow.get().registerItemProperties();
-            ModItems.medicine_bag.get().registerItemProperties();
-            Sheets.addWoodType(ModBlocks.CEDAR_WOOD_TYPE);
-        });
-
-        IEventBus eventBus = NeoForge.EVENT_BUS;
-        eventBus.register(ClientInteract.class);
-        eventBus.register(ClientRenderHandler.class);
     }
 
     private void gatherData(GatherDataEvent event) {
