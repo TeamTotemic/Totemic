@@ -18,6 +18,7 @@ import net.minecraft.world.level.redstone.Redstone;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PacketDistributor;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
@@ -81,27 +82,34 @@ public final class StateStartup extends TotemState implements StartupContext {
         Level world = tile.getLevel();
         BlockPos pos = tile.getBlockPos();
 
-        if(!world.isClientSide) {
+        if(!world.isClientSide) { //server side
             if(musicHandler.getTotalMusic() >= ceremony.getMusicNeeded()) {
-                if(instance.canStartEffect(world, pos, this))
+                if(instance.canStartEffect(world, pos, this) && TotemicEventHooks.get().fireCeremonyStartupSuccess(world, pos, ceremony, instance, this))
                     startCeremony();
                 else
-                    failCeremony();
+                    failCeremony(); //TODO: For 1.21.5, this else branch should be removed, to give the canStartEffect method the option to hold off on starting the effect without completely aborting the Ceremony
             }
             else if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty())) {
+                TotemicEventHooks.get().fireCeremonyStartupFail(world, pos, ceremony, instance, this);
                 instance.onStartupFail(world, pos, this);
                 failCeremony();
             }
             else {
-                instance.onStartup(world, pos, this);
+                startupTick(world, pos);
             }
         }
-        else {
-            instance.onStartup(world, pos, this); //do not change state based on time on the client side (to account for TPS lag)
+        else { //client side
+            //do not change state based on time on the client side (to account for TPS lag)
+            startupTick(world, pos);
             CeremonyHUD.INSTANCE.setActiveTotem(tile);
         }
 
         time++;
+    }
+
+    private void startupTick(Level world, BlockPos pos) {
+        if(TotemicEventHooks.get().fireCeremonyStartupTick(world, pos, ceremony, instance, this))
+            instance.onStartup(world, pos, this);
     }
 
     @Override

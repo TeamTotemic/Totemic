@@ -20,6 +20,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
+import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
@@ -59,11 +60,15 @@ public final class StateSelection extends TotemState {
         tile.setChanged();
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
-            Ceremony match = getCeremony(selectors);
-            if(match != null && !isDisabled(match, entity)) {
-                CeremonyInstance instance = match.createInstance();
-                if(instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
-                    tile.setTotemState(new StateStartup(tile, match, instance, entity));
+            var eventResult = TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), selectors,
+                    getCeremony(selectors));
+            Ceremony ceremony = eventResult.first();
+            boolean skipSelectionCheck = eventResult.secondBoolean();
+
+            if(ceremony != null && !isDisabled(ceremony, entity)) {
+                CeremonyInstance instance = ceremony.createInstance();
+                if(skipSelectionCheck || instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
+                    tile.setTotemState(new StateStartup(tile, ceremony, instance, entity));
                 }
                 else
                     resetTotemState();
@@ -113,7 +118,7 @@ public final class StateSelection extends TotemState {
 
     private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap; //Lazily created
 
-    private static @Nullable Ceremony getCeremony(List<MusicInstrument> selectors) {
+    private @Nullable Ceremony getCeremony(List<MusicInstrument> selectors) {
         if(selectorsToCeremonyMap == null) {
             //This will throw an exception if two different Ceremonies happen to have the same selectors.
             //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
