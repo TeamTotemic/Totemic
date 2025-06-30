@@ -12,7 +12,6 @@ import pokefenn.totemic.network.NetworkHandler;
 import pokefenn.totemic.network.ServerboundPacketMouseWheel;
 
 public class ClientInteract {
-    @SuppressWarnings("resource")
     @SubscribeEvent
     public static void onMouseScroll(MouseScrollingEvent event) {
         if(event.isCanceled())

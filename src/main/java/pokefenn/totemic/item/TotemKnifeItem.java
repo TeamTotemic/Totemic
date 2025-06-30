@@ -82,7 +82,6 @@ public class TotemKnifeItem extends Item {
         return stack;
     }
 
-    @SuppressWarnings("resource")
     @Override
     public InteractionResult useOn(UseOnContext c) {
         var player = c.getPlayer();

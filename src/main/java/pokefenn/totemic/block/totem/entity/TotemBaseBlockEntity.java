@@ -196,7 +196,6 @@ public class TotemBaseBlockEntity extends BlockEntity {
         musicHandler.invalidate();
     }
 
-    @SuppressWarnings("null")
     @Override
     @Nonnull
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {

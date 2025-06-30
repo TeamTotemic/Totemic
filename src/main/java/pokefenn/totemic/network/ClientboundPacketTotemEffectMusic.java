@@ -21,7 +21,6 @@ public record ClientboundPacketTotemEffectMusic(BlockPos pos, int amount) {
         return new ClientboundPacketTotemEffectMusic(pos, amount);
     }
 
-    @SuppressWarnings("resource")
     public static void handle(ClientboundPacketTotemEffectMusic packet, Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
             Minecraft.getInstance().level.getBlockEntity(packet.pos, ModBlockEntities.totem_base.get())

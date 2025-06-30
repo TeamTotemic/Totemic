@@ -16,8 +16,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
-import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
 import pokefenn.totemic.block.totem.entity.StateSelection;
 import pokefenn.totemic.block.totem.entity.StateStartup;
@@ -97,7 +97,6 @@ public enum CeremonyHUD implements IGuiOverlay {
         }
     }
 
-    @SuppressWarnings("resource")
     private void renderStartupHUD(StateStartup state, ForgeGui gui, GuiGraphics guiGraphics, float partialTick) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;

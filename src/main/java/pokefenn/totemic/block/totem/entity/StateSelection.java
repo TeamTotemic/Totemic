@@ -18,8 +18,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
@@ -97,7 +97,6 @@ public final class StateSelection extends TotemState {
         return MusicAcceptor.CEREMONY_PRIORITY;
     }
 
-    @SuppressWarnings("resource")
     @Override
     public void tick() {
         if(!tile.getLevel().isClientSide) { //do not change state based on time on the client side (to account for TPS lag)

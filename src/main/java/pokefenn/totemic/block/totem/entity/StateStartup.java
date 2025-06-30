@@ -132,7 +132,6 @@ public final class StateStartup extends TotemState implements StartupContext {
         return Optional.ofNullable(initiator);
     }
 
-    @SuppressWarnings("resource")
     @Override
     public void failCeremony() {
         if(tile.getLevel().isClientSide)
@@ -141,7 +140,6 @@ public final class StateStartup extends TotemState implements StartupContext {
         tile.setTotemState(new StateTotemEffect(tile));
     }
 
-    @SuppressWarnings("resource")
     @Override
     public void startCeremony() {
         if(tile.getLevel().isClientSide)

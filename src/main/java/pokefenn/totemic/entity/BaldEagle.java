@@ -116,7 +116,6 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
         this.flap += this.flapping * 2.0F;
     }
 
-    @SuppressWarnings("resource")
     @Override
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
@@ -251,7 +250,6 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
         }
     }
 
-    @SuppressWarnings("resource")
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
         if(this.isInvulnerableTo(pSource)) {

@@ -27,7 +27,6 @@ public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instru
         return new ClientboundPacketStartupMusic(pos, instr, amount);
     }
 
-    @SuppressWarnings("resource")
     public static void handle(ClientboundPacketStartupMusic packet, Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
             Minecraft.getInstance().level.getBlockEntity(packet.pos, ModBlockEntities.totem_base.get()) //Doesn't seem to cause any exception on the server (Class Minecraft is never loaded)
