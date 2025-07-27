@@ -76,6 +76,9 @@ public sealed class TotemCarving permits PortableTotemCarving {
         return TotemicAPI.get().registry().totemCarvings().getKey(this);
     }
 
+    /**
+     * Returns the carving's resource key.
+     */
     public final ResourceKey<TotemCarving> getResourceKey() {
         return TotemicAPI.get().registry().totemCarvings().getResourceKey(this).get();
     }
