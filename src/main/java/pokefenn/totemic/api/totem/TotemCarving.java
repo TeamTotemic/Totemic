@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.registry.RegistryAPI;
@@ -73,6 +74,10 @@ public sealed class TotemCarving permits PortableTotemCarving {
      */
     public final ResourceLocation getRegistryName() {
         return TotemicAPI.get().registry().totemCarvings().getKey(this);
+    }
+
+    public final ResourceKey<TotemCarving> getResourceKey() {
+        return TotemicAPI.get().registry().totemCarvings().getResourceKey(this).get();
     }
 
     /**

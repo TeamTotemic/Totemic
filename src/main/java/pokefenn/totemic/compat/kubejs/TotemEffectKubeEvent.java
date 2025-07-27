@@ -21,8 +21,8 @@ import pokefenn.totemic.api.totem.TotemEffectContext;
 public class TotemEffectKubeEvent implements KubeLevelEvent {
     private final TotemEffectEvent event;
 
-    public TotemEffectKubeEvent(TotemEffectEvent underlying) {
-        this.event = underlying;
+    public TotemEffectKubeEvent(TotemEffectEvent event) {
+        this.event = event;
     }
 
     @Override
