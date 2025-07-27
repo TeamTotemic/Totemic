@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Difficulty;
 import pokefenn.totemic.api.TotemicAPI;
@@ -73,6 +74,13 @@ public final class Ceremony {
      */
     public final ResourceLocation getRegistryName() {
         return TotemicAPI.get().registry().ceremonies().getKey(this);
+    }
+
+    /**
+     * Returns the ceremony's resource key.
+     */
+    public final ResourceKey<Ceremony> getResourceKey() {
+        return TotemicAPI.get().registry().ceremonies().getResourceKey(this).get();
     }
 
     @Override
