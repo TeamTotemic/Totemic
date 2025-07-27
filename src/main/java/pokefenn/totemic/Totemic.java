@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -14,6 +15,7 @@ import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
+import pokefenn.totemic.compat.kubejs.TotemicKubeEventHandler;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicDamageTypeTagsProvider;
@@ -78,6 +80,9 @@ public final class Totemic {
 
         IEventBus eventBus = NeoForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
+
+        if(ModList.get().isLoaded("kubejs"))
+            eventBus.register(TotemicKubeEventHandler.class);
     }
 
     private void gatherData(GatherDataEvent event) {
