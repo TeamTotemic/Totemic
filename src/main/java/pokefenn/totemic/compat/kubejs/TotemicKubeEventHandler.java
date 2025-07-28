@@ -17,6 +17,34 @@ public class TotemicKubeEventHandler {
             TotemicKubeJSEvents.ceremonySelection.post(new CeremonyKubeEvent.Selection(event), key);
     }
 
+    @SubscribeEvent
+    public static void onCeremonyStartupTick(CeremonyEvent.StartupTick event) {
+        var key = event.getCeremony().getResourceKey();
+        if(event.getLevel() instanceof Level level && TotemicKubeJSEvents.ceremonyStartupTick.hasListeners(key))
+            TotemicKubeJSEvents.ceremonyStartupTick.post(level, key, new CeremonyKubeEvent.StartupTick(event)).applyCancel(event);
+    }
+
+    @SubscribeEvent
+    public static void onCeremonyStartupFail(CeremonyEvent.StartupFail event) {
+        var key = event.getCeremony().getResourceKey();
+        if(TotemicKubeJSEvents.ceremonyStartupFail.hasListeners(key))
+            TotemicKubeJSEvents.ceremonyStartupFail.post(new CeremonyKubeEvent.StartupFail(event), key);
+    }
+
+    @SubscribeEvent
+    public static void onCeremonyStartupSuccess(CeremonyEvent.StartupSuccess event) {
+        var key = event.getCeremony().getResourceKey();
+        if(TotemicKubeJSEvents.ceremonyStartupSuccess.hasListeners(key))
+            TotemicKubeJSEvents.ceremonyStartupSuccess.post(new CeremonyKubeEvent.StartupSuccess(event), key).applyCancel(event);
+    }
+
+    @SubscribeEvent
+    public static void onCeremonyEffectTick(CeremonyEvent.EffectTick event) {
+        var key = event.getCeremony().getResourceKey();
+        if(event.getLevel() instanceof Level level && TotemicKubeJSEvents.ceremonyEffectTick.hasListeners(key))
+            TotemicKubeJSEvents.ceremonyEffectTick.post(level, key, new CeremonyKubeEvent.EffectTick(event)).applyCancel(event);
+    }
+
     //Totem Effect Events
     @SubscribeEvent
     public static void onTotemEffect(TotemEffectEvent event) {

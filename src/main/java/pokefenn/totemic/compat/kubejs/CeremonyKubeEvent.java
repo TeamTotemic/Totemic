@@ -9,10 +9,36 @@ import dev.latvian.mods.kubejs.typings.Info;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
+import pokefenn.totemic.api.ceremony.CeremonyInstance;
+import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.event.CeremonyEvent;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 public abstract class CeremonyKubeEvent implements KubeLevelEvent {
+    protected abstract CeremonyEvent getEvent();
+
+    @Override
+    @Info("the level where the Ceremony is performed")
+    public Level getLevel() {
+        return (Level) getEvent().getLevel();
+    }
+
+    @Info("the position of the Totem Base where the Ceremony is performed")
+    public BlockPos getPos() {
+        return getEvent().getPos();
+    }
+
+    @Info("the Ceremony that is being performed")
+    public Ceremony getCeremony() {
+        return getEvent().getCeremony();
+    }
+
+    @Info("the CeremonyInstance of the performed Ceremony")
+    public CeremonyInstance getCeremonyInstance() {
+        return getEvent().getCeremonyInstance();
+    }
+
     @Info("""
         This event is fired when the required number of instruments for selecting a Ceremony has been played,
         even when the instruments don't match any Ceremony.
@@ -61,6 +87,102 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
         @Info("When set to true, the Ceremony's selection check (e.g. the Buffalo Dance checking for cows) will be skipped.")
         public void setSkipSelectionCheck(boolean skipSelectionCheck) {
             event.setSkipSelectionCheck(skipSelectionCheck);
+        }
+    }
+
+    @Info("""
+        This event is fired every tick during the Ceremony startup phase.
+
+        When canceled, side effects of the startup (e.g. the damage dealt by the Sun Dance) will not be applied.
+        The startup phase can be skipped or aborted entirely by using context.startCeremony() or context.failCeremony(),
+        respectively.
+        """)
+    public static class StartupTick extends CeremonyKubeEvent {
+        private final CeremonyEvent.StartupTick event;
+
+        public StartupTick(CeremonyEvent.StartupTick event) {
+            this.event = event;
+        }
+
+        @Override
+        protected CeremonyEvent.StartupTick getEvent() {
+            return event;
+        }
+
+        @Info("a StartupContext providing details about the Ceremony's progress and allowing control over the Ceremony")
+        public StartupContext getContext() {
+            return event.getContext();
+        }
+    }
+
+    @Info("""
+        This event is fired when the player was not successful in completing the ceremony startup because the time ran out.
+
+        This event is only fired on the server side.
+        """)
+    public static class StartupFail extends CeremonyKubeEvent {
+        private final CeremonyEvent.StartupFail event;
+
+        public StartupFail(CeremonyEvent.StartupFail event) {
+            this.event = event;
+        }
+
+        @Override
+        protected CeremonyEvent.StartupFail getEvent() {
+            return event;
+        }
+
+        @Info("a StartupContext providing details about the Ceremony's progress and allowing control over the Ceremony")
+        public StartupContext getContext() {
+            return event.getContext();
+        }
+    }
+
+    @Info("""
+        This event is fired when the player has successfully completed the ceremony startup.
+
+        When canceled, the Ceremony is considered failed and the effect is not started (however, this behavior will probably change in the future).
+        This event is only fired on the server side, and it will not fire when the player uses the Creative Ceremony Cheat item.
+        """)
+    public static class StartupSuccess extends CeremonyKubeEvent {
+        private final CeremonyEvent.StartupSuccess event;
+
+        public StartupSuccess(CeremonyEvent.StartupSuccess event) {
+            this.event = event;
+        }
+
+        @Override
+        protected CeremonyEvent.StartupSuccess getEvent() {
+            return event;
+        }
+
+        @Info("a StartupContext providing details about the Ceremony's progress and allowing control over the Ceremony")
+        public StartupContext getContext() {
+            return event.getContext();
+        }
+    }
+
+    @Info("""
+        This event is fired every tick during the Ceremony effect phase. Will only be fired once if the Ceremony effect is instantaneous
+        (i.e. CeremonyInstance.getEffectTime() == 0).
+
+        When canceled, the Ceremony effect will not be applied. The Ceremony can be ended prematurely by using context.endCeremony().
+        """)
+    public static class EffectTick extends CeremonyKubeEvent {
+        private final CeremonyEvent.EffectTick event;
+
+        public EffectTick(CeremonyEvent.EffectTick event) {
+            this.event = event;
+        }
+
+        @Override
+        protected CeremonyEvent.EffectTick getEvent() {
+            return event;
+        }
+
+        @Info("a CeremonyEffectContext providing details about the Ceremony's progress and allowing control over the Ceremony")
+        public CeremonyEffectContext getContext() {
+            return event.getContext();
         }
     }
 }
