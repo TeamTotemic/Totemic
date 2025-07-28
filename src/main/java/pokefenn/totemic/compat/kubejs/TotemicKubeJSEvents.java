@@ -13,7 +13,7 @@ public interface TotemicKubeJSEvents {
     EventTargetType<ResourceKey<Ceremony>> CEREMONY_TARGET = EventTargetType.registryKey(RegistryAPI.CEREMONY_REGISTRY, Ceremony.class);
     EventTargetType<ResourceKey<TotemCarving>> CARVING_TARGET = EventTargetType.registryKey(RegistryAPI.TOTEM_CARVING_REGISTRY, TotemCarving.class);
 
-    TargetedEventHandler<ResourceKey<Ceremony>> ceremonySelection = GROUP.common("ceremonySelection", () -> CeremonyKubeEvent.Selection.class).supportsTarget(CEREMONY_TARGET);
+    TargetedEventHandler<ResourceKey<Ceremony>> ceremonySelection = GROUP.server("ceremonySelection", () -> CeremonyKubeEvent.Selection.class).supportsTarget(CEREMONY_TARGET);
 
     TargetedEventHandler<ResourceKey<TotemCarving>> totemEffect = GROUP.common("totemEffect", () -> TotemEffectKubeEvent.class).hasResult().supportsTarget(CARVING_TARGET);
     TargetedEventHandler<ResourceKey<TotemCarving>> medicineBagEffect = GROUP.common("medicineBagEffect", () -> MedicineBagKubeEvent.class).hasResult().supportsTarget(CARVING_TARGET);
