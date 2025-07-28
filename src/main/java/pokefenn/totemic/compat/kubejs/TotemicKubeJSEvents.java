@@ -8,13 +8,13 @@ import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 
-public class TotemicKubeJSEvents {
-    public static final EventGroup GROUP = EventGroup.of("TotemicEvents");
-    public static final EventTargetType<ResourceKey<Ceremony>> CEREMONY_TARGET = EventTargetType.registryKey(RegistryAPI.CEREMONY_REGISTRY, Ceremony.class);
-    public static final EventTargetType<ResourceKey<TotemCarving>> CARVING_TARGET = EventTargetType.registryKey(RegistryAPI.TOTEM_CARVING_REGISTRY, TotemCarving.class);
+public interface TotemicKubeJSEvents {
+    EventGroup GROUP = EventGroup.of("TotemicEvents");
+    EventTargetType<ResourceKey<Ceremony>> CEREMONY_TARGET = EventTargetType.registryKey(RegistryAPI.CEREMONY_REGISTRY, Ceremony.class);
+    EventTargetType<ResourceKey<TotemCarving>> CARVING_TARGET = EventTargetType.registryKey(RegistryAPI.TOTEM_CARVING_REGISTRY, TotemCarving.class);
 
-    public static final TargetedEventHandler<ResourceKey<Ceremony>> ceremonySelection = GROUP.common("ceremonySelection", () -> CeremonyKubeEvent.Selection.class).supportsTarget(CEREMONY_TARGET);
+    TargetedEventHandler<ResourceKey<Ceremony>> ceremonySelection = GROUP.common("ceremonySelection", () -> CeremonyKubeEvent.Selection.class).supportsTarget(CEREMONY_TARGET);
 
-    public static final TargetedEventHandler<ResourceKey<TotemCarving>> totemEffect = GROUP.common("totemEffect", () -> TotemEffectKubeEvent.class).hasResult().supportsTarget(CARVING_TARGET);
-    public static final TargetedEventHandler<ResourceKey<TotemCarving>> medicineBagEffect = GROUP.common("medicineBagEffect", () -> MedicineBagKubeEvent.class).hasResult().supportsTarget(CARVING_TARGET);
+    TargetedEventHandler<ResourceKey<TotemCarving>> totemEffect = GROUP.common("totemEffect", () -> TotemEffectKubeEvent.class).hasResult().supportsTarget(CARVING_TARGET);
+    TargetedEventHandler<ResourceKey<TotemCarving>> medicineBagEffect = GROUP.common("medicineBagEffect", () -> MedicineBagKubeEvent.class).hasResult().supportsTarget(CARVING_TARGET);
 }
