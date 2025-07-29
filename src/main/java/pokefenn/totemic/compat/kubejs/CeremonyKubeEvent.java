@@ -43,6 +43,9 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
         This event is fired when the required number of instruments for selecting a Ceremony has been played,
         even when the instruments don't match any Ceremony.
         It allows changing the Ceremony that will be selected (if any), and skipping the Ceremony's selection check.
+
+        This events supports a Ceremony as target. To handle the case where no valid Ceremony was selected, omit the
+        target and check if `event.ceremony` is null.
         """)
     public static class Selection implements KubeLevelEvent {
         private final CeremonyEvent.Selection event;
@@ -94,8 +97,8 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
         This event is fired every tick during the Ceremony startup phase.
 
         When canceled, side effects of the startup (e.g. the damage dealt by the Sun Dance) will not be applied.
-        The startup phase can be skipped or aborted entirely by using context.startCeremony() or context.failCeremony(),
-        respectively.
+        The startup phase can be skipped or aborted entirely by using `event.context.startCeremony()` or
+        `event.context.failCeremony()`, respectively.
         """)
     public static class StartupTick extends CeremonyKubeEvent {
         private final CeremonyEvent.StartupTick event;
@@ -164,9 +167,9 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
 
     @Info("""
         This event is fired every tick during the Ceremony effect phase. Will only be fired once if the Ceremony effect is instantaneous
-        (i.e. CeremonyInstance.getEffectTime() == 0).
+        (i.e. `CeremonyInstance.getEffectTime() == 0`).
 
-        When canceled, the Ceremony effect will not be applied. The Ceremony can be ended prematurely by using context.endCeremony().
+        When canceled, the Ceremony effect will not be applied. The Ceremony can be ended prematurely by using `event.context.endCeremony()`.
         """)
     public static class EffectTick extends CeremonyKubeEvent {
         private final CeremonyEvent.EffectTick event;

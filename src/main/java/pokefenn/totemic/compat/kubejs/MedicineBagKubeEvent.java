@@ -11,8 +11,7 @@ import pokefenn.totemic.api.totem.TotemCarving;
 @Info("""
     This event is fired every time a MedicineBagEffect is applied.
 
-    When canceled, MedicineBagEffect#medicineBagEffect will not be called, but charge will still be drained from
-    the Medicine Bag.
+    When canceled, the effect will not be applied, but charge will still be drained from the Medicine Bag.
     The amount of charge to be drained can be modified.
 
     Note: This event is currently fired multiple times if a PortableTotemCarving contains multiple

@@ -12,7 +12,7 @@ import pokefenn.totemic.api.totem.TotemEffectContext;
 @Info("""
     This event is fired every time a TotemEffect is applied at a Totem Base.
 
-    When canceled, TotemEffect#effect will not be called.
+    When canceled, the effect will not be applied.
 
     Note: This event is currently fired multiple times if a TotemCarving contains multiple TotemEffects (like
     the Cow and Ocelot carvings), and not fired at all for TotemCarvings with no effects (like the 'none' carving).
