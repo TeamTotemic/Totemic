@@ -5,8 +5,6 @@ import javax.annotation.Nullable;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import pokefenn.totemic.api.event.CeremonyEvent;
-import pokefenn.totemic.api.event.MedicineBagEffectEvent;
-import pokefenn.totemic.api.event.TotemEffectEvent;
 
 public class TotemicKubeEventHandler {
     //Ceremony Events
@@ -43,20 +41,5 @@ public class TotemicKubeEventHandler {
         var key = event.getCeremony().getResourceKey();
         if(event.getLevel() instanceof Level level && TotemicKubeJSEvents.ceremonyEffectTick.hasListeners(key))
             TotemicKubeJSEvents.ceremonyEffectTick.post(level, key, new CeremonyKubeEvent.EffectTick(event)).applyCancel(event);
-    }
-
-    //Totem Effect Events
-    @SubscribeEvent
-    public static void onTotemEffect(TotemEffectEvent event) {
-        var key = event.getCarving().getResourceKey();
-        if(event.getLevel() instanceof Level level && TotemicKubeJSEvents.totemEffect.hasListeners(key))
-            TotemicKubeJSEvents.totemEffect.post(level, key, new TotemEffectKubeEvent(event)).applyCancel(event);
-    }
-
-    @SubscribeEvent
-    public static void onMedicineBagEffect(MedicineBagEffectEvent event) {
-        var key = event.getCarving().getResourceKey();
-        if(TotemicKubeJSEvents.medicineBagEffect.hasListeners(key))
-            TotemicKubeJSEvents.medicineBagEffect.post(event.getPlayer(), key, new MedicineBagKubeEvent(event)).applyCancel(event);
     }
 }
