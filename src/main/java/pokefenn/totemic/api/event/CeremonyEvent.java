@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.ICancellableEvent;
@@ -68,14 +69,16 @@ public abstract class CeremonyEvent extends Event {
         //not a subclass of CeremonyEvent since this is the only one where Ceremony is mutable and there's no CeremonyInstance
         private final LevelAccessor level;
         private final BlockPos pos;
+        private final Entity initiator;
         private final List<MusicInstrument> selectors;
 
         private @Nullable Ceremony ceremony;
         private boolean skipSelectionCheck = false;
 
-        public Selection(LevelAccessor level, BlockPos pos, List<MusicInstrument> selectors, @Nullable Ceremony ceremony) {
+        public Selection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, @Nullable Ceremony ceremony) {
             this.level = level;
             this.pos = pos;
+            this.initiator = initiator;
             this.selectors = selectors;
             this.ceremony = ceremony;
         }
@@ -92,6 +95,13 @@ public abstract class CeremonyEvent extends Event {
          */
         public BlockPos getPos() {
             return pos;
+        }
+
+        /**
+         * @return the Entity who played the last selecting instrument for the Ceremony
+         */
+        public Entity getInitiator() {
+            return initiator;
         }
 
         /**

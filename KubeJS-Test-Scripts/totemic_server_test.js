@@ -2,7 +2,7 @@ console.info('Hello, World! (from Totemic server test script)')
 // Some event handlers for testing the Totemic Kube events, see also TestEventHandlers.java
 
 TotemicEvents.ceremonySelection(event => {
-    console.log(`CeremonyEvent.Selection fired (selectors = ${event.selectors}, ceremony = ${event.ceremony})`)
+    console.log(`CeremonyEvent.Selection fired (selectors = ${event.selectors}, ceremony = ${event.ceremony}, initiator = ${event.initiator})`)
     // event.skipSelectionCheck = true
     // event.cancel()
     // event.ceremony = null

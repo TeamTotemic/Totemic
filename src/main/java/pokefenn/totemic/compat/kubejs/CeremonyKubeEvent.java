@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import dev.latvian.mods.kubejs.level.KubeLevelEvent;
 import dev.latvian.mods.kubejs.typings.Info;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
@@ -65,6 +66,11 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
         @Info("the position of the Totem Base where the Ceremony is performed")
         public BlockPos getPos() {
             return event.getPos();
+        }
+
+        @Info("the Entity who played the last selecting instrument for the Ceremony")
+        public Entity getInitiator() {
+            return event.getInitiator();
         }
 
         @Info("the list of selecting instruments")
