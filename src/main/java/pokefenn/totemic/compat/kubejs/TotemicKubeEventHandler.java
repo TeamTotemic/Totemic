@@ -17,8 +17,11 @@ public class TotemicKubeEventHandler {
     @SubscribeEvent
     public static void onCeremonySelection(CeremonyEvent.Selection event) {
         @Nullable var key = event.getCeremony() != null ? event.getCeremony().getResourceKey() : null;
-        if(TotemicKubeJSEvents.ceremonySelection.hasListeners(key))
-            TotemicKubeJSEvents.ceremonySelection.post(new CeremonyKubeEvent.Selection(event), key);
+        if(TotemicKubeJSEvents.ceremonySelection.hasListeners(key)) {
+            var result = TotemicKubeJSEvents.ceremonySelection.post(new CeremonyKubeEvent.Selection(event), key);
+            if(result.interruptFalse())
+                event.setCeremony(null);
+        }
     }
 
     @SubscribeEvent

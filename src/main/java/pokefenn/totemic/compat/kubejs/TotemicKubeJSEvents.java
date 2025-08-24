@@ -14,7 +14,7 @@ public interface TotemicKubeJSEvents {
 
     EventHandler modifyMusicInstruments = GROUP.startup("modifyMusicInstruments", () -> ModifyMusicInstrumentsKubeEvent.class);
 
-    TargetedEventHandler<ResourceKey<Ceremony>> ceremonySelection = GROUP.server("ceremonySelection", () -> CeremonyKubeEvent.Selection.class).supportsTarget(CEREMONY_TARGET);
+    TargetedEventHandler<ResourceKey<Ceremony>> ceremonySelection = GROUP.server("ceremonySelection", () -> CeremonyKubeEvent.Selection.class).hasResult().supportsTarget(CEREMONY_TARGET);
     TargetedEventHandler<ResourceKey<Ceremony>> ceremonyStartupTick = GROUP.common("ceremonyStartupTick", () -> CeremonyKubeEvent.StartupTick.class).hasResult().supportsTarget(CEREMONY_TARGET);
     TargetedEventHandler<ResourceKey<Ceremony>> ceremonyStartupFail = GROUP.server("ceremonyStartupFail", () -> CeremonyKubeEvent.StartupFail.class).supportsTarget(CEREMONY_TARGET);
     TargetedEventHandler<ResourceKey<Ceremony>> ceremonyStartupSuccess = GROUP.server("ceremonyStartupSuccess", () -> CeremonyKubeEvent.StartupSuccess.class).hasResult().supportsTarget(CEREMONY_TARGET);

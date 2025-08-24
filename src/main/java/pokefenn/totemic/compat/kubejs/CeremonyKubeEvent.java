@@ -46,6 +46,8 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
 
         This events supports a Ceremony as target. To handle the case where no valid Ceremony was selected, omit the
         target and check if `event.ceremony` is null.
+
+        When canceled (or `event.ceremony` is set to null), no Ceremony will be selected.
         """)
     public static class Selection implements KubeLevelEvent {
         private final CeremonyEvent.Selection event;
