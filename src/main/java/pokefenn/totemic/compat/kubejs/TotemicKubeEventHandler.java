@@ -7,6 +7,12 @@ import net.neoforged.bus.api.SubscribeEvent;
 import pokefenn.totemic.api.event.CeremonyEvent;
 
 public class TotemicKubeEventHandler {
+    //Modification Events
+    //Called from commonSetup
+    public static void postModificationEvents() {
+        TotemicKubeJSEvents.modifyMusicInstruments.post(new ModifyMusicInstrumentsKubeEvent());
+    }
+
     //Ceremony Events
     @SubscribeEvent
     public static void onCeremonySelection(CeremonyEvent.Selection event) {

@@ -81,8 +81,10 @@ public final class Totemic {
         IEventBus eventBus = NeoForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
 
-        if(ModList.get().isLoaded("kubejs"))
+        if(ModList.get().isLoaded("kubejs")) {
             eventBus.register(TotemicKubeEventHandler.class);
+            TotemicKubeEventHandler.postModificationEvents();
+        }
     }
 
     private void gatherData(GatherDataEvent event) {

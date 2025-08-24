@@ -21,8 +21,8 @@ import pokefenn.totemic.api.TotemicAPI;
  * Represents a music instrument type.
  */
 public final class MusicInstrument {
-    private final int baseOutput;
-    private final int musicMaximum;
+    private int baseOutput;
+    private int musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
     private @Nullable Supplier<SoundEvent> sound;
     private @Nullable String descriptionId;
@@ -52,7 +52,7 @@ public final class MusicInstrument {
     }
 
     /**
-     * Sets the item stack that is associated with this instrument. This will be displayed on the Totempedia on ceremony pages.
+     * Sets the item stack that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.
      */
     public MusicInstrument setItem(ItemStack itemStack) {
         this.itemStack = Objects.requireNonNull(itemStack);
@@ -60,7 +60,7 @@ public final class MusicInstrument {
     }
 
     /**
-     * Sets the item that is associated with this instrument. This will be displayed on the Totempedia on ceremony pages.
+     * Sets the item that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.
      */
     public MusicInstrument setItem(ItemLike item) {
         return setItem(new ItemStack(item));
@@ -112,9 +112,24 @@ public final class MusicInstrument {
     }
 
     /**
+     * Sets the default music output when the instrument is played. Can be overridden with the {@code amount} parameter passed to
+     * {@link MusicAPI#playMusic(Level, Vec3, Entity, MusicInstrument, int, int)}.
+     */
+    public void setBaseOutput(int baseOutput) {
+        this.baseOutput = baseOutput;
+    }
+
+    /**
      * Returns the maximum amount of music that a Totem Base can receive from this instrument before getting saturated.
      */
     public int getMusicMaximum() {
         return musicMaximum;
+    }
+
+    /**
+     * Sets the maximum amount of music that a Totem Base can receive from this instrument before getting saturated.
+     */
+    public void setMusicMaximum(int musicMaximum) {
+        this.musicMaximum = musicMaximum;
     }
 }
