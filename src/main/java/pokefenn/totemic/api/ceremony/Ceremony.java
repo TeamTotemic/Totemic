@@ -19,8 +19,8 @@ import pokefenn.totemic.api.music.MusicInstrument;
  * The actual ceremony effect is implemented using the {@link CeremonyInstance} interface.
  */
 public final class Ceremony {
-    private final int musicNeeded;
-    private final int maxStartupTime;
+    private int musicNeeded;
+    private int maxStartupTime;
     private final Supplier<CeremonyInstance> factory;
     private final List<MusicInstrument> selectors;
     private @Nullable String descriptionId;
@@ -96,6 +96,13 @@ public final class Ceremony {
     }
 
     /**
+     * Changes the amount of music needed to start the ceremony.
+     */
+    public void setMusicNeeded(int musicNeeded) {
+        this.musicNeeded = musicNeeded;
+    }
+
+    /**
      * Returns the maximum time in ticks that the player may take to start the ceremony in normal difficulty.
      */
     public int getMaxStartupTime() {
@@ -103,10 +110,18 @@ public final class Ceremony {
     }
 
     /**
+     * Changes the maximum time in ticks that the player may take to start the ceremony in normal difficulty.<br>
+     * This value will be adjusted depending on the level's difficulty, see {@link #getAdjustedMaxStartupTime}.
+     */
+    public void setMaxStartupTime(int maxStartupTime) {
+        this.maxStartupTime = maxStartupTime;
+    }
+
+    /**
      * Returns the maximum time in ticks that a player may take to start the ceremony, depending on difficulty.
      * By default, the time is 10% longer on Peaceful and Easy, and 12.5% shorter on Hard difficulty.
      */
-    public int getAdjustedMaxStartupTime(Difficulty diff) {
+    public int getAdjustedMaxStartupTime(Difficulty diff) { //TODO: Find a good way to let Kube scripts modify this
         return switch(diff) {
             case PEACEFUL, EASY -> (int) (1.1F * getMaxStartupTime());
             case NORMAL -> getMaxStartupTime();
