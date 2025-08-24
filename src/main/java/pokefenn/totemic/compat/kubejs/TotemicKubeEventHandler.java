@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
+import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.event.CeremonyEvent;
 
 public class TotemicKubeEventHandler {
@@ -17,7 +18,7 @@ public class TotemicKubeEventHandler {
     //Ceremony Events
     @SubscribeEvent
     public static void onCeremonySelection(CeremonyEvent.Selection event) {
-        @Nullable var key = event.getCeremony() != null ? event.getCeremony().getResourceKey() : null;
+        @Nullable var key = event.getCeremony().map(Ceremony::getResourceKey).orElse(null);
         if(TotemicKubeJSEvents.ceremonySelection.hasListeners(key)) {
             var result = TotemicKubeJSEvents.ceremonySelection.post(new CeremonyKubeEvent.Selection(event), key);
             if(result.interruptFalse())

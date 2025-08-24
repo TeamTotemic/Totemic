@@ -11,6 +11,7 @@ TotemicEvents.ceremonyEffectTick(event => {
         console.log(`CeremonyEvent.EffectTick fired (ceremony = ${event.ceremony}, time = ${event.context.time})`)
 })
 
+/* Currently not implemented: */
 // TotemicEvents.totemEffect(event => {
 //     // console.log(`TotemEffectEvent fired (effect = ${event.effect}, carving = ${event.carving}, rep = ${event.repetition}, pos = ${event.pos})`)
 // })

@@ -60,19 +60,20 @@ public final class StateSelection extends TotemState {
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
             var eventResult = TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), entity, selectors,
                     getCeremony(selectors));
-            Ceremony ceremony = eventResult.first();
-            boolean skipSelectionCheck = eventResult.secondBoolean();
 
-            if(ceremony != null) {
+            eventResult.first().ifPresentOrElse(ceremony -> {
                 CeremonyInstance instance = ceremony.createInstance();
+                boolean skipSelectionCheck = eventResult.secondBoolean();
                 if(skipSelectionCheck || instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
                     tile.setTotemState(new StateStartup(tile, ceremony, instance, entity));
                 }
                 else
                     resetTotemState();
-            }
-            else if(selectors.size() >= CeremonyAPI.MAX_SELECTORS)
-                resetTotemState();
+            },
+            () -> {
+                //if(selectors.size() >= CeremonyAPI.MAX_SELECTORS) // this check is a no-op since MIN_SELECTORS == MAX_SELECTORS
+                    resetTotemState();
+            });
         }
     }
 

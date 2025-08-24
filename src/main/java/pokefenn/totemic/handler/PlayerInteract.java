@@ -24,10 +24,11 @@ public class PlayerInteract {
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void checkCeremonyDisabled(CeremonyEvent.Selection event) {
-        var ceremony = event.getCeremony();
-        if(ceremony != null && TotemicConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
-            event.getInitiator().sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
-            event.setCeremony(null);
-        }
+        event.getCeremony().ifPresent(ceremony -> {
+            if(TotemicConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
+                event.getInitiator().sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
+                event.setCeremony(null);
+            }
+        });
     }
 }

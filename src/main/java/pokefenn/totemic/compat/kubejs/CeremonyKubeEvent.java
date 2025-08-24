@@ -82,7 +82,7 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
                 + "Ceremony, or if the value was modified.")
         @Nullable
         public Ceremony getCeremony() {
-            return event.getCeremony();
+            return event.getCeremony().orElse(null);
         }
 
         @Info("Modifies the Ceremony that will be selected. Pass null to select no Ceremony.")

@@ -1,6 +1,7 @@
 package pokefenn.totemic;
 
 import java.util.List;
+import java.util.Optional;
 
 import it.unimi.dsi.fastutil.ints.IntBooleanPair;
 import it.unimi.dsi.fastutil.objects.ObjectBooleanPair;
@@ -37,7 +38,7 @@ public class TotemicEventHooks {
      * @param initiator
      * @return a Pair of the Ceremony to be selected and a boolean describing whether the call to {@link CeremonyInstance#canSelect} should be skipped.
      */
-    public ObjectBooleanPair<Ceremony> fireCeremonySelection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Ceremony ceremony) {
+    public ObjectBooleanPair<Optional<Ceremony>> fireCeremonySelection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Ceremony ceremony) {
         var event = NeoForge.EVENT_BUS.post(new CeremonyEvent.Selection(level, pos, initiator, selectors, ceremony));
         return ObjectBooleanPair.of(event.getCeremony(), event.getSkipSelectionCheck());
     }

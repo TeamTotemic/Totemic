@@ -2,6 +2,7 @@ package pokefenn.totemic.api.event;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
@@ -112,12 +113,11 @@ public abstract class CeremonyEvent extends Event {
         }
 
         /**
-         * Returns the Ceremony that is about to be selected. May be null if the selecting instruments don't match any
+         * Returns the Ceremony that is about to be selected. May be empty if the selecting instruments don't match any
          * Ceremony, or if the value was modified using {@link #setCeremony(Ceremony)}.
          */
-        @Nullable
-        public Ceremony getCeremony() {
-            return ceremony;
+        public Optional<Ceremony> getCeremony() {
+            return Optional.ofNullable(ceremony);
         }
 
         /**
