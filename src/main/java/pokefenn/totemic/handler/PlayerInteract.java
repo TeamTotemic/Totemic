@@ -1,6 +1,7 @@
 package pokefenn.totemic.handler;
 
 import net.minecraft.network.chat.Component;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
@@ -21,7 +22,7 @@ public class PlayerInteract {
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void checkCeremonyDisabled(CeremonyEvent.Selection event) {
         var ceremony = event.getCeremony();
         if(ceremony != null && TotemicConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
