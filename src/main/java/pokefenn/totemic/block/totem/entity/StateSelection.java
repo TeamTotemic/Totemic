@@ -14,12 +14,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -65,7 +63,7 @@ public final class StateSelection extends TotemState {
             Ceremony ceremony = eventResult.first();
             boolean skipSelectionCheck = eventResult.secondBoolean();
 
-            if(ceremony != null && !isDisabled(ceremony, entity)) {
+            if(ceremony != null) {
                 CeremonyInstance instance = ceremony.createInstance();
                 if(skipSelectionCheck || instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
                     tile.setTotemState(new StateStartup(tile, ceremony, instance, entity));
@@ -76,15 +74,6 @@ public final class StateSelection extends TotemState {
             else if(selectors.size() >= CeremonyAPI.MAX_SELECTORS)
                 resetTotemState();
         }
-    }
-
-    private static boolean isDisabled(Ceremony ceremony, Entity entity) {
-        if(TotemicConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
-            entity.sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
-            return true;
-        }
-        else
-            return false;
     }
 
     @Override
