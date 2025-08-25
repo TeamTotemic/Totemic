@@ -1,23 +1,38 @@
 package pokefenn.totemic.handler;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.client.model.totem.TotemBaseModel;
 import pokefenn.totemic.client.model.totem.TotemPoleModel;
+import pokefenn.totemic.client.renderer.TotemicItemRenderer;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModItems;
 
 /**
  * Contains event handlers for various client-only events fired during initialization (on the mod event bus).
  */
 public class ClientInitHandlers {
+    @SubscribeEvent
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerItem(new IClientItemExtensions() {
+            @Override
+            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                return TotemicItemRenderer.INSTANCE;
+            }
+        }, ModItems.wind_chime.get());
+    }
+
     @SubscribeEvent
     public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
         //Directly use the tint index as color

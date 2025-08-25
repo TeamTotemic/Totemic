@@ -35,7 +35,6 @@ import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.item.BaykokBowItem;
 import pokefenn.totemic.item.CeremonyCheatItem;
 import pokefenn.totemic.item.CreativeMedicineBagItem;
-import pokefenn.totemic.item.CustomRenderedBlockItem;
 import pokefenn.totemic.item.MedicineBagItem;
 import pokefenn.totemic.item.TotemBaseItem;
 import pokefenn.totemic.item.TotemKnifeItem;
@@ -75,7 +74,7 @@ public final class ModItems {
     public static final DeferredItem<MedicineBagItem> medicine_bag = REGISTER.register("medicine_bag", () -> new MedicineBagItem(new Properties().stacksTo(1).component(ModDataComponents.OPEN, false).component(ModDataComponents.MEDICINE_BAG_CHARGE, 0)));
     public static final DeferredItem<CreativeMedicineBagItem> creative_medicine_bag = REGISTER.register("creative_medicine_bag", () -> new CreativeMedicineBagItem(new Properties().stacksTo(1).rarity(Rarity.EPIC).component(ModDataComponents.OPEN, false)));
     //Blocks with custom item blocks
-    public static final DeferredItem<CustomRenderedBlockItem> wind_chime = REGISTER.register("wind_chime", () -> new CustomRenderedBlockItem(ModBlocks.wind_chime.get(), new Properties()));
+    public static final DeferredItem<BlockItem> wind_chime = REGISTER.register("wind_chime", () -> new BlockItem(ModBlocks.wind_chime.get(), new Properties()));
     public static final DeferredItem<SignItem> cedar_sign = REGISTER.register("cedar_sign", () -> new SignItem(new Properties().stacksTo(16), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get()));
     public static final DeferredItem<HangingSignItem> cedar_hanging_sign = REGISTER.register("cedar_hanging_sign", () -> new HangingSignItem(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), new Properties().stacksTo(16)));
     public static final DeferredItem<TotemBaseItem> totem_base = REGISTER.register("totem_base", () -> new TotemBaseItem(ModBlocks.totem_base.get(), new Properties()));
