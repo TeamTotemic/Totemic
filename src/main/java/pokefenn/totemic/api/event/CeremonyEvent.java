@@ -73,10 +73,10 @@ public abstract class CeremonyEvent extends Event {
         private final Entity initiator;
         private final List<MusicInstrument> selectors;
 
-        private @Nullable Ceremony ceremony;
+        private Optional<Ceremony> ceremony;
         private boolean skipSelectionCheck = false;
 
-        public Selection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, @Nullable Ceremony ceremony) {
+        public Selection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Optional<Ceremony> ceremony) {
             this.level = level;
             this.pos = pos;
             this.initiator = initiator;
@@ -117,14 +117,14 @@ public abstract class CeremonyEvent extends Event {
          * Ceremony, or if the value was modified using {@link #setCeremony(Ceremony)}.
          */
         public Optional<Ceremony> getCeremony() {
-            return Optional.ofNullable(ceremony);
+            return ceremony;
         }
 
         /**
          * Modifies the Ceremony that will be selected. Pass null to select no Ceremony.
          */
         public void setCeremony(@Nullable Ceremony ceremony) {
-            this.ceremony = ceremony;
+            this.ceremony = Optional.ofNullable(ceremony);
         }
 
         /**

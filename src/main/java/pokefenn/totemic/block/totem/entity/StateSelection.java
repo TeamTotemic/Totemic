@@ -3,6 +3,7 @@ package pokefenn.totemic.block.totem.entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -108,7 +109,7 @@ public final class StateSelection extends TotemState {
 
     private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap; //Lazily created
 
-    private @Nullable Ceremony getCeremony(List<MusicInstrument> selectors) {
+    private Optional<Ceremony> getCeremony(List<MusicInstrument> selectors) {
         if(selectorsToCeremonyMap == null) {
             //This will throw an exception if two different Ceremonies happen to have the same selectors.
             //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
@@ -117,7 +118,7 @@ public final class StateSelection extends TotemState {
                     .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
         }
 
-        return selectorsToCeremonyMap.get(selectors);
+        return Optional.ofNullable(selectorsToCeremonyMap.get(selectors));
     }
 
     @Override

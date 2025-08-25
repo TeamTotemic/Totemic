@@ -38,7 +38,7 @@ public class TotemicEventHooks {
      * @param initiator
      * @return a Pair of the Ceremony to be selected and a boolean describing whether the call to {@link CeremonyInstance#canSelect} should be skipped.
      */
-    public ObjectBooleanPair<Optional<Ceremony>> fireCeremonySelection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Ceremony ceremony) {
+    public ObjectBooleanPair<Optional<Ceremony>> fireCeremonySelection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Optional<Ceremony> ceremony) {
         var event = NeoForge.EVENT_BUS.post(new CeremonyEvent.Selection(level, pos, initiator, selectors, ceremony));
         return ObjectBooleanPair.of(event.getCeremony(), event.getSkipSelectionCheck());
     }
