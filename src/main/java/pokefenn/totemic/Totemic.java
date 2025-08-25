@@ -99,6 +99,8 @@ public final class Totemic {
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
         eventBus.register(ClientRenderHandler.class);
+
+        RegistryApiImpl.createSelectorsToCeremonyMap();
     }
 
     private void gatherData(GatherDataEvent event) {

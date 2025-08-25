@@ -2,10 +2,6 @@ package pokefenn.totemic.block.totem.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -21,11 +17,11 @@ import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.util.MiscUtil;
 
@@ -60,7 +56,7 @@ public final class StateSelection extends TotemState {
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
             var eventResult = TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), entity, selectors,
-                    getCeremony(selectors));
+                    RegistryApiImpl.getCeremony(selectors));
 
             eventResult.first().ifPresentOrElse(ceremony -> {
                 CeremonyInstance instance = ceremony.createInstance();
@@ -105,20 +101,6 @@ public final class StateSelection extends TotemState {
 
     public List<MusicInstrument> getSelectors() {
         return selectors;
-    }
-
-    private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap; //Lazily created
-
-    private Optional<Ceremony> getCeremony(List<MusicInstrument> selectors) {
-        if(selectorsToCeremonyMap == null) {
-            //This will throw an exception if two different Ceremonies happen to have the same selectors.
-            //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
-            //to check for prefix-freeness. So we assume MIN_SELECTORS == MAX_SELECTORS here.
-            selectorsToCeremonyMap = TotemicAPI.get().registry().ceremonies().getValues().stream()
-                    .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
-        }
-
-        return Optional.ofNullable(selectorsToCeremonyMap.get(selectors));
     }
 
     @Override
