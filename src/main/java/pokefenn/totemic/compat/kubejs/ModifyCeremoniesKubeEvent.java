@@ -1,10 +1,12 @@
 package pokefenn.totemic.compat.kubejs;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import dev.latvian.mods.kubejs.event.KubeEvent;
 import dev.latvian.mods.kubejs.typings.Info;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.music.MusicInstrument;
 
 public class ModifyCeremoniesKubeEvent implements KubeEvent {
     @Info("""
@@ -18,7 +20,7 @@ public class ModifyCeremoniesKubeEvent implements KubeEvent {
         @Info("""
                 Changes the amount of music needed to start the ceremony.
 
-                This value determines which Music Instruments are necessary to successfully perform this Ceremony, and should
+                This value determines which Music Instruments are necessary to successfully perform this ceremony, and should
                 be modified with care.
                 """)
         public void setMusicNeeded(int musicNeeded) {
@@ -26,12 +28,22 @@ public class ModifyCeremoniesKubeEvent implements KubeEvent {
         }
 
         @Info("""
-                Changes the maximum time in ticks that the player may take to start the ceremony in normal difficulty.
+                Changes the maximum time in ticks that the player may take to start the ceremony.
 
                 This value will be adjusted depending on the level's difficulty.
                 """)
         public void setMaxStartupTime(int maxStartupTime) {
             ceremony.setMaxStartupTime(maxStartupTime);
+        }
+
+        @Info("""
+                Changes the ceremony's selecting instruments.
+
+                **Note:** You have to take care that no two ceremonies have the same list of selecting instruments. This is
+                currently not checked until a ceremony selection is attempted.
+                """)
+        public void setSelectors(List<MusicInstrument> selectors) {
+            ceremony.setSelectors(selectors);
         }
     }
 }

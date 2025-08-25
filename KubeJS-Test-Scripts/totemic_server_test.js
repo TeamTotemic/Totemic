@@ -38,18 +38,3 @@ TotemicEvents.ceremonyEffectTick(event => {
     //     event.context.endCeremony()
     // }
 })
-
-/* Currently not implemented: */
-// TotemicEvents.totemEffect(event => {
-//     // console.log(`TotemEffectEvent fired (effect = ${event.effect}, carving = ${event.carving}, rep = ${event.repetition}, pos = ${event.pos})`)
-// })
-
-// TotemicEvents.totemEffect('totemic:ocelot', event => {
-//     // console.log(`Ocelot effect at ${event.pos} (effect = ${event.effect})`)
-//     // event.cancel()
-// })
-
-// TotemicEvents.medicineBagEffect(event => {
-//     console.log(`MedicineBagEffectEvent fired (player = ${event.player}, effect = ${event.effect}, carving = ${event.carving}, charge = ${event.charge}, deduct = ${event.chargeToDeduct})`)
-//     // event.chargeToDeduct = 107
-// })

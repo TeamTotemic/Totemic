@@ -115,7 +115,7 @@ public final class StateSelection extends TotemState {
             //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
             //to check for prefix-freeness. So we assume MIN_SELECTORS == MAX_SELECTORS here.
             selectorsToCeremonyMap = TotemicAPI.get().registry().ceremonies().stream()
-                    .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
+                    .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity())); //TODO: Will have to move this to catch duplicate selectors at loading time
         }
 
         return Optional.ofNullable(selectorsToCeremonyMap.get(selectors));
