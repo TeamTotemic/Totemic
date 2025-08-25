@@ -144,9 +144,7 @@ public final class Ceremony {
     }
 
     /**
-     * Changes the ceremony's selecting instruments.<p>
-     * Note: You have to take care that no two ceremonies have the same list of selecting instruments. This is
-     * currently not checked until a ceremony selection is attempted.
+     * Changes the ceremony's selecting instruments.
      */
     public void setSelectors(List<MusicInstrument> selectors) {
         if(selectors.size() < CeremonyAPI.MIN_SELECTORS || selectors.size() > CeremonyAPI.MAX_SELECTORS)

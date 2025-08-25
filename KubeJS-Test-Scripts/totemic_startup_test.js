@@ -16,6 +16,7 @@ TotemicEvents.modifyCeremonies(event => {
     event.modify('totemic:rain', ceremony => {
         // ceremony.musicNeeded = 5000
         // ceremony.maxStartupTime = 10 * 20
+        // ceremony.selectors = ['totemic:flute', 'totemic:drum']
         // ceremony.selectors = ['totemic:wind_chime', 'totemic:wind_chime']
     })
 })

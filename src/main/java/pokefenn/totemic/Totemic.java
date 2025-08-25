@@ -85,6 +85,8 @@ public final class Totemic {
             eventBus.register(TotemicKubeEventHandler.class);
             TotemicKubeEventHandler.postModificationEvents();
         }
+
+        RegistryApiImpl.createSelectorsToCeremonyMap();
     }
 
     private void gatherData(GatherDataEvent event) {

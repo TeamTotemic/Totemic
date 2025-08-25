@@ -36,12 +36,7 @@ public class ModifyCeremoniesKubeEvent implements KubeEvent {
             ceremony.setMaxStartupTime(maxStartupTime);
         }
 
-        @Info("""
-                Changes the ceremony's selecting instruments.
-
-                **Note:** You have to take care that no two ceremonies have the same list of selecting instruments. This is
-                currently not checked until a ceremony selection is attempted.
-                """)
+        @Info("Changes the ceremony's selecting instruments.")
         public void setSelectors(List<MusicInstrument> selectors) {
             ceremony.setSelectors(selectors);
         }
