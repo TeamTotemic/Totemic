@@ -14,6 +14,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
+import net.neoforged.neoforge.common.ModConfigSpec.DoubleValue;
 import pokefenn.totemic.api.TotemicAPI;
 
 public final class TotemicConfig {
@@ -81,6 +82,9 @@ public final class TotemicConfig {
     public static class Server {
         public final ConfigValue<List<? extends String>> disabledCeremonies;
         public final ConfigValue<List<? extends String>> disabledTotemCarvings;
+        public final DoubleValue ceremonyStartupTimeMultiplierEasy;
+        public final DoubleValue ceremonyStartupTimeMultiplierNormal;
+        public final DoubleValue ceremonyStartupTimeMultiplierHard;
 
         Server(ModConfigSpec.Builder builder) {
             builder.comment("Totemic server configuration settings. These settings are world specific and are synced from the server to clients.")
@@ -100,6 +104,25 @@ public final class TotemicConfig {
                     .comment("Use advanced tooltips (F3+H) to look up the Totem Carvings' IDs.")
                     .translation("totemic.config.disabledTotemCarvings")
                     .defineListAllowEmpty("disabledTotemCarvings", List::of, () -> "", isValidRegistryKey(TotemicAPI.get().registry().totemCarvings()));
+
+            ceremonyStartupTimeMultiplierEasy = builder
+                    .comment("The Ceremony startup time is multiplied by this value in Peaceful and Easy difficulty.")
+                    .comment("Higher values make Ceremonies easier to perform.")
+                    .comment("Default value: 1.1")
+                    .translation("totemic.config.ceremonyStartupTimeMultiplierEasy")
+                    .defineInRange("ceremonyStartupTimeMultiplierEasy", 1.1, 0.1, Double.POSITIVE_INFINITY);
+
+            ceremonyStartupTimeMultiplierNormal = builder
+                    .comment("The Ceremony startup time is multiplied by this value in Normal difficulty.")
+                    .comment("Default value: 1.0")
+                    .translation("totemic.config.ceremonyStartupTimeMultiplierNormal")
+                    .defineInRange("ceremonyStartupTimeMultiplierNormal", 1.0, 0.1, Double.POSITIVE_INFINITY);
+
+            ceremonyStartupTimeMultiplierHard = builder
+                    .comment("The Ceremony startup time is multiplied by this value in Hard difficulty.")
+                    .comment("Default value: 0.875")
+                    .translation("totemic.config.ceremonyStartupTimeMultiplierHard")
+                    .defineInRange("ceremonyStartupTimeMultiplierHard", 0.875, 0.1, Double.POSITIVE_INFINITY);
         }
     }
 

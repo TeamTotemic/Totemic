@@ -4,9 +4,11 @@ import java.util.function.BiConsumer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.util.BlockUtil;
 
@@ -49,5 +51,14 @@ public enum CeremonyAPIImpl implements CeremonyAPI {
                             }
                 }
             }
+    }
+
+    @Override
+    public double getStartupTimeMultiplier(Difficulty diff) {
+        return switch(diff) {
+            case PEACEFUL, EASY -> TotemicConfig.SERVER.ceremonyStartupTimeMultiplierEasy.getAsDouble();
+            case NORMAL         -> TotemicConfig.SERVER.ceremonyStartupTimeMultiplierNormal.getAsDouble();
+            case HARD           -> TotemicConfig.SERVER.ceremonyStartupTimeMultiplierHard.getAsDouble();
+        };
     }
 }

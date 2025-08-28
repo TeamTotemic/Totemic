@@ -299,5 +299,8 @@
   "totemic.config.ceremonyHudPositionY": "仪式 HUD 位置 Y ",
   "totemic.config.disabledCeremonies": "禁用仪式",
   "totemic.config.disabledTotemCarvings": "禁用图腾雕刻",
+  "totemic.config.ceremonyStartupTimeMultiplierEasy": "Ceremony startup time multiplier (Easy)",
+  "totemic.config.ceremonyStartupTimeMultiplierNormal": "Ceremony startup time multiplier (Normal)",
+  "totemic.config.ceremonyStartupTimeMultiplierHard": "Ceremony startup time multiplier (Hard)",
   "totemic.config.customTotemWoodTypes": "Custom Totem Wood Types"
 }

@@ -299,5 +299,8 @@
   "totemic.config.ceremonyHudPositionY": "Zeremonien-HUD Y-Position",
   "totemic.config.disabledCeremonies": "Deaktivierte Zeremonien",
   "totemic.config.disabledTotemCarvings": "Deaktivierte Totem-Schnitzmuster",
+  "totemic.config.ceremonyStartupTimeMultiplierEasy": "Zeremonien-Startzeitfaktor (Einfach)",
+  "totemic.config.ceremonyStartupTimeMultiplierNormal": "Zeremonien-Startzeitfaktor (Normal)",
+  "totemic.config.ceremonyStartupTimeMultiplierHard": "Zeremonien-Startzeitfaktor (Schwer)",
   "totemic.config.customTotemWoodTypes": "Benutzerdefinierte Totempfahl-Holztypen"
 }

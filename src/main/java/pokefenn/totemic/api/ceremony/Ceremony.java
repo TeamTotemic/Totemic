@@ -119,14 +119,10 @@ public final class Ceremony {
 
     /**
      * Returns the maximum time in ticks that a player may take to start the ceremony, depending on difficulty.
-     * By default, the time is 10% longer on Peaceful and Easy, and 12.5% shorter on Hard difficulty.
+     * The multiplier values can be changed in Totemic's config.
      */
-    public int getAdjustedMaxStartupTime(Difficulty diff) { //TODO: Find a good way to let Kube scripts modify this
-        return switch(diff) {
-            case PEACEFUL, EASY -> (int) (1.1F * getMaxStartupTime());
-            case NORMAL -> getMaxStartupTime();
-            case HARD -> (int) (0.875F * getMaxStartupTime());
-        };
+    public int getAdjustedMaxStartupTime(Difficulty diff) {
+        return (int) (getMaxStartupTime() * TotemicAPI.get().ceremony().getStartupTimeMultiplier(diff));
     }
 
     /**
