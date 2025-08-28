@@ -9,4 +9,17 @@
 	#Example: ["totemic:spider"]
 	#Use advanced tooltips (F3+H) to look up the Totem Carvings' IDs.
 	disabledTotemCarvings = []
+	#The Ceremony startup time is multiplied by this value in Peaceful and Easy difficulty.
+	#Higher values make Ceremonies easier to perform.
+	#Default value: 1.1
+	#Range: 0.1 ~ Infinity
+	ceremonyStartupTimeMultiplierEasy = 1.1
+	#The Ceremony startup time is multiplied by this value in Normal difficulty.
+	#Default value: 1.0
+	#Range: 0.1 ~ Infinity
+	ceremonyStartupTimeMultiplierNormal = 1.0
+	#The Ceremony startup time is multiplied by this value in Hard difficulty.
+	#Default value: 0.875
+	#Range: 0.1 ~ Infinity
+	ceremonyStartupTimeMultiplierHard = 0.875
 

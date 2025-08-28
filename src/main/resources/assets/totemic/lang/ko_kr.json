@@ -296,5 +296,8 @@
   "totemic.config.ceremonyHudPositionY": "Ceremony HUD Y position",
   "totemic.config.disabledCeremonies": "Disabled Ceremonies",
   "totemic.config.disabledTotemCarvings": "Disabled Totem Carvings",
+  "totemic.config.ceremonyStartupTimeMultiplierEasy": "Ceremony startup time multiplier (Easy)",
+  "totemic.config.ceremonyStartupTimeMultiplierNormal": "Ceremony startup time multiplier (Normal)",
+  "totemic.config.ceremonyStartupTimeMultiplierHard": "Ceremony startup time multiplier (Hard)",
   "totemic.config.customTotemWoodTypes": "Custom Totem Wood Types"
 }

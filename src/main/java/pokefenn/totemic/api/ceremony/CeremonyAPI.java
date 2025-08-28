@@ -3,6 +3,7 @@ package pokefenn.totemic.api.ceremony;
 import java.util.function.BiConsumer;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -33,4 +34,11 @@ public interface CeremonyAPI {
      * @param action the action to be performed for each position and the BlockState at that position
      */
     void forEachBlockIn(Level level, BoundingBox box, BiConsumer<BlockPos, BlockState> action);
+
+    /**
+     * Returns the startup time mutiplier for the given difficulty from the configuration.
+     *
+     * @param diff the Level's difficulty
+     */
+    double getStartupTimeMultiplier(Difficulty diff);
 }

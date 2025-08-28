@@ -290,6 +290,13 @@
 
   "totemic.config.common": "Загальні",
   "totemic.config.client": "Клієнт",
+  "totemic.config.server": "сервер",
   "totemic.config.ceremonyHudPositionX": "Позиція X церемоніального інтерфейсу",
-  "totemic.config.ceremonyHudPositionY": "Позиція Y церемоніального інтерфейсу"
+  "totemic.config.ceremonyHudPositionY": "Позиція Y церемоніального інтерфейсу",
+  "totemic.config.disabledCeremonies": "Disabled Ceremonies",
+  "totemic.config.disabledTotemCarvings": "Disabled Totem Carvings",
+  "totemic.config.ceremonyStartupTimeMultiplierEasy": "Ceremony startup time multiplier (Easy)",
+  "totemic.config.ceremonyStartupTimeMultiplierNormal": "Ceremony startup time multiplier (Normal)",
+  "totemic.config.ceremonyStartupTimeMultiplierHard": "Ceremony startup time multiplier (Hard)",
+  "totemic.config.customTotemWoodTypes": "Custom Totem Wood Types"
 }
