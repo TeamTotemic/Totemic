@@ -1,5 +1,5 @@
-- Totem Bases will now emit a Comparator signal during Ceremonies, based on the music required to start the Ceremony
-- (Note: Forge does not provide a config GUI in 1.20.1)
+- Added the config options `ceremonyStartupTimeMultiplierEasy`, `...Normal` and `...Hard`, which allow simple adjustment of Ceremony startup times for each difficulty
+  - These options will appear in "&lt;save folder&gt;/serverconfig/totemic-server.toml" when you load a world or start the server
+- (@HanJiang-cn) Updated Simplified Chinese translation
 
-API changes:
-- Added several events for Ceremonies and Totem Effects. It is planned to expose these events via KubeJS integration.
+Note: I will hold off on adding KubeJS integration for 1.20.1 until the integration is more stable in 1.21.1, since there are substantial differences in KubeJS's API.
