@@ -87,6 +87,8 @@ public final class Totemic {
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
+
+        RegistryApiImpl.createSelectorsToCeremonyMap();
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
@@ -99,8 +101,6 @@ public final class Totemic {
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(ClientInteract.class);
         eventBus.register(ClientRenderHandler.class);
-
-        RegistryApiImpl.createSelectorsToCeremonyMap();
     }
 
     private void gatherData(GatherDataEvent event) {
