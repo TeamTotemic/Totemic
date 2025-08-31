@@ -2,10 +2,12 @@ package pokefenn.totemic.api.event;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.eventbus.api.Cancelable;
 import net.minecraftforge.eventbus.api.Event;
@@ -68,14 +70,16 @@ public abstract class CeremonyEvent extends Event {
         //not a subclass of CeremonyEvent since this is the only one where Ceremony is mutable and there's no CeremonyInstance
         private final LevelAccessor level;
         private final BlockPos pos;
+        private final Entity initiator;
         private final List<MusicInstrument> selectors;
 
-        private @Nullable Ceremony ceremony;
+        private Optional<Ceremony> ceremony;
         private boolean skipSelectionCheck = false;
 
-        public Selection(LevelAccessor level, BlockPos pos, List<MusicInstrument> selectors, @Nullable Ceremony ceremony) {
+        public Selection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Optional<Ceremony> ceremony) {
             this.level = level;
             this.pos = pos;
+            this.initiator = initiator;
             this.selectors = selectors;
             this.ceremony = ceremony;
         }
@@ -95,6 +99,13 @@ public abstract class CeremonyEvent extends Event {
         }
 
         /**
+         * @return the Entity who played the last selecting instrument for the Ceremony
+         */
+        public Entity getInitiator() {
+            return initiator;
+        }
+
+        /**
          * @return the list of selecting instruments
          */
         public List<MusicInstrument> getSelectors() {
@@ -102,11 +113,10 @@ public abstract class CeremonyEvent extends Event {
         }
 
         /**
-         * Returns the Ceremony that is about to be selected. May be null if the selecting instruments don't match any
+         * Returns the Ceremony that is about to be selected. May be empty if the selecting instruments don't match any
          * Ceremony, or if the value was modified using {@link #setCeremony(Ceremony)}.
          */
-        @Nullable
-        public Ceremony getCeremony() {
+        public Optional<Ceremony> getCeremony() {
             return ceremony;
         }
 
@@ -114,7 +124,7 @@ public abstract class CeremonyEvent extends Event {
          * Modifies the Ceremony that will be selected. Pass null to select no Ceremony.
          */
         public void setCeremony(@Nullable Ceremony ceremony) {
-            this.ceremony = ceremony;
+            this.ceremony = Optional.ofNullable(ceremony);
         }
 
         /**

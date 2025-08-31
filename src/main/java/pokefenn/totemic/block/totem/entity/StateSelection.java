@@ -3,6 +3,7 @@ package pokefenn.totemic.block.totem.entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -14,12 +15,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
@@ -60,31 +59,23 @@ public final class StateSelection extends TotemState {
         tile.setChanged();
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
-            var eventResult = TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), selectors,
+            var eventResult = TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), entity, selectors,
                     getCeremony(selectors));
-            Ceremony ceremony = eventResult.first();
-            boolean skipSelectionCheck = eventResult.secondBoolean();
 
-            if(ceremony != null && !isDisabled(ceremony, entity)) {
+            eventResult.first().ifPresentOrElse(ceremony -> {
                 CeremonyInstance instance = ceremony.createInstance();
+                boolean skipSelectionCheck = eventResult.secondBoolean();
                 if(skipSelectionCheck || instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
                     tile.setTotemState(new StateStartup(tile, ceremony, instance, entity));
                 }
                 else
                     resetTotemState();
-            }
-            else if(selectors.size() >= CeremonyAPI.MAX_SELECTORS)
-                resetTotemState();
+            },
+            () -> {
+                //if(selectors.size() >= CeremonyAPI.MAX_SELECTORS) // this check is a no-op since MIN_SELECTORS == MAX_SELECTORS
+                    resetTotemState();
+            });
         }
-    }
-
-    private static boolean isDisabled(Ceremony ceremony, @Nonnull Entity entity) {
-        if(TotemicConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
-            entity.sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
-            return true;
-        }
-        else
-            return false;
     }
 
     @Override
@@ -118,7 +109,7 @@ public final class StateSelection extends TotemState {
 
     private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap; //Lazily created
 
-    private @Nullable Ceremony getCeremony(List<MusicInstrument> selectors) {
+    private Optional<Ceremony> getCeremony(List<MusicInstrument> selectors) {
         if(selectorsToCeremonyMap == null) {
             //This will throw an exception if two different Ceremonies happen to have the same selectors.
             //Note that this check is not sufficient if MIN_SELECTORS != MAX_SELECTORS. In this case, we would have
@@ -127,7 +118,7 @@ public final class StateSelection extends TotemState {
                     .collect(Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
         }
 
-        return selectorsToCeremonyMap.get(selectors);
+        return Optional.ofNullable(selectorsToCeremonyMap.get(selectors));
     }
 
     @Override

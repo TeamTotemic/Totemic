@@ -1,10 +1,12 @@
 package pokefenn.totemic;
 
 import java.util.List;
+import java.util.Optional;
 
 import it.unimi.dsi.fastutil.ints.IntBooleanPair;
 import it.unimi.dsi.fastutil.objects.ObjectBooleanPair;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelAccessor;
@@ -35,8 +37,8 @@ public class TotemicEventHooks {
     /**
      * @return a Pair of the Ceremony to be selected and a boolean describing whether the call to {@link CeremonyInstance#canSelect} should be skipped.
      */
-    public ObjectBooleanPair<Ceremony> fireCeremonySelection(LevelAccessor level, BlockPos pos, List<MusicInstrument> selectors, Ceremony ceremony) {
-        var event = new CeremonyEvent.Selection(level, pos, selectors, ceremony);
+    public ObjectBooleanPair<Optional<Ceremony>> fireCeremonySelection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Optional<Ceremony> ceremony) {
+        var event = new CeremonyEvent.Selection(level, pos, initiator, selectors, ceremony);
         MinecraftForge.EVENT_BUS.post(event);
         return ObjectBooleanPair.of(event.getCeremony(), event.getSkipSelectionCheck());
     }
