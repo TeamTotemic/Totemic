@@ -101,6 +101,7 @@ dependencies {
   // api(rfg.deobf("curse.maven:ic2-242638:2353971"))
   // Example: grab the ic2 jar from libs/ in the workspace and deobfuscate
   // api(rfg.deobf(project.files("libs/ic2.jar")))
+  api("com.github.GTNewHorizons:waila:1.8.12:dev")
 }
 
 // Publishing to a Maven repository
