@@ -3,6 +3,9 @@
 /bin
 /build
 /eclipse
+/.eclipse
 /.classpath
 /.project
+/.idea
+/.vscode
 /run
