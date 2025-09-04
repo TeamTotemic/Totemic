@@ -46,6 +46,9 @@ minecraft {
 
   // Exclude some Maven dependency groups from being automatically included in the reobfuscated runs
   groupsToExcludeFromAutoReobfMapping.addAll("com.diffplug", "com.diffplug.durian", "net.industrial-craft")
+
+  // Inject generic parameters in decompiled source
+  injectMissingGenerics.set(true)
 }
 
 // Generates a class named rfg.examplemod.Tags with the mod version in it, you can find it at
