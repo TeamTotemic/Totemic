@@ -1,6 +1,8 @@
 import org.jetbrains.gradle.ext.Application
 import org.jetbrains.gradle.ext.Gradle
 import org.jetbrains.gradle.ext.RunConfigurationContainer
+import org.gradle.plugins.ide.eclipse.model.Classpath
+import org.gradle.plugins.ide.eclipse.model.SourceFolder
 
 plugins {
   id("java-library")
@@ -123,6 +125,16 @@ eclipse {
   classpath {
     isDownloadSources = true
     isDownloadJavadoc = true
+
+    // Ignore compiler warnings from decompiled and generated sources
+    file {
+      whenMerged(Action<Classpath> {
+        entries.forEach { entry ->
+          if(entry is SourceFolder && entry.path.startsWith("build"))
+            entry.entryAttributes["ignore_optional_problems"] = true
+        }
+      })
+    }
   }
 }
 
