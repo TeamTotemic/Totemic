@@ -1,10 +1,10 @@
-// 1.21.1	2024-08-21T22:38:50.751955839	Loot Tables
+// 1.21.1	2025-09-22T20:15:25.026988518	Loot Tables
 1308940f116240dfe4c3b3ee5cb1138b2fd63703 data/totemic/loot_table/blocks/cedar_button.json
 7b63be0a3776fc7addfc71f9da919186a14c7e82 data/totemic/loot_table/blocks/cedar_door.json
 ea923aac5148b5959908bb114c0aa6076851dc2a data/totemic/loot_table/blocks/cedar_fence.json
 605e64efb06fea74042d43c181db2fbd04bee781 data/totemic/loot_table/blocks/cedar_fence_gate.json
 e1db0191b6e3d98b1863f74ec65bfaecec2cfff4 data/totemic/loot_table/blocks/cedar_hanging_sign.json
-cf1d5431dbee93af67d2a9a68e48226ca59f85b2 data/totemic/loot_table/blocks/cedar_leaves.json
+7c37d4c1680ecb2734a7eb67dc94bcf24655073c data/totemic/loot_table/blocks/cedar_leaves.json
 ed6e404850446efd1aa959e7a04b3a5535ebdfe4 data/totemic/loot_table/blocks/cedar_log.json
 31563879c815ca8cb91063ca801a2022fc2cff69 data/totemic/loot_table/blocks/cedar_planks.json
 b91c618038eeec1ffedf31831b057d64bd1e5f79 data/totemic/loot_table/blocks/cedar_pressure_plate.json
