@@ -25,9 +25,4 @@ public interface TotemEffectAPI {
      * more consistent with Totemic's effects.
      */
     int getDefaultRange(int repetition, TotemEffectContext context);
-
-    /**
-     * Returns the TotemCarving the specified TotemEffect belongs to.
-     */
-    TotemCarving getCarvingForEffect(TotemEffect effect);
 }
