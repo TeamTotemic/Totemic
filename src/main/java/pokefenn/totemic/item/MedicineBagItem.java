@@ -21,7 +21,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.totem.MedicineBagEffect;
-import pokefenn.totemic.api.totem.PortableTotemCarving;
+import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
 import pokefenn.totemic.init.ModBlockEntities;
@@ -29,7 +29,6 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModDataComponents;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.util.BlockUtil;
-import pokefenn.totemic.util.MiscUtil;
 
 @SuppressWarnings("deprecation")
 public class MedicineBagItem extends Item {
@@ -46,15 +45,14 @@ public class MedicineBagItem extends Item {
         ItemProperties.register(ModItems.creative_medicine_bag.get(), name, func);
     }
 
-    public static Optional<PortableTotemCarving> getCarving(ItemStack stack) {
-        return MiscUtil.filterAndCast(Optional.ofNullable(stack.get(ModDataComponents.CARVING))
-                .filter(carving -> carving != ModContent.none.get()),
-                PortableTotemCarving.class);
+    public static Optional<TotemCarving> getCarving(ItemStack stack) {
+        return Optional.ofNullable(stack.get(ModDataComponents.CARVING))
+                .filter(carving -> carving.canBeUsedInMedicineBag() && carving != ModContent.none.get());
     }
 
-    public static List<MedicineBagEffect> getEffects(ItemStack stack) {
+    public static List<? extends MedicineBagEffect> getEffects(ItemStack stack) {
         return getCarving(stack)
-                .map(PortableTotemCarving::getMedicineBagEffects)
+                .flatMap(TotemCarving::getMedicineBagEffects)
                 .orElse(List.of());
     }
 
@@ -129,7 +127,7 @@ public class MedicineBagItem extends Item {
     private InteractionResult trySetCarving(ItemStack stack, Player player, Level level, BlockPos pos, InteractionHand hand) {
         if(level.getBlockEntity(pos) instanceof TotemPoleBlockEntity pole) {
             var carving = pole.getCarving();
-            if(carving instanceof PortableTotemCarving) {
+            if(carving.canBeUsedInMedicineBag()) {
                 var newStack = stack.copy();
                 newStack.set(ModDataComponents.CARVING, carving);
                 if(!newStack.is(ModItems.creative_medicine_bag.get()))

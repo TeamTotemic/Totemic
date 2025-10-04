@@ -73,7 +73,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
             if(blockEntity instanceof TotemPoleBlockEntity pole) {
                 var carving = pole.getCarving();
                 carvingList.add(carving);
-                totemEffectsBuilder.addAll(carving.getEffects());
+                totemEffectsBuilder.addAll(carving.getTotemEffects());
             }
             else
                 break;
