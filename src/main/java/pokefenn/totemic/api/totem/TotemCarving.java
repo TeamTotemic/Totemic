@@ -24,8 +24,19 @@ public final class TotemCarving {
     public static final Codec<TotemCarving> CODEC = TotemicAPI.get().registry().totemCarvings().byNameCodec();
     public static final StreamCodec<RegistryFriendlyByteBuf, TotemCarving> STREAM_CODEC = ByteBufCodecs.registry(RegistryAPI.TOTEM_CARVING_REGISTRY);
 
+    /**
+     * The interval in ticks between when charge is drained from a Medicine Bag.
+     * This is always the same and independent of {@link MedicineBagEffect#getInterval()}.
+     */
+    public static final int MEDICINE_BAG_DRAIN_INTERVAL = 80;
+    /**
+     * The default value for the Medicine Bag drain. This is equal to the drain interval.
+     */
+    public static final int DEFAULT_MEDICINE_BAG_DRAIN = MEDICINE_BAG_DRAIN_INTERVAL;
+
     private List<? extends TotemEffect> totemEffects;
     private @Nullable List<? extends MedicineBagEffect> medicineBagEffects;
+    private int medicineBagDrain = DEFAULT_MEDICINE_BAG_DRAIN;
     private @Nullable String descriptionId;
 
     /**
@@ -133,6 +144,16 @@ public final class TotemCarving {
     }
 
     /**
+     * Returns how much charge is drained from a Medicine Bag every {@link #MEDICINE_BAG_DRAIN_INTERVAL} ticks
+     * (regardless of {@linkplain MedicineBagEffect#getInterval() the effects' intervals}).
+     * <p>
+     * The default value is given by {@link #DEFAULT_MEDICINE_BAG_DRAIN}.
+     */
+    public int getMedicineBagDrain() {
+        return medicineBagDrain;
+    }
+
+    /**
      * Sets the carving's effects. The list's elements must be instances of both TotemEffect and MedicineBagEffect.
      * <p>
      * Note: The type parameter T might not be expressible and will usually be inferred by the compiler.
@@ -167,6 +188,19 @@ public final class TotemCarving {
      */
     public TotemCarving setTotemPoleOnly() {
         this.medicineBagEffects = null;
+        return this;
+    }
+
+    /**
+     * Sets the amount of charge to drain from a Medicine Bag every {@link #MEDICINE_BAG_DRAIN_INTERVAL} ticks
+     * (regardless of {@linkplain MedicineBagEffect#getInterval() the effects' intervals}).
+     * <p>
+     * The default value is given by {@link #DEFAULT_MEDICINE_BAG_DRAIN}.
+     */
+    public TotemCarving setMedicineBagDrain(int drain) {
+        if(drain < 0)
+            throw new IllegalArgumentException("The drain amount must be non-negative: " + drain);
+        this.medicineBagDrain = drain;
         return this;
     }
 

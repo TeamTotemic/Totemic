@@ -1,7 +1,6 @@
 package pokefenn.totemic.item;
 
 import java.util.List;
-import java.util.Optional;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -20,7 +19,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.api.totem.MedicineBagEffect;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
@@ -45,15 +43,8 @@ public class MedicineBagItem extends Item {
         ItemProperties.register(ModItems.creative_medicine_bag.get(), name, func);
     }
 
-    public static Optional<TotemCarving> getCarving(ItemStack stack) {
-        return Optional.ofNullable(stack.get(ModDataComponents.CARVING))
-                .filter(carving -> carving.canBeUsedInMedicineBag() && carving != ModContent.none.get());
-    }
-
-    public static List<? extends MedicineBagEffect> getEffects(ItemStack stack) {
-        return getCarving(stack)
-                .flatMap(TotemCarving::getMedicineBagEffects)
-                .orElse(List.of());
+    public static TotemCarving getCarving(ItemStack stack) {
+        return stack.getOrDefault(ModDataComponents.CARVING, ModContent.none.get());
     }
 
     public static int getCharge(ItemStack stack) {
@@ -68,33 +59,43 @@ public class MedicineBagItem extends Item {
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         level.getProfiler().push("totemic.medicineBag");
 
-        if(!level.isClientSide && level.getGameTime() % 20 == 0)
-            tryCharge(stack, level, entity.blockPosition());
+        var carving = getCarving(stack);
+        if(carving != ModContent.none.get()) {
+            long gameTime = level.getGameTime();
 
-        if(isOpen(stack)) {
-            int charge = getCharge(stack);
-            if(charge > 0) {
-                getEffects(stack).forEach(effect -> {
-                    int interval = effect.getInterval();
-                    if(level.getGameTime() % interval == 0) {
-                        effect.medicineBagEffect((Player) entity, stack, charge);
-                        stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - interval, 0)); //TODO: This is called multiple times on carvings with multiple effects, which can be problematic especially when they have different intervals
-                    }
-                });
-            }
+            tryCharge(stack, level, gameTime, entity.blockPosition());
+            if(isOpen(stack))
+                applyEffects(stack, level, gameTime, entity, carving);
         }
 
         level.getProfiler().pop();
     }
 
-    private void tryCharge(ItemStack stack, Level level, BlockPos pos) {
-        int charge = getCharge(stack);
-        if(charge < MAX_CHARGE) {
-            getCarving(stack).ifPresent(carving -> {
+    protected void tryCharge(ItemStack stack, Level level, long gameTime, BlockPos pos) {
+        if(!level.isClientSide && gameTime % 20 == 0) {
+            int charge = getCharge(stack);
+            if(charge < MAX_CHARGE) {
+                var carving = getCarving(stack);
                 if(BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, pos, 6)
                         .anyMatch(tile -> tile.getTotemState() instanceof StateTotemEffect && tile.hasCarving(carving))) {
-                    stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.min(charge + MAX_CHARGE / 12, MAX_CHARGE));
+                    int chargeAmount = MAX_CHARGE / 12;
+                    stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.min(charge + chargeAmount, MAX_CHARGE));
                 }
+            }
+        }
+    }
+
+    protected void applyEffects(ItemStack stack, Level level, long gameTime, Entity entity, TotemCarving carving) {
+        int charge = getCharge(stack);
+        if(charge > 0) {
+            carving.getMedicineBagEffects().ifPresent(effects -> {
+                for(var effect : effects) {
+                    if(gameTime % effect.getInterval() == 0)
+                        effect.medicineBagEffect((Player) entity, stack, charge);
+                }
+                // Drain the charge independently of the MedicineBagEffects' intervals
+                if(!level.isClientSide && gameTime % TotemCarving.MEDICINE_BAG_DRAIN_INTERVAL == 0)
+                    stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - carving.getMedicineBagDrain(), 0));
             });
         }
     }
@@ -107,16 +108,14 @@ public class MedicineBagItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext ctx) {
         var stack = ctx.getItemInHand();
-        if(!ctx.isSecondaryUseActive()) {
-            var result = toggleOpen(stack);
-            return result.getResult();
-        }
+        if(!ctx.isSecondaryUseActive())
+            return toggleOpen(stack).getResult();
         else
             return trySetCarving(stack, ctx.getPlayer(), ctx.getLevel(), ctx.getClickedPos(), ctx.getHand());
     }
 
     private InteractionResultHolder<ItemStack> toggleOpen(ItemStack stack) {
-        if(getCarving(stack).isPresent()) {
+        if(getCarving(stack) != ModContent.none.get()) {
             stack.update(ModDataComponents.OPEN, false, open -> !open);
             return InteractionResultHolder.success(stack);
         }
@@ -148,13 +147,13 @@ public class MedicineBagItem extends Item {
     @Override
     public Component getName(ItemStack stack) {
         return Component.translatable(getDescriptionId(),
-                getCarving(stack).orElseGet(ModContent.none).getDisplayName());
+                getCarving(stack).getDisplayName());
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
         String key;
-        if(getCarving(stack).isPresent()) {
+        if(getCarving(stack) != ModContent.none.get()) {
             if(getCharge(stack) > 0)
                 key = isOpen(stack) ? "open" : "closed";
             else
@@ -175,12 +174,12 @@ public class MedicineBagItem extends Item {
 
     @Override
     public int getBarWidth(ItemStack pStack) {
-        return Math.round(13.0F * getCharge(pStack) / MAX_CHARGE);
+        return Math.round((float) Item.MAX_BAR_WIDTH * getCharge(pStack) / MAX_CHARGE);
     }
 
     @Override
     public int getBarColor(ItemStack pStack) {
-        float f = (float) getCharge(pStack) / (float) MAX_CHARGE;
+        float f = (float) getCharge(pStack) / MAX_CHARGE;
         return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
     }
 }
