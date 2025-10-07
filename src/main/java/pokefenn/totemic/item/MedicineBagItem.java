@@ -3,10 +3,12 @@ package pokefenn.totemic.item;
 import java.util.List;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -28,7 +30,6 @@ import pokefenn.totemic.init.ModDataComponents;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.util.BlockUtil;
 
-@SuppressWarnings("deprecation")
 public class MedicineBagItem extends Item {
     public static final int MAX_CHARGE = 4 * 60 * 20;
 
@@ -37,7 +38,7 @@ public class MedicineBagItem extends Item {
     }
 
     public void registerItemProperties() {
-        ItemPropertyFunction func = (stack, level, entity, seed) -> isOpen(stack) ? 1.0F : 0.0F;
+        ClampedItemPropertyFunction func = (stack, level, entity, seed) -> isOpen(stack) ? 1.0F : 0.0F;
         var name = Totemic.resloc("open");
         ItemProperties.register(ModItems.medicine_bag.get(), name, func);
         ItemProperties.register(ModItems.creative_medicine_bag.get(), name, func);
@@ -102,21 +103,22 @@ public class MedicineBagItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        return toggleOpen(pPlayer.getItemInHand(pUsedHand));
+        return toggleOpen(pPlayer.getItemInHand(pUsedHand), pLevel, pPlayer);
     }
 
     @Override
     public InteractionResult useOn(UseOnContext ctx) {
         var stack = ctx.getItemInHand();
         if(!ctx.isSecondaryUseActive())
-            return toggleOpen(stack).getResult();
+            return toggleOpen(stack, ctx.getLevel(), ctx.getPlayer()).getResult();
         else
             return trySetCarving(stack, ctx.getPlayer(), ctx.getLevel(), ctx.getClickedPos(), ctx.getHand());
     }
 
-    private InteractionResultHolder<ItemStack> toggleOpen(ItemStack stack) {
+    private InteractionResultHolder<ItemStack> toggleOpen(ItemStack stack, Level level, Player player) {
         if(getCarving(stack) != ModContent.none.get()) {
             stack.update(ModDataComponents.OPEN, false, open -> !open);
+            level.playLocalSound(player, SoundEvents.ARMOR_EQUIP_LEATHER.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
             return InteractionResultHolder.success(stack);
         }
         else
@@ -132,6 +134,7 @@ public class MedicineBagItem extends Item {
                 if(!newStack.is(ModItems.creative_medicine_bag.get()))
                     newStack.set(ModDataComponents.MEDICINE_BAG_CHARGE, 0);
                 player.setItemInHand(hand, newStack);
+                level.playLocalSound(player, SoundEvents.ARMOR_EQUIP_LEATHER.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 return InteractionResult.SUCCESS;
             }
             else {
