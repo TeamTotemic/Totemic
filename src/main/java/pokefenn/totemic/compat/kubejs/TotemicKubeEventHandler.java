@@ -12,7 +12,7 @@ public class TotemicKubeEventHandler {
     //Called from commonSetup
     public static void postModificationEvents() {
         TotemicKubeJSEvents.modifyMusicInstruments.post(new ModifyMusicInstrumentsKubeEvent());
-        TotemicKubeJSEvents.modiyCeremonies.post(new ModifyCeremoniesKubeEvent());
+        TotemicKubeJSEvents.modifyCeremonies.post(new ModifyCeremoniesKubeEvent());
     }
 
     //Ceremony Events

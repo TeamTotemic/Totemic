@@ -96,25 +96,10 @@ public final class Ceremony {
     }
 
     /**
-     * Changes the amount of music needed to start the ceremony.
-     */
-    public void setMusicNeeded(int musicNeeded) {
-        this.musicNeeded = musicNeeded;
-    }
-
-    /**
      * Returns the maximum time in ticks that the player may take to start the ceremony in normal difficulty.
      */
     public int getMaxStartupTime() {
         return maxStartupTime;
-    }
-
-    /**
-     * Changes the maximum time in ticks that the player may take to start the ceremony.<br>
-     * This value will be adjusted depending on the level's difficulty, see {@link #getAdjustedMaxStartupTime}.
-     */
-    public void setMaxStartupTime(int maxStartupTime) {
-        this.maxStartupTime = maxStartupTime;
     }
 
     /**
@@ -135,16 +120,34 @@ public final class Ceremony {
     /**
      * Returns the list of music instruments for selecting the ceremony.
      */
-    public final List<MusicInstrument> getSelectors() {
+    public List<MusicInstrument> getSelectors() {
         return selectors;
+    }
+
+    /**
+     * Changes the amount of music needed to start the ceremony.
+     */
+    public Ceremony setMusicNeeded(int musicNeeded) {
+        this.musicNeeded = musicNeeded;
+        return this;
+    }
+
+    /**
+     * Changes the maximum time in ticks that the player may take to start the ceremony.<br>
+     * This value will be adjusted depending on the level's difficulty, see {@link #getAdjustedMaxStartupTime}.
+     */
+    public Ceremony setMaxStartupTime(int maxStartupTime) {
+        this.maxStartupTime = maxStartupTime;
+        return this;
     }
 
     /**
      * Changes the ceremony's selecting instruments.
      */
-    public void setSelectors(List<MusicInstrument> selectors) {
+    public Ceremony setSelectors(List<MusicInstrument> selectors) {
         if(selectors.size() < CeremonyAPI.MIN_SELECTORS || selectors.size() > CeremonyAPI.MAX_SELECTORS)
-            throw new IllegalArgumentException("Invalid number of Ceremony selectors");
+            throw new IllegalArgumentException("Invalid number of Ceremony selectors: " + selectors.size());
         this.selectors = List.copyOf(selectors);
+        return this;
     }
 }

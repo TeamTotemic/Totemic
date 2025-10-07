@@ -112,14 +112,6 @@ public final class MusicInstrument {
     }
 
     /**
-     * Sets the default music output when the instrument is played. Can be overridden with the {@code amount} parameter passed to
-     * {@link MusicAPI#playMusic(Level, Vec3, Entity, MusicInstrument, int, int)}.
-     */
-    public void setBaseOutput(int baseOutput) {
-        this.baseOutput = baseOutput;
-    }
-
-    /**
      * Returns the maximum amount of music that a Totem Base can receive from this instrument before getting saturated.
      */
     public int getMusicMaximum() {
@@ -127,9 +119,19 @@ public final class MusicInstrument {
     }
 
     /**
+     * Sets the default music output when the instrument is played. Can be overridden with the {@code amount} parameter passed to
+     * {@link MusicAPI#playMusic(Level, Vec3, Entity, MusicInstrument, int, int)}.
+     */
+    public MusicInstrument setBaseOutput(int baseOutput) {
+        this.baseOutput = baseOutput;
+        return this;
+    }
+
+    /**
      * Sets the maximum amount of music that a Totem Base can receive from this instrument before getting saturated.
      */
-    public void setMusicMaximum(int musicMaximum) {
+    public MusicInstrument setMusicMaximum(int musicMaximum) {
         this.musicMaximum = musicMaximum;
+        return this;
     }
 }

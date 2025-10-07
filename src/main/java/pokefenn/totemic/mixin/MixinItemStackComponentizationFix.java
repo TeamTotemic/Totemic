@@ -11,8 +11,8 @@ import net.minecraft.util.datafix.fixes.ItemStackComponentizationFix;
 import pokefenn.totemic.handler.ModDataFixes;
 
 @Mixin(ItemStackComponentizationFix.class)
-public class MixinItemStackComponentizationFix {
-    @Inject(method = "fixItemStack", at = @At("TAIL"))
+public abstract class MixinItemStackComponentizationFix {
+    @Inject(method = "fixItemStack", at = @At("RETURN"), require = 0) // Not strictly required, just for migration from earlier MC versions
     private static void totemic$onFixItemStack(ItemStackComponentizationFix.ItemStackData itemStackData, Dynamic<?> tag, CallbackInfo ci) {
         ModDataFixes.fixItemStackComponents(itemStackData, tag);
     }

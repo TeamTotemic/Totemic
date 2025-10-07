@@ -38,7 +38,8 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
     private TotemBaseBlockEntity activeTotem = null;
 
     public void setActiveTotem(TotemBaseBlockEntity tile) {
-        if(tile.getBlockPos().distToCenterSqr(Minecraft.getInstance().getCameraEntity().position()) <= 8*8) {
+        final double hudRange = 8.0;
+        if(tile.getBlockPos().distToCenterSqr(Minecraft.getInstance().getCameraEntity().position()) <= hudRange*hudRange) {
             activeTotem = tile;
         }
         else if(activeTotem == tile) {
