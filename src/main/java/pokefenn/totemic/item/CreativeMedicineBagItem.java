@@ -23,12 +23,10 @@ public class CreativeMedicineBagItem extends MedicineBagItem {
     @Override
     protected void applyEffects(ItemStack stack, Level level, long gameTime, Entity entity, TotemCarving carving) {
         final int creativeChargeValue = -1;
-        carving.getMedicineBagEffects().ifPresent(effects -> {
-            for(var effect : effects) {
-                if(gameTime % effect.getInterval() == 0)
-                    effect.medicineBagEffect((Player) entity, stack, creativeChargeValue);
-            }
-        });
+        for(var effect : carving.getEffects()) {
+            if(gameTime % effect.getInterval() == 0)
+                effect.medicineBagEffect((Player) entity, stack, creativeChargeValue);
+        }
     }
 
     @Override

@@ -1,50 +1,50 @@
 package pokefenn.totemic.api.totem;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 /**
- * A single effect of a {@link TotemCarving}.
- *
- * @see MedicineBagEffect
+ * An effect of a {@link TotemCarving}.
  */
-public abstract class TotemEffect {
+public interface TotemEffect {
     /**
      * The default value for the Totem Effect interval.
      */
-    public static final int DEFAULT_INTERVAL = 80;
-
-    private final int interval;
+    static final int DEFAULT_INTERVAL = 80;
 
     /**
-     * Constructor for TotemEffect with a default interval of {@value TotemEffect#DEFAULT_INTERVAL} ticks.
-     */
-    public TotemEffect() {
-        this(DEFAULT_INTERVAL);
-    }
-
-    /**
-     * Constructor for TotemEffect.
-     * @param interval  the time in ticks between applications of the effect. It is encouraged that this be a multiple of 20.
-     */
-    public TotemEffect(int interval) {
-        if(interval <= 0)
-            throw new IllegalArgumentException("The interval must be larger than 0");
-        this.interval = interval;
-    }
-
-    /**
-     * Applies the effect at the given position.
+     * Applies the effect from the Totem Base at the given position.
      * @param pos        the position of the Totem Base block.
      * @param repetition the number of Totem Pole blocks which are carved with the carving this effect belongs to.
      * @param context    an object providing details about the Totem Pole this effect originates from.
      */
-    public abstract void effect(Level level, BlockPos pos, int repetition, TotemEffectContext context);
+    void effect(Level level, BlockPos pos, int repetition, TotemEffectContext context);
+
+    /**
+     * Applies the effect from a Medicine Bag to the given player.
+     * <p>
+     * If {@link #supportsMedicineBag()} returns false, this method should do nothing.
+     * @param player      the player carrying the Medicine Bag
+     * @param medicineBag the Medicine Bag item stack the effect originates from
+     * @param charge      the time in ticks until the Medicine Bag is depleted, or -1 if it is a Creative Medicine Bag
+     */
+    void medicineBagEffect(Player player, ItemStack medicineBag, int charge);
+
+    /**
+     * Returns true if this effect can be used with Medicine Bags.
+     */
+    default boolean supportsMedicineBag() {
+        return true;
+    }
 
     /**
      * Returns the time in ticks between applications of the effect.
+     * <p>
+     * The interval must be constant and should preferably be a multiple of 20 ticks.
      */
-    public final int getInterval() {
-        return interval;
+    default int getInterval() {
+        return DEFAULT_INTERVAL;
     }
 }

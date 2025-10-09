@@ -89,15 +89,13 @@ public class MedicineBagItem extends Item {
     protected void applyEffects(ItemStack stack, Level level, long gameTime, Entity entity, TotemCarving carving) {
         int charge = getCharge(stack);
         if(charge > 0) {
-            carving.getMedicineBagEffects().ifPresent(effects -> {
-                for(var effect : effects) {
-                    if(gameTime % effect.getInterval() == 0)
-                        effect.medicineBagEffect((Player) entity, stack, charge);
-                }
-                // Drain the charge independently of the MedicineBagEffects' intervals
-                if(!level.isClientSide && gameTime % TotemCarving.MEDICINE_BAG_DRAIN_INTERVAL == 0)
-                    stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - carving.getMedicineBagDrain(), 0));
-            });
+            for(var effect : carving.getEffects()) {
+                if(gameTime % effect.getInterval() == 0)
+                    effect.medicineBagEffect((Player) entity, stack, charge);
+            }
+            // Drain the charge independently of the effects' intervals
+            if(!level.isClientSide && gameTime % TotemCarving.MEDICINE_BAG_DRAIN_INTERVAL == 0)
+                stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - carving.getMedicineBagDrain(), 0));
         }
     }
 
@@ -128,7 +126,7 @@ public class MedicineBagItem extends Item {
     private InteractionResult trySetCarving(ItemStack stack, Player player, Level level, BlockPos pos, InteractionHand hand) {
         if(level.getBlockEntity(pos) instanceof TotemPoleBlockEntity pole) {
             var carving = pole.getCarving();
-            if(carving.canBeUsedInMedicineBag()) {
+            if(carving.supportsMedicineBag()) {
                 var newStack = stack.copy();
                 newStack.set(ModDataComponents.CARVING, carving);
                 if(!newStack.is(ModItems.creative_medicine_bag.get()))

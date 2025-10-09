@@ -72,7 +72,7 @@ public final class ModContent {
         protected int getLingeringTime() { return 210; }
     }));
     public static final Supplier<TotemCarving> horse = CARVINGS.register("horse", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.MOVEMENT_SPEED)));
-    public static final Supplier<TotemCarving> ocelot = CARVINGS.register("ocelot", () -> TotemCarving.ofTotemOnly(
+    public static final Supplier<TotemCarving> ocelot = CARVINGS.register("ocelot", () -> TotemCarving.of(
             new OcelotTotemEffect(),
             new PotionTotemEffect(ModMobEffects.ocelot, false)));
     public static final Supplier<TotemCarving> pig = CARVINGS.register("pig", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.LUCK)));

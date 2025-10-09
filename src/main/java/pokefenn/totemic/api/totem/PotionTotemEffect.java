@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 /**
  * A TotemEffect which applies a {@link MobEffect} to all Players near the Totem Pole.
  */
-public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagEffect {
+public class PotionTotemEffect extends PlayerTotemEffect {
     /**
      * The mob effect to apply.
      */
@@ -23,6 +23,11 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      * Otherwise, the amplifier will be 0.
      */
     protected final boolean scaleAmplifier;
+
+    /**
+     * The effect's interval
+     */
+    protected final int interval;
 
     /**
      * Constructs a new PotionTotemEffect with default interval and scaling amplifier.
@@ -50,13 +55,14 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      * @param interval       the time in ticks until the mob effect is renewed.
      */
     public PotionTotemEffect(Holder<MobEffect> mobEffect, boolean scaleAmplifier, int interval) {
-        super(interval);
         this.mobEffect = Objects.requireNonNull(mobEffect);
         this.scaleAmplifier = scaleAmplifier;
+        this.interval = interval;
     }
 
     /**
-     * Returns the amplifier that should be used for this effect.<p>
+     * Returns the amplifier that should be used for this effect.
+     * <p>
      * In case {@link #scaleAmplifier} is {@code true}, this method returns a value between 0 and 3, depending on the repetition and the amount of music in the Totem Base.
      * Otherwise, the value is 0.
      */
@@ -107,5 +113,10 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
     public void medicineBagEffect(Player player, ItemStack medicineBag, int charge) {
         if(!player.level().isClientSide)
             player.addEffect(getEffectInstanceForMedicineBag(player, medicineBag, charge));
+    }
+
+    @Override
+    public int getInterval() {
+        return interval;
     }
 }
