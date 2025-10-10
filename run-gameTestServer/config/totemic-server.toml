@@ -21,3 +21,6 @@
 	#Default value: 0.875
 	#Range: 0.1 ~ Infinity
 	ceremonyStartupTimeMultiplierHard = 0.875
+	#List of Totem Carvings that may not be used in Medicine Bags.
+	#Example: ["totemic:spider"]
+	medicineBagBlacklist = []

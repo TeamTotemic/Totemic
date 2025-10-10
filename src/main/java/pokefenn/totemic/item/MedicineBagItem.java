@@ -21,6 +21,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
@@ -126,20 +127,23 @@ public class MedicineBagItem extends Item {
     private InteractionResult trySetCarving(ItemStack stack, Player player, Level level, BlockPos pos, InteractionHand hand) {
         if(level.getBlockEntity(pos) instanceof TotemPoleBlockEntity pole) {
             var carving = pole.getCarving();
-            if(carving.supportsMedicineBag()) {
-                var newStack = stack.copy();
-                newStack.set(ModDataComponents.CARVING, carving);
-                if(!newStack.is(ModItems.creative_medicine_bag.get()))
-                    newStack.set(ModDataComponents.MEDICINE_BAG_CHARGE, 0);
-                player.setItemInHand(hand, newStack);
-                level.playLocalSound(player, SoundEvents.ARMOR_EQUIP_LEATHER.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                return InteractionResult.SUCCESS;
+            if(TotemicConfig.SERVER.medicineBagBlacklist.get().contains(carving.getRegistryName().toString())) {
+                player.displayClientMessage(Component.translatable("totemic.medicineBag.blacklisted", carving.getDisplayName()), true);
+                return InteractionResult.FAIL;
             }
-            else {
+            if(!carving.supportsMedicineBag()) {
                 if(level.isClientSide)
                     player.displayClientMessage(Component.translatable("totemic.medicineBag.notPortable", carving.getDisplayName()), true);
                 return InteractionResult.FAIL;
             }
+
+            var newStack = stack.copy();
+            newStack.set(ModDataComponents.CARVING, carving);
+            if(!newStack.is(ModItems.creative_medicine_bag.get()))
+                newStack.set(ModDataComponents.MEDICINE_BAG_CHARGE, 0);
+            player.setItemInHand(hand, newStack);
+            level.playLocalSound(player, SoundEvents.ARMOR_EQUIP_LEATHER.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
+            return InteractionResult.SUCCESS;
         }
         else
             return InteractionResult.PASS;
