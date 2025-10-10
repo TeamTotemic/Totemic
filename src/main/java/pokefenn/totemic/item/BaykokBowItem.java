@@ -1,26 +1,15 @@
 package pokefenn.totemic.item;
 
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import pokefenn.totemic.entity.InvisibleArrow;
 
 public class BaykokBowItem extends BowItem {
     public BaykokBowItem(Properties pProperties) {
         super(pProperties);
-    }
-
-    public void registerItemProperties() {
-        var pulling = ResourceLocation.withDefaultNamespace("pulling");
-        var pull = ResourceLocation.withDefaultNamespace("pull");
-        var bowStack = new ItemStack(Items.BOW);
-        ItemProperties.register(this, pulling, ItemProperties.getProperty(bowStack, pulling));
-        ItemProperties.register(this, pull, ItemProperties.getProperty(bowStack, pull));
     }
 
     @Override

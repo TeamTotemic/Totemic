@@ -3,8 +3,6 @@ package pokefenn.totemic.item;
 import java.util.List;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
@@ -20,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
@@ -36,13 +33,6 @@ public class MedicineBagItem extends Item {
 
     public MedicineBagItem(Properties pProperties) {
         super(pProperties);
-    }
-
-    public void registerItemProperties() {
-        ClampedItemPropertyFunction func = (stack, level, entity, seed) -> isOpen(stack) ? 1.0F : 0.0F;
-        var name = Totemic.resloc("open");
-        ItemProperties.register(ModItems.medicine_bag.get(), name, func);
-        ItemProperties.register(ModItems.creative_medicine_bag.get(), name, func);
     }
 
     public static TotemCarving getCarving(ItemStack stack) {
