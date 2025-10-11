@@ -1,7 +1,6 @@
 package pokefenn.totemic.api.totem;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
@@ -107,16 +106,8 @@ public final class TotemCarving {
     /**
      * Sets the carving's effects.
      */
-    public TotemCarving setEffects(TotemEffect... effects) {
-        this.effects = List.of(effects);
-        return this;
-    }
-
-    /**
-     * Adds an effect to the carving.
-     */
-    public TotemCarving addEffect(TotemEffect effectToAdd) {
-        this.effects = Stream.concat(effects.stream(), Stream.of(effectToAdd)).toList();
+    public TotemCarving setEffects(List<? extends TotemEffect> effects) {
+        this.effects = List.copyOf(effects);
         return this;
     }
 

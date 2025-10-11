@@ -13,6 +13,7 @@ public interface TotemicKubeJSEvents {
     EventTargetType<ResourceKey<Ceremony>> CEREMONY_TARGET = EventTargetType.registryKey(RegistryAPI.CEREMONY_REGISTRY, Ceremony.class);
 
     EventHandler modifyMusicInstruments = GROUP.startup("modifyMusicInstruments", () -> ModifyMusicInstrumentsKubeEvent.class);
+    EventHandler modifyTotemCarvings = GROUP.startup("modifyTotemCarvings", () -> ModifyTotemCarvingsKubeEvent.class);
     EventHandler modifyCeremonies = GROUP.startup("modifyCeremonies", () -> ModifyCeremoniesKubeEvent.class);
 
     TargetedEventHandler<ResourceKey<Ceremony>> ceremonySelection = GROUP.server("ceremonySelection", () -> CeremonyKubeEvent.Selection.class).hasResult().supportsTarget(CEREMONY_TARGET);
