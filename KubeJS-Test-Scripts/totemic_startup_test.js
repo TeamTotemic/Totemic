@@ -11,17 +11,16 @@ TotemicEvents.modifyMusicInstruments(event => {
     })
 })
 
-const PotionTotemEffect = Java.loadClass('pokefenn.totemic.api.totem.PotionTotemEffect')
 TotemicEvents.modifyTotemCarvings(event => {
     console.log('Totem Carving modification event fired')
     event.modify('totemic:horse', carving => {
         // carving.medicineBagDrain = 1000
-        // carving.effects = [new PotionTotemEffect('minecraft:hunger', false, 20)]
+        // carving.effects = [TotemEffect.potion('minecraft:hunger', false, 20)]
     })
     event.modify('totemic:cow', carving => {
         // carving.medicineBagDrain += 120
-        // carving.effects[1] = new PotionTotemEffect('minecraft:mining_fatigue')
-        // carving.effects.push(new PotionTotemEffect('minecraft:regeneration'))
+        // carving.effects[1] = TotemEffect.potion('minecraft:mining_fatigue', false)
+        // carving.effects.push(TotemEffect.potion('minecraft:regeneration'))
     })
     event.modify('totemic:spider', carving => {
         // no access to the effects array

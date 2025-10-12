@@ -14,5 +14,6 @@ public class TotemicKubeJSPlugin implements KubeJSPlugin {
     @Override
     public void registerBindings(BindingRegistry bindings) {
         bindings.add("TotemicAPI", TotemicAPI.get());
+        bindings.add("TotemEffect", TotemEffectWrapper.class);
     }
 }
