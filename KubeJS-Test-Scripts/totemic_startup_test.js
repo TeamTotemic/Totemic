@@ -21,6 +21,7 @@ TotemicEvents.modifyTotemCarvings(event => {
         // carving.medicineBagDrain += 120
         // carving.effects[1] = TotemEffect.potion('minecraft:mining_fatigue', false)
         // carving.effects.push(TotemEffect.potion('minecraft:regeneration'))
+        // carving.effects.push(TotemEffect.potion('invalid:effect'))
     })
     event.modify('totemic:spider', carving => {
         // no access to the effects array

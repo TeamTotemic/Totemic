@@ -3,6 +3,7 @@ package pokefenn.totemic.api.totem;
 import java.util.Objects;
 
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -55,6 +56,8 @@ public class PotionTotemEffect extends PlayerTotemEffect {
      * @param interval       the time in ticks until the mob effect is renewed.
      */
     public PotionTotemEffect(Holder<MobEffect> mobEffect, boolean scaleAmplifier, int interval) {
+        if(!mobEffect.isBound()) //Prevent crash when trying to apply a non-existant mob effect
+            throw new IllegalArgumentException("Invalid mob effect: " + mobEffect.unwrapKey().map(ResourceKey::location).orElse(null));
         this.mobEffect = Objects.requireNonNull(mobEffect);
         this.scaleAmplifier = scaleAmplifier;
         this.interval = interval;
