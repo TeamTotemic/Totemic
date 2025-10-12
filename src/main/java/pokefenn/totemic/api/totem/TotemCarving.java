@@ -52,6 +52,13 @@ public final class TotemCarving {
         return new TotemCarving(List.of(effects));
     }
 
+    /**
+     * Creates a TotemCarving with multiple effects.
+     */
+    public static TotemCarving of(List<TotemEffect> effects) {
+        return new TotemCarving(List.copyOf(effects));
+    }
+
     private TotemCarving(List<TotemEffect> effects) {
         this.effects = effects;
     }

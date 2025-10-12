@@ -1,6 +1,15 @@
 console.info('Hello, World! (from Totemic startup test script)')
 // Some event handlers for testing the Totemic Kube events, see also TestEventHandlers.java
 
+StartupEvents.registry('totemic:c_totem_carving', event => {
+    console.log('Totem Carving registry event fired')
+    // event.create('test_carving')
+    //     .potion('totemic:spider')
+    //     .effect(TotemEffect.potion('minecraft:speed', false, 20))
+    //     .medicineBagDrain(1)
+    //     .displayName("Test Carving")
+})
+
 TotemicEvents.modifyMusicInstruments(event => {
     console.log('MusicInstrument modification event fired')
     event.modify('totemic:flute', instr => {
