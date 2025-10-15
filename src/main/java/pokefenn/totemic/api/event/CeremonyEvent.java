@@ -212,17 +212,20 @@ public abstract class CeremonyEvent extends Event {
 
     /**
      * This event is fired every tick during the Ceremony effect phase. Will only be fired once if the Ceremony effect is instantaneous
-     * (i.e. {@link CeremonyInstance#getEffectTime()} == 0).
+     * (i.e. {@link #getEffectTime()} == 0).
      * <p>
-     * When canceled, {@link CeremonyInstance#effect} will not be called.
+     * Allows modifying the duration of the effect. When canceled, {@link CeremonyInstance#effect} will not be called.
      */
     @Cancelable
     public static class EffectTick extends CeremonyEvent {
         private final CeremonyEffectContext context;
 
+        private int effectTime;
+
         public EffectTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, CeremonyEffectContext context) {
             super(level, pos, ceremony, instance);
             this.context = context;
+            this.effectTime = instance.getEffectTime();
         }
 
         /**
@@ -230,6 +233,22 @@ public abstract class CeremonyEvent extends Event {
          */
         public CeremonyEffectContext getContext() {
             return context;
+        }
+
+        /**
+         * @return the number of ticks that the Ceremony effect will last
+         */
+        public int getEffectTime() {
+            return effectTime;
+        }
+
+        /**
+         * Changes the number of ticks that the Ceremony effect will last.
+         * <p>
+         * Keep in mind that changing this to a non-zero value for instantaneous effects may produce unexpected results.
+         */
+        public void setEffectTime(int effectTime) {
+            this.effectTime = effectTime;
         }
     }
 }

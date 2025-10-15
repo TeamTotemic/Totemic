@@ -3,7 +3,6 @@ package pokefenn.totemic;
 import java.util.List;
 import java.util.Optional;
 
-import it.unimi.dsi.fastutil.objects.ObjectBooleanPair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LevelAccessor;
@@ -25,13 +24,10 @@ public class TotemicEventHooks {
     }
 
     //Ceremony Events
-    /**
-     * @return a Pair of the Ceremony to be selected and a boolean describing whether the call to {@link CeremonyInstance#canSelect} should be skipped.
-     */
-    public ObjectBooleanPair<Optional<Ceremony>> fireCeremonySelection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Optional<Ceremony> ceremony) {
+    public CeremonySelectionResult fireCeremonySelection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Optional<Ceremony> ceremony) {
         var event = new CeremonyEvent.Selection(level, pos, initiator, selectors, ceremony);
         MinecraftForge.EVENT_BUS.post(event);
-        return ObjectBooleanPair.of(event.getCeremony(), event.getSkipSelectionCheck());
+        return new CeremonySelectionResult(event.getCeremony(), event.getSkipSelectionCheck());
     }
 
     public boolean fireCeremonyStartupTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, StartupContext context) {
@@ -46,7 +42,13 @@ public class TotemicEventHooks {
         return !MinecraftForge.EVENT_BUS.post(new CeremonyEvent.StartupSuccess(level, pos, ceremony, instance, context));
     }
 
-    public boolean fireCeremonyEffectTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, CeremonyEffectContext context) {
-        return !MinecraftForge.EVENT_BUS.post(new CeremonyEvent.EffectTick(level, pos, ceremony, instance, context));
+    public CeremonyEffectResult fireCeremonyEffectTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, CeremonyEffectContext context) {
+        var event = new CeremonyEvent.EffectTick(level, pos, ceremony, instance, context);
+        boolean cancelled = MinecraftForge.EVENT_BUS.post(event);
+        return new CeremonyEffectResult(!cancelled, event.getEffectTime());
     }
+
+    public record CeremonySelectionResult(Optional<Ceremony> ceremony, boolean skipSelectionCheck) { }
+
+    public record CeremonyEffectResult(boolean callEffect, int effectTime) { }
 }

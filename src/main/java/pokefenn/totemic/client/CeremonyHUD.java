@@ -134,7 +134,6 @@ public enum CeremonyHUD implements IGuiOverlay {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
-        var cerInst = state.getCeremonyInstance();
 
         gui.setupOverlayRenderState(true, false);
         RenderSystem.setShaderTexture(0, CEREMONY_HUD_TEXTURE);
@@ -150,7 +149,7 @@ public enum CeremonyHUD implements IGuiOverlay {
         addQuad(buf, poseStack, 1, 20,  9, 9,   0, 48,  16, 16, texW, texH);
 
         //Time bar
-        float timeW = Mth.clamp(1.0F - (state.getTime() + partialTick) / cerInst.getEffectTime(), 0.0F, 1.0F) * barW;
+        float timeW = Mth.clamp(1.0F - (state.getTime() + partialTick) / state.getEffectTime(), 0.0F, 1.0F) * barW;
         addQuad(buf, poseStack, 11, 21,  timeW,  barH,  0, 32,  timeW,  barH, texW, texH);
 
         BufferUploader.drawWithShader(buf.end());
