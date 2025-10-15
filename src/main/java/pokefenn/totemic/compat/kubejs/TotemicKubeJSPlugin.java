@@ -11,6 +11,7 @@ public class TotemicKubeJSPlugin implements KubeJSPlugin {
     @Override
     public void registerBuilderTypes(BuilderTypeRegistry registry) {
         registry.addDefault(RegistryAPI.TOTEM_CARVING_REGISTRY, TotemCarvingBuilder.class, TotemCarvingBuilder::new);
+        registry.addDefault(RegistryAPI.CEREMONY_REGISTRY, CeremonyBuilder.class, CeremonyBuilder::new);
     }
 
     @Override

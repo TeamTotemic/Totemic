@@ -14,6 +14,22 @@ StartupEvents.registry('totemic:c_totem_carving', event => {
     }
 })
 
+StartupEvents.registry('totemic:d_ceremony', event => {
+    console.log('Ceremony registry event fired')
+    if(TOTEMIC_DEBUG) {
+        event.create('test_ceremony')
+            .musicNeeded(2000)
+            .maxStartupTime(10 * 20)
+            .selectors('totemic:eagle_bone_whistle', 'totemic:eagle_bone_whistle')
+            .effect((level, pos, context) => {
+                if(context.time % 20 == 0)
+                    console.log(`Custom Ceremony effect called (level = ${level}, pos = ${pos}, time = ${context.time})`)
+            })
+            .effectDuration(5 * 20)
+            .displayName('Test Ceremony')
+    }
+});
+
 TotemicEvents.modifyMusicInstruments(event => {
     console.log('MusicInstrument modification event fired')
     event.modify('totemic:flute', instr => {
