@@ -138,7 +138,6 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
-        var cerInst = state.getCeremonyInstance();
 
         RenderSystem.setShaderTexture(0, CEREMONY_HUD_TEXTURE);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
@@ -153,7 +152,7 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
 
         //Time bar
         float partialTick = deltaTracker.getGameTimeDeltaPartialTick(true);
-        float timeW = Mth.clamp(1.0F - (state.getTime() + partialTick) / cerInst.getEffectTime(), 0.0F, 1.0F) * barW;
+        float timeW = Mth.clamp(1.0F - (state.getTime() + partialTick) / state.getEffectTime(), 0.0F, 1.0F) * barW;
         addQuad(buf, poseStack, 11, 21,  timeW,  barH,  0, 32,  timeW,  barH, texW, texH);
 
         BufferUploader.drawWithShader(buf.buildOrThrow());

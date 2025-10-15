@@ -175,7 +175,7 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
 
     @Info("""
         This event is fired every tick during the Ceremony effect phase. Will only be fired once if the Ceremony effect is instantaneous
-        (i.e. `CeremonyInstance.getEffectTime() == 0`).
+        (i.e. `event.effectTime == 0`).
 
         When canceled, the Ceremony effect will not be applied. The Ceremony can be ended prematurely by using `event.context.endCeremony()`.
         """)
@@ -194,6 +194,20 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
         @Info("a CeremonyEffectContext providing details about the Ceremony's progress and allowing control over the Ceremony")
         public CeremonyEffectContext getContext() {
             return event.getContext();
+        }
+
+        @Info("the number of ticks that the Ceremony effect will last")
+        public int getEffectTime() {
+            return event.getEffectTime();
+        }
+
+        @Info("""
+                Changes the number of ticks that the Ceremony effect will last.
+
+                Keep in mind that changing this to a non-zero value for instantaneous effects may produce unexpected results.
+                """)
+        public void setEffectTime(int effectTime) {
+            event.setEffectTime(effectTime);
         }
     }
 }

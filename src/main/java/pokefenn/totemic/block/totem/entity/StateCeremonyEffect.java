@@ -33,6 +33,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     private @Nullable Entity initiator;
 
     private int time = 0;
+    private int effectTime; //currently only used on the client side by the CeremonyHUD
 
     StateCeremonyEffect(TotemBaseBlockEntity tile, Ceremony ceremony, CeremonyInstance instance, @Nullable Entity initiator) {
         super(tile);
@@ -60,18 +61,20 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
         Level world = tile.getLevel();
         BlockPos pos = tile.getBlockPos();
 
-        if(TotemicEventHooks.get().fireCeremonyEffectTick(world, pos, ceremony, instance, this))
+        var eventResult = TotemicEventHooks.get().fireCeremonyEffectTick(world, pos, ceremony, instance, this);
+        if(eventResult.callEffect())
             instance.effect(world, pos, this);
         time++;
 
         if(!world.isClientSide) {
-            if(time >= instance.getEffectTime()) {
+            if(time >= eventResult.effectTime()) {
                 tile.setTotemState(new StateTotemEffect(tile));
             }
         }
         else {
+            effectTime = eventResult.effectTime(); // TODO: It not ideal to set this every tick just in case it changes. May consider requiring fixing the time at the start of the effect.
             //Due to network delay, we want to avoid ticking instant ceremonies more than once on the client side
-            if(instance.getEffectTime() == 0)
+            if(eventResult.effectTime() == 0)
                 tile.setTotemState(new StateTotemEffect(tile));
             else
                 CeremonyHUD.INSTANCE.setActiveTotem(tile);
@@ -81,6 +84,10 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     @Override
     public int getTime() {
         return time;
+    }
+
+    public int getEffectTime() {
+        return effectTime;
     }
 
     @Override

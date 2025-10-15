@@ -58,10 +58,9 @@ public final class StateSelection extends TotemState {
             var eventResult = TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), entity, selectors,
                     RegistryApiImpl.getCeremony(selectors));
 
-            eventResult.first().ifPresentOrElse(ceremony -> {
+            eventResult.ceremony().ifPresentOrElse(ceremony -> {
                 CeremonyInstance instance = ceremony.createInstance();
-                boolean skipSelectionCheck = eventResult.secondBoolean();
-                if(skipSelectionCheck || instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
+                if(eventResult.skipSelectionCheck() || instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
                     tile.setTotemState(new StateStartup(tile, ceremony, instance, entity));
                 }
                 else

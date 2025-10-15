@@ -40,12 +40,13 @@ public class TestEventHandlers {
     @SubscribeEvent
     public static void onEffectTick(CeremonyEvent.EffectTick event) {
         if(event.getContext().getTime() % 20 == 0)
-            Totemic.logger.debug("CeremonyEvent.EffectTick fired (time = {})", event.getContext().getTime());
+            Totemic.logger.debug("CeremonyEvent.EffectTick fired (time = {}, effectTime = {})", event.getContext().getTime(), event.getEffectTime());
         /*if(event.getContext().getTime() >= 5*20) { //will stop the effect from applying after 5 seconds
             event.setCanceled(true);
         }*/
         /*if(event.getContext().getTime() >= 10*20) { //will completely end the effect after 10 seconds
             event.getContext().endCeremony();
         }*/
+        //event.setEffectTime(5*20);
     }
 }

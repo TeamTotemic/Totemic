@@ -8,5 +8,6 @@ TotemicEvents.ceremonyStartupTick(event => {
 
 TotemicEvents.ceremonyEffectTick(event => {
     if(event.context.time % 20 == 0)
-        console.log(`CeremonyEvent.EffectTick fired (ceremony = ${event.ceremony}, time = ${event.context.time})`)
+        console.log(`CeremonyEvent.EffectTick fired (ceremony = ${event.ceremony}, time = ${event.context.time}, effectTime = ${event.effectTime})`)
+    // event.effectTime = 5 * 20
 })

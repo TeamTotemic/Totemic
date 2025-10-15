@@ -32,9 +32,10 @@ TotemicEvents.ceremonyStartupSuccess(event => {
 
 TotemicEvents.ceremonyEffectTick(event => {
     if(event.context.time % 20 == 0)
-        console.log(`CeremonyEvent.EffectTick fired (ceremony = ${event.ceremony}, time = ${event.context.time})`)
+        console.log(`CeremonyEvent.EffectTick fired (ceremony = ${event.ceremony}, time = ${event.context.time}, effectTime = ${event.effectTime})`)
     // event.cancel()
     // if(event.context.time >= 10 * 20) { //will completely end the effect after 10 seconds
     //     event.context.endCeremony()
     // }
+    // event.effectTime = 5 * 20
 })

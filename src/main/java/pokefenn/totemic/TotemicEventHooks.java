@@ -3,7 +3,6 @@ package pokefenn.totemic;
 import java.util.List;
 import java.util.Optional;
 
-import it.unimi.dsi.fastutil.objects.ObjectBooleanPair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.LevelAccessor;
@@ -25,13 +24,9 @@ public class TotemicEventHooks {
     }
 
     //Ceremony Events
-    /**
-     * @param initiator
-     * @return a Pair of the Ceremony to be selected and a boolean describing whether the call to {@link CeremonyInstance#canSelect} should be skipped.
-     */
-    public ObjectBooleanPair<Optional<Ceremony>> fireCeremonySelection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Optional<Ceremony> ceremony) {
+    public CeremonySelectionResult fireCeremonySelection(LevelAccessor level, BlockPos pos, Entity initiator, List<MusicInstrument> selectors, Optional<Ceremony> ceremony) {
         var event = NeoForge.EVENT_BUS.post(new CeremonyEvent.Selection(level, pos, initiator, selectors, ceremony));
-        return ObjectBooleanPair.of(event.getCeremony(), event.getSkipSelectionCheck());
+        return new CeremonySelectionResult(event.getCeremony(), event.getSkipSelectionCheck());
     }
 
     public boolean fireCeremonyStartupTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, StartupContext context) {
@@ -46,7 +41,12 @@ public class TotemicEventHooks {
         return !NeoForge.EVENT_BUS.post(new CeremonyEvent.StartupSuccess(level, pos, ceremony, instance, context)).isCanceled();
     }
 
-    public boolean fireCeremonyEffectTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, CeremonyEffectContext context) {
-        return !NeoForge.EVENT_BUS.post(new CeremonyEvent.EffectTick(level, pos, ceremony, instance, context)).isCanceled();
+    public CeremonyEffectResult fireCeremonyEffectTick(LevelAccessor level, BlockPos pos, Ceremony ceremony, CeremonyInstance instance, CeremonyEffectContext context) {
+        var event = NeoForge.EVENT_BUS.post(new CeremonyEvent.EffectTick(level, pos, ceremony, instance, context));
+        return new CeremonyEffectResult(!event.isCanceled(), event.getEffectTime());
     }
+
+    public record CeremonySelectionResult(Optional<Ceremony> ceremony, boolean skipSelectionCheck) { }
+
+    public record CeremonyEffectResult(boolean callEffect, int effectTime) { }
 }
