@@ -10,6 +10,7 @@ import pokefenn.totemic.api.registry.RegistryAPI;
 public class TotemicKubeJSPlugin implements KubeJSPlugin {
     @Override
     public void registerBuilderTypes(BuilderTypeRegistry registry) {
+        registry.addDefault(RegistryAPI.MUSIC_INSTRUMENT_REGISTRY, MusicInstrumentBuilder.class, MusicInstrumentBuilder::new);
         registry.addDefault(RegistryAPI.TOTEM_CARVING_REGISTRY, TotemCarvingBuilder.class, TotemCarvingBuilder::new);
         registry.addDefault(RegistryAPI.CEREMONY_REGISTRY, CeremonyBuilder.class, CeremonyBuilder::new);
     }

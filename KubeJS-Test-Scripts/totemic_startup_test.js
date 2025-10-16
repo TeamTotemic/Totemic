@@ -3,6 +3,33 @@ console.info('Hello, World! (from Totemic startup test script)')
 
 const TOTEMIC_DEBUG = false
 
+// Registry
+if(TOTEMIC_DEBUG) {
+    StartupEvents.registry('item', event => {
+        event.create('kubejs:test_instr_item')
+            .use((level, player, hand) => {
+                if(player.isShiftKeyDown())
+                    TotemicAPI.music().playSelector(player, 'kubejs:test_instrument')
+                else
+                    TotemicAPI.music().playMusic(player, 'kubejs:test_instrument')
+                player.cooldowns.addCooldown('kubejs:test_instr_item', 20)
+                return true
+            })
+    })
+}
+
+StartupEvents.registry('totemic:a_instrument', event => {
+    console.log('Music Instrument registry event fired')
+    if(TOTEMIC_DEBUG) {
+        event.create('kubejs:test_instrument')
+            .baseOutput(200)
+            .musicMaximum(3000)
+            .displayItem('kubejs:test_instr_item')
+            .sound('block.grass.break')
+            .displayName('Test Music Instrument')
+    }
+})
+
 StartupEvents.registry('totemic:c_totem_carving', event => {
     console.log('Totem Carving registry event fired')
     if(TOTEMIC_DEBUG) {
@@ -20,7 +47,7 @@ StartupEvents.registry('totemic:d_ceremony', event => {
         event.create('test_ceremony')
             .musicNeeded(2000)
             .maxStartupTime(10 * 20)
-            .selectors('totemic:eagle_bone_whistle', 'totemic:eagle_bone_whistle')
+            .selectors('kubejs:test_instrument', 'kubejs:test_instrument')
             .effect((level, pos, context) => {
                 if(context.time % 20 == 0)
                     console.log(`Custom Ceremony effect called (level = ${level}, pos = ${pos}, time = ${context.time})`)
@@ -30,6 +57,7 @@ StartupEvents.registry('totemic:d_ceremony', event => {
     }
 });
 
+// Modification
 TotemicEvents.modifyMusicInstruments(event => {
     console.log('MusicInstrument modification event fired')
     event.modify('totemic:flute', instr => {
