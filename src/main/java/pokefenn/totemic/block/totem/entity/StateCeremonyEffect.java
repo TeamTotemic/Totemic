@@ -23,7 +23,6 @@ import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.client.CeremonyHUD;
-import pokefenn.totemic.util.MiscUtil;
 
 public final class StateCeremonyEffect extends TotemState implements CeremonyEffectContext {
     static final byte ID = 3;
@@ -97,7 +96,10 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
 
     @Override
     public Optional<Player> getInitiatingPlayer() {
-        return MiscUtil.filterAndCast(getInitiator(), Player.class);
+        if(initiator instanceof Player player)
+            return Optional.of(player);
+        else
+            return Optional.empty();
     }
 
     @Override
