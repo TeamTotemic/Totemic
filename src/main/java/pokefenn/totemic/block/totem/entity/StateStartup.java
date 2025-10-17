@@ -119,7 +119,7 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     @Override
     public int getTotalMusic() {
-        return musicHandler.getTotalMusic();
+        return Math.min(musicHandler.getTotalMusic(), ceremony.getMusicNeeded());
     }
 
     @Override
