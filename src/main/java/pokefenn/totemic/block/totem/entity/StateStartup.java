@@ -138,7 +138,10 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     @Override
     public Optional<Player> getInitiatingPlayer() {
-        return MiscUtil.filterAndCast(getInitiator(), Player.class);
+        if(initiator instanceof Player player)
+            return Optional.of(player);
+        else
+            return Optional.empty();
     }
 
     @Override
