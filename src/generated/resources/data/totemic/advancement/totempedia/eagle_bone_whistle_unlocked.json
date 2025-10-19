@@ -11,6 +11,12 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_eagle_bone_whistle_recipe": {
+      "conditions": {
+        "recipe": "totemic:eagle_bone_whistle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
     "performed_eagle_dance": {
       "conditions": {
         "ceremony": "totemic:eagle_dance"
@@ -21,7 +27,8 @@
   "requirements": [
     [
       "performed_eagle_dance",
-      "has_eagle_bone_whistle"
+      "has_eagle_bone_whistle",
+      "has_eagle_bone_whistle_recipe"
     ]
   ]
 }

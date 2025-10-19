@@ -1,5 +1,25 @@
 {
   "criteria": {
+    "has_eagle_bone_whistle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "totemic:eagle_bone_whistle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_rattle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "totemic:rattle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_wind_chime": {
       "conditions": {
         "items": [
@@ -9,6 +29,12 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_wind_chime_recipe": {
+      "conditions": {
+        "recipe": "totemic:wind_chime"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     },
     "performed_fertility": {
       "conditions": {
@@ -20,7 +46,10 @@
   "requirements": [
     [
       "performed_fertility",
-      "has_wind_chime"
+      "has_wind_chime",
+      "has_wind_chime_recipe",
+      "has_rattle",
+      "has_eagle_bone_whistle"
     ]
   ]
 }

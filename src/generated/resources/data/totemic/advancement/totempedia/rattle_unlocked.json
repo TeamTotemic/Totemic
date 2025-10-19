@@ -1,6 +1,16 @@
 {
   "parent": "totemic:totempedia/wind_chime_unlocked",
   "criteria": {
+    "has_eagle_bone_whistle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "totemic:eagle_bone_whistle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_rattle": {
       "conditions": {
         "items": [
@@ -10,6 +20,12 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_rattle_recipe": {
+      "conditions": {
+        "recipe": "totemic:rattle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     },
     "performed_buffalo_dance": {
       "conditions": {
@@ -21,7 +37,9 @@
   "requirements": [
     [
       "performed_buffalo_dance",
-      "has_rattle"
+      "has_rattle",
+      "has_rattle_recipe",
+      "has_eagle_bone_whistle"
     ]
   ]
 }
