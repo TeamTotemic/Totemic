@@ -33,6 +33,16 @@ public class ModifyMusicInstrumentsKubeEvent implements KubeEvent {
         }
 
         @Info("""
+                Returns the default music output when the instrument is played. The instrument's actual music output may differ
+                from this value, as the instrument can generally override it.
+
+                Higher values generally make Ceremonies easier to perform.
+                """)
+        public int getBaseOutput() {
+            return instrument.getBaseOutput();
+        }
+
+        @Info("""
                 Sets the default music output when the instrument is played. The instrument's actual music output may differ
                 from this value, as the instrument can generally override it.
 
@@ -40,6 +50,16 @@ public class ModifyMusicInstrumentsKubeEvent implements KubeEvent {
                 """)
         public void setBaseOutput(int baseOutput) {
             instrument.setBaseOutput(baseOutput);
+        }
+
+        @Info("""
+                Returns the maximum amount of music that a Totem Base can receive from this instrument before getting saturated.
+
+                These values determine which Ceremonies can be performed at a given point in Totemic's progression, and should
+                be modified with care.
+                """)
+        public int getMusicMaximum() {
+            return instrument.getMusicMaximum();
         }
 
         @Info("""

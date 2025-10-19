@@ -18,6 +18,16 @@ public class ModifyCeremoniesKubeEvent implements KubeEvent {
 
     public record CeremonyModification(Ceremony ceremony) {
         @Info("""
+                Returns the amount of music needed to start the ceremony.
+
+                This value determines which Music Instruments are necessary to successfully perform this ceremony, and should
+                be modified with care.
+                """)
+        public int getMusicNeeded() {
+            return ceremony.getMusicNeeded();
+        }
+
+        @Info("""
                 Changes the amount of music needed to start the ceremony.
 
                 This value determines which Music Instruments are necessary to successfully perform this ceremony, and should
@@ -25,6 +35,15 @@ public class ModifyCeremoniesKubeEvent implements KubeEvent {
                 """)
         public void setMusicNeeded(int musicNeeded) {
             ceremony.setMusicNeeded(musicNeeded);
+        }
+
+        @Info("""
+                Returns the maximum time in ticks that the player may take to start the ceremony.
+
+                This value will be adjusted depending on the level's difficulty.
+                """)
+        public int getMaxStartupTime() {
+            return ceremony.getMaxStartupTime();
         }
 
         @Info("""

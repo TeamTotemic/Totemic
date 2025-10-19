@@ -64,7 +64,7 @@ TotemicEvents.modifyMusicInstruments(event => {
         if(TOTEMIC_DEBUG) {
             instr.item = 'minecraft:stick'
             instr.sound = 'block.dispenser.dispense'
-            instr.baseOutput = 3000
+            instr.baseOutput += 2000.5
             instr.musicMaximum = 6000
         }
     })
@@ -78,7 +78,7 @@ TotemicEvents.modifyTotemCarvings(event => {
             carving.effects = [TotemEffect.potion('minecraft:hunger', false, 20)]
         })
         event.modify('totemic:cow', carving => {
-            carving.medicineBagDrain += 120
+            carving.medicineBagDrain += 120.5
             carving.effects[1] = TotemEffect.potion('minecraft:mining_fatigue', false)
             carving.effects.push(TotemEffect.potion('minecraft:regeneration'))
             carving.effects.push({
@@ -109,7 +109,7 @@ TotemicEvents.modifyCeremonies(event => {
     event.modify('totemic:rain', ceremony => {
         if(TOTEMIC_DEBUG) {
             ceremony.musicNeeded = 5000
-            ceremony.maxStartupTime = 10 * 20
+            ceremony.maxStartupTime *= 1.2042
             // ceremony.selectors = ['totemic:flute', 'totemic:drum']
             ceremony.selectors = ['totemic:wind_chime', 'totemic:wind_chime']
         }
