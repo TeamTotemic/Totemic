@@ -15,18 +15,19 @@ group = mod_group_id
 repositories {
     mavenLocal()
     maven {
-        url "https://maven.latvian.dev/releases"
+        url = "https://maven.latvian.dev/releases"
         content {
             includeGroup "dev.latvian.mods"
             includeGroup "dev.latvian.apps"
         }
     }
     maven {
-        url 'https://jitpack.io'
+        url = 'https://jitpack.io'
         content {
             includeGroup "com.github.rtyley"
         }
     }
+    maven { url = 'https://maven.blamejared.com' }
 }
 
 base {
@@ -91,10 +92,6 @@ configurations {
     runtimeClasspath.extendsFrom localRuntime
 }
 
-repositories {
-    maven { url 'https://maven.blamejared.com' }
-}
-
 dependencies {
     compileOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE:api"
     runtimeOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE"
@@ -133,8 +130,8 @@ task apiSrcJar(type: Jar) {
     archiveClassifier = 'sources'
 }
 
-artifacts {
-    archives apiSrcJar
+tasks.named('assemble') {
+    dependsOn apiSrcJar
 }
 
 task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
@@ -167,3 +164,10 @@ modrinth {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
+
+test {
+    // Fix Gradle build failing due to no excutable tests being discovered
+    failOnNoDiscoveredTests = false
+}
+
+test.dependsOn runGameTestServer
