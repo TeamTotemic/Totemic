@@ -13,5 +13,6 @@
             "text": "totemic.page.sun_dance1"
         }
     ],
+    "advancement": "totemic:totempedia/eagle_bone_whistle_unlocked",
     "sortnum": 11
 }

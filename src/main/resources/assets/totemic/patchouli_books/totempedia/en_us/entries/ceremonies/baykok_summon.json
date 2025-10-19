@@ -24,5 +24,6 @@
     "extra_recipe_mappings": {
         "totemic:baykok_bow": 0
     },
+    "advancement": "totemic:totempedia/eagle_bone_whistle_unlocked",
     "sortnum": 13
 }

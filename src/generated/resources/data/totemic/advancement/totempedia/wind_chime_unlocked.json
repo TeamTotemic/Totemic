@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "has_wind_chime": {
+      "conditions": {
+        "items": [
+          {
+            "items": "totemic:wind_chime"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "performed_fertility": {
+      "conditions": {
+        "ceremony": "totemic:fertility"
+      },
+      "trigger": "totemic:performed_ceremony"
+    }
+  },
+  "requirements": [
+    [
+      "performed_fertility",
+      "has_wind_chime"
+    ]
+  ]
+}

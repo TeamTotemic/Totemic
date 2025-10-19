@@ -1,0 +1,27 @@
+{
+  "parent": "totemic:totempedia/rattle_unlocked",
+  "criteria": {
+    "has_eagle_bone_whistle": {
+      "conditions": {
+        "items": [
+          {
+            "items": "totemic:eagle_bone_whistle"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "performed_eagle_dance": {
+      "conditions": {
+        "ceremony": "totemic:eagle_dance"
+      },
+      "trigger": "totemic:performed_ceremony"
+    }
+  },
+  "requirements": [
+    [
+      "performed_eagle_dance",
+      "has_eagle_bone_whistle"
+    ]
+  ]
+}

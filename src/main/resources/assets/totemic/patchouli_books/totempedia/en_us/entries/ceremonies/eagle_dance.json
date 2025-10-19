@@ -18,5 +18,6 @@
             "scale": 0.5
         }
     ],
+    "advancement": "totemic:totempedia/rattle_unlocked",
     "sortnum": 9
 }

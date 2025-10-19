@@ -12,6 +12,6 @@
             "recipe": "totemic:eagle_bone_whistle"
         }
     ],
-    "advancement": "totemic:recipes/misc/eagle_bone_whistle",
+    "advancement": "totemic:totempedia/eagle_bone_whistle_unlocked",
     "sortnum": 5
 }
