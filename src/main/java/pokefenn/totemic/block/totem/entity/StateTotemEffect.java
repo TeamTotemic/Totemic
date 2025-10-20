@@ -15,7 +15,6 @@ import net.minecraft.world.level.redstone.Redstone;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.PacketDistributor.TargetPoint;
-import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
@@ -41,8 +40,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
             for(var entry: tile.getTotemEffects().entrySet()) {
                 var effect = entry.getElement();
                 int repetition = entry.getCount();
-                if(gameTime % effect.getInterval() == 0
-                        && TotemicEventHooks.get().fireTotemEffectEvent(level, tile.getBlockPos(), effect, repetition, this))
+                if(gameTime % effect.getInterval() == 0)
                     effect.effect(level, tile.getBlockPos(), repetition, this);
             }
         }

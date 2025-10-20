@@ -3,6 +3,8 @@ package pokefenn.totemic.totem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicAPI;
@@ -11,11 +13,7 @@ import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectContext;
 import pokefenn.totemic.util.MiscUtil;
 
-public class OcelotTotemEffect extends TotemEffect {
-    public OcelotTotemEffect() {
-        super(10);
-    }
-
+public class OcelotTotemEffect implements TotemEffect {
     @Override
     public void effect(Level level, BlockPos pos, int repetition, TotemEffectContext context) {
         if(level.isClientSide)
@@ -28,5 +26,18 @@ public class OcelotTotemEffect extends TotemEffect {
                 MiscUtil.spawnServerParticles(ParticleTypes.INSTANT_EFFECT, creeper.level(), creeper.getBoundingBox().getCenter(), 10, new Vec3(0.5, 0.75, 0.5), 0.0);
             }
         }
+    }
+
+    @Override
+    public int getInterval() {
+        return 10;
+    }
+
+    @Override
+    public void medicineBagEffect(Player player, ItemStack medicineBag, int charge) { }
+
+    @Override
+    public boolean supportsMedicineBag() {
+        return false;
     }
 }

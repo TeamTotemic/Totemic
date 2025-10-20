@@ -11,40 +11,51 @@ import net.minecraft.resources.ResourceLocation;
 import pokefenn.totemic.api.TotemicAPI;
 
 /**
- * Represents a Totem Pole carving. A TotemCarving consists of one or more {@link TotemEffect}s.
- *
- * @see PortableTotemCarving
+ * A Totem Pole carving. Consists of one or more {@link TotemEffect}s.
  */
-public sealed class TotemCarving permits PortableTotemCarving {
-    private final List<TotemEffect> effects;
+public final class TotemCarving {
+    /**
+     * The interval in ticks between when charge is drained from a Medicine Bag.
+     * This is always the same and independent of {@link TotemEffect#getInterval()}.
+     */
+    public static final int MEDICINE_BAG_DRAIN_INTERVAL = 80;
+    /**
+     * The default value for the Medicine Bag drain. This is equal to the drain interval.
+     */
+    public static final int DEFAULT_MEDICINE_BAG_DRAIN = MEDICINE_BAG_DRAIN_INTERVAL;
+
+    private List<TotemEffect> effects;
+    private int medicineBagDrain = DEFAULT_MEDICINE_BAG_DRAIN;
+
     private @Nullable String descriptionId;
 
     /**
-     * Constructs a new TotemCarving with one effect.
-     * @param effect the effect of the carving.
+     * Creates a TotemCarving with one effect.
      */
-    public TotemCarving(TotemEffect effect) {
-        this.effects = List.of(effect);
+    public static TotemCarving of(TotemEffect effect) {
+        return new TotemCarving(List.of(effect));
     }
 
     /**
-     * Constructs a new TotemCarving with multiple effects.
-     * @param effects the constituent effects of the carving.
+     * Creates a TotemCarving with multiple effects.
      */
-    public TotemCarving(TotemEffect... effects) {
-        this.effects = List.of(effects);
+    public static TotemCarving of(TotemEffect... effects) {
+        return new TotemCarving(List.of(effects));
     }
 
     /**
-     * Constructs a new TotemCarving with multiple effects.
-     * @param effects the constituent effects of the carving, as a List.
+     * Creates a TotemCarving with multiple effects.
      */
-    public TotemCarving(List<? extends TotemEffect> effects) {
-        this.effects = List.copyOf(effects);
+    public static TotemCarving of(List<TotemEffect> effects) {
+        return new TotemCarving(List.copyOf(effects));
+    }
+
+    private TotemCarving(List<TotemEffect> effects) {
+        this.effects = effects;
     }
 
     /**
-     * Returns the carving's description ID (i.e. unlocalized name), which is given by "totemic.totem." followed by the registry name (with ':' replaced by '.').
+     * @return the carving's description ID (i.e. unlocalized name), which is given by "totemic.totem." followed by the registry name (with ':' replaced by '.').
      */
     public String getDescriptionId() {
         if(descriptionId == null)
@@ -53,24 +64,62 @@ public sealed class TotemCarving permits PortableTotemCarving {
     }
 
     /**
-     * Returns a text component representing the carving's name.
+     * @return a text component representing the carving's name.
      */
     public MutableComponent getDisplayName() {
         return Component.translatable(getDescriptionId());
     }
 
     /**
-     * Returns the carving's registry name.
+     * @return the carving's registry name.
      */
     public final ResourceLocation getRegistryName() {
         return TotemicAPI.get().registry().totemCarvings().getKey(this);
     }
 
     /**
-     * Returns the carving's constituent TotemEffects.
+     * @return an immutable list of the carving's effects.
      */
     public List<TotemEffect> getEffects() {
         return effects;
+    }
+
+    /**
+     * @return true if all of the effects {@linkplain TotemEffect#supportsMedicineBag() support Medicine Bags}.
+     */
+    public boolean supportsMedicineBag() {
+        return effects.stream().allMatch(TotemEffect::supportsMedicineBag);
+    }
+
+    /**
+     * Returns how much charge is drained from a Medicine Bag every {@link #MEDICINE_BAG_DRAIN_INTERVAL} ticks
+     * (regardless of {@linkplain TotemEffect#getInterval() the effects' intervals}).
+     * <p>
+     * The default value is given by {@link #DEFAULT_MEDICINE_BAG_DRAIN}.
+     */
+    public int getMedicineBagDrain() {
+        return medicineBagDrain;
+    }
+
+    /**
+     * Sets the carving's effects.
+     */
+    public TotemCarving setEffects(List<? extends TotemEffect> effects) {
+        this.effects = List.copyOf(effects);
+        return this;
+    }
+
+    /**
+     * Sets the amount of charge to drain from a Medicine Bag every {@link #MEDICINE_BAG_DRAIN_INTERVAL} ticks
+     * (regardless of {@linkplain TotemEffect#getInterval() the effects' intervals}).
+     * <p>
+     * The default value is given by {@link #DEFAULT_MEDICINE_BAG_DRAIN}.
+     */
+    public TotemCarving setMedicineBagDrain(int drain) {
+        if(drain < 0)
+            throw new IllegalArgumentException("The drain amount must be non-negative: " + drain);
+        this.medicineBagDrain = drain;
+        return this;
     }
 
     @Override

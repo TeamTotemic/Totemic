@@ -5,8 +5,6 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.event.CeremonyEvent;
-import pokefenn.totemic.api.event.MedicineBagEffectEvent;
-import pokefenn.totemic.api.event.TotemEffectEvent;
 
 //Some event handlers that print log messages to allow manual testing of Totemic events.
 @EventBusSubscriber(modid = TotemicAPI.MOD_ID)
@@ -49,22 +47,5 @@ public class TestEventHandlers {
         /*if(event.getContext().getTime() >= 10*20) { //will completely end the effect after 10 seconds
             event.getContext().endCeremony();
         }*/
-    }
-
-    @SubscribeEvent
-    public static void onTotemEffectTick(TotemEffectEvent event) {
-        //Totemic.logger.debug("TotemEffectEvent fired (effect = {}, carving = {}, rep = {}, pos = {})", event.getEffect(), event.getCarving(), event.getRepetition(), event.getPos());
-        /*if(event.getCarving() == ModContent.ocelot.get())
-            event.setCanceled(true);*/
-        if(!event.getCarving().getEffects().contains(event.getEffect()))
-            Totemic.logger.error("Carving {} does not contain TotemEffect {}", event.getCarving(), event.getEffect());
-    }
-
-    @SubscribeEvent
-    public static void onMedicineBagEffectTick(MedicineBagEffectEvent event) {
-        Totemic.logger.debug("MedicineBagEffectEvent fired (effect = {}, carving = {}, charge = {}, deduct = {})", event.getEffect(), event.getCarving(), event.getCharge(), event.getChargeToDeduct());
-        //event.setCanceled(true);
-        /*if(!event.getPlayer().level().isClientSide)
-            event.setChargeToDeduct(10);*/
     }
 }

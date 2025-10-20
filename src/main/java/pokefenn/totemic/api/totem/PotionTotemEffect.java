@@ -1,19 +1,17 @@
 package pokefenn.totemic.api.totem;
 
 import java.util.Objects;
-import java.util.function.Supplier;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.Enchantments;
 
 /**
  * A TotemEffect which applies a {@link MobEffect} to all Players near the Totem Pole.
  */
-public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagEffect {
+public class PotionTotemEffect extends PlayerTotemEffect {
     /**
      * The mob effect to apply.
      */
@@ -24,6 +22,11 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      * Otherwise, the amplifier will be 0.
      */
     protected final boolean scaleAmplifier;
+
+    /**
+     * The effect's interval
+     */
+    protected final int interval;
 
     /**
      * Constructs a new PotionTotemEffect with default interval and scaling amplifier.
@@ -51,40 +54,14 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
      * @param interval       the time in ticks until the mob effect is renewed.
      */
     public PotionTotemEffect(MobEffect mobEffect, boolean scaleAmplifier, int interval) {
-        super(interval);
         this.mobEffect = Objects.requireNonNull(mobEffect);
         this.scaleAmplifier = scaleAmplifier;
+        this.interval = interval;
     }
 
     /**
-     * @deprecated Use the above version without the Supplier. Make sure that the MobEffect exists at the time of construction
-     * (which might require using DeferredRegister or similar).
-     */
-    @Deprecated
-    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect) {
-        this(mobEffect.get());
-    }
-
-    /**
-     * @deprecated Use the above version without the Supplier. Make sure that the MobEffect exists at the time of construction
-     * (which might require using DeferredRegister or similar).
-     */
-    @Deprecated
-    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect, boolean scaleAmplifier) {
-        this(mobEffect.get(), scaleAmplifier);
-    }
-
-    /**
-     * @deprecated Use the above version without the Supplier. Make sure that the MobEffect exists at the time of construction
-     * (which might require using DeferredRegister or similar).
-     */
-    @Deprecated
-    public PotionTotemEffect(Supplier<? extends MobEffect> mobEffect, boolean scaleAmplifier, int interval) {
-        this(mobEffect.get(), scaleAmplifier, interval);
-    }
-
-    /**
-     * Returns the amplifier that should be used for this effect.<p>
+     * Returns the amplifier that should be used for this effect.
+     * <p>
      * In case {@link #scaleAmplifier} is {@code true}, this method returns a value between 0 and 3, depending on the repetition and the amount of music in the Totem Base.
      * Otherwise, the value is 0.
      */
@@ -98,14 +75,10 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
 
     /**
      * Returns the amplifier that should be used for this effect, when it is used with a Medicine Bag.<p>
-     * In case {@link #scaleAmplifier} is {@code true}, this method returns a value between 0 and 2, depending on the Efficiency enchantment level of the Medicine Bag.
-     * Otherwise, the value is 0.
+     * By default this is always 0.
      */
     protected int getAmplifierForMedicineBag(Player player, ItemStack medicineBag, int charge) {
-        if(scaleAmplifier)
-            return medicineBag.getEnchantmentLevel(Enchantments.BLOCK_EFFICIENCY) / 2;
-        else
-            return 0;
+        return 0;
     }
 
     /**
@@ -139,5 +112,10 @@ public class PotionTotemEffect extends PlayerTotemEffect implements MedicineBagE
     public void medicineBagEffect(Player player, ItemStack medicineBag, int charge) {
         if(!player.level().isClientSide)
             player.addEffect(getEffectInstanceForMedicineBag(player, medicineBag, charge));
+    }
+
+    @Override
+    public int getInterval() {
+        return interval;
     }
 }
