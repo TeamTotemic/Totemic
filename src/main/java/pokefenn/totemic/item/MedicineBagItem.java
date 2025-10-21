@@ -30,6 +30,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
@@ -150,11 +151,10 @@ public class MedicineBagItem extends Item {
     private InteractionResult trySetCarving(ItemStack stack, Player player, Level level, BlockPos pos, InteractionHand hand) {
         if(level.getBlockEntity(pos) instanceof TotemPoleBlockEntity pole) {
             var carving = pole.getCarving();
-            //TODO: Add medicineBagBlacklist config option
-//            if(TotemicConfig.SERVER.medicineBagBlacklist.get().contains(carving.getRegistryName().toString())) {
-//                player.displayClientMessage(Component.translatable("totemic.medicineBag.blacklisted", carving.getDisplayName()), true);
-//                return InteractionResult.FAIL;
-//            }
+            if(TotemicConfig.SERVER.medicineBagBlacklist.get().contains(carving.getRegistryName().toString())) {
+                player.displayClientMessage(Component.translatable("totemic.medicineBag.blacklisted", carving.getDisplayName()), true);
+                return InteractionResult.FAIL;
+            }
             if(!carving.supportsMedicineBag()) {
                 if(level.isClientSide)
                     player.displayClientMessage(Component.translatable("totemic.medicineBag.notPortable", carving.getDisplayName()), true);

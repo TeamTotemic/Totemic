@@ -84,6 +84,7 @@ public final class TotemicConfig {
     public static class Server {
         public final ConfigValue<List<? extends String>> disabledCeremonies;
         public final ConfigValue<List<? extends String>> disabledTotemCarvings;
+        public final ConfigValue<List<? extends String>> medicineBagBlacklist;
         public final DoubleValue ceremonyStartupTimeMultiplierEasy;
         public final DoubleValue ceremonyStartupTimeMultiplierNormal;
         public final DoubleValue ceremonyStartupTimeMultiplierHard;
@@ -98,14 +99,20 @@ public final class TotemicConfig {
                     .comment("Example: [\"totemic:rain\", \"totemic:drought\"]")
                     .comment("See the Totempedia with advanced tooltips enabled (F3+H) to look up the Ceremonies' IDs.")
                     .translation("totemic.config.disabledCeremonies")
-                    .defineListAllowEmpty(List.of("disabledCeremonies"), List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().ceremonies()));
+                    .defineListAllowEmpty("disabledCeremonies", List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().ceremonies()));
 
             disabledTotemCarvings = builder
                     .comment("List of Totem Carvings that should be disabled from being carved.")
                     .comment("Example: [\"totemic:spider\"]")
                     .comment("Use advanced tooltips (F3+H) to look up the Totem Carvings' IDs.")
                     .translation("totemic.config.disabledTotemCarvings")
-                    .defineListAllowEmpty(List.of("disabledTotemCarvings"), List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().totemCarvings()));
+                    .defineListAllowEmpty("disabledTotemCarvings", List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().totemCarvings()));
+
+            medicineBagBlacklist = builder
+                    .comment("List of Totem Carvings that may not be used in Medicine Bags.")
+                    .comment("Example: [\"totemic:spider\"]")
+                    .translation("totemic.config.medicineBagBlacklist")
+                    .defineListAllowEmpty("medicineBagBlacklist", List::of, isValidRegistryKey(() -> TotemicAPI.get().registry().totemCarvings()));
 
             ceremonyStartupTimeMultiplierEasy = builder
                     .comment("The Ceremony startup time is multiplied by this value in Peaceful and Easy difficulty.")
