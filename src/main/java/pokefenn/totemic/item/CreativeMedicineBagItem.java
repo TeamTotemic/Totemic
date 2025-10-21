@@ -4,13 +4,15 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import pokefenn.totemic.TotemicEventHooks;
+import pokefenn.totemic.api.totem.TotemCarving;
+import pokefenn.totemic.init.ModContent;
 
 public class CreativeMedicineBagItem extends MedicineBagItem {
     public CreativeMedicineBagItem(Properties pProperties) {
@@ -18,30 +20,21 @@ public class CreativeMedicineBagItem extends MedicineBagItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        level.getProfiler().push("totemic.medicineBag");
+    protected void tryCharge(ItemStack stack, Level level, long gameTime, BlockPos pos) { }
 
+    @Override
+    protected void applyEffects(ItemStack stack, Level level, long gameTime, Entity entity, TotemCarving carving) {
         final int creativeChargeValue = -1;
-        if(isOpen(stack)) {
-            getEffects(stack).forEach(effect -> {
-                int interval = effect.getInterval();
-                if(level.getGameTime() % interval == 0) {
-                    var carving = getCarving(stack).get(); //Optional.get is safe since getEffects returned a non-empty list
-                    var player = (Player) entity;
-                    var eventResult = TotemicEventHooks.get().fireMedicineBagEffectEvent(effect, carving, player, stack, creativeChargeValue, 0);
-                    if(eventResult.secondBoolean())
-                        effect.medicineBagEffect(player, stack, creativeChargeValue);
-                }
-            });
+        for(var effect : carving.getEffects()) {
+            if(gameTime % effect.getInterval() == 0)
+                effect.medicineBagEffect((Player) entity, stack, creativeChargeValue);
         }
-
-        level.getProfiler().pop();
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         String key;
-        if(getCarving(stack).isPresent())
+        if(getCarving(stack) != ModContent.none.get())
             key = isOpen(stack) ? "open" : "closed";
         else
             key = "tooltip";
