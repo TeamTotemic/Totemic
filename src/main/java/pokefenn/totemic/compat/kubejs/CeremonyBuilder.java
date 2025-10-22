@@ -2,10 +2,9 @@ package pokefenn.totemic.compat.kubejs;
 
 import java.util.Objects;
 
-import dev.latvian.mods.kubejs.error.KubeRuntimeException;
 import dev.latvian.mods.kubejs.registry.BuilderBase;
+import dev.latvian.mods.kubejs.registry.RegistryInfo;
 import dev.latvian.mods.kubejs.typings.Info;
-import dev.latvian.mods.rhino.util.ReturnsSelf;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
@@ -15,7 +14,6 @@ import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-@ReturnsSelf
 public class CeremonyBuilder extends BuilderBase<Ceremony> {
     public transient int musicNeeded = -1;
     public transient int maxStartupTime = -1;
@@ -28,15 +26,20 @@ public class CeremonyBuilder extends BuilderBase<Ceremony> {
     }
 
     @Override
+    public RegistryInfo<Ceremony> getRegistryType() {
+        return TotemicKubeJSPlugin.CEREMONY;
+    }
+
+    @Override
     public Ceremony createObject() {
         if(musicNeeded < 0)
-            throw new KubeRuntimeException("musicNeeded not set for Ceremony '" + id + "'").source(sourceLine);
+            throw new RuntimeException("musicNeeded not set for Ceremony '" + id + "'");
         if(maxStartupTime < 0)
-            throw new KubeRuntimeException("maxStartupTime not set for Ceremony '" + id + "'").source(sourceLine);
+            throw new RuntimeException("maxStartupTime not set for Ceremony '" + id + "'");
         if(selectors == null)
-            throw new KubeRuntimeException("selectors invalid or not set for Ceremony '" + id + "'").source(sourceLine);
+            throw new RuntimeException("selectors invalid or not set for Ceremony '" + id + "'");
         if(effect == null)
-            throw new KubeRuntimeException("effect not set for Ceremony '" + id + "'").source(sourceLine);
+            throw new RuntimeException("effect not set for Ceremony '" + id + "'");
 
         var instance = new SimpleCeremonyInstance(effect, effectDuration);
         return new Ceremony(musicNeeded, maxStartupTime, () -> instance, selectors[0], selectors[1]);
@@ -60,7 +63,7 @@ public class CeremonyBuilder extends BuilderBase<Ceremony> {
     @Info("Sets the Ceremony's selecting instruments.")
     public CeremonyBuilder selectors(MusicInstrument... selectors) {
         if(selectors.length < CeremonyAPI.MIN_SELECTORS || selectors.length > CeremonyAPI.MAX_SELECTORS)
-            throw new KubeRuntimeException("Invalid number of Ceremony selectors: " + selectors.length).source(sourceLine);
+            throw new IllegalArgumentException("Invalid number of Ceremony selectors: " + selectors.length);
         this.selectors = selectors;
         return this;
     }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import dev.latvian.mods.kubejs.level.KubeLevelEvent;
+import dev.latvian.mods.kubejs.level.LevelEventJS;
 import dev.latvian.mods.kubejs.typings.Info;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -16,7 +16,7 @@ import pokefenn.totemic.api.ceremony.StartupContext;
 import pokefenn.totemic.api.event.CeremonyEvent;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-public abstract class CeremonyKubeEvent implements KubeLevelEvent {
+public abstract class CeremonyKubeEvent extends LevelEventJS {
     protected abstract CeremonyEvent getEvent();
 
     @Override
@@ -50,7 +50,7 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
 
         When canceled (or `event.ceremony` is set to null), no Ceremony will be selected.
         """)
-    public static class Selection implements KubeLevelEvent {
+    public static class Selection extends LevelEventJS {
         private final CeremonyEvent.Selection event;
 
         public Selection(CeremonyEvent.Selection event) {

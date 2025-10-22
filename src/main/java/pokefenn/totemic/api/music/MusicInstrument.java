@@ -21,8 +21,8 @@ import pokefenn.totemic.api.TotemicAPI;
  * Represents a music instrument type.
  */
 public final class MusicInstrument {
-    private final int baseOutput;
-    private final int musicMaximum;
+    private int baseOutput;
+    private int musicMaximum;
     private ItemStack itemStack = ItemStack.EMPTY;
     private @Nullable Supplier<SoundEvent> sound;
     private @Nullable String descriptionId;
@@ -116,5 +116,22 @@ public final class MusicInstrument {
      */
     public int getMusicMaximum() {
         return musicMaximum;
+    }
+
+    /**
+     * Sets the default music output when the instrument is played. Can be overridden with the {@code amount} parameter passed to
+     * {@link MusicAPI#playMusic(Level, Vec3, Entity, MusicInstrument, int, int)}.
+     */
+    public MusicInstrument setBaseOutput(int baseOutput) {
+        this.baseOutput = baseOutput;
+        return this;
+    }
+
+    /**
+     * Sets the maximum amount of music that a Totem Base can receive from this instrument before getting saturated.
+     */
+    public MusicInstrument setMusicMaximum(int musicMaximum) {
+        this.musicMaximum = musicMaximum;
+        return this;
     }
 }

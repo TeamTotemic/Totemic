@@ -4,18 +4,15 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import dev.latvian.mods.kubejs.error.KubeRuntimeException;
 import dev.latvian.mods.kubejs.registry.BuilderBase;
-import dev.latvian.mods.kubejs.script.KubeJSContext;
-import dev.latvian.mods.kubejs.script.SourceLine;
+import dev.latvian.mods.kubejs.registry.RegistryInfo;
 import dev.latvian.mods.kubejs.typings.Info;
-import dev.latvian.mods.rhino.util.ReturnsSelf;
+import dev.latvian.mods.kubejs.util.ConsoleJS;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-@ReturnsSelf
 public class MusicInstrumentBuilder extends BuilderBase<MusicInstrument> {
     public transient int baseOutput = -1;
     public transient int musicMaximum = -1;
@@ -27,11 +24,16 @@ public class MusicInstrumentBuilder extends BuilderBase<MusicInstrument> {
     }
 
     @Override
+    public RegistryInfo<MusicInstrument> getRegistryType() {
+        return TotemicKubeJSPlugin.MUSIC_INSTRUMENT;
+    }
+
+    @Override
     public MusicInstrument createObject() {
         if(baseOutput < 0)
-            throw new KubeRuntimeException("baseOutput not set for Music Instrument '" + id + "'").source(sourceLine);
+            throw new RuntimeException("baseOutput not set for Music Instrument '" + id + "'");
         if(musicMaximum < 0)
-            throw new KubeRuntimeException("musicMaximum not set for Music Instrument '" + id + "'").source(sourceLine);
+            throw new RuntimeException("musicMaximum not set for Music Instrument '" + id + "'");
 
         return new MusicInstrument(baseOutput, musicMaximum).setItem(displayItem).setSound(sound);
     }
@@ -59,9 +61,9 @@ public class MusicInstrumentBuilder extends BuilderBase<MusicInstrument> {
             Note that this value is only used for display purposes. In order to have an item actually play music,
             you need to call `TotemicAPI.music().playMusic()` and `playSelector()`, for example from a `use` callback.
             """)
-    public MusicInstrumentBuilder displayItem(KubeJSContext cx, ItemStack item) {
+    public MusicInstrumentBuilder displayItem(ItemStack item) {
         if(item.isEmpty()) // warn because KubeJS silently converts invalid IDs to empty ItemStacks
-            cx.getConsole().warn("displayItem for Music Instrument '" + id + "' is invalid or empty", SourceLine.of(cx), null, null);
+            ConsoleJS.STARTUP.warn("displayItem for Music Instrument '" + id + "' is invalid or empty");
         this.displayItem = item;
         return this;
     }

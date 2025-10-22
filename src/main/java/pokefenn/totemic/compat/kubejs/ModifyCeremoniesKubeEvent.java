@@ -3,12 +3,12 @@ package pokefenn.totemic.compat.kubejs;
 import java.util.List;
 import java.util.function.Consumer;
 
-import dev.latvian.mods.kubejs.event.KubeEvent;
+import dev.latvian.mods.kubejs.event.EventJS;
 import dev.latvian.mods.kubejs.typings.Info;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-public class ModifyCeremoniesKubeEvent implements KubeEvent {
+public class ModifyCeremoniesKubeEvent extends EventJS {
     @Info("""
             Modifies the given Ceremony.
             """)

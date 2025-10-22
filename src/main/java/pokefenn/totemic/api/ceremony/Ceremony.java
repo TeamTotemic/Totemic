@@ -20,10 +20,10 @@ import pokefenn.totemic.api.music.MusicInstrument;
  * The actual ceremony effect is implemented using the {@link CeremonyInstance} interface.
  */
 public final class Ceremony {
-    private final int musicNeeded;
-    private final int maxStartupTime;
+    private int musicNeeded;
+    private int maxStartupTime;
     private final Supplier<CeremonyInstance> factory;
-    private final List<MusicInstrument> selectors;
+    private List<MusicInstrument> selectors;
     private @Nullable String descriptionId;
 
     /**
@@ -127,5 +127,32 @@ public final class Ceremony {
      */
     public final List<MusicInstrument> getSelectors() {
         return selectors;
+    }
+
+    /**
+     * Changes the amount of music needed to start the ceremony.
+     */
+    public Ceremony setMusicNeeded(int musicNeeded) {
+        this.musicNeeded = musicNeeded;
+        return this;
+    }
+
+    /**
+     * Changes the maximum time in ticks that the player may take to start the ceremony.<br>
+     * This value will be adjusted depending on the level's difficulty, see {@link #getAdjustedMaxStartupTime}.
+     */
+    public Ceremony setMaxStartupTime(int maxStartupTime) {
+        this.maxStartupTime = maxStartupTime;
+        return this;
+    }
+
+    /**
+     * Changes the ceremony's selecting instruments.
+     */
+    public Ceremony setSelectors(List<MusicInstrument> selectors) {
+        if(selectors.size() < CeremonyAPI.MIN_SELECTORS || selectors.size() > CeremonyAPI.MAX_SELECTORS)
+            throw new IllegalArgumentException("Invalid number of Ceremony selectors: " + selectors.size());
+        this.selectors = List.copyOf(selectors);
+        return this;
     }
 }

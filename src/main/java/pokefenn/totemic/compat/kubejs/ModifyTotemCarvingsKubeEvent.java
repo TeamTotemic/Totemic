@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-import dev.latvian.mods.kubejs.event.KubeEvent;
+import dev.latvian.mods.kubejs.event.EventJS;
 import dev.latvian.mods.kubejs.typings.Info;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 
-public class ModifyTotemCarvingsKubeEvent implements KubeEvent {
+public class ModifyTotemCarvingsKubeEvent extends EventJS {
     @Info("Modifies the given Totem Carving.")
     public void modify(TotemCarving carving, Consumer<TotemCarvingModification> c) {
         var mod = new TotemCarvingModification(carving);
