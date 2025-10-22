@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -18,6 +19,7 @@ import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.client.ModModelLayers;
+import pokefenn.totemic.compat.kubejs.TotemicKubeEventHandler;
 import pokefenn.totemic.data.TotemicBlockStateProvider;
 import pokefenn.totemic.data.TotemicBlockTagsProvider;
 import pokefenn.totemic.data.TotemicDamageTypeTagsProvider;
@@ -87,6 +89,11 @@ public final class Totemic {
 
         IEventBus eventBus = MinecraftForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
+
+        if(ModList.get().isLoaded("kubejs")) {
+            eventBus.register(TotemicKubeEventHandler.class);
+            TotemicKubeEventHandler.postModificationEvents();
+        }
 
         RegistryApiImpl.createSelectorsToCeremonyMap();
     }
