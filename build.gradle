@@ -65,14 +65,40 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven { url 'https://maven.blamejared.com' }
+    // Patchouli
+    maven {
+        url = "https://maven.blamejared.com"
+        content {
+			includeGroup "vazkii.patchouli"
+		}
+    }
+
+    maven {
+		// Shedaniel's maven (Architectury API)
+		url = "https://maven.architectury.dev"
+		content {
+			includeGroup "dev.architectury"
+		}
+	}
+
+	maven {
+		// KubeJS and Rhino
+		url = "https://maven.latvian.dev/releases"
+		content {
+			includeGroup "dev.latvian.mods"
+		}
+	}
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE:api")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84-FORGE")
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE")
+
+    implementation fg.deobf("dev.latvian.mods:kubejs-forge:2001.6.5-build.20")
+    implementation fg.deobf("dev.latvian.mods:rhino-forge:2001.2.3-build.10")
+    implementation fg.deobf("dev.architectury:architectury-forge:9.2.14")
 }
 
 task apiSrcJar(type: Jar) {
@@ -138,7 +164,7 @@ publishing {
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/mcmodsrepo"
+            url = "file://${project.projectDir}/mcmodsrepo"
         }
     }
 }
