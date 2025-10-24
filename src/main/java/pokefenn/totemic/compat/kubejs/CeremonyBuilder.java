@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.ceremony.Ceremony;
+import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -18,7 +19,7 @@ import pokefenn.totemic.api.music.MusicInstrument;
 public class CeremonyBuilder extends BuilderBase<Ceremony> {
     public transient int musicNeeded = -1;
     public transient int maxStartupTime = -1;
-    public transient MusicInstrument selector1, selector2;
+    public transient MusicInstrument[] selectors;
     public transient EffectCallback effect;
     public transient int effectDuration = 0;
 
@@ -32,13 +33,13 @@ public class CeremonyBuilder extends BuilderBase<Ceremony> {
             throw new KubeRuntimeException("musicNeeded not set for Ceremony '" + id + "'").source(sourceLine);
         if(maxStartupTime < 0)
             throw new KubeRuntimeException("maxStartupTime not set for Ceremony '" + id + "'").source(sourceLine);
-        if(selector1 == null || selector2 == null)
+        if(selectors == null)
             throw new KubeRuntimeException("selectors invalid or not set for Ceremony '" + id + "'").source(sourceLine);
         if(effect == null)
             throw new KubeRuntimeException("effect not set for Ceremony '" + id + "'").source(sourceLine);
 
         var instance = new SimpleCeremonyInstance(effect, effectDuration);
-        return new Ceremony(musicNeeded, maxStartupTime, () -> instance, selector1, selector2);
+        return new Ceremony(musicNeeded, maxStartupTime, () -> instance, selectors[0], selectors[1]);
     }
 
     @Info("Sets the amount of music needed to start the ceremony.")
@@ -57,9 +58,10 @@ public class CeremonyBuilder extends BuilderBase<Ceremony> {
     }
 
     @Info("Sets the Ceremony's selecting instruments.")
-    public CeremonyBuilder selectors(MusicInstrument selector1, MusicInstrument selector2) {
-        this.selector1 = Objects.requireNonNull(selector1);
-        this.selector2 = Objects.requireNonNull(selector2);
+    public CeremonyBuilder selectors(MusicInstrument... selectors) {
+        if(selectors.length < CeremonyAPI.MIN_SELECTORS || selectors.length > CeremonyAPI.MAX_SELECTORS)
+            throw new KubeRuntimeException("Invalid number of Ceremony selectors: " + selectors.length).source(sourceLine);
+        this.selectors = selectors;
         return this;
     }
 

@@ -51,6 +51,9 @@ StartupEvents.registry('totemic:d_ceremony', event => {
             .maxStartupTime(10 * 20)
             .selectors('kubejs:test_instrument', 'kubejs:test_instrument')
             // .selectors('invalid:instrument', 'kubejs:test_instrument')
+            // .selectors()
+            // .selectors('totemic:flute')
+            // .selectors('totemic:flute', 'totemic:drum', 'kubejs:test_instrument')
             .effect((level, pos, context) => {
                 if(context.time % 20 == 0)
                     console.log(`Custom Ceremony effect called (level = ${level}, pos = ${pos}, time = ${context.time})`)
@@ -115,9 +118,12 @@ TotemicEvents.modifyCeremonies(event => {
         if(TOTEMIC_DEBUG) {
             ceremony.musicNeeded = 5000
             ceremony.maxStartupTime *= 1.2042
-            ceremony.selectors = ['totemic:wind_chime', 'totemic:wind_chime']
+            ceremony.selectors = ['totemic:wind_chime', 'kubejs:test_instrument']
             // ceremony.selectors = ['totemic:flute', 'totemic:drum']
             // ceremony.selectors = ['invalid:instrument', 'totemic:drum']
+            // ceremony.selectors = []
+            // ceremony.selectors = ['totemic:flute']
+            // ceremony.selectors = ['totemic:flute', 'totemic:drum', 'kubejs:test_instrument']
         }
     })
 })
