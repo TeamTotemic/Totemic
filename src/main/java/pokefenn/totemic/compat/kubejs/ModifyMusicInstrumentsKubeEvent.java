@@ -5,6 +5,8 @@ import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 import dev.latvian.mods.kubejs.event.KubeEvent;
+import dev.latvian.mods.kubejs.script.KubeJSContext;
+import dev.latvian.mods.kubejs.script.SourceLine;
 import dev.latvian.mods.kubejs.typings.Info;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +22,9 @@ public class ModifyMusicInstrumentsKubeEvent implements KubeEvent {
 
     public record MusicInstrumentModification(MusicInstrument instrument) {
         @Info("Sets the item stack that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.")
-        public void setItem(ItemStack item) {
+        public void setItem(KubeJSContext cx, ItemStack item) {
+            if(item.isEmpty()) // warn because KubeJS silently converts invalid IDs to empty ItemStacks
+                cx.getConsole().warn("item for Music Instrument '" + instrument.getRegistryName() + "' is invalid or empty", SourceLine.of(cx), null, null);
             instrument.setItem(item);
         }
 

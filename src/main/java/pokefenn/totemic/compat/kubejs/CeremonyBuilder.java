@@ -33,7 +33,7 @@ public class CeremonyBuilder extends BuilderBase<Ceremony> {
         if(maxStartupTime < 0)
             throw new KubeRuntimeException("maxStartupTime not set for Ceremony '" + id + "'").source(sourceLine);
         if(selector1 == null || selector2 == null)
-            throw new KubeRuntimeException("selectors not set for Ceremony '" + id + "'").source(sourceLine);
+            throw new KubeRuntimeException("selectors invalid or not set for Ceremony '" + id + "'").source(sourceLine);
         if(effect == null)
             throw new KubeRuntimeException("effect not set for Ceremony '" + id + "'").source(sourceLine);
 

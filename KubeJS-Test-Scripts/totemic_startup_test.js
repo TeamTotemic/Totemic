@@ -26,6 +26,8 @@ StartupEvents.registry('totemic:a_instrument', event => {
             .musicMaximum(3000)
             .displayItem('kubejs:test_instr_item')
             .sound('block.grass.break')
+            // .displayItem('invalid:item')
+            // .sound('invalid.sound')
             .displayName('Test Music Instrument')
     }
 })
@@ -48,6 +50,7 @@ StartupEvents.registry('totemic:d_ceremony', event => {
             .musicNeeded(2000)
             .maxStartupTime(10 * 20)
             .selectors('kubejs:test_instrument', 'kubejs:test_instrument')
+            // .selectors('invalid:instrument', 'kubejs:test_instrument')
             .effect((level, pos, context) => {
                 if(context.time % 20 == 0)
                     console.log(`Custom Ceremony effect called (level = ${level}, pos = ${pos}, time = ${context.time})`)
@@ -64,6 +67,8 @@ TotemicEvents.modifyMusicInstruments(event => {
         if(TOTEMIC_DEBUG) {
             instr.item = 'minecraft:stick'
             instr.sound = 'block.dispenser.dispense'
+            // instr.item = 'invalid:item'
+            // instr.sound = 'invalid.sound'
             instr.baseOutput += 2000.5
             instr.musicMaximum = 6000
         }
@@ -110,8 +115,9 @@ TotemicEvents.modifyCeremonies(event => {
         if(TOTEMIC_DEBUG) {
             ceremony.musicNeeded = 5000
             ceremony.maxStartupTime *= 1.2042
-            // ceremony.selectors = ['totemic:flute', 'totemic:drum']
             ceremony.selectors = ['totemic:wind_chime', 'totemic:wind_chime']
+            // ceremony.selectors = ['totemic:flute', 'totemic:drum']
+            // ceremony.selectors = ['invalid:instrument', 'totemic:drum']
         }
     })
 })

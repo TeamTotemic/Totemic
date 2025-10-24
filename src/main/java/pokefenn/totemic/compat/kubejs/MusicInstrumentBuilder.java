@@ -6,6 +6,8 @@ import javax.annotation.Nullable;
 
 import dev.latvian.mods.kubejs.error.KubeRuntimeException;
 import dev.latvian.mods.kubejs.registry.BuilderBase;
+import dev.latvian.mods.kubejs.script.KubeJSContext;
+import dev.latvian.mods.kubejs.script.SourceLine;
 import dev.latvian.mods.kubejs.typings.Info;
 import dev.latvian.mods.rhino.util.ReturnsSelf;
 import net.minecraft.resources.ResourceLocation;
@@ -57,7 +59,9 @@ public class MusicInstrumentBuilder extends BuilderBase<MusicInstrument> {
             Note that this value is only used for display purposes. In order to have an item actually play music,
             you need to call `TotemicAPI.music().playMusic()` and `playSelector()`, for example from a `use` callback.
             """)
-    public MusicInstrumentBuilder displayItem(ItemStack item) {
+    public MusicInstrumentBuilder displayItem(KubeJSContext cx, ItemStack item) {
+        if(item.isEmpty()) // warn because KubeJS silently converts invalid IDs to empty ItemStacks
+            cx.getConsole().warn("displayItem for Music Instrument '" + id + "' is invalid or empty", SourceLine.of(cx), null, null);
         this.displayItem = item;
         return this;
     }
