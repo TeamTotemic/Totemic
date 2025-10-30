@@ -21,6 +21,10 @@ public interface TotemicKubeJSEvents {
         return TotemicAPI.get().registry().ceremonies().getValue(id);
     }
 
+    EventHandler registerMusicInstruments = GROUP.startup("registerMusicInstruments", () -> TotemicRegistryKubeEvent.class);
+    EventHandler registerTotemCarvings = GROUP.startup("registerTotemCarvings", () -> TotemicRegistryKubeEvent.class);
+    EventHandler registerCeremonies = GROUP.startup("registerCeremonies", () -> TotemicRegistryKubeEvent.class);
+
     EventHandler modifyMusicInstruments = GROUP.startup("modifyMusicInstruments", () -> ModifyMusicInstrumentsKubeEvent.class);
     EventHandler modifyTotemCarvings = GROUP.startup("modifyTotemCarvings", () -> ModifyTotemCarvingsKubeEvent.class);
     EventHandler modifyCeremonies = GROUP.startup("modifyCeremonies", () -> ModifyCeremoniesKubeEvent.class);

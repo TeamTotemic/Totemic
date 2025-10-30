@@ -1,10 +1,41 @@
 package pokefenn.totemic.compat.kubejs;
 
+import java.util.function.Supplier;
+
 import dev.latvian.mods.kubejs.core.LevelKJS;
+import dev.latvian.mods.kubejs.event.EventHandler;
+import dev.latvian.mods.kubejs.util.ConsoleJS;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.registries.RegisterEvent;
+import net.minecraftforge.registries.RegisterEvent.RegisterHelper;
+import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.event.CeremonyEvent;
+import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.registry.RegistryAPI;
+import pokefenn.totemic.api.totem.TotemCarving;
 
 public class TotemicKubeEventHandler {
+    //Registry events (1.20.1 only)
+    public static void onRegister(RegisterEvent event) {
+        event.register(RegistryAPI.MUSIC_INSTRUMENT_REGISTRY, registry ->
+            postTotemicRegistryEvent(TotemicKubeJSEvents.registerMusicInstruments, () -> new TotemicRegistryKubeEvent<MusicInstrument>(MusicInstrumentBuilder::new), registry));
+        event.register(RegistryAPI.TOTEM_CARVING_REGISTRY, registry ->
+            postTotemicRegistryEvent(TotemicKubeJSEvents.registerTotemCarvings, () -> new TotemicRegistryKubeEvent<TotemCarving>(TotemCarvingBuilder::new), registry));
+        event.register(RegistryAPI.CEREMONY_REGISTRY, registry ->
+            postTotemicRegistryEvent(TotemicKubeJSEvents.registerCeremonies, () -> new TotemicRegistryKubeEvent<Ceremony>(CeremonyBuilder::new), registry));
+    }
+
+    private static <T> void postTotemicRegistryEvent(EventHandler handler, Supplier<TotemicRegistryKubeEvent<T>> eventSupplier, RegisterHelper<T> registry) {
+        if(!handler.hasListeners())
+            return;
+        var event = eventSupplier.get();
+        handler.post(event);
+        for(var builder : event.getBuilders()) {
+            registry.register(builder.id, builder.createObject());
+            ConsoleJS.STARTUP.info("Registered " + builder.id + " to " + builder.getRegistryType());
+        }
+    }
+
     //Modification Events
     //Called from commonSetup
     public static void postModificationEvents() {

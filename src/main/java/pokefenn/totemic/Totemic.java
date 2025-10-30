@@ -74,6 +74,9 @@ public final class Totemic {
             modBus.register(ModModelLayers.class);
         }
 
+        if(ModList.get().isLoaded("kubejs"))
+            modBus.addListener(TotemicKubeEventHandler::onRegister); // 1.20.1 only
+
         TotemicConfig.register(ModLoadingContext.get());
     }
 

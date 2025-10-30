@@ -18,7 +18,7 @@ if(TOTEMIC_DEBUG) {
     })
 }
 
-StartupEvents.registry('totemic:a_instrument', event => {
+TotemicEvents.registerMusicInstruments(event => {
     console.log('Music Instrument registry event fired')
     if(TOTEMIC_DEBUG) {
         event.create('kubejs:test_instrument')
@@ -32,7 +32,7 @@ StartupEvents.registry('totemic:a_instrument', event => {
     }
 })
 
-StartupEvents.registry('totemic:c_totem_carving', event => {
+TotemicEvents.registerTotemCarvings(event => {
     console.log('Totem Carving registry event fired')
     if(TOTEMIC_DEBUG) {
         event.create('test_carving')
@@ -43,7 +43,7 @@ StartupEvents.registry('totemic:c_totem_carving', event => {
     }
 })
 
-StartupEvents.registry('totemic:d_ceremony', event => {
+TotemicEvents.registerCeremonies(event => {
     console.log('Ceremony registry event fired')
     if(TOTEMIC_DEBUG) {
         event.create('test_ceremony')

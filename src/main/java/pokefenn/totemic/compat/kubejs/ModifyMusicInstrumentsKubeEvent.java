@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import dev.latvian.mods.kubejs.event.EventJS;
+import dev.latvian.mods.kubejs.event.StartupEventJS;
 import dev.latvian.mods.kubejs.typings.Info;
 import dev.latvian.mods.kubejs.util.ConsoleJS;
 import dev.latvian.mods.rhino.Context;
@@ -12,7 +12,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
 import pokefenn.totemic.api.music.MusicInstrument;
 
-public class ModifyMusicInstrumentsKubeEvent extends EventJS {
+public class ModifyMusicInstrumentsKubeEvent extends StartupEventJS {
     @Info("""
             Modifies the given Music Instrument.
             """)

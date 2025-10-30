@@ -1,6 +1,7 @@
 package pokefenn.totemic.compat.kubejs;
 
 import dev.latvian.mods.kubejs.KubeJSPlugin;
+import dev.latvian.mods.kubejs.registry.BuilderFactory;
 import dev.latvian.mods.kubejs.registry.RegistryInfo;
 import dev.latvian.mods.kubejs.script.BindingsEvent;
 import dev.latvian.mods.kubejs.script.ScriptType;
@@ -18,9 +19,12 @@ public class TotemicKubeJSPlugin extends KubeJSPlugin {
 
     @Override
     public void init() {
-        MUSIC_INSTRUMENT.addType("basic", MusicInstrumentBuilder.class, MusicInstrumentBuilder::new);
-        TOTEM_CARVING.addType("basic", TotemCarvingBuilder.class, TotemCarvingBuilder::new);
-        CEREMONY.addType("basic", CeremonyBuilder.class, CeremonyBuilder::new);
+        // 1.20.1 only, see TotemicRegistryKubeEvent
+        BuilderFactory totemicRegistryError = id -> { throw new IllegalStateException("Using KubeJS's StartupEvents.registry is not supported for Totemic registries in 1.20.1 - use TotemicEvents.register... instead"); };
+
+        MUSIC_INSTRUMENT.addType("basic", MusicInstrumentBuilder.class, totemicRegistryError);
+        TOTEM_CARVING.addType("basic", TotemCarvingBuilder.class, totemicRegistryError);
+        CEREMONY.addType("basic", CeremonyBuilder.class, totemicRegistryError);
     }
 
     @Override
