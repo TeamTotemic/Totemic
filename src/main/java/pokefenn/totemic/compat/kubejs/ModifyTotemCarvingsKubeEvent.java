@@ -1,8 +1,8 @@
 package pokefenn.totemic.compat.kubejs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 import dev.latvian.mods.kubejs.event.StartupEventJS;
@@ -21,22 +21,27 @@ public class ModifyTotemCarvingsKubeEvent extends StartupEventJS {
 
     public class TotemCarvingModification {
         private final TotemCarving carving;
-        private List<TotemEffect> effectList = null; // A lazily created copy of the carving's effects, to enable convenient modification from JavaScript
+        private List<TotemEffect> effectList = null; // we can't expose access to this list in 1.20.1 since KubeJS/Rhino doesn't enforce type safety
 
         public TotemCarvingModification(TotemCarving carving) {
             this.carving = carving;
         }
 
-        @Info("Returns the carving's effects.")
-        public List<TotemEffect> getEffects() {
+        @Info("Sets the carving's effects.")
+        public void setEffects(TotemEffect[] effects) {
             if(effectList == null)
-                effectList = new ArrayList<>(carving.getEffects());
-            return effectList;
+                effectList = new ArrayList<>(Arrays.asList(effects));
+            else {
+                effectList.clear();
+                effectList.addAll(Arrays.asList(effects));
+            }
         }
 
-        @Info("Sets the carving's effects.")
-        public void setEffects(List<TotemEffect> effects) {
-            effectList = Objects.requireNonNull(effects);
+        @Info("Adds an effect to the carving.")
+        public void addEffect(TotemEffect effect) {
+            if(effectList == null)
+                effectList = new ArrayList<>(carving.getEffects());
+            effectList.add(effect);
         }
 
         @Info("Returns how much charge is drained from a Medicine Bag every " + TotemCarving.MEDICINE_BAG_DRAIN_INTERVAL + " ticks (regardless of the effects' intervals).")

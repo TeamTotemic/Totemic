@@ -84,12 +84,12 @@ TotemicEvents.modifyTotemCarvings(event => {
         event.modify('totemic:horse', carving => {
             carving.medicineBagDrain = 1000
             carving.effects = [TotemEffect.potion('minecraft:hunger', false, 20)]
+            carving.addEffect(TotemEffect.potion('minecraft:mining_fatigue', false))
         })
         event.modify('totemic:cow', carving => {
             carving.medicineBagDrain += 120.5
-            carving.effects[1] = TotemEffect.potion('minecraft:mining_fatigue', false)
-            carving.effects.push(TotemEffect.potion('minecraft:regeneration'))
-            carving.effects.push({
+            carving.addEffect(TotemEffect.potion('minecraft:regeneration'))
+            carving.addEffect({
                 effect: (level, pos, repetition, context) => {
                     console.log(`effect called for custom TotemEffect (level = ${level}, pos = ${pos}, repetition = ${repetition}, context = ${context})`)
                 },
@@ -99,7 +99,7 @@ TotemicEvents.modifyTotemCarvings(event => {
                 getInterval: () => 10 * 20, // this doesn't get called, issue with Rhino?
             })
 
-            // carving.effects.push(TotemEffect.potion('invalid:effect'))
+            // carving.addEffect(TotemEffect.potion('invalid:effect'))
         })
         event.modify('totemic:spider', carving => {
             // no access to the effects array

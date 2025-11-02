@@ -56,8 +56,8 @@ public class ModifyCeremoniesKubeEvent extends StartupEventJS {
         }
 
         @Info("Changes the ceremony's selecting instruments.")
-        public void setSelectors(List<MusicInstrument> selectors) {
-            ceremony.setSelectors(selectors);
+        public void setSelectors(MusicInstrument[] selectors) { // must be an array rather than a List in 1.20.1 to enable type wrapping and get type safety
+            ceremony.setSelectors(List.of(selectors));
         }
     }
 }
