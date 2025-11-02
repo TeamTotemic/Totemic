@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import dev.latvian.mods.kubejs.event.StartupEventJS;
 import dev.latvian.mods.kubejs.typings.Info;
 import dev.latvian.mods.kubejs.util.ConsoleJS;
-import dev.latvian.mods.rhino.Context;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -22,7 +21,7 @@ public class ModifyMusicInstrumentsKubeEvent extends StartupEventJS {
 
     public record MusicInstrumentModification(MusicInstrument instrument) {
         @Info("Sets the item stack that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.")
-        public void setItem(Context cx, ItemStack item) {
+        public void setItem(ItemStack item) {
             if(item.isEmpty()) // warn because KubeJS silently converts invalid IDs to empty ItemStacks
                 ConsoleJS.STARTUP.warn("item for Music Instrument '" + instrument.getRegistryName() + "' is invalid or empty");
             instrument.setItem(item);

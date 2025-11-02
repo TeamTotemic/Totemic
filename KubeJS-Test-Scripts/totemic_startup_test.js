@@ -99,12 +99,7 @@ TotemicEvents.modifyTotemCarvings(event => {
                 getInterval: () => 10 * 20, // this doesn't get called, issue with Rhino?
             })
 
-            try {
-                carving.effects.push(TotemEffect.potion('invalid:effect'))
-            }
-            catch(e) {
-                console.log('Caught ' + e)
-            }
+            // carving.effects.push(TotemEffect.potion('invalid:effect'))
         })
         event.modify('totemic:spider', carving => {
             // no access to the effects array
