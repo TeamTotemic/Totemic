@@ -31,8 +31,13 @@ public class TotemicKubeEventHandler {
         var event = eventSupplier.get();
         handler.post(event);
         for(var builder : event.getBuilders()) {
-            registry.register(builder.id, builder.createObject());
-            ConsoleJS.STARTUP.info("Registered " + builder.id + " to " + builder.getRegistryType());
+            try {
+                registry.register(builder.id, builder.createObject());
+                ConsoleJS.STARTUP.info("Registered " + builder.id + " to " + builder.getRegistryType());
+            }
+            catch(Exception e) {
+                ConsoleJS.STARTUP.error("Error registering " + builder.id, e);
+            }
         }
     }
 
