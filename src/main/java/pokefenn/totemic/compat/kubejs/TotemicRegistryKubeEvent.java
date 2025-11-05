@@ -16,9 +16,9 @@ import dev.latvian.mods.rhino.util.HideFromJS;
  * This event is only necessary in 1.20.1, because KubeJS fires registry events too early (at mod construction time,
  * where Totemic's registries aren't even created yet).
  */
-public class TotemicRegistryKubeEvent<T> extends StartupEventJS {
+public abstract class TotemicRegistryKubeEvent<B extends BuilderBase<?>> extends StartupEventJS {
     private final BuilderFactory builderFactory;
-    private final List<BuilderBase<? extends T>> builders;
+    private final List<B> builders;
 
     public TotemicRegistryKubeEvent(BuilderFactory builderFactory) {
         this.builderFactory = builderFactory;
@@ -26,16 +26,35 @@ public class TotemicRegistryKubeEvent<T> extends StartupEventJS {
     }
 
     @SuppressWarnings("unchecked")
-    public BuilderBase<? extends T> create(String id) {
+    public B create(String id) {
         var resLoc = UtilsJS.getMCID(ScriptType.STARTUP.manager.get().context, KubeJS.appendModId(id));
-        var builder = builderFactory.createBuilder(resLoc);
+        var builder = (B) builderFactory.createBuilder(resLoc);
         builders.add(builder);
         RegistryInfo.ALL_BUILDERS.add(builder); // for generating language entries, hopefully this doesn't cause any problems
         return builder;
     }
 
     @HideFromJS
-    public List<BuilderBase<? extends T>> getBuilders() {
+    public List<B> getBuilders() {
         return builders;
+    }
+
+    // Subclasses for each builder type, to enable code completion with the return value of 'create' with ProbeJS
+    public static class MusicInstruments extends TotemicRegistryKubeEvent<MusicInstrumentBuilder> {
+        public MusicInstruments() {
+            super(MusicInstrumentBuilder::new);
+        }
+    }
+
+    public static class TotemCarvings extends TotemicRegistryKubeEvent<TotemCarvingBuilder> {
+        public TotemCarvings() {
+            super(TotemCarvingBuilder::new);
+        }
+    }
+
+    public static class Ceremonies extends TotemicRegistryKubeEvent<CeremonyBuilder> {
+        public Ceremonies() {
+            super(CeremonyBuilder::new);
+        }
     }
 }
