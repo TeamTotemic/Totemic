@@ -16,5 +16,6 @@
     "extra_recipe_mappings": {
         "totemic:infused_flute": 0
     },
+    "advancement": "totemic:totempedia/rattle_unlocked",
     "sortnum": 8
 }

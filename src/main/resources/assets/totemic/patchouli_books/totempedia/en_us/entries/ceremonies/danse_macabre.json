@@ -13,5 +13,6 @@
             "text": "totemic.page.danse_macabre1"
         }
     ],
+    "advancement": "totemic:totempedia/eagle_bone_whistle_unlocked",
     "sortnum": 12
 }

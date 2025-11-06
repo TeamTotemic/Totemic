@@ -18,5 +18,6 @@
             "scale": 0.8
         }
     ],
+    "advancement": "totemic:totempedia/wind_chime_unlocked",
     "sortnum": 5
 }

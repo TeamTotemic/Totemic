@@ -13,5 +13,6 @@
             "text": "totemic.page.rain1"
         }
     ],
+    "advancement": "totemic:totempedia/rattle_unlocked",
     "sortnum": 6
 }

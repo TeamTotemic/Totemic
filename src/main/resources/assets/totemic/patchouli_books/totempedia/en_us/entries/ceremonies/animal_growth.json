@@ -13,5 +13,6 @@
             "text": "totemic.page.animal_growth1"
         }
     ],
+    "advancement": "totemic:totempedia/wind_chime_unlocked",
     "sortnum": 4
 }

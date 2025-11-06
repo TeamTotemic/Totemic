@@ -28,9 +28,6 @@ public final class TotemicRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> rc) {
-        //TODO: Find a way to unlock the basic recipes when obtaining the Totempedia,
-        //probably by generating conditional advancements independently from the recipes.
-
         //The Totempedia recipe is not being generated
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.flute.get())
                 .pattern(" LS")
@@ -191,7 +188,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .getFamily();
     }
 
-    protected static CeremonyTrigger.TriggerInstance performed(Ceremony ceremony) {
+    public static CeremonyTrigger.TriggerInstance performed(Ceremony ceremony) {
         return CeremonyTrigger.TriggerInstance.performedCeremony(ceremony);
     }
 }
