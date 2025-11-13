@@ -9,7 +9,7 @@ plugins {
   id("maven-publish")
   id("org.jetbrains.gradle.plugin.idea-ext") version "1.3"
   id("eclipse")
-  id("com.gtnewhorizons.retrofuturagradle") version "1.4.+"
+  id("com.gtnewhorizons.retrofuturagradle") version "2.0.+"
 }
 
 // Project properties
