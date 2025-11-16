@@ -12,7 +12,6 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.ReflectionHelper;
@@ -84,38 +83,29 @@ public final class Totemic
         Compatibility.sendIMCMessages();
     }
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
-
-    }
-
-    void potionIncrease()
+    private void potionIncrease()
     {
         try
         {
-            for(Field f : Potion.class.getDeclaredFields())
-            {
-                if(f.getName().equals("potionTypes") || f.getName().equals("field_76425_a"))
-                {
-                    f.setAccessible(true);
-                    Field modfield = Field.class.getDeclaredField("modifiers");
-                    modfield.setAccessible(true);
-                    modfield.setInt(f, f.getModifiers() & ~Modifier.FINAL);
-                    Potion[] potionTypes = (Potion[]) f.get(null);
-                    if(potionTypes.length < 256)
-                    {
-                        final Potion[] newPotionTypes = new Potion[256];
-                        System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
-                        f.set(null, newPotionTypes);
+            // TODO: Maybe this should be replaced with an access transformer
+            Field potionTypesField = ReflectionHelper.findField(Potion.class, "field_76425_a", "potionTypes");
+            potionTypesField.setAccessible(true);
+            Field modField = Field.class.getDeclaredField("modifiers");
+            modField.setAccessible(true);
+            modField.setInt(potionTypesField, potionTypesField.getModifiers() & ~Modifier.FINAL);
 
-                        logger.info("Successfully increased the potion array");
-                    }
-                    else
-                    {
-                        logger.info("Some other mod already increased the potion array");
-                    }
-                }
+            Potion[] potionTypes = (Potion[]) potionTypesField.get(null);
+            if(potionTypes.length < 256)
+            {
+                final Potion[] newPotionTypes = new Potion[256];
+                System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
+                potionTypesField.set(null, newPotionTypes);
+
+                logger.info("Successfully increased the potion array");
+            }
+            else
+            {
+                logger.info("Some other mod already increased the potion array");
             }
         }
         catch(Exception e)
