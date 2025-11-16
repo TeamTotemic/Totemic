@@ -9,6 +9,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
 
 public class ModelBuffalo extends ModelBase
 {
@@ -45,7 +46,7 @@ public class ModelBuffalo extends ModelBase
         head.setRotationPoint(0F, 6F, -7F);
         head.setTextureSize(64, 64);
         head.mirror = true;
-        setRotation(head, 1.570796F, 0F, 0F);
+        setRotation(head, ((float)Math.PI / 2F), 0F, 0F);
         body = new ModelRenderer(this, 0, 0);
         body.addBox(-6F, -10F, -9F, 12, 10, 13);
         body.setRotationPoint(0F, 7F, 2F);
@@ -133,61 +134,63 @@ public class ModelBuffalo extends ModelBase
         hornbase1.setRotationPoint(0F, 6F, -7F);
         hornbase1.setTextureSize(64, 64);
         hornbase1.mirror = true;
-        setRotation(hornbase1, 1.570796F, 0F, 0F);
+        setRotation(hornbase1, ((float)Math.PI / 2F), 0F, 0F);
         hornbase2 = new ModelRenderer(this, 52, 0);
         hornbase2.addBox(3.5F, -4F, -1F, 4, 2, 2);
         hornbase2.setRotationPoint(0F, 6F, -7F);
         hornbase2.setTextureSize(64, 64);
         hornbase2.mirror = true;
-        setRotation(hornbase2, 1.570796F, 0F, 0F);
+        setRotation(hornbase2, ((float)Math.PI / 2F), 0F, 0F);
         hornbase2.mirror = false;
         horn1 = new ModelRenderer(this, 52, 4);
         horn1.addBox(6.5F, -4F, 0F, 2, 2, 4);
         horn1.setRotationPoint(0F, 6F, -7F);
         horn1.setTextureSize(64, 64);
         horn1.mirror = true;
-        setRotation(horn1, 1.570796F, 0F, 0F);
+        setRotation(horn1, ((float)Math.PI / 2F), 0F, 0F);
         horn1.mirror = false;
         horn2 = new ModelRenderer(this, 52, 10);
         horn2.addBox(5.5F, -4F, 2F, 2, 2, 3);
         horn2.setRotationPoint(0F, 6F, -7F);
         horn2.setTextureSize(64, 64);
         horn2.mirror = true;
-        setRotation(horn2, 1.570796F, 0F, 0F);
+        setRotation(horn2, ((float)Math.PI / 2F), 0F, 0F);
         horn2.mirror = false;
         horn3 = new ModelRenderer(this, 52, 15);
         horn3.addBox(5.5F, -4F, 5F, 1, 1, 1);
         horn3.setRotationPoint(0F, 6F, -7F);
         horn3.setTextureSize(64, 64);
         horn3.mirror = true;
-        setRotation(horn3, 1.570796F, 0F, 0F);
+        setRotation(horn3, ((float)Math.PI / 2F), 0F, 0F);
         horn3.mirror = false;
         horn4 = new ModelRenderer(this, 52, 4);
         horn4.addBox(-8.5F, -4F, 0F, 2, 2, 4);
         horn4.setRotationPoint(0F, 6F, -7F);
         horn4.setTextureSize(64, 64);
         horn4.mirror = true;
-        setRotation(horn4, 1.570796F, 0F, 0F);
+        setRotation(horn4, ((float)Math.PI / 2F), 0F, 0F);
         horn5 = new ModelRenderer(this, 52, 10);
         horn5.addBox(-7.5F, -4F, 2F, 2, 2, 3);
         horn5.setRotationPoint(0F, 6F, -7F);
         horn5.setTextureSize(64, 64);
         horn5.mirror = true;
-        setRotation(horn5, 1.570796F, 0F, 0F);
+        setRotation(horn5, ((float)Math.PI / 2F), 0F, 0F);
         horn6 = new ModelRenderer(this, 52, 15);
         horn6.addBox(-6.5F, -4F, 5F, 1, 1, 1);
         horn6.setRotationPoint(0F, 6F, -7F);
         horn6.setTextureSize(64, 64);
         horn6.mirror = true;
-        setRotation(horn6, 1.570796F, 0F, 0F);
+        setRotation(horn6, ((float)Math.PI / 2F), 0F, 0F);
     }
 
     @Override
     public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
+        float ageScale = 1.0F + 0.5F * ((EntityBuffalo)entity).getRelativeAge();
+
         GL11.glPushMatrix();
-        GL11.glTranslatef(0, -0.75F, 0);
-        GL11.glScalef(1.5F, 1.5F, 1.5F);
+        GL11.glTranslatef(0, 1.5F * (1.0F - ageScale), 0);
+        GL11.glScalef(ageScale, ageScale, ageScale);
         setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
 
         if(isChild)
