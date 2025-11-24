@@ -1,42 +1,20 @@
-Totemic:
+Totemic for Minecraft 1.7.10
 =======
 
-A magical themed mod with a focus on Totems, nature and Native American culture.
+A magical themed Minecraft mod with a focus on Totem Poles, nature and the power of music.
 
-Reporting issues:
-=======
-If the issue is a crash, make sure to provide the FML-Log or Crash log.
-Depending on the situation, provide pictures.
-A description of the issue is needed.
-Keep issues to issues, please.
+This branch backports some of the features from newer versions of the mod to the 1.7.10 version, using [RetroFuturaGradle](https://github.com/GTNewHorizons/RetroFuturaGradle) to enable building for 1.7.10 in modern times.
 
+## Building and running
+To build the mod, run `./gradlew build` (on Windows, replace `./gradlew` with `gradlew.bat` in each case).
 
-Pull requests:
-=======
-Go over all major changes or content PR's with me before submitting it, don't want anything to go to waste :(
-Try to place comments in anything that is not obvious, it can be confusion to understand others code!
-Totemic is under the MIT license
+You can run the game from the terminal with `./gradlew runClient` or `./gradlew runServer`.
 
-License:
-=======
-The MIT License (MIT)
+### Setting up a development environment
+#### IDEA
+Run `./gradlew setupDecompWorkspace` and import the project in IDEA. Should work without any problems, but I haven't tested it.
 
-Copyright (c) 2014, 2015 Pokefenn, ljfa
+#### VS Code / Eclipse
+Run `./gradlew setupDecompWorkspace eclipse` and open the workspace folder in VS Code or import the Gradle project in Eclipse.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+Unfortunately, RetroFuturaGradle doesn't fully support IDEs other than IDEA. In particular, the game can't be launched natively from VS Code or Eclipse but only via the 'runClient' and 'runServer' Gradle tasks (also, the VS Code Gradle extension currently seems to have a bug where running those tasks in debug mode doesn't work reliably).
