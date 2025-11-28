@@ -5,6 +5,7 @@ import java.util.Arrays;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
@@ -79,6 +80,16 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
 
         playSound("random.bow", 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
         worldObj.spawnEntityInWorld(arrow);
+    }
+
+    // This is a misnomer in MCP - the method is called whenever the entity is spawned, egg or not
+    @Override
+    public IEntityLivingData onSpawnWithEgg(IEntityLivingData data)
+    {
+        data = super.onSpawnWithEgg(data);
+        addRandomArmor();
+        enchantEquipment();
+        return data;
     }
 
     @Override

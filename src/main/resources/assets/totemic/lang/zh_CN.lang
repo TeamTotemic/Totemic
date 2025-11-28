@@ -25,6 +25,10 @@ tile.totemTorch.name=图腾火炬
 tile.redCedarPlank.name=红柏木板
 tile.redCedarStripped.name=剥皮的红柏原木
 
+#Entity localizations
+entity.totemic:buffalo.name=野牛
+entity.totemic:baykok.name=贝柯克
+
 # Creative Tab localizations
 itemGroup.Totemic=图腾
 

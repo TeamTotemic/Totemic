@@ -4,11 +4,13 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
+import totemic_commons.pokefenn.client.rendering.entity.BaykokRendering;
 import totemic_commons.pokefenn.client.rendering.entity.BuffaloRendering;
 import totemic_commons.pokefenn.client.rendering.item.*;
 import totemic_commons.pokefenn.client.rendering.model.ModelBuffalo;
 import totemic_commons.pokefenn.client.rendering.tileentity.*;
 import totemic_commons.pokefenn.entity.animal.EntityBuffalo;
+import totemic_commons.pokefenn.entity.boss.EntityBaykok;
 import totemic_commons.pokefenn.tileentity.TileTipi;
 import totemic_commons.pokefenn.tileentity.TileTotemTorch;
 import totemic_commons.pokefenn.tileentity.music.TileDrum;
@@ -22,6 +24,7 @@ public class ClientProxy extends CommonProxy
     public void initRendering()
     {
         RenderingRegistry.registerEntityRenderingHandler(EntityBuffalo.class, new BuffaloRendering(new ModelBuffalo(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBaykok.class, new BaykokRendering());
 
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.totemTorch), new ItemTotemTorchRenderer());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.windChime), new ItemWindChimeRenderer());

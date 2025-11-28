@@ -25,6 +25,10 @@ tile.totemTorch.name=Факел для тотема
 tile.redCedarPlank.name=Доски из красного кедра
 tile.redCedarStripped.name=Очищенная древесина красного кедра
 
+#Entity localizations
+entity.totemic:buffalo.name=Бизон
+entity.totemic:baykok.name=Байкок
+
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 
