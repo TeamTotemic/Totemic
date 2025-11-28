@@ -47,6 +47,7 @@ public final class Strings
 
     //Entities
     public static final String BUFFALO_NAME = "buffalo";
+    public static final String BAYKOK_NAME = "baykok";
 
     //ItemStack NBT keys
     public static final String KNIFE_TOTEM_KEY = "totem";
