@@ -76,7 +76,7 @@ public class BlockCedarStripped extends BlockLog
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item blockId, CreativeTabs creativeTab, List subTypes)
+    public void getSubBlocks(Item blockId, CreativeTabs creativeTab, List<ItemStack> subTypes)
     {
         subTypes.add(new ItemStack(blockId, 1, 0));
     }

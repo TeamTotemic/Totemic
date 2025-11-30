@@ -24,7 +24,7 @@ public class ItemTotemicStaff extends ItemTotemic
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean par4)
     {
         list.add(StatCollector.translateToLocal("item.totemic:totemicStaff.tooltip"));
     }

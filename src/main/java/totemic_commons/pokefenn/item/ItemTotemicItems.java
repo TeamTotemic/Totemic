@@ -75,7 +75,7 @@ public class ItemTotemicItems extends ItemTotemic
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item id, CreativeTabs creativeTab, List list)
+    public void getSubItems(Item id, CreativeTabs creativeTab, List<ItemStack> list)
     {
         for(int meta = 0; meta < ITEMS_NAMES.length; ++meta)
             list.add(new ItemStack(id, 1, meta));

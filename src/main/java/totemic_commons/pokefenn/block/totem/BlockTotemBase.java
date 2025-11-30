@@ -62,7 +62,7 @@ public class BlockTotemBase extends BlockTileTotemic implements TotemicStaffUsag
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list)
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list)
     {
         for(int i = 0; i < WoodVariant.count; i++)
             list.add(new ItemStack(item, 1, i));

@@ -53,7 +53,7 @@ public class BlockCedarSapling extends BlockSapling
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item blockId, CreativeTabs tab, List subBlocks)
+    public void getSubBlocks(Item blockId, CreativeTabs tab, List<ItemStack> subBlocks)
     {
         subBlocks.add(new ItemStack(blockId, 1, 0));
     }
