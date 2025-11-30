@@ -18,11 +18,11 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 
 public class EntityBaykok extends EntityMob implements IBossDisplayData, IRangedAttackMob
 {
@@ -74,8 +74,7 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     {
         float velocity = 2.0F + 1.0F * distanceFactor;
         float inaccuracy = 4.5F - worldObj.difficultySetting.getDifficultyId();
-        // TODO EntityInvisArrow arrow = new EntityInvisArrow(world, this);
-        EntityArrow arrow = new EntityArrow(worldObj, this, target, velocity, inaccuracy);
+        EntityInvisArrow arrow = new EntityInvisArrow(worldObj, this, target, velocity, inaccuracy);
         arrow.setDamage(2.0 * distanceFactor + 1.0 + 0.25 * rand.nextGaussian() + 0.4 * worldObj.difficultySetting.getDifficultyId());
 
         playSound("random.bow", 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
