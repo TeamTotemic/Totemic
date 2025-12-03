@@ -20,6 +20,4 @@ public class EntityInvisArrow extends EntityArrow
     {
         super(world, shooter, velocity);
     }
-
-    // TODO: Apply slowing effect when shot by Baykok (might require copying the entirety of the EntityArrow.onUpdate() method, or otherwise a mixin)
 }
