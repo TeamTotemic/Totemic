@@ -22,6 +22,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 
 public class EntityBaykok extends EntityMob implements IBossDisplayData, IRangedAttackMob
@@ -94,19 +95,19 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
     @Override
     protected void addRandomArmor()
     {
-        this.setCurrentItemOrArmor(0, new ItemStack(/* TODO ModItems.baykok_bow */ Items.bow));
+        this.setCurrentItemOrArmor(0, new ItemStack(ModItems.baykokBow));
     }
 
     @Override
     protected Item getDropItem()
     {
-        return Items.bow; // TODO: Baykok's Bow
+        return ModItems.baykokBow;
     }
 
     @Override
     protected void dropFewItems(boolean hitByPlayer, int looting)
     {
-        dropItem(Items.bow, 1); // TODO: Baykok's Bow
+        dropItem(ModItems.baykokBow, 1);
 
         int boneCount = 2 + rand.nextInt(6 + looting);
         for(int i = 0; i < boneCount; i++)
