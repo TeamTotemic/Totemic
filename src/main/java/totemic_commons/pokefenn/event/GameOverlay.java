@@ -7,8 +7,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
@@ -115,5 +117,27 @@ public class GameOverlay
         tes.addVertexWithUV(1 + 0, 20 + 9, 0, 0.0 / 32, 16.0 / 32);
         tes.addVertexWithUV(1 + 9, 20 + 9, 0, 16.0 / 32, 16.0 / 32);
         tes.addVertexWithUV(1 + 9, 20 + 0, 0, 16.0 / 32, 0.0 / 32);
+    }
+
+    // See EntityPlayerSP.getFOVMultiplier
+    @SubscribeEvent
+    public void onFOVUpdate(FOVUpdateEvent event)
+    {
+        if(event.entity.isUsingItem() && event.entity.getItemInUse().getItem() == ModItems.baykokBow)
+        {
+            int useDuration = event.entity.getItemInUseDuration();
+            float modifier = (float)useDuration / 20.0F;
+
+            if(modifier > 1.0F)
+            {
+                modifier = 1.0F;
+            }
+            else
+            {
+                modifier *= modifier;
+            }
+
+            event.newfov *= 1.0F - modifier * 0.15F;
+        }
     }
 }
