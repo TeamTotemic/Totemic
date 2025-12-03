@@ -24,6 +24,7 @@ item.totemic:buffaloHide.name=Büffelleder
 item.totemic:buffaloTeeth.name=Büffelzähne
 item.totemic:buffaloMeat.name=Rohes Büffelfleisch
 item.totemic:buffaloCookedMeat.name=Gebratenes Büffelfleisch
+item.totemic:baykokBow.name=Baykoks Bogen
 
 # Block localizations
 tile.cedarLog.name=Rotes Zedernholz
