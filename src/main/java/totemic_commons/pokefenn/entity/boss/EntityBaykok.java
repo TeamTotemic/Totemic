@@ -27,8 +27,6 @@ import totemic_commons.pokefenn.entity.projectile.EntityInvisArrow;
 
 public class EntityBaykok extends EntityMob implements IBossDisplayData, IRangedAttackMob
 {
-    // private final BossInfoServer bossInfo = (BossInfoServer)new BossInfoServer(getDisplayName(), BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS).setDarkenSky(true);
-
     public EntityBaykok(World world)
     {
         super(world);
