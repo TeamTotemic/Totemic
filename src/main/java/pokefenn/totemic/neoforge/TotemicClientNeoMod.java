@@ -1,4 +1,4 @@
-package pokefenn.totemic;
+package pokefenn.totemic.neoforge;
 
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -14,6 +14,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.handler.ClientInitHandlers;
@@ -24,8 +25,8 @@ import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.MedicineBagItem;
 
 @Mod(value = TotemicAPI.MOD_ID, dist = Dist.CLIENT)
-public final class ClientTotemicMod {
-    public ClientTotemicMod(IEventBus modBus, ModContainer container) {
+public final class TotemicClientNeoMod {
+    public TotemicClientNeoMod(IEventBus modBus, ModContainer container) {
         modBus.addListener(this::clientSetup);
 
         modBus.register(ClientInitHandlers.class);
