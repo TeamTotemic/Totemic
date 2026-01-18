@@ -1,0 +1,39 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/TeamTotemic/Totemic/issues"
+
+[[mods]]
+    modId="${mod_id}"
+    version="${mod_version}"
+    displayName="${mod_name}"
+    updateJSONURL="https://raw.githubusercontent.com/TeamTotemic/Totemic/version/version.json"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/totemic"
+    logoFile="totemic_logo.png"
+    credits="${mod_credits}"
+    authors="${mod_authors}"
+    description='''${mod_description}'''
+
+[[mixins]]
+    config="totemic.mixins.json"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="patchouli"
+    type="optional"
+    versionRange="[${patchouli_version},)"
+    ordering="NONE"
+    side="BOTH"

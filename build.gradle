@@ -1,6 +1,8 @@
 plugins {
     id 'java-library'
-    id 'net.neoforged.moddev' version '2.0.107'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.139'
+    id 'idea'
     id 'net.darkhax.curseforgegradle' version '1.1.+'
     id 'com.modrinth.minotaur' version '2.+'
 }
@@ -13,28 +15,34 @@ version = mod_version
 group = mod_group_id
 
 repositories {
-    mavenLocal()
+    // Patchouli
     maven {
-        url = "https://maven.latvian.dev/releases"
+        url = 'https://maven.blamejared.com'
         content {
-            includeGroup "dev.latvian.mods"
-            includeGroup "dev.latvian.apps"
+            includeGroup 'vazkii.patchouli'
+        }
+    }
+    // KubeJS
+    maven {
+        url = 'https://maven.latvian.dev/releases'
+        content {
+            includeGroup 'dev.latvian.mods'
+            includeGroup 'dev.latvian.apps'
         }
     }
     maven {
         url = 'https://jitpack.io'
         content {
-            includeGroup "com.github.rtyley"
+            includeGroup 'com.github.rtyley'
         }
     }
-    maven { url = 'https://maven.blamejared.com' }
 }
 
 base {
     archivesName = 'Totemic-neoforge'
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(project.java_version)
 
 neoForge {
     version = project.neo_version
@@ -93,34 +101,34 @@ configurations {
 }
 
 dependencies {
-    compileOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE:api"
-    runtimeOnly "vazkii.patchouli:Patchouli:1.21-87-NEOFORGE"
+    compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}-NEOFORGE:api"
+    runtimeOnly "vazkii.patchouli:Patchouli:${patchouli_version}-NEOFORGE"
     
-    api("dev.latvian.mods:kubejs-neoforge:$kubejs_version")
-    interfaceInjectionData("dev.latvian.mods:kubejs-neoforge:$kubejs_version")
+    api("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
+    interfaceInjectionData("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
 }
 
-tasks.withType(ProcessResources).configureEach {
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
     var replaceProperties = [
-            minecraft_version      : minecraft_version,
             minecraft_version_range: minecraft_version_range,
-            neo_version            : neo_version,
             neo_version_range      : neo_version_range,
             loader_version_range   : loader_version_range,
+            patchouli_version      : patchouli_version,
             mod_id                 : mod_id,
             mod_name               : mod_name,
-            mod_license            : mod_license,
-            mod_version            : mod_version,
+            mod_credits            : mod_credits,
             mod_authors            : mod_authors,
             mod_description        : mod_description,
-            file                   : [ jarVersion : mod_version ] //for replacing "${file.jarVersion}"
+            mod_license            : mod_license,
+            mod_version            : mod_version,
     ]
     inputs.properties replaceProperties
-
-    filesMatching(['META-INF/neoforge.mods.toml']) {
-        expand replaceProperties
-    }
+    expand replaceProperties
+    from "src/main/templates"
+    into "build/generated/sources/modMetadata"
 }
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
 
 task apiSrcJar(type: Jar) {
     from(sourceSets.main.java) {
@@ -153,7 +161,7 @@ modrinth {
     versionType = mod_release_type
     uploadFile = jar
     gameVersions = [minecraft_version]
-    loaders = ["neoforge"]
+    loaders = ['neoforge']
     changelog = file('changelog.md').text
     dependencies {
         optional.project 'patchouli'
@@ -163,6 +171,13 @@ modrinth {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
 }
 
 test {
