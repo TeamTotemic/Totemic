@@ -38,6 +38,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModSounds;
 
@@ -123,7 +124,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
             }
 
             if(!this.level().isClientSide) {
-                if(this.random.nextInt(6) == 0 && !net.neoforged.neoforge.event.EventHooks.onAnimalTame(this, pPlayer)) {
+                if(this.random.nextInt(6) == 0 && !Totemic.platform().onAnimalTame(this, pPlayer)) {
                     this.tame(pPlayer);
                     this.level().broadcastEntityEvent(this, (byte) 7);
                 }
