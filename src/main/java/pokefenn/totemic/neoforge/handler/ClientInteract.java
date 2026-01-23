@@ -1,4 +1,4 @@
-package pokefenn.totemic.handler;
+package pokefenn.totemic.neoforge.handler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;

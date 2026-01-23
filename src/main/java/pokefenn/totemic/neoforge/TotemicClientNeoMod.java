@@ -17,12 +17,12 @@ import net.neoforged.neoforge.common.NeoForge;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.client.ModModelLayers;
-import pokefenn.totemic.handler.ClientInitHandlers;
-import pokefenn.totemic.handler.ClientInteract;
-import pokefenn.totemic.handler.ClientRenderHandler;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.MedicineBagItem;
+import pokefenn.totemic.neoforge.handler.ClientInitHandlers;
+import pokefenn.totemic.neoforge.handler.ClientInteract;
+import pokefenn.totemic.neoforge.handler.ClientRenderHandler;
 
 @Mod(value = TotemicAPI.MOD_ID, dist = Dist.CLIENT)
 public final class TotemicClientNeoMod {

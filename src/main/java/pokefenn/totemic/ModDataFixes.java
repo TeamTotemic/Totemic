@@ -1,4 +1,4 @@
-package pokefenn.totemic.handler;
+package pokefenn.totemic;
 
 import com.mojang.serialization.Dynamic;
 

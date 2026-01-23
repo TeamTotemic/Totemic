@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.mojang.serialization.Dynamic;
 
 import net.minecraft.util.datafix.fixes.ItemStackComponentizationFix;
-import pokefenn.totemic.handler.ModDataFixes;
+import pokefenn.totemic.ModDataFixes;
 
 @Mixin(ItemStackComponentizationFix.class)
 public abstract class MixinItemStackComponentizationFix {

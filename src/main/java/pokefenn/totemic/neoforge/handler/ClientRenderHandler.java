@@ -1,4 +1,4 @@
-package pokefenn.totemic.handler;
+package pokefenn.totemic.neoforge.handler;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ComputeFovModifierEvent;

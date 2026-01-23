@@ -1,4 +1,4 @@
-package pokefenn.totemic.handler;
+package pokefenn.totemic.neoforge.handler;
 
 import net.minecraft.network.chat.Component;
 import net.neoforged.bus.api.EventPriority;

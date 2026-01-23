@@ -23,7 +23,6 @@ import pokefenn.totemic.data.TotemicEntityTypeTagsProvider;
 import pokefenn.totemic.data.TotemicItemTagsProvider;
 import pokefenn.totemic.data.TotemicLootTableProvider;
 import pokefenn.totemic.data.TotemicRecipeProvider;
-import pokefenn.totemic.handler.PlayerInteract;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
@@ -33,6 +32,7 @@ import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModMobEffects;
 import pokefenn.totemic.init.ModSounds;
+import pokefenn.totemic.neoforge.handler.PlayerInteract;
 import pokefenn.totemic.network.NetworkHandler;
 
 @Mod(TotemicAPI.MOD_ID)
