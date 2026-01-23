@@ -16,7 +16,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.redstone.Redstone;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
@@ -60,7 +59,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
         Level world = tile.getLevel();
         BlockPos pos = tile.getBlockPos();
 
-        var eventResult = TotemicEventHooks.get().fireCeremonyEffectTick(world, pos, ceremony, instance, this);
+        var eventResult = Totemic.platform().events().fireCeremonyEffectTick(world, pos, ceremony, instance, this);
         if(eventResult.callEffect())
             instance.effect(world, pos, this);
         time++;

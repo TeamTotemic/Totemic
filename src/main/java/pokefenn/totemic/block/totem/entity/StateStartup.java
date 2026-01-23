@@ -21,7 +21,6 @@ import net.minecraft.world.level.redstone.Redstone;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityUtil;
@@ -86,13 +85,13 @@ public final class StateStartup extends TotemState implements StartupContext {
 
         if(!world.isClientSide) { //server side
             if(musicHandler.getTotalMusic() >= ceremony.getMusicNeeded()) {
-                if(instance.canStartEffect(world, pos, this) && TotemicEventHooks.get().fireCeremonyStartupSuccess(world, pos, ceremony, instance, this))
+                if(instance.canStartEffect(world, pos, this) && Totemic.platform().events().fireCeremonyStartupSuccess(world, pos, ceremony, instance, this))
                     startCeremony();
                 else
                     failCeremony(); //TODO: For 1.21.5, this else branch should be removed, to give the canStartEffect method the option to hold off on starting the effect without completely aborting the Ceremony
             }
             else if(time >= ceremony.getAdjustedMaxStartupTime(world.getDifficulty())) {
-                TotemicEventHooks.get().fireCeremonyStartupFail(world, pos, ceremony, instance, this);
+                Totemic.platform().events().fireCeremonyStartupFail(world, pos, ceremony, instance, this);
                 instance.onStartupFail(world, pos, this);
                 failCeremony();
             }
@@ -110,7 +109,7 @@ public final class StateStartup extends TotemState implements StartupContext {
     }
 
     private void startupTick(Level world, BlockPos pos) {
-        if(TotemicEventHooks.get().fireCeremonyStartupTick(world, pos, ceremony, instance, this))
+        if(Totemic.platform().events().fireCeremonyStartupTick(world, pos, ceremony, instance, this))
             instance.onStartup(world, pos, this);
     }
 

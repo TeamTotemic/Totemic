@@ -15,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
@@ -55,7 +54,7 @@ public final class StateSelection extends TotemState {
         tile.setChanged();
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
-            var eventResult = TotemicEventHooks.get().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), entity, selectors,
+            var eventResult = Totemic.platform().events().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), entity, selectors,
                     RegistryApiImpl.getCeremony(selectors));
 
             eventResult.ceremony().ifPresentOrElse(ceremony -> {
