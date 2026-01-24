@@ -7,11 +7,13 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
+import pokefenn.totemic.client.network.ClientPacketHandler;
 import pokefenn.totemic.compat.kubejs.TotemicKubeEventHandler;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
@@ -33,12 +35,16 @@ import pokefenn.totemic.neoforge.datagen.TotemicItemTagsProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicLootTableProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicRecipeProvider;
 import pokefenn.totemic.neoforge.handler.PlayerInteract;
-import pokefenn.totemic.network.NetworkHandler;
+import pokefenn.totemic.network.ClientboundPacketStartupMusic;
+import pokefenn.totemic.network.ClientboundPacketTotemEffectMusic;
+import pokefenn.totemic.network.ServerPacketHandler;
+import pokefenn.totemic.network.ServerboundPacketMouseWheel;
 
 @Mod(TotemicAPI.MOD_ID)
 public final class TotemicNeoMod {
     public TotemicNeoMod(IEventBus modBus, ModContainer container) {
         modBus.addListener(this::commonSetup);
+        modBus.addListener(this::registerPackets);
         modBus.addListener(this::gatherData);
 
         ModBlocks.REGISTER.register(modBus);
@@ -63,7 +69,6 @@ public final class TotemicNeoMod {
 
         modBus.addListener(ModBlocks::addCedarSignToSignBlockEntityType);
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
-        modBus.addListener(NetworkHandler::init);
 
         TotemicConfig.register(container);
     }
@@ -83,6 +88,16 @@ public final class TotemicNeoMod {
         }
 
         RegistryApiImpl.createSelectorsToCeremonyMap();
+    }
+
+    private void registerPackets(RegisterPayloadHandlersEvent event) {
+        final var networkVersion = "5";
+        var reg = event.registrar(networkVersion);
+
+        reg.playToClient(ClientboundPacketStartupMusic.TYPE, ClientboundPacketStartupMusic.STREAM_CODEC, (payload, context) -> ClientPacketHandler.handle(payload));
+        reg.playToClient(ClientboundPacketTotemEffectMusic.TYPE, ClientboundPacketTotemEffectMusic.STREAM_CODEC, (payload, context) -> ClientPacketHandler.handle(payload));
+
+        reg.playToServer(ServerboundPacketMouseWheel.TYPE, ServerboundPacketMouseWheel.STREAM_CODEC, (payload, context) -> ServerPacketHandler.handle(payload, context.player()));
     }
 
     private void gatherData(GatherDataEvent event) {
