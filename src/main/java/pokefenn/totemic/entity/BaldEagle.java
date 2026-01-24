@@ -13,6 +13,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.TamableAnimal;
@@ -111,12 +112,10 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
     }
 
     @Override
-    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
-        ItemStack itemstack = pPlayer.getItemInHand(pHand);
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
         if(!this.isTame() && itemstack.is(ItemTags.FISHES)) {
-            if(!pPlayer.getAbilities().instabuild) {
-                itemstack.shrink(1);
-            }
+            itemstack.consume(1, player);
 
             if(!this.isSilent()) {
                 this.level().playSound((Player) null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F,
@@ -124,20 +123,20 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
             }
 
             if(!this.level().isClientSide) {
-                if(this.random.nextInt(6) == 0 && !Totemic.platform().onAnimalTame(this, pPlayer)) {
-                    this.tame(pPlayer);
-                    this.level().broadcastEntityEvent(this, (byte) 7);
+                if(this.random.nextInt(6) == 0 && !Totemic.platform().onAnimalTame(this, player)) {
+                    this.tame(player);
+                    this.level().broadcastEntityEvent(this, EntityEvent.TAMING_SUCCEEDED);
                 }
                 else {
-                    this.level().broadcastEntityEvent(this, (byte) 6);
+                    this.level().broadcastEntityEvent(this, EntityEvent.TAMING_FAILED);
                 }
             }
 
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
-        else if(this.isTame() && this.isOwnedBy(pPlayer)) {
+        else if(this.isTame() && this.isOwnedBy(player)) {
             if(isFood(itemstack)) {
-                return super.mobInteract(pPlayer, pHand);
+                return super.mobInteract(player, hand);
             }
             else if(!this.isFlying() && !this.level().isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
@@ -146,7 +145,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
         else {
-            return super.mobInteract(pPlayer, pHand);
+            return super.mobInteract(player, hand);
         }
     }
 
@@ -186,7 +185,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
         var child = ModEntityTypes.bald_eagle.get().create(level);
-        if(child != null /*&& otherParent instanceof BaldEagle eagle*/) {
+        if(child != null) {
             if(this.isTame()) {
                 child.setOwnerUUID(this.getOwnerUUID());
                 child.setTame(true, true);
