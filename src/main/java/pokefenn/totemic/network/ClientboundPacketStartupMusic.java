@@ -5,12 +5,9 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.neoforged.neoforge.network.handling.IPayloadContext;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
-import pokefenn.totemic.block.totem.entity.StateStartup;
-import pokefenn.totemic.init.ModBlockEntities;
 
 public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instrument, int amount) implements CustomPacketPayload {
     public static final Type<ClientboundPacketStartupMusic> TYPE = new Type<>(Totemic.resloc("startup_music"));
@@ -25,14 +22,5 @@ public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instru
     @Override
     public Type<? extends CustomPacketPayload> type() {
         return TYPE;
-    }
-
-    public void handle(IPayloadContext context) {
-        context.player().level().getBlockEntity(pos, ModBlockEntities.totem_base.get())
-        .ifPresent(tile -> {
-            if(tile.getTotemState() instanceof StateStartup state) {
-                state.setMusic(instrument, amount);
-            }
-        });
     }
 }
