@@ -4,14 +4,10 @@
   "name": "Totemic",
   "description": "Totem Poles? Totem Poles!",
   "version": "${version}",
-  "url": "http://www.minecraftforum.net/topic/2367915-",
-  "updateUrl": "",
+  "url": "https://www.curseforge.com/minecraft/mc-mods/totemic",
   "mcversion": "${mcversion}",
-  "authorList": ["Pokefenn", "ljfa"],
-  "credits": "WayofTime, Joshie, Poppycocks, Dylan4Ever, Vazkii, Sunconure11",
-  "logoFile": "/assets/totemic/textures/logo/totemicLogo.png",
-  "screenshots": [],
-  "parent": "",
-  "dependencies": []
+  "authorList": ["Pokefenn", "ljfa", "Sunconure11"],
+  "credits": "WayofTime, Joshie, Poppycocks, Dylan4Ever, Vazkii",
+  "logoFile": "/assets/totemic/textures/logo/totemicLogo.png"
 }
 ]
