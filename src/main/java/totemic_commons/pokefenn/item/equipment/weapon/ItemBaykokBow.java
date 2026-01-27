@@ -1,9 +1,5 @@
 package totemic_commons.pokefenn.item.equipment.weapon;
 
-import cpw.mods.fml.relauncher.ReflectionHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -107,21 +103,6 @@ public class ItemBaykokBow extends ItemBow
     public int getItemEnchantability()
     {
         return 5;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IIconRegister register)
-    {
-        this.itemIcon = register.registerIcon(this.getIconString() + "_standby");
-        IIcon[] iconArray = new IIcon[bowPullIconNameArray.length];
-
-        for (int i = 0; i < iconArray.length; ++i)
-        {
-            iconArray[i] = register.registerIcon(this.getIconString() + "_" + bowPullIconNameArray[i]);
-        }
-
-        ReflectionHelper.setPrivateValue(ItemBow.class, this, iconArray, "field_94600_b", "iconArray");
     }
 
     // Need to override this since the vanilla bow is hardcoded in EntityPlayer.getItemIcon
