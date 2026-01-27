@@ -1,8 +1,7 @@
 package totemic_commons.pokefenn;
 
 import java.io.File;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import java.util.Arrays;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -85,32 +84,14 @@ public final class Totemic
 
     private void potionIncrease()
     {
-        try
+        if(Potion.potionTypes.length < 256)
         {
-            // TODO: Maybe this should be replaced with an access transformer
-            Field potionTypesField = ReflectionHelper.findField(Potion.class, "field_76425_a", "potionTypes");
-            potionTypesField.setAccessible(true);
-            Field modField = Field.class.getDeclaredField("modifiers");
-            modField.setAccessible(true);
-            modField.setInt(potionTypesField, potionTypesField.getModifiers() & ~Modifier.FINAL);
-
-            Potion[] potionTypes = (Potion[]) potionTypesField.get(null);
-            if(potionTypes.length < 256)
-            {
-                final Potion[] newPotionTypes = new Potion[256];
-                System.arraycopy(potionTypes, 0, newPotionTypes, 0, potionTypes.length);
-                potionTypesField.set(null, newPotionTypes);
-
-                logger.info("Successfully increased the potion array");
-            }
-            else
-            {
-                logger.info("Some other mod already increased the potion array");
-            }
+            Potion.potionTypes = Arrays.copyOf(Potion.potionTypes, 256);
+            logger.info("Successfully increased the potion array");
         }
-        catch(Exception e)
+        else
         {
-            logger.error("Could not increase potion array", e);
+            logger.info("Some other mod already increased the potion array");
         }
     }
 

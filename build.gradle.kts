@@ -85,7 +85,13 @@ listOf(configurations.runtimeClasspath, configurations.testRuntimeClasspath).for
 }
 
 // Add an access tranformer
-// tasks.deobfuscateMergedJarToSrg.configure {accessTransformerFiles.from("src/main/resources/META-INF/mymod_at.cfg")}
+tasks.deobfuscateMergedJarToSrg.configure {accessTransformerFiles.from("src/main/resources/META-INF/totemic_at.cfg")}
+
+tasks.jar.configure {
+  manifest {
+    attributes(mapOf("FMLAT" to "totemic_at.cfg"))
+  }
+}
 
 // Dependencies
 repositories {
