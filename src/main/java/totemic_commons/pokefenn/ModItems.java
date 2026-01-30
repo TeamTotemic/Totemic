@@ -3,6 +3,7 @@ package totemic_commons.pokefenn;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
+import totemic_commons.pokefenn.item.ItemCeremonyCheat;
 import totemic_commons.pokefenn.item.ItemTipi;
 import totemic_commons.pokefenn.item.ItemTotemicFood;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
@@ -37,6 +38,7 @@ public final class ModItems
     public static Item flute;
     public static Item tipi;
     public static Item baykokBow;
+    public static Item ceremonyCheat;
 
     public static void init()
     {
@@ -53,6 +55,7 @@ public final class ModItems
         flute = new ItemFlute();
         tipi = new ItemTipi();
         baykokBow = new ItemBaykokBow();
+        ceremonyCheat = new ItemCeremonyCheat();
 
         GameRegistry.registerItem(totemWhittlingKnife, Strings.TOTEM_WHITTLING_KNIFE_NAME);
         GameRegistry.registerItem(totemicStaff, Strings.TOTEMIC_STAFF_NAME);
@@ -67,6 +70,7 @@ public final class ModItems
         GameRegistry.registerItem(flute, Strings.FLUTE_NAME);
         GameRegistry.registerItem(tipi, Strings.TIPI_ITEM_NAME);
         GameRegistry.registerItem(baykokBow, Strings.BAYKOK_BOW_NAME);
+        GameRegistry.registerItem(ceremonyCheat, Strings.CEREMONY_CHEAT_NAME);
     }
 
 }

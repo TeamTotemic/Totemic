@@ -269,14 +269,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         if(isDoingStartup())
         {
             if(canStartCeremony(startupCeremony))
-            {
-                currentCeremony = startupCeremony;
-                startupCeremony = null;
-                isDoingEndingEffect = currentCeremony.getEffectTime() != CeremonyTime.INSTANT;
-                TotemUtil.particlePacket(worldObj, "happyVillager", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
-                markForUpdate();
-                markDirty();
-            } else
+                startCeremony();
+            else
                 startupMain(startupCeremony);
 
             ceremonyStartupTimer++;
@@ -502,6 +496,16 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         //TODO: Other possible preconditions, such as the presence of some item
 
         return totalCeremonyMelody >= (trying.getMusicNeeded() - (dancingEfficiency / 4));
+    }
+
+    public void startCeremony()
+    {
+        currentCeremony = startupCeremony;
+        startupCeremony = null;
+        isDoingEndingEffect = currentCeremony.getEffectTime() != CeremonyTime.INSTANT;
+        TotemUtil.particlePacket(worldObj, "happyVillager", xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, 24, 0.6D, 0.5D, 0.6D, 1.0D);
+        markForUpdate();
+        markDirty();
     }
 
     public void startupMain(Ceremony trying)

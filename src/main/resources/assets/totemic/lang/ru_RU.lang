@@ -25,6 +25,9 @@ tile.windChime.name=Музыкальная подвеска
 tile.totemTorch.name=Факел для тотема
 tile.redCedarPlank.name=Доски из красного кедра
 tile.redCedarStripped.name=Очищенная древесина красного кедра
+item.totemic:ceremonyCheat.name=Творческий ритуальный инструмент
+item.totemic:ceremonyCheat.tooltip1=Используйте по Тотемному Столбу чтобы,
+item.totemic:ceremonyCheat.tooltip2=начать выбранный Ритуал
 
 #Entity localizations
 entity.totemic:buffalo.name=Бизон

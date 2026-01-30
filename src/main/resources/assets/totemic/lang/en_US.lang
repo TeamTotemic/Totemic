@@ -25,6 +25,9 @@ item.totemic:buffaloTeeth.name=Buffalo Teeth
 item.totemic:buffaloMeat.name=Raw Buffalo Meat
 item.totemic:buffaloCookedMeat.name=Cooked Buffalo Meat
 item.totemic:baykokBow.name=Baykok's Bow
+item.totemic:ceremonyCheat.name=Creative Ceremony Cheat
+item.totemic:ceremonyCheat.tooltip1=Use on a Totem Base to instantly
+item.totemic:ceremonyCheat.tooltip2=start up the selected Ceremony
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log

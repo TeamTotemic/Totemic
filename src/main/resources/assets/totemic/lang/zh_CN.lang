@@ -12,6 +12,9 @@ item.totemic:barkStripper.name=剥皮器
 item.totemic:jingleDress.name=叮当舞装
 item.totemic:ceremonialRattle.name=摇响器
 item.totemic:baykokBow.name=贝柯克之弓
+item.totemic:ceremonyCheat.name=创造模式仪式工具
+item.totemic:ceremonyCheat.tooltip1=激活仪式后右击图腾基座
+item.totemic:ceremonyCheat.tooltip2=便会立即完成仪式
 
 
 # Block localizations
