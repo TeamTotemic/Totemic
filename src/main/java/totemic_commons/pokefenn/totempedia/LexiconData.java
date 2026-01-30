@@ -82,14 +82,14 @@ public final class LexiconData
         buffaloBasic.setLexiconPages(new PageText("0"));
 
         //Totems and Effects
-        creatingTotems = new BLexiconEntry(Totempedia.CREATING_TOTEMS, categoryTotems);
+        creatingTotems = new BLexiconEntry(Totempedia.CREATING_TOTEMS, categoryTotems).setPriority();
         creatingTotems.setLexiconPages(new PageText("0"), new PageText("1"), new PageCraftingRecipe("2", CraftingRecipes.totemWhittlingKnife));
 
         totemEffects = new BLexiconEntry(Totempedia.TOTEM_EFFECTS, categoryTotems);
         totemEffects.setLexiconPages(new PageText("0"), new PageText("1"));
 
         //Instruments
-        instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryInstruments);
+        instruments = new BLexiconEntry(Totempedia.INSTRUMENTS, categoryInstruments).setPriority();
         instruments.setLexiconPages(new PageText("0")/*, new PageText("1")*/);
 
         windChime = new BLexiconEntry(Totempedia.WIND_CHIME, categoryInstruments);
@@ -109,7 +109,7 @@ public final class LexiconData
                 new PageCraftingRecipe("3", CraftingRecipes.bellsIron));
 
         //Ceremonies
-        performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony);
+        performingCeremonies = new BLexiconEntry(Totempedia.PERFORMING_CEREMONIES, categoryCeremony).setPriority();
         performingCeremonies.setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"), new PageText("3"), new PageText("4"));
 
         rainDance = new BLexiconEntry(Totempedia.RAIN_DANCE, categoryCeremony);

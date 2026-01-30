@@ -60,7 +60,14 @@ public class PageRecipe extends LexiconPage
         int x = gui.getLeft() + 16;
         int y = gui.getTop() + height - 40;
         PageText.renderText(x, y, width, height, getUnlocalizedName());
+        renderItemTooltip(mx, my);
 
+        GL11.glDisable(GL11.GL_BLEND);
+        mouseDownLastTick = Mouse.isButtonDown(0);
+    }
+
+    protected void renderItemTooltip(int mx, int my)
+    {
         if(tooltipStack != null)
         {
             List<String> tooltipData = tooltipStack.getTooltip(Minecraft.getMinecraft().thePlayer, false);
@@ -92,8 +99,6 @@ public class PageRecipe extends LexiconPage
 
         tooltipStack = tooltipContainerStack = null;
         tooltipEntry = false;
-        GL11.glDisable(GL11.GL_BLEND);
-        mouseDownLastTick = Mouse.isButtonDown(0);
     }
 
     @SideOnly(Side.CLIENT)

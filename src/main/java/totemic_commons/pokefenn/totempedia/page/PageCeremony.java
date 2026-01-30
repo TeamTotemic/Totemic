@@ -2,6 +2,7 @@ package totemic_commons.pokefenn.totempedia.page;
 
 import java.util.Objects;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
@@ -35,6 +36,9 @@ public class PageCeremony extends PageRecipe
     @Override
     public void renderScreen(IGuiLexiconEntry gui, int mx, int my)
     {
+        relativeMouseX = mx;
+        relativeMouseY = my;
+
         TextureManager render = Minecraft.getMinecraft().renderEngine;
         FontRenderer font = Minecraft.getMinecraft().fontRenderer;
         MusicInstrument[] instruments = ceremony.getInstruments();
@@ -72,6 +76,10 @@ public class PageCeremony extends PageRecipe
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glColor4f(1F, 1F, 1F, 1F);
         ((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop(), 0, 0, gui.getWidth(), gui.getHeight());
+
+        renderItemTooltip(mx, my);
+
         GL11.glDisable(GL11.GL_BLEND);
+        mouseDownLastTick = Mouse.isButtonDown(0);
     }
 }
