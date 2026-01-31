@@ -16,7 +16,6 @@ public class ModEvents
         MinecraftForge.EVENT_BUS.register(new EntityHurt());
         MinecraftForge.EVENT_BUS.register(new EntityFall());
         MinecraftForge.EVENT_BUS.register(new PlayerInteract());
-        MinecraftForge.EVENT_BUS.register(new EntitySpawn());
 
         if(FMLCommonHandler.instance().getSide().isClient())
         {
