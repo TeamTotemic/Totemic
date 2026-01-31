@@ -35,6 +35,8 @@
   "totemic.medicineBag.open": "Відкрита",
   "totemic.medicineBag.empty": "Порожня",
   "totemic.medicineBag.charge": "Заряд: %d / %d",
+  "item.totemic.cedar_boat": "Red Cedar Boat",
+  "item.totemic.cedar_chest_boat": "Red Cedar Boat with Chest",
 
   "totemic.tooltip.selectorMode": "Крадіться поки граєте, щоб обрати церемонію",
 

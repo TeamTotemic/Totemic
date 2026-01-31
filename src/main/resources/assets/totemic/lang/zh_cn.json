@@ -36,6 +36,8 @@
   "totemic.medicineBag.open": "启用",
   "totemic.medicineBag.empty": "空",
   "totemic.medicineBag.charge": "图腾能量：%d / %d",
+  "item.totemic.cedar_boat": "Red Cedar Boat",
+  "item.totemic.cedar_chest_boat": "Red Cedar Boat with Chest",
   
   "totemic.tooltip.selectorMode": "潜行选择仪式进行使用",
   

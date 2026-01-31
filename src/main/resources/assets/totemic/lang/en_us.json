@@ -36,6 +36,8 @@
   "totemic.medicineBag.open": "Open",
   "totemic.medicineBag.empty": "Empty",
   "totemic.medicineBag.charge": "Charge: %d / %d",
+  "item.totemic.cedar_boat": "Red Cedar Boat",
+  "item.totemic.cedar_chest_boat": "Red Cedar Boat with Chest",
   
   "totemic.tooltip.selectorMode": "Sneak while playing to select a Ceremony",
   

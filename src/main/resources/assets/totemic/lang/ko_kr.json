@@ -35,6 +35,8 @@
   "totemic.medicineBag.open": "풀어둠",
   "totemic.medicineBag.empty": "비었음",
   "totemic.medicineBag.charge": "Charge: %d / %d",
+  "item.totemic.cedar_boat": "Red Cedar Boat",
+  "item.totemic.cedar_chest_boat": "Red Cedar Boat with Chest",
   
   "totemic.tooltip.selectorMode": "선택 모드를 사용하시려면 쉬프트를 누르고 악기를 연주하세요",
   
