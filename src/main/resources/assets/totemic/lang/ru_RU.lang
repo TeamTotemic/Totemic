@@ -32,6 +32,7 @@ item.totemic:ceremonyCheat.tooltip2=начать выбранный Ритуал
 #Entity localizations
 entity.totemic:buffalo.name=Бизон
 entity.totemic:baykok.name=Байкок
+entity.totemic.baldEagle.name=Белоголовый орлан
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

@@ -46,6 +46,7 @@ tile.dummyTotemicTipi.name=Tipi
 #Entity localizations
 entity.totemic.buffalo.name=Büffel
 entity.totemic.baykok.name=Baykok
+entity.totemic.baldEagle.name=Weißkopfseeadler
 
 # Creative Tab localizations
 itemGroup.Totemic=Totemic

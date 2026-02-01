@@ -32,6 +32,7 @@ tile.redCedarStripped.name=剥皮的红柏原木
 #Entity localizations
 entity.totemic:buffalo.name=野牛
 entity.totemic:baykok.name=贝柯克
+entity.totemic.baldEagle.name=白头鹰雕
 
 # Creative Tab localizations
 itemGroup.Totemic=图腾

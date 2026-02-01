@@ -51,6 +51,7 @@ public final class Strings
     public static final String BUFFALO_NAME = "buffalo";
     public static final String BAYKOK_NAME = "baykok";
     public static final String INVIS_ARROW_NAME = "invisArrow";
+    public static final String BALD_EAGLE_NAME = "baldEagle";
 
     //ItemStack NBT keys
     public static final String KNIFE_TOTEM_KEY = "totem";
