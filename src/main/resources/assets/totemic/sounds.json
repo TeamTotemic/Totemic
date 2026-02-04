@@ -2,5 +2,8 @@
 	"windChime": {"category": "block", "sounds": ["windChime"]},
 	"rattle": {"category": "block", "sounds": ["rattle"]},
 	"flute": {"category": "block", "sounds": ["flute1", "flute2"]},
-	"drum": {"category": "block", "sounds": ["drum"]}
+	"drum": {"category": "block", "sounds": ["drum"]},
+	"baldEagle.idle": {"category": "neutral", "sounds": ["baldEagle/idle1", "baldEagle/idle2"]},
+	"baldEagle.hurt": {"category": "neutral", "sounds": ["baldEagle/hurt"]},
+	"baldEagle.death": {"category": "neutral", "sounds": ["baldEagle/death"]}
 }

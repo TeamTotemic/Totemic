@@ -144,6 +144,30 @@ public class EntityBaldEagle extends EntityTameable
     }
 
     @Override
+    protected String getLivingSound()
+    {
+        return "totemic:baldEagle.idle";
+    }
+
+    @Override
+    protected String getHurtSound()
+    {
+        return "totemic:baldEagle.hurt";
+    }
+
+    @Override
+    protected String getDeathSound()
+    {
+        return "totemic:baldEagle.death";
+    }
+
+    @Override
+    protected float getSoundVolume()
+    {
+        return 0.4F;
+    }
+
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
         if(isEntityInvulnerable())
