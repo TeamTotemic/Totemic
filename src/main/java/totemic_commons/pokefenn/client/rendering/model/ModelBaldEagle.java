@@ -44,7 +44,7 @@ public class ModelBaldEagle extends ModelBase
         this.rightWing = new ModelRenderer(this, 20, 10);
         this.rightWing.setRotationPoint(1.5F, 16.94F, -2.76F);
         this.rightWing.addBox(-0.5F, 0.0F, -1.5F, 1, 6, 3, 0.0F);
-        this.setRotation(rightWing, -0.6981317007977318F, -3.141592653589793F, -0.08726646259971647F);
+        this.setRotation(rightWing, -((float)Math.PI * 2F / 9F), -(float)Math.PI, -0.08726646259971647F);
         this.mouth = new ModelRenderer(this, 2, 0);
         this.mouth.setRotationPoint(-0.5F, -0.5F, -1.5F);
         this.mouth.addBox(-0.5F, -1.0F, -0.5F, 2, 2, 1, 0.0F);
@@ -63,7 +63,7 @@ public class ModelBaldEagle extends ModelBase
         this.leftWing = new ModelRenderer(this, 0, 10);
         this.leftWing.setRotationPoint(-1.5F, 16.94F, -2.76F);
         this.leftWing.addBox(-0.5F, 0.0F, -1.5F, 1, 6, 3, 0.0F);
-        this.setRotation(leftWing, -0.6981317007977318F, -3.141592653589793F, 0.08726646259971647F);
+        this.setRotation(leftWing, -((float)Math.PI * 2F / 9F), -(float)Math.PI, 0.08726646259971647F);
         this.rightLeg = new ModelRenderer(this, 12, 20);
         this.rightLeg.setRotationPoint(1.0F, 22.0F, -1.05F);
         this.rightLeg.addBox(-0.5F, 0.0F, -0.5F, 1, 2, 1, 0.0F);
