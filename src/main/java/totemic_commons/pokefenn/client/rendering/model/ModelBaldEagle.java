@@ -74,9 +74,9 @@ public class ModelBaldEagle extends ModelBase
     }
 
     @Override
-    public void render(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    public void render(Entity entity, float limbSwing, float limbSwingAmount, float wingAngle, float netHeadYaw, float headPitch, float scale)
     {
-        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entity);
+        this.setRotationAngles(limbSwing, limbSwingAmount, wingAngle, netHeadYaw, headPitch, scale, entity);
 
         GL11.glPushMatrix();
         GL11.glTranslatef(0, -0.75F, 0);
@@ -109,9 +109,9 @@ public class ModelBaldEagle extends ModelBase
     }
 
     @Override
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float wingAngle, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        float f = ageInTicks * 0.3F;
+        float f = wingAngle * 0.3F;
         this.head.rotateAngleX = headPitch * 0.017453292F;
         this.head.rotateAngleY = netHeadYaw * 0.017453292F;
         this.head.rotateAngleZ = 0.0F;
@@ -135,9 +135,9 @@ public class ModelBaldEagle extends ModelBase
         this.tailFeathers.rotateAngleX = 1.015F + MathHelper.cos(limbSwing * 0.6662F) * 0.3F * limbSwingAmount;
         this.tailFeathers.rotationPointY = 21.07F + f;
         this.torso.rotationPointY = 16.0F + f;
-        this.rightWing.rotateAngleZ = -0.0873F - ageInTicks;
+        this.rightWing.rotateAngleZ = -0.0873F - wingAngle;
         this.rightWing.rotationPointY = 16.94F + f;
-        this.leftWing.rotateAngleZ = 0.0873F + ageInTicks;
+        this.leftWing.rotateAngleZ = 0.0873F + wingAngle;
         this.leftWing.rotationPointY = 16.94F + f;
         this.leftLeg.rotationPointY = 22.0F + f;
         this.rightLeg.rotationPointY = 22.0F + f;

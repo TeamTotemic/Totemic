@@ -13,10 +13,17 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityBaldEagle extends EntityTameable
 {
+    public float flap;
+    public float flapSpeed;
+    public float oFlapSpeed;
+    public float oFlap;
+    public float flapping = 1.0F;
+
     public EntityBaldEagle(World world)
     {
         super(world);
@@ -47,7 +54,34 @@ public class EntityBaldEagle extends EntityTameable
         return height * 0.6F;
     }
 
-    
+    @Override
+    public void onLivingUpdate()
+    {
+        super.onLivingUpdate();
+        calculateFlapping();
+    }
+
+    private void calculateFlapping()
+    {
+        this.oFlap = this.flap;
+        this.oFlapSpeed = this.flapSpeed;
+        this.flapSpeed = (float)(this.flapSpeed + (this.onGround ? -1 : 4) * 0.3D);
+        this.flapSpeed = MathHelper.clamp_float(this.flapSpeed, 0.0F, 1.0F);
+
+        if (!this.onGround && this.flapping < 1.0F)
+        {
+            this.flapping = 1.0F;
+        }
+
+        this.flapping = (float)(this.flapping * 0.9D);
+
+        if (!this.onGround && this.motionY < 0.0D)
+        {
+            this.motionY *= 0.6D;
+        }
+
+        this.flap += this.flapping * 2.0F;
+    }
 
     @Override
     public boolean interact(EntityPlayer player)
