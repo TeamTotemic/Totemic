@@ -28,6 +28,8 @@ item.totemic:baykokBow.name=Baykok's Bow
 item.totemic:ceremonyCheat.name=Creative Ceremony Cheat
 item.totemic:ceremonyCheat.tooltip1=Use on a Totem Base to instantly
 item.totemic:ceremonyCheat.tooltip2=start up the selected Ceremony
+item.totemic:eagleBone.name=Eagle Bone
+item.totemic:eagleFeather.name=Eagle Feather
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log

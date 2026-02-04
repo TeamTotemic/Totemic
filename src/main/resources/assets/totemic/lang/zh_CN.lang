@@ -15,7 +15,8 @@ item.totemic:baykokBow.name=贝柯克之弓
 item.totemic:ceremonyCheat.name=创造模式仪式工具
 item.totemic:ceremonyCheat.tooltip1=激活仪式后右击图腾基座
 item.totemic:ceremonyCheat.tooltip2=便会立即完成仪式
-
+item.totemic:eagleBone.name=鹰骨
+item.totemic:eagleFeather.name=鹰羽
 
 # Block localizations
 tile.cedarLog.name=红柏原木

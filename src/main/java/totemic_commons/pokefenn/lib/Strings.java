@@ -42,6 +42,7 @@ public final class Strings
     public static final String TIPI_ITEM_NAME = "tipiItem";
     public static final String BAYKOK_BOW_NAME = "baykokBow";
     public static final String CEREMONY_CHEAT_NAME = "ceremonyCheat";
+    public static final String EAGLE_ITEMS_NAME = "eagleItems";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";

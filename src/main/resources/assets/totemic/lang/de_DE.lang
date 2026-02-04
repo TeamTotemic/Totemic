@@ -28,6 +28,8 @@ item.totemic:baykokBow.name=Baykoks Bogen
 item.totemic:ceremonyCheat.name=Kreativmodus-Zeremoniencheat
 item.totemic:ceremonyCheat.tooltip1=Benutze an einer Totembasis, um sofort
 item.totemic:ceremonyCheat.tooltip2=die ausgewählte Zeremonie zu starten
+item.totemic:eagleBone.name=Adlerknochen
+item.totemic:eagleFeather.name=Adlerfeder
 
 # Block localizations
 tile.cedarLog.name=Rotes Zedernholz

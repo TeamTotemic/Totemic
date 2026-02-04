@@ -12,28 +12,24 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import totemic_commons.pokefenn.lib.Strings;
 
-/**
- * Created by Pokefenn.
- * Licensed under MIT (If this is one of my Mods)
- */
-public class ItemBuffaloDrops extends ItemTotemic
+public class ItemEagleDrops extends ItemTotemic
 {
     public enum Type
     {
-        hide, teeth/*, horn, hair, hoof, dung*/;
+        bone, feather;
 
         public final String name;
 
         private Type()
         {
-            this.name = "buffalo" + Character.toUpperCase(name().charAt(0)) + name().substring(1);
+            this.name = "eagle" + Character.toUpperCase(name().charAt(0)) + name().substring(1);
         }
     }
 
     @SideOnly(Side.CLIENT)
     private IIcon[] icons;
 
-    public ItemBuffaloDrops()
+    public ItemEagleDrops()
     {
         super("");
         setHasSubtypes(true);

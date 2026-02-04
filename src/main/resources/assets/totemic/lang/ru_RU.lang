@@ -28,6 +28,8 @@ tile.redCedarStripped.name=Очищенная древесина красног�
 item.totemic:ceremonyCheat.name=Творческий ритуальный инструмент
 item.totemic:ceremonyCheat.tooltip1=Используйте по Тотемному Столбу чтобы,
 item.totemic:ceremonyCheat.tooltip2=начать выбранный Ритуал
+item.totemic:eagleBone.name=Кость орла
+item.totemic:eagleFeather.name=Орлиное перо
 
 #Entity localizations
 entity.totemic:buffalo.name=Бизон

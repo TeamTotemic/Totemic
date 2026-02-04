@@ -15,6 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModItems;
+import totemic_commons.pokefenn.item.ItemEagleDrops;
 
 public class EntityBaldEagle extends EntityTameable
 {
@@ -81,6 +83,22 @@ public class EntityBaldEagle extends EntityTameable
         }
 
         this.flap += this.flapping * 2.0F;
+    }
+
+    @Override
+    protected void dropFewItems(boolean hitByPlayer, int looting)
+    {
+        int bones = 1 + rand.nextInt(2) + rand.nextInt(1 + looting * 2 / 3);
+        for(int k = 0; k < bones; k++)
+        {
+            entityDropItem(new ItemStack(ModItems.eagleItems, 1, ItemEagleDrops.Type.bone.ordinal()), 0.0F);
+        }
+
+        int feathers = 1 + rand.nextInt(3) + rand.nextInt(1 + looting);
+        for(int k = 0; k < feathers; k++)
+        {
+            entityDropItem(new ItemStack(ModItems.eagleItems, 1, ItemEagleDrops.Type.feather.ordinal()), 0.0F);
+        }
     }
 
     @Override
