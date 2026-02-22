@@ -1,8 +1,9 @@
 package totemic_commons.pokefenn.ceremony;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
@@ -15,6 +16,8 @@ import totemic_commons.pokefenn.util.EntityUtil;
  */
 public class CeremonyBuffaloDance extends Ceremony
 {
+    public static final IEntitySelector selector = entity -> entity instanceof EntityCow && !(entity instanceof EntityBuffalo);
+
     public CeremonyBuffaloDance(String modid, String name, int musicNeeded, int maxStartupTime, MusicInstrument... instruments)
     {
         super(modid, name, musicNeeded, maxStartupTime, instruments);
@@ -27,19 +30,17 @@ public class CeremonyBuffaloDance extends Ceremony
             return;
 
         int buffalos = 0;
-        for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
+        AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(x - 0.5, y - 0.5, z - 0.5, x + 0.5, y + 0.5, z + 0.5).expand(8, 8, 8);
+        for(EntityLivingBase entity : world.selectEntitiesWithinAABB(EntityLivingBase.class, aabb, selector))
         {
             if(buffalos < 2)
             {
-                if(entity instanceof EntityCow && !(entity instanceof EntityBuffalo))
-                {
-                    buffalos++;
-                    EntityBuffalo buffalo = new EntityBuffalo(world);
-                    float health = ((EntityLivingBase)entity).getHealth() / ((EntityLivingBase)entity).getMaxHealth() * buffalo.getMaxHealth();
-                    buffalo.setHealth(health);
-                    EntityUtil.spawnEntity(world, entity.posX, entity.posY, entity.posZ, buffalo);
-                    entity.setDead();
-                }
+                buffalos++;
+                EntityBuffalo buffalo = new EntityBuffalo(world);
+                float health = entity.getHealth() / entity.getMaxHealth() * buffalo.getMaxHealth();
+                buffalo.setHealth(health);
+                EntityUtil.spawnEntity(world, entity.posX, entity.posY, entity.posZ, buffalo);
+                entity.setDead();
             }
         }
     }
