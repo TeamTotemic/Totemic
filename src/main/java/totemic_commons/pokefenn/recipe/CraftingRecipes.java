@@ -11,6 +11,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.item.ItemBuffaloDrops;
+import totemic_commons.pokefenn.item.ItemEagleDrops;
 import totemic_commons.pokefenn.item.ItemTotemicItems;
 
 public class CraftingRecipes
@@ -87,13 +88,17 @@ public class CraftingRecipes
     static void oreDictionary()
     {
         OreDictionary.registerOre("cropVine", new ItemStack(Blocks.vine));
-        OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.totemLeaves, 1));
-        OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedarLog, 1, 0));
-        OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.redCedarPlank, 1, 0));
+        OreDictionary.registerOre("treeLeaves", new ItemStack(ModBlocks.totemLeaves));
+        OreDictionary.registerOre("treeSapling", new ItemStack(ModBlocks.totemSapling));
+        OreDictionary.registerOre("logWood", new ItemStack(ModBlocks.cedarLog));
+        OreDictionary.registerOre("plankWood", new ItemStack(ModBlocks.redCedarPlank));
         OreDictionary.registerOre("nuggetIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.nuggetIron));
         OreDictionary.registerOre("bellsIron", new ItemStack(ModItems.subItems, 1, ItemTotemicItems.bellsIron));
         OreDictionary.registerOre("hideBuffalo", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.hide.ordinal()));
         OreDictionary.registerOre("teethBuffalo", new ItemStack(ModItems.buffaloItems, 1, ItemBuffaloDrops.Type.teeth.ordinal()));
+        OreDictionary.registerOre("bone", new ItemStack(ModItems.eagleItems, 1, ItemEagleDrops.Type.bone.ordinal()));
+        OreDictionary.registerOre("feather", new ItemStack(ModItems.eagleItems, 1, ItemEagleDrops.Type.feather.ordinal()));
+        OreDictionary.registerOre("itemKnife", new ItemStack(ModItems.totemWhittlingKnife));
     }
 
     static void furnaceRecipes()
