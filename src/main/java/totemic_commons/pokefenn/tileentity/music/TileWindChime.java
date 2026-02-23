@@ -52,7 +52,7 @@ public class TileWindChime extends TileTotemic
 
             if(isPlaying && worldObj.getTotalWorldTime() % 40L == 0)
             {
-                worldObj.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 1.0F, 1.0F, false);
+                worldObj.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 0.5F, 1.0F, false);
                 worldObj.spawnParticle("note", xCoord + 0.5, yCoord - 0.8, zCoord + 0.5, 0, 0, 0);
             }
         }
@@ -78,8 +78,7 @@ public class TileWindChime extends TileTotemic
                 cooldownPassed = 0;
             }
 
-            Random rand = new Random();
-
+            Random rand = worldObj.rand;
             if(!isPlaying && worldObj.getTotalWorldTime() % 20L == 0 && rand.nextInt(60) == 0)
             {
                 setPlaying(true);
