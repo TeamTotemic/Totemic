@@ -50,7 +50,7 @@ public class EntityEfreet extends EntityMob implements IBossDisplayData, IRanged
     {
         super.onUpdate();
 
-        Random rand = new Random();
+        Random rand = worldObj.rand;
 
         if(!this.worldObj.isRemote)
         {

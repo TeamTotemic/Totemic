@@ -52,22 +52,23 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
 
         if(tileEntity.isPlaying())
         {
-            if(tileEntity.getWorldObj().getTotalWorldTime() % 2L == 0)
+            if(world.getTotalWorldTime() % 2L == 0)
             {
                 //float percent = tileEntity.currentRotation / 90F;
                 //float sinerp = MathsUtil.sinerp(0, 0.5F, percent);
+                Random rand = world.rand;
 
-                modelWindChime.chime1.rotateAngleX = getRotationThingy();
-                modelWindChime.chime1.rotateAngleZ = getRotationThingy();
+                modelWindChime.chime1.rotateAngleX = getRandomAngle(rand);
+                modelWindChime.chime1.rotateAngleZ = getRandomAngle(rand);
 
-                modelWindChime.chime2.rotateAngleX = getRotationThingy();
-                modelWindChime.chime2.rotateAngleZ = getRotationThingy();
+                modelWindChime.chime2.rotateAngleX = getRandomAngle(rand);
+                modelWindChime.chime2.rotateAngleZ = getRandomAngle(rand);
 
-                modelWindChime.chime3.rotateAngleX = getRotationThingy();
-                modelWindChime.chime3.rotateAngleZ = getRotationThingy();
+                modelWindChime.chime3.rotateAngleX = getRandomAngle(rand);
+                modelWindChime.chime3.rotateAngleZ = getRandomAngle(rand);
 
-                modelWindChime.chime4.rotateAngleX = getRotationThingy();
-                modelWindChime.chime4.rotateAngleZ = getRotationThingy();
+                modelWindChime.chime4.rotateAngleX = getRandomAngle(rand);
+                modelWindChime.chime4.rotateAngleZ = getRandomAngle(rand);
 
                 //TODO
 
@@ -96,7 +97,7 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         GL11.glPopMatrix();
     }
 
-    public void resetRotations()
+    private void resetRotations()
     {
         modelWindChime.chime1.rotateAngleX = 0.0F;
         modelWindChime.chime1.rotateAngleZ = 0.0F;
@@ -111,14 +112,13 @@ public class TileWindChimeRenderer extends TileEntitySpecialRenderer
         modelWindChime.chime4.rotateAngleZ = 0.0F;
     }
 
-    public float getRotationThingy()
+    private float getRandomAngle(Random random)
     {
-        Random random = new Random();
         int multiplier;
         float number = 0;
         float min = 0.01F;
         float max = 0.05F;
-        float value = min + (int) (Math.random() * ((1 + max) - min));
+        float value = min + (int) (random.nextFloat() * ((1 + max) - min));
 
         if(random.nextInt(2) + 1 == 1)
             multiplier = 1;
