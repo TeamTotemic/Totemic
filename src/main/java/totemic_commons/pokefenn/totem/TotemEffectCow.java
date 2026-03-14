@@ -28,7 +28,7 @@ public class TotemEffectCow extends TotemEffect
 
         if(world.getTotalWorldTime() % 60L == 0)
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, horizontal, vertical))
+            for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, horizontal, vertical)))
             {
                 if(entity instanceof EntityPlayer)
                 {

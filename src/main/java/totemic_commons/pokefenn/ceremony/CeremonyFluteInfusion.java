@@ -26,7 +26,7 @@ public class CeremonyFluteInfusion extends Ceremony
         if(world.isRemote)
             return;
 
-        for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 5, 5))
+        for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, 5, 5)))
         {
             if(entity instanceof EntityItem)
             {

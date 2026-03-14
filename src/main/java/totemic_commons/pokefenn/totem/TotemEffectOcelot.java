@@ -25,7 +25,7 @@ public class TotemEffectOcelot extends TotemEffect
         if(world.isRemote)
             return;
 
-        for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, horizontal, vertical))
+        for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, horizontal, vertical)))
         {
             if(entity instanceof EntityCreeper)
             {

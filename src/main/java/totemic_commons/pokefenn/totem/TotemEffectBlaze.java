@@ -31,7 +31,7 @@ public class TotemEffectBlaze extends TotemEffect
         if(world.getTotalWorldTime() % 60L == 0)
         {
 
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, getHorizontalRange(), getVerticalRange()))
+            for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, horizontal, vertical)))
             {
                 if(entity instanceof EntityPlayer)
                 {

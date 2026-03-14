@@ -73,7 +73,7 @@ public class ItemFlute extends ItemMusic
                 PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
             }
             if(itemStack.getItemDamage() == 1 && !player.isSneaking())
-                for(Entity entity : EntityUtil.getEntitiesInRange(world, player.posX, player.posY, player.posZ, 2, 2))
+                for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(player.posX, player.posY, player.posZ, 2, 2)))
                 {
                     if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
                     {

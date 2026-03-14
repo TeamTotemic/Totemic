@@ -25,11 +25,9 @@ import net.minecraft.world.WorldServer;
  */
 public class EntityUtil
 {
-
-    //Code from @WayofTime
-    public static List<Entity> getEntitiesInRange(World world, double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
+    public static AxisAlignedBB getAABBAround(double posX, double posY, double posZ, double horizontalRadius, double verticalRadius)
     {
-        return world.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getBoundingBox(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius));
+        return AxisAlignedBB.getBoundingBox(posX - 0.5F, posY - 0.5f, posZ - 0.5f, posX + 0.5f, posY + 0.5f, posZ + 0.5f).expand(horizontalRadius, verticalRadius, horizontalRadius);
     }
 
     public static List<TileEntity> getTileEntitiesIn(WorldServer world, int minX, int minY, int minZ, int maxX, int maxY, int maxZ)

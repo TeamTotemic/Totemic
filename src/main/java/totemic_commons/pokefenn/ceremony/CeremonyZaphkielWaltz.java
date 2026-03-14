@@ -34,7 +34,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
 
         if(!world.isRemote && world.getTotalWorldTime() % 20L == 0)
         {
-            for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, radius, radius))
+            for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, radius, radius)))
             {
                 if(entity instanceof EntityItem)
                 {

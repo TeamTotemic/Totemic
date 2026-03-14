@@ -26,7 +26,7 @@ public class CeremonyWarDance extends Ceremony
         if(world.isRemote)
             return;
 
-        for(Entity entity : EntityUtil.getEntitiesInRange(world, x, y, z, 8, 8))
+        for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, 8, 8)))
         {
             if(entity instanceof EntityPlayer)
             {
