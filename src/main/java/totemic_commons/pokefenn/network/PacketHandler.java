@@ -8,7 +8,6 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.network.client.PacketClientBlessingSync;
 import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.network.client.PacketTotemMusic;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
@@ -33,7 +32,6 @@ public class PacketHandler
     public static void init()
     {
         registerPacket(PacketJingle.class, Side.SERVER);
-        registerPacket(PacketClientBlessingSync.class, Side.CLIENT);
         registerPacket(PacketWindChime.class, Side.CLIENT);
         registerPacket(PacketSound.class, Side.CLIENT);
         registerPacket(PacketMouseWheel.class, Side.SERVER);
