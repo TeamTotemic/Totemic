@@ -10,7 +10,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
@@ -73,19 +72,16 @@ public class ItemFlute extends ItemMusic
                 PacketHandler.sendAround(new PacketSound(x, y, z, "flute"), player.worldObj.provider.dimensionId, x, y, z);
             }
             if(itemStack.getItemDamage() == 1 && !player.isSneaking())
-                for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(player.posX, player.posY, player.posZ, 2, 2)))
+                for(EntityCreature entity : world.selectEntitiesWithinAABB(EntityCreature.class, EntityUtil.getAABBAround(player.posX, player.posY, player.posZ, 2, 2),
+                        entity -> entity instanceof EntityAnimal || entity instanceof EntityVillager))
                 {
-                    if(entity instanceof EntityAnimal || entity instanceof EntityVillager)
-                    {
-                        if(temptedEntities.contains(entity))
-                            continue;
+                    if(temptedEntities.contains(entity))
+                        continue;
 
-                        double d = (entity instanceof EntityAnimal) ? 1 : 0.5;
-                        ((EntityLiving) entity).targetTasks.addTask(5, new EntityAITempt((EntityCreature) entity, d, this, false));
+                    double d = (entity instanceof EntityAnimal) ? 1 : 0.5;
+                    entity.targetTasks.addTask(5, new EntityAITempt(entity, d, this, false));
 
-                        temptedEntities.add(entity);
-                    }
-
+                    temptedEntities.add(entity);
                 }
 
             tag.setInteger(Strings.INSTR_TIME_KEY, time);

@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.ceremony;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -26,16 +25,11 @@ public class CeremonyFluteInfusion extends Ceremony
         if(world.isRemote)
             return;
 
-        for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, 5, 5)))
+        for(EntityItem entity : world.selectEntitiesWithinAABB(EntityItem.class, EntityUtil.getAABBAround(x, y, z, 5, 5),
+                entity -> ((EntityItem) entity).getEntityItem().getItem() == ModItems.flute))
         {
-            if(entity instanceof EntityItem)
-            {
-                if(((EntityItem) entity).getEntityItem().getItem() == ModItems.flute)
-                {
-                    EntityUtil.dropItem(world, entity.posX, entity.posY, entity.posZ, new ItemStack(ModItems.flute, 1, 1));
-                    entity.setDead();
-                }
-            }
+            EntityUtil.dropItem(world, entity.posX, entity.posY, entity.posZ, new ItemStack(ModItems.flute, 1, 1));
+            entity.setDead();
         }
     }
 }

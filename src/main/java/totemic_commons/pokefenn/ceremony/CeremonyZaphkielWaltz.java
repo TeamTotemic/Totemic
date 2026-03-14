@@ -2,7 +2,6 @@ package totemic_commons.pokefenn.ceremony;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.init.Blocks;
@@ -34,27 +33,21 @@ public class CeremonyZaphkielWaltz extends Ceremony
 
         if(!world.isRemote && world.getTotalWorldTime() % 20L == 0)
         {
-            for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, radius, radius)))
+            for(EntityItem entity : world.selectEntitiesWithinAABB(EntityItem.class, EntityUtil.getAABBAround(x, y, z, radius, radius),
+                    entity -> ((EntityItem) entity).getEntityItem().getItem() == Items.egg))
             {
-                if(entity instanceof EntityItem)
+                if(world.rand.nextInt(4) == 0)
                 {
-                    EntityItem item = (EntityItem)entity;
-                    if(item.getEntityItem().getItem() == Items.egg)
+                    EntityChicken chicken = new EntityChicken(world);
+                    chicken.setPosition(entity.posX, entity.posY, entity.posZ);
+                    world.spawnEntityInWorld(chicken);
+                    if(entity.getEntityItem().stackSize == 1)
+                        entity.setDead();
+                    else
                     {
-                        if(world.rand.nextInt(4) == 0)
-                        {
-                            EntityChicken chicken = new EntityChicken(world);
-                            chicken.setPosition(entity.posX, entity.posY, entity.posZ);
-                            world.spawnEntityInWorld(chicken);
-                            if(item.getEntityItem().stackSize == 1)
-                                item.setDead();
-                            else
-                            {
-                                ItemStack stack = item.getEntityItem().copy();
-                                stack.stackSize--;
-                                item.setEntityItemStack(stack);
-                            }
-                        }
+                        ItemStack stack = entity.getEntityItem().copy();
+                        stack.stackSize--;
+                        entity.setEntityItemStack(stack);
                     }
                 }
             }

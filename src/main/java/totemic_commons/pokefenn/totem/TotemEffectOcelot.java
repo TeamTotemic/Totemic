@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.totem;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
@@ -25,16 +24,12 @@ public class TotemEffectOcelot extends TotemEffect
         if(world.isRemote)
             return;
 
-        for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, horizontal, vertical)))
+        for(EntityCreeper creeper : world.getEntitiesWithinAABB(EntityCreeper.class, EntityUtil.getAABBAround(x, y, z, horizontal, vertical)))
         {
-            if(entity instanceof EntityCreeper)
+            if(creeper.timeSinceIgnited > 20 - repetitionBonus)
             {
-                EntityCreeper creeper = (EntityCreeper)entity;
-                if(creeper.timeSinceIgnited > 20 - repetitionBonus)
-                {
-                    creeper.timeSinceIgnited = 0;
-                    creeper.setCreeperState(-1);
-                }
+                creeper.timeSinceIgnited = 0;
+                creeper.setCreeperState(-1);
             }
         }
     }

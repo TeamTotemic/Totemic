@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.ceremony;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -26,13 +25,10 @@ public class CeremonyWarDance extends Ceremony
         if(world.isRemote)
             return;
 
-        for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, 8, 8)))
+        for(EntityPlayer player : world.getEntitiesWithinAABB(EntityPlayer.class, EntityUtil.getAABBAround(x, y, z, 8, 8)))
         {
-            if(entity instanceof EntityPlayer)
-            {
-                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 20 * (60 * 3), 1));
-                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 20 * (60 + 30), 1));
-            }
+            player.addPotionEffect(new PotionEffect(Potion.damageBoost.getId(), 20 * (60 * 3), 1));
+            player.addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 20 * (60 + 30), 1));
         }
     }
 }

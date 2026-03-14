@@ -1,6 +1,5 @@
 package totemic_commons.pokefenn.totem;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
@@ -31,18 +30,15 @@ public class TotemEffectBlaze extends TotemEffect
         if(world.getTotalWorldTime() % 60L == 0)
         {
 
-            for(Entity entity : world.getEntitiesWithinAABB(Entity.class, EntityUtil.getAABBAround(x, y, z, horizontal, vertical)))
+            for(EntityPlayer player : world.getEntitiesWithinAABB(EntityPlayer.class, EntityUtil.getAABBAround(x, y, z, horizontal, vertical)))
             {
-                if(entity instanceof EntityPlayer)
+                if(player.isBurning())
                 {
-                    if(entity.isBurning())
-                    {
-                        if(world.rand.nextBoolean())
-                            ((EntityPlayer) entity).heal(2);
-                    }
-
-                    Totemic.api.totemEffect().addPotionEffect((EntityPlayer) entity, Potion.fireResistance, true, 50, 0, melodyAmount, totemWoodBonus, repetitionBonus);
+                    if(world.rand.nextBoolean())
+                        player.heal(2);
                 }
+
+                Totemic.api.totemEffect().addPotionEffect(player, Potion.fireResistance, true, 50, 0, melodyAmount, totemWoodBonus, repetitionBonus);
             }
         }
 
