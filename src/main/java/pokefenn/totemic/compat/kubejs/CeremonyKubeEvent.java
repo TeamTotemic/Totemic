@@ -153,7 +153,8 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
         This event is fired when the player has successfully completed the ceremony startup.
 
         When canceled, the Ceremony is considered failed and the effect is not started (however, this behavior will probably change in the future).
-        This event is only fired on the server side, and it will not fire when the player uses the Creative Ceremony Cheat item.
+        This event is only fired on the server side, and it will not fire when the player uses the Creative Ceremony Cheat item (consider using the
+        `ceremonyEffectTick` event instead if you need this).
         """)
     public static class StartupSuccess extends CeremonyKubeEvent {
         private final CeremonyEvent.StartupSuccess event;
@@ -174,8 +175,8 @@ public abstract class CeremonyKubeEvent implements KubeLevelEvent {
     }
 
     @Info("""
-        This event is fired every tick during the Ceremony effect phase. Will only be fired once if the Ceremony effect is instantaneous
-        (i.e. `event.effectTime == 0`).
+        This event is fired every tick during the Ceremony effect phase. If the Ceremony effect is instantaneous (i.e. `event.effectTime == 0`),
+        it will be fired exactly once.
 
         When canceled, the Ceremony effect will not be applied. The Ceremony can be ended prematurely by using `event.context.endCeremony()`.
         """)

@@ -190,7 +190,8 @@ public abstract class CeremonyEvent extends Event {
      * This event is fired when the player has successfully completed the ceremony startup.
      * <p>
      * When canceled, the Ceremony is considered failed and the effect is not started (however, this behavior will probably change in the future).
-     * This event is only fired on the server side, and it will not fire when the player uses the Creative Ceremony Cheat item.
+     * This event is only fired on the server side, and it will not fire when the player uses the Creative Ceremony Cheat item (consider using the
+     * {@link EffectTick} event instead if you need this).
      */
     public static class StartupSuccess extends CeremonyEvent implements ICancellableEvent {
         private final StartupContext context;
@@ -209,8 +210,8 @@ public abstract class CeremonyEvent extends Event {
     }
 
     /**
-     * This event is fired every tick during the Ceremony effect phase. Will only be fired once if the Ceremony effect is instantaneous
-     * (i.e. {@link #getEffectTime()} == 0).
+     * This event is fired every tick during the Ceremony effect phase. If the Ceremony effect is instantaneous (i.e. {@link #getEffectTime()} == 0),
+     * it will be fired exactly once.
      * <p>
      * Allows modifying the duration of the effect. When canceled, {@link CeremonyInstance#effect} will not be called.
      */
