@@ -20,4 +20,9 @@ public final class TotemicBlockTags {
      * However, only block states which are {@linkplain BlockStateBase#isRandomlyTicking() randomly ticking} will actually be affected.
      */
     public static final TagKey<Block> ZAPHKIEL_WALTZ_GROWABLE = BlockTags.create(ResourceLocation.fromNamespaceAndPath(TotemicAPI.MOD_ID, "zaphkiel_waltz_growable"));
+
+    /**
+     * Tipis can only be placed on blocks tagged with this.
+     */
+    public static final TagKey<Block> SUPPORTS_TIPI = BlockTags.create(ResourceLocation.fromNamespaceAndPath(TotemicAPI.MOD_ID, "supports_tipi"));
 }

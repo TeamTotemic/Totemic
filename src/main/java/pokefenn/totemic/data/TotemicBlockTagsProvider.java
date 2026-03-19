@@ -29,6 +29,7 @@ public final class TotemicBlockTagsProvider extends BlockTagsProvider {
                 .addTags(BlockTags.CROPS, BlockTags.SAPLINGS, BlockTags.BEE_GROWABLES, BlockTags.MAINTAINS_FARMLAND)
                 .add(Blocks.BAMBOO_SAPLING, Blocks.BAMBOO, Blocks.CACTUS, Blocks.SUGAR_CANE, Blocks.COCOA, Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM,
                      Blocks.NETHER_WART, Blocks.GRASS_BLOCK, Blocks.MYCELIUM, Blocks.KELP, Blocks.CAVE_VINES, Blocks.TWISTING_VINES, Blocks.VINE);
+        tag(TotemicBlockTags.SUPPORTS_TIPI).addTag(BlockTags.DIRT);
         tag(TotemicBlockTags.CEDAR_LOGS).add(ModBlocks.cedar_log.get(), ModBlocks.stripped_cedar_log.get(), ModBlocks.cedar_wood.get(), ModBlocks.stripped_cedar_wood.get());
 
         //Minecraft and Forge tags

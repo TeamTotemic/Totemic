@@ -12,7 +12,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayer.RespawnPosAngle;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,6 +34,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.init.ModBlocks;
 
 public class TipiBlock extends HorizontalDirectionalBlock {
@@ -107,9 +107,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
         var pos = ctx.getClickedPos();
 
         var belowState = level.getBlockState(pos.below());
-        if(!belowState.is(BlockTags.DIRT))
-            return false;
-        if(!belowState.isFaceSturdy(level, pos, Direction.UP))
+        if(!belowState.is(TotemicBlockTags.SUPPORTS_TIPI))
             return false;
 
         final int radius = 1;
