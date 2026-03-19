@@ -1,7 +1,6 @@
 package pokefenn.totemic.apiimpl.music;
 
 import java.util.Comparator;
-import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -48,13 +47,15 @@ public enum MusicApiImpl implements MusicAPI {
 
         level.getProfiler().push("totemic.playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
-        List<MusicAcceptor> list = BlockUtil.getBlockEntitiesInRange(null, level, BlockPos.containing(pos), range)
+
+        @SuppressWarnings("null")
+        var acceptors = BlockUtil.getBlockEntitiesInRange(null, level, BlockPos.containing(pos), range)
                 .map(tile -> level.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR, tile.getBlockPos(), tile.getBlockState(), tile)) //TODO: Consider using BlockCapabilityCache
-                .filter(acc -> acc != null && acc.canAcceptMusic(instr))
+                .filter(acc -> acc != null && acc.canAcceptMusic(instr)) // elements are != null after this
                 .collect(MiscUtil.collectMaxElements(Comparator.comparing(MusicAcceptor::getPriority)));
 
-        for(MusicAcceptor acc: list) { //The loop is not executed when list is empty, so we got no division by zero
-            var result = acc.acceptMusic(instr, amount / list.size(), pos, entity);
+        for(MusicAcceptor acc: acceptors) { //The loop is not executed when list is empty, so we got no division by zero
+            var result = acc.acceptMusic(instr, amount / acceptors.size(), pos, entity);
             if(result.isSuccess())
                 MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.NOTE, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0); //TODO: The way the particles are being spawned should probably be changed (creating our own packet)
             if(result.isSaturated())
