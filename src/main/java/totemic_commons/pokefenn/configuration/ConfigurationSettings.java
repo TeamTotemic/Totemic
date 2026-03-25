@@ -1,5 +1,8 @@
 package totemic_commons.pokefenn.configuration;
 
+import java.util.Collections;
+import java.util.Set;
+
 public final class ConfigurationSettings
 {
     public static int POTION_ID_BAT;
@@ -8,4 +11,6 @@ public final class ConfigurationSettings
 
     public static int CEREMONY_HUD_X;
     public static int CEREMONY_HUD_Y;
+
+    public static Set<String> BUFFALO_DANCE_TARGETS = Collections.emptySet();
 }

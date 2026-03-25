@@ -3,12 +3,16 @@ package totemic_commons.pokefenn.configuration;
 import static totemic_commons.pokefenn.Totemic.logger;
 
 import java.io.File;
+import java.util.Set;
 
 import org.apache.logging.log4j.Level;
+
+import com.google.common.collect.ImmutableSet;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.entity.EntityList;
 import net.minecraftforge.common.config.Configuration;
 import totemic_commons.pokefenn.Totemic;
 
@@ -50,6 +54,19 @@ public final class ConfigurationHandler
 
         ConfigurationSettings.CEREMONY_HUD_X = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionX", 0, "horizontal position of the ceremony HUD (offset from center of the screen)").getInt();
         ConfigurationSettings.CEREMONY_HUD_Y = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionY", -70, "vertical position of the ceremony HUD (offset from center of the screen)").getInt();
+
+        ConfigurationSettings.BUFFALO_DANCE_TARGETS = ImmutableSet.copyOf(conf.get(CATEGORY_GENERAL, "buffaloDanceTargets",
+            new String[] {"Cow", "MushroomCow"}, "List of entity IDs which can be converted to Buffalos by the Buffalo Dance").getStringList());
+        checkValidEntityIDs("buffaloDanceTargets", ConfigurationSettings.BUFFALO_DANCE_TARGETS);
+    }
+
+    private static void checkValidEntityIDs(String configName, Set<String> ids)
+    {
+        for(String id : ids)
+        {
+            if(!EntityList.stringToClassMapping.containsKey(id))
+                logger.error("Unknown entity ID in {}: '{}'", configName, id);
+        }
     }
 
     @SubscribeEvent
