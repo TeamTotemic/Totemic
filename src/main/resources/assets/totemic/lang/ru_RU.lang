@@ -50,12 +50,14 @@ totemic.melodyName.high=Очень обильная мелодия
 totemic.melodyName.maximum=Разрывная мелодия
 
 #Ceremony names
-totemic.ceremony.flute=Ceremony of Flute Imbuation
-totemic.ceremony.ghostDance=Призрачный танец
-totemic.ceremony.rainDance=Дождевой танец
-totemic.ceremony.drought=Церемония засухи
-totemic.ceremony.potion=Церемония божественных элексиров
-totemic.ceremony.buffaloDance=Танец буйволов Манданов
+totemic.ceremony.totemic:flute=Серенада Сиринкса
+totemic.ceremony.totemic:ghostDance=Призрачный танец
+totemic.ceremony.totemic:rainDance=Дождевой танец
+totemic.ceremony.totemic:drought=Церемония засухи
+totemic.ceremony.totemic:buffaloDance=Танец буйволов Манданов
+totemic.ceremony.totemic:zaphkielWaltz=Вальс Запкиэля
+totemic.ceremony.totemic:warDance=Танец войны
+totemic.ceremony.totemic:eagleDance=Танец орла
 
 totemicmisc.timeForCeremony=Время начала:
 totemicmisc.seconds= секунд

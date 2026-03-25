@@ -13,4 +13,5 @@ public final class ConfigurationSettings
     public static int CEREMONY_HUD_Y;
 
     public static Set<String> BUFFALO_DANCE_TARGETS = Collections.emptySet();
+    public static Set<String> EAGLE_DANCE_TARGETS = Collections.emptySet();
 }

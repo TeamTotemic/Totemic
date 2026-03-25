@@ -52,9 +52,12 @@ public final class ConfigurationHandler
         ConfigurationSettings.CEREMONY_HUD_X = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionX", 0, "horizontal position of the ceremony HUD (offset from center of the screen)").getInt();
         ConfigurationSettings.CEREMONY_HUD_Y = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionY", -70, "vertical position of the ceremony HUD (offset from center of the screen)").getInt();
 
-        ConfigurationSettings.BUFFALO_DANCE_TARGETS = ImmutableSet.copyOf(conf.get(CATEGORY_GENERAL, "buffaloDanceTargets",
-            new String[] {"Cow", "MushroomCow"}, "List of entity IDs which can be converted to Buffalos by the Buffalo Dance").getStringList());
+        ConfigurationSettings.BUFFALO_DANCE_TARGETS = ImmutableSet.copyOf(conf.get(CATEGORY_GENERAL, "buffaloDanceTargets", new String[] {"Cow", "MushroomCow"},
+            "List of entity IDs which can be converted to Buffalos by the Buffalo Dance").getStringList());
         checkValidEntityIDs("buffaloDanceTargets", ConfigurationSettings.BUFFALO_DANCE_TARGETS);
+        ConfigurationSettings.EAGLE_DANCE_TARGETS = ImmutableSet.copyOf(conf.get(CATEGORY_GENERAL, "eagleDanceTargets", new String[] {"Chicken"},
+            "List of entity IDs which can be converted to Bald Eagles by the Eagle Dance").getStringList());
+        checkValidEntityIDs("eagleDanceTargets", ConfigurationSettings.EAGLE_DANCE_TARGETS);
     }
 
     private static void checkValidEntityIDs(String configName, Set<String> ids)

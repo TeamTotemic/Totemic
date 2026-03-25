@@ -49,12 +49,14 @@ totemic.melodyName.high=丰富的旋律
 totemic.melodyName.maximum=爆发的旋律
 
 #Ceremony names
-totemic.ceremony.flute=长笛注魔仪式
-totemic.ceremony.ghostDance=鬼舞仪式
-totemic.ceremony.rainDance=祈雨舞仪式
-totemic.ceremony.drought=干旱仪式
-totemic.ceremony.potion=灵药仪式
-totemic.ceremony.buffaloDance=曼丹野牛舞
+totemic.ceremony.totemic:flute=长笛注魔仪式
+totemic.ceremony.totemic:ghostDance=鬼舞仪式
+totemic.ceremony.totemic:rainDance=祈雨舞仪式
+totemic.ceremony.totemic:drought=干旱仪式
+totemic.ceremony.totemic:buffaloDance=曼丹野牛舞
+totemic.ceremony.totemic:zaphkielWaltz=沙法尔圆舞
+totemic.ceremony.totemic:warDance=战争仪式
+totemic.ceremony.totemic:eagleDance=鹰之舞
 
 totemicmisc.timeForCeremony=执行时间:
 totemicmisc.seconds= 秒
