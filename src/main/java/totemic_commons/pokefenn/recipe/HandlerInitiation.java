@@ -45,6 +45,7 @@ public class HandlerInitiation
     public static MusicInstrument windChime;
     public static MusicInstrument jingleDress;
     public static MusicInstrument rattle;
+    public static MusicInstrument eagleBoneWhistle;
 
     public static void init()
     {
@@ -60,17 +61,14 @@ public class HandlerInitiation
         windChime.setItem(new ItemStack(ModBlocks.windChime));
         jingleDress.setItem(new ItemStack(ModItems.jingleDress));
         rattle.setItem(new ItemStack(ModItems.ceremonialRattle));
+        eagleBoneWhistle.setItem(new ItemStack(ModItems.eagleBoneWhistle));
     }
 
     private static void ceremonyHandler()
     {
         TotemicRegistry reg = Totemic.api.registry();
         //Music amount landmarks:
-        //150: Flute + Drum only
-        //210: Flute + Drum + full Wind Chime
-        //240: Flute + Drum + Rattle
-        //340: Flute + Drum + Rattle + Jingle Dress
-        //400: Flute + Drum + Rattle + Jingle Dress + full Wind Chime
+        //TODO
 
         fluteCeremony = reg.addCeremony(new CeremonyFluteInfusion("totemic", "flute", 140, CeremonyTime.MEDIUM,
                 flute, flute));
@@ -112,6 +110,7 @@ public class HandlerInitiation
     	windChime = reg.addInstrument(new MusicInstrument("totemic", "windChime", 7, 60, 5));
     	jingleDress = reg.addInstrument(new MusicInstrument("totemic", "jingleDress", 6, 100, 5));
     	rattle = reg.addInstrument(new MusicInstrument("totemic", "rattle", 6, 90, 5));
+    	eagleBoneWhistle = reg.addInstrument(new MusicInstrument("totemic", "eagleBoneWhistle", 6, 60, 5));
     }
 
 }

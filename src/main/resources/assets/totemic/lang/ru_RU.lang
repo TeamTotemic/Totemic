@@ -30,6 +30,7 @@ item.totemic:ceremonyCheat.tooltip1=Используйте по Тотемном
 item.totemic:ceremonyCheat.tooltip2=начать выбранный Ритуал
 item.totemic:eagleBone.name=Кость орла
 item.totemic:eagleFeather.name=Орлиное перо
+item.totemic:eagleBoneWhistle.name=Свисток из орлиной кости
 
 #Entity localizations
 entity.totemic:buffalo.name=Бизон

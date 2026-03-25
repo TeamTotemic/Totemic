@@ -30,6 +30,7 @@ item.totemic:ceremonyCheat.tooltip1=Use on a Totem Base to instantly
 item.totemic:ceremonyCheat.tooltip2=start up the selected Ceremony
 item.totemic:eagleBone.name=Eagle Bone
 item.totemic:eagleFeather.name=Eagle Feather
+item.totemic:eagleBoneWhistle.name=Eagle Bone Whistle
 
 # Block localizations
 tile.cedarLog.name=Red Cedar Log

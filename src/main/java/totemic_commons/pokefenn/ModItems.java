@@ -12,6 +12,7 @@ import totemic_commons.pokefenn.item.ItemTotempedia;
 import totemic_commons.pokefenn.item.equipment.ItemBarkStripper;
 import totemic_commons.pokefenn.item.equipment.ItemTotemWhittlingKnife;
 import totemic_commons.pokefenn.item.equipment.ItemTotemicStaff;
+import totemic_commons.pokefenn.item.equipment.music.ItemEagleBoneWhistle;
 import totemic_commons.pokefenn.item.equipment.music.ItemFlute;
 import totemic_commons.pokefenn.item.equipment.music.ItemJingleDress;
 import totemic_commons.pokefenn.item.equipment.music.ItemRattle;
@@ -36,6 +37,7 @@ public final class ModItems
     public static Item baykokBow;
     public static Item ceremonyCheat;
     public static Item eagleItems;
+    public static Item eagleBoneWhistle;
 
     public static void init()
     {
@@ -54,6 +56,7 @@ public final class ModItems
         baykokBow = new ItemBaykokBow();
         ceremonyCheat = new ItemCeremonyCheat();
         eagleItems = new ItemEagleDrops();
+        eagleBoneWhistle = new ItemEagleBoneWhistle();
 
         GameRegistry.registerItem(totemWhittlingKnife, Strings.TOTEM_WHITTLING_KNIFE_NAME);
         GameRegistry.registerItem(totemicStaff, Strings.TOTEMIC_STAFF_NAME);
@@ -70,6 +73,7 @@ public final class ModItems
         GameRegistry.registerItem(baykokBow, Strings.BAYKOK_BOW_NAME);
         GameRegistry.registerItem(ceremonyCheat, Strings.CEREMONY_CHEAT_NAME);
         GameRegistry.registerItem(eagleItems, Strings.EAGLE_ITEMS_NAME);
+        GameRegistry.registerItem(eagleBoneWhistle, Strings.EAGLE_BONE_WHISTLE_NAME);
     }
 
 }

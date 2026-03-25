@@ -3,6 +3,7 @@
 	"rattle": {"category": "block", "sounds": ["rattle"]},
 	"flute": {"category": "block", "sounds": ["flute1", "flute2"]},
 	"drum": {"category": "block", "sounds": ["drum"]},
+	"eagleBoneWhistle": {"category": "block", "sounds": ["eagle_bone_whistle1", "eagle_bone_whistle2", "eagle_bone_whistle3"]},
 	"baldEagle.idle": {"category": "neutral", "sounds": ["baldEagle/idle1", "baldEagle/idle2"]},
 	"baldEagle.hurt": {"category": "neutral", "sounds": ["baldEagle/hurt"]},
 	"baldEagle.death": {"category": "neutral", "sounds": ["baldEagle/death"]}

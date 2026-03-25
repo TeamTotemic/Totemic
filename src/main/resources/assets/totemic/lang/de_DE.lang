@@ -30,6 +30,7 @@ item.totemic:ceremonyCheat.tooltip1=Benutze an einer Totembasis, um sofort
 item.totemic:ceremonyCheat.tooltip2=die ausgewählte Zeremonie zu starten
 item.totemic:eagleBone.name=Adlerknochen
 item.totemic:eagleFeather.name=Adlerfeder
+item.totemic:eagleBoneWhistle.name=Adlerknochenpfeife
 
 # Block localizations
 tile.cedarLog.name=Rotes Zedernholz

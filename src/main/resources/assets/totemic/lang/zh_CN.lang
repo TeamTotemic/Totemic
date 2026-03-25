@@ -17,6 +17,7 @@ item.totemic:ceremonyCheat.tooltip1=激活仪式后右击图腾基座
 item.totemic:ceremonyCheat.tooltip2=便会立即完成仪式
 item.totemic:eagleBone.name=鹰骨
 item.totemic:eagleFeather.name=鹰羽
+item.totemic:eagleBoneWhistle.name=鹰骨笛
 
 # Block localizations
 tile.cedarLog.name=红柏原木

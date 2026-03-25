@@ -26,9 +26,6 @@ public final class Strings
     public static final String TOTEMS_NAME = "totems";
     public static final String SUB_ITEMS_NAME = "subItems";
     public static final String TOTEMPEDIA_NAME = "totempedia";
-    public static final String HEI_TIKI_NAME = "heiTiki";
-    public static final String HERCULESE_BAUBLES_NAME = "herculeseBauble";
-    public static final String TOTEM_BEAD_BELT_NAME = "totemBeadBelt";
     public static final String HUNTING_KNIFE_NAME = "huntingKnife";
     public static final String BLOW_DART_NAME = "blowGun";
     public static final String JINGLE_DRESS_NAME = "jingleDress";
@@ -43,6 +40,7 @@ public final class Strings
     public static final String BAYKOK_BOW_NAME = "baykokBow";
     public static final String CEREMONY_CHEAT_NAME = "ceremonyCheat";
     public static final String EAGLE_ITEMS_NAME = "eagleItems";
+    public static final String EAGLE_BONE_WHISTLE_NAME = "eagleBoneWhistle";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
