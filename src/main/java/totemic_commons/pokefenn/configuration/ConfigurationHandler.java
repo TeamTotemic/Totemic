@@ -19,10 +19,7 @@ import totemic_commons.pokefenn.Totemic;
 public final class ConfigurationHandler
 {
     public static Configuration conf;
-    public static final String CATEGORY_GAMEPLAY = "gameplay";
-    public static final String CATEGORY_TOTEMS = "totem";
     public static final String CATEGORY_POTION = "potions";
-    public static final String CATEGORY_ENTITY = "entity";
     public static final String CATEGORY_CLIENT = "client";
     public static final String CATEGORY_GENERAL = "general";
 
