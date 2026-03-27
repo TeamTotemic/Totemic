@@ -52,7 +52,7 @@ public class TileWindChime extends TileTotemic
 
             if(isPlaying && worldObj.getTotalWorldTime() % 40L == 0)
             {
-                worldObj.playSound(xCoord, yCoord, zCoord, "totemic:windChime", 0.5F, 1.0F, false);
+                worldObj.playSound(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5, "totemic:windChime", 0.5F, 1.0F, false);
                 worldObj.spawnParticle("note", xCoord + 0.5, yCoord - 0.8, zCoord + 0.5, 0, 0, 0);
             }
         }

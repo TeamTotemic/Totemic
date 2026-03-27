@@ -6,8 +6,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.ItemUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -29,10 +27,6 @@ public class ItemEagleBoneWhistle extends ItemMusic
     {
         if(!world.isRemote)
         {
-            int x = (int) player.posX;
-            int y = (int) player.posY;
-            int z = (int) player.posZ;
-
             NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
             int time = tag.getInteger(Strings.INSTR_TIME_KEY);
 
@@ -42,14 +36,14 @@ public class ItemEagleBoneWhistle extends ItemMusic
                 time = 0;
                 TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, 0);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                PacketHandler.sendAround(new PacketSound(x, y, z, "eagleBoneWhistle"), player.worldObj.provider.dimensionId, x, y, z);
+                world.playSoundAtEntity(player, "totemic:eagleBoneWhistle", 1.0F, 1.0F);
             }
             if(time >= 5 && player.isSneaking())
             {
                 time = 0;
                 TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
                 particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                PacketHandler.sendAround(new PacketSound(x, y, z, "eagleBoneWhistle"), player.worldObj.provider.dimensionId, x, y, z);
+                world.playSoundAtEntity(player, "totemic:eagleBoneWhistle", 1.0F, 1.0F);
             }
 
             tag.setInteger(Strings.INSTR_TIME_KEY, time);

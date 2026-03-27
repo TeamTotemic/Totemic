@@ -9,8 +9,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketSound;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.ItemUtil;
@@ -35,10 +33,6 @@ public class ItemRattle extends ItemMusic
     public boolean onEntitySwing(EntityLivingBase entity, ItemStack stack)
     {
         World world = entity.worldObj;
-        int x = (int) entity.posX;
-        int y = (int) entity.posY;
-        int z = (int) entity.posZ;
-
         if(!world.isRemote && entity instanceof EntityPlayer && !(entity instanceof FakePlayer))
         {
             EntityPlayer player = (EntityPlayer) entity;
@@ -54,14 +48,14 @@ public class ItemRattle extends ItemMusic
                     time = 0;
                     TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, 0);
                     particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                    PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), player.worldObj.provider.dimensionId, x, y, z);
+                    world.playSoundAtEntity(player, "totemic:rattle", 1.0F, 1.0F);
                 }
                 if(time >= 4 && player.isSneaking())
                 {
                     time = 0;
                     TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
                     particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                    PacketHandler.sendAround(new PacketSound(x, y, z, "rattle"), player.worldObj.provider.dimensionId, x, y, z);
+                    world.playSoundAtEntity(player, "totemic:rattle", 1.0F, 1.0F);
                 }
 
                 tag.setInteger(Strings.INSTR_TIME_KEY, time);
