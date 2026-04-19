@@ -101,14 +101,9 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 }
 
             if(isCeremony)
-            {
                 doCeremonyCode();
-            }
-
-            if(!isCeremony)
-            {
+            else
                 totemEffect();
-            }
 
             if(worldObj.getTotalWorldTime() % 20L == 0)
             {

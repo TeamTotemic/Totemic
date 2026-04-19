@@ -28,7 +28,7 @@ public class GameOverlay
     {
         if(event.type == ElementType.ALL)
         {
-            if(activeTotem != null && (!activeTotem.isCeremony || activeTotem.isInvalid()))
+            if(activeTotem != null && (activeTotem.isInvalid() || !activeTotem.isCeremony))
                 activeTotem = null;
 
             if(activeTotem != null && (activeTotem.isDoingStartup() || activeTotem.isDoingEndingEffect))
@@ -53,14 +53,16 @@ public class GameOverlay
                 tes.draw();
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
 
-                int barWidth = 104;
+                final int barWidth = 104;
+                final int barHeight = 7;
 
                 if(activeTotem.isDoingStartup())
                 {
                     Ceremony cer = activeTotem.startupCeremony;
 
-                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
-                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
+                    String name = cer.getLocalizedName();
+                    int nameX = (w - font.getStringWidth(name)) / 2;
+                    font.drawString(name, nameX, 1, 0xC8000000);
 
                     mc.renderEngine.bindTexture(hudTexture);
                     tes.startDrawingQuads();
@@ -74,16 +76,16 @@ public class GameOverlay
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
                     tes.startDrawingQuads();
                     tes.setColorRGBA(80, 255, 200, 80);
-                    RenderHelper.addQuad(tes, 11, 11, 0, barWidth, 7);
+                    RenderHelper.addQuad(tes, 11, 11, 0, barWidth, barHeight);
 
                     tes.setColorRGBA(60, 60, 255, 160);
-                    RenderHelper.addQuad(tes, 11, 11, 0, musicW, 7);
+                    RenderHelper.addQuad(tes, 11, 11, 0, musicW, barHeight);
 
                     tes.setColorRGBA(80, 255, 200, 80);
-                    RenderHelper.addQuad(tes, 11, 21, 0, barWidth, 7);
+                    RenderHelper.addQuad(tes, 11, 21, 0, barWidth, barHeight);
 
                     tes.setColorRGBA(60, 60, 255, 160);
-                    RenderHelper.addQuad(tes, 11, 21, 0, timeW, 7);
+                    RenderHelper.addQuad(tes, 11, 21, 0, timeW, barHeight);
                     tes.draw();
                     GL11.glEnable(GL11.GL_TEXTURE_2D);
                 }
@@ -91,8 +93,9 @@ public class GameOverlay
                 {
                     Ceremony cer = activeTotem.currentCeremony;
 
-                    int nameX = (w - font.getStringWidth(cer.getLocalizedName())) / 2;
-                    font.drawString(cer.getLocalizedName(), nameX, 1, 0xC8000000);
+                    String name = cer.getLocalizedName();
+                    int nameX = (w - font.getStringWidth(name)) / 2;
+                    font.drawString(name, nameX, 1, 0xC8000000);
                 }
 
                 GL11.glPopMatrix();
