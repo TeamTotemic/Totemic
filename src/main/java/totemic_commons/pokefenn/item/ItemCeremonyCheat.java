@@ -10,7 +10,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.lib.Strings;
+import totemic_commons.pokefenn.recipe.HandlerInitiation;
 import totemic_commons.pokefenn.tileentity.totem.TileTotemBase;
 
 public class ItemCeremonyCheat extends ItemTotemic
@@ -49,6 +51,15 @@ public class ItemCeremonyCheat extends ItemTotemic
             if(totem.isDoingStartup())
             {
                 totem.startCeremony();
+                // Make sure that Ceremonies with non-instant effects which drain music don't stop immediately
+                // The old implementation of TileTotemBase really is a mess
+                Ceremony cer = totem.currentCeremony;
+                if(cer.getMusicPer5() > 0)
+                {
+                    int neededMusic = cer.getMusicNeeded();
+                    totem.ceremonyMusic.adjustOrPutValue(HandlerInitiation.flute, neededMusic, neededMusic);
+                    totem.recalculateMelody();
+                }
                 return true;
             }
         }

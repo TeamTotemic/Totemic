@@ -441,7 +441,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         musicChanged = false;
     }
 
-    public void recalculateMelody()
+    public void recalculateMelody() // TODO: Obviate the need for this, it's kinda broken
     {
         totalCeremonyMelody = 0;
         for(int value: ceremonyMusic.values())
@@ -673,6 +673,8 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             int newVal = Math.min(prevVal + amount, instr.getMusicMaximum());
             ceremonyMusic.put(instr, newVal);
             added = newVal - prevVal;
+            // TODO: Consider immediately sending a sync packet when music is added, rather than only once per second
+            // Also, consider modifying totalCeremonyMelody here, rather than using recalculateMelody() which is also only done once per second
         }
         else
             added = 0;
