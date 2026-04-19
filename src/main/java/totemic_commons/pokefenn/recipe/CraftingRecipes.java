@@ -26,6 +26,7 @@ public class CraftingRecipes
     public static IRecipe flute;
     public static IRecipe ceremonialRattle;
     public static IRecipe jingleDress;
+    public static IRecipe eagleBoneWhistle;
 
     public static IRecipe bellsIron;
     public static IRecipe tipiWool;
@@ -73,6 +74,8 @@ public class CraftingRecipes
                 " ww", " bw", "s  ", ('s'), "stickWood", ('w'), "logWood", ('b'), "teethBuffalo"));
         GameRegistry.addRecipe(jingleDress = new ShapedOreRecipe(new ItemStack(ModItems.jingleDress, 1, 0),
                 " l ", "bhb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron", ('h'), "hideBuffalo"));
+        GameRegistry.addRecipe(eagleBoneWhistle = new ShapedOreRecipe(new ItemStack(ModItems.eagleBoneWhistle, 1, 0),
+                "s ", "bf", ('s'), Items.string, ('b'), new ItemStack(ModItems.eagleItems, 1, ItemEagleDrops.Type.bone.ordinal()), ('f'), new ItemStack(ModItems.eagleItems, 1, ItemEagleDrops.Type.feather.ordinal())));
     }
 
     static void shapelessRecipes()
