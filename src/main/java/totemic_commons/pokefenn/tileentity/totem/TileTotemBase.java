@@ -23,6 +23,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.Constants.NBT;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
@@ -604,8 +605,26 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             }
             recalculateMelody();
 
-            startupCeremony = Totemic.api.registry().getCeremony(tag.getString("tryingCeremonyID"));
-            currentCeremony = Totemic.api.registry().getCeremony(tag.getString("currentCeremony"));
+            resetSelector();
+            startupCeremony = null;
+            currentCeremony = null;
+
+            if(tag.hasKey("selectors", NBT.TAG_LIST))
+            {
+                NBTTagList selectorsTag = tag.getTagList("selectors", NBT.TAG_STRING);
+                for(int i = 0; i < selectorsTag.tagCount() && i < musicSelector.length; i++)
+                {
+                    String selectorName = selectorsTag.getStringTagAt(i);
+                    musicSelector[i] = Totemic.api.registry().getInstrument(selectorName);
+                }
+            }
+
+            if(tag.hasKey("tryingCeremonyID", NBT.TAG_STRING))
+                startupCeremony = Totemic.api.registry().getCeremony(tag.getString("tryingCeremonyID"));
+
+            if(tag.hasKey("currentCeremony", NBT.TAG_STRING))
+                currentCeremony = Totemic.api.registry().getCeremony(tag.getString("currentCeremony"));
+
             ceremonyStartupTimer = tag.getInteger("ceremonyStartupTimer");
             ceremonyEffectTimer = tag.getInteger("ceremonyEffectTimer");
             continueTimer = tag.getInteger("continueTimer");
@@ -613,6 +632,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         }
         else
         {
+            resetSelector();
             startupCeremony = null;
             currentCeremony = null;
         }
@@ -643,10 +663,25 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 ceremonyMusicTag.setInteger(it.key().getName(), it.value());
             }
             tag.setTag("ceremonyMusic", ceremonyMusicTag);
+
+            if(isDoingSelection())
+            {
+                NBTTagList selectorsTag = new NBTTagList();
+                for(MusicInstrument instr : musicSelector)
+                {
+                    if(instr == null)
+                        break;
+                    selectorsTag.appendTag(new NBTTagString(instr.getName()));
+                }
+                tag.setTag("selectors", selectorsTag);
+            }
+
             if(startupCeremony != null)
                 tag.setString("tryingCeremonyID", startupCeremony.getName());
+
             if(currentCeremony != null)
                 tag.setString("currentCeremony", currentCeremony.getName());
+
             tag.setInteger("ceremonyStartupTimer", ceremonyStartupTimer);
             tag.setInteger("ceremonyEffectTimer", ceremonyEffectTimer);
             tag.setInteger("continueTimer", continueTimer);
@@ -690,6 +725,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             return amount * 3 / 4;
         else
             return amount;
+    }
+
+    public boolean isDoingSelection()
+    {
+        return musicSelector[0] != null;
     }
 
     public boolean isDoingStartup()
