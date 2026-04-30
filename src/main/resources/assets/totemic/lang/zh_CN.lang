@@ -67,6 +67,7 @@ totemicmisc.capitalTrue=是
 totemicmisc.musicSelector=音乐选择器
 totemicmisc.tipi.cantSleep=你不能在非开阔地的帐篷里睡觉
 totemicmisc.tipi.nether=你不能在下界睡觉
+totemic.hud.selection=选择仪式
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=图腾百科全书, 你的所有图腾所需的指南.

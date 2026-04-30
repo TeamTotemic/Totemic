@@ -1,17 +1,22 @@
 package totemic_commons.pokefenn.event;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
+import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.client.RenderHelper;
 import totemic_commons.pokefenn.configuration.ConfigurationSettings;
 import totemic_commons.pokefenn.lib.Resources;
@@ -22,6 +27,7 @@ public class GameOverlay
     public static TileTotemBase activeTotem = null;
 
     private static final ResourceLocation hudTexture = new ResourceLocation(Resources.CEREMONY_HUD);
+    private static final RenderItem itemRenderer = new RenderItem();
 
     @SubscribeEvent
     public void renderHUD(RenderGameOverlayEvent.Post event)
@@ -31,7 +37,7 @@ public class GameOverlay
             if(activeTotem != null && (activeTotem.isInvalid() || !activeTotem.isCeremony))
                 activeTotem = null;
 
-            if(activeTotem != null && (activeTotem.isDoingStartup() || activeTotem.isDoingEndingEffect))
+            if(activeTotem != null)
             {
                 int w = 117;
                 int h = 30;
@@ -56,7 +62,40 @@ public class GameOverlay
                 final int barWidth = 104;
                 final int barHeight = 7;
 
-                if(activeTotem.isDoingStartup())
+                if(activeTotem.isDoingSelection())
+                {
+                    //Header text
+                    String headerText = StatCollector.translateToLocal("totemic.hud.selection");
+                    int headerX = (w - font.getStringWidth(headerText)) / 2;
+                    font.drawString(headerText, headerX, 1, 0xC8000000);
+
+                    final int firstSelectorX = 40;
+                    final int secondSelectorX = 61;
+                    final int selectorY = 12;
+                    final int itemBackgroundSize = 16;
+
+                    //Item backgrounds
+                    GL11.glDisable(GL11.GL_TEXTURE_2D);
+                    tes.startDrawingQuads();
+                    tes.setColorRGBA(80, 255, 200, 80);
+                    RenderHelper.addQuad(tes, firstSelectorX, selectorY, 0, itemBackgroundSize, itemBackgroundSize);
+                    RenderHelper.addQuad(tes, secondSelectorX, selectorY, 0, itemBackgroundSize, itemBackgroundSize);
+                    tes.draw();
+                    GL11.glEnable(GL11.GL_TEXTURE_2D);
+
+                    //Instruments
+                    //Assuming that we have only 1 selector to render
+                    MusicInstrument selector = activeTotem.musicSelector[0];
+                    ItemStack item = (selector != null) ? selector.getItem() : null;
+
+                    net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+                    GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+                    itemRenderer.renderItemAndEffectIntoGUI(font, mc.getTextureManager(), item, firstSelectorX, selectorY);
+                    itemRenderer.renderItemOverlayIntoGUI(font, mc.getTextureManager(), item, firstSelectorX, selectorY);
+                    GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+                    net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+                }
+                else if(activeTotem.isDoingStartup())
                 {
                     Ceremony cer = activeTotem.startupCeremony;
 

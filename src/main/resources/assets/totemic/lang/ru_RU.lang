@@ -68,6 +68,7 @@ totemicmisc.capitalTrue=True
 totemicmisc.musicSelector=Musical Selectors
 totemicmisc.tipi.cantSleep=You can not sleep in a tipi without being in the open fields
 totemicmisc.tipi.nether=Вы не можете спать в Нижнем мире
+totemic.hud.selection=Выбор ритуала
 
 #Totempedia Localisations
 totemic.gui.lexicon.header=Тотемпедия, руководство для всех Ваших тотемических потребностей.
