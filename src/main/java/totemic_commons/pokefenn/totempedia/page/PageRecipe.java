@@ -34,6 +34,7 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconRecipeMappings;
 
 public class PageRecipe extends LexiconPage
 {
+    private static final RenderItem itemRenderer = new RenderItem();
 
     int relativeMouseX, relativeMouseY;
     ItemStack tooltipStack, tooltipContainerStack;
@@ -147,7 +148,6 @@ public class PageRecipe extends LexiconPage
     @SideOnly(Side.CLIENT)
     public void renderItem(IGuiLexiconEntry gui, int xPos, int yPos, ItemStack stack, boolean accountForContainer)
     {
-        RenderItem render = new RenderItem();
         boolean mouseDown = Mouse.isButtonDown(0);
 
         GL11.glPushMatrix();
@@ -156,8 +156,8 @@ public class PageRecipe extends LexiconPage
         net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
-        render.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
-        render.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
+        itemRenderer.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
+        itemRenderer.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         GL11.glPopMatrix();
 
