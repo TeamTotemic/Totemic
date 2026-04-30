@@ -74,7 +74,7 @@ public class Resources
 
     public static ResourceLocation getTotemPole(int i)
     {
-        return getTotemPole(WoodVariant.values()[i]);
+        return getTotemPole(WoodVariant.fromId(i));
     }
 
     public static ResourceLocation getTotemBase(WoodVariant v)
@@ -102,6 +102,6 @@ public class Resources
 
     public static ResourceLocation getTotemBase(int i)
     {
-        return getTotemBase(WoodVariant.values()[i]);
+        return getTotemBase(WoodVariant.fromId(i));
     }
 }

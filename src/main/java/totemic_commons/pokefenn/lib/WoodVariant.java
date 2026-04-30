@@ -26,7 +26,9 @@ public enum WoodVariant
         this.logMeta = logMeta;
     }
 
-    public static final int count = values().length;
+    private static final WoodVariant[] cachedValues = values();
+
+    public static final int count = cachedValues.length;
 
     /** @return The variant for the specified log block, or null if it is not a log */
     public static WoodVariant fromLog(Block block, int meta)
@@ -39,5 +41,11 @@ public enum WoodVariant
             return CEDAR;
         else
             return null;
+    }
+
+    /** Use this instead of {@code WoodVariant.values()[id]} to avoid allocating a WoodVariant[] object every time. */
+    public static WoodVariant fromId(int id)
+    {
+        return cachedValues[id];
     }
 }

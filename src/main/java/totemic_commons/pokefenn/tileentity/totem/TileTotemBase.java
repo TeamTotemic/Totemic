@@ -174,7 +174,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
         totemWoodBonus = 0;
 
-        switch(WoodVariant.values()[metadata])
+        switch(WoodVariant.fromId(metadata))
         {
         case OAK:
             //oak effect

@@ -83,7 +83,7 @@ public class BlockTotemPole extends BlockTileTotemic implements TotemicStaffUsag
     @Override
     public IIcon getIcon(int side, int meta)
     {
-        WoodVariant wood = WoodVariant.values()[meta];
+        WoodVariant wood = WoodVariant.fromId(meta);
         return wood.log.getIcon(side, wood.logMeta);
     }
 
