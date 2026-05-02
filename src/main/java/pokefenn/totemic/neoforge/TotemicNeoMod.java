@@ -8,6 +8,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
@@ -52,7 +53,7 @@ public final class TotemicNeoMod {
         ModItems.ARMOR_MATERIALS.register(modBus);
         ModDataComponents.REGISTER.register(modBus);
         ModMobEffects.REGISTER.register(modBus);
-        ModBlockEntities.REGISTER.register(modBus);
+        registerToModBus(ModBlockEntities.REGISTER, modBus);
         ModEntityTypes.REGISTER.register(modBus);
         ModSounds.REGISTER.register(modBus);
         ModContent.INSTRUMENTS.register(modBus);
@@ -71,6 +72,10 @@ public final class TotemicNeoMod {
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
 
         TotemicConfig.register(container);
+    }
+
+    private void registerToModBus(PlatformRegistryHelper<?> registryHelper, IEventBus modBus) {
+        ((NeoPlatformRegistry<?>) registryHelper).deferredRegister().register(modBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

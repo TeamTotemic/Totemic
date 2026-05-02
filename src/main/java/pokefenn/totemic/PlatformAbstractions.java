@@ -2,7 +2,9 @@ package pokefenn.totemic;
 
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.core.Registry;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
@@ -14,6 +16,8 @@ import net.minecraft.world.phys.Vec3;
  * Provides access to functions that are implemented differently for each mod loader.
  */
 public interface PlatformAbstractions {
+    <T> PlatformRegistryHelper<T> createRegistryHelper(ResourceKey<Registry<T>> registryKey);
+
     TotemicEventHooks events();
 
     boolean onAnimalTame(Animal animal, Player tamer);

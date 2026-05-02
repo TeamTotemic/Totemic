@@ -2,7 +2,9 @@ package pokefenn.totemic.neoforge;
 
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.core.Registry;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.animal.Animal;
@@ -12,11 +14,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import pokefenn.totemic.PlatformAbstractions;
+import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.TotemicEventHooks;
+import pokefenn.totemic.api.TotemicAPI;
 
 public class NeoPlatformImpl implements PlatformAbstractions {
     private final TotemicEventHooks eventHooks = new NeoEventHooks();
+
+    @Override
+    public <T> PlatformRegistryHelper<T> createRegistryHelper(ResourceKey<Registry<T>> registryKey) {
+        return new NeoPlatformRegistry<T>(DeferredRegister.create(registryKey, TotemicAPI.MOD_ID));
+    }
 
     @Override
     public TotemicEventHooks events() {
