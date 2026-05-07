@@ -10,6 +10,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.TotemicStaffUsage;
 import totemic_commons.pokefenn.item.ItemTotemic;
 import totemic_commons.pokefenn.lib.Strings;
@@ -47,5 +48,14 @@ public class ItemTotemicStaff extends ItemTotemic
         return false;
     }
 
-
+    @Override
+    public boolean onBlockStartBreak(ItemStack itemstack, int x, int y, int z, EntityPlayer player)
+    {
+        if(player.capabilities.isCreativeMode && player.worldObj.getBlock(x, y, z) == ModBlocks.totemBase)
+        {
+            ModBlocks.totemBase.onBlockClicked(player.worldObj, x, y, z, player);
+            return true; // returning true prevents the Totem Base block from being broken
+        }
+        return false;
+    }
 }
