@@ -14,10 +14,12 @@ public class ModPotions
 
     public static Potion batPotion;
     public static Potion spiderPotion;
+    public static Potion ocelotPotion;
 
     public static void init()
     {
         batPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_BAT, false, 0xF2F2F0).setPotionName("Bat");
         spiderPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_SPIDER, false, 0x524354).setPotionName("Spider");
+        ocelotPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_OCELOT, false, 0x52432D).setPotionName("Ocelot");
     }
 }
