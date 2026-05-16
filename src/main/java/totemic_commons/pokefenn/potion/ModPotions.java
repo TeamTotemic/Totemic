@@ -17,7 +17,7 @@ public class ModPotions
 
     public static void init()
     {
-        batPotion = new PotionBat(ConfigurationSettings.POTION_ID_BAT, false, 0xF2F2F0);
-        spiderPotion = new PotionSpider(ConfigurationSettings.POTION_ID_SPIDER, false, 0x524354);
+        batPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_BAT, false, 0xF2F2F0).setPotionName("Bat");
+        spiderPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_SPIDER, false, 0x524354).setPotionName("Spider");
     }
 }
