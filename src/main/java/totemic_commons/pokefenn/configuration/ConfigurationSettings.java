@@ -6,7 +6,6 @@ import java.util.Set;
 public final class ConfigurationSettings
 {
     public static int POTION_ID_BAT;
-    public static int POTION_ID_HORSE;
     public static int POTION_ID_SPIDER;
 
     public static int CEREMONY_HUD_X;

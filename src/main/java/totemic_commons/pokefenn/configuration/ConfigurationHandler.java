@@ -46,7 +46,7 @@ public final class ConfigurationHandler
     {
         conf.getCategory(CATEGORY_POTION).setRequiresMcRestart(true);
         ConfigurationSettings.POTION_ID_BAT = conf.get(CATEGORY_POTION, "batPotionID", 32).getInt();
-        ConfigurationSettings.POTION_ID_HORSE = conf.get(CATEGORY_POTION, "horsePotionID", 33).getInt();
+        //ConfigurationSettings.POTION_ID_HORSE = conf.get(CATEGORY_POTION, "horsePotionID", 33).getInt();
         ConfigurationSettings.POTION_ID_SPIDER = conf.get(CATEGORY_POTION, "spiderPotionID", 35).getInt();
 
         ConfigurationSettings.CEREMONY_HUD_X = conf.get(CATEGORY_CLIENT, "ceremonyHudPositionX", 0, "horizontal position of the ceremony HUD (offset from center of the screen)").getInt();

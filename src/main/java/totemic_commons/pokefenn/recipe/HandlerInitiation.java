@@ -90,7 +90,7 @@ public class HandlerInitiation
         blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic", "blaze", 4, 4, 2));
         buffaloTotem = reg.addTotem(new TotemEffectPotion("totemic", "buffalo", 4, 4, 1, Potion.digSpeed, 80, 60, 0));
         cowTotem = reg.addTotem(new TotemEffectCow("totemic", "cow", 4, 4, 1));
-        horseTotem = reg.addTotem(new TotemEffectPotion("totemic", "horse", 4, 4, 1, ModPotions.horsePotion, 80, 60, 0));
+        horseTotem = reg.addTotem(new TotemEffectPotion("totemic", "horse", 4, 4, 1, Potion.moveSpeed, 80, 60, 0));
         ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic", "ocelot", 4, 4, 2));
         rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic", "rabbit", 4, 4, 1, Potion.jump, 80, 60, 0));
         spiderTotem = reg.addTotem(new TotemEffectPotion("totemic", "spider", 4, 4, 2, ModPotions.spiderPotion, 60, 50, 0));
