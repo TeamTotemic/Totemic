@@ -31,6 +31,7 @@ public class HandlerInitiation
     public static Ceremony warDance;
     public static Ceremony buffaloDance;
     public static Ceremony eagleDance;
+    public static Ceremony baykokSummon;
 
     public static TotemEffect horseTotem;
     public static TotemEffect squidTotem;
@@ -86,6 +87,8 @@ public class HandlerInitiation
                 drum, windChime));
         eagleDance = reg.addCeremony(new CeremonyEagleDance("totemic", "eagleDance", 193, 25 * 20,
                 rattle, windChime));
+        baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic", "baykokSummon", 251, 32 * 20,
+                windChime, eagleBoneWhistle));
     }
 
     private static void totemRegistry()

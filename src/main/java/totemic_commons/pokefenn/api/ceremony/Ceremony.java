@@ -60,8 +60,21 @@ public abstract class Ceremony
      * Performs the ceremony effect at the given Totem Base position.
      * If the ceremony is not instant, this will be called each tick.
      * This gets called on the server and the client.
+     * @deprecated Call the overload that takes a time parameter instead. This method is kept for API compatibility.
      */
+    @Deprecated
     public abstract void effect(World world, int x, int y, int z);
+
+    /**
+     * Performs the ceremony effect at the given Totem Base position.
+     * If the ceremony is not instant, this will be called each tick.
+     * This gets called on the server and the client.
+     * @param time the time in ticks how long the effect lasted so far 
+     */
+    public void effect(World world, int x, int y, int z, int time)
+    {
+        effect(world, x, y, z);
+    }
 
     public final String getName()
     {
