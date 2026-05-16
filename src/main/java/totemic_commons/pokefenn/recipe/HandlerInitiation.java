@@ -32,14 +32,14 @@ public class HandlerInitiation
     public static Ceremony buffaloDance;
     public static Ceremony eagleDance;
     public static Ceremony baykokSummon;
-
-    public static TotemEffect horseTotem;
-    public static TotemEffect squidTotem;
-    public static TotemEffect blazeTotem;
-    public static TotemEffect ocelotTotem;
+    
     public static TotemEffect batTotem;
-    public static TotemEffect spiderTotem;
+    public static TotemEffect blazeTotem;
     public static TotemEffect cowTotem;
+    public static TotemEffect horseTotem;
+    public static TotemEffect ocelotTotem;
+    public static TotemEffect spiderTotem;
+    public static TotemEffect squidTotem;
 
     public static MusicInstrument flute;
     public static MusicInstrument drum;
@@ -53,16 +53,6 @@ public class HandlerInitiation
         totemRegistry();
         instruments();
         ceremonyHandler();
-    }
-
-    public static void instrumentItems()
-    {
-        flute.setItem(new ItemStack(ModItems.flute));
-        drum.setItem(new ItemStack(ModBlocks.drum));
-        windChime.setItem(new ItemStack(ModBlocks.windChime));
-        jingleDress.setItem(new ItemStack(ModItems.jingleDress));
-        rattle.setItem(new ItemStack(ModItems.ceremonialRattle));
-        eagleBoneWhistle.setItem(new ItemStack(ModItems.eagleBoneWhistle));
     }
 
     private static void ceremonyHandler()
@@ -92,14 +82,14 @@ public class HandlerInitiation
     private static void totemRegistry()
     {
         TotemicRegistry reg = Totemic.api.registry();
-
-        horseTotem = reg.addTotem(new TotemEffectPotion("totemic", "horse", 4, 4, 1, ModPotions.horsePotion, 80, 60, 0));
-        squidTotem = reg.addTotem(new TotemEffectPotion("totemic", "squid", 4, 4, 1, Potion.waterBreathing, 80, 60, 0));
-        blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic", "blaze", 4, 4, 2));
-        ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic", "ocelot", 4, 4, 2));
+        
         batTotem = reg.addTotem(new TotemEffectPotion("totemic", "bat", 8, 8, 2, ModPotions.batPotion, 10, 20, 0));
-        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic", "spider", 4, 4, 2, ModPotions.spiderPotion, 60, 50, 0));
+        blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic", "blaze", 4, 4, 2));
         cowTotem = reg.addTotem(new TotemEffectCow("totemic", "cow", 4, 4, 1));
+        horseTotem = reg.addTotem(new TotemEffectPotion("totemic", "horse", 4, 4, 1, ModPotions.horsePotion, 80, 60, 0));
+        ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic", "ocelot", 4, 4, 2));
+        spiderTotem = reg.addTotem(new TotemEffectPotion("totemic", "spider", 4, 4, 2, ModPotions.spiderPotion, 60, 50, 0));
+        squidTotem = reg.addTotem(new TotemEffectPotion("totemic", "squid", 4, 4, 1, Potion.waterBreathing, 80, 60, 0));
     }
 
     private static void instruments()
@@ -114,4 +104,13 @@ public class HandlerInitiation
     	eagleBoneWhistle = reg.addInstrument(new MusicInstrument("totemic", "eagleBoneWhistle", 6, 60, 5));
     }
 
+    public static void instrumentItems()
+    {
+        flute.setItem(new ItemStack(ModItems.flute));
+        drum.setItem(new ItemStack(ModBlocks.drum));
+        windChime.setItem(new ItemStack(ModBlocks.windChime));
+        jingleDress.setItem(new ItemStack(ModItems.jingleDress));
+        rattle.setItem(new ItemStack(ModItems.ceremonialRattle));
+        eagleBoneWhistle.setItem(new ItemStack(ModItems.eagleBoneWhistle));
+    }
 }
