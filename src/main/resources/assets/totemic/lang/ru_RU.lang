@@ -61,6 +61,18 @@ totemic.ceremony.totemic:warDance=Танец войны
 totemic.ceremony.totemic:eagleDance=Танец орла
 totemic.ceremony.totemic:baykokSummon=Звон смерти
 
+#Totem effect names
+totemic.totem.totemic:bat=Летучая мышь
+totemic.totem.totemic:blaze=Всполох
+totemic.totem.totemic:buffalo=Бизон
+totemic.totem.totemic:cow=Корова
+totemic.totem.totemic:horse=Лошадь
+totemic.totem.totemic:ocelot=Оцелот
+totemic.totem.totemic:rabbit=Кролик
+totemic.totem.totemic:spider=Паук
+totemic.totem.totemic:squid=Спрут
+totemic.totem.totemic:wolf=Волк
+
 totemicmisc.timeForCeremony=Время начала:
 totemicmisc.seconds= секунд
 totemicmisc.overTime=В течении времени:

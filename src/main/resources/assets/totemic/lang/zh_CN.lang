@@ -60,6 +60,18 @@ totemic.ceremony.totemic:warDance=战争仪式
 totemic.ceremony.totemic:eagleDance=鹰之舞
 totemic.ceremony.totemic:baykokSummon=丧钟仪式
 
+#Totem effect names
+totemic.totem.totemic:bat=蝙蝠
+totemic.totem.totemic:blaze=烈焰人
+totemic.totem.totemic:buffalo=野牛
+totemic.totem.totemic:cow=牛
+totemic.totem.totemic:horse=马
+totemic.totem.totemic:ocelot=豹猫
+totemic.totem.totemic:rabbit=兔子
+totemic.totem.totemic:spider=蜘蛛
+totemic.totem.totemic:squid=鱿鱼
+totemic.totem.totemic:wolf=狼
+
 totemicmisc.timeForCeremony=执行时间:
 totemicmisc.seconds= 秒
 totemicmisc.overTime=持续:

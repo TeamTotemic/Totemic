@@ -76,13 +76,16 @@ totemic.ceremony.totemic:eagleDance=Eagle Dance
 totemic.ceremony.totemic:baykokSummon=Totentanz
 
 #Totem effect names
-totemic.totem.totemic:horse=Horse
-totemic.totem.totemic:squid=Squid
-totemic.totem.totemic:blaze=Blaze
-totemic.totem.totemic:ocelot=Ocelot
 totemic.totem.totemic:bat=Bat
-totemic.totem.totemic:spider=Spider
+totemic.totem.totemic:blaze=Blaze
+totemic.totem.totemic:buffalo=Buffalo
 totemic.totem.totemic:cow=Cow
+totemic.totem.totemic:horse=Horse
+totemic.totem.totemic:ocelot=Ocelot
+totemic.totem.totemic:rabbit=Rabbit
+totemic.totem.totemic:spider=Spider
+totemic.totem.totemic:squid=Squid
+totemic.totem.totemic:wolf=Wolf
 
 #Music values
 totemic.music.lowMelody=Low Melody

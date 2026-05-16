@@ -35,11 +35,14 @@ public class HandlerInitiation
     
     public static TotemEffect batTotem;
     public static TotemEffect blazeTotem;
+    public static TotemEffect buffaloTotem;
     public static TotemEffect cowTotem;
     public static TotemEffect horseTotem;
     public static TotemEffect ocelotTotem;
+    public static TotemEffect rabbitTotem;
     public static TotemEffect spiderTotem;
     public static TotemEffect squidTotem;
+    public static TotemEffect wolfTotem;
 
     public static MusicInstrument flute;
     public static MusicInstrument drum;
@@ -85,11 +88,14 @@ public class HandlerInitiation
         
         batTotem = reg.addTotem(new TotemEffectPotion("totemic", "bat", 8, 8, 2, ModPotions.batPotion, 10, 20, 0));
         blazeTotem = reg.addTotem(new TotemEffectBlaze("totemic", "blaze", 4, 4, 2));
+        buffaloTotem = reg.addTotem(new TotemEffectPotion("totemic", "buffalo", 4, 4, 1, Potion.digSpeed, 80, 60, 0));
         cowTotem = reg.addTotem(new TotemEffectCow("totemic", "cow", 4, 4, 1));
         horseTotem = reg.addTotem(new TotemEffectPotion("totemic", "horse", 4, 4, 1, ModPotions.horsePotion, 80, 60, 0));
         ocelotTotem = reg.addTotem(new TotemEffectOcelot("totemic", "ocelot", 4, 4, 2));
+        rabbitTotem = reg.addTotem(new TotemEffectPotion("totemic", "rabbit", 4, 4, 1, Potion.jump, 80, 60, 0));
         spiderTotem = reg.addTotem(new TotemEffectPotion("totemic", "spider", 4, 4, 2, ModPotions.spiderPotion, 60, 50, 0));
         squidTotem = reg.addTotem(new TotemEffectPotion("totemic", "squid", 4, 4, 1, Potion.waterBreathing, 80, 60, 0));
+        wolfTotem = reg.addTotem(new TotemEffectPotion("totemic", "wolf", 4, 4, 1, Potion.damageBoost, 80, 60, 0));
     }
 
     private static void instruments()
