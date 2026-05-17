@@ -39,6 +39,11 @@ entity.totemic.baldEagle.name=白头鹰雕
 # Creative Tab localizations
 itemGroup.Totemic=图腾
 
+# Potion localizations
+potion.totemic.bat=蝙蝠滑翔
+potion.totemic.ocelot=防御苦力怕
+potion.totemic.spider=攀岩
+
 totemic.timeState.instant=瞬间
 totemic.timeState.overTime=持续
 

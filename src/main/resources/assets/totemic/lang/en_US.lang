@@ -54,6 +54,11 @@ entity.totemic.baldEagle.name=Bald Eagle
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 
+# Potion localizations
+potion.totemic.bat=Bat Glide
+potion.totemic.ocelot=Creeper Defense
+potion.totemic.spider=Wall Climbing
+
 totemic.timeState.instant=Instant
 totemic.timeState.overTime=Over time
 

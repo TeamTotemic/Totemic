@@ -17,8 +17,8 @@ public class ModPotions
 
     public static void init()
     {
-        batPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_BAT, false, 0xF2F2F0, 0).setPotionName("Bat");
-        ocelotPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_OCELOT, false, 0x52432D, 1).setPotionName("Ocelot");
-        spiderPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_SPIDER, false, 0x524354, 2).setPotionName("Spider");
+        batPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_BAT, false, 0xF2F2F0, 0).setPotionName("potion.totemic.bat");
+        ocelotPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_OCELOT, false, 0x52432D, 1).setPotionName("potion.totemic.ocelot");
+        spiderPotion = new PotionTotemic(ConfigurationSettings.POTION_ID_SPIDER, false, 0x524354, 2).setPotionName("potion.totemic.spider");
     }
 }

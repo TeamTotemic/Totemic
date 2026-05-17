@@ -54,6 +54,11 @@ entity.totemic.baldEagle.name=Weißkopfseeadler
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 
+# Potion localizations
+potion.totemic.bat=Fledermausgleiten
+potion.totemic.ocelot=Creeperabwehr
+potion.totemic.spider=Wändeklettern
+
 totemic.timeState.instant=Sofort
 totemic.timeState.overTime=Über die Zeit
 

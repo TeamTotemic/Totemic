@@ -40,6 +40,11 @@ entity.totemic.baldEagle.name=Белоголовый орлан
 # Creative Tab localizations
 itemGroup.Totemic=Totemic
 
+# Potion localizations
+potion.totemic.bat=Летучая мышь
+potion.totemic.ocelot=Защита от криперов
+potion.totemic.spider=Карабканье по стенам
+
 totemic.timeState.instant=Мгновенное
 totemic.timeState.overTime=Со временем
 
