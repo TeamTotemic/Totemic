@@ -23,13 +23,12 @@ import totemic_commons.pokefenn.totem.TotemEffectOcelot;
  */
 public class HandlerInitiation
 {
-    public static Ceremony ghostDance;
+    public static Ceremony warDance;
+    public static Ceremony zaphkielWaltz;
+    public static Ceremony buffaloDance;
     public static Ceremony rainDance;
     public static Ceremony drought;
     public static Ceremony fluteCeremony;
-    public static Ceremony zaphkielWaltz;
-    public static Ceremony warDance;
-    public static Ceremony buffaloDance;
     public static Ceremony eagleDance;
     public static Ceremony baykokSummon;
     
@@ -62,20 +61,28 @@ public class HandlerInitiation
     {
         TotemicRegistry reg = Totemic.api.registry();
         //Music amount landmarks:
-        //TODO
+        //105: Flute + Drum
+        //130: Flute + Drum + full Wind Chime
+        //155: Flute + Drum + full Wind Chime + Jingle Dress
+        //160: Flute + Drum + Rattle
+        //185: Flute + Drum + Rattle + full Wind Chime
+        //210: Flute + Drum + Rattle + full Wind Chime + Jingle Dress
+        //220: Flute + Drum + Rattle + Eagle-Bone Whistle
+        //245: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress
+        //270: Flute + Drum + Rattle + Eagle-Bone Whistle + Jingle Dress + full Wind Chime
 
-        fluteCeremony = reg.addCeremony(new CeremonyFluteInfusion("totemic", "flute", 140, CeremonyTime.MEDIUM,
-                flute, flute));
-        rainDance = reg.addCeremony(new CeremonyRain(true, "totemic", "rainDance", 180, CeremonyTime.MEDIUM,
-                rattle, flute));
-        drought = reg.addCeremony(new CeremonyRain(false, "totemic", "drought", 180, CeremonyTime.MEDIUM,
-                flute, rattle));
-        zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 220, CeremonyTime.LONG, CeremonyTime.SHORT_MEDIUM, 6,
-                flute, drum));
-        warDance = reg.addCeremony(new CeremonyWarDance("totemic", "warDance", 120, CeremonyTime.SHORT_MEDIUM,
+        warDance = reg.addCeremony(new CeremonyWarDance("totemic", "warDance", 75, 20 * 20,
                 drum, drum));
-        buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic", "buffaloDance", 150, CeremonyTime.SHORT_MEDIUM,
+        zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 112, 20 * 20,  45 * 20, 6,
+                windChime, flute));
+        buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic", "buffaloDance", 123, 24 * 20,
                 drum, windChime));
+        rainDance = reg.addCeremony(new CeremonyRain(true, "totemic", "rainDance", 183, 26 * 20,
+                drum, rattle));
+        drought = reg.addCeremony(new CeremonyRain(false, "totemic", "drought", 183, 26 * 20,
+                rattle, drum));
+        fluteCeremony = reg.addCeremony(new CeremonyFluteInfusion("totemic", "flute", 189, 28 * 20,
+                flute, rattle));
         eagleDance = reg.addCeremony(new CeremonyEagleDance("totemic", "eagleDance", 193, 25 * 20,
                 rattle, windChime));
         baykokSummon = reg.addCeremony(new CeremonyBaykok("totemic", "baykokSummon", 251, 32 * 20,
@@ -102,11 +109,11 @@ public class HandlerInitiation
     {
         TotemicRegistry reg = Totemic.api.registry();
 
-    	flute = reg.addInstrument(new MusicInstrument("totemic", "flute", 5, 70, 5));
-    	drum = reg.addInstrument(new MusicInstrument("totemic", "drum", 7, 80, 5));
-    	windChime = reg.addInstrument(new MusicInstrument("totemic", "windChime", 7, 60, 5));
-    	jingleDress = reg.addInstrument(new MusicInstrument("totemic", "jingleDress", 6, 100, 5));
-    	rattle = reg.addInstrument(new MusicInstrument("totemic", "rattle", 6, 90, 5));
+    	flute = reg.addInstrument(new MusicInstrument("totemic", "flute", 3, 50, 5));
+    	drum = reg.addInstrument(new MusicInstrument("totemic", "drum", 4, 55, 5));
+    	windChime = reg.addInstrument(new MusicInstrument("totemic", "windChime", 2, 25, 5));
+    	jingleDress = reg.addInstrument(new MusicInstrument("totemic", "jingleDress", 3, 25, 5));
+    	rattle = reg.addInstrument(new MusicInstrument("totemic", "rattle", 5, 55, 5));
     	eagleBoneWhistle = reg.addInstrument(new MusicInstrument("totemic", "eagleBoneWhistle", 6, 60, 5));
     }
 
