@@ -67,13 +67,13 @@ public class CraftingRecipes
         GameRegistry.addRecipe(drum = new ShapedOreRecipe(new ItemStack(ModBlocks.drum, 1, 0),
                 "eee", "lwl", "wlw", ('e'), Items.leather, ('l'), "logWood", ('w'), Blocks.wool));
         GameRegistry.addRecipe(windChime = new ShapedOreRecipe(new ItemStack(ModBlocks.windChime, 1, 0),
-                "iwi", "tst", "  t", ('i'), "ingotIron", ('s'), Items.string, ('w'), "logWood", ('t'), "stickWood"));
+                "iwi", "tst", "  t", ('i'), "ingotIron", ('s'), Items.string, ('w'), ModBlocks.cedarLog, ('t'), "stickWood"));
         GameRegistry.addRecipe(flute = new ShapedOreRecipe(new ItemStack(ModItems.flute, 1, 0),
                 " sc", " c ", "c  ", ('c'), "stickWood", ('s'), "treeLeaves"));
         GameRegistry.addRecipe(ceremonialRattle = new ShapedOreRecipe(new ItemStack(ModItems.ceremonialRattle, 1, 0),
                 " ww", " bw", "s  ", ('s'), "stickWood", ('w'), "logWood", ('b'), "teethBuffalo"));
         GameRegistry.addRecipe(jingleDress = new ShapedOreRecipe(new ItemStack(ModItems.jingleDress, 1, 0),
-                " l ", "bhb", "lbl", ('l'), "treeLeaves", ('b'), "bellsIron", ('h'), "hideBuffalo"));
+                " l ", "bhb", "lbl", ('l'), ModBlocks.totemLeaves, ('b'), "bellsIron", ('h'), Items.leather));
         GameRegistry.addRecipe(eagleBoneWhistle = new ShapedOreRecipe(new ItemStack(ModItems.eagleBoneWhistle, 1, 0),
                 "s ", "bf", ('s'), Items.string, ('b'), new ItemStack(ModItems.eagleItems, 1, ItemEagleDrops.Type.bone.ordinal()), ('f'), new ItemStack(ModItems.eagleItems, 1, ItemEagleDrops.Type.feather.ordinal())));
     }
