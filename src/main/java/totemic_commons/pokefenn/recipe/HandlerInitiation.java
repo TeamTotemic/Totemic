@@ -7,11 +7,17 @@ import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.api.TotemicRegistry;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
-import totemic_commons.pokefenn.api.ceremony.CeremonyTime;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.api.totem.TotemEffectPotion;
-import totemic_commons.pokefenn.ceremony.*;
+import totemic_commons.pokefenn.ceremony.CeremonyBaykok;
+import totemic_commons.pokefenn.ceremony.CeremonyBuffaloDance;
+import totemic_commons.pokefenn.ceremony.CeremonyEagleDance;
+import totemic_commons.pokefenn.ceremony.CeremonyFertility;
+import totemic_commons.pokefenn.ceremony.CeremonyFluteInfusion;
+import totemic_commons.pokefenn.ceremony.CeremonyRain;
+import totemic_commons.pokefenn.ceremony.CeremonyWarDance;
+import totemic_commons.pokefenn.ceremony.CeremonyZaphkielWaltz;
 import totemic_commons.pokefenn.potion.ModPotions;
 import totemic_commons.pokefenn.totem.TotemEffectBlaze;
 import totemic_commons.pokefenn.totem.TotemEffectCow;
@@ -24,6 +30,7 @@ import totemic_commons.pokefenn.totem.TotemEffectOcelot;
 public class HandlerInitiation
 {
     public static Ceremony warDance;
+    public static Ceremony fertility;
     public static Ceremony zaphkielWaltz;
     public static Ceremony buffaloDance;
     public static Ceremony rainDance;
@@ -73,6 +80,8 @@ public class HandlerInitiation
 
         warDance = reg.addCeremony(new CeremonyWarDance("totemic", "warDance", 75, 20 * 20,
                 drum, drum));
+        fertility = reg.addCeremony(new CeremonyFertility("totemic", "fertility", 88, 23 * 20,  20 * 20, 6,
+                flute, drum));
         zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 112, 20 * 20,  45 * 20, 6,
                 windChime, flute));
         buffaloDance = reg.addCeremony(new CeremonyBuffaloDance("totemic", "buffaloDance", 123, 24 * 20,

@@ -60,12 +60,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
                     for(int k = -radius; k <= radius; k++)
                     {
                         Block block = world.getBlock(x + i, y + j, z + k);
-                        if(block == Blocks.sapling)
-                        {
-                            world.setBlock(x + i, y + j, z + k, ModBlocks.totemSapling, 0, 3);
-                            spawnParticles(world, x + i + 0.5, y + j + 0.5, z + k + 0.5);
-                        }
-                        else if(block instanceof IGrowable && block.getTickRandomly())
+                        if(block instanceof IGrowable && block.getTickRandomly())
                         {
                             if(world.rand.nextInt(4) == 0)
                             {
