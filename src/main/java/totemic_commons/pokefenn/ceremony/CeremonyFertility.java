@@ -1,16 +1,28 @@
 package totemic_commons.pokefenn.ceremony;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.WeakHashMap;
+import java.util.function.Predicate;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
+import totemic_commons.pokefenn.util.EntityUtil;
+import totemic_commons.pokefenn.util.TotemUtil;
 
 public class CeremonyFertility extends Ceremony
 {
@@ -25,7 +37,7 @@ public class CeremonyFertility extends Ceremony
     @Override
     public void effect(World world, int x, int y, int z)
     {
-        if(world.getTotalWorldTime() % 20 == 0)
+        if(!world.isRemote && world.getTotalWorldTime() % 20 == 0)
         {
             transformSaplings(world, x, y, z);
             breedAnimalsAndVillagers(world, x, y, z);
@@ -43,7 +55,7 @@ public class CeremonyFertility extends Ceremony
                     if(block instanceof BlockSapling && block != ModBlocks.totemSapling)
                     {
                         world.setBlock(x + i, y + j, z + k, ModBlocks.totemSapling, 0, 3);
-                        spawnParticles(world, x + 0.5, y + 0.5, z + 0.5);
+                        TotemUtil.particlePacket(world, "happyVillager", x + 0.5, y + 0.5, z + 0.5, 10, 1.0, 0.5, 1.0, 1.0);
                         return;
                     }
                 }
@@ -51,19 +63,59 @@ public class CeremonyFertility extends Ceremony
 
     private void breedAnimalsAndVillagers(World world, int x, int y, int z)
     {
-        // TODO Auto-generated method stub
+        final int radius = 8;
+        AxisAlignedBB aabb = EntityUtil.getAABBAround(x, y, z, radius, radius);
+        for(EntityLiving entity: world.selectEntitiesWithinAABB(EntityLiving.class, aabb, e -> e instanceof EntityAnimal || e instanceof EntityVillager))
+        {
+            if(entity instanceof EntityAnimal)
+            {
+                EntityAnimal animal = (EntityAnimal) entity;
+                if(animal.getGrowingAge() == 0 && !animal.isInLove() && consumeBreedingItem(world, aabb, animal))
+                {
+                    animal.func_146082_f(null); // sets the animal in love
+                    return; // Limit to one animal or villager per second
+                }
+            }
+            else if(entity instanceof EntityVillager)
+            {
+                EntityVillager villager = (EntityVillager) entity;
+                if(villager.getGrowingAge() == 0 && !matedVillagers.contains(villager) && !villager.isMating() && consumeBreedingItem(world, aabb, villager))
+                {
+                    // TODO Set villager in love
+                    return; // Limit to one animal or villager per second
+                }
+            }
+        }
     }
 
-    private void spawnParticles(World world, double x, double y, double z)
+    private boolean consumeBreedingItem(World world, AxisAlignedBB aabb, EntityAnimal animal)
     {
-        if(world.isRemote)
+        Optional<EntityItem> itemE = findItemEntity(world, aabb, animal::isBreedingItem);
+        if(itemE.isPresent())
         {
-            double dx = world.rand.nextGaussian();
-            double dy = world.rand.nextGaussian() * 0.5;
-            double dz = world.rand.nextGaussian();
-            double velY = world.rand.nextGaussian();
-            for(int i = 0; i < 10; i++)
-                world.spawnParticle("happyVillager", x + dx, y + dy, z + dz, 0, velY, 0);
+            if(world.rand.nextInt(3) < 2)
+                EntityUtil.shrinkItemEntity(itemE.get());
+            return true;
         }
+        else
+            return false;
+    }
+
+    private boolean consumeBreedingItem(World world, AxisAlignedBB aabb, EntityVillager villager)
+    {
+        Optional<EntityItem> itemE = findItemEntity(world, aabb, item -> item.getItem() == Items.emerald);
+        if(itemE.isPresent())
+        {
+            EntityUtil.shrinkItemEntity(itemE.get());
+            return true;
+        }
+        else
+            return false;
+    }
+
+    private static Optional<EntityItem> findItemEntity(World world, AxisAlignedBB aabb, Predicate<ItemStack> predicate)
+    {
+        List<EntityItem> list = world.selectEntitiesWithinAABB(EntityItem.class, aabb, entity -> predicate.test(((EntityItem) entity).getEntityItem()));
+        return !list.isEmpty() ? Optional.of(list.get(0)) : Optional.empty();
     }
 }

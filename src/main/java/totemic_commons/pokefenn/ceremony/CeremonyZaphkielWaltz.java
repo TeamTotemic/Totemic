@@ -4,11 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
 import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.util.EntityUtil;
@@ -41,14 +38,7 @@ public class CeremonyZaphkielWaltz extends Ceremony
                     EntityChicken chicken = new EntityChicken(world);
                     chicken.setPosition(entity.posX, entity.posY, entity.posZ);
                     world.spawnEntityInWorld(chicken);
-                    if(entity.getEntityItem().stackSize == 1)
-                        entity.setDead();
-                    else
-                    {
-                        ItemStack stack = entity.getEntityItem().copy();
-                        stack.stackSize--;
-                        entity.setEntityItemStack(stack);
-                    }
+                    EntityUtil.shrinkItemEntity(entity);
                 }
             }
         }

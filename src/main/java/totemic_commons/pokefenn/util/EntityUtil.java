@@ -59,6 +59,18 @@ public class EntityUtil
         dropItem(world, xPos, yPos, zPos, new ItemStack(item));
     }
 
+    public static void shrinkItemEntity(EntityItem entity)
+    {
+        if(entity.getEntityItem().stackSize > 1)
+        {
+            ItemStack newStack = entity.getEntityItem().copy();
+            newStack.stackSize--;
+            entity.setEntityItemStack(newStack);
+        }
+        else
+            entity.setDead();
+    }
+
     //Code from Vazkii who borrowed it from mDiyo
     public static MovingObjectPosition raytraceFromEntity(World world, Entity player, boolean par3, double range)
     {
