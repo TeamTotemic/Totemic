@@ -71,7 +71,6 @@ totemic.melodyName.maximum=Platzend vor Melodie
 
 #Ceremony names
 totemic.ceremony.totemic:flute=Flötenverzauberung
-totemic.ceremony.totemic:ghostDance=Geistertanz
 totemic.ceremony.totemic:rainDance=Regentanz
 totemic.ceremony.totemic:drought=Trockenheitstanz
 totemic.ceremony.totemic:buffaloDance=Mandan-Büffeltanz
@@ -79,6 +78,7 @@ totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel-Walzer
 totemic.ceremony.totemic:warDance=Kriegstanz
 totemic.ceremony.totemic:eagleDance=Adlertanz
 totemic.ceremony.totemic:baykokSummon=Totentanz
+totemic.ceremony.totemic:fertility=Ritus des Frühlings
 
 #Totem effect names
 totemic.totem.totemic:bat=Fledermaus

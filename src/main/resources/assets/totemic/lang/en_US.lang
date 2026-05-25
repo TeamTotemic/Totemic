@@ -71,7 +71,6 @@ totemic.melodyName.maximum=Bursting with Melody
 
 #Ceremony names
 totemic.ceremony.totemic:flute=Flute Imbuation
-totemic.ceremony.totemic:ghostDance=Ghost Dance
 totemic.ceremony.totemic:rainDance=Rain Dance
 totemic.ceremony.totemic:drought=Drought Ceremony
 totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
@@ -79,6 +78,7 @@ totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel Waltz
 totemic.ceremony.totemic:warDance=War Dance
 totemic.ceremony.totemic:eagleDance=Eagle Dance
 totemic.ceremony.totemic:baykokSummon=Totentanz
+totemic.ceremony.totemic:fertility=Rite of Spring
 
 #Totem effect names
 totemic.totem.totemic:bat=Bat

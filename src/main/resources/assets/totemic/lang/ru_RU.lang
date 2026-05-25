@@ -57,7 +57,6 @@ totemic.melodyName.maximum=Разрывная мелодия
 
 #Ceremony names
 totemic.ceremony.totemic:flute=Серенада Сиринкса
-totemic.ceremony.totemic:ghostDance=Призрачный танец
 totemic.ceremony.totemic:rainDance=Дождевой танец
 totemic.ceremony.totemic:drought=Церемония засухи
 totemic.ceremony.totemic:buffaloDance=Танец буйволов Манданов
@@ -65,6 +64,7 @@ totemic.ceremony.totemic:zaphkielWaltz=Вальс Запкиэля
 totemic.ceremony.totemic:warDance=Танец войны
 totemic.ceremony.totemic:eagleDance=Танец орла
 totemic.ceremony.totemic:baykokSummon=Звон смерти
+totemic.ceremony.totemic:fertility=Ритуал весны
 
 #Totem effect names
 totemic.totem.totemic:bat=Летучая мышь
