@@ -12,15 +12,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ISpecialArmor;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.item.equipment.EquipmentMaterials;
 import totemic_commons.pokefenn.lib.Strings;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
+import totemic_commons.pokefenn.util.ItemUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
 /**
@@ -64,42 +63,39 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if(world.isRemote)
+        if(!world.isRemote && player.ticksExisted % 20 == 0)
         {
-            if(world.getTotalWorldTime() % 20L == 0)
-                if(player.motionX != 0 || player.motionZ != 0)
-                    PacketHandler.sendToServer(new PacketJingle(player.motionX, player.motionZ));
-        } else
-        {
-            NBTTagCompound tag = itemStack.getTagCompound();
-            if(world.getTotalWorldTime() % 20L == 0 && tag != null)
+            final double chargeFactor = 10.0;
+            final int maxSingleCharge = 8;
+            final int chargeLimit = 10;
+
+            double vx = player.posX - player.field_71094_bP; // chasingPosX
+            double vy = player.posY - player.field_71095_bQ; // chasingPosY
+            double vz = player.posZ - player.field_71085_bR; // chasingPosZ
+            double vel = Math.sqrt(vx*vx + vy*vy + vz*vz);
+            if(player.isPotionActive(Potion.moveSpeed))
+                vel *= 1.2;
+
+            NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
+            int time = tag.getByte(Strings.INSTR_TIME_KEY);
+            int prevTime = time;
+            time += MathHelper.clamp_int((int) (vel * chargeFactor), 0, maxSingleCharge);
+
+            if(time >= chargeLimit)
             {
-                int time = tag.getInteger(Strings.INSTR_TIME_KEY);
-                if(time >= 3 || (player.isPotionActive(Potion.moveSpeed) && time >= 2))
-                {
-                    playMusic(world, player, itemStack, false/*player.isSneaking()*/);
-                    tag.setInteger(Strings.INSTR_TIME_KEY, 0);
-                }
+                playMusic(world, player, itemStack);
+                time %= chargeLimit;
             }
+
+            if(time != prevTime)
+                tag.setByte(Strings.INSTR_TIME_KEY, (byte) time);
         }
     }
 
-    public void playMusic(World world, EntityPlayer player, ItemStack itemStack, boolean isSneaking)
+    private void playMusic(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if(!isSneaking)
-        {
-            TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, HandlerInitiation.jingleDress, 0, 0);
-            particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
-        } else //DEAD CODE
-        {
-            TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, HandlerInitiation.jingleDress, 0);
-            particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ);
-        }
-    }
-
-    public void particlesAllAround(WorldServer world, double x, double y, double z)
-    {
-        TotemUtil.particlePacket(world, "note", x, y + 0.4D, z, 6, 0.5D, 0.2D, 0.5D, 0.0D);
+        TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, HandlerInitiation.jingleDress, 0, 0);
+        TotemUtil.particlePacket(world, "note", player.posX, player.posY + 0.4D, player.posZ, 3, 0.5D, 0.2D, 0.5D, 0.0D);
     }
 
     @Override
@@ -108,31 +104,10 @@ public class ItemJingleDress extends ItemArmor implements ISpecialArmor
         return EquipmentMaterials.totemArmour.getDamageReductionAmount(slot);
     }
 
-    public int getBonusMusic()
-    {
-        //TODO
-        return 0;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister)
     {
         itemIcon = iconRegister.registerIcon(getUnlocalizedName().substring(getUnlocalizedName().indexOf(".") + 1));
     }
-
-    /*@Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean shift)
-    {
-        int musicOutput = HandlerInitiation.jingleDress.getBaseOutput() + getBonusMusic();
-        if(musicOutput < 5)
-            list.add(StatCollector.translateToLocal("totemic.music.lowMelody"));
-        else if(musicOutput == 6)
-            list.add(StatCollector.translateToLocal("totemic.music.mediumMelody"));
-        else if(musicOutput == 7)
-            list.add(StatCollector.translateToLocal("totemic.music.highMelody"));
-        else if(musicOutput > 7)
-            list.add(StatCollector.translateToLocal("totemic.music.veryHighMelody"));
-    }*/
 }

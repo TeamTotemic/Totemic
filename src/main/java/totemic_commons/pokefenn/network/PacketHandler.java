@@ -10,7 +10,6 @@ import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.network.client.PacketTotemMusic;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
-import totemic_commons.pokefenn.network.server.PacketJingle;
 import totemic_commons.pokefenn.network.server.PacketMouseWheel;
 
 /**
@@ -30,7 +29,6 @@ public class PacketHandler
 
     public static void init()
     {
-        registerPacket(PacketJingle.class, Side.SERVER);
         registerPacket(PacketWindChime.class, Side.CLIENT);
         registerPacket(PacketMouseWheel.class, Side.SERVER);
         registerPacket(PacketTotemMusic.class, Side.CLIENT);
