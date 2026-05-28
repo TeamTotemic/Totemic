@@ -118,12 +118,12 @@ public class HandlerInitiation
     {
         TotemicRegistry reg = Totemic.api.registry();
 
-    	flute = reg.addInstrument(new MusicInstrument("totemic", "flute", 4, 50, 5));
+    	flute = reg.addInstrument(new MusicInstrument("totemic", "flute", 3, 50, 5));
     	drum = reg.addInstrument(new MusicInstrument("totemic", "drum", 4, 55, 5));
     	windChime = reg.addInstrument(new MusicInstrument("totemic", "windChime", 2, 25, 5));
     	jingleDress = reg.addInstrument(new MusicInstrument("totemic", "jingleDress", 3, 25, 5));
     	rattle = reg.addInstrument(new MusicInstrument("totemic", "rattle", 5, 55, 5));
-    	eagleBoneWhistle = reg.addInstrument(new MusicInstrument("totemic", "eagleBoneWhistle", 7, 60, 5));
+    	eagleBoneWhistle = reg.addInstrument(new MusicInstrument("totemic", "eagleBoneWhistle", 6, 60, 5));
     }
 
     public static void instrumentItems()

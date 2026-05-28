@@ -25,28 +25,31 @@ public class ItemEagleBoneWhistle extends ItemMusic
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
+        final int cooldownTicks = 20;
+
         if(!world.isRemote)
         {
             NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
-            int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+            long lastPlayed = tag.getLong(Strings.INSTR_PLAYED_KEY);
 
-            time++;
-            if(time >= 5 && !player.isSneaking())
+            if(lastPlayed + cooldownTicks <= world.getTotalWorldTime())
             {
-                time = 0;
-                TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, 0);
-                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                world.playSoundAtEntity(player, "totemic:eagleBoneWhistle", 1.0F, 1.0F);
-            }
-            if(time >= 5 && player.isSneaking())
-            {
-                time = 0;
-                TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
-                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                world.playSoundAtEntity(player, "totemic:eagleBoneWhistle", 1.0F, 1.0F);
-            }
+                if(!player.isSneaking())
+                {
+                    TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, 0);
+                    particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
+                    world.playSoundAtEntity(player, "totemic:eagleBoneWhistle", 1.0F, 1.0F);
+                }
+                else
+                {
+                    TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
+                    particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
+                    world.playSoundAtEntity(player, "totemic:eagleBoneWhistle", 1.0F, 1.0F);
+                }
+                tag.setLong(Strings.INSTR_PLAYED_KEY, world.getTotalWorldTime());
 
-            tag.setInteger(Strings.INSTR_TIME_KEY, time);
+                tag.removeTag(Strings.INSTR_TIME_KEY);
+            }
         }
         return itemStack;
     }

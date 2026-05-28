@@ -44,43 +44,52 @@ public class ItemFlute extends ItemMusic
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
     {
+        final int cooldownTicks = 20;
+
         if(!world.isRemote)
         {
             NBTTagCompound tag = ItemUtil.getOrCreateTag(itemStack);
-            int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+            long lastPlayed = tag.getLong(Strings.INSTR_PLAYED_KEY);
 
-            time++;
-            if(time >= 5 && !player.isSneaking())
+            if(lastPlayed + cooldownTicks <= world.getTotalWorldTime())
             {
-                int bonusMusic = (itemStack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
-                time = 0;
-                TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, bonusMusic);
-                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
-                world.playSoundAtEntity(player, "totemic:flute", 1.0F, 1.0F);
-            }
-            if(time >= 5 && player.isSneaking())
-            {
-                time = 0;
-                TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
-                particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
-                world.playSoundAtEntity(player, "totemic:flute", 1.0F, 1.0F);
-            }
-            if(itemStack.getItemDamage() == 1 && !player.isSneaking())
-                for(EntityCreature entity : world.selectEntitiesWithinAABB(EntityCreature.class, EntityUtil.getAABBAround(player.posX, player.posY, player.posZ, 2, 2),
-                        entity -> entity instanceof EntityAnimal || entity instanceof EntityVillager))
+                if(!player.isSneaking())
                 {
-                    if(temptedEntities.contains(entity))
-                        continue;
+                    int bonusMusic = (itemStack.getItemDamage() == 1) ? world.rand.nextInt(3) : 0;
+                    TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, bonusMusic);
+                    particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
+                    world.playSoundAtEntity(player, "totemic:flute", 1.0F, 1.0F);
 
-                    double d = (entity instanceof EntityAnimal) ? 1 : 0.5;
-                    entity.targetTasks.addTask(5, new EntityAITempt(entity, d, this, false));
-
-                    temptedEntities.add(entity);
+                    if(itemStack.getItemDamage() == 1)
+                        temptEntities(world, player.posX, player.posY, player.posZ);
                 }
+                else
+                {
+                    TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
+                    particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
+                    world.playSoundAtEntity(player, "totemic:flute", 1.0F, 1.0F);
+                }
+                tag.setLong(Strings.INSTR_PLAYED_KEY, world.getTotalWorldTime());
 
-            tag.setInteger(Strings.INSTR_TIME_KEY, time);
+                tag.removeTag(Strings.INSTR_TIME_KEY);
+            }
         }
         return itemStack;
+    }
+
+    private void temptEntities(World world, double x, double y, double z)
+    {
+        for(EntityCreature entity : world.selectEntitiesWithinAABB(EntityCreature.class, EntityUtil.getAABBAround(x, y, z, 2, 2),
+                entity -> entity instanceof EntityAnimal || entity instanceof EntityVillager))
+        {
+            if(temptedEntities.contains(entity))
+                continue;
+
+            double d = (entity instanceof EntityAnimal) ? 1 : 0.5;
+            entity.targetTasks.addTask(5, new EntityAITempt(entity, d, this, false));
+
+            temptedEntities.add(entity);
+        }
     }
 
     @Override
