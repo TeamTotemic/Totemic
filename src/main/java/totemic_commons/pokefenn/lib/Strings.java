@@ -55,6 +55,7 @@ public final class Strings
     //ItemStack NBT keys
     public static final String KNIFE_TOTEM_KEY = "totem";
     public static final String INSTR_TIME_KEY = "time";
+    public static final String INSTR_PLAYED_KEY = "played";
 
     //Entity NBT keys
     public static final String FLUTE_TEMPTED_KEY = "totemic:fluteTempted";

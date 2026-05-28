@@ -122,7 +122,7 @@ public class HandlerInitiation
     	drum = reg.addInstrument(new MusicInstrument("totemic", "drum", 4, 55, 5));
     	windChime = reg.addInstrument(new MusicInstrument("totemic", "windChime", 2, 25, 5));
     	jingleDress = reg.addInstrument(new MusicInstrument("totemic", "jingleDress", 3, 25, 5));
-    	rattle = reg.addInstrument(new MusicInstrument("totemic", "rattle", 6, 55, 5));
+    	rattle = reg.addInstrument(new MusicInstrument("totemic", "rattle", 5, 55, 5));
     	eagleBoneWhistle = reg.addInstrument(new MusicInstrument("totemic", "eagleBoneWhistle", 7, 60, 5));
     }
 

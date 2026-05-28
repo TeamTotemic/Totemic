@@ -4,13 +4,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
 import totemic_commons.pokefenn.lib.Strings;
 import totemic_commons.pokefenn.recipe.HandlerInitiation;
-import totemic_commons.pokefenn.util.EntityUtil;
 import totemic_commons.pokefenn.util.ItemUtil;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -32,33 +30,32 @@ public class ItemRattle extends ItemMusic
     @Override
     public boolean onEntitySwing(EntityLivingBase entity, ItemStack stack)
     {
+        final int cooldownTicks = 16;
+
         World world = entity.worldObj;
         if(!world.isRemote && entity instanceof EntityPlayer && !(entity instanceof FakePlayer))
         {
             EntityPlayer player = (EntityPlayer) entity;
-            MovingObjectPosition block = EntityUtil.raytraceFromEntity(world, player, true, 5);
-            if(block == null)
-            {
-                NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
-                int time = tag.getInteger(Strings.INSTR_TIME_KEY);
+            NBTTagCompound tag = ItemUtil.getOrCreateTag(stack);
+            long lastPlayed = tag.getLong(Strings.INSTR_PLAYED_KEY);
 
-                time++;
-                if(time >= 4 && !player.isSneaking())
+            if(lastPlayed + cooldownTicks <= world.getTotalWorldTime())
+            {
+                if(!player.isSneaking())
                 {
-                    time = 0;
                     TotemUtil.playMusic(world, player.posX, player.posY, player.posZ, musicHandler, 0, 0);
                     particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, false);
                     world.playSoundAtEntity(player, "totemic:rattle", 1.0F, 1.0F);
                 }
-                if(time >= 4 && player.isSneaking())
+                else
                 {
-                    time = 0;
                     TotemUtil.playMusicForSelector(player.worldObj, player.posX, player.posY, player.posZ, musicHandler, 0);
                     particlesAllAround((WorldServer)world, player.posX, player.posY, player.posZ, true);
                     world.playSoundAtEntity(player, "totemic:rattle", 1.0F, 1.0F);
                 }
+                tag.setLong(Strings.INSTR_PLAYED_KEY, world.getTotalWorldTime());
 
-                tag.setInteger(Strings.INSTR_TIME_KEY, time);
+                tag.removeTag(Strings.INSTR_TIME_KEY);
             }
         }
 
