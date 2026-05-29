@@ -105,7 +105,7 @@ public class EntityBaldEagle extends EntityTameable
     public boolean interact(EntityPlayer player)
     {
         ItemStack stack = player.getHeldItem();
-        if(!isTamed() && stack.getItem() == Items.fish)
+        if(stack != null && stack.getItem() == Items.fish && !isTamed())
         {
             if(!player.capabilities.isCreativeMode)
                 --stack.stackSize;
