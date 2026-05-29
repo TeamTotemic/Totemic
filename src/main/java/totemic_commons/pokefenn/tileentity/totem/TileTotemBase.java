@@ -62,7 +62,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public boolean isCeremony = false;
     public final MusicInstrument[] musicSelector = new MusicInstrument[Ceremony.NUM_SELECTORS];
     public final TObjectIntMap<MusicInstrument> ceremonyMusic = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75f);
-    public final TObjectIntMap<MusicInstrument> timesPlayed = new TObjectIntHashMap<>(Totemic.api.registry().getInstruments().size(), 0.75f);
     public int totalCeremonyMelody = 0;
     public Ceremony startupCeremony = null;
     public Ceremony currentCeremony = null;
@@ -95,12 +94,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
         if(!worldObj.isRemote) //SERVER
         {
-            if(!isCeremony)
-                if(worldObj.getTotalWorldTime() % (20L * 30) == 0)
-                {
-                    timesPlayed.clear();
-                }
-
             if(isCeremony)
                 doCeremonyCode();
             else
@@ -462,7 +455,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
         ceremonyMusic.clear();
         totalCeremonyMelody = 0;
-        timesPlayed.clear();
         if(doResetMusicSelector)
             Arrays.fill(musicSelector, null);
         markForUpdate();
@@ -695,16 +687,13 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         int added;
         if(!isCeremony)
         {
-            timesPlayed.adjustOrPutValue(instr, 1, 1);
             int prevVal = musicForTotemEffect;
             musicForTotemEffect = Math.min(prevVal + amount / 2, MAX_EFFECT_MUSIC);
             added = musicForTotemEffect - prevVal;
         }
         else if(isDoingStartup())
         {
-            timesPlayed.adjustOrPutValue(instr, 1, 1);
             int prevVal = ceremonyMusic.get(instr);
-            amount = getDiminishedMusic(instr, amount);
             int newVal = Math.min(prevVal + amount, instr.getMusicMaximum());
             ceremonyMusic.put(instr, newVal);
             added = newVal - prevVal;
@@ -717,14 +706,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         if(added != 0)
             musicChanged = true;
         return added;
-    }
-
-    public int getDiminishedMusic(MusicInstrument instr, int amount)
-    {
-        if(timesPlayed.get(instr) >= amount)
-            return amount * 3 / 4;
-        else
-            return amount;
     }
 
     public boolean isDoingSelection()
