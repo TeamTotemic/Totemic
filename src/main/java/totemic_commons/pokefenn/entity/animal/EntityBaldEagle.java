@@ -41,6 +41,12 @@ public class EntityBaldEagle extends EntityTameable
     }
 
     @Override
+    protected boolean isAIEnabled()
+    {
+        return true;
+    }
+
+    @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
