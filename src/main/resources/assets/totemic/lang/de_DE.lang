@@ -133,6 +133,7 @@ totemicmisc.clickToIndex=zum Inhaltsverzeicnis
 totemicmisc.clickToRecipe=Umschalt+Klick zum Rezept
 totemicmisc.shapeless=Formlos
 totemicmisc.oredict=Ore Dictionary
+totemic.gui.lexicon.wip=In Arbeit
 
 totemic.category.basics=Totemic Grundlagen
 totemic.category.devices=Vorrichtungen
@@ -144,7 +145,7 @@ totemic.category.ceremonies=Zeremonien
 totemic.category.instruments=Musikinstrumente
 
 totemic.entry.cedarTree=Der Rote Zedernbaum
-totemic.page.cedarTree0=Der &1Rote Zedernbaum&0 ist ein großer Baum mit magischen Eigenschaften, sein Holz eignet sich besonders zum Schnitzen von Totempfählen. Man erhält ihn, indem man Setzlinge gewöhnlicher Bäume in der &4Zaphkiel-Walzer-Zeremonie&0 mit musikalischer Energie erfüllt.<br>Rote Zedernholzstämme können genutzt werden wie normales Holz, und man kann ihre Rinde mit einem &4Entrinder&0 entfernen.
+totemic.page.cedarTree0=Der &1Rote Zedernbaum&0 ist ein großer Baum mit magischen Eigenschaften, sein Holz eignet sich besonders zum Schnitzen von Totempfählen. Man erhält ihn, indem man Setzlinge gewöhnlicher Bäume in der Zeremonie &4Ritus des Frühlings&0 mit musikalischer Energie erfüllt.<br>Rote Zedernholzstämme können genutzt werden wie normales Holz, und man kann ihre Rinde mit einem &4Entrinder&0 entfernen.
 totemic.page.cedarTree1=
 
 totemic.entry.buffaloBasic=Büffel
@@ -161,7 +162,7 @@ totemic.page.totemEffects0=Diese Effekte können in einen Totempfahl eingeschnit
 totemic.page.totemEffects1=&1Fledermaus&0: Negiert Fallschaden und lässt dich vorwärts bewegen wenn du in der Luft schleichst<br>&1Spinne&0: Lässt dich Wände hochklettern wie eine Spinne<br>&1Kuh&0: Gibt dir Schadensresistenz, aber verlangsamt dich auch
 
 totemic.entry.instruments=Instrumente
-totemic.page.instruments0=Mit Instrumenten kann man &4Musikalische Energie&0 erzeugen, welche &1Totempfähle&0 antreibt. Spielt man ein Instrument während man schleicht, gelangt seine Melodie in nahe Verbraucher. Jedes Instrument erzeugt &4Melodie&0 auf unterschiedliche Arten und Weisen, beispielsweise wie stark die Melodie ist, wie weit sie hörbar ist und wie viel davon ein Totempfahl annehmen kann.
+totemic.page.instruments0=Mit Instrumenten kann man &4Musikalische Energie&0 erzeugen, welche &1Totempfähle&0 antreibt. Spielt man ein Instrument während man schleicht, gelangt seine Melodie in nahe Verbraucher. Jedes Instrument erzeugt &4Melodie&0 auf unterschiedliche Arten und Weisen, beispielsweise wie stark die Melodie ist und wie viel davon ein Totempfahl annehmen kann.
 totemic.page.instruments1=
 
 totemic.entry.windChime=Windspiel
@@ -185,7 +186,7 @@ totemic.page.flute1=Durch Schleichen kann sie benutzt werden, um &4Zeremonien&0 
 totemic.page.flute2=
 
 totemic.entry.rattle=Rassel
-totemic.page.rattle0=Die &1Zeremonielle Rassel&0 ist ein Instrument, das als Rückgrat von Zeremonien diente solange Totemisten bekannt sind. Die &1Rassel&0 produziert &4Melodie&0, wenn sie mit der Hand geschüttelt wird. Es ist derzeit nicht bekannt, ob sie andere Vorzüge hat, es wird aber vermutet. Wie alle Instrumente kann sie während des Schleichens gespielt werden um Zeremonien zu aktivieren.
+totemic.page.rattle0=Die &1Zeremonielle Rassel&0 ist ein Instrument, das als Rückgrat von Zeremonien diente solange Totemisten bekannt sind. Die &1Rassel&0 produziert &4Melodie&0, wenn sie mit der Hand geschüttelt wird. Wie alle Instrumente kann sie während des Schleichens gespielt werden, um Zeremonien zu aktivieren.
 totemic.page.rattle1=
 totemic.page.rattle2=
 
@@ -209,11 +210,12 @@ totemic.page.warDance0=Die &4Kriegstanz-Zeremonie&0 ist eine Zeremonie, die dein
 totemic.page.warDance1=&oEin verwickeltes Schachspiel&r
 
 totemic.entry.buffaloDance=Mandan-Büffeltanz
-totemic.page.buffaloDance0=Als der Weiße Mann das Land übernahm, tötete er fast alle &1Büffel&0, die einst in großen Herden daherzogen. Aber nicht alle Hoffnung ist verloren. Die &4Mandan-Büffeltanz-Zeremonie&0 kann Kühen Kraft geben und sie in Büffel verwandeln, allerdings schwächere als die einheimischen. Aber mit der Zeit wachsen sie größer und stärker.
+totemic.page.buffaloDance0=&1Büffel&0 zogen einst in großen Herden daher, lange bevor du in dieses Land kamst. Aber nicht alle Hoffnung ist verloren. Die &4Mandan-Büffeltanz-Zeremonie&0 kann Kühen Kraft geben und sie in Büffel verwandeln, allerdings schwächere als die einheimischen. Aber mit der Zeit wachsen sie größer und stärker.
 totemic.page.buffaloDance1=&oVermeide rote Tücher&r
 
 totemic.entry.zaphkielWaltz=Zaphkiel-Walzer
-totemic.page.zaphkielWaltz0=Der &4Zaphkiel-Walzer&0 ist eine starke Wachstumszeremonie. Für eine kurze Weile wachen Pflanzen in der Umgebung und Küken in Eiern sehr viel schneller. Außerdem verwandelt der Walzer gewöhnliche Setzlinge in &4Rote Zedernsetzlinge&0.
+totemic.page.zaphkielWaltz0=Der &4Zaphkiel-Walzer&0 ist eine starke Wachstumszeremonie. Für eine kurze Weile wachen Pflanzen in der Umgebung und Küken in Eiern sehr viel schneller.
+#Außerdem verwandelt der Ritus gewöhnliche Setzlinge in &4Rote Zedernsetzlinge&0.
 totemic.page.zaphkielWaltz1=&oGothisch elegant&r
 
 totemic.entry.fluteInfusion=Flötenverzauberung

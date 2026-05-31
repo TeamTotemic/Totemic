@@ -27,6 +27,7 @@ public class Totempedia
     public static final String FLUTE = "flute";
     public static final String RATTLE = "rattle";
     public static final String JINGLE_DRESS = "jingleDress";
+    public static final String EAGLE_BONE_WHISTLE = "eagleBoneWhistle";
 
     public static final String PERFORMING_CEREMONIES = "performingCeremonies";
     public static final String RAIN_DANCE = "rainDance";
@@ -35,6 +36,9 @@ public class Totempedia
     public static final String BUFFALO_DANCE = "buffaloDance";
     public static final String ZAPHKIEL_WALTZ = "zaphkielWaltz";
     public static final String FLUTE_INFUSION = "fluteInfusion";
+    public static final String FERTILITY = "fertility";
+    public static final String EAGLE_DANCE = "eagleDance";
+    public static final String BAYKOK_SUMMON = "baykokSummon";
 
     public static final String CREATING_TOTEMS = "creatingTotems";
     public static final String TOTEM_EFFECTS = "totemEffects";

@@ -133,6 +133,7 @@ totemicmisc.clickToIndex=Click to return to index
 totemicmisc.clickToRecipe=Shift+Click to see recipe
 totemicmisc.shapeless=Shapeless
 totemicmisc.oredict=Ore Dictionary
+totemic.gui.lexicon.wip=Work in Progress
 
 totemic.category.basics=Totemic Basics
 totemic.category.devices=Devices
@@ -144,7 +145,7 @@ totemic.category.ceremonies=Ceremonies
 totemic.category.instruments=Musical Instruments
 
 totemic.entry.cedarTree=The Red Cedar tree
-totemic.page.cedarTree0=The &1Red Cedar Tree&0 is a large tree that has magical properties, so its wood is especially useful for carving Totem poles out of. It can be obtained by infusing mundane saplings with musical energy in the &4Zaphkiel Waltz ceremony&0.<br>Red Cedar wood can be used like regular wood, and you can use a &4bark stripper&0 to remove its bark.
+totemic.page.cedarTree0=The &1Red Cedar Tree&0 is a large tree that has magical properties, so its wood is especially useful for carving Totem poles out of. It can be obtained by infusing mundane saplings with musical energy in the &4Rite of Spring ceremony&0.<br>Red Cedar wood can be used like regular wood, and you can use a &4bark stripper&0 to remove its bark.
 totemic.page.cedarTree1=
 
 totemic.entry.buffaloBasic=Buffaloes
@@ -161,7 +162,7 @@ totemic.page.totemEffects0=These are the different effects you can carve on a To
 totemic.page.totemEffects1=&1Bat&0: Negates fall damage and lets you move forward when you sneak mid-air<br>&1Spider&0: Lets you climb walls like a spider<br>&1Cow&0: Gives you resistance to damage, but also slows you down
 
 totemic.entry.instruments=Instruments
-totemic.page.instruments0=Instruments are a way to create &4Musical Melody&0, which is the life of &1Totem Poles&0. When an instrument is played, their melody will seep into any receivers. Every instrument produces &4Musical Melody&0 in different ways, such as how strong the melody is, how far it goes and how much a Totem can accept.
+totemic.page.instruments0=Instruments are a way to create &4Musical Melody&0, which is the life of &1Totem Poles&0. When an instrument is played, their melody will seep into any receivers. Every instrument produces &4Musical Melody&0 in different ways, such as how strong the melody is and how much a Totem can accept.
 totemic.page.instruments1=
 
 totemic.entry.windChime=Wind Chime
@@ -185,7 +186,7 @@ totemic.page.flute1=The &1Flute&0 can be infused in the &4Ceremony of Flute Imbu
 totemic.page.flute2=
 
 totemic.entry.rattle=Rattle
-totemic.page.rattle0=The &1Ceremonial Rattle&0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The &1Rattle&0 produces &4Musical Melody&0 whenever it has been shook with the hand. It is currently unknown if it has any other bonuses, but it believed to one day. And like all instruments, it can be played while sneaking so as to activate ceremonies.
+totemic.page.rattle0=The &1Ceremonial Rattle&0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The &1Rattle&0 produces &4Musical Melody&0 whenever it has been shook with the hand. Like all instruments, it can be played while sneaking so as to activate ceremonies.
 totemic.page.rattle1=
 totemic.page.rattle2=
 
@@ -209,11 +210,12 @@ totemic.page.warDance0=The &4War Dance Ceremony&0 is a Ceremony that will height
 totemic.page.warDance1=&oA convoluted game of chess&r
 
 totemic.entry.buffaloDance=Mandan Buffalo Dance
-totemic.page.buffaloDance0=As the White Man came and took over the lands, he murdered almost all of the &1Buffalos&0 that were once roaming the lands in large hordes. However, not all hope is lost. The &4Mandan Buffalo Dance&0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native. But they will grow larger and stronger over time.
+totemic.page.buffaloDance0=&1Buffalos&0 used to roam the lands in large hordes long before you came into it. However, not all hope is lost. The &4Mandan Buffalo Dance&0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native. But they will grow larger and stronger over time.
 totemic.page.buffaloDance1=&oAvoid using red rags&r
 
 totemic.entry.zaphkielWaltz=Zaphkiel Waltz
-totemic.page.zaphkielWaltz0=The &4Zaphkiel Waltz&0 is a strong growth ceremony. For a short while, nearby plants will grow at a much faster rate than usual, and chickens will grow out of their eggs quickly. Additionally, the Zaphkiel Waltz will transform mundane saplings into &4Red Cedar Saplings&0.
+totemic.page.zaphkielWaltz0=The &4Zaphkiel Waltz&0 is a strong growth ceremony. For a short while, nearby plants will grow at a much faster rate than usual, and chickens will grow out of their eggs quickly.
+#Additionally, the Rite of Spring will transform mundane saplings into &4Red Cedar Saplings&0.
 totemic.page.zaphkielWaltz1=&oGothicly elegant&r
 
 totemic.entry.fluteInfusion=Flute Imbuation
