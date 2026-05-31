@@ -122,7 +122,7 @@ public class EntityBaldEagle extends EntityTameable
 
             if(!worldObj.isRemote)
             {
-                if(rand.nextInt(10) == 0)
+                if(rand.nextInt(6) == 0)
                 {
                     setTamed(true);
                     func_152115_b(player.getUniqueID().toString()); // sets the owner
