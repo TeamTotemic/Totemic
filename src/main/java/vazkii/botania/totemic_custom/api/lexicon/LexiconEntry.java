@@ -25,6 +25,7 @@ public class LexiconEntry implements Comparable<LexiconEntry>
 
 
     public List<LexiconPage> pages = new ArrayList<LexiconPage>();
+    private int sortIndex = 0;
     private boolean priority = false;
 
     /**
@@ -34,6 +35,20 @@ public class LexiconEntry implements Comparable<LexiconEntry>
     {
         this.unlocalizedName = unlocalizedName;
         this.category = category;
+    }
+
+    /**
+     * Sets the sorting index of this entry. Entries with smaller index are listed first.
+     */
+    public LexiconEntry setSortIndex(int sortIndex)
+    {
+        this.sortIndex = sortIndex;
+        return this;
+    }
+
+    public int getSortIndex()
+    {
+        return sortIndex;
     }
 
     /**
@@ -76,6 +91,10 @@ public class LexiconEntry implements Comparable<LexiconEntry>
         pages.add(page);
     }
 
+    /**
+     * @deprecated The entry order is no longer determined (solely) by the return value of this method.
+     */
+    @Deprecated
     public final String getNameForSorting()
     {
         return (priority ? 0 : 1) + StatCollector.translateToLocal(getUnlocalizedName());
@@ -84,6 +103,11 @@ public class LexiconEntry implements Comparable<LexiconEntry>
     @Override
     public int compareTo(LexiconEntry o)
     {
-        return getNameForSorting().compareTo(o.getNameForSorting());
+        if(priority != o.priority)
+            return -Boolean.compare(priority, o.priority);
+        else if(sortIndex != o.sortIndex)
+            return Integer.compare(sortIndex, o.sortIndex);
+        else
+            return StatCollector.translateToLocal(getUnlocalizedName()).compareTo(StatCollector.translateToLocal(o.getUnlocalizedName()));
     }
 }
