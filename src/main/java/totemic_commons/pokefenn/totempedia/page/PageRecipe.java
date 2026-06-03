@@ -22,7 +22,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
@@ -34,8 +33,6 @@ import vazkii.botania.totemic_custom.api.lexicon.LexiconRecipeMappings;
 
 public class PageRecipe extends LexiconPage
 {
-    private static final RenderItem itemRenderer = new RenderItem();
-
     int relativeMouseX, relativeMouseY;
     ItemStack tooltipStack, tooltipContainerStack;
     boolean tooltipEntry;
@@ -67,6 +64,7 @@ public class PageRecipe extends LexiconPage
         mouseDownLastTick = Mouse.isButtonDown(0);
     }
 
+    @SideOnly(Side.CLIENT)
     protected void renderItemTooltip(int mx, int my)
     {
         if(tooltipStack != null)
@@ -156,8 +154,8 @@ public class PageRecipe extends LexiconPage
         net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
-        itemRenderer.renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
-        itemRenderer.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
+        gui.getItemRenderer().renderItemAndEffectIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
+        gui.getItemRenderer().renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), stack, xPos, yPos);
         net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
         GL11.glPopMatrix();
 

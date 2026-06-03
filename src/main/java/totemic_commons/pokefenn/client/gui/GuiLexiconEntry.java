@@ -14,6 +14,7 @@ import org.lwjgl.input.Mouse;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import totemic_commons.pokefenn.client.ClientTickHandler;
@@ -168,6 +169,12 @@ public class GuiLexiconEntry extends GuiLexicon implements IGuiLexiconEntry, IPa
     public float getZLevel()
     {
         return zLevel;
+    }
+
+    @Override
+    public RenderItem getItemRenderer()
+    {
+        return itemRender;
     }
 
     @Override

@@ -5,6 +5,8 @@ import java.util.Objects;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
@@ -23,7 +25,7 @@ import vazkii.botania.totemic_custom.api.internal.IGuiLexiconEntry;
  */
 public class PageCeremony extends PageRecipe
 {
-    public ResourceLocation ceremonyOverlay = new ResourceLocation("totemic:textures/gui/ceremonyOverlay.png");
+    private static final ResourceLocation ceremonyOverlay = new ResourceLocation("totemic:textures/gui/ceremonyOverlay.png");
 
     public Ceremony ceremony;
 
@@ -34,6 +36,7 @@ public class PageCeremony extends PageRecipe
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void renderScreen(IGuiLexiconEntry gui, int mx, int my)
     {
         relativeMouseX = mx;

@@ -11,6 +11,8 @@
  */
 package vazkii.botania.totemic_custom.api.internal;
 
+import net.minecraft.client.renderer.entity.RenderItem;
+
 /**
  * Internal interface for the Lexicon Entry GUI. This contains
  * everything that can be accessed from it. It's safe to cast
@@ -53,4 +55,9 @@ public interface IGuiLexiconEntry
      * Gets the GUI's Z level for rendering.
      */
     public float getZLevel();
+
+    /**
+     * Gets the GUI's item renderer
+     */
+    public RenderItem getItemRenderer();
 }
