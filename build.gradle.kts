@@ -14,7 +14,7 @@ plugins {
 
 // Project properties
 group = "totemic_commons.pokefenn"
-version = "1.7.10-0.6.2"
+version = "1.7.10-0.7.0"
 base.archivesName = "Totemic"
 
 // Set the toolchain version to decouple the Java we run Gradle with from the Java used to compile and run the mod
