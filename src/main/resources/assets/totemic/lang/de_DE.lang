@@ -70,9 +70,9 @@ totemic.melodyName.high=Höchst melodisch
 totemic.melodyName.maximum=Platzend vor Melodie
 
 #Ceremony names
-totemic.ceremony.totemic:flute=Flötenverzauberung
+totemic.ceremony.totemic:flute=Serenade für Syrinx
 totemic.ceremony.totemic:rainDance=Regentanz
-totemic.ceremony.totemic:drought=Trockenheitstanz
+totemic.ceremony.totemic:drought=Dürretanz
 totemic.ceremony.totemic:buffaloDance=Mandan-Büffeltanz
 totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel-Walzer
 totemic.ceremony.totemic:warDance=Kriegstanz
@@ -182,13 +182,17 @@ totemic.page.jingleDress3=
 
 totemic.entry.flute=Flöte
 totemic.page.flute0=Manchmal ist eine &1Flöte&0 eines der simpelsten und effektivsten Instrumente. Anders als andere Instrumente kann man die &1Flöte&0 ohne weitere Schwierigkeiten spielen. Da sie so simpel ist, ist sie nicht dafür bekannt, besonders melodisch zu sein, das heißt &4Totempfähle&0 können nicht besonders viel ihrer Melodie aufnehmen.
-totemic.page.flute1=Durch Schleichen kann sie benutzt werden, um &4Zeremonien&0 an nahen &4Totempfählen&0 auszuwählen.<br>Die &1Flöte&0 kann in der &4Zeremonie der Flötenverzauberung&0 mit speziellen Eigenschaften verzaubert werden.
+totemic.page.flute1=Durch Schleichen kann sie benutzt werden, um &4Zeremonien&0 an nahen &4Totempfählen&0 auszuwählen.<br>Die &1Flöte&0 kann in der Zeremonie &4Serenade für Syrinx&0 mit speziellen Eigenschaften verzaubert werden.
 totemic.page.flute2=
 
 totemic.entry.rattle=Rassel
 totemic.page.rattle0=Die &1Zeremonielle Rassel&0 ist ein Instrument, das als Rückgrat von Zeremonien diente solange Totemisten bekannt sind. Die &1Rassel&0 produziert &4Melodie&0, wenn sie mit der Hand geschüttelt wird. Wie alle Instrumente kann sie während des Schleichens gespielt werden, um Zeremonien zu aktivieren.
 totemic.page.rattle1=
 totemic.page.rattle2=
+
+totemic.entry.eagleBoneWhistle=Adlerknochenpfeife
+totemic.page.eagleBoneWhistle0=Die §1Adlerknochenpfeife§0 wird aus den Knochen eines §4Weißkopfseeadlers§0 hergestellt, und ist deswegen sehr kraftvoll. Sie ist ein Muss für fortgeschrittenere Zeremonien.
+totemic.page.eagleBoneWhistle1=
 
 totemic.entry.performingCeremonies=Durchführung von Zeremonien
 totemic.page.performingCeremonies0=&4Zeremonien&0 sind ein Weg für Totemisten, um durch Musik all ihre Kräfte über eine gewisse Zeit zusammenzunehmen, um sie dann in einem Stoß freizusetzen und Effekte zu erzeugen. Das Zentrum einer &4Zeremonie&0 ist eine &1Totembasis&0, alle Musik und andere Dinge sind um den &1Totempfahl&0 zentriert, und dort werden die Effekte freigesetzt.
@@ -201,8 +205,8 @@ totemic.entry.rainDance=Regentanz
 totemic.page.rainDance0=Mit dem &4Regentanz&0 kannst du eine Regenflut über das Land bringen. Wird der Regen zu viel, kann er über den &4Trockenheitstanz&0 wieder entfernt werden. Da die Effekte dieser Zeremonie sehr potent sind, kann sie etwas schwer durchzuführen sein.
 totemic.page.rainDance1=&oWie ein Politoed&r.
 
-totemic.entry.drought=Trockenheitstanz
-totemic.page.drought0=Der &4Trockenheitstanz&0 klart den Himmel auf und beendet jeden Regen, der das Land heimsucht. Er ist das Gegenteil des &4Regentanzes&0.
+totemic.entry.drought=Dürretanz
+totemic.page.drought0=Der &4Dürretanz&0 klart den Himmel auf und beendet jeden Regen, der das Land heimsucht. Er ist das Gegenteil des &4Regentanzes&0.
 totemic.page.drought1=&oNinetails, nicht Kurama!&r
 
 totemic.entry.warDance=Kriegszeremonie
@@ -218,10 +222,24 @@ totemic.page.zaphkielWaltz0=Der &4Zaphkiel-Walzer&0 ist eine starke Wachstumszer
 #Außerdem verwandelt der Ritus gewöhnliche Setzlinge in &4Rote Zedernsetzlinge&0.
 totemic.page.zaphkielWaltz1=&oGothisch elegant&r
 
-totemic.entry.fluteInfusion=Flötenverzauberung
-totemic.page.fluteInfusion0=Die &4Flötenverzauberung&0 ist ein Weg, eine normale &1Flöte&0 mit musikalischer Energie zu verzaubern, um ihr spezielle Eigenschaften zu verleihen. Leg die Flöte einfach auf den Boden, bevor du die Zeremonie durchführst.
+totemic.entry.fluteInfusion=Serenade für Syrinx
+totemic.page.fluteInfusion0=Die &4Serenade für Syrinx&0 ist ein Weg, eine normale &1Flöte&0 mit musikalischer Energie zu verzaubern, um ihr spezielle Eigenschaften zu verleihen. Leg die Flöte einfach auf den Boden, bevor du die Zeremonie durchführst.
 totemic.page.fluteInfusion1=Die Melodie einer verzauberten Flöte ist deutlich stärker als ein normaler Flötenklang, so sehr, dass &1Tiere&0 und &1Dorfbewohner&0 sie nicht widerstehen können und von ihr angezogen werden. Ihr Effekt an Totempfählen ist ebenfalls stärker.
-totemic.page.fluteInfusion2=&oStärker als Twilicane&r
+totemic.page.fluteInfusion2=&oWerd nie erwachsen
+
+totemic.entry.fertility=Ritus des Frühlings
+totemic.page.fertility0=Der §4Ritus des Frühlings§0 ist eine der vielen Wachstums- und Fruchtbarkeitszeremonien, die einem Totemisten zur Verfügung stehen. Nach der Aktivierung begatten sich Tiere und Dorfbewohner der Reihe nach, wobei sie Nahrung bzw. Smaragde benötigen. Allerdings besteht eine gute Chance, dass die Nahrung nicht verbraucht wird.<br>Darüber hinaus verwandeln sich Setzlinge in §1Rote Zedernsetzlinge§0.
+totemic.page.fertility1=§oKein Liebhaber zum Lieben§r
+
+totemic.entry.eagleDance=Adlertanz
+totemic.page.eagleDance0=Der §1Weißkopfseeadler§0 ist ein heiliger Vogel, manche sagen, sie seien spirituelle Boten zwischen Menschen und Göttern. Ihre Federn und Knochen sind wichtige zeremonielle Gegenstände und werden für die §1Adlerknochenpfeife§0 benötigt.<br>Da sie beinahe ausgestorben sind, können sie nicht in der Wildnis gefunden werden; ähnlich wie Büffel müssen sie durch die §4Adlertanz§0-Zeremonie 
+totemic.page.eagleDance1=erschaffen werden. Diese Zeremonie verzaubert §1Hühner§0 und verwandelt sie in Weißkopfseeadler. Sie können mit jeder Art von rohem Fisch gezähmt und mit Lachs gezüchtet werden.
+totemic.page.eagleDance2=§oWelcome to 'Murica!§r
+
+totemic.entry.baykokSummon=Totentanz
+totemic.page.baykokSummon0=Der §4Totentanz§0 ist eine Zeremonie, die den Geist §4Baykok§0 herbeiruft. Verusche nicht diese Zeremonie, bis Du gut für den Kampf ausgerüstet bist.<br>§4Baykok§0 ist ein grausamer Nachtgeist, der wie ein Skelett erscheint. Er jagd unbarmherzig nach Kriegern und ist ein Meister im Bogenschießen, er greift mit unsichtbaren Pfeilen an.
+totemic.page.baykokSummon1=Schaffst Du es, §4Baykok§0 zu besiegen, erhälst Du seinen Bogen. Mit §1Baykoks Bogen§0 kannst Du wie er Pfeile schießen, die nur Du sehen kannst. Sein Bogen leichter zu §4verzaubern§0 und stärker als ein gewöhnlicher Bogen.
+totemic.page.baykokSummon2=§oDu hast den Bogen überspannt...§r
 
 totemic.entry.totemicStaff=Totemstab
 totemic.page.totemicStaff0=Der &1Totemstab&0 kann an verschiedenen Blöcken benutzt werden, um Informationen über sie zu liefern.<br>Außerdem kann man mit ihm durch Linksklick auf eine Totembasis Zeremonien und Selektionen abbrechen.

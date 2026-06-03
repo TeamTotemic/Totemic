@@ -112,7 +112,7 @@ public final class LexiconData
         rattle = new BLexiconEntry(Totempedia.RATTLE, categoryInstruments).setSortIndex(4);
         rattle.setLexiconPages(new PageText("0"), /*new PageText("1"),*/ new PageCraftingRecipe("2", CraftingRecipes.ceremonialRattle));
 
-        eagleBoneWhistle = new WIPLexiconEntry(Totempedia.EAGLE_BONE_WHISTLE, categoryInstruments).setSortIndex(5);
+        eagleBoneWhistle = new BLexiconEntry(Totempedia.EAGLE_BONE_WHISTLE, categoryInstruments).setSortIndex(5);
         eagleBoneWhistle.setLexiconPages(new PageText("0"), new PageCraftingRecipe("1", CraftingRecipes.eagleBoneWhistle));
 
         //Ceremonies
@@ -122,7 +122,7 @@ public final class LexiconData
         warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony).setSortIndex(0);
         warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.warDance));
 
-        fertility = new WIPLexiconEntry(Totempedia.FERTILITY, categoryCeremony).setSortIndex(2);
+        fertility = new BLexiconEntry(Totempedia.FERTILITY, categoryCeremony).setSortIndex(2);
         fertility.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.fertility));
 
         zaphkielWaltz = new BLexiconEntry(Totempedia.ZAPHKIEL_WALTZ, categoryCeremony).setSortIndex(3);
@@ -140,11 +140,11 @@ public final class LexiconData
         fluteInfusion = new BLexiconEntry(Totempedia.FLUTE_INFUSION, categoryCeremony).setSortIndex(7);
         fluteInfusion.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", HandlerInitiation.fluteCeremony));
 
-        eagleDance = new WIPLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony).setSortIndex(8);
-        eagleDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.eagleDance));
+        eagleDance = new BLexiconEntry(Totempedia.EAGLE_DANCE, categoryCeremony).setSortIndex(8);
+        eagleDance.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", HandlerInitiation.eagleDance));
 
-        baykokSummon = new WIPLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(9);
-        baykokSummon.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.baykokSummon));
+        baykokSummon = new BLexiconEntry(Totempedia.BAYKOK_SUMMON, categoryCeremony).setSortIndex(9);
+        baykokSummon.setLexiconPages(new PageText("0"), new PageText("1"), new PageCeremony("2", HandlerInitiation.baykokSummon));
 
         //Tools
         totemicStaff = new BLexiconEntry(Totempedia.TOTEMIC_STAFF, categoryTools);

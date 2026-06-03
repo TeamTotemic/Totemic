@@ -70,9 +70,9 @@ totemic.melodyName.high=Highly Melodic
 totemic.melodyName.maximum=Bursting with Melody
 
 #Ceremony names
-totemic.ceremony.totemic:flute=Flute Imbuation
+totemic.ceremony.totemic:flute=Serenade for Syrinx
 totemic.ceremony.totemic:rainDance=Rain Dance
-totemic.ceremony.totemic:drought=Drought Ceremony
+totemic.ceremony.totemic:drought=Drought Dance
 totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
 totemic.ceremony.totemic:zaphkielWaltz=Zaphkiel Waltz
 totemic.ceremony.totemic:warDance=War Dance
@@ -182,13 +182,17 @@ totemic.page.jingleDress3=
 
 totemic.entry.flute=Flute
 totemic.page.flute0=Sometimes a &1Flute&0 can be one of the most simple and effective instruments available. Unlike other instruments, the &1Flute&0 simply plays music without any complication. Because of its simplicity, it is not known to be the most melodic instrument, meaning that &4Totems&0 may not accept very much of the melody. When sneaking, it can be used to select a &4Ceremony&0 for any nearby &4Totem Poles&0.
-totemic.page.flute1=The &1Flute&0 can be infused in the &4Ceremony of Flute Imbuation&0, giving it special properties.
+totemic.page.flute1=The &1Flute&0 can be infused in the &4Serenade for Syrinx&0 Ceremony, giving it special properties.
 totemic.page.flute2=
 
 totemic.entry.rattle=Rattle
 totemic.page.rattle0=The &1Ceremonial Rattle&0 is a instrument which has been a backbone of Ceremonies for as long as Totemists have been known. The &1Rattle&0 produces &4Musical Melody&0 whenever it has been shook with the hand. Like all instruments, it can be played while sneaking so as to activate ceremonies.
 totemic.page.rattle1=
 totemic.page.rattle2=
+
+totemic.entry.eagleBoneWhistle=Eagle-Bone Whistle
+totemic.page.eagleBoneWhistle0=The &1Eagle-Bone Whistle&0 is made from the bones of a &4Bald Eagle&0, and as such it is very powerful. It is a necessity for more advanced Ceremonies.
+totemic.page.eagleBoneWhistle1=
 
 totemic.entry.performingCeremonies=Performing Ceremonies
 totemic.page.performingCeremonies0=&4Ceremonies&0 are a way for a Totemist to gather strength over a period of time through the power of music, and other acts to release as a central burst of effects. The center of a &4Ceremony&0 is a &1Totem Base&0, all music and other things are centered to the &1Totem Pole&0 and it is where the effects are released from.
@@ -197,12 +201,12 @@ totemic.page.performingCeremonies2=While it is in this startup mode, the &1Totem
 totemic.page.performingCeremonies3=so a whole ceremony could not be played with just one instrument. Also, you only have a limited amount of time to get the ceremony going, so you need to be quick enough to play the instruments. After you played enough &4Musical Melody&0, the &4Ceremony&0 will begin performing its effects. Some &4Ceremonies&0 have instant effects, others will last over a certain amount of time after the effect
 totemic.page.performingCeremonies4=initially starts. Doing the effects will drain the &4Musical Melody&0 over that time. It should be noted that the effects can only go for a certain amount of time and will stop after that time has elapsed.
 
-totemic.entry.rainDance=Rain Dance Ceremony
+totemic.entry.rainDance=Rain Dance
 totemic.page.rainDance0=The &4Rain Dance Ceremony&0 is a way for you to bring a torrent of rain into the world. If the rain becomes too much to bare, the &4Drought Ceremony&0 is always available, which will remove all rain. Because the effects of this &4Ceremony&0 are so potent, it may be hard to perform.
 totemic.page.rainDance1=&oLike a Politoed&r.
 
-totemic.entry.drought=Drought Ceremony
-totemic.page.drought0=The &4Drought Ceremony&0 will clear the sky and end any storms that may be plaguing your world. It is simply the opposite of the &4Rain Dance Ceremony&0.
+totemic.entry.drought=Drought Dance
+totemic.page.drought0=The &4Drought Dance&0 will clear the sky and end any storms that may be plaguing your world. It is simply the opposite of the &4Rain Dance Ceremony&0.
 totemic.page.drought1=&oNinetails, Not Kurama!&r
 
 totemic.entry.warDance=War Dance
@@ -215,13 +219,26 @@ totemic.page.buffaloDance1=&oAvoid using red rags&r
 
 totemic.entry.zaphkielWaltz=Zaphkiel Waltz
 totemic.page.zaphkielWaltz0=The &4Zaphkiel Waltz&0 is a strong growth ceremony. For a short while, nearby plants will grow at a much faster rate than usual, and chickens will grow out of their eggs quickly.
-#Additionally, the Rite of Spring will transform mundane saplings into &4Red Cedar Saplings&0.
 totemic.page.zaphkielWaltz1=&oGothicly elegant&r
 
-totemic.entry.fluteInfusion=Flute Imbuation
-totemic.page.fluteInfusion0=The &4Ceremony of Flute Imbuation&0 is a way to infuse a regular &1Flute&0 with melodic energy, giving it special properties. Just drop the Flute on the ground before performing the Ceremony.
+totemic.entry.fluteInfusion=Serenade for Syrinx
+totemic.page.fluteInfusion0=The &4Serenade for Syrinx&0 is a way to infuse a regular &1Flute&0 with melodic energy, giving it special properties. Just drop the Flute on the ground before performing the Ceremony.
 totemic.page.fluteInfusion1=The melody of an &1Infused Flute&0 is quite more melodic than a mundane Flute sound, so much that &1Animals&0 and &1Villagers&0 cannot resist it and will be attracted to it. Its effects on Totems is more potent as well.
-totemic.page.fluteInfusion2=&oStronger than Twilicane&r
+totemic.page.fluteInfusion2=&oHide in the Sugar Cane&r
+
+totemic.entry.fertility=Rite of Spring
+totemic.page.fertility0=The &4Rite of Spring&0 is one of several growth and fertility Ceremonies available to a Totemist. After activating, nearby &1Animals&0 and &1Villagers&0 will &1breed&0 one at a time, consuming &1food items&0 or &1Emeralds&0, respectively. There is a decent chance that the food will not be consumed.<br>Along with that, any nearby saplings will transform into &4Red Cedar Saplings&0.
+totemic.page.fertility1=&oLover I don't have to love
+
+totemic.entry.eagleDance=Eagle Dance
+totemic.page.eagleDance0=The §1Bald Eagle§0 is a sacred bird, some say they are spiritual messengers between humans and gods. Its feathers and bones are important ceremonial items and are used to make the §1Eagle-Bone Whistle§0.<br>Since they have gone almost extinct, they are not found in the wild; similarly to Buffalos they have to be created by the §4Eagle Dance§0 Ceremony. This Ceremony will infuse
+totemic.page.eagleDance1=nearby §1Chickens§0 and turn them into Bald Eagles. Once transformed, they can be tamed with any kind of raw fish and bred with Salmon.
+totemic.page.eagleDance2=§oWelcome to 'Murica!§r
+
+totemic.entry.baykokSummon=Totentanz
+totemic.page.baykokSummon0=The &4Totentanz&0 is a Ceremony that will summon the spirit known as &4Baykok&0. Do not attempt this Ceremony unless you are well equipped for combat.<br>&4Baykok&0 is an evil spirit who appears as a skeleton-like figure. He ruthlessly hunts warriors and is a master of archery, attacking with &1invisible arrows&0.
+totemic.page.baykokSummon1=If you manage to defeat Baykok, you will be able to get his bow, among other loots. Any arrows fired from &1Baykok's Bow&0 are visible only to the bow wielder. In addition, his bow is stronger and has a higher &1Enchantability&0 than a mundane bow.
+totemic.page.baykokSummon2=&oWhen Death draws near you...
 
 totemic.entry.totemicStaff=Totemic Staff
 totemic.page.totemicStaff0=The &1Totemic Staff&0 can be used on various blocks to give you information about them.<br>Also, left-clicking it on a Totem Base will cancel ceremonies and musical selections on it.

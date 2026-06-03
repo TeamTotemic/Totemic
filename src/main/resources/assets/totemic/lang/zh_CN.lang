@@ -140,6 +140,10 @@ totemic.page.flute0=&1长笛&0, 这片大陆上人人皆知的乐器, 它简便�
 totemic.entry.rattle=摇响器
 totemic.page.rattle0=&1摇响器&0 , 从图腾族被人发现至今都是仪式中的骨干乐器. 无论何时用左手握住 &1摇响器&0 都能制造出 &4音乐旋律&0 . 现在我们还未得知它是否会产生仪式效果, 但相信有一天我们能发现. 和其它乐器一样, 它能在潜行时演奏.
 
+totemic.entry.eagleBoneWhistle=鹰骨笛
+totemic.page.eagleBoneWhistle0=§1鹰骨笛§0是由§4白头鹰雕§0的骨头制成。这是一个非常强大的乐器，也是高阶§4仪式§0所需要的。不过，它更看重的是使用的仪式而非§4乐器§0本身。
+totemic.page.eagleBoneWhistle1=
+
 totemic.entry.performingCeremonies=执行仪式
 totemic.page.performingCeremonies0=&4仪式&0 能通过音乐的力量使图腾族在一段时间内获得力量, 并通过一些操作来释放特定的仪式效果. &4仪式&0 的核心是一个 &1图腾基座&0, 所有音乐或其它能量都会在 &1图腾柱&0 上聚集, 并在那里释放出仪式效果.
 totemic.page.performingCeremonies1=要执行一个 &4仪式&0, 必须注意几件事. 选择并创建你的 &4仪式&0, 你必须在选择模式下演奏4种乐器, 以此来选择要传送音乐的 &1图腾柱&0. 要在选择模式下演奏多种乐器, 只需要潜行并像往常一样演奏它们. 当你演奏完4种与 &4仪式&0 相应的乐器后, 仪式将开始执行创建.
