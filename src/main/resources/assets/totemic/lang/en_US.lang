@@ -158,8 +158,9 @@ totemic.page.creatingTotems1=You also use the Totem Whittling Knife to carve out
 totemic.page.creatingTotems2=
 
 totemic.entry.totemEffects=Totem Effects
-totemic.page.totemEffects0=These are the different effects you can carve on a Totem pole:<br>&1Horse&0: Gives you a speed boost<br>&1Squid&0: Gives you Water Breathing<br>&1Blaze&0: Gives you Fire Resistance<br>&1Ocelot&0: Prevents Creepers from exploding
-totemic.page.totemEffects1=&1Bat&0: Negates fall damage and lets you move forward when you sneak mid-air<br>&1Spider&0: Lets you climb walls like a spider<br>&1Cow&0: Gives you resistance to damage, but also slows you down
+totemic.page.totemEffects0=These are the different effects you can carve on a Totem pole:<br>&1Bat&0: Negates fall damage and lets you move forward when you sneak mid-air<br>&1Blaze&0: Gives you Fire Resistance<br>&1Buffalo&0: Makes you dig faster
+totemic.page.totemEffects1=&1Cow&0: Gives you resistance to damage, but also slows you down<br>&1Horse&0: Gives you a speed boost<br>&1Ocelot&0: Prevents nearby Creepers from exploding
+totemic.page.totemEffects2=&1Rabbit&0: Makes you jump higher<br>&1Spider&0: Lets you climb walls like a spider<br>&1Squid&0: Gives you Water Breathing<br>&1Wolf&0: Boosts your attack damage
 
 totemic.entry.instruments=Instruments
 totemic.page.instruments0=Instruments are a way to create &4Musical Melody&0, which is the life of &1Totem Poles&0. When an instrument is played, their melody will seep into any receivers. Every instrument produces &4Musical Melody&0 in different ways, such as how strong the melody is and how much a Totem can accept.
