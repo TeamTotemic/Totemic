@@ -1,4 +1,4 @@
-// 1.21.1	2026-06-06T19:26:40.783647219	Block States: totemic
+// 1.21.1	2026-06-06T19:45:31.843776305	Block States: totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 3e98d3008a2e942b780e2b0a1452c0ec062cae73 assets/totemic/blockstates/cedar_fence.json
@@ -72,7 +72,7 @@ e2344d67a9cd126cda6742fb00c16aa97d891e63 assets/totemic/models/block/cherry_tote
 ebd3c898f2708b5943745d4ca251ba34fc5122ca assets/totemic/models/block/cherry_totem_pole.json
 e6f0dbfac7b4f15bcd7a7324fdf75ae23927e251 assets/totemic/models/block/dark_oak_totem_base.json
 669a06b81a99512882ac47a02b6cda4d43e6305e assets/totemic/models/block/dark_oak_totem_pole.json
-5177b682a6f745079f6b7be5d06b5b0d8b9a80ca assets/totemic/models/block/dummy_tipi.json
+142bd7314208b1707f069800d97187f55120bbc6 assets/totemic/models/block/dummy_tipi.json
 603f57c9a50ee509bb0ed92a7cd59f66e07eeb22 assets/totemic/models/block/jungle_totem_base.json
 5cdeb7e6b8a3b923a158ea80ae573c040642f4bb assets/totemic/models/block/jungle_totem_pole.json
 3417c9864fd62e5b62b119b192d7581d632d2c3c assets/totemic/models/block/mangrove_totem_base.json

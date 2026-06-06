@@ -79,7 +79,7 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                     .end(),
                 0, //angle offset of 0, rotates the model by 180°
                 TipiBlock.OCCUPIED);
-        simpleBlock(ModBlocks.dummy_tipi.get(), models().singleTexture(key(ModBlocks.dummy_tipi.get()).toString(), mcLoc("block/air"), "particle", mcLoc("block/white_wool")));
+        simpleBlock(ModBlocks.dummy_tipi.get(), models().getBuilder(key(ModBlocks.dummy_tipi.get()).toString()).texture("particle", mcLoc("block/white_wool")));
         horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), models().getExistingFile(modLoc("dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
         horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), models().getExistingFile(modLoc("dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
         totemWoodTypes();
