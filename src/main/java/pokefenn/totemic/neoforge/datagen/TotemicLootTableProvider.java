@@ -79,7 +79,7 @@ public final class TotemicLootTableProvider extends LootTableProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-            return ModBlocks.REGISTER.getEntries().stream().<Block>map(DeferredHolder::get)::iterator;
+            return ModBlocks.REGISTER.getEntries()::iterator;
         }
     }
 

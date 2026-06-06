@@ -1,6 +1,7 @@
 package pokefenn.totemic;
 
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import net.minecraft.core.Holder;
 
@@ -22,4 +23,9 @@ public interface PlatformRegistryHelper<T> {
      * Same as {@link #register}, but returning a Holder instead of a Supplier.
      */
     <I extends T> Holder<T> registerForHolder(String name, Supplier<? extends I> factory);
+
+    /**
+     * Returns a Stream of all entries registered by this helper.
+     */
+    Stream<T> getEntries();
 }

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -100,14 +101,17 @@ public final class ModItems {
     public static void init(RegisterEvent event) {
         event.register(Registries.ITEM, registry -> {
             //Register item blocks
-            final Set<ResourceLocation> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.cedar_hanging_sign.getId(), ModBlocks.cedar_wall_hanging_sign.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
-            for(var blockO: ModBlocks.REGISTER.getEntries()) {
-                if(blocksWithoutItem.contains(blockO.getId()))
-                    continue;
-
-                Block block = blockO.get();
-                registry.register(blockO.getId(), new BlockItem(block, new Properties()));
-            }
+            // TODO: This is messy, figure out a better way of doing that.
+            // For example, a "registerWithItem" method on a special subinterface of PlatformRegistryHelper<Block>,
+            // or simply registering item blocks manually in this class. The latter approach would be better for adding
+            // the items to the creative tab.
+            final Set<Block> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.get(), ModBlocks.wind_chime.get(), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), ModBlocks.dummy_tipi.get(), ModBlocks.totem_base.get(), ModBlocks.totem_pole.get());
+            ModBlocks.REGISTER.getEntries()
+                    .filter(block -> !blocksWithoutItem.contains(block))
+                    .forEach(block -> {
+                ResourceLocation id = BuiltInRegistries.BLOCK.getKey(block);
+                registry.register(id, new BlockItem(block, new Properties()));
+            });
         });
 
         //Register the creative tab
@@ -121,10 +125,9 @@ public final class ModItems {
 
     //TODO: Manual adding might be better to define a better ordering of the items
     private static void addItemsToCreativeTab(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output out) {
-        final Set<ResourceLocation> blocksNotInCreativeTab = Set.of(ModBlocks.potted_cedar_sapling.getId(), ModBlocks.wind_chime.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.cedar_hanging_sign.getId(), ModBlocks.cedar_wall_hanging_sign.getId(), ModBlocks.dummy_tipi.getId());
-        ModBlocks.REGISTER.getEntries().stream()
-                .filter(ro -> !blocksNotInCreativeTab.contains(ro.getId()))
-                .map(DeferredHolder::get)
+        final Set<Block> blocksNotInCreativeTab = Set.of(ModBlocks.potted_cedar_sapling.get(), ModBlocks.wind_chime.get(), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), ModBlocks.dummy_tipi.get());
+        ModBlocks.REGISTER.getEntries()
+                .filter(ro -> !blocksNotInCreativeTab.contains(ro))
                 .forEach(out::accept);
         ModItems.REGISTER.getEntries().stream()
                 .map(DeferredHolder::get)

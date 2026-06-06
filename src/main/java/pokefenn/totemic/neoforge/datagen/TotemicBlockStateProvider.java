@@ -3,12 +3,11 @@ package pokefenn.totemic.neoforge.datagen;
 import java.util.Set;
 
 import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CeilingHangingSignBlock;
-import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
@@ -18,7 +17,6 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.util.TransformationHelper.TransformOrigin;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.TipiBlock;
@@ -42,9 +40,9 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
         axisBlock(ModBlocks.stripped_cedar_wood.get(), blockTexture(ModBlocks.stripped_cedar_log.get()), blockTexture(ModBlocks.stripped_cedar_log.get()));
         simpleBlock(ModBlocks.cedar_leaves.get(), models().withExistingParent("totemic:cedar_leaves", "block/leaves").texture("all", "totemic:block/cedar_leaves"));
         models().withExistingParent("totemic:cedar_leaves_opaque", "block/leaves").texture("all", "totemic:block/cedar_leaves_opaque");
-        simpleBlock(ModBlocks.cedar_sapling.get(), models().withExistingParent(ModBlocks.cedar_sapling.getId().toString(), "block/cross").texture("cross", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.cedar_sapling.get(), models().withExistingParent(key(ModBlocks.cedar_sapling.get()).toString(), "block/cross").texture("cross", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
         simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
-        simpleBlock(ModBlocks.wind_chime.get(), blockEntityRenderer(ModBlocks.wind_chime, mcLoc("block/white_terracotta"))
+        simpleBlock(ModBlocks.wind_chime.get(), blockEntityRenderer(ModBlocks.wind_chime.get(), mcLoc("block/white_terracotta"))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
                     .rotation(75, 45, 0)
@@ -64,14 +62,14 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
         fenceGateBlock(ModBlocks.cedar_fence_gate.get(), cedarPlankTex);
         pressurePlateBlock(ModBlocks.cedar_pressure_plate.get(), cedarPlankTex);
         signBlock(ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), cedarPlankTex);
-        hangingSignBlock(ModBlocks.cedar_hanging_sign, ModBlocks.cedar_wall_hanging_sign, blockTexture(ModBlocks.stripped_cedar_log.get()));
-        slabBlock(ModBlocks.cedar_slab.get(), ModBlocks.cedar_planks.getId(), cedarPlankTex, cedarPlankTex, cedarPlankTex);
+        hangingSignBlock(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), blockTexture(ModBlocks.stripped_cedar_log.get()));
+        slabBlock(ModBlocks.cedar_slab.get(), key(ModBlocks.cedar_planks.get()), cedarPlankTex);
         stairsBlock(ModBlocks.cedar_stairs.get(), cedarPlankTex);
         doorBlock(ModBlocks.cedar_door.get(), modLoc("block/cedar_door_bottom"), modLoc("block/cedar_door_top"));
         trapdoorBlock(ModBlocks.cedar_trapdoor.get(), modLoc("block/cedar_trapdoor"), true);
-        simpleBlock(ModBlocks.potted_cedar_sapling.get(), models().singleTexture(ModBlocks.potted_cedar_sapling.getId().toString(), mcLoc("block/flower_pot_cross"), "plant", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
+        simpleBlock(ModBlocks.potted_cedar_sapling.get(), models().singleTexture(key(ModBlocks.potted_cedar_sapling.get()).toString(), mcLoc("block/flower_pot_cross"), "plant", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
-        horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getBuilder(ModBlocks.tipi.getId().toString())
+        horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getBuilder(key(ModBlocks.tipi.get()).toString())
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .texture("particle", mcLoc("block/white_wool"))
                 .rootTransforms()
@@ -81,29 +79,27 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                     .end(),
                 0, //angle offset of 0, rotates the model by 180°
                 TipiBlock.OCCUPIED);
-        simpleBlock(ModBlocks.dummy_tipi.get(), models().withExistingParent(ModBlocks.dummy_tipi.getId().toString(), "block/air").texture("particle", mcLoc("block/white_wool")));
+        simpleBlock(ModBlocks.dummy_tipi.get(), models().singleTexture(key(ModBlocks.dummy_tipi.get()).toString(), mcLoc("block/air"), "particle", mcLoc("block/white_wool")));
         horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), models().getExistingFile(modLoc("dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
         horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), models().getExistingFile(modLoc("dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
         totemWoodTypes();
 
         //Item Blocks
         var im = itemModels();
-        final Set<ResourceLocation> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.getId(), ModBlocks.cedar_button.getId(), ModBlocks.cedar_fence.getId(), ModBlocks.cedar_door.getId(), ModBlocks.cedar_trapdoor.getId(), ModBlocks.cedar_sign.getId(), ModBlocks.cedar_wall_sign.getId(), ModBlocks.cedar_hanging_sign.getId(), ModBlocks.cedar_wall_hanging_sign.getId(), ModBlocks.potted_cedar_sapling.getId(), ModBlocks.totem_torch.getId(), ModBlocks.tipi.getId(), ModBlocks.dummy_tipi.getId(), ModBlocks.totem_base.getId(), ModBlocks.totem_pole.getId());
-        for(var blockO: ModBlocks.REGISTER.getEntries()) {
-            if(blocksWithCustomItemModel.contains(blockO.getId()))
-                continue;
+        // TODO: See comment in ModItems
+        final Set<Block> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.get(), ModBlocks.cedar_button.get(), ModBlocks.cedar_fence.get(), ModBlocks.cedar_door.get(), ModBlocks.cedar_trapdoor.get(), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), ModBlocks.potted_cedar_sapling.get(), ModBlocks.totem_torch.get(), ModBlocks.tipi.get(), ModBlocks.dummy_tipi.get(), ModBlocks.totem_base.get(), ModBlocks.totem_pole.get());
+        ModBlocks.REGISTER.getEntries()
+                .filter(block -> !blocksWithCustomItemModel.contains(block))
+                .forEach(block -> existingBlockItem(block));
 
-            existingBlockItem((DeferredBlock<?>) blockO);
-        }
-
-        im.singleTexture(ModBlocks.cedar_sapling.getId().toString(), mcLoc("item/generated"), "layer0", blockTexture(ModBlocks.cedar_sapling.get()));
-        im.withExistingParent(ModBlocks.cedar_button.getId().toString(), "block/button_inventory").texture("texture", cedarPlankTex);
-        im.withExistingParent(ModBlocks.cedar_fence.getId().toString(), "block/fence_inventory").texture("texture", cedarPlankTex);
-        im.basicItem(ModBlocks.cedar_door.getId());
-        im.withExistingParent(ModBlocks.cedar_trapdoor.getId().toString(), modLoc("block/cedar_trapdoor_bottom"));
-        im.basicItem(ModBlocks.cedar_sign.getId());
-        im.basicItem(ModBlocks.cedar_hanging_sign.getId());
-        im.withExistingParent(ModBlocks.totem_torch.getId().toString(), modLoc("block/totem_torch"))
+        im.singleTexture(key(ModBlocks.cedar_sapling.get()).toString(), mcLoc("item/generated"), "layer0", blockTexture(ModBlocks.cedar_sapling.get()));
+        im.singleTexture(key(ModBlocks.cedar_button.get()).toString(), mcLoc("block/button_inventory"), "texture", cedarPlankTex);
+        im.singleTexture(key(ModBlocks.cedar_fence.get()).toString(), mcLoc("block/fence_inventory"), "texture", cedarPlankTex);
+        im.basicItem(key(ModBlocks.cedar_door.get()));
+        im.withExistingParent(key(ModBlocks.cedar_trapdoor.get()).toString(), modLoc("block/cedar_trapdoor_bottom"));
+        im.basicItem(key(ModBlocks.cedar_sign.get()));
+        im.basicItem(key(ModBlocks.cedar_hanging_sign.get()));
+        im.withExistingParent(key(ModBlocks.totem_torch.get()).toString(), modLoc("block/totem_torch"))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
                     .rotation(0, 45, 0)
@@ -120,9 +116,9 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                     .scale(0.5F)
                     .end()
                 .end();
-        //im.withExistingParent(ModBlocks.tipi.getId().toString(), modLoc("block/tipi"))
+        //im.withExistingParent(key(ModBlocks.tipi.get()).toString(), modLoc("block/tipi"))
         //use a separate item model because the transforms are not compatible with the tipi's root transform
-        im.getBuilder(ModBlocks.tipi.getId().toString())
+        im.getBuilder(key(ModBlocks.tipi.get()).toString())
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
                 .transforms()
                 .transform(ItemDisplayContext.GUI)
@@ -156,8 +152,8 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                     .scale(0.25F)
                     .end()
                 .end();
-        im.withExistingParent(ModBlocks.totem_base.getId().toString(), modLoc("block/dynamic_totem_base"));
-        im.withExistingParent(ModBlocks.totem_pole.getId().toString(), modLoc("block/dynamic_totem_pole"));
+        im.withExistingParent(key(ModBlocks.totem_base.get()).toString(), modLoc("block/dynamic_totem_base"));
+        im.withExistingParent(key(ModBlocks.totem_pole.get()).toString(), modLoc("block/dynamic_totem_pole"));
 
         //Items
         im.basicItem(ModItems.flute.getId());
@@ -209,6 +205,11 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                 .texture("particle", ResourceLocation.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"));
     }
 
+    // Why is this not accessible in Neo?
+    private ResourceLocation key(Block block) {
+        return BuiltInRegistries.BLOCK.getKey(block);
+    }
+
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
         horizontalBlockIgnoringProperties(block, model, 180, ignored);
     }
@@ -222,14 +223,8 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
             ignored);
     }
 
-    private void hangingSignBlock(DeferredBlock<? extends CeilingHangingSignBlock> ceilingSign, DeferredBlock<? extends WallHangingSignBlock> wallSign, ResourceLocation texture) {
-        var hangingSignModel = models().sign(ceilingSign.getId().getPath(), texture);
-        simpleBlock(ceilingSign.get(), hangingSignModel);
-        simpleBlock(wallSign.get(), hangingSignModel);
-    }
-
-    private void existingBlockItem(DeferredBlock<?> block) {
-        simpleBlockItem(block.get(), models().getExistingFile(block.getId()));
+    private void existingBlockItem(Block block) {
+        simpleBlockItem(block, models().getExistingFile(key(block)));
     }
 
     private void basicItemWithParent(DeferredItem<?> item, ResourceLocation parent) {
@@ -238,8 +233,8 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                 .texture("layer0", id.withPath("item/" + id.getPath()));
     }
 
-    private BlockModelBuilder blockEntityRenderer(DeferredBlock<?> block, ResourceLocation particleTexture) {
-        return models().getBuilder(block.getId().toString())
+    private BlockModelBuilder blockEntityRenderer(Block block, ResourceLocation particleTexture) {
+        return models().getBuilder(key(block).toString())
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .texture("particle", particleTexture)
                 .guiLight(GuiLight.SIDE)
