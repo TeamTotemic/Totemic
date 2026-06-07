@@ -115,19 +115,16 @@ public final class TotemicConfig {
             ceremonyStartupTimeMultiplierEasy = builder
                     .comment("The Ceremony startup time is multiplied by this value in Peaceful and Easy difficulty.")
                     .comment("Higher values make Ceremonies easier to perform.")
-                    .comment("Default value: 1.1")
                     .translation("totemic.config.ceremonyStartupTimeMultiplierEasy")
                     .defineInRange("ceremonyStartupTimeMultiplierEasy", 1.1, 0.1, Double.POSITIVE_INFINITY);
 
             ceremonyStartupTimeMultiplierNormal = builder
                     .comment("The Ceremony startup time is multiplied by this value in Normal difficulty.")
-                    .comment("Default value: 1.0")
                     .translation("totemic.config.ceremonyStartupTimeMultiplierNormal")
                     .defineInRange("ceremonyStartupTimeMultiplierNormal", 1.0, 0.1, Double.POSITIVE_INFINITY);
 
             ceremonyStartupTimeMultiplierHard = builder
                     .comment("The Ceremony startup time is multiplied by this value in Hard difficulty.")
-                    .comment("Default value: 0.875")
                     .translation("totemic.config.ceremonyStartupTimeMultiplierHard")
                     .defineInRange("ceremonyStartupTimeMultiplierHard", 0.875, 0.1, Double.POSITIVE_INFINITY);
         }
