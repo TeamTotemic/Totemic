@@ -40,7 +40,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     private boolean needPoleUpdate = true;
 
     //see also TotemPoleBlockEntity
-    private ResourceLocation woodTypeLoc = ModContent.oak.getId();
+    private ResourceLocation woodTypeLoc = ModContent.oak.get().getRegistryName();
     private volatile TotemWoodType woodType = ModContent.oak.get();
 
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
@@ -155,7 +155,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, Provider registries) {
         super.loadAdditional(tag, registries);
-        woodTypeLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Wood")), ModContent.oak.getId());
+        woodTypeLoc = Objects.requireNonNullElseGet(ResourceLocation.tryParse(tag.getString("Wood")), () -> ModContent.oak.get().getRegistryName());
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
         if(optWood.isEmpty())
             Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);

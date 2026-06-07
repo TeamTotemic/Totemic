@@ -56,10 +56,10 @@ public final class TotemicNeoMod {
         registerToModBus(ModBlockEntities.REGISTER, modBus);
         ModEntityTypes.REGISTER.register(modBus);
         ModSounds.REGISTER.register(modBus);
-        ModContent.INSTRUMENTS.register(modBus);
-        ModContent.WOOD_TYPES.register(modBus);
-        ModContent.CARVINGS.register(modBus);
-        ModContent.CEREMONIES.register(modBus);
+        registerToModBus(ModContent.INSTRUMENTS, modBus);
+        registerToModBus(ModContent.WOOD_TYPES, modBus);
+        registerToModBus(ModContent.CARVINGS, modBus);
+        registerToModBus(ModContent.CEREMONIES, modBus);
 
         modBus.addListener(ModItems::init);
         modBus.addListener(ModCriteriaTriggers::init);

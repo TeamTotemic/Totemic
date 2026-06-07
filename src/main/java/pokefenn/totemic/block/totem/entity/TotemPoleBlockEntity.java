@@ -25,8 +25,8 @@ import pokefenn.totemic.init.ModContent;
 public class TotemPoleBlockEntity extends BlockEntity {
     //Remember the values as read from NBT to avoid permanently replacing them with the defaults in case entries are removed from the registry
     //(e.g. when the config gets changed or corrupted)
-    private ResourceLocation woodTypeLoc = ModContent.oak.getId();
-    private ResourceLocation carvingLoc = ModContent.none.getId();
+    private ResourceLocation woodTypeLoc = ModContent.oak.get().getRegistryName();
+    private ResourceLocation carvingLoc = ModContent.none.get().getRegistryName();
 
     //Fields need to be volatile since getModelData() is called from chunk render threads
     private volatile TotemWoodType woodType = ModContent.oak.get();
@@ -46,13 +46,13 @@ public class TotemPoleBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, Provider registries) {
         super.loadAdditional(tag, registries);
-        woodTypeLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Wood")), ModContent.oak.getId());
+        woodTypeLoc = Objects.requireNonNullElseGet(ResourceLocation.tryParse(tag.getString("Wood")), () -> ModContent.oak.get().getRegistryName());
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
         if(optWood.isEmpty())
             Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);
         woodType = optWood.orElseGet(ModContent.oak);
 
-        carvingLoc = Objects.requireNonNullElse(ResourceLocation.tryParse(tag.getString("Carving")), ModContent.none.getId());
+        carvingLoc = Objects.requireNonNullElseGet(ResourceLocation.tryParse(tag.getString("Carving")), () -> ModContent.none.get().getRegistryName());
         var optCarving = TotemicAPI.get().registry().totemCarvings().getOptional(carvingLoc);
         if(optCarving.isEmpty())
             Totemic.logger.warn("Unknown Totem Carving: '{}'", carvingLoc);

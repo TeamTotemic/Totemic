@@ -10,12 +10,10 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.RegisterEvent;
+import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
-import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -39,7 +37,7 @@ import pokefenn.totemic.ceremony.ZaphkielWaltzCeremony;
 import pokefenn.totemic.totem.OcelotTotemEffect;
 
 public final class ModContent {
-    public static final DeferredRegister<MusicInstrument> INSTRUMENTS = DeferredRegister.create(RegistryAPI.MUSIC_INSTRUMENT_REGISTRY, TotemicAPI.MOD_ID);
+    public static final PlatformRegistryHelper<MusicInstrument> INSTRUMENTS = Totemic.platform().createRegistryHelper(RegistryAPI.MUSIC_INSTRUMENT_REGISTRY);
     public static final Supplier<MusicInstrument> flute = INSTRUMENTS.register("flute", () -> new MusicInstrument(180, 3000).setItem(ModItems.flute.get()).setSound(ModSounds.flute));
     public static final Supplier<MusicInstrument> drum = INSTRUMENTS.register("drum", () -> new MusicInstrument(240, 3300).setItem(ModBlocks.drum.get()).setSound(ModSounds.drum));
     public static final Supplier<MusicInstrument> wind_chime = INSTRUMENTS.register("wind_chime", () -> new MusicInstrument(120, 1500).setItem(ModBlocks.wind_chime.get()).setSound(ModSounds.wind_chime));
@@ -48,8 +46,8 @@ public final class ModContent {
     public static final Supplier<MusicInstrument> eagle_bone_whistle = INSTRUMENTS.register("eagle_bone_whistle", () -> new MusicInstrument(360, 3600).setItem(ModItems.eagle_bone_whistle.get()).setSound(ModSounds.eagle_bone_whistle));
 //    public static final Supplier<MusicInstrument> nether_pipe = INSTRUMENTS.register("nether_pipe", () -> new MusicInstrument(240, 3900));
 
-    public static final DeferredRegister<TotemWoodType> WOOD_TYPES = DeferredRegister.create(RegistryAPI.WOOD_TYPE_REGISTRY, TotemicAPI.MOD_ID);
-    public static final DeferredHolder<TotemWoodType, TotemWoodType> oak = WOOD_TYPES.register("oak", () -> new TotemWoodType(MapColor.WOOD, MapColor.PODZOL, BlockTags.OAK_LOGS)); //default value
+    public static final PlatformRegistryHelper<TotemWoodType> WOOD_TYPES = Totemic.platform().createRegistryHelper(RegistryAPI.WOOD_TYPE_REGISTRY);
+    public static final Supplier<TotemWoodType> oak = WOOD_TYPES.register("oak", () -> new TotemWoodType(MapColor.WOOD, MapColor.PODZOL, BlockTags.OAK_LOGS)); //default value
     public static final Supplier<TotemWoodType> spruce = WOOD_TYPES.register("spruce", () -> new TotemWoodType(MapColor.PODZOL, MapColor.COLOR_BROWN, BlockTags.SPRUCE_LOGS));
     public static final Supplier<TotemWoodType> birch = WOOD_TYPES.register("birch", () -> new TotemWoodType(MapColor.SAND, MapColor.QUARTZ, BlockTags.BIRCH_LOGS));
     public static final Supplier<TotemWoodType> jungle = WOOD_TYPES.register("jungle", () -> new TotemWoodType(MapColor.DIRT, MapColor.PODZOL, BlockTags.JUNGLE_LOGS));
@@ -59,8 +57,8 @@ public final class ModContent {
     public static final Supplier<TotemWoodType> mangrove = WOOD_TYPES.register("mangrove", () -> new TotemWoodType(MapColor.COLOR_RED, MapColor.PODZOL, BlockTags.MANGROVE_LOGS));
     public static final Supplier<TotemWoodType> cedar = WOOD_TYPES.register("cedar", () -> new TotemWoodType(MapColor.COLOR_PINK, MapColor.COLOR_ORANGE, TotemicBlockTags.CEDAR_LOGS));
 
-    public static final DeferredRegister<TotemCarving> CARVINGS = DeferredRegister.create(RegistryAPI.TOTEM_CARVING_REGISTRY, TotemicAPI.MOD_ID);
-    public static final DeferredHolder<TotemCarving, TotemCarving> none = CARVINGS.register("none", () -> TotemCarving.of()); //default value
+    public static final PlatformRegistryHelper<TotemCarving> CARVINGS = Totemic.platform().createRegistryHelper(RegistryAPI.TOTEM_CARVING_REGISTRY);
+    public static final Supplier<TotemCarving> none = CARVINGS.register("none", () -> TotemCarving.of()); //default value
     public static final Supplier<TotemCarving> bat = CARVINGS.register("bat", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.SLOW_FALLING)));
     public static final Supplier<TotemCarving> blaze = CARVINGS.register("blaze", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.FIRE_RESISTANCE)));
     public static final Supplier<TotemCarving> buffalo = CARVINGS.register("buffalo", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.DIG_SPEED)));
@@ -81,7 +79,7 @@ public final class ModContent {
     public static final Supplier<TotemCarving> squid = CARVINGS.register("squid", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.WATER_BREATHING)));
     public static final Supplier<TotemCarving> wolf = CARVINGS.register("wolf", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.DAMAGE_BOOST)));
 
-    public static final DeferredRegister<Ceremony> CEREMONIES = DeferredRegister.create(RegistryAPI.CEREMONY_REGISTRY, TotemicAPI.MOD_ID);
+    public static final PlatformRegistryHelper<Ceremony> CEREMONIES = Totemic.platform().createRegistryHelper(RegistryAPI.CEREMONY_REGISTRY);
     //Music amount landmarks:
     //6300: Flute + Drum
     //7800: Flute + Drum + full Wind Chime
