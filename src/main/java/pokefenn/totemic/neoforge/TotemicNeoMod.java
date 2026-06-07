@@ -51,11 +51,11 @@ public final class TotemicNeoMod {
         registerToModBus(ModBlocks.REGISTER, modBus);
         registerToModBus(ModItems.REGISTER, modBus);
         registerToModBus(ModItems.ARMOR_MATERIALS, modBus);
-        ModDataComponents.REGISTER.register(modBus);
-        ModMobEffects.REGISTER.register(modBus);
+        registerToModBus(ModDataComponents.REGISTER, modBus);
+        registerToModBus(ModMobEffects.REGISTER, modBus);
         registerToModBus(ModBlockEntities.REGISTER, modBus);
-        ModEntityTypes.REGISTER.register(modBus);
-        ModSounds.REGISTER.register(modBus);
+        registerToModBus(ModEntityTypes.REGISTER, modBus);
+        registerToModBus(ModSounds.REGISTER, modBus);
         registerToModBus(ModContent.INSTRUMENTS, modBus);
         registerToModBus(ModContent.WOOD_TYPES, modBus);
         registerToModBus(ModContent.CARVINGS, modBus);

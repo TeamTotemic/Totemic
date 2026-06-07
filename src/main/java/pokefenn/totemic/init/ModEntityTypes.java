@@ -6,15 +6,15 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.PlatformRegistryHelper;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.entity.BaldEagle;
 import pokefenn.totemic.entity.Baykok;
 import pokefenn.totemic.entity.Buffalo;
 import pokefenn.totemic.entity.InvisibleArrow;
 
 public final class ModEntityTypes {
-    public static final DeferredRegister<EntityType<?>> REGISTER = DeferredRegister.create(Registries.ENTITY_TYPE, TotemicAPI.MOD_ID);
+    public static final PlatformRegistryHelper<EntityType<?>> REGISTER = Totemic.platform().createRegistryHelper(Registries.ENTITY_TYPE);
 
     public static final Supplier<EntityType<Buffalo>> buffalo = REGISTER.register("buffalo", () ->
             EntityType.Builder.of(Buffalo::new, MobCategory.CREATURE)

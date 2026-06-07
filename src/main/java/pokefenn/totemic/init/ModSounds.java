@@ -4,12 +4,11 @@ import java.util.function.Supplier;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvent;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
-import pokefenn.totemic.api.TotemicAPI;
 
 public final class ModSounds {
-    public static final DeferredRegister<SoundEvent> REGISTER = DeferredRegister.create(Registries.SOUND_EVENT, TotemicAPI.MOD_ID);
+    public static final PlatformRegistryHelper<SoundEvent> REGISTER = Totemic.platform().createRegistryHelper(Registries.SOUND_EVENT);
 
     public static final Supplier<SoundEvent> flute = createSound("flute");
     public static final Supplier<SoundEvent> drum = createSound("drum");
