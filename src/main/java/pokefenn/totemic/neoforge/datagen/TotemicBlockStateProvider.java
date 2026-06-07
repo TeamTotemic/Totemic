@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -17,7 +18,6 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.util.TransformationHelper.TransformOrigin;
-import net.neoforged.neoforge.registries.DeferredItem;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
@@ -90,7 +90,7 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
         final Set<Block> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.get(), ModBlocks.cedar_button.get(), ModBlocks.cedar_fence.get(), ModBlocks.cedar_door.get(), ModBlocks.cedar_trapdoor.get(), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), ModBlocks.potted_cedar_sapling.get(), ModBlocks.totem_torch.get(), ModBlocks.tipi.get(), ModBlocks.dummy_tipi.get(), ModBlocks.totem_base.get(), ModBlocks.totem_pole.get());
         ModBlocks.REGISTER.getEntries()
                 .filter(block -> !blocksWithCustomItemModel.contains(block))
-                .forEach(block -> existingBlockItem(block));
+                .forEach(block -> im.simpleBlockItem(block));
 
         im.singleTexture(key(ModBlocks.cedar_sapling.get()).toString(), mcLoc("item/generated"), "layer0", blockTexture(ModBlocks.cedar_sapling.get()));
         im.singleTexture(key(ModBlocks.cedar_button.get()).toString(), mcLoc("block/button_inventory"), "texture", cedarPlankTex);
@@ -156,32 +156,32 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
         im.withExistingParent(key(ModBlocks.totem_pole.get()).toString(), modLoc("block/dynamic_totem_pole"));
 
         //Items
-        im.basicItem(ModItems.flute.getId());
-        im.basicItem(ModItems.infused_flute.getId());
-        im.basicItem(ModItems.jingle_dress.getId());
-        basicItemWithParent(ModItems.rattle, mcLoc("item/handheld"));
-        im.basicItem(ModItems.eagle_bone_whistle.getId());
-        basicItemWithParent(ModItems.totem_whittling_knife, mcLoc("item/handheld"));
-        basicItemWithParent(ModItems.totemic_staff, mcLoc("item/handheld"));
-        basicItemWithParent(ModItems.ceremony_cheat, mcLoc("item/handheld"));
-        im.withExistingParent(ModItems.buffalo_spawn_egg.getId().toString(), "item/template_spawn_egg");
-        im.withExistingParent(ModItems.bald_eagle_spawn_egg.getId().toString(), "item/template_spawn_egg");
-        im.withExistingParent(ModItems.baykok_spawn_egg.getId().toString(), "item/template_spawn_egg");
-        im.basicItem(ModItems.buffalo_meat.getId());
-        im.basicItem(ModItems.cooked_buffalo_meat.getId());
-        im.basicItem(ModItems.buffalo_tooth.getId());
-        im.basicItem(ModItems.buffalo_hide.getId());
-        im.basicItem(ModItems.iron_bells.getId());
-        im.basicItem(ModItems.eagle_bone.getId());
-        im.basicItem(ModItems.eagle_feather.getId());
-        var baykokBow = im.withExistingParent(ModItems.baykok_bow.getId().toString(), "item/bow").texture("layer0", modLoc("item/baykok_bow"));
+        im.basicItem(ModItems.flute.get());
+        im.basicItem(ModItems.infused_flute.get());
+        im.basicItem(ModItems.jingle_dress.get());
+        basicItemWithParent(ModItems.rattle.get(), mcLoc("item/handheld"));
+        im.basicItem(ModItems.eagle_bone_whistle.get());
+        basicItemWithParent(ModItems.totem_whittling_knife.get(), mcLoc("item/handheld"));
+        basicItemWithParent(ModItems.totemic_staff.get(), mcLoc("item/handheld"));
+        basicItemWithParent(ModItems.ceremony_cheat.get(), mcLoc("item/handheld"));
+        im.spawnEggItem(ModItems.buffalo_spawn_egg.get());
+        im.spawnEggItem(ModItems.bald_eagle_spawn_egg.get());
+        im.spawnEggItem(ModItems.baykok_spawn_egg.get());
+        im.basicItem(ModItems.buffalo_meat.get());
+        im.basicItem(ModItems.cooked_buffalo_meat.get());
+        im.basicItem(ModItems.buffalo_tooth.get());
+        im.basicItem(ModItems.buffalo_hide.get());
+        im.basicItem(ModItems.iron_bells.get());
+        im.basicItem(ModItems.eagle_bone.get());
+        im.basicItem(ModItems.eagle_feather.get());
+        var baykokBow = im.withExistingParent(key(ModItems.baykok_bow.get()).toString(), "item/bow").texture("layer0", modLoc("item/baykok_bow"));
         baykokBow.override().predicate(mcLoc("pulling"), 1).model(im.basicItem(modLoc("baykok_bow_pulling_0")).parent(baykokBow)).end();
         baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.65F).model(im.basicItem(modLoc("baykok_bow_pulling_1")).parent(baykokBow)).end();
         baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.9F).model(im.basicItem(modLoc("baykok_bow_pulling_2")).parent(baykokBow)).end();
         im.basicItem(modLoc("totempedia"));
         var medBagOpen = im.basicItem(modLoc("medicine_bag_open"));
-        var medBag = im.basicItem(ModItems.medicine_bag.getId()).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
-        im.getBuilder(ModItems.creative_medicine_bag.getId().toString()).parent(medBag).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
+        var medBag = im.basicItem(ModItems.medicine_bag.get()).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
+        im.getBuilder(key(ModItems.creative_medicine_bag.get()).toString()).parent(medBag).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
     }
 
     private void totemWoodTypes() {
@@ -210,6 +210,10 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
         return BuiltInRegistries.BLOCK.getKey(block);
     }
 
+    private ResourceLocation key(Item item) {
+        return BuiltInRegistries.ITEM.getKey(item);
+    }
+
     private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
         horizontalBlockIgnoringProperties(block, model, 180, ignored);
     }
@@ -223,12 +227,8 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
             ignored);
     }
 
-    private void existingBlockItem(Block block) {
-        simpleBlockItem(block, models().getExistingFile(key(block)));
-    }
-
-    private void basicItemWithParent(DeferredItem<?> item, ResourceLocation parent) {
-        var id = item.getId();
+    private void basicItemWithParent(Item item, ResourceLocation parent) {
+        var id = key(item);
         itemModels().withExistingParent(id.toString(), parent)
                 .texture("layer0", id.withPath("item/" + id.getPath()));
     }

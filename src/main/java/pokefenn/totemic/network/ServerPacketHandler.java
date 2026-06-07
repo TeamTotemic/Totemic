@@ -9,7 +9,7 @@ import pokefenn.totemic.item.TotemKnifeItem;
 public final class ServerPacketHandler {
     public static void handle(ServerboundPacketMouseWheel packet, Player player) {
         ItemStack stack = player.getMainHandItem();
-        if(stack.is(ModItems.totem_whittling_knife)) {
+        if(stack.is(ModItems.totem_whittling_knife.get())) {
             player.setItemInHand(InteractionHand.MAIN_HAND, TotemKnifeItem.changeIndex(stack, packet.direction()));
         }
     }

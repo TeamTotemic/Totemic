@@ -7,6 +7,7 @@ import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -45,7 +46,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('P', Items.PAPER)
                 .define('W', ItemTags.LOGS_THAT_BURN)
                 .unlockedBy("has_paper", has(Items.PAPER))
-                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife))
+                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife.get()))
                 .save(rc.withConditions(new ModLoadedCondition(PatchouliAPI.MOD_ID)), "totemic:totempedia");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.flute.get())
                 .pattern(" LS")
@@ -53,7 +54,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("S  ")
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LEAVES)
-                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife))
+                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.jingle_dress.get())
                 .pattern(" L ")
@@ -70,7 +71,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("NNN")
                 .pattern(" N ")
                 .define('N', Tags.Items.NUGGETS_IRON)
-                .unlockedBy("has_jingle_dress_recipe", RecipeUnlockedTrigger.unlocked(ModItems.jingle_dress.getId()))
+                .unlockedBy("has_jingle_dress_recipe", RecipeUnlockedTrigger.unlocked(RecipeBuilder.getDefaultRecipeId(ModItems.jingle_dress.get())))
                 .save(rc);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.rattle.get())
                 .pattern(" WW")
@@ -97,7 +98,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("S L")
                 .define('S', Tags.Items.RODS_WOODEN)
                 .define('L', ItemTags.LEAVES)
-                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife))
+                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.drum.get())
                 .pattern("EEE")
@@ -106,7 +107,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .define('E', Tags.Items.LEATHERS)
                 .define('L', ItemTags.LOGS_THAT_BURN)
                 .define('W', ItemTags.WOOL)
-                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife))
+                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife.get()))
                 .save(rc);
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.wind_chime.get())
                 .pattern("WWW")

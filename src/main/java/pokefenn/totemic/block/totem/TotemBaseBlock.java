@@ -67,7 +67,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if(stack.is(ModItems.totemic_staff))
+        if(stack.is(ModItems.totemic_staff.get()))
             return onTotemicStaffRightClick(level, pos, player);
         else
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
