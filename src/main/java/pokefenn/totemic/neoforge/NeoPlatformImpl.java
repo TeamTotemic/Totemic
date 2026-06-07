@@ -1,5 +1,7 @@
 package pokefenn.totemic.neoforge;
 
+import java.util.function.Supplier;
+
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.Registry;
@@ -7,11 +9,16 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -26,6 +33,11 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     @Override
     public <T> PlatformRegistryHelper<T> createRegistryHelper(ResourceKey<Registry<T>> registryKey) {
         return new NeoPlatformRegistry<T>(DeferredRegister.create(registryKey, TotemicAPI.MOD_ID));
+    }
+
+    @Override
+    public SpawnEggItem createSpawnEgg(Supplier<? extends EntityType<? extends Mob>> type, int backgroundColor, int highlightColor, Properties props) {
+        return new DeferredSpawnEggItem(type, backgroundColor, highlightColor, props);
     }
 
     @Override
