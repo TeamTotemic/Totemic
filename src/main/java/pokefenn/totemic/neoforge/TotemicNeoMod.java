@@ -81,7 +81,6 @@ public final class TotemicNeoMod {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            ModBlocks.addPlantsToFlowerPot();
             ModBlocks.setFireInfo();
         });
 

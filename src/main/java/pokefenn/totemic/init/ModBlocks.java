@@ -5,7 +5,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 import net.minecraft.core.Direction.Axis;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
@@ -75,7 +74,8 @@ public final class ModBlocks {
     public static final Supplier<StairBlock> cedar_stairs = REGISTER.register("cedar_stairs", () -> new StairBlock(cedar_planks.get().defaultBlockState(), Properties.ofFullCopy(cedar_planks.get())));
     public static final Supplier<DoorBlock> cedar_door = REGISTER.register("cedar_door", () -> new DoorBlock(CEDAR_BLOCK_SET_TYPE, Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final Supplier<TrapDoorBlock> cedar_trapdoor = REGISTER.register("cedar_trapdoor", () -> new TrapDoorBlock(CEDAR_BLOCK_SET_TYPE, Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn((s, g, p, t) -> false)));
-    public static final Supplier<FlowerPotBlock> potted_cedar_sapling = REGISTER.register("potted_cedar_sapling", () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, cedar_sapling, Properties.of().pushReaction(PushReaction.DESTROY).instabreak().noOcclusion()));
+    @SuppressWarnings("deprecation") // we don't use the Neo-only FlowerPotBlock constructor
+    public static final Supplier<FlowerPotBlock> potted_cedar_sapling = REGISTER.register("potted_cedar_sapling", () -> new FlowerPotBlock(cedar_sapling.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)));
     public static final Supplier<DrumBlock> drum = REGISTER.register("drum", () -> new DrumBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
     public static final Supplier<WindChimeBlock> wind_chime = REGISTER.register("wind_chime", () -> new WindChimeBlock(Properties.of().mapColor(MapColor.METAL).strength(1.5F).sound(SoundType.METAL)));
     public static final Supplier<TotemTorchBlock> totem_torch = REGISTER.register("totem_torch", () -> new TotemTorchBlock(Properties.of().pushReaction(PushReaction.DESTROY).strength(0.05F).lightLevel(s -> 15).sound(SoundType.WOOD).noCollission()));
@@ -83,10 +83,6 @@ public final class ModBlocks {
     public static final Supplier<DummyTipiBlock> dummy_tipi = REGISTER.register("dummy_tipi", () -> new DummyTipiBlock(Properties.of().mapColor(MapColor.WOOL).ignitedByLava().strength(0.2F).sound(SoundType.WOOL).noOcclusion().isValidSpawn((s, g, p, t) -> false).isRedstoneConductor((s, g, p) -> false).isSuffocating((s, g, p) -> false).isViewBlocking((s, g, p) -> false).pushReaction(PushReaction.BLOCK).noLootTable()));
     public static final Supplier<TotemBaseBlock> totem_base = REGISTER.register("totem_base", () -> new TotemBaseBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD)));
     public static final Supplier<TotemPoleBlock> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD)));
-
-    public static void addPlantsToFlowerPot() {
-        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(BuiltInRegistries.BLOCK.getKey(cedar_sapling.get()), potted_cedar_sapling);
-    }
 
     public static void setFireInfo() {
         FireBlock fire = (FireBlock) Blocks.FIRE;
