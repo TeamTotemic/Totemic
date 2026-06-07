@@ -9,12 +9,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
+import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModItems;
 
 @GameTestHolder(TotemicAPI.MOD_ID)
 @PrefixGameTestTemplate(false)
@@ -93,6 +97,36 @@ public final class GeneralTests {
         h.assertBlockPresent(Blocks.AIR, pos);
         h.assertItemEntityPresent(Blocks.FLOWER_POT.asItem(), pos, 1.0);
         h.assertItemEntityPresent(ModBlocks.cedar_sapling.get().asItem(), pos, 1.0);
+        h.succeed();
+    }
+
+    @GameTest(batch = "totemic.general", template = "general/cedar_signs")
+    public static void testCedarSigns(GameTestHelper h) {
+        h.assertTrue(BlockEntityType.SIGN.isValid(ModBlocks.cedar_sign.get().defaultBlockState()),
+                "cedar_sign not valid for Sign block entity type");
+        h.assertTrue(BlockEntityType.SIGN.isValid(ModBlocks.cedar_wall_sign.get().defaultBlockState()),
+                "cedar_wall_sign not valid for Sign block entity type");
+        h.assertTrue(BlockEntityType.HANGING_SIGN.isValid(ModBlocks.cedar_hanging_sign.get().defaultBlockState()),
+                "cedar_hanging_sign not valid for Hanging Sign block entity type");
+        h.assertTrue(BlockEntityType.HANGING_SIGN.isValid(ModBlocks.cedar_wall_hanging_sign.get().defaultBlockState()),
+                "cedar_wall_hanging_sign not valid for Hanging Sign block entity type");
+
+        useItem(h, new ItemStack(ModItems.cedar_sign.get()), new BlockPos(1, 1, 0), Direction.UP);
+        h.assertBlockPresent(ModBlocks.cedar_sign.get(), new BlockPos(1, 2, 0));
+        h.assertBlockEntityData(new BlockPos(1, 2, 0), be -> be instanceof SignBlockEntity, () -> "Expected Sign block entity");
+
+        useItem(h, new ItemStack(ModItems.cedar_sign.get()), new BlockPos(1, 3, 1), Direction.NORTH);
+        h.assertBlockPresent(ModBlocks.cedar_wall_sign.get(), new BlockPos(1, 3, 0));
+        h.assertBlockEntityData(new BlockPos(1, 3, 0), be -> be instanceof SignBlockEntity, () -> "Expected Sign block entity");
+
+        useItem(h, new ItemStack(ModItems.cedar_hanging_sign.get()), new BlockPos(0, 4, 0), Direction.DOWN);
+        h.assertBlockPresent(ModBlocks.cedar_hanging_sign.get(), new BlockPos(0, 3, 0));
+        h.assertBlockEntityData(new BlockPos(0, 3, 0), be -> be instanceof HangingSignBlockEntity, () -> "Expected Hanging Sign block entity");
+
+        useItem(h, new ItemStack(ModItems.cedar_hanging_sign.get()), new BlockPos(1, 4, 1), Direction.NORTH);
+        h.assertBlockPresent(ModBlocks.cedar_wall_hanging_sign.get(), new BlockPos(1, 4, 0));
+        h.assertBlockEntityData(new BlockPos(1, 4, 0), be -> be instanceof HangingSignBlockEntity, () -> "Expected Hanging Sign block entity");
+
         h.succeed();
     }
 
