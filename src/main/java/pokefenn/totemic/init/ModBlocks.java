@@ -1,6 +1,7 @@
 package pokefenn.totemic.init;
 
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 import net.minecraft.core.Direction.Axis;
@@ -36,7 +37,6 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.DummyTipiBlock;
@@ -103,8 +103,10 @@ public final class ModBlocks {
         fire.setFlammable(cedar_stairs.get(), 5, 20);
     }
 
-    public static void addCedarSignToSignBlockEntityType(BlockEntityTypeAddBlocksEvent event) {
-        event.modify(BlockEntityType.SIGN, ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get());
-        event.modify(BlockEntityType.HANGING_SIGN, ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get());
+    public static void addBlockEntityValidBlocks(BiConsumer<BlockEntityType<?>, Block> modifier) {
+        modifier.accept(BlockEntityType.SIGN, ModBlocks.cedar_sign.get());
+        modifier.accept(BlockEntityType.SIGN, ModBlocks.cedar_wall_sign.get());
+        modifier.accept(BlockEntityType.HANGING_SIGN, ModBlocks.cedar_hanging_sign.get());
+        modifier.accept(BlockEntityType.HANGING_SIGN, ModBlocks.cedar_wall_hanging_sign.get());
     }
 }

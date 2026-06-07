@@ -7,6 +7,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.TotemicConfig;
@@ -68,7 +69,7 @@ public final class TotemicNeoMod {
         modBus.addListener(RegistryApiImpl::registerRegistries);
         modBus.addListener(ModContent::registerCustomWoodTypes);
 
-        modBus.addListener(ModBlocks::addCedarSignToSignBlockEntityType);
+        modBus.addListener((BlockEntityTypeAddBlocksEvent event) -> ModBlocks.addBlockEntityValidBlocks(event::modify));
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
 
         TotemicConfig.register(container);
