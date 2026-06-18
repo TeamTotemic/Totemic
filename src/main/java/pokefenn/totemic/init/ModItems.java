@@ -2,15 +2,12 @@ package pokefenn.totemic.init;
 
 import java.util.EnumMap;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Supplier;
 
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
@@ -71,10 +68,33 @@ public final class ModItems {
     public static final Supplier<BaykokBowItem> baykok_bow = REGISTER.register("baykok_bow", () -> new BaykokBowItem(new Properties().durability(576).rarity(Rarity.RARE)));
     public static final Supplier<MedicineBagItem> medicine_bag = REGISTER.register("medicine_bag", () -> new MedicineBagItem(new Properties().stacksTo(1).component(ModDataComponents.OPEN, false).component(ModDataComponents.MEDICINE_BAG_CHARGE, 0)));
     public static final Supplier<CreativeMedicineBagItem> creative_medicine_bag = REGISTER.register("creative_medicine_bag", () -> new CreativeMedicineBagItem(new Properties().stacksTo(1).rarity(Rarity.EPIC).component(ModDataComponents.OPEN, false)));
-    //Blocks with custom item blocks
-    public static final Supplier<BlockItem> wind_chime = REGISTER.register("wind_chime", () -> new BlockItem(ModBlocks.wind_chime.get(), new Properties()));
+
+    // Block items
+    public static final Supplier<BlockItem> stripped_cedar_log = blockItem("stripped_cedar_log", ModBlocks.stripped_cedar_log);
+    public static final Supplier<BlockItem> cedar_log = blockItem("cedar_log", ModBlocks.cedar_log);
+    public static final Supplier<BlockItem> stripped_cedar_wood = blockItem("stripped_cedar_wood", ModBlocks.stripped_cedar_wood);
+    public static final Supplier<BlockItem> cedar_wood = blockItem("cedar_wood", ModBlocks.cedar_wood);
+    public static final Supplier<BlockItem> cedar_leaves = blockItem("cedar_leaves", ModBlocks.cedar_leaves);
+    public static final Supplier<BlockItem> cedar_sapling = blockItem("cedar_sapling", ModBlocks.cedar_sapling);
+    public static final Supplier<BlockItem> cedar_planks = blockItem("cedar_planks", ModBlocks.cedar_planks);
+    public static final Supplier<BlockItem> cedar_button = blockItem("cedar_button", ModBlocks.cedar_button);
+    public static final Supplier<BlockItem> cedar_fence = blockItem("cedar_fence", ModBlocks.cedar_fence);
+    public static final Supplier<BlockItem> cedar_fence_gate = blockItem("cedar_fence_gate", ModBlocks.cedar_fence_gate);
+    public static final Supplier<BlockItem> cedar_pressure_plate = blockItem("cedar_pressure_plate", ModBlocks.cedar_pressure_plate);
     public static final Supplier<SignItem> cedar_sign = REGISTER.register("cedar_sign", () -> new SignItem(new Properties().stacksTo(16), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get()));
+    // no item for cedar_wall_sign
     public static final Supplier<HangingSignItem> cedar_hanging_sign = REGISTER.register("cedar_hanging_sign", () -> new HangingSignItem(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), new Properties().stacksTo(16)));
+    // no item for cedar_wall_hanging_sign
+    public static final Supplier<BlockItem> cedar_slab = blockItem("cedar_slab", ModBlocks.cedar_slab);
+    public static final Supplier<BlockItem> cedar_stairs = blockItem("cedar_stairs", ModBlocks.cedar_stairs);
+    public static final Supplier<BlockItem> cedar_door = blockItem("cedar_door", ModBlocks.cedar_door);
+    public static final Supplier<BlockItem> cedar_trapdoor = blockItem("cedar_trapdoor", ModBlocks.cedar_trapdoor);
+    // no item for potted_cedar_sapling
+    public static final Supplier<BlockItem> drum = blockItem("drum", ModBlocks.drum);
+    public static final Supplier<BlockItem> wind_chime = blockItem("wind_chime", ModBlocks.wind_chime);
+    public static final Supplier<BlockItem> totem_torch = blockItem("totem_torch", ModBlocks.totem_torch);
+    public static final Supplier<BlockItem> tipi = blockItem("tipi", ModBlocks.tipi);
+    // no item for dummy_tipi
     public static final Supplier<TotemBaseItem> totem_base = REGISTER.register("totem_base", () -> new TotemBaseItem(ModBlocks.totem_base.get(), new Properties()));
     public static final Supplier<TotemPoleItem> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleItem(ModBlocks.totem_pole.get(), new Properties()));
 
@@ -94,23 +114,12 @@ public final class ModItems {
             0.0F,
             0.0F));
 
+    private static Supplier<BlockItem> blockItem(String name, Supplier<? extends Block> block) {
+        return REGISTER.register(name, () -> new BlockItem(block.get(), new Properties()));
+    }
+
     @SubscribeEvent
     public static void init(RegisterEvent event) {
-        event.register(Registries.ITEM, registry -> {
-            //Register item blocks
-            // TODO: This is messy, figure out a better way of doing that.
-            // For example, a "registerWithItem" method on a special subinterface of PlatformRegistryHelper<Block>,
-            // or simply registering item blocks manually in this class. The latter approach would be better for adding
-            // the items to the creative tab.
-            final Set<Block> blocksWithoutItem = Set.of(ModBlocks.potted_cedar_sapling.get(), ModBlocks.wind_chime.get(), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), ModBlocks.dummy_tipi.get(), ModBlocks.totem_base.get(), ModBlocks.totem_pole.get());
-            ModBlocks.REGISTER.getEntries()
-                    .filter(block -> !blocksWithoutItem.contains(block))
-                    .forEach(block -> {
-                ResourceLocation id = BuiltInRegistries.BLOCK.getKey(block);
-                registry.register(id, new BlockItem(block, new Properties()));
-            });
-        });
-
         //Register the creative tab
         event.register(Registries.CREATIVE_MODE_TAB, Totemic.resloc("totemic"), () ->
                 CreativeModeTab.builder()
@@ -122,11 +131,6 @@ public final class ModItems {
 
     //TODO: Manual adding might be better to define a better ordering of the items
     private static void addItemsToCreativeTab(CreativeModeTab.ItemDisplayParameters params, CreativeModeTab.Output out) {
-        final Set<Block> blocksNotInCreativeTab = Set.of(ModBlocks.potted_cedar_sapling.get(), ModBlocks.wind_chime.get(), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), ModBlocks.dummy_tipi.get());
-        ModBlocks.REGISTER.getEntries()
-                .filter(ro -> !blocksNotInCreativeTab.contains(ro))
-                .forEach(out::accept);
-        ModItems.REGISTER.getEntries()
-                .forEach(out::accept);
+        REGISTER.getEntries().forEach(out::accept);
     }
 }
