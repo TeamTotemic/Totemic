@@ -6,6 +6,7 @@ import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Blocks;
@@ -126,6 +127,19 @@ public final class GeneralTests {
         useItem(h, new ItemStack(ModItems.cedar_hanging_sign.get()), new BlockPos(1, 4, 1), Direction.NORTH);
         h.assertBlockPresent(ModBlocks.cedar_wall_hanging_sign.get(), new BlockPos(1, 4, 0));
         h.assertBlockEntityData(new BlockPos(1, 4, 0), be -> be instanceof HangingSignBlockEntity, () -> "Expected Hanging Sign block entity");
+
+        h.succeed();
+    }
+
+    @GameTest(batch = "totemic.general", template = "general/cedar_logs")
+    public static void testCedarLogStripping(GameTestHelper h) {
+        final BlockPos pos1 = new BlockPos(0, 1, 0);
+        useItem(h, new ItemStack(Items.WOODEN_AXE), pos1, Direction.UP);
+        h.assertBlockPresent(ModBlocks.stripped_cedar_log.get(), pos1);
+
+        final BlockPos pos2 = new BlockPos(1, 1, 0);
+        useItem(h, new ItemStack(Items.WOODEN_AXE), pos2, Direction.UP);
+        h.assertBlockPresent(ModBlocks.stripped_cedar_wood.get(), pos2);
 
         h.succeed();
     }
