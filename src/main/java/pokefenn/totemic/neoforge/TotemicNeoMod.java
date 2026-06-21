@@ -14,6 +14,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.neoforged.neoforge.registries.RegisterEvent.RegisterHelper;
@@ -75,11 +76,10 @@ public final class TotemicNeoMod {
 
         modBus.addListener(ModCriteriaTriggers::init);
         modBus.addListener(ModDataMapTypes::init);
-        modBus.addListener(ModEntityTypes::registerAttributes);
         modBus.addListener(RegistryApiImpl::registerRegistries);
-
-        modBus.addListener((BlockEntityTypeAddBlocksEvent event) -> ModBlocks.addBlockEntityValidBlocks(event::modify));
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
+        modBus.addListener((BlockEntityTypeAddBlocksEvent event) -> ModBlocks.addBlockEntityValidBlocks(event::modify));
+        modBus.addListener((EntityAttributeCreationEvent event) -> ModEntityTypes.registerAttributes(event::put));
 
         TotemicConfig.register(container);
     }

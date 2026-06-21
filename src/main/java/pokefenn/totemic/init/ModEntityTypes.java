@@ -1,11 +1,13 @@
 package pokefenn.totemic.init;
 
+import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
-import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.entity.BaldEagle;
@@ -41,9 +43,9 @@ public final class ModEntityTypes {
             .updateInterval(20)
             .build("invisible_arrow"));
 
-    public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(buffalo.get(), Buffalo.createAttributes().build());
-        event.put(bald_eagle.get(), BaldEagle.createAttributes().build());
-        event.put(baykok.get(), Baykok.createAttributes().build());
+    public static void registerAttributes(BiConsumer<EntityType<? extends LivingEntity>, AttributeSupplier> builder) {
+        builder.accept(buffalo.get(), Buffalo.createAttributes().build());
+        builder.accept(bald_eagle.get(), BaldEagle.createAttributes().build());
+        builder.accept(baykok.get(), Baykok.createAttributes().build());
     }
 }
