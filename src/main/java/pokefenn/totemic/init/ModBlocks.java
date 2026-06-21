@@ -39,7 +39,6 @@ import net.minecraft.world.level.material.PushReaction;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.DummyTipiBlock;
-import pokefenn.totemic.block.StrippableLogBlock;
 import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.block.TotemTorchBlock;
 import pokefenn.totemic.block.music.DrumBlock;
@@ -54,11 +53,11 @@ public final class ModBlocks {
     public static final PlatformRegistryHelper<Block> REGISTER = Totemic.platform().createRegistryHelper(Registries.BLOCK);
 
     public static final Supplier<RotatedPillarBlock> stripped_cedar_log = REGISTER.register("stripped_cedar_log", () -> new RotatedPillarBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
-    public static final Supplier<StrippableLogBlock> cedar_log = REGISTER.register("cedar_log", () -> new StrippableLogBlock(stripped_cedar_log, Properties.of().mapColor(state -> {
+    public static final Supplier<RotatedPillarBlock> cedar_log = REGISTER.register("cedar_log", () -> new RotatedPillarBlock(Properties.of().mapColor(state -> {
         return state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MapColor.COLOR_PINK : MapColor.COLOR_ORANGE;
     }).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
     public static final Supplier<RotatedPillarBlock> stripped_cedar_wood = REGISTER.register("stripped_cedar_wood", () -> new RotatedPillarBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
-    public static final Supplier<StrippableLogBlock> cedar_wood = REGISTER.register("cedar_wood", () -> new StrippableLogBlock(stripped_cedar_wood, Properties.of().mapColor(MapColor.COLOR_ORANGE).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
+    public static final Supplier<RotatedPillarBlock> cedar_wood = REGISTER.register("cedar_wood", () -> new RotatedPillarBlock(Properties.of().mapColor(MapColor.COLOR_ORANGE).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
     public static final Supplier<LeavesBlock> cedar_leaves = REGISTER.register("cedar_leaves", () -> new LeavesBlock(Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn((s, g, p, type) -> type == EntityType.OCELOT || type == EntityType.PARROT).isSuffocating((s, g, p) -> false).isViewBlocking((s, g, p) -> false)));
     public static final Supplier<SaplingBlock> cedar_sapling = REGISTER.register("cedar_sapling", () -> new SaplingBlock(new TreeGrower("totemic:cedar", Optional.empty(), Optional.of(ModResources.CEDAR_TREE_FEATURE), Optional.empty()), Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static final Supplier<Block> cedar_planks = REGISTER.register("cedar_planks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));

@@ -1,0 +1,10 @@
+{
+  "values": {
+    "totemic:cedar_log": {
+      "stripped_block": "totemic:stripped_cedar_log"
+    },
+    "totemic:cedar_wood": {
+      "stripped_block": "totemic:stripped_cedar_wood"
+    }
+  }
+}
