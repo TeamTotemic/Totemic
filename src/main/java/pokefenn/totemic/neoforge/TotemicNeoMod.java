@@ -1,5 +1,6 @@
 package pokefenn.totemic.neoforge;
 
+import net.minecraft.core.registries.Registries;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
@@ -9,7 +10,9 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import pokefenn.totemic.PlatformRegistryHelper;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
@@ -45,6 +48,7 @@ import pokefenn.totemic.network.ServerboundPacketMouseWheel;
 @Mod(TotemicAPI.MOD_ID)
 public final class TotemicNeoMod {
     public TotemicNeoMod(IEventBus modBus, ModContainer container) {
+        modBus.addListener(this::register);
         modBus.addListener(this::commonSetup);
         modBus.addListener(this::registerPackets);
         modBus.addListener(this::gatherData);
@@ -62,7 +66,6 @@ public final class TotemicNeoMod {
         registerToModBus(ModContent.CARVINGS, modBus);
         registerToModBus(ModContent.CEREMONIES, modBus);
 
-        modBus.addListener(ModItems::init);
         modBus.addListener(ModCriteriaTriggers::init);
         modBus.addListener(ModDataMapTypes::init);
         modBus.addListener(ModEntityTypes::registerAttributes);
@@ -77,6 +80,10 @@ public final class TotemicNeoMod {
 
     private void registerToModBus(PlatformRegistryHelper<?> registryHelper, IEventBus modBus) {
         ((NeoPlatformRegistry<?>) registryHelper).deferredRegister().register(modBus);
+    }
+
+    private void register(RegisterEvent event) {
+        event.register(Registries.CREATIVE_MODE_TAB, Totemic.resloc("totemic"), ModItems::makeCreativeTab);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

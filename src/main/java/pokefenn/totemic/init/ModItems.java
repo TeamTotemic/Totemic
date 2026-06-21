@@ -23,8 +23,6 @@ import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.registries.RegisterEvent;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.item.BaykokBowItem;
@@ -118,15 +116,12 @@ public final class ModItems {
         return REGISTER.register(name, () -> new BlockItem(block.get(), new Properties()));
     }
 
-    @SubscribeEvent
-    public static void init(RegisterEvent event) {
-        //Register the creative tab
-        event.register(Registries.CREATIVE_MODE_TAB, Totemic.resloc("totemic"), () ->
-                CreativeModeTab.builder()
+    public static CreativeModeTab makeCreativeTab() {
+        return CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.totemic"))
-                .icon(() -> new ItemStack(ModBlocks.tipi.get()))
+                .icon(() -> new ItemStack(tipi.get()))
                 .displayItems(ModItems::addItemsToCreativeTab)
-                .build());
+                .build();
     }
 
     //TODO: Manual adding might be better to define a better ordering of the items
