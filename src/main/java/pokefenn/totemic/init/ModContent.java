@@ -1,12 +1,19 @@
 package pokefenn.totemic.init;
 
+import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
+import com.electronwill.nightconfig.core.Config;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.material.MapColor;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -97,4 +104,37 @@ public final class ModContent {
     public static final Supplier<Ceremony> sun_dance = CEREMONIES.register("sun_dance", () -> new Ceremony(14820, 31 * 20, () -> SunDanceCeremony.INSTANCE, drum, eagle_bone_whistle));
     public static final Supplier<Ceremony> danse_macabre = CEREMONIES.register("danse_macabre", () -> new Ceremony(14940, 32 * 20, () -> DanseMacabreCeremony.INSTANCE, eagle_bone_whistle, wind_chime));
     public static final Supplier<Ceremony> baykok_summon = CEREMONIES.register("baykok_summon", () -> new Ceremony(15060, 32 * 20, () -> BaykokSummonCeremony.INSTANCE, wind_chime, eagle_bone_whistle));
+
+    public static void registerCustomWoodTypes(BiConsumer<ResourceLocation, TotemWoodType> registry) {
+        // TODO: Wood types should really be made a datapack registry
+        for(Config entry: TotemicConfig.STARTUP.customTotemWoodTypes.get()) {
+            if(entry.isEmpty())
+                continue; //ignore empty default value
+
+            String idStr = entry.get("id");
+            if(idStr == null)
+                throw new IllegalArgumentException("Invalid custom Totem Wood Type: Missing entry 'id'. Please check your 'totemic-startup.toml' config file.");
+            try {
+                String logsStr = entry.get("logs");
+                if(logsStr == null)
+                    throw new IllegalArgumentException("Missing entry 'logs'");
+                if(!logsStr.startsWith("#"))
+                    throw new IllegalArgumentException("'logs' value must be a valid block tag key starting with '#'");
+                //Note that there is no way for us to check if the tag key actually exists since tags are not loaded until server start
+                int woodColorIndex = entry.getIntOrElse("woodColor", MapColor.WOOD.id);
+                int barkColorIndex = entry.getIntOrElse("barkColor", MapColor.PODZOL.id);
+
+                var id = ResourceLocation.parse(idStr);
+                var logTagKey = TagKey.create(Registries.BLOCK, ResourceLocation.parse(logsStr.substring(1)));
+                var woodColor = MapColor.byId(woodColorIndex);
+                var barkColor = MapColor.byId(barkColorIndex);
+
+                registry.accept(id, new TotemWoodType(woodColor, barkColor, logTagKey));
+                Totemic.logger.debug("Added custom Totem Wood Type with ID '" + id + "'");
+            }
+            catch(Exception e) {
+                throw new IllegalArgumentException("Invalid custom Totem Wood Type with ID '" + idStr + "': " + e.getLocalizedMessage() + "\nPlease check your 'totemic-startup.toml' config file.", e);
+            }
+        }
+    }
 }

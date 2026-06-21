@@ -17,6 +17,7 @@ import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import net.neoforged.neoforge.common.ModConfigSpec.DoubleValue;
 import pokefenn.totemic.api.TotemicAPI;
 
+// This will be made platform-indpendent by using Forge Config API Port
 public final class TotemicConfig {
     public static class Startup {
         public final ConfigValue<List<? extends Config>> customTotemWoodTypes;
