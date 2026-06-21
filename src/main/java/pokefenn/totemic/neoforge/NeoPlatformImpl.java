@@ -1,5 +1,6 @@
 package pokefenn.totemic.neoforge;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
@@ -48,6 +49,12 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     @Override
     public boolean onAnimalTame(Animal animal, Player tamer) {
         return EventHooks.onAnimalTame(animal, tamer);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public Optional<EntityType<? extends Mob>> getCleansingCeremonyConversion(Mob mob) {
+        return Optional.ofNullable(mob.getType().builtInRegistryHolder().getData(ModDataMapTypes.CLEANSING_CEREMONY_CONVERSIONS));
     }
 
     @Override

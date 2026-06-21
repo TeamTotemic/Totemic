@@ -14,10 +14,10 @@ import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
-import pokefenn.totemic.neoforge.ModDataMapTypes;
 import pokefenn.totemic.util.MiscUtil;
 
 public enum CleansingCeremony implements CeremonyInstance {
@@ -64,8 +64,7 @@ public enum CleansingCeremony implements CeremonyInstance {
             return true;
     }
 
-    @SuppressWarnings("deprecation")
-    private Optional<EntityType<? extends Mob>> getConversionTarget(Mob mob) {
-        return Optional.ofNullable(mob.getType().builtInRegistryHolder().getData(ModDataMapTypes.CLEANSING_CEREMONY_CONVERSIONS));
+    private static Optional<EntityType<? extends Mob>> getConversionTarget(Mob mob) {
+        return Totemic.platform().getCleansingCeremonyConversion(mob);
     }
 }

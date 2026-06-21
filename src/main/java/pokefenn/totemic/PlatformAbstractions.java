@@ -1,5 +1,6 @@
 package pokefenn.totemic;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +29,13 @@ public interface PlatformAbstractions {
 
     TotemicEventHooks events();
 
+    /**
+     * A hook that should be called when an animal is tamed. NeoForge uses this to post an event.
+     * @return true if the taming should be cancelled.
+     */
     boolean onAnimalTame(Animal animal, Player tamer);
+
+    Optional<EntityType<? extends Mob>> getCleansingCeremonyConversion(Mob mob);
 
     // Networking
     void sendPacketToServer(CustomPacketPayload payload);
