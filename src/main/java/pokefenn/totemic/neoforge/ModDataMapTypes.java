@@ -1,4 +1,4 @@
-package pokefenn.totemic.init;
+package pokefenn.totemic.neoforge;
 
 import java.util.function.Function;
 
@@ -12,6 +12,7 @@ import net.minecraft.world.entity.MobCategory;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 import net.neoforged.neoforge.registries.datamaps.RegisterDataMapTypesEvent;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.init.ModEntityTypes;
 
 public final class ModDataMapTypes {
     public static final DataMapType<EntityType<?>, EntityType<? extends Mob>> CLEANSING_CEREMONY_CONVERSIONS = DataMapType.builder(

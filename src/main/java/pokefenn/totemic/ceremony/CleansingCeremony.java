@@ -17,7 +17,7 @@ import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicEntityUtil;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
-import pokefenn.totemic.init.ModDataMapTypes;
+import pokefenn.totemic.neoforge.ModDataMapTypes;
 import pokefenn.totemic.util.MiscUtil;
 
 public enum CleansingCeremony implements CeremonyInstance {

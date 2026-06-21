@@ -6,7 +6,7 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.common.data.DataMapProvider;
-import pokefenn.totemic.init.ModDataMapTypes;
+import pokefenn.totemic.neoforge.ModDataMapTypes;
 
 public class TotemicDataMapProvider extends DataMapProvider {
     public TotemicDataMapProvider(PackOutput packOutput, CompletableFuture<Provider> lookupProvider) {

@@ -19,7 +19,7 @@ import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
-import pokefenn.totemic.init.ModDataMapTypes;
+import pokefenn.totemic.neoforge.ModDataMapTypes;
 
 public enum RegistryApiImpl implements RegistryAPI {
     INSTANCE;

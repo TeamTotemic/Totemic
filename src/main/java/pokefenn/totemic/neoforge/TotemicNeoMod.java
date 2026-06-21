@@ -32,7 +32,6 @@ import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModDataComponents;
-import pokefenn.totemic.init.ModDataMapTypes;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModMobEffects;
