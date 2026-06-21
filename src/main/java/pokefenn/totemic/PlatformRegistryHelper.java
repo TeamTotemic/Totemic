@@ -27,5 +27,5 @@ public interface PlatformRegistryHelper<T> {
     /**
      * Returns a Stream of all entries registered by this helper.
      */
-    Stream<T> getEntries();
+    Stream<T> getEntries(); // TODO: If possible, obviate the need for this method, to save on bookkeeping in Fabric
 }

@@ -1,7 +1,5 @@
 package pokefenn.totemic.neoforge.datagen;
 
-import java.util.Set;
-
 import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -84,21 +82,55 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
         horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), models().getExistingFile(modLoc("dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
         totemWoodTypes();
 
-        //Item Blocks
+        //Items
         var im = itemModels();
-        // TODO: See comment in ModItems
-        final Set<Block> blocksWithCustomItemModel = Set.of(ModBlocks.cedar_sapling.get(), ModBlocks.cedar_button.get(), ModBlocks.cedar_fence.get(), ModBlocks.cedar_door.get(), ModBlocks.cedar_trapdoor.get(), ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), ModBlocks.potted_cedar_sapling.get(), ModBlocks.totem_torch.get(), ModBlocks.tipi.get(), ModBlocks.dummy_tipi.get(), ModBlocks.totem_base.get(), ModBlocks.totem_pole.get());
-        ModBlocks.REGISTER.getEntries()
-                .filter(block -> !blocksWithCustomItemModel.contains(block))
-                .forEach(block -> im.simpleBlockItem(block));
+        im.basicItem(ModItems.flute.get());
+        im.basicItem(ModItems.infused_flute.get());
+        im.basicItem(ModItems.jingle_dress.get());
+        basicItemWithParent(ModItems.rattle.get(), mcLoc("item/handheld"));
+        im.basicItem(ModItems.eagle_bone_whistle.get());
+        basicItemWithParent(ModItems.totem_whittling_knife.get(), mcLoc("item/handheld"));
+        basicItemWithParent(ModItems.totemic_staff.get(), mcLoc("item/handheld"));
+        basicItemWithParent(ModItems.ceremony_cheat.get(), mcLoc("item/handheld"));
+        im.spawnEggItem(ModItems.buffalo_spawn_egg.get());
+        im.spawnEggItem(ModItems.bald_eagle_spawn_egg.get());
+        im.spawnEggItem(ModItems.baykok_spawn_egg.get());
+        im.basicItem(ModItems.buffalo_meat.get());
+        im.basicItem(ModItems.cooked_buffalo_meat.get());
+        im.basicItem(ModItems.buffalo_tooth.get());
+        im.basicItem(ModItems.buffalo_hide.get());
+        im.basicItem(ModItems.iron_bells.get());
+        im.basicItem(ModItems.eagle_bone.get());
+        im.basicItem(ModItems.eagle_feather.get());
+        var baykokBow = im.withExistingParent(key(ModItems.baykok_bow.get()).toString(), "item/bow").texture("layer0", modLoc("item/baykok_bow"));
+        baykokBow.override().predicate(mcLoc("pulling"), 1).model(im.basicItem(modLoc("baykok_bow_pulling_0")).parent(baykokBow)).end();
+        baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.65F).model(im.basicItem(modLoc("baykok_bow_pulling_1")).parent(baykokBow)).end();
+        baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.9F).model(im.basicItem(modLoc("baykok_bow_pulling_2")).parent(baykokBow)).end();
+        im.basicItem(modLoc("totempedia"));
+        var medBagOpen = im.basicItem(modLoc("medicine_bag_open"));
+        var medBag = im.basicItem(ModItems.medicine_bag.get()).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
+        im.getBuilder(key(ModItems.creative_medicine_bag.get()).toString()).parent(medBag).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
 
+        //Block items
+        im.simpleBlockItem(ModBlocks.stripped_cedar_log.get());
+        im.simpleBlockItem(ModBlocks.cedar_log.get());
+        im.simpleBlockItem(ModBlocks.stripped_cedar_wood.get());
+        im.simpleBlockItem(ModBlocks.cedar_wood.get());
+        im.simpleBlockItem(ModBlocks.cedar_leaves.get());
         im.singleTexture(key(ModBlocks.cedar_sapling.get()).toString(), mcLoc("item/generated"), "layer0", blockTexture(ModBlocks.cedar_sapling.get()));
+        im.simpleBlockItem(ModBlocks.cedar_planks.get());
         im.singleTexture(key(ModBlocks.cedar_button.get()).toString(), mcLoc("block/button_inventory"), "texture", cedarPlankTex);
         im.singleTexture(key(ModBlocks.cedar_fence.get()).toString(), mcLoc("block/fence_inventory"), "texture", cedarPlankTex);
-        im.basicItem(key(ModBlocks.cedar_door.get()));
-        im.withExistingParent(key(ModBlocks.cedar_trapdoor.get()).toString(), modLoc("block/cedar_trapdoor_bottom"));
+        im.simpleBlockItem(ModBlocks.cedar_fence_gate.get());
+        im.simpleBlockItem(ModBlocks.cedar_pressure_plate.get());
         im.basicItem(key(ModBlocks.cedar_sign.get()));
         im.basicItem(key(ModBlocks.cedar_hanging_sign.get()));
+        im.simpleBlockItem(ModBlocks.cedar_slab.get());
+        im.simpleBlockItem(ModBlocks.cedar_stairs.get());
+        im.basicItem(key(ModBlocks.cedar_door.get()));
+        im.withExistingParent(key(ModBlocks.cedar_trapdoor.get()).toString(), modLoc("block/cedar_trapdoor_bottom"));
+        im.simpleBlockItem(ModBlocks.drum.get());
+        im.simpleBlockItem(ModBlocks.wind_chime.get());
         im.withExistingParent(key(ModBlocks.totem_torch.get()).toString(), modLoc("block/totem_torch"))
                 .transforms()
                 .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
@@ -116,7 +148,6 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                     .scale(0.5F)
                     .end()
                 .end();
-        //im.withExistingParent(key(ModBlocks.tipi.get()).toString(), modLoc("block/tipi"))
         //use a separate item model because the transforms are not compatible with the tipi's root transform
         im.getBuilder(key(ModBlocks.tipi.get()).toString())
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
@@ -154,34 +185,6 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                 .end();
         im.withExistingParent(key(ModBlocks.totem_base.get()).toString(), modLoc("block/dynamic_totem_base"));
         im.withExistingParent(key(ModBlocks.totem_pole.get()).toString(), modLoc("block/dynamic_totem_pole"));
-
-        //Items
-        im.basicItem(ModItems.flute.get());
-        im.basicItem(ModItems.infused_flute.get());
-        im.basicItem(ModItems.jingle_dress.get());
-        basicItemWithParent(ModItems.rattle.get(), mcLoc("item/handheld"));
-        im.basicItem(ModItems.eagle_bone_whistle.get());
-        basicItemWithParent(ModItems.totem_whittling_knife.get(), mcLoc("item/handheld"));
-        basicItemWithParent(ModItems.totemic_staff.get(), mcLoc("item/handheld"));
-        basicItemWithParent(ModItems.ceremony_cheat.get(), mcLoc("item/handheld"));
-        im.spawnEggItem(ModItems.buffalo_spawn_egg.get());
-        im.spawnEggItem(ModItems.bald_eagle_spawn_egg.get());
-        im.spawnEggItem(ModItems.baykok_spawn_egg.get());
-        im.basicItem(ModItems.buffalo_meat.get());
-        im.basicItem(ModItems.cooked_buffalo_meat.get());
-        im.basicItem(ModItems.buffalo_tooth.get());
-        im.basicItem(ModItems.buffalo_hide.get());
-        im.basicItem(ModItems.iron_bells.get());
-        im.basicItem(ModItems.eagle_bone.get());
-        im.basicItem(ModItems.eagle_feather.get());
-        var baykokBow = im.withExistingParent(key(ModItems.baykok_bow.get()).toString(), "item/bow").texture("layer0", modLoc("item/baykok_bow"));
-        baykokBow.override().predicate(mcLoc("pulling"), 1).model(im.basicItem(modLoc("baykok_bow_pulling_0")).parent(baykokBow)).end();
-        baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.65F).model(im.basicItem(modLoc("baykok_bow_pulling_1")).parent(baykokBow)).end();
-        baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.9F).model(im.basicItem(modLoc("baykok_bow_pulling_2")).parent(baykokBow)).end();
-        im.basicItem(modLoc("totempedia"));
-        var medBagOpen = im.basicItem(modLoc("medicine_bag_open"));
-        var medBag = im.basicItem(ModItems.medicine_bag.get()).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
-        im.getBuilder(key(ModItems.creative_medicine_bag.get()).toString()).parent(medBag).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
     }
 
     private void totemWoodTypes() {
