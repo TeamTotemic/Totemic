@@ -1,6 +1,11 @@
 package pokefenn.totemic.neoforge;
 
+import com.electronwill.nightconfig.core.Config;
+
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
@@ -11,11 +16,14 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
+import net.neoforged.neoforge.registries.RegisterEvent.RegisterHelper;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.registry.RegistryAPI;
+import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.client.network.ClientPacketHandler;
@@ -70,7 +78,6 @@ public final class TotemicNeoMod {
         modBus.addListener(ModDataMapTypes::init);
         modBus.addListener(ModEntityTypes::registerAttributes);
         modBus.addListener(RegistryApiImpl::registerRegistries);
-        modBus.addListener(ModContent::registerCustomWoodTypes);
 
         modBus.addListener((BlockEntityTypeAddBlocksEvent event) -> ModBlocks.addBlockEntityValidBlocks(event::modify));
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
@@ -84,6 +91,7 @@ public final class TotemicNeoMod {
 
     private void register(RegisterEvent event) {
         event.register(Registries.CREATIVE_MODE_TAB, Totemic.resloc("totemic"), ModItems::makeCreativeTab);
+        event.register(RegistryAPI.WOOD_TYPE_REGISTRY, this::registerCustomWoodTypes);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -130,5 +138,38 @@ public final class TotemicNeoMod {
         gen.addProvider(event.includeServer(), new TotemicDataMapProvider(out, lookup));
 
         gen.addProvider(event.includeClient(), new TotemicBlockStateProvider(out, efh));
+    }
+
+    private void registerCustomWoodTypes(RegisterHelper<TotemWoodType> reg) {
+        // TODO: Wood types should really be made a datapack registry
+        for(Config entry: TotemicConfig.STARTUP.customTotemWoodTypes.get()) {
+            if(entry.isEmpty())
+                continue; //ignore empty default value
+
+            String idStr = entry.get("id");
+            if(idStr == null)
+                throw new IllegalArgumentException("Invalid custom Totem Wood Type: Missing entry 'id'. Please check your 'totemic-startup.toml' config file.");
+            try {
+                String logsStr = entry.get("logs");
+                if(logsStr == null)
+                    throw new IllegalArgumentException("Missing entry 'logs'");
+                if(!logsStr.startsWith("#"))
+                    throw new IllegalArgumentException("'logs' value must be a valid block tag key starting with '#'");
+                //Note that there is no way for us to check if the tag key actually exists since tags are not loaded until server start
+                int woodColorIndex = entry.getIntOrElse("woodColor", MapColor.WOOD.id);
+                int barkColorIndex = entry.getIntOrElse("barkColor", MapColor.PODZOL.id);
+
+                var id = ResourceLocation.parse(idStr);
+                var logTagKey = TagKey.create(Registries.BLOCK, ResourceLocation.parse(logsStr.substring(1)));
+                var woodColor = MapColor.byId(woodColorIndex);
+                var barkColor = MapColor.byId(barkColorIndex);
+
+                reg.register(id, new TotemWoodType(woodColor, barkColor, logTagKey));
+                Totemic.logger.debug("Added custom Totem Wood Type with ID '" + id + "'");
+            }
+            catch(Exception e) {
+                throw new IllegalArgumentException("Invalid custom Totem Wood Type with ID '" + idStr + "': " + e.getLocalizedMessage() + "\nPlease check your 'totemic-startup.toml' config file.", e);
+            }
+        }
     }
 }
