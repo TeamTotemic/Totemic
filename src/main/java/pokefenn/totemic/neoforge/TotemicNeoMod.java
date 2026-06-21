@@ -67,7 +67,6 @@ public final class TotemicNeoMod {
         registerToModBus(ModContent.CARVINGS, modBus);
         registerToModBus(ModContent.CEREMONIES, modBus);
 
-        modBus.addListener(ModCriteriaTriggers::init);
         modBus.addListener(ModDataMapTypes::init);
         modBus.addListener(RegistryApiImpl::registerRegistries);
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
@@ -83,6 +82,7 @@ public final class TotemicNeoMod {
 
     private void register(RegisterEvent event) {
         event.register(Registries.CREATIVE_MODE_TAB, Totemic.resloc("totemic"), ModItems::makeCreativeTab);
+        event.register(Registries.TRIGGER_TYPE, helper -> ModCriteriaTriggers.register(helper::register));
         event.register(RegistryAPI.WOOD_TYPE_REGISTRY, helper -> ModContent.registerCustomWoodTypes(helper::register));
     }
 
