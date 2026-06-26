@@ -9,6 +9,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.event.FOVUpdateEvent;
@@ -145,11 +146,41 @@ public class GameOverlay
 
     private void renderCeremonyHUD(int width, Tessellator tes, Minecraft mc, FontRenderer font)
     {
+        final int barWidth = 104;
+        final int barHeight = 7;
+
         Ceremony cer = activeTotem.currentCeremony;
 
         String name = cer.getLocalizedName();
         int nameX = (width - font.getStringWidth(name)) / 2;
         font.drawString(name, nameX, 1, 0xC8000000);
+
+        mc.renderEngine.bindTexture(hudTexture);
+        tes.startDrawingQuads();
+        // drawNote(tes);
+        drawClock(tes);
+        tes.draw();
+
+        // We could maybe render the music amount for the effect as well (Ceremony.musicPer5), but that would require
+        // proper syncing of TileTotemBase.totalCeremonyMelody.
+        // float musicW = MathHelper.clamp_float(activeTotem.totalCeremonyMelody / (float)cer.getMusicNeeded(), 0.0f, 1.0f) * barWidth;
+        float timeW = MathHelper.clamp_float(1.0f - activeTotem.ceremonyEffectTimer / (float)cer.getEffectTime(), 0.0f, 1.0f) * barWidth;
+
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        tes.startDrawingQuads();
+        tes.setColorRGBA(80, 255, 200, 80);
+        RenderHelper.addQuad(tes, 11, 11, 0, barWidth, barHeight);
+
+        // tes.setColorRGBA(60, 60, 255, 160);
+        // RenderHelper.addQuad(tes, 11, 11, 0, musicW, barHeight);
+
+        tes.setColorRGBA(80, 255, 200, 80);
+        RenderHelper.addQuad(tes, 11, 21, 0, barWidth, barHeight);
+
+        tes.setColorRGBA(60, 60, 255, 160);
+        RenderHelper.addQuad(tes, 11, 21, 0, timeW, barHeight);
+        tes.draw();
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
 
     private void drawNote(Tessellator tes)
