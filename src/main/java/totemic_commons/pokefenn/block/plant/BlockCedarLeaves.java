@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModBlocks;
 import totemic_commons.pokefenn.Totemic;
 import totemic_commons.pokefenn.lib.Resources;
@@ -38,6 +39,12 @@ public class BlockCedarLeaves extends BlockLeaves
     public Item getItemDropped(int meta, Random random, int fortune)
     {
         return Item.getItemFromBlock(ModBlocks.totemSapling);
+    }
+
+    @Override
+    public int onBlockPlaced(World worldIn, int x, int y, int z, int side, float subX, float subY, float subZ, int meta)
+    {
+        return 4; // make sure placed cedar leaves don't decay
     }
 
     //The sapling drop chance
