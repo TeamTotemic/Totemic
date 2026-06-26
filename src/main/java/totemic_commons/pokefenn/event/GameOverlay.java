@@ -39,10 +39,10 @@ public class GameOverlay
 
             if(activeTotem != null)
             {
-                int w = 117;
-                int h = 30;
-                float x = (event.resolution.getScaledWidth() - w) / 2 + ConfigurationSettings.CEREMONY_HUD_X;
-                float y = (event.resolution.getScaledHeight() - h) / 2 + ConfigurationSettings.CEREMONY_HUD_Y;
+                final int width = 117;
+                final int height = 30;
+                float x = (event.resolution.getScaledWidth() - width) / 2 + ConfigurationSettings.CEREMONY_HUD_X;
+                float y = (event.resolution.getScaledHeight() - height) / 2 + ConfigurationSettings.CEREMONY_HUD_Y;
                 Tessellator tes = Tessellator.instance;
                 Minecraft mc = Minecraft.getMinecraft();
                 FontRenderer font = mc.fontRenderer;
@@ -55,92 +55,101 @@ public class GameOverlay
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
                 tes.startDrawingQuads();
                 tes.setColorRGBA(80, 180, 70, 128); //Background
-                RenderHelper.addQuad(tes, 0, 0, 0, w, h);
+                RenderHelper.addQuad(tes, 0, 0, 0, width, height);
                 tes.draw();
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
 
-                final int barWidth = 104;
-                final int barHeight = 7;
-
                 if(activeTotem.isDoingSelection())
-                {
-                    //Header text
-                    String headerText = StatCollector.translateToLocal("totemic.hud.selection");
-                    int headerX = (w - font.getStringWidth(headerText)) / 2;
-                    font.drawString(headerText, headerX, 1, 0xC8000000);
-
-                    final int firstSelectorX = 40;
-                    final int secondSelectorX = 61;
-                    final int selectorY = 12;
-                    final int itemBackgroundSize = 16;
-
-                    //Item backgrounds
-                    GL11.glDisable(GL11.GL_TEXTURE_2D);
-                    tes.startDrawingQuads();
-                    tes.setColorRGBA(80, 255, 200, 80);
-                    RenderHelper.addQuad(tes, firstSelectorX, selectorY, 0, itemBackgroundSize, itemBackgroundSize);
-                    RenderHelper.addQuad(tes, secondSelectorX, selectorY, 0, itemBackgroundSize, itemBackgroundSize);
-                    tes.draw();
-                    GL11.glEnable(GL11.GL_TEXTURE_2D);
-
-                    //Instruments
-                    //Assuming that we have only 1 selector to render
-                    MusicInstrument selector = activeTotem.musicSelector[0];
-                    ItemStack item = (selector != null) ? selector.getItem() : null;
-
-                    net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
-                    GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-                    itemRenderer.renderItemAndEffectIntoGUI(font, mc.getTextureManager(), item, firstSelectorX, selectorY);
-                    itemRenderer.renderItemOverlayIntoGUI(font, mc.getTextureManager(), item, firstSelectorX, selectorY);
-                    GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-                    net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
-                }
+                    renderSelectionHUD(width, tes, mc, font);
                 else if(activeTotem.isDoingStartup())
-                {
-                    Ceremony cer = activeTotem.startupCeremony;
-
-                    String name = cer.getLocalizedName();
-                    int nameX = (w - font.getStringWidth(name)) / 2;
-                    font.drawString(name, nameX, 1, 0xC8000000);
-
-                    mc.renderEngine.bindTexture(hudTexture);
-                    tes.startDrawingQuads();
-                    drawNote(tes);
-                    drawClock(tes);
-                    tes.draw();
-
-                    float musicW = activeTotem.totalCeremonyMelody / (float)cer.getMusicNeeded() * barWidth;
-                    float timeW = Math.min(activeTotem.ceremonyStartupTimer / (float)cer.getMaxStartupTime(), 1.0f) * barWidth;
-
-                    GL11.glDisable(GL11.GL_TEXTURE_2D);
-                    tes.startDrawingQuads();
-                    tes.setColorRGBA(80, 255, 200, 80);
-                    RenderHelper.addQuad(tes, 11, 11, 0, barWidth, barHeight);
-
-                    tes.setColorRGBA(60, 60, 255, 160);
-                    RenderHelper.addQuad(tes, 11, 11, 0, musicW, barHeight);
-
-                    tes.setColorRGBA(80, 255, 200, 80);
-                    RenderHelper.addQuad(tes, 11, 21, 0, barWidth, barHeight);
-
-                    tes.setColorRGBA(60, 60, 255, 160);
-                    RenderHelper.addQuad(tes, 11, 21, 0, timeW, barHeight);
-                    tes.draw();
-                    GL11.glEnable(GL11.GL_TEXTURE_2D);
-                }
+                    renderStartupHUD(width, tes, mc, font);
                 else if(activeTotem.isDoingEndingEffect)
-                {
-                    Ceremony cer = activeTotem.currentCeremony;
-
-                    String name = cer.getLocalizedName();
-                    int nameX = (w - font.getStringWidth(name)) / 2;
-                    font.drawString(name, nameX, 1, 0xC8000000);
-                }
+                    renderCeremonyHUD(width, tes, mc, font);
 
                 GL11.glPopMatrix();
                 GL11.glDisable(GL11.GL_BLEND);
             }
         }
+    }
+
+    private void renderSelectionHUD(int width, Tessellator tes, Minecraft mc, FontRenderer font)
+    {
+        //Header text
+        String headerText = StatCollector.translateToLocal("totemic.hud.selection");
+        int headerX = (width - font.getStringWidth(headerText)) / 2;
+        font.drawString(headerText, headerX, 1, 0xC8000000);
+
+        final int firstSelectorX = 40;
+        final int secondSelectorX = 61;
+        final int selectorY = 12;
+        final int itemBackgroundSize = 16;
+
+        //Item backgrounds
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        tes.startDrawingQuads();
+        tes.setColorRGBA(80, 255, 200, 80);
+        RenderHelper.addQuad(tes, firstSelectorX, selectorY, 0, itemBackgroundSize, itemBackgroundSize);
+        RenderHelper.addQuad(tes, secondSelectorX, selectorY, 0, itemBackgroundSize, itemBackgroundSize);
+        tes.draw();
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+
+        //Instruments
+        //Assuming that we have only 1 selector to render
+        MusicInstrument selector = activeTotem.musicSelector[0];
+        ItemStack item = (selector != null) ? selector.getItem() : null;
+
+        net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+        itemRenderer.renderItemAndEffectIntoGUI(font, mc.getTextureManager(), item, firstSelectorX, selectorY);
+        itemRenderer.renderItemOverlayIntoGUI(font, mc.getTextureManager(), item, firstSelectorX, selectorY);
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+    }
+
+    private void renderStartupHUD(int width, Tessellator tes, Minecraft mc, FontRenderer font)
+    {
+        final int barWidth = 104;
+        final int barHeight = 7;
+
+        Ceremony cer = activeTotem.startupCeremony;
+
+        String name = cer.getLocalizedName();
+        int nameX = (width - font.getStringWidth(name)) / 2;
+        font.drawString(name, nameX, 1, 0xC8000000);
+
+        mc.renderEngine.bindTexture(hudTexture);
+        tes.startDrawingQuads();
+        drawNote(tes);
+        drawClock(tes);
+        tes.draw();
+
+        float musicW = activeTotem.totalCeremonyMelody / (float)cer.getMusicNeeded() * barWidth;
+        float timeW = Math.min(activeTotem.ceremonyStartupTimer / (float)cer.getMaxStartupTime(), 1.0f) * barWidth;
+
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        tes.startDrawingQuads();
+        tes.setColorRGBA(80, 255, 200, 80);
+        RenderHelper.addQuad(tes, 11, 11, 0, barWidth, barHeight);
+
+        tes.setColorRGBA(60, 60, 255, 160);
+        RenderHelper.addQuad(tes, 11, 11, 0, musicW, barHeight);
+
+        tes.setColorRGBA(80, 255, 200, 80);
+        RenderHelper.addQuad(tes, 11, 21, 0, barWidth, barHeight);
+
+        tes.setColorRGBA(60, 60, 255, 160);
+        RenderHelper.addQuad(tes, 11, 21, 0, timeW, barHeight);
+        tes.draw();
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+    }
+
+    private void renderCeremonyHUD(int width, Tessellator tes, Minecraft mc, FontRenderer font)
+    {
+        Ceremony cer = activeTotem.currentCeremony;
+
+        String name = cer.getLocalizedName();
+        int nameX = (width - font.getStringWidth(name)) / 2;
+        font.drawString(name, nameX, 1, 0xC8000000);
     }
 
     private void drawNote(Tessellator tes)
