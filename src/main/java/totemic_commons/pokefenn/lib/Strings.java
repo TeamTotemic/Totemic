@@ -41,6 +41,7 @@ public final class Strings
     public static final String CEREMONY_CHEAT_NAME = "ceremonyCheat";
     public static final String EAGLE_ITEMS_NAME = "eagleItems";
     public static final String EAGLE_BONE_WHISTLE_NAME = "eagleBoneWhistle";
+    public static final String SPAWN_EGG_NAME = "spawnEgg";
 
     //TileEntites
     public static final String TILE_TOTEM_INTELLIGENCE = "tileTotemIntelligence";
