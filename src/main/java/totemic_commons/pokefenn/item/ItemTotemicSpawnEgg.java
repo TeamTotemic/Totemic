@@ -1,6 +1,7 @@
 package totemic_commons.pokefenn.item;
 
 import java.util.List;
+import java.util.function.Function;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -29,9 +30,9 @@ import totemic_commons.pokefenn.lib.Strings;
 public class ItemTotemicSpawnEgg extends ItemMonsterPlacer
 {
     private static final EggInfo[] EGGS = {
-        new EggInfo(EntityBuffalo.class, Strings.BUFFALO_NAME, 0x2A1C12, 0x885F3E),
-        new EggInfo(EntityBaykok.class, Strings.BAYKOK_NAME, 0xE0E0E0, 0xF8DAD2),
-        new EggInfo(EntityBaldEagle.class, Strings.BALD_EAGLE_NAME, 0x4B4136, 0xF5E6A3)
+        new EggInfo(EntityBuffalo::new, Strings.BUFFALO_NAME, 0x2A1C12, 0x885F3E),
+        new EggInfo(EntityBaykok::new, Strings.BAYKOK_NAME, 0xE0E0E0, 0xF8DAD2),
+        new EggInfo(EntityBaldEagle::new, Strings.BALD_EAGLE_NAME, 0x4B4136, 0xF5E6A3)
     };
 
     public ItemTotemicSpawnEgg()
@@ -169,7 +170,7 @@ public class ItemTotemicSpawnEgg extends ItemMonsterPlacer
         try
         {
             EggInfo info = getEggInfo(stack);
-            Entity entity = info.entityClass.getConstructor(World.class).newInstance(world);
+            Entity entity = info.entityFactory.apply(world);
             if(entity != null && entity instanceof EntityLivingBase)
             {
                 EntityLiving entityliving = (EntityLiving)entity;
@@ -196,14 +197,14 @@ public class ItemTotemicSpawnEgg extends ItemMonsterPlacer
     
     private static class EggInfo
     {
-        final Class<? extends Entity> entityClass;
+        final Function<World, ? extends Entity> entityFactory;
         final String entityName;
         final int primaryColor;
         final int secondaryColor;
 
-        EggInfo(Class<? extends Entity> entityClass, String entityName, int primaryColor, int secondaryColor)
+        EggInfo(Function<World, ? extends Entity> entityFactory, String entityName, int primaryColor, int secondaryColor)
         {
-            this.entityClass = entityClass;
+            this.entityFactory = entityFactory;
             this.entityName = entityName;
             this.primaryColor = primaryColor;
             this.secondaryColor = secondaryColor;
