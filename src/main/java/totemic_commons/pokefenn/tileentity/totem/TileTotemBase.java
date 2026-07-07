@@ -34,6 +34,7 @@ import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.event.GameOverlay;
 import totemic_commons.pokefenn.lib.WoodVariant;
 import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.client.PacketStartupMusic;
 import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
@@ -244,11 +245,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             selectorHandling();
         }
 
-        if(worldObj.getTotalWorldTime() % 20L == 0)
-        {
-            recalculateMelody();
-        }
-
         if(isDoingStartup())
         {
             if(canStartCeremony(startupCeremony))
@@ -417,7 +413,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         return new int[] {horiz, vert};
     }
 
-    public void recalculateMelody() // TODO: Obviate the need for this, it's kinda broken
+    public void recalculateMelody()
     {
         totalCeremonyMelody = 0;
         for(int value: ceremonyMusic.values())
@@ -672,6 +668,7 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             int prevVal = musicForTotemEffect;
             musicForTotemEffect = Math.min(prevVal + amount / 2, MAX_EFFECT_MUSIC);
             added = musicForTotemEffect - prevVal;
+
             if(added != 0)
             {
                 PacketHandler.sendAround(new PacketTotemEffectMusic(xCoord, yCoord, zCoord, musicForTotemEffect), this);
@@ -684,8 +681,13 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             int newVal = Math.min(prevVal + amount, instr.getMusicMaximum());
             ceremonyMusic.put(instr, newVal);
             added = newVal - prevVal;
-            // TODO: Consider immediately sending a sync packet when music is added, rather than only once per second
-            // Also, consider modifying totalCeremonyMelody here, rather than using recalculateMelody() which is also only done once per second
+            totalCeremonyMelody += added;
+
+            if(added != 0)
+            {
+                PacketHandler.sendAround(new PacketStartupMusic(xCoord, yCoord, zCoord, instr, newVal), this);
+                markDirty();
+            }
         }
         else
             added = 0;
