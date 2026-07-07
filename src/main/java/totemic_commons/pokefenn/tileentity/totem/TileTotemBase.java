@@ -33,8 +33,6 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.event.GameOverlay;
 import totemic_commons.pokefenn.lib.WoodVariant;
-import totemic_commons.pokefenn.network.PacketHandler;
-import totemic_commons.pokefenn.network.client.PacketTotemMusic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -98,11 +96,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
                 doCeremonyCode();
             else
                 totemEffect();
-
-            if(worldObj.getTotalWorldTime() % 20L == 0)
-            {
-                syncMelody();
-            }
         }
         else //CLIENT
         {
@@ -421,18 +414,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         //vert += totemPoleSize / 8;
 
         return new int[] {horiz, vert};
-    }
-
-    public void syncMelody()
-    {
-        if(musicChanged)
-        {
-            if(isCeremony)
-                PacketHandler.sendAround(new PacketTotemMusic(xCoord, yCoord, zCoord, ceremonyMusic), this);
-            else
-                PacketHandler.sendAround(new PacketTotemMusic(xCoord, yCoord, zCoord, musicForTotemEffect), this);
-        }
-        musicChanged = false;
     }
 
     public void recalculateMelody() // TODO: Obviate the need for this, it's kinda broken

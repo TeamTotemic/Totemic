@@ -8,7 +8,6 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import totemic_commons.pokefenn.Totemic;
-import totemic_commons.pokefenn.network.client.PacketTotemMusic;
 import totemic_commons.pokefenn.network.client.PacketWindChime;
 import totemic_commons.pokefenn.network.server.PacketMouseWheel;
 
@@ -31,7 +30,6 @@ public class PacketHandler
     {
         registerPacket(PacketWindChime.class, Side.CLIENT);
         registerPacket(PacketMouseWheel.class, Side.SERVER);
-        registerPacket(PacketTotemMusic.class, Side.CLIENT);
     }
 
     public static void sendToClient(IMessage packet, EntityPlayerMP player)
