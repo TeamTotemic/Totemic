@@ -33,6 +33,8 @@ import totemic_commons.pokefenn.api.music.MusicInstrument;
 import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.event.GameOverlay;
 import totemic_commons.pokefenn.lib.WoodVariant;
+import totemic_commons.pokefenn.network.PacketHandler;
+import totemic_commons.pokefenn.network.client.PacketTotemEffectMusic;
 import totemic_commons.pokefenn.tileentity.TileTotemic;
 import totemic_commons.pokefenn.util.TotemUtil;
 
@@ -52,7 +54,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
     public int dancingEfficiency = 0;
     public int musicForTotemEffect = 0;
     public int totemPoleSize = 0;
-    public boolean musicChanged = false;
     public final TotemEffect[] effects = new TotemEffect[MAX_HEIGHT];
     public final TObjectIntMap<TotemEffect> repetitionBonus = new TObjectIntHashMap<>(Totemic.api.registry().getTotems().size(), 0.75f);
     public int totemWoodBonus = 0;
@@ -343,10 +344,10 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
 
     public void deprecateMelody()
     {
-        if(musicForTotemEffect > 0)
+        if(musicForTotemEffect > 0 && worldObj.getTotalWorldTime() % 47L == 0)
         {
-            if(worldObj.getTotalWorldTime() % 47L == 0)
-                musicForTotemEffect--;
+            musicForTotemEffect--;
+            markDirty();
         }
     }
 
@@ -671,6 +672,11 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
             int prevVal = musicForTotemEffect;
             musicForTotemEffect = Math.min(prevVal + amount / 2, MAX_EFFECT_MUSIC);
             added = musicForTotemEffect - prevVal;
+            if(added != 0)
+            {
+                PacketHandler.sendAround(new PacketTotemEffectMusic(xCoord, yCoord, zCoord, musicForTotemEffect), this);
+                markDirty();
+            }
         }
         else if(isDoingStartup())
         {
@@ -683,9 +689,6 @@ public class TileTotemBase extends TileTotemic implements MusicAcceptor
         }
         else
             added = 0;
-
-        if(added != 0)
-            musicChanged = true;
         return added;
     }
 
