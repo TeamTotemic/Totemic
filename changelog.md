@@ -1,0 +1,7 @@
+- Backported the Symphony of the Depths ceremony, which gives Water Breathing for a while
+- Added spawn eggs for Buffalo, Bald Eagle and Baykok
+- The music bar in the ceremony HUD is now more responsive, updating immediately when music is added during ceremony startup
+- Added time bar to ceremony HUD showing the remaining duration of ceremony effects
+- The Serenade for Syrinx (Flute Infusion) ceremony now also transforms Flutes in players' inventories
+- Fixed manually placed Red Cedar Leaves decaying
+- Improved Baykok's aim at longer distances, he was just aiming too high
