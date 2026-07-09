@@ -76,6 +76,13 @@ public class EntityBaykok extends EntityMob implements IBossDisplayData, IRanged
         EntityInvisArrow arrow = new EntityInvisArrow(worldObj, this, target, velocity, inaccuracy);
         arrow.setDamage(2.0 * distanceFactor + 1.0 + 0.25 * rand.nextGaussian() + 0.4 * worldObj.difficultySetting.getDifficultyId());
 
+        // Fix aim at longer distances
+        double dx = target.posX - this.posX;
+        double dy = target.boundingBox.minY + target.height / 3.0F - arrow.posY;
+        double dz = target.posZ - this.posZ;
+        double xzdist = Math.sqrt(dx*dx + dz*dz);
+        arrow.setThrowableHeading(dx, dy + 0.125 * xzdist, dz, velocity, inaccuracy); // vanilla arrows use 0.2 instead of 0.125, which is too high for the velocity
+
         playSound("random.bow", 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
         worldObj.spawnEntityInWorld(arrow);
     }
