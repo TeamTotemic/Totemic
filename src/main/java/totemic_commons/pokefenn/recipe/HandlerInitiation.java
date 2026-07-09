@@ -12,6 +12,7 @@ import totemic_commons.pokefenn.api.totem.TotemEffect;
 import totemic_commons.pokefenn.api.totem.TotemEffectPotion;
 import totemic_commons.pokefenn.ceremony.CeremonyBaykok;
 import totemic_commons.pokefenn.ceremony.CeremonyBuffaloDance;
+import totemic_commons.pokefenn.ceremony.CeremonyDepths;
 import totemic_commons.pokefenn.ceremony.CeremonyEagleDance;
 import totemic_commons.pokefenn.ceremony.CeremonyFertility;
 import totemic_commons.pokefenn.ceremony.CeremonyFluteInfusion;
@@ -30,6 +31,7 @@ import totemic_commons.pokefenn.totem.TotemEffectOcelot;
 public class HandlerInitiation
 {
     public static Ceremony warDance;
+    public static Ceremony depths;
     public static Ceremony fertility;
     public static Ceremony zaphkielWaltz;
     public static Ceremony buffaloDance;
@@ -80,6 +82,8 @@ public class HandlerInitiation
 
         warDance = reg.addCeremony(new CeremonyWarDance("totemic", "warDance", 75, 20 * 20,
                 drum, drum));
+        depths = reg.addCeremony(new CeremonyDepths("totemic", "depths", 75, 20 * 20,
+                flute, flute));
         fertility = reg.addCeremony(new CeremonyFertility("totemic", "fertility", 88, 23 * 20,  20 * 20, 6,
                 flute, drum));
         zaphkielWaltz = reg.addCeremony(new CeremonyZaphkielWaltz("totemic", "zaphkielWaltz", 112, 20 * 20,  45 * 20, 6,

@@ -33,6 +33,7 @@ public class Totempedia
     public static final String RAIN_DANCE = "rainDance";
     public static final String DROUGHT_DANCE = "drought";
     public static final String WAR_DANCE = "warDance";
+    public static final String DEPTHS = "depths";
     public static final String BUFFALO_DANCE = "buffaloDance";
     public static final String ZAPHKIEL_WALTZ = "zaphkielWaltz";
     public static final String FLUTE_INFUSION = "fluteInfusion";

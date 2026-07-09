@@ -47,6 +47,7 @@ public final class LexiconData
 
     public static LexiconEntry performingCeremonies;
     public static LexiconEntry warDance;
+    public static LexiconEntry depths;
     public static LexiconEntry fertility;
     public static LexiconEntry zaphkielWaltz;
     public static LexiconEntry buffaloDance;
@@ -121,6 +122,9 @@ public final class LexiconData
 
         warDance = new BLexiconEntry(Totempedia.WAR_DANCE, categoryCeremony).setSortIndex(0);
         warDance.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.warDance));
+
+        depths = new BLexiconEntry(Totempedia.DEPTHS, categoryCeremony).setSortIndex(1);
+        depths.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.depths));
 
         fertility = new BLexiconEntry(Totempedia.FERTILITY, categoryCeremony).setSortIndex(2);
         fertility.setLexiconPages(new PageText("0"), new PageCeremony("1", HandlerInitiation.fertility));

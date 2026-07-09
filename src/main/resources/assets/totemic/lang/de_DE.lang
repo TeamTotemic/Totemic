@@ -71,6 +71,7 @@ totemic.melodyName.maximum=Platzend vor Melodie
 
 #Ceremony names
 totemic.ceremony.totemic:flute=Serenade für Syrinx
+totemic.ceremony.totemic:depths=Sinfonie der Tiefen
 totemic.ceremony.totemic:rainDance=Regentanz
 totemic.ceremony.totemic:drought=Dürretanz
 totemic.ceremony.totemic:buffaloDance=Mandan-Büffeltanz
@@ -213,6 +214,10 @@ totemic.page.drought1=&oNinetails, nicht Kurama!&r
 totemic.entry.warDance=Kriegszeremonie
 totemic.page.warDance0=Die &4Kriegstanz-Zeremonie&0 ist eine Zeremonie, die deine Sinne für einen Krieg stärkt und Adrenalin in deinen gesamten Körper bringt. Nach der Durchführung bringt die &4Zeremonie&0 Geschwindigkeit und Stärke für eine Weile, um in den Kampf zu stürmen.
 totemic.page.warDance1=&oEin verwickeltes Schachspiel&r
+
+totemic.entry.depths=Sinfonie der Tiefen
+totemic.page.depths0=Die &4Sinfonie der Tiefen&0 ist eine einfache Zeremonie, die dir und allen in der Nähe für eine Weile &1Unterwasseratmung&0 gewährt.
+totemic.page.depths1=&oMoon River&r
 
 totemic.entry.buffaloDance=Mandan-Büffeltanz
 totemic.page.buffaloDance0=&1Büffel&0 zogen einst in großen Herden daher, lange bevor du in dieses Land kamst. Aber nicht alle Hoffnung ist verloren. Die &4Mandan-Büffeltanz-Zeremonie&0 kann Kühen Kraft geben und sie in Büffel verwandeln, allerdings schwächere als die einheimischen. Aber mit der Zeit wachsen sie größer und stärker.

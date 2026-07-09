@@ -71,6 +71,7 @@ totemic.melodyName.maximum=Bursting with Melody
 
 #Ceremony names
 totemic.ceremony.totemic:flute=Serenade for Syrinx
+totemic.ceremony.totemic:depths=Symphony of the Depths
 totemic.ceremony.totemic:rainDance=Rain Dance
 totemic.ceremony.totemic:drought=Drought Dance
 totemic.ceremony.totemic:buffaloDance=Mandan Buffalo Dance
@@ -213,6 +214,10 @@ totemic.page.drought1=&oNinetails, Not Kurama!&r
 totemic.entry.warDance=War Dance
 totemic.page.warDance0=The &4War Dance Ceremony&0 is a Ceremony that will heighten your senses for a incoming war and bring the adrenalin to your entire body. After performing it, the &4Ceremony&0 will bring the user Speed and Strength for a long time, allowing them to rush to battle.
 totemic.page.warDance1=&oA convoluted game of chess&r
+
+totemic.entry.depths=Symphony of the Depths
+totemic.page.depths0=The &4Symphony of the Depths&0 is a simple Ceremony that will give you and everyone nearby &1Water Breathing&0 for a few minutes.
+totemic.page.depths1=&oMoon River&r
 
 totemic.entry.buffaloDance=Mandan Buffalo Dance
 totemic.page.buffaloDance0=&1Buffalos&0 used to roam the lands in large hordes long before you came into it. However, not all hope is lost. The &4Mandan Buffalo Dance&0 Ceremony is able to give strength to nearby Cows and turn them into Buffalos, although a weaker kind than those that were once native. But they will grow larger and stronger over time.
