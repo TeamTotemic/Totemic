@@ -1,7 +1,11 @@
 package totemic_commons.pokefenn.ceremony;
 
+import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import totemic_commons.pokefenn.ModItems;
 import totemic_commons.pokefenn.api.ceremony.Ceremony;
@@ -25,11 +29,29 @@ public class CeremonyFluteInfusion extends Ceremony
         if(world.isRemote)
             return;
 
-        for(EntityItem entity : world.selectEntitiesWithinAABB(EntityItem.class, EntityUtil.getAABBAround(x, y, z, 5, 5),
-                entity -> ((EntityItem) entity).getEntityItem().getItem() == ModItems.flute))
+        AxisAlignedBB aabb = EntityUtil.getAABBAround(x, y, z, 6, 6);
+
+        for(EntityItem entity : world.selectEntitiesWithinAABB(EntityItem.class, aabb, entity -> isRegularFlute(((EntityItem) entity).getEntityItem())))
         {
             EntityUtil.dropItem(world, entity.posX, entity.posY, entity.posZ, new ItemStack(ModItems.flute, 1, 1));
             entity.setDead();
         }
+
+        for(EntityPlayer player : world.selectEntitiesWithinAABB(EntityPlayer.class, aabb, IEntitySelector.selectAnything))
+        {
+            InventoryPlayer inv = player.inventory;
+            for(int i = 0; i < inv.getSizeInventory(); i++)
+            {
+                if(isRegularFlute(inv.getStackInSlot(i)))
+                {
+                    inv.setInventorySlotContents(i, new ItemStack(ModItems.flute, 1, 1));
+                }
+            }
+        }
+    }
+
+    private static boolean isRegularFlute(ItemStack stack)
+    {
+        return stack != null && stack.getItem() == ModItems.flute && stack.getItemDamage() != 1;
     }
 }
