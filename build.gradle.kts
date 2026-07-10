@@ -10,11 +10,14 @@ plugins {
   id("org.jetbrains.gradle.plugin.idea-ext") version "1.3"
   id("eclipse")
   id("com.gtnewhorizons.retrofuturagradle") version "2.0.+"
+  id("net.darkhax.curseforgegradle") version "1.1.+"
+  id("com.modrinth.minotaur") version "2.+"
 }
 
 // Project properties
 group = "totemic_commons.pokefenn"
 version = "1.7.10-0.7.1"
+val mod_release_type = "alpha"
 base.archivesName = "Totemic"
 
 // Set the toolchain version to decouple the Java we run Gradle with from the Java used to compile and run the mod
@@ -211,4 +214,25 @@ idea {
 
 tasks.processIdeaSettings.configure {
   dependsOn(tasks.injectTags)
+}
+
+tasks.register<net.darkhax.curseforgegradle.TaskPublishCurseForge>("publishCurseForge") {
+  apiToken = findProperty("curseForgeApiKey")
+  
+  val mainFile = upload(237541, tasks.reobfJar)
+  mainFile.addGameVersion(minecraft.mcVersion)
+  mainFile.addModLoader("Forge")
+  mainFile.releaseType = mod_release_type
+  mainFile.changelog = file("changelog.md")
+  mainFile.changelogType = "markdown"
+}
+
+modrinth {
+  token.set(findProperty("modrinthApiToken") as String)
+  projectId.set("fenns_totemic")
+  versionType.set(mod_release_type)
+  uploadFile.set(tasks.reobfJar)
+  gameVersions.add(minecraft.mcVersion)
+  loaders.add("forge")
+  changelog.set(file("changelog.md").readText())
 }
