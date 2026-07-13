@@ -1,5 +1,6 @@
 package pokefenn.totemic.neoforge;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -29,7 +30,9 @@ import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicCapabilities;
+import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicAcceptor;
+import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.neoforge.apiimpl.NeoRegistryApiImpl;
 
@@ -44,6 +47,11 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     @Override
     public RegistryAPI registryAPI() {
         return NeoRegistryApiImpl.INSTANCE;
+    }
+
+    @Override
+    public Optional<Ceremony> getCeremony(List<MusicInstrument> selectors) {
+        return NeoRegistryApiImpl.getCeremony(selectors);
     }
 
     @Override
