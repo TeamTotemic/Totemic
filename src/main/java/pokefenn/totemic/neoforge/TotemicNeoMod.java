@@ -18,7 +18,6 @@ import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.registry.RegistryAPI;
-import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.client.network.ClientPacketHandler;
 import pokefenn.totemic.compat.kubejs.TotemicKubeEventHandler;
@@ -30,6 +29,7 @@ import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.init.ModMobEffects;
 import pokefenn.totemic.init.ModSounds;
+import pokefenn.totemic.neoforge.apiimpl.NeoRegistryApiImpl;
 import pokefenn.totemic.neoforge.datagen.TotemicAdvancementProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicBlockStateProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicBlockTagsProvider;
@@ -68,7 +68,7 @@ public final class TotemicNeoMod {
         registerToModBus(ModContent.CEREMONIES, modBus);
 
         modBus.addListener(ModDataMapTypes::init);
-        modBus.addListener(RegistryApiImpl::registerRegistries);
+        modBus.addListener(NeoRegistryApiImpl::registerRegistries);
         modBus.addListener(TotemBaseBlockEntity::registerCapability);
         modBus.addListener((BlockEntityTypeAddBlocksEvent event) -> ModBlocks.addBlockEntityValidBlocks(event::modify));
         modBus.addListener((EntityAttributeCreationEvent event) -> ModEntityTypes.registerAttributes(event::put));
@@ -99,7 +99,7 @@ public final class TotemicNeoMod {
             TotemicKubeEventHandler.postModificationEvents();
         }
 
-        RegistryApiImpl.createSelectorsToCeremonyMap();
+        NeoRegistryApiImpl.createSelectorsToCeremonyMap();
     }
 
     private void registerPackets(RegisterPayloadHandlersEvent event) {

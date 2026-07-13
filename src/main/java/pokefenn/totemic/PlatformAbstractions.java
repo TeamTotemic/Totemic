@@ -20,12 +20,15 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.music.MusicAcceptor;
+import pokefenn.totemic.api.registry.RegistryAPI;
 
 /**
  * Provides access to functions that are implemented differently for each mod loader.
  */
 public interface PlatformAbstractions {
     <T> PlatformRegistryHelper<T> createRegistryHelper(ResourceKey<Registry<T>> registryKey);
+
+    RegistryAPI registryAPI();
 
     SpawnEggItem createSpawnEgg(Supplier<? extends EntityType<? extends Mob>> type, int backgroundColor, int highlightColor, Properties props);
 

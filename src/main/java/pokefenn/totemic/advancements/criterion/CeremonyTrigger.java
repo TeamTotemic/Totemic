@@ -12,7 +12,7 @@ import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.ceremony.Ceremony;
-import pokefenn.totemic.apiimpl.registry.RegistryApiImpl;
+import pokefenn.totemic.neoforge.apiimpl.NeoRegistryApiImpl;
 
 public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.TriggerInstance> {
     @Override
@@ -28,7 +28,7 @@ public class CeremonyTrigger extends SimpleCriterionTrigger<CeremonyTrigger.Trig
         public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(instance ->
             instance.group(
                     EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),
-                    RegistryApiImpl.INSTANCE.ceremonies().byNameCodec().fieldOf("ceremony").forGetter(TriggerInstance::ceremony)
+                    NeoRegistryApiImpl.INSTANCE.ceremonies().byNameCodec().fieldOf("ceremony").forGetter(TriggerInstance::ceremony)
             ).apply(instance, TriggerInstance::new));
 
         public static Criterion<TriggerInstance> performedCeremony(Ceremony ceremony) {

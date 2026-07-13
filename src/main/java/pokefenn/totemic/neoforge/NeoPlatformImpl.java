@@ -30,6 +30,8 @@ import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAcceptor;
+import pokefenn.totemic.api.registry.RegistryAPI;
+import pokefenn.totemic.neoforge.apiimpl.NeoRegistryApiImpl;
 
 public class NeoPlatformImpl implements PlatformAbstractions {
     private final TotemicEventHooks eventHooks = new NeoEventHooks();
@@ -37,6 +39,11 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     @Override
     public <T> PlatformRegistryHelper<T> createRegistryHelper(ResourceKey<Registry<T>> registryKey) {
         return new NeoPlatformRegistry<T>(DeferredRegister.create(registryKey, TotemicAPI.MOD_ID));
+    }
+
+    @Override
+    public RegistryAPI registryAPI() {
+        return NeoRegistryApiImpl.INSTANCE;
     }
 
     @Override

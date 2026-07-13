@@ -1,4 +1,4 @@
-package pokefenn.totemic.apiimpl.registry;
+package pokefenn.totemic.neoforge.apiimpl;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +21,7 @@ import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.neoforge.ModDataMapTypes;
 
-public enum RegistryApiImpl implements RegistryAPI {
+public enum NeoRegistryApiImpl implements RegistryAPI {
     INSTANCE;
 
     private static final Registry<MusicInstrument> MUSIC_INSTRUMENT = new RegistryBuilder<>(MUSIC_INSTRUMENT_REGISTRY).sync(true).create();
