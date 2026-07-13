@@ -17,7 +17,9 @@ import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.api.music.MusicAcceptor;
 
 /**
  * Provides access to functions that are implemented differently for each mod loader.
@@ -34,6 +36,8 @@ public interface PlatformAbstractions {
      * @return true if the taming should be cancelled.
      */
     boolean onAnimalTame(Animal animal, Player tamer);
+
+    Optional<MusicAcceptor> getMusicAcceptor(Level level, BlockEntity tile);
 
     Optional<EntityType<? extends Mob>> getCleansingCeremonyConversion(Mob mob);
 

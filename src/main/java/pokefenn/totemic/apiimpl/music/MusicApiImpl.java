@@ -11,7 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.api.TotemicCapabilities;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -48,10 +48,9 @@ public enum MusicApiImpl implements MusicAPI {
         level.getProfiler().push("totemic.playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
 
-        @SuppressWarnings("null")
         var acceptors = BlockUtil.getBlockEntitiesInRange(null, level, BlockPos.containing(pos), range)
-                .map(tile -> level.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR, tile.getBlockPos(), tile.getBlockState(), tile)) //TODO: Consider using BlockCapabilityCache
-                .filter(acc -> acc != null && acc.canAcceptMusic(instr)) // elements are != null after this
+                .flatMap(tile -> Totemic.platform().getMusicAcceptor(level, tile).stream())
+                .filter(acc -> acc.canAcceptMusic(instr))
                 .collect(MiscUtil.collectMaxElements(Comparator.comparing(MusicAcceptor::getPriority)));
 
         for(MusicAcceptor acc: acceptors) { //The loop is not executed when list is empty, so we got no division by zero

@@ -18,6 +18,7 @@ import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.EventHooks;
@@ -27,6 +28,8 @@ import pokefenn.totemic.PlatformAbstractions;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicCapabilities;
+import pokefenn.totemic.api.music.MusicAcceptor;
 
 public class NeoPlatformImpl implements PlatformAbstractions {
     private final TotemicEventHooks eventHooks = new NeoEventHooks();
@@ -49,6 +52,11 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     @Override
     public boolean onAnimalTame(Animal animal, Player tamer) {
         return EventHooks.onAnimalTame(animal, tamer);
+    }
+
+    @Override
+    public Optional<MusicAcceptor> getMusicAcceptor(Level level, BlockEntity tile) {
+        return Optional.ofNullable(level.getCapability(TotemicCapabilities.MUSIC_ACCEPTOR, tile.getBlockPos(), tile.getBlockState(), tile));
     }
 
     @SuppressWarnings("deprecation")
