@@ -1,6 +1,5 @@
 package pokefenn.totemic;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -20,9 +19,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
-import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicAcceptor;
-import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
 
 /**
@@ -32,8 +29,6 @@ public interface PlatformAbstractions {
     <T> PlatformRegistryHelper<T> createRegistryHelper(ResourceKey<Registry<T>> registryKey);
 
     RegistryAPI registryAPI();
-
-    Optional<Ceremony> getCeremony(List<MusicInstrument> selectors);
 
     SpawnEggItem createSpawnEgg(Supplier<? extends EntityType<? extends Mob>> type, int backgroundColor, int highlightColor, Properties props);
 

@@ -1,7 +1,12 @@
 package pokefenn.totemic.init;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import com.electronwill.nightconfig.core.Config;
 
@@ -14,6 +19,7 @@ import net.minecraft.world.level.material.MapColor;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -105,6 +111,8 @@ public final class ModContent {
     public static final Supplier<Ceremony> danse_macabre = CEREMONIES.register("danse_macabre", () -> new Ceremony(14940, 32 * 20, () -> DanseMacabreCeremony.INSTANCE, eagle_bone_whistle, wind_chime));
     public static final Supplier<Ceremony> baykok_summon = CEREMONIES.register("baykok_summon", () -> new Ceremony(15060, 32 * 20, () -> BaykokSummonCeremony.INSTANCE, wind_chime, eagle_bone_whistle));
 
+    private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap;
+
     public static void registerCustomWoodTypes(BiConsumer<ResourceLocation, TotemWoodType> registry) {
         // TODO: Wood types should really be made a datapack registry
         for(Config entry: TotemicConfig.STARTUP.customTotemWoodTypes.get()) {
@@ -136,5 +144,17 @@ public final class ModContent {
                 throw new IllegalArgumentException("Invalid custom Totem Wood Type with ID '" + idStr + "': " + e.getLocalizedMessage() + "\nPlease check your 'totemic-startup.toml' config file.", e);
             }
         }
+    }
+
+    /**
+     * Creates the selectorsToCeremonyMap, checking for duplicate selectors.
+     */
+    public static void createSelectorsToCeremonyMap() {
+        selectorsToCeremonyMap = TotemicAPI.get().registry().ceremonies().stream().collect(
+                Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
+    }
+
+    public static Optional<Ceremony> getCeremonyForSelectors(List<MusicInstrument> selectors) {
+        return Optional.ofNullable(selectorsToCeremonyMap.get(selectors));
     }
 }

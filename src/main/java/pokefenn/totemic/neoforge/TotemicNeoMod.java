@@ -99,7 +99,7 @@ public final class TotemicNeoMod {
             TotemicKubeEventHandler.postModificationEvents();
         }
 
-        NeoRegistryApiImpl.createSelectorsToCeremonyMap();
+        ModContent.createSelectorsToCeremonyMap();
     }
 
     private void registerPackets(RegisterPayloadHandlersEvent event) {

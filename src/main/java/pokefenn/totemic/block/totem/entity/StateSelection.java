@@ -21,6 +21,7 @@ import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.client.CeremonyHUD;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.util.MiscUtil;
 
 public final class StateSelection extends TotemState {
@@ -54,7 +55,7 @@ public final class StateSelection extends TotemState {
 
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
             var eventResult = Totemic.platform().events().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), entity, selectors,
-                    Totemic.platform().getCeremony(selectors));
+                    ModContent.getCeremonyForSelectors(selectors));
 
             eventResult.ceremony().ifPresentOrElse(ceremony -> {
                 CeremonyInstance instance = ceremony.createInstance();

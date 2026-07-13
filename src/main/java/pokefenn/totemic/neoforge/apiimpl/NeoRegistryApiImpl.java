@@ -1,11 +1,5 @@
 package pokefenn.totemic.neoforge.apiimpl;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 import net.minecraft.core.DefaultedRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.EntityType;
@@ -29,25 +23,11 @@ public enum NeoRegistryApiImpl implements RegistryAPI {
     private static final DefaultedRegistry<TotemCarving> TOTEM_CARVING = (DefaultedRegistry<TotemCarving>) new RegistryBuilder<>(TOTEM_CARVING_REGISTRY).defaultKey(Totemic.resloc("none")).sync(true).create();
     private static final Registry<Ceremony> CEREMONY = new RegistryBuilder<>(CEREMONY_REGISTRY).sync(false).create();
 
-    private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap;
-
     public static void registerRegistries(NewRegistryEvent event) {
         event.register(MUSIC_INSTRUMENT);
         event.register(WOOD_TYPE);
         event.register(TOTEM_CARVING);
         event.register(CEREMONY);
-    }
-
-    /**
-     * Creates the selectorsToCeremonyMap, checking for duplicate selectors.
-     */
-    public static void createSelectorsToCeremonyMap() {
-        selectorsToCeremonyMap = CEREMONY.stream().collect(
-                Collectors.toUnmodifiableMap(Ceremony::getSelectors, Function.identity()));
-    }
-
-    public static Optional<Ceremony> getCeremony(List<MusicInstrument> selectors) {
-        return Optional.ofNullable(selectorsToCeremonyMap.get(selectors));
     }
 
     @Override
