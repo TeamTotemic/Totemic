@@ -16,7 +16,6 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.MedicineBagItem;
@@ -27,9 +26,7 @@ import pokefenn.totemic.neoforge.handler.ClientInitHandlers;
 public final class TotemicClientNeoMod {
     public TotemicClientNeoMod(IEventBus modBus, ModContainer container) {
         modBus.addListener(this::clientSetup);
-
         modBus.register(ClientInitHandlers.class);
-        modBus.register(ModModelLayers.class);
 
         container.registerExtensionPoint(IConfigScreenFactory.class, (mod, parent) -> new ConfigurationScreen(mod, parent,
                 //filter out customTotemWoodTypes from the config GUI

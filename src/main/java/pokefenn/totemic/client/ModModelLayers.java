@@ -1,9 +1,13 @@
 package pokefenn.totemic.client;
 
+import java.util.function.BiConsumer;
+import java.util.function.Supplier;
+
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.model.BaldEagleModel;
 import pokefenn.totemic.client.model.BaykokModel;
@@ -26,21 +30,20 @@ public final class ModModelLayers {
         return new ModelLayerLocation(Totemic.resloc(name), "main");
     }
 
-    @SubscribeEvent
-    public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(BUFFALO, BuffaloModel::createLayer);
-        event.registerLayerDefinition(BALD_EAGLE, BaldEagleModel::createLayer);
-        event.registerLayerDefinition(BAYKOK, () -> BaykokModel.createLayer(CubeDeformation.NONE));
-        event.registerLayerDefinition(WIND_CHIME, WindChimeRenderer::createLayer);
+    public static void registerLayerDefinitions(BiConsumer<ModelLayerLocation, Supplier<LayerDefinition>> registry) {
+        registry.accept(BUFFALO, BuffaloModel::createLayer);
+        registry.accept(BALD_EAGLE, BaldEagleModel::createLayer);
+        registry.accept(BAYKOK, () -> BaykokModel.createLayer(CubeDeformation.NONE));
+
+        registry.accept(WIND_CHIME, WindChimeRenderer::createLayer);
     }
 
-    @SubscribeEvent
-    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(ModEntityTypes.buffalo.get(), BuffaloRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.bald_eagle.get(), BaldEagleRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.baykok.get(), BaykokRenderer::new);
-        event.registerEntityRenderer(ModEntityTypes.invisible_arrow.get(), InvisibleArrowRenderer::new);
+    public static void registerRenderers() {
+        EntityRenderers.register(ModEntityTypes.buffalo.get(), BuffaloRenderer::new);
+        EntityRenderers.register(ModEntityTypes.bald_eagle.get(), BaldEagleRenderer::new);
+        EntityRenderers.register(ModEntityTypes.baykok.get(), BaykokRenderer::new);
+        EntityRenderers.register(ModEntityTypes.invisible_arrow.get(), InvisibleArrowRenderer::new);
 
-        event.registerBlockEntityRenderer(ModBlockEntities.wind_chime.get(), WindChimeRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.wind_chime.get(), WindChimeRenderer::new);
     }
 }

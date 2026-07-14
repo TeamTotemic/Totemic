@@ -92,6 +92,8 @@ public final class TotemicNeoMod {
             ModBlocks.setFireInfo();
         });
 
+        ModContent.createSelectorsToCeremonyMap();
+
         IEventBus eventBus = NeoForge.EVENT_BUS;
         eventBus.register(PlayerInteract.class);
 
@@ -99,8 +101,6 @@ public final class TotemicNeoMod {
             eventBus.register(TotemicKubeEventHandler.class);
             TotemicKubeEventHandler.postModificationEvents();
         }
-
-        ModContent.createSelectorsToCeremonyMap();
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
