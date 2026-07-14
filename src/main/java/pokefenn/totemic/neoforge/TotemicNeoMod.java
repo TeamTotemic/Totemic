@@ -6,6 +6,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
@@ -17,8 +18,8 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.registry.RegistryAPI;
-import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.client.network.ClientPacketHandler;
 import pokefenn.totemic.compat.kubejs.TotemicKubeEventHandler;
 import pokefenn.totemic.init.ModBlockEntities;
@@ -51,6 +52,7 @@ public final class TotemicNeoMod {
     public TotemicNeoMod(IEventBus modBus, ModContainer container) {
         modBus.addListener(this::register);
         modBus.addListener(this::commonSetup);
+        modBus.addListener(this::registerCapabilities);
         modBus.addListener(this::registerPackets);
         modBus.addListener(this::gatherData);
 
@@ -69,7 +71,6 @@ public final class TotemicNeoMod {
 
         modBus.addListener(ModDataMapTypes::init);
         modBus.addListener(NeoRegistryApiImpl::registerRegistries);
-        modBus.addListener(TotemBaseBlockEntity::registerCapability);
         modBus.addListener((BlockEntityTypeAddBlocksEvent event) -> ModBlocks.addBlockEntityValidBlocks(event::modify));
         modBus.addListener((EntityAttributeCreationEvent event) -> ModEntityTypes.registerAttributes(event::put));
 
@@ -100,6 +101,11 @@ public final class TotemicNeoMod {
         }
 
         ModContent.createSelectorsToCeremonyMap();
+    }
+
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(TotemicCapabilities.MUSIC_ACCEPTOR, ModBlockEntities.totem_base.get(),
+                (totem, context) -> totem.getTotemState());
     }
 
     private void registerPackets(RegisterPayloadHandlersEvent event) {

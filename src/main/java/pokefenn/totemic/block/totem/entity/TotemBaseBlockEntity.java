@@ -23,11 +23,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemEffect;
 import pokefenn.totemic.api.totem.TotemEffectAPI;
@@ -186,10 +184,5 @@ public class TotemBaseBlockEntity extends BlockEntity {
     @Override
     public ModelData getModelData() {
         return ModelData.builder().with(TotemPoleModelData.WOOD_TYPE_PROPERTY, woodType).build();
-    }
-
-    public static void registerCapability(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(TotemicCapabilities.MUSIC_ACCEPTOR, ModBlockEntities.totem_base.get(),
-                (totem, context) -> totem.state);
     }
 }
