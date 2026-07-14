@@ -20,9 +20,8 @@ import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.item.MedicineBagItem;
+import pokefenn.totemic.neoforge.handler.ClientEventHandlers;
 import pokefenn.totemic.neoforge.handler.ClientInitHandlers;
-import pokefenn.totemic.neoforge.handler.ClientInteract;
-import pokefenn.totemic.neoforge.handler.ClientRenderHandler;
 
 @Mod(value = TotemicAPI.MOD_ID, dist = Dist.CLIENT)
 public final class TotemicClientNeoMod {
@@ -58,7 +57,6 @@ public final class TotemicClientNeoMod {
         });
 
         IEventBus eventBus = NeoForge.EVENT_BUS;
-        eventBus.register(ClientInteract.class);
-        eventBus.register(ClientRenderHandler.class);
+        eventBus.register(ClientEventHandlers.class);
     }
 }
