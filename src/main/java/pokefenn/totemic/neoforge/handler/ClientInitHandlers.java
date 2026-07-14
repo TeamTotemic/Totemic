@@ -1,14 +1,18 @@
 package pokefenn.totemic.neoforge.handler;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
@@ -43,6 +47,13 @@ public class ClientInitHandlers {
                 return TotemicItemRenderer.INSTANCE;
             }
         }, ModItems.wind_chime.get());
+
+        event.registerBlock(new IClientBlockExtensions() {
+            @Override
+            public boolean areBreakingParticlesTinted(BlockState state, ClientLevel level, BlockPos pos) {
+                return false; // Fixes Totem Pole breaking particles having the wrong color
+            }
+        }, ModBlocks.totem_pole.get());
     }
 
     @SubscribeEvent
