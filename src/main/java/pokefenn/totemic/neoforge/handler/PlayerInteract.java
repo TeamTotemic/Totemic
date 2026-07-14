@@ -1,12 +1,8 @@
 package pokefenn.totemic.neoforge.handler;
 
-import net.minecraft.network.chat.Component;
-import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import pokefenn.totemic.TotemicConfig;
-import pokefenn.totemic.api.event.CeremonyEvent;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModItems;
 
@@ -20,15 +16,5 @@ public class PlayerInteract {
                         .ifPresent(tile -> tile.resetTotemState());
             }
         }
-    }
-
-    @SubscribeEvent(priority = EventPriority.LOW)
-    public static void checkCeremonyDisabled(CeremonyEvent.Selection event) {
-        event.getCeremony().ifPresent(ceremony -> {
-            if(TotemicConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString())) {
-                event.getInitiator().sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
-                event.setCeremony(null);
-            }
-        });
     }
 }

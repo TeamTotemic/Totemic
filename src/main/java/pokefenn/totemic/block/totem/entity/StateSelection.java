@@ -11,11 +11,14 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.api.TotemicAPI;
+import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.music.MusicAcceptor;
@@ -56,8 +59,13 @@ public final class StateSelection extends TotemState {
         if(selectors.size() >= CeremonyAPI.MIN_SELECTORS) {
             var eventResult = Totemic.platform().events().fireCeremonySelection(tile.getLevel(), tile.getBlockPos(), entity, selectors,
                     ModContent.getCeremonyForSelectors(selectors));
-
             eventResult.ceremony().ifPresentOrElse(ceremony -> {
+                if(isCeremonyDisabled(ceremony)) {
+                    entity.sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
+                    resetTotemState();
+                    return;
+                }
+
                 CeremonyInstance instance = ceremony.createInstance();
                 if(eventResult.skipSelectionCheck() || instance.canSelect(tile.getLevel(), tile.getBlockPos(), entity)) {
                     tile.setTotemState(new StateStartup(tile, ceremony, instance, entity));
@@ -66,10 +74,14 @@ public final class StateSelection extends TotemState {
                     resetTotemState();
             },
             () -> {
-                //if(selectors.size() >= CeremonyAPI.MAX_SELECTORS) // this check is a no-op since MIN_SELECTORS == MAX_SELECTORS
+                if(selectors.size() >= CeremonyAPI.MAX_SELECTORS)
                     resetTotemState();
             });
         }
+    }
+
+    private static boolean isCeremonyDisabled(Ceremony ceremony) {
+        return TotemicConfig.SERVER.disabledCeremonies.get().contains(ceremony.getRegistryName().toString());
     }
 
     @Override
