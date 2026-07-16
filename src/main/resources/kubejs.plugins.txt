@@ -1,1 +1,1 @@
-pokefenn.totemic.compat.kubejs.TotemicKubeJSPlugin totemic
+pokefenn.totemic.neoforge.compat.kubejs.TotemicKubeJSPlugin totemic

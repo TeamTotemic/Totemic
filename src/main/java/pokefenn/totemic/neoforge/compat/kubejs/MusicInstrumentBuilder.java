@@ -1,4 +1,4 @@
-package pokefenn.totemic.compat.kubejs;
+package pokefenn.totemic.neoforge.compat.kubejs;
 
 import java.util.function.Supplier;
 

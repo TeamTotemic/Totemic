@@ -1,4 +1,4 @@
-package pokefenn.totemic.compat.kubejs;
+package pokefenn.totemic.neoforge.compat.kubejs;
 
 import dev.latvian.mods.kubejs.event.EventGroupRegistry;
 import dev.latvian.mods.kubejs.plugin.KubeJSPlugin;
