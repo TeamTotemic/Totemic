@@ -28,9 +28,8 @@ public class TotemPoleBlockEntity extends BlockEntity {
     private ResourceLocation woodTypeLoc = ModContent.oak.get().getRegistryName();
     private ResourceLocation carvingLoc = ModContent.none.get().getRegistryName();
 
-    //Fields need to be volatile since getModelData() is called from chunk render threads
-    private volatile TotemWoodType woodType = ModContent.oak.get();
-    private volatile TotemCarving carving = ModContent.none.get();
+    private TotemWoodType woodType = ModContent.oak.get();
+    private TotemCarving carving = ModContent.none.get();
 
     public TotemPoleBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.totem_pole.get(), pPos, pBlockState);

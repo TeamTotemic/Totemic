@@ -39,7 +39,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
 
     //see also TotemPoleBlockEntity
     private ResourceLocation woodTypeLoc = ModContent.oak.get().getRegistryName();
-    private volatile TotemWoodType woodType = ModContent.oak.get();
+    private TotemWoodType woodType = ModContent.oak.get();
 
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
     private Set<TotemCarving> carvingSet = null; //Only needed for Medicine Bags, computed lazily

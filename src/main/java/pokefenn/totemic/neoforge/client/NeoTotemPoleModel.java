@@ -25,6 +25,7 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
+import pokefenn.totemic.item.TotemPoleItem;
 
 public final class NeoTotemPoleModel implements IUnbakedGeometry<NeoTotemPoleModel> {
     private Map<TotemPoleModelData, UnbakedModel> totemModels = null;
@@ -35,7 +36,8 @@ public final class NeoTotemPoleModel implements IUnbakedGeometry<NeoTotemPoleMod
     @Override
     public BakedModel bake(IGeometryBakingContext ctx, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides) {
         var bakedModels = Map.copyOf(Maps.transformValues(totemModels, unbaked -> unbaked.bake(bakery, spriteGetter, modelState)));
-        return new NeoBakedTotemPoleModel(bakedModels);
+        return new DataDependentBakedModel<>(bakedModels, TotemPoleModelData.DATA_PROPERTY, TotemPoleModelData.DEFAULT,
+                stack -> new TotemPoleModelData(TotemPoleItem.getWoodType(stack), TotemPoleItem.getCarving(stack)));
     }
 
     @Override

@@ -3,6 +3,7 @@ package pokefenn.totemic.neoforge.client;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -22,28 +23,38 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 import net.neoforged.neoforge.client.model.BakedModelWrapper;
 import net.neoforged.neoforge.client.model.data.ModelData;
-import pokefenn.totemic.item.TotemPoleItem;
+import net.neoforged.neoforge.client.model.data.ModelProperty;
 
-//TODO: Consider unifying this class with NeoBakedTotemBaseModel
-public final class NeoBakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
-    private final Map<TotemPoleModelData, BakedModel> bakedTotemModels;
+/**
+ * A baked model which resolves to a different model depending on a ModelData property.
+ * @param <K> the type of key on which the model should depend.
+ */
+public class DataDependentBakedModel<K> extends BakedModelWrapper<BakedModel> {
+    private final Map<K, BakedModel> models;
+    private final ModelProperty<K> property;
     private final ItemOverrides itemOverrides;
 
-    NeoBakedTotemPoleModel(Map<TotemPoleModelData, BakedModel> bakedTotemModels) {
-        super(Objects.requireNonNull(bakedTotemModels.get(TotemPoleModelData.DEFAULT))); //default model
-        this.bakedTotemModels = bakedTotemModels;
+    /**
+     * @param models        a map of keys to their respective BakedModel.
+     * @param property      the ModelProperty on which the model should depend.
+     * @param defaultKey    the default key which is used in contexts where ModelData is not available, or the ModelData does not contain the property, or the key does not exist in the models map.
+     * @param itemKeyMapper a function which extracts the key to use from an ItemStack. The function must not return null.
+     */
+    public DataDependentBakedModel(Map<K, BakedModel> models, ModelProperty<K> property, K defaultKey, Function<ItemStack, K> itemKeyMapper) {
+        super(Objects.requireNonNull(models.get(defaultKey)));
+        this.models = models;
+        this.property = property;
         this.itemOverrides = new ItemOverrides() {
             @Override
-            public BakedModel resolve(BakedModel pModel, ItemStack pStack, ClientLevel pLevel, LivingEntity pEntity, int pSeed) {
-                var data = new TotemPoleModelData(TotemPoleItem.getWoodType(pStack), TotemPoleItem.getCarving(pStack));
-                return bakedTotemModels.get(data);
+            public BakedModel resolve(BakedModel model, ItemStack stack, ClientLevel level, LivingEntity entity, int seed) {
+                return models.getOrDefault(itemKeyMapper.apply(stack), originalModel);
             }
         };
     }
 
     private BakedModel getModelFor(ModelData modelData) {
-        var data = Objects.requireNonNullElse(modelData.get(TotemPoleModelData.DATA_PROPERTY), TotemPoleModelData.DEFAULT);
-        return bakedTotemModels.get(data);
+        var data = modelData.get(property);
+        return data != null ? models.getOrDefault(data, originalModel) : originalModel;
     }
 
     @Override
