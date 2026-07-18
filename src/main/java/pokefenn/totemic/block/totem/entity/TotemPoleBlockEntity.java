@@ -18,9 +18,9 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
-import pokefenn.totemic.client.model.totem.TotemPoleModelData;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
+import pokefenn.totemic.neoforge.client.TotemPoleModelData;
 
 public class TotemPoleBlockEntity extends BlockEntity {
     //Remember the values as read from NBT to avoid permanently replacing them with the defaults in case entries are removed from the registry

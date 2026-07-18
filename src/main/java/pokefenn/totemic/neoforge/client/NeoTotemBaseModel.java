@@ -1,4 +1,4 @@
-package pokefenn.totemic.client.model.totem;
+package pokefenn.totemic.neoforge.client;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -22,16 +22,16 @@ import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemWoodType;
 
-public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
+public final class NeoTotemBaseModel implements IUnbakedGeometry<NeoTotemBaseModel> {
     private Map<TotemWoodType, UnbakedModel> totemModels = null;
 
-    private TotemBaseModel() {
+    private NeoTotemBaseModel() {
     }
 
     @Override
     public BakedModel bake(IGeometryBakingContext ctx, ModelBaker bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides) {
         var bakedModels = Map.copyOf(Maps.transformValues(totemModels, unbaked -> unbaked.bake(bakery, spriteGetter, modelState)));
-        return new BakedTotemBaseModel(bakedModels);
+        return new NeoBakedTotemBaseModel(bakedModels);
     }
 
     @Override
@@ -54,12 +54,12 @@ public final class TotemBaseModel implements IUnbakedGeometry<TotemBaseModel> {
         return woodName.withPath("block/" + woodName.getPath() + "_totem_base");
     }
 
-    public enum Loader implements IGeometryLoader<TotemBaseModel> {
+    public enum Loader implements IGeometryLoader<NeoTotemBaseModel> {
         INSTANCE;
 
         @Override
-        public TotemBaseModel read(JsonObject jsonObject, JsonDeserializationContext deserializationContext) throws JsonParseException {
-            return new TotemBaseModel();
+        public NeoTotemBaseModel read(JsonObject jsonObject, JsonDeserializationContext deserializationContext) throws JsonParseException {
+            return new NeoTotemBaseModel();
         }
     }
 }

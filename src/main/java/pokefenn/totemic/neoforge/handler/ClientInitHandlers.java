@@ -19,11 +19,11 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.client.ModModelLayers;
-import pokefenn.totemic.client.model.totem.TotemBaseModel;
-import pokefenn.totemic.client.model.totem.TotemPoleModel;
 import pokefenn.totemic.client.renderer.TotemicItemRenderer;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModItems;
+import pokefenn.totemic.neoforge.client.NeoTotemBaseModel;
+import pokefenn.totemic.neoforge.client.NeoTotemPoleModel;
 
 /**
  * Contains event handlers for various client-only events fired during initialization (on the mod event bus).
@@ -69,8 +69,8 @@ public class ClientInitHandlers {
 
     @SubscribeEvent
     public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
-        event.register(Totemic.resloc("totem_pole"), TotemPoleModel.Loader.INSTANCE);
-        event.register(Totemic.resloc("totem_base"), TotemBaseModel.Loader.INSTANCE);
+        event.register(Totemic.resloc("totem_pole"), NeoTotemPoleModel.Loader.INSTANCE);
+        event.register(Totemic.resloc("totem_base"), NeoTotemBaseModel.Loader.INSTANCE);
     }
 
     private static final ModelResourceLocation OPAQUE_CEDAR_LEAVES = ModelResourceLocation.standalone(Totemic.resloc("block/cedar_leaves_opaque"));

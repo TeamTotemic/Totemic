@@ -1,4 +1,4 @@
-package pokefenn.totemic.client.model.totem;
+package pokefenn.totemic.neoforge.client;
 
 import java.util.List;
 import java.util.Map;
@@ -22,28 +22,28 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 import net.neoforged.neoforge.client.model.BakedModelWrapper;
 import net.neoforged.neoforge.client.model.data.ModelData;
+import pokefenn.totemic.api.totem.TotemWoodType;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.item.TotemPoleItem;
 
-//TODO: Consider unifying this class with BakedTotemBaseModel
-public final class BakedTotemPoleModel extends BakedModelWrapper<BakedModel> {
-    private final Map<TotemPoleModelData, BakedModel> bakedTotemModels;
+public final class NeoBakedTotemBaseModel extends BakedModelWrapper<BakedModel> {
+    private final Map<TotemWoodType, BakedModel> bakedTotemModels;
     private final ItemOverrides itemOverrides;
 
-    BakedTotemPoleModel(Map<TotemPoleModelData, BakedModel> bakedTotemModels) {
-        super(Objects.requireNonNull(bakedTotemModels.get(TotemPoleModelData.DEFAULT))); //default model
+    NeoBakedTotemBaseModel(Map<TotemWoodType, BakedModel> bakedTotemModels) {
+        super(Objects.requireNonNull(bakedTotemModels.get(ModContent.oak.get()))); //default model
         this.bakedTotemModels = bakedTotemModels;
         this.itemOverrides = new ItemOverrides() {
             @Override
             public BakedModel resolve(BakedModel pModel, ItemStack pStack, ClientLevel pLevel, LivingEntity pEntity, int pSeed) {
-                var data = new TotemPoleModelData(TotemPoleItem.getWoodType(pStack), TotemPoleItem.getCarving(pStack));
-                return bakedTotemModels.get(data);
+                return bakedTotemModels.get(TotemPoleItem.getWoodType(pStack));
             }
         };
     }
 
     private BakedModel getModelFor(ModelData modelData) {
-        var data = Objects.requireNonNullElse(modelData.get(TotemPoleModelData.DATA_PROPERTY), TotemPoleModelData.DEFAULT);
-        return bakedTotemModels.get(data);
+        var woodType = Objects.requireNonNullElse(modelData.get(TotemPoleModelData.WOOD_TYPE_PROPERTY), ModContent.oak.get());
+        return bakedTotemModels.get(woodType);
     }
 
     @Override

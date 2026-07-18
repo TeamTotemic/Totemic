@@ -193,7 +193,7 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
             var woodTypeId = woodType.getRegistryName();
             var namespace = woodTypeId.getPath().equals("cedar") ? "totemic" : "minecraft";
 
-            var poleModel = models().getBuilder(woodTypeId.toString() + "_totem_pole"); //the pole model has no parent, it only specifies the textures and is being loaded in TotemPoleModel.getMaterials.
+            var poleModel = models().getBuilder(woodTypeId.toString() + "_totem_pole"); //the pole model has no parent, it only specifies the textures and is being loaded in NeoTotemPoleModel.resolveParents.
             var baseModel = models().withExistingParent(woodTypeId.toString() + "_totem_base", modLoc("totem_base"));
             setTotemTextures(poleModel, namespace, woodTypeId.getPath());
             setTotemTextures(baseModel, namespace, woodTypeId.getPath());
