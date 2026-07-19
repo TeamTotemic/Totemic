@@ -56,7 +56,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
         if(optCarving.isEmpty())
             Totemic.logger.warn("Unknown Totem Carving: '{}'", carvingLoc);
         carving = optCarving.orElseGet(ModContent.none);
-        requestModelDataUpdate();
+        Totemic.platform().requestModelDataUpdate(this);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
         this.woodTypeLoc = woodType.getRegistryName();
         this.carving = Objects.requireNonNull(carving);
         this.carvingLoc = carving.getRegistryName();
-        requestModelDataUpdate();
+        Totemic.platform().requestModelDataUpdate(this);
         setChanged();
     }
 
