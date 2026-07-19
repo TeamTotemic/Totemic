@@ -6,7 +6,6 @@ import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
-import net.neoforged.neoforge.common.util.INBTSerializable;
 
 /**
  * Interface for implementing the effects of a ceremony.
@@ -16,8 +15,9 @@ import net.neoforged.neoforge.common.util.INBTSerializable;
  * <p>
  * The CeremonyInstance object may be used to keep track of internal state for the duration of the ceremony. If, however, your ceremony is
  * stateless, it is encouraged to reuse one object for all performances of the ceremony.
+ * <em>The way the state tracking for ceremonies works will likely change in future versions.</em>
  */
-public interface CeremonyInstance extends INBTSerializable<Tag> { //TODO: Consider renaming this class, e.g. to "CeremonyEffect"
+public interface CeremonyInstance { //TODO: Consider renaming this class, e.g. to "CeremonyEffect"
     /**
      * Peforms the ceremony's effect at the given Totem Base position.
      * <p>
@@ -75,8 +75,9 @@ public interface CeremonyInstance extends INBTSerializable<Tag> { //TODO: Consid
 
     /**
      * Serializes the state of the current ceremony to an NBT tag.
+     * <p>
+     * <em>The way the state tracking for ceremonies works will likely change in future versions.</em>
      */
-    @Override
     default Tag serializeNBT(HolderLookup.Provider provider) {
         return EndTag.INSTANCE;
     }
@@ -85,7 +86,8 @@ public interface CeremonyInstance extends INBTSerializable<Tag> { //TODO: Consid
      * Reads the state of the current ceremony from the given NBT tag.
      * <p>
      * This method is not called if {@link #serializeNBT()} had returned an {@link EndTag}.
+     * <p>
+     * <em>The way the state tracking for ceremonies works will likely change in future versions.</em>
      */
-    @Override
     default void deserializeNBT(HolderLookup.Provider provider, Tag nbt) { }
 }

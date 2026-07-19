@@ -14,7 +14,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.util.INBTSerializable;
 import pokefenn.totemic.api.TotemicAPI;
 
 /**
@@ -26,7 +25,7 @@ import pokefenn.totemic.api.TotemicAPI;
  * <p>
  * The behavior is the same as a Totem Base while starting up a ceremony.
  */
-public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<CompoundTag> {
+public class DefaultMusicAcceptor implements MusicAcceptor {
     private Vec3 position;
     private final Object2IntMap<MusicInstrument> music = new Object2IntOpenHashMap<>(TotemicAPI.get().registry().instruments().size());
     private int totalMusic = 0;
@@ -99,7 +98,9 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
         this.position = position;
     }
 
-    @Override
+    /**
+     * Serializes the stored music values into an NBT tag.
+     */
     public CompoundTag serializeNBT(HolderLookup.Provider provider) {
         CompoundTag nbt = new CompoundTag();
 
@@ -108,8 +109,10 @@ public class DefaultMusicAcceptor implements MusicAcceptor, INBTSerializable<Com
         return nbt;
     }
 
-    @Override
-    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag tag) { //TODO: Use the given provider
+    /**
+     * Deserializes the music values from the given NBT tag.
+     */
+    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag tag) {
         music.clear();
         totalMusic = 0;
         var instrRegistry = TotemicAPI.get().registry().instruments();
