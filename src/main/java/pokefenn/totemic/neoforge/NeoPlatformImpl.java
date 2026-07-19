@@ -42,13 +42,13 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     }
 
     @Override
-    public RegistryAPI registryAPI() {
-        return NeoRegistryApiImpl.INSTANCE;
+    public SpawnEggItem createSpawnEgg(Supplier<? extends EntityType<? extends Mob>> type, int backgroundColor, int highlightColor, Properties props) {
+        return new DeferredSpawnEggItem(type, backgroundColor, highlightColor, props);
     }
 
     @Override
-    public SpawnEggItem createSpawnEgg(Supplier<? extends EntityType<? extends Mob>> type, int backgroundColor, int highlightColor, Properties props) {
-        return new DeferredSpawnEggItem(type, backgroundColor, highlightColor, props);
+    public RegistryAPI registryAPI() {
+        return NeoRegistryApiImpl.INSTANCE;
     }
 
     @Override
@@ -57,8 +57,13 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     }
 
     @Override
-    public boolean onAnimalTame(Animal animal, Player tamer) {
-        return EventHooks.onAnimalTame(animal, tamer);
+    public void invalidateCapabilities(BlockEntity tile) {
+        tile.invalidateCapabilities();
+    }
+
+    @Override
+    public void requestModelDataUpdate(BlockEntity tile) {
+        tile.requestModelDataUpdate();
     }
 
     @Override
@@ -70,6 +75,11 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     @Override
     public Optional<EntityType<? extends Mob>> getCleansingCeremonyConversion(Mob mob) {
         return Optional.ofNullable(mob.getType().builtInRegistryHolder().getData(ModDataMapTypes.CLEANSING_CEREMONY_CONVERSIONS));
+    }
+
+    @Override
+    public boolean onAnimalTame(Animal animal, Player tamer) {
+        return EventHooks.onAnimalTame(animal, tamer);
     }
 
     @Override

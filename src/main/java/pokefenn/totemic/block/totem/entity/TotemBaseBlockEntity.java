@@ -97,7 +97,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     public void setWoodType(TotemWoodType woodType) {
         this.woodType = Objects.requireNonNull(woodType);
         this.woodTypeLoc = woodType.getRegistryName();
-        requestModelDataUpdate();
+        Totemic.platform().requestModelDataUpdate(this);
         setChanged();
     }
 
@@ -133,7 +133,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
             if(level != null) { //prevent NPE when called during loading
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_ALL);
                 setChanged();
-                invalidateCapabilities();
+                Totemic.platform().invalidateCapabilities(this);
             }
         }
     }
@@ -158,7 +158,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
         if(optWood.isEmpty())
             Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);
         woodType = optWood.orElseGet(ModContent.oak);
-        requestModelDataUpdate();
+        Totemic.platform().requestModelDataUpdate(this);
 
         if(tag.contains("State", Tag.TAG_BYTE)) {
             byte id = tag.getByte("State");

@@ -28,21 +28,25 @@ import pokefenn.totemic.api.registry.RegistryAPI;
 public interface PlatformAbstractions {
     <T> PlatformRegistryHelper<T> createRegistryHelper(ResourceKey<Registry<T>> registryKey);
 
-    RegistryAPI registryAPI();
-
     SpawnEggItem createSpawnEgg(Supplier<? extends EntityType<? extends Mob>> type, int backgroundColor, int highlightColor, Properties props);
 
+    RegistryAPI registryAPI();
+
     TotemicEventHooks events();
+
+    // these forward to methods from Neo's IBlockEntityExtension. Maybe they could be useful in Fabric as well.
+    default void invalidateCapabilities(BlockEntity tile) {}
+    default void requestModelDataUpdate(BlockEntity tile) {}
+
+    Optional<MusicAcceptor> getMusicAcceptor(Level level, BlockEntity tile);
+
+    Optional<EntityType<? extends Mob>> getCleansingCeremonyConversion(Mob mob);
 
     /**
      * A hook that should be called when an animal is tamed. NeoForge uses this to post an event.
      * @return true if the taming should be cancelled.
      */
-    boolean onAnimalTame(Animal animal, Player tamer);
-
-    Optional<MusicAcceptor> getMusicAcceptor(Level level, BlockEntity tile);
-
-    Optional<EntityType<? extends Mob>> getCleansingCeremonyConversion(Mob mob);
+    default boolean onAnimalTame(Animal animal, Player tamer) { return false; }
 
     // Networking
     void sendPacketToServer(CustomPacketPayload payload);
