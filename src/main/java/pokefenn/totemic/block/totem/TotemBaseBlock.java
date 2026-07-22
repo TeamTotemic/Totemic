@@ -21,6 +21,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
@@ -159,7 +160,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return BlockUtil.createTickerHelper(type, ModBlockEntities.totem_base.get(), TotemBaseBlockEntity::tick);
+        return BaseEntityBlock.createTickerHelper(type, ModBlockEntities.totem_base.get(), TotemBaseBlockEntity::tick);
     }
 
     @Override

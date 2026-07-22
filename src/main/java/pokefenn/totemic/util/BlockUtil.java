@@ -10,7 +10,6 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -19,12 +18,6 @@ import net.minecraft.world.level.material.Fluids;
 import pokefenn.totemic.api.TotemicEntityUtil;
 
 public final class BlockUtil {
-    //Same method as in BaseEntityBlock, but made public
-    @SuppressWarnings("unchecked")
-    public static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> serverType, BlockEntityType<E> clientType, BlockEntityTicker<? super E> ticker) {
-        return clientType == serverType ? (BlockEntityTicker<A>)ticker : null;
-    }
-
     public static <T extends BlockEntity> Stream<T> getBlockEntitiesInRange(@Nullable BlockEntityType<T> type, Level level, BlockPos pos, int range) {
         return getBlockEntitiesIn(type, level, TotemicEntityUtil.getBoundingBoxAround(pos, range));
     }
