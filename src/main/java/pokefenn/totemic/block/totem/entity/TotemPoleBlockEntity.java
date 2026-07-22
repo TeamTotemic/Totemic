@@ -13,14 +13,12 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.model.data.ModelData;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.neoforge.client.TotemPoleModelData;
 
 public class TotemPoleBlockEntity extends BlockEntity {
     //Remember the values as read from NBT to avoid permanently replacing them with the defaults in case entries are removed from the registry
@@ -85,10 +83,5 @@ public class TotemPoleBlockEntity extends BlockEntity {
         this.carvingLoc = carving.getRegistryName();
         Totemic.platform().requestModelDataUpdate(this);
         setChanged();
-    }
-
-    @Override
-    public ModelData getModelData() {
-        return ModelData.builder().with(TotemPoleModelData.DATA_PROPERTY, new TotemPoleModelData(woodType, carving)).build();
     }
 }

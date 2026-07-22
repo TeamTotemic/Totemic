@@ -17,6 +17,9 @@ issueTrackerURL="https://github.com/TeamTotemic/Totemic/issues"
 [[mixins]]
     config="totemic.mixins.json"
 
+[[mixins]]
+    config="totemic.neoforge.mixins.json"
+
 [[dependencies.${mod_id}]]
     modId="neoforge"
     type="required"

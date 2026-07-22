@@ -23,7 +23,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.model.data.ModelData;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
@@ -32,7 +31,6 @@ import pokefenn.totemic.api.totem.TotemEffectAPI;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModContent;
-import pokefenn.totemic.neoforge.client.TotemPoleModelData;
 
 public class TotemBaseBlockEntity extends BlockEntity {
     private boolean needPoleUpdate = true;
@@ -179,10 +177,5 @@ public class TotemBaseBlockEntity extends BlockEntity {
     @Nullable
     public Packet<ClientGamePacketListener> getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public ModelData getModelData() {
-        return ModelData.builder().with(TotemPoleModelData.WOOD_TYPE_PROPERTY, woodType).build();
     }
 }

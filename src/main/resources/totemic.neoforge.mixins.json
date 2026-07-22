@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "pokefenn.totemic.neoforge.mixin",
+  "mixins": [
+    "MixinTotemBaseBlockEntity",
+    "MixinTotemPoleBlockEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_21"
+}
