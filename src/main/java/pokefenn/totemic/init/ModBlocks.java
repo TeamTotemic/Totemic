@@ -85,7 +85,6 @@ public final class ModBlocks {
 
     public static void setFireInfo() {
         FireBlock fire = (FireBlock) Blocks.FIRE;
-        //We only need to call this method for blocks we don't define our own class for
         fire.setFlammable(cedar_log.get(), 5, 5);
         fire.setFlammable(stripped_cedar_log.get(), 5, 5);
         fire.setFlammable(cedar_wood.get(), 5, 5);
@@ -96,6 +95,9 @@ public final class ModBlocks {
         fire.setFlammable(cedar_fence_gate.get(), 5, 20);
         fire.setFlammable(cedar_slab.get(), 5, 20);
         fire.setFlammable(cedar_stairs.get(), 5, 20);
+        fire.setFlammable(drum.get(), 5, 20);
+        fire.setFlammable(totem_base.get(), 5, 20);
+        fire.setFlammable(totem_pole.get(), 5, 20);
     }
 
     public static void addBlockEntityValidBlocks(BiConsumer<BlockEntityType<?>, Block> modifier) {

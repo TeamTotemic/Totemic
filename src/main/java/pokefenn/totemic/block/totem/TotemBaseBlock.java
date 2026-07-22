@@ -183,16 +183,6 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-        return 20;
-    }
-
-    @Override
-    public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-        return 5;
-    }
-
-    @Override
     public MapColor getMapColor(BlockState state, BlockGetter level, BlockPos pos, MapColor defaultColor) {
         return level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
                 .map(base -> base.getWoodType().woodColor())

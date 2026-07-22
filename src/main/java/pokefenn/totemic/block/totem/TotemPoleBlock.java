@@ -114,16 +114,6 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-        return 20;
-    }
-
-    @Override
-    public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
-        return 5;
-    }
-
-    @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new TotemPoleBlockEntity(pPos, pState);
     }
