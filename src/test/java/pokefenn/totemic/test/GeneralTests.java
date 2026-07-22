@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level.ExplosionInteraction;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
@@ -72,6 +73,24 @@ public final class GeneralTests {
         var dummy2State = h.getBlockState(dummy2Pos);
         dummy2State.getBlock().playerWillDestroy(level, h.absolutePos(dummy2Pos), dummy2State, player);
         dummy2State.onDestroyedByPlayer(level, h.absolutePos(dummy2Pos), player, true, level.getFluidState(h.absolutePos(dummy2Pos)));
+
+        h.forEveryBlockInStructure(pos -> {
+            if(pos.getY() >= 2)
+                h.assertBlockPresent(Blocks.AIR, pos);
+        });
+        h.succeed();
+    }
+
+    @GameTest(batch = "totemic.general", template = "general/tipi_destroy")
+    public static void testTipiExplode(GameTestHelper h) {
+        final BlockPos tipi1Pos = new BlockPos(1, 2, 1);
+        final BlockPos dummy2Pos = new BlockPos(5, 3, 1);
+
+        var tipi1Vec = Vec3.atCenterOf(h.absolutePos(tipi1Pos));
+        var dummy2Vec = Vec3.atCenterOf(h.absolutePos(dummy2Pos));
+
+        h.getLevel().explode(null, tipi1Vec.x, tipi1Vec.y, tipi1Vec.z, 0.5f, ExplosionInteraction.TNT);
+        h.getLevel().explode(null, dummy2Vec.x, dummy2Vec.y, dummy2Vec.z, 0.5f, ExplosionInteraction.TNT);
 
         h.forEveryBlockInStructure(pos -> {
             if(pos.getY() >= 2)
