@@ -46,7 +46,8 @@ public class DummyTipiBlock extends Block {
             var tipiPos = pair.getFirst();
             var tipiState = pair.getSecond();
 
-            tipiState.onBlockExploded(level, tipiPos, explosion); //will remove the Tipi block
+            level.setBlock(tipiPos, Blocks.AIR.defaultBlockState(), 3);
+            tipiState.getBlock().wasExploded(level, tipiPos, explosion);
         });
         super.wasExploded(level, pos, explosion);
     }
