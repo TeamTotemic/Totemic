@@ -107,6 +107,10 @@ public class WindChimeBlockEntity extends BlockEntity {
         return (int) (20.0 * (40.0 + 5.0 * rand.nextGaussian())); //40 ± 5 seconds
     }
 
+    public boolean isCongested() {
+        return isCongested;
+    }
+
     private boolean checkForCongestion() {
         long count = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.wind_chime.get(), level, worldPosition, CONGESTION_RANGE)
                 .filter(tile -> tile != this && !tile.isCongested)
