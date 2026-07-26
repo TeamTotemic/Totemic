@@ -68,8 +68,11 @@ public class WindChimeBlockEntity extends BlockEntity {
     @Override
     public void onLoad() {
         super.onLoad();
-        if(!level.isClientSide)
+        if(!level.isClientSide) {
             isCongested = checkForCongestion();
+            if(isCongested)
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+        }
     }
 
     public boolean isPlaying() {
