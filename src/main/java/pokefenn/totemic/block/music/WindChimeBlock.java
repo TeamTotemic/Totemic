@@ -68,12 +68,6 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    protected void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
-        pLevel.getBlockEntity(pPos, ModBlockEntities.wind_chime.get())
-        .ifPresent(e -> e.setNotPlaying());
-    }
-
-    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if(player.isShiftKeyDown()) {
             playSelector(level, pos, player);
@@ -89,21 +83,8 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
             playSelector(pLevel, pPos, pPlayer);
     }
 
-    @Override
-    protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-        BlockUtil.getBlockEntitiesInRange(ModBlockEntities.wind_chime.get(), pLevel, pPos, WindChimeBlockEntity.CONGESTION_RANGE)
-                .forEach(WindChimeBlockEntity::tryUncongest);
-    }
-
     private void playSelector(Level level, BlockPos pos, Player player) {
         TotemicAPI.get().music().playSelector(level, pos, player, ModContent.wind_chime.get());
-    }
-
-    @Override
-    protected boolean triggerEvent(BlockState pState, Level pLevel, BlockPos pPos, int pId, int pParam) {
-        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-        return blockentity != null && blockentity.triggerEvent(pId, pParam);
     }
 
     @Override
@@ -113,8 +94,9 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return BaseEntityBlock.createTickerHelper(pBlockEntityType, ModBlockEntities.wind_chime.get(), WindChimeBlockEntity::tick);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return BaseEntityBlock.createTickerHelper(type, ModBlockEntities.wind_chime.get(),
+                level.isClientSide ? WindChimeBlockEntity::clientTick : WindChimeBlockEntity::serverTick);
     }
 
     @Override

@@ -1,17 +1,13 @@
 package pokefenn.totemic.block.music.entity;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -24,159 +20,118 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.util.BlockUtil;
 
 public class WindChimeBlockEntity extends BlockEntity {
-    public static final int CONGESTION_RANGE = 8;
-    public static final int MAX_NEARBY_CHIMES = 2;
+    private static final int CONGESTION_RANGE = 8;
+    private static final int MAX_NEARBY_CHIMES = 2;
 
-    private int playingTimeLeft = 0;
-    private int cooldown = 0; //Only used on the server side
+    private boolean firstServerTick = true;
+
     private boolean isCongested = false;
-
-    private static final int PLAYING_TIME = 8 * 20;
+    private boolean isPlaying = true;
+    private int stateChangeTime = 0;
 
     public WindChimeBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.wind_chime.get(), pPos, pBlockState);
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, WindChimeBlockEntity tile) {
-        if(tile.isPlaying()) {
-            if(tile.playingTimeLeft % 40 == 0)
-                tile.playMusic(level, pos, state);
+    public static void serverTick(Level level, BlockPos pos, BlockState state, WindChimeBlockEntity tile) {
+        if(tile.firstServerTick) {
+            tile.updateCongestionStatus();
+            tile.firstServerTick = false;
+        }
+        if(tile.isCongested)
+            return;
 
-            tile.playingTimeLeft--;
-            if(tile.playingTimeLeft <= 0)
-                tile.setNotPlaying();
+        if(tile.stateChangeTime > 0) {
+            if(tile.isPlaying && tile.stateChangeTime % 40 == 0)
+                tile.playMusic();
+            tile.stateChangeTime--;
         }
         else {
-            if(!tile.isCongested && !level.isClientSide) {
-                tile.cooldown--;
-                if(tile.cooldown <= 0)
-                    tile.setPlaying(PLAYING_TIME);
+            if(tile.isPlaying) {
+                tile.isPlaying = false;
+                tile.stateChangeTime = (int) (20.0 * (40.0 + 5.0 * level.getRandom().nextGaussian())); //40 ± 5 seconds
             }
-
-            if(tile.isCongested && level.isClientSide)
-                tile.congestionParticles();
+            else {
+                tile.isPlaying = true;
+                tile.stateChangeTime = 8 * 20;
+            }
+            setChanged(level, pos, state);
         }
     }
 
-    private void playMusic(Level level, BlockPos pos, BlockState state) {
-        var above = level.getBlockState(pos.above());
+    public static void clientTick(Level level, BlockPos pos, BlockState state, WindChimeBlockEntity tile) {
+        if(tile.isCongested && level.getGameTime() % 2 == 0) {
+            var rand = level.getRandom();
+            level.addAlwaysVisibleParticle(ParticleTypes.CRIT, pos.getX() + rand.nextFloat(), pos.getY() + rand.nextFloat(), pos.getZ() + rand.nextFloat(), 0, 0, 0);
+        }
+    }
+
+    private void playMusic() {
+        var pos = worldPosition;
         int baseAmount = ModContent.wind_chime.get().getBaseOutput();
-        int bonus = above.is(BlockTags.LEAVES) ? baseAmount/2 : 0;
+        int bonus = level.getBlockState(pos.above()).is(BlockTags.LEAVES) ? baseAmount / 2 : 0;
         TotemicAPI.get().music().playMusic(level, Vec3.atBottomCenterOf(pos), null, ModContent.wind_chime.get(), MusicAPI.DEFAULT_RANGE, baseAmount + bonus);
     }
 
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        if(!level.isClientSide) {
-            isCongested = checkForCongestion();
-            if(isCongested)
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
-        }
-    }
-
-    public boolean isPlaying() {
-        return playingTimeLeft > 0 && !isCongested;
-    }
-
-    public void setPlaying(int time) {
-        playingTimeLeft = time;
-        if(!level.isClientSide)
-            level.blockEvent(getBlockPos(), getBlockState().getBlock(), 1, time); //Notify the client that the chime is playing
-        setChanged();
-    }
-
-    public void setNotPlaying() {
-        playingTimeLeft = 0;
-        if(!level.isClientSide)
-            cooldown = getRandomCooldown(level.random);
-        setChanged();
-    }
-
-    @Override
-    public boolean triggerEvent(int id, int param) {
-        if(!level.isClientSide)
-            return true;
-        else {
-            setPlaying(param);
-            return true;
-        }
-    }
-
-    private int getRandomCooldown(RandomSource rand) {
-        return (int) (20.0 * (40.0 + 5.0 * rand.nextGaussian())); //40 ± 5 seconds
-    }
-
-    public boolean isCongested() {
-        return isCongested;
-    }
-
-    private boolean checkForCongestion() {
-        long count = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.wind_chime.get(), level, worldPosition, CONGESTION_RANGE)
+    private void updateCongestionStatus() {
+        var count = BlockUtil.getBlockEntitiesInRange(ModBlockEntities.wind_chime.get(), level, worldPosition, CONGESTION_RANGE)
                 .filter(tile -> tile != this && !tile.isCongested)
                 .limit(MAX_NEARBY_CHIMES + 1)
                 .count();
-        return count > MAX_NEARBY_CHIMES;
-    }
-
-    public void tryUncongest() {
-        if(isCongested) {
-            isCongested = checkForCongestion();
-            if(!isCongested)
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+        boolean newStatus = count > MAX_NEARBY_CHIMES;
+        if(isCongested != newStatus) {
+            isCongested = newStatus;
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
         }
     }
 
-    private void congestionParticles() {
-        if(level.getGameTime() % 2 == 0) {
-            var rand = level.getRandom();
-            var pos = getBlockPos();
-            level.addAlwaysVisibleParticle(ParticleTypes.CRIT, pos.getX() + rand.nextFloat(), pos.getY() + rand.nextFloat(), pos.getZ() + rand.nextFloat(), 0, 0, 0);
+    @Override
+    public void setRemoved() {
+        if(!level.isClientSide) {
+            BlockUtil.getBlockEntitiesInRange(ModBlockEntities.wind_chime.get(), level, worldPosition, CONGESTION_RANGE)
+                    .forEach(WindChimeBlockEntity::updateCongestionStatus);
         }
+        super.setRemoved();
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag, Provider registries) {
         super.saveAdditional(tag, registries);
-        if(isPlaying())
-            tag.putInt("PlayingTime", playingTimeLeft);
+        if(isPlaying)
+            tag.putInt("PlayingTime", stateChangeTime);
         else
-            tag.putInt("Cooldown", cooldown);
+            tag.putInt("Cooldown", stateChangeTime);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, Provider registries) {
         super.loadAdditional(tag, registries);
-        if(tag.contains("PlayingTime"))
-            playingTimeLeft = tag.getInt("PlayingTime");
-        else {
-            playingTimeLeft = 0;
-            cooldown = tag.getInt("Cooldown");
+        if(tag.contains("PlayingTime")) {
+            isPlaying = true;
+            stateChangeTime = tag.getInt("PlayingTime");
         }
+        else {
+            isPlaying = false;
+            stateChangeTime = tag.getInt("Cooldown");
+        }
+
+        if(tag.contains("IsCongested")) // not saved on disk, only used for client synchronization
+            isCongested = tag.getBoolean("IsCongested");
     }
 
     @Override
     public CompoundTag getUpdateTag(Provider registries) {
         var tag = new CompoundTag();
-        tag.putInt("PlayingTime", playingTimeLeft);
         tag.putBoolean("IsCongested", isCongested);
         return tag;
     }
 
     @Override
-    public void handleUpdateTag(CompoundTag tag, Provider lookupProvider) {
-        playingTimeLeft = tag.getInt("PlayingTime");
-        isCongested = tag.getBoolean("IsCongested");
-    }
-
-    @Override
-    @Nullable
     public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this); //TODO: Consider using leaner packets
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, Provider lookupProvider) {
-        handleUpdateTag(pkt.getTag(), lookupProvider);
+    public boolean isCongested() {
+        return isCongested;
     }
 }
