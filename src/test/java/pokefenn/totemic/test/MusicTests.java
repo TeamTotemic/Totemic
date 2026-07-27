@@ -52,44 +52,34 @@ public final class MusicTests {
             assertChimeCongestionStatus(h, new BlockPos(10, 2, 8), false);
 
             h.setBlock(11, 2, 8, ModBlocks.wind_chime.get());
+            h.setBlock(12, 2, 8, ModBlocks.wind_chime.get());
         })
         .thenExecuteAfter(1, () -> {
-            assertChimeCongestionStatus(h, new BlockPos(8, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(9, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(10, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(11, 2, 8), true);
+            assertUncongestedChimes(h, new BlockPos(8, 2, 8), new BlockPos(12, 2, 8), 3);
 
             h.setBlock(8, 2, 8, Blocks.AIR);
         })
         .thenExecuteAfter(1, () -> {
-            assertChimeCongestionStatus(h, new BlockPos(9, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(10, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(11, 2, 8), false);
-
-            h.setBlock(17, 2, 8, ModBlocks.wind_chime.get());
-            h.setBlock(18, 2, 8, ModBlocks.wind_chime.get());
-        })
-        .thenExecuteAfter(1, () -> {
-            assertChimeCongestionStatus(h, new BlockPos(9, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(10, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(11, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(17, 2, 8), true);
-            assertChimeCongestionStatus(h, new BlockPos(18, 2, 8), false); // far enough from (9, 2, 8) that it shouldn't get congested
+            assertUncongestedChimes(h, new BlockPos(8, 2, 8), new BlockPos(12, 2, 8), 3);
 
             h.setBlock(9, 2, 8, Blocks.AIR);
         })
         .thenExecuteAfter(1, () -> {
             assertChimeCongestionStatus(h, new BlockPos(10, 2, 8), false);
             assertChimeCongestionStatus(h, new BlockPos(11, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(17, 2, 8), true);
-            assertChimeCongestionStatus(h, new BlockPos(18, 2, 8), false);
+            assertChimeCongestionStatus(h, new BlockPos(12, 2, 8), false);
 
-            h.setBlock(10, 2, 8, Blocks.AIR);
+            h.setBlock(18, 2, 8, ModBlocks.wind_chime.get());
+            h.setBlock(19, 2, 8, ModBlocks.wind_chime.get());
         })
         .thenExecuteAfter(1, () -> {
-            assertChimeCongestionStatus(h, new BlockPos(11, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(17, 2, 8), false);
-            assertChimeCongestionStatus(h, new BlockPos(18, 2, 8), false);
+            assertUncongestedChimes(h, new BlockPos(10, 2, 8), new BlockPos(18, 2, 8), 3);
+            assertChimeCongestionStatus(h, new BlockPos(19, 2, 8), false); // far enough from (10, 2, 8) that it shouldn't get congested
+
+            h.setBlock(19, 2, 8, Blocks.AIR);
+        })
+        .thenExecuteAfter(1, () -> {
+            assertUncongestedChimes(h, new BlockPos(10, 2, 8), new BlockPos(18, 2, 8), 3);
         })
         .thenSucceed();
     }
@@ -97,5 +87,14 @@ public final class MusicTests {
     private static void assertChimeCongestionStatus(GameTestHelper h, BlockPos pos, boolean expectedCongestion) {
         h.assertBlockEntityData(pos, (WindChimeBlockEntity chime) -> chime.isCongested() == expectedCongestion,
                 () -> "Expected Wind Chime to be " + (expectedCongestion ? "congested" : "not congested"));
+    }
+
+    private static void assertUncongestedChimes(GameTestHelper h, BlockPos from, BlockPos to, long expectedNumber) {
+        var count = BlockPos.betweenClosedStream(from, to)
+                .filter(pos -> h.getBlockState(pos).getBlock() == ModBlocks.wind_chime.get())
+                .map(pos -> (WindChimeBlockEntity) h.getBlockEntity(pos))
+                .filter(chime -> !chime.isCongested())
+                .count();
+        h.assertValueEqual(count, expectedNumber, "number of congested Wind Chimes between " + from + " and " + to);
     }
 }
