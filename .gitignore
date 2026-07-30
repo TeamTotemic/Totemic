@@ -26,7 +26,7 @@ run-data
 repo
 
 # Exclude run-gameTestServer, but include run-gameTestServer/config/totemic-*
-run-gameTestServer/*
-!run-gameTestServer/config
-run-gameTestServer/config/*
-!run-gameTestServer/config/totemic-*
+neoforge/run-gameTestServer/*
+!neoforge/run-gameTestServer/config
+neoforge/run-gameTestServer/config/*
+!neoforge/run-gameTestServer/config/totemic-*
