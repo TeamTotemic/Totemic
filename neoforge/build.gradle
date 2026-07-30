@@ -47,7 +47,11 @@ neoForge {
         minecraftVersion = project.parchment_minecraft_version
     }
 
-    validateAccessTransformers = true
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+        validateAccessTransformers = true
+    }
 
     runs {
         client {
