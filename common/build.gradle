@@ -5,6 +5,18 @@ plugins {
 
 repositories {
     mavenLocal()
+    // Patchouli
+    maven {
+        url = 'https://maven.blamejared.com'
+        content {
+            includeGroup 'vazkii.patchouli'
+        }
+    }
+    // Forge Config API Port
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(project.java_version)
@@ -27,6 +39,9 @@ dependencies {
     compileOnly "org.spongepowered:mixin:${project.mixin_version}"
     compileOnly "io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"
     annotationProcessor "io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"
+
+    compileOnly "vazkii.patchouli:Patchouli-xplat:${project.patchouli_version}"
+    compileOnly "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi:${project.forgeconfigapiport_version}"
 }
 
 tasks.withType(JavaCompile).configureEach {

@@ -100,7 +100,7 @@ dependencies {
 
     compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}-NEOFORGE:api"
     runtimeOnly "vazkii.patchouli:Patchouli:${patchouli_version}-NEOFORGE"
-    
+
     api("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
     interfaceInjectionData("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
 }
