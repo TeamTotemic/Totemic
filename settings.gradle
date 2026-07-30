@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "Totemic-${minecraft_version}"
-include('neoforge')
+include('common', 'neoforge')

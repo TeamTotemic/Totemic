@@ -1,0 +1,34 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev'
+}
+
+repositories {
+    mavenLocal()
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(project.java_version)
+
+neoForge {
+    neoFormVersion = project.neoform_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+    }
+}
+
+dependencies {
+    compileOnly "org.spongepowered:mixin:${project.mixin_version}"
+    compileOnly "io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"
+    annotationProcessor "io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
