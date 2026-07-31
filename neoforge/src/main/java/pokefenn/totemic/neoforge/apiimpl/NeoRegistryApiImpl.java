@@ -8,6 +8,7 @@ import net.neoforged.neoforge.registries.NewRegistryEvent;
 import net.neoforged.neoforge.registries.RegistryBuilder;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicNeoForgeAPI;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.music.MusicInstrument;
 import pokefenn.totemic.api.registry.RegistryAPI;
@@ -15,7 +16,7 @@ import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.neoforge.ModDataMapTypes;
 
-public enum NeoRegistryApiImpl implements RegistryAPI {
+public enum NeoRegistryApiImpl implements RegistryAPI, TotemicNeoForgeAPI {
     INSTANCE;
 
     private static final Registry<MusicInstrument> MUSIC_INSTRUMENT = new RegistryBuilder<>(MUSIC_INSTRUMENT_REGISTRY).sync(true).create();
