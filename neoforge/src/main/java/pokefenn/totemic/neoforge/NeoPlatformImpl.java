@@ -14,6 +14,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item.Properties;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.ChunkPos;
@@ -44,6 +45,11 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     @Override
     public SpawnEggItem createSpawnEgg(Supplier<? extends EntityType<? extends Mob>> type, int backgroundColor, int highlightColor, Properties props) {
         return new DeferredSpawnEggItem(type, backgroundColor, highlightColor, props);
+    }
+
+    @Override
+    public CreativeModeTab.Builder creativeTabBuilder() {
+        return CreativeModeTab.builder();
     }
 
     @Override

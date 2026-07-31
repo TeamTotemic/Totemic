@@ -117,7 +117,7 @@ public final class ModItems {
     }
 
     public static CreativeModeTab makeCreativeTab() {
-        return CreativeModeTab.builder()
+        return Totemic.platform().creativeTabBuilder()
                 .title(Component.translatable("itemGroup.totemic"))
                 .icon(() -> new ItemStack(tipi.get()))
                 .displayItems(ModItems::addItemsToCreativeTab)
