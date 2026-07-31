@@ -36,13 +36,13 @@ public class JingleDressItem extends ArmorItem {
             if(player.hasEffect(MobEffects.MOVEMENT_SPEED))
                 velocity *= 1.2;
 
-            int charge = stack.getOrDefault(ModDataComponents.JINGLE_DRESS_CHARGE, 0);
+            int charge = stack.getOrDefault(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0);
             charge += Mth.clamp((int)(velocity * chargeFactor), 0, maxSingleCharge);
             if(charge >= chargeLimit) {
                 TotemicAPI.get().music().playMusic(player, ModContent.jingle_dress.get());
                 charge %= chargeLimit;
             }
-            stack.set(ModDataComponents.JINGLE_DRESS_CHARGE, charge);
+            stack.set(ModDataComponents.JINGLE_DRESS_CHARGE.get(), charge);
         }
     }
 

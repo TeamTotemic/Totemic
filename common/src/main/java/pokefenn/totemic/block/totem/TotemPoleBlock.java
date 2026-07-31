@@ -131,8 +131,8 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         var woodType = tile.map(TotemPoleBlockEntity::getWoodType).orElseGet(ModContent.oak);
         var carving = tile.map(TotemPoleBlockEntity::getCarving).orElseGet(ModContent.none);
         var stack = new ItemStack(this);
-        stack.set(ModDataComponents.WOOD_TYPE, woodType);
-        stack.set(ModDataComponents.CARVING, carving);
+        stack.set(ModDataComponents.WOOD_TYPE.get(), woodType);
+        stack.set(ModDataComponents.CARVING.get(), carving);
         return stack;
     }
 

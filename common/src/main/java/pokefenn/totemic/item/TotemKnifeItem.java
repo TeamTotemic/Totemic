@@ -43,7 +43,7 @@ public class TotemKnifeItem extends Item {
 
     //an empty Optional represents a Totem Base
     public static Optional<TotemCarving> getCarving(ItemStack stack) {
-        return Optional.ofNullable(stack.get(ModDataComponents.CARVING));
+        return Optional.ofNullable(stack.get(ModDataComponents.CARVING.get()));
     }
 
     private static List<TotemCarving> totemList; //Lazily created
@@ -70,9 +70,9 @@ public class TotemKnifeItem extends Item {
 
         var newStack = stack.copy();
         if(index == -1)
-            newStack.remove(ModDataComponents.CARVING);
+            newStack.remove(ModDataComponents.CARVING.get());
         else
-            newStack.set(ModDataComponents.CARVING, locTotemList.get(index));
+            newStack.set(ModDataComponents.CARVING.get(), locTotemList.get(index));
         return newStack;
 
     }

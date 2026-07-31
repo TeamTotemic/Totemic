@@ -36,15 +36,15 @@ public class MedicineBagItem extends Item {
     }
 
     public static TotemCarving getCarving(ItemStack stack) {
-        return stack.getOrDefault(ModDataComponents.CARVING, ModContent.none.get());
+        return stack.getOrDefault(ModDataComponents.CARVING.get(), ModContent.none.get());
     }
 
     public static int getCharge(ItemStack stack) {
-        return stack.getOrDefault(ModDataComponents.MEDICINE_BAG_CHARGE, 0);
+        return stack.getOrDefault(ModDataComponents.MEDICINE_BAG_CHARGE.get(), 0);
     }
 
     public static boolean isOpen(ItemStack stack) {
-        return stack.getOrDefault(ModDataComponents.OPEN, false);
+        return stack.getOrDefault(ModDataComponents.OPEN.get(), false);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class MedicineBagItem extends Item {
                 if(BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, pos, 6)
                         .anyMatch(tile -> tile.getTotemState() instanceof StateTotemEffect && tile.hasCarving(carving))) {
                     int chargeAmount = MAX_CHARGE / 12;
-                    stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.min(charge + chargeAmount, MAX_CHARGE));
+                    stack.set(ModDataComponents.MEDICINE_BAG_CHARGE.get(), Math.min(charge + chargeAmount, MAX_CHARGE));
                 }
             }
         }
@@ -86,7 +86,7 @@ public class MedicineBagItem extends Item {
             }
             // Drain the charge independently of the effects' intervals
             if(!level.isClientSide && gameTime % TotemCarving.MEDICINE_BAG_DRAIN_INTERVAL == 0)
-                stack.set(ModDataComponents.MEDICINE_BAG_CHARGE, Math.max(charge - carving.getMedicineBagDrain(), 0));
+                stack.set(ModDataComponents.MEDICINE_BAG_CHARGE.get(), Math.max(charge - carving.getMedicineBagDrain(), 0));
         }
     }
 
@@ -106,7 +106,7 @@ public class MedicineBagItem extends Item {
 
     private InteractionResultHolder<ItemStack> toggleOpen(ItemStack stack, Level level, Player player) {
         if(getCarving(stack) != ModContent.none.get()) {
-            stack.update(ModDataComponents.OPEN, false, open -> !open);
+            stack.update(ModDataComponents.OPEN.get(), false, open -> !open);
             level.playLocalSound(player, SoundEvents.ARMOR_EQUIP_LEATHER.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
             return InteractionResultHolder.success(stack);
         }
@@ -128,9 +128,9 @@ public class MedicineBagItem extends Item {
             }
 
             var newStack = stack.copy();
-            newStack.set(ModDataComponents.CARVING, carving);
+            newStack.set(ModDataComponents.CARVING.get(), carving);
             if(!newStack.is(ModItems.creative_medicine_bag.get()))
-                newStack.set(ModDataComponents.MEDICINE_BAG_CHARGE, 0);
+                newStack.set(ModDataComponents.MEDICINE_BAG_CHARGE.get(), 0);
             player.setItemInHand(hand, newStack);
             level.playLocalSound(player, SoundEvents.ARMOR_EQUIP_LEATHER.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
             return InteractionResult.SUCCESS;

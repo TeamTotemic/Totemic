@@ -195,7 +195,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         var tile = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_base.get());
         var woodType = tile.map(TotemBaseBlockEntity::getWoodType).orElseGet(ModContent.oak);
         var stack = new ItemStack(this);
-        stack.set(ModDataComponents.WOOD_TYPE, woodType);
+        stack.set(ModDataComponents.WOOD_TYPE.get(), woodType);
         return stack;
     }
 

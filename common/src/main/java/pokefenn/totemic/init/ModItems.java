@@ -47,7 +47,7 @@ public final class ModItems {
 
     public static final Supplier<FluteItem> flute = REGISTER.register("flute", () -> new FluteItem(new Properties().stacksTo(1)));
     public static final Supplier<InfusedFluteItem> infused_flute = REGISTER.register("infused_flute", () -> new InfusedFluteItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
-    public static final Supplier<JingleDressItem> jingle_dress = REGISTER.register("jingle_dress", () -> new JingleDressItem(new Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(5)).component(ModDataComponents.JINGLE_DRESS_CHARGE, 0)));
+    public static final Supplier<JingleDressItem> jingle_dress = REGISTER.register("jingle_dress", () -> new JingleDressItem(new Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(5)).component(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0)));
     public static final Supplier<RattleItem> rattle = REGISTER.register("rattle", () -> new RattleItem(new Properties().stacksTo(1)));
     public static final Supplier<EagleBoneWhistleItem> eagle_bone_whistle = REGISTER.register("eagle_bone_whistle", () -> new EagleBoneWhistleItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final Supplier<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250)));
@@ -64,8 +64,8 @@ public final class ModItems {
     public static final Supplier<Item> eagle_bone = REGISTER.register("eagle_bone", () -> new Item(new Properties()));
     public static final Supplier<Item> eagle_feather = REGISTER.register("eagle_feather", () -> new Item(new Properties()));
     public static final Supplier<BaykokBowItem> baykok_bow = REGISTER.register("baykok_bow", () -> new BaykokBowItem(new Properties().durability(576).rarity(Rarity.RARE)));
-    public static final Supplier<MedicineBagItem> medicine_bag = REGISTER.register("medicine_bag", () -> new MedicineBagItem(new Properties().stacksTo(1).component(ModDataComponents.OPEN, false).component(ModDataComponents.MEDICINE_BAG_CHARGE, 0)));
-    public static final Supplier<CreativeMedicineBagItem> creative_medicine_bag = REGISTER.register("creative_medicine_bag", () -> new CreativeMedicineBagItem(new Properties().stacksTo(1).rarity(Rarity.EPIC).component(ModDataComponents.OPEN, false)));
+    public static final Supplier<MedicineBagItem> medicine_bag = REGISTER.register("medicine_bag", () -> new MedicineBagItem(new Properties().stacksTo(1).component(ModDataComponents.OPEN.get(), false).component(ModDataComponents.MEDICINE_BAG_CHARGE.get(), 0)));
+    public static final Supplier<CreativeMedicineBagItem> creative_medicine_bag = REGISTER.register("creative_medicine_bag", () -> new CreativeMedicineBagItem(new Properties().stacksTo(1).rarity(Rarity.EPIC).component(ModDataComponents.OPEN.get(), false)));
 
     // Block items
     public static final Supplier<BlockItem> stripped_cedar_log = blockItem("stripped_cedar_log", ModBlocks.stripped_cedar_log);

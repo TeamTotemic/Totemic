@@ -15,11 +15,11 @@ public class TotemPoleItem extends BlockItem {
     }
 
     public static TotemWoodType getWoodType(ItemStack stack) {
-        return stack.getOrDefault(ModDataComponents.WOOD_TYPE, ModContent.oak.get());
+        return stack.getOrDefault(ModDataComponents.WOOD_TYPE.get(), ModContent.oak.get());
     }
 
     public static TotemCarving getCarving(ItemStack stack) {
-        return stack.getOrDefault(ModDataComponents.CARVING, ModContent.none.get());
+        return stack.getOrDefault(ModDataComponents.CARVING.get(), ModContent.none.get());
     }
 
     @Override
