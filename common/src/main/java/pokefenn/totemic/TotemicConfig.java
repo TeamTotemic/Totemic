@@ -10,8 +10,6 @@ import com.electronwill.nightconfig.core.InMemoryFormat;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import net.neoforged.neoforge.common.ModConfigSpec.DoubleValue;
@@ -23,7 +21,7 @@ public final class TotemicConfig {
         public final ConfigValue<List<? extends Config>> customTotemWoodTypes;
 
         Startup(ModConfigSpec.Builder builder) {
-            //TODO: See if/how this can be made to work with the config GUI
+            //TODO: This should really be handled by a data pack registry instead. Need to figure out how to load the textures on server load though.
 
             //The default value will be a list containing an empty table, rather than an empty list, to make the TOML syntax for lists of tables clearer to users.
             //The default TOML file will then contain "[[customTotemWoodTypes]]" rather than "customTotemWoodTypes = []".
@@ -151,9 +149,9 @@ public final class TotemicConfig {
     public static final Client CLIENT;
     public static final Server SERVER;
 
-    private static final ModConfigSpec startupSpec;
-    private static final ModConfigSpec clientSpec;
-    private static final ModConfigSpec serverSpec;
+    public static final ModConfigSpec startupSpec;
+    public static final ModConfigSpec clientSpec;
+    public static final ModConfigSpec serverSpec;
 
     static {
         var startupPair = new ModConfigSpec.Builder().configure(Startup::new);
@@ -167,11 +165,5 @@ public final class TotemicConfig {
         var serverPair = new ModConfigSpec.Builder().configure(Server::new);
         SERVER = serverPair.getLeft();
         serverSpec = serverPair.getRight();
-    }
-
-    public static void register(ModContainer container) {
-        container.registerConfig(ModConfig.Type.STARTUP, startupSpec);
-        container.registerConfig(ModConfig.Type.CLIENT, clientSpec);
-        container.registerConfig(ModConfig.Type.SERVER, serverSpec);
     }
 }

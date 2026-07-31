@@ -5,6 +5,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -74,7 +75,9 @@ public final class TotemicNeoMod {
         modBus.addListener((BlockEntityTypeAddBlocksEvent event) -> ModBlocks.addBlockEntityValidBlocks(event::modify));
         modBus.addListener((EntityAttributeCreationEvent event) -> ModEntityTypes.registerAttributes(event::put));
 
-        TotemicConfig.register(container);
+        container.registerConfig(ModConfig.Type.STARTUP, TotemicConfig.startupSpec);
+        container.registerConfig(ModConfig.Type.CLIENT, TotemicConfig.clientSpec);
+        container.registerConfig(ModConfig.Type.SERVER, TotemicConfig.serverSpec);
     }
 
     private void registerToModBus(PlatformRegistryHelper<?> registryHelper, IEventBus modBus) {
