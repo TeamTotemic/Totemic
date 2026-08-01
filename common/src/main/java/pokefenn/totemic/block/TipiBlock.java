@@ -50,12 +50,12 @@ public class TipiBlock extends HorizontalDirectionalBlock {
         registerDefaultState(stateDefinition.any().setValue(OCCUPIED, false));
     }
 
-    @Override
+    // Soft-overrides Neo extension method in IBlockExtension
     public boolean isBed(BlockState state, BlockGetter level, BlockPos pos, LivingEntity sleeper) {
         return true;
     }
 
-    @Override
+    // Soft-overrides Neo extension method in IBlockExtension
     public Optional<RespawnPosAngle> getRespawnPosition(BlockState state, EntityType<?> type, LevelReader levelReader, BlockPos pos, float orientation) {
         var facing = state.getValue(FACING).getOpposite();
         return Optional.of(new RespawnPosAngle(Vec3.upFromBottomCenterOf(pos, 0.0625), facing.toYRot()));

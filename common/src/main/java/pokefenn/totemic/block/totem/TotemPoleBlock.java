@@ -118,7 +118,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
         return new TotemPoleBlockEntity(pPos, pState);
     }
 
-    @Override
+    // Soft-overrides Neo extension method in IBlockExtension
     public MapColor getMapColor(BlockState state, BlockGetter level, BlockPos pos, MapColor defaultColor) {
         return level.getBlockEntity(pos, ModBlockEntities.totem_pole.get())
                 .map(pole -> pole.getWoodType().woodColor())

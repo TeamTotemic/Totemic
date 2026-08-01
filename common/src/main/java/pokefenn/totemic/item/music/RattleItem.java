@@ -20,7 +20,7 @@ public class RattleItem extends Item {
         super(props);
     }
 
-    @Override
+    // Soft-overrides Neo extension method in IItemExtension
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
         if(entity instanceof Player player && !player.getCooldowns().isOnCooldown(this)) {
             if(entity.isShiftKeyDown())

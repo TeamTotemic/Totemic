@@ -183,7 +183,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    @Override
+    // Soft-overrides Neo extension method in IBlockExtension
     public MapColor getMapColor(BlockState state, BlockGetter level, BlockPos pos, MapColor defaultColor) {
         return level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
                 .map(base -> base.getWoodType().woodColor())
