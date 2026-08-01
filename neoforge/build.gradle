@@ -88,6 +88,7 @@ neoForge {
     mods {
         "${mod_id}" {
             sourceSet(sourceSets.main)
+            sourceSet(project(":common").sourceSets.main)
             sourceSet(sourceSets.test)
         }
     }
