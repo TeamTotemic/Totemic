@@ -13,6 +13,7 @@ import net.minecraft.world.BossEvent.BossBarColor;
 import net.minecraft.world.BossEvent.BossBarOverlay;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -36,7 +37,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import pokefenn.totemic.init.ModItems;
@@ -67,15 +68,16 @@ public class Baykok extends Monster implements RangedAttackMob {
         bossEvent.setProgress(getHealth() / getMaxHealth());
     }
 
+    // See AbstractSkeleton#performRangedAttack
     @Override
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
         float newDistanceFactor = Mth.clamp(distanceTo(target) / 40.0F, 0.1F, 1.0F);
 
-        ItemStack weapon = this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, item -> item instanceof BowItem));
+        ItemStack weapon = this.getItemInHand(InteractionHand.MAIN_HAND);
+        if(!(weapon.getItem() instanceof BowItem))
+            weapon = this.getItemInHand(InteractionHand.OFF_HAND);
         ItemStack arrowStack = this.getProjectile(weapon);
-        AbstractArrow arrow = ProjectileUtil.getMobArrow(this, arrowStack, newDistanceFactor, weapon);
-        if(weapon.getItem() instanceof ProjectileWeaponItem weaponItem)
-           arrow = weaponItem.customArrow(arrow, arrowStack, weapon);
+        AbstractArrow arrow = this.getArrow(arrowStack, newDistanceFactor, weapon);
         double dX = target.getX() - this.getX();
         double dY = target.getY(1.0/3.0) - arrow.getY();
         double dZ = target.getZ() - this.getZ();
@@ -89,7 +91,16 @@ public class Baykok extends Monster implements RangedAttackMob {
         this.level().addFreshEntity(arrow);
     }
 
-    @SuppressWarnings("deprecation")
+    private AbstractArrow getArrow(ItemStack arrowStack, float velocity, @Nullable ItemStack weapon) {
+        if(weapon != null && weapon.is(ModItems.baykok_bow.get()) && arrowStack.getItem() == Items.ARROW) {
+            var arrow = new InvisibleArrow(level(), this, arrowStack.copyWithCount(1), weapon);
+            arrow.setBaseDamageFromMob(velocity);
+            return arrow;
+        }
+        else
+            return ProjectileUtil.getMobArrow(this, arrowStack, velocity, weapon);
+    }
+
     @Override
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
