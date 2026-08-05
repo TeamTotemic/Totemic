@@ -1,6 +1,7 @@
 package pokefenn.totemic.item;
 
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
@@ -15,14 +16,17 @@ public class BaykokBowItem extends BowItem {
 
     @Override
     protected Projectile createProjectile(Level level, LivingEntity shooter, ItemStack weapon, ItemStack ammo, boolean isCrit) {
-        if(ammo.getItem() == Items.ARROW) {
-            var arrow = new InvisibleArrow(level, shooter, ammo.copyWithCount(1), weapon);
+        AbstractArrow arrow;
+        if(ammo.getItem() == Items.ARROW) { // regular arrow
+            arrow = new InvisibleArrow(level, shooter, ammo.copyWithCount(1), weapon);
             if(isCrit)
                 arrow.setCritArrow(isCrit);
-            return arrow;
         }
-        else
-            return super.createProjectile(level, shooter, weapon, ammo, isCrit);
+        else // tipped or other special kind of arrow
+            arrow = (AbstractArrow) super.createProjectile(level, shooter, weapon, ammo, isCrit);
+
+        arrow.setBaseDamage(arrow.getBaseDamage() * 1.25);
+        return arrow;
     }
 
     @Override
