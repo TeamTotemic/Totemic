@@ -17,19 +17,8 @@ public class InvisibleArrow extends AbstractArrow {
         super(pEntityType, pLevel);
     }
 
-    public InvisibleArrow(Level level, double x, double y, double z, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
-        super(ModEntityTypes.invisible_arrow.get(), x, y, z, level, pickupItemStack, firedFromWeapon);
-    }
-
     public InvisibleArrow(Level level, LivingEntity owner, ItemStack pickupItemStack, @Nullable ItemStack firedFromWeapon) {
         super(ModEntityTypes.invisible_arrow.get(), owner, level, pickupItemStack, firedFromWeapon);
-    }
-
-    public static InvisibleArrow copyArrow(AbstractArrow arrow) {
-        var invisArrow = new InvisibleArrow(arrow.level(), arrow.getX(), arrow.getY(), arrow.getZ(), arrow.getPickupItemStackOrigin(), arrow.getWeaponItem());
-        invisArrow.setOwner(arrow.getOwner());
-        invisArrow.setBaseDamage(arrow.getBaseDamage());
-        return invisArrow;
     }
 
     @Override
