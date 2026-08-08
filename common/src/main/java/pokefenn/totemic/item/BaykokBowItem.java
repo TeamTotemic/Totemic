@@ -16,17 +16,21 @@ public class BaykokBowItem extends BowItem {
 
     @Override
     protected Projectile createProjectile(Level level, LivingEntity shooter, ItemStack weapon, ItemStack ammo, boolean isCrit) {
-        AbstractArrow arrow;
+        final double damageFactor = 1.25;
+
         if(ammo.getItem() == Items.ARROW) { // regular arrow
-            arrow = new InvisibleArrow(level, shooter, ammo.copyWithCount(1), weapon);
+            var arrow = new InvisibleArrow(level, shooter, ammo.copyWithCount(1), weapon);
             if(isCrit)
                 arrow.setCritArrow(isCrit);
+            arrow.setBaseDamage(arrow.getBaseDamage() * damageFactor);
+            return arrow;
         }
-        else // tipped or other special kind of arrow
-            arrow = (AbstractArrow) super.createProjectile(level, shooter, weapon, ammo, isCrit);
-
-        arrow.setBaseDamage(arrow.getBaseDamage() * 1.25);
-        return arrow;
+        else { // tipped or other special kind of arrow
+            var projectile = super.createProjectile(level, shooter, weapon, ammo, isCrit);
+            if(projectile instanceof AbstractArrow arrow) // the vanilla implementation always returns an AbstractArrow, but with mixins it might not
+                arrow.setBaseDamage(arrow.getBaseDamage() * damageFactor);
+            return projectile;
+        }
     }
 
     @Override
