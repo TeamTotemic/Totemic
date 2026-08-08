@@ -26,8 +26,6 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithEnchantedBonusCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.neoforged.neoforge.common.ItemAbilities;
-import net.neoforged.neoforge.common.loot.CanItemPerformAbility;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModEntityTypes;
 import pokefenn.totemic.init.ModItems;
@@ -47,14 +45,10 @@ public final class TotemicLootTableProvider extends LootTableProvider {
 
         @Override
         protected void generate() {
-            // Replace "minecraft:match_tool" condition with "neoforge:can_item_perform_ability" for Cedar Leaves
-            HAS_SHEARS = CanItemPerformAbility.canItemPerformAbility(ItemAbilities.SHEARS_DIG);
-
             dropSelf(ModBlocks.cedar_log.get());
             dropSelf(ModBlocks.stripped_cedar_log.get());
             dropSelf(ModBlocks.cedar_wood.get());
             dropSelf(ModBlocks.stripped_cedar_wood.get());
-            add(ModBlocks.cedar_leaves.get(), b -> createLeavesDrops(b, ModBlocks.cedar_sapling.get(), NORMAL_LEAVES_SAPLING_CHANCES));
             dropSelf(ModBlocks.cedar_sapling.get());
             dropSelf(ModBlocks.cedar_planks.get());
             dropSelf(ModBlocks.cedar_button.get());
@@ -78,7 +72,8 @@ public final class TotemicLootTableProvider extends LootTableProvider {
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
-            return ModBlocks.REGISTER.getEntries()::iterator;
+            // Leaves are special since we replace the HAS_SHEARS condition with "neoforge:can_item_perform_ability"
+            return ModBlocks.REGISTER.getEntries().filter(block -> block != ModBlocks.cedar_leaves.get())::iterator;
         }
     }
 

@@ -42,6 +42,7 @@ import pokefenn.totemic.neoforge.datagen.TotemicItemTagsProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicLootTableProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicRecipeProvider;
 import pokefenn.totemic.neoforge.datagen.neoforge.TotemicDataMapProvider;
+import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoForgeLootTableProvider;
 import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoForgeRecipeProvider;
 import pokefenn.totemic.neoforge.handler.PlayerInteract;
 import pokefenn.totemic.network.ClientboundPacketStartupMusic;
@@ -152,6 +153,7 @@ public final class TotemicNeoMod {
         if(neoData) {
             gen.addProvider(event.includeServer(), new TotemicDataMapProvider(out, lookup));
             gen.addProvider(event.includeServer(), new TotemicNeoForgeRecipeProvider(out, lookup));
+            gen.addProvider(event.includeServer(), new TotemicNeoForgeLootTableProvider(out, lookup));
         }
     }
 }
