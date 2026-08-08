@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-08T15:31:14.874286535	Recipes
+// 1.21.1	2026-08-08T19:53:46.658349247	Recipes
 93116018ed5f034e0ed24e190ca152273105cce8 data/minecraft/advancement/recipes/food/cooked_buffalo_meat_from_campfire_cooking.json
 e55c90c769bf8b82065c78971737fb5f691a0d56 data/minecraft/advancement/recipes/food/cooked_buffalo_meat_from_smelting.json
 ae92116ef54c077dd0e06297a516199abea19d20 data/minecraft/advancement/recipes/food/cooked_buffalo_meat_from_smoking.json
@@ -24,7 +24,6 @@ a70d60a237d0f85cd75c9beb2fbfd7955d6dadb6 data/totemic/advancement/recipes/misc/i
 85e50cfb3eacf427e91c704011f1b5fa816236a8 data/totemic/advancement/recipes/misc/leather_from_hide.json
 aa88fa9683a3b118cf8f8ef3327f4e2389b556bd data/totemic/advancement/recipes/misc/medicine_bag.json
 207c05fe3642e54b58ae95167b427f884ad85468 data/totemic/advancement/recipes/misc/rattle.json
-6d9315cb361f71c1bdb7055a37fb7cc0677542b6 data/totemic/advancement/recipes/misc/totempedia.json
 0d58ce1550df7d5fc9fd141b7c439a7449e61fa5 data/totemic/advancement/recipes/misc/wind_chime.json
 50b23e6cdd9899f412200580718a513016d8c0f3 data/totemic/advancement/recipes/redstone/cedar_button.json
 b0fd736267e0733c688bb6411bd93352d7fdf6ef data/totemic/advancement/recipes/redstone/cedar_door.json
@@ -59,5 +58,4 @@ aba8f99646d825572b37e5386e780ee75fed74c0 data/totemic/recipe/tipi_from_hide.json
 8cdd2fbc88f32d2934f76e799ae1c8389291ac65 data/totemic/recipe/totem_torch.json
 001ee5a76f99095007de2e88762dd1ee8f0729e9 data/totemic/recipe/totem_whittling_knife.json
 f27c999fe7c22796aae2c1ceee4be1c5fbc2824c data/totemic/recipe/totemic_staff.json
-a884060007676d25b0a84f7b59fb0f39ef22df2c data/totemic/recipe/totempedia.json
 b9b9e54e475ca92d3a1fce9f1e68d46738cdc54f data/totemic/recipe/wind_chime.json

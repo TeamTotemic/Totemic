@@ -21,15 +21,12 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.item.crafting.SmokingRecipe;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
-import pokefenn.totemic.Totemic;
 import pokefenn.totemic.advancements.criterion.CeremonyTrigger;
 import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
-import vazkii.patchouli.api.PatchouliAPI;
 
 public final class TotemicRecipeProvider extends RecipeProvider {
     public TotemicRecipeProvider(PackOutput pOutput, CompletableFuture<Provider> registries) {
@@ -38,16 +35,6 @@ public final class TotemicRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput rc) {
-        var totempedia = PatchouliAPI.get().getBookStack(Totemic.resloc("totempedia"));
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, totempedia)
-                .pattern("WPW")
-                .pattern("WPW")
-                .pattern("WPW")
-                .define('P', Items.PAPER)
-                .define('W', ItemTags.LOGS_THAT_BURN)
-                .unlockedBy("has_paper", has(Items.PAPER))
-                .unlockedBy("has_totem_knife", has(ModItems.totem_whittling_knife.get()))
-                .save(rc.withConditions(new ModLoadedCondition(PatchouliAPI.MOD_ID)), "totemic:totempedia");
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.flute.get())
                 .pattern(" LS")
                 .pattern(" S ")
