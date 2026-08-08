@@ -71,10 +71,14 @@ neoForge {
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
-        data {
+        commonData {
             data()
             //gameDirectory = project.file('run-data')
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            programArguments.addAll(
+                '--mod', project.mod_id,
+                '--all',
+                '--output', project.project(':common').file('src/generated/resources/').getAbsolutePath(),
+                '--existing', project.project(":common").file('src/main/resources/').getAbsolutePath())
         }
 
         configureEach {

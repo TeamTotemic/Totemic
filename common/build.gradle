@@ -36,6 +36,8 @@ neoForge {
     }
 }
 
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
 dependencies {
     compileOnly "org.spongepowered:mixin:${project.mixin_version}"
     compileOnly "io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"
