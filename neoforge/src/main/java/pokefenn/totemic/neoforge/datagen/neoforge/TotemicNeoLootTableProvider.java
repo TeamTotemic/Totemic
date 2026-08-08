@@ -16,8 +16,8 @@ import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.loot.CanItemPerformAbility;
 import pokefenn.totemic.init.ModBlocks;
 
-public class TotemicNeoForgeLootTableProvider extends LootTableProvider {
-    public TotemicNeoForgeLootTableProvider(PackOutput pOutput, CompletableFuture<Provider> registries) {
+public class TotemicNeoLootTableProvider extends LootTableProvider {
+    public TotemicNeoLootTableProvider(PackOutput pOutput, CompletableFuture<Provider> registries) {
         super(pOutput, Set.of(), List.of(
                 new SubProviderEntry(TotemicNeoForgeBlockLoot::new, LootContextParamSets.BLOCK)),
                 registries);

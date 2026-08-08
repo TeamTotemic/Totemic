@@ -15,8 +15,8 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.init.ModItems;
 import vazkii.patchouli.api.PatchouliAPI;
 
-public class TotemicNeoForgeRecipeProvider extends RecipeProvider {
-    public TotemicNeoForgeRecipeProvider(PackOutput pOutput, CompletableFuture<Provider> registries) {
+public class TotemicNeoRecipeProvider extends RecipeProvider {
+    public TotemicNeoRecipeProvider(PackOutput pOutput, CompletableFuture<Provider> registries) {
         super(pOutput, registries);
     }
 

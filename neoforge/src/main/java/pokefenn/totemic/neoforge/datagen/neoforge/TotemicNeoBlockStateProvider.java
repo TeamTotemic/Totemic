@@ -9,8 +9,8 @@ import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.neoforge.datagen.TotemicBlockStateProvider;
 
-public class TotemicNeoForgeBlockStateProvider extends TotemicBlockStateProvider {
-    public TotemicNeoForgeBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+public class TotemicNeoBlockStateProvider extends TotemicBlockStateProvider {
+    public TotemicNeoBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, exFileHelper);
     }
 

@@ -42,9 +42,9 @@ import pokefenn.totemic.neoforge.datagen.TotemicItemTagsProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicLootTableProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicRecipeProvider;
 import pokefenn.totemic.neoforge.datagen.neoforge.TotemicDataMapProvider;
-import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoForgeBlockStateProvider;
-import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoForgeLootTableProvider;
-import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoForgeRecipeProvider;
+import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoBlockStateProvider;
+import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoLootTableProvider;
+import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoRecipeProvider;
 import pokefenn.totemic.neoforge.handler.PlayerInteract;
 import pokefenn.totemic.network.ClientboundPacketStartupMusic;
 import pokefenn.totemic.network.ClientboundPacketTotemEffectMusic;
@@ -153,9 +153,9 @@ public final class TotemicNeoMod {
         // Neo-specific data
         if(neoData) {
             gen.addProvider(event.includeServer(), new TotemicDataMapProvider(out, lookup));
-            gen.addProvider(event.includeServer(), new TotemicNeoForgeRecipeProvider(out, lookup));
-            gen.addProvider(event.includeServer(), new TotemicNeoForgeLootTableProvider(out, lookup));
-            gen.addProvider(event.includeClient(), new TotemicNeoForgeBlockStateProvider(out, efh));
+            gen.addProvider(event.includeServer(), new TotemicNeoRecipeProvider(out, lookup));
+            gen.addProvider(event.includeServer(), new TotemicNeoLootTableProvider(out, lookup));
+            gen.addProvider(event.includeClient(), new TotemicNeoBlockStateProvider(out, efh));
         }
     }
 }
