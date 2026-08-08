@@ -79,6 +79,19 @@ neoForge {
                 '--all',
                 '--output', project.project(':common').file('src/generated/resources/').getAbsolutePath(),
                 '--existing', project.project(":common").file('src/main/resources/').getAbsolutePath())
+            systemProperty 'totemic.commonDatagen', 'true'
+        }
+
+        neoForgeData {
+            data()
+            //gameDirectory = project.file('run-data')
+            programArguments.addAll(
+                '--mod', project.mod_id,
+                '--all',
+                '--output', file('src/generated/resources/').getAbsolutePath(),
+                '--existing', file('src/main/resources/').getAbsolutePath(),
+                '--existing', project.project(":common").file('src/main/resources/').getAbsolutePath())
+            systemProperty 'totemic.neoForgeDatagen', 'true'
         }
 
         configureEach {

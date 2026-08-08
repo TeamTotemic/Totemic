@@ -36,12 +36,12 @@ import pokefenn.totemic.neoforge.datagen.TotemicAdvancementProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicBlockStateProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicBlockTagsProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicDamageTypeTagsProvider;
-import pokefenn.totemic.neoforge.datagen.TotemicDataMapProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicDatapackEntryProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicEntityTypeTagsProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicItemTagsProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicLootTableProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicRecipeProvider;
+import pokefenn.totemic.neoforge.datagen.neoforge.TotemicDataMapProvider;
 import pokefenn.totemic.neoforge.handler.PlayerInteract;
 import pokefenn.totemic.network.ClientboundPacketStartupMusic;
 import pokefenn.totemic.network.ClientboundPacketTotemEffectMusic;
@@ -121,23 +121,31 @@ public final class TotemicNeoMod {
         reg.playToServer(ServerboundPacketMouseWheel.TYPE, ServerboundPacketMouseWheel.STREAM_CODEC, (payload, context) -> ServerPacketHandler.handle(payload, context.player()));
     }
 
+    /* We use Neo's data generation API to generate both the common data (with the commonData run config) and the
+     * Neo-specific data (with the neoForgeData run config).
+     */
     private void gatherData(GatherDataEvent event) {
         var gen = event.getGenerator();
         var efh = event.getExistingFileHelper();
         var out = gen.getPackOutput();
 
-        var datapackProvider = gen.addProvider(event.includeServer(), new TotemicDatapackEntryProvider(out, event.getLookupProvider()));
+        var commonData = Boolean.getBoolean("totemic.commonDatagen");
+        var neoData = Boolean.getBoolean("totemic.neoForgeDatagen");
+
+        // Common data
+        var datapackProvider = gen.addProvider(commonData && event.includeServer(), new TotemicDatapackEntryProvider(out, event.getLookupProvider()));
         var lookup = datapackProvider.getRegistryProvider();
 
-        var blockTP = gen.addProvider(event.includeServer(), new TotemicBlockTagsProvider(out, lookup, efh));
-        gen.addProvider(event.includeServer(), new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
-        gen.addProvider(event.includeServer(), new TotemicEntityTypeTagsProvider(out, lookup, efh));
-        gen.addProvider(event.includeServer(), new TotemicLootTableProvider(out, lookup));
-        gen.addProvider(event.includeServer(), new TotemicAdvancementProvider(out, lookup, efh));
-        gen.addProvider(event.includeServer(), new TotemicRecipeProvider(out, lookup));
-        gen.addProvider(event.includeServer(), new TotemicDamageTypeTagsProvider(out, lookup, efh));
-        gen.addProvider(event.includeServer(), new TotemicDataMapProvider(out, lookup));
+        var blockTP = gen.addProvider(commonData && event.includeServer(), new TotemicBlockTagsProvider(out, lookup, efh));
+        gen.addProvider(commonData && event.includeServer(), new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
+        gen.addProvider(commonData && event.includeServer(), new TotemicEntityTypeTagsProvider(out, lookup, efh));
+        gen.addProvider(commonData && event.includeServer(), new TotemicLootTableProvider(out, lookup));
+        gen.addProvider(commonData && event.includeServer(), new TotemicAdvancementProvider(out, lookup, efh));
+        gen.addProvider(commonData && event.includeServer(), new TotemicRecipeProvider(out, lookup));
+        gen.addProvider(commonData && event.includeServer(), new TotemicDamageTypeTagsProvider(out, lookup, efh));
+        gen.addProvider(commonData && event.includeClient(), new TotemicBlockStateProvider(out, efh));
 
-        gen.addProvider(event.includeClient(), new TotemicBlockStateProvider(out, efh));
+        // Neo-specific data
+        gen.addProvider(neoData && event.includeServer(), new TotemicDataMapProvider(out, lookup));
     }
 }

@@ -78,8 +78,9 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                 0, //angle offset of 0, rotates the model by 180°
                 TipiBlock.OCCUPIED);
         simpleBlock(ModBlocks.dummy_tipi.get(), models().getBuilder(key(ModBlocks.dummy_tipi.get()).toString()).texture("particle", mcLoc("block/white_wool")));
-        horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), models().getExistingFile(modLoc("dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
-        horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), models().getExistingFile(modLoc("dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
+        // dynamic_totem_pole and dynamic_totem_base are in the neoforge resources. AFAIK, Fabric allows hooking into model loading without requiring a model JSON to be present.
+        horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
+        horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
         totemWoodTypes();
 
         //Items
@@ -183,8 +184,9 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                     .scale(0.25F)
                     .end()
                 .end();
-        im.withExistingParent(key(ModBlocks.totem_base.get()).toString(), modLoc("block/dynamic_totem_base"));
-        im.withExistingParent(key(ModBlocks.totem_pole.get()).toString(), modLoc("block/dynamic_totem_pole"));
+        // see above at the corresponding block states
+        im.getBuilder(key(ModBlocks.totem_base.get()).toString()).parent(new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_base")));
+        im.getBuilder(key(ModBlocks.totem_pole.get()).toString()).parent(new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_pole")));
     }
 
     private void totemWoodTypes() {

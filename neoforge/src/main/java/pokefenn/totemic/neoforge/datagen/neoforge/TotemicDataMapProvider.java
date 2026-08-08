@@ -1,4 +1,4 @@
-package pokefenn.totemic.neoforge.datagen;
+package pokefenn.totemic.neoforge.datagen.neoforge;
 
 import java.util.concurrent.CompletableFuture;
 
