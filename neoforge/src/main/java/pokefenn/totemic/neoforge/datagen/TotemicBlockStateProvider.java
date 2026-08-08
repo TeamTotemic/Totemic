@@ -13,18 +13,15 @@ import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.common.util.TransformationHelper.TransformOrigin;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
-public final class TotemicBlockStateProvider extends BlockStateProvider {
+public class TotemicBlockStateProvider extends BlockStateProvider {
     public TotemicBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, TotemicAPI.MOD_ID, exFileHelper);
     }
@@ -67,16 +64,6 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
         trapdoorBlock(ModBlocks.cedar_trapdoor.get(), modLoc("block/cedar_trapdoor"), true);
         simpleBlock(ModBlocks.potted_cedar_sapling.get(), models().singleTexture(key(ModBlocks.potted_cedar_sapling.get()).toString(), mcLoc("block/flower_pot_cross"), "plant", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
         simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
-        horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getBuilder(key(ModBlocks.tipi.get()).toString())
-                .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
-                .texture("particle", mcLoc("block/white_wool"))
-                .rootTransforms()
-                    .origin(TransformOrigin.CORNER)
-                    .translation(0, 0.95F, 0)
-                    .scale(2.85F)
-                    .end(),
-                0, //angle offset of 0, rotates the model by 180°
-                TipiBlock.OCCUPIED);
         simpleBlock(ModBlocks.dummy_tipi.get(), models().getBuilder(key(ModBlocks.dummy_tipi.get()).toString()).texture("particle", mcLoc("block/white_wool")));
         // dynamic_totem_pole and dynamic_totem_base are in the neoforge resources. AFAIK, Fabric allows hooking into model loading without requiring a model JSON to be present.
         horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
@@ -149,41 +136,6 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
                     .scale(0.5F)
                     .end()
                 .end();
-        //use a separate item model because the transforms are not compatible with the tipi's root transform
-        im.getBuilder(key(ModBlocks.tipi.get()).toString())
-                .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
-                .transforms()
-                .transform(ItemDisplayContext.GUI)
-                    .rotation(30, 225, 0)
-                    .translation(0, -2.5F, 0)
-                    .scale(0.4F)
-                    .end()
-                .transform(ItemDisplayContext.GROUND)
-                    .scale(0.25F)
-                    .end()
-                .transform(ItemDisplayContext.FIXED)
-                    .translation(0, -2.5F, 0)
-                    .scale(0.4F)
-                    .end()
-                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
-                    .rotation(75, 45, 0)
-                    .translation(0, 0.05F, 0)
-                    .scale(0.25F)
-                    .end()
-                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND)
-                    .rotation(75, 45, 0)
-                    .translation(0, 0.05F, 0)
-                    .scale(0.25F)
-                    .end()
-                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
-                    .rotation(0, 45, 0)
-                    .scale(0.25F)
-                    .end()
-                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
-                    .rotation(0, 225, 0)
-                    .scale(0.25F)
-                    .end()
-                .end();
         // see above at the corresponding block states
         im.getBuilder(key(ModBlocks.totem_base.get()).toString()).parent(new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_base")));
         im.getBuilder(key(ModBlocks.totem_pole.get()).toString()).parent(new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_pole")));
@@ -211,19 +163,19 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
     }
 
     // Why is this not accessible in Neo?
-    private ResourceLocation key(Block block) {
+    protected ResourceLocation key(Block block) {
         return BuiltInRegistries.BLOCK.getKey(block);
     }
 
-    private ResourceLocation key(Item item) {
+    protected ResourceLocation key(Item item) {
         return BuiltInRegistries.ITEM.getKey(item);
     }
 
-    private void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
+    protected void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
         horizontalBlockIgnoringProperties(block, model, 180, ignored);
     }
 
-    private void horizontalBlockIgnoringProperties(Block block, ModelFile model, int angleOffset, Property<?>... ignored) {
+    protected void horizontalBlockIgnoringProperties(Block block, ModelFile model, int angleOffset, Property<?>... ignored) {
         getVariantBuilder(block)
             .forAllStatesExcept(state -> ConfiguredModel.builder()
                     .modelFile(model)
@@ -232,13 +184,13 @@ public final class TotemicBlockStateProvider extends BlockStateProvider {
             ignored);
     }
 
-    private void basicItemWithParent(Item item, ResourceLocation parent) {
+    protected void basicItemWithParent(Item item, ResourceLocation parent) {
         var id = key(item);
         itemModels().withExistingParent(id.toString(), parent)
                 .texture("layer0", id.withPath("item/" + id.getPath()));
     }
 
-    private BlockModelBuilder blockEntityRenderer(Block block, ResourceLocation particleTexture) {
+    protected BlockModelBuilder blockEntityRenderer(Block block, ResourceLocation particleTexture) {
         return models().getBuilder(key(block).toString())
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .texture("particle", particleTexture)
