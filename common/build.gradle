@@ -38,6 +38,10 @@ neoForge {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+processResources {
+    exclude '.cache' // exclude datagen cache folder
+}
+
 dependencies {
     compileOnly "org.spongepowered:mixin:${project.mixin_version}"
     compileOnly "io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"

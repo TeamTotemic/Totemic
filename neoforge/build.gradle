@@ -113,6 +113,10 @@ neoForge {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+processResources {
+    exclude '.cache' // exclude datagen cache folder
+}
+
 configurations {
     runtimeClasspath.extendsFrom localRuntime
 }
