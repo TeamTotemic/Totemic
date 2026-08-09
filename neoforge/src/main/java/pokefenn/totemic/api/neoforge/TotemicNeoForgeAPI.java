@@ -1,8 +1,9 @@
-package pokefenn.totemic.api;
+package pokefenn.totemic.api.neoforge;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.neoforged.neoforge.registries.datamaps.DataMapType;
+import pokefenn.totemic.api.TotemicAPI;
 
 /**
  * Provides access to NeoForge-specific parts of the Totemic API.

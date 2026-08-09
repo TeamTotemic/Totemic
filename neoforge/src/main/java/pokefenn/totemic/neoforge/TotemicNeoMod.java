@@ -19,7 +19,7 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.TotemicCapabilities;
+import pokefenn.totemic.api.neoforge.TotemicCapabilities;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.client.network.ClientPacketHandler;
 import pokefenn.totemic.init.ModBlockEntities;

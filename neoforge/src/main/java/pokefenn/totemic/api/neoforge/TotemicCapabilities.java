@@ -1,10 +1,11 @@
-package pokefenn.totemic.api;
+package pokefenn.totemic.api.neoforge;
 
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.DefaultMusicAcceptor;
 import pokefenn.totemic.api.music.MusicAcceptor;
 

@@ -13,8 +13,8 @@ import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyEffectContext;
 import pokefenn.totemic.api.ceremony.CeremonyInstance;
 import pokefenn.totemic.api.ceremony.StartupContext;
-import pokefenn.totemic.api.event.CeremonyEvent;
 import pokefenn.totemic.api.music.MusicInstrument;
+import pokefenn.totemic.api.neoforge.event.CeremonyEvent;
 
 public abstract class CeremonyKubeEvent implements KubeLevelEvent {
     protected abstract CeremonyEvent getEvent();

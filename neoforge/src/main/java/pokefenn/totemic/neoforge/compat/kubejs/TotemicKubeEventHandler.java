@@ -5,7 +5,7 @@ import javax.annotation.Nullable;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import pokefenn.totemic.api.ceremony.Ceremony;
-import pokefenn.totemic.api.event.CeremonyEvent;
+import pokefenn.totemic.api.neoforge.event.CeremonyEvent;
 
 public class TotemicKubeEventHandler {
     //Modification Events

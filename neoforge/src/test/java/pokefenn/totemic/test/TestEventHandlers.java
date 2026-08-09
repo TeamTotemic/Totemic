@@ -4,7 +4,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.event.CeremonyEvent;
+import pokefenn.totemic.api.neoforge.event.CeremonyEvent;
 
 //Some event handlers that print log messages to allow manual testing of Totemic events.
 @EventBusSubscriber(modid = TotemicAPI.MOD_ID)

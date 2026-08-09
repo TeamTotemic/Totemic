@@ -29,8 +29,8 @@ import pokefenn.totemic.PlatformAbstractions;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.TotemicEventHooks;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.api.TotemicCapabilities;
 import pokefenn.totemic.api.music.MusicAcceptor;
+import pokefenn.totemic.api.neoforge.TotemicCapabilities;
 import pokefenn.totemic.api.registry.RegistryAPI;
 import pokefenn.totemic.neoforge.apiimpl.NeoRegistryApiImpl;
 

@@ -1,4 +1,4 @@
-package pokefenn.totemic.api.event;
+package pokefenn.totemic.api.neoforge.event;
 
 import java.util.Collections;
 import java.util.List;
