@@ -168,16 +168,17 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 sourceSets.main.resources.srcDir generateModMetadata
 neoForge.ideSyncTask generateModMetadata
 
-task apiSrcJar(type: Jar) {
-    from(sourceSets.main.java) {
-        include 'pokefenn/totemic/api/**'
-    }
-    archiveAppendix = 'api'
-    archiveClassifier = 'sources'
+task apiJar(type: Jar) {
+    from(project(":common").sourceSets.main.allSource)
+    from(sourceSets.main.allSource)
+    from(sourceSets.main.output) // already includes the output of :common
+
+    include 'pokefenn/totemic/api/**'
+    archiveClassifier = 'api'
 }
 
 tasks.named('assemble') {
-    dependsOn apiSrcJar
+    dependsOn apiJar
 }
 
 task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
@@ -190,7 +191,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.changelogType = 'markdown'
     mainFile.addOptional('patchouli')
     
-    def apiSrcFile = mainFile.withAdditionalFile(apiSrcJar)
+    mainFile.withAdditionalFile(apiJar)
 }
 
 modrinth {
@@ -204,7 +205,7 @@ modrinth {
     dependencies {
         optional.project 'patchouli'
     }
-    additionalFiles = [apiSrcJar]
+    additionalFiles = [apiJar]
 }
 
 tasks.withType(JavaCompile).configureEach {
