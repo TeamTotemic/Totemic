@@ -1,0 +1,35 @@
+plugins {
+    id 'multiloader-common'
+}
+
+dependencies {
+    implementation project(":common")
+}
+
+tasks.named('compileJava', JavaCompile) {
+    dependsOn(project(":common").sourceSets.main.allSource)
+    source(project(":common").sourceSets.main.allSource)
+}
+
+processResources {
+    dependsOn(project(":common").sourceSets.main.resources)
+    from(project(":common").sourceSets.main.resources)
+}
+
+tasks.named('javadoc', Javadoc) {
+    dependsOn(project(":common").sourceSets.main.allJava)
+    source(project(":common").sourceSets.main.allJava)
+}
+
+task apiJar(type: Jar) {
+    from(project(":common").sourceSets.main.allSource)
+    from(sourceSets.main.allSource)
+    from(sourceSets.main.output) // already includes the output of :common
+
+    include 'pokefenn/totemic/api/**'
+    archiveClassifier = 'api'
+}
+
+tasks.named('assemble') {
+    dependsOn apiJar
+}

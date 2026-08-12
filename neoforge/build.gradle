@@ -1,13 +1,9 @@
 plugins {
-    id 'java-library'
-    id 'maven-publish'
+    id 'multiloader-loader'
     id 'net.neoforged.moddev'
     id 'net.darkhax.curseforgegradle'
     id 'com.modrinth.minotaur'
 }
-
-version = mod_version
-group = mod_group_id
 
 repositories {
     // Patchouli
@@ -36,8 +32,6 @@ repositories {
 base {
     archivesName = 'Totemic-neoforge'
 }
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(project.java_version)
 
 neoForge {
     version = project.neo_version
@@ -111,39 +105,12 @@ neoForge {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-processResources {
-    exclude '.cache' // exclude datagen cache folder
-}
-
-configurations {
-    runtimeClasspath.extendsFrom localRuntime
-}
-
 dependencies {
-    implementation project(":common")
-
     compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}-NEOFORGE:api"
     runtimeOnly "vazkii.patchouli:Patchouli:${patchouli_version}-NEOFORGE"
 
     api("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
     interfaceInjectionData("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
-}
-
-tasks.named('compileJava', JavaCompile) {
-    dependsOn(project(":common").sourceSets.main.allSource)
-    source(project(":common").sourceSets.main.allSource)
-}
-
-processResources {
-    dependsOn(project(":common").sourceSets.main.resources)
-    from(project(":common").sourceSets.main.resources)
-}
-
-tasks.named('javadoc', Javadoc).configure {
-    dependsOn(project(":common").sourceSets.main.allJava)
-    source(project(":common").sourceSets.main.allJava)
 }
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
@@ -167,19 +134,6 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 }
 sourceSets.main.resources.srcDir generateModMetadata
 neoForge.ideSyncTask generateModMetadata
-
-task apiJar(type: Jar) {
-    from(project(":common").sourceSets.main.allSource)
-    from(sourceSets.main.allSource)
-    from(sourceSets.main.output) // already includes the output of :common
-
-    include 'pokefenn/totemic/api/**'
-    archiveClassifier = 'api'
-}
-
-tasks.named('assemble') {
-    dependsOn apiJar
-}
 
 task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
     apiToken = findProperty('curseForgeApiKey')
@@ -206,10 +160,6 @@ modrinth {
         optional.project 'patchouli'
     }
     additionalFiles = [apiJar]
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
 }
 
 test {

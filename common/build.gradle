@@ -1,5 +1,5 @@
 plugins {
-    id 'java-library'
+    id 'multiloader-common'
     id 'net.neoforged.moddev'
 }
 
@@ -19,7 +19,9 @@ repositories {
     }
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(project.java_version)
+base {
+    archivesName = 'Totemic-common'
+}
 
 neoForge {
     neoFormVersion = project.neoform_version
@@ -36,12 +38,6 @@ neoForge {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-processResources {
-    exclude '.cache' // exclude datagen cache folder
-}
-
 dependencies {
     compileOnly "org.spongepowered:mixin:${project.mixin_version}"
     compileOnly "io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"
@@ -49,8 +45,4 @@ dependencies {
 
     compileOnly "vazkii.patchouli:Patchouli-xplat:${project.patchouli_version}"
     compileOnly "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi:${project.forgeconfigapiport_version}"
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
 }

@@ -1,0 +1,25 @@
+plugins {
+    id 'java-library'
+}
+
+version = mod_version
+group = mod_group_id
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(project.java_version)
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+processResources {
+    exclude '.cache' // exclude datagen cache folder
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+pluginManager.withPlugin('eclipse') {
+    // Fix conflict with Eclipse launch configs when multiple projects with the same name are in the same workspace
+    eclipse.project.name = "${project.minecraft_version}-${project.name}"
+}

@@ -12,3 +12,4 @@ plugins {
 
 rootProject.name = "Totemic-${minecraft_version}"
 include('common', 'neoforge')
+includeBuild('build-logic')
