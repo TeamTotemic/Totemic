@@ -76,7 +76,7 @@ public interface CeremonyInstance { //TODO: Consider renaming this class, e.g. t
     /**
      * Serializes the state of the current ceremony to an NBT tag.
      * <p>
-     * <em>The way the state tracking for ceremonies works will likely change in future versions.</em>
+     * <em>Note: The way state tracking for ceremonies works will likely change in a future version.</em>
      */
     default Tag serializeNBT(HolderLookup.Provider provider) {
         return EndTag.INSTANCE;
@@ -85,9 +85,9 @@ public interface CeremonyInstance { //TODO: Consider renaming this class, e.g. t
     /**
      * Reads the state of the current ceremony from the given NBT tag.
      * <p>
-     * This method is not called if {@link #serializeNBT()} had returned an {@link EndTag}.
+     * This method is only called if {@link #serializeNBT} did not return an {@link EndTag}.
      * <p>
-     * <em>The way the state tracking for ceremonies works will likely change in future versions.</em>
+     * <em>Note: The way state tracking for ceremonies works will likely change in a future version.</em>
      */
     default void deserializeNBT(HolderLookup.Provider provider, Tag nbt) { }
 }
