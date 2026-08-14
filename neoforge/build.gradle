@@ -60,31 +60,29 @@ neoForge {
         }
 
         gameTestServer {
-            type = "gameTestServer"
+            type = 'gameTestServer'
             gameDirectory = project.file('run-gameTestServer')
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
         commonData {
             data()
-            //gameDirectory = project.file('run-data')
             programArguments.addAll(
                 '--mod', project.mod_id,
                 '--all',
                 '--output', project.project(':common').file('src/generated/resources/').getAbsolutePath(),
-                '--existing', project.project(":common").file('src/main/resources/').getAbsolutePath())
+                '--existing', project.project(':common').file('src/main/resources/').getAbsolutePath())
             systemProperty 'totemic.commonDatagen', 'true'
         }
 
         neoForgeData {
             data()
-            //gameDirectory = project.file('run-data')
             programArguments.addAll(
                 '--mod', project.mod_id,
                 '--all',
                 '--output', file('src/generated/resources/').getAbsolutePath(),
                 '--existing', file('src/main/resources/').getAbsolutePath(),
-                '--existing', project.project(":common").file('src/main/resources/').getAbsolutePath())
+                '--existing', project.project(':common').file('src/main/resources/').getAbsolutePath())
             systemProperty 'totemic.neoForgeDatagen', 'true'
         }
 
@@ -99,7 +97,7 @@ neoForge {
     mods {
         "${mod_id}" {
             sourceSet(sourceSets.main)
-            sourceSet(project(":common").sourceSets.main)
+            sourceSet(project(':common').sourceSets.main)
             sourceSet(sourceSets.test)
         }
     }
@@ -113,7 +111,7 @@ dependencies {
     interfaceInjectionData("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
 }
 
-var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
     var replaceProperties = [
             minecraft_version_range: minecraft_version_range,
             neo_version_range      : neo_version_range,
@@ -125,12 +123,12 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             mod_authors            : mod_authors,
             mod_description        : mod_description,
             mod_license            : mod_license,
-            mod_version            : mod_version,
+            mod_version            : version,
     ]
     inputs.properties replaceProperties
     expand replaceProperties
-    from "src/main/templates"
-    into "build/generated/sources/modMetadata"
+    from 'src/main/templates'
+    into 'build/generated/sources/modMetadata'
 }
 sourceSets.main.resources.srcDir generateModMetadata
 neoForge.ideSyncTask generateModMetadata
@@ -140,7 +138,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
     
     def mainFile = upload(237541, jar)
     mainFile.addModLoader('NeoForge')
-    mainFile.releaseType = mod_release_type
+    mainFile.releaseType = release_type
     mainFile.changelog = file('../changelog.md')
     mainFile.changelogType = 'markdown'
     mainFile.addOptional('patchouli')
@@ -151,7 +149,7 @@ task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge)
 modrinth {
     token = findProperty('modrinthApiToken')
     projectId = 'fenns_totemic'
-    versionType = mod_release_type
+    versionType = release_type
     uploadFile = jar
     gameVersions = [minecraft_version]
     loaders = ['neoforge']
@@ -163,8 +161,6 @@ modrinth {
 }
 
 test {
-    // Fix Gradle build failing due to no excutable tests being discovered
+    // Fix Gradle build failing since we have no unit tests in src/test
     failOnNoDiscoveredTests = false
 }
-
-test.dependsOn runGameTestServer

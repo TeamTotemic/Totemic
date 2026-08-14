@@ -3,26 +3,26 @@ plugins {
 }
 
 dependencies {
-    implementation project(":common")
+    implementation project(':common')
 }
 
 tasks.named('compileJava', JavaCompile) {
-    dependsOn(project(":common").sourceSets.main.allSource)
-    source(project(":common").sourceSets.main.allSource)
+    dependsOn(project(':common').sourceSets.main.allSource)
+    source(project(':common').sourceSets.main.allSource)
 }
 
 processResources {
-    dependsOn(project(":common").sourceSets.main.resources)
-    from(project(":common").sourceSets.main.resources)
+    dependsOn(project(':common').sourceSets.main.resources)
+    from(project(':common').sourceSets.main.resources)
 }
 
 tasks.named('javadoc', Javadoc) {
-    dependsOn(project(":common").sourceSets.main.allJava)
-    source(project(":common").sourceSets.main.allJava)
+    dependsOn(project(':common').sourceSets.main.allJava)
+    source(project(':common').sourceSets.main.allJava)
 }
 
 task apiJar(type: Jar) {
-    from(project(":common").sourceSets.main.allSource)
+    from(project(':common').sourceSets.main.allSource)
     from(sourceSets.main.allSource)
     from(sourceSets.main.output) // already includes the output of :common
 
