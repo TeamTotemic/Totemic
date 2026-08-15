@@ -61,6 +61,11 @@ public class TipiBlock extends HorizontalDirectionalBlock {
         return Optional.of(new RespawnPosAngle(Vec3.upFromBottomCenterOf(pos, 0.0625), facing.toYRot()));
     }
 
+    public Vec3 getStandUpPosition(BlockPos pos, Direction direction) {
+        return Vec3.upFromBottomCenterOf(pos, 0.0625)
+                .relative(direction, 0.0625); // apply slight offset so that the angle is set towards the tipi's exit
+    }
+
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         //See BedBlock.useWithoutItem
