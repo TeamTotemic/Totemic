@@ -5,7 +5,7 @@
       "min_inclusive": 9,
       "max_inclusive": 34
     },
-    "description": "Resource pack for testing custom Totem Wood Types. Goes together with the config file in 'run-gameTestServer/config'."
+    "description": "Resource pack for testing custom Totem Wood Types. Goes together with the config file in 'neoforge/run-gameTestServer/config'."
   }
 }
 
