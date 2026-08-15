@@ -42,10 +42,13 @@ public enum CeremonyAPIImpl implements CeremonyAPI {
                     int secMaxY = box.maxY() >= secPos.maxBlockY() ? 15 : SectionPos.sectionRelative(box.maxY());
                     int secMaxZ = box.maxZ() >= secPos.maxBlockZ() ? 15 : SectionPos.sectionRelative(box.maxZ());
                     //iterate over the blocks inside the section
+                    int originX = secPos.minBlockX();
+                    int originY = secPos.minBlockY();
+                    int originZ = secPos.minBlockZ();
                     for(int y = secMinY; y <= secMaxY; y++)
                         for(int z = secMinZ; z <= secMaxZ; z++)
                             for(int x = secMinX; x <= secMaxX; x++) {
-                                var pos = secPos.origin().offset(x, y, z);
+                                var pos = new BlockPos(originX + x, originY + y, originZ + z);
                                 var state = section.getBlockState(x, y, z);
                                 action.accept(pos, state);
                             }
