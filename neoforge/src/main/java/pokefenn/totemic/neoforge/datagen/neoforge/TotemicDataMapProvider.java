@@ -2,6 +2,7 @@ package pokefenn.totemic.neoforge.datagen.neoforge;
 
 import java.util.concurrent.CompletableFuture;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
@@ -18,7 +19,7 @@ public class TotemicDataMapProvider extends DataMapProvider {
 
     @SuppressWarnings("deprecation")
     @Override
-    protected void gather() {
+    protected void gather(HolderLookup.Provider provider) {
         builder(ModDataMapTypes.CLEANSING_CEREMONY_CONVERSIONS)
                 .add(EntityType.ZOMBIE_VILLAGER.builtInRegistryHolder(),  EntityType.VILLAGER, false)
                 .add(EntityType.ZOMBIFIED_PIGLIN.builtInRegistryHolder(), EntityType.PIGLIN, false)
