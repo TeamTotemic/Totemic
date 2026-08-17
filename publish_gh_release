@@ -1,9 +1,9 @@
 #!/bin/bash
 # Creates a new Github release with the current version and changelog
-PRERELEASE=false
-LATEST=true
+PRERELEASE=true
+LATEST=false
 BRANCH=$(git symbolic-ref --short HEAD)
-VERSION=$(sed -nr 's/mod_version=(.*)/\1/p' gradle.properties)
+VERSION=$(sed -nr 's/^version=(.*)$/\1/p' gradle.properties)
 if [ $? -ne 0 ] || [ -z "$VERSION" ]; then
     echo "Version number could not be determined" >&2
     exit 1
