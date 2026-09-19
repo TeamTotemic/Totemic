@@ -1,16 +1,16 @@
 package pokefenn.totemic.neoforge.datagen;
 
-import net.minecraft.client.renderer.block.model.BlockModel.GuiLight;
+import net.minecraft.client.resources.model.UnbakedModel.GuiLight;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -156,18 +156,18 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
 
     private BlockModelBuilder setTotemTextures(BlockModelBuilder model, String namespace, String woodType) {
         return model
-                .texture("wood", ResourceLocation.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"))
-                .texture("bark", ResourceLocation.fromNamespaceAndPath(namespace, "block/" + woodType + "_log"))
-                .texture("top", ResourceLocation.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log_top"))
-                .texture("particle", ResourceLocation.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"));
+                .texture("wood", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"))
+                .texture("bark", Identifier.fromNamespaceAndPath(namespace, "block/" + woodType + "_log"))
+                .texture("top", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log_top"))
+                .texture("particle", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"));
     }
 
     // Why is this not accessible in Neo?
-    protected ResourceLocation key(Block block) {
+    protected Identifier key(Block block) {
         return BuiltInRegistries.BLOCK.getKey(block);
     }
 
-    protected ResourceLocation key(Item item) {
+    protected Identifier key(Item item) {
         return BuiltInRegistries.ITEM.getKey(item);
     }
 
@@ -184,13 +184,13 @@ public class TotemicBlockStateProvider extends BlockStateProvider {
             ignored);
     }
 
-    protected void basicItemWithParent(Item item, ResourceLocation parent) {
+    protected void basicItemWithParent(Item item, Identifier parent) {
         var id = key(item);
         itemModels().withExistingParent(id.toString(), parent)
                 .texture("layer0", id.withPath("item/" + id.getPath()));
     }
 
-    protected BlockModelBuilder blockEntityRenderer(Block block, ResourceLocation particleTexture) {
+    protected BlockModelBuilder blockEntityRenderer(Block block, Identifier particleTexture) {
         return models().getBuilder(key(block).toString())
                 .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .texture("particle", particleTexture)

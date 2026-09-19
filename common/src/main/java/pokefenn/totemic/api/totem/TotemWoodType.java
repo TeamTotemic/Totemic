@@ -2,7 +2,7 @@ package pokefenn.totemic.api.totem;
 
 import java.util.Objects;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
@@ -25,7 +25,7 @@ public record TotemWoodType(MapColor woodColor, MapColor barkColor, TagKey<Block
     /**
      * Returns the wood type's registry name.
      */
-    public ResourceLocation getRegistryName() {
+    public Identifier getRegistryName() {
         return TotemicAPI.get().registry().woodTypes().getKey(this);
     }
 

@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.BlockEntityType.Builder;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.music.entity.WindChimeBlockEntity;

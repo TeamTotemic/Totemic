@@ -7,7 +7,7 @@ import dev.latvian.mods.kubejs.registry.BuilderBase;
 import dev.latvian.mods.kubejs.typings.Info;
 import dev.latvian.mods.rhino.util.ReturnsSelf;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.ceremony.Ceremony;
 import pokefenn.totemic.api.ceremony.CeremonyAPI;
@@ -23,7 +23,7 @@ public class CeremonyBuilder extends BuilderBase<Ceremony> {
     public transient EffectCallback effect;
     public transient int effectDuration = 0;
 
-    public CeremonyBuilder(ResourceLocation id) {
+    public CeremonyBuilder(Identifier id) {
         super(id);
     }
 

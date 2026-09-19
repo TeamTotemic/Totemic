@@ -9,15 +9,14 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
+import net.minecraft.client.renderer.block.dispatch.ModelState;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.ModelBaker;
-import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.client.resources.model.UnbakedModel;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.client.model.geometry.IGeometryBakingContext;
 import net.neoforged.neoforge.client.model.geometry.IGeometryLoader;
 import net.neoforged.neoforge.client.model.geometry.IUnbakedGeometry;
@@ -41,7 +40,7 @@ public final class NeoTotemPoleModel implements IUnbakedGeometry<NeoTotemPoleMod
     }
 
     @Override
-    public void resolveParents(Function<ResourceLocation, UnbakedModel> modelGetter, IGeometryBakingContext ctx) {
+    public void resolveParents(Function<Identifier, UnbakedModel> modelGetter, IGeometryBakingContext ctx) {
         if(totemModels == null) {
             final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
             final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
@@ -64,12 +63,12 @@ public final class NeoTotemPoleModel implements IUnbakedGeometry<NeoTotemPoleMod
         }
     }
 
-    private static ResourceLocation getWoodTypeModelName(TotemWoodType woodType) {
+    private static Identifier getWoodTypeModelName(TotemWoodType woodType) {
         var woodName = woodType.getRegistryName();
         return woodName.withPath("block/" + woodName.getPath() + "_totem_pole");
     }
 
-    private static ResourceLocation getPoleModelName(TotemCarving carving) {
+    private static Identifier getPoleModelName(TotemCarving carving) {
         var carvingName = carving.getRegistryName();
         return carvingName.withPath("block/totem_pole_" + carvingName.getPath());
     }

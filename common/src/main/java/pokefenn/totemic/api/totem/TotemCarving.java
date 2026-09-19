@@ -6,13 +6,12 @@ import javax.annotation.Nullable;
 
 import com.mojang.serialization.Codec;
 
-import net.minecraft.Util;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.registry.RegistryAPI;
 
@@ -82,7 +81,7 @@ public final class TotemCarving {
     /**
      * @return the carving's registry name.
      */
-    public final ResourceLocation getRegistryName() {
+    public final Identifier getRegistryName() {
         return TotemicAPI.get().registry().totemCarvings().getKey(this);
     }
 

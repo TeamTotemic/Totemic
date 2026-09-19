@@ -1,6 +1,6 @@
 package pokefenn.totemic.compat;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicAPI;
@@ -15,7 +15,7 @@ public class CeremonyComponentProcessor implements IComponentProcessor {
     @Override
     public void setup(Level level, IVariableProvider variables) {
         var ceremonyId = variables.get("ceremony", level.registryAccess()).asString();
-        ceremony = TotemicAPI.get().registry().ceremonies().get(ResourceLocation.parse(ceremonyId));
+        ceremony = TotemicAPI.get().registry().ceremonies().get(Identifier.parse(ceremonyId));
         if(ceremony == null)
             throw new IllegalArgumentException("Invalid Ceremony: '" + ceremonyId + "'");
     }

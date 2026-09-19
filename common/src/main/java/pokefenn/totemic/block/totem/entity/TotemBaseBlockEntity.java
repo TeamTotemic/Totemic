@@ -18,7 +18,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -36,7 +36,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     private boolean needPoleUpdate = true;
 
     //see also TotemPoleBlockEntity
-    private ResourceLocation woodTypeLoc = ModContent.oak.get().getRegistryName();
+    private Identifier woodTypeLoc = ModContent.oak.get().getRegistryName();
     private TotemWoodType woodType = ModContent.oak.get();
 
     private final List<TotemCarving> carvingList = new ArrayList<>(TotemEffectAPI.MAX_POLE_SIZE);
@@ -151,7 +151,7 @@ public class TotemBaseBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, Provider registries) {
         super.loadAdditional(tag, registries);
-        woodTypeLoc = Objects.requireNonNullElseGet(ResourceLocation.tryParse(tag.getString("Wood")), () -> ModContent.oak.get().getRegistryName());
+        woodTypeLoc = Objects.requireNonNullElseGet(Identifier.tryParse(tag.getString("Wood")), () -> ModContent.oak.get().getRegistryName());
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
         if(optWood.isEmpty())
             Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);

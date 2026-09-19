@@ -2,7 +2,7 @@ package pokefenn.totemic.api.neoforge;
 
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.capabilities.BlockCapability;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import pokefenn.totemic.api.TotemicAPI;
@@ -20,5 +20,5 @@ public final class TotemicCapabilities {
      * <p>
      * A reference implementation is provided by {@link DefaultMusicAcceptor}.
      */
-    public static final BlockCapability<MusicAcceptor, @Nullable Void> MUSIC_ACCEPTOR = BlockCapability.createVoid(ResourceLocation.fromNamespaceAndPath(TotemicAPI.MOD_ID, "music_acceptor"), MusicAcceptor.class);
+    public static final BlockCapability<MusicAcceptor, @Nullable Void> MUSIC_ACCEPTOR = BlockCapability.createVoid(Identifier.fromNamespaceAndPath(TotemicAPI.MOD_ID, "music_acceptor"), MusicAcceptor.class);
 }

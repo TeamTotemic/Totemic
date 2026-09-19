@@ -3,7 +3,7 @@ package pokefenn.totemic.neoforge;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.api.distmarker.Dist;
@@ -40,8 +40,8 @@ public final class TotemicClientNeoMod {
 
             //Register item properties
             //Baykok Bow
-            var pulling = ResourceLocation.withDefaultNamespace("pulling");
-            var pull = ResourceLocation.withDefaultNamespace("pull");
+            var pulling = Identifier.withDefaultNamespace("pulling");
+            var pull = Identifier.withDefaultNamespace("pull");
             var bowStack = new ItemStack(Items.BOW);
             ItemProperties.register(ModItems.baykok_bow.get(), pulling, ItemProperties.getProperty(bowStack, pulling));
             ItemProperties.register(ModItems.baykok_bow.get(), pull, ItemProperties.getProperty(bowStack, pull));

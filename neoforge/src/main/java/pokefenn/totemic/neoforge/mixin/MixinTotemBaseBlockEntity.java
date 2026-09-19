@@ -7,7 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.client.model.data.ModelData;
+import net.neoforged.neoforge.model.data.ModelData;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 import pokefenn.totemic.neoforge.client.TotemPoleModelData;

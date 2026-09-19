@@ -6,12 +6,13 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.data.tags.TagsProvider.TagLookup;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ItemTagsProvider;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicBlockTags;
 import pokefenn.totemic.api.TotemicItemTags;

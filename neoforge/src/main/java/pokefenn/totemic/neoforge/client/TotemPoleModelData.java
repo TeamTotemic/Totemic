@@ -1,6 +1,6 @@
 package pokefenn.totemic.neoforge.client;
 
-import net.neoforged.neoforge.client.model.data.ModelProperty;
+import net.neoforged.neoforge.model.data.ModelProperty;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.init.ModContent;

@@ -12,7 +12,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
@@ -140,7 +140,7 @@ public final class StateSelection extends TotemState {
         ListTag selectorsTag = tag.getList("Selectors", Tag.TAG_STRING);
         for(int i = 0; i < selectorsTag.size(); i++) {
             var name = selectorsTag.getString(i);
-            var instr = TotemicAPI.get().registry().instruments().get(ResourceLocation.tryParse(name));
+            var instr = TotemicAPI.get().registry().instruments().get(Identifier.tryParse(name));
             if(instr != null)
                 selectors.add(instr);
             else

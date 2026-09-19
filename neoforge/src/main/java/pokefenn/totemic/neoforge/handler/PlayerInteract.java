@@ -1,7 +1,6 @@
 package pokefenn.totemic.neoforge.handler;
 
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import pokefenn.totemic.init.ModBlockEntities;
 import pokefenn.totemic.init.ModItems;

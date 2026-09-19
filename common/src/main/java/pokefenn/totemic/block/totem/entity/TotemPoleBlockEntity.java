@@ -10,7 +10,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import pokefenn.totemic.Totemic;
@@ -23,8 +23,8 @@ import pokefenn.totemic.init.ModContent;
 public class TotemPoleBlockEntity extends BlockEntity {
     //Remember the values as read from NBT to avoid permanently replacing them with the defaults in case entries are removed from the registry
     //(e.g. when the config gets changed or corrupted)
-    private ResourceLocation woodTypeLoc = ModContent.oak.get().getRegistryName();
-    private ResourceLocation carvingLoc = ModContent.none.get().getRegistryName();
+    private Identifier woodTypeLoc = ModContent.oak.get().getRegistryName();
+    private Identifier carvingLoc = ModContent.none.get().getRegistryName();
 
     private TotemWoodType woodType = ModContent.oak.get();
     private TotemCarving carving = ModContent.none.get();
@@ -43,13 +43,13 @@ public class TotemPoleBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(CompoundTag tag, Provider registries) {
         super.loadAdditional(tag, registries);
-        woodTypeLoc = Objects.requireNonNullElseGet(ResourceLocation.tryParse(tag.getString("Wood")), () -> ModContent.oak.get().getRegistryName());
+        woodTypeLoc = Objects.requireNonNullElseGet(Identifier.tryParse(tag.getString("Wood")), () -> ModContent.oak.get().getRegistryName());
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
         if(optWood.isEmpty())
             Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);
         woodType = optWood.orElseGet(ModContent.oak);
 
-        carvingLoc = Objects.requireNonNullElseGet(ResourceLocation.tryParse(tag.getString("Carving")), () -> ModContent.none.get().getRegistryName());
+        carvingLoc = Objects.requireNonNullElseGet(Identifier.tryParse(tag.getString("Carving")), () -> ModContent.none.get().getRegistryName());
         var optCarving = TotemicAPI.get().registry().totemCarvings().getOptional(carvingLoc);
         if(optCarving.isEmpty())
             Totemic.logger.warn("Unknown Totem Carving: '{}'", carvingLoc);

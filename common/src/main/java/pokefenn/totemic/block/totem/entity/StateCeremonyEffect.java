@@ -9,7 +9,7 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.EndTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -137,7 +137,7 @@ public final class StateCeremonyEffect extends TotemState implements CeremonyEff
     @Override
     void load(CompoundTag tag, Provider regsitries) {
         var ceremonyName = tag.getString("Ceremony");
-        ceremony = TotemicAPI.get().registry().ceremonies().get(ResourceLocation.tryParse(ceremonyName));
+        ceremony = TotemicAPI.get().registry().ceremonies().get(Identifier.tryParse(ceremonyName));
         if(ceremony == null) {
             Totemic.logger.error("Unknown Ceremony: '{}'", ceremonyName);
             tile.setTotemState(new StateTotemEffect(tile));

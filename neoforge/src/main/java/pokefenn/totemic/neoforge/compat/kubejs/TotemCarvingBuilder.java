@@ -7,7 +7,7 @@ import dev.latvian.mods.kubejs.registry.BuilderBase;
 import dev.latvian.mods.kubejs.typings.Info;
 import dev.latvian.mods.rhino.util.ReturnsSelf;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.effect.MobEffect;
 import pokefenn.totemic.api.totem.PotionTotemEffect;
 import pokefenn.totemic.api.totem.TotemCarving;
@@ -18,7 +18,7 @@ public class TotemCarvingBuilder extends BuilderBase<TotemCarving> {
     public transient final List<TotemEffect> effects = new ArrayList<>();
     public transient int medicineBagDrain = TotemCarving.DEFAULT_MEDICINE_BAG_DRAIN;
 
-    public TotemCarvingBuilder(ResourceLocation id) {
+    public TotemCarvingBuilder(Identifier id) {
         super(id);
     }
 

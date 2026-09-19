@@ -14,7 +14,7 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.LayeredDraw;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
@@ -27,8 +27,8 @@ import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 public enum CeremonyHUD implements LayeredDraw.Layer {
     INSTANCE;
 
-    private static final ResourceLocation SELECTION_HUD_TEXTURE = Totemic.resloc("textures/gui/selection_hud.png");
-    private static final ResourceLocation CEREMONY_HUD_TEXTURE = Totemic.resloc("textures/gui/ceremony_hud.png");
+    private static final Identifier SELECTION_HUD_TEXTURE = Totemic.resloc("textures/gui/selection_hud.png");
+    private static final Identifier CEREMONY_HUD_TEXTURE = Totemic.resloc("textures/gui/ceremony_hud.png");
 
     private static final Component SELECTION_TEXT = Component.translatable("totemic.hud.selection");
 

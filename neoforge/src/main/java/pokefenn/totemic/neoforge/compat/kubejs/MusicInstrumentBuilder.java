@@ -10,7 +10,7 @@ import dev.latvian.mods.kubejs.script.KubeJSContext;
 import dev.latvian.mods.kubejs.script.SourceLine;
 import dev.latvian.mods.kubejs.typings.Info;
 import dev.latvian.mods.rhino.util.ReturnsSelf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -22,7 +22,7 @@ public class MusicInstrumentBuilder extends BuilderBase<MusicInstrument> {
     public transient ItemStack displayItem = ItemStack.EMPTY;
     public transient @Nullable Supplier<SoundEvent> sound = null;
 
-    public MusicInstrumentBuilder(ResourceLocation id) {
+    public MusicInstrumentBuilder(Identifier id) {
         super(id);
     }
 

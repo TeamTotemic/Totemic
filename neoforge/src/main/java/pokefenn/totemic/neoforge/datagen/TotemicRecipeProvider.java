@@ -3,7 +3,7 @@ package pokefenn.totemic.neoforge.datagen;
 import java.util.concurrent.CompletableFuture;
 
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;

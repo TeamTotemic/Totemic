@@ -4,15 +4,14 @@ import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.entity.InvisibleArrow;
 
 public class InvisibleArrowRenderer extends ArrowRenderer<InvisibleArrow> {
-    private static final ResourceLocation INVIS_ARROW_TEXTURE = Totemic.resloc("textures/entity/invis_arrow.png");
+    private static final Identifier INVIS_ARROW_TEXTURE = Totemic.resloc("textures/entity/invis_arrow.png");
 
     public InvisibleArrowRenderer(Context pContext) {
         super(pContext);
@@ -28,7 +27,7 @@ public class InvisibleArrowRenderer extends ArrowRenderer<InvisibleArrow> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(InvisibleArrow pEntity) {
+    public Identifier getTextureLocation(InvisibleArrow pEntity) {
         return INVIS_ARROW_TEXTURE;
     }
 }

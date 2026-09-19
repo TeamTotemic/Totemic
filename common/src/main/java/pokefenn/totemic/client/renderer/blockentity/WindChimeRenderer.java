@@ -10,16 +10,15 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.music.entity.WindChimeBlockEntity;
 import pokefenn.totemic.client.ModModelLayers;
 
 public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEntity> {
-    private static final ResourceLocation TEXTURE = Totemic.resloc("textures/entity/wind_chime.png");
+    private static final Identifier TEXTURE = Totemic.resloc("textures/entity/wind_chime.png");
 
     private final ModelPart root;
 

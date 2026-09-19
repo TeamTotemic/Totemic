@@ -1,10 +1,11 @@
 package pokefenn.totemic.neoforge.handler;
 
+import com.sun.media.sound.ModelIdentifier;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.block.BlockModelShaper;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -73,7 +74,7 @@ public class ClientInitHandlers {
         event.register(Totemic.resloc("totem_base"), NeoTotemBaseModel.Loader.INSTANCE);
     }
 
-    private static final ModelResourceLocation OPAQUE_CEDAR_LEAVES = ModelResourceLocation.standalone(Totemic.resloc("block/cedar_leaves_opaque"));
+    private static final ModelIdentifier OPAQUE_CEDAR_LEAVES = ModelIdentifier.standalone(Totemic.resloc("block/cedar_leaves_opaque"));
 
     @SubscribeEvent
     public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {

@@ -11,7 +11,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicAPI;
@@ -117,7 +117,7 @@ public class DefaultMusicAcceptor implements MusicAcceptor {
         totalMusic = 0;
         var instrRegistry = TotemicAPI.get().registry().instruments();
         for(String key: tag.getAllKeys()) {
-            var instr = instrRegistry.get(ResourceLocation.tryParse(key));
+            var instr = instrRegistry.get(Identifier.tryParse(key));
             if(instr != null) {
                 int amount = tag.getInt(key);
                 music.put(instr, amount);

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import com.electronwill.nightconfig.core.Config;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
@@ -113,7 +113,7 @@ public final class ModContent {
 
     private static Map<List<MusicInstrument>, Ceremony> selectorsToCeremonyMap;
 
-    public static void registerCustomWoodTypes(BiConsumer<ResourceLocation, TotemWoodType> registry) {
+    public static void registerCustomWoodTypes(BiConsumer<Identifier, TotemWoodType> registry) {
         // TODO: Wood types should really be made a datapack registry
         for(Config entry: TotemicConfig.STARTUP.customTotemWoodTypes.get()) {
             if(entry.isEmpty())
@@ -132,8 +132,8 @@ public final class ModContent {
                 int woodColorIndex = entry.getIntOrElse("woodColor", MapColor.WOOD.id);
                 int barkColorIndex = entry.getIntOrElse("barkColor", MapColor.PODZOL.id);
 
-                var id = ResourceLocation.parse(idStr);
-                var logTagKey = TagKey.create(Registries.BLOCK, ResourceLocation.parse(logsStr.substring(1)));
+                var id = Identifier.parse(idStr);
+                var logTagKey = TagKey.create(Registries.BLOCK, Identifier.parse(logsStr.substring(1)));
                 var woodColor = MapColor.byId(woodColorIndex);
                 var barkColor = MapColor.byId(barkColorIndex);
 

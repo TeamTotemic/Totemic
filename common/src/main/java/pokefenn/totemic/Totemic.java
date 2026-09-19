@@ -5,7 +5,7 @@ import java.util.ServiceLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import pokefenn.totemic.api.TotemicAPI;
 
 public final class Totemic {
@@ -14,8 +14,8 @@ public final class Totemic {
 
     public static final Logger logger = LogManager.getLogger(Totemic.class);
 
-    public static ResourceLocation resloc(String path) {
-        return ResourceLocation.fromNamespaceAndPath(TotemicAPI.MOD_ID, path);
+    public static Identifier resloc(String path) {
+        return Identifier.fromNamespaceAndPath(TotemicAPI.MOD_ID, path);
     }
 
     public static PlatformAbstractions platform() {

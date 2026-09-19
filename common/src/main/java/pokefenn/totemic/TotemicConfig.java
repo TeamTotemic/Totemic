@@ -9,7 +9,7 @@ import com.electronwill.nightconfig.core.Config;
 import com.electronwill.nightconfig.core.InMemoryFormat;
 
 import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import net.neoforged.neoforge.common.ModConfigSpec.DoubleValue;
@@ -130,7 +130,7 @@ public final class TotemicConfig {
     }
 
     /**
-     * Returns a Predicate that checks whether the given object is a valid String defining a valid ResourceLocation
+     * Returns a Predicate that checks whether the given object is a valid String defining a valid Identifier
      * contained in the given registry,
      */
     private static Predicate<Object> isValidRegistryKey(Registry<?> registry) {
@@ -138,7 +138,7 @@ public final class TotemicConfig {
         return obj -> {
             if(!(obj instanceof String str))
                 return false;
-            var key = ResourceLocation.tryParse(str);
+            var key = Identifier.tryParse(str);
             if(key == null)
                 return false;
             return registry.containsKey(key);

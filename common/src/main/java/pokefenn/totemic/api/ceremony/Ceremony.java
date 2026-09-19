@@ -5,11 +5,10 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Difficulty;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -72,7 +71,7 @@ public final class Ceremony {
     /**
      * Returns the ceremony's registry name.
      */
-    public final ResourceLocation getRegistryName() {
+    public final Identifier getRegistryName() {
         return TotemicAPI.get().registry().ceremonies().getKey(this);
     }
 
