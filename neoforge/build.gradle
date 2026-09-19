@@ -66,7 +66,7 @@ neoForge {
         }
 
         commonData {
-            data()
+            clientData()
             programArguments.addAll(
                 '--mod', project.mod_id,
                 '--all',
@@ -76,7 +76,7 @@ neoForge {
         }
 
         neoForgeData {
-            data()
+            clientData()
             programArguments.addAll(
                 '--mod', project.mod_id,
                 '--all',
@@ -104,8 +104,8 @@ neoForge {
 }
 
 dependencies {
-    compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}-NEOFORGE:api"
-    runtimeOnly "vazkii.patchouli:Patchouli:${patchouli_version}-NEOFORGE"
+    compileOnly "vazkii.patchouli:patchouli-neoforge:${patchouli_version}:api"
+    runtimeOnly "vazkii.patchouli:patchouli-neoforge:${patchouli_version}"
 
     api("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
     interfaceInjectionData("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
@@ -115,7 +115,6 @@ var generateModMetadata = tasks.register('generateModMetadata', ProcessResources
     var replaceProperties = [
             minecraft_version_range: minecraft_version_range,
             neo_version_range      : neo_version_range,
-            loader_version_range   : neo_loader_version_range,
             patchouli_version      : patchouli_version,
             mod_id                 : mod_id,
             mod_name               : mod_name,

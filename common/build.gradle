@@ -43,6 +43,6 @@ dependencies {
     compileOnly "io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"
     annotationProcessor "io.github.llamalad7:mixinextras-common:${project.mixinextras_version}"
 
-    compileOnly "vazkii.patchouli:Patchouli-xplat:${project.patchouli_version}"
+    compileOnly "vazkii.patchouli:patchouli-xplat:${project.patchouli_version}"
     compileOnly "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi:${project.forgeconfigapiport_version}"
 }
