@@ -5,16 +5,12 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.StringTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
@@ -127,28 +123,20 @@ public final class StateSelection extends TotemState {
     }
 
     @Override
-    void save(CompoundTag tag, Provider regsitries) {
-        ListTag selectorsTag = new ListTag();
-        for(MusicInstrument instr: selectors)
-            selectorsTag.add(StringTag.valueOf(instr.getRegistryName().toString()));
-        tag.put("Selectors", selectorsTag);
-        tag.putInt("Time", time);
-        previousState.save(tag, regsitries); //Safe since StateTotemEffect only saves the key TotemMusic
+    void save(ValueOutput out) {
+        var list = out.list("Selectors", TotemicAPI.get().registry().instruments().byNameCodec());
+        for(var instr: selectors)
+            list.add(instr);
+        out.putInt("Time", time);
+        previousState.save(out); //Safe since StateTotemEffect only saves the key TotemMusic
     }
 
     @Override
-    void load(CompoundTag tag, Provider regsitries) {
+    void load(ValueInput in) {
         selectors.clear();
-        ListTag selectorsTag = tag.getList("Selectors", Tag.TAG_STRING);
-        for(int i = 0; i < selectorsTag.size(); i++) {
-            var name = selectorsTag.getString(i);
-            var instr = TotemicAPI.get().registry().instruments().get(Identifier.tryParse(name));
-            if(instr != null)
-                selectors.add(instr);
-            else
-                Totemic.logger.error("Unknown music instrument: '{}'", name);
-        }
-        time = tag.getInt("Time");
-        previousState.load(tag, regsitries); //Safe since StateTotemEffect only saves the key TotemMusic
+        for(var instr: in.listOrEmpty("Selectors", TotemicAPI.get().registry().instruments().byNameCodec()))
+            selectors.add(instr);
+        time = in.getIntOr("Time", 0);
+        previousState.load(in); //Safe since StateTotemEffect only saves the key TotemMusic
     }
 }

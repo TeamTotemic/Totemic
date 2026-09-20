@@ -5,13 +5,13 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.redstone.Redstone;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -130,12 +130,12 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
     }
 
     @Override
-    void save(CompoundTag tag, Provider regsitries) {
-        tag.putInt("TotemMusic", musicAmount);
+    void save(ValueOutput out) {
+        out.putInt("TotemMusic", musicAmount);
     }
 
     @Override
-    void load(CompoundTag tag, Provider regsitries) {
-        musicAmount = tag.getInt("TotemMusic");
+    void load(ValueInput in) {
+        musicAmount = in.getIntOr("TotemMusic", 0);
     }
 }

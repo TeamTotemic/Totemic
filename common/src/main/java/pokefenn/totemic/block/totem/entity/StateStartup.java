@@ -5,18 +5,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.EndTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.redstone.Redstone;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.advancements.ModCriteriaTriggers;
@@ -180,29 +177,25 @@ public final class StateStartup extends TotemState implements StartupContext {
     }
 
     @Override
-    void save(CompoundTag tag, Provider regsitries) {
-        tag.putString("Ceremony", ceremony.getRegistryName().toString());
-        Tag instanceData = instance.serializeNBT(regsitries);
-        if(instanceData != EndTag.INSTANCE)
-            tag.put("InstanceData", instanceData);
-        tag.put("Music", musicHandler.serializeNBT(regsitries));
-        tag.putInt("Time", time);
+    void save(ValueOutput out) {
+        out.store("Ceremony", TotemicAPI.get().registry().ceremonies().byNameCodec(), ceremony);
+        musicHandler.save(out.childrenList("Music"));
+        out.putInt("Time", time);
         //For simplicity, we won't save the initiator, since on loading, the block entity's level will be null.
     }
 
     @Override
-    void load(CompoundTag tag, Provider regsitries) {
-        var ceremonyName = tag.getString("Ceremony");
-        ceremony = TotemicAPI.get().registry().ceremonies().get(Identifier.tryParse(ceremonyName));
-        if(ceremony == null) {
-            Totemic.logger.error("Unknown Ceremony: '{}'", ceremonyName);
+    void load(ValueInput in) {
+        var optCer = in.read("Ceremony", TotemicAPI.get().registry().ceremonies().byNameCodec());
+        if(optCer.isPresent())
+            ceremony = optCer.get();
+        else {
+            Totemic.logger.error("Unknown Ceremony: '{}'", in.getStringOr("Ceremony", "<missing>"));
             tile.setTotemState(new StateTotemEffect(tile));
             return;
         }
         instance = ceremony.createInstance();
-        if(tag.contains("InstanceData"))
-            instance.deserializeNBT(regsitries, tag.get("InstanceData"));
-        musicHandler.deserializeNBT(regsitries, tag.getCompound("Music"));
-        time = tag.getInt("Time");
+        musicHandler.load(in.childrenListOrEmpty("Music")); // TODO: since the new serialization format for is incompatible with the one from 1.21.1, test what happens when attempting to deserialize the old format
+        time = in.getIntOr("Time", 0);
     }
 }

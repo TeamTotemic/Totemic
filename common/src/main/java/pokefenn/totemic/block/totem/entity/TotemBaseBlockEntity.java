@@ -14,7 +14,6 @@ import com.google.common.math.IntMath;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -23,6 +22,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
@@ -141,31 +142,27 @@ public class TotemBaseBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, Provider registries) {
-        super.saveAdditional(tag, registries);
-        tag.putString("Wood", woodTypeLoc.toString());
-        tag.putByte("State", state.getID());
-        state.save(tag, registries);
+    protected void saveAdditional(ValueOutput out) {
+        super.saveAdditional(out);
+        out.store("Wood", Identifier.CODEC, woodTypeLoc);
+        out.putByte("State", state.getID());
+        state.save(out);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, Provider registries) {
-        super.loadAdditional(tag, registries);
-        woodTypeLoc = Objects.requireNonNullElseGet(Identifier.tryParse(tag.getString("Wood")), () -> ModContent.oak.get().getRegistryName());
+    protected void loadAdditional(ValueInput in) {
+        super.loadAdditional(in);
+        woodTypeLoc = in.read("Wood", Identifier.CODEC).orElseGet(ModContent.oak.get()::getRegistryName);
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
         if(optWood.isEmpty())
-            Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);
+            Totemic.logger.warn("Totem Base at {} has an unknown Wood Type saved: '{}'", worldPosition, woodTypeLoc);
         woodType = optWood.orElseGet(ModContent.oak);
         Totemic.platform().requestModelDataUpdate(this);
 
-        if(tag.contains("State", Tag.TAG_BYTE)) {
-            byte id = tag.getByte("State");
-            if(id != state.getID())
-                state = TotemState.fromID(id, this);
-            state.load(tag, registries);
-        }
-        else
-            state = new StateTotemEffect(this);
+        byte id = in.getByteOr("State", StateTotemEffect.ID);
+        if(id != state.getID())
+            state = TotemState.fromID(id, this);
+        state.load(in);
     }
 
     @Override

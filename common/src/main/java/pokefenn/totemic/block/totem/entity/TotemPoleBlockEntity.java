@@ -13,6 +13,8 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.totem.TotemCarving;
@@ -34,25 +36,26 @@ public class TotemPoleBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, Provider registries) {
-        super.saveAdditional(tag, registries);
-        tag.putString("Wood", woodTypeLoc.toString());
-        tag.putString("Carving", carvingLoc.toString());
+    protected void saveAdditional(ValueOutput out) {
+        super.saveAdditional(out);
+        out.store("Wood", Identifier.CODEC, woodTypeLoc);
+        out.store("Carving", Identifier.CODEC, carvingLoc);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, Provider registries) {
-        super.loadAdditional(tag, registries);
-        woodTypeLoc = Objects.requireNonNullElseGet(Identifier.tryParse(tag.getString("Wood")), () -> ModContent.oak.get().getRegistryName());
+    protected void loadAdditional(ValueInput in) {
+        super.loadAdditional(in);
+        // TODO: Might want to do the reading with a Codec instead, so that we can report unknown keys to the ProblemReporter rather than logging a warning
+        woodTypeLoc = in.read("Wood", Identifier.CODEC).orElseGet(ModContent.oak.get()::getRegistryName);
         var optWood = TotemicAPI.get().registry().woodTypes().getOptional(woodTypeLoc);
         if(optWood.isEmpty())
-            Totemic.logger.warn("Unknown Totem Wood Type: '{}'", woodTypeLoc);
+            Totemic.logger.warn("Totem Pole at {} has an unknown Wood Type saved: '{}'", worldPosition, woodTypeLoc);
         woodType = optWood.orElseGet(ModContent.oak);
 
-        carvingLoc = Objects.requireNonNullElseGet(Identifier.tryParse(tag.getString("Carving")), () -> ModContent.none.get().getRegistryName());
+        carvingLoc = in.read("Carving", Identifier.CODEC).orElseGet(ModContent.none.get()::getRegistryName);
         var optCarving = TotemicAPI.get().registry().totemCarvings().getOptional(carvingLoc);
         if(optCarving.isEmpty())
-            Totemic.logger.warn("Unknown Totem Carving: '{}'", carvingLoc);
+            Totemic.logger.warn("Totem Pole at {} has an unknown Carving saved: '{}'", worldPosition, carvingLoc);
         carving = optCarving.orElseGet(ModContent.none);
         Totemic.platform().requestModelDataUpdate(this);
     }

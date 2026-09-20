@@ -4,15 +4,11 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
-import org.apache.logging.log4j.LogManager;
-
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicAPI;
 
@@ -99,32 +95,37 @@ public class DefaultMusicAcceptor implements MusicAcceptor {
     }
 
     /**
-     * Serializes the stored music values into an NBT tag.
+     * Serializes the stored music values into a ValueOutputList (as you can get from {@link ValueOutput#childrenList(String)}).
+     * <p>
+     * Note that the serialization format is different from 1.21.1 and before (a list of compounds with "id" and "amount" keys,
+     * rather than a single compound where the keys are the instrument IDs).
      */
-    public CompoundTag serializeNBT(HolderLookup.Provider provider) {
-        CompoundTag nbt = new CompoundTag();
-
-        for(Entry<MusicInstrument> entry: music.object2IntEntrySet())
-            nbt.putInt(entry.getKey().toString(), entry.getIntValue());
-        return nbt;
+    public void save(ValueOutput.ValueOutputList outList) {
+        // this storage format is somewhat inefficient, as each entry is saved as a separate compound tag with "id" and "amount" keys,
+        // but more idiomatic I guess, since ValueInput does not provide access to the stored keys.
+        music.forEach((instr, amount) -> {
+            var child = outList.addChild();
+            child.store("id", TotemicAPI.get().registry().instruments().byNameCodec(), instr);
+            child.putInt("amount", amount);
+        });
     }
 
     /**
-     * Deserializes the music values from the given NBT tag.
+     * Deserializes the music values from the given ValueInputList (as you can get from {@link ValueInput#childrenListOrEmpty(String)}).
+     * <p>
+     * Note that the serialization format is different from 1.21.1 and before (a list of compounds with "id" and "amount" keys,
+     * rather than a single compound where the keys are the instrument IDs).
      */
-    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag tag) {
+    public void load(ValueInput.ValueInputList inList) {
         music.clear();
         totalMusic = 0;
-        var instrRegistry = TotemicAPI.get().registry().instruments();
-        for(var entry: tag.entrySet()) {
-            var instr = instrRegistry.getValue(Identifier.tryParse(entry.getKey()));
-            if(instr != null) {
-                int amount = entry.getValue().asInt().orElse(0);
-                music.put(instr, amount);
+        for(var child: inList) {
+            var optInstr = child.read("id", TotemicAPI.get().registry().instruments().byNameCodec());
+            int amount = child.getIntOr("amount", 0);
+            if(optInstr.isPresent()) {
+                music.put(optInstr.get(), amount);
                 totalMusic += amount;
             }
-            else
-                LogManager.getLogger().warn("Unknown music instrument: '{}'", entry.getKey());
         }
     }
 }

@@ -1,22 +1,18 @@
 package pokefenn.totemic.api.ceremony;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.EndTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 
 /**
  * Interface for implementing the effects of a ceremony.
  * <p>
- * An instance of this interface is requested from the Supplier passed to the {@link Ceremony} constructor when the ceremony has been selected,
- * or when the CeremonyInstance is to be deserialized from NBT.
- * <p>
- * The CeremonyInstance object may be used to keep track of internal state for the duration of the ceremony. If, however, your ceremony is
- * stateless, it is encouraged to reuse one object for all performances of the ceremony.
- * <em>The way the state tracking for ceremonies works will likely change in future versions.</em>
+ * Currently, only stateless ceremonies are supported (more precisely, there is no support for loading and saving the
+ * state to NBT or ValueInput/Output).
+ * State tracking is currently not needed for Totemic's ceremonies, but feel free to report an issue if you need this
+ * for a custom ceremony.
  */
+@FunctionalInterface
 public interface CeremonyInstance { //TODO: Consider renaming this class, e.g. to "CeremonyEffect"
     /**
      * Peforms the ceremony's effect at the given Totem Base position.
@@ -72,22 +68,4 @@ public interface CeremonyInstance { //TODO: Consider renaming this class, e.g. t
     default boolean canStartEffect(Level level, BlockPos pos, StartupContext context) {
         return true;
     }
-
-    /**
-     * Serializes the state of the current ceremony to an NBT tag.
-     * <p>
-     * <em>Note: The way state tracking for ceremonies works will likely change in a future version.</em>
-     */
-    default Tag serializeNBT(HolderLookup.Provider provider) {
-        return EndTag.INSTANCE;
-    }
-
-    /**
-     * Reads the state of the current ceremony from the given NBT tag.
-     * <p>
-     * This method is only called if {@link #serializeNBT} did not return an {@link EndTag}.
-     * <p>
-     * <em>Note: The way state tracking for ceremonies works will likely change in a future version.</em>
-     */
-    default void deserializeNBT(HolderLookup.Provider provider, Tag nbt) { }
 }
