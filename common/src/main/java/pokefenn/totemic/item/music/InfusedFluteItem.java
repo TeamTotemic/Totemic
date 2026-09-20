@@ -35,7 +35,7 @@ public class InfusedFluteItem extends FluteItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
-        if(!world.isClientSide && !player.isShiftKeyDown())
+        if(!world.isClientSide() && !player.isShiftKeyDown())
             temptEntities(world, player.position());
 
         return super.use(world, player, hand);

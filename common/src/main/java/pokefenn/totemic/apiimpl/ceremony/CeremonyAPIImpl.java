@@ -4,6 +4,7 @@ import java.util.function.BiConsumer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
+import net.minecraft.util.profiling.Profiler;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,7 +18,7 @@ public enum CeremonyAPIImpl implements CeremonyAPI {
 
     @Override
     public void forEachBlockIn(Level level, BoundingBox box, BiConsumer<BlockPos, BlockState> action) {
-        level.getProfiler().incrementCounter("totemic.forEachBlockIn");
+        Profiler.get().incrementCounter("totemic.forEachBlockIn");
         var startSec = SectionPos.of(BlockUtil.lowerCorner(box));
         var endSec = SectionPos.of(BlockUtil.upperCorner(box));
         //iterate over the chunks
@@ -28,7 +29,7 @@ public enum CeremonyAPIImpl implements CeremonyAPI {
                 var chunk = level.getChunk(chunkX, chunkZ);
                 //iterate over the sections inside the chunk
                 for(int secY = startSec.getY(); secY <= endSec.getY(); secY++) {
-                    if(secY < chunk.getMinSection() || secY >= chunk.getMaxSection())
+                    if(secY < chunk.getMinSectionY() || secY >= chunk.getMaxSectionY())
                         continue;
                     var section = chunk.getSection(chunk.getSectionIndexFromSectionY(secY));
                     if(section.hasOnlyAir())

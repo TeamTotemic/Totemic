@@ -6,6 +6,8 @@ import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -41,7 +43,7 @@ public class DummyTipiBlock extends Block {
     }
 
     @Override
-    public void wasExploded(Level level, BlockPos pos, Explosion explosion) {
+    public void wasExploded(ServerLevel level, BlockPos pos, Explosion explosion) {
         findMainTipiBlock(level, pos).ifPresent(pair -> {
             var tipiPos = pair.getFirst();
             var tipiState = pair.getSecond();
@@ -73,12 +75,12 @@ public class DummyTipiBlock extends Block {
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader pLevel, BlockPos pPos, BlockState pState) {
+    public ItemStack getCloneItemStack(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean includeData) {
         return new ItemStack(ModBlocks.tipi.get());
     }
 
     @Override
-    protected boolean propagatesSkylightDown(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+    protected boolean propagatesSkylightDown(BlockState pState) {
         return true;
     }
 
@@ -88,7 +90,7 @@ public class DummyTipiBlock extends Block {
     }
 
     @Override
-    protected VoxelShape getOcclusionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+    protected VoxelShape getOcclusionShape(BlockState pState) {
         return Shapes.empty();
     }
 
@@ -103,7 +105,7 @@ public class DummyTipiBlock extends Block {
     }
 
     @Override
-    public String getDescriptionId() {
-        return ModBlocks.tipi.get().getDescriptionId();
+    public MutableComponent getName() {
+        return ModBlocks.tipi.get().getName();
     }
 }

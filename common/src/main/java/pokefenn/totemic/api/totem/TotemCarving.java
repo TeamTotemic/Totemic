@@ -12,6 +12,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.Util;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.registry.RegistryAPI;
 

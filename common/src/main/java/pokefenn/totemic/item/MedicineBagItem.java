@@ -1,21 +1,26 @@
 package pokefenn.totemic.item;
 
-import java.util.List;
+import java.util.function.Consumer;
+
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.profiling.Profiler;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.TotemicConfig;
@@ -48,8 +53,8 @@ public class MedicineBagItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        level.getProfiler().push("totemic.medicineBag");
+    public void inventoryTick(ItemStack stack, ServerLevel level, Entity entity, @Nullable EquipmentSlot slot) {
+        Profiler.get().push("totemic.medicineBag");
 
         var carving = getCarving(stack);
         if(carving != ModContent.none.get()) {
@@ -60,11 +65,11 @@ public class MedicineBagItem extends Item {
                 applyEffects(stack, level, gameTime, entity, carving);
         }
 
-        level.getProfiler().pop();
+        Profiler.get().pop();
     }
 
     protected void tryCharge(ItemStack stack, Level level, long gameTime, BlockPos pos) {
-        if(!level.isClientSide && gameTime % 20 == 0) {
+        if(!level.isClientSide() && gameTime % 20 == 0) {
             int charge = getCharge(stack);
             if(charge < MAX_CHARGE) {
                 var carving = getCarving(stack);
@@ -85,13 +90,13 @@ public class MedicineBagItem extends Item {
                     effect.medicineBagEffect((Player) entity, stack, charge);
             }
             // Drain the charge independently of the effects' intervals
-            if(!level.isClientSide && gameTime % TotemCarving.MEDICINE_BAG_DRAIN_INTERVAL == 0)
+            if(!level.isClientSide() && gameTime % TotemCarving.MEDICINE_BAG_DRAIN_INTERVAL == 0)
                 stack.set(ModDataComponents.MEDICINE_BAG_CHARGE.get(), Math.max(charge - carving.getMedicineBagDrain(), 0));
         }
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+    public InteractionResult use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         return toggleOpen(pPlayer.getItemInHand(pUsedHand), pLevel, pPlayer);
     }
 
@@ -99,31 +104,31 @@ public class MedicineBagItem extends Item {
     public InteractionResult useOn(UseOnContext ctx) {
         var stack = ctx.getItemInHand();
         if(!ctx.isSecondaryUseActive())
-            return toggleOpen(stack, ctx.getLevel(), ctx.getPlayer()).getResult();
+            return toggleOpen(stack, ctx.getLevel(), ctx.getPlayer());
         else
             return trySetCarving(stack, ctx.getPlayer(), ctx.getLevel(), ctx.getClickedPos(), ctx.getHand());
     }
 
-    private InteractionResultHolder<ItemStack> toggleOpen(ItemStack stack, Level level, Player player) {
+    private InteractionResult toggleOpen(ItemStack stack, Level level, Player player) {
         if(getCarving(stack) != ModContent.none.get()) {
             stack.update(ModDataComponents.OPEN.get(), false, open -> !open);
             level.playLocalSound(player, SoundEvents.ARMOR_EQUIP_LEATHER.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
-            return InteractionResultHolder.success(stack);
+            return InteractionResult.SUCCESS.heldItemTransformedTo(stack);
         }
         else
-            return InteractionResultHolder.fail(stack);
+            return InteractionResult.FAIL;
     }
 
     private InteractionResult trySetCarving(ItemStack stack, Player player, Level level, BlockPos pos, InteractionHand hand) {
         if(level.getBlockEntity(pos) instanceof TotemPoleBlockEntity pole) {
             var carving = pole.getCarving();
             if(TotemicConfig.SERVER.medicineBagBlacklist.get().contains(carving.getRegistryName().toString())) {
-                player.displayClientMessage(Component.translatable("totemic.medicineBag.blacklisted", carving.getDisplayName()), true);
+                player.sendOverlayMessage(Component.translatable("totemic.medicineBag.blacklisted", carving.getDisplayName()));
                 return InteractionResult.FAIL;
             }
             if(!carving.supportsMedicineBag()) {
-                if(level.isClientSide)
-                    player.displayClientMessage(Component.translatable("totemic.medicineBag.notPortable", carving.getDisplayName()), true);
+                if(level.isClientSide())
+                    player.sendOverlayMessage(Component.translatable("totemic.medicineBag.notPortable", carving.getDisplayName()));
                 return InteractionResult.FAIL;
             }
 
@@ -146,7 +151,7 @@ public class MedicineBagItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag flag) {
         String key;
         if(getCarving(stack) != ModContent.none.get()) {
             if(getCharge(stack) > 0)
@@ -156,10 +161,10 @@ public class MedicineBagItem extends Item {
         }
         else
             key = "tooltip";
-        tooltip.add(Component.translatable("totemic.medicineBag." + key));
+        builder.accept(Component.translatable("totemic.medicineBag." + key));
 
         if(flag.isAdvanced())
-            tooltip.add(Component.translatable("totemic.medicineBag.charge", getCharge(stack), MAX_CHARGE).withStyle(ChatFormatting.GRAY));
+            builder.accept(Component.translatable("totemic.medicineBag.charge", getCharge(stack), MAX_CHARGE).withStyle(ChatFormatting.GRAY));
     }
 
     @Override

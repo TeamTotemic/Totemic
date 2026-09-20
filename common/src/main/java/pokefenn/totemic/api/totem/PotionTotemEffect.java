@@ -3,7 +3,6 @@ package pokefenn.totemic.api.totem;
 import java.util.Objects;
 
 import net.minecraft.core.Holder;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -57,7 +56,7 @@ public class PotionTotemEffect extends PlayerTotemEffect {
      */
     public PotionTotemEffect(Holder<MobEffect> mobEffect, boolean scaleAmplifier, int interval) {
         if(!mobEffect.isBound()) //Prevent crash when trying to apply a non-existant mob effect
-            throw new IllegalArgumentException("Invalid mob effect: " + mobEffect.unwrapKey().map(ResourceKey::location).orElse(null));
+            throw new IllegalArgumentException("Mob effect holder is not bound: " + mobEffect);
         this.mobEffect = Objects.requireNonNull(mobEffect);
         this.scaleAmplifier = scaleAmplifier;
         this.interval = interval;
@@ -114,7 +113,7 @@ public class PotionTotemEffect extends PlayerTotemEffect {
 
     @Override
     public void medicineBagEffect(Player player, ItemStack medicineBag, int charge) {
-        if(!player.level().isClientSide)
+        if(!player.level().isClientSide())
             player.addEffect(getEffectInstanceForMedicineBag(player, medicineBag, charge));
     }
 

@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.profiling.Profiler;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.EntityGetter;
@@ -65,7 +66,7 @@ public final class TotemicEntityUtil {
      * @param filter the filter predicate. Must not be {@code null}. Note that spectating players are not filtered out by default.
      */
     public static Stream<? extends Player> getPlayersIn(Level level, AABB aabb, Predicate<? super Player> filter) {
-        level.getProfiler().incrementCounter("totemic.getPlayersIn");
+        Profiler.get().incrementCounter("totemic.getPlayersIn");
         return level.players().stream().filter(player -> player.getBoundingBox().intersects(aabb) && filter.test(player));
     }
 }

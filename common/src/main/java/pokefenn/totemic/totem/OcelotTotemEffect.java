@@ -16,7 +16,7 @@ import pokefenn.totemic.util.MiscUtil;
 public class OcelotTotemEffect implements TotemEffect {
     @Override
     public void effect(Level level, BlockPos pos, int repetition, TotemEffectContext context) {
-        if(level.isClientSide)
+        if(level.isClientSide())
             return;
         int range = TotemicAPI.get().totemEffect().getDefaultRange(repetition, context);
         for(Creeper creeper: level.getEntitiesOfClass(Creeper.class, TotemicEntityUtil.getAABBAround(pos, range))) {

@@ -8,9 +8,11 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biomes;
@@ -27,10 +29,10 @@ public enum DanseMacabreCeremony implements CeremonyInstance {
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
-        if(!level.isClientSide && context.getTime() % 20 == 0) {
+        if(!level.isClientSide() && context.getTime() % 20 == 0) {
             level.getEntities(EntityType.ITEM, TotemicEntityUtil.getAABBAround(pos, RANGE), e -> e.getItem().is(Items.ROTTEN_FLESH))
             .forEach(item -> {
-                if(level.random.nextInt(4) == 0)
+                if(level.getRandom().nextInt(4) == 0)
                     summonZombie(level, item);
             });
         }
@@ -43,26 +45,26 @@ public enum DanseMacabreCeremony implements CeremonyInstance {
 
         LivingEntity zombie;
         if(level.dimension() == Level.NETHER)
-            zombie = EntityType.ZOMBIFIED_PIGLIN.create(level);
-        else if(level.random.nextInt(10) == 0)
-            zombie = EntityType.ZOMBIE_VILLAGER.create(level);
+            zombie = EntityType.ZOMBIFIED_PIGLIN.create(level, EntitySpawnReason.MOB_SUMMONED);
+        else if(level.getRandom().nextInt(10) == 0)
+            zombie = EntityType.ZOMBIE_VILLAGER.create(level, EntitySpawnReason.MOB_SUMMONED);
         else if(level.getFluidState(pos).is(FluidTags.WATER))
-            zombie = EntityType.DROWNED.create(level);
+            zombie = EntityType.DROWNED.create(level, EntitySpawnReason.MOB_SUMMONED);
         else if(level.getBiome(pos).is(Biomes.DESERT))
-            zombie = EntityType.HUSK.create(level);
+            zombie = EntityType.HUSK.create(level, EntitySpawnReason.MOB_SUMMONED);
         else
-            zombie = EntityType.ZOMBIE.create(level);
+            zombie = EntityType.ZOMBIE.create(level, EntitySpawnReason.MOB_SUMMONED);
 
         if(zombie == null)
             return;
 
-        var dx = 0.25 * level.random.nextGaussian();
-        var dz = 0.25 * level.random.nextGaussian();
-        var yRot = 360.0F * level.random.nextFloat();
-        zombie.moveTo(item.getX() + dx, item.getY(), item.getZ() + dz, yRot, item.getXRot());
+        var dx = 0.25 * level.getRandom().nextGaussian();
+        var dz = 0.25 * level.getRandom().nextGaussian();
+        var yRot = 360.0F * level.getRandom().nextFloat();
+        zombie.snapTo(item.getX() + dx, item.getY(), item.getZ() + dz, yRot, item.getXRot());
 
-        zombie.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 60 * 20, 2));
-        zombie.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60 * 20, 2));
+        zombie.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 60 * 20, 2));
+        zombie.addEffect(new MobEffectInstance(MobEffects.SPEED, 60 * 20, 2));
 
         MiscUtil.shrinkItemEntity(item);
         level.addFreshEntity(zombie);
@@ -77,7 +79,8 @@ public enum DanseMacabreCeremony implements CeremonyInstance {
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
         if(level.getDifficulty() == Difficulty.PEACEFUL) {
-            initiator.sendSystemMessage(Component.translatable("totemic.cantUseDanseMacabreOnPeaceful"));
+            if(initiator instanceof Player player)
+                player.sendOverlayMessage(Component.translatable("totemic.cantUseDanseMacabreOnPeaceful"));
             return false;
         }
         else

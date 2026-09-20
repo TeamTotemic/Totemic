@@ -98,6 +98,6 @@ public class ClientInitHandlers {
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
-        event.registerAbove(VanillaGuiLayers.HOTBAR, Totemic.resloc("ceremony_hud"), CeremonyHUD.INSTANCE);
+        event.registerAbove(VanillaGuiLayers.HOTBAR, Totemic.resloc("ceremony_hud"), CeremonyHUD.INSTANCE::render);
     }
 }

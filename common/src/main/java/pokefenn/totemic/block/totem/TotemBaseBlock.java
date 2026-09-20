@@ -11,16 +11,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -67,40 +68,40 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if(stack.is(ModItems.totemic_staff.get()))
             return onTotemicStaffRightClick(level, pos, player);
         else
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.TRY_WITH_EMPTY_HAND; // FIXME: Not sure if this is the correct replacement for PASS_TO_DEFAULT_BLOCK_INTERACTION
     }
 
-    private ItemInteractionResult onTotemicStaffRightClick(Level level, BlockPos pos, Player player) {
-        if(!level.isClientSide)
-            return ItemInteractionResult.CONSUME;
+    private InteractionResult onTotemicStaffRightClick(Level level, BlockPos pos, Player player) {
+        if(!level.isClientSide())
+            return InteractionResult.SUCCESS;
 
         level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
         .ifPresent(tile -> {
             switch(tile.getTotemState()) {
             case StateTotemEffect state -> {
-                player.displayClientMessage(Component.translatable("totemic.isDoingNoCeremony"), false);
+                player.sendOverlayMessage(Component.translatable("totemic.isDoingNoCeremony"));
                 if(Minecraft.getInstance().options.advancedItemTooltips)
-                    player.displayClientMessage(Component.translatable("totemic.totemEffectMusic", state.getTotemEffectMusic(), TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC).withStyle(ChatFormatting.GRAY), false);
+                    player.sendOverlayMessage(Component.translatable("totemic.totemEffectMusic", state.getTotemEffectMusic(), TotemEffectAPI.MAX_TOTEM_EFFECT_MUSIC).withStyle(ChatFormatting.GRAY));
             }
             case StateSelection state -> {
                 String selectors = state.getSelectors().stream()
                         .map(instr -> instr.getDisplayName().getString())
                         .collect(Collectors.joining(", "));
-                player.displayClientMessage(Component.translatable("totemic.isDoingSelection", selectors), false);
+                player.sendOverlayMessage(Component.translatable("totemic.isDoingSelection", selectors));
             }
             case StateStartup state -> {
-                player.displayClientMessage(Component.translatable("totemic.isDoingStartup", state.getCeremony().getDisplayName()), false);
+                player.sendOverlayMessage(Component.translatable("totemic.isDoingStartup", state.getCeremony().getDisplayName()));
             }
             case StateCeremonyEffect state -> {
-                player.displayClientMessage(Component.translatable("totemic.isDoingCeremony", state.getCeremony().getDisplayName()), false);
+                player.sendOverlayMessage(Component.translatable("totemic.isDoingCeremony", state.getCeremony().getDisplayName()));
             }
             }
         });
-        return ItemInteractionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
@@ -117,13 +118,14 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
-        if(facing == Direction.UP) {
-            level.getBlockEntity(currentPos, ModBlockEntities.totem_base.get())
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour,
+            BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
+        if(directionToNeighbour == Direction.UP) {
+            level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
                     .ifPresent(TotemBaseBlockEntity::onPoleChange);
         }
-        BlockUtil.scheduleWaterloggedTick(state, currentPos, level);
-        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+        BlockUtil.scheduleWaterloggedTick(state, pos, level, ticks);
+        return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
     }
 
     @Override
@@ -145,7 +147,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos, Direction direction) {
         return level.getBlockEntity(pos, ModBlockEntities.totem_base.get())
                 .map(base -> base.getTotemState().getAnalogOutputSignal())
                 .orElse(Redstone.SIGNAL_NONE);
@@ -169,12 +171,12 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
+    protected VoxelShape getOcclusionShape(BlockState state) {
         return Shapes.empty();
     }
 
     @Override
-    protected boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state) {
         return false;
     }
 
@@ -191,7 +193,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader pLevel, BlockPos pPos, BlockState pState) {
+    public ItemStack getCloneItemStack(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean includeData) {
         var tile = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_base.get());
         var woodType = tile.map(TotemBaseBlockEntity::getWoodType).orElseGet(ModContent.oak);
         var stack = new ItemStack(this);

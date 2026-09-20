@@ -6,7 +6,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -19,11 +20,11 @@ public enum BaykokSummonCeremony implements CeremonyInstance {
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
-        if(!level.isClientSide && context.getTime() == getEffectTime() - 1) {
+        if(!level.isClientSide() && context.getTime() == getEffectTime() - 1) {
             level.globalLevelEvent(LevelEvent.SOUND_WITHER_BOSS_SPAWN, pos, 0);
-            var spawnPos = pos.relative(Direction.Plane.HORIZONTAL.getRandomDirection(level.random));
+            var spawnPos = pos.relative(Direction.Plane.HORIZONTAL.getRandomDirection(level.getRandom()));
             spawnPos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, spawnPos);
-            ModEntityTypes.baykok.get().spawn((ServerLevel) level, spawnPos, MobSpawnType.MOB_SUMMONED);
+            ModEntityTypes.baykok.get().spawn((ServerLevel) level, spawnPos, EntitySpawnReason.MOB_SUMMONED);
         }
     }
 
@@ -35,7 +36,8 @@ public enum BaykokSummonCeremony implements CeremonyInstance {
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
         if(level.getDifficulty() == Difficulty.PEACEFUL) {
-            initiator.sendSystemMessage(Component.translatable("totemic.cantSpawnBaykokOnPeaceful"));
+            if(initiator instanceof Player player)
+                player.sendOverlayMessage(Component.translatable("totemic.cantSpawnBaykokOnPeaceful"));
             return false;
         }
         else

@@ -87,7 +87,7 @@ public class WindChimeBlockEntity extends BlockEntity {
 
     @Override
     public void setRemoved() {
-        if(!level.isClientSide) {
+        if(!level.isClientSide()) {
             BlockUtil.getBlockEntitiesInRange(ModBlockEntities.wind_chime.get(), level, worldPosition, CONGESTION_RANGE)
                     .forEach(WindChimeBlockEntity::updateCongestionStatus);
         }

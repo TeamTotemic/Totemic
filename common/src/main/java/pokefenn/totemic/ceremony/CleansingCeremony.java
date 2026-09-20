@@ -7,6 +7,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.ConversionParams;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -28,7 +29,7 @@ public enum CleansingCeremony implements CeremonyInstance {
     @SuppressWarnings("deprecation")
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
-        if(level.isClientSide)
+        if(level.isClientSide())
             return;
         var aabb = TotemicEntityUtil.getAABBAround(pos, RANGE);
         for(var mob: level.getEntitiesOfClass(Mob.class, aabb, mob -> getConversionTarget(mob).isPresent() && mob.hasEffect(MobEffects.WEAKNESS))) {
@@ -40,11 +41,10 @@ public enum CleansingCeremony implements CeremonyInstance {
             }
             else {
                 try {
-                    var converted = mob.convertTo(targetType, true);
-                    if(converted != null) {
-                        converted.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 200, 0));
+                    mob.convertTo(targetType, ConversionParams.single(mob, true, true), converted -> {
+                        converted.addEffect(new MobEffectInstance(MobEffects.NAUSEA, 200, 0));
                         MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, converted.getBoundingBox().getCenter(), 10, new Vec3(0.6, 0.5, 0.6), 1.0);
-                    }
+                    });
                 }
                 catch(ClassCastException e) {
                     throw new IllegalStateException("Invalid conversion target '" + targetType.builtInRegistryHolder().getRegisteredName() + "' for the cleasing ceremony, must be a Mob entity type", e);
@@ -57,7 +57,8 @@ public enum CleansingCeremony implements CeremonyInstance {
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
         if(level.getEntitiesOfClass(Mob.class, TotemicEntityUtil.getAABBAround(pos, RANGE),
                 mob -> getConversionTarget(mob).isPresent() && mob.hasEffect(MobEffects.WEAKNESS)).isEmpty()) {
-            initiator.sendSystemMessage(Component.translatable("totemic.noZombifiedMonstersNearby"));
+            if(initiator instanceof Player player)
+                player.sendOverlayMessage(Component.translatable("totemic.noZombifiedMonstersNearby"));
             return false;
         }
         else

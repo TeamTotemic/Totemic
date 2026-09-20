@@ -27,7 +27,7 @@ public enum FertilityCeremony implements CeremonyInstance {
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
-        if(level.isClientSide)
+        if(level.isClientSide())
             return;
 
         if(context.getTime() % 20 == 0) {
@@ -54,7 +54,7 @@ public enum FertilityCeremony implements CeremonyInstance {
         for(var animal: level.getEntitiesOfClass(Animal.class, aabb, a -> a.getAge() == 0 && !a.isInLove())) {
             var itemE = findItemEntity(level, pos, animal::isFood);
             if(itemE.isPresent()) {
-                if(level.random.nextInt(3) < 2)
+                if(level.getRandom().nextInt(3) < 2)
                     MiscUtil.shrinkItemEntity(itemE.get());
                 animal.setInLove(context.getInitiatingPlayer().orElse(null));
                 return; //Limit to one animal or villager per second

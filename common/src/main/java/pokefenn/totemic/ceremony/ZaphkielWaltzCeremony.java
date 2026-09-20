@@ -22,9 +22,9 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
             TotemicAPI.get().ceremony().forEachBlockIn(level, TotemicEntityUtil.getBoundingBoxAround(pos, RADIUS),
             (p, state) -> {
                 if(state.isRandomlyTicking() && state.is(TotemicBlockTags.ZAPHKIEL_WALTZ_GROWABLE)) {
-                    if(level.random.nextInt(4) < 3) {
-                        if(!level.isClientSide)
-                            state.randomTick((ServerLevel) level, p, level.random);
+                    if(level.getRandom().nextInt(4) < 3) {
+                        if(!level.isClientSide())
+                            state.randomTick((ServerLevel) level, p, level.getRandom());
                         else
                             spawnParticles(level, p);
                     }
@@ -39,7 +39,7 @@ public enum ZaphkielWaltzCeremony implements CeremonyInstance {
     }
 
     private void spawnParticles(Level level, BlockPos pos) {
-        var rand = level.random;
+        var rand = level.getRandom();
         var vec = Vec3.atCenterOf(pos).add(rand.nextGaussian() * 0.5, rand.nextGaussian() * 0.5, rand.nextGaussian() * 0.5);
         double ySpeed = rand.nextGaussian();
         level.addParticle(ParticleTypes.HAPPY_VILLAGER, vec.x, vec.y, vec.z, 0.0, ySpeed, 0.0);

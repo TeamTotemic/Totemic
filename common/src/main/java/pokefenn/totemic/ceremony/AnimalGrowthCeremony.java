@@ -5,6 +5,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.turtle.Turtle;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.TurtleEggBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -41,11 +43,11 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
     }
 
     private static void growAnimals(Level level, AABB aabb) {
-        level.getEntitiesOfClass(Animal.class, aabb, animal -> animal.isBaby() && !animal.getType().is(TotemicEntityTypeTags.HYMN_OF_MATURITY_BLACKLIST))
+        level.getEntitiesOfClass(Animal.class, aabb, animal -> animal.isBaby() && !animal.is(TotemicEntityTypeTags.HYMN_OF_MATURITY_BLACKLIST))
         .forEach(animal -> {
-            if(level.random.nextInt(4) == 0) {
-                if(!level.isClientSide) {
-                    animal.ageUp(level.random.nextInt(60));
+            if(level.getRandom().nextInt(4) == 0) {
+                if(!level.isClientSide()) {
+                    animal.ageUp(level.getRandom().nextInt(60));
                     //the argument to ageUp is given in seconds,
                     //this amounts to aging the animal up by about 337.5 s (out of 1200 s) each time the ceremony is used
                 }
@@ -58,16 +60,16 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
     }
 
     private static void hatchChickenEggs(Level level, AABB aabb) { //TODO: Introduce a data map for allowing customization of egg hatching
-        if(!level.isClientSide) {
+        if(!level.isClientSide()) {
             level.getEntities(EntityType.ITEM, aabb, e -> e.getItem().is(Items.EGG))
             .forEach(egg -> {
-                if(level.random.nextInt(4) == 0) {
+                if(level.getRandom().nextInt(4) == 0) {
                     MiscUtil.spawnServerParticles(ParticleTypes.HAPPY_VILLAGER, level, egg.position(), 10, new Vec3(0.5, 0.5, 0.5), 1.0);
-                    var chicken = EntityType.CHICKEN.create(level);
+                    var chicken = EntityType.CHICKEN.create(level, EntitySpawnReason.BREEDING);
                     if(chicken == null)
                         return;
                     chicken.setAge(AgeableMob.BABY_START_AGE);
-                    chicken.moveTo(egg.position(), level.random.nextFloat() * 360.0F, 0.0F);
+                    chicken.snapTo(egg.position(), level.getRandom().nextFloat() * 360.0F, 0.0F);
                     level.addFreshEntity(chicken);
                     MiscUtil.shrinkItemEntity(egg);
                 }
@@ -79,12 +81,12 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
         TotemicAPI.get().ceremony().forEachBlockIn(level, TotemicEntityUtil.getBoundingBoxAround(pos, TURTLE_HATCH_RADIUS),
         (p, state) -> {
             if(state.is(Blocks.TURTLE_EGG) && TurtleEggBlock.onSand(level, p)) {
-                if(!level.isClientSide) {
-                    if(level.random.nextInt(45) == 0) //about once per ceremony usage
+                if(!level.isClientSide()) {
+                    if(level.getRandom().nextInt(45) == 0) //about once per ceremony usage
                         hatchTurtleEgg(level, p, state);
                 }
                 else {
-                    if(level.random.nextInt(4) == 0)
+                    if(level.getRandom().nextInt(4) == 0)
                         spawnParticles(level, Vec3.atBottomCenterOf(p).add(0, 0.25, 0), 0.5, 0.5, 0.5);
                 }
             }
@@ -93,24 +95,24 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
 
     private static void hatchTurtleEgg(Level level, BlockPos pos, BlockState state) {
         //see TurtleEggBlock.randomTick
-        int age = state.getValue(TurtleEggBlock.HATCH);
-        if(age < 2) {
-            level.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 0.7F, 0.9F + level.random.nextFloat() * 0.2F);
-            level.setBlock(pos, state.setValue(TurtleEggBlock.HATCH, age + 1), 2);
+        int hatch = state.getValue(TurtleEggBlock.HATCH);
+        if(hatch < 2) {
+            level.playSound(null, pos, SoundEvents.TURTLE_EGG_CRACK, SoundSource.BLOCKS, 0.7F, 0.9F + level.getRandom().nextFloat() * 0.2F);
+            level.setBlock(pos, state.setValue(TurtleEggBlock.HATCH, hatch + 1), 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(state));
         }
         else {
-            level.playSound(null, pos, SoundEvents.TURTLE_EGG_HATCH, SoundSource.BLOCKS, 0.7F, 0.9F + level.random.nextFloat() * 0.2F);
+            level.playSound(null, pos, SoundEvents.TURTLE_EGG_HATCH, SoundSource.BLOCKS, 0.7F, 0.9F + level.getRandom().nextFloat() * 0.2F);
             level.removeBlock(pos, false);
             level.gameEvent(GameEvent.BLOCK_DESTROY, pos, GameEvent.Context.of(state));
 
-            for(int j = 0; j < state.getValue(TurtleEggBlock.EGGS); ++j) {
-                level.levelEvent(2001, pos, Block.getId(state));
-                Turtle turtle = EntityType.TURTLE.create(level);
+            for(int i = 0; i < state.getValue(TurtleEggBlock.EGGS); ++i) {
+                level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(state));
+                Turtle turtle = EntityType.TURTLE.create(level, EntitySpawnReason.BREEDING);
                 if(turtle != null) {
                     turtle.setAge(AgeableMob.BABY_START_AGE);
                     turtle.setHomePos(pos);
-                    turtle.moveTo(pos.getX() + 0.3 + j * 0.2, pos.getY(), pos.getZ() + 0.3, 0.0F, 0.0F);
+                    turtle.snapTo(pos.getX() + 0.3 + i * 0.2, pos.getY(), pos.getZ() + 0.3, 0.0F, 0.0F);
                     level.addFreshEntity(turtle);
                 }
             }
@@ -118,7 +120,7 @@ public enum AnimalGrowthCeremony implements CeremonyInstance {
     }
 
     private static void spawnParticles(Level level, Vec3 pos, double xSpread, double ySpread, double zSpread) {
-        var rand = level.random;
+        var rand = level.getRandom();
         for(int i = 0; i < 10; i++) {
             var vec = pos.add(rand.nextGaussian() * xSpread, rand.nextGaussian() * ySpread, rand.nextGaussian() * zSpread);
             level.addParticle(ParticleTypes.HAPPY_VILLAGER, vec.x, vec.y, vec.z, 0.0, 0.0, 0.0);

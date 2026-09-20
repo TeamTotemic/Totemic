@@ -21,6 +21,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.network.PacketDistributor;
@@ -90,7 +91,7 @@ public class NeoPlatformImpl implements PlatformAbstractions {
 
     @Override
     public void sendPacketToServer(CustomPacketPayload payload) {
-        PacketDistributor.sendToServer(payload);
+        ClientPacketDistributor.sendToServer(payload);
     }
 
     @Override

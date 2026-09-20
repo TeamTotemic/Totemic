@@ -67,23 +67,23 @@ public final class ModContent {
     public static final Supplier<TotemCarving> none = CARVINGS.register("none", () -> TotemCarving.of()); //default value
     public static final Supplier<TotemCarving> bat = CARVINGS.register("bat", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.SLOW_FALLING)));
     public static final Supplier<TotemCarving> blaze = CARVINGS.register("blaze", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.FIRE_RESISTANCE)));
-    public static final Supplier<TotemCarving> buffalo = CARVINGS.register("buffalo", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.DIG_SPEED)));
+    public static final Supplier<TotemCarving> buffalo = CARVINGS.register("buffalo", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.HASTE)));
     public static final Supplier<TotemCarving> cow = CARVINGS.register("cow", () -> TotemCarving.of(
-            new PotionTotemEffect(MobEffects.DAMAGE_RESISTANCE),
-            new PotionTotemEffect(MobEffects.MOVEMENT_SLOWDOWN, false)));
+            new PotionTotemEffect(MobEffects.RESISTANCE),
+            new PotionTotemEffect(MobEffects.SLOWNESS, false)));
     public static final Supplier<TotemCarving> enderman = CARVINGS.register("enderman", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.NIGHT_VISION, false) {
         @Override
         protected int getLingeringTime() { return 210; }
     }));
-    public static final Supplier<TotemCarving> horse = CARVINGS.register("horse", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.MOVEMENT_SPEED)));
+    public static final Supplier<TotemCarving> horse = CARVINGS.register("horse", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.SPEED)));
     public static final Supplier<TotemCarving> ocelot = CARVINGS.register("ocelot", () -> TotemCarving.of(
             new OcelotTotemEffect(),
             new PotionTotemEffect(ModMobEffects.ocelot, false)));
     public static final Supplier<TotemCarving> pig = CARVINGS.register("pig", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.LUCK)));
-    public static final Supplier<TotemCarving> rabbit = CARVINGS.register("rabbit", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.JUMP)));
+    public static final Supplier<TotemCarving> rabbit = CARVINGS.register("rabbit", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.JUMP_BOOST)));
     public static final Supplier<TotemCarving> spider = CARVINGS.register("spider", () -> TotemCarving.of(new PotionTotemEffect(ModMobEffects.spider)));
     public static final Supplier<TotemCarving> squid = CARVINGS.register("squid", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.WATER_BREATHING)));
-    public static final Supplier<TotemCarving> wolf = CARVINGS.register("wolf", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.DAMAGE_BOOST)));
+    public static final Supplier<TotemCarving> wolf = CARVINGS.register("wolf", () -> TotemCarving.of(new PotionTotemEffect(MobEffects.STRENGTH)));
 
     public static final PlatformRegistryHelper<Ceremony> CEREMONIES = Totemic.platform().createRegistryHelper(RegistryAPI.CEREMONY_REGISTRY);
     //Music amount landmarks:

@@ -1,13 +1,15 @@
 package pokefenn.totemic.item;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.init.ModContent;
@@ -30,13 +32,13 @@ public class CreativeMedicineBagItem extends MedicineBagItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag flag) {
         String key;
         if(getCarving(stack) != ModContent.none.get())
             key = isOpen(stack) ? "open" : "closed";
         else
             key = "tooltip";
-        tooltip.add(Component.translatable("totemic.medicineBag." + key));
+        builder.accept(Component.translatable("totemic.medicineBag." + key));
     }
 
     @Override

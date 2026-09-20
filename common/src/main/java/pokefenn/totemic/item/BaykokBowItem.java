@@ -22,20 +22,15 @@ public class BaykokBowItem extends BowItem {
             var arrow = new InvisibleArrow(level, shooter, ammo.copyWithCount(1), weapon);
             if(isCrit)
                 arrow.setCritArrow(isCrit);
-            arrow.setBaseDamage(arrow.getBaseDamage() * damageFactor);
+            arrow.setBaseDamage(arrow.baseDamage * damageFactor);
             return arrow;
         }
         else { // tipped or other special kind of arrow
             var projectile = super.createProjectile(level, shooter, weapon, ammo, isCrit);
             if(projectile instanceof AbstractArrow arrow) // the vanilla implementation always returns an AbstractArrow, but with mixins it might not
-                arrow.setBaseDamage(arrow.getBaseDamage() * damageFactor);
+                arrow.setBaseDamage(arrow.baseDamage * damageFactor);
             return projectile;
         }
-    }
-
-    @Override
-    public int getEnchantmentValue() {
-        return 5;
     }
 
     @Override

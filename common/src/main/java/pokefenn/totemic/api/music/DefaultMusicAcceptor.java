@@ -116,15 +116,15 @@ public class DefaultMusicAcceptor implements MusicAcceptor {
         music.clear();
         totalMusic = 0;
         var instrRegistry = TotemicAPI.get().registry().instruments();
-        for(String key: tag.getAllKeys()) {
-            var instr = instrRegistry.get(Identifier.tryParse(key));
+        for(var entry: tag.entrySet()) {
+            var instr = instrRegistry.getValue(Identifier.tryParse(entry.getKey()));
             if(instr != null) {
-                int amount = tag.getInt(key);
+                int amount = entry.getValue().asInt().orElse(0);
                 music.put(instr, amount);
                 totalMusic += amount;
             }
             else
-                LogManager.getLogger().warn("Unknown music instrument: '{}'", key);
+                LogManager.getLogger().warn("Unknown music instrument: '{}'", entry.getKey());
         }
     }
 }

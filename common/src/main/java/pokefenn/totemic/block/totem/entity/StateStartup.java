@@ -64,7 +64,7 @@ public final class StateStartup extends TotemState implements StartupContext {
     public MusicResult acceptMusic(MusicInstrument instr, int amount, Vec3 from, @Nullable Entity entity) {
         var result = musicHandler.acceptMusic(instr, amount, from, entity);
         if(result.isSuccess()) {
-            Totemic.platform().sendPacktToPlayersTrackingChunk(tile.getLevel(), new ChunkPos(tile.getBlockPos()),
+            Totemic.platform().sendPacktToPlayersTrackingChunk(tile.getLevel(), ChunkPos.containing(tile.getBlockPos()),
                     new ClientboundPacketStartupMusic(tile.getBlockPos(), instr, musicHandler.getMusicAmount(instr)));
             tile.setChanged();
         }
@@ -81,7 +81,7 @@ public final class StateStartup extends TotemState implements StartupContext {
         Level world = tile.getLevel();
         BlockPos pos = tile.getBlockPos();
 
-        if(!world.isClientSide) { //server side
+        if(!world.isClientSide()) { //server side
             if(musicHandler.getTotalMusic() >= ceremony.getMusicNeeded()) {
                 if(instance.canStartEffect(world, pos, this) && Totemic.platform().events().fireCeremonyStartupSuccess(world, pos, ceremony, instance, this))
                     startCeremony();
@@ -150,7 +150,7 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     @Override
     public void failCeremony() {
-        if(tile.getLevel().isClientSide)
+        if(tile.getLevel().isClientSide())
             return;
         MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
         tile.setTotemState(new StateTotemEffect(tile));
@@ -158,7 +158,7 @@ public final class StateStartup extends TotemState implements StartupContext {
 
     @Override
     public void startCeremony() {
-        if(tile.getLevel().isClientSide)
+        if(tile.getLevel().isClientSide())
             return;
         MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.HAPPY_VILLAGER, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 1.0);
         tile.setTotemState(new StateCeremonyEffect(tile, ceremony, instance, initiator));

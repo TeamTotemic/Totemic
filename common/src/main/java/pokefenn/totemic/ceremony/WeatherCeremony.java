@@ -19,7 +19,7 @@ public enum WeatherCeremony implements CeremonyInstance {
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
         if(level instanceof ServerLevel slevel && slevel.isRaining() != doRain) {
-            slevel.setWeatherParameters(
+            slevel.getServer().setWeatherParameters(
                     doRain ? 0 : 6000, //Clear weather time
                     doRain ? 6000 : 0, //Rain time
                     doRain, //raining

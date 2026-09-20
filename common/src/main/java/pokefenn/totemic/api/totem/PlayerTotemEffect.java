@@ -45,7 +45,7 @@ public abstract class PlayerTotemEffect implements TotemEffect {
 
     @Override
     public void effect(Level level, BlockPos pos, int repetition, TotemEffectContext context) {
-        if(level.isClientSide && !shouldApplyOnClientSide())
+        if(level.isClientSide() && !shouldApplyOnClientSide())
             return;
         var range = getRange(level, pos, repetition, context);
         TotemicEntityUtil.getPlayersIn(level, TotemicEntityUtil.getAABBAround(pos, range), p -> canAffect(p, repetition, context))

@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.Util;
 import net.minecraft.world.Difficulty;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicInstrument;

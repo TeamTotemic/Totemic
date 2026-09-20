@@ -1,5 +1,6 @@
 package pokefenn.totemic.effect;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -12,7 +13,7 @@ public class SpiderEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
         if(entity.horizontalCollision) {
             entity.fallDistance = 0.0F;
 

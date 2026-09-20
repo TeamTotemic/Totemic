@@ -14,6 +14,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityEvent;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.TamableAnimal;
@@ -37,7 +38,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.init.ModEntityTypes;
@@ -55,8 +55,6 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
         super(pEntityType, pLevel);
         setTame(false, false);
         this.moveControl = new FlyingMoveControl(this, 10, false);
-        this.setPathfindingMalus(PathType.DANGER_FIRE, -1.0F);
-        this.setPathfindingMalus(PathType.DAMAGE_FIRE, -1.0F);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -83,7 +81,6 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
         FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, pLevel);
         flyingpathnavigation.setCanOpenDoors(false);
         flyingpathnavigation.setCanFloat(true);
-        flyingpathnavigation.setCanPassDoors(true);
         return flyingpathnavigation;
     }
 
@@ -122,7 +119,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
                         1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
             }
 
-            if(!this.level().isClientSide) {
+            if(!this.level().isClientSide()) {
                 if(this.random.nextInt(6) == 0 && !Totemic.platform().onAnimalTame(this, player)) {
                     this.tame(player);
                     this.level().broadcastEntityEvent(this, EntityEvent.TAMING_SUCCEEDED);
@@ -132,17 +129,17 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
                 }
             }
 
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
+            return InteractionResult.sidedSuccess(this.level().isClientSide());
         }
         else if(this.isTame() && this.isOwnedBy(player)) {
             if(isFood(itemstack)) {
                 return super.mobInteract(player, hand);
             }
-            else if(!this.isFlying() && !this.level().isClientSide) {
+            else if(!this.isFlying() && !this.level().isClientSide()) {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }
 
-            return InteractionResult.sidedSuccess(this.level().isClientSide);
+            return InteractionResult.sidedSuccess(this.level().isClientSide());
         }
         else {
             return super.mobInteract(player, hand);
@@ -184,10 +181,10 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
 
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
-        var child = ModEntityTypes.bald_eagle.get().create(level);
+        var child = ModEntityTypes.bald_eagle.get().create(level, EntitySpawnReason.BREEDING);
         if(child != null) {
             if(this.isTame()) {
-                child.setOwnerUUID(this.getOwnerUUID());
+                child.setOwner(this.getOwner());
                 child.setTame(true, true);
             }
         }
@@ -250,7 +247,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
             return false;
         }
         else {
-            if(!this.level().isClientSide) {
+            if(!this.level().isClientSide()) {
                 this.setOrderedToSit(false);
             }
 

@@ -28,7 +28,7 @@ public class EagleBoneWhistleItem extends Item {
 
         player.getCooldowns().addCooldown(this, 20);
         player.awardStat(Stats.ITEM_USED.get(this));
-        return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide);
+        return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
     }
 
     @Override

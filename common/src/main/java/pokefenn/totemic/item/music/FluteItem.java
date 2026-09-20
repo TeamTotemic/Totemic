@@ -27,13 +27,13 @@ public class FluteItem extends Item {
         if(player.isShiftKeyDown())
             TotemicAPI.get().music().playSelector(player, ModContent.flute.get());
         else
-            TotemicAPI.get().music().playMusic(level, player.position(), player, ModContent.flute.get(), MusicAPI.DEFAULT_RANGE, getMusicAmount(level.random));
+            TotemicAPI.get().music().playMusic(level, player.position(), player, ModContent.flute.get(), MusicAPI.DEFAULT_RANGE, getMusicAmount(level.getRandom()));
 
         player.getCooldowns().addCooldown(ModItems.flute.get(), 20);
         player.getCooldowns().addCooldown(ModItems.infused_flute.get(), 20);
 
         player.awardStat(Stats.ITEM_USED.get(this));
-        return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide);
+        return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
     }
 
     protected int getMusicAmount(RandomSource rand) {

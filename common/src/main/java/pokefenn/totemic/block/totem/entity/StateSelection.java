@@ -14,6 +14,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
@@ -61,7 +62,8 @@ public final class StateSelection extends TotemState {
                     ModContent.getCeremonyForSelectors(selectors));
             eventResult.ceremony().ifPresentOrElse(ceremony -> {
                 if(isCeremonyDisabled(ceremony)) {
-                    entity.sendSystemMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
+                    if(entity instanceof Player player)
+                        player.sendOverlayMessage(Component.translatable("totemic.ceremonyDisabled", ceremony.getDisplayName()));
                     resetTotemState();
                     return;
                 }
@@ -101,7 +103,7 @@ public final class StateSelection extends TotemState {
 
     @Override
     public void tick() {
-        if(!tile.getLevel().isClientSide) { //do not change state based on time on the client side (to account for TPS lag)
+        if(!tile.getLevel().isClientSide()) { //do not change state based on time on the client side (to account for TPS lag)
             if(time++ >= 60 * 20)
                 tile.setTotemState(previousState);
         }

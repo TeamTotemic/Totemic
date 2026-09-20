@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.profiling.Profiler;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -42,10 +43,10 @@ public enum MusicApiImpl implements MusicAPI {
     @Override
     public void playMusic(Level level, Vec3 pos, @Nullable Entity entity, MusicInstrument instr, int range, int amount) {
         playInstrumentSound(level, pos, entity, instr);
-        if(level.isClientSide)
+        if(level.isClientSide())
             return;
 
-        level.getProfiler().push("totemic.playMusic");
+        Profiler.get().push("totemic.playMusic");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
 
         var acceptors = BlockUtil.getBlockEntitiesInRange(null, level, BlockPos.containing(pos), range)
@@ -60,7 +61,7 @@ public enum MusicApiImpl implements MusicAPI {
             if(result.isSaturated())
                 MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.CLOUD, level, acc.getPosition(), 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         }
-        level.getProfiler().pop();
+        Profiler.get().pop();
     }
 
     @Override
@@ -81,10 +82,10 @@ public enum MusicApiImpl implements MusicAPI {
     @Override
     public void playSelector(Level level, Vec3 pos, Entity entity, MusicInstrument instr, int range) {
         playInstrumentSound(level, pos, entity, instr);
-        if(level.isClientSide)
+        if(level.isClientSide())
             return;
 
-        level.getProfiler().push("totemic.playSelector");
+        Profiler.get().push("totemic.playSelector");
         MiscUtil.spawnServerParticles(ParticleTypes.NOTE, level, pos, 6, new Vec3(0.5, 0.5, 0.5), 0.0);
         MiscUtil.spawnServerParticles(ParticleTypes.FIREWORK, level, pos, 2, new Vec3(0.5, 0.5, 0.5), 0.0);
         BlockUtil.getBlockEntitiesInRange(ModBlockEntities.totem_base.get(), level, BlockPos.containing(pos), range)
@@ -94,7 +95,7 @@ public enum MusicApiImpl implements MusicAPI {
                         Comparator.comparing(MusicAcceptor::getPriority) //Prefer highest priority (i.e. StateSelection)
                         .thenComparingDouble(acc -> -acc.getPosition().distanceToSqr(pos))) //then prefer the closest one (note the minus sign to reverse the order)
                 .ifPresent(t -> t.addSelector(entity, instr));
-        level.getProfiler().pop();
+        Profiler.get().pop();
     }
 
     private static void playInstrumentSound(Level level, Vec3 pos, @Nullable Entity entity, MusicInstrument instr) {

@@ -5,18 +5,18 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.SupportType;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -49,13 +49,14 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    protected BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
-        BlockUtil.scheduleWaterloggedTick(pState, pCurrentPos, pLevel);
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour,
+            BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
+        BlockUtil.scheduleWaterloggedTick(state, pos, level, ticks);
 
-        if(pDirection == Direction.UP && !canSurvive(pState, pLevel, pCurrentPos))
+        if(directionToNeighbour == Direction.UP && !canSurvive(state, level, pos))
             return Blocks.AIR.defaultBlockState();
         else
-            return super.updateShape(pState, pDirection, pNeighborState, pLevel, pCurrentPos, pNeighborPos);
+            return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
     }
 
     @SuppressWarnings("deprecation")
@@ -71,7 +72,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if(player.isShiftKeyDown()) {
             playSelector(level, pos, player);
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS;
         }
         else
             return InteractionResult.PASS;
@@ -96,12 +97,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         return BaseEntityBlock.createTickerHelper(type, ModBlockEntities.wind_chime.get(),
-                level.isClientSide ? WindChimeBlockEntity::clientTick : WindChimeBlockEntity::serverTick);
-    }
-
-    @Override
-    protected RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.ENTITYBLOCK_ANIMATED;
+                level.isClientSide() ? WindChimeBlockEntity::clientTick : WindChimeBlockEntity::serverTick);
     }
 
     @Override
@@ -121,7 +117,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
+    protected VoxelShape getOcclusionShape(BlockState state) {
         return Shapes.empty();
     }
 
@@ -131,7 +127,7 @@ public class WindChimeBlock extends Block implements EntityBlock, SimpleWaterlog
     }
 
     @Override
-    protected boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state) {
         return !state.getValue(WATERLOGGED);
     }
 

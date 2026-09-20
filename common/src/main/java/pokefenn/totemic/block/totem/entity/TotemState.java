@@ -1,10 +1,10 @@
 package pokefenn.totemic.block.totem.entity;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.redstone.Redstone;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.music.MusicAcceptor;
 import pokefenn.totemic.api.music.MusicInstrument;
@@ -35,7 +35,7 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
     }
 
     void resetTotemState() {
-        if(tile.getLevel().isClientSide)
+        if(tile.getLevel().isClientSide())
             return;
         MiscUtil.spawnAlwaysVisibleServerParticles(ParticleTypes.LARGE_SMOKE, tile.getLevel(), getPosition(), 16, new Vec3(0.6, 0.5, 0.6), 0.0);
         tile.setTotemState(new StateTotemEffect(tile));
@@ -53,7 +53,7 @@ public abstract sealed class TotemState implements MusicAcceptor permits StateTo
 
     abstract byte getID();
 
-    abstract void save(CompoundTag tag, HolderLookup.Provider registries);
+    abstract void save(ValueOutput output);
 
-    abstract void load(CompoundTag tag, HolderLookup.Provider registries);
+    abstract void load(ValueInput input);
 }

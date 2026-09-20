@@ -10,6 +10,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayer.RespawnPosAngle;
 import net.minecraft.world.InteractionResult;
@@ -58,7 +59,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     // Soft-overrides Neo extension method in IBlockExtension
     public Optional<RespawnPosAngle> getRespawnPosition(BlockState state, EntityType<?> type, LevelReader levelReader, BlockPos pos, float orientation) {
         var facing = state.getValue(FACING).getOpposite();
-        return Optional.of(new RespawnPosAngle(Vec3.upFromBottomCenterOf(pos, 0.0625), facing.toYRot()));
+        return Optional.of(new RespawnPosAngle(Vec3.upFromBottomCenterOf(pos, 0.0625), facing.toYRot(), 0.0F));
     }
 
     public Vec3 getStandUpPosition(BlockPos pos, Direction direction) {
@@ -69,7 +70,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         //See BedBlock.useWithoutItem
-        if(level.isClientSide) {
+        if(level.isClientSide()) {
             return InteractionResult.CONSUME;
         }
         else {
@@ -121,7 +122,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
 
         if(level.isOutsideBuildHeight(pos.getY() + totalHeight - 1)) {
             if(ctx.getPlayer() instanceof ServerPlayer sp)
-                sp.sendSystemMessage(Component.translatable("build.tooHigh", level.getMaxBuildHeight() - 1).withStyle(ChatFormatting.RED), true);
+                sp.sendSystemMessage(Component.translatable("build.tooHigh", level.getMaxY() - 1).withStyle(ChatFormatting.RED), true);
             return false;
         }
 
@@ -170,7 +171,7 @@ public class TipiBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public void wasExploded(Level level, BlockPos pos, Explosion explosion) {
+    public void wasExploded(ServerLevel level, BlockPos pos, Explosion explosion) {
         removeDummyTipiBlocks(level, pos);
         super.wasExploded(level, pos, explosion);
     }

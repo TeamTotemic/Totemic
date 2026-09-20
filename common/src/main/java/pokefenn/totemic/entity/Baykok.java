@@ -84,7 +84,7 @@ public class Baykok extends Monster implements RangedAttackMob {
         double xzDist = Math.sqrt(dX * dX + dZ * dZ);
         float velocity = 2.0F + 1.0F * newDistanceFactor;
         float inaccuracy = 4.5F - this.level().getDifficulty().getId();
-        arrow.setBaseDamage(arrow.getBaseDamage() + 1.0 + 0.3 * level().getDifficulty().getId());
+        arrow.setBaseDamage(arrow.baseDamage + 1.0 + 0.3 * level().getDifficulty().getId());
         arrow.shoot(dX, dY + 0.125 * xzDist, dZ, velocity, inaccuracy);
 
         this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));

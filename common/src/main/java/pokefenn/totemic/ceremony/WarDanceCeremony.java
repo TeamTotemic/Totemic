@@ -13,11 +13,11 @@ public enum WarDanceCeremony implements CeremonyInstance {
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
-        if(level.isClientSide)
+        if(level.isClientSide())
             return;
         TotemicEntityUtil.getPlayersIn(level, TotemicEntityUtil.getAABBAround(pos, 8)).forEach(entity -> {
-            entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * (60 * 3), 1), context.getInitiator().orElse(null));
-            entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * (60 * 3), 1), context.getInitiator().orElse(null));
+            entity.addEffect(new MobEffectInstance(MobEffects.STRENGTH, 20 * (60 * 3), 1), context.getInitiator().orElse(null));
+            entity.addEffect(new MobEffectInstance(MobEffects.SPEED, 20 * (60 * 3), 1), context.getInitiator().orElse(null));
         });
     }
 }

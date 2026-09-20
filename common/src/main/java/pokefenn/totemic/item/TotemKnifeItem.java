@@ -2,6 +2,7 @@ package pokefenn.totemic.item;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
@@ -10,12 +11,11 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -106,10 +106,10 @@ public class TotemKnifeItem extends Item {
             }
 
             if(player != null)
-                c.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(c.getHand()));
+                c.getItemInHand().hurtAndBreak(1, player, c.getHand());
             c.getLevel().levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, c.getClickedPos(), Block.getId(state));
 
-            return InteractionResult.sidedSuccess(c.getLevel().isClientSide);
+            return InteractionResult.SUCCESS;
         }
     }
 
@@ -136,12 +136,12 @@ public class TotemKnifeItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if(player.isShiftKeyDown())
-            return InteractionResultHolder.success(changeIndex(stack, true));
+            return InteractionResult.SUCCESS.heldItemTransformedTo(changeIndex(stack, true));
         else
-            return InteractionResultHolder.fail(stack);
+            return InteractionResult.FAIL;
     }
 
     @Override
@@ -150,7 +150,7 @@ public class TotemKnifeItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag flag) {
+        builder.accept(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 }

@@ -6,13 +6,14 @@ import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
@@ -55,13 +56,14 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
-        if(facing == Direction.UP) {
-            findTotemBase(level, currentPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour,
+            BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
+        if(directionToNeighbour == Direction.UP) {
+            findTotemBase(level, pos)
                     .ifPresent(TotemBaseBlockEntity::onPoleChange);
         }
-        BlockUtil.scheduleWaterloggedTick(state, currentPos, level);
-        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
+        BlockUtil.scheduleWaterloggedTick(state, pos, level, ticks);
+        return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
     }
 
     @Override
@@ -99,12 +101,12 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    protected VoxelShape getOcclusionShape(BlockState state, BlockGetter world, BlockPos pos) {
+    protected VoxelShape getOcclusionShape(BlockState state) {
         return Shapes.empty();
     }
 
     @Override
-    protected boolean propagatesSkylightDown(BlockState state, BlockGetter world, BlockPos pos) {
+    protected boolean propagatesSkylightDown(BlockState state) {
         return !state.getValue(WATERLOGGED);
     }
 
@@ -126,7 +128,7 @@ public class TotemPoleBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader pLevel, BlockPos pPos, BlockState pState) {
+    public ItemStack getCloneItemStack(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean includeData) {
         var tile = pLevel.getBlockEntity(pPos, ModBlockEntities.totem_pole.get());
         var woodType = tile.map(TotemPoleBlockEntity::getWoodType).orElseGet(ModContent.oak);
         var carving = tile.map(TotemPoleBlockEntity::getCarving).orElseGet(ModContent.none);

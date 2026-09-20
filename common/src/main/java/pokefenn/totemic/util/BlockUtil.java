@@ -5,10 +5,12 @@ import java.util.stream.Stream;
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.profiling.Profiler;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,10 +26,11 @@ public final class BlockUtil {
 
     @SuppressWarnings("unchecked")
     public static <T extends BlockEntity> Stream<T> getBlockEntitiesIn(@Nullable BlockEntityType<T> type, Level level, BoundingBox box) {
-        level.getProfiler().incrementCounter("totemic.getBlockEntitiesIn");
-        return (Stream<T>) ChunkPos.rangeClosed(new ChunkPos(lowerCorner(box)), new ChunkPos(upperCorner(box)))
-                .filter(chunkPos -> level.hasChunk(chunkPos.x, chunkPos.z))
-                .map(chunkPos -> level.getChunk(chunkPos.x, chunkPos.z))
+        Profiler.get().incrementCounter("totemic.getBlockEntitiesIn");
+        // TODO: This method is used quite often, consider profiling and optimizing it, e.g. by replacing flatMap with mapMulti
+        return (Stream<T>) ChunkPos.rangeClosed(ChunkPos.containing(lowerCorner(box)), ChunkPos.containing(upperCorner(box)))
+                .filter(chunkPos -> level.hasChunk(chunkPos.x(), chunkPos.z()))
+                .map(chunkPos -> level.getChunk(chunkPos.x(), chunkPos.z()))
                 .flatMap(chunk -> chunk.getBlockEntities().values().stream())
                 .filter(tile ->
                            (type == null || tile.getType() == type)
@@ -47,8 +50,8 @@ public final class BlockUtil {
         return context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER;
     }
 
-    public static void scheduleWaterloggedTick(BlockState state, BlockPos currentPos, LevelAccessor level) {
+    public static void scheduleWaterloggedTick(BlockState state, BlockPos pos, LevelReader level, ScheduledTickAccess ticks) {
         if(state.getValue(BlockStateProperties.WATERLOGGED))
-            level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+            ticks.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
     }
 }

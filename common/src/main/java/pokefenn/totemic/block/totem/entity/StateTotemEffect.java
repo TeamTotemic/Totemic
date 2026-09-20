@@ -55,7 +55,7 @@ public final class StateTotemEffect extends TotemState implements TotemEffectCon
                 tile.setChanged(); //To save on neighbor updates, we only call this when the analog output signal has changed
         }
 
-        if(level.isClientSide && gameTime % 40 == 0)
+        if(level.isClientSide() && gameTime % 40 == 0)
             spawnParticles();
     }
 

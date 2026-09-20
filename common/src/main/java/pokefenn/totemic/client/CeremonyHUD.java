@@ -11,11 +11,12 @@ import com.mojang.blaze3d.vertex.VertexFormat;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.LayeredDraw;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
+import net.minecraft.util.profiling.Profiler;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.TotemicConfig;
 import pokefenn.totemic.block.totem.entity.StateCeremonyEffect;
@@ -24,7 +25,7 @@ import pokefenn.totemic.block.totem.entity.StateStartup;
 import pokefenn.totemic.block.totem.entity.StateTotemEffect;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
 
-public enum CeremonyHUD implements LayeredDraw.Layer {
+public enum CeremonyHUD {
     INSTANCE;
 
     private static final Identifier SELECTION_HUD_TEXTURE = Totemic.resloc("textures/gui/selection_hud.png");
@@ -48,16 +49,15 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
         }
     }
 
-    @Override
-    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    public void render(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
         if(activeTotem == null)
             return;
         var mc = Minecraft.getInstance();
-        mc.getProfiler().push("totemic.ceremonyHUD");
+        Profiler.get().push("totemic.ceremonyHUD");
 
         if(activeTotem.isRemoved() || activeTotem.getLevel() != mc.level || activeTotem.getTotemState() instanceof StateTotemEffect) {
             activeTotem = null;
-            mc.getProfiler().pop();
+            Profiler.get().pop();
             return;
         }
 
@@ -80,10 +80,10 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
         RenderSystem.disableBlend();
         poseStack.popPose();
 
-        mc.getProfiler().pop();
+        Profiler.get().pop();
     }
 
-    private void renderSelectionHUD(StateSelection state, GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    private void renderSelectionHUD(StateSelection state, GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
         final int texW = 128, texH = 64;
 
         //Background
@@ -135,7 +135,7 @@ public enum CeremonyHUD implements LayeredDraw.Layer {
         guiGraphics.drawString(font, name, nameX, 2, 0xC8000000, false);
     }
 
-    private void renderCeremonyEffectHUD(StateCeremonyEffect state, GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    private void renderCeremonyEffectHUD(StateCeremonyEffect state, GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();

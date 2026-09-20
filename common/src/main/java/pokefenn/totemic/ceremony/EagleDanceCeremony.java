@@ -6,7 +6,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import pokefenn.totemic.api.TotemicEntityTypeTags;
@@ -21,17 +23,18 @@ public enum EagleDanceCeremony implements CeremonyInstance {
 
     private static final int RANGE = 8;
 
-    private static final Predicate<Mob> CAN_APPLY_EAGLE_DANCE = mob -> mob.getType().is(TotemicEntityTypeTags.EAGLE_DANCE_TARGETS) && mob.isAlive();
+    private static final Predicate<Mob> CAN_APPLY_EAGLE_DANCE = mob -> mob.is(TotemicEntityTypeTags.EAGLE_DANCE_TARGETS) && mob.isAlive();
 
     @Override
     public void effect(Level level, BlockPos pos, CeremonyEffectContext context) {
-        if(level.isClientSide)
+        if(level.isClientSide())
             return;
 
         level.getEntitiesOfClass(Mob.class, TotemicEntityUtil.getAABBAround(pos, RANGE), CAN_APPLY_EAGLE_DANCE).stream()
         .limit(2)
         .forEach(parrot -> {
-            var eagle = ModEntityTypes.bald_eagle.get().create(level);
+            // TODO: Use the convertTo method instead?
+            var eagle = ModEntityTypes.bald_eagle.get().create(level, EntitySpawnReason.CONVERSION);
             if(eagle == null)
                 return;
             eagle.copyPosition(parrot);
@@ -46,7 +49,8 @@ public enum EagleDanceCeremony implements CeremonyInstance {
     @Override
     public boolean canSelect(Level level, BlockPos pos, Entity initiator) {
         if(level.getEntitiesOfClass(Mob.class, TotemicEntityUtil.getAABBAround(pos, RANGE), CAN_APPLY_EAGLE_DANCE).isEmpty()) {
-            initiator.sendSystemMessage(Component.translatable("totemic.noParrotsNearby"));
+            if(initiator instanceof Player player)
+                player.sendOverlayMessage(Component.translatable("totemic.noParrotsNearby"));
             return false;
         }
         else
