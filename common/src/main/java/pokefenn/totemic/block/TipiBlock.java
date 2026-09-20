@@ -14,6 +14,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerPlayer.RespawnPosAngle;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.attribute.BedRule;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -69,35 +71,42 @@ public class TipiBlock extends HorizontalDirectionalBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        //See BedBlock.useWithoutItem
+        // See BedBlock.useWithoutItem
         if(level.isClientSide()) {
-            return InteractionResult.CONSUME;
+            return InteractionResult.SUCCESS_SERVER;
         }
         else {
-            //removed: if part is not head
-            if(!BedBlock.canSetSpawn(level)) {
+            // removed: if state.getValue(PART) != BedPart.HEAD
+
+            BedRule bedRule = level.environmentAttributes().getValue(EnvironmentAttributes.BED_RULE, pos);
+            if(bedRule.explodes()) {
+                bedRule.errorMessage().ifPresent(player::sendOverlayMessage);
                 level.removeBlock(pos, false);
-                removeDummyTipiBlocks(level, pos); //changed
-                Vec3 vec3 = pos.getCenter();
-                level.explode(null, level.damageSources().badRespawnPointExplosion(vec3), null, vec3, 5.0F, true, Level.ExplosionInteraction.BLOCK);
-                return InteractionResult.SUCCESS;
+                BlockPos blockPos = pos.relative(state.getValue(FACING).getOpposite());
+                if(level.getBlockState(blockPos).is(this)) {
+                    level.removeBlock(blockPos, false);
+                }
+
+                Vec3 boomPos = pos.getCenter();
+                level.explode(null, level.damageSources().badRespawnPointExplosion(boomPos), null, boomPos, 5.0F, true, Level.ExplosionInteraction.BLOCK);
+                return InteractionResult.SUCCESS_SERVER;
             }
             else if(state.getValue(OCCUPIED)) {
-                //changed: no villager kicking
-                player.displayClientMessage(Component.translatable("block.minecraft.bed.occupied"), true);
-                return InteractionResult.SUCCESS;
+                // changed: no call to kickVillagerOutOfBed
+                player.sendOverlayMessage(Component.translatable("block.minecraft.bed.occupied"));
+                return InteractionResult.SUCCESS_SERVER;
             }
-            else if(!level.canSeeSky(pos.above(6))) { //added
-                player.displayClientMessage(Component.translatable("block.totemic.tipi.cantSleep"), true);
-                return InteractionResult.SUCCESS;
+            else if(!level.canSeeSky(pos.above(6))) { // added
+                player.sendOverlayMessage(Component.translatable("block.totemic.tipi.cantSleep"));
+                return InteractionResult.SUCCESS_SERVER;
             }
             else {
                 player.startSleepInBed(pos).ifLeft(problem -> {
-                    if(problem.getMessage() != null) {
-                        player.displayClientMessage(problem.getMessage(), true);
+                    if(problem.message() != null) {
+                        player.sendOverlayMessage(problem.message());
                     }
                 });
-                return InteractionResult.SUCCESS;
+                return InteractionResult.SUCCESS_SERVER;
             }
         }
     }
