@@ -20,6 +20,7 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.network.ClientPacketDistributor;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
@@ -61,6 +62,11 @@ public class NeoPlatformImpl implements PlatformAbstractions {
     @Override
     public TotemicEventHooks events() {
         return eventHooks;
+    }
+
+    @Override
+    public boolean containsKey(ValueInput in, String key) {
+        return in.keySet().contains(key);
     }
 
     @Override

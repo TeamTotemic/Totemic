@@ -62,7 +62,7 @@ public class TotemPoleBlockEntity extends BlockEntity {
 
     @Override
     public CompoundTag getUpdateTag(Provider registries) {
-        return saveWithoutMetadata(registries);
+        return saveCustomOnly(registries);
     }
 
     @Override

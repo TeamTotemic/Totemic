@@ -12,7 +12,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.music.MusicAPI;
 import pokefenn.totemic.init.ModBlockEntities;
@@ -95,28 +98,33 @@ public class WindChimeBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, Provider registries) {
-        super.saveAdditional(tag, registries);
-        if(isPlaying)
-            tag.putInt("PlayingTime", stateChangeTime);
-        else
-            tag.putInt("Cooldown", stateChangeTime);
+    protected void saveAdditional(ValueOutput out) {
+        super.saveAdditional(out);
+        out.putBoolean("Playing", isPlaying);
+        out.putInt("Time", stateChangeTime);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, Provider registries) {
-        super.loadAdditional(tag, registries);
-        if(tag.contains("PlayingTime")) {
-            isPlaying = true;
-            stateChangeTime = tag.getInt("PlayingTime");
+    protected void loadAdditional(ValueInput in) {
+        super.loadAdditional(in);
+        // This is not nice but this method has to do double duty, both reading from disk on the server side and
+        // reading from a packet on the client side.
+        if(Totemic.platform().containsKey(in, "Playing")) { // from saveAdditional
+            isPlaying = in.getBooleanOr("Playing", true);
+            stateChangeTime = in.getIntOr("Time", 0);
         }
-        else {
+        else if(Totemic.platform().containsKey(in, "PlayingTime")) { // legacy from 1.21.1 and before
+            isPlaying = true;
+            stateChangeTime = in.getIntOr("PlayingTime", 0);
+        }
+        else if(Totemic.platform().containsKey(in, "Cooldown")) { // legacy from 1.21.1 and before
             isPlaying = false;
-            stateChangeTime = tag.getInt("Cooldown");
+            stateChangeTime = in.getIntOr("Cooldown", 0);
         }
 
-        if(tag.contains("IsCongested")) // not saved on disk, only used for client synchronization
-            isCongested = tag.getBoolean("IsCongested");
+        if(Totemic.platform().containsKey(in, "IsCongested")) { // from getUpdateTag
+            isCongested = in.getBooleanOr("IsCongested", false);
+        }
     }
 
     @Override
