@@ -6,7 +6,6 @@ import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -102,10 +101,5 @@ public class DummyTipiBlock extends Block {
     @Override
     protected RenderShape getRenderShape(BlockState pState) {
         return RenderShape.INVISIBLE;
-    }
-
-    @Override
-    public MutableComponent getName() {
-        return ModBlocks.tipi.get().getName();
     }
 }

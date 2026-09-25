@@ -2,10 +2,12 @@ package pokefenn.totemic.init;
 
 import java.util.Optional;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -30,7 +32,6 @@ import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.grower.TreeGrower;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -53,35 +54,39 @@ public final class ModBlocks {
 
     public static final PlatformRegistryHelper<Block> REGISTER = Totemic.platform().createRegistryHelper(Registries.BLOCK);
 
-    public static final Supplier<RotatedPillarBlock> stripped_cedar_log = REGISTER.register("stripped_cedar_log", () -> new RotatedPillarBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
-    public static final Supplier<RotatedPillarBlock> cedar_log = REGISTER.register("cedar_log", () -> new RotatedPillarBlock(Properties.of().mapColor(state -> {
-        return state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MapColor.COLOR_PINK : MapColor.COLOR_ORANGE;
-    }).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
-    public static final Supplier<RotatedPillarBlock> stripped_cedar_wood = REGISTER.register("stripped_cedar_wood", () -> new RotatedPillarBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
-    public static final Supplier<RotatedPillarBlock> cedar_wood = REGISTER.register("cedar_wood", () -> new RotatedPillarBlock(Properties.of().mapColor(MapColor.COLOR_ORANGE).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
-    public static final Supplier<LeavesBlock> cedar_leaves = REGISTER.register("cedar_leaves", () -> new TintedParticleLeavesBlock(0.01F, Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn((s, g, p, type) -> type == EntityType.OCELOT || type == EntityType.PARROT).isSuffocating((s, g, p) -> false).isViewBlocking((s, g, p) -> false)));
-    public static final Supplier<SaplingBlock> cedar_sapling = REGISTER.register("cedar_sapling", () -> new SaplingBlock(new TreeGrower("totemic:cedar", Optional.empty(), Optional.of(ModResources.CEDAR_TREE_FEATURE), Optional.empty()), Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).noCollision().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static final Supplier<Block> cedar_planks = REGISTER.register("cedar_planks", () -> new Block(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Supplier<ButtonBlock> cedar_button = REGISTER.register("cedar_button", () -> new ButtonBlock(CEDAR_BLOCK_SET_TYPE, 30, Properties.of().pushReaction(PushReaction.DESTROY).noCollision().strength(0.5F).sound(SoundType.WOOD)));
-    public static final Supplier<FenceBlock> cedar_fence = REGISTER.register("cedar_fence", () -> new FenceBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Supplier<FenceGateBlock> cedar_fence_gate = REGISTER.register("cedar_fence_gate", () -> new FenceGateBlock(CEDAR_WOOD_TYPE, Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Supplier<PressurePlateBlock> cedar_pressure_plate = REGISTER.register("cedar_pressure_plate", () -> new PressurePlateBlock(CEDAR_BLOCK_SET_TYPE, Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollision().strength(0.5F).sound(SoundType.WOOD)));
-    public static final Supplier<StandingSignBlock> cedar_sign = REGISTER.register("cedar_sign", () -> new StandingSignBlock(CEDAR_WOOD_TYPE, Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).sound(SoundType.WOOD)));
-    public static final Supplier<WallSignBlock> cedar_wall_sign = REGISTER.register("cedar_wall_sign", () -> new WallSignBlock(CEDAR_WOOD_TYPE, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).sound(SoundType.WOOD).dropsLike(cedar_sign.get())));
-    public static final Supplier<CeilingHangingSignBlock> cedar_hanging_sign = REGISTER.register("cedar_hanging_sign", () -> new CeilingHangingSignBlock(CEDAR_WOOD_TYPE, Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).ignitedByLava()));
-    public static final Supplier<WallHangingSignBlock> cedar_wall_hanging_sign = REGISTER.register("cedar_wall_hanging_sign", () -> new WallHangingSignBlock(CEDAR_WOOD_TYPE, Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).dropsLike(cedar_hanging_sign.get()).ignitedByLava()));
-    public static final Supplier<SlabBlock> cedar_slab = REGISTER.register("cedar_slab", () -> new SlabBlock(Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static final Supplier<StairBlock> cedar_stairs = REGISTER.register("cedar_stairs", () -> new StairBlock(cedar_planks.get().defaultBlockState(), Properties.ofFullCopy(cedar_planks.get())));
-    public static final Supplier<DoorBlock> cedar_door = REGISTER.register("cedar_door", () -> new DoorBlock(CEDAR_BLOCK_SET_TYPE, Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
-    public static final Supplier<TrapDoorBlock> cedar_trapdoor = REGISTER.register("cedar_trapdoor", () -> new TrapDoorBlock(CEDAR_BLOCK_SET_TYPE, Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn((s, g, p, t) -> false)));
-    public static final Supplier<FlowerPotBlock> potted_cedar_sapling = REGISTER.register("potted_cedar_sapling", () -> new FlowerPotBlock(cedar_sapling.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)));
-    public static final Supplier<DrumBlock> drum = REGISTER.register("drum", () -> new DrumBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
-    public static final Supplier<WindChimeBlock> wind_chime = REGISTER.register("wind_chime", () -> new WindChimeBlock(Properties.of().mapColor(MapColor.METAL).strength(1.5F).sound(SoundType.METAL)));
-    public static final Supplier<TotemTorchBlock> totem_torch = REGISTER.register("totem_torch", () -> new TotemTorchBlock(Properties.of().pushReaction(PushReaction.DESTROY).strength(0.05F).lightLevel(s -> 15).sound(SoundType.WOOD).noCollision()));
-    public static final Supplier<TipiBlock> tipi = REGISTER.register("tipi", () -> new TipiBlock(Properties.of().mapColor(MapColor.WOOL).ignitedByLava().strength(0.2F).sound(SoundType.WOOL).noOcclusion()));
-    public static final Supplier<DummyTipiBlock> dummy_tipi = REGISTER.register("dummy_tipi", () -> new DummyTipiBlock(Properties.of().mapColor(MapColor.WOOL).ignitedByLava().strength(0.2F).sound(SoundType.WOOL).noOcclusion().isValidSpawn((s, g, p, t) -> false).isRedstoneConductor((s, g, p) -> false).isSuffocating((s, g, p) -> false).isViewBlocking((s, g, p) -> false).pushReaction(PushReaction.BLOCK).noLootTable()));
-    public static final Supplier<TotemBaseBlock> totem_base = REGISTER.register("totem_base", () -> new TotemBaseBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD)));
-    public static final Supplier<TotemPoleBlock> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleBlock(Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD)));
+    public static final Supplier<RotatedPillarBlock> stripped_cedar_log = register("stripped_cedar_log", RotatedPillarBlock::new, () -> Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD));
+    public static final Supplier<RotatedPillarBlock> cedar_log = register("cedar_log", RotatedPillarBlock::new, () -> Properties.of().mapColor(state -> state.getValue(RotatedPillarBlock.AXIS) == Axis.Y ? MapColor.COLOR_PINK : MapColor.COLOR_ORANGE).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD));
+    public static final Supplier<RotatedPillarBlock> stripped_cedar_wood = register("stripped_cedar_wood", RotatedPillarBlock::new, () -> Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD));
+    public static final Supplier<RotatedPillarBlock> cedar_wood = register("cedar_wood", RotatedPillarBlock::new, () -> Properties.of().mapColor(MapColor.COLOR_ORANGE).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD));
+    public static final Supplier<LeavesBlock> cedar_leaves = register("cedar_leaves", p -> new TintedParticleLeavesBlock(0.01F, p), () -> Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn((_, _, _, type) -> type == EntityType.OCELOT || type == EntityType.PARROT).isSuffocating((_, _, _) -> false).isViewBlocking((_, _, _) -> false).isRedstoneConductor((_, _, _) -> false));
+    public static final Supplier<SaplingBlock> cedar_sapling = register("cedar_sapling", p -> new SaplingBlock(new TreeGrower("totemic:cedar", Optional.empty(), Optional.of(ModResources.CEDAR_TREE_FEATURE), Optional.empty()), p), () -> Properties.of().mapColor(MapColor.PLANT).ignitedByLava().pushReaction(PushReaction.DESTROY).noCollision().randomTicks().instabreak().sound(SoundType.GRASS));
+    public static final Supplier<Block> cedar_planks = register("cedar_planks", Block::new, () -> Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD));
+    public static final Supplier<ButtonBlock> cedar_button = register("cedar_button", p -> new ButtonBlock(CEDAR_BLOCK_SET_TYPE, 30, p), () -> Properties.of().pushReaction(PushReaction.DESTROY).noCollision().strength(0.5F));
+    public static final Supplier<FenceBlock> cedar_fence = register("cedar_fence", FenceBlock::new, () -> Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD));
+    public static final Supplier<FenceGateBlock> cedar_fence_gate = register("cedar_fence_gate", p -> new FenceGateBlock(CEDAR_WOOD_TYPE, p), () -> Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD));
+    public static final Supplier<PressurePlateBlock> cedar_pressure_plate = register("cedar_pressure_plate", p -> new PressurePlateBlock(CEDAR_BLOCK_SET_TYPE, p), () -> Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollision().strength(0.5F).pushReaction(PushReaction.DESTROY));
+    public static final Supplier<StandingSignBlock> cedar_sign = register("cedar_sign", p -> new StandingSignBlock(CEDAR_WOOD_TYPE, p), () -> Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F));
+    public static final Supplier<WallSignBlock> cedar_wall_sign = register("cedar_wall_sign", p -> new WallSignBlock(CEDAR_WOOD_TYPE, p), () -> Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().ignitedByLava().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).overrideLootTable(cedar_sign.get().getLootTable()).overrideDescription(cedar_sign.get().getDescriptionId()));
+    public static final Supplier<CeilingHangingSignBlock> cedar_hanging_sign = register("cedar_hanging_sign", p -> new CeilingHangingSignBlock(CEDAR_WOOD_TYPE, p), () -> Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).ignitedByLava());
+    public static final Supplier<WallHangingSignBlock> cedar_wall_hanging_sign = register("cedar_wall_hanging_sign", p -> new WallHangingSignBlock(CEDAR_WOOD_TYPE, p), () -> Properties.of().mapColor(MapColor.COLOR_PINK).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).ignitedByLava().overrideLootTable(cedar_hanging_sign.get().getLootTable()).overrideDescription(cedar_hanging_sign.get().getDescriptionId()));
+    public static final Supplier<SlabBlock> cedar_slab = register("cedar_slab", SlabBlock::new, () -> Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD));
+    @SuppressWarnings("deprecation")
+    public static final Supplier<StairBlock> cedar_stairs = register("cedar_stairs", p -> new StairBlock(cedar_planks.get().defaultBlockState(), p), () -> Properties.ofLegacyCopy(cedar_planks.get()));
+    public static final Supplier<DoorBlock> cedar_door = register("cedar_door", p -> new DoorBlock(CEDAR_BLOCK_SET_TYPE, p), () -> Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(3.0F).sound(SoundType.WOOD).noOcclusion().pushReaction(PushReaction.DESTROY));
+    public static final Supplier<TrapDoorBlock> cedar_trapdoor = register("cedar_trapdoor", p -> new TrapDoorBlock(CEDAR_BLOCK_SET_TYPE, p), () -> Properties.of().mapColor(MapColor.COLOR_PINK).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn((_, _, _, _) -> false));
+    public static final Supplier<FlowerPotBlock> potted_cedar_sapling = register("potted_cedar_sapling", p -> new FlowerPotBlock(cedar_sapling.get(), p), () -> Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY));
+    public static final Supplier<DrumBlock> drum = register("drum", DrumBlock::new, () -> Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD));
+    public static final Supplier<WindChimeBlock> wind_chime = register("wind_chime", WindChimeBlock::new, () -> Properties.of().mapColor(MapColor.METAL).strength(1.5F).sound(SoundType.METAL));
+    public static final Supplier<TotemTorchBlock> totem_torch = register("totem_torch", TotemTorchBlock::new, () -> Properties.of().pushReaction(PushReaction.DESTROY).strength(0.05F).lightLevel(_ -> 15).sound(SoundType.WOOD).noCollision());
+    public static final Supplier<TipiBlock> tipi = register("tipi", TipiBlock::new, () -> Properties.of().mapColor(MapColor.WOOL).ignitedByLava().strength(0.2F).sound(SoundType.WOOL).noOcclusion());
+    public static final Supplier<DummyTipiBlock> dummy_tipi = register("dummy_tipi", DummyTipiBlock::new, () -> Properties.of().mapColor(MapColor.WOOL).ignitedByLava().strength(0.2F).sound(SoundType.WOOL).noOcclusion().isValidSpawn((_, _, _, _) -> false).isRedstoneConductor((_, _, _) -> false).isSuffocating((_, _, _) -> false).isViewBlocking((_, _, _) -> false).pushReaction(PushReaction.BLOCK).noLootTable().overrideDescription(tipi.get().getDescriptionId()));
+    public static final Supplier<TotemBaseBlock> totem_base = register("totem_base", TotemBaseBlock::new, () -> Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD));
+    public static final Supplier<TotemPoleBlock> totem_pole = register("totem_pole", TotemPoleBlock::new, () -> Properties.of().mapColor(MapColor.WOOD).ignitedByLava().instrument(NoteBlockInstrument.BASS).strength(2, 3).sound(SoundType.WOOD));
+
+    private static <T extends Block> Supplier<T> register(String name, Function<Properties, T> factory, Supplier<Properties> properties) {
+        var key = ResourceKey.create(Registries.BLOCK, Totemic.resloc(name));
+        return REGISTER.register(name, () -> factory.apply(properties.get().setId(key)));
+    }
 
     public static void setFireInfo() {
         FireBlock fire = (FireBlock) Blocks.FIRE;
