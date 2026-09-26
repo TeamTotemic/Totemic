@@ -6,7 +6,6 @@ import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.TagsProvider.TagLookup;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
@@ -26,6 +25,7 @@ public final class TotemicItemTagsProvider extends ItemTagsProvider {
     @Override
     protected void addTags(Provider pProvider) {
         //Totemic tags
+        tag(TotemicItemTags.REAPIRS_JINGLE_DRESS).add(ModItems.buffalo_hide.get());
         copy(TotemicBlockTags.CEDAR_LOGS, TotemicItemTags.CEDAR_LOGS);
 
         //Minecraft and Forge tags

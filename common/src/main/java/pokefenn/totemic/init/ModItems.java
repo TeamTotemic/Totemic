@@ -1,15 +1,14 @@
 package pokefenn.totemic.init;
 
 import java.util.EnumMap;
-import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
-import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.HangingSignItem;
@@ -19,11 +18,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SpawnEggItem;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.level.block.Block;
 import pokefenn.totemic.PlatformRegistryHelper;
 import pokefenn.totemic.Totemic;
+import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.item.BaykokBowItem;
 import pokefenn.totemic.item.CeremonyCheatItem;
 import pokefenn.totemic.item.CreativeMedicineBagItem;
@@ -41,12 +42,28 @@ import pokefenn.totemic.item.music.RattleItem;
 public final class ModItems {
     public static final PlatformRegistryHelper<Item> REGISTER = Totemic.platform().createRegistryHelper(Registries.ITEM);
 
+    public static final ArmorMaterial JINGLE_DRESS_MATERIAL = new ArmorMaterial(
+            15,
+            new EnumMap<>(Map.of(
+                    ArmorType.BOOTS, 1,
+                    ArmorType.LEGGINGS, 1,
+                    ArmorType.CHESTPLATE, 1,
+                    ArmorType.HELMET, 1,
+                    ArmorType.BODY, 1)),
+            15,
+            SoundEvents.ARMOR_EQUIP_LEATHER,
+            0.0F,
+            0.0F,
+            TotemicItemTags.REAPIRS_JINGLE_DRESS,
+            ResourceKey.create(EquipmentAssets.ROOT_ID, Totemic.resloc("jingle_dress"))
+    );
+
     public static final FoodProperties buffalo_meat_food = new FoodProperties.Builder().nutrition(3).saturationModifier(0.35F).build();
     public static final FoodProperties cooked_buffalo_meat_food = new FoodProperties.Builder().nutrition(9).saturationModifier(0.9F).build();
 
     public static final Supplier<FluteItem> flute = REGISTER.register("flute", () -> new FluteItem(new Properties().stacksTo(1)));
     public static final Supplier<InfusedFluteItem> infused_flute = REGISTER.register("infused_flute", () -> new InfusedFluteItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
-    public static final Supplier<JingleDressItem> jingle_dress = REGISTER.register("jingle_dress", () -> new JingleDressItem(new Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(5)).component(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0)));
+    public static final Supplier<JingleDressItem> jingle_dress = REGISTER.register("jingle_dress", () -> new JingleDressItem(new Properties().humanoidArmor(JINGLE_DRESS_MATERIAL, ArmorType.LEGGINGS).component(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0)));
     public static final Supplier<RattleItem> rattle = REGISTER.register("rattle", () -> new RattleItem(new Properties().stacksTo(1)));
     public static final Supplier<EagleBoneWhistleItem> eagle_bone_whistle = REGISTER.register("eagle_bone_whistle", () -> new EagleBoneWhistleItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final Supplier<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250)));
@@ -94,22 +111,6 @@ public final class ModItems {
     // no item for dummy_tipi
     public static final Supplier<TotemBaseItem> totem_base = REGISTER.register("totem_base", () -> new TotemBaseItem(ModBlocks.totem_base.get(), new Properties()));
     public static final Supplier<TotemPoleItem> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleItem(ModBlocks.totem_pole.get(), new Properties()));
-
-    public static final PlatformRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = Totemic.platform().createRegistryHelper(Registries.ARMOR_MATERIAL);
-    public static final Holder<ArmorMaterial> JINGLE_DRESS_MATERIAL = ARMOR_MATERIALS.registerForHolder("jingle_dress", () -> new ArmorMaterial(
-            Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-                map.put(ArmorItem.Type.BOOTS, 1);
-                map.put(ArmorItem.Type.LEGGINGS, 1);
-                map.put(ArmorItem.Type.CHESTPLATE, 1);
-                map.put(ArmorItem.Type.HELMET, 1);
-                map.put(ArmorItem.Type.BODY, 1);
-            }),
-            15,
-            SoundEvents.ARMOR_EQUIP_LEATHER,
-            () -> Ingredient.of(ModItems.buffalo_hide.get()),
-            List.of(new ArmorMaterial.Layer(Totemic.resloc("jingle_dress"))),
-            0.0F,
-            0.0F));
 
     private static Supplier<BlockItem> blockItem(String name, Supplier<? extends Block> block) {
         return REGISTER.register(name, () -> new BlockItem(block.get(), new Properties()));

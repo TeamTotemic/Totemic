@@ -62,7 +62,6 @@ public final class TotemicNeoMod {
 
         registerToModBus(ModBlocks.REGISTER, modBus);
         registerToModBus(ModItems.REGISTER, modBus);
-        registerToModBus(ModItems.ARMOR_MATERIALS, modBus);
         registerToModBus(ModDataComponents.REGISTER, modBus);
         registerToModBus(ModMobEffects.REGISTER, modBus);
         registerToModBus(ModBlockEntities.REGISTER, modBus);

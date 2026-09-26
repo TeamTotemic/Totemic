@@ -1,40 +1,38 @@
 package pokefenn.totemic.item.music;
 
-import java.util.List;
+import java.util.function.Consumer;
+
+import org.jspecify.annotations.Nullable;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.Item.TooltipContext;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.item.component.TooltipDisplay;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModDataComponents;
-import pokefenn.totemic.init.ModItems;
 
-public class JingleDressItem extends ArmorItem {
-    public JingleDressItem(Properties pProperties) {
-        super(ModItems.JINGLE_DRESS_MATERIAL, Type.LEGGINGS, pProperties);
+public class JingleDressItem extends Item {
+    public JingleDressItem(Item.Properties properties) {
+        super(properties);
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
-        final int leggingsSlot = 37;
-        if(slotId == leggingsSlot && !level.isClientSide() && entity instanceof Player player && !player.isSpectator() && player.tickCount % 20 == 0) {
+    public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, @Nullable EquipmentSlot slot) {
+        if(slot == EquipmentSlot.LEGS && !level.isClientSide() && owner instanceof Player player && !player.isSpectator() && player.tickCount % 20 == 0) {
             final double chargeFactor = 10.0;
             final int maxSingleCharge = 8;
             final int chargeLimit = 10;
 
-            double dx = player.xCloak - player.getX();
-            double dy = player.yCloak - player.getY();
-            double dz = player.zCloak - player.getZ();
-            double velocity = Math.sqrt(dx*dx + dy*dy + dz*dz);
-            if(player.hasEffect(MobEffects.MOVEMENT_SPEED))
+            double velocity = player.getDeltaMovement().length(); // TODO: This had to be changed since x/y/zCloak are no longer available. Test if this works
+            if(player.hasEffect(MobEffects.SPEED))
                 velocity *= 1.2;
 
             int charge = stack.getOrDefault(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0);
@@ -48,7 +46,7 @@ public class JingleDressItem extends ArmorItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable(getDescriptionId() + ".tooltip"));
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag flag) {
+        builder.accept(Component.translatable(getDescriptionId() + ".tooltip"));
     }
 }
