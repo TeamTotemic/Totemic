@@ -2,6 +2,7 @@ package pokefenn.totemic.init;
 
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import net.minecraft.core.registries.Registries;
@@ -61,27 +62,27 @@ public final class ModItems {
     public static final FoodProperties buffalo_meat_food = new FoodProperties.Builder().nutrition(3).saturationModifier(0.35F).build();
     public static final FoodProperties cooked_buffalo_meat_food = new FoodProperties.Builder().nutrition(9).saturationModifier(0.9F).build();
 
-    public static final Supplier<FluteItem> flute = REGISTER.register("flute", () -> new FluteItem(new Properties().stacksTo(1)));
-    public static final Supplier<InfusedFluteItem> infused_flute = REGISTER.register("infused_flute", () -> new InfusedFluteItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
-    public static final Supplier<JingleDressItem> jingle_dress = REGISTER.register("jingle_dress", () -> new JingleDressItem(new Properties().humanoidArmor(JINGLE_DRESS_MATERIAL, ArmorType.LEGGINGS).component(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0)));
-    public static final Supplier<RattleItem> rattle = REGISTER.register("rattle", () -> new RattleItem(new Properties().stacksTo(1)));
-    public static final Supplier<EagleBoneWhistleItem> eagle_bone_whistle = REGISTER.register("eagle_bone_whistle", () -> new EagleBoneWhistleItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
-    public static final Supplier<TotemKnifeItem> totem_whittling_knife = REGISTER.register("totem_whittling_knife", () -> new TotemKnifeItem(new Properties().stacksTo(1).durability(250)));
-    public static final Supplier<TotemicStaffItem> totemic_staff = REGISTER.register("totemic_staff", () -> new TotemicStaffItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
-    public static final Supplier<CeremonyCheatItem> ceremony_cheat = REGISTER.register("ceremony_cheat", () -> new CeremonyCheatItem(new Properties().stacksTo(1).rarity(Rarity.EPIC)));
-    public static final Supplier<SpawnEggItem> buffalo_spawn_egg = REGISTER.register("buffalo_spawn_egg", () -> Totemic.platform().createSpawnEgg(ModEntityTypes.buffalo, 0x2A1C12, 0x885F3E, new Properties()));
-    public static final Supplier<SpawnEggItem> bald_eagle_spawn_egg = REGISTER.register("bald_eagle_spawn_egg", () -> Totemic.platform().createSpawnEgg(ModEntityTypes.bald_eagle, 0x4B4136, 0xF5E6A3, new Properties()));
-    public static final Supplier<SpawnEggItem> baykok_spawn_egg = REGISTER.register("baykok_spawn_egg", () -> Totemic.platform().createSpawnEgg(ModEntityTypes.baykok, 0xE0E0E0, 0xF8DAD2, new Properties()));
-    public static final Supplier<Item> buffalo_meat = REGISTER.register("buffalo_meat", () -> new Item(new Properties().food(buffalo_meat_food)));
-    public static final Supplier<Item> cooked_buffalo_meat = REGISTER.register("cooked_buffalo_meat", () -> new Item(new Properties().food(cooked_buffalo_meat_food)));
-    public static final Supplier<Item> buffalo_tooth = REGISTER.register("buffalo_tooth", () -> new Item(new Properties()));
-    public static final Supplier<Item> buffalo_hide = REGISTER.register("buffalo_hide", () -> new Item(new Properties()));
-    public static final Supplier<Item> iron_bells = REGISTER.register("iron_bells", () -> new Item(new Properties()));
-    public static final Supplier<Item> eagle_bone = REGISTER.register("eagle_bone", () -> new Item(new Properties()));
-    public static final Supplier<Item> eagle_feather = REGISTER.register("eagle_feather", () -> new Item(new Properties()));
-    public static final Supplier<BaykokBowItem> baykok_bow = REGISTER.register("baykok_bow", () -> new BaykokBowItem(new Properties().durability(576).enchantable(5).rarity(Rarity.RARE)));
-    public static final Supplier<MedicineBagItem> medicine_bag = REGISTER.register("medicine_bag", () -> new MedicineBagItem(new Properties().stacksTo(1).component(ModDataComponents.OPEN.get(), false).component(ModDataComponents.MEDICINE_BAG_CHARGE.get(), 0)));
-    public static final Supplier<CreativeMedicineBagItem> creative_medicine_bag = REGISTER.register("creative_medicine_bag", () -> new CreativeMedicineBagItem(new Properties().stacksTo(1).rarity(Rarity.EPIC).component(ModDataComponents.OPEN.get(), false)));
+    public static final Supplier<FluteItem> flute = register("flute", FluteItem::new, () -> new Properties().stacksTo(1));
+    public static final Supplier<InfusedFluteItem> infused_flute = register("infused_flute", InfusedFluteItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
+    public static final Supplier<JingleDressItem> jingle_dress = register("jingle_dress", JingleDressItem::new, () -> new Properties().humanoidArmor(JINGLE_DRESS_MATERIAL, ArmorType.LEGGINGS).component(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0));
+    public static final Supplier<RattleItem> rattle = register("rattle", RattleItem::new, () -> new Properties().stacksTo(1));
+    public static final Supplier<EagleBoneWhistleItem> eagle_bone_whistle = register("eagle_bone_whistle", EagleBoneWhistleItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
+    public static final Supplier<TotemKnifeItem> totem_whittling_knife = register("totem_whittling_knife", TotemKnifeItem::new, () -> new Properties().stacksTo(1).durability(250));
+    public static final Supplier<TotemicStaffItem> totemic_staff = register("totemic_staff", TotemicStaffItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
+    public static final Supplier<CeremonyCheatItem> ceremony_cheat = register("ceremony_cheat", CeremonyCheatItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.EPIC));
+    public static final Supplier<SpawnEggItem> buffalo_spawn_egg = register("buffalo_spawn_egg", p -> Totemic.platform().createSpawnEgg(ModEntityTypes.buffalo, 0x2A1C12, 0x885F3E, p), () -> new Properties());
+    public static final Supplier<SpawnEggItem> bald_eagle_spawn_egg = register("bald_eagle_spawn_egg", p -> Totemic.platform().createSpawnEgg(ModEntityTypes.bald_eagle, 0x4B4136, 0xF5E6A3, p), () -> new Properties());
+    public static final Supplier<SpawnEggItem> baykok_spawn_egg = register("baykok_spawn_egg", p -> Totemic.platform().createSpawnEgg(ModEntityTypes.baykok, 0xE0E0E0, 0xF8DAD2, p), () -> new Properties());
+    public static final Supplier<Item> buffalo_meat = register("buffalo_meat", Item::new, () -> new Properties().food(buffalo_meat_food));
+    public static final Supplier<Item> cooked_buffalo_meat = register("cooked_buffalo_meat", Item::new, () -> new Properties().food(cooked_buffalo_meat_food));
+    public static final Supplier<Item> buffalo_tooth = register("buffalo_tooth");
+    public static final Supplier<Item> buffalo_hide = register("buffalo_hide");
+    public static final Supplier<Item> iron_bells = register("iron_bells");
+    public static final Supplier<Item> eagle_bone = register("eagle_bone");
+    public static final Supplier<Item> eagle_feather = register("eagle_feather");
+    public static final Supplier<BaykokBowItem> baykok_bow = register("baykok_bow", BaykokBowItem::new, () -> new Properties().durability(576).enchantable(5).rarity(Rarity.RARE));
+    public static final Supplier<MedicineBagItem> medicine_bag = register("medicine_bag", MedicineBagItem::new, () -> new Properties().stacksTo(1).component(ModDataComponents.OPEN.get(), false).component(ModDataComponents.MEDICINE_BAG_CHARGE.get(), 0));
+    public static final Supplier<CreativeMedicineBagItem> creative_medicine_bag = register("creative_medicine_bag", CreativeMedicineBagItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.EPIC).component(ModDataComponents.OPEN.get(), false));
 
     // Block items
     public static final Supplier<BlockItem> stripped_cedar_log = blockItem("stripped_cedar_log", ModBlocks.stripped_cedar_log);
@@ -95,9 +96,9 @@ public final class ModItems {
     public static final Supplier<BlockItem> cedar_fence = blockItem("cedar_fence", ModBlocks.cedar_fence);
     public static final Supplier<BlockItem> cedar_fence_gate = blockItem("cedar_fence_gate", ModBlocks.cedar_fence_gate);
     public static final Supplier<BlockItem> cedar_pressure_plate = blockItem("cedar_pressure_plate", ModBlocks.cedar_pressure_plate);
-    public static final Supplier<SignItem> cedar_sign = REGISTER.register("cedar_sign", () -> new SignItem(ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_sign.get(), new Properties().stacksTo(16)));
+    public static final Supplier<SignItem> cedar_sign = register("cedar_sign", p -> new SignItem(ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_sign.get(), p), () -> new Properties().stacksTo(16));
     // no item for cedar_wall_sign
-    public static final Supplier<HangingSignItem> cedar_hanging_sign = REGISTER.register("cedar_hanging_sign", () -> new HangingSignItem(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), new Properties().stacksTo(16)));
+    public static final Supplier<HangingSignItem> cedar_hanging_sign = register("cedar_hanging_sign", p -> new HangingSignItem(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), p), () -> new Properties().stacksTo(16));
     // no item for cedar_wall_hanging_sign
     public static final Supplier<BlockItem> cedar_slab = blockItem("cedar_slab", ModBlocks.cedar_slab);
     public static final Supplier<BlockItem> cedar_stairs = blockItem("cedar_stairs", ModBlocks.cedar_stairs);
@@ -109,11 +110,20 @@ public final class ModItems {
     public static final Supplier<BlockItem> totem_torch = blockItem("totem_torch", ModBlocks.totem_torch);
     public static final Supplier<BlockItem> tipi = blockItem("tipi", ModBlocks.tipi);
     // no item for dummy_tipi
-    public static final Supplier<TotemBaseItem> totem_base = REGISTER.register("totem_base", () -> new TotemBaseItem(ModBlocks.totem_base.get(), new Properties()));
-    public static final Supplier<TotemPoleItem> totem_pole = REGISTER.register("totem_pole", () -> new TotemPoleItem(ModBlocks.totem_pole.get(), new Properties()));
+    public static final Supplier<TotemBaseItem> totem_base = register("totem_base", p -> new TotemBaseItem(ModBlocks.totem_base.get(), p), () -> new Properties());
+    public static final Supplier<TotemPoleItem> totem_pole = register("totem_pole", p -> new TotemPoleItem(ModBlocks.totem_pole.get(), p), () -> new Properties());
+
+    private static <T extends Item> Supplier<T> register(String name, Function<Properties, ? extends T> factory, Supplier<Properties> properties) {
+        var key = ResourceKey.create(Registries.ITEM, Totemic.resloc(name));
+        return REGISTER.register(name, () -> factory.apply(properties.get().setId(key)));
+    }
+
+    private static Supplier<Item> register(String name) {
+        return register(name, Item::new, Properties::new);
+    }
 
     private static Supplier<BlockItem> blockItem(String name, Supplier<? extends Block> block) {
-        return REGISTER.register(name, () -> new BlockItem(block.get(), new Properties()));
+        return register(name, p -> new BlockItem(block.get(), p), Properties::new);
     }
 
     public static CreativeModeTab makeCreativeTab() {
