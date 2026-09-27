@@ -62,10 +62,7 @@ public final class MiscUtil {
 
     public static void spawnAlwaysVisibleServerParticles(ParticleOptions particle, Level level, Vec3 pos, int count, Vec3 spread, double speed) {
         if(level instanceof ServerLevel slevel) {
-            //TODO: Use access transformer for the private ServerLevel.sendParticles method (to save on creating multiple instances of ClientboundLevelParticlesPacket),
-            // or use our own particle packet class to begin with.
-            for(var player: slevel.players())
-                slevel.sendParticles(player, particle, true, pos.x, pos.y, pos.z, count, spread.x, spread.y, spread.z, speed);
+            slevel.sendParticles(particle, true, true, pos.x, pos.y, pos.z, count, spread.x, spread.y, spread.z, speed);
         }
     }
 
