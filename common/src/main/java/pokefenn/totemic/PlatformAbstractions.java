@@ -1,7 +1,6 @@
 package pokefenn.totemic;
 
 import java.util.Optional;
-import java.util.function.Supplier;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -14,8 +13,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item.Properties;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -30,7 +27,6 @@ import pokefenn.totemic.api.registry.RegistryAPI;
 public interface PlatformAbstractions {
     <T> PlatformRegistryHelper<T> createRegistryHelper(ResourceKey<Registry<T>> registryKey);
 
-    SpawnEggItem createSpawnEgg(Supplier<? extends EntityType<? extends Mob>> type, int backgroundColor, int highlightColor, Properties props);
     CreativeModeTab.Builder creativeTabBuilder();
 
     RegistryAPI registryAPI();

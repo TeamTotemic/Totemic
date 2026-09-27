@@ -70,9 +70,9 @@ public final class ModItems {
     public static final Supplier<TotemKnifeItem> totem_whittling_knife = register("totem_whittling_knife", TotemKnifeItem::new, () -> new Properties().stacksTo(1).durability(250));
     public static final Supplier<TotemicStaffItem> totemic_staff = register("totemic_staff", TotemicStaffItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
     public static final Supplier<CeremonyCheatItem> ceremony_cheat = register("ceremony_cheat", CeremonyCheatItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.EPIC));
-    public static final Supplier<SpawnEggItem> buffalo_spawn_egg = register("buffalo_spawn_egg", p -> Totemic.platform().createSpawnEgg(ModEntityTypes.buffalo, 0x2A1C12, 0x885F3E, p), () -> new Properties());
-    public static final Supplier<SpawnEggItem> bald_eagle_spawn_egg = register("bald_eagle_spawn_egg", p -> Totemic.platform().createSpawnEgg(ModEntityTypes.bald_eagle, 0x4B4136, 0xF5E6A3, p), () -> new Properties());
-    public static final Supplier<SpawnEggItem> baykok_spawn_egg = register("baykok_spawn_egg", p -> Totemic.platform().createSpawnEgg(ModEntityTypes.baykok, 0xE0E0E0, 0xF8DAD2, p), () -> new Properties());
+    public static final Supplier<SpawnEggItem> buffalo_spawn_egg = register("buffalo_spawn_egg", SpawnEggItem::new, () -> new Properties().spawnEgg(ModEntityTypes.buffalo.get()));
+    public static final Supplier<SpawnEggItem> bald_eagle_spawn_egg = register("bald_eagle_spawn_egg", SpawnEggItem::new, () -> new Properties().spawnEgg(ModEntityTypes.bald_eagle.get()));
+    public static final Supplier<SpawnEggItem> baykok_spawn_egg = register("baykok_spawn_egg", SpawnEggItem::new, () -> new Properties().spawnEgg(ModEntityTypes.baykok.get()));
     public static final Supplier<Item> buffalo_meat = register("buffalo_meat", Item::new, () -> new Properties().food(buffalo_meat_food));
     public static final Supplier<Item> cooked_buffalo_meat = register("cooked_buffalo_meat", Item::new, () -> new Properties().food(cooked_buffalo_meat_food));
     public static final Supplier<Item> buffalo_tooth = register("buffalo_tooth");
