@@ -110,9 +110,10 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
 
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        // See Parrot.mobInteract
         ItemStack itemstack = player.getItemInHand(hand);
         if(!this.isTame() && itemstack.is(ItemTags.FISHES)) {
-            itemstack.consume(1, player);
+            this.usePlayerItem(player, hand, itemstack);
 
             if(!this.isSilent()) {
                 this.level().playSound((Player) null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F,
@@ -129,7 +130,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
                 }
             }
 
-            return InteractionResult.sidedSuccess(this.level().isClientSide());
+            return InteractionResult.SUCCESS;
         }
         else if(this.isTame() && this.isOwnedBy(player)) {
             if(isFood(itemstack)) {
@@ -139,7 +140,7 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
                 this.setOrderedToSit(!this.isOrderedToSit());
             }
 
-            return InteractionResult.sidedSuccess(this.level().isClientSide());
+            return InteractionResult.SUCCESS;
         }
         else {
             return super.mobInteract(player, hand);
@@ -149,11 +150,6 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
     @Override
     public boolean isFood(ItemStack pStack) {
         return pStack.is(Items.SALMON);
-    }
-
-    @Override
-    public boolean causeFallDamage(float pFallDistance, float pMultiplier, DamageSource pSource) {
-        return false;
     }
 
     @Override
@@ -189,11 +185,6 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
             }
         }
         return child;
-    }
-
-    @Override
-    public boolean doHurtTarget(Entity pEntity) {
-        return pEntity.hurt(pEntity.damageSources().mobAttack(this), 3.0F);
     }
 
     @Override
@@ -242,16 +233,12 @@ public class BaldEagle extends TamableAnimal implements FlyingAnimal {
     }
 
     @Override
-    public boolean hurt(DamageSource pSource, float pAmount) {
-        if(this.isInvulnerableTo(pSource)) {
+    public boolean hurtServer(ServerLevel level, DamageSource source, float damage) {
+        if (this.isInvulnerableTo(level, source)) {
             return false;
-        }
-        else {
-            if(!this.level().isClientSide()) {
-                this.setOrderedToSit(false);
-            }
-
-            return super.hurt(pSource, pAmount);
+        } else {
+            this.setOrderedToSit(false);
+            return super.hurtServer(level, source, damage);
         }
     }
 

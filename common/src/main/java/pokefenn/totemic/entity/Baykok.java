@@ -4,22 +4,23 @@ import javax.annotation.Nullable;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.BossEvent.BossBarColor;
-import net.minecraft.world.BossEvent.BossBarOverlay;
+import net.minecraft.util.Util;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -43,11 +44,13 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import pokefenn.totemic.init.ModItems;
 
 public class Baykok extends Monster implements RangedAttackMob {
-    private final ServerBossEvent bossEvent = new ServerBossEvent(getDisplayName(), BossBarColor.WHITE, BossBarOverlay.PROGRESS);
+    private final ServerBossEvent bossEvent = Util.make(
+            new ServerBossEvent(Mth.createInsecureUUID(this.random), this.getDisplayName(), BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS),
+            e -> e.setDarkenScreen(true)
+    );
 
     public Baykok(EntityType<? extends Baykok> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        bossEvent.setDarkenScreen(true);
         setHealth(getMaxHealth());
         xpReward = 65;
     }
@@ -64,7 +67,7 @@ public class Baykok extends Monster implements RangedAttackMob {
     }
 
     @Override
-    protected void customServerAiStep() {
+    protected void customServerAiStep(ServerLevel level) {
         bossEvent.setProgress(getHealth() / getMaxHealth());
     }
 
@@ -103,10 +106,10 @@ public class Baykok extends Monster implements RangedAttackMob {
 
     @Override
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType spawnType, @Nullable SpawnGroupData spawnGroupData) {
-        spawnGroupData = super.finalizeSpawn(level, difficulty, spawnType, spawnGroupData);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, EntitySpawnReason spawnReason, @Nullable SpawnGroupData groupData) {
+        groupData = super.finalizeSpawn(level, difficulty, spawnReason, groupData);
         populateDefaultEquipmentSlots(random, difficulty);
-        return spawnGroupData;
+        return groupData;
     }
 
     @Override
@@ -124,10 +127,9 @@ public class Baykok extends Monster implements RangedAttackMob {
 
     @Override
     public void checkDespawn() {
-        if(this.level().getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
+        if (this.level().getDifficulty() == Difficulty.PEACEFUL && !this.getType().isAllowedInPeaceful()) {
             this.discard();
-        }
-        else {
+        } else {
             this.noActionTime = 0;
         }
     }
