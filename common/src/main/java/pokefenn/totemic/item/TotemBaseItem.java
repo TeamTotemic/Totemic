@@ -1,5 +1,6 @@
 package pokefenn.totemic.item;
 
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
@@ -10,8 +11,9 @@ public class TotemBaseItem extends BlockItem {
     }
 
     @Override
-    public String getDescriptionId(ItemStack stack) {
+    public Component getName(ItemStack stack) {
         var woodType = TotemPoleItem.getWoodType(stack);
-        return "block." + woodType.getRegistryName().toLanguageKey() + "_totem_base";
+        String key = "block." + woodType.getRegistryName().toLanguageKey() + "_totem_base";
+        return Component.translatable(key);
     }
 }

@@ -1,6 +1,6 @@
 package pokefenn.totemic.item.music;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModContent;
@@ -32,7 +33,7 @@ public class EagleBoneWhistleItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, TooltipContext context, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("totemic.tooltip.selectorMode"));
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag flag) {
+        builder.accept(Component.translatable("totemic.tooltip.selectorMode"));
     }
 }

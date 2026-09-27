@@ -111,13 +111,13 @@ public final class ModItems {
     public static final Supplier<SignItem> cedar_sign = register(
             "cedar_sign",
             p -> new SignItem(ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_sign.get(), p),
-            () -> new Properties().stacksTo(16)
+            () -> new Properties().stacksTo(16).useBlockDescriptionPrefix()
     );
     // no item for cedar_wall_sign
     public static final Supplier<HangingSignItem> cedar_hanging_sign = register(
             "cedar_hanging_sign",
             p -> new HangingSignItem(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), p),
-            () -> new Properties().stacksTo(16)
+            () -> new Properties().stacksTo(16).useBlockDescriptionPrefix()
     );
     // no item for cedar_wall_hanging_sign
     public static final Supplier<BlockItem> cedar_slab = blockItem("cedar_slab", ModBlocks.cedar_slab);
@@ -130,8 +130,8 @@ public final class ModItems {
     public static final Supplier<BlockItem> totem_torch = blockItem("totem_torch", ModBlocks.totem_torch);
     public static final Supplier<BlockItem> tipi = blockItem("tipi", ModBlocks.tipi);
     // no item for dummy_tipi
-    public static final Supplier<TotemBaseItem> totem_base = register("totem_base", p -> new TotemBaseItem(ModBlocks.totem_base.get(), p), () -> new Properties());
-    public static final Supplier<TotemPoleItem> totem_pole = register("totem_pole", p -> new TotemPoleItem(ModBlocks.totem_pole.get(), p), () -> new Properties());
+    public static final Supplier<TotemBaseItem> totem_base = register("totem_base", p -> new TotemBaseItem(ModBlocks.totem_base.get(), p), () -> new Properties().useBlockDescriptionPrefix());
+    public static final Supplier<TotemPoleItem> totem_pole = register("totem_pole", p -> new TotemPoleItem(ModBlocks.totem_pole.get(), p), () -> new Properties().useBlockDescriptionPrefix());
 
     private static <T extends Item> Supplier<T> register(String name, Function<Properties, ? extends T> factory, Supplier<Properties> properties) {
         var key = ResourceKey.create(Registries.ITEM, Totemic.resloc(name));
@@ -143,7 +143,7 @@ public final class ModItems {
     }
 
     private static Supplier<BlockItem> blockItem(String name, Supplier<? extends Block> block) {
-        return register(name, p -> new BlockItem(block.get(), p), Properties::new);
+        return register(name, p -> new BlockItem(block.get(), p), () -> new Properties().useBlockDescriptionPrefix());
     }
 
     public static CreativeModeTab makeCreativeTab() {

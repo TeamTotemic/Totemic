@@ -146,7 +146,7 @@ public class TotemKnifeItem extends Item {
 
     @Override
     public Component getName(ItemStack stack) {
-        return Component.translatable(getDescriptionId(stack), getCarvingName(getCarving(stack)));
+        return Component.translatable(getDescriptionId(), getCarvingName(getCarving(stack)));
     }
 
     @Override

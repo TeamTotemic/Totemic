@@ -23,14 +23,10 @@ public class TotemPoleItem extends BlockItem {
     }
 
     @Override
-    public String getDescriptionId(ItemStack stack) {
-        var woodType = getWoodType(stack);
-        return "block." + woodType.getRegistryName().toLanguageKey() + "_totem_pole";
-    }
-
-    @Override
     public Component getName(ItemStack stack) {
+        var woodType = getWoodType(stack);
         var carving = getCarving(stack);
-        return Component.translatable(getDescriptionId(stack), carving.getDisplayName());
+        var key = "block." + woodType.getRegistryName().toLanguageKey() + "_totem_pole";
+        return Component.translatable(key, carving.getDisplayName());
     }
 }
