@@ -64,7 +64,11 @@ public final class ModItems {
 
     public static final Supplier<FluteItem> flute = register("flute", FluteItem::new, () -> new Properties().stacksTo(1));
     public static final Supplier<InfusedFluteItem> infused_flute = register("infused_flute", InfusedFluteItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
-    public static final Supplier<JingleDressItem> jingle_dress = register("jingle_dress", JingleDressItem::new, () -> new Properties().humanoidArmor(JINGLE_DRESS_MATERIAL, ArmorType.LEGGINGS).component(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0));
+    public static final Supplier<JingleDressItem> jingle_dress = register(
+            "jingle_dress",
+            JingleDressItem::new,
+            () -> new Properties().humanoidArmor(JINGLE_DRESS_MATERIAL, ArmorType.LEGGINGS).component(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0)
+    );
     public static final Supplier<RattleItem> rattle = register("rattle", RattleItem::new, () -> new Properties().stacksTo(1));
     public static final Supplier<EagleBoneWhistleItem> eagle_bone_whistle = register("eagle_bone_whistle", EagleBoneWhistleItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
     public static final Supplier<TotemKnifeItem> totem_whittling_knife = register("totem_whittling_knife", TotemKnifeItem::new, () -> new Properties().stacksTo(1).durability(250));
@@ -81,8 +85,16 @@ public final class ModItems {
     public static final Supplier<Item> eagle_bone = register("eagle_bone");
     public static final Supplier<Item> eagle_feather = register("eagle_feather");
     public static final Supplier<BaykokBowItem> baykok_bow = register("baykok_bow", BaykokBowItem::new, () -> new Properties().durability(576).enchantable(5).rarity(Rarity.RARE));
-    public static final Supplier<MedicineBagItem> medicine_bag = register("medicine_bag", MedicineBagItem::new, () -> new Properties().stacksTo(1).component(ModDataComponents.OPEN.get(), false).component(ModDataComponents.MEDICINE_BAG_CHARGE.get(), 0));
-    public static final Supplier<CreativeMedicineBagItem> creative_medicine_bag = register("creative_medicine_bag", CreativeMedicineBagItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.EPIC).component(ModDataComponents.OPEN.get(), false));
+    public static final Supplier<MedicineBagItem> medicine_bag = register(
+            "medicine_bag",
+            MedicineBagItem::new,
+            () -> new Properties().stacksTo(1).component(ModDataComponents.OPEN.get(), false).component(ModDataComponents.MEDICINE_BAG_CHARGE.get(), 0)
+    );
+    public static final Supplier<CreativeMedicineBagItem> creative_medicine_bag = register(
+            "creative_medicine_bag",
+            CreativeMedicineBagItem::new,
+            () -> new Properties().stacksTo(1).rarity(Rarity.EPIC).component(ModDataComponents.OPEN.get(), false)
+    );
 
     // Block items
     public static final Supplier<BlockItem> stripped_cedar_log = blockItem("stripped_cedar_log", ModBlocks.stripped_cedar_log);
@@ -96,9 +108,17 @@ public final class ModItems {
     public static final Supplier<BlockItem> cedar_fence = blockItem("cedar_fence", ModBlocks.cedar_fence);
     public static final Supplier<BlockItem> cedar_fence_gate = blockItem("cedar_fence_gate", ModBlocks.cedar_fence_gate);
     public static final Supplier<BlockItem> cedar_pressure_plate = blockItem("cedar_pressure_plate", ModBlocks.cedar_pressure_plate);
-    public static final Supplier<SignItem> cedar_sign = register("cedar_sign", p -> new SignItem(ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_sign.get(), p), () -> new Properties().stacksTo(16));
+    public static final Supplier<SignItem> cedar_sign = register(
+            "cedar_sign",
+            p -> new SignItem(ModBlocks.cedar_wall_sign.get(), ModBlocks.cedar_sign.get(), p),
+            () -> new Properties().stacksTo(16)
+    );
     // no item for cedar_wall_sign
-    public static final Supplier<HangingSignItem> cedar_hanging_sign = register("cedar_hanging_sign", p -> new HangingSignItem(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), p), () -> new Properties().stacksTo(16));
+    public static final Supplier<HangingSignItem> cedar_hanging_sign = register(
+            "cedar_hanging_sign",
+            p -> new HangingSignItem(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), p),
+            () -> new Properties().stacksTo(16)
+    );
     // no item for cedar_wall_hanging_sign
     public static final Supplier<BlockItem> cedar_slab = blockItem("cedar_slab", ModBlocks.cedar_slab);
     public static final Supplier<BlockItem> cedar_stairs = blockItem("cedar_stairs", ModBlocks.cedar_stairs);
