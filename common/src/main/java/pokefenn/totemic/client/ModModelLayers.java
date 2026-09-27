@@ -23,6 +23,7 @@ import pokefenn.totemic.init.ModEntityTypes;
 
 public final class ModModelLayers {
     public static final ModelLayerLocation BUFFALO = create("buffalo");
+    public static final ModelLayerLocation BUFFALO_BABY = create("buffalo_baby");
     public static final ModelLayerLocation BALD_EAGLE = create("bald_eagle");
     public static final ModelLayerLocation BAYKOK = create("baykok");
 
@@ -34,6 +35,7 @@ public final class ModModelLayers {
 
     public static void registerLayerDefinitions(BiConsumer<ModelLayerLocation, Supplier<LayerDefinition>> registry) {
         registry.accept(BUFFALO, BuffaloModel::createLayer);
+        registry.accept(BUFFALO_BABY, BuffaloModel::createLayer); // TODO: Baby model
         registry.accept(BALD_EAGLE, BaldEagleModel::createLayer);
         registry.accept(BAYKOK, () -> BaykokModel.createLayer(CubeDeformation.NONE));
 

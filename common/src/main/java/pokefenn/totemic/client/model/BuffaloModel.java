@@ -1,37 +1,17 @@
 package pokefenn.totemic.client.model;
 
-import java.util.List;
-
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-
-import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
-import pokefenn.totemic.entity.Buffalo;
 
-public class BuffaloModel<T extends Buffalo> extends AgeableListModel<T> {
-    private final ModelPart head;
-    private final ModelPart body;
-    private final ModelPart tail;
-    private final ModelPart leg1;
-    private final ModelPart leg2;
-    private final ModelPart leg3;
-    private final ModelPart leg4;
-
+public class BuffaloModel extends QuadrupedModel<LivingEntityRenderState> {
     public BuffaloModel(ModelPart root) {
-        super(true, 10.0F, 2.0F);
-        head = root.getChild("head");
-        body = root.getChild("body");
-        tail = root.getChild("tail");
-        leg1 = root.getChild("leg1");
-        leg2 = root.getChild("leg2");
-        leg3 = root.getChild("leg3");
-        leg4 = root.getChild("leg4");
+        super(root);
     }
 
     public static LayerDefinition createLayer() {
@@ -97,7 +77,7 @@ public class BuffaloModel<T extends Buffalo> extends AgeableListModel<T> {
                 .addBox(-1F, 0F, -10.5F, 2F, 1F, 1F, true),
                 PartPose.ZERO);
 
-        var leg1 = root.addOrReplaceChild("leg1", CubeListBuilder.create()
+        var leg1 = root.addOrReplaceChild("right_hind_leg", CubeListBuilder.create()
                 .texOffs(46, 18)
                 .addBox(-1F, 0F, -3F, 4F, 11F, 5F, false),
                 PartPose.offsetAndRotation(4F, 10F, -5F, 8F * Mth.DEG_TO_RAD, 0F, 0F));
@@ -106,7 +86,7 @@ public class BuffaloModel<T extends Buffalo> extends AgeableListModel<T> {
                 .addBox(-0.5F, 8F, 0F, 3F, 6F, 3F, false),
                 PartPose.rotation(-8F * Mth.DEG_TO_RAD, 0F, 0F));
 
-        var leg2 = root.addOrReplaceChild("leg2", CubeListBuilder.create()
+        var leg2 = root.addOrReplaceChild("left_hind_leg", CubeListBuilder.create()
                 .texOffs(46, 18)
                 .addBox(-3F, 0F, -3F, 4F, 11F, 5F, true),
                 PartPose.offsetAndRotation(-4F, 10F, -5F, 8F * Mth.DEG_TO_RAD, 0F, 0F));
@@ -115,7 +95,7 @@ public class BuffaloModel<T extends Buffalo> extends AgeableListModel<T> {
                 .addBox(-2.5F, 8F, 0F, 3F, 6F, 3F, true),
                 PartPose.rotation(-8F * Mth.DEG_TO_RAD, 0F, 0F));
 
-        var leg3 = root.addOrReplaceChild("leg3", CubeListBuilder.create()
+        var leg3 = root.addOrReplaceChild("right_front_leg", CubeListBuilder.create()
                 .texOffs(48, 43)
                 .addBox(-1F, 0F, -3F, 4F, 8F, 4F, false),
                 PartPose.offset(4F, 10F, 10F));
@@ -124,7 +104,7 @@ public class BuffaloModel<T extends Buffalo> extends AgeableListModel<T> {
                 .addBox(-0.5F, 8F, -2F, 3F, 6F, 3F, false),
                 PartPose.ZERO);
 
-        var leg4 = root.addOrReplaceChild("leg4", CubeListBuilder.create()
+        var leg4 = root.addOrReplaceChild("left_front_leg", CubeListBuilder.create()
                 .texOffs(48, 43)
                 .addBox(-3F, 0F, -3F, 4F, 8F, 4F, true),
                 PartPose.offset(-4F, 10F, 10F));
@@ -134,37 +114,5 @@ public class BuffaloModel<T extends Buffalo> extends AgeableListModel<T> {
                 PartPose.ZERO);
 
         return LayerDefinition.create(mesh, 64, 64);
-    }
-
-    @Override
-    protected Iterable<ModelPart> headParts() {
-        return List.of(head);
-    }
-
-    @Override
-    protected Iterable<ModelPart> bodyParts() {
-        return List.of(body, tail, leg1, leg2, leg3, leg4);
-    }
-
-    @Override
-    public void setupAnim(T buffalo, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        final float legSpeed = 0.6662F;
-        final float legFactor = 1.4F;
-
-        head.xRot = headPitch * Mth.DEG_TO_RAD + Mth.HALF_PI;
-        head.yRot = netHeadYaw * Mth.DEG_TO_RAD;
-        leg1.xRot = Mth.cos(limbSwing * legSpeed) * legFactor * limbSwingAmount + 8F*Mth.DEG_TO_RAD;
-        leg2.xRot = Mth.cos(limbSwing * legSpeed + Mth.PI) * legFactor * limbSwingAmount + 8F*Mth.DEG_TO_RAD;
-        leg3.xRot = Mth.cos(limbSwing * legSpeed + Mth.PI) * legFactor * limbSwingAmount;
-        leg4.xRot = Mth.cos(limbSwing * legSpeed) * legFactor * limbSwingAmount;
-    }
-
-    @Override
-    public void renderToBuffer(PoseStack ps, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
-        ps.pushPose();
-        ps.translate(0F, -0.75F, 0F);
-        ps.scale(1.5F, 1.5F, 1.5F);
-        super.renderToBuffer(ps, buffer, packedLight, packedOverlay, color);
-        ps.popPose();
     }
 }
