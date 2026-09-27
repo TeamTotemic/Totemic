@@ -8,11 +8,11 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
-import pokefenn.totemic.entity.Baykok;
 
-public class BaykokModel<T extends Baykok> extends HumanoidModel<T> {
+public class BaykokModel extends HumanoidModel<HumanoidRenderState> {
     public BaykokModel(ModelPart pRoot) {
         super(pRoot);
     }
@@ -89,14 +89,8 @@ public class BaykokModel<T extends Baykok> extends HumanoidModel<T> {
     }
 
     @Override
-    public void prepareMobModel(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick) {
-        rightArmPose = ArmPose.BOW_AND_ARROW;
-        super.prepareMobModel(pEntity, pLimbSwing, pLimbSwingAmount, pPartialTick);
-    }
-
-    @Override
-    public void setupAnim(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        super.setupAnim(pEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
+    public void setupAnim(HumanoidRenderState state) {
+        super.setupAnim(state);
         leftArm.xRot = -Mth.HALF_PI;
         leftArm.yRot = 0.35F;
         rightArm.xRot = -Mth.HALF_PI;
@@ -104,11 +98,11 @@ public class BaykokModel<T extends Baykok> extends HumanoidModel<T> {
     }
 
     @Override
-    public void translateToHand(HumanoidArm pSide, PoseStack pPoseStack) {
-        super.translateToHand(pSide, pPoseStack);
-        if(pSide == HumanoidArm.RIGHT)
-            pPoseStack.translate(0.04F, 0.0F, 0.085F);
+    public void translateToHand(HumanoidRenderState state, HumanoidArm arm, PoseStack poseStack) {
+        super.translateToHand(state, arm, poseStack);
+        if(arm == HumanoidArm.RIGHT)
+            poseStack.translate(0.04F, 0.0F, 0.085F);
         else
-            pPoseStack.translate(-0.04F, 0.0F, 0.085F);
+            poseStack.translate(-0.04F, 0.0F, 0.085F);
     }
 }

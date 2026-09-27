@@ -25,6 +25,7 @@ public final class ModModelLayers {
     public static final ModelLayerLocation BUFFALO = create("buffalo");
     public static final ModelLayerLocation BALD_EAGLE = create("bald_eagle");
     public static final ModelLayerLocation BAYKOK = create("baykok");
+
     public static final ModelLayerLocation WIND_CHIME = create("wind_chime");
 
     private static ModelLayerLocation create(String name) {
