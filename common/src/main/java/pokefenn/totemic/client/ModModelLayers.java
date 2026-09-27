@@ -12,6 +12,7 @@ import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.model.BaldEagleModel;
 import pokefenn.totemic.client.model.BaykokModel;
 import pokefenn.totemic.client.model.BuffaloModel;
+import pokefenn.totemic.client.model.blockentity.WindChimeModel;
 import pokefenn.totemic.client.renderer.blockentity.WindChimeRenderer;
 import pokefenn.totemic.client.renderer.entity.BaldEagleRenderer;
 import pokefenn.totemic.client.renderer.entity.BaykokRenderer;
@@ -35,7 +36,7 @@ public final class ModModelLayers {
         registry.accept(BALD_EAGLE, BaldEagleModel::createLayer);
         registry.accept(BAYKOK, () -> BaykokModel.createLayer(CubeDeformation.NONE));
 
-        registry.accept(WIND_CHIME, WindChimeRenderer::createLayer);
+        registry.accept(WIND_CHIME, WindChimeModel::createLayer);
     }
 
     public static void registerRenderers() {

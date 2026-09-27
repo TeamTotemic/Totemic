@@ -4,82 +4,43 @@ import org.joml.Quaternionf;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.blockentity.state.BlockEntityRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.sprite.SpriteGetter;
+import net.minecraft.client.resources.model.sprite.SpriteId;
+import net.minecraft.util.Unit;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.block.music.entity.WindChimeBlockEntity;
 import pokefenn.totemic.client.ModModelLayers;
+import pokefenn.totemic.client.model.blockentity.WindChimeModel;
 
-public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEntity> {
-    private static final Identifier TEXTURE = Totemic.resloc("textures/entity/wind_chime.png");
+public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEntity, BlockEntityRenderState> {
+    private static final SpriteId TEXTURE = Sheets.BLOCK_ENTITIES_MAPPER.apply(Totemic.resloc("wind_chime"));
+    private final SpriteGetter sprites;
+    private final WindChimeModel model;
 
-    private final ModelPart root;
-
-    public WindChimeRenderer(BlockEntityRendererProvider.Context pContext) {
-        this.root = pContext.bakeLayer(ModModelLayers.WIND_CHIME);
-    }
-
-    public static LayerDefinition createLayer() {
-        var mesh = new MeshDefinition();
-        var root = mesh.getRoot();
-        root.addOrReplaceChild("base", CubeListBuilder.create()
-                .texOffs(0, 0)
-                .addBox(0F, 0F, 0F, 7F, 1F, 7F, true),
-                PartPose.offset(-3.5F, 10F, -3.5F));
-        root.addOrReplaceChild("chime1", CubeListBuilder.create()
-                .texOffs(0, 8)
-                .addBox(-1F, 2F, -1F, 2F, 8F, 2F, true),
-                PartPose.offset(0F, 11F, -2.5F));
-        root.addOrReplaceChild("chime2", CubeListBuilder.create()
-                .texOffs(0, 8)
-                .addBox(-1F, 2F, -1F, 2F, 5F, 2F, true),
-                PartPose.offset(-2.5F, 11F, 0F));
-        root.addOrReplaceChild("chime3", CubeListBuilder.create()
-                .texOffs(0, 8)
-                .addBox(-1F, 2F, -1F, 2F, 7F, 2F, true),
-                PartPose.offset(0F, 11F, 2.5F));
-        root.addOrReplaceChild("chime4", CubeListBuilder.create()
-                .texOffs(0, 8)
-                .addBox(-1F, 2F, -1F, 2F, 11F, 2F, true),
-                PartPose.offset(2.5F, 11F, 0F));
-        root.addOrReplaceChild("connector1", CubeListBuilder.create()
-                .texOffs(0, 0)
-                .addBox(-0.5F, 0F, -0.5F, 1F, 2F, 1F, true),
-                PartPose.offset(0F, 11F, 2.5F));
-        root.addOrReplaceChild("connector2", CubeListBuilder.create()
-                .texOffs(0, 0)
-                .addBox(-0.5F, 0F, -0.5F, 1F, 2F, 1F, true),
-                PartPose.offset(-2.5F, 11F, 0F));
-        root.addOrReplaceChild("connector3", CubeListBuilder.create()
-                .texOffs(0, 0)
-                .addBox(-0.5F, 0F, -0.5F, 1F, 2F, 1F, true),
-                PartPose.offset(0F, 11F, -2.5F));
-        root.addOrReplaceChild("connector4", CubeListBuilder.create()
-                .texOffs(0, 0)
-                .addBox(-0.5F, 0F, -0.5F, 1F, 2F, 1F, true),
-                PartPose.offset(2.5F, 11F, 0F));
-        root.addOrReplaceChild("hook", CubeListBuilder.create()
-                .texOffs(0, 0)
-                .addBox(0F, 0F, 0F, 1F, 2F, 1F, true),
-                PartPose.offset(-0.5F, 8F, -0.5F));
-        return LayerDefinition.create(mesh, 32, 32);
+    public WindChimeRenderer(BlockEntityRendererProvider.Context context) {
+        this.sprites = context.sprites();
+        this.model = new WindChimeModel(context.bakeLayer(ModModelLayers.WIND_CHIME));
     }
 
     @Override
-    public void render(WindChimeBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBufferSource, int pPackedLight, int pPackedOverlay) {
-        pPoseStack.pushPose();
-        pPoseStack.translate(0.5, 1.5, 0.5);
-        pPoseStack.mulPose(new Quaternionf(0, 0, 1, 0)); //180° rotation around Z-axis
+    public BlockEntityRenderState createRenderState() {
+        return new BlockEntityRenderState();
+    }
+
+    @Override
+    public void submit(BlockEntityRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
+        poseStack.pushPose();
+        poseStack.translate(0.5F, 1.5F, 0.5F);
+        poseStack.mulPose(new Quaternionf(0, 0, 1, 0)); //180° rotation around Z-axis
         //TODO: Swing animation
-        var buffer = pBufferSource.getBuffer(RenderType.entitySolid(TEXTURE));
-        root.render(pPoseStack, buffer, pPackedLight, pPackedOverlay);
-        pPoseStack.popPose();
+        submitNodeCollector.submitModel(model, Unit.INSTANCE, poseStack, state.lightCoords, OverlayTexture.NO_OVERLAY, -1, TEXTURE, this.sprites, 0, state.breakProgress);
+        poseStack.popPose();
     }
 }
