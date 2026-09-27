@@ -25,6 +25,7 @@ public final class ModModelLayers {
     public static final ModelLayerLocation BUFFALO = create("buffalo");
     public static final ModelLayerLocation BUFFALO_BABY = create("buffalo_baby");
     public static final ModelLayerLocation BALD_EAGLE = create("bald_eagle");
+    public static final ModelLayerLocation BALD_EAGLE_BABY = create("bald_eagle_baby");
     public static final ModelLayerLocation BAYKOK = create("baykok");
 
     public static final ModelLayerLocation WIND_CHIME = create("wind_chime");
@@ -37,6 +38,7 @@ public final class ModModelLayers {
         registry.accept(BUFFALO, BuffaloModel::createLayer);
         registry.accept(BUFFALO_BABY, BuffaloModel::createLayer); // TODO: Baby model
         registry.accept(BALD_EAGLE, BaldEagleModel::createLayer);
+        registry.accept(BALD_EAGLE_BABY, BaldEagleModel::createLayer); // TODO: Baby model
         registry.accept(BAYKOK, () -> BaykokModel.createLayer(CubeDeformation.NONE));
 
         registry.accept(WIND_CHIME, WindChimeModel::createLayer);

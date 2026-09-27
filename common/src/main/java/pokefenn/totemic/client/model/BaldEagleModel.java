@@ -1,20 +1,17 @@
 package pokefenn.totemic.client.model;
 
-import java.util.List;
-
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-
-import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
+import pokefenn.totemic.client.model.BaldEagleModel.BaldEagleRenderState;
 import pokefenn.totemic.entity.BaldEagle;
 
-public class BaldEagleModel<T extends BaldEagle> extends AgeableListModel<T> {
+public class BaldEagleModel extends EntityModel<BaldEagleRenderState> {
     private final ModelPart head;
     private final ModelPart body;
     private final ModelPart leftLeg;
@@ -24,7 +21,7 @@ public class BaldEagleModel<T extends BaldEagle> extends AgeableListModel<T> {
     private final ModelPart tail;
 
     public BaldEagleModel(ModelPart root) {
-        super(true, 10.0F, 1.0F);
+        super(root);
         head = root.getChild("head");
         body = root.getChild("body");
         leftLeg = root.getChild("leftLeg");
@@ -87,57 +84,40 @@ public class BaldEagleModel<T extends BaldEagle> extends AgeableListModel<T> {
     }
 
     @Override
-    protected Iterable<ModelPart> headParts() {
-        return List.of(head);
-    }
-
-    @Override
-    protected Iterable<ModelPart> bodyParts() {
-        return List.of(body, leftLeg, rightLeg, leftWing, rightWing, tail);
-    }
-
-    @Override
-    public void setupAnim(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        setupAnim(getState(pEntity), pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
-    }
-
-    private void setupAnim(State state, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
-        this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
-        this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
+    public void setupAnim(BaldEagleRenderState state) {
+        super.setupAnim(state);
+        prepare(state.pose);
+        this.head.xRot = state.xRot * ((float)Math.PI / 180F);
+        this.head.yRot = state.yRot * ((float)Math.PI / 180F);
         this.head.zRot = 0.0F;
         this.head.x = 0.0F;
         this.body.x = 0.0F;
         this.tail.x = 0.0F;
         this.rightWing.x = -1.5F;
         this.leftWing.x = 1.5F;
-        switch(state) {
-           case SITTING:
-              break;
-           case STANDING:
-              this.leftLeg.xRot += Mth.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
-              this.rightLeg.xRot += Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount;
-           case FLYING:
-           default:
-              float f2 = pAgeInTicks * 0.3F;
-              this.head.y = 15.69F + f2;
-              this.tail.xRot = 1.015F + Mth.cos(pLimbSwing * 0.6662F) * 0.3F * pLimbSwingAmount;
-              this.tail.y = 21.07F + f2;
-              this.body.y = 16.5F + f2;
-              this.leftWing.zRot = -0.0873F - pAgeInTicks;
-              this.leftWing.y = 16.94F + f2;
-              this.rightWing.zRot = 0.0873F + pAgeInTicks;
-              this.rightWing.y = 16.94F + f2;
-              this.leftLeg.y = 22.0F + f2;
-              this.rightLeg.y = 22.0F + f2;
+        switch(state.pose) {
+            case SITTING:
+                break;
+            case STANDING:
+                this.leftLeg.xRot += Mth.cos(state.walkAnimationPos * 0.6662F) * 1.4F * state.walkAnimationSpeed;
+                this.rightLeg.xRot += Mth.cos(state.walkAnimationPos * 0.6662F + (float)Math.PI) * 1.4F * state.walkAnimationSpeed;
+            case FLYING:
+            default:
+                float bobbingBody = state.flapAngle * 0.3F;
+                this.head.y = 15.69F + bobbingBody;
+                this.tail.xRot = 1.015F + Mth.cos(state.walkAnimationPos * 0.6662F) * 0.3F * state.walkAnimationSpeed;
+                this.tail.y = 21.07F + bobbingBody;
+                this.body.y = 16.5F + bobbingBody;
+                this.leftWing.zRot = -0.0873F - state.flapAngle;
+                this.leftWing.y = 16.94F + bobbingBody;
+                this.rightWing.zRot = 0.0873F + state.flapAngle;
+                this.rightWing.y = 16.94F + bobbingBody;
+                this.leftLeg.y = 22.0F + bobbingBody;
+                this.rightLeg.y = 22.0F + bobbingBody;
         }
     }
 
-    @Override
-    public void prepareMobModel(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick) {
-        prepare(getState(pEntity));
-    }
-
-    private void prepare(State state) {
+    private void prepare(Pose pose) {
         this.body.xRot = 0.4937F;
         this.leftWing.xRot = -0.6981F;
         this.leftWing.yRot = -(float)Math.PI;
@@ -149,47 +129,43 @@ public class BaldEagleModel<T extends BaldEagle> extends AgeableListModel<T> {
         this.rightLeg.y = 22.0F;
         this.leftLeg.zRot = 0.0F;
         this.rightLeg.zRot = 0.0F;
-        switch(state) {
-           case SITTING:
-              this.head.y = 17.59F;
-              this.tail.xRot = 1.5388988F;
-              this.tail.y = 22.97F;
-              this.body.y = 18.4F;
-              this.leftWing.zRot = -0.0873F;
-              this.leftWing.y = 18.84F;
-              this.rightWing.zRot = 0.0873F;
-              this.rightWing.y = 18.84F;
-              ++this.leftLeg.y;
-              ++this.rightLeg.y;
-              ++this.leftLeg.xRot;
-              ++this.rightLeg.xRot;
-              break;
-           case STANDING:
-           default:
-              break;
-           case FLYING:
-              this.leftLeg.xRot += 0.6981317F;
-              this.rightLeg.xRot += 0.6981317F;
+        switch(pose) {
+            case SITTING:
+                this.head.y = 17.59F;
+                this.tail.xRot = 1.5388988F;
+                this.tail.y = 22.97F;
+                this.body.y = 18.4F;
+                this.leftWing.zRot = -0.0873F;
+                this.leftWing.y = 18.84F;
+                this.rightWing.zRot = 0.0873F;
+                this.rightWing.y = 18.84F;
+                ++this.leftLeg.y;
+                ++this.rightLeg.y;
+                ++this.leftLeg.xRot;
+                ++this.rightLeg.xRot;
+                break;
+            case STANDING:
+            default:
+                break;
+            case FLYING:
+                this.leftLeg.xRot += 0.6981317F;
+                this.rightLeg.xRot += 0.6981317F;
         }
     }
 
-    @Override
-    public void renderToBuffer(PoseStack ps, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
-        ps.pushPose();
-        ps.translate(0F, -0.75F, 0F);
-        ps.scale(1.5F, 1.5F, 1.5F);
-        super.renderToBuffer(ps, buffer, packedLight, packedOverlay, color);
-        ps.popPose();
-    }
-
-    private State getState(T entity) {
+    public static Pose getPose(BaldEagle entity) {
         if(entity.isInSittingPose())
-            return State.SITTING;
+            return Pose.SITTING;
         else
-            return entity.isFlying() ? State.FLYING : State.STANDING;
+            return entity.isFlying() ? Pose.FLYING : Pose.STANDING;
     }
 
-    private static enum State {
+    public static enum Pose {
         FLYING, STANDING, SITTING
+    }
+
+    public static class BaldEagleRenderState extends LivingEntityRenderState {
+        public float flapAngle;
+        public Pose pose = Pose.FLYING;
     }
 }
