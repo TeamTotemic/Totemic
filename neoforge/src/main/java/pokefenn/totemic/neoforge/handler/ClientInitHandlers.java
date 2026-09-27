@@ -4,7 +4,6 @@ import com.sun.media.sound.ModelIdentifier;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,16 +12,15 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.client.ModModelLayers;
-import pokefenn.totemic.client.renderer.TotemicItemRenderer;
+import pokefenn.totemic.client.renderer.special.WindChimeSpecialRenderer;
 import pokefenn.totemic.init.ModBlocks;
-import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.neoforge.client.NeoTotemBaseModel;
 import pokefenn.totemic.neoforge.client.NeoTotemPoleModel;
 
@@ -41,14 +39,12 @@ public class ClientInitHandlers {
     }
 
     @SubscribeEvent
-    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-        event.registerItem(new IClientItemExtensions() {
-            @Override
-            public BlockEntityWithoutLevelRenderer getCustomRenderer() {
-                return TotemicItemRenderer.INSTANCE;
-            }
-        }, ModItems.wind_chime.get());
+    public static void registerSpecialModelRenderers(RegisterSpecialModelRendererEvent event) {
+        event.register(Totemic.resloc("wind_chime"), WindChimeSpecialRenderer.Unbaked.MAP_CODEC);
+    }
 
+    @SubscribeEvent
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerBlock(new IClientBlockExtensions() {
             @Override
             public boolean areBreakingParticlesTinted(BlockState state, ClientLevel level, BlockPos pos) {

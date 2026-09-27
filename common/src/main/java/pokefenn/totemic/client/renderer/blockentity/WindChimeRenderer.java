@@ -20,7 +20,7 @@ import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.client.model.blockentity.WindChimeModel;
 
 public class WindChimeRenderer implements BlockEntityRenderer<WindChimeBlockEntity, BlockEntityRenderState> {
-    private static final SpriteId TEXTURE = Sheets.BLOCK_ENTITIES_MAPPER.apply(Totemic.resloc("wind_chime"));
+    public static final SpriteId TEXTURE = Sheets.BLOCK_ENTITIES_MAPPER.apply(Totemic.resloc("wind_chime"));
     private final SpriteGetter sprites;
     private final WindChimeModel model;
 
