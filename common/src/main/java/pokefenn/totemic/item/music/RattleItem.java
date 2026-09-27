@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -22,24 +22,24 @@ public class RattleItem extends Item {
     }
 
     // Soft-overrides Neo extension method in IItemExtension
-    public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
-        if(entity instanceof Player player && !player.getCooldowns().isOnCooldown(this)) {
+    public boolean onEntitySwing(ItemStack stack, LivingEntity entity, InteractionHand hand) {
+        if(entity instanceof Player player && !player.getCooldowns().isOnCooldown(stack)) {
             if(entity.isShiftKeyDown())
                 TotemicAPI.get().music().playSelector(entity, ModContent.rattle.get());
             else
                 TotemicAPI.get().music().playMusic(entity, ModContent.rattle.get());
 
-            player.getCooldowns().addCooldown(this, 16);
+            player.getCooldowns().addCooldown(stack, 16);
             player.awardStat(Stats.ITEM_USED.get(this));
         }
         return false;
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if(!player.swinging)
             player.swing(hand, true);
-        return InteractionResultHolder.pass(player.getItemInHand(hand));
+        return InteractionResult.PASS;
     }
 
     @Override

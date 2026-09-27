@@ -2,9 +2,11 @@ package pokefenn.totemic.init;
 
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -19,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.component.UseCooldown;
 import net.minecraft.world.item.equipment.ArmorMaterial;
 import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAssets;
@@ -62,15 +65,31 @@ public final class ModItems {
     public static final FoodProperties buffalo_meat_food = new FoodProperties.Builder().nutrition(3).saturationModifier(0.35F).build();
     public static final FoodProperties cooked_buffalo_meat_food = new FoodProperties.Builder().nutrition(9).saturationModifier(0.9F).build();
 
-    public static final Supplier<FluteItem> flute = register("flute", FluteItem::new, () -> new Properties().stacksTo(1));
-    public static final Supplier<InfusedFluteItem> infused_flute = register("infused_flute", InfusedFluteItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
+    public static final Supplier<FluteItem> flute = register(
+            "flute",
+            FluteItem::new,
+            () -> new Properties().stacksTo(1).component(DataComponents.USE_COOLDOWN, new UseCooldown(1.0F, Optional.of(Totemic.resloc("flute"))))
+    );
+    public static final Supplier<InfusedFluteItem> infused_flute = register(
+            "infused_flute",
+            InfusedFluteItem::new,
+            () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON).component(DataComponents.USE_COOLDOWN, new UseCooldown(1.0F, Optional.of(Totemic.resloc("flute"))))
+    );
     public static final Supplier<JingleDressItem> jingle_dress = register(
             "jingle_dress",
             JingleDressItem::new,
             () -> new Properties().humanoidArmor(JINGLE_DRESS_MATERIAL, ArmorType.LEGGINGS).component(ModDataComponents.JINGLE_DRESS_CHARGE.get(), 0)
     );
-    public static final Supplier<RattleItem> rattle = register("rattle", RattleItem::new, () -> new Properties().stacksTo(1));
-    public static final Supplier<EagleBoneWhistleItem> eagle_bone_whistle = register("eagle_bone_whistle", EagleBoneWhistleItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
+    public static final Supplier<RattleItem> rattle = register(
+            "rattle",
+            RattleItem::new,
+            () -> new Properties().stacksTo(1).useCooldown(0.8F)
+    );
+    public static final Supplier<EagleBoneWhistleItem> eagle_bone_whistle = register(
+            "eagle_bone_whistle",
+            EagleBoneWhistleItem::new,
+            () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON).useCooldown(1.0F)
+    );
     public static final Supplier<TotemKnifeItem> totem_whittling_knife = register("totem_whittling_knife", TotemKnifeItem::new, () -> new Properties().stacksTo(1).durability(250));
     public static final Supplier<TotemicStaffItem> totemic_staff = register("totemic_staff", TotemicStaffItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
     public static final Supplier<CeremonyCheatItem> ceremony_cheat = register("ceremony_cheat", CeremonyCheatItem::new, () -> new Properties().stacksTo(1).rarity(Rarity.EPIC));

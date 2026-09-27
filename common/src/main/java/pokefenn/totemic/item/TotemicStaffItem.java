@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -24,7 +24,7 @@ public class TotemicStaffItem extends Item {
     }
 
     @Override
-    public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
-        return !(state.getBlock() instanceof TotemBaseBlock) && super.canAttackBlock(state, level, pos, player);
+    public boolean canDestroyBlock(ItemStack stack, BlockState state, Level level, BlockPos pos, LivingEntity user) {
+        return !(state.getBlock() instanceof TotemBaseBlock) && super.canDestroyBlock(stack, state, level, pos, user);
     }
 }

@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
@@ -36,7 +36,7 @@ public class InfusedFluteItem extends FluteItem {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public InteractionResult use(Level world, Player player, InteractionHand hand) {
         if(!world.isClientSide() && !player.isShiftKeyDown())
             temptEntities(world, player.position());
 

@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,15 +21,16 @@ public class EagleBoneWhistleItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+    public InteractionResult use(Level level, Player player, InteractionHand hand) {
         if(player.isShiftKeyDown())
             TotemicAPI.get().music().playSelector(player, ModContent.eagle_bone_whistle.get());
         else
             TotemicAPI.get().music().playMusic(player, ModContent.eagle_bone_whistle.get());
 
-        player.getCooldowns().addCooldown(this, 20);
+        var stack = player.getItemInHand(hand);
+        player.getCooldowns().addCooldown(stack, 20);
         player.awardStat(Stats.ITEM_USED.get(this));
-        return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
+        return InteractionResult.SUCCESS;
     }
 
     @Override
