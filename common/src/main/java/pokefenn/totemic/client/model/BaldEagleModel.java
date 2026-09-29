@@ -1,17 +1,23 @@
 package pokefenn.totemic.client.model;
 
+import java.util.Set;
+
+import net.minecraft.client.model.BabyModelTransform;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.MeshTransformer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 import pokefenn.totemic.client.model.BaldEagleModel.BaldEagleRenderState;
 import pokefenn.totemic.entity.BaldEagle;
 
 public class BaldEagleModel extends EntityModel<BaldEagleRenderState> {
+    public static final MeshTransformer BABY_TRANSFORMER = new BabyModelTransform(true, 10.0F, 1.0F, Set.of("head"));
+
     private final ModelPart head;
     private final ModelPart body;
     private final ModelPart leftLeg;
