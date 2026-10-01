@@ -11,6 +11,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
@@ -19,6 +20,7 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.client.ModModelLayers;
+import pokefenn.totemic.client.renderer.item.properties.IsMedicineBagOpen;
 import pokefenn.totemic.client.renderer.special.WindChimeSpecialRenderer;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.neoforge.client.NeoTotemBaseModel;
@@ -41,6 +43,11 @@ public class ClientInitHandlers {
     @SubscribeEvent
     public static void registerSpecialModelRenderers(RegisterSpecialModelRendererEvent event) {
         event.register(Totemic.resloc("wind_chime"), WindChimeSpecialRenderer.Unbaked.MAP_CODEC);
+    }
+
+    @SubscribeEvent
+    public static void registerConditionalItemModelProperties(RegisterConditionalItemModelPropertyEvent event) {
+        event.register(Totemic.resloc("open"), IsMedicineBagOpen.MAP_CODEC);
     }
 
     @SubscribeEvent
