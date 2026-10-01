@@ -13,7 +13,6 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.block.totem.TotemBaseBlock;
 import pokefenn.totemic.block.totem.TotemPoleBlock;
@@ -22,8 +21,8 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public class TotemicBlockStateProvider extends BlockStateProvider {
-    public TotemicBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, TotemicAPI.MOD_ID, exFileHelper);
+    public TotemicBlockStateProvider(PackOutput output) {
+        super(output, TotemicAPI.MOD_ID);
     }
 
     @Override

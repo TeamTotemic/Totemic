@@ -2,15 +2,12 @@ package pokefenn.totemic.neoforge.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.ItemTagsProvider;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicBlockTags;
@@ -18,8 +15,8 @@ import pokefenn.totemic.api.TotemicItemTags;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicItemTagsProvider extends ItemTagsProvider {
-    public TotemicItemTagsProvider(PackOutput pOutput, CompletableFuture<Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags, @Nullable ExistingFileHelper existingFileHelper) {
-        super(pOutput, pLookupProvider, pBlockTags, TotemicAPI.MOD_ID, existingFileHelper);
+    public TotemicItemTagsProvider(PackOutput pOutput, CompletableFuture<Provider> pLookupProvider, CompletableFuture<TagLookup<Block>> pBlockTags) {
+        super(pOutput, pLookupProvider, pBlockTags, TotemicAPI.MOD_ID);
     }
 
     @Override

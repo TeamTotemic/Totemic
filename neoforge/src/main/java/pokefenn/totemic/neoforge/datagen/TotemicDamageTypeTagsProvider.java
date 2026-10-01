@@ -2,19 +2,16 @@ package pokefenn.totemic.neoforge.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.DamageTypeTagsProvider;
 import net.minecraft.tags.DamageTypeTags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.init.ModResources;
 
 public final class TotemicDamageTypeTagsProvider extends DamageTypeTagsProvider {
-    public TotemicDamageTypeTagsProvider(PackOutput pOutput, CompletableFuture<Provider> pLookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(pOutput, pLookupProvider, TotemicAPI.MOD_ID, existingFileHelper);
+    public TotemicDamageTypeTagsProvider(PackOutput pOutput, CompletableFuture<Provider> pLookupProvider) {
+        super(pOutput, pLookupProvider, TotemicAPI.MOD_ID);
     }
 
     @Override

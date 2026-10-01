@@ -110,15 +110,15 @@ public final class TotemicNeoMod {
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(TotemicCapabilities.MUSIC_ACCEPTOR, ModBlockEntities.totem_base.get(),
-                (totem, context) -> totem.getTotemState());
+                (totem, _) -> totem.getTotemState());
     }
 
     private void registerPackets(RegisterPayloadHandlersEvent event) {
         final var networkVersion = "5";
         var reg = event.registrar(networkVersion);
 
-        reg.playToClient(ClientboundPacketStartupMusic.TYPE, ClientboundPacketStartupMusic.STREAM_CODEC, (payload, context) -> ClientPacketHandler.handle(payload));
-        reg.playToClient(ClientboundPacketTotemEffectMusic.TYPE, ClientboundPacketTotemEffectMusic.STREAM_CODEC, (payload, context) -> ClientPacketHandler.handle(payload));
+        reg.playToClient(ClientboundPacketStartupMusic.TYPE, ClientboundPacketStartupMusic.STREAM_CODEC, (payload, _) -> ClientPacketHandler.handle(payload));
+        reg.playToClient(ClientboundPacketTotemEffectMusic.TYPE, ClientboundPacketTotemEffectMusic.STREAM_CODEC, (payload, _) -> ClientPacketHandler.handle(payload));
 
         reg.playToServer(ServerboundPacketMouseWheel.TYPE, ServerboundPacketMouseWheel.STREAM_CODEC, (payload, context) -> ServerPacketHandler.handle(payload, context.player()));
     }
@@ -126,35 +126,34 @@ public final class TotemicNeoMod {
     /* We use Neo's data generation API to generate both the common data (with the commonData run config) and the
      * Neo-specific data (with the neoForgeData run config).
      */
-    private void gatherData(GatherDataEvent event) {
+    private void gatherData(GatherDataEvent.Client event) {
         var gen = event.getGenerator();
-        var efh = event.getExistingFileHelper();
         var out = gen.getPackOutput();
 
         var commonData = Boolean.getBoolean("totemic.commonDatagen");
         var neoData = Boolean.getBoolean("totemic.neoForgeDatagen");
 
         // Common data
-        var datapackProvider = gen.addProvider(commonData && event.includeServer(), new TotemicDatapackEntryProvider(out, event.getLookupProvider()));
+        var datapackProvider = gen.addProvider(commonData, new TotemicDatapackEntryProvider(out, event.getLookupProvider()));
         var lookup = datapackProvider.getRegistryProvider();
 
         if(commonData) {
-            var blockTP = gen.addProvider(event.includeServer(), new TotemicBlockTagsProvider(out, lookup, efh));
-            gen.addProvider(event.includeServer(), new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter(), efh));
-            gen.addProvider(event.includeServer(), new TotemicEntityTypeTagsProvider(out, lookup, efh));
-            gen.addProvider(event.includeServer(), new TotemicLootTableProvider(out, lookup));
-            gen.addProvider(event.includeServer(), new TotemicAdvancementProvider(out, lookup, efh));
-            gen.addProvider(event.includeServer(), new TotemicRecipeProvider(out, lookup));
-            gen.addProvider(event.includeServer(), new TotemicDamageTypeTagsProvider(out, lookup, efh));
-            gen.addProvider(event.includeClient(), new TotemicBlockStateProvider(out, efh));
+            var blockTP = gen.addProvider(true, new TotemicBlockTagsProvider(out, lookup));
+            gen.addProvider(true, new TotemicItemTagsProvider(out, lookup, blockTP.contentsGetter()));
+            gen.addProvider(true, new TotemicEntityTypeTagsProvider(out, lookup));
+            gen.addProvider(true, new TotemicLootTableProvider(out, lookup));
+            gen.addProvider(true, new TotemicAdvancementProvider(out, lookup));
+            gen.addProvider(true, new TotemicRecipeProvider(out, lookup));
+            gen.addProvider(true, new TotemicDamageTypeTagsProvider(out, lookup));
+            gen.addProvider(true, new TotemicBlockStateProvider(out));
         }
 
         // Neo-specific data
         if(neoData) {
-            gen.addProvider(event.includeServer(), new TotemicDataMapProvider(out, lookup));
-            gen.addProvider(event.includeServer(), new TotemicNeoRecipeProvider(out, lookup));
-            gen.addProvider(event.includeServer(), new TotemicNeoLootTableProvider(out, lookup));
-            gen.addProvider(event.includeClient(), new TotemicNeoBlockStateProvider(out, efh));
+            gen.addProvider(true, new TotemicDataMapProvider(out, lookup));
+            gen.addProvider(true, new TotemicNeoRecipeProvider(out, lookup));
+            gen.addProvider(true, new TotemicNeoLootTableProvider(out, lookup));
+            gen.addProvider(true, new TotemicNeoBlockStateProvider(out));
         }
     }
 }

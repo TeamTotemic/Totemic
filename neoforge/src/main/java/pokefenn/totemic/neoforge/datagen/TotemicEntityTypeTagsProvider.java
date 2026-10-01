@@ -2,22 +2,19 @@ package pokefenn.totemic.neoforge.datagen;
 
 import java.util.concurrent.CompletableFuture;
 
-import org.jetbrains.annotations.Nullable;
-
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.api.TotemicEntityTypeTags;
 import pokefenn.totemic.init.ModEntityTypes;
 
 public final class TotemicEntityTypeTagsProvider extends EntityTypeTagsProvider {
-    public TotemicEntityTypeTagsProvider(PackOutput pOutput, CompletableFuture<Provider> pProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(pOutput, pProvider, TotemicAPI.MOD_ID, existingFileHelper);
+    public TotemicEntityTypeTagsProvider(PackOutput pOutput, CompletableFuture<Provider> pProvider) {
+        super(pOutput, pProvider, TotemicAPI.MOD_ID);
     }
 
     @Override

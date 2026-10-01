@@ -3,15 +3,14 @@ package pokefenn.totemic.neoforge.datagen.neoforge;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.util.TransformationHelper.TransformOrigin;
 import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.neoforge.datagen.TotemicBlockStateProvider;
 
 public class TotemicNeoBlockStateProvider extends TotemicBlockStateProvider {
-    public TotemicNeoBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, exFileHelper);
+    public TotemicNeoBlockStateProvider(PackOutput output) {
+        super(output);
     }
 
     @Override
