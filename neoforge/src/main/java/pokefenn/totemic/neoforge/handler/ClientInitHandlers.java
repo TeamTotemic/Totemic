@@ -3,19 +3,13 @@ package pokefenn.totemic.neoforge.handler;
 import com.sun.media.sound.ModelIdentifier;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.block.BlockModelShaper;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
-import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
-import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.client.CeremonyHUD;
@@ -50,26 +44,8 @@ public class ClientInitHandlers {
         event.register(Totemic.resloc("open"), IsMedicineBagOpen.MAP_CODEC);
     }
 
-    @SubscribeEvent
-    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-        event.registerBlock(new IClientBlockExtensions() {
-            @Override
-            public boolean areBreakingParticlesTinted(BlockState state, ClientLevel level, BlockPos pos) {
-                return false; // Fixes Totem Pole breaking particles having the wrong color
-            }
-        }, ModBlocks.totem_pole.get());
-    }
-
-    @SubscribeEvent
-    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
-        //Directly use the tint index as color
-        event.register((state, tintGetter, pos, tintIndex) -> tintIndex, ModBlocks.totem_pole.get());
-    }
-
-    @SubscribeEvent
-    public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, tintIndex) -> tintIndex, ModBlocks.totem_pole.get());
-    }
+    // TODO: Find a way to handle the eye tinting for the Totem Poles.
+    // We can't really use the previous way as now the tint index is an index into a list, so we would need to have a BlockTintSource object for every possible ARGB value
 
     @SubscribeEvent
     public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
