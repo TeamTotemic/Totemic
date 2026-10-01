@@ -1,18 +1,9 @@
 package pokefenn.totemic.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.BufferUploader;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.VertexFormat;
-
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
@@ -65,9 +56,7 @@ public enum CeremonyHUD {
         final int hudY = (guiGraphics.guiHeight() - HUD_HEIGHT) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionY.get();
 
         var poseStack = guiGraphics.pose();
-        poseStack.pushPose();
-        poseStack.translate(hudX, hudY, 0);
-        RenderSystem.enableBlend();
+        poseStack.translate(hudX, hudY);
 
         var state = activeTotem.getTotemState();
         if(state instanceof StateSelection s)
@@ -77,9 +66,6 @@ public enum CeremonyHUD {
         else if(state instanceof StateCeremonyEffect s)
             renderCeremonyEffectHUD(s, guiGraphics, deltaTracker);
 
-        RenderSystem.disableBlend();
-        poseStack.popPose();
-
         Profiler.get().pop();
     }
 
@@ -87,52 +73,46 @@ public enum CeremonyHUD {
         final int texW = 128, texH = 64;
 
         //Background
-        guiGraphics.blit(SELECTION_HUD_TEXTURE, 0, 0,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, SELECTION_HUD_TEXTURE, 0, 0,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
 
         var font = Minecraft.getInstance().font;
         int headerX = (HUD_WIDTH - font.width(SELECTION_TEXT)) / 2;
-        guiGraphics.drawString(font, SELECTION_TEXT, headerX, 2, 0xC8000000, false);
+        guiGraphics.text(font, SELECTION_TEXT, headerX, 2, 0xC8000000, false);
 
         //Instruments
         var selectors = state.getSelectors();
         //Assuming that we have at most 1 selector to render
         if(!selectors.isEmpty()) {
             var item = selectors.get(0).getItem();
-            guiGraphics.renderItem(item, 40, 12);
+            guiGraphics.fakeItem(item, 40, 12);
         }
     }
 
-    private void renderStartupHUD(StateStartup state, GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    private void renderStartupHUD(StateStartup state, GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
         final int texW = 128, texH = 64;
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
 
-        RenderSystem.setShaderTexture(0, CEREMONY_HUD_TEXTURE);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        var buf = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        var poseStack = guiGraphics.pose();
-
         //Background
-        addQuad(buf, poseStack, 0, 0,  HUD_WIDTH, HUD_HEIGHT,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CEREMONY_HUD_TEXTURE, 0, 0,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
 
         //Symbols
-        addQuad(buf, poseStack, 1, 10,  9, 9,  16, 48,   8,  8, texW, texH); //Note
-        addQuad(buf, poseStack, 1, 20,  9, 9,   0, 48,  16, 16, texW, texH); //Clock
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CEREMONY_HUD_TEXTURE, 1, 10,  16, 48,  9, 9,   8,  8,  texW, texH); //Note
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CEREMONY_HUD_TEXTURE, 1, 20,   0, 48,  9, 9,  16, 16,  texW, texH); //Clock
 
         //Bars
-        float musicW = state.getTotalMusic() / (float)cer.getMusicNeeded() * barW;
+        // TODO: Add an alternative to BlitRenderState that supports float values for width and height
+        int musicW = Math.round(state.getTotalMusic() / (float)cer.getMusicNeeded() * barW);
         float partialTick = deltaTracker.getGameTimeDeltaPartialTick(true);
-        float timeW = Math.min((state.getTime() + partialTick) / cer.getAdjustedMaxStartupTime(Minecraft.getInstance().level.getDifficulty()), 1.0F) * barW;
-        addQuad(buf, poseStack, 11, 11,  musicW, barH,  0, 32,  musicW, barH, texW, texH);
-        addQuad(buf, poseStack, 11, 21,  timeW,  barH,  0, 32,  timeW,  barH, texW, texH);
-
-        BufferUploader.drawWithShader(buf.buildOrThrow());
+        int timeW = Math.round(Math.min((state.getTime() + partialTick) / cer.getAdjustedMaxStartupTime(Minecraft.getInstance().level.getDifficulty()), 1.0F) * barW);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CEREMONY_HUD_TEXTURE, 11, 11,  0, 32,  musicW, barH,  musicW, barH,  texW, texH);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CEREMONY_HUD_TEXTURE, 11, 21,  0, 32,  timeW,  barH,  timeW,  barH,  texW, texH);
 
         //Ceremony name
         var name = cer.getDisplayName();
         var font = Minecraft.getInstance().font;
         int nameX = (HUD_WIDTH - font.width(name)) / 2;
-        guiGraphics.drawString(font, name, nameX, 2, 0xC8000000, false);
+        guiGraphics.text(font, name, nameX, 2, 0xC8000000, false);
     }
 
     private void renderCeremonyEffectHUD(StateCeremonyEffect state, GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
@@ -140,39 +120,21 @@ public enum CeremonyHUD {
         final int barW = 104, barH = 7;
         var cer = state.getCeremony();
 
-        RenderSystem.setShaderTexture(0, CEREMONY_HUD_TEXTURE);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        var buf = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        var poseStack = guiGraphics.pose();
-
         //Background
-        addQuad(buf, poseStack, 0, 0,  HUD_WIDTH, HUD_HEIGHT,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CEREMONY_HUD_TEXTURE, 0, 0,  0, 0,  HUD_WIDTH, HUD_HEIGHT,  texW, texH);
 
-        //Clock symbols
-        addQuad(buf, poseStack, 1, 20,  9, 9,   0, 48,  16, 16, texW, texH);
+        //Clock symbol
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CEREMONY_HUD_TEXTURE, 1, 20,   0, 48,  9, 9,  16, 16,  texW, texH);
 
         //Time bar
         float partialTick = deltaTracker.getGameTimeDeltaPartialTick(true);
-        float timeW = Mth.clamp(1.0F - (state.getTime() + partialTick) / state.getEffectTime(), 0.0F, 1.0F) * barW;
-        addQuad(buf, poseStack, 11, 21,  timeW,  barH,  0, 32,  timeW,  barH, texW, texH);
-
-        BufferUploader.drawWithShader(buf.buildOrThrow());
+        int timeW = Math.round(Mth.clamp(1.0F - (state.getTime() + partialTick) / state.getEffectTime(), 0.0F, 1.0F) * barW);
+        guiGraphics.blit(RenderPipelines.GUI_TEXTURED, CEREMONY_HUD_TEXTURE, 11, 21,  0, 32,  timeW,  barH,  timeW,  barH,  texW, texH);
 
         //Ceremony name
         var name = cer.getDisplayName();
         var font = Minecraft.getInstance().font;
         int nameX = (HUD_WIDTH - font.width(name)) / 2;
-        guiGraphics.drawString(font, name, nameX, 2, 0xC8000000, false);
-    }
-
-    //Like GuiGraphics.blit, but using the given BufferBuilder and allowing float values rather than int
-    private static void addQuad(BufferBuilder buf, PoseStack ps, float x, float y, float width, float height, float uOffset, float vOffset, float uWidth, float vHeight, int textureWidth, int textureHeight) {
-        var mat = ps.last().pose();
-        float minU = uOffset / textureWidth,  maxU = (uOffset + uWidth) / textureWidth;
-        float minV = vOffset / textureHeight, maxV = (vOffset + vHeight) / textureHeight;
-        buf.addVertex(mat, x,         y + height, 0).setUv(minU, maxV);
-        buf.addVertex(mat, x + width, y + height, 0).setUv(maxU, maxV);
-        buf.addVertex(mat, x + width, y,          0).setUv(maxU, minV);
-        buf.addVertex(mat, x,         y,          0).setUv(minU, minV);
+        guiGraphics.text(font, name, nameX, 2, 0xC8000000, false);
     }
 }
