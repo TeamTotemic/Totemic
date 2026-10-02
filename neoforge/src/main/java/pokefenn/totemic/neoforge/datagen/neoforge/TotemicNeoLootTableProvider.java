@@ -12,8 +12,6 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.neoforged.neoforge.common.ItemAbilities;
-import net.neoforged.neoforge.common.loot.CanItemPerformAbility;
 import pokefenn.totemic.init.ModBlocks;
 
 public class TotemicNeoLootTableProvider extends LootTableProvider {
@@ -30,8 +28,8 @@ public class TotemicNeoLootTableProvider extends LootTableProvider {
 
         @Override
         protected void generate() {
-            // Replace "minecraft:match_tool" condition with "neoforge:can_item_perform_ability" for Cedar Leaves
-            HAS_SHEARS = CanItemPerformAbility.canItemPerformAbility(ItemAbilities.SHEARS_DIG);
+            // FIXME: Replace "minecraft:match_tool" condition with "neoforge:can_item_perform_ability" for Cedar Leaves
+            // HAS_SHEARS = CanItemPerformAbility.canItemPerformAbility(ItemAbilities.SHEARS_DIG);
 
             add(ModBlocks.cedar_leaves.get(), b -> createLeavesDrops(b, ModBlocks.cedar_sapling.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         }

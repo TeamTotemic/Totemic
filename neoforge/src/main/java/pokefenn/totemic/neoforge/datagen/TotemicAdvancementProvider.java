@@ -28,7 +28,7 @@ public class TotemicAdvancementProvider extends AdvancementProvider {
                 .requirements(Strategy.OR)
                 .addCriterion("performed_fertility", TotemicRecipeProvider.performed(ModContent.fertility.get()))
                 .addCriterion("has_wind_chime", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.wind_chime.get()))
-                .addCriterion("has_wind_chime_recipe", RecipeUnlockedTrigger.unlocked(RecipeBuilder.getDefaultRecipeId(ModItems.wind_chime.get())))
+                .addCriterion("has_wind_chime_recipe", RecipeUnlockedTrigger.unlocked(RecipeBuilder.getDefaultRecipeId(ModItems.wind_chime.get().getDefaultInstance())))
                 .addCriterion("has_rattle", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.rattle.get()))
                 .addCriterion("has_eagle_bone_whistle", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.eagle_bone_whistle.get()))
                 .save(saver, Totemic.resloc("totempedia/wind_chime_unlocked"));
@@ -38,7 +38,7 @@ public class TotemicAdvancementProvider extends AdvancementProvider {
                 .requirements(Strategy.OR)
                 .addCriterion("performed_buffalo_dance", TotemicRecipeProvider.performed(ModContent.buffalo_dance.get()))
                 .addCriterion("has_rattle", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.rattle.get()))
-                .addCriterion("has_rattle_recipe", RecipeUnlockedTrigger.unlocked(RecipeBuilder.getDefaultRecipeId(ModItems.rattle.get())))
+                .addCriterion("has_rattle_recipe", RecipeUnlockedTrigger.unlocked(RecipeBuilder.getDefaultRecipeId(ModItems.rattle.get().getDefaultInstance())))
                 .addCriterion("has_eagle_bone_whistle", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.eagle_bone_whistle.get()))
                 .save(saver, Totemic.resloc("totempedia/rattle_unlocked"));
 
@@ -47,7 +47,7 @@ public class TotemicAdvancementProvider extends AdvancementProvider {
                 .requirements(Strategy.OR)
                 .addCriterion("performed_eagle_dance", TotemicRecipeProvider.performed(ModContent.eagle_dance.get()))
                 .addCriterion("has_eagle_bone_whistle", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.eagle_bone_whistle.get()))
-                .addCriterion("has_eagle_bone_whistle_recipe", RecipeUnlockedTrigger.unlocked(RecipeBuilder.getDefaultRecipeId(ModItems.eagle_bone_whistle.get())))
+                .addCriterion("has_eagle_bone_whistle_recipe", RecipeUnlockedTrigger.unlocked(RecipeBuilder.getDefaultRecipeId(ModItems.eagle_bone_whistle.get().getDefaultInstance())))
                 .save(saver, Totemic.resloc("totempedia/eagle_bone_whistle_unlocked"));
     }
 }

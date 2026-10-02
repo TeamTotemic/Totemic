@@ -143,7 +143,7 @@ public final class TotemicNeoMod {
             gen.addProvider(true, new TotemicEntityTypeTagsProvider(out, lookup));
             gen.addProvider(true, new TotemicLootTableProvider(out, lookup));
             gen.addProvider(true, new TotemicAdvancementProvider(out, lookup));
-            gen.addProvider(true, new TotemicRecipeProvider(out, lookup));
+            gen.addProvider(true, new TotemicRecipeProvider.Runner(out, lookup));
             gen.addProvider(true, new TotemicDamageTypeTagsProvider(out, lookup));
             gen.addProvider(true, new TotemicBlockStateProvider(out));
         }
@@ -151,7 +151,7 @@ public final class TotemicNeoMod {
         // Neo-specific data
         if(neoData) {
             gen.addProvider(true, new TotemicDataMapProvider(out, lookup));
-            gen.addProvider(true, new TotemicNeoRecipeProvider(out, lookup));
+            gen.addProvider(true, new TotemicNeoRecipeProvider.Runner(out, lookup));
             gen.addProvider(true, new TotemicNeoLootTableProvider(out, lookup));
             gen.addProvider(true, new TotemicNeoBlockStateProvider(out));
         }
