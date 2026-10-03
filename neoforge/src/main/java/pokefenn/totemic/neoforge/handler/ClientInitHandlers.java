@@ -1,9 +1,5 @@
 package pokefenn.totemic.neoforge.handler;
 
-import com.sun.media.sound.ModelIdentifier;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.ModelEvent;
@@ -16,7 +12,6 @@ import pokefenn.totemic.client.CeremonyHUD;
 import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.client.renderer.item.properties.IsMedicineBagOpen;
 import pokefenn.totemic.client.renderer.special.WindChimeSpecialRenderer;
-import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.neoforge.client.NeoTotemBaseModel;
 import pokefenn.totemic.neoforge.client.NeoTotemPoleModel;
 
@@ -53,27 +48,7 @@ public class ClientInitHandlers {
         event.register(Totemic.resloc("totem_base"), NeoTotemBaseModel.Loader.INSTANCE);
     }
 
-    private static final ModelIdentifier OPAQUE_CEDAR_LEAVES = ModelIdentifier.standalone(Totemic.resloc("block/cedar_leaves_opaque"));
-
-    @SubscribeEvent
-    public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
-        if(!Minecraft.useFancyGraphics()) {
-            event.register(OPAQUE_CEDAR_LEAVES);
-        }
-    }
-
-    @SubscribeEvent
-    public static void onBakingComplete(ModelEvent.ModifyBakingResult event) {
-        if(!Minecraft.useFancyGraphics()) {
-            //Replace all the occurrences of the cedar leaves model with opaque ones.
-            //Not a perfect solution, since the resources are not reloaded on changing the graphics settings.
-            var opaqueLeaves = event.getModels().get(OPAQUE_CEDAR_LEAVES);
-            if(opaqueLeaves != null)
-                for(var state: ModBlocks.cedar_leaves.get().getStateDefinition().getPossibleStates()) {
-                    event.getModels().put(BlockModelShaper.stateToModelLocation(state), opaqueLeaves);
-                }
-        }
-    }
+    // TODO: Handle opaque cedar leaves
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
