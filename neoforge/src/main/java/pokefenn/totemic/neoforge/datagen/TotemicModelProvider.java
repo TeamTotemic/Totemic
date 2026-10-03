@@ -3,23 +3,19 @@ package pokefenn.totemic.neoforge.datagen;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
-import net.minecraft.client.resources.model.UnbakedModel.GuiLight;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.client.data.models.model.ItemModelUtils;
+import net.minecraft.client.data.models.model.ModelTemplates;
+import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
-import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.minecraft.world.level.block.Blocks;
 import pokefenn.totemic.api.TotemicAPI;
-import pokefenn.totemic.block.totem.TotemBaseBlock;
-import pokefenn.totemic.block.totem.TotemPoleBlock;
+import pokefenn.totemic.client.renderer.item.properties.IsMedicineBagOpen;
+import pokefenn.totemic.client.renderer.special.WindChimeSpecialRenderer;
 import pokefenn.totemic.init.ModBlocks;
-import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public class TotemicModelProvider extends ModelProvider {
@@ -30,203 +26,88 @@ public class TotemicModelProvider extends ModelProvider {
     @Override
     protected void registerModels(BlockModelGenerators bm, ItemModelGenerators im) {
         //Blocks
-        logBlock(ModBlocks.cedar_log.get());
-        logBlock(ModBlocks.stripped_cedar_log.get());
-        axisBlock(ModBlocks.cedar_wood.get(), blockTexture(ModBlocks.cedar_log.get()), blockTexture(ModBlocks.cedar_log.get()));
-        axisBlock(ModBlocks.stripped_cedar_wood.get(), blockTexture(ModBlocks.stripped_cedar_log.get()), blockTexture(ModBlocks.stripped_cedar_log.get()));
-        simpleBlock(ModBlocks.cedar_leaves.get(), models().withExistingParent("totemic:cedar_leaves", "block/leaves").texture("all", "totemic:block/cedar_leaves"));
-        models().withExistingParent("totemic:cedar_leaves_opaque", "block/leaves").texture("all", "totemic:block/cedar_leaves_opaque");
-        simpleBlock(ModBlocks.cedar_sapling.get(), models().withExistingParent(key(ModBlocks.cedar_sapling.get()).toString(), "block/cross").texture("cross", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
-        simpleBlock(ModBlocks.drum.get(), models().getExistingFile(modLoc("drum")));
-        simpleBlock(ModBlocks.wind_chime.get(), blockEntityRenderer(ModBlocks.wind_chime.get(), mcLoc("block/white_terracotta"))
-                .transforms()
-                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
-                    .rotation(75, 45, 0)
-                    .translation(0, 1.25F, 0)
-                    .scale(0.375F)
-                    .end()
-                .transform(ItemDisplayContext.GUI)
-                    .rotation(30, 225, 0)
-                    .translation(0, 0, 0)
-                    .scale(0.875F)
-                    .end()
-                .end());
-        simpleBlock(ModBlocks.cedar_planks.get());
-        var cedarPlankTex = blockTexture(ModBlocks.cedar_planks.get());
-        buttonBlock(ModBlocks.cedar_button.get(), cedarPlankTex);
-        fenceBlock(ModBlocks.cedar_fence.get(), cedarPlankTex);
-        fenceGateBlock(ModBlocks.cedar_fence_gate.get(), cedarPlankTex);
-        pressurePlateBlock(ModBlocks.cedar_pressure_plate.get(), cedarPlankTex);
-        signBlock(ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get(), cedarPlankTex);
-        hangingSignBlock(ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get(), blockTexture(ModBlocks.stripped_cedar_log.get()));
-        slabBlock(ModBlocks.cedar_slab.get(), key(ModBlocks.cedar_planks.get()), cedarPlankTex);
-        stairsBlock(ModBlocks.cedar_stairs.get(), cedarPlankTex);
-        doorBlock(ModBlocks.cedar_door.get(), modLoc("block/cedar_door_bottom"), modLoc("block/cedar_door_top"));
-        trapdoorBlock(ModBlocks.cedar_trapdoor.get(), modLoc("block/cedar_trapdoor"), true);
-        simpleBlock(ModBlocks.potted_cedar_sapling.get(), models().singleTexture(key(ModBlocks.potted_cedar_sapling.get()).toString(), mcLoc("block/flower_pot_cross"), "plant", blockTexture(ModBlocks.cedar_sapling.get())).renderType("cutout"));
-        simpleBlock(ModBlocks.totem_torch.get(), models().getExistingFile(modLoc("totem_torch")));
-        simpleBlock(ModBlocks.dummy_tipi.get(), models().getBuilder(key(ModBlocks.dummy_tipi.get()).toString()).texture("particle", mcLoc("block/white_wool")));
+        bm.woodProvider(ModBlocks.cedar_log.get())
+            .logWithHorizontal(ModBlocks.cedar_log.get())
+            .wood(ModBlocks.cedar_wood.get());
+        bm.woodProvider(ModBlocks.stripped_cedar_log.get())
+            .logWithHorizontal(ModBlocks.stripped_cedar_log.get())
+            .wood(ModBlocks.stripped_cedar_wood.get());
+        bm.createTrivialBlock(ModBlocks.cedar_leaves.get(), TexturedModel.LEAVES);
+        TexturedModel.LEAVES.createWithSuffix(ModBlocks.cedar_leaves.get(), "_opaque", bm.modelOutput);
+        bm.createPlantWithDefaultItem(ModBlocks.cedar_sapling.get(), ModBlocks.potted_cedar_sapling.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        bm.createNonTemplateModelBlock(ModBlocks.drum.get());
+        createWindChime(bm);
+        bm.family(ModBlocks.cedar_planks.get()).generateFor(TotemicRecipeProvider.CEDAR_FAMILY);
+        bm.createHangingSign(ModBlocks.stripped_cedar_log.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get());
+        bm.createNonTemplateModelBlock(ModBlocks.totem_torch.get()); // TODO: Transformations for Totem Torch item model
+        bm.createAirLikeBlock(ModBlocks.dummy_tipi.get(), TextureMapping.getBlockTexture(Blocks.WHITE_WOOL));
         // dynamic_totem_pole and dynamic_totem_base are in the neoforge resources. AFAIK, Fabric allows hooking into model loading without requiring a model JSON to be present.
-        horizontalBlockIgnoringProperties(ModBlocks.totem_pole.get(), new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_pole")), TotemPoleBlock.WATERLOGGED);
-        horizontalBlockIgnoringProperties(ModBlocks.totem_base.get(), new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_base")), TotemBaseBlock.WATERLOGGED);
-        totemWoodTypes();
+        bm.createNonTemplateHorizontalBlock(ModBlocks.totem_pole.get());
+        bm.createNonTemplateHorizontalBlock(ModBlocks.totem_base.get());
+        // createTotemWoodTypes(bm); TODO: Totem wood type models
 
         //Items
-        var im = itemModels();
-        im.basicItem(ModItems.flute.get());
-        im.basicItem(ModItems.infused_flute.get());
-        im.basicItem(ModItems.jingle_dress.get());
-        basicItemWithParent(ModItems.rattle.get(), mcLoc("item/handheld"));
-        im.basicItem(ModItems.eagle_bone_whistle.get());
-        basicItemWithParent(ModItems.totem_whittling_knife.get(), mcLoc("item/handheld"));
-        basicItemWithParent(ModItems.totemic_staff.get(), mcLoc("item/handheld"));
-        basicItemWithParent(ModItems.ceremony_cheat.get(), mcLoc("item/handheld"));
-        im.spawnEggItem(ModItems.buffalo_spawn_egg.get());
-        im.spawnEggItem(ModItems.bald_eagle_spawn_egg.get());
-        im.spawnEggItem(ModItems.baykok_spawn_egg.get());
-        im.basicItem(ModItems.buffalo_meat.get());
-        im.basicItem(ModItems.cooked_buffalo_meat.get());
-        im.basicItem(ModItems.buffalo_tooth.get());
-        im.basicItem(ModItems.buffalo_hide.get());
-        im.basicItem(ModItems.iron_bells.get());
-        im.basicItem(ModItems.eagle_bone.get());
-        im.basicItem(ModItems.eagle_feather.get());
-        var baykokBow = im.withExistingParent(key(ModItems.baykok_bow.get()).toString(), "item/bow").texture("layer0", modLoc("item/baykok_bow"));
-        baykokBow.override().predicate(mcLoc("pulling"), 1).model(im.basicItem(modLoc("baykok_bow_pulling_0")).parent(baykokBow)).end();
-        baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.65F).model(im.basicItem(modLoc("baykok_bow_pulling_1")).parent(baykokBow)).end();
-        baykokBow.override().predicate(mcLoc("pulling"), 1).predicate(mcLoc("pull"), 0.9F).model(im.basicItem(modLoc("baykok_bow_pulling_2")).parent(baykokBow)).end();
-        im.basicItem(modLoc("totempedia"));
-        var medBagOpen = im.basicItem(modLoc("medicine_bag_open"));
-        var medBag = im.basicItem(ModItems.medicine_bag.get()).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
-        im.getBuilder(key(ModItems.creative_medicine_bag.get()).toString()).parent(medBag).override().predicate(modLoc("open"), 1).model(medBagOpen).end();
-
-        //Block items
-        im.simpleBlockItem(ModBlocks.stripped_cedar_log.get());
-        im.simpleBlockItem(ModBlocks.cedar_log.get());
-        im.simpleBlockItem(ModBlocks.stripped_cedar_wood.get());
-        im.simpleBlockItem(ModBlocks.cedar_wood.get());
-        im.simpleBlockItem(ModBlocks.cedar_leaves.get());
-        im.singleTexture(key(ModBlocks.cedar_sapling.get()).toString(), mcLoc("item/generated"), "layer0", blockTexture(ModBlocks.cedar_sapling.get()));
-        im.simpleBlockItem(ModBlocks.cedar_planks.get());
-        im.singleTexture(key(ModBlocks.cedar_button.get()).toString(), mcLoc("block/button_inventory"), "texture", cedarPlankTex);
-        im.singleTexture(key(ModBlocks.cedar_fence.get()).toString(), mcLoc("block/fence_inventory"), "texture", cedarPlankTex);
-        im.simpleBlockItem(ModBlocks.cedar_fence_gate.get());
-        im.simpleBlockItem(ModBlocks.cedar_pressure_plate.get());
-        im.basicItem(key(ModBlocks.cedar_sign.get()));
-        im.basicItem(key(ModBlocks.cedar_hanging_sign.get()));
-        im.simpleBlockItem(ModBlocks.cedar_slab.get());
-        im.simpleBlockItem(ModBlocks.cedar_stairs.get());
-        im.basicItem(key(ModBlocks.cedar_door.get()));
-        im.withExistingParent(key(ModBlocks.cedar_trapdoor.get()).toString(), modLoc("block/cedar_trapdoor_bottom"));
-        im.simpleBlockItem(ModBlocks.drum.get());
-        im.simpleBlockItem(ModBlocks.wind_chime.get());
-        im.withExistingParent(key(ModBlocks.totem_torch.get()).toString(), modLoc("block/totem_torch"))
-                .transforms()
-                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
-                    .rotation(0, 45, 0)
-                    .translation(0, 1.5F, 1.0F)
-                    .scale(0.25F)
-                    .end()
-                .transform(ItemDisplayContext.GUI)
-                    .rotation(30, 225, 0)
-                    .translation(0, -1.0F, 0)
-                    .scale(0.625F)
-                    .end()
-                .transform(ItemDisplayContext.FIXED)
-                    .translation(0, 0, 0.25F)
-                    .scale(0.5F)
-                    .end()
-                .end();
-        // see above at the corresponding block states
-        im.getBuilder(key(ModBlocks.totem_base.get()).toString()).parent(new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_base")));
-        im.getBuilder(key(ModBlocks.totem_pole.get()).toString()).parent(new ModelFile.UncheckedModelFile(modLoc("block/dynamic_totem_pole")));
+        im.generateFlatItem(ModItems.flute.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.infused_flute.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.jingle_dress.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.rattle.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        im.generateFlatItem(ModItems.eagle_bone_whistle.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.totem_whittling_knife.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        im.generateFlatItem(ModItems.totemic_staff.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        im.generateFlatItem(ModItems.ceremony_cheat.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
+        // im.spawnEggItem(ModItems.buffalo_spawn_egg.get());
+        // im.spawnEggItem(ModItems.bald_eagle_spawn_egg.get()); TODO: Spawn eggs
+        // im.spawnEggItem(ModItems.baykok_spawn_egg.get());
+        im.generateFlatItem(ModItems.buffalo_meat.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.cooked_buffalo_meat.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.buffalo_tooth.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.buffalo_hide.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.iron_bells.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.eagle_bone.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.eagle_feather.get(), ModelTemplates.FLAT_ITEM);
+        im.generateBow(ModItems.baykok_bow.get());
+        ModelTemplates.FLAT_ITEM.create(modLocation("totempedia"), TextureMapping.layer0(new Material(modLocation("item/totempedia"))), im.modelOutput);
+        createMedicineBag(im);
     }
 
-    private void totemWoodTypes() {
-        //Generate Totem Base and Totem Pole model files for each wood type
-        ModContent.WOOD_TYPES.getEntries().forEach(woodType -> {
-            var woodTypeId = woodType.getRegistryName();
-            var namespace = woodTypeId.getPath().equals("cedar") ? "totemic" : "minecraft";
-
-            var poleModel = models().getBuilder(woodTypeId.toString() + "_totem_pole"); //the pole model has no parent, it only specifies the textures and is being loaded in NeoTotemPoleModel.resolveParents.
-            var baseModel = models().withExistingParent(woodTypeId.toString() + "_totem_base", modLoc("totem_base"));
-            setTotemTextures(poleModel, namespace, woodTypeId.getPath());
-            setTotemTextures(baseModel, namespace, woodTypeId.getPath());
-        });
+    private void createWindChime(BlockModelGenerators bm) {
+        bm.createParticleOnlyBlock(ModBlocks.wind_chime.get(), Blocks.WHITE_TERRACOTTA);
+        var template = ModelTemplates.createItem("template_wind_chime", TextureSlot.PARTICLE)
+                .extend()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND, builder -> builder.rotation(75, 45, 0).translation(0, 1.25F, 0).scale(0.375F))
+                .transform(ItemDisplayContext.GUI, builder -> builder.rotation(30, 225, 0).translation(0, 0, 0).scale(0.875F))
+                .build();
+        var itemModelBase = template.create(ModItems.wind_chime.get(), TextureMapping.particle(Blocks.WHITE_TERRACOTTA), bm.modelOutput);
+        var itemModel = ItemModelUtils.specialModel(itemModelBase, new WindChimeSpecialRenderer.Unbaked());
+        bm.itemModelOutput.accept(ModItems.wind_chime.get(), itemModel);
     }
 
-    private BlockModelBuilder setTotemTextures(BlockModelBuilder model, String namespace, String woodType) {
-        return model
-                .texture("wood", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"))
-                .texture("bark", Identifier.fromNamespaceAndPath(namespace, "block/" + woodType + "_log"))
-                .texture("top", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log_top"))
-                .texture("particle", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"));
-    }
+//    private void createTotemWoodTypes(BlockModelGenerators bm) {
+//        //Generate Totem Base and Totem Pole model files for each wood type
+//        ModContent.WOOD_TYPES.getEntries().forEach(woodType -> {
+//            var woodTypeId = woodType.getRegistryName();
+//            var namespace = woodTypeId.getPath().equals("cedar") ? "totemic" : "minecraft";
+//
+//            var poleModel = models().getBuilder(woodTypeId.toString() + "_totem_pole"); //the pole model has no parent, it only specifies the textures
+//            var baseModel = models().withExistingParent(woodTypeId.toString() + "_totem_base", modLoc("totem_base"));
+//            setTotemTextures(poleModel, namespace, woodTypeId.getPath());
+//            setTotemTextures(baseModel, namespace, woodTypeId.getPath());
+//        });
+//    }
+//
+//    private BlockModelBuilder setTotemTextures(BlockModelBuilder model, String namespace, String woodType) {
+//        return model
+//                .texture("wood", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"))
+//                .texture("bark", Identifier.fromNamespaceAndPath(namespace, "block/" + woodType + "_log"))
+//                .texture("top", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log_top"))
+//                .texture("particle", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"));
+//    }
 
-    // Why is this not accessible in Neo?
-    protected Identifier key(Block block) {
-        return BuiltInRegistries.BLOCK.getKey(block);
-    }
-
-    protected Identifier key(Item item) {
-        return BuiltInRegistries.ITEM.getKey(item);
-    }
-
-    protected void horizontalBlockIgnoringProperties(Block block, ModelFile model, Property<?>... ignored) {
-        horizontalBlockIgnoringProperties(block, model, 180, ignored);
-    }
-
-    protected void horizontalBlockIgnoringProperties(Block block, ModelFile model, int angleOffset, Property<?>... ignored) {
-        getVariantBuilder(block)
-            .forAllStatesExcept(state -> ConfiguredModel.builder()
-                    .modelFile(model)
-                    .rotationY(((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) % 360)
-                    .build(),
-            ignored);
-    }
-
-    protected void basicItemWithParent(Item item, Identifier parent) {
-        var id = key(item);
-        itemModels().withExistingParent(id.toString(), parent)
-                .texture("layer0", id.withPath("item/" + id.getPath()));
-    }
-
-    protected BlockModelBuilder blockEntityRenderer(Block block, Identifier particleTexture) {
-        return models().getBuilder(key(block).toString())
-                .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
-                .texture("particle", particleTexture)
-                .guiLight(GuiLight.SIDE)
-                .transforms() //Values copied from models/block/block.json, as we cannot use block/block as the parent
-                .transform(ItemDisplayContext.GUI)
-                    .rotation(30, 225, 0)
-                    .translation(0, 0, 0)
-                    .scale(0.625F)
-                    .end()
-                .transform(ItemDisplayContext.GROUND)
-                    .rotation(0, 0, 0)
-                    .translation(0, 3, 0)
-                    .scale(0.25F)
-                    .end()
-                .transform(ItemDisplayContext.FIXED)
-                    .rotation(0, 0, 0)
-                    .translation(0, 0, 0)
-                    .scale(0.5F)
-                    .end()
-                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
-                    .rotation(75, 45, 0)
-                    .translation(0, 2.5F, 0)
-                    .scale(0.375F)
-                    .end()
-                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
-                    .rotation(0, 45, 0)
-                    .translation(0, 0, 0)
-                    .scale(0.4F)
-                    .end()
-                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
-                    .rotation(0, 225, 0)
-                    .translation(0, 0, 0)
-                    .scale(0.4F)
-                    .end()
-                .end();
+    private void createMedicineBag(ItemModelGenerators im) {
+        var medBagModel = ItemModelUtils.plainModel(im.createFlatItemModel(ModItems.medicine_bag.get(), ModelTemplates.FLAT_ITEM));
+        var openMedBagModel = ItemModelUtils.plainModel(im.createFlatItemModel(ModItems.medicine_bag.get(), "_open", ModelTemplates.FLAT_ITEM));
+        im.itemModelOutput.accept(ModItems.medicine_bag.get(),
+                ItemModelUtils.conditional(new IsMedicineBagOpen(), openMedBagModel, medBagModel));
+        im.itemModelOutput.copy(ModItems.medicine_bag.get(), ModItems.creative_medicine_bag.get());
     }
 }

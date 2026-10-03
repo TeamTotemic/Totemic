@@ -29,6 +29,20 @@ import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public final class TotemicRecipeProvider extends RecipeProvider {
+    public static final BlockFamily CEDAR_FAMILY = new BlockFamily.Builder(ModBlocks.cedar_planks.get())
+            .button(ModBlocks.cedar_button.get())
+            .fence(ModBlocks.cedar_fence.get())
+            .fenceGate(ModBlocks.cedar_fence_gate.get())
+            .pressurePlate(ModBlocks.cedar_pressure_plate.get())
+            .sign(ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get())
+            .slab(ModBlocks.cedar_slab.get())
+            .stairs(ModBlocks.cedar_stairs.get())
+            .door(ModBlocks.cedar_door.get())
+            .trapdoor(ModBlocks.cedar_trapdoor.get())
+            .recipeGroupPrefix("totemic:wooden")
+            .recipeUnlockedBy("has_planks")
+            .getFamily();
+
     public TotemicRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
         super(registries, output);
     }
@@ -167,7 +181,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_buffalo_hide", has(ModItems.buffalo_hide.get()))
                 .save(output, "totemic:tipi_from_hide");
 
-        generateRecipes(createCedarBlockFamily(), FeatureFlags.DEFAULT_FLAGS);
+        generateRecipes(CEDAR_FAMILY, FeatureFlags.DEFAULT_FLAGS);
 
         hangingSign(ModItems.cedar_hanging_sign.get(), ModBlocks.stripped_cedar_log.get());
         woodFromLogs(ModBlocks.cedar_wood.get(), ModBlocks.cedar_log.get());
@@ -176,22 +190,6 @@ public final class TotemicRecipeProvider extends RecipeProvider {
         simpleCookingRecipe("smelting", SmeltingRecipe::new, 200, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe("smoking", SmokingRecipe::new, 100, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
         simpleCookingRecipe("campfire_cooking", CampfireCookingRecipe::new, 600, ModItems.buffalo_meat.get(), ModItems.cooked_buffalo_meat.get(), 0.35F);
-    }
-
-    private static BlockFamily createCedarBlockFamily() {
-        return new BlockFamily.Builder(ModBlocks.cedar_planks.get())
-                .button(ModBlocks.cedar_button.get())
-                .fence(ModBlocks.cedar_fence.get())
-                .fenceGate(ModBlocks.cedar_fence_gate.get())
-                .pressurePlate(ModBlocks.cedar_pressure_plate.get())
-                .sign(ModBlocks.cedar_sign.get(), ModBlocks.cedar_wall_sign.get())
-                .slab(ModBlocks.cedar_slab.get())
-                .stairs(ModBlocks.cedar_stairs.get())
-                .door(ModBlocks.cedar_door.get())
-                .trapdoor(ModBlocks.cedar_trapdoor.get())
-                .recipeGroupPrefix("totemic:wooden")
-                .recipeUnlockedBy("has_planks")
-                .getFamily();
     }
 
     public static Criterion<CeremonyTrigger.TriggerInstance> performed(Ceremony ceremony) {
