@@ -1,5 +1,8 @@
 package pokefenn.totemic.neoforge.datagen;
 
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.resources.model.UnbakedModel.GuiLight;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -9,7 +12,6 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -20,13 +22,13 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
-public class TotemicBlockStateProvider extends BlockStateProvider {
-    public TotemicBlockStateProvider(PackOutput output) {
+public class TotemicModelProvider extends ModelProvider {
+    public TotemicModelProvider(PackOutput output) {
         super(output, TotemicAPI.MOD_ID);
     }
 
     @Override
-    protected void registerStatesAndModels() {
+    protected void registerModels(BlockModelGenerators bm, ItemModelGenerators im) {
         //Blocks
         logBlock(ModBlocks.cedar_log.get());
         logBlock(ModBlocks.stripped_cedar_log.get());

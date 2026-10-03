@@ -33,7 +33,7 @@ import pokefenn.totemic.init.ModSounds;
 import pokefenn.totemic.neoforge.apiimpl.NeoRegistryApiImpl;
 import pokefenn.totemic.neoforge.compat.kubejs.TotemicKubeEventHandler;
 import pokefenn.totemic.neoforge.datagen.TotemicAdvancementProvider;
-import pokefenn.totemic.neoforge.datagen.TotemicBlockStateProvider;
+import pokefenn.totemic.neoforge.datagen.TotemicModelProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicBlockTagsProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicDamageTypeTagsProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicDatapackEntryProvider;
@@ -42,7 +42,7 @@ import pokefenn.totemic.neoforge.datagen.TotemicItemTagsProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicLootTableProvider;
 import pokefenn.totemic.neoforge.datagen.TotemicRecipeProvider;
 import pokefenn.totemic.neoforge.datagen.neoforge.TotemicDataMapProvider;
-import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoBlockStateProvider;
+import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoModelProvider;
 import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoLootTableProvider;
 import pokefenn.totemic.neoforge.datagen.neoforge.TotemicNeoRecipeProvider;
 import pokefenn.totemic.neoforge.handler.PlayerInteract;
@@ -145,7 +145,7 @@ public final class TotemicNeoMod {
             gen.addProvider(true, new TotemicAdvancementProvider(out, lookup));
             gen.addProvider(true, new TotemicRecipeProvider.Runner(out, lookup));
             gen.addProvider(true, new TotemicDamageTypeTagsProvider(out, lookup));
-            gen.addProvider(true, new TotemicBlockStateProvider(out));
+            gen.addProvider(true, new TotemicModelProvider(out));
         }
 
         // Neo-specific data
@@ -153,7 +153,7 @@ public final class TotemicNeoMod {
             gen.addProvider(true, new TotemicDataMapProvider(out, lookup));
             gen.addProvider(true, new TotemicNeoRecipeProvider.Runner(out, lookup));
             gen.addProvider(true, new TotemicNeoLootTableProvider(out, lookup));
-            gen.addProvider(true, new TotemicNeoBlockStateProvider(out));
+            gen.addProvider(true, new TotemicNeoModelProvider(out));
         }
     }
 }

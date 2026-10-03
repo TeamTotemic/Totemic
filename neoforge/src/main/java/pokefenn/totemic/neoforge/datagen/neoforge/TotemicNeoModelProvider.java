@@ -1,20 +1,22 @@
 package pokefenn.totemic.neoforge.datagen.neoforge;
 
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
 import net.neoforged.neoforge.common.util.TransformationHelper.TransformOrigin;
 import pokefenn.totemic.block.TipiBlock;
 import pokefenn.totemic.init.ModBlocks;
-import pokefenn.totemic.neoforge.datagen.TotemicBlockStateProvider;
+import pokefenn.totemic.neoforge.datagen.TotemicModelProvider;
 
-public class TotemicNeoBlockStateProvider extends TotemicBlockStateProvider {
-    public TotemicNeoBlockStateProvider(PackOutput output) {
+public class TotemicNeoModelProvider extends TotemicModelProvider {
+    public TotemicNeoModelProvider(PackOutput output) {
         super(output);
     }
 
     @Override
-    protected void registerStatesAndModels() {
+    protected void registerModels(BlockModelGenerators bm, ItemModelGenerators im) {
         // Generate Tipi block and item models here, since they're using Neo's OBJ loader
         horizontalBlockIgnoringProperties(ModBlocks.tipi.get(), models().getBuilder(key(ModBlocks.tipi.get()).toString())
                 .customLoader(ObjModelBuilder::begin).modelLocation(modLoc("models/block/tipi.obj")).end()
