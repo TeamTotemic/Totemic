@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "type": "totemic:dynamic_totem_pole",
+      "y": 90
+    },
+    "facing=north": {
+      "type": "totemic:dynamic_totem_pole"
+    },
+    "facing=south": {
+      "type": "totemic:dynamic_totem_pole",
+      "y": 180
+    },
+    "facing=west": {
+      "type": "totemic:dynamic_totem_pole",
+      "y": 270
+    }
+  }
+}

@@ -10,12 +10,15 @@ import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Blocks;
+import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
 import pokefenn.totemic.client.renderer.item.properties.IsMedicineBagOpen;
 import pokefenn.totemic.client.renderer.special.WindChimeSpecialRenderer;
 import pokefenn.totemic.init.ModBlocks;
+import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 
 public class TotemicModelProvider extends ModelProvider {
@@ -41,10 +44,8 @@ public class TotemicModelProvider extends ModelProvider {
         bm.createHangingSign(ModBlocks.stripped_cedar_log.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get());
         bm.createNonTemplateModelBlock(ModBlocks.totem_torch.get()); // TODO: Transformations for Totem Torch item model
         bm.createAirLikeBlock(ModBlocks.dummy_tipi.get(), TextureMapping.getBlockTexture(Blocks.WHITE_WOOL));
-        // dynamic_totem_pole and dynamic_totem_base are in the neoforge resources. AFAIK, Fabric allows hooking into model loading without requiring a model JSON to be present.
-        bm.createNonTemplateHorizontalBlock(ModBlocks.totem_pole.get());
-        bm.createNonTemplateHorizontalBlock(ModBlocks.totem_base.get());
-        // createTotemWoodTypes(bm); TODO: Totem wood type models
+        // The totem_pole and totem_base block state JSONs are not generated
+        createTotemWoodTypes(bm);
 
         //Items
         im.generateFlatItem(ModItems.flute.get(), ModelTemplates.FLAT_ITEM);
@@ -68,6 +69,7 @@ public class TotemicModelProvider extends ModelProvider {
         im.generateBow(ModItems.baykok_bow.get());
         ModelTemplates.FLAT_ITEM.create(modLocation("totempedia"), TextureMapping.layer0(new Material(modLocation("item/totempedia"))), im.modelOutput);
         createMedicineBag(im);
+        // TODO: Special item models for Totem Base and Pole
     }
 
     private void createWindChime(BlockModelGenerators bm) {
@@ -82,26 +84,26 @@ public class TotemicModelProvider extends ModelProvider {
         bm.itemModelOutput.accept(ModItems.wind_chime.get(), itemModel);
     }
 
-//    private void createTotemWoodTypes(BlockModelGenerators bm) {
-//        //Generate Totem Base and Totem Pole model files for each wood type
-//        ModContent.WOOD_TYPES.getEntries().forEach(woodType -> {
-//            var woodTypeId = woodType.getRegistryName();
-//            var namespace = woodTypeId.getPath().equals("cedar") ? "totemic" : "minecraft";
-//
-//            var poleModel = models().getBuilder(woodTypeId.toString() + "_totem_pole"); //the pole model has no parent, it only specifies the textures
-//            var baseModel = models().withExistingParent(woodTypeId.toString() + "_totem_base", modLoc("totem_base"));
-//            setTotemTextures(poleModel, namespace, woodTypeId.getPath());
-//            setTotemTextures(baseModel, namespace, woodTypeId.getPath());
-//        });
-//    }
-//
-//    private BlockModelBuilder setTotemTextures(BlockModelBuilder model, String namespace, String woodType) {
-//        return model
-//                .texture("wood", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"))
-//                .texture("bark", Identifier.fromNamespaceAndPath(namespace, "block/" + woodType + "_log"))
-//                .texture("top", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log_top"))
-//                .texture("particle", Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodType + "_log"));
-//    }
+    private void createTotemWoodTypes(BlockModelGenerators bm) {
+        var woodSlot = TextureSlot.create("wood");
+        var barkSlot = TextureSlot.create("bark");
+        var topSlot = TextureSlot.create("top");
+        var particleSlot = TextureSlot.PARTICLE;
+        var poleTemplate = ModelTemplates.create(woodSlot, barkSlot, topSlot, particleSlot);
+        var baseTemplate = ModelTemplates.create("totemic:totem_base", woodSlot, barkSlot, topSlot, particleSlot);
+        //Generate Totem Base and Totem Pole model files for each wood type
+        ModContent.WOOD_TYPES.getEntries().forEach(woodType -> {
+            var woodTypeName = woodType.getRegistryName().getPath();
+            var namespace = (woodType == ModContent.cedar.get()) ? "totemic" : "minecraft";
+            var textures = new TextureMapping()
+                    .put(woodSlot, new Material(Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodTypeName + "_log")))
+                    .put(barkSlot, new Material(Identifier.fromNamespaceAndPath(namespace, "block/" + woodTypeName + "_log")))
+                    .put(topSlot, new Material(Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodTypeName + "_log_top")))
+                    .put(particleSlot, new Material(Identifier.fromNamespaceAndPath(namespace, "block/stripped_" + woodTypeName + "_log")));
+            poleTemplate.create(Totemic.resloc("block/" + woodTypeName + "_totem_pole"), textures, bm.modelOutput);
+            baseTemplate.create(Totemic.resloc("block/" + woodTypeName + "_totem_base"), textures, bm.modelOutput);
+        });
+    }
 
     private void createMedicineBag(ItemModelGenerators im) {
         var medBagModel = ItemModelUtils.plainModel(im.createFlatItemModel(ModItems.medicine_bag.get(), ModelTemplates.FLAT_ITEM));
