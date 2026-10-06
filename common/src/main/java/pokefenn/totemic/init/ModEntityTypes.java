@@ -42,6 +42,7 @@ public final class ModEntityTypes {
             .eyeHeight(0.13F)
             .clientTrackingRange(4)
             .updateInterval(20)
+            .noLootTable()
             .build(key("invisible_arrow")));
 
     private static ResourceKey<EntityType<?>> key(String name) {
