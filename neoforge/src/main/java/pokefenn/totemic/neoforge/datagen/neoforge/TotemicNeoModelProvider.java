@@ -1,13 +1,18 @@
 package pokefenn.totemic.neoforge.datagen.neoforge;
 
+import java.util.stream.Stream;
+
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.client.model.generators.loaders.ObjModelBuilder;
 import net.neoforged.neoforge.common.util.TransformationHelper.TransformOrigin;
@@ -46,6 +51,18 @@ public class TotemicNeoModelProvider extends ModelProvider {
                 .build();
         var tipiItemModel = tipiItemTemplate.createWithSuffix(ModBlocks.tipi.get(), "_inventory", TextureMapping.particle(Blocks.WHITE_WOOL), bm.modelOutput);
         bm.registerSimpleItemModel(ModItems.tipi.get(), tipiItemModel);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    protected Stream<? extends Holder<Block>> getKnownBlocks() {
+        return Stream.of(ModBlocks.tipi.get().builtInRegistryHolder());
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    protected Stream<? extends Holder<Item>> getKnownItems() {
+        return Stream.of(ModItems.tipi.get().builtInRegistryHolder());
     }
 
     @Override

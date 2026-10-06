@@ -1,5 +1,8 @@
 package pokefenn.totemic.neoforge.datagen;
 
+import java.util.Set;
+import java.util.stream.Stream;
+
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -9,9 +12,11 @@ import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import pokefenn.totemic.Totemic;
 import pokefenn.totemic.api.TotemicAPI;
@@ -56,9 +61,9 @@ public class TotemicModelProvider extends ModelProvider {
         im.generateFlatItem(ModItems.totem_whittling_knife.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         im.generateFlatItem(ModItems.totemic_staff.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         im.generateFlatItem(ModItems.ceremony_cheat.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        // im.spawnEggItem(ModItems.buffalo_spawn_egg.get());
-        // im.spawnEggItem(ModItems.bald_eagle_spawn_egg.get()); TODO: Spawn eggs
-        // im.spawnEggItem(ModItems.baykok_spawn_egg.get());
+        im.generateFlatItem(ModItems.buffalo_spawn_egg.get(), ModelTemplates.FLAT_ITEM);
+        im.generateFlatItem(ModItems.bald_eagle_spawn_egg.get(), ModelTemplates.FLAT_ITEM); // TODO: Spawn egg textures
+        im.generateFlatItem(ModItems.baykok_spawn_egg.get(), ModelTemplates.FLAT_ITEM);
         im.generateFlatItem(ModItems.buffalo_meat.get(), ModelTemplates.FLAT_ITEM);
         im.generateFlatItem(ModItems.cooked_buffalo_meat.get(), ModelTemplates.FLAT_ITEM);
         im.generateFlatItem(ModItems.buffalo_tooth.get(), ModelTemplates.FLAT_ITEM);
@@ -111,5 +116,12 @@ public class TotemicModelProvider extends ModelProvider {
         im.itemModelOutput.accept(ModItems.medicine_bag.get(),
                 ItemModelUtils.conditional(new IsMedicineBagOpen(), openMedBagModel, medBagModel));
         im.itemModelOutput.copy(ModItems.medicine_bag.get(), ModItems.creative_medicine_bag.get());
+    }
+
+    @Override
+    protected Stream<? extends Holder<Block>> getKnownBlocks() {
+        // The block states for the Tipi are generated in TotemicNeoModelProvider, and those for the Totem Base and Pole are not generated
+        var nonGeneratedBlockStates = Set.of(ModBlocks.tipi.get(), ModBlocks.totem_base.get(), ModBlocks.totem_pole.get());
+        return super.getKnownBlocks().filter(holder -> !nonGeneratedBlockStates.contains(holder.value()));
     }
 }
