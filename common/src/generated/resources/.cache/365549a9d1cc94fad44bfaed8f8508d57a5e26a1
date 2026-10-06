@@ -1,4 +1,4 @@
-// 1.21.1	2026-08-08T15:31:14.875035249	Tags for minecraft:item mod id totemic
+// 26.1.2	2026-10-07T00:55:23.120116916	Tags for minecraft:item mod id totemic
 f48a711794f70f6a13891618f69d5b89e02cb8ba data/c/tags/item/fence_gates/wooden.json
 8c8c7476579771a19d4ed2a14de7fab91e67b074 data/c/tags/item/leathers.json
 da18fddcb4fafb900cf9a113d454941e0ca01fc4 data/c/tags/item/tools/bow.json
@@ -16,3 +16,4 @@ c555337d7413ef105766e005380d57baf9a16dbd data/minecraft/tags/item/wooden_slabs.j
 8a9592ab946276ae87f86f78a800bd641e4173f5 data/minecraft/tags/item/wooden_stairs.json
 9efc73b0d5065490d2fb7a71dd8e2522519550ba data/minecraft/tags/item/wooden_trapdoors.json
 edb0a1a520fc602c68dd264a87cf9f5c8142df57 data/totemic/tags/item/cedar_logs.json
+8c8c7476579771a19d4ed2a14de7fab91e67b074 data/totemic/tags/item/repairs_jingle_dress.json

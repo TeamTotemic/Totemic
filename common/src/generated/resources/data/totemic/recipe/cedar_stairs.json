@@ -3,9 +3,7 @@
   "category": "building",
   "group": "totemic:wooden_stairs",
   "key": {
-    "#": {
-      "item": "totemic:cedar_planks"
-    }
+    "#": "totemic:cedar_planks"
   },
   "pattern": [
     "#  ",

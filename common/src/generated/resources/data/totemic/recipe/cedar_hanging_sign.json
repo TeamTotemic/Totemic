@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "hanging_sign",
   "key": {
-    "#": {
-      "item": "totemic:stripped_cedar_log"
-    },
-    "X": {
-      "item": "minecraft:chain"
-    }
+    "#": "totemic:stripped_cedar_log",
+    "X": "minecraft:iron_chain"
   },
   "pattern": [
     "X X",

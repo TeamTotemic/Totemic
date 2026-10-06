@@ -1,0 +1,14 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "totemic:item/medicine_bag"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "totemic:item/medicine_bag_open"
+    },
+    "property": "totemic:open"
+  }
+}

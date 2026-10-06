@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "item": "totemic:iron_bells"
-    },
-    "H": {
-      "tag": "c:leathers"
-    },
-    "L": {
-      "item": "totemic:cedar_leaves"
-    }
+    "B": "totemic:iron_bells",
+    "H": "#c:leathers",
+    "L": "totemic:cedar_leaves"
   },
   "pattern": [
     " L ",
@@ -18,7 +12,6 @@
     "LBL"
   ],
   "result": {
-    "count": 1,
     "id": "totemic:jingle_dress"
   }
 }

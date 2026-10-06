@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "totemic:wooden_door",
   "key": {
-    "#": {
-      "item": "totemic:cedar_planks"
-    }
+    "#": "totemic:cedar_planks"
   },
   "pattern": [
     "##",

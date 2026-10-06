@@ -1,0 +1,9 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "totemic:item/wind_chime",
+    "model": {
+      "type": "totemic:wind_chime"
+    }
+  }
+}

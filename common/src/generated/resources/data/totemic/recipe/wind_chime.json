@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "C": {
-      "tag": "c:ingots/copper"
-    },
-    "S": {
-      "tag": "c:strings"
-    },
-    "W": {
-      "tag": "totemic:cedar_logs"
-    }
+    "C": "#c:ingots/copper",
+    "S": "#c:strings",
+    "W": "#totemic:cedar_logs"
   },
   "pattern": [
     "WWW",
@@ -18,7 +12,6 @@
     "C C"
   ],
   "result": {
-    "count": 1,
     "id": "totemic:wind_chime"
   }
 }

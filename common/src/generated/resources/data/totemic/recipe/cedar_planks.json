@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "building",
   "ingredients": [
-    {
-      "tag": "totemic:cedar_logs"
-    }
+    "#totemic:cedar_logs"
   ],
   "result": {
     "count": 4,

@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "totemic:wooden_fence",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "totemic:cedar_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "totemic:cedar_planks"
   },
   "pattern": [
     "W#W",

@@ -1,3 +1,6 @@
 {
-  "parent": "minecraft:item/template_spawn_egg"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "totemic:item/bald_eagle_spawn_egg"
+  }
 }

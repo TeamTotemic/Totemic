@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "totemic:tipi",
   "key": {
-    "S": {
-      "tag": "c:rods/wooden"
-    },
-    "W": {
-      "tag": "minecraft:wool"
-    }
+    "S": "#c:rods/wooden",
+    "W": "#minecraft:wool"
   },
   "pattern": [
     " S ",
@@ -16,7 +12,6 @@
     "W W"
   ],
   "result": {
-    "count": 1,
     "id": "totemic:tipi"
   }
 }

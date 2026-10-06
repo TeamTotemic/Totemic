@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "totemic:wooden_trapdoor",
   "key": {
-    "#": {
-      "item": "totemic:cedar_planks"
-    }
+    "#": "totemic:cedar_planks"
   },
   "pattern": [
     "###",

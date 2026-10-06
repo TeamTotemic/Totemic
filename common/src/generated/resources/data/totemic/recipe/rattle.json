@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "B": {
-      "item": "totemic:buffalo_tooth"
-    },
-    "S": {
-      "tag": "c:rods/wooden"
-    },
-    "W": {
-      "tag": "minecraft:logs_that_burn"
-    }
+    "B": "totemic:buffalo_tooth",
+    "S": "#c:rods/wooden",
+    "W": "#minecraft:logs_that_burn"
   },
   "pattern": [
     " WW",
@@ -18,7 +12,6 @@
     "S  "
   ],
   "result": {
-    "count": 1,
     "id": "totemic:rattle"
   }
 }

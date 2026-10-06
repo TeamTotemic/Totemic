@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "totemic:wooden_sign",
   "key": {
-    "#": {
-      "item": "totemic:cedar_planks"
-    },
-    "X": {
-      "item": "minecraft:stick"
-    }
+    "#": "totemic:cedar_planks",
+    "X": "minecraft:stick"
   },
   "pattern": [
     "###",

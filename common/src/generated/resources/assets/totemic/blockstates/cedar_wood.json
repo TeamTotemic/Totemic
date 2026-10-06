@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "totemic:block/cedar_wood_horizontal",
+      "model": "totemic:block/cedar_wood",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "totemic:block/cedar_wood"
     },
     "axis=z": {
-      "model": "totemic:block/cedar_wood_horizontal",
+      "model": "totemic:block/cedar_wood",
       "x": 90
     }
   }

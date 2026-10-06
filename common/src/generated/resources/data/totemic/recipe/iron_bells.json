@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "N": {
-      "tag": "c:nuggets/iron"
-    }
+    "N": "#c:nuggets/iron"
   },
   "pattern": [
     " N ",
@@ -12,7 +10,6 @@
     " N "
   ],
   "result": {
-    "count": 1,
     "id": "totemic:iron_bells"
   }
 }

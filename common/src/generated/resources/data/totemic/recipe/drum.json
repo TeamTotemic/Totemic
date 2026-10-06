@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "E": {
-      "tag": "c:leathers"
-    },
-    "L": {
-      "tag": "minecraft:logs_that_burn"
-    },
-    "W": {
-      "tag": "minecraft:wool"
-    }
+    "E": "#c:leathers",
+    "L": "#minecraft:logs_that_burn",
+    "W": "#minecraft:wool"
   },
   "pattern": [
     "EEE",
@@ -18,7 +12,6 @@
     "WLW"
   ],
   "result": {
-    "count": 1,
     "id": "totemic:drum"
   }
 }
