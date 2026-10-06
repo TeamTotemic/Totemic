@@ -16,6 +16,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CampfireCookingRecipe;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
@@ -72,7 +73,7 @@ public final class TotemicRecipeProvider extends RecipeProvider {
                 .pattern("NNN")
                 .pattern(" N ")
                 .define('N', Tags.Items.NUGGETS_IRON)
-                .unlockedBy("has_jingle_dress_recipe", RecipeUnlockedTrigger.unlocked(RecipeBuilder.getDefaultRecipeId(ModItems.jingle_dress.get().getDefaultInstance())))
+                .unlockedBy("has_jingle_dress_recipe", RecipeUnlockedTrigger.unlocked(RecipeBuilder.getDefaultRecipeId(new ItemStackTemplate(ModItems.jingle_dress.get()))))
                 .save(output);
         ShapedRecipeBuilder.shaped(items, RecipeCategory.MISC, ModItems.rattle.get())
                 .pattern(" WW")
