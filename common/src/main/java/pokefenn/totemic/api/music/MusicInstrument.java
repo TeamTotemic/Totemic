@@ -1,6 +1,5 @@
 package pokefenn.totemic.api.music;
 
-import java.util.Objects;
 import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
@@ -12,6 +11,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Util;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -23,7 +23,7 @@ import pokefenn.totemic.api.TotemicAPI;
 public final class MusicInstrument {
     private int baseOutput;
     private int musicMaximum;
-    private ItemStack itemStack = ItemStack.EMPTY;
+    private @Nullable ItemStackTemplate displayItem;
     private @Nullable Supplier<SoundEvent> sound;
     private @Nullable String descriptionId;
 
@@ -38,10 +38,17 @@ public final class MusicInstrument {
     }
 
     /**
-     * Returns the item stack associated with this instrument.
+     * Returns the display item stack associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.
      */
     public ItemStack getItem() {
-        return itemStack;
+        return displayItem != null ? displayItem.create() : ItemStack.EMPTY;
+    }
+
+    /**
+     * Returns the display ItemStackTemplate associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.
+     */
+    public @Nullable ItemStackTemplate getItemTemplate() {
+        return displayItem;
     }
 
     /**
@@ -52,18 +59,18 @@ public final class MusicInstrument {
     }
 
     /**
-     * Sets the item stack that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.
+     * Sets the display ItemStackTemplate that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.
      */
-    public MusicInstrument setItem(ItemStack itemStack) {
-        this.itemStack = Objects.requireNonNull(itemStack);
+    public MusicInstrument setItem(@Nullable ItemStackTemplate displayItem) {
+        this.displayItem = displayItem;
         return this;
     }
 
     /**
-     * Sets the item that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.
+     * Sets the display item that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.
      */
     public MusicInstrument setItem(ItemLike item) {
-        return setItem(new ItemStack(item));
+        return setItem(new ItemStackTemplate(item.asItem()));
     }
 
     /**

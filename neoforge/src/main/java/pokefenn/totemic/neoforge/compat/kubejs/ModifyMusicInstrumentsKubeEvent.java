@@ -10,6 +10,7 @@ import dev.latvian.mods.kubejs.script.SourceLine;
 import dev.latvian.mods.kubejs.typings.Info;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 public class ModifyMusicInstrumentsKubeEvent implements KubeEvent {
@@ -21,11 +22,21 @@ public class ModifyMusicInstrumentsKubeEvent implements KubeEvent {
     }
 
     public record MusicInstrumentModification(MusicInstrument instrument) {
-        @Info("Sets the item stack that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.")
+        @Deprecated(forRemoval = true)
         public void setItem(KubeJSContext cx, ItemStack item) {
-            if(item.isEmpty()) // warn because KubeJS silently converts invalid IDs to empty ItemStacks
+            cx.getConsole().warn("item with modifyMusicInstruments is deprecated, use displayItem instead");
+            setDisplayItem(cx, item);
+        }
+
+        @Info("Sets the display item stack that is associated with this instrument. This will be displayed in the Totempedia and on the Ceremony HUD.")
+        public void setDisplayItem(KubeJSContext cx, ItemStack item) {
+            if(!item.isEmpty())
+                instrument.setItem(ItemStackTemplate.fromNonEmptyStack(item));
+            else {
+                // warn because KubeJS silently converts invalid IDs to empty ItemStacks, TODO: Check if KubeJS still does this
                 cx.getConsole().warn("item for Music Instrument '" + instrument.getRegistryName() + "' is invalid or empty", SourceLine.of(cx), null, null);
-            instrument.setItem(item);
+                instrument.setItem((ItemStackTemplate) null);
+            }
         }
 
         @Info("Sets the sound associated with this instrument. May be `null`, in which case no sound will be played.")

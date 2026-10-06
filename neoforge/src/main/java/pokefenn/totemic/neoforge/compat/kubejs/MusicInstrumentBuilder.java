@@ -13,14 +13,15 @@ import dev.latvian.mods.rhino.util.ReturnsSelf;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import pokefenn.totemic.api.music.MusicInstrument;
 
 @ReturnsSelf
 public class MusicInstrumentBuilder extends BuilderBase<MusicInstrument> {
     public transient int baseOutput = -1;
     public transient int musicMaximum = -1;
-    public transient ItemStack displayItem = ItemStack.EMPTY;
-    public transient @Nullable Supplier<SoundEvent> sound = null;
+    public transient @Nullable ItemStackTemplate displayItem;
+    public transient @Nullable Supplier<SoundEvent> sound;
 
     public MusicInstrumentBuilder(Identifier id) {
         super(id);
@@ -54,15 +55,18 @@ public class MusicInstrumentBuilder extends BuilderBase<MusicInstrument> {
     }
 
     @Info("""
-            Sets the item stack that is associated with this instrument.
+            Sets the display item stack that is associated with this instrument.
 
             Note that this value is only used for display purposes. In order to have an item actually play music,
             you need to call `TotemicAPI.music().playMusic()` and `playSelector()`, for example from a `use` callback.
             """)
     public MusicInstrumentBuilder displayItem(KubeJSContext cx, ItemStack item) {
-        if(item.isEmpty()) // warn because KubeJS silently converts invalid IDs to empty ItemStacks
+        if(!item.isEmpty())
+            this.displayItem = ItemStackTemplate.fromNonEmptyStack(item);
+        else { // warn because KubeJS silently converts invalid IDs to empty ItemStacks, TODO: Check if KubeJS still does this
             cx.getConsole().warn("displayItem for Music Instrument '" + id + "' is invalid or empty", SourceLine.of(cx), null, null);
-        this.displayItem = item;
+            this.displayItem = null;
+        }
         return this;
     }
 
