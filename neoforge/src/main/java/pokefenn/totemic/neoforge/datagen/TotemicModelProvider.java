@@ -15,6 +15,7 @@ import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -124,5 +125,11 @@ public class TotemicModelProvider extends ModelProvider {
         // The block states for the Tipi are generated in TotemicNeoModelProvider, and those for the Totem Base and Pole are not generated
         var nonGeneratedBlockStates = Set.of(ModBlocks.tipi.get(), ModBlocks.totem_base.get(), ModBlocks.totem_pole.get());
         return super.getKnownBlocks().filter(holder -> !nonGeneratedBlockStates.contains(holder.value()));
+    }
+
+    @Override
+    protected Stream<? extends Holder<Item>> getKnownItems() {
+        // The Tipi client item is generated in TotemicNeoModelProvider
+        return super.getKnownItems().filter(holder -> holder.value() != ModItems.tipi.get());
     }
 }

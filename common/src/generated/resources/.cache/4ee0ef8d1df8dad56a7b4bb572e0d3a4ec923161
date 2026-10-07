@@ -1,4 +1,4 @@
-// 26.1.2	2026-10-07T22:18:20.885859233	Model Definitions - totemic
+// 26.1.2	2026-10-07T23:51:09.574160435	Model Definitions - totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 e95897486a14143a12a2e2cdda92b9858c190b19 assets/totemic/blockstates/cedar_fence.json
@@ -60,7 +60,6 @@ c5d39b4ccadbaefc2c0d423028a2df591c41d14b assets/totemic/items/infused_flute.json
 3353bd0997cae53f4fb85743f3fe002d6030230e assets/totemic/items/rattle.json
 097d8be43e462d72ae56c4678d9f7414cc4dec7e assets/totemic/items/stripped_cedar_log.json
 1c654d1bbcdf3402a15e6ba40a51c32c4df376f8 assets/totemic/items/stripped_cedar_wood.json
-f9875c28cfce3ba8cfca87259b8a1969a3a71c63 assets/totemic/items/tipi.json
 a177946fb3a8b1747d44994fa995c40e4dbab87a assets/totemic/items/totem_base.json
 225d356d826c69343b06a5238a26fcbb233cfe8c assets/totemic/items/totem_pole.json
 a4ad8500ab0af27df91dc5d42140e4f7357db1cb assets/totemic/items/totem_torch.json
