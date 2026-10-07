@@ -28,17 +28,20 @@ public class TotemicNeoModelProvider extends ModelProvider {
     @Override
     protected void registerModels(BlockModelGenerators bm, ItemModelGenerators im) {
         // Generate Tipi block and item models here, since they're using Neo's OBJ loader
-        var tipiTemplate = ModelTemplates.create("tipi", TextureSlot.PARTICLE)
+        var tipiTemplate = ModelTemplates.create(TextureSlot.TEXTURE, TextureSlot.PARTICLE)
                 .extend()
                 .customLoader(ObjModelBuilder::new, builder -> builder.modelLocation(modLocation("models/block/tipi.obj")))
                 .rootTransforms(builder -> builder.origin(TransformOrigin.CORNER).translation(0, 0.95F, 0).scale(2.85F))
                 .build();
-        var tipiModel = BlockModelGenerators.plainVariant(tipiTemplate.create(ModBlocks.tipi.get(), TextureMapping.particle(Blocks.WHITE_WOOL), bm.modelOutput));
+        var tipiTextures = new TextureMapping()
+                .put(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(ModBlocks.tipi.get()))
+                .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.WHITE_WOOL));
+        var tipiModel = BlockModelGenerators.plainVariant(tipiTemplate.create(ModBlocks.tipi.get(), tipiTextures, bm.modelOutput));
         bm.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ModBlocks.tipi.get(), tipiModel));
 
         // use a separate item model rather than having the Tipi block model as parent,
         // because the transforms are not compatible with the above root transform
-        var tipiItemTemplate = ModelTemplates.createItem("tipi", TextureSlot.PARTICLE)
+        var tipiItemTemplate = ModelTemplates.create(TextureSlot.TEXTURE, TextureSlot.PARTICLE)
                 .extend()
                 .customLoader(ObjModelBuilder::new, builder -> builder.modelLocation(modLocation("models/block/tipi.obj")))
                 .transform(ItemDisplayContext.GUI, builder -> builder.rotation(30, 225, 0).translation(0, -2.5F, 0).scale(0.4F))
@@ -49,7 +52,7 @@ public class TotemicNeoModelProvider extends ModelProvider {
                 .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND, builder -> builder.rotation(0, 45, 0).scale(0.25F))
                 .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND, builder -> builder.rotation(0, 225, 0).scale(0.25F))
                 .build();
-        var tipiItemModel = tipiItemTemplate.createWithSuffix(ModBlocks.tipi.get(), "_inventory", TextureMapping.particle(Blocks.WHITE_WOOL), bm.modelOutput);
+        var tipiItemModel = tipiItemTemplate.createWithSuffix(ModBlocks.tipi.get(), "_inventory", tipiTextures, bm.modelOutput);
         bm.registerSimpleItemModel(ModItems.tipi.get(), tipiItemModel);
     }
 

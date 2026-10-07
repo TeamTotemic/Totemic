@@ -1,9 +1,9 @@
 {
-  "parent": "minecraft:block/tipi",
   "loader": "neoforge:obj",
   "model": "totemic:models/block/tipi.obj",
   "textures": {
-    "particle": "minecraft:block/white_wool"
+    "particle": "minecraft:block/white_wool",
+    "texture": "totemic:block/tipi"
   },
   "transform": {
     "origin": "corner",
