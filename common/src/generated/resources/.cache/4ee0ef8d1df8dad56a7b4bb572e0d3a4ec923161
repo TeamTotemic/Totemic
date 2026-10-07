@@ -1,4 +1,4 @@
-// 26.1.2	2026-10-07T22:07:07.139647736	Model Definitions - totemic
+// 26.1.2	2026-10-07T22:18:20.885859233	Model Definitions - totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 e95897486a14143a12a2e2cdda92b9858c190b19 assets/totemic/blockstates/cedar_fence.json
@@ -129,6 +129,7 @@ d67c92246a3e974bfe4a2adf0d5cdaff1799e117 assets/totemic/models/block/stripped_ce
 65e60cb318205679553fa81d9ea0ca6e66120f4d assets/totemic/models/block/stripped_cedar_wood.json
 920c34bb3665abd9bfa423e251b3d5068f20ea28 assets/totemic/models/block/wind_chime.json
 f7a02a63cca65b348328a19b7553cdd28a71bb8b assets/totemic/models/item/bald_eagle_spawn_egg.json
+c0f04a58dd7bb4fc9d3c716dafe685ab3ed4768f assets/totemic/models/item/baykok_bow.json
 d6828fc41e124719cbb1bc33b27f2f5ae10ed498 assets/totemic/models/item/baykok_bow_pulling_0.json
 10d464344fc1e9a7962184308d7f73e85ef439b6 assets/totemic/models/item/baykok_bow_pulling_1.json
 974330e5bdf17021596f6eddfd71247a82be0e9b assets/totemic/models/item/baykok_bow_pulling_2.json

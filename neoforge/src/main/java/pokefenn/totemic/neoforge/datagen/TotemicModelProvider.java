@@ -71,7 +71,8 @@ public class TotemicModelProvider extends ModelProvider {
         im.generateFlatItem(ModItems.iron_bells.get(), ModelTemplates.FLAT_ITEM);
         im.generateFlatItem(ModItems.eagle_bone.get(), ModelTemplates.FLAT_ITEM);
         im.generateFlatItem(ModItems.eagle_feather.get(), ModelTemplates.FLAT_ITEM);
-        im.generateBow(ModItems.baykok_bow.get());
+        im.createFlatItemModel(ModItems.baykok_bow.get(), ModelTemplates.BOW);
+        im.generateBow(ModItems.baykok_bow.get()); // generates the pulling models and the client item
         ModelTemplates.FLAT_ITEM.create(modLocation("totempedia"), TextureMapping.layer0(new Material(modLocation("item/totempedia"))), im.modelOutput);
         createMedicineBag(im);
         // TODO: Special item models for Totem Base and Pole
