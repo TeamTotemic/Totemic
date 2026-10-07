@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
@@ -37,7 +38,7 @@ public class TotemicNeoModelProvider extends ModelProvider {
                 .put(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(ModBlocks.tipi.get()))
                 .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(Blocks.WHITE_WOOL));
         var tipiModel = BlockModelGenerators.plainVariant(tipiTemplate.create(ModBlocks.tipi.get(), tipiTextures, bm.modelOutput));
-        bm.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ModBlocks.tipi.get(), tipiModel));
+        bm.blockStateOutput.accept(MultiVariantGenerator.dispatch(ModBlocks.tipi.get(), tipiModel).with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING_ALT));
 
         // use a separate item model rather than having the Tipi block model as parent,
         // because the transforms are not compatible with the above root transform
