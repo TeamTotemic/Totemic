@@ -1,4 +1,4 @@
-// 26.1.2	2026-10-07T23:51:09.574160435	Model Definitions - totemic
+// 26.1.2	2026-10-09T01:11:56.978296383	Model Definitions - totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 e95897486a14143a12a2e2cdda92b9858c190b19 assets/totemic/blockstates/cedar_fence.json
@@ -155,5 +155,5 @@ dbb2bab8e6b42bf92c6b46b8fc2b863c461ad210 assets/totemic/models/item/iron_bells.j
 f95f61591f5c7ed2414e32cc91cba6a528165479 assets/totemic/models/item/rattle.json
 81cb8cf66c01b1bca81baa598d786696fb190d7c assets/totemic/models/item/totem_whittling_knife.json
 571cdb797bfbaeadd258470139656e8ea3f06aed assets/totemic/models/item/totemic_staff.json
-0e99834fa368248a3501aaecfa366635b42b7291 assets/totemic/models/item/wind_chime.json
+2da504282f4a0298bf5ec1bf84a0fc92de36efe0 assets/totemic/models/item/wind_chime.json
 fbeef7f27200165244d1c325bf83e018a15b2cb5 assets/totemic/models/totempedia.json

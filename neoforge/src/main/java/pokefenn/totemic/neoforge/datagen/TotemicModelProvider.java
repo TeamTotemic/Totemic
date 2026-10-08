@@ -81,10 +81,15 @@ public class TotemicModelProvider extends ModelProvider {
 
     private void createWindChime(BlockModelGenerators bm) {
         bm.createParticleOnlyBlock(ModBlocks.wind_chime.get(), Blocks.WHITE_TERRACOTTA);
-        var template = ModelTemplates.createItem("template_wind_chime", TextureSlot.PARTICLE)
+        var template = ModelTemplates.create(TextureSlot.PARTICLE)
                 .extend()
-                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND, builder -> builder.rotation(75, 45, 0).translation(0, 1.25F, 0).scale(0.375F))
                 .transform(ItemDisplayContext.GUI, builder -> builder.rotation(30, 225, 0).translation(0, 0, 0).scale(0.875F))
+                .transform(ItemDisplayContext.GROUND, builder -> builder.translation(0, 3, 0).scale(0.375F))
+                .transform(ItemDisplayContext.FIXED, builder -> builder.scale(0.75F))
+                .transform(ItemDisplayContext.ON_SHELF, builder -> builder.rotation(0, 180, 0).scale(1.5F))
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND, builder -> builder.rotation(75, 45, 0).translation(0, 1.25F, 0).scale(0.375F))
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND, builder -> builder.rotation(0, 45, 0).scale(0.4F))
+                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND, builder -> builder.rotation(0, 225, 0).scale(0.4F))
                 .build();
         var itemModelBase = template.create(ModItems.wind_chime.get(), TextureMapping.particle(Blocks.WHITE_TERRACOTTA), bm.modelOutput);
         var itemModel = ItemModelUtils.specialModel(itemModelBase, new WindChimeSpecialRenderer.Unbaked());
