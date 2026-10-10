@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.block.dispatch.Variant;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.ModelBaker;
+import net.minecraft.client.resources.model.ModelDebugName;
 import net.minecraft.client.resources.model.ResolvedModel;
 import net.minecraft.client.resources.model.SimpleModelWrapper;
 import net.minecraft.client.resources.model.geometry.BakedQuad;
@@ -30,6 +31,8 @@ public record UnbakedTotemPoleBlockStateModel(Variant.SimpleModelState modelStat
 
     @Override
     public BlockStateModel bake(ModelBaker modelBakery) {
+        // TODO: The baking appears to be a a lot slower than in 1.21.1 (~200 ms vs. ~20 ms),
+        // can we somehow optimize it, or actually use lazy baking?
         final var woodTypeRegistry = TotemicAPI.get().registry().woodTypes();
         final var carvingRegistry = TotemicAPI.get().registry().totemCarvings();
 
@@ -43,7 +46,8 @@ public record UnbakedTotemPoleBlockStateModel(Variant.SimpleModelState modelStat
 
             for(var carving: carvingRegistry) {
                 var carvingModel = modelBakery.getModel(getPoleModelLocation(carving));
-                var bakedPart = bakeWithTextures(modelBakery, carvingModel, textureSlots, state);
+                var bakedPart = bakeWithTextures(modelBakery, carvingModel, textureSlots, state,
+                        () -> carvingModel.debugName() + "[wood_type=" + woodType.getRegistryName() + "]");
                 builder.put(new TotemPoleModelData(woodType, carving), bakedPart);
             }
         }
@@ -52,12 +56,12 @@ public record UnbakedTotemPoleBlockStateModel(Variant.SimpleModelState modelStat
     }
 
     @SuppressWarnings("deprecation")
-    private static BlockStateModelPart bakeWithTextures(ModelBaker modelBakery, ResolvedModel model, TextureSlots textures, ModelState state) {
-        // See SimpleModelWrapper#bake(ModelBaker, ResolvedModel, ModelState).
-        // Using the given textures rather than the model's own.
+    private static BlockStateModelPart bakeWithTextures(ModelBaker modelBakery, ResolvedModel model, TextureSlots textures, ModelState state, ModelDebugName debugName) {
+        // Similar to SimpleModelWrapper#bake(ModelBaker, ResolvedModel, ModelState), but using the given textures rather than the model's own.
+        // However, we have to be careful to avoid the caching done in ModelDiscovery$ModelWrapper, or else all the models will use the same textures.
         boolean hasAmbientOcclusion = model.getTopAmbientOcclusion();
-        Material.Baked particleMaterial = model.resolveParticleMaterial(textures, modelBakery);
-        QuadCollection geometry = model.bakeTopGeometry(textures, modelBakery, state);
+        Material.Baked particleMaterial = ResolvedModel.resolveParticleMaterial(textures, modelBakery, debugName);
+        QuadCollection geometry = model.getTopGeometry().bake(textures, modelBakery, state, debugName, model.getTopAdditionalProperties());
         Multimap<Identifier, Identifier> forbiddenSprites = null;
 
         for (BakedQuad bakedQuad : geometry.getAll()) {
@@ -72,7 +76,7 @@ public record UnbakedTotemPoleBlockStateModel(Variant.SimpleModelState modelStat
         }
 
         if (forbiddenSprites != null) {
-            Totemic.logger.warn("Rejecting block model {}, since it contains sprites from outside of supported atlas: {}", model.debugName(), forbiddenSprites);
+            Totemic.logger.warn("Rejecting block model {}, since it contains sprites from outside of supported atlas: {}", debugName.debugName(), forbiddenSprites);
             return modelBakery.missingBlockModelPart();
         } else {
             return new SimpleModelWrapper(geometry, hasAmbientOcclusion, particleMaterial);
