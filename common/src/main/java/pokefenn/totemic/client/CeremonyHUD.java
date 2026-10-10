@@ -56,6 +56,7 @@ public enum CeremonyHUD {
         final int hudY = (guiGraphics.guiHeight() - HUD_HEIGHT) / 2 + TotemicConfig.CLIENT.ceremonyHudPositionY.get();
 
         var poseStack = guiGraphics.pose();
+        poseStack.pushMatrix();
         poseStack.translate(hudX, hudY);
 
         var state = activeTotem.getTotemState();
@@ -65,6 +66,8 @@ public enum CeremonyHUD {
             renderStartupHUD(s, guiGraphics, deltaTracker);
         else if(state instanceof StateCeremonyEffect s)
             renderCeremonyEffectHUD(s, guiGraphics, deltaTracker);
+
+        poseStack.popMatrix();
 
         Profiler.get().pop();
     }
