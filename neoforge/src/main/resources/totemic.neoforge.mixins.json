@@ -9,5 +9,5 @@
     "defaultRequire": 1
   },
   "minVersion": "0.8",
-  "compatibilityLevel": "JAVA_21"
+  "compatibilityLevel": "JAVA_25"
 }
