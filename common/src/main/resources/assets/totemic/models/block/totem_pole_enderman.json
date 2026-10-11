@@ -21,7 +21,9 @@
                 },
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 11163118
+                    "neoforge_data": {
+                        "color": "AA55EE"
+                    }
                 },
                 "south": {
                     "texture": "#wood"

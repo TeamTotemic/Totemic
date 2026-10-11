@@ -29,23 +29,33 @@
             "faces": {
                 "up": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "down": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "east": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "south": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 }
             }
         },
@@ -55,27 +65,39 @@
             "faces": {
                 "up": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "down": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "west": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "east": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "south": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 }
             }
         },
@@ -85,27 +107,39 @@
             "faces": {
                 "up": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "down": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "west": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "east": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "south": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 }
             }
         },
@@ -115,27 +149,39 @@
             "faces": {
                 "up": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "down": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "west": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "east": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "south": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 }
             }
         },
@@ -145,27 +191,39 @@
             "faces": {
                 "up": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "down": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "west": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "east": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "south": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 }
             }
         },
@@ -175,27 +233,39 @@
             "faces": {
                 "up": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "down": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "west": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "east": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 },
                 "south": {
                     "texture": "#wood",
-                    "tintindex": 12303206
+                    "neoforge_data": {
+                        "color": "BBBB66"
+                    }
                 }
             }
         },
@@ -219,7 +289,9 @@
                 "north": {
                     "uv": [4.0,1.0,14.0,10.0],
                     "texture": "#wood",
-                    "tintindex": 5592405
+                    "neoforge_data": {
+                        "color": "555555"
+                    }
                 },
                 "south": {
                     "texture": "#wood"

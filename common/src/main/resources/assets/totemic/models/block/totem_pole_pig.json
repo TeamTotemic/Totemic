@@ -21,7 +21,9 @@
                 },
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 5592405
+                    "neoforge_data": {
+                        "color": "555555"
+                    }
                 },
                 "south": {
                     "texture": "#wood"
@@ -185,7 +187,9 @@
             "faces": {
                 "north": {
                     "texture": "#wood",
-                    "tintindex": 5592405
+                    "neoforge_data": {
+                        "color": "555555"
+                    }
                 }
             }
         }

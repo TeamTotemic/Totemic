@@ -39,9 +39,6 @@ public class ClientInitHandlers {
         event.register(Totemic.resloc("open"), IsMedicineBagOpen.MAP_CODEC);
     }
 
-    // TODO: Find a way to handle the eye tinting for the Totem Poles.
-    // We can't really use the previous way as now the tint index is an index into a list, so we would need to have a BlockTintSource object for every possible ARGB value
-
     @SubscribeEvent
     public static void registerBlockStateModels(RegisterBlockStateModels event) {
         event.registerModel(Totemic.resloc("dynamic_totem_pole"), UnbakedTotemPoleBlockStateModel.CODEC);
