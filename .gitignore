@@ -21,12 +21,6 @@ build
 eclipse
 run
 runs
-run-data
+run-*
 
 repo
-
-# Exclude run-gameTestServer, but include run-gameTestServer/config/totemic-*
-neoforge/run-gameTestServer/*
-!neoforge/run-gameTestServer/config
-neoforge/run-gameTestServer/config/*
-!neoforge/run-gameTestServer/config/totemic-*
