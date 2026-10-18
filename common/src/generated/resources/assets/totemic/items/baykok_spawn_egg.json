@@ -1,6 +1,16 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "totemic:item/baykok_spawn_egg"
+    "model": "totemic:template_spawn_egg",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -2039584
+      },
+      {
+        "type": "minecraft:constant",
+        "value": -468270
+      }
+    ]
   }
 }

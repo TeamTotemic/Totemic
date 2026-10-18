@@ -62,9 +62,10 @@ public class TotemicModelProvider extends ModelProvider {
         im.generateFlatItem(ModItems.totem_whittling_knife.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         im.generateFlatItem(ModItems.totemic_staff.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         im.generateFlatItem(ModItems.ceremony_cheat.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        im.generateFlatItem(ModItems.buffalo_spawn_egg.get(), ModelTemplates.FLAT_ITEM);
-        im.generateFlatItem(ModItems.bald_eagle_spawn_egg.get(), ModelTemplates.FLAT_ITEM); // TODO: Spawn egg textures
-        im.generateFlatItem(ModItems.baykok_spawn_egg.get(), ModelTemplates.FLAT_ITEM);
+        var spawnEggModel = im.generateLayeredItem(modLocation("template_spawn_egg"), new Material(modLocation("item/spawn_egg")), new Material(modLocation("item/spawn_egg_overlay")));
+        generateSpawnEgg(im, ModItems.bald_eagle_spawn_egg.get(), spawnEggModel, 0x4B4136, 0xF5E6A3);
+        generateSpawnEgg(im, ModItems.baykok_spawn_egg.get(), spawnEggModel, 0xE0E0E0, 0xF8DAD2);
+        generateSpawnEgg(im, ModItems.buffalo_spawn_egg.get(), spawnEggModel, 0x2A1C12, 0x885F3E);
         im.generateFlatItem(ModItems.buffalo_meat.get(), ModelTemplates.FLAT_ITEM);
         im.generateFlatItem(ModItems.cooked_buffalo_meat.get(), ModelTemplates.FLAT_ITEM);
         im.generateFlatItem(ModItems.buffalo_tooth.get(), ModelTemplates.FLAT_ITEM);
@@ -123,6 +124,10 @@ public class TotemicModelProvider extends ModelProvider {
         im.itemModelOutput.accept(ModItems.medicine_bag.get(),
                 ItemModelUtils.conditional(new IsMedicineBagOpen(), openMedBagModel, medBagModel));
         im.itemModelOutput.copy(ModItems.medicine_bag.get(), ModItems.creative_medicine_bag.get());
+    }
+
+    private void generateSpawnEgg(ItemModelGenerators im, Item item, Identifier model, int baseColor, int overlayColor) {
+        im.itemModelOutput.accept(item, ItemModelUtils.tintedModel(model, ItemModelUtils.constantTint(baseColor), ItemModelUtils.constantTint(overlayColor)));
     }
 
     @Override
