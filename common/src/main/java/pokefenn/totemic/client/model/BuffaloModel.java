@@ -121,4 +121,10 @@ public class BuffaloModel extends QuadrupedModel<LivingEntityRenderState> {
 
         return LayerDefinition.create(mesh, 64, 64);
     }
+
+    @Override
+    public void setupAnim(LivingEntityRenderState state) {
+        super.setupAnim(state);
+        this.head.xRot += Mth.HALF_PI; // the Buffalo model's head is rotated 90° compared to the default in QuadrupedModel
+    }
 }

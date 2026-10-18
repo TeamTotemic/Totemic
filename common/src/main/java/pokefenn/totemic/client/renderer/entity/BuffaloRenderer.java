@@ -21,7 +21,7 @@ public class BuffaloRenderer extends MobRenderer<Buffalo, LivingEntityRenderStat
     public BuffaloRenderer(Context ctx) {
         var adultModel = new BuffaloModel(ctx.bakeLayer(ModModelLayers.BUFFALO));
         var babyModel = new BuffaloModel(ctx.bakeLayer(ModModelLayers.BUFFALO_BABY));
-        super(ctx, adultModel, 0.75F);
+        super(ctx, adultModel, 1.0F);
         this.models = new AdultAndBabyModelPair<>(adultModel, babyModel);
     }
 
@@ -39,7 +39,6 @@ public class BuffaloRenderer extends MobRenderer<Buffalo, LivingEntityRenderStat
     public void submit(LivingEntityRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
         this.model = this.models.getModel(state.isBaby);
         poseStack.pushPose();
-        poseStack.translate(0F, -0.75F, 0F);
         poseStack.scale(1.5F, 1.5F, 1.5F);
         super.submit(state, poseStack, submitNodeCollector, camera);
         poseStack.popPose();
