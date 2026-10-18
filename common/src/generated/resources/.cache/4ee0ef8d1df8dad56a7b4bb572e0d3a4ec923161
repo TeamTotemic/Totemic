@@ -1,4 +1,4 @@
-// 26.1.2	2026-10-18T01:57:50.523408435	Model Definitions - totemic
+// 26.1.2	2026-10-18T02:09:12.191507395	Model Definitions - totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 e95897486a14143a12a2e2cdda92b9858c190b19 assets/totemic/blockstates/cedar_fence.json
@@ -23,12 +23,12 @@ d6fa33b8b040ad977342398c32c323a5856cb134 assets/totemic/blockstates/potted_cedar
 7e8e0a509c46a888e17e9fd1b8a7f8001f106afb assets/totemic/blockstates/stripped_cedar_wood.json
 718a3fc32340f860b57dc55751c88bd8c01a49e9 assets/totemic/blockstates/totem_torch.json
 074367708048e48a9da984449fbd6f97c8b59f9b assets/totemic/blockstates/wind_chime.json
-5fda6fb90ea7790e16646d4a89544ae32bdc3800 assets/totemic/items/bald_eagle_spawn_egg.json
+cf4a858c3cf6eb76e96fc37f7812a2646e0e4c4a assets/totemic/items/bald_eagle_spawn_egg.json
 6ca7dbc4a516def8dd5783240709e627a4ab3b2b assets/totemic/items/baykok_bow.json
-04914faf1ef30418546a4df925eb401bdc946459 assets/totemic/items/baykok_spawn_egg.json
+8d73b8708b4917ea8428b10edc1fd162098ec334 assets/totemic/items/baykok_spawn_egg.json
 1a843f7632db9d90c959ae66bdf24b79f76d786c assets/totemic/items/buffalo_hide.json
 a313c31a478e0a8d2136e4c62fe093f1730ea8d9 assets/totemic/items/buffalo_meat.json
-0a18f1baa70091e8197e4f542f33b8edbfce53ac assets/totemic/items/buffalo_spawn_egg.json
+6f404a5cb1beb67dbe74b6b72c6609f5d002894a assets/totemic/items/buffalo_spawn_egg.json
 7d4d0e513115881fde34a5bd30a6949fdc32cda9 assets/totemic/items/buffalo_tooth.json
 12aaad0550e96e762be4b943c12cef3eb2623193 assets/totemic/items/cedar_button.json
 b9829d946f6bc3d07d89a774278245e0e34da733 assets/totemic/items/cedar_door.json
@@ -150,8 +150,8 @@ dbb2bab8e6b42bf92c6b46b8fc2b863c461ad210 assets/totemic/models/item/iron_bells.j
 27947c80373b7c2748aec898833e73be225d0e61 assets/totemic/models/item/medicine_bag.json
 919b1478bfbc6f54f9b28e63d18b245f85117292 assets/totemic/models/item/medicine_bag_open.json
 f95f61591f5c7ed2414e32cc91cba6a528165479 assets/totemic/models/item/rattle.json
+81a364440edd99efb6f852b66a1477cb0e6c1285 assets/totemic/models/item/template_spawn_egg.json
 81cb8cf66c01b1bca81baa598d786696fb190d7c assets/totemic/models/item/totem_whittling_knife.json
 571cdb797bfbaeadd258470139656e8ea3f06aed assets/totemic/models/item/totemic_staff.json
+fbeef7f27200165244d1c325bf83e018a15b2cb5 assets/totemic/models/item/totempedia.json
 2da504282f4a0298bf5ec1bf84a0fc92de36efe0 assets/totemic/models/item/wind_chime.json
-81a364440edd99efb6f852b66a1477cb0e6c1285 assets/totemic/models/template_spawn_egg.json
-fbeef7f27200165244d1c325bf83e018a15b2cb5 assets/totemic/models/totempedia.json

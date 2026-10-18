@@ -62,7 +62,7 @@ public class TotemicModelProvider extends ModelProvider {
         im.generateFlatItem(ModItems.totem_whittling_knife.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         im.generateFlatItem(ModItems.totemic_staff.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
         im.generateFlatItem(ModItems.ceremony_cheat.get(), ModelTemplates.FLAT_HANDHELD_ITEM);
-        var spawnEggModel = im.generateLayeredItem(modLocation("template_spawn_egg"), new Material(modLocation("item/spawn_egg")), new Material(modLocation("item/spawn_egg_overlay")));
+        var spawnEggModel = im.generateLayeredItem(modLocation("item/template_spawn_egg"), new Material(modLocation("item/spawn_egg")), new Material(modLocation("item/spawn_egg_overlay")));
         generateSpawnEgg(im, ModItems.bald_eagle_spawn_egg.get(), spawnEggModel, 0x4B4136, 0xF5E6A3);
         generateSpawnEgg(im, ModItems.baykok_spawn_egg.get(), spawnEggModel, 0xE0E0E0, 0xF8DAD2);
         generateSpawnEgg(im, ModItems.buffalo_spawn_egg.get(), spawnEggModel, 0x2A1C12, 0x885F3E);
@@ -75,7 +75,7 @@ public class TotemicModelProvider extends ModelProvider {
         im.generateFlatItem(ModItems.eagle_feather.get(), ModelTemplates.FLAT_ITEM);
         im.createFlatItemModel(ModItems.baykok_bow.get(), ModelTemplates.BOW);
         im.generateBow(ModItems.baykok_bow.get()); // generates the pulling models and the client item
-        ModelTemplates.FLAT_ITEM.create(modLocation("totempedia"), TextureMapping.layer0(new Material(modLocation("item/totempedia"))), im.modelOutput);
+        ModelTemplates.FLAT_ITEM.create(modLocation("item/totempedia"), TextureMapping.layer0(new Material(modLocation("item/totempedia"))), im.modelOutput);
         createMedicineBag(im);
         // TODO: Special item models for Totem Base and Pole
     }

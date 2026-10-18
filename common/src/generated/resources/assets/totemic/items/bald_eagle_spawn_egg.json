@@ -1,7 +1,7 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "totemic:template_spawn_egg",
+    "model": "totemic:item/template_spawn_egg",
     "tints": [
       {
         "type": "minecraft:constant",
