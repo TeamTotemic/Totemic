@@ -61,6 +61,7 @@ public final class ModContent {
     public static final Supplier<TotemWoodType> cherry = WOOD_TYPES.register("cherry", () -> new TotemWoodType(MapColor.TERRACOTTA_WHITE, MapColor.TERRACOTTA_GRAY, BlockTags.CHERRY_LOGS));
     public static final Supplier<TotemWoodType> dark_oak = WOOD_TYPES.register("dark_oak", () -> new TotemWoodType(MapColor.COLOR_BROWN, MapColor.COLOR_BROWN, BlockTags.DARK_OAK_LOGS));
     public static final Supplier<TotemWoodType> mangrove = WOOD_TYPES.register("mangrove", () -> new TotemWoodType(MapColor.COLOR_RED, MapColor.PODZOL, BlockTags.MANGROVE_LOGS));
+    public static final Supplier<TotemWoodType> pale_oak = WOOD_TYPES.register("pale_oak", () -> new TotemWoodType(MapColor.QUARTZ, MapColor.STONE, BlockTags.PALE_OAK_LOGS));
     public static final Supplier<TotemWoodType> cedar = WOOD_TYPES.register("cedar", () -> new TotemWoodType(MapColor.COLOR_PINK, MapColor.COLOR_ORANGE, TotemicBlockTags.CEDAR_LOGS));
 
     public static final PlatformRegistryHelper<TotemCarving> CARVINGS = Totemic.platform().createRegistryHelper(RegistryAPI.TOTEM_CARVING_REGISTRY);

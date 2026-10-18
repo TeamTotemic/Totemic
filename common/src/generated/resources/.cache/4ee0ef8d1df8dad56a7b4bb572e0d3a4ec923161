@@ -1,4 +1,4 @@
-// 26.1.2	2026-10-18T02:23:45.560327921	Model Definitions - totemic
+// 26.1.2	2026-10-18T11:27:36.6142402	Model Definitions - totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 e95897486a14143a12a2e2cdda92b9858c190b19 assets/totemic/blockstates/cedar_fence.json
@@ -121,6 +121,8 @@ e6f0dbfac7b4f15bcd7a7324fdf75ae23927e251 assets/totemic/models/block/dark_oak_to
 5c3088cef0b2cbbafee0a36c77daa8aa016f0d28 assets/totemic/models/block/mangrove_totem_pole.json
 5b69be6fd1268d1309ffeb030a9efe37dc020804 assets/totemic/models/block/oak_totem_base.json
 4d3b819f6addfc99093e58589be6e647ce0d801c assets/totemic/models/block/oak_totem_pole.json
+213939e7aebb5f3e919760e008aeb4127dcfc16d assets/totemic/models/block/pale_oak_totem_base.json
+e433fb301d5a8fcb8694964850f898cfdbb70f0e assets/totemic/models/block/pale_oak_totem_pole.json
 d61ad6500db43af1f34d0593c7748a479e6e0c0b assets/totemic/models/block/potted_cedar_sapling.json
 f76da7674f665c59587f7e977110f152b9fd78d3 assets/totemic/models/block/spruce_totem_base.json
 4898de113bb75032d3817effad410c8def013f40 assets/totemic/models/block/spruce_totem_pole.json
