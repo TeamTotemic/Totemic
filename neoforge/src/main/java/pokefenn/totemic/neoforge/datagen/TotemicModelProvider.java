@@ -11,6 +11,7 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.client.renderer.item.ClientItem;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
@@ -75,7 +76,7 @@ public class TotemicModelProvider extends ModelProvider {
         im.generateFlatItem(ModItems.eagle_feather.get(), ModelTemplates.FLAT_ITEM);
         im.createFlatItemModel(ModItems.baykok_bow.get(), ModelTemplates.BOW);
         im.generateBow(ModItems.baykok_bow.get()); // generates the pulling models and the client item
-        ModelTemplates.FLAT_ITEM.create(modLocation("item/totempedia"), TextureMapping.layer0(new Material(modLocation("item/totempedia"))), im.modelOutput);
+        createTotempedia(im);
         createMedicineBag(im);
         // TODO: Special item models for Totem Base and Pole
     }
@@ -116,6 +117,11 @@ public class TotemicModelProvider extends ModelProvider {
             poleTemplate.create(Totemic.resloc("block/" + woodTypeName + "_totem_pole"), textures, bm.modelOutput);
             baseTemplate.create(Totemic.resloc("block/" + woodTypeName + "_totem_base"), textures, bm.modelOutput);
         });
+    }
+
+    private void createTotempedia(ItemModelGenerators im) {
+        var model = ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(modLocation("item/totempedia"), TextureMapping.layer0(new Material(modLocation("item/totempedia"))), im.modelOutput));
+        im.itemModelOutput.register(modLocation("totempedia"), new ClientItem(model, ClientItem.Properties.DEFAULT));
     }
 
     private void createMedicineBag(ItemModelGenerators im) {

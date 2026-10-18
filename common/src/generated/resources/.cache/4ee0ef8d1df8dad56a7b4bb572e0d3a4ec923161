@@ -1,4 +1,4 @@
-// 26.1.2	2026-10-18T02:09:12.191507395	Model Definitions - totemic
+// 26.1.2	2026-10-18T02:23:45.560327921	Model Definitions - totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 e95897486a14143a12a2e2cdda92b9858c190b19 assets/totemic/blockstates/cedar_fence.json
@@ -65,6 +65,7 @@ a177946fb3a8b1747d44994fa995c40e4dbab87a assets/totemic/items/totem_base.json
 a4ad8500ab0af27df91dc5d42140e4f7357db1cb assets/totemic/items/totem_torch.json
 d71178d9e44fca03699f225127cbb3ae5badd13b assets/totemic/items/totem_whittling_knife.json
 8ae55fff12a263e1ca30236f8f96c83178ca9b1b assets/totemic/items/totemic_staff.json
+6d12164e843815666c61e4e314ab9d9bd9b0b147 assets/totemic/items/totempedia.json
 51f2374dec66c6b492938c487572d8967a76acc8 assets/totemic/items/wind_chime.json
 7ef2b6faf60bf26c162b0a3e5c99bc273595fcb8 assets/totemic/models/block/acacia_totem_base.json
 f34adf7c6a12dc4f25e0dcab5fc4df7e8e8195d6 assets/totemic/models/block/acacia_totem_pole.json
