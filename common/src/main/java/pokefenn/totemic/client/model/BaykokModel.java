@@ -37,12 +37,12 @@ public class BaykokModel extends HumanoidModel<HumanoidRenderState> {
                 .texOffs(42, 16)
                 .addBox(-2F, 0F, -1.5F, 3F, 12F, 3F, true),
                 PartPose.offset(-2F, 12F, 0F));
-        root.addOrReplaceChild("head", CubeListBuilder.create()
+        var head = root.addOrReplaceChild("head", CubeListBuilder.create()
                 .texOffs(0, 0)
                 .addBox(-4F, -8F, -4F, 8F, 8F, 8F, true),
                 PartPose.offset(0F, -1F, 0F));
 
-        var hat = root.addOrReplaceChild("hat", CubeListBuilder.create()
+        var hat = head.addOrReplaceChild("hat", CubeListBuilder.create()
                 .texOffs(0, 0),
                 PartPose.offset(0F, -1F, 0F));
         hat.addOrReplaceChild("headdress1", CubeListBuilder.create()
