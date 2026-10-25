@@ -1,23 +1,19 @@
 package pokefenn.totemic.client.model;
 
-import java.util.Set;
+import java.util.function.UnaryOperator;
 
-import net.minecraft.client.model.BabyModelTransform;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.MeshTransformer;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.util.Mth;
 import pokefenn.totemic.client.model.BaldEagleModel.BaldEagleRenderState;
 import pokefenn.totemic.entity.BaldEagle;
 
 public class BaldEagleModel extends EntityModel<BaldEagleRenderState> {
-    public static final MeshTransformer BABY_TRANSFORMER = new BabyModelTransform(true, 10.0F, 1.0F, Set.of("head"));
-
     private final ModelPart head;
     private final ModelPart body;
     private final ModelPart leftLeg;
@@ -37,7 +33,7 @@ public class BaldEagleModel extends EntityModel<BaldEagleRenderState> {
         tail = root.getChild("tail");
     }
 
-    public static LayerDefinition createLayer() {
+    public static LayerDefinition createLayer(boolean isBaby) {
         var mesh = new MeshDefinition();
         var root = mesh.getRoot();
 
@@ -61,6 +57,14 @@ public class BaldEagleModel extends EntityModel<BaldEagleRenderState> {
                 .texOffs(2, 8)
                 .addBox(-0.5F, 1.2F, -3.35F, 2F, 1F, 1F, false),
                 PartPose.offset(0.0F, 0.15F, 0.05F));
+
+        if(isBaby) {
+            // We can't easily use BabyModelTransform for this model because it changes the positions of the body parts,
+            // which we modify again in setupAnim. So instead we just scale up the head relative to the body and then
+            // scale everything down in BaldEagleRenderer#submit.
+            UnaryOperator<PartPose> babyHeadTransform = p -> p.translated(0.0F, 10.0F, 1.0F).scaled(1.5F);
+            root.addOrReplaceChild("head", root.getChild("head").transformed(babyHeadTransform));
+        }
 
         root.addOrReplaceChild("body", CubeListBuilder.create()
                 .texOffs(8, 10)

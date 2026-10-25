@@ -49,7 +49,10 @@ public class BaldEagleRenderer extends MobRenderer<BaldEagle, BaldEagleRenderSta
     public void submit(BaldEagleRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {
         this.model = this.models.getModel(state.isBaby);
         poseStack.pushPose();
-        poseStack.scale(1.5F, 1.5F, 1.5F);
+        if(state.isBaby)
+            poseStack.scale(0.75F, 0.75F, 0.75F);
+        else
+            poseStack.scale(1.5F, 1.5F, 1.5F);
         super.submit(state, poseStack, submitNodeCollector, camera);
         poseStack.popPose();
     }

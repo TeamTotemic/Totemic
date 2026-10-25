@@ -37,8 +37,8 @@ public final class ModModelLayers {
     public static void registerLayerDefinitions(BiConsumer<ModelLayerLocation, Supplier<LayerDefinition>> registry) {
         registry.accept(BUFFALO, BuffaloModel::createLayer);
         registry.accept(BUFFALO_BABY, () -> BuffaloModel.createLayer().apply(BuffaloModel.BABY_TRANSFORMER));
-        registry.accept(BALD_EAGLE, BaldEagleModel::createLayer);
-        registry.accept(BALD_EAGLE_BABY, () -> BaldEagleModel.createLayer().apply(BaldEagleModel.BABY_TRANSFORMER));
+        registry.accept(BALD_EAGLE, () -> BaldEagleModel.createLayer(false));
+        registry.accept(BALD_EAGLE_BABY, () -> BaldEagleModel.createLayer(true));
         registry.accept(BAYKOK, () -> BaykokModel.createLayer(CubeDeformation.NONE));
 
         registry.accept(WIND_CHIME, WindChimeModel::createLayer);
