@@ -1,4 +1,4 @@
-package pokefenn.totemic.neoforge.client;
+package pokefenn.totemic.neoforge.client.totem;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableMap;

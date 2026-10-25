@@ -1,4 +1,4 @@
-package pokefenn.totemic.neoforge.client;
+package pokefenn.totemic.neoforge.client.totem;
 
 import net.neoforged.neoforge.model.data.ModelProperty;
 import pokefenn.totemic.api.totem.TotemCarving;

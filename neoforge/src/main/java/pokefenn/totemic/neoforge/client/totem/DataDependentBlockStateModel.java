@@ -1,4 +1,4 @@
-package pokefenn.totemic.neoforge.client;
+package pokefenn.totemic.neoforge.client.totem;
 
 import java.util.List;
 import java.util.Map;

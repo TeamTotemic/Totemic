@@ -1,4 +1,4 @@
-package pokefenn.totemic.neoforge;
+package pokefenn.totemic.neoforge.client;
 
 import net.minecraft.client.renderer.Sheets;
 import net.neoforged.api.distmarker.Dist;
@@ -23,8 +23,8 @@ import pokefenn.totemic.client.ModModelLayers;
 import pokefenn.totemic.client.renderer.item.properties.IsMedicineBagOpen;
 import pokefenn.totemic.client.renderer.special.WindChimeSpecialRenderer;
 import pokefenn.totemic.init.ModBlocks;
-import pokefenn.totemic.neoforge.client.UnbakedTotemBaseBlockStateModel;
-import pokefenn.totemic.neoforge.client.UnbakedTotemPoleBlockStateModel;
+import pokefenn.totemic.neoforge.client.totem.UnbakedTotemBaseBlockStateModel;
+import pokefenn.totemic.neoforge.client.totem.UnbakedTotemPoleBlockStateModel;
 import pokefenn.totemic.neoforge.handler.ClientEventHandlers;
 
 @Mod(value = TotemicAPI.MOD_ID, dist = Dist.CLIENT)

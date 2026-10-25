@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.model.data.ModelData;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.block.totem.entity.TotemBaseBlockEntity;
-import pokefenn.totemic.neoforge.client.TotemPoleModelData;
+import pokefenn.totemic.neoforge.client.totem.TotemPoleModelData;
 
 /*
  * A mixin into our own class, so that we can override the getModelData method. This method refers to the Neo-only type

@@ -11,7 +11,7 @@ import net.neoforged.neoforge.model.data.ModelData;
 import pokefenn.totemic.api.totem.TotemCarving;
 import pokefenn.totemic.api.totem.TotemWoodType;
 import pokefenn.totemic.block.totem.entity.TotemPoleBlockEntity;
-import pokefenn.totemic.neoforge.client.TotemPoleModelData;
+import pokefenn.totemic.neoforge.client.totem.TotemPoleModelData;
 
 // Self-mixin, see MixinTotemBaseBlockEntity
 @Mixin(TotemPoleBlockEntity.class)
