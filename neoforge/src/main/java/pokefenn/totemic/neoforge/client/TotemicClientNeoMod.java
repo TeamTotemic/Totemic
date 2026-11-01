@@ -1,6 +1,9 @@
 package pokefenn.totemic.neoforge.client;
 
+import java.util.Optional;
+
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.block.model.SpecialBlockModelWrapper;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -8,6 +11,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterBlockModelsEvent;
 import net.neoforged.neoforge.client.event.RegisterBlockStateModels;
 import net.neoforged.neoforge.client.event.RegisterConditionalItemModelPropertyEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
@@ -60,6 +64,12 @@ public final class TotemicClientNeoMod {
     @SubscribeEvent
     public static void registerSpecialModelRenderers(RegisterSpecialModelRendererEvent event) {
         event.register(Totemic.resloc("wind_chime"), WindChimeSpecialRenderer.Unbaked.MAP_CODEC);
+    }
+
+    @SubscribeEvent
+    public static void registerSpecialBlockRenderers(RegisterBlockModelsEvent event) {
+        event.register(new SpecialBlockModelWrapper.Unbaked<>(new WindChimeSpecialRenderer.Unbaked(), Optional.empty()),
+                ModBlocks.wind_chime.get());
     }
 
     @SubscribeEvent
