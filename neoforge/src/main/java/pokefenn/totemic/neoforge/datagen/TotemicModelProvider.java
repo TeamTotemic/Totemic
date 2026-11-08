@@ -27,6 +27,7 @@ import pokefenn.totemic.client.renderer.special.WindChimeSpecialRenderer;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
+import pokefenn.totemic.neoforge.client.totem.TotemBaseSpecialRenderer;
 
 public class TotemicModelProvider extends ModelProvider {
     public TotemicModelProvider(PackOutput output) {
@@ -53,6 +54,7 @@ public class TotemicModelProvider extends ModelProvider {
         bm.createAirLikeBlock(ModBlocks.dummy_tipi.get(), TextureMapping.getBlockTexture(Blocks.WHITE_WOOL));
         // The totem_pole and totem_base block state JSONs are not generated
         createTotemWoodTypes(bm);
+        createTotemBlockItems(bm);
 
         //Items
         im.generateFlatItem(ModItems.flute.get(), ModelTemplates.FLAT_ITEM);
@@ -78,7 +80,6 @@ public class TotemicModelProvider extends ModelProvider {
         im.generateBow(ModItems.baykok_bow.get()); // generates the pulling models and the client item
         createTotempedia(im);
         createMedicineBag(im);
-        // TODO: Special item models for Totem Base and Pole
     }
 
     private void createWindChime(BlockModelGenerators bm) {
@@ -117,6 +118,11 @@ public class TotemicModelProvider extends ModelProvider {
             poleTemplate.create(Totemic.resloc("block/" + woodTypeName + "_totem_pole"), textures, bm.modelOutput);
             baseTemplate.create(Totemic.resloc("block/" + woodTypeName + "_totem_base"), textures, bm.modelOutput);
         });
+    }
+
+    private void createTotemBlockItems(BlockModelGenerators bm) {
+        var baseModel = ItemModelUtils.specialModel(modLocation("block/oak_totem_base"), new TotemBaseSpecialRenderer.Unbaked());
+        bm.itemModelOutput.accept(ModItems.totem_base.get(), baseModel);
     }
 
     private void createTotempedia(ItemModelGenerators im) {

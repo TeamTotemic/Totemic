@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.jspecify.annotations.Nullable;
+
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.block.dispatch.BlockStateModelPart;
 import net.minecraft.client.resources.model.geometry.BakedQuad.MaterialFlags;
@@ -15,7 +17,7 @@ import net.neoforged.neoforge.client.model.DynamicBlockStateModel;
 import net.neoforged.neoforge.model.data.ModelProperty;
 
 /**
- * A BlockStateModel which resolves to a different model depending on a ModelData property.
+ * A BlockStateModel which resolves to a different model (BlockStateModelPart) depending on a ModelData property.
  * @param <K> the type of key on which the model should depend.
  */
 public class DataDependentBlockStateModel<K> implements DynamicBlockStateModel {
@@ -34,9 +36,13 @@ public class DataDependentBlockStateModel<K> implements DynamicBlockStateModel {
         this.defaultModel = Objects.requireNonNull(models.get(defaultKey));
     }
 
+    public BlockStateModelPart getModel(@Nullable K key) {
+        return key != null ? models.getOrDefault(key, defaultModel) : defaultModel;
+    }
+
     private BlockStateModelPart getModelFor(BlockAndTintGetter level, BlockPos pos) {
-        var data = level.getModelData(pos).get(property);
-        return data != null ? models.getOrDefault(data, defaultModel) : defaultModel;
+        var key = level.getModelData(pos).get(property);
+        return getModel(key);
     }
 
     @Override
@@ -61,6 +67,9 @@ public class DataDependentBlockStateModel<K> implements DynamicBlockStateModel {
 
     @Override
     public @MaterialFlags int materialFlags() {
-        return defaultModel.materialFlags();
+        int flags = 0;
+        for(var model: models.values())
+            flags |= model.materialFlags();
+        return flags;
     }
 }

@@ -1,6 +1,9 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "totemic:block/totem_base"
+    "type": "minecraft:special",
+    "base": "totemic:block/oak_totem_base",
+    "model": {
+      "type": "totemic:totem_base"
+    }
   }
 }
