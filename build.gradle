@@ -5,3 +5,11 @@ plugins {
     id 'net.darkhax.curseforgegradle' version '1.3.+' apply false
     id 'com.modrinth.minotaur' version '2.+' apply false
 }
+
+tasks.register('generateAllData') {
+    group = 'mod development'
+    description = 'Runs all data generation'
+
+    dependsOn ':neoforge:runCommonData'
+    dependsOn ':neoforge:runNeoForgeData'
+}
