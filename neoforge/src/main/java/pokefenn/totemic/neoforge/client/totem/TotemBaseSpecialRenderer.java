@@ -2,10 +2,12 @@ package pokefenn.totemic.neoforge.client.totem;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import org.joml.Vector3fc;
 import org.jspecify.annotations.Nullable;
 
+import com.google.common.base.Suppliers;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.serialization.MapCodec;
 
@@ -22,13 +24,22 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModDataComponents;
 
 public class TotemBaseSpecialRenderer implements SpecialModelRenderer<TotemWoodType> {
+    // Note: We don't have to worry about the hard problem of cache invalidation when the models are reloaded,
+    // since the instance of this renderer is also recreated then.
+    @SuppressWarnings("unchecked")
+    private final Supplier<@Nullable DataDependentBlockStateModel<TotemWoodType>> blockStateModel = Suppliers.memoize(() -> {
+        var model = Minecraft.getInstance().getModelManager().getBlockStateModelSet().get(ModBlocks.totem_base.get().defaultBlockState());
+        if(model instanceof DataDependentBlockStateModel dataDepModel)
+            return dataDepModel;
+        else
+            return null;
+    });
+
     @Override
     public void submit(@Nullable TotemWoodType argument, PoseStack poseStack, SubmitNodeCollector coll, int lightCoords, int overlayCoords, boolean hasFoil, int outlineColor) {
-        // TODO: We might want to cache this
-        var blockStateModel = Minecraft.getInstance().getModelManager().getBlockStateModelSet().get(ModBlocks.totem_base.get().defaultBlockState());
-        if(blockStateModel instanceof DataDependentBlockStateModel dataDepModel) {
-            @SuppressWarnings("unchecked")
-            var part = dataDepModel.getModel(argument);
+        var model = blockStateModel.get();
+        if(model != null) {
+            var part = model.getPart(argument);
             var renderType = (part.materialFlags() & BakedQuad.FLAG_TRANSLUCENT) != 0 ? Sheets.translucentBlockSheet() : Sheets.cutoutBlockSheet();
             coll.submitBlockModel(poseStack, renderType, List.of(part), BlockModelRenderState.EMPTY_TINTS, lightCoords, overlayCoords, outlineColor);
         }
@@ -41,12 +52,12 @@ public class TotemBaseSpecialRenderer implements SpecialModelRenderer<TotemWoodT
 
     @Override
     public void getExtents(Consumer<Vector3fc> output) {
-        var blockStateModel = Minecraft.getInstance().getModelManager().getBlockStateModelSet().get(ModBlocks.totem_base.get().defaultBlockState());
-        if(blockStateModel instanceof DataDependentBlockStateModel dataDepModel) {
-            @SuppressWarnings("unchecked")
-            var part = dataDepModel.getModel(null);
+        var model = blockStateModel.get();
+        if(model != null) {
+            var part = model.getPart(null);
             CuboidItemModelWrapper.computeExtents(part.getQuads(null));
         }
+        // else we don't need to do anything, can use the default extents for the missing model
     }
 
     @Override

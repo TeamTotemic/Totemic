@@ -36,23 +36,23 @@ public class DataDependentBlockStateModel<K> implements DynamicBlockStateModel {
         this.defaultModel = Objects.requireNonNull(models.get(defaultKey));
     }
 
-    public BlockStateModelPart getModel(@Nullable K key) {
+    public BlockStateModelPart getPart(@Nullable K key) {
         return key != null ? models.getOrDefault(key, defaultModel) : defaultModel;
     }
 
-    private BlockStateModelPart getModelFor(BlockAndTintGetter level, BlockPos pos) {
+    private BlockStateModelPart getPartFor(BlockAndTintGetter level, BlockPos pos) {
         var key = level.getModelData(pos).get(property);
-        return getModel(key);
+        return getPart(key);
     }
 
     @Override
     public void collectParts(BlockAndTintGetter level, BlockPos pos, BlockState state, RandomSource random, List<BlockStateModelPart> parts) {
-        parts.add(getModelFor(level, pos));
+        parts.add(getPartFor(level, pos));
     }
 
     @Override
     public Material.Baked particleMaterial(BlockAndTintGetter level, BlockPos pos, BlockState state) {
-        return getModelFor(level, pos).particleMaterial();
+        return getPartFor(level, pos).particleMaterial();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class DataDependentBlockStateModel<K> implements DynamicBlockStateModel {
 
     @Override
     public @MaterialFlags int materialFlags(BlockAndTintGetter level, BlockPos pos, BlockState state) {
-        return getModelFor(level, pos).materialFlags();
+        return getPartFor(level, pos).materialFlags();
     }
 
     @Override
