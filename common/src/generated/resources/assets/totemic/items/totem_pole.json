@@ -1,7 +1,7 @@
 {
   "model": {
     "type": "minecraft:special",
-    "base": "totemic:block/totem_pole_none",
+    "base": "totemic:item/template_totem_block",
     "model": {
       "type": "totemic:totem_pole"
     }

@@ -122,10 +122,13 @@ public class TotemicModelProvider extends ModelProvider {
     }
 
     private void createTotemBlockItems(BlockModelGenerators bm) {
-        var poleModel = ItemModelUtils.specialModel(modLocation("block/totem_pole_none"), new TotemPoleSpecialRenderer.Unbaked());
+        var templateTotemBlock = ModelTemplates.create("block", TextureSlot.PARTICLE)
+                .create(modLocation("item/template_totem_block"), TextureMapping.particle(Blocks.STRIPPED_OAK_LOG), bm.modelOutput);
+
+        var poleModel = ItemModelUtils.specialModel(templateTotemBlock, new TotemPoleSpecialRenderer.Unbaked());
         bm.itemModelOutput.accept(ModItems.totem_pole.get(), poleModel);
 
-        var baseModel = ItemModelUtils.specialModel(modLocation("block/oak_totem_base"), new TotemBaseSpecialRenderer.Unbaked());
+        var baseModel = ItemModelUtils.specialModel(templateTotemBlock, new TotemBaseSpecialRenderer.Unbaked());
         bm.itemModelOutput.accept(ModItems.totem_base.get(), baseModel);
     }
 

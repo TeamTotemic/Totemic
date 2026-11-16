@@ -1,4 +1,4 @@
-// 26.1.2	2026-11-16T17:16:16.535474393	Model Definitions - totemic
+// 26.1.2	2026-11-16T20:08:40.992582356	Model Definitions - totemic
 6525c214854384d5449f7014dd4c628156faac51 assets/totemic/blockstates/cedar_button.json
 1e3ae69619fa0f0563ad3a4a8714ce9fcc821c4a assets/totemic/blockstates/cedar_door.json
 e95897486a14143a12a2e2cdda92b9858c190b19 assets/totemic/blockstates/cedar_fence.json
@@ -60,8 +60,8 @@ c5d39b4ccadbaefc2c0d423028a2df591c41d14b assets/totemic/items/infused_flute.json
 3353bd0997cae53f4fb85743f3fe002d6030230e assets/totemic/items/rattle.json
 097d8be43e462d72ae56c4678d9f7414cc4dec7e assets/totemic/items/stripped_cedar_log.json
 1c654d1bbcdf3402a15e6ba40a51c32c4df376f8 assets/totemic/items/stripped_cedar_wood.json
-5d1f02b7bcf668f232183a7b8ece04aaf1d55813 assets/totemic/items/totem_base.json
-d619790755182734e6118bbf78d039c95f351347 assets/totemic/items/totem_pole.json
+080884aeefdae906063acb1034f3421ea799218b assets/totemic/items/totem_base.json
+d7e3309ed5986db6505e32a1f45be8fd7ef0f988 assets/totemic/items/totem_pole.json
 a4ad8500ab0af27df91dc5d42140e4f7357db1cb assets/totemic/items/totem_torch.json
 d71178d9e44fca03699f225127cbb3ae5badd13b assets/totemic/items/totem_whittling_knife.json
 8ae55fff12a263e1ca30236f8f96c83178ca9b1b assets/totemic/items/totemic_staff.json
@@ -154,6 +154,7 @@ dbb2bab8e6b42bf92c6b46b8fc2b863c461ad210 assets/totemic/models/item/iron_bells.j
 919b1478bfbc6f54f9b28e63d18b245f85117292 assets/totemic/models/item/medicine_bag_open.json
 f95f61591f5c7ed2414e32cc91cba6a528165479 assets/totemic/models/item/rattle.json
 81a364440edd99efb6f852b66a1477cb0e6c1285 assets/totemic/models/item/template_spawn_egg.json
+c905f2b909688589f6e5863cdb4d8221deb571cf assets/totemic/models/item/template_totem_block.json
 81cb8cf66c01b1bca81baa598d786696fb190d7c assets/totemic/models/item/totem_whittling_knife.json
 571cdb797bfbaeadd258470139656e8ea3f06aed assets/totemic/models/item/totemic_staff.json
 fbeef7f27200165244d1c325bf83e018a15b2cb5 assets/totemic/models/item/totempedia.json
