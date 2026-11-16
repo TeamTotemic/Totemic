@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "totemic:block/totem_torch"
+    "model": "totemic:item/totem_torch"
   }
 }

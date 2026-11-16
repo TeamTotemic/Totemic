@@ -51,7 +51,7 @@ public class TotemicModelProvider extends ModelProvider {
         createWindChime(bm);
         bm.family(ModBlocks.cedar_planks.get()).generateFor(TotemicRecipeProvider.CEDAR_FAMILY);
         bm.createHangingSign(ModBlocks.stripped_cedar_log.get(), ModBlocks.cedar_hanging_sign.get(), ModBlocks.cedar_wall_hanging_sign.get());
-        bm.createNonTemplateModelBlock(ModBlocks.totem_torch.get()); // TODO: Transformations for Totem Torch item model
+        createTotemTorch(bm);
         bm.createAirLikeBlock(ModBlocks.dummy_tipi.get(), TextureMapping.getBlockTexture(Blocks.WHITE_WOOL));
         // The totem_pole and totem_base block state JSONs are not generated
         createTotemWoodTypes(bm);
@@ -98,6 +98,19 @@ public class TotemicModelProvider extends ModelProvider {
         var itemModelBase = template.create(ModItems.wind_chime.get(), TextureMapping.particle(Blocks.WHITE_TERRACOTTA), bm.modelOutput);
         var itemModel = ItemModelUtils.specialModel(itemModelBase, new WindChimeSpecialRenderer.Unbaked());
         bm.itemModelOutput.accept(ModItems.wind_chime.get(), itemModel);
+    }
+
+    private void createTotemTorch(BlockModelGenerators bm) {
+        bm.createNonTemplateModelBlock(ModBlocks.totem_torch.get());
+
+        var itemTemplate = ModelTemplates.create("totemic:totem_torch")
+                .extend()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND, builder -> builder.rotation(0, 45, 0).translation(0, 1.5F, 1.0F).scale(0.25F))
+                .transform(ItemDisplayContext.GUI, builder -> builder.rotation(30, 225, 0).translation(0, -1.0F, 0).scale(0.625F))
+                .transform(ItemDisplayContext.FIXED, builder -> builder.translation(0, 0, -0.25F).scale(0.5F))
+                .build();
+        var itemModel = itemTemplate.create(ModItems.totem_torch.get(), new TextureMapping(), bm.modelOutput);
+        bm.registerSimpleItemModel(ModItems.totem_torch.get(), itemModel);
     }
 
     private void createTotemWoodTypes(BlockModelGenerators bm) {
