@@ -54,7 +54,7 @@ public class TotemBaseSpecialRenderer implements SpecialModelRenderer<TotemWoodT
     public void getExtents(Consumer<Vector3fc> output) {
         var model = blockStateModel.get();
         if(model != null) {
-            var part = model.getPart(null);
+            var part = model.getPart(null); // the Totem Bases only differ in their textures, it's enough to use the default model
             CuboidItemModelWrapper.computeExtents(part.getQuads(null));
         }
         // else we don't need to do anything, can use the default extents for the missing model

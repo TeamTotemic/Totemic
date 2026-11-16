@@ -28,6 +28,7 @@ import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.init.ModContent;
 import pokefenn.totemic.init.ModItems;
 import pokefenn.totemic.neoforge.client.totem.TotemBaseSpecialRenderer;
+import pokefenn.totemic.neoforge.client.totem.TotemPoleSpecialRenderer;
 
 public class TotemicModelProvider extends ModelProvider {
     public TotemicModelProvider(PackOutput output) {
@@ -121,6 +122,9 @@ public class TotemicModelProvider extends ModelProvider {
     }
 
     private void createTotemBlockItems(BlockModelGenerators bm) {
+        var poleModel = ItemModelUtils.specialModel(modLocation("block/totem_pole_none"), new TotemPoleSpecialRenderer.Unbaked());
+        bm.itemModelOutput.accept(ModItems.totem_pole.get(), poleModel);
+
         var baseModel = ItemModelUtils.specialModel(modLocation("block/oak_totem_base"), new TotemBaseSpecialRenderer.Unbaked());
         bm.itemModelOutput.accept(ModItems.totem_base.get(), baseModel);
     }

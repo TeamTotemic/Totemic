@@ -28,6 +28,7 @@ import pokefenn.totemic.client.renderer.item.properties.IsMedicineBagOpen;
 import pokefenn.totemic.client.renderer.special.WindChimeSpecialRenderer;
 import pokefenn.totemic.init.ModBlocks;
 import pokefenn.totemic.neoforge.client.totem.TotemBaseSpecialRenderer;
+import pokefenn.totemic.neoforge.client.totem.TotemPoleSpecialRenderer;
 import pokefenn.totemic.neoforge.client.totem.UnbakedTotemBaseBlockStateModel;
 import pokefenn.totemic.neoforge.client.totem.UnbakedTotemPoleBlockStateModel;
 import pokefenn.totemic.neoforge.handler.ClientEventHandlers;
@@ -65,6 +66,7 @@ public final class TotemicClientNeoMod {
     @SubscribeEvent
     public static void registerSpecialModelRenderers(RegisterSpecialModelRendererEvent event) {
         event.register(Totemic.resloc("wind_chime"), WindChimeSpecialRenderer.Unbaked.MAP_CODEC);
+        event.register(Totemic.resloc("totem_pole"), TotemPoleSpecialRenderer.Unbaked.MAP_CODEC);
         event.register(Totemic.resloc("totem_base"), TotemBaseSpecialRenderer.Unbaked.MAP_CODEC);
     }
 
