@@ -22,7 +22,7 @@
                 "north": {
                     "texture": "#wood",
                     "neoforge_data": {
-                        "color": "AA55EE"
+                        "color": "FFAA55EE"
                     }
                 },
                 "south": {

@@ -23,7 +23,7 @@
                     "uv": [4.0,4.0,14.0,13.0],
                     "texture": "#wood",
                     "neoforge_data": {
-                        "color": "555555"
+                        "color": "FF555555"
                     }
                 },
                 "south": {

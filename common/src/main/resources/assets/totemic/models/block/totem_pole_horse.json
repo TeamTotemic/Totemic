@@ -67,7 +67,7 @@
                 "down": {
                     "texture": "#wood",
                     "neoforge_data": {
-                        "color": "555555"
+                        "color": "FF555555"
                     }
                 },
                 "west": {
@@ -137,13 +137,13 @@
                 "west": {
                     "texture": "#wood",
                     "neoforge_data": {
-                        "color": "555555"
+                        "color": "FF555555"
                     }
                 },
                 "east": {
                     "texture": "#wood",
                     "neoforge_data": {
-                        "color": "555555"
+                        "color": "FF555555"
                     }
                 }
             }
@@ -223,7 +223,7 @@
                 "north": {
                     "texture": "#wood",
                     "neoforge_data": {
-                        "color": "555555"
+                        "color": "FF555555"
                     }
                 }
             }
@@ -235,7 +235,7 @@
                 "up": {
                     "texture": "#wood",
                     "neoforge_data": {
-                        "color": "555555"
+                        "color": "FF555555"
                     }
                 },
                 "down": {
