@@ -74,6 +74,7 @@
   "block.totemic.cherry_totem_base": "Вишнёвое Основание тотема",
   "block.totemic.dark_oak_totem_base": "Основание тотема из Тёмного дуба",
   "block.totemic.mangrove_totem_base": "Мангровое Основание тотема",
+  "block.totemic.pale_oak_totem_base": "Основание тотема из бледного дуба",
   "block.totemic.cedar_totem_base": "Основание тотема из Красного Кедра",
   
   "block.totemic.oak_totem_pole": "Дубовый Тотемный столб (%s)",
@@ -84,6 +85,7 @@
   "block.totemic.cherry_totem_pole": "Вишнёвый Тотемный столб (%s)",
   "block.totemic.dark_oak_totem_pole": "Тотемный столб из Тёмного дуба (%s)",
   "block.totemic.mangrove_totem_pole": "Мангровый Тотемный столб (%s)",
+  "block.totemic.pale_oak_totem_pole": "Тотемный столб из бледного дуба (%s)",
   "block.totemic.cedar_totem_pole": "Тотемный столб из Тёмного дуба (%s)",
   
   "entity.totemic.buffalo": "Бизон",

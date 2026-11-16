@@ -77,6 +77,7 @@
   "block.totemic.cherry_totem_base": "樱花木图腾基座",
   "block.totemic.dark_oak_totem_base": "深色橡木图腾基座",
   "block.totemic.mangrove_totem_base": "红树木图腾基座",
+  "block.totemic.pale_oak_totem_base": "苍白橡木图腾基座",
   "block.totemic.cedar_totem_base": "红柏木图腾基座",
   
   "block.totemic.oak_totem_pole": "橡木图腾柱 (%s)",
@@ -87,6 +88,7 @@
   "block.totemic.cherry_totem_pole": "樱花木图腾柱 (%s)",
   "block.totemic.dark_oak_totem_pole": "深色橡木图腾柱 (%s)",
   "block.totemic.mangrove_totem_pole": "红树木图腾柱 (%s)",
+  "block.totemic.pale_oak_totem_pole": "苍白橡木图腾柱 (%s)",
   "block.totemic.cedar_totem_pole": "红柏木图腾柱 (%s)",
   
   "entity.totemic.buffalo": "野牛",

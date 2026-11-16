@@ -77,6 +77,7 @@
   "block.totemic.cherry_totem_base": "Cherry Totem Base",
   "block.totemic.dark_oak_totem_base": "Dark Oak Totem Base",
   "block.totemic.mangrove_totem_base": "Mangrove Totem Base",
+  "block.totemic.pale_oak_totem_base": "Pale Oak Totem Base",
   "block.totemic.cedar_totem_base": "Red Cedar Totem Base",
   
   "block.totemic.oak_totem_pole": "Oak Totem Pole (%s)",
@@ -87,6 +88,7 @@
   "block.totemic.cherry_totem_pole": "Cherry Totem Pole (%s)",
   "block.totemic.dark_oak_totem_pole": "Dark Oak Totem Pole (%s)",
   "block.totemic.mangrove_totem_pole": "Mangrove Totem Pole (%s)",
+  "block.totemic.pale_oak_totem_pole": "Pale Oak Totem Pole (%s)",
   "block.totemic.cedar_totem_pole": "Red Cedar Totem Pole (%s)",
   
   "entity.totemic.buffalo": "Buffalo",

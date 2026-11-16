@@ -74,6 +74,7 @@
   "block.totemic.cherry_totem_base": "Вишнева тотемна основа",
   "block.totemic.dark_oak_totem_base": "Темно-дубова тотемна основа",
   "block.totemic.mangrove_totem_base": "Мангрова тотемна основа",
+  "block.totemic.pale_oak_totem_base": "Блідо-дубове тотемна основа",
   "block.totemic.cedar_totem_base": "Тотемна основа з червоного кедру",
 
   "block.totemic.oak_totem_pole": "Дубова тотемна основа «%s»",
@@ -84,6 +85,7 @@
   "block.totemic.cherry_totem_pole": "Вишнева тотемна основа «%s»",
   "block.totemic.dark_oak_totem_pole": "Темно-дубова тотемна основа «%s»",
   "block.totemic.mangrove_totem_pole": "Мангрова тотемна основа «%s»",
+  "block.totemic.pale_oak_totem_pole": "Блідо-дубове тотемна основа «%s»",
   "block.totemic.cedar_totem_pole": "Тотемна основа з червоного кедру «%s»",
 
   "entity.totemic.buffalo": "Бізон",
