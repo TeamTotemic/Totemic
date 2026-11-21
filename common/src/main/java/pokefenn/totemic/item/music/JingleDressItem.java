@@ -27,11 +27,11 @@ public class JingleDressItem extends Item {
     @Override
     public void inventoryTick(ItemStack stack, ServerLevel level, Entity owner, @Nullable EquipmentSlot slot) {
         if(slot == EquipmentSlot.LEGS && !level.isClientSide() && owner instanceof Player player && !player.isSpectator() && player.tickCount % 20 == 0) {
-            final double chargeFactor = 10.0;
+            final double chargeFactor = 10.0 * 4.0; // 4 times as much as on 1.21.1 due to a different way of calculating the velocity
             final int maxSingleCharge = 8;
             final int chargeLimit = 10;
 
-            double velocity = player.getDeltaMovement().length(); // TODO: This had to be changed since x/y/zCloak are no longer available. Test if this works
+            double velocity = player.getKnownSpeed().length();
             if(player.hasEffect(MobEffects.SPEED))
                 velocity *= 1.2;
 
