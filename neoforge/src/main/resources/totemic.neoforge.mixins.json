@@ -2,6 +2,7 @@
   "required": true,
   "package": "pokefenn.totemic.neoforge.mixin",
   "mixins": [
+    "MixinBlockLootSubProvider",
     "MixinTotemBaseBlockEntity",
     "MixinTotemPoleBlockEntity"
   ],
