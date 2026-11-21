@@ -10,7 +10,6 @@ import pokefenn.totemic.Totemic;
 public record ClientboundPacketTotemEffectMusic(BlockPos pos, short amount) implements CustomPacketPayload {
     public static final Type<ClientboundPacketTotemEffectMusic> TYPE = new Type<>(Totemic.resloc("totem_music"));
 
-    @SuppressWarnings("null")
     public static final StreamCodec<ByteBuf, ClientboundPacketTotemEffectMusic> STREAM_CODEC = StreamCodec.composite(
             BlockPos.STREAM_CODEC, ClientboundPacketTotemEffectMusic::pos,
             ByteBufCodecs.SHORT, ClientboundPacketTotemEffectMusic::amount,

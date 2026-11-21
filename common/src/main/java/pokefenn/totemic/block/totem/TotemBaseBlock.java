@@ -72,7 +72,7 @@ public class TotemBaseBlock extends HorizontalDirectionalBlock implements Entity
         if(stack.is(ModItems.totemic_staff.get()))
             return onTotemicStaffRightClick(level, pos, player);
         else
-            return InteractionResult.TRY_WITH_EMPTY_HAND; // FIXME: Not sure if this is the correct replacement for PASS_TO_DEFAULT_BLOCK_INTERACTION
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
     }
 
     private InteractionResult onTotemicStaffRightClick(Level level, BlockPos pos, Player player) {

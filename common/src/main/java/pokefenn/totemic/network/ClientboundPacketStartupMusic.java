@@ -12,7 +12,6 @@ import pokefenn.totemic.api.registry.RegistryAPI;
 public record ClientboundPacketStartupMusic(BlockPos pos, MusicInstrument instrument, int amount) implements CustomPacketPayload {
     public static final Type<ClientboundPacketStartupMusic> TYPE = new Type<>(Totemic.resloc("startup_music"));
 
-    @SuppressWarnings("null")
     public static final StreamCodec<RegistryFriendlyByteBuf, ClientboundPacketStartupMusic> STREAM_CODEC = StreamCodec.composite(
             BlockPos.STREAM_CODEC, ClientboundPacketStartupMusic::pos,
             ByteBufCodecs.registry(RegistryAPI.MUSIC_INSTRUMENT_REGISTRY), ClientboundPacketStartupMusic::instrument,
